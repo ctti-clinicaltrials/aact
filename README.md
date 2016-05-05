@@ -1,4 +1,4 @@
-# Aact2
+# AACT2
 
 ## Getting Started
 
