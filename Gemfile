@@ -19,6 +19,7 @@ gem "sprockets-es6"
 gem "title"
 gem "uglifier"
 gem "jbuilder"
+gem "rails-erd"
 
 group :development do
   gem "quiet_assets"
