@@ -1,0 +1,6 @@
+database:
+  override:
+    - bin/setup
+test:
+  override:
+    - COVERAGE=true bin/rake

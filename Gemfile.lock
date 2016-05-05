@@ -1,0 +1,286 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    actionmailer (4.2.6)
+      actionpack (= 4.2.6)
+      actionview (= 4.2.6)
+      activejob (= 4.2.6)
+      mail (~> 2.5, >= 2.5.4)
+      rails-dom-testing (~> 1.0, >= 1.0.5)
+    actionpack (4.2.6)
+      actionview (= 4.2.6)
+      activesupport (= 4.2.6)
+      rack (~> 1.6)
+      rack-test (~> 0.6.2)
+      rails-dom-testing (~> 1.0, >= 1.0.5)
+      rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    actionview (4.2.6)
+      activesupport (= 4.2.6)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
+      rails-dom-testing (~> 1.0, >= 1.0.5)
+      rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    activejob (4.2.6)
+      activesupport (= 4.2.6)
+      globalid (>= 0.3.0)
+    activemodel (4.2.6)
+      activesupport (= 4.2.6)
+      builder (~> 3.1)
+    activerecord (4.2.6)
+      activemodel (= 4.2.6)
+      activesupport (= 4.2.6)
+      arel (~> 6.0)
+    activesupport (4.2.6)
+      i18n (~> 0.7)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
+    addressable (2.4.0)
+    appsignal (1.1.5)
+      rack
+      thread_safe
+    arel (6.0.3)
+    autoprefixer-rails (6.3.6)
+      execjs
+    awesome_print (1.6.1)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
+    builder (3.2.2)
+    bullet (5.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
+    bundler-audit (0.5.0)
+      bundler (~> 1.2)
+      thor (~> 0.18)
+    byebug (8.2.5)
+    capybara (2.7.1)
+      addressable
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    capybara-webkit (1.11.1)
+      capybara (>= 2.3.0, < 2.8.0)
+      json
+    coderay (1.1.1)
+    concurrent-ruby (1.0.2)
+    connection_pool (2.2.0)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
+    database_cleaner (1.5.3)
+    diff-lcs (1.2.5)
+    docile (1.1.5)
+    dotenv (2.1.1)
+    dotenv-rails (2.1.1)
+      dotenv (= 2.1.1)
+      railties (>= 4.0, < 5.1)
+    erubis (2.7.0)
+    execjs (2.6.0)
+    factory_girl (4.7.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
+    flutie (2.0.0)
+    formulaic (0.3.0)
+      activesupport
+      capybara
+      i18n
+    globalid (0.3.6)
+      activesupport (>= 4.1.0)
+    hashdiff (0.3.0)
+    high_voltage (3.0.0)
+    i18n (0.7.0)
+    jbuilder (2.4.1)
+      activesupport (>= 3.0.0, < 5.1)
+      multi_json (~> 1.2)
+    jquery-rails (4.1.1)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
+    json (1.8.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
+    loofah (2.0.3)
+      nokogiri (>= 1.5.9)
+    mail (2.6.4)
+      mime-types (>= 1.16, < 4)
+    method_source (0.8.2)
+    mime-types (3.0)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0221)
+    mini_portile2 (2.0.0)
+    minitest (5.8.4)
+    multi_json (1.12.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
+    normalize-rails (3.0.3)
+    pg (0.18.4)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
+      pry (~> 0.10)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
+    puma (3.4.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
+    rack (1.6.4)
+    rack-mini-profiler (0.9.9.2)
+      rack (>= 1.2.0)
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rack-timeout (0.4.2)
+    rails (4.2.6)
+      actionmailer (= 4.2.6)
+      actionpack (= 4.2.6)
+      actionview (= 4.2.6)
+      activejob (= 4.2.6)
+      activemodel (= 4.2.6)
+      activerecord (= 4.2.6)
+      activesupport (= 4.2.6)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.2.6)
+      sprockets-rails
+    rails-deprecated_sanitizer (1.0.3)
+      activesupport (>= 4.2.0.alpha)
+    rails-dom-testing (1.0.7)
+      activesupport (>= 4.2.0.beta, < 5.0)
+      nokogiri (~> 1.6.0)
+      rails-deprecated_sanitizer (>= 1.0.1)
+    rails-html-sanitizer (1.0.3)
+      loofah (~> 2.0)
+    railties (4.2.6)
+      actionpack (= 4.2.6)
+      activesupport (= 4.2.6)
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
+    rake (11.1.2)
+    recipient_interceptor (0.1.2)
+      mail
+    redis (3.3.0)
+    rspec-core (3.4.4)
+      rspec-support (~> 3.4.0)
+    rspec-expectations (3.4.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-mocks (3.4.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-rails (3.4.2)
+      actionpack (>= 3.0, < 4.3)
+      activesupport (>= 3.0, < 4.3)
+      railties (>= 3.0, < 4.3)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+      rspec-support (~> 3.4.0)
+    rspec-support (3.4.1)
+    safe_yaml (1.0.4)
+    sass (3.4.22)
+    sass-rails (5.0.4)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (>= 1.1, < 3)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
+    sidekiq (4.1.2)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
+    slop (3.6.0)
+    spring (1.7.1)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
+    sprockets (3.6.0)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
+    sprockets-es6 (0.9.0)
+      babel-source (>= 5.8.11)
+      babel-transpiler
+      sprockets (>= 3.0.0)
+    sprockets-rails (3.0.4)
+      actionpack (>= 4.0)
+      activesupport (>= 4.0)
+      sprockets (>= 3.0.0)
+    thor (0.19.1)
+    thread_safe (0.3.5)
+    tilt (2.0.2)
+    timecop (0.8.1)
+    title (0.0.7)
+      i18n
+      rails (>= 3.1)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    uglifier (3.0.0)
+      execjs (>= 0.3.0, < 3)
+    uniform_notifier (1.9.0)
+    webmock (2.0.1)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  appsignal
+  autoprefixer-rails
+  awesome_print
+  bullet
+  bundler-audit (>= 0.5.0)
+  capybara-webkit
+  database_cleaner
+  dotenv-rails
+  factory_girl_rails
+  flutie
+  formulaic
+  high_voltage
+  jbuilder
+  jquery-rails
+  launchy
+  letter_opener
+  normalize-rails (~> 3.0.0)
+  pg
+  pry-byebug
+  pry-rails
+  puma
+  quiet_assets
+  rack-mini-profiler
+  rack-timeout
+  rails (~> 4.2.0)
+  recipient_interceptor
+  rspec-rails (~> 3.4.0)
+  sass-rails (~> 5.0)
+  shoulda-matchers
+  sidekiq
+  simplecov
+  spring
+  spring-commands-rspec
+  sprockets (>= 3.0.0)
+  sprockets-es6
+  timecop
+  title
+  uglifier
+  webmock
+
+BUNDLED WITH
+   1.11.2
