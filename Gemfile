@@ -20,6 +20,7 @@ gem "title"
 gem "uglifier"
 gem "jbuilder"
 gem "rails-erd"
+gem "faraday"
 
 group :development do
   gem "quiet_assets"

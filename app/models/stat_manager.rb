@@ -1,8 +1,8 @@
 class StatManager
 
-	def self.generate_statistics
-		Statistics.destroy_all!
-	end
+  def self.generate_statistics
+    Statistics.destroy_all!
+  end
 
 end
 

@@ -2,11 +2,11 @@ require 'csv'
 class DataDefinition < ActiveRecord::Base
 
   def self.nlm_info_for(column_name)
-		where('column_name=?',column_name).first.nlm_definition
+    where('column_name=?',column_name).first.nlm_definition
   end
 
   def self.ctti_info_for(column_name)
-		where('column_name=?',column_name).first.ctti_notes
+    where('column_name=?',column_name).first.ctti_notes
   end
 
   def self.load

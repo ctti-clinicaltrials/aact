@@ -1,4 +1,4 @@
-# require 'faraday'
+require 'faraday'
 require 'nokogiri'
 require 'net/http'
 # require 'zip'
@@ -306,7 +306,7 @@ class Asker
   def call_to_ctgov(query_url)
     begin
       tries=50
-      # Faraday.get(query_url).body
+      Faraday.get(query_url).body
     rescue => error
       tries = tries-1
       if tries > 0
@@ -333,7 +333,7 @@ class Asker
   end
 
   def location(url)
-    # response=Faraday.get(url).body
+    response=Faraday.get(url).body
     Nokogiri::XML(response).xpath('//GeocodeResponse').xpath('result').xpath('geometry').xpath('location')
   end
 
@@ -345,10 +345,10 @@ class Asker
     else
       url="https://api.fda.gov/device/pma.json?api_key=#{fda_api_key}&search=pma_number:#{pid}+AND+supplement_number:#{sid}"
     end
-    # conn = Faraday.new(url: url) do |faraday|
-    # faraday.adapter Faraday.default_adapter
-    # faraday.response :json
-    # end
+    conn = Faraday.new(url: url) do |faraday|
+    faraday.adapter Faraday.default_adapter
+    faraday.response :json
+    end
     result=conn.get.body
     return nil if result.nil?
     return nil if result['error'] && result['error']['code']=='NOT_FOUND'

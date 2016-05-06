@@ -1,11 +1,11 @@
-	class SecondaryId < StudyRelationship
+class SecondaryId < StudyRelationship
 
-		def self.top_level_label
-			'//secondary_id'
-		end
+  def self.top_level_label
+    '//secondary_id'
+  end
 
-		def attribs
-			{:secondary_id=>xml.inner_html}
-		end
+  def attribs
+    {:secondary_id=>xml.inner_html}
+  end
 
-	end
+end

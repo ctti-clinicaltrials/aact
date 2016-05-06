@@ -26,21 +26,21 @@ class ReportedEvent < StudyRelationship
       cat_xmls=outter_xml.xpath("category_list").xpath('category')
       c_xml=cat_xmls.pop
       if c_xml.nil?
-	puts "TODO  need to account for no categories"
+        puts "TODO  need to account for no categories"
       else
         while c_xml
           opts[:category]=c_xml.xpath('title').inner_html
           event_xmls=c_xml.xpath("event_list").xpath('event')
           e_xml=event_xmls.pop
           if e_xml.nil?
-	    puts "TODO  need to account for no events"
+            puts "TODO  need to account for no events"
           else
             while e_xml
               opts[:title]=e_xml.xpath('sub_title').inner_html
               count_xmls=e_xml.xpath("counts")
               o_xml=count_xmls.pop
               if o_xml.nil?
-	        puts "TODO  need to account for no counts"
+                puts "TODO  need to account for no counts"
               else
                 while o_xml
                   opts[:group_id]=o_xml.attribute('group_id').try(:value)
@@ -49,11 +49,11 @@ class ReportedEvent < StudyRelationship
                   opts[:subjects_at_risk]=o_xml.attribute('subjects_at_risk').try(:value)
                   event_collection << self.new.create_from(opts)
                   o_xml=count_xmls.pop
-	        end
-	      end
+                end
+              end
               e_xml=event_xmls.pop
-	    end
-	  end
+            end
+          end
           c_xml=cat_xmls.pop
         end
       end
@@ -77,21 +77,21 @@ class ReportedEvent < StudyRelationship
       cat_xmls=outter_xml.xpath("category_list").xpath('category')
       c_xml=cat_xmls.pop
       if c_xml.nil?
-	puts "TODO  need to account for no categories"
+        puts "TODO  need to account for no categories"
       else
         while c_xml
           opts[:category]=c_xml.xpath('title').inner_html
           event_xmls=c_xml.xpath("event_list").xpath('event')
           e_xml=event_xmls.pop
           if e_xml.nil?
-	    puts "TODO  need to account for no events"
+            puts "TODO  need to account for no events"
           else
             while e_xml
               opts[:title]=e_xml.xpath('sub_title').inner_html
               count_xmls=e_xml.xpath("counts")
               o_xml=count_xmls.pop
               if o_xml.nil?
-	        puts "TODO  need to account for no counts"
+                puts "TODO  need to account for no counts"
               else
                 while o_xml
                   opts[:group_id]=o_xml.attribute('group_id').try(:value)
@@ -100,11 +100,11 @@ class ReportedEvent < StudyRelationship
                   opts[:subjects_at_risk]=o_xml.attribute('subjects_at_risk').try(:value)
                   event_collection << self.new.create_from(opts)
                   o_xml=count_xmls.pop
-	        end
-	      end
+                end
+              end
               e_xml=event_xmls.pop
-	    end
-	  end
+            end
+          end
           c_xml=cat_xmls.pop
         end
       end
@@ -112,33 +112,33 @@ class ReportedEvent < StudyRelationship
     event_collection
   end
 
-	def attribs
-		{
-    	:category => get_opt(:category),
-    	:event_type => get_opt(:type),
-    	:time_frame => get_opt(:time_frame),
-    	:description => get_opt(:description),
-    	:frequency_threshold => get_opt(:frequency_threshold),
-    	:default_vocab => get_opt(:default_vocab),
-    	:default_assessment => get_opt(:default_assessment),
-    	:title => get_opt(:title),
-    	:event_count => get_opt(:event_count),
-    	:subjects_affected => get_opt(:subjects_affected),
-    	:subjects_at_risk => get_opt(:subjects_at_risk),
-    	:ctgov_group_id => gid,
-    	:ctgov_group_enumerator => integer_in(gid),
-    	:group_description => (ginfo[:description] if ginfo),
-    	:group_title => (ginfo[:title] if ginfo)
-		}
-	end
+  def attribs
+    {
+      :category => get_opt(:category),
+      :event_type => get_opt(:type),
+      :time_frame => get_opt(:time_frame),
+      :description => get_opt(:description),
+      :frequency_threshold => get_opt(:frequency_threshold),
+      :default_vocab => get_opt(:default_vocab),
+      :default_assessment => get_opt(:default_assessment),
+      :title => get_opt(:title),
+      :event_count => get_opt(:event_count),
+      :subjects_affected => get_opt(:subjects_affected),
+      :subjects_at_risk => get_opt(:subjects_at_risk),
+      :ctgov_group_id => gid,
+      :ctgov_group_enumerator => integer_in(gid),
+      :group_description => (ginfo[:description] if ginfo),
+      :group_title => (ginfo[:title] if ginfo)
+    }
+  end
 
-	def gid
+  def gid
     opts[:group_id]
-	end
+  end
 
-	def ginfo
+  def ginfo
     get_opt(:groups).first[gid]
-	end
+  end
 
   def type
     event_type
