@@ -4,6 +4,12 @@ require File.expand_path("../../config/environment", __FILE__)
 abort("DATABASE_URL environment variable is set") if ENV["DATABASE_URL"]
 
 require "rspec/rails"
+require 'vcr'
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/support/vcr_cassettes"
+  config.hook_into :webmock
+end
 
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 

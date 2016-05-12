@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ClinicalTrialsClient do
-  let(:client) { ClinicalTrialsClient.new }
+  let(:client) { ClinicalTrialsClient.new(search_term: 'lacrosse') }
   let(:studies) { [File.read(Rails.root.join('spec', 'support', 'xml_data', 'example_study.xml'))] }
 
   context 'initialization' do
@@ -13,15 +13,13 @@ describe ClinicalTrialsClient do
   end
 
   describe '#get_studies' do
-    # TODO use VCR
     context 'success' do
-
-      before do
-        allow(client).to receive(:get_studies) { studies }
-      end
-
       it 'should grab the xml' do
-        expect(client.get_studies).to eq(studies)
+        VCR.use_cassette('get_studies') do
+          data = client.get_studies
+
+          expect(data.first.first).to include('.xml')
+        end
       end
 
     end
