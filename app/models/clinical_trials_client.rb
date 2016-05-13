@@ -4,11 +4,16 @@ require 'tempfile'
 class ClinicalTrialsClient
   BASE_URL = 'https://clinicaltrials.gov'
 
-  attr_reader :url
+  attr_reader :url, :files
 
   def initialize(search_term: nil)
     @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
     @files = []
+  end
+
+  def create_studies
+    get_studies
+    populate_studies(@files)
   end
 
   def get_studies
@@ -25,7 +30,7 @@ class ClinicalTrialsClient
 
     Zip::File.open(file.path) do |zipfile|
       zipfile.each do |file|
-        @files << file
+        @files << file.get_input_stream.read
       end
     end
 
