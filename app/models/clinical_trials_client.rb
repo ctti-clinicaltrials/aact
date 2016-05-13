@@ -33,15 +33,38 @@ class ClinicalTrialsClient
 
   def populate_studies(studies)
     studies.each do |study|
-      nct_id = extract_nct_id(study: study)
+      nct_id = extract_nct_id_from_study(study)
 
-      Study.new({ xml: study, nct_id: nct_id }).save
+      study_record = Study.new({ xml: Nokogiri::XML(study), nct_id: nct_id })
+
+      if new_study?(study) || study_changed?(existing_study: study_record, new_study_xml: study)
+        study_record.create
+      end
+
     end
   end
 
   private
 
-  def extract_nct_id(study:)
+  def extract_nct_id_from_study(study)
     Nokogiri::XML(study).xpath('//nct_id').text
   end
+
+  def new_study?(study)
+    found = Study.find_by(nct_id: extract_nct_id_from_study(study))
+
+    if found
+      false
+    else
+      true
+    end
+  end
+
+  def study_changed?(existing_study:, new_study_xml:)
+    date_string = Nokogiri::XML(new_study_xml).xpath('//clinical_study').xpath('lastchanged_date').inner_html
+    date = Date.parse(date_string)
+
+    date == existing_study.last_changed_date
+  end
 end
+

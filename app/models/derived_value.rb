@@ -26,7 +26,7 @@ class DerivedValue < ActiveRecord::Base
   def calc_link_to_data
       if study.org_study_id.upcase[/^NIDA/]
         url="https://datashare.nida.nih.gov/protocol/#{study.org_study_id.gsub(' ','')}"
-        results=Faraday.get(url).body
+        results=""#Faraday.get(url).body
         url if !results.downcase.include?('page not found')
       else
         #protocol link.....
@@ -99,7 +99,7 @@ class DerivedValue < ActiveRecord::Base
     return if study.pma_mappings.empty?
     recs=[]
     pma_mapping_ids.each{|id|
-      data=Asker.new.get_pma_data(id)
+      data=""
       rec = PmaRecord.new.create_from(data) if !data.nil?
       study.pma_records << rec if !rec.nil?
     }

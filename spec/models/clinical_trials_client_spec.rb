@@ -36,6 +36,24 @@ describe ClinicalTrialsClient do
       end
     end
 
+    context 'failure' do
+      context 'duplicate study' do
+        it 'should not create a new study' do
+          existing_study = Study.new({
+            xml: Nokogiri::XML(studies[0]),
+            nct_id: client.send(:extract_nct_id_from_study, studies[0])
+          }).create
+
+          allow(client).to receive(:get_studies) { studies }
+
+          duplicate_studies = client.get_studies
+          client.populate_studies(duplicate_studies)
+
+          expect(Study.all.count).to eq(1)
+        end
+      end
+    end
+
   end
 
 end
