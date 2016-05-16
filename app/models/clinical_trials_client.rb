@@ -41,19 +41,29 @@ class ClinicalTrialsClient
 
   def populate_studies(studies)
     load_event = LoadEvent.create(event_type: 'populate_studies')
+    new = 0
+    changed = 0
 
     studies.each do |study|
       nct_id = extract_nct_id_from_study(study)
 
-      study_record = Study.new({ xml: Nokogiri::XML(study), nct_id: nct_id })
+      study_record = Study.new({
+        xml: Nokogiri::XML(study),
+        nct_id: nct_id
+      })
 
-      if new_study?(study) || study_changed?(existing_study: study_record, new_study_xml: study)
+      if new_study?(study)
+        new += 1
+        study_record.create
+      elsif study_changed?(existing_study: study_record, new_study_xml: study)
+        changed += 1
         study_record.create
       end
 
     end
 
     load_event.complete
+    load_event.generate_report(new: new, changed: changed)
   end
 
   private

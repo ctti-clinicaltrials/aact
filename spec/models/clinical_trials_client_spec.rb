@@ -56,7 +56,9 @@ describe ClinicalTrialsClient do
 
         expect(load_event.present?).to eq(true)
         expect(load_event.load_time.present?).to eq(true)
+        expect(load_event.new_studies).to eq(1)
       end
+
     end
 
     context 'failure' do
