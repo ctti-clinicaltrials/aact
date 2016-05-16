@@ -12,4 +12,16 @@ describe LoadEvent do
     end
   end
 
+  describe '#calculate_load_time' do
+    it 'should return the difference in minutes and seconds' do
+      load_event = LoadEvent.create
+
+      Timecop.travel(5.minutes.from_now)
+
+      load_event.complete
+
+      expect(load_event.load_time).to eq('5 minutes and 0 seconds')
+    end
+  end
+
 end

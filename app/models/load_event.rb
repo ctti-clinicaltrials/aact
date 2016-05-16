@@ -10,7 +10,18 @@ class LoadEvent < ActiveRecord::Base
       raise AlreadyCompletedError
     end
 
-    update(status: 'complete', completed_at: Time.now)
+    self.status = 'complete'
+    self.completed_at = Time.now
+    self.load_time = calculate_load_time
+
+    save!
+  end
+
+  def calculate_load_time
+    time = completed_at - created_at
+    minutes, seconds = time.divmod(60)
+
+    "#{minutes} minutes and #{seconds.round} seconds"
   end
 
   class AlreadyCompletedError < StandardError; end
