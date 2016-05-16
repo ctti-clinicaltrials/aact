@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe ClinicalTrialsClient do
-  let(:client) { ClinicalTrialsClient.new(search_term: 'lacrosse') }
+describe ClinicalTrials::Client do
+  let(:client) { described_class.new(search_term: 'lacrosse') }
   let(:studies) { [File.read(Rails.root.join('spec',
                                              'support',
                                              'xml_data',
@@ -9,7 +9,7 @@ describe ClinicalTrialsClient do
 
   context 'initialization' do
     it 'should set the url based on the provided search term' do
-      client = ClinicalTrialsClient.new(
+      client = described_class.new(
         search_term: 'pancreatic cancer vaccine'
       )
 
@@ -30,7 +30,7 @@ describe ClinicalTrialsClient do
       end
 
       it 'should create a load event' do
-        load_event = LoadEvent.last
+        load_event = ClinicalTrials::LoadEvent.last
 
         expect(load_event.present?).to eq(true)
         expect(load_event.load_time.present?).to eq(true)
@@ -52,7 +52,7 @@ describe ClinicalTrialsClient do
       end
 
       it 'should create a load event' do
-        load_event = LoadEvent.last
+        load_event = ClinicalTrials::LoadEvent.last
 
         expect(load_event.present?).to eq(true)
         expect(load_event.load_time.present?).to eq(true)
