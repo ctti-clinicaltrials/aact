@@ -1,7 +1,7 @@
 class LoadEvent < ActiveRecord::Base
   extend Enumerize
 
-  enumerize :event_type, in: %i(
+  enumerize :event_type, in: %w(
     get_studies
     populate_studies
   )
@@ -25,5 +25,17 @@ class LoadEvent < ActiveRecord::Base
     "#{minutes} minutes and #{seconds.round} seconds"
   end
 
+  def generate_report(new:, changed:)
+    if event_type != 'populate_studies'
+      raise IncorrectEventTypeError
+    end
+
+    update(
+      new_studies:     new,
+      changed_studies: changed
+    )
+  end
+
   class AlreadyCompletedError < StandardError; end
+  class IncorrectEventTypeError < StandardError; end
 end

@@ -24,4 +24,28 @@ describe LoadEvent do
     end
   end
 
+  describe '#generate_report' do
+    context 'success' do
+      let!(:load_event) { create(:load_event, event_type: 'populate_studies') }
+
+      it 'should update the new and changed columns' do
+        load_event.generate_report(new: 5, changed: 12)
+
+        expect(load_event.new_studies).to eq(5)
+        expect(load_event.changed_studies).to eq(12)
+      end
+    end
+
+    context 'failure' do
+      context 'when not a populate_studies event type' do
+        let!(:load_event) { create(:load_event, event_type: 'get_studies') }
+
+        it 'should raise an error' do
+          expect(Proc.new {load_event.generate_report(new: 1, changed: 3)}).to raise_error(LoadEvent::IncorrectEventTypeError)
+        end
+      end
+    end
+
+  end
+
 end
