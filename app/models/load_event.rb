@@ -6,9 +6,12 @@ class LoadEvent < ActiveRecord::Base
   end
 
   def complete
-    self.status='complete'
-    self.load_time=(Time.now - start_time)
-    self.save!
+    if completed_at.present?
+      raise AlreadyCompletedError
+    end
+
+    update(status: 'complete', completed_at: Time.now)
   end
 
+  class AlreadyCompletedError < StandardError; end
 end
