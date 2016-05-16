@@ -22,6 +22,7 @@ gem "jbuilder"
 gem "rails-erd"
 gem 'rest-client'
 gem 'rubyzip'
+gem 'enumerize'
 
 group :development do
   gem "quiet_assets"

@@ -2,11 +2,16 @@ require 'rails_helper'
 
 describe ClinicalTrialsClient do
   let(:client) { ClinicalTrialsClient.new(search_term: 'lacrosse') }
-  let(:studies) { [File.read(Rails.root.join('spec', 'support', 'xml_data', 'example_study.xml'))] }
+  let(:studies) { [File.read(Rails.root.join('spec',
+                                             'support',
+                                             'xml_data',
+                                             'example_study.xml'))] }
 
   context 'initialization' do
     it 'should set the url based on the provided search term' do
-      client = ClinicalTrialsClient.new(search_term: 'pancreatic cancer vaccine')
+      client = ClinicalTrialsClient.new(
+        search_term: 'pancreatic cancer vaccine'
+      )
 
       expect(client.url).to eq('https://clinicaltrials.gov/search?term=pancreatic+cancer+vaccine&resultsxml=true')
     end
@@ -14,12 +19,21 @@ describe ClinicalTrialsClient do
 
   describe '#get_studies' do
     context 'success' do
-      it 'should grab the xml' do
+      before do
         VCR.use_cassette('get_studies') do
-          data = client.get_studies
-
-          expect(data.first.first).to include('.xml')
+          client.get_studies
         end
+      end
+
+      it 'should grab the xml' do
+        expect(client.files.first).to include('xml')
+      end
+
+      it 'should create a load event' do
+        load_event = LoadEvent.last
+
+        expect(load_event.present?).to eq(true)
+        expect(load_event.load_time.present?).to eq(true)
       end
 
     end
@@ -29,10 +43,19 @@ describe ClinicalTrialsClient do
 
   describe '#populate_studies' do
     context 'success' do
-      it 'should create a study record' do
+      before do
         client.populate_studies(studies)
+      end
 
+      it 'should create a study record' do
         expect(Study.last.nct_id).to eq('NCT00002475')
+      end
+
+      it 'should create a load event' do
+        load_event = LoadEvent.last
+
+        expect(load_event.present?).to eq(true)
+        expect(load_event.load_time.present?).to eq(true)
       end
     end
 

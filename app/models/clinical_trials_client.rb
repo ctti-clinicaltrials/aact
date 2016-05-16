@@ -17,6 +17,8 @@ class ClinicalTrialsClient
   end
 
   def get_studies
+    load_event = LoadEvent.create(event_type: 'get_studies')
+
     file = Tempfile.new('xml')
 
     download = RestClient::Request.execute({
@@ -34,9 +36,12 @@ class ClinicalTrialsClient
       end
     end
 
+    load_event.complete
   end
 
   def populate_studies(studies)
+    load_event = LoadEvent.create(event_type: 'populate_studies')
+
     studies.each do |study|
       nct_id = extract_nct_id_from_study(study)
 
@@ -47,6 +52,8 @@ class ClinicalTrialsClient
       end
 
     end
+
+    load_event.complete
   end
 
   private

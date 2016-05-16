@@ -1,9 +1,10 @@
 class LoadEvent < ActiveRecord::Base
-  attr_accessor :start_time
+  extend Enumerize
 
-  def start_clock
-    @start_time=Time.now
-  end
+  enumerize :event_type, in: %i(
+    get_studies
+    populate_studies
+  )
 
   def complete
     if completed_at.present?

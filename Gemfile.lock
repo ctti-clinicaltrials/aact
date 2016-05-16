@@ -81,6 +81,8 @@ GEM
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
+    enumerize (1.0.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.7.0)
@@ -269,6 +271,7 @@ DEPENDENCIES
   capybara-webkit
   database_cleaner
   dotenv-rails
+  enumerize
   factory_girl_rails
   flutie
   formulaic
