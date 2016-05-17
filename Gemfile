@@ -23,6 +23,7 @@ gem "rails-erd"
 gem 'rest-client'
 gem 'rubyzip'
 gem 'enumerize'
+gem 'bulk_insert'
 
 group :development do
   gem "quiet_assets"

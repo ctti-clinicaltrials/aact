@@ -49,6 +49,8 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     builder (3.2.2)
+    bulk_insert (1.2.0)
+      activerecord (>= 4.1.0)
     bullet (5.0.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.9.0)
@@ -266,6 +268,7 @@ DEPENDENCIES
   appsignal
   autoprefixer-rails
   awesome_print
+  bulk_insert
   bullet
   bundler-audit (>= 0.5.0)
   capybara-webkit

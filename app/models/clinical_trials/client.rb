@@ -49,7 +49,7 @@ module ClinicalTrials
       new = 0
       changed = 0
 
-      studies.each do |study|
+      study_records = studies.map do |study|
         nct_id = extract_nct_id_from_study(study)
 
         study_record = Study.new({
@@ -59,13 +59,18 @@ module ClinicalTrials
 
         if new_study?(study)
           new += 1
-          study_record.create
+          study_record
         elsif study_changed?(existing_study: study_record,
                              new_study_xml: study)
           changed += 1
-          study_record.create
         end
 
+      end
+
+      Study.bulk_insert do |worker|
+        study_records.compact.each do |record|
+          worker.add(record.attribs.merge(nct_id: record.nct_id))
+        end
       end
 
       load_event.complete
