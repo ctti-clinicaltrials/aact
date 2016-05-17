@@ -18,7 +18,9 @@ module ClinicalTrials
     end
 
     def get_studies
-      load_event = ClinicalTrials::LoadEvent.create(event_type: 'get_studies')
+      load_event = ClinicalTrials::LoadEvent.create(
+        event_type: 'get_studies'
+      )
 
       file = Tempfile.new('xml')
 
@@ -41,7 +43,9 @@ module ClinicalTrials
     end
 
     def populate_studies(studies)
-      load_event = ClinicalTrials::LoadEvent.create(event_type: 'populate_studies')
+      load_event = ClinicalTrials::LoadEvent.create(
+        event_type: 'populate_studies'
+      )
       new = 0
       changed = 0
 
@@ -56,7 +60,8 @@ module ClinicalTrials
         if new_study?(study)
           new += 1
           study_record.create
-        elsif study_changed?(existing_study: study_record, new_study_xml: study)
+        elsif study_changed?(existing_study: study_record,
+                             new_study_xml: study)
           changed += 1
           study_record.create
         end
@@ -84,7 +89,10 @@ module ClinicalTrials
     end
 
     def study_changed?(existing_study:, new_study_xml:)
-      date_string = Nokogiri::XML(new_study_xml).xpath('//clinical_study').xpath('lastchanged_date').inner_html
+      date_string = Nokogiri::XML(new_study_xml)
+                              .xpath('//clinical_study')
+                              .xpath('lastchanged_date').inner_html
+
       date = Date.parse(date_string)
 
       date == existing_study.last_changed_date
