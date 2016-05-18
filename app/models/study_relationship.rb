@@ -61,7 +61,6 @@ class StudyRelationship < ActiveRecord::Base
   def create_from(opts={})
     @opts=opts
     @xml=opts[:xml]
-    @wrapper1_xml=opts[:wrapper1_xml]   # I think we can get rid of this
     self.nct_id=opts[:nct_id]
     assign_attributes(attribs) if !attribs.blank?
     self
