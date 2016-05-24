@@ -5,16 +5,15 @@ module ClinicalTrials
   class Client
     BASE_URL = 'https://clinicaltrials.gov'
 
-    attr_reader :url, :files
+    attr_reader :url
 
     def initialize(search_term: nil)
       @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
-      @files = []
     end
 
     def create_studies
       get_studies
-      populate_studies(@files)
+      populate_studies
     end
 
     def get_studies
@@ -33,23 +32,23 @@ module ClinicalTrials
       file.binmode
       file.write(download)
 
-      Zip::File.open(file.path) do |zipfile|
-        zipfile.each do |file|
-          @files << file.get_input_stream.read
-        end
-      end
+      system("unzip #{file.path} -d #{Rails.root}/tmp/xml")
 
       load_event.complete
     end
 
-    def populate_studies(studies)
+    def populate_studies
       load_event = ClinicalTrials::LoadEvent.create(
         event_type: 'populate_studies'
       )
       new = 0
       changed = 0
 
-      study_records = studies.map do |study|
+      study_records = []
+      Dir.foreach("#{Rails.root}/tmp/xml") do |study|
+        next if study == '.' or study == '..'
+        study = File.read("#{Rails.root}/tmp/xml/#{study}")
+
         nct_id = extract_nct_id_from_study(study)
 
         study_record = Study.new({
@@ -59,12 +58,11 @@ module ClinicalTrials
 
         if new_study?(study)
           new += 1
-          study_record
+          study_records << study_record
         elsif study_changed?(existing_study: study_record,
                              new_study_xml: study)
           changed += 1
         end
-
       end
 
       Study.bulk_insert do |worker|
