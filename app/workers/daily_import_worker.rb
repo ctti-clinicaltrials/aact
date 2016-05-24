@@ -3,6 +3,7 @@ class DailyImportWorker
   sidekiq_options queue: 'daily_import'
 
   def perform
-    User.create(email: "me@example.com")
+    client = ClinicalTrials::Client.new
+    client.create_studies
   end
 end
