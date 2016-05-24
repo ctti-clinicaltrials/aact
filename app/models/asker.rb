@@ -1,4 +1,3 @@
-require 'faraday'
 require 'nokogiri'
 require 'net/http'
 # require 'zip'
@@ -42,7 +41,7 @@ class Asker
 
   def url_to_get_all
     #  small example:  'https://clinicaltrials.gov/search?term=pancreatic+cancer+vaccine&resultsxml=true'
-    'https://clinicaltrials.gov/search?term=pancreatic+cancer+vaccine&resultsxml=true'
+    'https://clinicaltrials.gov/search?term=pancreatic+cancer&resultsxml=true'
     #  real example: 'http://clinicaltrials.gov/search?term=&resultsxml=true'
     #'http://clinicaltrials.gov/search?term=&resultsxml=true'
   end
@@ -56,10 +55,21 @@ class Asker
   end
 
   def daily_loader
+    get_studies_event = ClinicalTrials::LoadEvent.create(
+      event_type: 'get_studies'
+    )
+
     pull_down_studies  #retrieve all studies from ct.gov
+    get_studies_event.complete
+
+    populate_studies_event = ClinicalTrials::LoadEvent.create(
+      event_type: 'populate_studies'
+    )
+
     organize_by_new_or_changed  # New studies put into public/studies/new.  Changed studies put into public/studies/changed.
     load_new_studies
     update_changed_studies
+    populate_studies_event.complete
   end
 
   def pull_down_studies
@@ -105,8 +115,6 @@ class Asker
         end
         FileUtils.move f, loaded_dir
       rescue => error
-        e=log_event({:nct_id=>nct_id,:event_type=>'load new study',:status=>'failed',:description=>error})
-        e.save!
       end
     }
   end
@@ -123,8 +131,6 @@ class Asker
         end
         FileUtils.move f, loaded_dir
       rescue => error
-        e=log_event({:nct_id=>nct_id,:event_type=>'update study',:status=>'failed',:description=>error})
-        e.save!
       end
     }
   end
@@ -141,8 +147,6 @@ class Asker
         end
         FileUtils.move f, loaded_dir
       rescue => error
-        e=log_event({:nct_id=>nct_id,:event_type=>'express load',:status=>'failed',:description=>error})
-        e.save!
       end
     }
   end
@@ -219,7 +223,6 @@ class Asker
       Nokogiri::HTML(call_to_ctgov(query_url)).css('.layout_table').search('a').each { |link|
         nct_id=link['href'].split('/').last
         if (existing_nct_ids.include? nct_id) && !should_refresh
-          log_event({:nct_id=>nct_id,:event_type=>'skipped',:status=>'complete',:description=>'already exists'})
         else
           create_study(nct_id)
         end
@@ -235,7 +238,6 @@ class Asker
       nct_id=opts[:nct_id]
       msg=opts[:msg]
     end
-    e=log_event({:nct_id=>nct_id,:event_type=>'remove',:status=>'active',:description=>msg})
     Study.where('nct_id=?',nct_id).first.try(:destroy)
     e.complete
   end
@@ -247,7 +249,6 @@ class Asker
   end
 
   def create_search_result(opts)
-    e=log_event({:nct_id=>opts[:nct_id],:event_type=>'search_result',:status=>'active'})
     s=SearchResult.new(opts)
     s.save!
     e.complete
@@ -270,11 +271,9 @@ class Asker
     end
 
     # begin
-    e=log_event({:nct_id=>nct_id,:event_type=>"create",:status=>'active'})
     study=get_study(nct_id).create
     study.save!
     existing_nct_ids << nct_id
-    e.complete
     return study
     # rescue => error
     #   msg="Failed: #{error}"
@@ -306,7 +305,6 @@ class Asker
   def call_to_ctgov(query_url)
     begin
       tries=50
-      Faraday.get(query_url).body
     rescue => error
       tries = tries-1
       if tries > 0
@@ -333,7 +331,7 @@ class Asker
   end
 
   def location(url)
-    response=Faraday.get(url).body
+    response = ""
     Nokogiri::XML(response).xpath('//GeocodeResponse').xpath('result').xpath('geometry').xpath('location')
   end
 
@@ -344,10 +342,6 @@ class Asker
       url="https://api.fda.gov/device/pma.json?api_key=#{fda_api_key}&search=pma_number:#{pid}"
     else
       url="https://api.fda.gov/device/pma.json?api_key=#{fda_api_key}&search=pma_number:#{pid}+AND+supplement_number:#{sid}"
-    end
-    conn = Faraday.new(url: url) do |faraday|
-    faraday.adapter Faraday.default_adapter
-    faraday.response :json
     end
     result=conn.get.body
     return nil if result.nil?

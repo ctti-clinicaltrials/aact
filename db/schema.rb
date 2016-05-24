@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301202629) do
+ActiveRecord::Schema.define(version: 20160516165522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -276,13 +276,15 @@ ActiveRecord::Schema.define(version: 20160301202629) do
   add_index "links", ["nct_id"], name: "index_links_on_nct_id", using: :btree
 
   create_table "load_events", force: :cascade do |t|
-    t.string   "nct_id"
     t.string   "event_type"
     t.string   "status"
     t.text     "description"
-    t.float    "load_time"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.datetime "completed_at"
+    t.string   "load_time"
+    t.integer  "new_studies"
+    t.integer  "changed_studies"
   end
 
   create_table "location_countries", force: :cascade do |t|

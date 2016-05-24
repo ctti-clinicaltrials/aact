@@ -49,6 +49,8 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     builder (3.2.2)
+    bulk_insert (1.2.0)
+      activerecord (>= 4.1.0)
     bullet (5.0.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.9.0)
@@ -75,10 +77,14 @@ GEM
     database_cleaner (1.5.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    domain_name (0.5.20160310)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
+    enumerize (1.0.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.7.0)
@@ -86,8 +92,6 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
-    faraday (0.9.2)
-      multipart-post (>= 1.2, < 3)
     flutie (2.0.0)
     formulaic (0.3.0)
       activesupport
@@ -97,6 +101,8 @@ GEM
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
     high_voltage (3.0.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -115,13 +121,11 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
-    mime-types (3.0)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0221)
+    mime-types (2.99.1)
     mini_portile2 (2.0.0)
     minitest (5.9.0)
     multi_json (1.12.0)
-    multipart-post (2.0.0)
+    netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     normalize-rails (3.0.3)
@@ -141,6 +145,8 @@ GEM
     rack (1.6.4)
     rack-mini-profiler (0.9.9.2)
       rack (>= 1.2.0)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.4.2)
@@ -177,6 +183,10 @@ GEM
     recipient_interceptor (0.1.2)
       mail
     redis (3.3.0)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -195,6 +205,7 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     ruby-graphviz (1.2.2)
+    rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.4)
@@ -214,6 +225,10 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    sinatra (1.4.7)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     slop (3.6.0)
     spring (1.7.1)
     spring-commands-rspec (1.0.4)
@@ -240,7 +255,11 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     uniform_notifier (1.9.0)
+    vcr (3.0.0)
     webmock (2.0.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -255,13 +274,14 @@ DEPENDENCIES
   appsignal
   autoprefixer-rails
   awesome_print
+  bulk_insert
   bullet
   bundler-audit (>= 0.5.0)
   capybara-webkit
   database_cleaner
   dotenv-rails
+  enumerize
   factory_girl_rails
-  faraday
   flutie
   formulaic
   high_voltage
@@ -280,11 +300,14 @@ DEPENDENCIES
   rails (~> 4.2.0)
   rails-erd
   recipient_interceptor
+  rest-client
   rspec-rails (~> 3.4.0)
+  rubyzip
   sass-rails (~> 5.0)
   shoulda-matchers
   sidekiq
   simplecov
+  sinatra
   spring
   spring-commands-rspec
   sprockets (>= 3.0.0)
@@ -292,6 +315,7 @@ DEPENDENCIES
   timecop
   title
   uglifier
+  vcr
   webmock
 
 BUNDLED WITH

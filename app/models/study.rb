@@ -74,9 +74,7 @@ class Study < ActiveRecord::Base
 
   def create
     update(attribs)
-    self.save!
     self.derived_value = DerivedValue.new.create_from(self)
-    self.save!
     self
   end
 
@@ -171,7 +169,7 @@ class Study < ActiveRecord::Base
       :primary_completion_date_str => get('primary_completion_date'),
       :completion_date_str => get('completion_date'),
       :first_received_results_date_str => get('firstreceived_results_date'),
-      :download_date_str => xml.xpath('//download_date'),
+      :download_date_str => xml.xpath('//download_date').inner_html,
 
       :org_study_id => xml.xpath('//org_study_id').inner_html,
       :acronym =>get('acronym'),
