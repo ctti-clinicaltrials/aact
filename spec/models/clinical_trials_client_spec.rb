@@ -7,6 +7,12 @@ describe ClinicalTrials::Client do
                                              'xml_data',
                                              'example_study.xml'))] }
 
+  after do
+    unless Dir["#{Rails.root}/tmp/xml"].empty?
+      system("rm #{Rails.root}/tmp/xml/*.xml")
+    end
+  end
+
   context 'initialization' do
     it 'should set the url based on the provided search term' do
       client = described_class.new(
@@ -26,7 +32,7 @@ describe ClinicalTrials::Client do
       end
 
       it 'should grab the xml' do
-        expect(client.files.first).to include('xml')
+        expect(Dir.glob("#{Rails.root}/tmp/xml/*").first).to include('xml')
       end
 
       it 'should create a load event' do
@@ -44,7 +50,7 @@ describe ClinicalTrials::Client do
   describe '#populate_studies' do
     context 'success' do
       before do
-        client.populate_studies(studies)
+        client.populate_studies(path: "#{Rails.root}/spec/support/xml_data")
       end
 
       it 'should create a study record' do
@@ -72,7 +78,7 @@ describe ClinicalTrials::Client do
           allow(client).to receive(:get_studies) { studies }
 
           duplicate_studies = client.get_studies
-          client.populate_studies(duplicate_studies)
+          client.populate_studies(path: "#{Rails.root}/spec/support/xml_data")
 
           expect(Study.all.count).to eq(1)
         end

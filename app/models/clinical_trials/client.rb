@@ -37,7 +37,7 @@ module ClinicalTrials
       load_event.complete
     end
 
-    def populate_studies
+    def populate_studies(path:)
       load_event = ClinicalTrials::LoadEvent.create(
         event_type: 'populate_studies'
       )
@@ -45,9 +45,9 @@ module ClinicalTrials
       changed = 0
 
       study_records = []
-      Dir.foreach("#{Rails.root}/tmp/xml") do |study|
+      Dir.foreach(path) do |study|
         next if study == '.' or study == '..'
-        study = File.read("#{Rails.root}/tmp/xml/#{study}")
+        study = File.read("#{path}/#{study}")
 
         nct_id = extract_nct_id_from_study(study)
 
