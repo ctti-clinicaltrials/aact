@@ -1,5 +1,6 @@
 require 'zip'
 require 'tempfile'
+require 'open3'
 
 module ClinicalTrials
   class Client
@@ -13,10 +14,13 @@ module ClinicalTrials
 
     def create_studies
       get_studies
-      populate_studies
+      populate_studies(path: "#{Rails.root}/tmp/xml")
     end
 
     def get_studies
+      mem = MemoryUsageMonitor.new
+      mem.start
+
       load_event = ClinicalTrials::LoadEvent.create(
         event_type: 'get_studies'
       )
@@ -32,12 +36,38 @@ module ClinicalTrials
       file.binmode
       file.write(download)
 
-      system("unzip #{file.path} -d #{Rails.root}/tmp/xml")
+      # system("unzip #{file.path} -d #{Rails.root}/tmp/xml")
+      #
+      # IO.popen("unzip -c #{file.path}", 'rb') do |io|
+      #   # get each xml study
+      #   # create study record
+      #   binding.pry
+      # end
+
+      Zip::File.open(file.path) do |zipfile|
+        zipfile.each do |file|
+          study = file.get_input_stream.read
+          nct_id = extract_nct_id_from_study(study)
+
+          study_record = Study.new({
+            xml: Nokogiri::XML(study),
+            nct_id: nct_id
+          })
+          study_record.create
+        end
+
+      end
 
       load_event.complete
+
+      mem.stop
+      puts "Peak memory: #{mem.peak_memory/1024} MB"
     end
 
     def populate_studies(path:)
+      mem = MemoryUsageMonitor.new
+      mem.start
+
       load_event = ClinicalTrials::LoadEvent.create(
         event_type: 'populate_studies'
       )
@@ -73,6 +103,9 @@ module ClinicalTrials
 
       load_event.complete
       load_event.generate_report(new: new, changed: changed)
+
+      mem.stop
+      puts "Peak memory: #{mem.peak_memory/1024} MB"
     end
 
     private
