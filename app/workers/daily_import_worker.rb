@@ -4,6 +4,6 @@ class DailyImportWorker
 
   def perform
     client = ClinicalTrials::Client.new
-    client.create_studies
+    client.get_studies
   end
 end
