@@ -18,8 +18,8 @@ module ClinicalTrials
     end
 
     def get_studies
-      mem = MemoryUsageMonitor.new
-      mem.start
+      # mem = MemoryUsageMonitor.new
+      # mem.start
 
       load_event = ClinicalTrials::LoadEvent.create(
         event_type: 'get_studies'
@@ -60,8 +60,8 @@ module ClinicalTrials
 
       load_event.complete
 
-      mem.stop
-      puts "Peak memory: #{mem.peak_memory/1024} MB"
+      # mem.stop
+      # puts "Peak memory: #{mem.peak_memory/1024} MB"
     end
 
     def populate_studies(path:)
