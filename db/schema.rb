@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160516165522) do
+ActiveRecord::Schema.define(version: 20160527195736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -315,22 +315,22 @@ ActiveRecord::Schema.define(version: 20160516165522) do
     t.string   "title"
     t.string   "non_inferiority"
     t.text     "non_inferiority_description"
-    t.decimal  "p_value",                     precision: 15, scale: 10
+    t.decimal  "p_value"
     t.string   "param_type"
-    t.decimal  "param_value",                 precision: 15, scale: 10
+    t.decimal  "param_value"
     t.string   "dispersion_type"
-    t.decimal  "dispersion_value",            precision: 15, scale: 10
+    t.decimal  "dispersion_value"
     t.string   "ci_percent"
     t.string   "ci_n_sides"
-    t.decimal  "ci_lower_limit",              precision: 15, scale: 10
-    t.decimal  "ci_upper_limit",              precision: 16, scale: 8
+    t.decimal  "ci_lower_limit"
+    t.decimal  "ci_upper_limit"
     t.string   "method"
     t.text     "description"
     t.text     "group_description"
     t.text     "method_description"
     t.text     "estimate_description"
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "nct_id"
     t.integer  "outcome_id"
     t.integer  "group_id"
