@@ -218,7 +218,7 @@ class Study < ActiveRecord::Base
       :interventions =>         Intervention.create_all_from(opts),
       :keywords =>              Keyword.create_all_from(opts),
       :links =>                 Link.create_all_from(opts),
-      :location_countries =>    LocationCountry.create_all_from(opts),
+      :location_countries =>    LocationCountry.create_all_from(opts)
       :oversight_authorities => OversightAuthority.create_all_from(opts),
       :overall_officials =>     OverallOfficial.create_all_from(opts),
       :expected_outcomes =>     ExpectedOutcome.create_all_from(opts),

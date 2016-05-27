@@ -49,11 +49,7 @@ module ClinicalTrials
           study = file.get_input_stream.read
           nct_id = extract_nct_id_from_study(study)
 
-          study_record = Study.new({
-            xml: Nokogiri::XML(study),
-            nct_id: nct_id
-          })
-          study_record.create
+          import_xml_file(file.path)
         end
 
       end
@@ -64,49 +60,67 @@ module ClinicalTrials
       # puts "Peak memory: #{mem.peak_memory/1024} MB"
     end
 
-    def populate_studies(path:)
-      mem = MemoryUsageMonitor.new
-      mem.start
+    def import_xml_file(filename)
+      study = Nokogiri::XML(IO.read(filename))
+      nct_id = extract_nct_id_from_study(study)
 
-      load_event = ClinicalTrials::LoadEvent.create(
-        event_type: 'populate_studies'
-      )
-      new = 0
-      changed = 0
+      study_record = Study.new({
+        xml: study,
+        nct_id: nct_id
+      })
 
-      study_records = []
-      Dir.foreach(path) do |study|
-        next if study == '.' or study == '..'
-        study = File.read("#{path}/#{study}")
-
-        nct_id = extract_nct_id_from_study(study)
-
-        study_record = Study.new({
-          xml: Nokogiri::XML(study),
-          nct_id: nct_id
-        })
-
-        if new_study?(study)
-          new += 1
-          study_records << study_record
-        elsif study_changed?(existing_study: study_record,
-                             new_study_xml: study)
-          changed += 1
-        end
+      if new_study?(study)
+        study_record.create
+        # report number of new records
+      elsif study_changed?(existing_study: study_record, new_study_xml: study)
+        study_record.create
+        # report number of changed records
       end
-
-      Study.bulk_insert do |worker|
-        study_records.compact.each do |record|
-          worker.add(record.attribs.merge(nct_id: record.nct_id))
-        end
-      end
-
-      load_event.complete
-      load_event.generate_report(new: new, changed: changed)
-
-      mem.stop
-      puts "Peak memory: #{mem.peak_memory/1024} MB"
     end
+
+    # def populate_studies(path:)
+    #   mem = MemoryUsageMonitor.new
+    #   mem.start
+
+    #   load_event = ClinicalTrials::LoadEvent.create(
+    #     event_type: 'populate_studies'
+    #   )
+    #   new = 0
+    #   changed = 0
+
+    #   study_records = []
+    #   Dir.foreach(path) do |study|
+    #     next if study == '.' or study == '..'
+    #     study = File.read("#{path}/#{study}")
+
+    #     nct_id = extract_nct_id_from_study(study)
+
+    #     study_record = Study.new({
+    #       xml: Nokogiri::XML(study),
+    #       nct_id: nct_id
+    #     })
+
+    #     if new_study?(study)
+    #       new += 1
+    #       study_records << study_record
+    #     elsif study_changed?(existing_study: study_record,
+    #                          new_study_xml: study)
+    #       changed += 1
+    #     end
+    #   end
+
+    #   Study.bulk_insert do |worker|
+    #     study_records.compact.each do |record|
+    #       worker.add(record.attribs.merge(nct_id: record.nct_id))
+    #     end
+    #   end
+
+    #   load_event.complete
+    #   load_event.generate_report(new: new, changed: changed)
+
+    #   mem.stop
+    #   puts "Peak memory: #{mem.peak_memory/1024} MB"
+    # end
 
     private
 
@@ -125,9 +139,8 @@ module ClinicalTrials
     end
 
     def study_changed?(existing_study:, new_study_xml:)
-      date_string = Nokogiri::XML(new_study_xml)
-                              .xpath('//clinical_study')
-                              .xpath('lastchanged_date').inner_html
+      date_string = new_study_xml.xpath('//clinical_study')
+                                 .xpath('lastchanged_date').inner_html
 
       date = Date.parse(date_string)
 
