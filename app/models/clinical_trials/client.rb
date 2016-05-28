@@ -49,7 +49,7 @@ module ClinicalTrials
           study = file.get_input_stream.read
           nct_id = extract_nct_id_from_study(study)
 
-          import_xml_file(file.path)
+          import_xml_file(study)
         end
 
       end
@@ -60,8 +60,8 @@ module ClinicalTrials
       # puts "Peak memory: #{mem.peak_memory/1024} MB"
     end
 
-    def import_xml_file(filename)
-      study = Nokogiri::XML(IO.read(filename))
+    def import_xml_file(study_xml)
+      study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study)
 
       study_record = Study.new({
