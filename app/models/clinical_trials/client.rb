@@ -62,7 +62,7 @@ module ClinicalTrials
 
     def import_xml_file(study_xml)
       study = Nokogiri::XML(study_xml)
-      nct_id = extract_nct_id_from_study(study)
+      nct_id = extract_nct_id_from_study(study_xml)
 
       study_record = Study.new({
         xml: study,
