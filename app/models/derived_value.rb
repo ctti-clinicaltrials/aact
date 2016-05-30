@@ -46,12 +46,14 @@ class DerivedValue < ActiveRecord::Base
   end
 
   def calc_number_of_sae_subjects
+    return if study.reported_events.blank?
     cnt=0
     study.reported_events.each{|re|cnt=cnt+re.subjects_affected if re.event_type.downcase == 'serious'}
     cnt
   end
 
   def calc_number_of_nsae_subjects
+    return if study.reported_events.blank?
     cnt=0
     study.reported_events.each{|re|cnt=cnt+re.subjects_affected if re.event_type.downcase != 'serious'}
     cnt
