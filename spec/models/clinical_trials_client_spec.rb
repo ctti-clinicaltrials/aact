@@ -23,65 +23,39 @@ describe ClinicalTrials::Client do
     end
   end
 
-  describe '#get_studies' do
+  describe '#import_xml_file' do
+    let(:study) { studies.first }
+
     context 'success' do
-      before do
-        VCR.use_cassette('get_studies') do
-          client.get_studies
-        end
+      it 'should create study' do
+        client.import_xml_file(study)
+
+        expect(Study.all.count).to eq(1)
       end
-
-      it 'should grab the xml' do
-        expect(Dir.glob("#{Rails.root}/tmp/xml/*").first).to include('xml')
-      end
-
-      it 'should create a load event' do
-        load_event = ClinicalTrials::LoadEvent.last
-
-        expect(load_event.present?).to eq(true)
-        expect(load_event.load_time.present?).to eq(true)
-      end
-
-    end
-
-    context 'failure'
-  end
-
-  describe '#populate_studies' do
-    context 'success' do
-      before do
-        client.populate_studies(path: "#{Rails.root}/spec/support/xml_data")
-      end
-
-      it 'should create a study record' do
-        expect(Study.last.nct_id).to eq('NCT00002475')
-      end
-
-      it 'should create a load event' do
-        load_event = ClinicalTrials::LoadEvent.last
-
-        expect(load_event.present?).to eq(true)
-        expect(load_event.load_time.present?).to eq(true)
-        expect(load_event.new_studies).to eq(1)
-      end
-
     end
 
     context 'failure' do
       context 'duplicate study' do
-        it 'should not create a new study' do
-          existing_study = Study.new({
-            xml: Nokogiri::XML(studies[0]),
-            nct_id: client.send(:extract_nct_id_from_study, studies[0])
-          }).create
-
-          allow(client).to receive(:get_studies) { studies }
-
-          duplicate_studies = client.get_studies
-          client.populate_studies(path: "#{Rails.root}/spec/support/xml_data")
+        it 'should not create new study' do
+          client.import_xml_file(study)
+          client.import_xml_file(study)
 
           expect(Study.all.count).to eq(1)
         end
+
+        context 'study has changed' do
+          it 'should update study' do
+            client.import_xml_file(study)
+            doc = Nokogiri::XML(study)
+            doc.xpath('//clinical_study').xpath('lastchanged_date').children.first.content = 'Jan 1, 2016'
+            updated_study = doc.to_xml
+            client.import_xml_file(updated_study)
+
+            expect(Study.all.count).to eq(1)
+            expect(Study.last.last_changed_date.to_s).to eq('2016-01-01')
+          end
+        end
+
       end
     end
 

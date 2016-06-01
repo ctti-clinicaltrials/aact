@@ -70,6 +70,7 @@ module ClinicalTrials
         study_record.create
         # report number of new records
       elsif study_changed?(existing_study: existing_study, new_study_xml: study)
+        existing_study.xml = study
         existing_study.update(existing_study.attribs)
         # report number of changed records
       end
