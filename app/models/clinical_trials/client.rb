@@ -12,11 +12,6 @@ module ClinicalTrials
       @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
     end
 
-    def create_studies
-      get_studies
-      populate_studies(path: "#{Rails.root}/tmp/xml")
-    end
-
     def get_studies
       # mem = MemoryUsageMonitor.new
       # mem.start
@@ -64,16 +59,18 @@ module ClinicalTrials
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
 
-      study_record = Study.new({
-        xml: study,
-        nct_id: nct_id
-      })
+      existing_study = Study.find_by(nct_id: nct_id)
 
-      if new_study?(study)
+      if new_study?(study_xml)
+        study_record = Study.new({
+          xml: study,
+          nct_id: nct_id
+        })
+
         study_record.create
         # report number of new records
-      elsif study_changed?(existing_study: study_record, new_study_xml: study)
-        study_record.create
+      elsif study_changed?(existing_study: existing_study, new_study_xml: study)
+        existing_study.update(existing_study.attribs)
         # report number of changed records
       end
     end
@@ -144,7 +141,7 @@ module ClinicalTrials
 
       date = Date.parse(date_string)
 
-      date == existing_study.last_changed_date
+      date != existing_study.last_changed_date
     end
   end
 end
