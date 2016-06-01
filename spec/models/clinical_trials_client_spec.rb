@@ -7,12 +7,6 @@ describe ClinicalTrials::Client do
                                              'xml_data',
                                              'example_study.xml'))] }
 
-  after do
-    unless Dir["#{Rails.root}/tmp/xml"].empty?
-      system("rm #{Rails.root}/tmp/xml/*.xml")
-    end
-  end
-
   context 'initialization' do
     it 'should set the url based on the provided search term' do
       client = described_class.new(
