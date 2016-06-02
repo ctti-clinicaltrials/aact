@@ -35,6 +35,7 @@ describe ClinicalTrials::Client do
           client.import_xml_file(study)
 
           expect(Study.all.count).to eq(1)
+          expect(Study.last.updated_at).to eq(Study.last.created_at)
         end
 
         context 'study has changed' do
@@ -47,6 +48,7 @@ describe ClinicalTrials::Client do
 
             expect(Study.all.count).to eq(1)
             expect(Study.last.last_changed_date.to_s).to eq('2016-01-01')
+            expect(Study.last.updated_at).not_to eq(Study.last.created_at)
           end
         end
 
