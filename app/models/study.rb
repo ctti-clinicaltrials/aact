@@ -21,6 +21,7 @@ class Study < ActiveRecord::Base
   has_one  :participant_flow,      :foreign_key => 'nct_id', dependent: :destroy
   has_one  :result_detail,         :foreign_key => 'nct_id', dependent: :destroy
   has_one  :derived_value,         :foreign_key => 'nct_id', dependent: :destroy
+  has_one  :study_xml_record,      :foreign_key => 'nct_id', dependent: :destroy
 
   has_many :pma_mappings,          :foreign_key => 'nct_id'
   has_many :pma_records,           :foreign_key => 'nct_id', dependent: :destroy

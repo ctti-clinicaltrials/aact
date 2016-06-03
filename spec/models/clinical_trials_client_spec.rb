@@ -21,10 +21,16 @@ describe ClinicalTrials::Client do
     let(:study) { studies.first }
 
     context 'success' do
-      it 'should create study' do
+      before do
         client.import_xml_file(study)
+      end
 
+      it 'should create study' do
         expect(Study.all.count).to eq(1)
+      end
+
+      it 'should create a study xml record' do
+        expect(StudyXmlRecord.all.count).to eq(1)
       end
     end
 
@@ -39,16 +45,23 @@ describe ClinicalTrials::Client do
         end
 
         context 'study has changed' do
-          it 'should update study' do
+          before do
             client.import_xml_file(study)
             doc = Nokogiri::XML(study)
             doc.xpath('//clinical_study').xpath('lastchanged_date').children.first.content = 'Jan 1, 2016'
-            updated_study = doc.to_xml
-            client.import_xml_file(updated_study)
+            @updated_study = doc.to_xml
+            client.import_xml_file(@updated_study)
+          end
 
+          it 'should update study' do
             expect(Study.all.count).to eq(1)
             expect(Study.last.last_changed_date.to_s).to eq('2016-01-01')
             expect(Study.last.updated_at).not_to eq(Study.last.created_at)
+          end
+
+          it 'should update the study xml record' do
+            expect(StudyXmlRecord.count).to eq(1)
+            expect(StudyXmlRecord.last.content).to eq(@updated_study)
           end
         end
 

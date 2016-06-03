@@ -12,6 +12,46 @@ module ClinicalTrials
       @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
     end
 
+    def import_xml_files
+      load_event = ClinicalTrials::LoadEvent.create(
+        event_type: 'get_studies'
+      )
+
+      file = Tempfile.new('xml')
+
+      download = RestClient::Request.execute({
+        url:          @url,
+        method:       :get,
+        content_type: 'application/zip'
+      })
+
+      file.binmode
+      file.write(download)
+
+      Zip::File.open(file.path) do |zipfile|
+        zipfile.each do |file|
+          study_xml = file.get_input_stream.read
+          nct_id = extract_nct_id_from_study(study_xml)
+          existing_study = Study.find_by(nct_id: nct_id)
+
+          if !existing_study
+            StudyXmlRecord.create(content: study_xml, nct_id: nct_id)
+            # report number of new records
+          # elsif study_changed?(existing_study: existing_study, new_study_xml: study)
+          #   return if study.blank?
+          #   existing_study.xml = study
+          #   existing_study.update(existing_study.attribs)
+          #   existing_study.study_xml_record.update(content: study)
+            # report number of changed records
+          end
+
+        end
+
+      end
+
+      load_event.complete
+    end
+
     def get_studies
       # mem = MemoryUsageMonitor.new
       # mem.start
@@ -68,11 +108,13 @@ module ClinicalTrials
         })
 
         study_record.create
+        StudyXmlRecord.create(content: study_xml, nct_id: study_record.nct_id)
         # report number of new records
       elsif study_changed?(existing_study: existing_study, new_study_xml: study)
         return if study.blank?
         existing_study.xml = study
         existing_study.update(existing_study.attribs)
+        existing_study.study_xml_record.update(content: study)
         # report number of changed records
       end
     end
@@ -139,7 +181,7 @@ module ClinicalTrials
 
     def study_changed?(existing_study:, new_study_xml:)
       date_string = new_study_xml.xpath('//clinical_study')
-                                 .xpath('lastchanged_date').inner_html
+      .xpath('lastchanged_date').inner_html
 
       date = Date.parse(date_string)
 
