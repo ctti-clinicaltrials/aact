@@ -7,14 +7,10 @@ class StudyRelationship < ActiveRecord::Base
   belongs_to :study, :foreign_key=> 'nct_id'
 
   def self.create_all_from(opts)
-    original_xml=opts[:xml]
-    original_outer_xml=opts[:outer_xml]
     objects=xml_entries(opts).collect{|xml|
       opts[:xml]=xml
       new.create_from(opts)
     }.compact
-    opts[:xml]=original_xml
-    opts[:outer_xml]=original_outer_xml
     return objects
   end
 
