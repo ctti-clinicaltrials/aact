@@ -201,7 +201,7 @@ class Study < ActiveRecord::Base
 
       :expected_groups =>       ExpectedGroup.create_all_from(opts),
       :groups =>                get_groups(opts.merge(:study_xml=>xml)),
-      :outcomes =>              Outcome.create_all_from(opts.merge(:groups=>self.groups)),
+      # :outcomes =>              Outcome.create_all_from(opts.merge(:groups=>self.groups)),
       :milestones =>            Milestone.create_all_from(opts.merge(:groups=>self.groups)),
       :drop_withdrawals =>      DropWithdrawal.create_all_from(opts.merge(:groups=>self.groups)),
       :groups =>                self.groups,  #TODO  refactor this silliness. outcomes can add additional groups, so repopulate this attrib
@@ -211,7 +211,7 @@ class Study < ActiveRecord::Base
       :eligibility =>           Eligibility.new.create_from(opts),
       :participant_flow     =>  ParticipantFlow.new.create_from(opts),
       :result_detail =>         ResultDetail.new.create_from(opts),
-      :baseline_measures =>     BaselineMeasure.create_all_from(opts),
+      # :baseline_measures =>     BaselineMeasure.create_all_from(opts),
       :browse_conditions =>     BrowseCondition.create_all_from(opts),
       :browse_interventions =>  BrowseIntervention.create_all_from(opts),
       :conditions =>            Condition.create_all_from(opts),
@@ -223,7 +223,7 @@ class Study < ActiveRecord::Base
       :oversight_authorities => OversightAuthority.create_all_from(opts),
       :overall_officials =>     OverallOfficial.create_all_from(opts),
       :expected_outcomes =>     ExpectedOutcome.create_all_from(opts),
-      :reported_events =>       ReportedEvent.create_all_from(opts),
+      # :reported_events =>       ReportedEvent.create_all_from(opts),
       :responsible_parties =>   ResponsibleParty.create_all_from(opts),
       :result_agreements =>     ResultAgreement.create_all_from(opts),
       :result_contacts =>       ResultContact.create_all_from(opts),
