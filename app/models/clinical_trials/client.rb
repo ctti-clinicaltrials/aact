@@ -95,6 +95,19 @@ module ClinicalTrials
       # puts "Peak memory: #{mem.peak_memory/1024} MB"
     end
 
+    def populate_studies
+      load_event = ClinicalTrials::LoadEvent.create(
+        event_type: 'get_studies'
+      )
+
+      StudyXmlRecord.find_each do |xml_record|
+        raw_xml = xml_record.content
+        import_xml_file(raw_xml)
+      end
+
+      load_event.complete
+    end
+
     def import_xml_file(study_xml)
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
@@ -108,7 +121,6 @@ module ClinicalTrials
         })
 
         study_record.create
-        StudyXmlRecord.create(content: study_xml, nct_id: study_record.nct_id)
         # report number of new records
       elsif study_changed?(existing_study: existing_study, new_study_xml: study)
         return if study.blank?
