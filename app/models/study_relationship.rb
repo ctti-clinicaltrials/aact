@@ -11,7 +11,7 @@ class StudyRelationship < ActiveRecord::Base
       opts[:xml]=xml
       new.create_from(opts)
     }.compact
-    return objects
+    objects
   end
 
   def self.create_from(opts)
@@ -59,6 +59,7 @@ class StudyRelationship < ActiveRecord::Base
     @xml=opts[:xml]
     self.nct_id=opts[:nct_id]
     assign_attributes(attribs) if !attribs.blank?
+    save!
     self
   end
 

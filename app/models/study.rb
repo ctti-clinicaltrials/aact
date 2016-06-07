@@ -21,7 +21,7 @@ class Study < ActiveRecord::Base
   has_one  :participant_flow,      :foreign_key => 'nct_id', dependent: :destroy
   has_one  :result_detail,         :foreign_key => 'nct_id', dependent: :destroy
   has_one  :derived_value,         :foreign_key => 'nct_id', dependent: :destroy
-  has_one  :study_xml_record,      :foreign_key => 'nct_id', dependent: :destroy
+  has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
   has_many :pma_mappings,          :foreign_key => 'nct_id'
   has_many :pma_records,           :foreign_key => 'nct_id', dependent: :destroy
@@ -75,7 +75,38 @@ class Study < ActiveRecord::Base
 
   def create
     update(attribs)
-    self.derived_value = DerivedValue.new.create_from(self)
+    ExpectedGroup.create_all_from(opts)
+    Group.create_all_from(opts)
+    Outcome.create_all_from(opts.merge(:groups=>self.groups))
+
+    Milestone.create_all_from(opts.merge(:groups=>self.groups))
+    DropWithdrawal.create_all_from(opts.merge(:groups=>self.groups))
+    DetailedDescription.new.create_from(opts)
+    Design.new.create_from(opts)
+    BriefSummary.new.create_from(opts)
+    Eligibility.new.create_from(opts)
+    ParticipantFlow.new.create_from(opts)
+    ResultDetail.new.create_from(opts)
+    BaselineMeasure.create_all_from(opts)
+    BrowseCondition.create_all_from(opts)
+    BrowseIntervention.create_all_from(opts)
+    Condition.create_all_from(opts)
+    Facility.create_all_from(opts)
+    Intervention.create_all_from(opts)
+    Keyword.create_all_from(opts)
+    Link.create_all_from(opts)
+    LocationCountry.create_all_from(opts)
+    OversightAuthority.create_all_from(opts)
+    OverallOfficial.create_all_from(opts)
+    ExpectedOutcome.create_all_from(opts)
+    ReportedEvent.create_all_from(opts)
+    ResponsibleParty.create_all_from(opts)
+    ResultAgreement.create_all_from(opts)
+    ResultContact.create_all_from(opts)
+    SecondaryId.create_all_from(opts)
+    Reference.create_all_from(opts)
+    Sponsor.create_all_from(opts)
+    DerivedValue.new.create_from(self)
     self
   end
 
@@ -116,11 +147,13 @@ class Study < ActiveRecord::Base
   end
 
   def lead_sponsor
-    sponsors.select{|s|s.sponsor_type=='lead'}.first
+    # sponsors.select{|s|s.sponsor_type=='lead'}.first
+    sponsors.find_by(sponsor_type: 'lead')
   end
 
   def collaborators
-    sponsors.select{|s|s.sponsor_type=='collaborator'}
+    # sponsors.select{|s|s.sponsor_type=='collaborator'}
+    sponsors.where(sponsor_type: 'collaborator')
   end
 
   def lead_sponsor_name
@@ -199,37 +232,6 @@ class Study < ActiveRecord::Base
       :why_stopped =>get('why_stopped').strip,
       #:delivery_mechanism =>delivery_mechanism,
 
-      :expected_groups =>       ExpectedGroup.create_all_from(opts),
-      :groups =>                get_groups(opts.merge(:study_xml=>xml)),
-      :outcomes =>              Outcome.create_all_from(opts.merge(:groups=>self.groups)),
-      :milestones =>            Milestone.create_all_from(opts.merge(:groups=>self.groups)),
-      :drop_withdrawals =>      DropWithdrawal.create_all_from(opts.merge(:groups=>self.groups)),
-      :groups =>                self.groups,  #TODO  refactor this silliness. outcomes can add additional groups, so repopulate this attrib
-      :detailed_description =>  DetailedDescription.new.create_from(opts),
-      :design =>                Design.new.create_from(opts),
-      :brief_summary        =>  BriefSummary.new.create_from(opts),
-      :eligibility =>           Eligibility.new.create_from(opts),
-      :participant_flow     =>  ParticipantFlow.new.create_from(opts),
-      :result_detail =>         ResultDetail.new.create_from(opts),
-      :baseline_measures =>     BaselineMeasure.create_all_from(opts),
-      :browse_conditions =>     BrowseCondition.create_all_from(opts),
-      :browse_interventions =>  BrowseIntervention.create_all_from(opts),
-      :conditions =>            Condition.create_all_from(opts),
-      :facilities =>            Facility.create_all_from(opts),
-      :interventions =>         Intervention.create_all_from(opts),
-      :keywords =>              Keyword.create_all_from(opts),
-      :links =>                 Link.create_all_from(opts),
-      :location_countries =>    LocationCountry.create_all_from(opts),
-      :oversight_authorities => OversightAuthority.create_all_from(opts),
-      :overall_officials =>     OverallOfficial.create_all_from(opts),
-      :expected_outcomes =>     ExpectedOutcome.create_all_from(opts),
-      :reported_events =>       ReportedEvent.create_all_from(opts),
-      :responsible_parties =>   ResponsibleParty.create_all_from(opts),
-      :result_agreements =>     ResultAgreement.create_all_from(opts),
-      :result_contacts =>       ResultContact.create_all_from(opts),
-      :secondary_ids =>         SecondaryId.create_all_from(opts),
-      :references =>            Reference.create_all_from(opts),
-      :sponsors =>              Sponsor.create_all_from(opts),
     }
   end
 
