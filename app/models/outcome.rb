@@ -56,7 +56,7 @@ class Outcome < StudyRelationship
       :population   => get_opt(:population),
       :description  => get_opt(:description),
       :outcome_analyses => OutcomeAnalysis.create_all_from(opts.merge(:outcome=>self,:xml=>opts[:outer_xml],:group_id_of_interest=>gid)).compact,
-      # :outcome_measures => OutcomeMeasure.create_all_from(opts.merge(:outcome=>self,:xml=>opts[:outer_xml],:group_id_of_interest=>gid)).compact,
+      :outcome_measures => OutcomeMeasure.create_all_from(opts.merge(:outcome=>self,:xml=>opts[:outer_xml],:group_id_of_interest=>gid)).compact,
     }
   end
 

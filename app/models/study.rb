@@ -75,7 +75,7 @@ class Study < ActiveRecord::Base
 
   def create
     update(attribs)
-    # self.derived_value = DerivedValue.new.create_from(self)
+    self.derived_value = DerivedValue.new.create_from(self)
     self
   end
 
@@ -199,37 +199,37 @@ class Study < ActiveRecord::Base
       :why_stopped =>get('why_stopped').strip,
       #:delivery_mechanism =>delivery_mechanism,
 
-      # :expected_groups =>       ExpectedGroup.create_all_from(opts),
-      # :groups =>                get_groups(opts.merge(:study_xml=>xml)),
-      # :outcomes =>              Outcome.create_all_from(opts.merge(:groups=>self.groups)),
-      # :milestones =>            Milestone.create_all_from(opts.merge(:groups=>self.groups)),
-      # :drop_withdrawals =>      DropWithdrawal.create_all_from(opts.merge(:groups=>self.groups)),
-      # :groups =>                self.groups,  #TODO  refactor this silliness. outcomes can add additional groups, so repopulate this attrib
-      # :detailed_description =>  DetailedDescription.new.create_from(opts),
-      # :design =>                Design.new.create_from(opts),
-      # :brief_summary        =>  BriefSummary.new.create_from(opts),
-      # :eligibility =>           Eligibility.new.create_from(opts),
-      # :participant_flow     =>  ParticipantFlow.new.create_from(opts),
-      # :result_detail =>         ResultDetail.new.create_from(opts),
-      # :baseline_measures =>     BaselineMeasure.create_all_from(opts),
-      # :browse_conditions =>     BrowseCondition.create_all_from(opts),
-      # :browse_interventions =>  BrowseIntervention.create_all_from(opts),
-      # :conditions =>            Condition.create_all_from(opts),
-      # :facilities =>            Facility.create_all_from(opts),
-      # :interventions =>         Intervention.create_all_from(opts),
-      # :keywords =>              Keyword.create_all_from(opts),
-      # :links =>                 Link.create_all_from(opts),
-      # :location_countries =>    LocationCountry.create_all_from(opts),
-      # :oversight_authorities => OversightAuthority.create_all_from(opts),
-      # :overall_officials =>     OverallOfficial.create_all_from(opts),
-      # :expected_outcomes =>     ExpectedOutcome.create_all_from(opts),
-      # :reported_events =>       ReportedEvent.create_all_from(opts),
-      # :responsible_parties =>   ResponsibleParty.create_all_from(opts),
-      # :result_agreements =>     ResultAgreement.create_all_from(opts),
-      # :result_contacts =>       ResultContact.create_all_from(opts),
-      # :secondary_ids =>         SecondaryId.create_all_from(opts),
-      # :references =>            Reference.create_all_from(opts),
-      # :sponsors =>              Sponsor.create_all_from(opts),
+      :expected_groups =>       ExpectedGroup.create_all_from(opts),
+      :groups =>                get_groups(opts.merge(:study_xml=>xml)),
+      :outcomes =>              Outcome.create_all_from(opts.merge(:groups=>self.groups)),
+      :milestones =>            Milestone.create_all_from(opts.merge(:groups=>self.groups)),
+      :drop_withdrawals =>      DropWithdrawal.create_all_from(opts.merge(:groups=>self.groups)),
+      :groups =>                self.groups,  #TODO  refactor this silliness. outcomes can add additional groups, so repopulate this attrib
+      :detailed_description =>  DetailedDescription.new.create_from(opts),
+      :design =>                Design.new.create_from(opts),
+      :brief_summary        =>  BriefSummary.new.create_from(opts),
+      :eligibility =>           Eligibility.new.create_from(opts),
+      :participant_flow     =>  ParticipantFlow.new.create_from(opts),
+      :result_detail =>         ResultDetail.new.create_from(opts),
+      :baseline_measures =>     BaselineMeasure.create_all_from(opts),
+      :browse_conditions =>     BrowseCondition.create_all_from(opts),
+      :browse_interventions =>  BrowseIntervention.create_all_from(opts),
+      :conditions =>            Condition.create_all_from(opts),
+      :facilities =>            Facility.create_all_from(opts),
+      :interventions =>         Intervention.create_all_from(opts),
+      :keywords =>              Keyword.create_all_from(opts),
+      :links =>                 Link.create_all_from(opts),
+      :location_countries =>    LocationCountry.create_all_from(opts),
+      :oversight_authorities => OversightAuthority.create_all_from(opts),
+      :overall_officials =>     OverallOfficial.create_all_from(opts),
+      :expected_outcomes =>     ExpectedOutcome.create_all_from(opts),
+      :reported_events =>       ReportedEvent.create_all_from(opts),
+      :responsible_parties =>   ResponsibleParty.create_all_from(opts),
+      :result_agreements =>     ResultAgreement.create_all_from(opts),
+      :result_contacts =>       ResultContact.create_all_from(opts),
+      :secondary_ids =>         SecondaryId.create_all_from(opts),
+      :references =>            Reference.create_all_from(opts),
+      :sponsors =>              Sponsor.create_all_from(opts),
     }
   end
 
