@@ -2,7 +2,7 @@ class Milestone < StudyRelationship
   belongs_to :group
 
   def self.create_all_from(opts)
-    self.nested_pop_create(opts.merge(:name=>'milestone'))
+    Milestone.import(self.nested_pop_create(opts.merge(:name=>'milestone')))
   end
 
   def self.nested_pop_create(opts)

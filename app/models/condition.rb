@@ -1,7 +1,8 @@
 class Condition < StudyRelationship
 
   def self.create_all_from(opts)
-    opts[:xml].xpath("//condition").collect{|xml|new(:name=>xml.inner_html)}
+    conditions = opts[:xml].xpath("//condition").collect{|xml|new(:name=>xml.inner_html)}.flatten.compact
+    Condition.import(conditions)
   end
 
 end

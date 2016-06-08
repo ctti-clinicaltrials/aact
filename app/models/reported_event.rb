@@ -62,7 +62,9 @@ class ReportedEvent < StudyRelationship
     serious=get_events(opts)
     opts[:type]='other'
     other=get_events(opts)
-    (serious+other).flatten
+    events = (serious+other).flatten
+
+    ReportedEvent.import(events)
   end
 
   # TODO  this can and should be refactored in 100 different ways, but it works for now.

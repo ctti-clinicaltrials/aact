@@ -5,10 +5,12 @@ class LocationCountry < StudyRelationship
   end
 
   def self.create_all_from(opts)
-    xml_entries(opts).children.collect{|xml|
+    location_countries = xml_entries(opts).children.collect{|xml|
       opts[:xml]=xml
       create_from(opts) if xml.name='country' and !trim(xml.text).blank?
     }.compact
+
+    LocationCountry.import(location_countries)
   end
 
   def attribs

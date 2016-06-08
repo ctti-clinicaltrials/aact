@@ -2,7 +2,8 @@ class Sponsor < StudyRelationship
   scope :named, lambda {|agency| where("agency LIKE ?", "#{agency}%" )}
 
   def self.create_all_from(opts)
-    leads(opts) + collaborators(opts)
+    sponsors = leads(opts) + collaborators(opts)
+    Sponsor.import(sponsors)
   end
 
   def self.leads(opts)

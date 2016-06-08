@@ -14,6 +14,8 @@ class Group < StudyRelationship
     additional_groups=pop_create(opts.merge(:name=>'group'))
     opts[:groups]=groups
     groups
+
+    Group.import(groups)
   end
 
   def attribs

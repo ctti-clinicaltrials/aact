@@ -11,10 +11,12 @@ class Facility < StudyRelationship
       }
     }.flatten!
     if results.nil?
-      []
+      results = []
     else
       results
     end
+
+    Facility.import(results)
   end
 
   def attribs

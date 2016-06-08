@@ -78,15 +78,14 @@ class Study < ActiveRecord::Base
     ExpectedGroup.create_all_from(opts)
     Group.create_all_from(opts)
     Outcome.create_all_from(opts.merge(:groups=>self.groups))
-
     Milestone.create_all_from(opts.merge(:groups=>self.groups))
     DropWithdrawal.create_all_from(opts.merge(:groups=>self.groups))
-    DetailedDescription.new.create_from(opts)
-    Design.new.create_from(opts)
-    BriefSummary.new.create_from(opts)
-    Eligibility.new.create_from(opts)
-    ParticipantFlow.new.create_from(opts)
-    ResultDetail.new.create_from(opts)
+    DetailedDescription.new.create_from(opts).save
+    Design.new.create_from(opts).save
+    BriefSummary.new.create_from(opts).save
+    Eligibility.new.create_from(opts).save
+    ParticipantFlow.new.create_from(opts).save
+    ResultDetail.new.create_from(opts).save
     BaselineMeasure.create_all_from(opts)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
@@ -106,7 +105,7 @@ class Study < ActiveRecord::Base
     SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
-    DerivedValue.new.create_from(self)
+    DerivedValue.new.create_from(self).save
     self
   end
 

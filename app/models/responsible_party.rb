@@ -4,6 +4,11 @@ class ResponsibleParty < StudyRelationship
     '//responsible_party'
   end
 
+  def self.create_all_from(opts)
+    objects = super
+    ResponsibleParty.import(objects)
+  end
+
   def attribs
     {
       :responsible_party_type => get('responsible_party_type'),

@@ -14,7 +14,8 @@ class BaselineMeasure < StudyRelationship
       col << self.nested_pop_create(opts)
       xml=all.pop
     end
-    col.flatten
+
+    BaselineMeasure.import(col.flatten)
   end
 
   def self.nested_pop_create(opts)
