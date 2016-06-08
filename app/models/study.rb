@@ -105,7 +105,7 @@ class Study < ActiveRecord::Base
     SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
-    DerivedValue.new.create_from(self).save
+    # DerivedValue.new.create_from(self).save
     self
   end
 

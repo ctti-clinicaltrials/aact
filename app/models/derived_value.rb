@@ -78,7 +78,7 @@ class DerivedValue < ActiveRecord::Base
   end
 
   def calc_number_of_facilities
-    study.facilities.size
+    study.facilities.count
   end
 
   def calc_actual_duration
