@@ -108,7 +108,13 @@ module ClinicalTrials
       load_event.complete
     end
 
-    def import_xml_file(study_xml)
+    def import_xml_file(study_xml, benchmark: false)
+      if benchmark
+        load_event = ClinicalTrials::LoadEvent.create(
+          event_type: 'get_studies'
+        )
+      end
+
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
 
@@ -128,6 +134,10 @@ module ClinicalTrials
         existing_study.update(existing_study.attribs)
         existing_study.study_xml_record.update(content: study)
         # report number of changed records
+      end
+
+      if benchmark
+        load_event.complete
       end
     end
 
