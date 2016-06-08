@@ -41,7 +41,7 @@ class Group < StudyRelationship
     # best guess for this group - based on outcome_measure: 'Number of Participants'
     col=[]
     val=0
-    outcomes.each{|o|o.outcome_measures.select{|om|col << om if om.title == 'Number of Participants'}}
+    outcomes.includes(:outcome_measures).each{|o|o.outcome_measures.select{|om|col << om if om.title == 'Number of Participants'}}
     #for lack of better criteria, take the highest 'No of Participants' value defined for the group
     col.each{|p|val=p.measure_value.to_i if p.measure_value.to_i > val}
     val
