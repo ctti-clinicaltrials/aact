@@ -27,6 +27,7 @@ module ClinicalTrials
 
       file.binmode
       file.write(download)
+      file.size
 
       Zip::File.open(file.path) do |zipfile|
         zipfile.each do |file|
