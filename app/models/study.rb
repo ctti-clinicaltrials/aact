@@ -1,7 +1,6 @@
 require 'csv'
 class Study < ActiveRecord::Base
   attr_accessor :xml
-  # searchkick
 
   scope :interventional,  -> {where(study_type: 'Interventional')}
   scope :observational,   -> {where(study_type: 'Observational')}
