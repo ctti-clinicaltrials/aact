@@ -12,7 +12,7 @@ module ClinicalTrials
       @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
     end
 
-    def import_xml_files
+    def download_xml_files
       load_event = ClinicalTrials::LoadEvent.create(
         event_type: 'get_studies'
       )
