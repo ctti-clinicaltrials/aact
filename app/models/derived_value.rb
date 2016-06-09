@@ -47,13 +47,25 @@ class DerivedValue < ActiveRecord::Base
 
   def calc_number_of_sae_subjects
     cnt=0
-    study.reported_events.each{|re|cnt=cnt+re.subjects_affected if re.event_type.downcase == 'serious'}
+
+    if study.reported_events.present?
+      study.reported_events.each do |re|
+        cnt=cnt+re.subjects_affected if re.event_type.downcase == 'serious' && re.subjects_affected.present?
+      end
+    end
+
     cnt
   end
 
   def calc_number_of_nsae_subjects
     cnt=0
-    study.reported_events.each{|re|cnt=cnt+re.subjects_affected if re.event_type.downcase != 'serious'}
+
+    if study.reported_events.present?
+      study.reported_events.each do |re|
+        cnt=cnt+re.subjects_affected if re.event_type.downcase != 'serious' && re.subjects_affected.present?
+      end
+    end
+
     cnt
   end
 
@@ -66,7 +78,7 @@ class DerivedValue < ActiveRecord::Base
   end
 
   def calc_number_of_facilities
-    study.facilities.size
+    study.facilities.count
   end
 
   def calc_actual_duration

@@ -4,6 +4,11 @@ class Link < StudyRelationship
     '//link'
   end
 
+  def self.create_all_from(opts)
+    objects = super
+    Link.import(objects)
+  end
+
   def attribs
     {:url=>get('url'),
      :description => get('description')}

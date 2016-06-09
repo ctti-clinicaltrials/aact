@@ -11,7 +11,7 @@ class Reference < StudyRelationship
       opts[:xml]=xml
       col << create_from(opts)
     }
-    col.compact
+    Reference.import(col.compact)
   end
 
   def attribs

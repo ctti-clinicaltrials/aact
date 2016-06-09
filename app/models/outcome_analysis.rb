@@ -1,5 +1,5 @@
 class OutcomeAnalysis < StudyRelationship
-  belongs_to :outcome
+  belongs_to :outcome, inverse_of: :outcome_analyses, autosave: true
   belongs_to :group
 
   def self.create_all_from(opts)
@@ -28,7 +28,7 @@ class OutcomeAnalysis < StudyRelationship
       col << pop_create(opts.merge(:name=>'group_id'))
       xml=all.pop
     end
-    col.flatten
+    col.flatten.compact.map(&:attributes)
   end
 
   def attribs

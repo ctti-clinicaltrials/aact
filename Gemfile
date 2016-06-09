@@ -24,6 +24,7 @@ gem 'rest-client'
 gem 'rubyzip'
 gem 'enumerize'
 gem 'bulk_insert'
+gem 'activerecord-import'
 gem 'sinatra', :require => nil
 
 group :development do

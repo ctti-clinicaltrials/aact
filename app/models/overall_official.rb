@@ -4,6 +4,11 @@ class OverallOfficial < StudyRelationship
     '//overall_official'
   end
 
+  def self.create_all_from(opts)
+    objects = super
+    OverallOfficial.import(objects)
+  end
+
   def attribs
     {:name => get('last_name'),
      :role => get('role'),

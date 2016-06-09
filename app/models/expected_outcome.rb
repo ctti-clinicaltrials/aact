@@ -8,7 +8,7 @@ class ExpectedOutcome < StudyRelationship
 
     secondary=options[:xml].xpath("//secondary_outcome").collect{|xml|
       create_from({:xml=>xml,:type=>'secondary',:nct_id=>nct_id})}
-    primary + secondary
+    ExpectedOutcome.import(primary + secondary)
   end
 
   def attribs

@@ -8,12 +8,14 @@ class Group < StudyRelationship
   has_many :drop_withdrawals, dependent: :destroy
 
   def self.create_all_from(opts)
-    opts[:xml]=opts[:study_xml].xpath('//participant_flow')
+    opts[:xml]=opts[:xml].xpath('//participant_flow')
     groups=pop_create(opts.merge(:name=>'group'))
-    opts[:xml]=opts[:study_xml].xpath('//outcome_list')
+    opts[:xml]=opts[:xml].xpath('//outcome_list')
     additional_groups=pop_create(opts.merge(:name=>'group'))
     opts[:groups]=groups
     groups
+
+    Group.import(groups)
   end
 
   def attribs
@@ -39,7 +41,7 @@ class Group < StudyRelationship
     # best guess for this group - based on outcome_measure: 'Number of Participants'
     col=[]
     val=0
-    outcomes.each{|o|o.outcome_measures.select{|om|col << om if om.title == 'Number of Participants'}}
+    outcomes.includes(:outcome_measures).each{|o|o.outcome_measures.select{|om|col << om if om.title == 'Number of Participants'}}
     #for lack of better criteria, take the highest 'No of Participants' value defined for the group
     col.each{|p|val=p.measure_value.to_i if p.measure_value.to_i > val}
     val

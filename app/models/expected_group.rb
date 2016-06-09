@@ -4,6 +4,11 @@ class ExpectedGroup < StudyRelationship
     '//arm_group'
   end
 
+  def self.create_all_from(opts)
+    objects = super
+    ExpectedGroup.import(objects)
+  end
+
   def attribs
     {
       :ctgov_group_id => get_attribute('group_id'),

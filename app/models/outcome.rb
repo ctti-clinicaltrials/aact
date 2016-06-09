@@ -2,8 +2,8 @@ class Outcome < StudyRelationship
   attr_accessor :milestones, :drop_withdrawals
 
   belongs_to :group
-  has_many :outcome_measures
-  has_many :outcome_analyses
+  has_many :outcome_measures, inverse_of: :outcome, autosave: true
+  has_many :outcome_analyses, inverse_of: :outcome, autosave: true
 
   def self.create_all_from(opts)
     all=opts[:xml].xpath('//clinical_results').xpath("outcome_list").xpath('outcome')
@@ -20,7 +20,9 @@ class Outcome < StudyRelationship
       col << nested_pop_create(opts.merge(:name=>'group'))
       xml=all.pop
     end
-    col.flatten
+    outcomes = col.flatten
+
+    Outcome.import(outcomes, recursive: true)
   end
 
   def self.nested_pop_create(opts)
@@ -30,11 +32,30 @@ class Outcome < StudyRelationship
     col=[]
     xml=all.pop
     if xml.blank?
-      col << create_from(opts)
+      outcome = create_from(opts)
+      outcome_measures = OutcomeMeasure.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
+      outcome_analyses = OutcomeAnalysis.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
+      outcome_measures.each do |outcome_measure|
+        outcome.outcome_measures.build(outcome_measure)
+      end
+
+      outcome_analyses.each do |outcome_analysis|
+        outcome.outcome_analyses.build(outcome_analysis)
+      end
+      col << outcome
     else
       while xml
         opts[:xml]=xml
-        col << create_from(opts)
+        outcome = create_from(opts)
+        outcome_measures = OutcomeMeasure.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
+        outcome_analyses = OutcomeAnalysis.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
+        outcome_measures.each do |outcome_measure|
+          outcome.outcome_measures.build(outcome_measure)
+        end
+        outcome_analyses.each do |outcome_analysis|
+          outcome.outcome_analyses.build(outcome_analysis)
+        end
+        col << outcome
         xml=all.pop
       end
     end
@@ -55,8 +76,8 @@ class Outcome < StudyRelationship
       :safety_issue => get_opt(:safety_issue),
       :population   => get_opt(:population),
       :description  => get_opt(:description),
-      :outcome_analyses => OutcomeAnalysis.create_all_from(opts.merge(:outcome=>self,:xml=>opts[:outer_xml],:group_id_of_interest=>gid)).compact,
-      :outcome_measures => OutcomeMeasure.create_all_from(opts.merge(:outcome=>self,:xml=>opts[:outer_xml],:group_id_of_interest=>gid)).compact,
+      # :outcome_analyses => OutcomeAnalysis.create_all_from(opts.merge(:outcome=>self,:xml=>opts[:outer_xml],:group_id_of_interest=>gid)).compact,
+      # :outcome_measures => OutcomeMeasure.create_all_from(opts.merge(:outcome=>self,:xml=>opts[:outer_xml],:group_id_of_interest=>gid)).compact,
     }
   end
 

@@ -1,5 +1,5 @@
 class OutcomeMeasure < StudyRelationship
-  belongs_to :outcome
+  belongs_to :outcome, inverse_of: :outcome_measures, autosave: true
   belongs_to :group
   attr_accessor :category_xml
 
@@ -42,7 +42,8 @@ class OutcomeMeasure < StudyRelationship
         xml=all.pop
       end
     end
-    col.flatten.compact
+    outcome_measures = col.flatten.compact
+    outcome_measures.map(&:attributes)
   end
 
   def attribs

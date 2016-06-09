@@ -2,7 +2,7 @@ class DropWithdrawal < StudyRelationship
   belongs_to :group
 
   def self.create_all_from(opts)
-    self.nested_pop_create(opts.merge(:name=>'drop_withdraw_reason'))
+    DropWithdrawal.import(self.nested_pop_create(opts.merge(:name=>'drop_withdraw_reason')))
   end
 
   def self.nested_pop_create(opts)

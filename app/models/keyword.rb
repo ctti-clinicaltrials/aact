@@ -4,6 +4,11 @@ class Keyword < StudyRelationship
     '//keyword'
   end
 
+  def self.create_all_from(opts)
+    objects = super
+    Keyword.import(objects)
+  end
+
   def attribs
     {:name => opts[:xml].inner_html}
   end
