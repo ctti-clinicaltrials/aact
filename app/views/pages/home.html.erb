@@ -1,8 +1,9 @@
 
 <section class="homeHero">
   <h1>OpenTrials</h1>
-  <p>A summary of what OpenTrials is</p>
-  <p>There are currently 1000 records in our database, which was last updated at this time.</p>
+  <p>OpenTrials makes accessing, analyzing, and updating clinical trial data easy. It's an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti">CTTI</a> at Duke University.</p>
+
+  <p>There are currently <%= number_with_delimiter(@studyCount) %> records in our database, which was last updated at <%= @lastUpdate %>.</p>
   <nav>
     <a href="">View Documentation</a>
     <a href="">Download a database copy</a>
