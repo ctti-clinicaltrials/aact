@@ -33,6 +33,7 @@ describe 'Studies API', type: :request do
 
             expect(response.status).to eq(200)
             expect(JSON.parse(response.body)['study']['facilities'].length).to eq(1)
+            expect(JSON.parse(response.body)['study']['sponsors'].length).to eq(1)
           end
         end
 

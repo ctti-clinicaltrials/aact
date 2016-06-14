@@ -5,5 +5,9 @@ json.study do
     json.facilities @study.facilities do |facility|
       json.merge! facility.attributes
     end
+
+    json.sponsors @study.sponsors do |sponsor|
+      json.merge! sponsor.attributes
+    end
   end
 end
