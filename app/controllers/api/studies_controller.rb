@@ -10,5 +10,11 @@ module Api
         render json: 'Study not found', status: 404
       end
     end
+
+    def index
+      @studies = Study.all
+
+      render json: @studies
+    end
   end
 end

@@ -1,21 +1,22 @@
 require 'rails_helper'
 
 describe 'Studies API', type: :request do
+  before do
+    xml = File.read(Rails.root.join(
+      'spec',
+      'support',
+      'xml_data',
+      'example_study.xml'
+    ))
+
+    @xml_record = StudyXmlRecord.create(content: xml, nct_id: 'NCT00002475')
+    client = ClinicalTrials::Client.new
+    client.populate_studies
+  end
+
+  let(:study) { Study.last }
+
   describe '[GET] study by nct_id' do
-    before do
-      xml = File.read(Rails.root.join(
-        'spec',
-        'support',
-        'xml_data',
-        'example_study.xml'
-      ))
-
-      @xml_record = StudyXmlRecord.create(content: xml, nct_id: 'NCT00002475')
-      client = ClinicalTrials::Client.new
-      client.populate_studies
-    end
-
-    let(:study) { Study.last }
 
     context 'success' do
       it 'should return the study' do
@@ -52,5 +53,24 @@ describe 'Studies API', type: :request do
 
     end
 
+  end
+
+  describe '[GET] all studies' do
+    before do
+      5.times do
+        Study.create(xml: '')
+      end
+    end
+
+    context 'success' do
+      it 'should return all studies' do
+        get '/api/studies'
+
+        expect(response.status).to eq(200)
+        expect(JSON.parse(response.body).length).to eq(6)
+      end
+    end
+
+    context 'failure'
   end
 end

@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   namespace :api, defaults: { format: :json } do
-    get '/studies/:nct_id' => 'studies#show'
+    resources :studies, param: :nct_id, only: [:show, :index]
   end
 end
