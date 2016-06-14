@@ -42,6 +42,14 @@ describe 'Studies API', type: :request do
 
     context 'failure' do
 
+      context 'study not found' do
+        it 'should return 404' do
+          get "/api/studies/abc123?with_related_records=true"
+
+          expect(response.status).to eq(404)
+        end
+      end
+
     end
 
   end
