@@ -73,4 +73,14 @@ describe 'Studies API', type: :request do
 
     context 'failure'
   end
+
+  describe '[GET] study counts by year' do
+    it 'should return a hash of years with counts of studies' do
+      get '/api/studies/counts_by_year'
+
+      study_start_year = Study.last.start_date.year.to_s
+
+      expect(JSON.parse(response.body)[study_start_year]).to eq(1)
+    end
+  end
 end
