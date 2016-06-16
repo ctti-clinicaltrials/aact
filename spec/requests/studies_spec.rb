@@ -28,13 +28,13 @@ describe 'Studies API', type: :request do
 
       context 'with related records' do
 
-        context 'all' do
+        context 'all one to one relationships' do
           it 'should return all related records for study' do
             get "/api/studies/#{study.nct_id}?with_related_records=true"
 
             expect(response.status).to eq(200)
-            expect(JSON.parse(response.body)['study']['facilities'].length).to eq(1)
-            expect(JSON.parse(response.body)['study']['sponsors'].length).to eq(1)
+            expect(JSON.parse(response.body)['study']['brief_summary'].present?).to eq(true)
+            expect(JSON.parse(response.body)['study']['design'].present?).to eq(true)
           end
         end
 
