@@ -1,5 +1,7 @@
 module Api
   class StudiesController < ApplicationController
+    include StudiesDoc
+
     def show
       @study = Study.find_by(nct_id: params[:nct_id])
       @related_records = params[:with_related_records]
