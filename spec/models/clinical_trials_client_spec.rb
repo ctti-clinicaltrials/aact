@@ -6,6 +6,7 @@ describe ClinicalTrials::Client do
                                              'support',
                                              'xml_data',
                                              'example_study.xml'))] }
+  let(:study) { studies.first }
 
   context 'initialization' do
     it 'should set the url based on the provided search term' do
@@ -17,8 +18,53 @@ describe ClinicalTrials::Client do
     end
   end
 
+  describe '#create_study_xml_record' do
+    before do
+      client.create_study_xml_record(study)
+    end
+
+    context 'fresh db' do
+      it 'should create a study xml record' do
+        expect(StudyXmlRecord.last.nct_id).to eq('NCT00002475')
+      end
+    end
+
+    context 'with duplicate in db' do
+      let(:xml_record) { StudyXmlRecord.last }
+
+      context 'study has not changed' do
+        it 'should not create a new xml record or modify the current one' do
+          updated_at = xml_record.updated_at
+          doc = Nokogiri::XML(study)
+          doc.xpath('//clinical_study')
+             .xpath('//required_header')
+             .xpath('//download_date').children.first.content = 'New date'
+          updated_doc_with_only_download_date = doc.to_xml
+
+          client.create_study_xml_record(updated_doc_with_only_download_date)
+
+          expect(StudyXmlRecord.count).to eq(1)
+          expect(xml_record.updated_at).to eq(updated_at)
+        end
+      end
+
+      context 'study has changed' do
+        it 'should update the study' do
+          updated_at = xml_record.updated_at
+          doc = Nokogiri::XML(study)
+          doc.xpath('//clinical_study').xpath('//official_title').children.first.content = 'New title'
+          updated_doc = doc.to_xml
+
+          client.create_study_xml_record(updated_doc)
+
+          expect(StudyXmlRecord.last.updated_at).not_to eq(updated_at)
+        end
+      end
+
+    end
+  end
+
   describe '#import_xml_file' do
-    let(:study) { studies.first }
 
     context 'success' do
       before do
