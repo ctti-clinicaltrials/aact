@@ -1,9 +1,5 @@
 module StudiesDoc
-  extend Apipie::DSL::Concern
-
-  def self.superclass
-    Api::StudiesController
-  end
+  extend BaseDoc
 
   resource_description do
     resource_id 'Studies'

@@ -18,5 +18,6 @@ module Api
 
       render json: @studies
     end
+
   end
 end
