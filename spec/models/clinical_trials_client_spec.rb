@@ -93,6 +93,8 @@ describe ClinicalTrials::Client do
           before do
             client.import_xml_file(study)
             doc = Nokogiri::XML(study)
+            @new_title = 'Testing File For Import Differences'
+            doc.xpath('//clinical_study').xpath('//official_title').children.first.content = @new_title
             doc.xpath('//clinical_study').xpath('lastchanged_date').children.first.content = 'Jan 1, 2016'
             @updated_study = doc.to_xml
             client.import_xml_file(@updated_study)
@@ -100,8 +102,18 @@ describe ClinicalTrials::Client do
 
           it 'should update study' do
             expect(Study.all.count).to eq(1)
+            Study.last.official_title
             expect(Study.last.last_changed_date.to_s).to eq('2016-01-01')
+            expect(Study.last.official_title).to eq(@new_title)
             expect(Study.last.updated_at).not_to eq(Study.last.created_at)
+          end
+
+          it 'should update the study xml record' do
+            expect(StudyXmlRecord.count).to eq(1)
+
+            updated_content = StudyXmlRecord.last.content
+            imported_content = Nokogiri::XML(@updated_study).xpath("//clinical_study").to_xml
+            expect(updated_content.chomp).to eq(imported_content)
           end
 
           # it 'should update the study xml record' do
