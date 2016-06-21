@@ -26,6 +26,7 @@ gem 'enumerize'
 gem 'bulk_insert'
 gem 'activerecord-import'
 gem 'sinatra', :require => nil
+gem 'apipie-rails'
 
 group :development do
   gem "quiet_assets"
