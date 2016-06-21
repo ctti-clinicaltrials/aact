@@ -6,5 +6,6 @@ class DailyImportWorker
     client = ClinicalTrials::Client.new
     client.download_xml_files
     client.populate_studies
+    Study.create_derived_values
   end
 end

@@ -39,6 +39,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    apipie-rails (0.3.6)
+      json
     appsignal (1.1.5)
       rack
       thread_safe
@@ -276,6 +278,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-import
+  apipie-rails
   appsignal
   autoprefixer-rails
   awesome_print

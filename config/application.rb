@@ -23,6 +23,9 @@ module Aact2
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_record.raise_in_transactional_callbacks = true
     config.active_job.queue_adapter = :sidekiq
-    config.eager_load_paths += ["#{config.root}/app/workers"]
+    config.eager_load_paths += [
+      "#{config.root}/app/workers",
+      "#{config.root}/app/docs"
+    ]
   end
 end
