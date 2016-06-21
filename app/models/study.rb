@@ -75,7 +75,7 @@ class Study < ActiveRecord::Base
   def self.create_derived_values
     # TODO once we figure out the nightly differential,
     # change this method to only update derived values for
-    # studyies that have changed.
+    # studies that have changed.
 
     batch_size = 500
     ids = Study.pluck(:nct_id)
