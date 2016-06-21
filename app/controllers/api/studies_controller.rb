@@ -16,7 +16,7 @@ module Api
     def index
       @studies = Study.all
 
-      render json: @studies
+      paginate json: @studies, per_page: 500
     end
 
   end

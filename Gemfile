@@ -27,6 +27,8 @@ gem 'bulk_insert'
 gem 'activerecord-import'
 gem 'sinatra', :require => nil
 gem 'apipie-rails'
+gem 'kaminari'
+gem 'api-pagination'
 
 group :development do
   gem "quiet_assets"
