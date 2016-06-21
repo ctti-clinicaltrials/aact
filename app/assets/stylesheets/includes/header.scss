@@ -1,0 +1,12 @@
+header {
+  background-color: $primary;
+  opacity: 1;
+  padding: 10px 0px;
+  width: 100%;
+
+  div.wrap {
+    @include display-flex;
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+}
