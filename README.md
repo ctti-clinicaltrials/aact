@@ -12,14 +12,6 @@ your machine with [this script].
 
 [this script]: https://github.com/thoughtbot/laptop
 
-### Error tracking and monitoring
-
-Log into [AppSignal](https://appsignal.com/) and create a new app. Follow the steps they provide and run the generator. Replace the hard coded API key with `ENV['APPSIGNAL_API_KEY']`. Add the key to `.env`.
-
-### CI
-
-Log into [CircleCI](https://circleci.com) and create a new project that points to the Github repo.
-
 ## Importing studies from clinicaltrials.gov
 
 Start with opening `rails console`.
