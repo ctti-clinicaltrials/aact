@@ -72,6 +72,19 @@ class Study < ActiveRecord::Base
     all.collect{|s|s.nct_id}
   end
 
+  def self.create_derived_values
+    batch_size = 500
+    ids = Study.pluck(:nct_id)
+
+    ids.each_slice(batch_size) do |batch|
+      batch.each do |id|
+        study = Study.find_by(nct_id: id)
+        DerivedValue.new.create_from(study).save
+      end
+    end
+
+  end
+
   def create
     update(attribs)
     ExpectedGroup.create_all_from(opts)
