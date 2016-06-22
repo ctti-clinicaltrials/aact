@@ -4,17 +4,36 @@ class TableExporter
   def run
     File.delete(ZIPFILE_NAME) if File.exist?(ZIPFILE_NAME)
 
-    tempfile = Tempfile.new('table.csv')
-    tempfile2 = Tempfile.new('table2.csv')
+    tempfiles = create_tempfiles
 
     Zip::File.open(ZIPFILE_NAME, Zip::File::CREATE) do |zipfile|
-      [tempfile, tempfile2].each do |file|
+      tempfiles.each do |file|
         zipfile.add(file, file.path)
       end
     end
+  end
 
-    Zip::File.open(ZIPFILE_NAME) do |zipfile|
-      puts "Entries from reloaded zip: #{zipfile.entries.join(', ')}"
+  private
+
+  def create_tempfiles
+    blacklist = %w(
+      schema_migrations
+      load_events
+      study_xml_records
+    )
+
+    table_names = ActiveRecord::Base.connection.tables.reject do |table|
+      blacklist.include?(table)
     end
+
+    tempfiles = table_names.map { |table_name| "#{table_name}.csv" }
+                           .map do |file_name|
+                             tempfile = Tempfile.new(file_name)
+                             tempfile.write(export_table_to_csv(file_name, tempfile.path))
+                           end
+  end
+
+  def export_table_to_csv(file_name, path)
+    table = File.basename(file_name, '.csv')
   end
 end
