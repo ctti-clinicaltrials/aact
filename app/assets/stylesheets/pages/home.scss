@@ -155,6 +155,10 @@ section.homeAbout {
     margin-bottom: 60px;
   }
 
+  h2 {
+    font-size: 1.8rem;
+  }
+
   @include MQ(L) {
     h2 {
       display: inline-block;
