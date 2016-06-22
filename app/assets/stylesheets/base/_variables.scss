@@ -19,11 +19,11 @@ $link-color:                  lighten($secondary, 10);
 $link-visited-color:          $link-color;
 $link-hover-color:            darken($link-color, 5);
 
-$button-color:                $primary;
-$button-hover-color:          darken($button-color, 5);
+$button-color:                transparent;
+$button-hover-color:          rgba(255,255,255,.1);
 $button-text-color:           $white;
 
-$border-radius:               5px;
+$border-radius:               4px;
 
 // Semantic Colors
 // ••••••••••••••••••••••••••••••••••••••••••••••••••

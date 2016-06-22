@@ -4,18 +4,19 @@ button, input[type="submit"], a.button {
   @include transition(all 150ms ease-in-out);
   background-color: $button-color;
   color: $button-text-color;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 1rem 3.5rem;
-  border: 2px solid transparent;
+  border: 3px solid transparent;
+  border-color: $primary;
   cursor: pointer;
   outline: none;
   display: inline-block;
   margin-bottom: 1rem;
   border-radius: $border-radius;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-family: $font-sans;
-  font-weight: 500;
+  font-weight: bold;
 
   &:hover {
     color: $button-text-color;

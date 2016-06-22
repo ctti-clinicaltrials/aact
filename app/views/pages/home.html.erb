@@ -25,8 +25,8 @@
 
     <p>It's an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti">CTTI</a> at Duke University. There are currently <%= number_with_delimiter(@studyCount) %> records in the database, which was last updated at <%= @lastUpdate %>.</p>
 
-    <button type="button" name="button">Contribute</button>
     <button type="button" name="button">API Docs</button>
+    <button type="button" name="button">Download Database</button>
   </div>
 
 </section>
@@ -35,7 +35,7 @@
   <div class="wrap">
     <h2>About the project</h2>
     <p>
-      Every night AACT2 pulls the latest dataset from ClinicalTrials.gov and updates our database with any new data.
+      Every night AACT2 pulls the latest dataset from <a href="http://www.clinicaltrials.gov" target="_blank">ClinicalTrials.gov</a> and updates our database with any new data.
     </p>
 
     <p>There are currently <%= number_with_delimiter(@studyCount) %> records in the database, which was last updated at <%= @lastUpdate %>.</p>
