@@ -28,14 +28,14 @@ gem 'activerecord-import'
 gem 'sinatra', :require => nil
 gem 'apipie-rails'
 
-group :development do
+group :development, :docker do
   gem "quiet_assets"
   gem "spring"
   gem "spring-commands-rspec"
   gem 'letter_opener'
 end
 
-group :development, :test do
+group :development, :test, :docker, :docker_test do
   gem "awesome_print"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
@@ -46,11 +46,11 @@ group :development, :test do
   gem "rspec-rails", "~> 3.4.0"
 end
 
-group :development, :staging do
+group :development, :staging, :docker do
   gem "rack-mini-profiler", require: false
 end
 
-group :test do
+group :test, :docker_test do
   gem "capybara-webkit"
   gem "database_cleaner"
   gem "formulaic"
