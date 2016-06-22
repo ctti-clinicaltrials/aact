@@ -36,10 +36,11 @@ section.homeHero {
     margin-bottom: 40px;
   }
 
-  button {
+  a.button {
     margin: 0px 10px;
     margin-bottom: 30px;
     border-color: $white;
+    font-size: 1rem;
   }
 
   div.heroHead {
