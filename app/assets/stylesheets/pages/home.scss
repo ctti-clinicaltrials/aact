@@ -14,7 +14,7 @@ section.homeHero {
 
   h1 {
     font-weight: bold;
-    // text-shadow: 4px 5px 0 $secondary,7px 8px 0 rgba(203,234,96,0.7);
+    text-shadow: -4px 3px 0 rgba(0,64,215,1),-8px 6px 0 rgba(77,128,247,.9),-11px 9px 0 rgba(77,128,247,.6),-14px 13px 0 rgba(77,128,247,.3);
   }
 
   h2 {
@@ -33,7 +33,7 @@ section.homeHero {
 
   button {
     margin: 0px 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     border-color: $white;
   }
 
