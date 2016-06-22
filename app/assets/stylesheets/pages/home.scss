@@ -14,7 +14,12 @@ section.homeHero {
 
   h1 {
     font-weight: bold;
-    text-shadow: -4px 3px 0 rgba(0,64,215,1),-8px 6px 0 rgba(77,128,247,.9),-11px 9px 0 rgba(77,128,247,.6),-14px 13px 0 rgba(77,128,247,.3);
+    text-shadow:
+      -4px 3px 0 rgba(0,64,215,1),
+      -8px 6px 0 rgba(0,64,215,.7),
+      -10px 9px 0 rgba(77,128,247,.8),
+      -9px 12px 0 rgba(77,128,247,.5),
+      -7px 15px 0 rgba(77,128,247,.2);
   }
 
   h2 {
@@ -95,5 +100,24 @@ section.homeHero {
 
 
 section.homeAbout {
+  padding-top: 20px;
 
+  div.copy {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 60px;
+  }
+
+  @include MQ(L) {
+    h2 {
+      display: inline-block;
+      @include columnify(4);
+      padding: 0px;
+    }
+
+    div.copy {
+      @include columnify(8, true);
+      padding-top: 10px;
+
+    }
+  }
 }
