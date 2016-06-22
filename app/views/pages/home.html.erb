@@ -5,28 +5,28 @@
       <h1>AACT2</h1>
 
       <nav>
-        <a href="https://github.com/SturdyCo/aact2" class="navItem">
+        <a href="https://github.com/SturdyCo/aact2" class="navItem" target="_blank">
           <i class="fa fa-book"></i>
           <span>View Documentation</span>
-        </a href="">
-        <a href="" class="navItem">
+        </a>
+        <a href="" class="navItem" target="_blank">
           <i class="fa fa-download"></i>
           <span>Download database</span>
-        </a href="">
-        <a href="https://github.com/SturdyCo/aact2" class="navItem">
+        </a>
+        <a href="https://github.com/SturdyCo/aact2" target="_blank" class="navItem">
           <i class="fa fa-github"></i>
           <span>Clone on Github</span>
-        </a href="">
+        </a>
       </nav>
 
     </div>
 
     <h2>OpenTrials makes accessing, analyzing, and updating clinical trial data easy.</h2>
 
-    <p>It's an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti">CTTI</a> at Duke University. There are currently <%= number_with_delimiter(@studyCount) %> records in the database, which was last updated at <%= @lastUpdate %>.</p>
+    <p>It's an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti" target="_blank">CTTI</a> at Duke University. There are currently <%= number_with_delimiter(@studyCount) %> records in the database, which was last updated at <%= @lastUpdate %>.</p>
 
-    <button type="button" name="button">API Docs</button>
-    <button type="button" name="button">Download Database</button>
+    <button type="button" name="button" href="/" target="_blank">API Docs</button>
+    <button type="button" name="button" href="/" target="_blank">Download Database</button>
   </div>
 
 </section>
