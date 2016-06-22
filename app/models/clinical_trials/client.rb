@@ -1,4 +1,3 @@
-require 'zip'
 require 'tempfile'
 require 'open3'
 
