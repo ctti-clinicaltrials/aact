@@ -1,23 +1,46 @@
 
 <section class="homeHero">
-  <h1>AACT2</h1>
-  <p>OpenTrials makes accessing, analyzing, and updating clinical trial data easy. It's an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti">CTTI</a> at Duke University.</p>
+  <div class="wrap">
+    <div class="heroHead">
+      <h1>AACT2</h1>
 
-  <p>There are currently <%= number_with_delimiter(@studyCount) %> records in the database, which was last updated at <%= @lastUpdate %>.</p>
-  <nav>
-    <article class="navItem">
-      <i class="fa fa-book"></i>
-      <a href="https://github.com/SturdyCo/aact2">View Documentation</a>
-    </article>
-    <article class="navItem">
-      <i class="fa fa-download"></i>
-      <a href="">Download a database copy</a>
-    </article>
-    <article class="navItem">
-      <i class="fa fa-github"></i>
-      <a href="https://github.com/SturdyCo/aact2">Clone on Github</a>
-    </article>
-  </nav>
+      <nav>
+        <a href="https://github.com/SturdyCo/aact2" class="navItem">
+          <i class="fa fa-book"></i>
+          <span>View Documentation</span>
+        </a href="">
+        <a href="" class="navItem">
+          <i class="fa fa-download"></i>
+          <span>Download database</span>
+        </a href="">
+        <a href="https://github.com/SturdyCo/aact2" class="navItem">
+          <i class="fa fa-github"></i>
+          <span>Clone on Github</span>
+        </a href="">
+      </nav>
+
+    </div>
+
+    <h2>OpenTrials makes accessing, analyzing, and updating clinical trial data easy.</h2>
+
+    <p>It's an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti">CTTI</a> at Duke University. There are currently <%= number_with_delimiter(@studyCount) %> records in the database, which was last updated at <%= @lastUpdate %>.</p>
+
+    <button type="button" name="button">Contribute</button>
+    <button type="button" name="button">API Docs</button>
+  </div>
+
+</section>
+
+<section class="homeAbout">
+  <div class="wrap">
+    <h2>About the project</h2>
+    <p>
+      Every night AACT2 pulls the latest dataset from ClinicalTrials.gov and updates our database with any new data.
+    </p>
+
+    <p>There are currently <%= number_with_delimiter(@studyCount) %> records in the database, which was last updated at <%= @lastUpdate %>.</p>
+
+  </div>
 </section>
 
 <section class="goals">

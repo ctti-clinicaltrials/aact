@@ -15,7 +15,7 @@ html {
 body {
   font-size: 0px;
   min-height: 100%;
-  font-family: $font-sans;
+  font-family: $font-serif;
   color: $text-color;
   background-color: $white;
 }
@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0px;
   margin-bottom: 1rem;
   padding-top: .5rem;
-  font-family: $font-sans-secondary;
+  font-family: $font-sans;
 }
 
 p {
@@ -32,8 +32,8 @@ p {
   margin-bottom: 1rem;
   font-size: 1rem;
   line-height: 1.5;
-  font-family: $font-sans-tertiary;
   font-weight: 300;
+  font-family: $font-sans-secondary;
 }
 
 a {
@@ -56,16 +56,16 @@ img {
 }
 
 
-h1 {  
+h1 {
   font-size: 2.8rem;
 
   @include MQ(S) {
-    font-size: 5rem;  
+    font-size: 5rem;
   }
 }
 
-h2 {  
-  font-size: 1.8rem;  
+h2 {
+  font-size: 1.8rem;
   @include MQ(S) {
     font-size: 2.4rem;
   }

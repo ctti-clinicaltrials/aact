@@ -1,0 +1,75 @@
+
+section.homeHero {
+  background-color: $primary;
+  color: $white;
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+
+  h1 {
+    font-weight: bold;
+    // text-shadow: 4px 5px 0 $secondary,7px 8px 0 rgba(203,234,96,0.7);
+    // font-family: $font-serif;
+  }
+
+  h2 {
+    font-size: 3.25rem;
+
+  }
+
+  p, a {
+    font-size: 1.25rem;
+  }
+
+  p {
+    max-width: 65%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+
+  div.heroHead {
+    @include display-flex;
+    @include justify-content(space-between);
+    @include align-items(center);
+    margin-bottom: 75px
+  }
+
+  nav {
+
+    i {
+      color: $white;
+      font-size: 62px;
+      display: block;
+      margin-bottom: 5px;
+      position: absolute;
+      @include center(xy);
+    }
+
+    a {
+      display: inline-block;
+      border: 1px solid $white;
+      border-radius: 50%;
+      position: relative;
+      @include columnify(1.5);
+      height: 100px;
+      background-color: $secondary;
+    }
+
+    span {
+      color: $white;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: absolute;
+      @include center(x);
+      bottom: -30px;
+      width: 100%;
+    }
+  }
+}
+
+
+section.homeAbout {
+
+}
