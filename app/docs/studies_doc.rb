@@ -62,7 +62,8 @@ module StudiesDoc
   end
 
   api :GET, '/studies', 'Show all studies'
-  description 'For now, this endpoint is not rate limited or paged, so it will return all studies in one request. This will be slow by default because it is sending a ton of data over the wire. Best practice is to use pagination, which we will add after further discussion.'
+  description 'This endpoint is paginated with 500 records per page.'
+  param :page, Integer
   example <<-EOS
   [
     {
