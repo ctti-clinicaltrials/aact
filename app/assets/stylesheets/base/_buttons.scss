@@ -10,7 +10,8 @@ button, input[type="submit"], a.button {
   border-color: $primary;
   cursor: pointer;
   outline: none;
-  display: inline-block;
+  display: block;
+  width: 100%;
   margin-bottom: 1rem;
   border-radius: $border-radius;
   text-transform: uppercase;
@@ -101,5 +102,10 @@ button, input[type="submit"], a.button {
 
   &.block {
     width: 100%;
+  }
+
+  @include MQ(M) {
+    display: inline-block;
+    width: auto;
   }
 }

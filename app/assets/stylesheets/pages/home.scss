@@ -14,6 +14,8 @@ section.homeHero {
 
   h1 {
     font-weight: bold;
+    margin-bottom: 40px;
+    padding: 0px;
     text-shadow:
       -4px 3px 0 rgba(0,64,215,1),
       -8px 6px 0 rgba(0,64,215,.7),
@@ -23,16 +25,14 @@ section.homeHero {
   }
 
   h2 {
-    font-size: 3.25rem;
+    font-size: 1.4rem;
   }
 
   p, a {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   p {
-    max-width: 65%;
-    margin: 0 auto;
     margin-bottom: 40px;
   }
 
@@ -43,20 +43,23 @@ section.homeHero {
   }
 
   div.heroHead {
-    @include display-flex;
-    @include justify-content(space-between);
-    @include align-items(center);
-    margin-bottom: 75px
+
+    @include MQ(M) {
+      @include display-flex;
+      @include justify-content(space-between);
+      @include align-items(center);
+      margin-bottom: 75px
+    }
   }
 
   nav {
+    margin-bottom: 40px;
 
     i {
       color: $white;
-      font-size: 62px;
+      font-size: 42px;
       display: block;
       margin-bottom: 5px;
-      @include transform(scale(1));
       position: absolute;
       @include center(xy);
       @include transition(all 250ms ease);
@@ -69,12 +72,28 @@ section.homeHero {
       letter-spacing: 1px;
       position: absolute;
       @include center(x);
-      bottom: -20px;
+      bottom: -25px;
       width: 100%;
-      opacity: 0;
       @include transition(all 250ms ease);
     }
 
+    @include MQ(M) {
+      margin-bottom: 0px;
+
+      i {
+        font-size: 62px;
+      }
+
+      span {
+        bottom: -15px;
+      }
+    }
+
+    @include MQ(L) {
+      span {
+        opacity: 0;
+      }
+    }
   }
 
   a.navItem {
@@ -82,9 +101,17 @@ section.homeHero {
     border: 1px solid $white;
     border-radius: 50%;
     position: relative;
-    @include columnify(1.5);
-    height: 100px;
     background-color: $secondary;
+    margin: 0px;
+    width: 70px;
+    height: 70px;
+    margin: 0px 10px;
+
+    @include MQ(M) {
+      margin: 0px;
+      @include columnify(1.5);
+      height: 100px;
+    }
 
     &:hover {
       span {
@@ -94,6 +121,27 @@ section.homeHero {
       i {
         font-size: 68px;
       }
+    }
+  }
+
+  @include MQ(M) {
+
+    h1 {
+      margin: 0px;
+    }
+
+    h2 {
+      font-size: 3.25rem;
+    }
+
+    p, a {
+      font-size: 1.25rem;
+    }
+
+    p {
+      max-width: 65%;
+      margin: 0 auto;
+      margin-bottom: 40px;
     }
   }
 }
