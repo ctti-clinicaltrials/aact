@@ -12,25 +12,22 @@ your machine with [this script].
 
 [this script]: https://github.com/thoughtbot/laptop
 
-### Error tracking and monitoring
-
-Log into [AppSignal](https://appsignal.com/) and create a new app. Follow the steps they provide and run the generator. Replace the hard coded API key with `ENV['APPSIGNAL_API_KEY']`. Add the key to `.env`.
-
-### CI
-
-Log into [CircleCI](https://circleci.com) and create a new project that points to the Github repo.
-
 ## Importing studies from clinicaltrials.gov
 
-Start with opening `rails console`.
+Start by opening `rails console`.
 
-Call `client = ClinicalTrials::Client.new(search_term: 'your search term')`. To run without a search term, you can call `ClinicalTrials::Client.new`. This will download the ENTIRE clinicaltrials.gov database, and will take much longer (~1 hour).
+To load the full clinicaltrials.gov database, call `client = ClinicalTrials::Client.new`.
 
-Run `client.download_xml_files` to populate the database with the raw XML files from clinicaltrials.gov.
+Run `client.download_xml_files` to populate the database with the raw XML files from clinicaltrials.gov. This is will take ~2 hours.
 
-Run `client.populate_studies` to populate the database with studies and all their related records.
+Run `client.populate_studies` to populate the database with studies and all their related records. This will take ~12 hours
 
 To determine the run time of the import, run `ClinicalTrials::LoadEvent.last(2)`. The first record will show the time it took to download the raw XML, the second record will show the time to populate the study records in the db.
+
+If you want to run this with a subset of the data, you can instantiate the client with a `search_term`: `ClinicalTrials::Client.new(search_term: 'pancreatic cancer.')`
+
+### Incremental load
+Coming soon
 
 ## Guidelines
 
