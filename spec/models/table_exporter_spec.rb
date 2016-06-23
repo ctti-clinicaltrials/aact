@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe TableExporter do
   describe '#run' do
-    let(:zipfile_name) { TableExporter::ZIPFILE_NAME }
+    let(:zipfile_name) { TableExporter.new.zipfile_name }
 
     before do
       TableExporter.new.run
@@ -39,6 +39,12 @@ describe TableExporter do
 
     context 'with specific tables' do
 
+    end
+
+    it 'should clean up files in the tmp directory when finished' do
+      has_csv_files = Dir.entries("#{Rails.root}/tmp").any? {|entry| File.extname(entry) == '.csv' }
+
+      expect(has_csv_files).to eq(false)
     end
   end
 end
