@@ -12,3 +12,4 @@
 /tags
 /tmp/*
 dump.rdb
+.env

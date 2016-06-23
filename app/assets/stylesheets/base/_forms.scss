@@ -1,0 +1,54 @@
+
+form {
+  display: block;
+  font-size: 1rem;
+  border-radius: $border-radius;
+
+  div.formHeader {
+    padding: .5rem;
+
+    h1,h2,h3,h4,h5,h6 {
+      margin: 0px;
+      padding: 0px;
+    }
+  }
+
+  div.inputGroup {
+    display: block;
+    margin-bottom: 1rem;
+    padding: .5rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: .4rem;
+    font-size: 18px;
+    font-family: $font-sans-secondary;
+    color: $secondary
+  }
+
+  span {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  input, textarea, select {
+    display: block;
+    border: 1px solid $grey;
+    width: 100%;
+    padding: .8rem;
+    font-family: $font-sans-secondary;
+    color: $secondary;
+    outline: none;
+    border-radius: $border-radius/2;
+
+    &:active, &:focus {
+      border-color: #333;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+}

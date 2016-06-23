@@ -1,0 +1,73 @@
+
+<section class="homeHero">
+  <div class="wrap">
+    <div class="heroHead">
+      <h1>AACT2</h1>
+
+      <nav>
+        <a href="https://github.com/SturdyCo/aact2" class="navItem" target="_blank">
+          <i class="fa fa-book"></i>
+          <span>View Documentation</span>
+        </a>
+        <a href="" class="navItem" target="_blank">
+          <i class="fa fa-download"></i>
+          <span>Download database</span>
+        </a>
+        <a href="https://github.com/SturdyCo/aact2" target="_blank" class="navItem">
+          <i class="fa fa-github"></i>
+          <span>Clone on Github</span>
+        </a>
+      </nav>
+
+    </div>
+
+    <h2>OpenTrials makes accessing, analyzing, and updating clinical trial data easy.</h2>
+
+    <p>
+      It's an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti" target="_blank">CTTI</a> at Duke University. There are currently
+      <%= number_with_delimiter(@studyCount) %> records in the database<% if @lastUpdate %>, which was last updated at <%= @lastUpdate.strftime("%B %d, %Y") %><% end %>.</p>
+
+    <a class="button" href="https://github.com/SturdyCo/aact2" target="_blank">API Docs</a>
+    <a class="button" href="" target="_blank">Download Database</a>
+  </div>
+
+</section>
+
+<section class="homeAbout">
+  <div class="wrap">
+    <h2>What is AACT2?</h2>
+    <div class="copy">
+      <p>
+        In 2010, the Clinical Trials Transformation Initiative (CTTI) partnership created an aggregated relational database of ct.gov information called the Aggregate Analysis of ClinicalTrials.gov (AACT) system. AACT provides users with a way to download a set of flat files that can be used to populate local relational database instances, or alternatively serve as the source of data for other analysis tools such as SAS or R.
+      </p>
+      <p>
+        AACT has been in operation for more than 5 years and has supported research for numerous publications. Along the way, user feedback and internal support experience have given insight into how we can improve AACT. Rather than develop an incremental upgrade, CTTI is taking a more forward-looking approach by developing a truly open platform from the ground up that will make all aspects of the system available to the public.
+      </p>
+      <p>
+        Our aim with AACT2 is to significantly lower the bar on access to clinical trial data, and encourage participation of patients, researchers, and healthcare partners.
+      </p>
+
+    </div>
+
+    <h2>How does AACT2 work?</h2>
+
+    <div class="copy">
+      <p>
+        Every night AACT2 pulls the latest dataset from <a href="http://www.clinicaltrials.gov" target="_blank">ClinicalTrials.gov</a> and updates our database with any new data.
+      </p>
+
+      <p>There are currently <%= number_with_delimiter(@studyCount) %> records in the database, which was last updated at <%= @lastUpdate %>.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="goals">
+<!--   <ul>
+    <li>maximize the value of information in ct.gov</li>
+    <li> easy to access and analyze, and freely available to anyone interested</li>
+    <li> providing continual and free access to the most current version of this information</li>
+    <li>  provide a way for clinical experts from partnering organizations to generally improve the quality of the data </li>
+    <li>  The idea is to promote use and value without being the gatekeeper of the information. </li>
+  </ul> -->
+</section>

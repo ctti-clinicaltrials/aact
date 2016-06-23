@@ -10,6 +10,9 @@
     https://github.com/calebthompson/title#usage
   %>
   <title><%= title %></title>
+  <script src="https://use.fontawesome.com/b0881aff98.js"></script>
+  <script src="https://use.typekit.net/now5mse.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
 </head>
@@ -18,5 +21,12 @@
   <%= yield %>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
+  <footer>
+    <nav>
+      <a href="#">Privacy</a>
+      <a href="#">About</a>
+      <a href="#">Legal</a>
+    </nav>
+  </footer>
 </body>
 </html>
