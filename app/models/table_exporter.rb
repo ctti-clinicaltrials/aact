@@ -1,10 +1,11 @@
 class TableExporter
   attr_reader :zipfile_name
 
-  def initialize
+  def initialize(tables: get_table_names(all: true))
     @temp_dir     = "#{Rails.root}/tmp"
     @zipfile_name = "#{@temp_dir}/export.zip"
     @connection   = ActiveRecord::Base.connection
+    @tables       = tables
   end
 
   def run(delimiter: ',')
@@ -25,8 +26,8 @@ class TableExporter
 
   private
 
-  def create_tempfiles(delimiter)
-    create_temp_dir_if_none_exists!
+  def get_table_names(all: false, tables: nil)
+    all_tables = ActiveRecord::Base.connection.tables
 
     blacklist = %w(
       schema_migrations
@@ -34,9 +35,19 @@ class TableExporter
       study_xml_records
     )
 
-    table_names = ActiveRecord::Base.connection.tables.reject do |table|
+    if !all
+      blacklist.concat(all_tables - tables)
+    end
+
+    all_tables.reject do |table|
       blacklist.include?(table)
     end
+  end
+
+  def create_tempfiles(delimiter)
+    create_temp_dir_if_none_exists!
+
+    table_names = get_table_names(tables: @tables)
 
     tempfiles = table_names.map { |table_name| "#{table_name}.csv" }
                            .map do |file_name|

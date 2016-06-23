@@ -2,18 +2,18 @@ require 'rails_helper'
 
 describe TableExporter do
   describe '#run' do
-    let(:zipfile_name) { TableExporter.new.zipfile_name }
-
-    before do
-      TableExporter.new.run
-    end
+    let(:table_exporter) { TableExporter.new }
+    let(:zipfile_name)   { table_exporter.zipfile_name }
 
     after do
       File.delete(zipfile_name) if File.exist?(zipfile_name)
     end
 
-
     context 'all tables' do
+      before do
+        table_exporter.run
+      end
+
       it 'should write a zipfile' do
         expect(File.exists? zipfile_name).to eq(true)
       end
@@ -38,7 +38,16 @@ describe TableExporter do
     end
 
     context 'with specific tables' do
+      it 'should only contain the csv files for the specified tables' do
+        exporter = TableExporter.new(tables: %w(studies))
+        exporter.run
 
+        entries = Zip::File.open(zipfile_name) do |zipfile|
+          zipfile.entries
+        end
+
+        expect(entries.count).to eq(1)
+      end
     end
 
     it 'should clean up files in the tmp directory when finished' do
