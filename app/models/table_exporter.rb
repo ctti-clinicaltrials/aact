@@ -7,10 +7,10 @@ class TableExporter
     @connection   = ActiveRecord::Base.connection
   end
 
-  def run
+  def run(delimiter: ',')
     File.delete(@zipfile_name) if File.exist?(@zipfile_name)
 
-    tempfiles = create_tempfiles
+    tempfiles = create_tempfiles(delimiter)
 
     Zip::File.open(@zipfile_name, Zip::File::CREATE) do |zipfile|
       tempfiles.each do |file|
@@ -25,7 +25,7 @@ class TableExporter
 
   private
 
-  def create_tempfiles
+  def create_tempfiles(delimiter)
     create_temp_dir_if_none_exists!
 
     blacklist = %w(
@@ -42,13 +42,13 @@ class TableExporter
                            .map do |file_name|
                              path = "#{@temp_dir}/#{file_name}"
                              File.open(path, 'w') do |file|
-                               file.write(export_table_to_csv(file_name, path))
+                               file.write(export_table_to_csv(file_name, path, delimiter))
                                file
                              end
                            end
   end
 
-  def export_table_to_csv(file_name, path, delimiter: ',')
+  def export_table_to_csv(file_name, path, delimiter)
     table = File.basename(file_name, '.csv')
     @connection.execute("copy #{table} to '#{path}' with delimiter '#{delimiter}' csv header")
   end
