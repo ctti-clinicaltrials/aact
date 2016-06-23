@@ -26,6 +26,8 @@ class TableExporter
   private
 
   def create_tempfiles
+    create_temp_dir_if_none_exists!
+
     blacklist = %w(
       schema_migrations
       load_events
@@ -55,6 +57,12 @@ class TableExporter
     Dir.entries(@temp_dir).each do |file|
       file_with_path = "#{@temp_dir}/#{file}"
       File.delete(file_with_path) if File.extname(file) == '.csv'
+    end
+  end
+
+  def create_temp_dir_if_none_exists!
+    unless Dir.exist?(@temp_dir)
+      Dir.mkdir(@temp_dir)
     end
   end
 end
