@@ -12,8 +12,8 @@ class Milestone < StudyRelationship
     xml=all.pop
     while xml
       opts[:xml]=xml
-      opts[:title]=xml.xpath('title').inner_html
-      opts[:period_title]=xml.parent.parent.xpath('title').inner_html
+      opts[:title]=xml.xpath('title').text
+      opts[:period_title]=xml.parent.parent.xpath('title').text
       col << self.pop_create(opts.merge(:name=>'participants'))
       xml=all.pop
     end
@@ -25,7 +25,7 @@ class Milestone < StudyRelationship
       :ctgov_group_id => get_attribute('group_id'),
       :ctgov_group_enumerator => integer_in(get_attribute('group_id')),
       :participant_count => get_attribute('count').to_i,
-      :description => xml.inner_html,
+      :description => xml.text,
       :title => get_opt('title'),
       :group => get_group,
       :period_title => get_opt(:period_title)

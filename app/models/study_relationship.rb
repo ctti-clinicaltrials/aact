@@ -63,17 +63,17 @@ class StudyRelationship < ActiveRecord::Base
   end
 
   def get_from_wrapper1(label)
-    wrapper1_xml.xpath("#{label}").inner_html
+    wrapper1_xml.xpath("#{label}").text
   end
 
   def get(label)
-    xml.xpath("#{label}").inner_html
+    xml.xpath("#{label}").text
   end
 
   def get_text(label)
     str=''
     nodes=xml.xpath("//#{label}")
-    nodes.each {|node| str << node.xpath("textblock").inner_html}
+    nodes.each {|node| str << node.xpath("textblock").text}
     str
   end
 
@@ -107,7 +107,7 @@ class StudyRelationship < ActiveRecord::Base
   end
 
   def get_boolean(label)
-    val=xml.xpath("//#{label}").try(:inner_html)
+    val=xml.xpath("//#{label}").try(:text)
     val.downcase=='yes'||val.downcase=='y'||val.downcase=='true' if !val.blank?
   end
 

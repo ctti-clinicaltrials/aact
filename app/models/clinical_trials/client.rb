@@ -116,7 +116,7 @@ module ClinicalTrials
 
     def study_changed?(existing_study:, new_study_xml:)
       date_string = new_study_xml.xpath('//clinical_study')
-      .xpath('lastchanged_date').inner_html
+      .xpath('lastchanged_date').text
 
       date = Date.parse(date_string)
 
