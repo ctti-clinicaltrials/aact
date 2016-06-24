@@ -11,19 +11,22 @@ class TableExporter
   def run(delimiter: ',', should_upload_to_s3: false)
     File.delete(@zipfile_name) if File.exist?(@zipfile_name)
 
-    tempfiles = create_tempfiles(delimiter)
+    begin
+      tempfiles = create_tempfiles(delimiter)
 
-    Zip::File.open(@zipfile_name, Zip::File::CREATE) do |zipfile|
-      tempfiles.each do |file|
-        zipfile.add(File.basename(file), file.path)
+      Zip::File.open(@zipfile_name, Zip::File::CREATE) do |zipfile|
+        tempfiles.each do |file|
+          zipfile.add(File.basename(file), file.path)
+        end
       end
-    end
 
-    if should_upload_to_s3
-      upload_to_s3
-    end
+      if should_upload_to_s3
+        upload_to_s3(delimiter)
+      end
 
-    cleanup_files!
+    ensure
+      cleanup_tempfiles!
+    end
   end
 
   private
@@ -66,7 +69,7 @@ class TableExporter
     @connection.execute("copy #{table} to '#{path}' with delimiter '#{delimiter}' csv header")
   end
 
-  def cleanup_files!
+  def cleanup_tempfiles!
     Dir.entries(@temp_dir).each do |file|
       file_with_path = "#{@temp_dir}/#{file}"
       File.delete(file_with_path) if File.extname(file) == '.csv'
@@ -79,8 +82,12 @@ class TableExporter
     end
   end
 
-  def upload_to_s3
-    s3_file_name = "csv-export-#{Date.today}"
+  def upload_to_s3(delimiter)
+    s3_file_name = if delimiter == ','
+                     "csv-export-#{Date.today}"
+                   elsif delimiter == '|'
+                     "pipe-delimited-export-#{Date.today}"
+                   end
 
     s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
     obj = s3.bucket(ENV['S3_BUCKET_NAME']).object(s3_file_name)
