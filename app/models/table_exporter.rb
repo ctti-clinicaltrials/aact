@@ -8,7 +8,7 @@ class TableExporter
     @tables       = tables
   end
 
-  def run(delimiter: ',')
+  def run(delimiter: ',', should_upload_to_s3: false)
     File.delete(@zipfile_name) if File.exist?(@zipfile_name)
 
     tempfiles = create_tempfiles(delimiter)
@@ -19,7 +19,9 @@ class TableExporter
       end
     end
 
-    # TODO send to s3
+    if should_upload_to_s3
+      upload_to_s3
+    end
 
     cleanup_files!
   end
@@ -75,5 +77,13 @@ class TableExporter
     unless Dir.exist?(@temp_dir)
       Dir.mkdir(@temp_dir)
     end
+  end
+
+  def upload_to_s3
+    s3_file_name = "csv-export-#{Date.today}"
+
+    s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
+    obj = s3.bucket(ENV['S3_BUCKET_NAME']).object(s3_file_name)
+    obj.upload_file(@zipfile_name)
   end
 end
