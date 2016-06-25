@@ -8,6 +8,9 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 require 'zip'
+require 'dotenv'
+
+Dotenv.load("#{Rails.root}/.env")
 Bundler.require(*Rails.groups)
 module Aact2
   class Application < Rails::Application
