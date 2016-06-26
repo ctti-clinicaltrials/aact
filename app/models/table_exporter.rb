@@ -4,7 +4,7 @@ class TableExporter
   def initialize(tables: get_table_names(all: true))
     @temp_dir     = "#{Rails.root}/tmp"
     @zipfile_name = "#{@temp_dir}/export.zip"
-    @connection   = ActiveRecord::Base.connection
+    @connection   = ActiveRecord::Base.connection.raw_connection
     @tables       = tables
   end
 
@@ -57,7 +57,7 @@ class TableExporter
     tempfiles = table_names.map { |table_name| "#{table_name}.csv" }
                            .map do |file_name|
                              path = "#{@temp_dir}/#{file_name}"
-                             File.open(path, 'w') do |file|
+                             File.open(path, 'wb+') do |file|
                                file.write(export_table_to_csv(file_name, path, delimiter))
                                file
                              end
@@ -66,7 +66,13 @@ class TableExporter
 
   def export_table_to_csv(file_name, path, delimiter)
     table = File.basename(file_name, '.csv')
-    @connection.execute("copy #{table} to '#{path}' with delimiter '#{delimiter}' csv header")
+    string = ''
+    @connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
+      while row = @connection.get_copy_data
+        string << row
+      end
+    end
+    string
   end
 
   def cleanup_tempfiles!
