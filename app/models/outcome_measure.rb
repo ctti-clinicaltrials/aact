@@ -11,18 +11,18 @@ class OutcomeMeasure < StudyRelationship
       return []
     else
       while xml
-        opts[:title]=xml.xpath('title').inner_html
-        opts[:units]=xml.xpath('units').inner_html
-        opts[:param]=xml.xpath('param').inner_html
-        opts[:dispersion]=xml.xpath('dispersion').inner_html
-        opts[:description]=xml.xpath('description').inner_html
+        opts[:title]=xml.xpath('title').text
+        opts[:units]=xml.xpath('units').text
+        opts[:param]=xml.xpath('param').text
+        opts[:dispersion]=xml.xpath('dispersion').text
+        opts[:description]=xml.xpath('description').text
         categories=xml.xpath("category_list").xpath('category')
         category=categories.pop
         if category.blank?
           col << new.conditionally_create_from(opts)
         else
           while category
-            opts[:category]=category.xpath('sub_title').inner_html
+            opts[:category]=category.xpath('sub_title').text
             grps=category.xpath("measurement_list").xpath('measurement')
             gr=grps.pop
             if gr.blank?

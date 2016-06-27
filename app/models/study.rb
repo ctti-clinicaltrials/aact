@@ -218,9 +218,9 @@ class Study < ActiveRecord::Base
       :primary_completion_date_str => get('primary_completion_date'),
       :completion_date_str => get('completion_date'),
       :first_received_results_date_str => get('firstreceived_results_date'),
-      :download_date_str => xml.xpath('//download_date').inner_html,
+      :download_date_str => xml.xpath('//download_date').text,
 
-      :org_study_id => xml.xpath('//org_study_id').inner_html,
+      :org_study_id => xml.xpath('//org_study_id').text,
       :acronym =>get('acronym'),
       :number_of_arms => get('number_of_arms'),
       :number_of_groups =>get('number_of_groups'),
@@ -255,13 +255,13 @@ class Study < ActiveRecord::Base
   end
 
   def get(label)
-    xml.xpath('//clinical_study').xpath("#{label}").inner_html
+    xml.xpath('//clinical_study').xpath("#{label}").text
   end
 
   def get_text(label)
     str=''
     nodes=xml.xpath("//#{label}")
-    nodes.each {|node| str << node.xpath("textblock").inner_html}
+    nodes.each {|node| str << node.xpath("textblock").text}
     str
   end
 
@@ -271,7 +271,7 @@ class Study < ActiveRecord::Base
   end
 
   def get_boolean(label)
-    val=xml.xpath("//#{label}").try(:inner_html)
+    val=xml.xpath("//#{label}").try(:text)
     val.downcase=='yes'||val.downcase=='y'||val.downcase=='true' if !val.blank?
   end
 

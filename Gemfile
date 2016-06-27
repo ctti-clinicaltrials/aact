@@ -29,6 +29,7 @@ gem 'sinatra', :require => nil
 gem 'apipie-rails'
 gem 'kaminari'
 gem 'api-pagination'
+gem 'aws-sdk', '~> 2'
 
 group :development, :docker do
   gem "quiet_assets"
