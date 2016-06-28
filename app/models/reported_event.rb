@@ -3,13 +3,13 @@ class ReportedEvent < StudyRelationship
   def self.create_all_from(opts)
     nct_id=opts[:nct_id]
     opts[:xml]=opts[:xml].xpath("//reported_events")
-    opts[:time_frame]=opts[:xml].xpath('time_frame').inner_html
-    opts[:description]=opts[:xml].xpath('desc').inner_html
+    opts[:time_frame]=opts[:xml].xpath('time_frame').text
+    opts[:description]=opts[:xml].xpath('desc').text
     group_xmls=opts[:xml].xpath("group_list").xpath('group')
     groups=[]
     xml=group_xmls.pop
     while xml
-      groups << {xml.attribute('group_id').inner_html=>{:title=>xml.xpath('title').inner_html,:description=>xml.xpath('description').inner_html}}
+      groups << {xml.attribute('group_id').text=>{:title=>xml.xpath('title').text,:description=>xml.xpath('description').text}}
       xml=group_xmls.pop
     end
 
@@ -20,23 +20,23 @@ class ReportedEvent < StudyRelationship
     outter_xml=opts[:xml].xpath("//#{event_type}_events")
     event_collection=[]
     outter_xml.collect{|xml|
-      opts[:frequency_threshold]=xml.xpath('frequency_threshold').inner_html
-      opts[:default_vocab]=xml.xpath('default_vocab').inner_html
-      opts[:default_assessment]=xml.xpath('default_assessment').inner_html
+      opts[:frequency_threshold]=xml.xpath('frequency_threshold').text
+      opts[:default_vocab]=xml.xpath('default_vocab').text
+      opts[:default_assessment]=xml.xpath('default_assessment').text
       cat_xmls=outter_xml.xpath("category_list").xpath('category')
       c_xml=cat_xmls.pop
       if c_xml.nil?
         puts "TODO  need to account for no categories"
       else
         while c_xml
-          opts[:category]=c_xml.xpath('title').inner_html
+          opts[:category]=c_xml.xpath('title').text
           event_xmls=c_xml.xpath("event_list").xpath('event')
           e_xml=event_xmls.pop
           if e_xml.nil?
             puts "TODO  need to account for no events"
           else
             while e_xml
-              opts[:title]=e_xml.xpath('sub_title').inner_html
+              opts[:title]=e_xml.xpath('sub_title').text
               count_xmls=e_xml.xpath("counts")
               o_xml=count_xmls.pop
               if o_xml.nil?
@@ -73,23 +73,23 @@ class ReportedEvent < StudyRelationship
     outter_xml=opts[:xml].xpath("//#{event_type}_events")
     event_collection=[]
     outter_xml.collect{|xml|
-      opts[:frequency_threshold]=xml.xpath('frequency_threshold').inner_html
-      opts[:default_vocab]=xml.xpath('default_vocab').inner_html
-      opts[:default_assessment]=xml.xpath('default_assessment').inner_html
+      opts[:frequency_threshold]=xml.xpath('frequency_threshold').text
+      opts[:default_vocab]=xml.xpath('default_vocab').text
+      opts[:default_assessment]=xml.xpath('default_assessment').text
       cat_xmls=outter_xml.xpath("category_list").xpath('category')
       c_xml=cat_xmls.pop
       if c_xml.nil?
         puts "TODO  need to account for no categories"
       else
         while c_xml
-          opts[:category]=c_xml.xpath('title').inner_html
+          opts[:category]=c_xml.xpath('title').text
           event_xmls=c_xml.xpath("event_list").xpath('event')
           e_xml=event_xmls.pop
           if e_xml.nil?
             puts "TODO  need to account for no events"
           else
             while e_xml
-              opts[:title]=e_xml.xpath('sub_title').inner_html
+              opts[:title]=e_xml.xpath('sub_title').text
               count_xmls=e_xml.xpath("counts")
               o_xml=count_xmls.pop
               if o_xml.nil?

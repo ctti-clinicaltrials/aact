@@ -1,0 +1,46 @@
+// Brand Palette
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+
+$primary:               rgb(0,26,87);
+$secondary:             rgb(7,54,164);
+$accent:                rgb(203,234,96);
+
+
+// UI
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+$bg-color:                    #fff;
+$bg-grey:                     #efefef;
+$grey:                        #ddd;
+$white:                       #f5f0eb;
+
+$text-color:                  $primary;
+
+$link-color:                  lighten($secondary, 35);
+$link-visited-color:          $link-color;
+$link-hover-color:            darken($link-color, 5);
+
+$button-color:                transparent;
+$button-hover-color:          rgba(255,255,255,.1);
+$button-text-color:           $white;
+
+$border-radius:               4px;
+
+// Semantic Colors
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+
+$success: #2ecc71;
+$success-hover: darken($success, 10);
+
+$warning: #e67e22;
+$warning-hover: darken($warning, 10);
+
+$danger: #e74c3c;
+$danger-hover: darken($danger, 10);
+
+// Typography
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+
+$font-sans:             'instant';
+$font-sans-secondary:   'ingra';
+$font-sans-tertiary:    'ingra';
+$font-serif:            'Georgia';

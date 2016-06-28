@@ -19,3 +19,13 @@ production: &deploy
   url:  <%= ENV.fetch("DATABASE_URL", "") %>
 
 staging: *deploy
+
+docker: &docker
+  <<: *default
+  username: aact2
+  password: abc123
+  host: postgres.db.host
+
+docker_test:
+  <<: *docker
+  database: aact2_test

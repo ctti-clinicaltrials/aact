@@ -14,7 +14,7 @@ class Eligibility < StudyRelationship
 
   def get(label)
     #  override the superclass to search for label from the top of the doc
-    xml.xpath("//#{label}").inner_html
+    xml.xpath("//#{label}").text
   end
 
 end

@@ -7,6 +7,8 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
+require 'zip'
+
 Bundler.require(*Rails.groups)
 module Aact2
   class Application < Rails::Application
@@ -23,6 +25,9 @@ module Aact2
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_record.raise_in_transactional_callbacks = true
     config.active_job.queue_adapter = :sidekiq
-    config.eager_load_paths += ["#{config.root}/app/workers"]
+    config.eager_load_paths += [
+      "#{config.root}/app/workers",
+      "#{config.root}/app/docs"
+    ]
   end
 end

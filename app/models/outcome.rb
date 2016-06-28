@@ -10,12 +10,12 @@ class Outcome < StudyRelationship
     col=[]
     xml=all.pop
     while xml
-      opts[:type]=xml.xpath('type').inner_html
-      opts[:title]=xml.xpath('title').inner_html
-      opts[:description]=xml.xpath('description').inner_html
-      opts[:time_frame]=xml.xpath('time_frame').inner_html
-      opts[:safety_issue]=xml.xpath('safety_issue').inner_html
-      opts[:population]=xml.xpath('population').inner_html
+      opts[:type]=xml.xpath('type').text
+      opts[:title]=xml.xpath('title').text
+      opts[:description]=xml.xpath('description').text
+      opts[:time_frame]=xml.xpath('time_frame').text
+      opts[:safety_issue]=xml.xpath('safety_issue').text
+      opts[:population]=xml.xpath('population').text
       opts[:xml]=xml
       col << nested_pop_create(opts.merge(:name=>'group'))
       xml=all.pop

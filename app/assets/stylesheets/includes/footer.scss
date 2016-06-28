@@ -1,0 +1,19 @@
+
+footer {
+  background-color: $primary;
+  color: $white;
+
+  nav {
+    display: block;
+    text-align: center;
+    padding: 10px;
+  }
+
+  a {
+    padding: 0px 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: .6rem;
+    color: $white;
+  }
+}
