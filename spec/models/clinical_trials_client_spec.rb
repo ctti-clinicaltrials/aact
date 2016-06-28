@@ -7,6 +7,7 @@ describe ClinicalTrials::Client do
                                              'xml_data',
                                              'example_study.xml'))] }
   let(:study) { studies.first }
+  let(:study_id) { 'NCT00002475' }
 
   context 'initialization' do
     it 'should set the url based on the provided search term' do
@@ -25,7 +26,7 @@ describe ClinicalTrials::Client do
 
     context 'fresh db' do
       it 'should create a study xml record' do
-        expect(StudyXmlRecord.last.nct_id).to eq('NCT00002475')
+        expect(StudyXmlRecord.last.nct_id).to eq(study_id)
       end
     end
 
@@ -71,8 +72,9 @@ describe ClinicalTrials::Client do
         client.import_xml_file(study)
       end
 
-      it 'should create study' do
-        expect(Study.all.count).to eq(1)
+      it 'should create study from the xml_record' do
+        expect(Study.count).to eq(1)
+        expect(Study.last.nct_id).to eq(study_id)
       end
 
     end
@@ -115,11 +117,6 @@ describe ClinicalTrials::Client do
             imported_content = Nokogiri::XML(@updated_study).xpath("//clinical_study").to_xml
             expect(updated_content.chomp).to eq(imported_content)
           end
-
-          # it 'should update the study xml record' do
-          #   expect(StudyXmlRecord.count).to eq(1)
-          #   expect(StudyXmlRecord.last.content).to eq(Nokogiri::XML(@updated_study).xpath("//clinical_study").to_xml)
-          # end
         end
 
       end
