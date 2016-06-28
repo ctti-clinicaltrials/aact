@@ -10,7 +10,10 @@ services:
       - server.env
     links:
       - 'db:postgres.db.host'
+      - 'redis:redis.db.host'
   db:
     build: ./docker/builds/db
     env_file:
       - db.env
+  redis:
+    image: redis
