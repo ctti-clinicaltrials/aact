@@ -16,7 +16,7 @@ class Design < StudyRelationship
   end
 
   def source
-    @source ||= get_opt(:xml).xpath("//study_design").try(:inner_html)
+    @source ||= get_opt(:xml).xpath("//study_design").try(:text)
   end
 
   def labels

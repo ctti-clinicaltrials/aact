@@ -10,21 +10,21 @@ class OutcomeAnalysis < StudyRelationship
     while xml
       opts[:xml]=xml
       opts[:title]=xml.xpath('title')
-      opts[:non_inferiority]=xml.xpath('non_inferiority').inner_html
-      opts[:non_inferiority_description]=xml.xpath('non_inferiority_desc').inner_html
-      opts[:p_value]=xml.xpath('p_value').inner_html
-      opts[:param_type]=xml.xpath('param_type').inner_html
-      opts[:param_value]=xml.xpath('param_value').inner_html
-      opts[:dispersion_type]=xml.xpath('dispersion_type').inner_html
-      opts[:dispersion_value]=xml.xpath('dispersion_value').inner_html
-      opts[:ci_percent]=xml.xpath('ci_percent').inner_html
-      opts[:ci_n_sides]=xml.xpath('ci_n_sides').inner_html
-      opts[:ci_lower_limit]=xml.xpath('ci_lower_limit').inner_html
-      opts[:ci_upper_limit]=xml.xpath('ci_upper_limit').inner_html
-      opts[:method]=xml.xpath('method').inner_html
-      opts[:group_description]=xml.xpath('groups_desc').inner_html
-      opts[:method_description]=xml.xpath('method_desc').inner_html
-      opts[:estimate_description]=xml.xpath('estimate_desc').inner_html
+      opts[:non_inferiority]=xml.xpath('non_inferiority').text
+      opts[:non_inferiority_description]=xml.xpath('non_inferiority_desc').text
+      opts[:p_value]=xml.xpath('p_value').text
+      opts[:param_type]=xml.xpath('param_type').text
+      opts[:param_value]=xml.xpath('param_value').text
+      opts[:dispersion_type]=xml.xpath('dispersion_type').text
+      opts[:dispersion_value]=xml.xpath('dispersion_value').text
+      opts[:ci_percent]=xml.xpath('ci_percent').text
+      opts[:ci_n_sides]=xml.xpath('ci_n_sides').text
+      opts[:ci_lower_limit]=xml.xpath('ci_lower_limit').text
+      opts[:ci_upper_limit]=xml.xpath('ci_upper_limit').text
+      opts[:method]=xml.xpath('method').text
+      opts[:group_description]=xml.xpath('groups_desc').text
+      opts[:method_description]=xml.xpath('method_desc').text
+      opts[:estimate_description]=xml.xpath('estimate_desc').text
       col << pop_create(opts.merge(:name=>'group_id'))
       xml=all.pop
     end
@@ -33,8 +33,8 @@ class OutcomeAnalysis < StudyRelationship
 
   def attribs
     {
-      :ctgov_group_id => xml.inner_html,
-      :ctgov_group_enumerator => integer_in(xml.inner_html),
+      :ctgov_group_id => xml.text,
+      :ctgov_group_enumerator => integer_in(xml.text),
       :title => get_opt(:title),
       :non_inferiority => get_opt(:non_inferiority),
       :non_inferiority_description => get_opt(:non_inferiority_description),
@@ -57,7 +57,7 @@ class OutcomeAnalysis < StudyRelationship
   end
 
   def gid
-    integer_in(opts[:xml].inner_html)
+    integer_in(opts[:xml].text)
   end
 
   def get_group
@@ -66,7 +66,7 @@ class OutcomeAnalysis < StudyRelationship
 
   def conditionally_create_from(opts)
     @opts=opts
-    return nil if opts[:xml].inner_html != opts[:group_id_of_interest]
+    return nil if opts[:xml].text != opts[:group_id_of_interest]
     create_from(opts)
   end
 

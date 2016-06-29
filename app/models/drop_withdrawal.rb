@@ -11,8 +11,8 @@ class DropWithdrawal < StudyRelationship
     col=[]
     xml=all.pop
     while xml
-      opts[:reason]=xml.xpath('title').inner_html
-      opts[:period_title]=xml.parent.parent.xpath('title').inner_html
+      opts[:reason]=xml.xpath('title').text
+      opts[:period_title]=xml.parent.parent.xpath('title').text
       groups=xml.xpath("participants_list").xpath('participants')
       group=groups.pop
       while group

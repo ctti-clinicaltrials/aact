@@ -10,7 +10,7 @@ class SecondaryId < StudyRelationship
   end
 
   def attribs
-    {:secondary_id=>xml.inner_html}
+    {:secondary_id=>xml.text}
   end
 
 end

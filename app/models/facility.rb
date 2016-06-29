@@ -42,12 +42,12 @@ class Facility < StudyRelationship
 
   def get_from(sublevel,label)
     elem=wrapper1_xml.xpath(sublevel).try(:xpath,label)
-    elem.inner_html if elem
+    elem.text if elem
   end
 
   def get_addr(label)
     elem=xml.xpath('address').try(:xpath,label)
-    elem.inner_html if elem
+    elem.text if elem
   end
 
   def formatted_addr

@@ -4,11 +4,11 @@ class BaselineMeasure < StudyRelationship
     col=[]
     xml=all.pop
     while xml
-      opts[:description]=xml.xpath('description').inner_html
-      opts[:title]=xml.xpath('title').inner_html
-      opts[:units]=xml.xpath('units').inner_html
-      opts[:param]=xml.xpath('param').inner_html
-      opts[:dispersion]=xml.xpath('dispersion').inner_html
+      opts[:description]=xml.xpath('description').text
+      opts[:title]=xml.xpath('title').text
+      opts[:units]=xml.xpath('units').text
+      opts[:param]=xml.xpath('param').text
+      opts[:dispersion]=xml.xpath('dispersion').text
       opts[:name]='category'
       opts[:xml]=xml
       col << self.nested_pop_create(opts)
@@ -24,7 +24,7 @@ class BaselineMeasure < StudyRelationship
     col=[]
     xml=all.pop
     while xml
-      opts[:category]=xml.xpath('sub_title').inner_html
+      opts[:category]=xml.xpath('sub_title').text
       opts[:xml]=xml
       opts[:name]='measurement'
       col << pop_create(opts)
@@ -41,7 +41,7 @@ class BaselineMeasure < StudyRelationship
       :lower_limit => get_attribute('lower_limit'),
       :upper_limit => get_attribute('upper_limit'),
       :spread => get_attribute('spread'),
-      :measure_description => xml.inner_html,
+      :measure_description => xml.text,
       :category => get_opt(:category),
       :title => get_opt(:title),
       :description => get_opt(:description),
