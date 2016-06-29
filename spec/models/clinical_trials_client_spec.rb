@@ -131,18 +131,39 @@ describe ClinicalTrials::Client do
     end
   end
 
-  # describe '#import_xml_file' do
-  #   before do
-  #     stub_request(:get, expected_url).
-  #       with(:headers => stub_request_headers).
-  #       to_return(:status => 200, :body => zipped_studies, :headers => {})
-  #     subject.download_xml_files
-  #   end
-  #
-  #   it 'should create a study from an existing study xml record' do
-  #     subject.populate_studies
-  #   end
-  # end
+  describe '#import_xml_file(study_xml, benchmark: false)' do
+    before do
+      stub_request(:get, expected_url).
+        with(:headers => stub_request_headers).
+        to_return(:status => 200, :body => zipped_studies, :headers => {})
+      subject.download_xml_files
+    end
+
+    it 'should create a study from an existing study xml record' do
+      study_xml_record_1 = StudyXmlRecord.find_by(nct_id: study_nct_id_1)
+      expect(study_xml_record_1).to be_truthy
+      expect(Study.count).to be(0)
+
+      subject.import_xml_file(study_xml_record_1.content)
+      study_1 = Study.find_by(nct_id: study_nct_id_1)
+      expect(study_1).to be_truthy
+      expect(Study.count).to be(1)
+    end
+
+    it 'should update an existing study from an updated study xml record' do
+      study_xml_record_1 = StudyXmlRecord.find_by(nct_id: study_nct_id_1)
+      subject.import_xml_file(study_xml_record_1.content)
+      expect(Study.count).to be(1)
+      study_1 = Study.find_by(nct_id: study_nct_id_1)
+      expect(study_1.official_title).to eq(official_study_title_1)
+
+      subject.import_xml_file(raw_study_xml_1_mod)
+      study_1_mod = Study.find_by(nct_id: study_nct_id_1)
+      expect(study_1_mod.last_changed_date_str).to eq(study_last_changed_date_1_mod)
+      expect(study_1_mod.official_title).to eq(official_study_title_1_mod)
+      expect(Study.count).to be(1)
+    end
+  end
 
   #   context 'success' do
   #     context 'new study' do
