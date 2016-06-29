@@ -163,6 +163,30 @@ describe ClinicalTrials::Client do
       expect(study_1_mod.official_title).to eq(official_study_title_1_mod)
       expect(Study.count).to be(1)
     end
+
+    it 'should create a load event if benchmark is true' do
+      study_xml_record_1 = StudyXmlRecord.find_by(nct_id: study_nct_id_1)
+      expect {
+        subject.import_xml_file(study_xml_record_1.content, benchmark: true)
+      }.to change{ClinicalTrials::LoadEvent.count}.by(1)
+
+      last_load_event = ClinicalTrials::LoadEvent.last
+      expect(last_load_event.event_type).to eq('get_studies')
+      expect(last_load_event.status).to eq('complete')
+      expect(last_load_event.load_time).not_to be_nil
+    end
+
+    it 'should not create a load event if benchmark is nil or false' do
+      study_xml_record_1 = StudyXmlRecord.find_by(nct_id: study_nct_id_1)
+
+      expect {
+        subject.import_xml_file(study_xml_record_1.content)
+      }.to change{ClinicalTrials::LoadEvent.count}.by(0)
+
+      expect {
+        subject.import_xml_file(study_xml_record_1.content, benchmark: false)
+      }.to change{ClinicalTrials::LoadEvent.count}.by(0)
+    end
   end
 
   #   context 'success' do
