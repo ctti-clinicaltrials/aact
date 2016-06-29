@@ -40,6 +40,7 @@ module ClinicalTrials
 
     def create_study_xml_record(xml)
       nct_id = extract_nct_id_from_study(xml)
+      new_study_xml = Nokogiri::XML(xml)
       existing_study_xml_record = StudyXmlRecord.find_by(nct_id: nct_id)
       existing_study_xml = Nokogiri::XML(existing_study_xml_record.try(:content))
 
@@ -47,7 +48,7 @@ module ClinicalTrials
         @processed_studies[:new_studies] << nct_id
         StudyXmlRecord.create(content: xml, nct_id: nct_id)
         # report number of new records
-      elsif study_xml_changed?(existing_study_xml: existing_study_xml, new_study_xml: xml)
+      elsif study_xml_changed?(existing_study_xml: existing_study_xml, new_study_xml: new_study_xml)
         @processed_studies[:updated_studies] << nct_id
         existing_study_xml_record.update(content: xml)
         # report number of changed records
@@ -117,9 +118,10 @@ module ClinicalTrials
     end
 
     def study_xml_changed?(existing_study_xml:, new_study_xml:)
-      changes = Lorax.diff(existing_study_xml, new_study_xml).deltas
-
-      changes.present? ? true : false
+      existing_study_xml.diff(new_study_xml) do |change,node|
+        return true if !change.blank? && node.parent.name != 'download_date'
+      end
+      false
     end
 
     def study_changed?(existing_study:, new_study_xml:)
