@@ -71,7 +71,7 @@ h2 {
   }
 }
 
-h3 {  font-size: 3rem;  }
+h3 {  font-size: 2.3rem;  }
 
 h4 {  font-size: 1.5rem;  }
 
@@ -79,6 +79,25 @@ h5 {  font-size: 1rem;  }
 
 h6 {  font-size: .8rem;  }
 
+pre {
+  background-color: #e4e4e4;
+  padding: 20px;
+  border-radius: $border-radius;
+  margin: 20px 0px;
+
+  code {
+    font-size: 1rem;
+    max-width: 100%;
+    margin-bottom: 20px;
+    display: block;
+    color: #333;
+
+    &:last-of-type {
+      margin-bottom: 0px;
+    }
+
+  }
+}
 
 %container {
   margin: 0 auto;
