@@ -8,21 +8,25 @@ describe ClinicalTrials::Client do
   subject { described_class.new(search_term: search_term) }
 
   let(:zipped_studies) { File.read(Rails.root.join('spec','support','xml_data','download_xml_files.zip')) }
+
   let(:raw_study_xml_1) { File.read(Rails.root.join('spec','support','xml_data','NCT00513591.xml')) }
   let(:official_study_title_1) { 'Duke Autoimmunity in Pregnancy Registry' }
-  let(:raw_study_xml_1_mod) { File.read(Rails.root.join('spec','support','xml_data','NCT00513591_mod.xml')) }
-  let(:official_study_title_1_mod) { 'This Is An Updated Title' }
-  let(:raw_study_xml_1_mod_date) { 'June 15, 2016' }
-
-  let(:study_xml_nct_ids) { ["NCT00513591", "NCT00482794"] }
-  let(:study_xml_official_title) { [official_study_title_1, official_study_title_2] }
-  let(:study_xml_official_title_mod) { [official_study_title_1_mod, official_study_title_2] }
-  let(:study_xml_official_title) { ["Duke Autoimmunity in Pregnancy Registry", "Genetics of Antiphospholipid Antibody Syndrome"] }
-
-  let(:study_xml_record) { StudyXmlRecord.create(content: raw_study_xml_1, nct_id: "NCT00513591") }
+  let(:study_last_changed_date_1) { 'June 14, 2016' }
+  let(:study_nct_id_1) { 'NCT00513591' }
 
   let(:raw_study_xml_2) { File.read(Rails.root.join('spec','support','xml_data','NCT00482794.xml')) }
   let(:official_study_title_2) { 'Genetics of Antiphospholipid Antibody Syndrome' }
+  let(:study_nct_id_2) { 'NCT00482794' }
+
+  let(:raw_study_xml_1_mod) { File.read(Rails.root.join('spec','support','xml_data','NCT00513591_mod.xml')) }
+  let(:official_study_title_1_mod) { 'This Is An Updated Title' }
+  let(:study_last_changed_date_1_mod) { 'June 15, 2016' }
+
+  let(:study_xml_nct_ids) { [study_nct_id_1, study_nct_id_2] }
+  let(:study_xml_official_titles) { [official_study_title_1, official_study_title_2] }
+  let(:study_xml_official_titles_mod) { [official_study_title_1_mod, official_study_title_2] }
+
+  let(:study_xml_record) { StudyXmlRecord.create(content: raw_study_xml_1, nct_id: "NCT00513591") }
 
   context 'initialization' do
     it 'should set the url based on the provided search term' do
@@ -108,32 +112,38 @@ describe ClinicalTrials::Client do
       subject.download_xml_files
     end
 
-    it 'should create a study from an existing study xml record' do
+    it 'should create studies from an existing study xml records' do
       subject.populate_studies
-      expect(Study.pluck(:nct_id)).to eq(study_xml_nct_ids)
-      expect(StudyXmlRecord.pluck(:nct_id)).to eq(study_xml_nct_ids)
-      expect(Study.pluck(:official_title)).to eq(study_xml_official_title)
+      study_1 = Study.find_by(nct_id: study_nct_id_1)
+      expect(study_1.last_changed_date_str).to eq(study_last_changed_date_1)
+
+      expect(Study.pluck(:nct_id)).to match_array(study_xml_nct_ids)
+      expect(StudyXmlRecord.pluck(:nct_id)).to match_array(study_xml_nct_ids)
+      expect(Study.pluck(:official_title)).to match_array(study_xml_official_titles)
 
       subject.create_study_xml_record(raw_study_xml_1_mod)
-      expect(Study.pluck(:official_title)).to eq(study_xml_official_title_mod)
-      # binding.pry
-      # expect(Study.pluck(:official_title)).to eq(study_xml_official_title)
-      # expect(StudyXmlRecord.pluck(:nct_id)).to eq(study_xml_nct_ids)
-      #
-      # subject.create_study_xml_record(raw_study_xml_1_mod)
-      # expect(Study.pluck(:nct_id)).to eq(study_xml_nct_ids)
-      # subject.download_xml_files
-      # raw_study_xml_1_mod
-      # binding.pry
-      # study_xml_record_1 = StudyXmlRecord.find_by(nct_id:'NCT00513591')
-      # study_xml_record_1
-      # load_event = ClinicalTrials::LoadEvent.first
-      # expect(load_event.event_type).to eq('get_studies')
+      subject.populate_studies
+      expect(Study.pluck(:official_title)).to match_array(study_xml_official_titles_mod)
+
+      study_1_mod = Study.find_by(nct_id: study_nct_id_1)
+      expect(study_1_mod.last_changed_date_str).to eq(study_last_changed_date_1_mod)
+      expect(study_1.last_changed_date_str).not_to eq(study_1_mod.last_changed_date_str)
     end
   end
 
   # describe '#import_xml_file' do
+  #   before do
+  #     stub_request(:get, expected_url).
+  #       with(:headers => stub_request_headers).
+  #       to_return(:status => 200, :body => zipped_studies, :headers => {})
+  #     subject.download_xml_files
+  #   end
   #
+  #   it 'should create a study from an existing study xml record' do
+  #     subject.populate_studies
+  #   end
+  # end
+
   #   context 'success' do
   #     context 'new study' do
   #       before do
