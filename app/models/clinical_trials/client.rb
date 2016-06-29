@@ -1,14 +1,14 @@
-require 'tempfile'
-require 'open3'
-
 module ClinicalTrials
   class Client
     BASE_URL = 'https://clinicaltrials.gov'
 
-    attr_reader :url
-
+    attr_reader :url, :processed_studies
     def initialize(search_term: nil)
       @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
+      @processed_studies = {
+        updated_studies: [],
+        new_studies: []
+      }
     end
 
     def download_xml_files
@@ -44,9 +44,11 @@ module ClinicalTrials
       existing_study_xml = Nokogiri::XML(existing_study_xml_record.try(:content))
 
       if existing_study_xml_record.blank?
+        @processed_studies[:new_studies] << nct_id
         StudyXmlRecord.create(content: xml, nct_id: nct_id)
         # report number of new records
       elsif study_xml_changed?(existing_study_xml: existing_study_xml, new_study_xml: xml)
+        @processed_studies[:updated_studies] << nct_id
         existing_study_xml_record.update(content: xml)
         # report number of changed records
       end

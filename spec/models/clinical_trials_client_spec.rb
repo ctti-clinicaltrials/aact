@@ -11,5 +11,9 @@ describe ClinicalTrials::Client do
     it 'should set the url based on the provided search term' do
       expect(subject.url).to eq(expected_url)
     end
+
+    it 'should set the processed_studies' do
+      expect(subject.url).to eq(expected_url)
+    end
   end
 end
