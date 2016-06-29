@@ -60,4 +60,43 @@ describe ClinicalTrials::Client do
       expect(load_event.event_type).to eq('get_studies')
     end
   end
+
+  describe '#create_study_xml_record(xml)' do
+    it 'should create a study xml record' do
+      subject.create_study_xml_record(raw_study_xml_1)
+      study_xml_record_1 = StudyXmlRecord.find_by(nct_id:'NCT00513591')
+      expect(study_xml_record_1).to be
+
+      processed_studies = {
+        updated_studies: [],
+        new_studies: ["NCT00513591"]
+      }
+      expect(subject.processed_studies).to eq(processed_studies)
+
+      subject.create_study_xml_record(raw_study_xml_1_mod)
+      processed_studies = {
+        updated_studies: ["NCT00513591"],
+        new_studies: ["NCT00513591"]
+      }
+      expect(subject.processed_studies).to eq(processed_studies)
+      expect(StudyXmlRecord.count).to eq(1)
+
+      study_xml_record_1_mod = StudyXmlRecord.find_by(nct_id:'NCT00513591')
+      official_title = Nokogiri::XML(study_xml_record_1_mod.content)
+        .xpath('//clinical_study')
+        .xpath('official_title').text
+      expect(official_study_title_1_mod).to eq(official_title)
+
+      subject.create_study_xml_record(raw_study_xml_2)
+      processed_studies = {
+        updated_studies: ["NCT00513591"],
+        new_studies: ["NCT00513591", "NCT00482794"]
+      }
+      expect(subject.processed_studies).to eq(processed_studies)
+
+      subject.create_study_xml_record(raw_study_xml_1_mod)
+      expect(subject.processed_studies).to eq(processed_studies)
+      expect(StudyXmlRecord.count).to eq(2)
+    end
+  end
 end
