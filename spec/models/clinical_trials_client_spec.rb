@@ -99,4 +99,102 @@ describe ClinicalTrials::Client do
       expect(StudyXmlRecord.count).to eq(2)
     end
   end
+
+  describe '#populate_studies' do
+    before do
+      stub_request(:get, expected_url).
+        with(:headers => stub_request_headers).
+        to_return(:status => 200, :body => zipped_studies, :headers => {})
+      subject.download_xml_files
+    end
+
+    it 'should create a study from an existing study xml record' do
+      subject.populate_studies
+      expect(Study.pluck(:nct_id)).to eq(study_xml_nct_ids)
+      expect(StudyXmlRecord.pluck(:nct_id)).to eq(study_xml_nct_ids)
+      expect(Study.pluck(:official_title)).to eq(study_xml_official_title)
+
+      subject.create_study_xml_record(raw_study_xml_1_mod)
+      expect(Study.pluck(:official_title)).to eq(study_xml_official_title_mod)
+      # binding.pry
+      # expect(Study.pluck(:official_title)).to eq(study_xml_official_title)
+      # expect(StudyXmlRecord.pluck(:nct_id)).to eq(study_xml_nct_ids)
+      #
+      # subject.create_study_xml_record(raw_study_xml_1_mod)
+      # expect(Study.pluck(:nct_id)).to eq(study_xml_nct_ids)
+      # subject.download_xml_files
+      # raw_study_xml_1_mod
+      # binding.pry
+      # study_xml_record_1 = StudyXmlRecord.find_by(nct_id:'NCT00513591')
+      # study_xml_record_1
+      # load_event = ClinicalTrials::LoadEvent.first
+      # expect(load_event.event_type).to eq('get_studies')
+    end
+  end
+
+  # describe '#import_xml_file' do
+  #
+  #   context 'success' do
+  #     context 'new study' do
+  #       before do
+  #         client.import_xml_file(raw_study_xml)
+  #         @new_study = Study.last
+  #       end
+  #
+  #       # it 'should create study from the study xml record' do
+  #       #   expect(Study.count).to eq(1)
+  #       #   binding.pry
+  #       #   expect(@new_study.nct_id).to eq(study_id)
+  #       #   # xml: study,
+  #       #   # nct_id: nct_id
+  #       #   expect(@new_study.xml).to eq(study_id)
+  #       #   @new_study
+  #       #   binding.pry
+  #       # end
+  #     end
+  #
+  #     context 'study has changed' do
+  #       before do
+  #         client.import_xml_file(raw_study_xml)
+  #         binding.pry
+  #         doc = Nokogiri::XML(raw_study_xml)
+  #         @new_title = 'Testing File For Import Differences'
+  #         doc.xpath('//clinical_study').xpath('//official_title').children.first.content = @new_title
+  #         doc.xpath('//clinical_study').xpath('lastchanged_date').children.first.content = 'Jan 1, 2016'
+  #         @updated_study = doc.to_xml
+  #         client.import_xml_file(@updated_study)
+  #       end
+  #
+  #       it 'should update study' do
+  #         expect(Study.all.count).to eq(1)
+  #         expect(Study.last.last_changed_date.to_s).to eq('2016-01-01')
+  #         expect(Study.last.official_title).to eq(@new_title)
+  #         expect(Study.last.updated_at).not_to eq(Study.last.created_at)
+  #       end
+  #
+  #       it 'should update the study xml record' do
+  #         expect(StudyXmlRecord.count).to eq(1)
+  #
+  #         updated_content = StudyXmlRecord.last.content
+  #         imported_content = Nokogiri::XML(@updated_study).xpath("//clinical_study").to_xml
+  #         expect(updated_content.chomp).to eq(imported_content)
+  #       end
+  #     end
+  #   end
+  #
+  #   context 'failure' do
+  #     context 'duplicate study' do
+  #       let!(:xml_record) { StudyXmlRecord.create(content: raw_study_xml, nct_id: study_id) }
+  #
+  #       it 'should not create new study' do
+  #         client.import_xml_file(study)
+  #         client.import_xml_file(study)
+  #
+  #         expect(Study.all.count).to eq(1)
+  #         expect(Study.last.updated_at).to eq(Study.last.created_at)
+  #       end
+  #     end
+  #   end
+  #
+  # end
 end
