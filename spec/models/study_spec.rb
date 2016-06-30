@@ -47,6 +47,10 @@ describe Study do
   end
 
   describe '.create_derived_values' do
+    before do
+      expect(subject).to be_persisted
+    end
+
     it 'should create a derived value record for each study' do
       Study.create_derived_values
 
