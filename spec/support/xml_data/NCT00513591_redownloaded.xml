@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study rank="1">
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on June 29, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT00513591</url>
+  </required_header>
+  <id_info>
+    <org_study_id>Pro00000756</org_study_id>
+    <nct_id>NCT00513591</nct_id>
+  </id_info>
+  <brief_title>Duke Autoimmunity in Pregnancy Registry</brief_title>
+  <acronym>DAP Registry</acronym>
+  <official_title>Duke Autoimmunity in Pregnancy Registry</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Duke University</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Duke University</source>
+  <oversight_info>
+    <authority>United States: Institutional Review Board</authority>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      It is difficult to predict how a women with an autoimmune disease will do during pregnancy.
+      Some women will improve, others will worsen. Some pregnancies progress normally and others
+      become very complicated.
+
+      The Duke Autoimmunity in Pregnancy (DAP) Registry will enroll women with autoimmune
+      diseases, such as lupus, rheumatoid arthritis, scleroderma, and Sjogren's syndrome who wish
+      to become, or already are, pregnant. We will follow these women throughout pregnancy to
+      better understand how their autoimmune disease affects their pregnancy, and vice versa.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Women with a systemic autoimmune disease that would be followed by a rheumatologist will be
+      included in this study.
+
+      All women will be seen every 4-6 weeks throughout pregnancy. At each visit, women will
+      complete a questionnaire, the physician will determine the current level of disease
+      activity, and a blood sample will be taken. For women with lupus and healthy women, and
+      additional visit will occur at the start of the 3rd trimester for a closer evaluation of
+      predictors of preterm birth.
+
+      This is not an intervention study. Women will not be given experimental medication. All
+      recommendations for treatment and monitoring will be made based on the best available data
+      with input from the treating obstetrician.
+
+      Women in this Registry are not required to be seen by Duke Obstetrics nor to deliver at a
+      Duke Hospital.
+    </textblock>
+  </detailed_description>
+  <overall_status>Recruiting</overall_status>
+  <start_date>August 2007</start_date>
+  <primary_completion_date type="Anticipated">December 2017</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Observational</study_type>
+  <study_design>Observational Model: Cohort, Time Perspective: Prospective</study_design>
+  <number_of_groups>3</number_of_groups>
+  <enrollment type="Anticipated">500</enrollment>
+  <condition>Pregnancy</condition>
+  <condition>Systemic Lupus Erythematosus</condition>
+  <condition>Cutaneous Lupus</condition>
+  <condition>Rheumatoid Arthritis</condition>
+  <condition>Sjogren's Syndrome</condition>
+  <condition>Scleroderma</condition>
+  <arm_group>
+    <arm_group_label>1</arm_group_label>
+    <description>Women with lupus</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>2</arm_group_label>
+    <description>Health women who are matched to women with lupus by age and race</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>3</arm_group_label>
+    <description>Women with other autoimmune diseases</description>
+  </arm_group>
+  <biospec_retention>Samples With DNA</biospec_retention>
+  <biospec_descr>
+    <textblock>
+      Blood samples will be collected and stored for future analysis.
+    </textblock>
+  </biospec_descr>
+  <eligibility>
+    <study_pop>
+      <textblock>
+        Pregnant women with autoimmune disease.
+      </textblock>
+    </study_pop>
+    <sampling_method>Non-Probability Sample</sampling_method>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  18 years of age or older
+
+          -  Desire for pregnancy within 6 months or currently pregnant
+
+          -  Women with systemic autoimmune disease, including:
+
+               -  Lupus (systemic lupus erythematosus or cutaneous lupus)
+
+               -  Antiphospholipid Syndrome or positive antiphospholipid antibodies
+
+               -  Rheumatoid Arthritis
+
+               -  Scleroderma (systemic sclerosis)
+
+               -  Sjogren's Syndrome
+
+               -  Inflammatory Arthritis (including Psoriatic Arthritis and Ankylosing
+                  Spondylitis)
+
+               -  Undifferentiated Connective Tissue Disease (UCTD)
+
+               -  Vasculitis
+
+               -  Myositis (Polymyositis or Dermatomyositis)
+
+               -  Positive Ro/SSA or La/SSB antibodies
+
+        Exclusion Criteria:
+
+          -  Unable to speak English
+
+          -  Unable to provide informed consent
+
+          -  Unable to travel to Duke University for follow-up visits
+      </textblock>
+    </criteria>
+    <gender>Female</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Megan E. B. Clowse, MD, MPH</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Duke University</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Megan E. B. Clowse, MD, MPH</last_name>
+    <phone>919-681-2045</phone>
+    <email>megan.clowse@duke.edu</email>
+  </overall_contact>
+  <location>
+    <facility>
+      <name>Duke University Medical Center</name>
+      <address>
+        <city>Durham</city>
+        <state>North Carolina</state>
+        <zip>27710</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Megan E. B. Clowse, MD, MPH</last_name>
+      <phone>919-681-2045</phone>
+      <email>megan.clowse@duke.edu</email>
+    </contact>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <link>
+    <url>http://www.dukehealth.org/locations/duke_lupus_clinic</url>
+    <description>The Duke Lupus Clinic website</description>
+  </link>
+  <verification_date>June 2016</verification_date>
+  <lastchanged_date>June 14, 2016</lastchanged_date>
+  <firstreceived_date>August 6, 2007</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>Pregnancy</keyword>
+  <keyword>Lupus (systemic lupus erythematosus or cutaneous lupus)</keyword>
+  <keyword>Rheumatoid Arthritis</keyword>
+  <keyword>Sjogren's Syndrome</keyword>
+  <keyword>Scleroderma</keyword>
+  <is_fda_regulated>No</is_fda_regulated>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Arthritis, Rheumatoid</mesh_term>
+    <mesh_term>Autoimmune Diseases</mesh_term>
+    <mesh_term>Lupus Erythematosus, Systemic</mesh_term>
+    <mesh_term>Scleroderma, Diffuse</mesh_term>
+    <mesh_term>Scleroderma, Systemic</mesh_term>
+    <mesh_term>Sjogren's Syndrome</mesh_term>
+  </condition_browse>
+  <!-- Results have not yet been posted for this study                                -->
+</clinical_study>

@@ -26,6 +26,8 @@ gem 'enumerize'
 gem 'bulk_insert'
 gem 'activerecord-import'
 gem 'sinatra', :require => nil
+gem 'lorax'
+gem 'nokogiri-diff'
 gem 'apipie-rails'
 gem 'kaminari'
 gem 'api-pagination'

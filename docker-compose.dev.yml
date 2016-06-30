@@ -8,6 +8,7 @@ services:
       - server.env
     links:
       - 'db:postgres.db.host'
+      - 'redis:redis.db.host'
     entrypoint: ['bundle']
   rails:
     image: aact2_server
@@ -17,6 +18,7 @@ services:
       - server.env
     links:
       - 'db:postgres.db.host'
+      - 'redis:redis.db.host'
     entrypoint: ['rails']
   rake:
     image: aact2_server
@@ -26,6 +28,7 @@ services:
       - server.env
     links:
       - 'db:postgres.db.host'
+      - 'redis:redis.db.host'
     entrypoint: ['rake']
   rspec:
     image: aact2_server
@@ -37,5 +40,6 @@ services:
       - RAILS_ENV=docker_test
     links:
       - 'db:postgres.db.host'
+      - 'redis:redis.db.host'
     entrypoint: ['rspec']
     command: spec
