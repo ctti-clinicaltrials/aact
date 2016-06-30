@@ -170,6 +170,10 @@ aside.docsMenu {
     top: 0;
     left: 20px;
   }
+
+  &.fixed {
+    position: fixed;
+  }
 }
 
 
