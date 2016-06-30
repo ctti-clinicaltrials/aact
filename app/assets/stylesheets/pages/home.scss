@@ -182,6 +182,7 @@ section.documentation {
     margin-bottom: 1rem;
     margin-top: 8rem;
     padding-top: 1rem;
+    border-top: 1px solid #bfbfbf;
 
   }
 
@@ -195,6 +196,15 @@ section.documentation {
     &:first-of-type {
       margin-top: 0px;
     }
+  }
+
+  b {
+    font-size: 1.1rem;
+    display: block;
+    font-weight: bold;
+    font-family: $font-sans;
+    margin-bottom: 1rem;
+    padding-top: 2rem;
   }
 
   section {
