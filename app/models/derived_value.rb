@@ -46,27 +46,15 @@ class DerivedValue < ActiveRecord::Base
   end
 
   def calc_number_of_sae_subjects
-    cnt=0
-
-    if study.reported_events.present?
-      study.reported_events.each do |re|
-        cnt=cnt+re.subjects_affected if re.event_type.downcase == 'serious' && re.subjects_affected.present?
-      end
+    if ReportedEvent.fast_count_estimate(study.reported_events) > 0
+      study.reported_events.where('event_type = \'serious\' and subjects_affected is not null').sum(:subjects_affected)
     end
-
-    cnt
   end
 
   def calc_number_of_nsae_subjects
-    cnt=0
-
-    if study.reported_events.present?
-      study.reported_events.each do |re|
-        cnt=cnt+re.subjects_affected if re.event_type.downcase != 'serious' && re.subjects_affected.present?
-      end
+    if ReportedEvent.fast_count_estimate(study.reported_events) > 0
+      study.reported_events.where('event_type != \'serious\' and subjects_affected is not null').sum(:subjects_affected)
     end
-
-    cnt
   end
 
   def calc_registered_in_fiscal_year
@@ -87,7 +75,7 @@ class DerivedValue < ActiveRecord::Base
   end
 
   def calc_results_reported
-    1 if study.outcomes.size > 0
+    1 if study.outcomes.count > 0
   end
 
   def calc_months_to_report_results
@@ -98,9 +86,7 @@ class DerivedValue < ActiveRecord::Base
   def calc_enrollment
     # TODO = this is just a stub - find better way to calculate
     study.groups.each{|g|g.set_participant_count}
-    cnt=0
-    study.groups.each{|g|cnt=cnt+g.derived_participant_count}
-    cnt if cnt > 0
+    study.groups.sum(:derived_participant_count)
   end
 
   def pma_mapping_ids
