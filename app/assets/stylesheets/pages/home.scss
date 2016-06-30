@@ -147,22 +147,38 @@ section.homeHero {
   }
 }
 
+div.homeContent {
+  position: relative;
+}
 
-section.homeAbout, section.documentation {
+aside.docsMenu {
   padding-top: 20px;
 
-  div.copy {
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 60px;
+  a {
+    display: block;
   }
+  @include MQ(L) {
+    @include columnify(3);
+    position: absolute;
+    top: 0;
+    left: 20px;
+  }
+}
+
+
+section.documentation {
+  padding-top: 20px;
 
   h2 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
+    padding: 0px;
+    margin-bottom: 1rem;
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     padding: 0px;
+    margin-bottom: 1rem;
   }
 
   section {
@@ -170,15 +186,7 @@ section.homeAbout, section.documentation {
   }
 
   @include MQ(L) {
-    h2 {
-      display: inline-block;
-      @include columnify(4);
-      padding: 0px;
-    }
-
-    div.copy {
-      @include columnify(8, true);
-
-    }
+    @include columnify(9, true);
+    @include offset(3);
   }
 }
