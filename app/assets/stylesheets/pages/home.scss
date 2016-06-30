@@ -110,8 +110,9 @@ section.homeHero {
 
     @include MQ(M) {
       margin: 0px;
-      @include columnify(1.5);
+      width: 100px;
       height: 100px;
+      margin-left: 2rem;
     }
 
     &:hover {
