@@ -148,7 +148,7 @@ section.homeHero {
 }
 
 
-section.homeAbout {
+section.homeAbout, section.documentation {
   padding-top: 20px;
 
   div.copy {
@@ -160,6 +160,15 @@ section.homeAbout {
     font-size: 1.8rem;
   }
 
+  h3 {
+    font-size: 1.5rem;
+    padding: 0px;
+  }
+
+  section {
+    margin-bottom: 20px;
+  }
+
   @include MQ(L) {
     h2 {
       display: inline-block;
@@ -169,7 +178,6 @@ section.homeAbout {
 
     div.copy {
       @include columnify(8, true);
-      padding-top: 10px;
 
     }
   }
