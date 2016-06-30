@@ -22,6 +22,7 @@ module Aact2
       generate.test_framework :rspec
       generate.view_specs false
     end
+    config.active_record.schema_format = :sql
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_record.raise_in_transactional_callbacks = true
     config.active_job.queue_adapter = :sidekiq

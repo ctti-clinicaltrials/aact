@@ -39,12 +39,7 @@ class Group < StudyRelationship
 
   def calc_participant_count
     # best guess for this group - based on outcome_measure: 'Number of Participants'
-    col=[]
-    val=0
-    outcomes.includes(:outcome_measures).each{|o|o.outcome_measures.select{|om|col << om if om.title == 'Number of Participants'}}
-    #for lack of better criteria, take the highest 'No of Participants' value defined for the group
-    col.each{|p|val=p.measure_value.to_i if p.measure_value.to_i > val}
-    val
+    study.outcome_measures.where(title: 'Number of Participants').pluck('measure_value').map { |val| val.to_i }.max
   end
 
 end

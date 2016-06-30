@@ -1,4 +1,5 @@
 class ReportedEvent < StudyRelationship
+  extend FastCount
 
   def self.create_all_from(opts)
     nct_id=opts[:nct_id]
