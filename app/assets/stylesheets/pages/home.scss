@@ -152,10 +152,17 @@ div.homeContent {
 }
 
 aside.docsMenu {
-  padding-top: 20px;
+  padding-top: 2rem;
 
   a {
     display: block;
+    margin-bottom: 5px;
+
+    &.menuRoot {
+      font-weight: bold;
+      padding-top: 10px;
+      font-size: 1.1rem;
+    }
   }
   @include MQ(L) {
     @include columnify(3);
@@ -173,12 +180,21 @@ section.documentation {
     font-size: 2.2rem;
     padding: 0px;
     margin-bottom: 1rem;
+    margin-top: 8rem;
+    padding-top: 1rem;
+
   }
 
-  h3 {
+  h4 {
     font-size: 1.3rem;
     padding: 0px;
     margin-bottom: 1rem;
+    margin-top: 6rem;
+    padding-top: 1rem;
+
+    &:first-of-type {
+      margin-top: 0px;
+    }
   }
 
   section {
@@ -188,5 +204,11 @@ section.documentation {
   @include MQ(L) {
     @include columnify(9, true);
     @include offset(3);
+  }
+}
+
+section.overview {
+  h2 {
+    margin-top: 0px;
   }
 }

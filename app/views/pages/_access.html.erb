@@ -1,5 +1,25 @@
-<h2>Accessing AACT2</h2>
-<%= render 'docs/credentials' %>
-<%= render 'docs/r' %>
-<%= render 'docs/sas' %>
-<%= render 'docs/pgadmin' %>
+<section class="access" id="access">
+
+  <h2>Accessing AACT2</h2>
+
+  <h4>Direct access using database clients</h4>
+  <%= render 'access/credentials' %>
+  <%= render 'access/pgadmin' %>
+
+
+  <h4>Direct access using analytic tools</h4>
+  <%= render 'access/r' %>
+  <%= render 'access/sas' %>
+
+
+  <h4>Replicate current database</h4>
+
+
+  <h4>Download archived snapshots</h4>
+
+
+  <h4>Download csv packages</h4>
+  <p>
+    You can download a csv package of the database from <a href="https://s3-us-west-2.amazonaws.com/aact2/csv-export-2016-06-28">this link</a>.
+  </p>
+</section>
