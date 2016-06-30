@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study rank="41">
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT00002475</url>
+  </required_header>
+  <id_info>
+    <org_study_id>SVMC-ONC-222</org_study_id>
+    <secondary_id>CDR0000076913</secondary_id>
+    <secondary_id>NCI-V91-0075</secondary_id>
+    <nct_id>NCT00002475</nct_id>
+  </id_info>
+  <brief_title>Cyclophosphamide Plus Vaccine Therapy in Treating Patients With Advanced Cancer</brief_title>
+  <official_title>A Trial of Active Intralymphatic Immunotherapy With Interferon-Treated Cells and Cyclophosphamide</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>St. Vincent Medical Center - Los Angeles</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>National Cancer Institute (NCI)</source>
+  <oversight_info>
+    <authority>United States: Federal Government</authority>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      RATIONALE: Drugs used in chemotherapy work in different ways to stop tumor cells from
+      dividing so they stop growing or die. Vaccines made from a patient's tumor tissue may make
+      the body build an immune response to kill tumor cells. Chemotherapy combined with vaccine
+      therapy may kill more tumor cells.
+
+      PURPOSE: Phase II trial to study the effectiveness of combining cyclophosphamide with tumor
+      cell vaccine in treating patients who have metastatic cancer or cancer at high risk of
+      recurrence.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      OBJECTIVES:
+
+        -  Determine the safety and clinical effects of autologous or allogeneic active-specific
+           intralymphatic immunotherapy with a vaccine containing interferon alfa or interferon
+           gamma-treated tumor cells followed by sargramostim (GM-CSF) in patients with advanced
+           cancer.
+
+      OUTLINE: This is a pilot study. Patients are stratified by tumor type.
+
+      Tumor tissue is removed from the patient and incubated with interferon alfa or interferon
+      gamma for 72-96 hours. (If autologous tumor cells are not available, an allogeneic vaccine
+      is prepared.) Harvested activated cells are irradiated immediately prior to use.
+
+      Patients receive cyclophosphamide IV. 48-72 hours after cyclophosphamide administration,
+      patients receive tumor cell vaccine intradermally. Patients also receive sargramostim
+      (GM-CSF) subcutaneously prior to vaccine administration and once daily for the next 8 days.
+      Treatment repeats every 2 weeks for 3 courses in the absence of unacceptable toxicity.
+      Patients with responding or stable disease after completion of course 3 may receive
+      additional courses.
+
+      Patients are followed for survival.
+
+      PROJECTED ACCRUAL: A total of 20-40 patients will be accrued for this study within 18-24
+      months.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>April 1991</start_date>
+  <completion_date type="Actual">June 2009</completion_date>
+  <primary_completion_date type="Actual">December 2007</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Clinical response (patients with evaluable disease)</measure>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Duration of response (patients with evaluable disease)</measure>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Survival (patients with evaluable disease)</measure>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Time to recurrence (patients without evaluable disease)</measure>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Survival (patients without evaluable disease)</measure>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <number_of_arms>1</number_of_arms>
+  <enrollment type="Anticipated">40</enrollment>
+  <condition>Breast Cancer</condition>
+  <condition>Colorectal Cancer</condition>
+  <condition>Kidney Cancer</condition>
+  <condition>Lung Cancer</condition>
+  <condition>Malignant Mesothelioma</condition>
+  <condition>Pancreatic Cancer</condition>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>allogeneic tumor cell vaccine</intervention_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>autologous tumor cell vaccine</intervention_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>recombinant interferon alfa</intervention_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>recombinant interferon gamma</intervention_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>sargramostim</intervention_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>cyclophosphamide</intervention_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        DISEASE CHARACTERISTICS:
+
+          -  Histologically confirmed cancer not amenable to cure or long-term control by surgery,
+             radiotherapy, chemotherapy, or hormonal manipulations, including the following tumor
+             types:
+
+               -  Colon cancer
+
+               -  Lung cancer
+
+               -  Renal cancer
+
+               -  Breast cancer
+
+               -  Pancreatic cancer
+
+          -  Metastatic disease or subclinical disease at high risk of recurrence
+
+          -  No brain metastases unresponsive to irradiation or surgery
+
+          -  Hormone receptor status:
+
+               -  Not specified
+
+        PATIENT CHARACTERISTICS:
+
+        Age:
+
+          -  18 and over
+
+        Sex:
+
+          -  Not specified
+
+        Menopausal status:
+
+          -  Not specified
+
+        Performance status:
+
+          -  ECOG 0-2 OR
+
+          -  Karnofsky 70-100%
+
+        Life expectancy:
+
+          -  At least 3 months
+
+        Hematopoietic:
+
+          -  Not specified
+
+        Hepatic:
+
+          -  Not specified
+
+        Renal:
+
+          -  Not specified
+
+        Cardiovascular:
+
+          -  No prior or concurrent significant cardiovascular disease
+
+        Pulmonary:
+
+          -  No prior or concurrent pulmonary disease
+
+        Other:
+
+          -  No prior or concurrent autoimmune disease
+
+          -  No other prior or concurrent major medical illness
+
+          -  HIV negative
+
+          -  No clinical evidence of AIDS
+
+          -  Not pregnant
+
+        PRIOR CONCURRENT THERAPY:
+
+        Biologic therapy:
+
+          -  Not specified
+
+        Chemotherapy:
+
+          -  See Disease Characteristics
+
+          -  At least 4 weeks since prior chemotherapy
+
+        Endocrine therapy:
+
+          -  See Disease Characteristics
+
+          -  At least 4 weeks since prior hormonal therapy
+
+          -  No concurrent chronic steroid therapy
+
+        Radiotherapy:
+
+          -  See Disease Characteristics
+
+          -  At least 4 weeks since prior radiotherapy
+
+        Surgery:
+
+          -  See Disease Characteristics
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Charles L. Wiseman, MD, FACP</last_name>
+    <role>Study Chair</role>
+  </overall_official>
+  <location>
+    <facility>
+      <name>St. Vincent Medical Center - Los Angeles</name>
+      <address>
+        <city>Los Angeles</city>
+        <state>California</state>
+        <zip>90057-1901</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <results_reference>
+    <citation>Wiseman C, Presant C, Rao R, Smith J. Clinical responses to intralymphatic whole-cell melanoma vaccine augmented by in vitro incubation with alpha-interferon. Ann N Y Acad Sci. 1993 Aug 12;690:388-91.</citation>
+    <PMID>8368765</PMID>
+  </results_reference>
+  <verification_date>November 2008</verification_date>
+  <lastchanged_date>July 9, 2013</lastchanged_date>
+  <firstreceived_date>November 1, 1999</firstreceived_date>
+  <responsible_party>
+    <name_title>Charles L. Wiseman</name_title>
+  </responsible_party>
+  <keyword>stage III colon cancer</keyword>
+  <keyword>stage IV colon cancer</keyword>
+  <keyword>stage IV breast cancer</keyword>
+  <keyword>stage IIIA breast cancer</keyword>
+  <keyword>recurrent breast cancer</keyword>
+  <keyword>stage IIIB breast cancer</keyword>
+  <keyword>recurrent non-small cell lung cancer</keyword>
+  <keyword>stage II pancreatic cancer</keyword>
+  <keyword>stage III pancreatic cancer</keyword>
+  <keyword>recurrent pancreatic cancer</keyword>
+  <keyword>recurrent colon cancer</keyword>
+  <keyword>stage III renal cell cancer</keyword>
+  <keyword>stage IV renal cell cancer</keyword>
+  <keyword>recurrent renal cell cancer</keyword>
+  <keyword>extensive stage small cell lung cancer</keyword>
+  <keyword>recurrent small cell lung cancer</keyword>
+  <keyword>stage IIIA non-small cell lung cancer</keyword>
+  <keyword>stage IIIB non-small cell lung cancer</keyword>
+  <keyword>stage IIIC breast cancer</keyword>
+  <keyword>stage IV non-small cell lung cancer</keyword>
+  <keyword>pulmonary carcinoid tumor</keyword>
+  <keyword>recurrent malignant mesothelioma</keyword>
+  <keyword>stage IV pancreatic cancer</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Lung Neoplasms</mesh_term>
+    <mesh_term>Mesothelioma</mesh_term>
+    <mesh_term>Pancreatic Neoplasms</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Cyclophosphamide</mesh_term>
+    <mesh_term>Interferon-alpha</mesh_term>
+    <mesh_term>Interferon-gamma</mesh_term>
+    <mesh_term>Interferons</mesh_term>
+    <mesh_term>Vaccines</mesh_term>
+  </intervention_browse>
+  <!-- Results have not yet been posted for this study                                -->
+</clinical_study>

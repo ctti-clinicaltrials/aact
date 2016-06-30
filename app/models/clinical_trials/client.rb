@@ -1,14 +1,14 @@
-require 'tempfile'
-require 'open3'
-
 module ClinicalTrials
   class Client
     BASE_URL = 'https://clinicaltrials.gov'
 
-    attr_reader :url
-
+    attr_reader :url, :processed_studies
     def initialize(search_term: nil)
       @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
+      @processed_studies = {
+        updated_studies: [],
+        new_studies: []
+      }
     end
 
     def download_xml_files
@@ -31,25 +31,28 @@ module ClinicalTrials
       Zip::File.open(file.path) do |zipfile|
         zipfile.each do |file|
           study_xml = file.get_input_stream.read
-          nct_id = extract_nct_id_from_study(study_xml)
-          existing_study_xml = StudyXmlRecord.find_by(nct_id: nct_id)
-
-          if existing_study_xml.blank?
-            StudyXmlRecord.create(content: study_xml, nct_id: nct_id)
-            # report number of new records
-          # elsif study_changed?(existing_study: existing_study, new_study_xml: study)
-          #   return if study.blank?
-          #   existing_study.xml = study
-          #   existing_study.update(existing_study.attribs)
-          #   existing_study.study_xml_record.update(content: study)
-            # report number of changed records
-          end
-
+          create_study_xml_record(study_xml)
         end
-
       end
 
       load_event.complete
+    end
+
+    def create_study_xml_record(xml)
+      nct_id = extract_nct_id_from_study(xml)
+      new_study_xml = Nokogiri::XML(xml)
+      existing_study_xml_record = StudyXmlRecord.find_by(nct_id: nct_id)
+      existing_study_xml = Nokogiri::XML(existing_study_xml_record.try(:content))
+
+      if existing_study_xml_record.blank?
+        @processed_studies[:new_studies] << nct_id
+        StudyXmlRecord.create(content: xml, nct_id: nct_id)
+        # report number of new records
+      elsif study_xml_changed?(existing_study_xml: existing_study_xml, new_study_xml: new_study_xml)
+        @processed_studies[:updated_studies] << nct_id
+        existing_study_xml_record.update(content: xml)
+        # report number of changed records
+      end
     end
 
     def populate_studies
@@ -112,6 +115,13 @@ module ClinicalTrials
       else
         true
       end
+    end
+
+    def study_xml_changed?(existing_study_xml:, new_study_xml:)
+      existing_study_xml.diff(new_study_xml) do |change,node|
+        return true if !change.blank? && node.parent.name != 'download_date'
+      end
+      false
     end
 
     def study_changed?(existing_study:, new_study_xml:)
