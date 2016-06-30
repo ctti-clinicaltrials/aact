@@ -8,4 +8,12 @@ FactoryGirl.define do
   factory :study do
     nct_id 'NCT123'
   end
+
+  factory :derived_value do
+
+  end
+
+  factory :pma_mapping do
+
+  end
 end
