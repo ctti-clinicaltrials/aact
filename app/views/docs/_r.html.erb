@@ -1,0 +1,14 @@
+<section class="rAccess">
+  <h3>R</h3>
+  <p>Make sure that you have R and RStudio installed on your machine.</p>
+  <p>Run the following commands using the latest AACT 2.0 connection information</p>
+
+  <pre>
+    <code>install.packages("RPostgreSQL")</code>
+    <code>library(RPostgreSQL)</code>
+    <code>drv <- dbDriver("PostgreSQL")</code>
+    <code>con <- dbConnect(drv, dbname="AACT2_Public_dbname",host="AACT2_host",port=5432,user="AACT2_Public_user",password="AACT2_Public_password")</code>
+    <code>stuff <- dbGetQuery(con,"select distinct study_type from studies")</code>
+    <code>write.csv(stuff, file='r.csv')</code>
+  </pre>
+</section>
