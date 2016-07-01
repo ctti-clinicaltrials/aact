@@ -90,7 +90,7 @@ describe ClinicalTrials::Client do
 
       processed_studies = {
         updated_studies: ["NCT00513591"],
-        new_studies: ["NCT00513591"]
+        new_studies: []
       }
       expect(subject.processed_studies).to eq(processed_studies)
 
@@ -109,7 +109,7 @@ describe ClinicalTrials::Client do
 
       processed_studies = {
         updated_studies: ["NCT00513591"],
-        new_studies: ["NCT00513591", "NCT00482794"]
+        new_studies: ["NCT00482794"]
       }
       expect(subject.processed_studies).to eq(processed_studies)
 
