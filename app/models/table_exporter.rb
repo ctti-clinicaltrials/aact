@@ -14,7 +14,7 @@ class TableExporter
     begin
       tempfiles = create_tempfiles(delimiter)
 
-      system("zip -j #{Rails.root}/tmp/export.zip #{@temp_dir}/*.csv")
+      system("zip -j -q #{Rails.root}/tmp/export.zip #{@temp_dir}/*.csv")
 
       if should_upload_to_s3
         upload_to_s3(delimiter)
