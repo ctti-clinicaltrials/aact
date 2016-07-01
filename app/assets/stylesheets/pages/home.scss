@@ -110,8 +110,9 @@ section.homeHero {
 
     @include MQ(M) {
       margin: 0px;
-      @include columnify(1.5);
+      width: 100px;
       height: 100px;
+      margin-left: 2rem;
     }
 
     &:hover {
@@ -147,22 +148,69 @@ section.homeHero {
   }
 }
 
+div.homeContent {
+  position: relative;
+}
 
-section.homeAbout, section.documentation {
-  padding-top: 20px;
+aside.docsMenu {
+  padding-top: 2rem;
 
-  div.copy {
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 60px;
+  a {
+    display: block;
+    margin-bottom: 5px;
+
+    &.menuRoot {
+      font-weight: bold;
+      padding-top: 10px;
+      font-size: 1.1rem;
+    }
   }
+  @include MQ(L) {
+    @include columnify(3);
+    position: absolute;
+    top: 0;
+    left: 20px;
+  }
+
+  &.fixed {
+    position: fixed;
+  }
+}
+
+
+section.documentation {
+  padding-top: 20px;
+  margin-bottom: 700px;
 
   h2 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
+    padding: 0px;
+    margin-bottom: 1rem;
+    margin-top: 8rem;
+    padding-top: 1rem;
+    border-top: 1px solid #bfbfbf;
+
   }
 
-  h3 {
-    font-size: 1.5rem;
+  h4 {
+    font-size: 1.3rem;
     padding: 0px;
+    margin-bottom: 1rem;
+    margin-top: 6rem;
+    padding-top: 1rem;
+
+    &:first-of-type {
+      margin-top: 0px;
+    }
+  }
+
+  b {
+    font-size: 1.1rem;
+    display: block;
+    font-weight: bold;
+    font-family: $font-sans;
+    margin-bottom: 1rem;
+    padding-top: 2rem;
   }
 
   section {
@@ -170,15 +218,13 @@ section.homeAbout, section.documentation {
   }
 
   @include MQ(L) {
-    h2 {
-      display: inline-block;
-      @include columnify(4);
-      padding: 0px;
-    }
+    @include columnify(9, true);
+    @include offset(3);
+  }
+}
 
-    div.copy {
-      @include columnify(8, true);
-
-    }
+section.overview {
+  h2 {
+    margin-top: 0px;
   }
 }

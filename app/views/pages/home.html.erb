@@ -1,19 +1,14 @@
 <%= render 'pages/home_hero' %>
 
-<%= render 'pages/home_about' %>
+<div class="wrap homeContent">
+  <%= render 'docs_menu' %>
 
-<section class="documentation">
+  <section class="documentation">
+    <%= render 'overview' %>
+    <%= render 'faqs' %>
+    <%= render 'access' %>
+    <%= render 'content' %>
+    <%= render 'gallery' %>
+  </section>
 
-  <div class="wrap">
-
-    <h2>Accessing AACT2</h2>
-
-    <div class="copy">
-      <%= render 'docs/credentials' %>
-      <%= render 'docs/r' %>
-      <%= render 'docs/sas' %>
-      <%= render 'docs/pgadmin' %>
-    </div>
-
-  </div>
-</section>
+</div>
