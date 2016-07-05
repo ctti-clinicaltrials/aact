@@ -1,13 +1,18 @@
 class DailyImportWorker
-  require 'json'
   include Sidekiq::Worker
   sidekiq_options queue: 'daily_import'
 
   def perform
-    client = ClinicalTrials::Client.new
-    client.download_xml_files
-    client.populate_studies
-    Study.create_derived_values
-    $stderr.puts client.processed_studies.to_json
+    load_event = ClinicalTrials::LoadEvent.create(
+      event_type: 'daily_import'
+    )
+
+    nct_ids_to_be_updated_or_added = ClinicalTrials::RssReader.new(days_back: 2).get_changed_nct_ids
+    $stderr.puts "Number of studies changed or added: #{nct_ids_to_be_updated_or_added.count}"
+    load_event.update(description: "Number of studies changed or added: #{nct_ids_to_be_updated_or_added.count}")
+    StudyUpdater.new.update_studies(nct_ids: nct_ids_to_be_updated_or_added)
+
+
+    load_event.complete
   end
 end

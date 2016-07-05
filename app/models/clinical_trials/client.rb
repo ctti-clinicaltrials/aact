@@ -45,10 +45,16 @@ module ClinicalTrials
       existing_study_xml = Nokogiri::XML(existing_study_xml_record.try(:content))
 
       if existing_study_xml_record.blank?
+        if @processed_studies[:updated_studies].include?(nct_id)
+          @processed_studies[:updated_studies].delete(nct_id)
+        end
         @processed_studies[:new_studies] << nct_id
         StudyXmlRecord.create(content: xml, nct_id: nct_id)
         # report number of new records
       elsif study_xml_changed?(existing_study_xml: existing_study_xml, new_study_xml: new_study_xml)
+        if @processed_studies[:new_studies].include?(nct_id)
+          @processed_studies[:new_studies].delete(nct_id)
+        end
         @processed_studies[:updated_studies] << nct_id
         existing_study_xml_record.update(content: xml)
         # report number of changed records
@@ -60,9 +66,19 @@ module ClinicalTrials
         event_type: 'populate_studies'
       )
 
-      StudyXmlRecord.find_each do |xml_record|
-        raw_xml = xml_record.content
-        import_xml_file(raw_xml)
+      nct_ids = (@processed_studies[:new_studies] + @processed_studies[:updated_studies]).uniq
+
+      if nct_ids.present?
+        nct_ids.lazy.each do |nct_id|
+          xml_record = StudyXmlRecord.find_by(nct_id: nct_id)
+          raw_xml = xml_record.content
+          import_xml_file(raw_xml)
+        end
+      else
+        StudyXmlRecord.find_each do |xml_record|
+          raw_xml = xml_record.content
+          import_xml_file(raw_xml)
+        end
       end
 
       load_event.complete
@@ -80,21 +96,13 @@ module ClinicalTrials
 
       existing_study = Study.find_by(nct_id: nct_id)
 
-      if new_study?(study_xml)
-        study_record = Study.new({
-          xml: study,
-          nct_id: nct_id
-        })
+      study_record = Study.new({
+        xml: study,
+        nct_id: nct_id
+      })
 
-        study_record.create
-        # report number of new records
-      elsif study_changed?(existing_study: existing_study, new_study_xml: study)
-        return if study.blank?
-        existing_study.xml = study
-        existing_study.update(existing_study.attribs)
-        existing_study.study_xml_record.update(content: study)
-        # report number of changed records
-      end
+      study_record.create
+      # report number of new records
 
       if benchmark
         load_event.complete

@@ -3,8 +3,9 @@ module ClinicalTrials
     extend Enumerize
 
     enumerize :event_type, in: %w(
-    get_studies
-    populate_studies
+      get_studies
+      populate_studies
+      nightly_load
     )
 
     def complete
