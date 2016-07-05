@@ -3,7 +3,7 @@ MAINTAINER Darin London <darin.london@duke.edu>
 
 RUN /usr/bin/apt-get update && \
   /usr/bin/apt-get install -y postgresql libpq-dev libqt4-core \
-  libqt4-dev nodejs
+  libqt4-dev nodejs zip
 
 #miscellaneous
 RUN ["mkdir","-p","/var/www/app"]
