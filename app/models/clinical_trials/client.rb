@@ -2,19 +2,20 @@ module ClinicalTrials
   class Client
     BASE_URL = 'https://clinicaltrials.gov'
 
-    attr_reader :url, :processed_studies
-    def initialize(search_term: nil)
+    attr_reader :url, :processed_studies, :dry_run
+    def initialize(search_term: nil, dry_run: false)
       @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
       @processed_studies = {
         updated_studies: [],
         new_studies: []
       }
+      @dry_run = dry_run
     end
 
     def download_xml_files
       load_event = ClinicalTrials::LoadEvent.create(
         event_type: 'get_studies'
-      )
+      ) unless @dry_run
 
       file = Tempfile.new('xml')
 
@@ -35,7 +36,7 @@ module ClinicalTrials
         end
       end
 
-      load_event.complete
+      load_event.complete unless @dry_run
     end
 
     def create_study_xml_record(xml)
@@ -49,19 +50,20 @@ module ClinicalTrials
           @processed_studies[:updated_studies].delete(nct_id)
         end
         @processed_studies[:new_studies] << nct_id
-        StudyXmlRecord.create(content: xml, nct_id: nct_id)
+        StudyXmlRecord.create(content: xml, nct_id: nct_id) unless @dry_run
         # report number of new records
       elsif study_xml_changed?(existing_study_xml: existing_study_xml, new_study_xml: new_study_xml)
         if @processed_studies[:new_studies].include?(nct_id)
           @processed_studies[:new_studies].delete(nct_id)
         end
         @processed_studies[:updated_studies] << nct_id
-        existing_study_xml_record.update(content: xml)
+        existing_study_xml_record.update(content: xml) unless @dry_run
         # report number of changed records
       end
     end
 
     def populate_studies
+      return if @dry_run
       load_event = ClinicalTrials::LoadEvent.create(
         event_type: 'populate_studies'
       )
