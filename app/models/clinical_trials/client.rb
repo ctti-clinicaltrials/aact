@@ -96,21 +96,13 @@ module ClinicalTrials
 
       existing_study = Study.find_by(nct_id: nct_id)
 
-      if new_study?(study_xml)
-        study_record = Study.new({
-          xml: study,
-          nct_id: nct_id
-        })
+      study_record = Study.new({
+        xml: study,
+        nct_id: nct_id
+      })
 
-        study_record.create
-        # report number of new records
-      elsif study_changed?(existing_study: existing_study, new_study_xml: study)
-        return if study.blank?
-        existing_study.xml = study
-        existing_study.update(existing_study.attribs)
-        existing_study.study_xml_record.update(content: study)
-        # report number of changed records
-      end
+      study_record.create
+      # report number of new records
 
       if benchmark
         load_event.complete
