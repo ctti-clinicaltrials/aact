@@ -14,8 +14,8 @@ class StudyUpdater
     xml = StudyXmlRecord.find_by(nct_id: nct_id)
     study = Study.find_by(nct_id: nct_id)
 
-    xml.destroy
-    study.destroy
+    xml.try(:destroy)
+    study.try(:destroy)
   end
 
   def create_new_xml_record(nct_id)
