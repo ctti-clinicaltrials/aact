@@ -143,7 +143,7 @@ describe ClinicalTrials::Client do
     end
 
     context 'default dry_run' do
-      xit 'should create studies from an existing study xml records' do
+      it 'should create studies from an existing study xml records' do
         subject.populate_studies
         study_1 = Study.find_by(nct_id: study_nct_id_1)
         expect(study_1.last_changed_date_str).to eq(study_last_changed_date_1)
@@ -151,14 +151,6 @@ describe ClinicalTrials::Client do
         expect(Study.pluck(:nct_id)).to match_array(study_xml_nct_ids)
         expect(StudyXmlRecord.pluck(:nct_id)).to match_array(study_xml_nct_ids)
         expect(Study.pluck(:official_title)).to match_array(study_xml_official_titles)
-
-        subject.create_study_xml_record(raw_study_xml_1_mod)
-        subject.populate_studies
-        expect(Study.pluck(:official_title)).to match_array(study_xml_official_titles_mod)
-
-        study_1_mod = Study.find_by(nct_id: study_nct_id_1)
-        expect(study_1_mod.last_changed_date_str).to eq(study_last_changed_date_1_mod)
-        expect(study_1.last_changed_date_str).not_to eq(study_1_mod.last_changed_date_str)
       end
     end
 
