@@ -5,7 +5,8 @@ module ClinicalTrials
     enumerize :event_type, in: %w(
       get_studies
       populate_studies
-      nightly_load
+      daily_import
+      full_import
     )
 
     def complete
