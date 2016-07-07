@@ -89,15 +89,5 @@ module ClinicalTrials
       Nokogiri::XML(study).xpath('//nct_id').text
     end
 
-    def new_study?(study)
-      found = Study.find_by(nct_id: extract_nct_id_from_study(study))
-
-      if found
-        false
-      else
-        true
-      end
-    end
-
   end
 end
