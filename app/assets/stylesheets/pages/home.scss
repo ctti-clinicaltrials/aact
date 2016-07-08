@@ -57,7 +57,7 @@ section.homeHero {
     }
 
     span {
-      color: $white;
+      color: $secondary;
       font-size: 8px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -66,6 +66,7 @@ section.homeHero {
       bottom: -25px;
       width: 100%;
       @include transition(all 250ms ease);
+      text-align: center;
     }
 
     @include MQ(M) {
@@ -76,7 +77,7 @@ section.homeHero {
       }
 
       span {
-        bottom: -15px;
+        bottom: -25px;
       }
     }
 
@@ -89,7 +90,7 @@ section.homeHero {
 
   a.navItem {
     display: inline-block;
-    border: 1px solid $white;
+    border: 1px solid $primary;
     border-radius: 50%;
     position: relative;
     background-color: $secondary;
