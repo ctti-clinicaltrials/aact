@@ -8,7 +8,7 @@
     <code>library(RPostgreSQL)</code>
     <code>drv <- dbDriver("PostgreSQL")</code>
     <code>con <- dbConnect(drv, dbname="AACT2_Public_dbname",host="AACT2_host",port=5432,user="AACT2_Public_user",password="AACT2_Public_password")</code>
-    <code>stuff <- dbGetQuery(con,"select distinct study_type from studies")</code>
-    <code>write.csv(stuff, file='r.csv')</code>
+    <code>aact2_sample <- dbGetQuery(con,"select distinct study_type from studies")</code>
+    <code>write.csv(aact2_sample, file='aact2_sample.csv')</code>
   </pre>
 </section>
