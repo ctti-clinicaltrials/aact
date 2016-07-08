@@ -2,7 +2,7 @@
 <section class="homeHero">
   <div class="wrap">
     <div class="heroHead">
-      <h1>AACT2</h1>
+      <h1>AACT<span>2</span></h1>
 
       <nav>
         <a href="/api_docs" class="navItem" target="_blank">
@@ -21,10 +21,10 @@
 
     </div>
 
-    <h2>AACT2 makes accessing, analyzing, and updating clinical trial data easy.</h2>
+    <h2>Easy access to the latest clinical trial data.</h2>
 
     <p>
-      It's an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti" target="_blank">CTTI</a> at Duke University. There are currently
+      AACT2 is an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti" target="_blank">CTTI</a> at Duke University. There are currently
       <%= number_with_delimiter(@studyCount) %> records in the database<% if @lastUpdate %>, which was last updated on <%= @lastUpdate.strftime("%B %d, %Y") %><% end %>.</p>
 
     <a class="button" href="#overview" target="_blank">Get Started</a>

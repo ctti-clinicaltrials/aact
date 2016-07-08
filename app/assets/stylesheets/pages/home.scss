@@ -1,27 +1,18 @@
 
 section.homeHero {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#001a57+0,001a57+21,0736a4+100 */
-  background: #001a57; /* Old browsers */
-  background: -moz-linear-gradient(top,  #001a57 0%, #001a57 21%, #0736a4 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  #001a57 0%,#001a57 21%,#0736a4 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  #001a57 0%,#001a57 21%,#0736a4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001a57', endColorstr='#0736a4',GradientType=0 ); /* IE6-9 */
-  color: $white;
   display: block;
   margin: 0 auto;
   padding: 20px;
-  text-align: center;
+  text-align: left;
 
   h1 {
     font-weight: bold;
-    margin-bottom: 40px;
     padding: 0px;
-    text-shadow:
-      -4px 3px 0 rgba(0,64,215,1),
-      -8px 6px 0 rgba(0,64,215,.7),
-      -10px 9px 0 rgba(77,128,247,.8),
-      -9px 12px 0 rgba(77,128,247,.5),
-      -7px 15px 0 rgba(77,128,247,.2);
+
+    span {
+      font-weight: lighter;
+      font-size: 4rem;
+    }
   }
 
   h2 {
@@ -39,7 +30,6 @@ section.homeHero {
   a.button {
     margin: 0px 10px;
     margin-bottom: 30px;
-    border-color: $white;
     font-size: 1rem;
   }
 
@@ -134,6 +124,7 @@ section.homeHero {
 
     h2 {
       font-size: 3.25rem;
+      max-width: 70%;
     }
 
     p, a {
@@ -141,8 +132,7 @@ section.homeHero {
     }
 
     p {
-      max-width: 65%;
-      margin: 0 auto;
+      max-width: 60%;
       margin-bottom: 40px;
     }
   }
@@ -165,6 +155,7 @@ aside.docsMenu {
       font-size: 1.1rem;
     }
   }
+
   @include MQ(L) {
     @include columnify(3);
     position: absolute;
