@@ -46,7 +46,11 @@ module ClinicalTrials
         @processed_studies[:updated_studies].delete(nct_id)
       end
       @processed_studies[:new_studies] << nct_id
-      StudyXmlRecord.create(content: xml, nct_id: nct_id) unless @dry_run
+      unless @dry_run
+        StudyXmlRecord.where(nct_id: nct_id).first_or_create do |xml_record|
+          xml_record.content = xml
+        end
+      end
     end
 
     def populate_studies
@@ -73,10 +77,12 @@ module ClinicalTrials
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
 
-      Study.new({
-        xml: study,
-        nct_id: nct_id
-      }).create
+      unless Study.find_by(nct_id: nct_id).present?
+        Study.new({
+          xml: study,
+          nct_id: nct_id
+        }).create
+      end
 
       if benchmark
         load_event.complete
