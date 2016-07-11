@@ -266,3 +266,20 @@ section.overview {
     margin-top: 0px;
   }
 }
+
+div.credentialRow {
+  @include display-flex;
+  @include flex-direction(row);
+  @include align-items(center);
+  margin-bottom: 10px;
+
+  p {
+    margin-bottom: 0px;
+    margin-right: $gutter_width;
+  }
+
+  pre {
+    margin: 0px;
+    padding: 10px;
+  }
+}
