@@ -7,6 +7,7 @@ module ClinicalTrials
       populate_studies
       daily_import
       full_import
+      table_export
     )
 
     def complete
