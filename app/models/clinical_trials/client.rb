@@ -41,24 +41,15 @@ module ClinicalTrials
 
     def create_study_xml_record(xml)
       nct_id = extract_nct_id_from_study(xml)
-      new_study_xml = Nokogiri::XML(xml)
-      existing_study_xml_record = StudyXmlRecord.find_by(nct_id: nct_id)
-      existing_study_xml = Nokogiri::XML(existing_study_xml_record.try(:content))
 
-      if existing_study_xml_record.blank?
-        if @processed_studies[:updated_studies].include?(nct_id)
-          @processed_studies[:updated_studies].delete(nct_id)
+      if @processed_studies[:updated_studies].include?(nct_id)
+        @processed_studies[:updated_studies].delete(nct_id)
+      end
+      @processed_studies[:new_studies] << nct_id
+      unless @dry_run
+        StudyXmlRecord.where(nct_id: nct_id).first_or_create do |xml_record|
+          xml_record.content = xml
         end
-        @processed_studies[:new_studies] << nct_id
-        StudyXmlRecord.create(content: xml, nct_id: nct_id) unless @dry_run
-        # report number of new records
-      elsif study_xml_changed?(existing_study_xml: existing_study_xml, new_study_xml: new_study_xml)
-        if @processed_studies[:new_studies].include?(nct_id)
-          @processed_studies[:new_studies].delete(nct_id)
-        end
-        @processed_studies[:updated_studies] << nct_id
-        existing_study_xml_record.update(content: xml) unless @dry_run
-        # report number of changed records
       end
     end
 
@@ -68,19 +59,9 @@ module ClinicalTrials
         event_type: 'populate_studies'
       )
 
-      nct_ids = (@processed_studies[:new_studies] + @processed_studies[:updated_studies]).uniq
-
-      if nct_ids.present?
-        nct_ids.lazy.each do |nct_id|
-          xml_record = StudyXmlRecord.find_by(nct_id: nct_id)
-          raw_xml = xml_record.content
-          import_xml_file(raw_xml)
-        end
-      else
-        StudyXmlRecord.find_each do |xml_record|
-          raw_xml = xml_record.content
-          import_xml_file(raw_xml)
-        end
+      StudyXmlRecord.find_each do |xml_record|
+        raw_xml = xml_record.content
+        import_xml_file(raw_xml)
       end
 
       load_event.complete
@@ -96,15 +77,12 @@ module ClinicalTrials
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
 
-      existing_study = Study.find_by(nct_id: nct_id)
-
-      study_record = Study.new({
-        xml: study,
-        nct_id: nct_id
-      })
-
-      study_record.create
-      # report number of new records
+      unless Study.find_by(nct_id: nct_id).present?
+        Study.new({
+          xml: study,
+          nct_id: nct_id
+        }).create
+      end
 
       if benchmark
         load_event.complete
@@ -117,30 +95,5 @@ module ClinicalTrials
       Nokogiri::XML(study).xpath('//nct_id').text
     end
 
-    def new_study?(study)
-      found = Study.find_by(nct_id: extract_nct_id_from_study(study))
-
-      if found
-        false
-      else
-        true
-      end
-    end
-
-    def study_xml_changed?(existing_study_xml:, new_study_xml:)
-      existing_study_xml.diff(new_study_xml) do |change,node|
-        return true if !change.blank? && node.parent.name != 'download_date'
-      end
-      false
-    end
-
-    def study_changed?(existing_study:, new_study_xml:)
-      date_string = new_study_xml.xpath('//clinical_study')
-      .xpath('lastchanged_date').text
-
-      date = Date.parse(date_string)
-
-      date != existing_study.last_changed_date
-    end
   end
 end

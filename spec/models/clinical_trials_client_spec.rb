@@ -114,56 +114,6 @@ describe ClinicalTrials::Client do
         expect(study_xml_record_1).to be
       end
 
-      it 'should update the study xml record changed' do
-        expect {
-          subject.create_study_xml_record(raw_study_xml_1)
-          subject.create_study_xml_record(raw_study_xml_1_mod)
-        }.to change{StudyXmlRecord.count}.by(1)
-
-        processed_studies = {
-          updated_studies: ["NCT00513591"],
-          new_studies: []
-        }
-        expect(subject.processed_studies).to eq(processed_studies)
-
-        study_xml_record_1_mod = StudyXmlRecord.find_by(nct_id:'NCT00513591')
-        updated_official_title = Nokogiri::XML(study_xml_record_1_mod.content)
-          .xpath('//official_title').text
-        expect(updated_official_title).to eq(official_study_title_1_mod)
-      end
-
-      it 'should create or update the study xml record changed' do
-        expect {
-          subject.create_study_xml_record(raw_study_xml_1)
-          subject.create_study_xml_record(raw_study_xml_1_mod)
-          subject.create_study_xml_record(raw_study_xml_2)
-        }.to change{StudyXmlRecord.count}.by(2)
-
-        processed_studies = {
-          updated_studies: ["NCT00513591"],
-          new_studies: ["NCT00482794"]
-        }
-        expect(subject.processed_studies).to eq(processed_studies)
-
-        subject.create_study_xml_record(raw_study_xml_1_mod)
-        expect(subject.processed_studies).to eq(processed_studies)
-      end
-
-      it 'should not update the study xml record if download_date is the only change' do
-        subject.create_study_xml_record(raw_study_xml_1)
-        study_xml_record_1 = StudyXmlRecord.find_by(nct_id:'NCT00513591')
-        expect(study_xml_record_1).to be
-
-        download_date_text_1 = Nokogiri::XML(study_xml_record_1.content)
-          .xpath('//download_date').text
-        expect(download_date_text_1).to eq(study_xml_download_date_text_1)
-
-        subject.create_study_xml_record(raw_study_xml_redownload_1)
-        study_xml_record_redownloaded_1 = StudyXmlRecord.find_by(nct_id:'NCT00513591')
-        redownload_date_text_1 = Nokogiri::XML(study_xml_record_redownloaded_1.content)
-          .xpath('//download_date').text
-        expect(redownload_date_text_1).to eq(study_xml_download_date_text_1)
-      end
     end
 
     context 'dry_run true' do
@@ -181,48 +131,6 @@ describe ClinicalTrials::Client do
         expect(subject.processed_studies).to eq(processed_studies)
       end
 
-      it 'should report update when the study xml record changed' do
-        nct_id = Nokogiri::XML(raw_study_xml_1).xpath('//nct_id').text
-        StudyXmlRecord.create(content: raw_study_xml_1, nct_id: nct_id)
-
-        expect {
-          subject.create_study_xml_record(raw_study_xml_1)
-          subject.create_study_xml_record(raw_study_xml_1_mod)
-        }.not_to change{StudyXmlRecord.count}
-
-        processed_studies = {
-          updated_studies: ["NCT00513591"],
-          new_studies: []
-        }
-        expect(subject.processed_studies).to eq(processed_studies)
-      end
-
-      it 'should report create or update the study xml record changed' do
-        nct_id = Nokogiri::XML(raw_study_xml_1).xpath('//nct_id').text
-        StudyXmlRecord.create(content: raw_study_xml_1, nct_id: nct_id)
-
-        expect {
-          subject.create_study_xml_record(raw_study_xml_1)
-          subject.create_study_xml_record(raw_study_xml_1_mod)
-          subject.create_study_xml_record(raw_study_xml_2)
-        }.not_to change{StudyXmlRecord.count}
-
-        processed_studies = {
-          updated_studies: ["NCT00513591"],
-          new_studies: ["NCT00482794"]
-        }
-        expect(subject.processed_studies).to eq(processed_studies)
-      end
-
-      it 'should not report if download_date is the only change' do
-        nct_id = Nokogiri::XML(raw_study_xml_1).xpath('//nct_id').text
-        StudyXmlRecord.create(content: raw_study_xml_1, nct_id: nct_id)
-        expect {
-          subject.create_study_xml_record(raw_study_xml_redownload_1)
-        }.not_to change{StudyXmlRecord.count}
-        expect(subject.processed_studies[:new_studies].count).to be == 0
-        expect(subject.processed_studies[:updated_studies].count).to be == 0
-      end
     end
   end
 
@@ -235,7 +143,7 @@ describe ClinicalTrials::Client do
     end
 
     context 'default dry_run' do
-      xit 'should create studies from an existing study xml records' do
+      it 'should create studies from an existing study xml records' do
         subject.populate_studies
         study_1 = Study.find_by(nct_id: study_nct_id_1)
         expect(study_1.last_changed_date_str).to eq(study_last_changed_date_1)
@@ -243,14 +151,6 @@ describe ClinicalTrials::Client do
         expect(Study.pluck(:nct_id)).to match_array(study_xml_nct_ids)
         expect(StudyXmlRecord.pluck(:nct_id)).to match_array(study_xml_nct_ids)
         expect(Study.pluck(:official_title)).to match_array(study_xml_official_titles)
-
-        subject.create_study_xml_record(raw_study_xml_1_mod)
-        subject.populate_studies
-        expect(Study.pluck(:official_title)).to match_array(study_xml_official_titles_mod)
-
-        study_1_mod = Study.find_by(nct_id: study_nct_id_1)
-        expect(study_1_mod.last_changed_date_str).to eq(study_last_changed_date_1_mod)
-        expect(study_1.last_changed_date_str).not_to eq(study_1_mod.last_changed_date_str)
       end
     end
 
@@ -281,20 +181,6 @@ describe ClinicalTrials::Client do
       subject.import_xml_file(study_xml_record_1.content)
       study_1 = Study.find_by(nct_id: study_nct_id_1)
       expect(study_1).to be_truthy
-      expect(Study.count).to be(1)
-    end
-
-    xit 'should update an existing study from an updated study xml record' do
-      study_xml_record_1 = StudyXmlRecord.find_by(nct_id: study_nct_id_1)
-      subject.import_xml_file(study_xml_record_1.content)
-      expect(Study.count).to be(1)
-      study_1 = Study.find_by(nct_id: study_nct_id_1)
-      expect(study_1.official_title).to eq(official_study_title_1)
-
-      subject.import_xml_file(raw_study_xml_1_mod)
-      study_1_mod = Study.find_by(nct_id: study_nct_id_1)
-      expect(study_1_mod.last_changed_date_str).to eq(study_last_changed_date_1_mod)
-      expect(study_1_mod.official_title).to eq(official_study_title_1_mod)
       expect(Study.count).to be(1)
     end
 

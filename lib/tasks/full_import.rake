@@ -1,7 +1,7 @@
 namespace :import do
-  namespace :daily do
+  namespace :full do
     task run: :environment do
-      DailyImportWorker.perform_async
+      FullImportWorker.perform_async
     end
   end
 end
