@@ -205,6 +205,7 @@ class Study < ActiveRecord::Base
     {
       :start_date => get_date(get('start_date')),
       :first_received_date => get_date(get('firstreceived_date')),
+      :first_received_results_disposition_date => get_date(get('firstreceived_results_disposition_date')),
       :verification_date => get_date(get('verification_date')),
       :last_changed_date => get_date(get('lastchanged_date')),
       :primary_completion_date => get_date(get('primary_completion_date')),

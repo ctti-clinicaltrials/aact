@@ -1671,7 +1671,8 @@ CREATE TABLE studies (
     official_title text,
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    first_received_results_disposition_date date
 );
 
 
@@ -2525,4 +2526,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160604163139');
 INSERT INTO schema_migrations (version) VALUES ('20160608173256');
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
+
+INSERT INTO schema_migrations (version) VALUES ('20160713192539');
 
