@@ -77,6 +77,10 @@ class Study < ActiveRecord::Base
     # change this method to only update derived values for
     # studies that have changed.
 
+    load_event = ClinicalTrials::LoadEvent.create(
+      event_type: 'populate_studies'
+    )
+
     batch_size = 500
     ids = Study.pluck(:nct_id)
 
@@ -87,6 +91,7 @@ class Study < ActiveRecord::Base
       end
     end
 
+    load_event.complete
   end
 
   def create
