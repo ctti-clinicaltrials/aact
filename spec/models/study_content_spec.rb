@@ -1,14 +1,10 @@
 require 'rails_helper'
+
 RSpec.describe Study do
     it "should have expected values" do
-      nct_id='NCT02260193'
-			c=ClinicalTrials::Client.new(search_term: nct_id)
-			VCR.use_cassette 'get_NCT02260193' do
-			  c.download_xml_files
-			end
-			c.populate_studies
-			study=Study.where('nct_id=?',nct_id).first
-      expect(study.first_received_results_disposition_date).to eq('October 23, 2015'.to_date)
+      xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
+      study=Study.new({xml: xml, nct_id: 'NCT02260193'}).create
+      expect(study.first_received_results_disposition_date).to eq('December 1, 1999'.to_date)
   end
 end
 
