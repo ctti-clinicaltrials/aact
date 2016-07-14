@@ -2481,6 +2481,13 @@ CREATE INDEX index_facilities_on_nct_id ON facilities USING btree (nct_id);
 
 
 --
+-- Name: index_outcome_measures_on_title; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_measures_on_title ON outcome_measures USING btree (title);
+
+
+--
 -- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 

@@ -6,5 +6,6 @@ class AddIndices < ActiveRecord::Migration
     add_index :reported_events, :subjects_affected
     add_index :facilities, :nct_id
     add_index :outcomes, :nct_id
+    add_index :outcome_measures, :title
   end
 end
