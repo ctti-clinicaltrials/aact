@@ -65,6 +65,7 @@ h1 {
 }
 
 h2 {
+  color: $primary;
   font-size: 1.8rem;
   @include MQ(S) {
     font-size: 2.4rem;

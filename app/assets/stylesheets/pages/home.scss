@@ -15,7 +15,7 @@ section.homeHero {
       width: 100%;
       height: 100%;
       @include center(xy);
-      opacity: .1;
+      opacity: .6;
     }
   }
 
@@ -120,7 +120,7 @@ section.homeHero {
       margin-bottom: 0px;
 
       i {
-        font-size: 62px;
+        font-size: 44px;
       }
 
       span {
@@ -140,7 +140,7 @@ section.homeHero {
     border: 1px solid $primary;
     border-radius: 50%;
     position: relative;
-    background-color: $secondary;
+    background-color: $primary;
     margin: 0px;
     width: 70px;
     height: 70px;
@@ -159,7 +159,7 @@ section.homeHero {
       }
 
       i {
-        font-size: 68px;
+        font-size: 54px;
       }
     }
   }

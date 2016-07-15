@@ -1,7 +1,7 @@
 
 <section class="homeHero">
 
-  <%= image_tag("bg.png", class:"homeBg") %>
+  <%= image_tag("bg2.png", class:"homeBg") %>
 
   <div class="wrap">
     <div class="heroHead">
@@ -11,13 +11,13 @@
       </div>
 
       <nav>
+        <a href="https://s3-us-west-2.amazonaws.com/aact2/csv-export-2016-06-28" class="navItem" target="_blank">
+          <i class="fa fa-download"></i>
+          <span>CSV Download</span>
+        </a>
         <a href="/api_docs" class="navItem" target="_blank">
           <i class="fa fa-book"></i>
           <span>API Documentation</span>
-        </a>
-        <a href="https://s3-us-west-2.amazonaws.com/aact2/csv-export-2016-06-28" class="navItem" target="_blank">
-          <i class="fa fa-download"></i>
-          <span>Download database</span>
         </a>
         <a href="https://github.com/SturdyCo/aact2" target="_blank" class="navItem">
           <i class="fa fa-github"></i>
@@ -33,8 +33,8 @@
       AACT2 is an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti" target="_blank">CTTI</a> at Duke University. There are currently
       <%= number_with_delimiter(@studyCount) %> records in the database<% if @lastUpdate %>, which was last updated on <%= @lastUpdate.strftime("%B %d, %Y") %><% end %>.</p>
 
-    <a class="button" href="#overview" target="_blank">Get Started</a>
-    <a class="button" href="https://s3-us-west-2.amazonaws.com/aact2/csv-export-2016-06-28" target="_blank">Download Database</a>
+    <a class="button" href="#access">Connect to AACT2</a>
+    <a class="button" href="https://s3-us-west-2.amazonaws.com/aact2/csv-export-2016-06-28" target="_blank">CSV Download</a>
   </div>
 
 </section>
