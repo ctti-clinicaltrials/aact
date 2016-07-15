@@ -20,15 +20,16 @@ section.homeHero {
   }
 
   h1 {
-    font-weight: bold;
+    // font-weight: bold;
     padding: 0px;
     margin: 0px;
     display: inline-block;
     margin-right: 20px;
+    font-weight: lighter;
 
     span {
-      font-weight: lighter;
-      font-size: 3.3rem;
+      font-weight: bold;
+      font-size: 3rem;
     }
 
     @include MQ(M) {
@@ -120,7 +121,7 @@ section.homeHero {
       margin-bottom: 0px;
 
       i {
-        font-size: 44px;
+        font-size: 36px;
       }
 
       span {
@@ -142,14 +143,14 @@ section.homeHero {
     position: relative;
     background-color: $primary;
     margin: 0px;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     margin: 0px 10px;
 
     @include MQ(M) {
       margin: 0px;
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       margin-left: 2rem;
     }
 
@@ -159,7 +160,7 @@ section.homeHero {
       }
 
       i {
-        font-size: 54px;
+        font-size: 40px;
       }
     }
   }
@@ -231,11 +232,12 @@ section.documentation {
   }
 
   h4 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     padding: 0px;
     margin-bottom: 1rem;
     margin-top: 6rem;
     padding-top: 1rem;
+    text-transform: uppercase;
 
     &:first-of-type {
       margin-top: 0px;
