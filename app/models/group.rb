@@ -1,11 +1,11 @@
 class Group < StudyRelationship
   attr_accessor :baseline_measures
 
-  has_many :outcomes, dependent: :destroy
-  has_many :outcome_measures, dependent: :destroy
-  has_many :outcome_analyses, dependent: :destroy
-  has_many :milestones, dependent: :destroy
-  has_many :drop_withdrawals, dependent: :destroy
+  has_many :outcomes
+  has_many :outcome_measures
+  has_many :outcome_analyses
+  has_many :milestones
+  has_many :drop_withdrawals
 
   def self.create_all_from(opts)
     opts[:xml]=opts[:xml].xpath('//participant_flow')
