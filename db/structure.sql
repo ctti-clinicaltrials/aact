@@ -2474,6 +2474,55 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: index_facilities_on_nct_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_facilities_on_nct_id ON facilities USING btree (nct_id);
+
+
+--
+-- Name: index_outcome_measures_on_title; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_measures_on_title ON outcome_measures USING btree (title);
+
+
+--
+-- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcomes_on_nct_id ON outcomes USING btree (nct_id);
+
+
+--
+-- Name: index_reported_events_on_event_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reported_events_on_event_type ON reported_events USING btree (event_type);
+
+
+--
+-- Name: index_reported_events_on_nct_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reported_events_on_nct_id ON reported_events USING btree (nct_id);
+
+
+--
+-- Name: index_reported_events_on_subjects_affected; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reported_events_on_subjects_affected ON reported_events USING btree (subjects_affected);
+
+
+--
+-- Name: index_studies_on_nct_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2529,4 +2578,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160604163139');
 INSERT INTO schema_migrations (version) VALUES ('20160608173256');
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
+
+INSERT INTO schema_migrations (version) VALUES ('20160714191041');
 
