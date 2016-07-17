@@ -75,7 +75,7 @@ class DerivedValue < ActiveRecord::Base
   end
 
   def calc_results_reported
-    1 if study.outcomes.count > 0
+    1 if Outcome.fast_count_estimate(study.reported_events) > 0
   end
 
   def calc_months_to_report_results
