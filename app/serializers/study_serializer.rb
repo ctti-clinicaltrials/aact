@@ -44,4 +44,23 @@ class StudySerializer < ActiveModel::Serializer
             :biospec_description,
             :created_at,
             :updated_at
+
+  def attributes
+    super.merge(other_attributes)
+  end
+
+  def other_attributes
+    if object.with_related_records
+      {
+        brief_summary: object.brief_summary.attributes,
+        design: object.design.attributes,
+        detailed_description: object.detailed_description.attributes,
+        eligibility: object.eligibility.attributes,
+        participant_flow: object.participant_flow.attributes,
+        result_detail: object.result_detail.attributes
+      }
+    else
+      {}
+    end
+  end
 end

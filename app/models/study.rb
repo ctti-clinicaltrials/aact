@@ -1,6 +1,6 @@
 require 'csv'
 class Study < ActiveRecord::Base
-  attr_accessor :xml
+  attr_accessor :xml, :with_related_records
 
   scope :interventional,  -> {where(study_type: 'Interventional')}
   scope :observational,   -> {where(study_type: 'Observational')}

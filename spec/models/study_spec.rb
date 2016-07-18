@@ -14,4 +14,15 @@ describe Study do
     end
   end
 
+  describe 'with_related_records' do
+    subject { study }
+    it { is_expected.to respond_to 'with_related_records'}
+    it { is_expected.to respond_to 'with_related_records=' }
+
+    it 'should allow the with_related_records attribute to be set' do
+      expect(study.with_related_records).not_to be true
+      study.with_related_records = true
+      expect(study.with_related_records).to be true
+    end
+  end
 end
