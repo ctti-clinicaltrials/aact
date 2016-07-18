@@ -11,27 +11,25 @@
       </div>
 
       <nav>
+        <a href="/api_docs" class="navItem" target="_blank">
+          <i class="fa fa-book"></i>
+          <span>Connect to AACT</span>
+        </a>
         <a href="https://s3-us-west-2.amazonaws.com/aact2/csv-export-2016-06-28" class="navItem" target="_blank">
           <i class="fa fa-download"></i>
           <span>CSV Download</span>
         </a>
-        <a href="/api_docs" class="navItem" target="_blank">
-          <i class="fa fa-book"></i>
-          <span>API Documentation</span>
-        </a>
         <a href="https://github.com/SturdyCo/aact2" target="_blank" class="navItem">
           <i class="fa fa-github"></i>
-          <span>Clone on Github</span>
+          <span>Learn About AACT</span>
         </a>
       </nav>
 
     </div>
 
-    <h2>Easy access to the latest clinical trial data.</h2>
+    <h2>Here to make clinical trials data easier to access and understand.</h2>
 
-    <p>
-      AACT2 is an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti" target="_blank">CTTI</a> at Duke University. There are currently
-      <%= number_with_delimiter(@studyCount) %> records in the database<% if @lastUpdate %>, which was last updated on <%= @lastUpdate.strftime("%B %d, %Y") %><% end %>.</p>
+    <p>The Aggregate Analysis of ClincalTrials.gov (AACT Version 2.0) provides direct and downloadable access to publicly available data from ClinicalTrials.gov.</p>
 
     <a class="button" href="#access">Connect to AACT2</a>
     <a class="button" href="https://s3-us-west-2.amazonaws.com/aact2/csv-export-2016-06-28" target="_blank">CSV Download</a>
