@@ -49,6 +49,7 @@ module AACT2
         error!(error_json, 404)
       end
       mount AACT2::V1::AppAPI
+      mount AACT2::V1::StudiesAPI
       add_swagger_documentation \
         doc_version: '0.0.2',
         hide_documentation_path: true,
