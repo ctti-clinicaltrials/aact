@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.4.4
+-- Dumped from database version 9.5.3
 -- Dumped by pg_dump version 9.5.3
 
 SET statement_timeout = 0;
@@ -1675,7 +1675,8 @@ CREATE TABLE studies (
     official_title text,
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    plan_to_share_ipd character varying
 );
 
 
@@ -2547,7 +2548,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150409002646');
 
@@ -2580,4 +2581,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160608173256');
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
 INSERT INTO schema_migrations (version) VALUES ('20160714191041');
+
+INSERT INTO schema_migrations (version) VALUES ('20160718140832');
 
