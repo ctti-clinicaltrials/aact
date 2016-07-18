@@ -269,6 +269,16 @@ section.overview {
   }
 }
 
+section.pgAdmin {
+  img {
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+    padding-top: 1rem;
+    margin-bottom: 3rem;
+    @include box-shadow(1px 1px 6px #ccc);
+  }
+}
 div.credentialRow {
   @include display-flex;
   @include flex-direction(row);
