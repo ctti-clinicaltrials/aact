@@ -248,6 +248,7 @@ class Study < ActiveRecord::Base
 
       :is_section_801 => get_boolean('is_section_801'),
       :is_fda_regulated => get_boolean('is_fda_regulated'),
+      :plan_to_share_ipd => get('patient_data/sharing_ipd'),
       :has_expanded_access => get_boolean('has_expanded_access'),
       :has_dmc => get_boolean('has_dmc'),
       :why_stopped =>get('why_stopped').strip,

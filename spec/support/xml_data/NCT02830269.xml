@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on July 17, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02830269</url>
+  </required_header>
+  <id_info>
+    <org_study_id>9720</org_study_id>
+    <nct_id>NCT02830269</nct_id>
+  </id_info>
+  <brief_title>Third Ventricule Echographic Study for Neuro-intensive Care Unit Patients</brief_title>
+  <acronym>ECHO-V3</acronym>
+  <official_title>Third Ventricule Echographic Study for Neuro-intensive Care Unit Patients</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>University Hospital, Montpellier</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>University Hospital, Montpellier</source>
+  <oversight_info>
+    <authority>France: Agence Nationale de Sécurité du Médicament et des produits de santé</authority>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      Transcranial Doppler ultasonography is usually used in the evaluation and management of
+      patients with cerebrovascular disease. This noninvasive method measures local blood flow
+      velocity and direction in the proximal portions of large intracranial arteries. The operator
+      requires a short training and experience to perfom. The third ventricle diameter measurement
+      by transcranial duplex flow sonography was performed in healthy volunteers . This studies
+      show similar results in those obtained with the MRI or Computer Tomography (CT). Currently
+      the third ventricle diameter measurements by transcranial Doppler ultrasonography was not
+      validated for neuro-intensive care unit patients. The investigators propose to used recent
+      ultrasound system to validate the third ventricle diameter measurements in comparaison with
+      the standard method (CT).
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Transcranial Doppler ultasonography is usually used in the evaluation and management of
+      patients with cerebrovascular disease. This noninvasive method measures local blood flow
+      velocity and direction in the proximal portions of large intracranial arteries. The operator
+      requires a short training and experience to perfom. The third ventricle diameter measurement
+      by transcranial duplex flow sonography was performed in healthy volunteers . This studies
+      show similar results in those obtained with the MRI or Computer Tomography (CT). Currently
+      the third ventricle diameter measurements by transcranial Doppler
+    </textblock>
+  </detailed_description>
+  <overall_status>Not yet recruiting</overall_status>
+  <start_date>July 2016</start_date>
+  <completion_date type="Anticipated">June 2018</completion_date>
+  <primary_completion_date type="Anticipated">December 2017</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Observational</study_type>
+  <study_design>Time Perspective: Prospective</study_design>
+  <primary_outcome>
+    <measure>Third ventricle diameter (average +/- standard deviation)</measure>
+    <time_frame>Through study completion (30 months)</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Spearman's test measuring the correlation coefficient between the third ventricle diameter measured by the expert using the ultrasonography and the third ventricle diameter measured by CT scan.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Residents' learning curve</measure>
+    <time_frame>24 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>The learning curve will be determined by the change in the third ventricle diameter's difference obtained by the expert and the resident, divided by the diameter obtained by the expert reported on the Y-axis and the number of measures done by the resident reported on the X-axis. Number of measures to be done will be determined when the curve reached the zero.</description>
+  </secondary_outcome>
+  <number_of_groups>1</number_of_groups>
+  <enrollment type="Anticipated">100</enrollment>
+  <condition>Neuro-intensive Care Unit Patients</condition>
+  <condition>Cerebrovascular Disease</condition>
+  <intervention>
+    <intervention_type>Device</intervention_type>
+    <intervention_name>Transcranial Doppler ultasonography measurements</intervention_name>
+    <description>Third ventricle diameter measurements with standard method (CT) and Transcranial Doppler ultasonography</description>
+  </intervention>
+  <eligibility>
+    <study_pop>
+      <textblock>
+        All patients admitted to the neurointensive care
+      </textblock>
+    </study_pop>
+    <sampling_method>Probability Sample</sampling_method>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Adult, &gt; or equal to 18-yr
+
+          -  Admission to neuro-intesive care unit with cerebrovascular disease
+
+          -  Evaluation by Computer Tomography
+
+          -  Indication for Transcranial Doppler ultasonography
+
+        Exclusion Criteria:
+
+          -  Opposition to participate by the patient or a next of kin
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>100 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>GERALD GERALD, MD, Ph D</last_name>
+    <role>Study Director</role>
+    <affiliation>University Hospital, Montpellier</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Pierre-François PERRIGAULT, MD</last_name>
+    <role>Study Chair</role>
+    <affiliation>University Hospital, Montpellier</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Paul BORY, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>University Hospital, Montpellier</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>GERALD GERALD, MD, Ph D</last_name>
+    <phone>+33467337271</phone>
+    <email>g-chanques@chu-montpellier.fr</email>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>Pierre-François PERRIGAULT, MD</last_name>
+    <phone>+33467337271</phone>
+    <email>pf-perrigault@chu-montpellier.fr</email>
+  </overall_contact_backup>
+  <verification_date>May 2016</verification_date>
+  <lastchanged_date>July 8, 2016</lastchanged_date>
+  <firstreceived_date>June 10, 2016</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>Neuro-ICU</keyword>
+  <keyword>Third ventricle</keyword>
+  <keyword>Computer Tomography</keyword>
+  <keyword>Transcranial Doppler ultasonography</keyword>
+  <is_fda_regulated>No</is_fda_regulated>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Cerebrovascular Disorders</mesh_term>
+  </condition_browse>
+  <patient_data>
+    <sharing_ipd>Undecided</sharing_ipd>
+    <ipd_description>NC</ipd_description>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                -->
+</clinical_study>
