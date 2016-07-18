@@ -1676,7 +1676,9 @@ CREATE TABLE studies (
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    plan_to_share_ipd character varying
+    first_received_results_disposition_date date,
+    plan_to_share_ipd character varying,
+    plan_to_share_description character varying
 );
 
 
@@ -2580,7 +2582,11 @@ INSERT INTO schema_migrations (version) VALUES ('20160608173256');
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
+INSERT INTO schema_migrations (version) VALUES ('20160713192539');
+
 INSERT INTO schema_migrations (version) VALUES ('20160714191041');
 
 INSERT INTO schema_migrations (version) VALUES ('20160718140832');
+
+INSERT INTO schema_migrations (version) VALUES ('20160718182917');
 
