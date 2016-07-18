@@ -100,7 +100,7 @@ class TableExporter
                    end
 
     s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
-    obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("/pipe_delimited_exports/#{s3_file_name}")
+    obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("pipe_delimited_exports/#{s3_file_name}")
     obj.upload_file(@zipfile_name)
   end
 end
