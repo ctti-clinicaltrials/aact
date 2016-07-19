@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
+  get "/snapshot_archive" => "pages#snapshot_archive"
+
   namespace :api, defaults: { format: :json } do
     namespace :studies do
       resources :counts_by_year, only: :index
