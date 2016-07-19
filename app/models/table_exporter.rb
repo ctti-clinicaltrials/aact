@@ -76,7 +76,7 @@ class TableExporter
         string << row
       end
     end
-    string.gsub(/\"\"/, "")
+    string.gsub(/\"\"/, '').gsub(/\n\s/, '')
   end
 
   def cleanup_tempfiles!
@@ -94,13 +94,13 @@ class TableExporter
 
   def upload_to_s3(delimiter)
     s3_file_name = if delimiter == ','
-                     "csv-export-#{Date.today}"
+                     "csv-export"
                    elsif delimiter == '|'
-                     "pipe-delimited-export-#{Date.today}"
+                     "pipe-delimited-export"
                    end
 
     s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
-    obj = s3.bucket(ENV['S3_BUCKET_NAME']).object(s3_file_name)
+    obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("csv_pipe_exports/#{Date.today}-#{s3_file_name}")
     obj.upload_file(@zipfile_name)
   end
 end

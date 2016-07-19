@@ -1,4 +1,5 @@
 class ExpectedGroup < StudyRelationship
+  self.table_name = 'design_groups'
 
   def self.top_level_label
     '//arm_group'
