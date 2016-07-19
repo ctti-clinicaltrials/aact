@@ -47,7 +47,7 @@ namespace :simple_sanity_check do
 
 
     s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
-    obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("#{Date.today}-sanity-check.txt")
+    obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("sanity_checks/#{Date.today}-sanity-check.txt")
     obj.upload_file(file_path)
   end
 end
