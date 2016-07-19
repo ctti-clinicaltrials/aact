@@ -253,6 +253,11 @@ section.documentation {
     padding-top: 2rem;
   }
 
+  p.note {
+    font-style: italic;
+    color: lighten($grey, 30);
+  }
+
   section {
     margin-bottom: 20px;
   }
@@ -279,6 +284,7 @@ section.pgAdmin {
     @include box-shadow(1px 1px 6px #ccc);
   }
 }
+
 div.credentialRow {
   @include display-flex;
   @include flex-direction(row);
