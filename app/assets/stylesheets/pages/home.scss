@@ -315,3 +315,8 @@ input {
   margin-bottom:10px;
   font-size: 12px;
 }
+
+div.dataDefinitionsTools {
+  @include display-flex;
+  @include justify-content(space-between);
+}
