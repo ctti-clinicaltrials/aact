@@ -6,7 +6,5 @@ class PagesController < ApplicationController
 
   def snapshot_archive
     @snapshots = Date.today..90.days.ago
-
-    binding.pry
   end
 end
