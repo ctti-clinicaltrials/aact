@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AACT2 API Doc</title>
+
+  <link rel="stylesheet" media="screen" href="/stylesheets/swaggerui/typography.css" />
+  <link rel="stylesheet" media="screen" href="/stylesheets/swaggerui/reset.css" />
+  <link rel="stylesheet" media="screen" href="/stylesheets/swaggerui/screen.css" />
+  <link rel="stylesheet" media="print" href="/stylesheets/swaggerui/reset.css" />
+  <link rel="stylesheet" media="print" href="/stylesheets/swaggerui/print.css" />
+
+  <script src="/javascripts/swaggerui/jquery-1.8.0.min.js"></script>
+  <script src="/javascripts/swaggerui/jquery.ba-bbq.min.js"></script>
+  <script src="/javascripts/swaggerui/jquery.slideto.min.js"></script>
+  <script src="/javascripts/swaggerui/jquery.wiggle.min.js"></script>
+  <script src="/javascripts/swaggerui/handlebars-2.0.0.js"></script>
+  <script src="/javascripts/swaggerui/highlight.7.3.pack.js"></script>
+  <script src="/javascripts/swaggerui/jsoneditor.min.js"></script>
+  <script src="/javascripts/swaggerui/marked.js"></script>
+  <script src="/javascripts/swaggerui/swagger-oauth.js"></script>
+  <script src="/javascripts/swaggerui/underscore-min.js"></script>
+  <script src="/javascripts/swaggerui/backbone-min.js"></script>
+  <script src="/javascripts/swagger-ui.min.js"></script>
+
+  <%= csrf_meta_tags %>
+  <script type="text/javascript">
+	$(function () {
+    loadSwaggerUi();
+
+    function loadSwaggerUi() {
+      window.swaggerUi = new SwaggerUi({
+        url: "<%= "/api/v1/swagger_doc" -%>",
+        dom_id: "swagger-ui-container",
+        validatorUrl: null,
+        supportHeaderParams: true,
+        supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+        onComplete: function(swaggerApi, swaggerUi){
+          $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+        },
+        onFailure: function(data) {
+          if('console' in window) {
+            console.log("Unable to Load SwaggerUI");
+            console.log(data);
+          }
+        },
+        docExpansion: "none",
+        apisSorter: "alpha",
+        showRequestHeaders: false
+      });
+      window.swaggerUi.load();
+    }
+
+  });
+</script>
+</head>
+
+<body class="swagger-section container-fluid" id="basic_content">
+  <div id="message-bar" class="swagger-ui-wrap">
+    &nbsp;
+  </div>
+
+  <div id="swagger-ui-container" class="swagger-ui-wrap">
+  </div>
+</body>
+</html>
