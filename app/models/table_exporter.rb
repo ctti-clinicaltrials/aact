@@ -76,7 +76,7 @@ class TableExporter
         string << row
       end
     end
-    string.gsub(/\"\"/, "")
+    string.gsub(/\"\"/, '').gsub(/\n\s/, '')
   end
 
   def cleanup_tempfiles!

@@ -301,3 +301,17 @@ div.credentialRow {
     padding: 10px;
   }
 }
+
+td, th {
+  padding:10px;
+  border:solid 1px #eee;
+  font-size: 14px;
+}
+
+input {
+  border:solid 1px #ccc;
+  border-radius: 5px;
+  padding:7px 14px;
+  margin-bottom:10px;
+  font-size: 12px;
+}
