@@ -2,16 +2,18 @@
 -- PostgreSQL database dump
 --
 
+<<<<<<< HEAD
 -- Dumped from database version 9.5.3
 -- Dumped by pg_dump version 9.5.3
 
+=======
+>>>>>>> origin/master
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -55,7 +57,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: baseline_measures; Type: TABLE; Schema: public; Owner: -
+-- Name: baseline_measures; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE baseline_measures (
@@ -99,7 +101,7 @@ ALTER SEQUENCE baseline_measures_id_seq OWNED BY baseline_measures.id;
 
 
 --
--- Name: brief_summaries; Type: TABLE; Schema: public; Owner: -
+-- Name: brief_summaries; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE brief_summaries (
@@ -129,7 +131,7 @@ ALTER SEQUENCE brief_summaries_id_seq OWNED BY brief_summaries.id;
 
 
 --
--- Name: browse_conditions; Type: TABLE; Schema: public; Owner: -
+-- Name: browse_conditions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE browse_conditions (
@@ -161,7 +163,7 @@ ALTER SEQUENCE browse_conditions_id_seq OWNED BY browse_conditions.id;
 
 
 --
--- Name: browse_interventions; Type: TABLE; Schema: public; Owner: -
+-- Name: browse_interventions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE browse_interventions (
@@ -193,7 +195,7 @@ ALTER SEQUENCE browse_interventions_id_seq OWNED BY browse_interventions.id;
 
 
 --
--- Name: conditions; Type: TABLE; Schema: public; Owner: -
+-- Name: conditions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE conditions (
@@ -225,7 +227,7 @@ ALTER SEQUENCE conditions_id_seq OWNED BY conditions.id;
 
 
 --
--- Name: data_definitions; Type: TABLE; Schema: public; Owner: -
+-- Name: data_definitions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE data_definitions (
@@ -263,7 +265,7 @@ ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
 
 
 --
--- Name: derived_values; Type: TABLE; Schema: public; Owner: -
+-- Name: derived_values; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE derived_values (
@@ -305,7 +307,7 @@ ALTER SEQUENCE derived_values_id_seq OWNED BY derived_values.id;
 
 
 --
--- Name: design_validations; Type: TABLE; Schema: public; Owner: -
+-- Name: design_validations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE design_validations (
@@ -337,7 +339,7 @@ ALTER SEQUENCE design_validations_id_seq OWNED BY design_validations.id;
 
 
 --
--- Name: designs; Type: TABLE; Schema: public; Owner: -
+-- Name: designs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE designs (
@@ -375,7 +377,7 @@ ALTER SEQUENCE designs_id_seq OWNED BY designs.id;
 
 
 --
--- Name: detailed_descriptions; Type: TABLE; Schema: public; Owner: -
+-- Name: detailed_descriptions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE detailed_descriptions (
@@ -405,7 +407,7 @@ ALTER SEQUENCE detailed_descriptions_id_seq OWNED BY detailed_descriptions.id;
 
 
 --
--- Name: drop_withdrawals; Type: TABLE; Schema: public; Owner: -
+-- Name: drop_withdrawals; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE drop_withdrawals (
@@ -442,7 +444,7 @@ ALTER SEQUENCE drop_withdrawals_id_seq OWNED BY drop_withdrawals.id;
 
 
 --
--- Name: eligibilities; Type: TABLE; Schema: public; Owner: -
+-- Name: eligibilities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE eligibilities (
@@ -478,7 +480,7 @@ ALTER SEQUENCE eligibilities_id_seq OWNED BY eligibilities.id;
 
 
 --
--- Name: expected_groups; Type: TABLE; Schema: public; Owner: -
+-- Name: expected_groups; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE expected_groups (
@@ -514,7 +516,7 @@ ALTER SEQUENCE expected_groups_id_seq OWNED BY expected_groups.id;
 
 
 --
--- Name: expected_outcomes; Type: TABLE; Schema: public; Owner: -
+-- Name: expected_outcomes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE expected_outcomes (
@@ -550,7 +552,7 @@ ALTER SEQUENCE expected_outcomes_id_seq OWNED BY expected_outcomes.id;
 
 
 --
--- Name: facilities; Type: TABLE; Schema: public; Owner: -
+-- Name: facilities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE facilities (
@@ -597,7 +599,7 @@ ALTER SEQUENCE facilities_id_seq OWNED BY facilities.id;
 
 
 --
--- Name: groups; Type: TABLE; Schema: public; Owner: -
+-- Name: groups; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE groups (
@@ -635,7 +637,7 @@ ALTER SEQUENCE groups_id_seq OWNED BY groups.id;
 
 
 --
--- Name: intervention_arm_group_labels; Type: TABLE; Schema: public; Owner: -
+-- Name: intervention_arm_group_labels; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE intervention_arm_group_labels (
@@ -668,7 +670,7 @@ ALTER SEQUENCE intervention_arm_group_labels_id_seq OWNED BY intervention_arm_gr
 
 
 --
--- Name: intervention_other_names; Type: TABLE; Schema: public; Owner: -
+-- Name: intervention_other_names; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE intervention_other_names (
@@ -701,7 +703,7 @@ ALTER SEQUENCE intervention_other_names_id_seq OWNED BY intervention_other_names
 
 
 --
--- Name: interventions; Type: TABLE; Schema: public; Owner: -
+-- Name: interventions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE interventions (
@@ -735,7 +737,7 @@ ALTER SEQUENCE interventions_id_seq OWNED BY interventions.id;
 
 
 --
--- Name: keywords; Type: TABLE; Schema: public; Owner: -
+-- Name: keywords; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE keywords (
@@ -767,7 +769,7 @@ ALTER SEQUENCE keywords_id_seq OWNED BY keywords.id;
 
 
 --
--- Name: links; Type: TABLE; Schema: public; Owner: -
+-- Name: links; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE links (
@@ -798,7 +800,7 @@ ALTER SEQUENCE links_id_seq OWNED BY links.id;
 
 
 --
--- Name: load_events; Type: TABLE; Schema: public; Owner: -
+-- Name: load_events; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE load_events (
@@ -835,7 +837,7 @@ ALTER SEQUENCE load_events_id_seq OWNED BY load_events.id;
 
 
 --
--- Name: location_countries; Type: TABLE; Schema: public; Owner: -
+-- Name: location_countries; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE location_countries (
@@ -866,7 +868,7 @@ ALTER SEQUENCE location_countries_id_seq OWNED BY location_countries.id;
 
 
 --
--- Name: milestones; Type: TABLE; Schema: public; Owner: -
+-- Name: milestones; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE milestones (
@@ -904,7 +906,7 @@ ALTER SEQUENCE milestones_id_seq OWNED BY milestones.id;
 
 
 --
--- Name: outcome_analyses; Type: TABLE; Schema: public; Owner: -
+-- Name: outcome_analyses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE outcome_analyses (
@@ -956,7 +958,7 @@ ALTER SEQUENCE outcome_analyses_id_seq OWNED BY outcome_analyses.id;
 
 
 --
--- Name: outcome_measures; Type: TABLE; Schema: public; Owner: -
+-- Name: outcome_measures; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE outcome_measures (
@@ -1002,7 +1004,7 @@ ALTER SEQUENCE outcome_measures_id_seq OWNED BY outcome_measures.id;
 
 
 --
--- Name: outcomes; Type: TABLE; Schema: public; Owner: -
+-- Name: outcomes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE outcomes (
@@ -1046,7 +1048,7 @@ ALTER SEQUENCE outcomes_id_seq OWNED BY outcomes.id;
 
 
 --
--- Name: overall_officials; Type: TABLE; Schema: public; Owner: -
+-- Name: overall_officials; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE overall_officials (
@@ -1078,7 +1080,7 @@ ALTER SEQUENCE overall_officials_id_seq OWNED BY overall_officials.id;
 
 
 --
--- Name: oversight_authorities; Type: TABLE; Schema: public; Owner: -
+-- Name: oversight_authorities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE oversight_authorities (
@@ -1108,7 +1110,7 @@ ALTER SEQUENCE oversight_authorities_id_seq OWNED BY oversight_authorities.id;
 
 
 --
--- Name: participant_flows; Type: TABLE; Schema: public; Owner: -
+-- Name: participant_flows; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE participant_flows (
@@ -1141,7 +1143,7 @@ ALTER SEQUENCE participant_flows_id_seq OWNED BY participant_flows.id;
 
 
 --
--- Name: pma_mappings; Type: TABLE; Schema: public; Owner: -
+-- Name: pma_mappings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE pma_mappings (
@@ -1176,7 +1178,7 @@ ALTER SEQUENCE pma_mappings_id_seq OWNED BY pma_mappings.id;
 
 
 --
--- Name: pma_records; Type: TABLE; Schema: public; Owner: -
+-- Name: pma_records; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE pma_records (
@@ -1237,7 +1239,7 @@ ALTER SEQUENCE pma_records_id_seq OWNED BY pma_records.id;
 
 
 --
--- Name: reported_event_overviews; Type: TABLE; Schema: public; Owner: -
+-- Name: reported_event_overviews; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE reported_event_overviews (
@@ -1270,7 +1272,7 @@ ALTER SEQUENCE reported_event_overviews_id_seq OWNED BY reported_event_overviews
 
 
 --
--- Name: reported_events; Type: TABLE; Schema: public; Owner: -
+-- Name: reported_events; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE reported_events (
@@ -1316,7 +1318,7 @@ ALTER SEQUENCE reported_events_id_seq OWNED BY reported_events.id;
 
 
 --
--- Name: responsible_parties; Type: TABLE; Schema: public; Owner: -
+-- Name: responsible_parties; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE responsible_parties (
@@ -1349,7 +1351,7 @@ ALTER SEQUENCE responsible_parties_id_seq OWNED BY responsible_parties.id;
 
 
 --
--- Name: result_agreements; Type: TABLE; Schema: public; Owner: -
+-- Name: result_agreements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE result_agreements (
@@ -1383,7 +1385,7 @@ ALTER SEQUENCE result_agreements_id_seq OWNED BY result_agreements.id;
 
 
 --
--- Name: result_contacts; Type: TABLE; Schema: public; Owner: -
+-- Name: result_contacts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE result_contacts (
@@ -1418,7 +1420,7 @@ ALTER SEQUENCE result_contacts_id_seq OWNED BY result_contacts.id;
 
 
 --
--- Name: result_details; Type: TABLE; Schema: public; Owner: -
+-- Name: result_details; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE result_details (
@@ -1451,7 +1453,7 @@ ALTER SEQUENCE result_details_id_seq OWNED BY result_details.id;
 
 
 --
--- Name: reviews; Type: TABLE; Schema: public; Owner: -
+-- Name: reviews; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE reviews (
@@ -1485,7 +1487,7 @@ ALTER SEQUENCE reviews_id_seq OWNED BY reviews.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE schema_migrations (
@@ -1494,7 +1496,7 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: search_results; Type: TABLE; Schema: public; Owner: -
+-- Name: search_results; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE search_results (
@@ -1529,7 +1531,7 @@ ALTER SEQUENCE search_results_id_seq OWNED BY search_results.id;
 
 
 --
--- Name: secondary_ids; Type: TABLE; Schema: public; Owner: -
+-- Name: secondary_ids; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE secondary_ids (
@@ -1559,7 +1561,7 @@ ALTER SEQUENCE secondary_ids_id_seq OWNED BY secondary_ids.id;
 
 
 --
--- Name: sponsors; Type: TABLE; Schema: public; Owner: -
+-- Name: sponsors; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sponsors (
@@ -1591,7 +1593,7 @@ ALTER SEQUENCE sponsors_id_seq OWNED BY sponsors.id;
 
 
 --
--- Name: statistics; Type: TABLE; Schema: public; Owner: -
+-- Name: statistics; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE statistics (
@@ -1627,7 +1629,7 @@ ALTER SEQUENCE statistics_id_seq OWNED BY statistics.id;
 
 
 --
--- Name: studies; Type: TABLE; Schema: public; Owner: -
+-- Name: studies; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE studies (
@@ -1683,7 +1685,7 @@ CREATE TABLE studies (
 
 
 --
--- Name: study_references; Type: TABLE; Schema: public; Owner: -
+-- Name: study_references; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE study_references (
@@ -1715,7 +1717,7 @@ ALTER SEQUENCE study_references_id_seq OWNED BY study_references.id;
 
 
 --
--- Name: study_xml_records; Type: TABLE; Schema: public; Owner: -
+-- Name: study_xml_records; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE study_xml_records (
@@ -1747,7 +1749,7 @@ ALTER SEQUENCE study_xml_records_id_seq OWNED BY study_xml_records.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE users (
@@ -2109,7 +2111,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- Name: baseline_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: baseline_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY baseline_measures
@@ -2117,7 +2119,7 @@ ALTER TABLE ONLY baseline_measures
 
 
 --
--- Name: brief_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: brief_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY brief_summaries
@@ -2125,7 +2127,7 @@ ALTER TABLE ONLY brief_summaries
 
 
 --
--- Name: browse_conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: browse_conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY browse_conditions
@@ -2133,7 +2135,7 @@ ALTER TABLE ONLY browse_conditions
 
 
 --
--- Name: browse_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: browse_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY browse_interventions
@@ -2141,7 +2143,7 @@ ALTER TABLE ONLY browse_interventions
 
 
 --
--- Name: conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY conditions
@@ -2149,7 +2151,7 @@ ALTER TABLE ONLY conditions
 
 
 --
--- Name: data_definitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: data_definitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY data_definitions
@@ -2157,7 +2159,7 @@ ALTER TABLE ONLY data_definitions
 
 
 --
--- Name: derived_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: derived_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY derived_values
@@ -2165,7 +2167,7 @@ ALTER TABLE ONLY derived_values
 
 
 --
--- Name: design_validations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: design_validations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY design_validations
@@ -2173,7 +2175,7 @@ ALTER TABLE ONLY design_validations
 
 
 --
--- Name: designs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: designs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY designs
@@ -2181,7 +2183,7 @@ ALTER TABLE ONLY designs
 
 
 --
--- Name: detailed_descriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: detailed_descriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY detailed_descriptions
@@ -2189,7 +2191,7 @@ ALTER TABLE ONLY detailed_descriptions
 
 
 --
--- Name: drop_withdrawals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: drop_withdrawals_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY drop_withdrawals
@@ -2197,7 +2199,7 @@ ALTER TABLE ONLY drop_withdrawals
 
 
 --
--- Name: eligibilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: eligibilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY eligibilities
@@ -2205,7 +2207,7 @@ ALTER TABLE ONLY eligibilities
 
 
 --
--- Name: expected_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: expected_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY expected_groups
@@ -2213,7 +2215,7 @@ ALTER TABLE ONLY expected_groups
 
 
 --
--- Name: expected_outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: expected_outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY expected_outcomes
@@ -2221,7 +2223,7 @@ ALTER TABLE ONLY expected_outcomes
 
 
 --
--- Name: facilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: facilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY facilities
@@ -2229,7 +2231,7 @@ ALTER TABLE ONLY facilities
 
 
 --
--- Name: groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY groups
@@ -2237,7 +2239,7 @@ ALTER TABLE ONLY groups
 
 
 --
--- Name: intervention_arm_group_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: intervention_arm_group_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY intervention_arm_group_labels
@@ -2245,7 +2247,7 @@ ALTER TABLE ONLY intervention_arm_group_labels
 
 
 --
--- Name: intervention_other_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: intervention_other_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY intervention_other_names
@@ -2253,7 +2255,7 @@ ALTER TABLE ONLY intervention_other_names
 
 
 --
--- Name: interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY interventions
@@ -2261,7 +2263,7 @@ ALTER TABLE ONLY interventions
 
 
 --
--- Name: keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY keywords
@@ -2269,7 +2271,7 @@ ALTER TABLE ONLY keywords
 
 
 --
--- Name: links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: links_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY links
@@ -2277,7 +2279,7 @@ ALTER TABLE ONLY links
 
 
 --
--- Name: load_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: load_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY load_events
@@ -2285,7 +2287,7 @@ ALTER TABLE ONLY load_events
 
 
 --
--- Name: location_countries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: location_countries_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY location_countries
@@ -2293,7 +2295,7 @@ ALTER TABLE ONLY location_countries
 
 
 --
--- Name: milestones_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: milestones_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY milestones
@@ -2301,7 +2303,7 @@ ALTER TABLE ONLY milestones
 
 
 --
--- Name: outcome_analyses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_analyses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY outcome_analyses
@@ -2309,7 +2311,7 @@ ALTER TABLE ONLY outcome_analyses
 
 
 --
--- Name: outcome_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY outcome_measures
@@ -2317,7 +2319,7 @@ ALTER TABLE ONLY outcome_measures
 
 
 --
--- Name: outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY outcomes
@@ -2325,7 +2327,7 @@ ALTER TABLE ONLY outcomes
 
 
 --
--- Name: overall_officials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: overall_officials_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY overall_officials
@@ -2333,7 +2335,7 @@ ALTER TABLE ONLY overall_officials
 
 
 --
--- Name: oversight_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: oversight_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY oversight_authorities
@@ -2341,7 +2343,7 @@ ALTER TABLE ONLY oversight_authorities
 
 
 --
--- Name: participant_flows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: participant_flows_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY participant_flows
@@ -2349,7 +2351,7 @@ ALTER TABLE ONLY participant_flows
 
 
 --
--- Name: pma_mappings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pma_mappings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY pma_mappings
@@ -2357,7 +2359,7 @@ ALTER TABLE ONLY pma_mappings
 
 
 --
--- Name: pma_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pma_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY pma_records
@@ -2365,7 +2367,7 @@ ALTER TABLE ONLY pma_records
 
 
 --
--- Name: reported_event_overviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reported_event_overviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY reported_event_overviews
@@ -2373,7 +2375,7 @@ ALTER TABLE ONLY reported_event_overviews
 
 
 --
--- Name: reported_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reported_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY reported_events
@@ -2381,7 +2383,7 @@ ALTER TABLE ONLY reported_events
 
 
 --
--- Name: responsible_parties_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: responsible_parties_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY responsible_parties
@@ -2389,7 +2391,7 @@ ALTER TABLE ONLY responsible_parties
 
 
 --
--- Name: result_agreements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: result_agreements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY result_agreements
@@ -2397,7 +2399,7 @@ ALTER TABLE ONLY result_agreements
 
 
 --
--- Name: result_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: result_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY result_contacts
@@ -2405,7 +2407,7 @@ ALTER TABLE ONLY result_contacts
 
 
 --
--- Name: result_details_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: result_details_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY result_details
@@ -2413,7 +2415,7 @@ ALTER TABLE ONLY result_details
 
 
 --
--- Name: reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY reviews
@@ -2421,7 +2423,7 @@ ALTER TABLE ONLY reviews
 
 
 --
--- Name: search_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: search_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY search_results
@@ -2429,7 +2431,7 @@ ALTER TABLE ONLY search_results
 
 
 --
--- Name: secondary_ids_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: secondary_ids_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY secondary_ids
@@ -2437,7 +2439,7 @@ ALTER TABLE ONLY secondary_ids
 
 
 --
--- Name: sponsors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sponsors_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY sponsors
@@ -2445,7 +2447,7 @@ ALTER TABLE ONLY sponsors
 
 
 --
--- Name: statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY statistics
@@ -2453,7 +2455,7 @@ ALTER TABLE ONLY statistics
 
 
 --
--- Name: study_references_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: study_references_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY study_references
@@ -2461,7 +2463,7 @@ ALTER TABLE ONLY study_references
 
 
 --
--- Name: study_xml_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: study_xml_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY study_xml_records
@@ -2469,7 +2471,7 @@ ALTER TABLE ONLY study_xml_records
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -2477,70 +2479,70 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_facilities_on_nct_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_facilities_on_nct_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_facilities_on_nct_id ON facilities USING btree (nct_id);
 
 
 --
--- Name: index_outcome_measures_on_title; Type: INDEX; Schema: public; Owner: -
+-- Name: index_outcome_measures_on_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_outcome_measures_on_title ON outcome_measures USING btree (title);
 
 
 --
--- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_outcomes_on_nct_id ON outcomes USING btree (nct_id);
 
 
 --
--- Name: index_reported_events_on_event_type; Type: INDEX; Schema: public; Owner: -
+-- Name: index_reported_events_on_event_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_reported_events_on_event_type ON reported_events USING btree (event_type);
 
 
 --
--- Name: index_reported_events_on_nct_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_reported_events_on_nct_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_reported_events_on_nct_id ON reported_events USING btree (nct_id);
 
 
 --
--- Name: index_reported_events_on_subjects_affected; Type: INDEX; Schema: public; Owner: -
+-- Name: index_reported_events_on_subjects_affected; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_reported_events_on_subjects_affected ON reported_events USING btree (subjects_affected);
 
 
 --
--- Name: index_studies_on_nct_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_studies_on_nct_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);

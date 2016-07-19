@@ -5,6 +5,13 @@ namespace :simple_sanity_check do
     file_path = "#{Rails.root}/tmp/sanity_check.txt"
 
     column_max_lengths = table_names.inject({}) do |table_hash, table_name|
+      blacklist = %w(
+        search_results
+        derived_values
+      )
+
+      next table_hash if blacklist.include?(table_name)
+
       @table_name = table_name
 
       if table_name == 'study_references'
@@ -13,7 +20,7 @@ namespace :simple_sanity_check do
 
       begin
         column_counts = @table_name.classify.constantize.column_names.inject({}) do |column_hash, column|
-          column_hash[column] = connection.execute("select max(length('#{column}')) from \"#{table_name}\"").values.flatten.first
+          column_hash[column] = connection.execute("select max(length(#{column}::text)) from \"#{table_name}\"").values.flatten.first
           column_hash
         end
       rescue NameError
@@ -40,7 +47,7 @@ namespace :simple_sanity_check do
 
 
     s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
-    obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("#{Date.today}-sanity-check.txt")
+    obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("sanity_checks/#{Date.today}-sanity-check.txt")
     obj.upload_file(file_path)
   end
 end

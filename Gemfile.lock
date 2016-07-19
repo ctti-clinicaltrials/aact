@@ -20,6 +20,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.9.5)
+      activemodel (>= 3.2)
     activejob (4.2.6)
       activesupport (= 4.2.6)
       globalid (>= 0.3.0)
@@ -40,8 +42,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     api-pagination (4.3.0)
-    apipie-rails (0.3.6)
-      json
     appsignal (1.1.5)
       rack
       thread_safe
@@ -55,6 +55,10 @@ GEM
       jmespath (~> 1.0)
     aws-sdk-resources (2.2.28)
       aws-sdk-core (= 2.2.28)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -81,11 +85,15 @@ GEM
       json
     choice (0.2.0)
     coderay (1.1.1)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.0.2)
     connection_pool (2.2.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.5.3)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
     docile (1.1.5)
     domain_name (0.5.20160310)
@@ -94,8 +102,10 @@ GEM
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
+    enumerable-lazy (0.0.1)
     enumerize (1.0.0)
       activesupport (>= 3.2)
+    equalizer (0.0.11)
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.7.0)
@@ -110,11 +120,33 @@ GEM
       i18n
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    grape (0.16.2)
+      activesupport
+      builder
+      hashie (>= 2.1.0)
+      multi_json (>= 1.3.2)
+      multi_xml (>= 0.5.2)
+      mustermann19 (~> 0.4.3)
+      rack (>= 1.3.0)
+      rack-accept
+      virtus (>= 1.0.0)
+    grape-active_model_serializers (1.3.2)
+      active_model_serializers (>= 0.9.0)
+      grape
+    grape-kaminari (0.1.9)
+      grape
+      kaminari
+    grape-swagger (0.22.0)
+      grape (>= 0.12.0)
     hashdiff (0.3.0)
+    hashie (3.4.4)
+    hashie-forbidden_attributes (0.1.1)
+      hashie (>= 3.0)
     high_voltage (3.0.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
+    ice_nine (0.11.2)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -133,8 +165,6 @@ GEM
       launchy (~> 2.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    lorax (0.2.0)
-      nokogiri (>= 1.4.0)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -142,6 +172,9 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.0)
+    multi_xml (0.5.5)
+    mustermann19 (0.4.4)
+      enumerable-lazy
     netrc (0.11.0)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -165,6 +198,9 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
+    rack-cors (0.4.0)
     rack-mini-profiler (0.9.9.2)
       rack (>= 1.2.0)
     rack-protection (1.5.3)
@@ -283,6 +319,11 @@ GEM
     unf_ext (0.0.7.2)
     uniform_notifier (1.9.0)
     vcr (3.0.0)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     webmock (2.0.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -294,9 +335,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.9.0)
   activerecord-import
   api-pagination
-  apipie-rails
   appsignal
   autoprefixer-rails
   awesome_print
@@ -311,13 +352,17 @@ DEPENDENCIES
   factory_girl_rails
   flutie
   formulaic
+  grape (>= 0.10.0)
+  grape-active_model_serializers
+  grape-kaminari
+  grape-swagger
+  hashie-forbidden_attributes
   high_voltage
   jbuilder
   jquery-rails
   kaminari
   launchy
   letter_opener
-  lorax
   nokogiri-diff
   normalize-rails (~> 3.0.0)
   pg
@@ -325,6 +370,8 @@ DEPENDENCIES
   pry-rails
   puma
   quiet_assets
+  rack
+  rack-cors
   rack-mini-profiler
   rack-timeout
   rails (~> 4.2.0)
@@ -348,5 +395,8 @@ DEPENDENCIES
   vcr
   webmock
 
+RUBY VERSION
+   ruby 2.2.3p173
+
 BUNDLED WITH
-   1.11.2
+   1.12.5
