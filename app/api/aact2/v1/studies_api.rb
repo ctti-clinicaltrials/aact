@@ -3,7 +3,9 @@ module AACT2
     class StudiesAPI < Grape::API
       desc '[GET] all studies' do
         detail <<-EOS
-        This endpoint is paginated with 500 records per page by default.
+        <p>This endpoint is paginated with 500 records per page by default.</p>
+        <p>Response Example:</p>
+        <code>
         [
           {
             nct_id: "NCT00836407",
@@ -101,6 +103,7 @@ module AACT2
           },
           ...
         ]
+        </code>
         EOS
         named 'Show a specific study'
         failure [
@@ -114,6 +117,9 @@ module AACT2
 
       desc '[GET] study by nct_id' do
         detail <<-EOS
+          <p>Returns a single Study based on its nct_id.</p>
+          <p>Example Response:</p>
+          <code>
           {
             study: {
               nct_id: "NCT00836407",
@@ -163,6 +169,7 @@ module AACT2
               updated_at: "2016-06-20T21:32:48Z"
             }
           }
+          </code>
         EOS
         named 'Show a specific study'
         failure [
@@ -185,39 +192,42 @@ module AACT2
 
       desc '[GET] study counts by year' do
         detail <<-EOS
+        <p>Example Response:</p>
+        <code>
         {
-          1978: 1,
-          1983: 1,
-          1987: 1,
-          1988: 1,
-          1989: 2,
-          1990: 1,
-          1991: 2,
-          1993: 1,
-          1994: 1,
-          1995: 4,
-          1996: 6,
-          1997: 15,
-          1998: 22,
-          1999: 28,
-          2000: 31,
-          2001: 37,
-          2002: 42,
-          2003: 63,
-          2004: 81,
-          2005: 80,
-          2006: 121,
-          2007: 127,
-          2008: 135,
-          2009: 140,
-          2010: 122,
-          2011: 178,
-          2012: 159,
-          2013: 188,
-          2014: 213,
-          2015: 209,
-          2016: 137,
+          "1978": 1,
+          "1983": 1,
+          "1987": 1,
+          "1988": 1,
+          "1989": 2,
+          "1990": 1,
+          "1991": 2,
+          "1993": 1,
+          "1994": 1,
+          "1995": 4,
+          "1996": 6,
+          "1997": 15,
+          "1998": 22,
+          "1999": 28,
+          "2000": 31,
+          "2001": 37,
+          "2002": 42,
+          "2003": 63,
+          "2004": 81,
+          "2005": 80,
+          "2006": 121,
+          "2007": 127,
+          "2008": 135,
+          "2009": 140,
+          "2010": 122,
+          "2011": 178,
+          "2012": 159,
+          "2013": 188,
+          "2014": 213,
+          "2015": 209,
+          "2016": 137,
         }
+        </code>
         EOS
         named 'Show study counts by year'
         failure [
