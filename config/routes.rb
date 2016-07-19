@@ -1,18 +1,9 @@
 Rails.application.routes.draw do
-  apipie
   require 'sidekiq/web'
+  mount AACT2::Base, at: '/'
   mount Sidekiq::Web => '/sidekiq'
-
+  get "api_docs" => "swaggerui#index"
   root "pages#home"
 
   get "/snapshot_archive" => "pages#snapshot_archive"
-
-  namespace :api, defaults: { format: :json } do
-    namespace :studies do
-      resources :counts_by_year, only: :index
-    end
-
-    resources :studies, param: :nct_id, only: [:show, :index]
-  end
-
 end
