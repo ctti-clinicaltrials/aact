@@ -1,14 +1,22 @@
 <section class="rAccess">
   <b>R</b>
-  <p>Make sure that you have R and RStudio installed on your machine.</p>
-  <p>Run the following commands using the latest AACT 2.0 connection information</p>
+  <p>If R and RStudio are not already installed, install from these two links:</p>
 
+  <p><a href="https://cran.r-project.org/">Install R from your closest mirror</a></p>
+  <p><a href="https://www.rstudio.com/products/rstudio/">Install RStudio</a></p>
+
+  <p>Once R and RStudio are installed, run the following commands using the latest AACT 2.0 connection information</p>
   <pre>
-    <code>install.packages("RPostgreSQL")</code>
-    <code>library(RPostgreSQL)</code>
-    <code>drv <- dbDriver("PostgreSQL")</code>
-    <code>con <- dbConnect(drv, dbname="AACT2_Public_dbname",host="AACT2_host",port=5432,user="AACT2_Public_user",password="AACT2_Public_password")</code>
-    <code>stuff <- dbGetQuery(con,"select distinct study_type from studies")</code>
-    <code>write.csv(stuff, file='r.csv')</code>
+    <code>> install.packages("RPostgreSQL")</code>
+    <code class="output">trying URL 'https://cran.rstudio.com/bin/macosx/mavericks/contrib/3.3/RPostgreSQL_0.4-1.tgz'</code>
+    <code class="output">Content type 'application/x-gzip' length 306320 bytes (299 KB)</code>
+    <code class="output">==================================================</code>
+    <code class="output">downloaded 299 KB</code>
+    <code>> library(RPostgreSQL)</code>
+    <code class="output">Loading required package: DBI</code>
+    <code>> drv <- dbDriver('PostgreSQL')</code>
+    <code>> con <- dbConnect(drv, dbname="<%= ENV["RDS_DB_READONLY_DBNAME"] %>",host="<%= ENV["RDS_DB_HOSTNAME"] %>",port=5432,user="<%= ENV["RDS_DB_READONLY_USERNAME"] %>",password="<%= ENV["RDS_DB_READONLY_PASSWORD"] %>")</code>
+    <code>> aact2_sample <- dbGetQuery(con,"select distinct study_type from studies")</code>
+    <code>> write.csv(aact2_sample, file='aact2_sample.csv')</code>
   </pre>
 </section>

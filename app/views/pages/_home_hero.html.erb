@@ -1,34 +1,38 @@
 
 <section class="homeHero">
+
+  <%= image_tag("bg2.png", class:"homeBg") %>
+
   <div class="wrap">
     <div class="heroHead">
-      <h1>AACT2</h1>
+      <div class="logoBlock">
+        <h1>AACT<span>2</span></h1>
+        <%= image_tag("ab_logo.jpg", class:"logo") %>
+      </div>
 
       <nav>
-        <a href="/api_docs" class="navItem" target="_blank">
-          <i class="fa fa-book"></i>
-          <span>API Documentation</span>
+        <a href="#access" class="navItem">
+          <i class="fa fa-plug"></i>
+          <span>Connect to AACT</span>
         </a>
-        <a href="https://s3-us-west-2.amazonaws.com/aact2/csv-export-2016-06-28" class="navItem" target="_blank">
+        <a href="#snapshots" class="navItem">
           <i class="fa fa-download"></i>
-          <span>Download database</span>
+          <span>Database Download</span>
         </a>
         <a href="https://github.com/SturdyCo/aact2" target="_blank" class="navItem">
-          <i class="fa fa-github"></i>
-          <span>Clone on Github</span>
+          <i class="fa fa-info"></i>
+          <span>Learn About AACT</span>
         </a>
       </nav>
 
     </div>
 
-    <h2>AACT2 makes accessing, analyzing, and updating clinical trial data easy.</h2>
+    <h2>Here to make clinical trials data easier to access and understand.</h2>
 
-    <p>
-      It's an open source project maintained by <a href="https://www.dtmi.duke.edu/what-we-do/clinical-trials-transformation-initiative-ctti" target="_blank">CTTI</a> at Duke University. There are currently
-      <%= number_with_delimiter(@studyCount) %> records in the database<% if @lastUpdate %>, which was last updated on <%= @lastUpdate.strftime("%B %d, %Y") %><% end %>.</p>
+    <p>The Aggregate Analysis of ClincalTrials.gov (AACT Version 2.0) provides direct and downloadable access to publicly available data from ClinicalTrials.gov.</p>
 
-    <a class="button" href="#overview" target="_blank">Get Started</a>
-    <a class="button" href="https://s3-us-west-2.amazonaws.com/aact2/csv-export-2016-06-28" target="_blank">Download Database</a>
+    <a class="button" href="#access">Connect to AACT2</a>
+    <a class="button" href="#snapshots">Database Download</a>
   </div>
 
 </section>

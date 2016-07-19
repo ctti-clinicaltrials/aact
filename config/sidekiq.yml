@@ -3,4 +3,5 @@
 :queues:
   - daily_import
   - table_export
+  - full_import
 

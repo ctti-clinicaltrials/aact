@@ -60,18 +60,19 @@ h1 {
   font-size: 2.8rem;
 
   @include MQ(S) {
-    font-size: 5rem;
+    font-size: 3.8rem;
   }
 }
 
 h2 {
+  color: $primary;
   font-size: 1.8rem;
   @include MQ(S) {
     font-size: 2.4rem;
   }
 }
 
-h3 {  font-size: 2.3rem;  }
+h3 {  font-size: 1.8rem;  }
 
 h4 {  font-size: 1.5rem;  }
 
@@ -84,7 +85,7 @@ ul {
 }
 
 pre {
-  background-color: #e4e4e4;
+  background-color: rgb(29, 31, 33);
   padding: 20px;
   border-radius: $border-radius;
   margin: 20px 0px;
@@ -92,12 +93,18 @@ pre {
   code {
     font-size: 1rem;
     max-width: 100%;
-    margin-bottom: 20px;
+    padding-top: 10px;
     display: block;
-    color: #333;
+    color: rgb(248, 248, 248);
 
-    &:last-of-type {
-      margin-bottom: 0px;
+    &.output {
+      padding: 0px;
+      padding-left: 20px;
+      color: rgb(173, 198, 238);
+
+    }
+    &:first-of-type {
+      padding-top: 0px;
     }
 
   }

@@ -28,11 +28,11 @@ function checkScroll() {
   if(scrollTop > homeContent) {
     console.log("fix");
     $('.docsMenu').addClass('fixed');
-    $('.docsMenu').css({left: leftEdge});
+    $('.docsMenu').css({left: leftEdge+20});
   } else {
     console.log("unfix");
     $('.docsMenu').removeClass('fixed');
-    $('.docsMenu').css({left: 0});
+    $('.docsMenu').css({left: "20px"});
 
   }
 

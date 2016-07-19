@@ -5,12 +5,5 @@ Rails.application.routes.draw do
   get "apiexplorer" => "swaggerui#index"
   root "pages#home"
 
-  # namespace :api, defaults: { format: :json } do
-  #   namespace :studies do
-  #     resources :counts_by_year, only: :index
-  #   end
-  #
-  #   resources :studies, param: :nct_id, only: [:show, :index]
-  # end
-
+  get "/snapshot_archive" => "pages#snapshot_archive"
 end
