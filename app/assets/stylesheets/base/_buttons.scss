@@ -22,6 +22,7 @@ button, input[type="submit"], a.button {
   &:hover {
     color: $button-text-color;
     background-color: $button-hover-color;
+    border-color: $button-hover-color;
   }
 
   &:active {
