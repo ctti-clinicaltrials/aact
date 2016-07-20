@@ -97,7 +97,7 @@ class Study < ActiveRecord::Base
 
   def create
     update(attribs)
-    ExpectedGroup.create_all_from(opts)
+    DesignGroup.create_all_from(opts)
     Group.create_all_from(opts)
     Outcome.create_all_from(opts.merge(:groups=>self.groups))
     Milestone.create_all_from(opts.merge(:groups=>self.groups))
