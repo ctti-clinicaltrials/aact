@@ -2,12 +2,16 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.5.3
+-- Dumped by pg_dump version 9.5.3
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -337,8 +341,7 @@ ALTER SEQUENCE design_groups_id_seq OWNED BY design_groups.id;
 
 
 --
--- Name: design_validations; Type: TABLE; Schema: public; Owner: -
-
+-- Name: design_validations; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE design_validations (
@@ -511,8 +514,7 @@ ALTER SEQUENCE eligibilities_id_seq OWNED BY eligibilities.id;
 
 
 --
-
--- Name: expected_outcomes; Type: TABLE; Schema: public; Owner: -
+-- Name: expected_outcomes; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE expected_outcomes (
@@ -2171,8 +2173,7 @@ ALTER TABLE ONLY design_groups
 
 
 --
--- Name: design_validations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
-
+-- Name: design_validations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY design_validations
@@ -2212,9 +2213,7 @@ ALTER TABLE ONLY eligibilities
 
 
 --
-
--- Name: expected_outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
-
+-- Name: expected_outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY expected_outcomes
