@@ -1,5 +1,4 @@
-class ExpectedGroup < StudyRelationship
-  # self.table_name = 'design_groups'
+class DesignGroup < StudyRelationship
 
   def self.top_level_label
     '//arm_group'
@@ -7,7 +6,7 @@ class ExpectedGroup < StudyRelationship
 
   def self.create_all_from(opts)
     objects = super
-    ExpectedGroup.import(objects)
+    DesignGroup.import(objects)
   end
 
   def attribs

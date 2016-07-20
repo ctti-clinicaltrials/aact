@@ -24,7 +24,7 @@ class Study < ActiveRecord::Base
 
   has_many :pma_mappings,          :foreign_key => 'nct_id'
   has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :expected_groups,       :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :expected_outcomes,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :groups,                :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
@@ -97,7 +97,7 @@ class Study < ActiveRecord::Base
 
   def create
     update(attribs)
-    ExpectedGroup.create_all_from(opts)
+    DesignGroup.create_all_from(opts)
     Group.create_all_from(opts)
     Outcome.create_all_from(opts.merge(:groups=>self.groups))
     Milestone.create_all_from(opts.merge(:groups=>self.groups))
