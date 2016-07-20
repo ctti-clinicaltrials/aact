@@ -311,7 +311,6 @@ ALTER SEQUENCE derived_values_id_seq OWNED BY derived_values.id;
 CREATE TABLE design_groups (
     id integer NOT NULL,
     ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
     title character varying,
     group_type character varying,
     description text,
@@ -2591,4 +2590,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160718140832');
 INSERT INTO schema_migrations (version) VALUES ('20160718182917');
 
 INSERT INTO schema_migrations (version) VALUES ('20160719180756');
+
+INSERT INTO schema_migrations (version) VALUES ('20160720212026');
 
