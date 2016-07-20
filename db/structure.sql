@@ -305,6 +305,42 @@ ALTER SEQUENCE derived_values_id_seq OWNED BY derived_values.id;
 
 
 --
+-- Name: design_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE design_groups (
+    id integer NOT NULL,
+    ctgov_group_id character varying,
+    ctgov_group_enumerator integer,
+    title character varying,
+    group_type character varying,
+    description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    nct_id character varying
+);
+
+
+--
+-- Name: design_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE design_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: design_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE design_groups_id_seq OWNED BY design_groups.id;
+
+
+--
 -- Name: design_validations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -475,42 +511,6 @@ CREATE SEQUENCE eligibilities_id_seq
 --
 
 ALTER SEQUENCE eligibilities_id_seq OWNED BY eligibilities.id;
-
-
---
--- Name: expected_groups; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE expected_groups (
-    id integer NOT NULL,
-    ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
-    title character varying,
-    group_type character varying,
-    description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    nct_id character varying
-);
-
-
---
--- Name: expected_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE expected_groups_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: expected_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE expected_groups_id_seq OWNED BY expected_groups.id;
 
 
 --
@@ -1676,8 +1676,9 @@ CREATE TABLE studies (
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    plan_to_share_ipd character varying
-);
+    first_received_results_disposition_date date,
+    plan_to_share_ipd character varying,
+    plan_to_share_description character varying
 
 
 --
@@ -1837,6 +1838,13 @@ ALTER TABLE ONLY derived_values ALTER COLUMN id SET DEFAULT nextval('derived_val
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY design_groups ALTER COLUMN id SET DEFAULT nextval('design_groups_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY design_validations ALTER COLUMN id SET DEFAULT nextval('design_validations_id_seq'::regclass);
 
 
@@ -1866,13 +1874,6 @@ ALTER TABLE ONLY drop_withdrawals ALTER COLUMN id SET DEFAULT nextval('drop_with
 --
 
 ALTER TABLE ONLY eligibilities ALTER COLUMN id SET DEFAULT nextval('eligibilities_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY expected_groups ALTER COLUMN id SET DEFAULT nextval('expected_groups_id_seq'::regclass);
 
 
 --
@@ -2163,6 +2164,14 @@ ALTER TABLE ONLY derived_values
 
 
 --
+-- Name: design_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY design_groups
+    ADD CONSTRAINT design_groups_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: design_validations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2200,14 +2209,6 @@ ALTER TABLE ONLY drop_withdrawals
 
 ALTER TABLE ONLY eligibilities
     ADD CONSTRAINT eligibilities_pkey PRIMARY KEY (id);
-
-
---
--- Name: expected_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY expected_groups
-    ADD CONSTRAINT expected_groups_pkey PRIMARY KEY (id);
 
 
 --
@@ -2580,7 +2581,12 @@ INSERT INTO schema_migrations (version) VALUES ('20160608173256');
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
+INSERT INTO schema_migrations (version) VALUES ('20160713192539');
+
 INSERT INTO schema_migrations (version) VALUES ('20160714191041');
 
 INSERT INTO schema_migrations (version) VALUES ('20160718140832');
 
+INSERT INTO schema_migrations (version) VALUES ('20160718182917');
+
+INSERT INTO schema_migrations (version) VALUES ('20160719180756');
