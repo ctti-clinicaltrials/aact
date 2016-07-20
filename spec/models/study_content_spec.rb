@@ -10,10 +10,9 @@ describe Study do
   end
 
   context 'when patient data section does not exist' do
-    it 'should return nil' do
+    it 'should return empty string for sharing ipd value' do
       xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
       study=Study.new({xml: xml, nct_id: 'NCT02260193'}).create
-      #binding.pry
       expect(study.plan_to_share_ipd).to eq('')
     end
   end
