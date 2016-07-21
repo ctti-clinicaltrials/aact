@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :facility_investigator do
-    
+  factory :sanity_check do
   end
+
   factory :study_xml_record do
   end
 

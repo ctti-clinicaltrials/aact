@@ -1493,6 +1493,37 @@ ALTER SEQUENCE reviews_id_seq OWNED BY reviews.id;
 
 
 --
+-- Name: sanity_checks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sanity_checks (
+    id integer NOT NULL,
+    report text NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sanity_checks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sanity_checks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sanity_checks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sanity_checks_id_seq OWNED BY sanity_checks.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2080,6 +2111,13 @@ ALTER TABLE ONLY reviews ALTER COLUMN id SET DEFAULT nextval('reviews_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY sanity_checks ALTER COLUMN id SET DEFAULT nextval('sanity_checks_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY search_results ALTER COLUMN id SET DEFAULT nextval('search_results_id_seq'::regclass);
 
 
@@ -2454,6 +2492,14 @@ ALTER TABLE ONLY reviews
 
 
 --
+-- Name: sanity_checks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sanity_checks
+    ADD CONSTRAINT sanity_checks_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: search_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2622,6 +2668,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160718140832');
 INSERT INTO schema_migrations (version) VALUES ('20160718182917');
 
 INSERT INTO schema_migrations (version) VALUES ('20160719180756');
+
+INSERT INTO schema_migrations (version) VALUES ('20160721150701');
 
 INSERT INTO schema_migrations (version) VALUES ('20160722143257');
 
