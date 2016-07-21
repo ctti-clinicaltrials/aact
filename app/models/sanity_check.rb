@@ -26,31 +26,25 @@ class SanityCheck < ActiveRecord::Base
   end
 
   def generate_column_width_stats(table_name)
-    column_max_lengths = @table_names.inject({}) do |table_hash, table_name|
-      blacklist = %w(
+    blacklist = %w(
         search_results
         derived_values
-      )
+    )
 
-      next table_hash if blacklist.include?(table_name)
+    return if blacklist.include?(table_name)
 
-      @table_name = table_name
+    column_names = @connection.execute("select column_name from information_schema.columns where table_name = '#{table_name}'")
+                              .values.flatten
 
-      if table_name == 'study_references'
-        @table_name = 'references'
+    column_counts = column_names.inject({}) do |column_hash, column|
+      column_hash[column] = {}
+      %w(max min avg).each do |operation|
+        column_hash[column][operation] = @connection.execute("select #{operation}(length(#{column}::text)) from \"#{table_name}\"")
+                                                    .values.flatten.first.to_i
       end
 
-      begin
-        column_counts = @table_name.classify.constantize.column_names.inject({}) do |column_hash, column|
-          column_hash[column] = connection.execute("select max(length(#{column}::text)) from \"#{table_name}\"").values.flatten.first
-          column_hash
-        end
-      rescue NameError
-        puts "skipping table that doesnt have model: #{@table_name}"
-      end
-
-      table_hash[table_name] = column_counts
-      table_hash
+      column_hash
     end
+
   end
 end
