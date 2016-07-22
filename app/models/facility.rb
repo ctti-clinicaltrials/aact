@@ -1,13 +1,18 @@
 class Facility < StudyRelationship
   attr_accessor :coordinates
 
+  has_one :facility_contact, inverse_of: :facility, autosave: true
+
   def self.create_all_from(opts)
     all=opts[:xml]
     results=all.xpath("//location").collect{|wrapper1|
       opts[:wrapper1_xml]=wrapper1
       wrapper1.xpath("facility").collect{|xml|
         opts[:xml]=xml
-        new.create_from(opts)
+        facility = new.create_from(opts)
+        facility_contact = FacilityContact.create_from(opts[:wrapper1_xml])
+        facility.build_facility_contact(facility_contact)
+        facility
       }
     }.flatten!
     if results.nil?
@@ -16,7 +21,7 @@ class Facility < StudyRelationship
       results
     end
 
-    Facility.import(results)
+    Facility.import(results, recursive: true)
   end
 
   def attribs
@@ -27,12 +32,6 @@ class Facility < StudyRelationship
       :zip => get_addr('zip'),
       :country => get_addr('country'),
       :status => get_from_wrapper1('status'),
-      :contact_name => get_from('contact','last_name'),
-      :contact_phone => get_from('contact','phone'),
-      :contact_email => get_from('contact','email'),
-      :contact_backup_name => get_from('contact_backup','last_name'),
-      :contact_backup_phone => get_from('contact_backup','phone'),
-      :contact_backup_email => get_from('contact_backup','email'),
       :investigator_name => get_from('investigator','last_name'),
       :investigator_role => get_from('investigator','role'),
       :latitude => get_latitude,
