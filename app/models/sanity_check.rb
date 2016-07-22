@@ -19,7 +19,7 @@ class SanityCheck < ActiveRecord::Base
     @table_names.inject({}) do |hash, table_name|
       hash[table_name] = {
         row_count: @connection.execute("select count(*) from #{table_name}").values.flatten.first.to_i,
-        column_width_stats: generate_column_width_stats(table_name)
+        column_stats: generate_column_width_stats(table_name)
       }
       hash
     end.to_json
@@ -42,6 +42,7 @@ class SanityCheck < ActiveRecord::Base
         column_hash[column][operation] = @connection.execute("select #{operation}(length(#{column}::text)) from \"#{table_name}\"")
                                                     .values.flatten.first.to_i
       end
+      column_hash[column][:frequent_values] = @connection.execute("select left(#{column}::text, 30) from #{table_name} group by #{column} limit 10").values.flatten
 
       column_hash
     end

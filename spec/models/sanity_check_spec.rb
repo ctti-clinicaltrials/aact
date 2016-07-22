@@ -22,10 +22,10 @@ describe SanityCheck do
     end
 
     it 'should create a sanity check record with the correct column length information' do
-      expect(sanity_check.report.studies.column_width_stats.present?).to eq(true)
-      expect(sanity_check.report.studies.column_width_stats.nct_id.max).to eq(11)
-      expect(sanity_check.report.studies.column_width_stats.nct_id.min).to eq(11)
-      expect(sanity_check.report.studies.column_width_stats.nct_id.avg).to eq(11)
+      expect(sanity_check.report.studies.column_stats.present?).to eq(true)
+      expect(sanity_check.report.studies.column_stats.nct_id.max).to eq(11)
+      expect(sanity_check.report.studies.column_stats.nct_id.min).to eq(11)
+      expect(sanity_check.report.studies.column_stats.nct_id.avg).to eq(11)
     end
   end
 end
