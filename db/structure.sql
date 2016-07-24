@@ -586,7 +586,7 @@ CREATE TABLE facility_contacts (
     backup_name character varying,
     backup_phone character varying,
     backup_email character varying,
-    nct_id integer,
+    nct_id character varying,
     facility_id integer
 );
 

@@ -28,13 +28,14 @@ class Study < ActiveRecord::Base
   has_many :expected_outcomes,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :groups,                :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_analyses,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_conditions,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_interventions,  :foreign_key => 'nct_id', dependent: :delete_all
   has_many :conditions,            :foreign_key => 'nct_id', dependent: :delete_all
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :facilities,            :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :facility_contacts,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :interventions,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :keywords,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all

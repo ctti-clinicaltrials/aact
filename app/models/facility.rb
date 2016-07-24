@@ -1,7 +1,7 @@
 class Facility < StudyRelationship
   attr_accessor :coordinates
 
-  has_one :facility_contact, inverse_of: :facility, autosave: true
+  has_many :facility_contacts, inverse_of: :facility, autosave: true
 
   def self.create_all_from(opts)
     all=opts[:xml]
@@ -10,8 +10,12 @@ class Facility < StudyRelationship
       wrapper1.xpath("facility").collect{|xml|
         opts[:xml]=xml
         facility = new.create_from(opts)
-        facility_contact = FacilityContact.create_from(opts[:wrapper1_xml])
-        facility.build_facility_contact(facility_contact)
+        facility_contacts = FacilityContact.create_all_from(opts[:wrapper1_xml])
+        if facility_contacts.present?
+          facility_contacts.each do |facility_contact|
+            facility.facility_contacts.build(facility_contact.attributes)
+          end
+        end
         facility
       }
     }.flatten!
