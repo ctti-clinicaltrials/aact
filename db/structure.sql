@@ -198,13 +198,13 @@ CREATE TABLE calculated_values (
     enrollment integer,
     results_reported boolean,
     months_to_report_results integer,
-    registered_in_fiscal_year integer,
     number_of_facilities integer,
     number_of_nsae_subjects integer,
     number_of_sae_subjects integer,
     study_rank character varying,
     link_to_study_data character varying,
     nct_id character varying
+    registered_in_calendar_year integer
 );
 
 
