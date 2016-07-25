@@ -3,17 +3,42 @@ class FacilityContact < StudyRelationship
 
   attr_accessor :attribs
 
+  extend Enumerize
+
+  enumerize :contact_type, in: %w(
+    regular
+    backup
+  )
+
   def self.create_all_from(opts)
     nct_id = opts.document.xpath('//nct_id').text
+    results = []
 
-    if opts.xpath('//contact').present?
-      opts.xpath('//contact').map do |contact|
+    if opts.xpath('contact').present?
+      results << opts.xpath('contact').map do |contact|
         fc = new
-        fc.attribs = Hash.from_xml(contact.to_xml)['contact'].merge({'nct_id' => nct_id})
+        fc.attribs = Hash.from_xml(contact.to_xml)['contact'].merge({
+          'nct_id' => nct_id,
+          'contact_type' => 'regular'
+        })
         fc.attribs = fc.sanitize_attribs(fc.attribs)
         fc.create_from(opts)
       end
     end
+
+    if opts.xpath('contact_backup').present?
+      results << opts.xpath('contact_backup').map do |contact|
+        fc = new
+        fc.attribs = Hash.from_xml(contact.to_xml)['contact_backup'].merge({
+          'nct_id' => nct_id,
+          'contact_type' => 'backup'
+        })
+        fc.attribs = fc.sanitize_attribs(fc.attribs)
+        fc.create_from(opts)
+      end
+    end
+
+    results.flatten
   end
 
   def attribs_map
@@ -22,7 +47,8 @@ class FacilityContact < StudyRelationship
       'last_name' => 'name',
       'phone' => 'phone',
       'email' => 'email',
-      'nct_id' => 'nct_id'
+      'nct_id' => 'nct_id',
+      'contact_type' => 'contact_type'
     }
   end
 

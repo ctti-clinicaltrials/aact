@@ -583,10 +583,8 @@ CREATE TABLE facility_contacts (
     name character varying,
     phone character varying,
     email character varying,
-    backup_name character varying,
-    backup_phone character varying,
-    backup_email character varying,
     nct_id character varying,
+    contact_type character varying,
     facility_id integer
 );
 

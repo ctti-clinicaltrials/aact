@@ -4,10 +4,8 @@ class CreateFacilityContacts < ActiveRecord::Migration
       t.string :name
       t.string :phone
       t.string :email
-      t.string :backup_name
-      t.string :backup_phone
-      t.string :backup_email
       t.string :nct_id
+      t.string :contact_type
       t.integer :facility_id
     end
 
