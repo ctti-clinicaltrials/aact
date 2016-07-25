@@ -10,17 +10,20 @@
     https://github.com/calebthompson/title#usage
   %>
   <title><%= title %></title>
-  <script src="https://use.fontawesome.com/b0881aff98.js"></script>
-  <script src="https://use.typekit.net/now5mse.js"></script>
-  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <!-- <script src="https://use.fontawesome.com/b0881aff98.js"></script> -->
+
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid-theme.min.css" />
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
   <%= render "flashes" -%>
   <%= yield %>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script>
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script> -->
+
   <%= render "javascript" %>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.js"></script>
   <%= render "css_overrides" %>
   <footer>
     <nav>
