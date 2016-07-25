@@ -10,8 +10,7 @@ class FacilityContact < StudyRelationship
     backup
   )
 
-  def initialize
-    super
+  def after_initialize
     @attribs = {}
   end
 
