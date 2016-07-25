@@ -11,7 +11,7 @@ class Study < ActiveRecord::Base
   end
 
   self.primary_key = 'nct_id'
-  has_many :reviews,               :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :reviews,                :foreign_key => 'nct_id', dependent: :delete_all
 
   has_one  :brief_summary,          :foreign_key => 'nct_id', dependent: :delete
   has_one  :design,                 :foreign_key => 'nct_id', dependent: :delete
@@ -19,7 +19,7 @@ class Study < ActiveRecord::Base
   has_one  :eligibility,            :foreign_key => 'nct_id', dependent: :delete
   has_one  :participant_flow,       :foreign_key => 'nct_id', dependent: :delete
   has_one  :result_detail,          :foreign_key => 'nct_id', dependent: :delete
-  has_one  :derived_value,          :foreign_key => 'nct_id', dependent: :delete
+  has_one  :calculated_value,       :foreign_key => 'nct_id', dependent: :delete
   has_one  :study_xml_record,       :foreign_key => 'nct_id'
 
   has_many :pma_mappings,           :foreign_key => 'nct_id'
@@ -75,9 +75,9 @@ class Study < ActiveRecord::Base
     all.collect{|s|s.nct_id}
   end
 
-  def self.create_derived_values
+  def self.create_calculated_values
     # TODO once we figure out the nightly differential,
-    # change this method to only update derived values for
+    # change this method to only update calculated values for
     # studies that have changed.
 
     load_event = ClinicalTrials::LoadEvent.create(
@@ -90,7 +90,7 @@ class Study < ActiveRecord::Base
     ids.each_slice(batch_size) do |batch|
       batch.each do |id|
         study = Study.find_by(nct_id: id)
-        DerivedValue.new.create_from(study).save
+        CalculatedValue.new.create_from(study).save
       end
     end
 
@@ -129,7 +129,7 @@ class Study < ActiveRecord::Base
     SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
-    # DerivedValue.new.create_from(self).save
+    # CalculatedValue.new.create_from(self).save
     self
   end
 

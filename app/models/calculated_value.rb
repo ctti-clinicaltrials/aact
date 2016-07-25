@@ -1,4 +1,4 @@
-class DerivedValue < ActiveRecord::Base
+class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
   def create_from(new_study)

@@ -187,12 +187,55 @@ ALTER SEQUENCE browse_interventions_id_seq OWNED BY browse_interventions.id;
 
 
 --
+-- Name: calculated_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE calculated_values (
+    id integer NOT NULL,
+    name character varying,
+    sponsor_type character varying,
+    actual_duration numeric(5,2),
+    enrollment integer,
+    results_reported boolean,
+    months_to_report_results integer,
+    registered_in_fiscal_year integer,
+    number_of_facilities integer,
+    number_of_nsae_subjects integer,
+    number_of_sae_subjects integer,
+    study_rank character varying,
+    link_to_study_data character varying,
+    nct_id character varying
+);
+
+
+--
+-- Name: calculated_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE calculated_values_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: calculated_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE calculated_values_id_seq OWNED BY calculated_values.id;
+
+
+--
 -- Name: conditions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE conditions (
     id integer NOT NULL,
     name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -222,6 +265,18 @@ ALTER SEQUENCE conditions_id_seq OWNED BY conditions.id;
 
 CREATE TABLE data_definitions (
     id integer NOT NULL,
+    sponsor_type character varying,
+    actual_duration numeric(5,2),
+    enrollment integer,
+    results_reported boolean,
+    months_to_report_results integer,
+    registered_in_fiscal_year integer,
+    number_of_facilities integer,
+    number_of_nsae_subjects integer,
+    number_of_sae_subjects integer,
+    study_rank character varying,
+    link_to_study_data character varying,
+    nct_id character varying
     column_name character varying,
     table_name character varying,
     value_list text,
@@ -252,46 +307,6 @@ CREATE SEQUENCE data_definitions_id_seq
 --
 
 ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
-
-
---
--- Name: derived_values; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE derived_values (
-    id integer NOT NULL,
-    sponsor_type character varying,
-    actual_duration numeric(5,2),
-    enrollment integer,
-    results_reported boolean,
-    months_to_report_results integer,
-    registered_in_fiscal_year integer,
-    number_of_facilities integer,
-    number_of_nsae_subjects integer,
-    number_of_sae_subjects integer,
-    study_rank character varying,
-    link_to_study_data character varying,
-    nct_id character varying
-);
-
-
---
--- Name: derived_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE derived_values_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: derived_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE derived_values_id_seq OWNED BY derived_values.id;
 
 
 --
@@ -639,6 +654,8 @@ ALTER SEQUENCE facility_investigators_id_seq OWNED BY facility_investigators.id;
 
 
 --
+=======
+>>>>>>> Rename derived_values to calculated_values.
 -- Name: groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1852,6 +1869,13 @@ ALTER TABLE ONLY browse_interventions ALTER COLUMN id SET DEFAULT nextval('brows
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY calculated_values ALTER COLUMN id SET DEFAULT nextval('calculated_values_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY conditions ALTER COLUMN id SET DEFAULT nextval('conditions_id_seq'::regclass);
 
 
@@ -1860,13 +1884,6 @@ ALTER TABLE ONLY conditions ALTER COLUMN id SET DEFAULT nextval('conditions_id_s
 --
 
 ALTER TABLE ONLY data_definitions ALTER COLUMN id SET DEFAULT nextval('data_definitions_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY derived_values ALTER COLUMN id SET DEFAULT nextval('derived_values_id_seq'::regclass);
 
 
 --
@@ -2196,7 +2213,15 @@ ALTER TABLE ONLY browse_interventions
 
 
 --
--- Name: conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: calculated_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY calculated_values
+    ADD CONSTRAINT calculated_values_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: data_definitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY conditions
@@ -2204,19 +2229,11 @@ ALTER TABLE ONLY conditions
 
 
 --
--- Name: data_definitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: derived_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY data_definitions
     ADD CONSTRAINT data_definitions_pkey PRIMARY KEY (id);
-
-
---
--- Name: derived_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY derived_values
-    ADD CONSTRAINT derived_values_pkey PRIMARY KEY (id);
 
 
 --
@@ -2676,4 +2693,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160722143257');
 INSERT INTO schema_migrations (version) VALUES ('20160722150719');
 
 INSERT INTO schema_migrations (version) VALUES ('20160725161424');
+
+INSERT INTO schema_migrations (version) VALUES ('20160725200349');
 

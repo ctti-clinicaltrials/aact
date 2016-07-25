@@ -12,7 +12,7 @@ FactoryGirl.define do
     nct_id 'NCT123'
   end
 
-  factory :derived_value do
+  factory :calculated_value do
 
   end
 
