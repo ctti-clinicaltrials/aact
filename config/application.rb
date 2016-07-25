@@ -30,5 +30,24 @@ module Aact2
       "#{config.root}/app/workers",
       "#{config.root}/app/docs"
     ]
+
+    # grape api modules loaded from app/api
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+
+    #CORS
+    cors_origins = '*'
+    cors_origins = ENV['CORS_ORIGINS'].split(',') if ENV['CORS_ORIGINS']
+
+    config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
+      allow do
+        origins cors_origins
+
+        resource '*',
+          :headers => :any,
+          :methods => [:get, :post, :delete, :put, :options, :head],
+          :max_age => 0
+      end
+    end
   end
 end

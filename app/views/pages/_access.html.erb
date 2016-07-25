@@ -2,8 +2,9 @@
 
   <h2>Accessing AACT2</h2>
 
-  <h4 id="directDb">Direct access using database clients</h4>
+  <%= render 'access/intro' %>
   <%= render 'access/credentials' %>
+  <h4 id="directDb">Direct access using database clients</h4>
   <%= render 'access/pgadmin' %>
 
 
@@ -12,15 +13,27 @@
   <%= render 'access/sas' %>
 
 
-  <h4 id="replicate">Replicate current database</h4>
-
-
   <h4 id="snapshots">Download archived snapshots</h4>
+  <p>You can download the latest snapshot of the AACT2 database <a href="https://s3-us-west-2.amazonaws.com/aact2/snapshots/postgres.aact2.dump.<%= Date.today.strftime('%Y%m%d') %>-07%3A00.gz">here</a>, which was captured on <%= Date.today.strftime("%B %e") %> at 3am Eastern Standard Time.</p>
+  <p>
+    To see a list of all archived backups from the past three months, visit the <a href="/snapshot_archive">snapshot archive</a>.
+  </p>
 
+  <h4 id="replicate">Restore local database from AACT2 snapshot</h4>
 
-  <h4 id="csv">Download csv packages</h4>
+  <p>If you want to interact with the full dataset on your own machine, you can download one of the database snapshots from the above section. You'll need to use the pg_restore command line tool that comes with Postgres by running the following command:</p>
+
+  <pre>
+    <code>pg_restore -U yourusername -d yourdbname -1 -f filename.dump</code>
+  </pre>
+
+  <p class="note">Note: this restore can take up to several hours depending on the speed of your machine.</p>
+
+  <h4 id="csv">Download pipe delimited packages</h4>
 
   <p>
-    You can download a csv package of the database from <a href="https://s3-us-west-2.amazonaws.com/aact2/csv-export-2016-06-28">this link</a>.
+    You can download a pipe delimited copy of the database from <a href="https://s3-us-west-2.amazonaws.com/aact2/csv_pipe_exports/<%= Date.today.strftime('%Y-%m-%d') %>-pipe-delimited-export">this link</a>.
+
+    These pipe delimited files are compatible with many data visualization tools like SAS and R.
   </p>
 </section>

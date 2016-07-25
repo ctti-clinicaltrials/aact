@@ -1,6 +1,6 @@
 require 'csv'
 class Study < ActiveRecord::Base
-  attr_accessor :xml
+  attr_accessor :xml, :with_related_records
 
   scope :interventional,  -> {where(study_type: 'Interventional')}
   scope :observational,   -> {where(study_type: 'Observational')}
@@ -248,6 +248,8 @@ class Study < ActiveRecord::Base
 
       :is_section_801 => get_boolean('is_section_801'),
       :is_fda_regulated => get_boolean('is_fda_regulated'),
+      :plan_to_share_ipd => get('patient_data/sharing_ipd'),
+      :plan_to_share_description => get('patient_data/ipd_description'),
       :has_expanded_access => get_boolean('has_expanded_access'),
       :has_dmc => get_boolean('has_dmc'),
       :why_stopped =>get('why_stopped').strip,
