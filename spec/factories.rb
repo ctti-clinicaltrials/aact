@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :facility_investigator do
+    
+  end
   factory :study_xml_record do
   end
 

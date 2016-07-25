@@ -2,6 +2,7 @@ class Facility < StudyRelationship
   attr_accessor :coordinates
 
   has_many :facility_contacts, inverse_of: :facility, autosave: true
+  has_many :facility_investigators, inverse_of: :facility, autosave: true
 
   def self.create_all_from(opts)
     all=opts[:xml]
@@ -16,6 +17,14 @@ class Facility < StudyRelationship
             facility.facility_contacts.build(facility_contact.attributes)
           end
         end
+
+        facility_investigators = FacilityInvestigator.create_all_from(opts[:wrapper1_xml])
+        if facility_investigators.present?
+          facility_investigators.each do |facility_investigator|
+            facility.facility_investigators.build(facility_investigator.attributes)
+          end
+        end
+
         facility
       }
     }.flatten!
@@ -36,8 +45,6 @@ class Facility < StudyRelationship
       :zip => get_addr('zip'),
       :country => get_addr('country'),
       :status => get_from_wrapper1('status'),
-      :investigator_name => get_from('investigator','last_name'),
-      :investigator_role => get_from('investigator','role'),
       :latitude => get_latitude,
       :longitude => get_longitude,
     }

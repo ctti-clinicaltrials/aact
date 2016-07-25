@@ -549,8 +549,6 @@ CREATE TABLE facilities (
     country character varying,
     latitude character varying,
     longitude character varying,
-    investigator_name text,
-    investigator_role text,
     nct_id character varying
 );
 
@@ -606,6 +604,38 @@ CREATE SEQUENCE facility_contacts_id_seq
 --
 
 ALTER SEQUENCE facility_contacts_id_seq OWNED BY facility_contacts.id;
+
+
+--
+-- Name: facility_investigators; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE facility_investigators (
+    id integer NOT NULL,
+    name character varying,
+    role character varying,
+    nct_id character varying,
+    facility_id integer
+);
+
+
+--
+-- Name: facility_investigators_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE facility_investigators_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: facility_investigators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE facility_investigators_id_seq OWNED BY facility_investigators.id;
 
 
 --
@@ -1906,6 +1936,13 @@ ALTER TABLE ONLY facility_contacts ALTER COLUMN id SET DEFAULT nextval('facility
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY facility_investigators ALTER COLUMN id SET DEFAULT nextval('facility_investigators_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY groups ALTER COLUMN id SET DEFAULT nextval('groups_id_seq'::regclass);
 
 
@@ -2252,6 +2289,14 @@ ALTER TABLE ONLY facilities
 
 ALTER TABLE ONLY facility_contacts
     ADD CONSTRAINT facility_contacts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: facility_investigators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY facility_investigators
+    ADD CONSTRAINT facility_investigators_pkey PRIMARY KEY (id);
 
 
 --
@@ -2629,4 +2674,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160721150701');
 INSERT INTO schema_migrations (version) VALUES ('20160722143257');
 
 INSERT INTO schema_migrations (version) VALUES ('20160722150719');
+
+INSERT INTO schema_migrations (version) VALUES ('20160725161424');
 

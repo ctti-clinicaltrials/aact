@@ -63,10 +63,5 @@ class FacilityContact < StudyRelationship
 
     attribs
   end
-
-  def get_from(sublevel,label)
-    elem=opts.xpath(sublevel).try(:xpath,label)
-    elem.text if elem
-  end
 end
 
