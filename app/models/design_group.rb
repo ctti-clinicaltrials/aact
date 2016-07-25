@@ -13,7 +13,7 @@ class DesignGroup < StudyRelationship
     {
       :ctgov_group_id => get_attribute('group_id'),
       :group_type => get('arm_group_type'),
-      :title => get('arm_group_label'),
+      :label => get('arm_group_label'),
       :description => get('description'),
     }
   end
