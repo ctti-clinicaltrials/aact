@@ -10,6 +10,11 @@ class FacilityContact < StudyRelationship
     backup
   )
 
+  def initialize
+    super
+    @attribs = {}
+  end
+
   def self.create_all_from(opts)
     nct_id = opts.document.xpath('//nct_id').text
     results = []
@@ -17,6 +22,7 @@ class FacilityContact < StudyRelationship
     if opts.xpath('contact').present?
       results << opts.xpath('contact').map do |contact|
         fc = new
+
         fc.attribs = Hash.from_xml(contact.to_xml)['contact'].merge({
           'nct_id' => nct_id,
           'contact_type' => 'regular'
