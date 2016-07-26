@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get "api_docs" => "swaggerui#index"
   root "pages#home"
 
+  get "/points_to_consider" => "pages#points_to_consider"
   get "/snapshot_archive" => "pages#snapshot_archive"
 end
