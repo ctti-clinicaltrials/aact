@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.3
+-- Dumped from database version 9.4.4
 -- Dumped by pg_dump version 9.5.3
 
 SET statement_timeout = 0;
@@ -73,8 +73,6 @@ CREATE TABLE baseline_measures (
     dispersion character varying,
     spread character varying,
     measure_description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -135,8 +133,6 @@ ALTER SEQUENCE brief_summaries_id_seq OWNED BY brief_summaries.id;
 CREATE TABLE browse_conditions (
     id integer NOT NULL,
     mesh_term character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -167,8 +163,6 @@ ALTER SEQUENCE browse_conditions_id_seq OWNED BY browse_conditions.id;
 CREATE TABLE browse_interventions (
     id integer NOT NULL,
     mesh_term character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -234,8 +228,6 @@ ALTER SEQUENCE central_contacts_id_seq OWNED BY central_contacts.id;
 CREATE TABLE conditions (
     id integer NOT NULL,
     name character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -314,8 +306,6 @@ CREATE TABLE derived_values (
     number_of_sae_subjects integer,
     study_rank character varying,
     link_to_study_data character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -349,8 +339,6 @@ CREATE TABLE design_groups (
     label character varying,
     group_type character varying,
     description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -521,8 +509,6 @@ CREATE TABLE drop_withdrawals (
     ctgov_group_enumerator integer,
     reason character varying,
     participant_count integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying,
     group_id integer
 );
@@ -605,8 +591,6 @@ CREATE TABLE facilities (
     contact_backup_email character varying,
     investigator_name text,
     investigator_role text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -643,8 +627,6 @@ CREATE TABLE groups (
     description text,
     participant_count integer,
     derived_participant_count integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -675,8 +657,6 @@ ALTER SEQUENCE groups_id_seq OWNED BY groups.id;
 CREATE TABLE intervention_arm_group_labels (
     id integer NOT NULL,
     label character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying,
     intervention_id integer
 );
@@ -708,8 +688,6 @@ ALTER SEQUENCE intervention_arm_group_labels_id_seq OWNED BY intervention_arm_gr
 CREATE TABLE intervention_other_names (
     id integer NOT NULL,
     name character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying,
     intervention_id integer
 );
@@ -743,8 +721,6 @@ CREATE TABLE interventions (
     intervention_type character varying,
     name character varying,
     description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -775,8 +751,6 @@ ALTER SEQUENCE interventions_id_seq OWNED BY interventions.id;
 CREATE TABLE keywords (
     id integer NOT NULL,
     name character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -911,8 +885,6 @@ CREATE TABLE milestones (
     title character varying,
     description text,
     participant_count integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying,
     group_id integer
 );
@@ -962,8 +934,6 @@ CREATE TABLE outcome_analyses (
     group_description text,
     method_description text,
     estimate_description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying,
     outcome_id integer,
     group_id integer
@@ -1008,8 +978,6 @@ CREATE TABLE outcome_measures (
     dispersion character varying,
     spread character varying,
     measure_description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying,
     outcome_id integer,
     group_id integer
@@ -1053,8 +1021,6 @@ CREATE TABLE outcomes (
     safety_issue character varying,
     population text,
     participant_count integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying,
     group_id integer
 );
@@ -1149,8 +1115,6 @@ CREATE TABLE participant_flows (
     id integer NOT NULL,
     recruitment_details text,
     pre_assignment_details text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -1184,8 +1148,6 @@ CREATE TABLE pma_mappings (
     ct_pma_id integer,
     pma_number character varying,
     supplement_number character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -1245,8 +1207,6 @@ CREATE TABLE pma_records (
     fei_numbers text,
     registration_numbers text,
     ao_statement text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -1278,8 +1238,6 @@ CREATE TABLE reported_event_overviews (
     id integer NOT NULL,
     time_frame character varying,
     description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -1324,8 +1282,6 @@ CREATE TABLE reported_events (
     subjects_affected integer,
     subjects_at_risk integer,
     event_count integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -1391,8 +1347,6 @@ CREATE TABLE result_agreements (
     pi_employee character varying,
     agreement text,
     agreement_type character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -1426,8 +1380,6 @@ CREATE TABLE result_contacts (
     organization character varying,
     phone character varying,
     email character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     nct_id character varying
 );
 
@@ -1493,9 +1445,7 @@ CREATE TABLE reviews (
     rating integer,
     comment text,
     nct_id character varying,
-    user_id character varying,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    user_id character varying
 );
 
 
@@ -1519,6 +1469,37 @@ ALTER SEQUENCE reviews_id_seq OWNED BY reviews.id;
 
 
 --
+-- Name: sanity_checks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sanity_checks (
+    id integer NOT NULL,
+    report text NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sanity_checks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sanity_checks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sanity_checks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sanity_checks_id_seq OWNED BY sanity_checks.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1537,9 +1518,7 @@ CREATE TABLE search_results (
     search_term character varying,
     nct_id character varying,
     "order" integer,
-    score numeric(6,4),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    score numeric(6,4)
 );
 
 
@@ -1635,9 +1614,7 @@ CREATE TABLE statistics (
     sponsor_type character varying,
     stat_category character varying,
     stat_value character varying,
-    number_of_studies integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    number_of_studies integer
 );
 
 
@@ -1710,7 +1687,6 @@ CREATE TABLE studies (
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    first_received_results_disposition_date date,
     plan_to_share_ipd character varying,
     plan_to_share_description character varying
 );
@@ -2104,6 +2080,13 @@ ALTER TABLE ONLY reviews ALTER COLUMN id SET DEFAULT nextval('reviews_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY sanity_checks ALTER COLUMN id SET DEFAULT nextval('sanity_checks_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY search_results ALTER COLUMN id SET DEFAULT nextval('search_results_id_seq'::regclass);
 
 
@@ -2470,6 +2453,14 @@ ALTER TABLE ONLY reviews
 
 
 --
+-- Name: sanity_checks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sanity_checks
+    ADD CONSTRAINT sanity_checks_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: search_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2599,7 +2590,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user", public;
+SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150409002646');
 
@@ -2631,8 +2622,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160608173256');
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
-INSERT INTO schema_migrations (version) VALUES ('20160713192539');
-
 INSERT INTO schema_migrations (version) VALUES ('20160714191041');
 
 INSERT INTO schema_migrations (version) VALUES ('20160718140832');
@@ -2649,3 +2638,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160725195950');
 
 INSERT INTO schema_migrations (version) VALUES ('20160726124957');
 
+INSERT INTO schema_migrations (version) VALUES ('20160721150701');
+
+INSERT INTO schema_migrations (version) VALUES ('20160722143257');
