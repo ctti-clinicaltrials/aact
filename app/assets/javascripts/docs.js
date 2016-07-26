@@ -2,7 +2,7 @@
 // Get the distance of an element from the top of the window
 var getElemDistance = function ( elem ) {
   var location = 0;
-  
+
   if (elem.offsetParent) {
       do {
           location += elem.offsetTop;
@@ -19,10 +19,11 @@ function checkScroll() {
   var scrollTop = $(window).scrollTop();
 
   // Grab homeContent distance from top of screen
-  var homeContent = getElemDistance( $('.homeContent')[0] );
+  var homeContent = getElemDistance( $('.homeContent')[0]);
+
+  var leftEdge = $(".homeContent").offset().left;
 
   // Find where the menu should be fixed from the left side of screen
-  var leftEdge = $(".homeContent").offset().left;
 
 
   //

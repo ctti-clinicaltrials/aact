@@ -1,19 +1,31 @@
 
 $( document ).ready(function() {
 
+  // var clients = [
+  //         { "Name": "Otto Clay", "Age": 25, "Country": 1, "Address": "Ap #897-1459 Quam Avenue", "Married": false },
+  //         { "Name": "Connor Johnston", "Age": 45, "Country": 2, "Address": "Ap #370-4647 Dis Av.", "Married": true },
+  //         { "Name": "Lacey Hess", "Age": 29, "Country": 3, "Address": "Ap #365-8835 Integer St.", "Married": false },
+  //         { "Name": "Timothy Henson", "Age": 56, "Country": 1, "Address": "911-5143 Luctus Ave", "Married": true },
+  //         { "Name": "Ramona Benton", "Age": 32, "Country": 3, "Address": "Ap #614-689 Vehicula Street", "Married": false }
+  //     ];
+
   var clients = [
-          { "Name": "Otto Clay", "Age": 25, "Country": 1, "Address": "Ap #897-1459 Quam Avenue", "Married": false },
-          { "Name": "Connor Johnston", "Age": 45, "Country": 2, "Address": "Ap #370-4647 Dis Av.", "Married": true },
-          { "Name": "Lacey Hess", "Age": 29, "Country": 3, "Address": "Ap #365-8835 Integer St.", "Married": false },
-          { "Name": "Timothy Henson", "Age": 56, "Country": 1, "Address": "911-5143 Luctus Ave", "Married": true },
-          { "Name": "Ramona Benton", "Age": 32, "Country": 3, "Address": "Ap #614-689 Vehicula Street", "Married": false }
+          { "Table Name": "ARM_GROUPS",
+          "Column Name": "arm_group_label",
+          "PRS Label": "Arm or Group Label",
+          "Data Type": 2,
+          "Max Length Used": 62,
+          "NLM Description": "Study Document Definitions:Arm Label - the short name used to identify the arm. (Limit: 62 characters).* (FDAAA)Examples: • Metformin • Lifestyle counseling • Sugar pill Group/Cohort Label - the short name used to identify the group. (Limit: 62 characters) * Examples: • Statin dose titration • Chronic kidney disease, no anemia • No treatment Results Document Definitions: Arm/Group * Definition: Arms or comparison groups in a trial Arm/Group Title * : Label used to identify the arm or comparison group. Minimum length is 4 characters. Titles shorter than the minimum are unlikely to sufficiently describe the arm or comparison group. Examples: fluoxetine; sertraline; drug-eluting stent; placebo (Limit: >=4 and <=62 characters) ",
+          "NLM Required": true,
+          "FDAAA Required": false,
+          "Enumerations": "Sample Content" }
       ];
 
-      var countries = [
+      var types = [
           { Name: "", Id: 0 },
-          { Name: "United States", Id: 1 },
-          { Name: "Canada", Id: 2 },
-          { Name: "United Kingdom", Id: 3 }
+          { Name: "Number", Id: 1 },
+          { Name: "VarChar2", Id: 2 },
+          { Name: "Clob", Id: 3 }
       ];
 
       $("#jsGrid").jsGrid({
@@ -30,15 +42,27 @@ $( document ).ready(function() {
           filtering: true,
           selecting: true,
           pageLoading: false,
-
-
+          //
+          // fields: [
+          //     { name: "Name", type: "text", width: 150, validate: "required" },
+          //     { name: "Age", type: "number", width: 50 },
+          //     { name: "Address", type: "text", width: 200 },
+          //     { name: "Country", type: "select", items: countries, valueField: "Id", textField: "Name" },
+          //     { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
+          //     { type: "control" }
+          // ],
+          //
           fields: [
-              { name: "Name", type: "text", width: 150, validate: "required" },
-              { name: "Age", type: "number", width: 50 },
-              { name: "Address", type: "text", width: 200 },
-              { name: "Country", type: "select", items: countries, valueField: "Id", textField: "Name" },
-              { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
-              { type: "control" }
+              { name: "Table Name", type: "text" },
+              { name: "Column Name", type: "text" },
+              { name: "PRS Label", type: "text"  },
+              { name: "Data Type", type: "select", items: types, valueField: "Id", textField: "Name" },
+              { name: "Max Length Used", type: "number", width: 50 },
+              { name: "Comments", type: "text" },
+              { name: "NLM Description", type: "text" },
+              { name: "NLM Required", type: "checkbox", width: 50 },
+              { name: "FDAAA Required", type: "checkbox", width: 50 },
+              { name: "Enumerations", type:"text" }
           ],
 
           controller: {
