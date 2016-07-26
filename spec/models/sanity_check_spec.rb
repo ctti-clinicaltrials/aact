@@ -18,7 +18,7 @@ describe SanityCheck do
       expect(sanity_check.report.studies.present?).to eq(true)
       expect(sanity_check.report.studies.row_count).to eq(1)
       expect(sanity_check.report.conditions.row_count).to eq(6)
-      expect(sanity_check.report.expected_outcomes.row_count).to eq(5)
+      expect(sanity_check.report.design_outcomes.row_count).to eq(5)
     end
 
     it 'should create a sanity check record with the correct column length information' do
