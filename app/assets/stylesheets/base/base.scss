@@ -72,16 +72,22 @@ h2 {
   }
 }
 
-h3 {  font-size: 1.8rem;  }
+h3 {  font-size: 1.4rem;  }
 
-h4 {  font-size: 1.5rem;  }
+h4 {  font-size: 1.2rem;  }
 
 h5 {  font-size: 1rem;  }
 
 h6 {  font-size: .8rem;  }
 
-ul {
-  padding-left: 10px;
+ul, ol {
+  padding: 0px;
+  margin-bottom: 1rem;
+
+  li {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+  }
 }
 
 pre {
