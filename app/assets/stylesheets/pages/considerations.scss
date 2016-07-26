@@ -1,0 +1,23 @@
+section.pointsToConsider {
+
+  h1 {
+    padding-top: 100px;
+    border-bottom: 1px solid $grey;
+  }
+
+  h2 {
+    padding-top: 60px;
+    border-bottom: 1px solid $primary;
+  }
+
+  h4 {
+    padding-top: 40px;
+    border-bottom: 1px solid $grey;
+  }
+
+  div.wrap {
+    @include columnify(10, true);
+    display: block;
+    margin: 0 auto;
+  }
+}
