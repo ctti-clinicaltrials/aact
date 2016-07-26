@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.4.4
+-- Dumped from database version 9.5.3
 -- Dumped by pg_dump version 9.5.3
 
 SET statement_timeout = 0;
@@ -187,6 +187,46 @@ ALTER SEQUENCE browse_interventions_id_seq OWNED BY browse_interventions.id;
 
 
 --
+-- Name: calculated_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE calculated_values (
+    id integer NOT NULL,
+    sponsor_type character varying,
+    actual_duration numeric(5,2),
+    enrollment integer,
+    results_reported boolean,
+    months_to_report_results integer,
+    number_of_facilities integer,
+    number_of_nsae_subjects integer,
+    number_of_sae_subjects integer,
+    study_rank character varying,
+    link_to_study_data character varying,
+    nct_id character varying,
+    registered_in_calendar_year integer
+);
+
+
+--
+-- Name: calculated_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE calculated_values_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: calculated_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE calculated_values_id_seq OWNED BY calculated_values.id;
+
+
+--
 -- Name: central_contacts; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -287,46 +327,6 @@ CREATE SEQUENCE data_definitions_id_seq
 --
 
 ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
-
-
---
--- Name: derived_values; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE derived_values (
-    id integer NOT NULL,
-    sponsor_type character varying,
-    actual_duration numeric(5,2),
-    enrollment integer,
-    results_reported boolean,
-    months_to_report_results integer,
-    registered_in_fiscal_year integer,
-    number_of_facilities integer,
-    number_of_nsae_subjects integer,
-    number_of_sae_subjects integer,
-    study_rank character varying,
-    link_to_study_data character varying,
-    nct_id character varying
-);
-
-
---
--- Name: derived_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE derived_values_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: derived_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE derived_values_id_seq OWNED BY derived_values.id;
 
 
 --
@@ -583,14 +583,6 @@ CREATE TABLE facilities (
     country character varying,
     latitude character varying,
     longitude character varying,
-    contact_name character varying,
-    contact_phone character varying,
-    contact_email character varying,
-    contact_backup_name character varying,
-    contact_backup_phone character varying,
-    contact_backup_email character varying,
-    investigator_name text,
-    investigator_role text,
     nct_id character varying
 );
 
@@ -612,6 +604,72 @@ CREATE SEQUENCE facilities_id_seq
 --
 
 ALTER SEQUENCE facilities_id_seq OWNED BY facilities.id;
+
+
+--
+-- Name: facility_contacts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE facility_contacts (
+    id integer NOT NULL,
+    name character varying,
+    phone character varying,
+    email character varying,
+    nct_id character varying,
+    contact_type character varying,
+    facility_id integer
+);
+
+
+--
+-- Name: facility_contacts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE facility_contacts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: facility_contacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE facility_contacts_id_seq OWNED BY facility_contacts.id;
+
+
+--
+-- Name: facility_investigators; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE facility_investigators (
+    id integer NOT NULL,
+    name character varying,
+    role character varying,
+    nct_id character varying,
+    facility_id integer
+);
+
+
+--
+-- Name: facility_investigators_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE facility_investigators_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: facility_investigators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE facility_investigators_id_seq OWNED BY facility_investigators.id;
 
 
 --
@@ -1469,37 +1527,6 @@ ALTER SEQUENCE reviews_id_seq OWNED BY reviews.id;
 
 
 --
--- Name: sanity_checks; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE sanity_checks (
-    id integer NOT NULL,
-    report text NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: sanity_checks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE sanity_checks_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sanity_checks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE sanity_checks_id_seq OWNED BY sanity_checks.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1687,6 +1714,7 @@ CREATE TABLE studies (
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    first_received_results_disposition_date date,
     plan_to_share_ipd character varying,
     plan_to_share_description character varying
 );
@@ -1828,6 +1856,13 @@ ALTER TABLE ONLY browse_interventions ALTER COLUMN id SET DEFAULT nextval('brows
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY calculated_values ALTER COLUMN id SET DEFAULT nextval('calculated_values_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY central_contacts ALTER COLUMN id SET DEFAULT nextval('central_contacts_id_seq'::regclass);
 
 
@@ -1843,13 +1878,6 @@ ALTER TABLE ONLY conditions ALTER COLUMN id SET DEFAULT nextval('conditions_id_s
 --
 
 ALTER TABLE ONLY data_definitions ALTER COLUMN id SET DEFAULT nextval('data_definitions_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY derived_values ALTER COLUMN id SET DEFAULT nextval('derived_values_id_seq'::regclass);
 
 
 --
@@ -1906,6 +1934,20 @@ ALTER TABLE ONLY eligibilities ALTER COLUMN id SET DEFAULT nextval('eligibilitie
 --
 
 ALTER TABLE ONLY facilities ALTER COLUMN id SET DEFAULT nextval('facilities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY facility_contacts ALTER COLUMN id SET DEFAULT nextval('facility_contacts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY facility_investigators ALTER COLUMN id SET DEFAULT nextval('facility_investigators_id_seq'::regclass);
 
 
 --
@@ -2080,13 +2122,6 @@ ALTER TABLE ONLY reviews ALTER COLUMN id SET DEFAULT nextval('reviews_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY sanity_checks ALTER COLUMN id SET DEFAULT nextval('sanity_checks_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY search_results ALTER COLUMN id SET DEFAULT nextval('search_results_id_seq'::regclass);
 
 
@@ -2165,6 +2200,14 @@ ALTER TABLE ONLY browse_interventions
 
 
 --
+-- Name: calculated_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY calculated_values
+    ADD CONSTRAINT calculated_values_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: central_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2186,14 +2229,6 @@ ALTER TABLE ONLY conditions
 
 ALTER TABLE ONLY data_definitions
     ADD CONSTRAINT data_definitions_pkey PRIMARY KEY (id);
-
-
---
--- Name: derived_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY derived_values
-    ADD CONSTRAINT derived_values_pkey PRIMARY KEY (id);
 
 
 --
@@ -2258,6 +2293,22 @@ ALTER TABLE ONLY eligibilities
 
 ALTER TABLE ONLY facilities
     ADD CONSTRAINT facilities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: facility_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY facility_contacts
+    ADD CONSTRAINT facility_contacts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: facility_investigators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY facility_investigators
+    ADD CONSTRAINT facility_investigators_pkey PRIMARY KEY (id);
 
 
 --
@@ -2453,14 +2504,6 @@ ALTER TABLE ONLY reviews
 
 
 --
--- Name: sanity_checks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sanity_checks
-    ADD CONSTRAINT sanity_checks_pkey PRIMARY KEY (id);
-
-
---
 -- Name: search_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2590,7 +2633,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150409002646');
 
@@ -2622,6 +2665,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160608173256');
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
+INSERT INTO schema_migrations (version) VALUES ('20160713192539');
+
 INSERT INTO schema_migrations (version) VALUES ('20160714191041');
 
 INSERT INTO schema_migrations (version) VALUES ('20160718140832');
@@ -2632,12 +2677,17 @@ INSERT INTO schema_migrations (version) VALUES ('20160719180756');
 
 INSERT INTO schema_migrations (version) VALUES ('20160720212026');
 
+INSERT INTO schema_migrations (version) VALUES ('20160722143257');
+
+INSERT INTO schema_migrations (version) VALUES ('20160722150719');
+
 INSERT INTO schema_migrations (version) VALUES ('20160722152031');
+
+INSERT INTO schema_migrations (version) VALUES ('20160725161424');
 
 INSERT INTO schema_migrations (version) VALUES ('20160725195950');
 
+INSERT INTO schema_migrations (version) VALUES ('20160725200349');
+
 INSERT INTO schema_migrations (version) VALUES ('20160726124957');
 
-INSERT INTO schema_migrations (version) VALUES ('20160721150701');
-
-INSERT INTO schema_migrations (version) VALUES ('20160722143257');
