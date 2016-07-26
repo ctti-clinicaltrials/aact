@@ -25,7 +25,7 @@ class Study < ActiveRecord::Base
   has_many :pma_mappings,          :foreign_key => 'nct_id'
   has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :expected_outcomes,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :design_outcomes,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :groups,                :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcome_analyses,     :foreign_key => 'nct_id', dependent: :delete_all
@@ -119,7 +119,7 @@ class Study < ActiveRecord::Base
     LocationCountry.create_all_from(opts)
     OversightAuthority.create_all_from(opts)
     OverallOfficial.create_all_from(opts)
-    ExpectedOutcome.create_all_from(opts)
+    DesignOutcome.create_all_from(opts)
     ReportedEvent.create_all_from(opts)
     ResponsibleParty.create_all_from(opts)
     ResultAgreement.create_all_from(opts)
