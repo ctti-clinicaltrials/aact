@@ -18,6 +18,36 @@ $( document ).ready(function() {
           "NLM Description": "Study Document Definitions:Arm Label - the short name used to identify the arm. (Limit: 62 characters).* (FDAAA)Examples: • Metformin • Lifestyle counseling • Sugar pill Group/Cohort Label - the short name used to identify the group. (Limit: 62 characters) * Examples: • Statin dose titration • Chronic kidney disease, no anemia • No treatment Results Document Definitions: Arm/Group * Definition: Arms or comparison groups in a trial Arm/Group Title * : Label used to identify the arm or comparison group. Minimum length is 4 characters. Titles shorter than the minimum are unlikely to sufficiently describe the arm or comparison group. Examples: fluoxetine; sertraline; drug-eluting stent; placebo (Limit: >=4 and <=62 characters) ",
           "NLM Required": true,
           "FDAAA Required": false,
+          "Enumerations": "Sample Content" },
+
+          { "Table Name": "ARM_GROUPS",
+          "Column Name": "arm_group_type",
+          "PRS Label": "Arm Type",
+          "Data Type": 2,
+          "Max Length Used": 20,
+          "NLM Description": "Study Document Definitions: Arm Type * (FDAAA)- select one Experimental Active Comparator Placebo Comparator Sham Comparator  No intervention Other",
+          "NLM Required": true,
+          "FDAAA Required": false,
+          "Enumerations": "Sample Content" },
+
+          { "Table Name": "AUTHORITIES",
+          "Column Name": "authority_id",
+          "PRS Label": "Primary key for AUTHORITIES",
+          "Data Type": 1,
+          "Max Length Used": 6,
+          "NLM Description": "",
+          "NLM Required": false,
+          "FDAAA Required": false,
+          "Enumerations": "Sample Content" },
+
+          { "Table Name": "AUTHORITIES",
+          "Column Name": "nct_id",
+          "PRS Label": "Foreign key in AUTHORITIES linking to CLINICAL_STUDY",
+          "Data Type": 2,
+          "Max Length Used": 11,
+          "NLM Description": "NCT ID is a unique identification code given to each clinical study registered on ClinicalTrials.gov. The format is the letters 'NCT' followed by an 8-digit number (for example, NCT00000419).  [Ref: http://grants.nih.gov/clinicaltrials_fdaaa/definitions.htm?print=yes&]",
+          "NLM Required": false,
+          "FDAAA Required": false,
           "Enumerations": "Sample Content" }
       ];
 
@@ -30,7 +60,7 @@ $( document ).ready(function() {
 
       $("#jsGrid").jsGrid({
           width: "100%",
-          height: "400px",
+          height: "600px",
           data: clients,
 
           inserting: false,
@@ -53,16 +83,16 @@ $( document ).ready(function() {
           // ],
           //
           fields: [
-              { name: "Table Name", type: "text" },
-              { name: "Column Name", type: "text" },
+              { name: "Table Name", type: "text", width: 140 },
+              { name: "Column Name", type: "text", width: 140 },
               { name: "PRS Label", type: "text"  },
               { name: "Data Type", type: "select", items: types, valueField: "Id", textField: "Name" },
-              { name: "Max Length Used", type: "number", width: 50 },
-              { name: "Comments", type: "text" },
-              { name: "NLM Description", type: "text" },
-              { name: "NLM Required", type: "checkbox", width: 50 },
-              { name: "FDAAA Required", type: "checkbox", width: 50 },
-              { name: "Enumerations", type:"text" }
+              { name: "Max Length Used", type: "number", width: 60 },
+              { name: "NLM Description", type: "text", width: 300 },
+              { name: "NLM Req.", type: "checkbox", width: 60 },
+              { name: "FDAAA Req.", type: "checkbox", width: 60 },
+              { name: "Enumerations", type:"text" },
+              { name: "Comments", type: "text" }
           ],
 
           controller: {

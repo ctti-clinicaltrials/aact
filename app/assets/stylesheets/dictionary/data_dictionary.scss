@@ -28,6 +28,10 @@ section.dataDictionaryShow {
     margin: 0 auto;
     padding: 60px 0px;
   }
+
+  .jsgrid-header-row>.jsgrid-header-cell {
+    font-size: 12px;
+  }
 }
 
 section.dictionaryOverview, section.dataDefinitions, section.namingConventions {
