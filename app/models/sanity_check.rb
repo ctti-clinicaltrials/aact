@@ -12,7 +12,7 @@ class SanityCheck < ActiveRecord::Base
   end
 
   def report
-    JSON.parse(read_attribute(:report), object_class: OpenStruct)
+    JSON.parse(read_attribute(:report))
   end
 
   def generate_report

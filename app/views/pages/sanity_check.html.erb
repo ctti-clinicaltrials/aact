@@ -1,0 +1,24 @@
+<% @sanity_check_report.each do |table_name, stats| %>
+  <h3>
+    <%= table_name %>
+  </h3>
+  <p>
+    Row count: <%= stats['row_count'] %>
+  </p>
+  <p>
+  Column stats:
+  <% if stats['column_stats'].present? %>
+    <% stats['column_stats'].each do |column_name| %>
+      <% column_name.each do |column, value| %>
+        <ul>
+          <% value.each do |stat| %>
+            <li>
+              <%= stat %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  <% end %>
+  </p>
+<% end %>
