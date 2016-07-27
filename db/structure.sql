@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.4.4
+-- Dumped from database version 9.5.3
 -- Dumped by pg_dump version 9.5.3
 
 SET statement_timeout = 0;
@@ -227,6 +227,41 @@ ALTER SEQUENCE calculated_values_id_seq OWNED BY calculated_values.id;
 
 
 --
+-- Name: central_contacts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE central_contacts (
+    id integer NOT NULL,
+    nct_id character varying,
+    contact_type character varying,
+    name character varying,
+    phone character varying,
+    email character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: central_contacts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE central_contacts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: central_contacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE central_contacts_id_seq OWNED BY central_contacts.id;
+
+
+--
 -- Name: conditions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -301,8 +336,7 @@ ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
 CREATE TABLE design_groups (
     id integer NOT NULL,
     ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
-    title character varying,
+    label character varying,
     group_type character varying,
     description text,
     nct_id character varying
@@ -326,6 +360,42 @@ CREATE SEQUENCE design_groups_id_seq
 --
 
 ALTER SEQUENCE design_groups_id_seq OWNED BY design_groups.id;
+
+
+--
+-- Name: design_outcomes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE design_outcomes (
+    id integer NOT NULL,
+    outcome_type character varying,
+    title text,
+    measure text,
+    time_frame text,
+    safety_issue character varying,
+    population character varying,
+    description text,
+    nct_id character varying
+);
+
+
+--
+-- Name: design_outcomes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE design_outcomes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: design_outcomes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE design_outcomes_id_seq OWNED BY design_outcomes.id;
 
 
 --
@@ -497,42 +567,6 @@ CREATE SEQUENCE eligibilities_id_seq
 --
 
 ALTER SEQUENCE eligibilities_id_seq OWNED BY eligibilities.id;
-
-
---
--- Name: expected_outcomes; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE expected_outcomes (
-    id integer NOT NULL,
-    outcome_type character varying,
-    title text,
-    measure text,
-    time_frame text,
-    safety_issue character varying,
-    population character varying,
-    description text,
-    nct_id character varying
-);
-
-
---
--- Name: expected_outcomes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE expected_outcomes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: expected_outcomes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE expected_outcomes_id_seq OWNED BY expected_outcomes.id;
 
 
 --
@@ -1711,6 +1745,7 @@ CREATE TABLE studies (
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    first_received_results_disposition_date date,
     plan_to_share_ipd character varying,
     plan_to_share_description character varying
 );
@@ -1859,6 +1894,13 @@ ALTER TABLE ONLY calculated_values ALTER COLUMN id SET DEFAULT nextval('calculat
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY central_contacts ALTER COLUMN id SET DEFAULT nextval('central_contacts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY conditions ALTER COLUMN id SET DEFAULT nextval('conditions_id_seq'::regclass);
 
 
@@ -1874,6 +1916,13 @@ ALTER TABLE ONLY data_definitions ALTER COLUMN id SET DEFAULT nextval('data_defi
 --
 
 ALTER TABLE ONLY design_groups ALTER COLUMN id SET DEFAULT nextval('design_groups_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY design_outcomes ALTER COLUMN id SET DEFAULT nextval('design_outcomes_id_seq'::regclass);
 
 
 --
@@ -1909,13 +1958,6 @@ ALTER TABLE ONLY drop_withdrawals ALTER COLUMN id SET DEFAULT nextval('drop_with
 --
 
 ALTER TABLE ONLY eligibilities ALTER COLUMN id SET DEFAULT nextval('eligibilities_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY expected_outcomes ALTER COLUMN id SET DEFAULT nextval('expected_outcomes_id_seq'::regclass);
 
 
 --
@@ -2204,6 +2246,14 @@ ALTER TABLE ONLY calculated_values
 
 
 --
+-- Name: central_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY central_contacts
+    ADD CONSTRAINT central_contacts_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2225,6 +2275,14 @@ ALTER TABLE ONLY data_definitions
 
 ALTER TABLE ONLY design_groups
     ADD CONSTRAINT design_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: design_outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY design_outcomes
+    ADD CONSTRAINT design_outcomes_pkey PRIMARY KEY (id);
 
 
 --
@@ -2265,14 +2323,6 @@ ALTER TABLE ONLY drop_withdrawals
 
 ALTER TABLE ONLY eligibilities
     ADD CONSTRAINT eligibilities_pkey PRIMARY KEY (id);
-
-
---
--- Name: expected_outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY expected_outcomes
-    ADD CONSTRAINT expected_outcomes_pkey PRIMARY KEY (id);
 
 
 --
@@ -2629,7 +2679,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150409002646');
 
@@ -2661,6 +2711,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160608173256');
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
+INSERT INTO schema_migrations (version) VALUES ('20160713192539');
+
 INSERT INTO schema_migrations (version) VALUES ('20160714191041');
 
 INSERT INTO schema_migrations (version) VALUES ('20160718140832');
@@ -2669,13 +2721,21 @@ INSERT INTO schema_migrations (version) VALUES ('20160718182917');
 
 INSERT INTO schema_migrations (version) VALUES ('20160719180756');
 
+INSERT INTO schema_migrations (version) VALUES ('20160720212026');
+
 INSERT INTO schema_migrations (version) VALUES ('20160721150701');
 
 INSERT INTO schema_migrations (version) VALUES ('20160722143257');
 
 INSERT INTO schema_migrations (version) VALUES ('20160722150719');
 
+INSERT INTO schema_migrations (version) VALUES ('20160722152031');
+
 INSERT INTO schema_migrations (version) VALUES ('20160725161424');
 
+INSERT INTO schema_migrations (version) VALUES ('20160725195950');
+
 INSERT INTO schema_migrations (version) VALUES ('20160725200349');
+
+INSERT INTO schema_migrations (version) VALUES ('20160726124957');
 
