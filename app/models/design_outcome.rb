@@ -1,4 +1,4 @@
-class ExpectedOutcome < StudyRelationship
+class DesignOutcome < StudyRelationship
   attr_accessor :type
 
   def self.create_all_from(options={})
@@ -8,7 +8,7 @@ class ExpectedOutcome < StudyRelationship
 
     secondary=options[:xml].xpath("//secondary_outcome").collect{|xml|
       create_from({:xml=>xml,:type=>'secondary',:nct_id=>nct_id})}
-    ExpectedOutcome.import(primary + secondary)
+    DesignOutcome.import(primary + secondary)
   end
 
   def attribs

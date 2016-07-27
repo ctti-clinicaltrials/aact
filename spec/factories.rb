@@ -6,6 +6,10 @@ FactoryGirl.define do
     phone "MyString"
     email "MyString"
   end
+
+  factory :sanity_check do
+  end
+
   factory :study_xml_record do
   end
 
@@ -16,7 +20,7 @@ FactoryGirl.define do
     nct_id 'NCT123'
   end
 
-  factory :derived_value do
+  factory :calculated_value do
 
   end
 

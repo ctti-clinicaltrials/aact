@@ -1,4 +1,4 @@
-class DerivedValue < ActiveRecord::Base
+class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
   def create_from(new_study)
@@ -10,16 +10,16 @@ class DerivedValue < ActiveRecord::Base
 
   def attribs
     {
-      :sponsor_type              => calc_sponsor_type,
-      :actual_duration           => calc_actual_duration,
-      :enrollment                => calc_enrollment,
-      :results_reported          => calc_results_reported,
-      :months_to_report_results  => calc_months_to_report_results,
-      :registered_in_fiscal_year => calc_registered_in_fiscal_year,
-      :number_of_facilities      => calc_number_of_facilities,
-      :number_of_sae_subjects    => calc_number_of_sae_subjects,
-      :number_of_nsae_subjects   => calc_number_of_nsae_subjects,
-      :link_to_study_data        => calc_link_to_data
+      :sponsor_type                => calc_sponsor_type,
+      :actual_duration             => calc_actual_duration,
+      :enrollment                  => calc_enrollment,
+      :results_reported            => calc_results_reported,
+      :months_to_report_results    => calc_months_to_report_results,
+      :registered_in_calendar_year => calc_registered_in_calendar_year,
+      :number_of_facilities        => calc_number_of_facilities,
+      :number_of_sae_subjects      => calc_number_of_sae_subjects,
+      :number_of_nsae_subjects     => calc_number_of_nsae_subjects,
+      :link_to_study_data          => calc_link_to_data
     }
   end
 
@@ -57,12 +57,8 @@ class DerivedValue < ActiveRecord::Base
     end
   end
 
-  def calc_registered_in_fiscal_year
-    if study.first_received_date.month < 10
-      study.first_received_date.year
-    else
-      (study.first_received_date + 1.years).year
-    end
+  def calc_registered_in_calendar_year
+    study.first_received_date.year
   end
 
   def calc_number_of_facilities

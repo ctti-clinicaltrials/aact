@@ -7,7 +7,7 @@ namespace :simple_sanity_check do
     column_max_lengths = table_names.inject({}) do |table_hash, table_name|
       blacklist = %w(
         search_results
-        derived_values
+        calculated_values
       )
 
       next table_hash if blacklist.include?(table_name)
