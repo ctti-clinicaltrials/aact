@@ -1,0 +1,27 @@
+
+section.snapshot_archive {
+  @include columnify(8, true);
+  display: block;
+  margin: 0 auto;
+  padding-top: 100px;
+  margin-bottom: 200px;
+
+  ul {
+    border: 1px solid $secondary;
+    border-radius: $border-radius;
+    padding: 10px;
+
+  }
+
+  li {
+    border-bottom: 1px solid rgb(192,192,192);
+    padding: 5px 0px;
+    margin-bottom: 5px;
+
+  }
+
+  a {
+    font-size: 1.1rem;
+    color: $secondary;
+  }
+}

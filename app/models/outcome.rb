@@ -1,4 +1,6 @@
 class Outcome < StudyRelationship
+  extend FastCount
+
   attr_accessor :milestones, :drop_withdrawals
 
   belongs_to :group
