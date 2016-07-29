@@ -11,12 +11,15 @@
   %>
   <title><%= title %></title>
   <script src="https://use.fontawesome.com/b0881aff98.js"></script>
-  <script src="https://use.typekit.net/now5mse.js"></script>
-  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,400italic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
+  <header>
+    <%= render 'layouts/main_header' %>
+  </header>
+
   <%= render "flashes" -%>
   <%= yield %>
   <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script>
