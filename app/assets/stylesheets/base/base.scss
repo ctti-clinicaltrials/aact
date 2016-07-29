@@ -20,6 +20,7 @@ body {
   // background-attachment: fixed;
   background: url("download.svg") #f9f9f9;
   @include bg-size(30px 20px);
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
