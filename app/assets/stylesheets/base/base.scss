@@ -17,7 +17,9 @@ body {
   min-height: 100%;
   font-family: $font-serif;
   color: $text-color;
-  background-color: $white;
+  // background-attachment: fixed;
+  background: url("download.svg") #f9f9f9;
+  @include bg-size(30px 20px);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -83,6 +85,8 @@ h6 {  font-size: .8rem;  }
 ul, ol {
   padding: 0px;
   margin-bottom: 1rem;
+  font-family: $font-sans;
+  padding: 1rem 2rem;
 
   li {
     font-size: 1rem;

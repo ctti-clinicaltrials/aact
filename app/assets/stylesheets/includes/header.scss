@@ -1,5 +1,5 @@
 header {
-  background-color: $primary;
+  background-color: $white;
   opacity: 1;
   padding: 10px 0px;
   width: 100%;
@@ -9,4 +9,20 @@ header {
     @include justify-content(space-between);
     @include align-items(center);
   }
+
+  img.logo {
+    max-width: 200px;
+  }
+
+  nav {
+    @include display-flex;
+    text-align: center;
+  }
+
+  a.navItem {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: $gutter_width;
+  }
+
 }
