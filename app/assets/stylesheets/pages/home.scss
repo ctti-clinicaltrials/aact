@@ -75,17 +75,21 @@ aside.docsMenu {
   padding-top: 1rem;
   margin-bottom: 300px;
   z-index: 100;
-  background-color: $white;
+  background-color: $secondary;
+  color: $white;
   padding: 1rem;
+  @include box-shadow(3px 3px 11px $light-grey);
 
   a {
     display: block;
     margin-bottom: 5px;
+    color: $white;
 
     &.menuRoot {
       font-weight: bold;
       padding-top: 10px;
       font-size: 1.1rem;
+      color: $turquoise;
     }
   }
 
