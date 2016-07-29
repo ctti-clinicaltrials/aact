@@ -2,68 +2,68 @@
 section.homeHero {
   display: block;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0px;
   text-align: left;
   position: relative;
-
-  img.homeBg {
-    display: none;
-
-    @include MQ(M) {
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      @include center(xy);
-      opacity: .6;
-    }
-  }
+  text-align: center;
 
   h1 {
-    // font-weight: bold;
     padding: 0px;
     margin: 0px;
-    display: inline-block;
-    margin-right: 20px;
-    font-weight: lighter;
-
-    span {
-      font-weight: bold;
-      font-size: 3rem;
-    }
 
     @include MQ(M) {
       margin-bottom: 2rem;
     }
   }
 
-  img.logo {
-    width: 60px;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  p, a {
-    font-size: 1rem;
-  }
-
   p {
+    font-size: 1.1rem;
     margin-bottom: 40px;
+  }
+
+  div.copy {
+    @include columnify(8, true);
+    display: block;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+  }
+
+  div.heroPanels {
+    background-color: $white;
+    @include display-flex;
+    padding: 0rem 6rem;
+
+    a {
+      padding: 7rem 1rem;
+      @include box-shadow(3px 3px 11px $light-grey);
+      text-align: left;
+      position: relative;
+      bottom: 70px;
+      text-transform: none;
+      font-weight: normal;
+      font-size: 1.3rem;
+
+      &:first-of-type {
+        width: 60%;
+        background-color: $secondary;
+        border-color: $secondary;
+
+        &:hover {
+          background-color: darken($secondary, 5);
+          border-color: darken($secondary, 5);
+        }
+      }
+
+      &:last-of-type {
+        width: 40%;
+      }
+    }
   }
 
   a.button {
-    margin: 0px;
-    margin-bottom: 40px;
+    margin: 1rem;
     font-size: 1rem;
     text-align: center;
-
-    @include MQ(M) {
-      margin-right: 20px;
-      margin-bottom: 80px;
-
-    }
   }
 }
 
@@ -75,6 +75,8 @@ aside.docsMenu {
   padding-top: 1rem;
   margin-bottom: 300px;
   z-index: 100;
+  background-color: $white;
+  padding: 1rem;
 
   a {
     display: block;
@@ -88,7 +90,7 @@ aside.docsMenu {
   }
 
   @include MQ(L) {
-    @include columnify(3);
+    @include columnify(3, true);
     position: absolute;
     top: 0;
     left: 20px;
@@ -101,7 +103,9 @@ aside.docsMenu {
 
 
 section.documentation {
-  margin-bottom: 700px;
+  padding: 1rem;
+  padding-bottom: 1000px;
+  background-color: $white;
 
   h2 {
     font-size: 2.2rem;
@@ -147,6 +151,8 @@ section.documentation {
   @include MQ(L) {
     @include columnify(9, true);
     @include offset(3);
+    position: relative;
+    right: $gutter_width;
   }
 }
 

@@ -61,14 +61,15 @@ img {
 
 h1 {
   font-size: 2.8rem;
+  color: $secondary;
 
   @include MQ(S) {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 }
 
 h2 {
-  color: $primary;
+  color: $secondary;
   font-size: 1.8rem;
   @include MQ(S) {
     font-size: 1.8rem;
