@@ -16,7 +16,7 @@
 </head>
 <body class="<%= body_class %>">
   <header>
-    <%= render 'layouts/main_header' %>
+    <%= render 'includes/main_header' %>
   </header>
 
   <%= render "flashes" -%>
@@ -24,12 +24,10 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
+
   <footer>
-    <nav>
-      <a href="#">Privacy</a>
-      <a href="#">About</a>
-      <a href="#">Legal</a>
-    </nav>
+    <%= render 'includes/main_footer' %>
+
   </footer>
 </body>
 </html>
