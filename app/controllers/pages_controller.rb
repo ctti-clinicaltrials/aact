@@ -6,4 +6,8 @@ class PagesController < ApplicationController
   def snapshot_archive
     @snapshots = Date.today..90.days.ago
   end
+
+  def points_to_consider
+    #code
+  end
 end
