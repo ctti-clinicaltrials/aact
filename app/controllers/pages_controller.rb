@@ -10,4 +10,8 @@ class PagesController < ApplicationController
   def points_to_consider
     #code
   end
+
+  def learn_more
+    #code
+  end
 end

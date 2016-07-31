@@ -28,10 +28,31 @@ section.homeHero {
     padding: 4rem 3rem;
   }
 
-  div.heroPanels {
+  div.heroPanelRow {
     background-color: $white;
     @include display-flex;
     padding: 0rem 6rem;
+
+    span.type {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 2px solid $primary;
+      color: $primary;
+      padding-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    i.fa {
+      font-size: 15rem;
+      position: absolute;
+      bottom: -30px;
+      right: -20px;
+      opacity: .3;
+    }
 
     a {
       padding: 7rem 1rem;
@@ -42,8 +63,9 @@ section.homeHero {
       text-transform: none;
       font-weight: normal;
       font-size: 1.3rem;
+      overflow: hidden;
 
-      &:first-of-type {
+      &.big {
         width: 60%;
         background-color: $secondary;
         border-color: $secondary;
@@ -54,9 +76,31 @@ section.homeHero {
         }
       }
 
-      &:last-of-type {
+      &.small {
         width: 40%;
+
+        span.type {
+          border-bottom: 2px solid $secondary;
+          color: $secondary;
+        }
       }
+
+      &.light {
+        background-color: $light-grey;
+        border-color: $light-grey;
+        color: $grey;
+
+        &:hover {
+          background-color: darken($light-grey, 5);
+          border-color: darken($light-grey, 5);
+        }
+
+        span.type {
+          border-bottom: 2px solid darken($light-grey, 15);
+          color: darken($light-grey, 15);
+        }
+      }
+
     }
   }
 
