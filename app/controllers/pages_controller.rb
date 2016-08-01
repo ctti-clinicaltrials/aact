@@ -11,6 +11,10 @@ class PagesController < ApplicationController
     #code
   end
 
+  def download_aact
+    #code
+  end
+  
   def learn_more
     #code
   end

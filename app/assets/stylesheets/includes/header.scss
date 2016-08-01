@@ -22,7 +22,12 @@ header {
   a.navItem {
     font-weight: bold;
     text-transform: uppercase;
-    margin-left: $gutter_width;
+    margin-left: $gutter_width*2;
+    
+    i {
+      margin-right: 4px;
+      font-size: 1.1rem;
+    }
   }
 
 }
