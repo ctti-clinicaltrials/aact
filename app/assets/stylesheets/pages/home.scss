@@ -1,4 +1,80 @@
 
+div.heroPanelRow {
+  background-color: $white;
+  @include display-flex;
+  padding: 0rem 6rem;
+
+  span.type {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid $primary;
+    color: $primary;
+    padding-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  i.fa {
+    font-size: 15rem;
+    position: absolute;
+    bottom: -30px;
+    right: -20px;
+    opacity: .2;
+  }
+
+  a {
+    padding: 7rem 1rem;
+    @include box-shadow(3px 3px 11px $light-grey);
+    text-align: left;
+    position: relative;
+    bottom: 70px;
+    text-transform: none;
+    font-weight: normal;
+    font-size: 1.3rem;
+    overflow: hidden;
+
+    &.big {
+      width: 60%;
+      background-color: $secondary;
+      border-color: $secondary;
+
+      &:hover {
+        background-color: darken($secondary, 5);
+        border-color: darken($secondary, 5);
+      }
+    }
+
+    &.small {
+      width: 40%;
+
+      span.type {
+        border-bottom: 2px solid $secondary;
+        color: $secondary;
+      }
+    }
+
+    &.light {
+      background-color: rgb(249,249,249);
+      border-color: rgb(249,249,249);
+      color: $grey;
+
+      &:hover {
+        background-color: darken(rgb(249,249,249), 10);
+        border-color: darken(rgb(249,249,249), 10);
+      }
+
+      span.type {
+        border-bottom: 2px solid darken(rgb(249,249,249), 25);
+        color: darken(rgb(249,249,249), 25);
+      }
+    }
+  }
+}
+
+
 section.homeHero {
   display: block;
   margin: 0 auto;
@@ -28,81 +104,6 @@ section.homeHero {
     padding: 4rem 3rem;
   }
 
-  div.heroPanelRow {
-    background-color: $white;
-    @include display-flex;
-    padding: 0rem 6rem;
-
-    span.type {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: .8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 2px solid $primary;
-      color: $primary;
-      padding-bottom: 1rem;
-      font-weight: bold;
-    }
-
-    i.fa {
-      font-size: 15rem;
-      position: absolute;
-      bottom: -30px;
-      right: -20px;
-      opacity: .3;
-    }
-
-    a {
-      padding: 7rem 1rem;
-      @include box-shadow(3px 3px 11px $light-grey);
-      text-align: left;
-      position: relative;
-      bottom: 70px;
-      text-transform: none;
-      font-weight: normal;
-      font-size: 1.3rem;
-      overflow: hidden;
-
-      &.big {
-        width: 60%;
-        background-color: $secondary;
-        border-color: $secondary;
-
-        &:hover {
-          background-color: darken($secondary, 5);
-          border-color: darken($secondary, 5);
-        }
-      }
-
-      &.small {
-        width: 40%;
-
-        span.type {
-          border-bottom: 2px solid $secondary;
-          color: $secondary;
-        }
-      }
-
-      &.light {
-        background-color: $light-grey;
-        border-color: $light-grey;
-        color: $grey;
-
-        &:hover {
-          background-color: darken($light-grey, 5);
-          border-color: darken($light-grey, 5);
-        }
-
-        span.type {
-          border-bottom: 2px solid darken($light-grey, 15);
-          color: darken($light-grey, 15);
-        }
-      }
-
-    }
-  }
 
   a.button {
     margin: 1rem;
