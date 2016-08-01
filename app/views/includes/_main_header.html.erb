@@ -2,18 +2,26 @@
   <%= link_to(root_path) do %>
     <%= image_tag("mock_aact_logo.png", class:"logo") %>
   <% end %>
-  <nav>
-    <a href="/#access" class="navItem">
-      <%= icon("plug") %>
-      Connect
-    </a>
-    <a href="/download_aact" class="navItem">
-      <%= icon("download") %>
-      Download
-    </a>
-    <a href="/learn_more" class="navItem">
-      <%= icon("university") %>
-      Learn More
-    </a>
-  </nav>
+
+  <div class="navContainer">
+    <div class="newsletter">
+      <input type="text" value="" placeholder="Sign up for updates with your email address...">
+      <input type="button" name="name" value=">"></input>
+    </div>
+    <nav>
+      <a href="/#access" class="navItem">
+        <%= icon("plug") %>
+        Connect
+      </a>
+      <a href="/download_aact" class="navItem">
+        <%= icon("download") %>
+        Download
+      </a>
+      <a href="/learn_more" class="navItem">
+        <%= icon("university") %>
+        Learn More
+      </a>
+    </nav>
+
+  </div>
 </div>

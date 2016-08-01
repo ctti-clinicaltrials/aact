@@ -25,34 +25,6 @@ footer {
     color: $white;
   }
 
-  div.newsletter {
-    width: 66.66%;
-    position: relative;
-
-    input {
-      margin: 0px;
-      position: absolute;
-      @include center(y);
-      border-radius: 0px;
-      border-color: transparent;
-      outline: none;
-      font-family: $font-sans;
-      color: $grey;
-      font-size: 1rem;
-    }
-
-    input[type="button"] {
-      right: 0px;
-      background-color: $primary;
-      color: $white;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      left: 0px;
-    }
-  }
-
   nav.social {
     width: 33.33%;
     padding: 10px 30px;
