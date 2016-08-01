@@ -22,7 +22,7 @@ body {
   font-family: $font-serif;
   color: $text-color;
   // background-attachment: fixed;
-  background: url("download.svg") #f9f9f9;
+  background: url("https://s3-us-west-2.amazonaws.com/cttiaact2/download.svg") #f9f9f9;
   @include bg-size(30px 20px);
   position: relative;
 }
