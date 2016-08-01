@@ -1,0 +1,38 @@
+section.dataDictionaryShow {
+  margin-bottom: 500px;
+
+  h1 {
+    padding-top: 100px;
+    border-bottom: 1px solid $grey;
+  }
+
+  h2 {
+    padding-top: 60px;
+    border-bottom: 1px solid $primary;
+  }
+
+  h4 {
+    padding-top: 40px;
+    border-bottom: 1px solid $grey;
+  }
+
+  div.wrap {
+    @include columnify(10, true);
+    display: block;
+    margin: 0 auto;
+  }
+
+  div.gridContainer {
+    @include columnify(12, true);
+    display: block;
+    margin: 0 auto;
+    padding: 60px 0px;
+  }
+
+  .jsgrid-header-row>.jsgrid-header-cell {
+    font-size: 12px;
+  }
+}
+
+section.dictionaryOverview, section.dataDefinitions, section.namingConventions {
+}

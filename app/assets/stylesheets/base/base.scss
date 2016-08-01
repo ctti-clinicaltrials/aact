@@ -63,6 +63,16 @@ img {
 }
 
 
+ul {
+  padding: 0px;
+  margin-bottom: 1rem;
+
+  li {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+  }
+}
+
 h1 {
   font-size: 2.8rem;
   color: $secondary;
@@ -75,6 +85,7 @@ h1 {
 h2 {
   color: $secondary;
   font-size: 1.8rem;
+
   @include MQ(S) {
     font-size: 1.8rem;
   }

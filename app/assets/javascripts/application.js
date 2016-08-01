@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require_tree .
 
-var options = {
-  valueNames: [ 'column', 'label', 'definition', 'notes' ]
-};
+// var options = {
+//   valueNames: [ 'column', 'label', 'definition', 'notes' ]
+// };
 
-var dataDefinitions = new List('dataDefinitions', options);
+// var dataDefinitions = new List('dataDefinitions', options);
