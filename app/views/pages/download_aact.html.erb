@@ -11,14 +11,30 @@
 
   <section class="instructions">
     <div class="wrap">
-      <h4 id="snapshots">Download archived snapshots</h4>
-      <%= render 'access/snapshots' %>
 
-      <h4 id="replicate">Restore local database from AACT2 snapshot</h4>
-      <%= render 'access/restore_snapshot' %>
+      <section class="downloadIntro">
+        <p>Postgres is well established and relatively easy to install and manage. Postgres documentation/online support is plentiful, and the platform is light-weight and designed for use by people/organizations that don't have resources to administer relational database systems. Anyone can replicate the current AACT database to their local machine, and then analyze the data using their own local instance of Postgres.</p>
 
-      <h4 id="csv">Download pipe delimited packages</h4>
-      <%= render 'access/download_package' %>
+        <p>Monthly snapshots of AACT are available for download. People interested in using a snapshot of AACT can install Postgres locally, then download and unpack the AACT snapshot and freely query/analyze the data on their local copy.</p>
+
+        <p>Also monthly, a zip file containing the entire content of the database is provided as a set of .csv files that can be downloaded. Downloaded .csv files can be unpacked and used as a data source for analytic tools such as SAS and R.</p>
+
+      </section>
+
+      <div class="centerTile">
+        <h4 id="snapshots">Download a Snapshot of AACT</h4>
+        <%= render 'access/snapshots' %>
+      </div>
+
+      <div class="centerTile">
+        <h4 id="replicate">Restore local database from AACT2 snapshot</h4>
+        <%= render 'access/restore_snapshot' %>
+      </div>
+
+      <div class="centerTile">
+        <h4 id="csv">Download pipe delimited packages</h4>
+        <%= render 'access/download_package' %>
+      </div>
 
     </div>
 
