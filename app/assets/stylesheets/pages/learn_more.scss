@@ -1,0 +1,45 @@
+div.basicHero {
+  padding: 100px 0px;
+}
+
+section.learnMore {
+
+
+  div.overview {
+    background-color: $white;
+    padding: 100px 0px;
+    padding-bottom: 500px;
+  }
+}
+
+div.quickLinks {
+  display: block;
+  background-color: $white;
+  @include display-flex;
+  @include flex-wrap(wrap);
+  width: 100%;
+
+  div.wrap {
+    @include columnify(11, true);
+  }
+
+  div.quickLink {
+    width: 50%;
+    display: inline-block;
+    padding: 1rem;
+  }
+
+  div.card {
+    background-color: rgb(249,249,249);
+    color: $grey;
+    @include box-shadow(3px 3px 11px $light-grey);
+    padding: 1rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    color: $secondary;
+    text-align: center;
+    font-weight: normal;
+  }
+}
