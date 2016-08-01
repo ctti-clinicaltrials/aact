@@ -12,7 +12,7 @@ class SanityCheck < ActiveRecord::Base
   end
 
   def report
-    JSON.parse(read_attribute(:report))
+    JSON.parse(read_attribute(:report)).with_indifferent_access
   end
 
   def generate_report
