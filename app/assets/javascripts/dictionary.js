@@ -60,7 +60,7 @@ $( document ).ready(function() {
 
       $("#jsGrid").jsGrid({
           width: "100%",
-          height: "600px",
+          height: "auto",
           data: clients,
 
           inserting: false,

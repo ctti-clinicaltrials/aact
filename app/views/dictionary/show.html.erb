@@ -1,8 +1,12 @@
 
 <section class="dataDictionaryShow">
   <div class="wrap">
-    <h1>AACT2 Data Dictionary</h1>
+    <div class="basicHero">
+      <h1>AACT2 Data Dictionary</h1>
+
+    </div>
   </div>
+
   <section class="dictionaryOverview">
     <div class="wrap">
       <h2>Overview</h2>
@@ -22,27 +26,7 @@
     </div>
   </section>
 
-  <section class="dataDefinitions">
-    <div class="wrap">
-      <h2>Data Definitions</h2>
 
-      <p>
-        The purpose of the data definitions table is to provide detailed information about each data element in the AACT2 databse. Every column in the AACT2 relational database table is represented as a row in the table below.
-      </p>
-    </div>
-
-    <!-- <ul>
-      <li>Current Variables:  list of all tables/columns with descriptive data</li>
-      <li>Enumerations:  A list of drop-down menus and the values available for each</li>
-      <li>Record Counts:  A list of all tables with the current row count</li>
-      <li>Schema:  The ER Diagram</li>
-    </ul> -->
-
-    <div class="gridContainer">
-      <div id="jsGrid"></div>
-
-    </div>
-  </section>
 
   <section class="namingConventions">
     <div class="wrap">
@@ -85,7 +69,30 @@
         <li>The ClinicalTrials.gov data entry system assigns a unique number to each group/arm defined in the results. (Why we didn't link related data per group needs to be explained.  The numbers, uniquely assigned to each group in a study are revealed as XML tags – for example, P1 uniquely identifies participant-related data for group 1, M1 identifies milestone-related data for group 1, and O1 identifies outcomes-related data for group 1. Users can override how the data entry system works.  To what degree do we trust that users have entered info as expected?  Should we make assumptions about linking info to the associated group/arm.</li>
       </ul>
 
-      </div>
-    </section>
+    </div>
+  </section>
+
+
+  <section class="dataDefinitions">
+    <div class="wrap">
+      <h2>Data Definitions</h2>
+
+      <p>
+        The purpose of the data definitions table is to provide detailed information about each data element in the AACT2 databse. Every column in the AACT2 relational database table is represented as a row in the table below.
+      </p>
+    </div>
+
+    <!-- <ul>
+      <li>Current Variables:  list of all tables/columns with descriptive data</li>
+      <li>Enumerations:  A list of drop-down menus and the values available for each</li>
+      <li>Record Counts:  A list of all tables with the current row count</li>
+      <li>Schema:  The ER Diagram</li>
+    </ul> -->
+
+    <div class="gridContainer">
+      <div id="jsGrid"></div>
+
+    </div>
+  </section>
 
 </section>
