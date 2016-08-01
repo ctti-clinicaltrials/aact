@@ -123,18 +123,29 @@ aside.docsMenu {
   color: $white;
   padding: 1rem;
   @include box-shadow(3px 3px 11px $light-grey);
+  display: none;
+  height: 100vh;
+  overflow-y: scroll;
 
   a {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     color: $white;
+    font-size: .8rem;
 
     &.menuRoot {
       font-weight: bold;
       padding-top: 10px;
-      font-size: 1.1rem;
+      font-size: .9rem;
       color: $turquoise;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0px;
   }
 
   @include MQ(L) {
