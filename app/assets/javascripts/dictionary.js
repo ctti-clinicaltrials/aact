@@ -92,7 +92,8 @@ $( document ).ready(function() {
               { name: "NLM Req.", type: "checkbox", width: 60 },
               { name: "FDAAA Req.", type: "checkbox", width: 60 },
               { name: "Enumerations", type:"text" },
-              { name: "Comments", type: "text" }
+              { name: "Comments", type: "text" },
+              { type: "control" }
           ],
 
           controller: {
