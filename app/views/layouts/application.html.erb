@@ -11,6 +11,11 @@
   %>
   <title><%= title %></title>
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,400italic' rel='stylesheet' type='text/css'>
+
+
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid-theme.min.css" />
+
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
 </head>
@@ -21,8 +26,10 @@
 
   <%= render "flashes" -%>
   <%= yield %>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script>
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script> -->
+
   <%= render "javascript" %>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.js"></script>
   <%= render "css_overrides" %>
 
   <footer>
