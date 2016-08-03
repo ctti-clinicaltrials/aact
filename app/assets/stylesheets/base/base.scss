@@ -12,12 +12,19 @@ html {
   height: 100%;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
   font-size: 0px;
   min-height: 100%;
   font-family: $font-serif;
   color: $text-color;
-  background-color: $white;
+  // background-attachment: fixed;
+  background: url("https://s3-us-west-2.amazonaws.com/cttiaact2/download.svg") #f9f9f9;
+  @include bg-size(30px 20px);
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -56,32 +63,52 @@ img {
 }
 
 
+ul {
+  padding: 0px;
+  margin-bottom: 1rem;
+
+  li {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+  }
+}
+
 h1 {
   font-size: 2.8rem;
+  color: $secondary;
 
   @include MQ(S) {
-    font-size: 3.8rem;
+    font-size: 2rem;
   }
 }
 
 h2 {
-  color: $primary;
+  color: $secondary;
   font-size: 1.8rem;
+
   @include MQ(S) {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
   }
 }
 
-h3 {  font-size: 1.8rem;  }
+h3 {  font-size: 1.4rem;  }
 
-h4 {  font-size: 1.5rem;  }
+h4 {  font-size: 1.2rem;  }
 
 h5 {  font-size: 1rem;  }
 
 h6 {  font-size: .8rem;  }
 
-ul {
-  padding-left: 10px;
+ul, ol {
+  padding: 0px;
+  margin-bottom: 1rem;
+  font-family: $font-sans;
+  padding: 1rem 2rem;
+
+  li {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+  }
 }
 
 pre {

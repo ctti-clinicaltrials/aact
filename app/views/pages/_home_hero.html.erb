@@ -1,38 +1,37 @@
 
 <section class="homeHero">
 
-  <%= image_tag("bg2.png", class:"homeBg") %>
 
-  <div class="wrap">
-    <div class="heroHead">
-      <div class="logoBlock">
-        <h1>AACT<span>2</span></h1>
-        <%= image_tag("ab_logo.jpg", class:"logo") %>
-      </div>
-
-      <nav>
-        <a href="#access" class="navItem">
-          <i class="fa fa-plug"></i>
-          <span>Connect to AACT</span>
-        </a>
-        <a href="#snapshots" class="navItem">
-          <i class="fa fa-download"></i>
-          <span>Database Download</span>
-        </a>
-        <a href="https://github.com/SturdyCo/aact2" target="_blank" class="navItem">
-          <i class="fa fa-info"></i>
-          <span>Learn About AACT</span>
-        </a>
-      </nav>
-
-    </div>
-
-    <h2>Here to make clinical trials data easier to access and understand.</h2>
+  <div class="copy">
+    <h1>Here to make clinical trials data easier to access and understand.</h1>
 
     <p>The Aggregate Analysis of ClincalTrials.gov (AACT Version 2.0) provides direct and downloadable access to publicly available data from ClinicalTrials.gov.</p>
 
-    <a class="button" href="#access">Connect to AACT2</a>
-    <a class="button" href="#snapshots">Database Download</a>
   </div>
 
+  <div class="heroPanelRow">
+    <a class="button big" href="#access">
+      <%= icon('plug') %>
+      <span class="type">Instructions</span>
+      Connect to AACT2
+    </a>
+    <a class="button small" href="/download_aact">
+      <%= icon('download') %>
+      <span class="type">Instructions</span>
+      Database Download
+    </a>
+  </div>
+
+  <div class="heroPanelRow">
+    <a class="button small light" href="/points_to_consider">
+      <%= icon('info-circle') %>
+      <span class="type">Recommendation</span>
+      Points to Consider
+    </a>
+    <a class="button big" href="/learn_more">
+      <%= icon('university') %>
+      <span class="type">Publication</span>
+      Learn about AACT
+    </a>
+  </div>
 </section>

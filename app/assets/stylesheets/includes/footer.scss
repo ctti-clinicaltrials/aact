@@ -1,11 +1,19 @@
 
 footer {
-  background-color: $primary;
-  color: $white;
+  background-color: $grey;
+  color: $light-grey;
+  z-index: 1000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  font-size: 0px;
 
   nav {
     display: block;
-    text-align: center;
+    @include display-flex;
+    @include justify-content(space-between);
     padding: 10px;
   }
 
@@ -13,7 +21,33 @@ footer {
     padding: 0px 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: .6rem;
+    font-size: 1rem;
     color: $white;
+  }
+
+  nav.social {
+    width: 33.33%;
+    padding: 10px 30px;
+  }
+
+
+  div.contact {
+    @include display-flex;
+    padding: 2rem 0px;
+    border-bottom: 1px solid $light-grey;
+  }
+
+  nav.footerBar {
+      padding: 2rem 0px;
+      border-bottom: 1px solid $light-grey;
+      margin-bottom: 2rem;
+  }
+
+  div.disclaimer {
+    padding-bottom: 2rem;
+  }
+
+  div.copyright {
+    text-align: center;
   }
 }

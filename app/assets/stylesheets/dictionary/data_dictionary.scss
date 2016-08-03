@@ -1,0 +1,44 @@
+section.dataDictionaryShow {
+  padding-bottom: 500px;
+
+  h2 {
+    padding-top: 60px;
+    border-bottom: 1px solid $primary;
+  }
+
+  h4 {
+    padding-top: 40px;
+    border-bottom: 1px solid $grey;
+  }
+
+  ul {
+    margin-bottom: 0px;
+  }
+
+  div.wrap {
+    @include columnify(10, true);
+    display: block;
+    margin: 0 auto;
+  }
+
+  div.gridContainer {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    padding: 60px 20px;
+    background-color: $white;
+  }
+
+  .jsgrid-header-row>.jsgrid-header-cell {
+    font-size: 12px;
+  }
+
+  div#jsGrid {
+    @include box-shadow(3px 3px 11px $light-grey);
+  }
+}
+
+section.dictionaryOverview, section.dataDefinitions, section.namingConventions {
+
+  background-color: $white;
+}
