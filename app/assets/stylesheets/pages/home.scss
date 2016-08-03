@@ -2,211 +2,154 @@
 section.homeHero {
   display: block;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0px;
   text-align: left;
   position: relative;
-
-  img.homeBg {
-    display: none;
-
-    @include MQ(M) {
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      @include center(xy);
-      opacity: .6;
-    }
-  }
+  text-align: center;
 
   h1 {
-    // font-weight: bold;
     padding: 0px;
     margin: 0px;
-    display: inline-block;
-    margin-right: 20px;
-    font-weight: lighter;
-
-    span {
-      font-weight: bold;
-      font-size: 3rem;
-    }
 
     @include MQ(M) {
       margin-bottom: 2rem;
     }
   }
 
-  img.logo {
-    width: 60px;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  p, a {
-    font-size: 1rem;
-  }
-
   p {
+    font-size: 1.1rem;
     margin-bottom: 40px;
+  }
+
+  div.copy {
+    @include columnify(8, true);
+    display: block;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+  }
+
+  div.heroPanelRow {
+    background-color: $white;
+    @include display-flex;
+    padding: 0rem 6rem;
+
+    span.type {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 2px solid $primary;
+      color: $primary;
+      padding-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    i.fa {
+      font-size: 15rem;
+      position: absolute;
+      bottom: -30px;
+      right: -20px;
+      opacity: .2;
+    }
+
+    a {
+      padding: 7rem 1rem;
+      @include box-shadow(3px 3px 11px $light-grey);
+      text-align: left;
+      position: relative;
+      bottom: 70px;
+      text-transform: none;
+      font-weight: normal;
+      font-size: 1.3rem;
+      overflow: hidden;
+
+      &.big {
+        width: 60%;
+        background-color: $secondary;
+        border-color: $secondary;
+
+        &:hover {
+          background-color: darken($secondary, 5);
+          border-color: darken($secondary, 5);
+        }
+      }
+
+      &.small {
+        width: 40%;
+
+        span.type {
+          border-bottom: 2px solid $secondary;
+          color: $secondary;
+        }
+      }
+
+      &.light {
+        background-color: rgb(249,249,249);
+        border-color: rgb(249,249,249);
+        color: $grey;
+
+        &:hover {
+          background-color: darken(rgb(249,249,249), 10);
+          border-color: darken(rgb(249,249,249), 10);
+        }
+
+        span.type {
+          border-bottom: 2px solid darken(rgb(249,249,249), 25);
+          color: darken(rgb(249,249,249), 25);
+        }
+      }
+    }
   }
 
   a.button {
-    margin: 0px;
-    margin-bottom: 40px;
+    margin: 1rem;
     font-size: 1rem;
     text-align: center;
-
-    @include MQ(M) {
-      margin-right: 20px;
-      margin-bottom: 80px;
-
-    }
-  }
-
-  div.heroHead {
-
-    @include MQ(M) {
-      @include display-flex;
-      @include justify-content(space-between);
-      @include align-items(center);
-      margin-bottom: 75px
-    }
-
-  }
-
-  div.logoBlock {
-    @include display-flex;
-    @include align-items(center);
-    @include justify-content(center);
-    margin-bottom: 2rem;
-
-    @include MQ(M) {
-      margin-bottom: 0px;
-      @include flex-direction(column);
-      @include align-items(left);
-    }
-  }
-
-  nav {
-    margin-bottom: 40px;
-    text-align: center;
-
-    i {
-      color: $white;
-      font-size: 42px;
-      display: block;
-      margin-bottom: 5px;
-      position: absolute;
-      @include center(xy);
-      @include transition(all 250ms ease);
-    }
-
-    span {
-      color: $secondary;
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      position: absolute;
-      @include center(x);
-      bottom: -25px;
-      width: 100%;
-      @include transition(all 250ms ease);
-      text-align: center;
-    }
-
-    @include MQ(M) {
-      margin-bottom: 0px;
-
-      i {
-        font-size: 36px;
-      }
-
-      span {
-        bottom: -25px;
-      }
-    }
-
-    @include MQ(L) {
-      span {
-        opacity: 0;
-      }
-    }
-  }
-
-  a.navItem {
-    display: inline-block;
-    border: 1px solid $primary;
-    border-radius: 50%;
-    position: relative;
-    background-color: $primary;
-    margin: 0px;
-    width: 60px;
-    height: 60px;
-    margin: 0px 10px;
-
-    @include MQ(M) {
-      margin: 0px;
-      width: 80px;
-      height: 80px;
-      margin-left: 2rem;
-    }
-
-    &:hover {
-      span {
-        opacity: 1;
-      }
-
-      i {
-        font-size: 40px;
-      }
-    }
-  }
-
-  @include MQ(M) {
-
-    h1 {
-      margin: 0px;
-    }
-
-    h2 {
-      font-size: 3.25rem;
-      max-width: 70%;
-    }
-
-    p, a {
-      font-size: 1.25rem;
-    }
-
-    p {
-      max-width: 60%;
-      margin-bottom: 40px;
-    }
   }
 }
 
 div.homeContent {
   position: relative;
+  padding-bottom: 350px;
 }
 
 aside.docsMenu {
   padding-top: 1rem;
+  margin-bottom: 300px;
+  z-index: 100;
+  background-color: $secondary;
+  color: $white;
+  padding: 1rem;
+  @include box-shadow(3px 3px 11px $light-grey);
+  display: none;
+  height: 100vh;
+  overflow-y: scroll;
 
   a {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
+    color: $white;
+    font-size: .8rem;
 
     &.menuRoot {
       font-weight: bold;
       padding-top: 10px;
-      font-size: 1.1rem;
+      font-size: .9rem;
+      color: $turquoise;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
   }
 
+  ul {
+    list-style: none;
+    padding: 0px;
+  }
+
   @include MQ(L) {
-    @include columnify(3);
+    @include columnify(3, true);
     position: absolute;
     top: 0;
     left: 20px;
@@ -219,7 +162,9 @@ aside.docsMenu {
 
 
 section.documentation {
-  margin-bottom: 700px;
+  padding: 1rem;
+  padding-bottom: 1000px;
+  background-color: $white;
 
   h2 {
     font-size: 2.2rem;
@@ -265,6 +210,8 @@ section.documentation {
   @include MQ(L) {
     @include columnify(9, true);
     @include offset(3);
+    position: relative;
+    right: $gutter_width;
   }
 }
 
