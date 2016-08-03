@@ -7,20 +7,21 @@ $accent:                #ec3e37;
 
 $red:                   #b71417;
 $maroon:                #680001;
-$turquoise:             #016879;
+$turquoise:             #26657a;
 
 
 
 // UI
 // ••••••••••••••••••••••••••••••••••••••••••••••••••
 $grey:                        #57585c;
+$light-grey:                  rgb(204,204,204);
 $white:                       #fff;
 $bg-color:                    $white;
 $bg-grey:                     #dfdfdf;
 
 $text-color:                  $grey;
 
-$link-color:                  $secondary;
+$link-color:                  $primary;
 $link-visited-color:          $link-color;
 $link-hover-color:            darken($link-color, 5);
 
@@ -28,7 +29,7 @@ $button-color:                $link-color;
 $button-hover-color:          $link-hover-color;
 $button-text-color:           $white;
 
-$border-radius:               4px;
+$border-radius:               0px;
 
 // Semantic Colors
 // ••••••••••••••••••••••••••••••••••••••••••••••••••
@@ -45,7 +46,7 @@ $danger-hover: darken($danger, 10);
 // Typography
 // ••••••••••••••••••••••••••••••••••••••••••••••••••
 
-$font-sans:             'arial';
-$font-sans-secondary:   'arial';
-$font-sans-tertiary:    'arial';
+$font-sans:             'Roboto';
+$font-sans-secondary:   'Roboto';
+$font-sans-tertiary:    'Roboto';
 $font-serif:            'Georgia';

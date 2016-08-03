@@ -2,8 +2,14 @@
 
 @import "normalize-rails";
 
+@import "font-awesome-sprockets";
+
+@import "font-awesome";
+
 @import "base/base";
 
 @import "includes/*";
 
 @import "pages/*";
+
+@import "dictionary/*";
