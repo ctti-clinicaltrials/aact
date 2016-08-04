@@ -26,13 +26,14 @@ class Study < ActiveRecord::Base
   has_many :pma_mappings,          :foreign_key => 'nct_id'
   has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :design_outcomes,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :groups,                :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_analyses,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_conditions,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_interventions,  :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :central_contacts,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :conditions,            :foreign_key => 'nct_id', dependent: :delete_all
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :facilities,            :foreign_key => 'nct_id', dependent: :delete_all
@@ -115,6 +116,7 @@ class Study < ActiveRecord::Base
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     Condition.create_all_from(opts)
+    CentralContact.create_all_from(opts)
     Facility.create_all_from(opts)
     Intervention.create_all_from(opts)
     Keyword.create_all_from(opts)
