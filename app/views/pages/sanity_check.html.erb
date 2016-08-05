@@ -1,0 +1,26 @@
+<section class="sanityCheckSection">
+  <% @sanity_check_report.each do |table_name, stats| %>
+    <section class="tableReportSection">
+      <h3>
+        <%= table_name.capitalize %>
+      </h3>
+      <p>
+      Row count: <%= stats['row_count'] %>
+    </p>
+    <p>
+    <% if stats['column_stats'].present? %>
+      <% stats['column_stats'].each do |column| %>
+        <h5 class="columnStatsHeader">Stats for <%= column[0] %> column:</h5>
+        <ul class="stats">
+        <% column[1].each do |value| %>
+            <li>
+              <%= value[0].humanize %>: <%= value[1] %>
+            </li>
+        <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+    </p>
+    </section>
+  <% end %>
+</section>

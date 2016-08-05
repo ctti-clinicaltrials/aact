@@ -23,7 +23,7 @@ describe TableExporter do
           zipfile.entries.count
         end
 
-        expect(number_of_entries).to eq(45)
+        expect(number_of_entries).to eq(49)
       end
 
       it 'should have content in each csv' do

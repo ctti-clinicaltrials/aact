@@ -28,6 +28,7 @@ gem 'activerecord-import'
 gem 'sinatra', :require => nil
 gem 'nokogiri-diff'
 gem 'aws-sdk', '~> 2'
+gem 'font-awesome-sass'
 
 # Grape API
 gem 'rack'

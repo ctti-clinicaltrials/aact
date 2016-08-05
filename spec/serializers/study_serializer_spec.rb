@@ -43,15 +43,11 @@ RSpec.describe StudySerializer, type: :serializer do
         expect(serialized_study['participant_flow']["id"]).to eq(resource.participant_flow.id)
         expect(serialized_study['participant_flow']["recruitment_details"]).to eq(resource.participant_flow.recruitment_details)
         expect(serialized_study['participant_flow']["pre_assignment_details"]).to eq(resource.participant_flow.pre_assignment_details)
-        expect(DateTime.parse(serialized_study['participant_flow']["created_at"]).to_i).to eq(resource.participant_flow.created_at.to_i)
-        expect(DateTime.parse(serialized_study['participant_flow']["updated_at"]).to_i).to eq(resource.participant_flow.updated_at.to_i)
         expect(serialized_study['participant_flow']["nct_id"]).to eq(resource.participant_flow.nct_id)
         expect(serialized_study['result_detail']["id"]).to eq(resource.result_detail.id)
         expect(serialized_study['result_detail']["nct_id"]).to eq(resource.result_detail.nct_id)
         expect(serialized_study['result_detail']["pre_assignment_details"]).to eq(resource.result_detail.pre_assignment_details)
         expect(serialized_study['result_detail']["recruitment_details"]).to eq(resource.result_detail.recruitment_details)
-        expect(DateTime.parse(serialized_study['result_detail']["created_at"]).to_i).to eq(resource.result_detail.created_at.to_i)
-        expect(DateTime.parse(serialized_study['result_detail']["updated_at"]).to_i).to eq(resource.result_detail.updated_at.to_i)
       end
     end
   end

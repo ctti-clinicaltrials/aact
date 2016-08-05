@@ -1,4 +1,15 @@
 FactoryGirl.define do
+  factory :central_contact do
+    nct_id "MyString"
+    contact_type "MyString"
+    name "MyString"
+    phone "MyString"
+    email "MyString"
+  end
+
+  factory :sanity_check do
+  end
+
   factory :study_xml_record do
   end
 
@@ -9,7 +20,7 @@ FactoryGirl.define do
     nct_id 'NCT123'
   end
 
-  factory :derived_value do
+  factory :calculated_value do
 
   end
 

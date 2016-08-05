@@ -55,8 +55,8 @@ class StudyRelationship < ActiveRecord::Base
   end
 
   def create_from(opts={})
-    @opts=opts
-    @xml=opts[:xml]
+    @opts = opts
+    @xml = opts[:xml] || opts
     self.nct_id=opts[:nct_id]
     assign_attributes(attribs) if !attribs.blank?
     self

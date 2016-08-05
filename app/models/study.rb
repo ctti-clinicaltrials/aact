@@ -11,6 +11,7 @@ class Study < ActiveRecord::Base
   end
 
   self.primary_key = 'nct_id'
+
   has_many :reviews,               :foreign_key => 'nct_id', dependent: :delete_all
 
   has_one  :brief_summary,         :foreign_key => 'nct_id', dependent: :delete
@@ -19,27 +20,30 @@ class Study < ActiveRecord::Base
   has_one  :eligibility,           :foreign_key => 'nct_id', dependent: :delete
   has_one  :participant_flow,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :result_detail,         :foreign_key => 'nct_id', dependent: :delete
-  has_one  :derived_value,         :foreign_key => 'nct_id', dependent: :delete
+  has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
   has_many :pma_mappings,          :foreign_key => 'nct_id'
   has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :expected_outcomes,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :groups,                :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_analyses,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_conditions,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_interventions,  :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :central_contacts,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :conditions,            :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :countries,             :foreign_key => 'nct_id', dependent: :delete_all
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :facilities,            :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :facility_contacts,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :facility_investigators,:foreign_key => 'nct_id', dependent: :delete_all
   has_many :interventions,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :keywords,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all
   has_many :milestones,            :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :location_countries,    :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcome_measures,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :oversight_authorities, :foreign_key => 'nct_id', dependent: :delete_all
@@ -73,9 +77,9 @@ class Study < ActiveRecord::Base
     all.collect{|s|s.nct_id}
   end
 
-  def self.create_derived_values
+  def self.create_calculated_values
     # TODO once we figure out the nightly differential,
-    # change this method to only update derived values for
+    # change this method to only update calculated values for
     # studies that have changed.
 
     load_event = ClinicalTrials::LoadEvent.create(
@@ -88,7 +92,7 @@ class Study < ActiveRecord::Base
     ids.each_slice(batch_size) do |batch|
       batch.each do |id|
         study = Study.find_by(nct_id: id)
-        DerivedValue.new.create_from(study).save
+        CalculatedValue.new.create_from(study).save
       end
     end
 
@@ -111,15 +115,16 @@ class Study < ActiveRecord::Base
     BaselineMeasure.create_all_from(opts)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
+    CentralContact.create_all_from(opts)
     Condition.create_all_from(opts)
+    Country.create_all_from(opts)
     Facility.create_all_from(opts)
     Intervention.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
-    LocationCountry.create_all_from(opts)
     OversightAuthority.create_all_from(opts)
     OverallOfficial.create_all_from(opts)
-    ExpectedOutcome.create_all_from(opts)
+    DesignOutcome.create_all_from(opts)
     ReportedEvent.create_all_from(opts)
     ResponsibleParty.create_all_from(opts)
     ResultAgreement.create_all_from(opts)
@@ -127,7 +132,7 @@ class Study < ActiveRecord::Base
     SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
-    # DerivedValue.new.create_from(self).save
+    # CalculatedValue.new.create_from(self).save
     self
   end
 
@@ -211,6 +216,7 @@ class Study < ActiveRecord::Base
     {
       :start_date => get_date(get('start_date')),
       :first_received_date => get_date(get('firstreceived_date')),
+      :first_received_results_disposition_date => get_date(get('firstreceived_results_disposition_date')),
       :verification_date => get_date(get('verification_date')),
       :last_changed_date => get_date(get('lastchanged_date')),
       :primary_completion_date => get_date(get('primary_completion_date')),

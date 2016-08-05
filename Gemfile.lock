@@ -114,6 +114,8 @@ GEM
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
     flutie (2.0.0)
+    font-awesome-sass (4.6.2)
+      sass (>= 3.2)
     formulaic (0.3.0)
       activesupport
       capybara
@@ -351,6 +353,7 @@ DEPENDENCIES
   enumerize
   factory_girl_rails
   flutie
+  font-awesome-sass
   formulaic
   grape (>= 0.10.0)
   grape-active_model_serializers
