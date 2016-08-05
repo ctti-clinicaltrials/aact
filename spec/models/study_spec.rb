@@ -28,13 +28,13 @@ describe Study do
     it { should have_many(:browse_interventions).dependent(:delete_all) }
     it { should have_many(:central_contacts).dependent(:delete_all) }
     it { should have_many(:conditions).dependent(:delete_all) }
+    it { should have_many(:countries).dependent(:delete_all) }
     it { should have_many(:drop_withdrawals).dependent(:delete_all) }
     it { should have_many(:facilities).dependent(:delete_all) }
     it { should have_many(:interventions).dependent(:delete_all) }
     it { should have_many(:keywords).dependent(:delete_all) }
     it { should have_many(:links).dependent(:delete_all) }
     it { should have_many(:milestones).dependent(:delete_all) }
-    it { should have_many(:location_countries).dependent(:delete_all) }
     it { should have_many(:outcome_measures).dependent(:delete_all) }
     it { should have_many(:overall_officials).dependent(:delete_all) }
     it { should have_many(:oversight_authorities).dependent(:delete_all) }
