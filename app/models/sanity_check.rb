@@ -12,7 +12,7 @@ class SanityCheck < ActiveRecord::Base
   end
 
   def report
-    JSON.parse(read_attribute(:report), object_class: OpenStruct)
+    JSON.parse(read_attribute(:report)).with_indifferent_access
   end
 
   def generate_report
@@ -39,7 +39,7 @@ class SanityCheck < ActiveRecord::Base
     column_counts = column_names.inject({}) do |column_hash, column|
       column_hash[column] = {}
       %w(max min avg).each do |operation|
-        column_hash[column][operation] = @connection.execute("select #{operation}(length(#{column}::text)) from \"#{table_name}\"")
+        column_hash[column]["#{operation}_length"] = @connection.execute("select #{operation}(length(#{column}::text)) from \"#{table_name}\"")
                                                     .values.flatten.first.to_i
       end
       column_hash[column][:frequent_values] = @connection.execute("select left(#{column}::text, 30) from #{table_name} group by #{column} limit 10").values.flatten

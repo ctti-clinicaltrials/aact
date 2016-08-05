@@ -1,4 +1,12 @@
 FactoryGirl.define do
+  factory :central_contact do
+    nct_id "MyString"
+    contact_type "MyString"
+    name "MyString"
+    phone "MyString"
+    email "MyString"
+  end
+
   factory :sanity_check do
   end
 

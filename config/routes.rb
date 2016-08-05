@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   get "/points_to_consider" => "pages#points_to_consider"
   get "/download_aact" => "pages#download_aact"
   get "/snapshot_archive" => "pages#snapshot_archive"
+  get "/sanity_check_report" => "pages#sanity_check", as: :sanity_check
 end

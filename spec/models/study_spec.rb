@@ -26,6 +26,7 @@ describe Study do
     it { should have_many(:baseline_measures).dependent(:delete_all) }
     it { should have_many(:browse_conditions).dependent(:delete_all) }
     it { should have_many(:browse_interventions).dependent(:delete_all) }
+    it { should have_many(:central_contacts).dependent(:delete_all) }
     it { should have_many(:conditions).dependent(:delete_all) }
     it { should have_many(:countries).dependent(:delete_all) }
     it { should have_many(:drop_withdrawals).dependent(:delete_all) }
