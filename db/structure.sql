@@ -292,6 +292,37 @@ ALTER SEQUENCE conditions_id_seq OWNED BY conditions.id;
 
 
 --
+-- Name: countries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE countries (
+    id integer NOT NULL,
+    name character varying,
+    removed character varying,
+    nct_id character varying
+);
+
+
+--
+-- Name: countries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE countries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: countries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE countries_id_seq OWNED BY countries.id;
+
+
+--
 -- Name: data_definitions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -898,37 +929,6 @@ CREATE SEQUENCE load_events_id_seq
 --
 
 ALTER SEQUENCE load_events_id_seq OWNED BY load_events.id;
-
-
---
--- Name: location_countries; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE location_countries (
-    id integer NOT NULL,
-    name character varying,
-    removed character varying,
-    nct_id character varying
-);
-
-
---
--- Name: location_countries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE location_countries_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: location_countries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE location_countries_id_seq OWNED BY location_countries.id;
 
 
 --
@@ -1908,6 +1908,13 @@ ALTER TABLE ONLY conditions ALTER COLUMN id SET DEFAULT nextval('conditions_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY countries ALTER COLUMN id SET DEFAULT nextval('countries_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY data_definitions ALTER COLUMN id SET DEFAULT nextval('data_definitions_id_seq'::regclass);
 
 
@@ -2028,13 +2035,6 @@ ALTER TABLE ONLY links ALTER COLUMN id SET DEFAULT nextval('links_id_seq'::regcl
 --
 
 ALTER TABLE ONLY load_events ALTER COLUMN id SET DEFAULT nextval('load_events_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY location_countries ALTER COLUMN id SET DEFAULT nextval('location_countries_id_seq'::regclass);
 
 
 --
@@ -2262,6 +2262,14 @@ ALTER TABLE ONLY conditions
 
 
 --
+-- Name: countries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY countries
+    ADD CONSTRAINT countries_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: data_definitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2403,14 +2411,6 @@ ALTER TABLE ONLY links
 
 ALTER TABLE ONLY load_events
     ADD CONSTRAINT load_events_pkey PRIMARY KEY (id);
-
-
---
--- Name: location_countries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY location_countries
-    ADD CONSTRAINT location_countries_pkey PRIMARY KEY (id);
 
 
 --
@@ -2738,4 +2738,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160725195950');
 INSERT INTO schema_migrations (version) VALUES ('20160725200349');
 
 INSERT INTO schema_migrations (version) VALUES ('20160726124957');
+
+INSERT INTO schema_migrations (version) VALUES ('20160805131436');
 
