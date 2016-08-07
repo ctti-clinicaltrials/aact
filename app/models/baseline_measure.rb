@@ -35,19 +35,18 @@ class BaselineMeasure < StudyRelationship
 
   def attribs
     {
-      :ctgov_group_id => get_attribute('group_id'),
-      :ctgov_group_enumerator => integer_in(get_attribute('group_id')),
-      :measure_value => get_attribute('value'),
-      :lower_limit => get_attribute('lower_limit'),
-      :upper_limit => get_attribute('upper_limit'),
-      :spread => get_attribute('spread'),
-      :measure_description => xml.text,
+      :ctgov_group_code => get_attribute('group_id'),
+      :param_type => get_opt(:param),
+      :param_value => get_attribute('value'),
+      :dispersion_type => get_opt(:dispersion),
+      :dispersion_value => get_attribute('spread'),
+      :dispersion_lower_limit => get_attribute('lower_limit'),
+      :dispersion_upper_limit => get_attribute('upper_limit'),
+      :explanation_of_na => xml.text,
       :category => get_opt(:category),
       :title => get_opt(:title),
       :description => get_opt(:description),
       :units => get_opt(:units),
-      :param => get_opt(:param),
-      :dispersion => get_opt(:dispersion),
     }
   end
 
