@@ -244,12 +244,14 @@
 
 
 $(function() {
+
+
     $("#jsGrid").jsGrid({
-        height: "80%",
+        height: "90vh",
         width: "100%",
         filtering: true,
-        inserting: true,
-        editing: true,
+        inserting: false,
+        editing: false,
         sorting: true,
         paging: true,
         autoload: true,
@@ -260,17 +262,23 @@ $(function() {
             loadData: function(filter) {
                 return $.ajax({
                     type: "GET",
-                    url: "/clients",
+                    url: "/definitions",
                     data: filter
                 });
             }
         },
         fields: [
-            { name: "name", type: "text", width: 150 },
-            { name: "age", type: "number", width: 50, filtering: false },
-            { name: "address", type: "text", width: 200 },
-            { name: "married", type: "checkbox", title: "Is Married", filtering: false, sorting: false },
-            { type: "control" }
+            { name: "Table Name", type: "text", width: 120 },
+            { name: "Column Name", type: "text", width: 120 },
+            { name: "PRS Label", type: "text", width: 110 },
+            { name: "Data Type", type: "text", width: 90 },
+            { name: "Max Length Used", type: "text", width: 50 },
+            { name: "Comments", type: "text", width: 280  },
+            { name: "NLM Description", type: "text", width: 280 },
+            { name: "NLM Req", type: "text", width: 50 },
+            { name: "FDAAA Req", type: "text", width: 50 },
+            { name: "Enumerations", type:"text", width: 100  },
+            { type: "control", deleteButton: false, editButton: false }
         ]
     });
 });

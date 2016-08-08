@@ -29,6 +29,7 @@ gem 'sinatra', :require => nil
 gem 'nokogiri-diff'
 gem 'aws-sdk', '~> 2'
 gem 'font-awesome-sass'
+gem 'roo', '~> 2.4.0'
 
 # Grape API
 gem 'rack'
