@@ -29,7 +29,6 @@ class DefinitionsController < ApplicationController\
 
 
     # Filtering
-
     params.each do |key, value|
       puts key
 
@@ -50,18 +49,6 @@ class DefinitionsController < ApplicationController\
 
       end
     end
-
-    #
-    # if params["Table Name"].present?
-    #   dataResult = dataResult.select do |hash|
-    #     # hash["Table Name"] == params["Table Name"]
-    #     require 'string/similarity'
-    #
-    #     String::Similarity.cosine(hash["Table Name"].downcase, params["Table Name"].downcase) > 0.6
-    #
-    #   end
-    #
-    # end
 
     # Return an array of objects as JSON that has the root key removed
     render json: dataResult, root: false
