@@ -2,7 +2,7 @@ $(function() {
 
 
     $("#jsGrid").jsGrid({
-        height: "90vh",
+        height: "80vh",
         width: "100%",
         filtering: true,
         inserting: false,
@@ -23,12 +23,12 @@ $(function() {
             }
         },
         fields: [
-            { name: "Table Name", type: "text", width: 120 },
-            { name: "Column Name", type: "text", width: 120 },
-            { name: "PRS Label", type: "text", width: 110 },
+            { name: "Table Name", type: "text", width: 95 },
+            { name: "Column Name", type: "text", width: 105 },
+            { name: "PRS Label", type: "text", width: 95},
             { name: "Data Type", type: "text", width: 90 },
-            { name: "Max Length Used", type: "text", width: 50 },
-            { name: "Comments", type: "text", width: 280  },
+            { name: "Max Length Used", type: "text", width: 40},
+            { name: "Comments", type: "text", width: 270  },
             { name: "NLM Description", type: "text", width: 280 },
             { name: "NLM Req", type: "text", width: 50 },
             { name: "FDAAA Req", type: "text", width: 50 },
