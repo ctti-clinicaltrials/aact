@@ -1,5 +1,6 @@
 class BaselineMeasure < StudyRelationship
   def self.create_all_from(opts={})
+    opts[:population]=opts[:xml].xpath('//baseline').xpath("population").inner_html
     all=opts[:xml].xpath('//baseline').xpath("measure_list").xpath('measure')
     col=[]
     xml=all.pop
@@ -36,6 +37,7 @@ class BaselineMeasure < StudyRelationship
   def attribs
     {
       :ctgov_group_code => get_attribute('group_id'),
+      :population => get_opt(:population),
       :param_type => get_opt(:param),
       :param_value => get_attribute('value'),
       :dispersion_type => get_opt(:dispersion),

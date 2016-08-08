@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 04, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02389088</url>
+  </required_header>
+  <id_info>
+    <org_study_id>UCSD-2016</org_study_id>
+    <nct_id>NCT02389088</nct_id>
+  </id_info>
+  <brief_title>Effect of Increased Circulating Androgens on Granulosa Cell Responses to FSH.</brief_title>
+  <official_title>Effect of Increased Circulating Androgens on Granulosa Cell Responses to FSH</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>University of California, San Diego</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>University of California, San Diego</source>
+  <oversight_info>
+    <authority>United States: Institutional Review Board</authority>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to evaluate the effect of increased circulating androgens on
+      estradiol production by the granulosa cells in response to FSH stimulus.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Various previous studies have demonstrated that androgens enhance granulosa cell function in
+      a variety of animal species including rodents and non-human primates. In vitro studies have
+      shown that granulosa cells exposed to either testosterone or dihydrotestosterone exhibit
+      increased production of estrogen, progesterone and inhibin in response to FSH. Studies done
+      in non-human primates have also shown that androgen increases the numbers of preantral and
+      antral follicles as well as increases FSH receptor mRNA expression in granulosa cells. This
+      suggests that granulosa cell hyperresponsiveness to FSH in polycystic ovary syndrome (PCOS)
+      may be related to androgen excess. The investigators plan to address this possibility by
+      performing a series of in vivo studies. In one of the investigator's prior studies androgen
+      blockade was done by administration of flutamide and E2 responses to FSH assessed. This
+      study has been completed and the manuscript is being prepared for publication. In the
+      present protocol, the investigators propose to further study the role of androgens with a 2
+      phase study. In the first phase the investigators plan to suppress endogenous steroid
+      hormone production by the ovaries via treatment with the GnRH analog Lupron for 4 weeks
+      beyond which a gradual resumption of ovarian activity will occur. Granulosa cell (inhibin B)
+      responses to FSH will be examined before and after ovarian suppression as well as during
+      early and moderate recovery of ovarian steroidogenesis. These results will provide control
+      data to which comparisons can be made from results of the next phase.
+
+      In the second phase, after a 2 month washout interval, the same subjects will again receive
+      Lupron to suppress endogenous steroid production. After 4 weeks, at the beginning of ovarian
+      activity resumption, the investigators will administer Letrozole 5mg for 14 days and again
+      examine granulosa cell responses to FSH during recovery. Letrozole is a 3rd generation
+      aromatase inhibitor which results in suppression of E2 production and increase in
+      circulating serum androgen levels to about 40% greater than pre-treatment values. It is now
+      also being used for ovulation induction. It has minimal side effects and is in general very
+      well tolerated. By using Letrozole for 2 weeks after GnRH suppression of the ovaries, the
+      investigators will more effectively increase the amount of circulating androgen while
+      keeping estrogen at low levels, thereby allowing the investigators to more completely study
+      the effects of isolated and elevated androgen levels on granulosa cell responses to FSH. By
+      comparing results obtained in phase 1, the investigators will be able to determine if there
+      is an androgen mediated response by granulosa cells to FSH stimulation in the absence of
+      other ovarian steroids. Also, the addition of a control group will allow investigators to
+      determine if the granulosa cell response is different between PCOS and normals.
+
+      It is hypothesized that there will be a significant rise in inhibin B production by the
+      granulosa cells in PCOS women in response to FSH after treatment with Letrozole as compared
+      to both the control group and to responses observed in the control phase of study. This
+      would confirm that androgens are indeed responsible at least in part for the
+      hyperresponsiveness to FSH seen in women with PCOS.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>April 2006</start_date>
+  <completion_date type="Actual">January 2013</completion_date>
+  <primary_completion_date type="Actual">January 2013</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Non-Randomized, Intervention Model: Single Group Assignment, Masking: Open Label, Primary Purpose: Health Services Research</study_design>
+  <primary_outcome>
+    <measure>Estradiol During Phase I and Phase II</measure>
+    <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Estradiol (pmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Inhibin B During Phase I and Phase II</measure>
+    <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Inhibin B (ng/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>LH and FSH During Phase I and Phase II</measure>
+    <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>LH and FSH (IU/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Testosterone, Androstenedione and 17-OH Progesterone During Phase I and Phase II</measure>
+    <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Testosterone, Androstenedione and 17-OH Progesterone (nmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+  </primary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">9</enrollment>
+  <condition>Polycystic Ovary Syndrome</condition>
+  <arm_group>
+    <arm_group_label>Phase I</arm_group_label>
+    <arm_group_type>No Intervention</arm_group_type>
+    <description>9 PCOS women will be studied. On study day one, r-FSH will be administered I.V. at a dose of 150 IU (FSH stimulation test). Blood samples will be obtained before and after FSH administration. After the FSH stimulation test, each subject will receive an I.M. injection of Lupron 3.75 mg. This dose has a duration effect of one month.
+The FSH stimulation test will be repeated, as described above, at 5 weeks (early resumption of ovarian function) and 6 weeks (moderate resumption of ovarian function).</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Phase II</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Women that participated in Phase I will be studied again after a washout of 2 months. On study day one, an FSH stimulation test will be performed as described above.
+After the FSH stimulation test, each subject will receive an I.M. injection of Lupron 3.75 mg. This dose has a duration effect of one month. Four weeks after administration of Lupron, each subject will receive Letrozole 5mg for 14 days. The FSH stimulation test will be repeated at 5 weeks (early resumption of ovarian function) and 6 weeks (moderate resumption of ovarian function).</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Letrozole</intervention_name>
+    <description>In Phase II, letrozole, 5 mg/day, will be given for 14 days</description>
+    <arm_group_label>Phase II</arm_group_label>
+    <other_name>Femora</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Subjects will be determined to have PCOS based on clinical criteria such as history
+             of irregular menses and clinical or laboratory evidence of hyperandrogenism.
+
+          -  Subjects should not have been on any hormonal therapy or metformin for at least 2
+             months prior to study start.
+
+        Exclusion Criteria:
+
+          -  Women with hemoglobin less than 11gm/dl at screening evaluation.
+
+          -  Women with untreated thyroid abnormalities
+
+          -  Pregnant women
+
+          -  Women with BMI&gt;37
+
+          -  Women with known sensitivity to the agent being used.
+      </textblock>
+    </criteria>
+    <gender>Female</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>40 Years</maximum_age>
+    <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>R. Jeffrey Chang, M.D.</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>University of California, San Diego</affiliation>
+  </overall_official>
+  <verification_date>February 2016</verification_date>
+  <lastchanged_date>February 9, 2016</lastchanged_date>
+  <firstreceived_date>March 9, 2015</firstreceived_date>
+  <firstreceived_results_date>May 26, 2015</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>University of California, San Diego</investigator_affiliation>
+    <investigator_full_name>Jeffrey Chang, MD</investigator_full_name>
+    <investigator_title>Professor Emeritus of Reproductive Medicine Division of Reproductive Endocrinology and Infertility</investigator_title>
+  </responsible_party>
+  <keyword>Granulosa Cell</keyword>
+  <keyword>Androgens</keyword>
+  <keyword>FSH</keyword>
+  <keyword>Ovary</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>No</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Polycystic Ovary Syndrome</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Letrozole</mesh_term>
+    <mesh_term>Androgens</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
+
+  <clinical_results>
+
+    <participant_flow>
+      <group_list>
+        <group group_id="P1">
+          <title>Phase I - All Study Participants</title>
+          <description>9 PCOS women will be studied. On study day one, r-FSH will be administered I.V. at a dose of 150 IU (FSH stimulation test). Blood samples will be obtained before and after FSH administration. After the FSH stimulation test, each subject will receive an I.M. injection of Lupron 3.75 mg. This dose has a duration effect of one month.
+The FSH stimulation test will be repeated, as described above, at 5 weeks (early resumption of ovarian function) and 6 weeks (moderate resumption of ovarian function).</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study - Phase I</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="9"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="9"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+        </period>
+        <period>
+          <title>Phase II - All Study Participants</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="9"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="9"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <population>9 PCOS women</population>
+      <group_list>
+        <group group_id="B1">
+          <title>Phase I</title>
+          <description>9 PCOS women</description>
+        </group>
+      </group_list>
+      <measure_list>
+        <measure>
+          <title>Number of Participants</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="9"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="26" spread="1.2"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Female</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="9"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Male</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Race (NIH/OMB)</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>American Indian or Alaska Native</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Asian</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Native Hawaiian or Other Pacific Islander</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Black or African American</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>White</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="7"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>More than one race</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Unknown or Not Reported</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Region of Enrollment</title>
+          <description>San Diego</description>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>United States</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="9"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Phase I - LH, FSH</title>
+          <units>IU/L</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <sub_title>LH</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="9.5" spread="4.04"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>FSH</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="5.1" spread="1.03"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Phase I - Testosterone, Androstenedione, 17-OH Progesterone</title>
+          <units>nmol/L</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <sub_title>Testosterone</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1.34" spread="0.3"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Androstenedione</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="5.29" spread="1.3"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>17-OH Progesterone</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="47.3" spread="24.6"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Phase I - Estradiol</title>
+          <units>pmol/L</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="180.4" spread="25.5"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Phase II - LH, FSH</title>
+          <units>IU/L</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <sub_title>LH</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="8.6" spread="4.4"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>FSH</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="4.7" spread="1.3"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Phase II - Testosterone, Androstenedione, 17-OH Progesterone</title>
+          <units>nmol/L</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <sub_title>Testosterone</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1.3" spread="0.4"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Androstenedione</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="5.5" spread="1.6"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>17-OH Progesterone</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="53.3" spread="43.7"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Phase II - Estradiol</title>
+          <units>pmol/L</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="195.7" spread="97.4"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Estradiol During Phase I and Phase II</title>
+        <description>Estradiol (pmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+        <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>Phase I and Phase II - PCOS patients.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Phase I - Week 0 - 24 Hours</title>
+          </group>
+          <group group_id="O2">
+            <title>Phase I - Week 5 - 0 Hour</title>
+          </group>
+          <group group_id="O3">
+            <title>Phase I - Week 5 - 24 Hour</title>
+          </group>
+          <group group_id="O4">
+            <title>Phase I - Week 6 - 0 Hour</title>
+          </group>
+          <group group_id="O5">
+            <title>Phase I - Week 6 - 24 Hour</title>
+          </group>
+          <group group_id="O6">
+            <title>Phase II - Week 0 - 24 Hours</title>
+          </group>
+          <group group_id="O7">
+            <title>Phase II - Week 5 - 0 Hours</title>
+          </group>
+          <group group_id="O8">
+            <title>Phase II - Week 5 - 24 Hours</title>
+          </group>
+          <group group_id="O9">
+            <title>Phase II - Week 6 - 0 Hours</title>
+          </group>
+          <group group_id="O10">
+            <title>Phase II - Week 6 - 24 Hours</title>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="9"/>
+                  <measurement group_id="O2" value="9"/>
+                  <measurement group_id="O3" value="9"/>
+                  <measurement group_id="O4" value="9"/>
+                  <measurement group_id="O5" value="9"/>
+                  <measurement group_id="O6" value="9"/>
+                  <measurement group_id="O7" value="9"/>
+                  <measurement group_id="O8" value="9"/>
+                  <measurement group_id="O9" value="9"/>
+                  <measurement group_id="O10" value="9"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Estradiol During Phase I and Phase II</title>
+            <description>Estradiol (pmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+            <units>pmol/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="451.7" spread="131"/>
+                  <measurement group_id="O2" value="116" spread="27.8"/>
+                  <measurement group_id="O3" value="247.2" spread="105.5"/>
+                  <measurement group_id="O4" value="131.4" spread="20.2"/>
+                  <measurement group_id="O5" value="347.5" spread="83.9"/>
+                  <measurement group_id="O6" value="401.4" spread="103.4"/>
+                  <measurement group_id="O7" value="57.9" spread="27"/>
+                  <measurement group_id="O8" value="91.3" spread="80.8"/>
+                  <measurement group_id="O9" value="66.5" spread="36.6"/>
+                  <measurement group_id="O10" value="126.6" spread="117.7"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Inhibin B During Phase I and Phase II</title>
+        <description>Inhibin B (ng/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+        <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>Phase I and Phase II - PCOS patients.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Phase I - Week 0 - 24 Hours</title>
+          </group>
+          <group group_id="O2">
+            <title>Phase I - Week 5 - 0 Hour</title>
+          </group>
+          <group group_id="O3">
+            <title>Phase I - Week 5 - 24 Hour</title>
+          </group>
+          <group group_id="O4">
+            <title>Phase I - Week 6 - 0 Hour</title>
+          </group>
+          <group group_id="O5">
+            <title>Phase I - Week 6 - 24 Hour</title>
+          </group>
+          <group group_id="O6">
+            <title>Phase II - Week 0 - 24 Hours</title>
+          </group>
+          <group group_id="O7">
+            <title>Phase II - Week 5 - 0 Hours</title>
+          </group>
+          <group group_id="O8">
+            <title>Phase II - Week 5 - 24 Hours</title>
+          </group>
+          <group group_id="O9">
+            <title>Phase II - Week 6 - 0 Hours</title>
+          </group>
+          <group group_id="O10">
+            <title>Phase II - Week 6 - 24 Hours</title>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="9"/>
+                  <measurement group_id="O2" value="9"/>
+                  <measurement group_id="O3" value="9"/>
+                  <measurement group_id="O4" value="9"/>
+                  <measurement group_id="O5" value="9"/>
+                  <measurement group_id="O6" value="9"/>
+                  <measurement group_id="O7" value="9"/>
+                  <measurement group_id="O8" value="9"/>
+                  <measurement group_id="O9" value="9"/>
+                  <measurement group_id="O10" value="9"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Inhibin B During Phase I and Phase II</title>
+            <description>Inhibin B (ng/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+            <units>ng/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="420.6" spread="120"/>
+                  <measurement group_id="O2" value="87.9" spread="76.5"/>
+                  <measurement group_id="O3" value="395.1" spread="186.5"/>
+                  <measurement group_id="O4" value="85.2" spread="40.2"/>
+                  <measurement group_id="O5" value="445.5" spread="169"/>
+                  <measurement group_id="O6" value="390" spread="142.4"/>
+                  <measurement group_id="O7" value="165.2" spread="202.7"/>
+                  <measurement group_id="O8" value="340" spread="309"/>
+                  <measurement group_id="O9" value="184.3" spread="192.1"/>
+                  <measurement group_id="O10" value="427.3" spread="260"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>LH and FSH During Phase I and Phase II</title>
+        <description>LH and FSH (IU/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+        <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>Phase I and Phase II - PCOS patients.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Phase I - Week 0 - 24 Hours</title>
+          </group>
+          <group group_id="O2">
+            <title>Phase I - Week 5 - 0 Hour</title>
+          </group>
+          <group group_id="O3">
+            <title>Phase I - Week 5 - 24 Hour</title>
+          </group>
+          <group group_id="O4">
+            <title>Phase I - Week 6 - 0 Hour</title>
+          </group>
+          <group group_id="O5">
+            <title>Phase I - Week 6 - 24 Hour</title>
+          </group>
+          <group group_id="O6">
+            <title>Phase II - Week 0 - 24 Hours</title>
+          </group>
+          <group group_id="O7">
+            <title>Phase II - Week 5 - 0 Hours</title>
+          </group>
+          <group group_id="O8">
+            <title>Phase II - Week 5 - 24 Hours</title>
+          </group>
+          <group group_id="O9">
+            <title>Phase II - Week 6 - 0 Hours</title>
+          </group>
+          <group group_id="O10">
+            <title>Phase II - Week 6 - 24 Hours</title>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="9"/>
+                  <measurement group_id="O2" value="9"/>
+                  <measurement group_id="O3" value="9"/>
+                  <measurement group_id="O4" value="9"/>
+                  <measurement group_id="O5" value="9"/>
+                  <measurement group_id="O6" value="9"/>
+                  <measurement group_id="O7" value="9"/>
+                  <measurement group_id="O8" value="9"/>
+                  <measurement group_id="O9" value="9"/>
+                  <measurement group_id="O10" value="9"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>LH and FSH During Phase I and Phase II</title>
+            <description>LH and FSH (IU/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+            <units>IU/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <sub_title>LH</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="NA">Stimulated value not measured.</measurement>
+                  <measurement group_id="O2" value="0.6" spread="0.8"/>
+                  <measurement group_id="O3" value="NA">Stimulated value not measured.</measurement>
+                  <measurement group_id="O4" value="2.0" spread="2.0"/>
+                  <measurement group_id="O5" value="NA">Stimulated value not measured.</measurement>
+                  <measurement group_id="O6" value="NA">Stimulated value not measured.</measurement>
+                  <measurement group_id="O7" value="1.22" spread="1.8"/>
+                  <measurement group_id="O8" value="NA">Stimulated value not measured.</measurement>
+                  <measurement group_id="O9" value="3.6" spread="3.9"/>
+                  <measurement group_id="O10" value="NA">Stimulated value not measured.</measurement>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>FSH</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="NA">Stimulated value not measured.</measurement>
+                  <measurement group_id="O2" value="3.5" spread="1.2"/>
+                  <measurement group_id="O3" value="NA">Stimulated value not measured.</measurement>
+                  <measurement group_id="O4" value="4.3" spread="0.9"/>
+                  <measurement group_id="O5" value="NA">Stimulated value not measured.</measurement>
+                  <measurement group_id="O6" value="NA">Stimulated value not measured.</measurement>
+                  <measurement group_id="O7" value="8.0" spread="2.6"/>
+                  <measurement group_id="O8" value="NA">Stimulated value not measured.</measurement>
+                  <measurement group_id="O9" value="9.3" spread="3.1"/>
+                  <measurement group_id="O10" value="NA">Stimulated value not measured.</measurement>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Testosterone, Androstenedione and 17-OH Progesterone During Phase I and Phase II</title>
+        <description>Testosterone, Androstenedione and 17-OH Progesterone (nmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+        <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>Phase I and Phase II - PCOS patients.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Phase I - Week 0 - 24 Hours</title>
+          </group>
+          <group group_id="O2">
+            <title>Phase I - Week 5 - 0 Hour</title>
+          </group>
+          <group group_id="O3">
+            <title>Phase I - Week 5 - 24 Hour</title>
+          </group>
+          <group group_id="O4">
+            <title>Phase I - Week 6 - 0 Hour</title>
+          </group>
+          <group group_id="O5">
+            <title>Phase I - Week 6 - 24 Hour</title>
+          </group>
+          <group group_id="O6">
+            <title>Phase II - Week 0 - 24 Hours</title>
+          </group>
+          <group group_id="O7">
+            <title>Phase II - Week 5 - 0 Hours</title>
+          </group>
+          <group group_id="O8">
+            <title>Phase II - Week 5 - 24 Hours</title>
+          </group>
+          <group group_id="O9">
+            <title>Phase II - Week 6 - 0 Hours</title>
+          </group>
+          <group group_id="O10">
+            <title>Phase II - Week 6 - 24 Hours</title>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="9"/>
+                  <measurement group_id="O2" value="9"/>
+                  <measurement group_id="O3" value="9"/>
+                  <measurement group_id="O4" value="9"/>
+                  <measurement group_id="O5" value="9"/>
+                  <measurement group_id="O6" value="9"/>
+                  <measurement group_id="O7" value="9"/>
+                  <measurement group_id="O8" value="9"/>
+                  <measurement group_id="O9" value="9"/>
+                  <measurement group_id="O10" value="9"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Testosterone, Androstenedione and 17-OH Progesterone During Phase I and Phase II</title>
+            <description>Testosterone, Androstenedione and 17-OH Progesterone (nmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+            <units>nmol/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <sub_title>Testosterone</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O2" value="0.6" spread="0.2"/>
+                  <measurement group_id="O3" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O4" value="0.8" spread="0.4"/>
+                  <measurement group_id="O5" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O6" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O7" value="0.6" spread="0.2"/>
+                  <measurement group_id="O8" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O9" value="0.01" spread="0.44"/>
+                  <measurement group_id="O10" value="NA">Stimulated values not measured</measurement>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Androstenedione</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O2" value="2.8" spread="0.9"/>
+                  <measurement group_id="O3" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O4" value="3.6" spread="1.0"/>
+                  <measurement group_id="O5" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O6" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O7" value="2.9" spread="0.8"/>
+                  <measurement group_id="O8" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O9" value="4.3" spread="1.9"/>
+                  <measurement group_id="O10" value="NA">Stimulated values not measured</measurement>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>17OH-Progesterone</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O2" value="32.1" spread="17.5"/>
+                  <measurement group_id="O3" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O4" value="31.1" spread="9.8"/>
+                  <measurement group_id="O5" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O6" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O7" value="24.0" spread="16.1"/>
+                  <measurement group_id="O8" value="NA">Stimulated values not measured</measurement>
+                  <measurement group_id="O9" value="37.4" spread="22.1"/>
+                  <measurement group_id="O10" value="NA">Stimulated values not measured</measurement>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <group_list>
+        <group group_id="E1">
+          <title>Phase I</title>
+          <description>9 PCOS women will be studied. On study day one, r-FSH will be administered I.V. at a dose of 150 IU (FSH stimulation test). Blood samples will be obtained before and after FSH administration. After the FSH stimulation test, each subject will receive an I.M. injection of Lupron 3.75 mg. This dose has a duration effect of one month.
+The FSH stimulation test will be repeated, as described above, at 5 weeks (early resumption of ovarian function) and 6 weeks (moderate resumption of ovarian function).</description>
+        </group>
+        <group group_id="E2">
+          <title>Phase II</title>
+          <description>Women that participated in Phase I will be studied again after a washout of 2 months. On study day one, an FSH stimulation test will be performed as described above.
+After the FSH stimulation test, each subject will receive an I.M. injection of Lupron 3.75 mg. This dose has a duration effect of one month. Four weeks after administration of Lupron, each subject will receive Letrozole 5mg for 14 days. The FSH stimulation test will be repeated at 5 weeks (early resumption of ovarian function) and 6 weeks (moderate resumption of ovarian function).
+Letrozole: In Phase II, letrozole, 5 mg/day, will be given for 14 days</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="9"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="9"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="9"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="9"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>All Principal Investigators ARE employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Dr. R. Jeffrey Chang</name_or_title>
+      <organization>University of California, San Diego</organization>
+      <phone>858-534-8930</phone>
+      <email>rjchang@ucsd.edu</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
