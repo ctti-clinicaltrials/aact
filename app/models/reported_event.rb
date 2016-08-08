@@ -1,20 +1,15 @@
 class ReportedEvent < StudyRelationship
   extend FastCount
 
+  belongs_to :group
+
   def self.create_all_from(opts)
     nct_id=opts[:nct_id]
     opts[:xml]=opts[:xml].xpath("//reported_events")
     opts[:time_frame]=opts[:xml].xpath('time_frame').text
     opts[:description]=opts[:xml].xpath('desc').text
-    group_xmls=opts[:xml].xpath("group_list").xpath('group')
-    groups=[]
-    xml=group_xmls.pop
-    while xml
-      groups << {xml.attribute('group_id').text=>{:title=>xml.xpath('title').text,:description=>xml.xpath('description').text}}
-      xml=group_xmls.pop
-    end
-
-    opts[:groups]=groups
+    #  TODO Move #create_group_set to ResultGroup - just worried about doing it now cuz team members are changing that class right now and want to try to avoid merge conflicts.
+    opts[:groups]=create_group_set(opts[:xml])
 
     event_type='serious'
     opts[:type]=event_type
@@ -118,6 +113,8 @@ class ReportedEvent < StudyRelationship
 
   def attribs
     {
+      :group => get_group(opts[:groups]),
+      :ctgov_group_code => gid,
       :organ_system => get_opt(:category),
       :event_type => get_opt(:type),
       :time_frame => get_opt(:time_frame),
@@ -131,16 +128,11 @@ class ReportedEvent < StudyRelationship
       :subjects_at_risk => get_opt(:subjects_at_risk),
       :assessment => xml.xpath('assessment'),
       :vocab => get_opt(:vocab),
-      :ctgov_group_code => gid,
     }
   end
 
   def gid
     opts[:group_id]
-  end
-
-  def ginfo
-    get_opt(:groups).first[gid]
   end
 
   def type
