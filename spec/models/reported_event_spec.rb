@@ -19,6 +19,7 @@ describe ReportedEvent do
     expect(e2_serious.default_vocab).to eq('CTCAE (2.0)')
     expect(e2_serious.default_assessment).to eq('Non-systematic Assessment')
     expect(e2_serious.adverse_event_term).to eq('Total, serious adverse events')
+    expect(e2_serious.group.ctgov_group_id).to eq(e2_serious.ctgov_group_code)
 
     e1_serious_cardiac_array=e1.select{|x|x.event_type=='serious' and x.organ_system=='Cardiac disorders'}
     expect(e1_serious_cardiac_array.size).to eq(3)

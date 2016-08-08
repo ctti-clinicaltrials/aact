@@ -1335,6 +1335,7 @@ CREATE TABLE reported_events (
     event_count integer,
     nct_id character varying,
     ctgov_group_code character varying,
+    group_id integer,
     organ_system character varying,
     adverse_event_term character varying,
     frequency_threshold integer,
@@ -2686,8 +2687,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150415155251');
 
 INSERT INTO schema_migrations (version) VALUES ('20150629193710');
 
-INSERT INTO schema_migrations (version) VALUES ('20160214191640');
-
 INSERT INTO schema_migrations (version) VALUES ('20160215004455');
 
 INSERT INTO schema_migrations (version) VALUES ('20160215212240');
@@ -2739,6 +2738,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160725200349');
 INSERT INTO schema_migrations (version) VALUES ('20160726124957');
 
 INSERT INTO schema_migrations (version) VALUES ('20160805131436');
+
+INSERT INTO schema_migrations (version) VALUES ('20160807222740');
 
 INSERT INTO schema_migrations (version) VALUES ('20160808024029');
 

@@ -4,6 +4,7 @@ class ChangeReportedEventsAttributes < ActiveRecord::Migration
     remove_column :reported_events, :ctgov_group_enumerator, :integer
     remove_column :reported_events, :ctgov_group_id, :string
     add_column    :reported_events, :ctgov_group_code, :string
+    add_column    :reported_events, :group_id, :integer, references: :groups
 
     remove_column :reported_events, :group_title, :string
     remove_column :reported_events, :group_description, :string
