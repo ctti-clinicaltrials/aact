@@ -1325,22 +1325,21 @@ ALTER SEQUENCE reported_event_overviews_id_seq OWNED BY reported_event_overviews
 
 CREATE TABLE reported_events (
     id integer NOT NULL,
-    ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
-    group_title character varying,
-    group_description text,
     description text,
     time_frame text,
-    category character varying,
     event_type character varying,
-    frequency_threshold character varying,
     default_vocab character varying,
     default_assessment character varying,
-    title character varying,
     subjects_affected integer,
     subjects_at_risk integer,
     event_count integer,
-    nct_id character varying
+    nct_id character varying,
+    ctgov_group_code character varying,
+    organ_system character varying,
+    adverse_event_term character varying,
+    frequency_threshold integer,
+    vocab character varying,
+    assessment character varying
 );
 
 
@@ -2740,3 +2739,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160725200349');
 INSERT INTO schema_migrations (version) VALUES ('20160726124957');
 
 INSERT INTO schema_migrations (version) VALUES ('20160805131436');
+
+INSERT INTO schema_migrations (version) VALUES ('20160808024029');
+

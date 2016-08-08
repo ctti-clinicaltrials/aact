@@ -90,7 +90,8 @@ class ReportedEvent < StudyRelationship
             puts "TODO  need to account for no events"
           else
             while e_xml
-              opts[:title]=e_xml.xpath('sub_title').text
+              opts[:adverse_event_term]=e_xml.xpath('sub_title').text
+              opts[:vocab]=e_xml.xpath('sub_title').attribute('vocab').try(:value)
               count_xmls=e_xml.xpath("counts")
               o_xml=count_xmls.pop
               if o_xml.nil?
@@ -117,21 +118,20 @@ class ReportedEvent < StudyRelationship
 
   def attribs
     {
-      :category => get_opt(:category),
+      :organ_system => get_opt(:category),
       :event_type => get_opt(:type),
       :time_frame => get_opt(:time_frame),
       :description => get_opt(:description),
-      :frequency_threshold => get_opt(:frequency_threshold),
+      :frequency_threshold => (get_opt(:frequency_threshold).to_i),
       :default_vocab => get_opt(:default_vocab),
       :default_assessment => get_opt(:default_assessment),
-      :title => get_opt(:title),
+      :adverse_event_term => get_opt(:adverse_event_term),
       :event_count => get_opt(:event_count),
       :subjects_affected => get_opt(:subjects_affected),
       :subjects_at_risk => get_opt(:subjects_at_risk),
-      :ctgov_group_id => gid,
-      :ctgov_group_enumerator => integer_in(gid),
-      :group_description => (ginfo[:description] if ginfo),
-      :group_title => (ginfo[:title] if ginfo)
+      :assessment => xml.xpath('assessment'),
+      :vocab => get_opt(:vocab),
+      :ctgov_group_code => gid,
     }
   end
 
