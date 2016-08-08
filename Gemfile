@@ -30,6 +30,7 @@ gem 'nokogiri-diff'
 gem 'aws-sdk', '~> 2'
 gem 'font-awesome-sass'
 gem 'roo', '~> 2.4.0'
+gem 'string-similarity'
 
 # Grape API
 gem 'rack'
