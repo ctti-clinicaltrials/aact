@@ -52,6 +52,14 @@ section.dataDictionaryShow {
     input {
       margin: 5px 0px;
     }
+
+    b, p {
+      font-size: 12px;
+    }
+
+    b {
+      font-weight: bold;
+    }
   }
 
   tr.jsgrid-filter-row {
