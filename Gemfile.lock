@@ -203,7 +203,7 @@ GEM
     rack-accept (0.4.5)
       rack (>= 0.4)
     rack-cors (0.4.0)
-    rack-mini-profiler (0.9.9.2)
+    rack-mini-profiler (0.10.1)
       rack (>= 1.2.0)
     rack-protection (1.5.3)
       rack
