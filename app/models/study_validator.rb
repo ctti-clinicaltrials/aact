@@ -5,14 +5,16 @@ class StudyValidator
         nct_id: 'NCT00734539',
         columns_or_associated_objects: {
           outcomes: { count: 24 },
-          brief_title: { to_s: 'Fluconazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight' }
+          brief_title: { to_s: 'Fluconazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight' },
+          study_type: { to_s: 'Interventional' }
         }
       },
       {
         nct_id: 'NCT01076361',
         columns_or_associated_objects: {
           outcomes: { count: 1 },
-          baseline_measures: { count: 13 }
+          baseline_measures: { count: 13 },
+          study_type: { to_s: 'Observational [Patient Registry]' }
         }
       }
     ]
@@ -27,8 +29,10 @@ class StudyValidator
       condition[:columns_or_associated_objects].each do |key, value|
 
         value.each do |method, expected_result|
-          if study.send(key).send(method) != expected_result
-            raise StudyValidatorError
+          actual_result = study.send(key).send(method)
+          if actual_result != expected_result
+            raise StudyValidatorError, "\nExpected: #{expected_result}\nActual: #{actual_result}"
+            # email people
           end
         end
 
