@@ -1,6 +1,7 @@
 class Group < StudyRelationship
   attr_accessor :baseline_measures
 
+  has_many :baseline_measures
   has_many :outcomes
   has_many :outcome_measures
   has_many :outcome_analyses

@@ -67,6 +67,7 @@ CREATE TABLE baseline_measures (
     nct_id character varying,
     population character varying,
     ctgov_group_code character varying,
+    group_id integer,
     param_type character varying,
     param_value character varying,
     dispersion_type character varying,

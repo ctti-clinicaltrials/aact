@@ -15,21 +15,24 @@ describe Study do
     female_baselines=(baselines.select{|m|m.category=='Female'})
     expect(female_baselines.size).to eq(10)
     female_b1_array=(female_baselines.select{|m|m.ctgov_group_code=='B1'})
-		expect(female_b1_array.size).to eq (1)
+    expect(female_b1_array.size).to eq (1)
     female_b1=female_b1_array.first
-		expect(female_b1.description).to eq('')
-		expect(female_b1.param_type).to eq('Number')
-		expect(female_b1.param_value).to eq('308')
-		expect(female_b1.units).to eq('participants')
+    expect(female_b1.description).to eq('')
+    expect(female_b1.param_type).to eq('Number')
+    expect(female_b1.param_value).to eq('308')
+    expect(female_b1.units).to eq('participants')
     expect(female_b1.explanation_of_na).to eq('')
+    expect(female_b1.group.ctgov_group_id).to eq(female_b1.ctgov_group_code)
+    expect(female_b1.group.title).to eq('Clinically Driven Monitoring (CDM)')
+    expect(female_b1.group.description).to eq('Clinically Driven Monitoring (CDM): Participants were examined by a doctor and had routine full blood count with white cell differential, lymphocyte subsets (CD4, CD8), biochemistry tests (bilirubin, urea, creatinine, aspartate aminotransferase, alanine aminotransferase) at screening, randomisation (lymphocytes only), weeks 4, 8, and 12, then every 12 weeks. Screening results were used to assess eligibility. All subsequent results were only returned if requested for clinical management (authorised by centre project leaders); haemoglobin results at week 8 were automatically returned on the basis of early anaemia in a previous adult trial as were grade 4 laboratory toxicities (protocol safety criteria). Total lymphocytes and CD4 tests were never returned for CDM participants, but for all children other investigations (including tests from the routine panels) could be requested and concomitant drugs prescribed, as clinically indicated at extra patient-initiated or scheduled visits.')
 
-		gender_period_2=study.baseline_measures.select{|x|x.title=='Gender, Male/Female: Period 2 (trial enrollment, induction ART)'}
-		expect(gender_period_2.size).to eq(20)
-		females=gender_period_2.select{|x|x.category=='Female'}
-		expect(females.size).to eq(10)
-		females_b10=females.select{|x|x.ctgov_group_code=='B10'}
-		expect(females_b10.size).to eq(1)
-		female_b10=females_b10.first
+    gender_period_2=study.baseline_measures.select{|x|x.title=='Gender, Male/Female: Period 2 (trial enrollment, induction ART)'}
+    expect(gender_period_2.size).to eq(20)
+    females=gender_period_2.select{|x|x.category=='Female'}
+    expect(females.size).to eq(10)
+    females_b10=females.select{|x|x.ctgov_group_code=='B10'}
+    expect(females_b10.size).to eq(1)
+    female_b10=females_b10.first
 
     expect(female_b10.units).to eq('participants')
     expect(female_b10.param_type).to eq('Number')

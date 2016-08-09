@@ -1,7 +1,12 @@
 class BaselineMeasure < StudyRelationship
+
+  belongs_to :group
+
   def self.create_all_from(opts={})
-    opts[:population]=opts[:xml].xpath('//baseline').xpath("population").inner_html
-    all=opts[:xml].xpath('//baseline').xpath("measure_list").xpath('measure')
+    xml=opts[:xml].xpath('//baseline')
+    opts[:population]=xml.xpath("population").inner_html
+    opts[:groups]=create_group_set(xml)
+    all=xml.xpath("measure_list").xpath('measure')
     col=[]
     xml=all.pop
     while xml
@@ -36,7 +41,8 @@ class BaselineMeasure < StudyRelationship
 
   def attribs
     {
-      :ctgov_group_code => get_attribute('group_id'),
+      :group => get_group(opts[:groups]),
+      :ctgov_group_code => gid,
       :population => get_opt(:population),
       :param_type => get_opt(:param),
       :param_value => get_attribute('value'),
@@ -50,6 +56,10 @@ class BaselineMeasure < StudyRelationship
       :description => get_opt(:description),
       :units => get_opt(:units),
     }
+  end
+
+  def gid
+    get_attribute('group_id')
   end
 
 end

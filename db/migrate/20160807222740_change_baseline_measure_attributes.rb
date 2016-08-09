@@ -6,6 +6,7 @@ class ChangeBaselineMeasureAttributes < ActiveRecord::Migration
     remove_column :baseline_measures, :ctgov_group_enumerator, :integer
     remove_column :baseline_measures, :ctgov_group_id, :string
     add_column    :baseline_measures, :ctgov_group_code, :string
+    add_column    :baseline_measures, :group_id, :integer, references: :groups
 
     remove_column :baseline_measures, :param, :string
     add_column    :baseline_measures, :param_type, :string
