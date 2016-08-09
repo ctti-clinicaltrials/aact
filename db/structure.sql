@@ -203,7 +203,15 @@ CREATE TABLE calculated_values (
     study_rank character varying,
     link_to_study_data character varying,
     nct_id character varying,
-    registered_in_calendar_year integer
+    registered_in_calendar_year integer,
+    start_date date,
+    first_received_date date,
+    verification_date date,
+    last_changed_date date,
+    primary_completion_date date,
+    completion_date date,
+    first_received_results_date date,
+    nlm_download_date date
 );
 
 
@@ -1709,14 +1717,6 @@ CREATE TABLE studies (
     completion_date date,
     first_received_results_date date,
     download_date date,
-    start_date_str character varying,
-    first_received_date_str character varying,
-    verification_date_str character varying,
-    last_changed_date_str character varying,
-    primary_completion_date_str character varying,
-    completion_date_str character varying,
-    first_received_results_date_str character varying,
-    download_date_str character varying,
     completion_date_type character varying,
     primary_completion_date_type character varying,
     org_study_id character varying,
@@ -1747,7 +1747,15 @@ CREATE TABLE studies (
     updated_at timestamp without time zone NOT NULL,
     first_received_results_disposition_date date,
     plan_to_share_ipd character varying,
-    plan_to_share_description character varying
+    plan_to_share_description character varying,
+    start_date_month_day character varying,
+    first_received_date_month_day character varying,
+    verification_date_month_day character varying,
+    last_changed_date_month_day character varying,
+    primary_completion_date_month_day character varying,
+    completion_date_month_day character varying,
+    first_received_results_date_month_day character varying,
+    nlm_download_date_description character varying
 );
 
 
@@ -2687,8 +2695,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150415155251');
 
 INSERT INTO schema_migrations (version) VALUES ('20150629193710');
 
-INSERT INTO schema_migrations (version) VALUES ('20160214191640');
-
 INSERT INTO schema_migrations (version) VALUES ('20160215004455');
 
 INSERT INTO schema_migrations (version) VALUES ('20160215212240');
@@ -2740,3 +2746,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160725200349');
 INSERT INTO schema_migrations (version) VALUES ('20160726124957');
 
 INSERT INTO schema_migrations (version) VALUES ('20160805131436');
+
+INSERT INTO schema_migrations (version) VALUES ('20160809010254');
+

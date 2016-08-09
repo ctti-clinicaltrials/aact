@@ -23,8 +23,6 @@ class Study < ActiveRecord::Base
   has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
-  has_many :pma_mappings,          :foreign_key => 'nct_id'
-  has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :groups,                :foreign_key => 'nct_id', dependent: :delete_all
@@ -212,25 +210,41 @@ class Study < ActiveRecord::Base
     result_detail.try(:pre_assignment_details)
   end
 
+  def get_download_date_text
+    xml.xpath('//download_date').text
+  end
+
+  def get_download_date
+    get_date(get_download_date_text.split('ClinicalTrials.gov processed this data on ').last)
+  end
+
+	def calc_vals
+    cv=CalculatedValue.new(
+        :nct_id => nct_id,
+        :start_date => get_date(get('start_date')),
+        :completion_date => get_date(get('completion_date')),
+        :primary_completion_date => get_date(get('primary_completion_date')),
+        :verification_date => get_date(get('verification_date')),
+        :first_received_results_date => get_date(get('firstreceived_results_date')),
+        :nlm_download_date => get_download_date
+    )
+    cv.save!
+		cv
+	end
+
   def attribs
     {
-      :start_date => get_date(get('start_date')),
+      :calculated_value => calc_vals,
+      :verification_date_month_day => get('verification_date'),
+      :last_changed_date => get_date(get('lastchanged_date')),
       :first_received_date => get_date(get('firstreceived_date')),
       :first_received_results_disposition_date => get_date(get('firstreceived_results_disposition_date')),
-      :verification_date => get_date(get('verification_date')),
-      :last_changed_date => get_date(get('lastchanged_date')),
-      :primary_completion_date => get_date(get('primary_completion_date')),
-      :completion_date => get_date(get('completion_date')),
-      :first_received_results_date => get_date(get('firstreceived_results_date')),
 
-      :start_date_str => get('start_date'),
-      :first_received_date_str => get('firstreceived_date'),
-      :verification_date_str => get('verification_date'),
-      :last_changed_date_str => get('lastchanged_date'),
-      :primary_completion_date_str => get('primary_completion_date'),
-      :completion_date_str => get('completion_date'),
-      :first_received_results_date_str => get('firstreceived_results_date'),
-      :download_date_str => xml.xpath('//download_date').text,
+      :start_date_month_day => get('start_date'),
+      :primary_completion_date_month_day => get('primary_completion_date'),
+      :completion_date_month_day => get('completion_date'),
+      :first_received_results_date_month_day => get('firstreceived_results_date'),
+      :nlm_download_date_description => get_download_date_text,
 
       :org_study_id => xml.xpath('//org_study_id').text,
       :acronym =>get('acronym'),
