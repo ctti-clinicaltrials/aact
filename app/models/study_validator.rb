@@ -4,7 +4,7 @@ class StudyValidator
       {
         nct_id: 'NCT00734539',
         columns_or_associated_objects: {
-          outcomes: { count: 2 },
+          outcomes: { count: 24 },
           brief_title: { to_s: 'Fluconazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight' },
           study_type: { to_s: 'Interventional' }
         }
