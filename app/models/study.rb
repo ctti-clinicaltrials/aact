@@ -130,8 +130,7 @@ class Study < ActiveRecord::Base
     SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
-    #CalculatedValue.new.create_from(self).save
-		#create_calculated_values
+    CalculatedValue.new.create_from(self).save
     self
   end
 
@@ -211,14 +210,6 @@ class Study < ActiveRecord::Base
     result_detail.try(:pre_assignment_details)
   end
 
-  def get_download_date_text
-    xml.xpath('//download_date').text
-  end
-
-  def get_download_date
-    get_date(get_download_date_text.split('ClinicalTrials.gov processed this data on ').last)
-  end
-
   def attribs
     {
       :verification_date_month_day => get('verification_date'),
@@ -230,7 +221,7 @@ class Study < ActiveRecord::Base
       :primary_completion_date_month_day => get('primary_completion_date'),
       :completion_date_month_day => get('completion_date'),
       :first_received_results_date_month_day => get('firstreceived_results_date'),
-      :nlm_download_date_description => get_download_date_text,
+      :nlm_download_date_description => xml.xpath('//download_date').text,
 
       :org_study_id => xml.xpath('//org_study_id').text,
       :acronym =>get('acronym'),
