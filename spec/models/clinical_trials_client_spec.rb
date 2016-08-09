@@ -146,7 +146,7 @@ describe ClinicalTrials::Client do
       it 'should create studies from an existing study xml records' do
         subject.populate_studies
         study_1 = Study.find_by(nct_id: study_nct_id_1)
-        expect(study_1.last_changed_date_str).to eq(study_last_changed_date_1)
+        expect(study_1.last_changed_date).to eq(study_last_changed_date_1.to_date)
 
         expect(Study.pluck(:nct_id)).to match_array(study_xml_nct_ids)
         expect(StudyXmlRecord.pluck(:nct_id)).to match_array(study_xml_nct_ids)

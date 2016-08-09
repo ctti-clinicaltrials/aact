@@ -130,7 +130,8 @@ class Study < ActiveRecord::Base
     SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
-    # CalculatedValue.new.create_from(self).save
+    #CalculatedValue.new.create_from(self).save
+		#create_calculated_values
     self
   end
 
@@ -218,23 +219,8 @@ class Study < ActiveRecord::Base
     get_date(get_download_date_text.split('ClinicalTrials.gov processed this data on ').last)
   end
 
-	def calc_vals
-    cv=CalculatedValue.new(
-        :nct_id => nct_id,
-        :start_date => get_date(get('start_date')),
-        :completion_date => get_date(get('completion_date')),
-        :primary_completion_date => get_date(get('primary_completion_date')),
-        :verification_date => get_date(get('verification_date')),
-        :first_received_results_date => get_date(get('firstreceived_results_date')),
-        :nlm_download_date => get_download_date
-    )
-    cv.save!
-		cv
-	end
-
   def attribs
     {
-      :calculated_value => calc_vals,
       :verification_date_month_day => get('verification_date'),
       :last_changed_date => get_date(get('lastchanged_date')),
       :first_received_date => get_date(get('firstreceived_date')),

@@ -18,8 +18,19 @@ class CalculatedValue < ActiveRecord::Base
       :number_of_facilities        => calc_number_of_facilities,
       :number_of_sae_subjects      => calc_number_of_sae_subjects,
       :number_of_nsae_subjects     => calc_number_of_nsae_subjects,
-      :link_to_study_data          => calc_link_to_data
+      :link_to_study_data          => calc_link_to_data,
+
+      :start_date => study.start_date_month_day.to_date,
+      :completion_date => study.completion_date_month_day.to_date,
+      :primary_completion_date => study.primary_completion_date_month_day.to_date,
+      :verification_date => study.verification_date_month_day.to_date,
+      :first_received_results_date => study.first_received_results_date_month_day.to_date,
+      :nlm_download_date => get_download_date
     }
+  end
+
+  def get_download_date
+    study.nlm_download_date_description.split('ClinicalTrials.gov processed this data on ').last.to_date
   end
 
   def calc_link_to_data
