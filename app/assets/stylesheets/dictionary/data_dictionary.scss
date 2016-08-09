@@ -25,16 +25,73 @@ section.dataDictionaryShow {
     width: 100%;
     display: block;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 60px 25px;
     background-color: $white;
   }
 
   .jsgrid-header-row>.jsgrid-header-cell {
+    font-size: 11px;
+    font-family: $font-sans;
+    font-weight: normal;
+    background-color: $secondary;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-color: $primary;
+
+    &:nth-of-type(5) {
+      font-size: 7px;
+    }
+  }
+
+  .jsgrid-cell {
     font-size: 12px;
+    font-family: $font-sans;
+    word-wrap: break-word;
+
+    input {
+      margin: 5px 0px;
+    }
+
+    b, p {
+      font-size: 12px;
+    }
+
+    b {
+      font-weight: bold;
+    }
+  }
+
+  tr.jsgrid-filter-row {
+    .jsgrid-cell {
+      background-color: rgba(2,183,212, .2);
+      border: none;
+    }
   }
 
   div#jsGrid {
     @include box-shadow(3px 3px 11px $light-grey);
+  }
+
+
+  div.jsgrid-pager-container {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(2,183,212, .2);
+
+    span {
+      font-family: $font-sans;
+      padding: 2px 4px;
+      text-transform: uppercase;
+
+    }
+
+    a {
+      font-family: $font-sans;
+      font-size: 11px;
+      letter-spacing: 1px;
+
+    }
   }
 }
 
