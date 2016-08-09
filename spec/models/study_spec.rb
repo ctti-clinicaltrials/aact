@@ -49,9 +49,7 @@ describe Study do
       expect(subject).to be_persisted
     end
 
-    it 'should create a calculated value record for each study' do
-      Study.create_calculated_values
-
+    it 'should have created a calculated value record for each study' do
       expect(CalculatedValue.count).to eq(1)
     end
   end
