@@ -4,7 +4,7 @@ class StudyValidator
       {
         nct_id: 'NCT00734539',
         columns_or_associated_objects: {
-          outcomes: { count: 24 },
+          outcomes: { count: 2 },
           brief_title: { to_s: 'Fluconazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight' },
           study_type: { to_s: 'Interventional' }
         }
@@ -31,8 +31,16 @@ class StudyValidator
         value.each do |method, expected_result|
           actual_result = study.send(key).send(method)
           if actual_result != expected_result
+            error = {
+              data_attribute: key,
+              nct_id: study.nct_id,
+              expected_result: expected_result,
+              actual_result: actual_result
+            }
+
+            StudyValidationMailer.alert(error.to_json).deliver_now
+
             raise StudyValidatorError, "\nExpected: #{expected_result}\nActual: #{actual_result}"
-            # email people
           end
         end
 
