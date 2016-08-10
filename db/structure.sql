@@ -202,7 +202,6 @@ CREATE TABLE calculated_values (
     number_of_nsae_subjects integer,
     number_of_sae_subjects integer,
     study_rank character varying,
-    link_to_study_data character varying,
     nct_id character varying,
     registered_in_calendar_year integer
 );
@@ -1405,7 +1404,6 @@ CREATE TABLE result_agreements (
     id integer NOT NULL,
     pi_employee character varying,
     agreement text,
-    agreement_type character varying,
     nct_id character varying
 );
 
@@ -2672,4 +2670,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160726124957');
 INSERT INTO schema_migrations (version) VALUES ('20160805131436');
 
 INSERT INTO schema_migrations (version) VALUES ('20160807222740');
+
+INSERT INTO schema_migrations (version) VALUES ('20160807222113');
+
+INSERT INTO schema_migrations (version) VALUES ('20160809133136');
 
