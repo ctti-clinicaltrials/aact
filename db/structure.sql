@@ -399,7 +399,6 @@ ALTER SEQUENCE design_groups_id_seq OWNED BY design_groups.id;
 CREATE TABLE design_outcomes (
     id integer NOT NULL,
     outcome_type character varying,
-    title text,
     measure text,
     time_frame text,
     safety_issue character varying,
@@ -2579,4 +2578,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160810141928');
 INSERT INTO schema_migrations (version) VALUES ('20160810142332');
 
 INSERT INTO schema_migrations (version) VALUES ('20160810150320');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810150747');
 
