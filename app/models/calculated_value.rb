@@ -30,7 +30,8 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def get_download_date
-    study.nlm_download_date_description.split('ClinicalTrials.gov processed this data on ').last.to_date
+    dt=study.nlm_download_date_description.split('ClinicalTrials.gov processed this data on ').last
+    dt.to_date if dt
   end
 
   def calc_link_to_data
@@ -68,7 +69,7 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_registered_in_calendar_year
-    study.first_received_date.year
+    study.first_received_date.year if study.first_received_date
   end
 
   def calc_number_of_facilities
