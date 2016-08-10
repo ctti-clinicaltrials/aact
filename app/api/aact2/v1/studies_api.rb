@@ -225,7 +225,7 @@ module AACT2
         ]
       end
       get '/studies/counts/by_year', root: false do
-        Study.all.group('extract(year from start_date) :: integer').count
+        CalculatedValue.all.group('extract(year from start_date) :: integer').count
       end
     end
   end
