@@ -297,8 +297,8 @@ ALTER SEQUENCE conditions_id_seq OWNED BY conditions.id;
 CREATE TABLE countries (
     id integer NOT NULL,
     name character varying,
-    removed character varying,
-    nct_id character varying
+    nct_id character varying,
+    removed boolean
 );
 
 
@@ -2671,4 +2671,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160805131436');
 INSERT INTO schema_migrations (version) VALUES ('20160807222113');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809133136');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810185321');
 
