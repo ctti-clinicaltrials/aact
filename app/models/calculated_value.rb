@@ -19,7 +19,6 @@ class CalculatedValue < ActiveRecord::Base
       :number_of_facilities        => calc_number_of_facilities,
       :number_of_sae_subjects      => calc_number_of_sae_subjects,
       :number_of_nsae_subjects     => calc_number_of_nsae_subjects,
-      :link_to_study_data          => calc_link_to_data,
 
       :start_date                  => study.start_date_month_day.to_date,
       :completion_date             => study.completion_date_month_day.to_date,
