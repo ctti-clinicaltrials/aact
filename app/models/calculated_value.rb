@@ -19,8 +19,19 @@ class CalculatedValue < ActiveRecord::Base
       :number_of_facilities        => calc_number_of_facilities,
       :number_of_sae_subjects      => calc_number_of_sae_subjects,
       :number_of_nsae_subjects     => calc_number_of_nsae_subjects,
-      :link_to_study_data          => calc_link_to_data
+
+      :start_date                  => study.start_date_month_day.to_date,
+      :completion_date             => study.completion_date_month_day.to_date,
+      :primary_completion_date     => study.primary_completion_date_month_day.to_date,
+      :verification_date           => study.verification_date_month_day.to_date,
+      :first_received_results_date => study.first_received_results_date_month_day.to_date,
+      :nlm_download_date           => get_download_date
     }
+  end
+
+  def get_download_date
+    dt=study.nlm_download_date_description.split('ClinicalTrials.gov processed this data on ').last
+    dt.to_date if dt
   end
 
   def calc_link_to_data
@@ -58,7 +69,7 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_registered_in_calendar_year
-    study.first_received_date.year
+    study.first_received_date.year if study.first_received_date
   end
 
   def calc_number_of_facilities
@@ -74,17 +85,6 @@ class CalculatedValue < ActiveRecord::Base
     1 if Outcome.fast_count_estimate(study.reported_events) > 0
   end
 
-  def calc_months_to_report_results
-    return nil if study.first_received_results_date.nil? or study.primary_completion_date.nil?
-    ((study.first_received_results_date.to_time -  study.primary_completion_date.to_time)/1.month.second).to_i
-  end
-
-  def calc_enrollment
-    # TODO = this is just a stub - find better way to calculate
-    study.groups.each{|g|g.set_participant_count}
-    study.groups.sum(:derived_participant_count)
-  end
-
   def pma_mapping_ids
     study.pma_mappings.collect{|p| {:pma_number=>p.pma_number,:supplement_number=>p.supplement_number} }
   end
@@ -98,6 +98,17 @@ class CalculatedValue < ActiveRecord::Base
       study.pma_records << rec if !rec.nil?
     }
     recs
+  end
+
+  def calc_months_to_report_results
+    return nil if study.first_received_results_date.nil? or study.primary_completion_date.nil?
+    ((study.first_received_results_date.to_time -  study.primary_completion_date.to_time)/1.month.second).to_i
+  end
+
+  def calc_enrollment
+    # TODO = this is just a stub - find better way to calculate
+    study.groups.each{|g|g.set_participant_count}
+    study.groups.sum(:derived_participant_count)
   end
 
 end

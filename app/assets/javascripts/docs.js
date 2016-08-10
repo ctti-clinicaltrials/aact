@@ -1,5 +1,6 @@
 
 // Get the distance of an element from the top of the window
+
 var getElemDistance = function ( elem ) {
   var location = 0;
 
@@ -38,5 +39,6 @@ function checkScroll() {
 
 }
 
-window.addEventListener('scroll', checkScroll, false);
-window.addEventListener('resize', checkScroll, false);
+
+  window.addEventListener('scroll', checkScroll, false);
+  window.addEventListener('resize', checkScroll, false);
