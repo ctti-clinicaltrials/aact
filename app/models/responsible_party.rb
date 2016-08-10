@@ -15,6 +15,7 @@ class ResponsibleParty < StudyRelationship
       :affiliation => get('investigator_affiliation'),
       :name => get('investigator_full_name'),
       :title => get('investigator_title'),
+      :organization => get('organization')
     }
   end
 
