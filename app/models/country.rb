@@ -7,17 +7,12 @@ class Country < StudyRelationship
 
   def self.location_countries(opts)
     opts[:xml].xpath('//location_countries').collect{|xml|
-      Country.new.create_from({:xml=>xml, :nct_id=>opts[:nct_id]})}
+      Country.new({:name=>xml.text.strip, :nct_id=>opts[:nct_id]})}
   end
 
   def self.removed_countries(opts)
     opts[:xml].xpath('//removed_countries').collect{|xml|
-      Country.new.create_from({:xml=>xml, :nct_id=>opts[:nct_id]})}
-  end
-
-  def attribs
-    {
-      :name => get('country')
-    }
+      puts xml
+      Country.new({:name=>xml.text.strip, :nct_id=>opts[:nct_id], :removed=>'true'})}
   end
 end

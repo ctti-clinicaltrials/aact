@@ -11,9 +11,9 @@ RSpec.describe Country, type: :model do
       expect(test_country.name).to eq('United States')
     end
 
-    # it 'should return a nil value for removed' do
-    #   expect(test_country.removed).to eq(nil)
-    # end
+    it 'should return a nil value for removed' do
+      expect(test_country.removed).to eq(nil)
+    end
   end
 
   context 'when location_countries and removed_countries exist' do
@@ -36,9 +36,9 @@ RSpec.describe Country, type: :model do
       expect(second_test_country.name).to eq('United States')
     end
 
-    # it 'should return a value of true for removed for removed_countries' do
-    #   expect(test_country.removed).to eq('true')
-    # end
+    it 'should return a value of true for removed for removed_countries' do
+      expect(test_country.removed).to eq('true')
+    end
   end
 
   context 'when country does not exist' do
