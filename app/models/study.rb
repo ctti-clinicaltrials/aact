@@ -250,8 +250,7 @@ class Study < ActiveRecord::Base
       :enrollment_type => get_type('enrollment'),
       :study_type => get('study_type'),
       :biospec_retention =>get('biospec_retention').strip,
-      :limitations_and_caveats  =>get('limitations_and_caveats'),
-
+      :limitations_and_caveats  =>xml.xpath('//limitations_and_caveats').text,
       :is_section_801 => get_boolean('is_section_801'),
       :is_fda_regulated => get_boolean('is_fda_regulated'),
       :plan_to_share_ipd => get('patient_data/sharing_ipd'),
