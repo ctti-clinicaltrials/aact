@@ -85,6 +85,21 @@ class CalculatedValue < ActiveRecord::Base
     1 if Outcome.fast_count_estimate(study.reported_events) > 0
   end
 
+  def pma_mapping_ids
+    study.pma_mappings.collect{|p| {:pma_number=>p.pma_number,:supplement_number=>p.supplement_number} }
+  end
+
+  def create_pma_records
+    return if study.pma_mappings.empty?
+    recs=[]
+    pma_mapping_ids.each{|id|
+      data=""
+      rec = PmaRecord.new.create_from(data) if !data.nil?
+      study.pma_records << rec if !rec.nil?
+    }
+    recs
+  end
+
   def calc_months_to_report_results
     return nil if study.first_received_results_date.nil? or study.primary_completion_date.nil?
     ((study.first_received_results_date.to_time -  study.primary_completion_date.to_time)/1.month.second).to_i

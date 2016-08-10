@@ -23,6 +23,8 @@ class Study < ActiveRecord::Base
   has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
+  has_many :pma_mappings,          :foreign_key => 'nct_id'
+  has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :groups,                :foreign_key => 'nct_id', dependent: :delete_all
