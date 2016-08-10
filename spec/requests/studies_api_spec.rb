@@ -113,7 +113,7 @@ describe AACT2::V1::StudiesAPI do
     subject { get '/api/v1/studies/counts/by_year' }
     it 'should return a hash of years with counts of studies' do
       is_expected.to eq(200)
-      study_start_year = Study.last.start_date.year.to_s
+      study_start_year = Study.last.calculated_value.start_date.year.to_s
       expect(response.body).to be
       expect(response.body).not_to eq('null')
       expect(JSON.parse(response.body)[study_start_year]).to eq(1)

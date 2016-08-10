@@ -36,7 +36,7 @@ class StudyRelationship < ActiveRecord::Base
     puts '#top_level_label: subclass responsibility!'
   end
 
- #=================================
+  #=================================
   #  TODO  - move next 3 methods to ResultGroup class (currently called Group) - coordinate with other changes
   def self.create_group_set(xml)
     group_xmls=xml.xpath("group_list").xpath('group')
@@ -61,7 +61,6 @@ class StudyRelationship < ActiveRecord::Base
     g.save!
     g
   end
-
   #=================================
 
   def self.xml_entries(opts)

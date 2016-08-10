@@ -5,6 +5,7 @@ class Group < StudyRelationship
   has_many :outcomes
   has_many :outcome_measures
   has_many :outcome_analyses
+  has_many :reported_events
   has_many :milestones
   has_many :drop_withdrawals
 

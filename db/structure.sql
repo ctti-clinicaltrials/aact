@@ -203,7 +203,13 @@ CREATE TABLE calculated_values (
     number_of_sae_subjects integer,
     study_rank character varying,
     nct_id character varying,
-    registered_in_calendar_year integer
+    registered_in_calendar_year integer,
+    start_date date,
+    verification_date date,
+    primary_completion_date date,
+    completion_date date,
+    first_received_results_date date,
+    nlm_download_date date
 );
 
 
@@ -1325,22 +1331,22 @@ ALTER SEQUENCE reported_event_overviews_id_seq OWNED BY reported_event_overviews
 
 CREATE TABLE reported_events (
     id integer NOT NULL,
-    ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
-    group_title character varying,
-    group_description text,
     description text,
     time_frame text,
-    category character varying,
     event_type character varying,
-    frequency_threshold character varying,
     default_vocab character varying,
     default_assessment character varying,
-    title character varying,
     subjects_affected integer,
     subjects_at_risk integer,
     event_count integer,
-    nct_id character varying
+    nct_id character varying,
+    ctgov_group_code character varying,
+    group_id integer,
+    organ_system character varying,
+    adverse_event_term character varying,
+    frequency_threshold integer,
+    vocab character varying,
+    assessment character varying
 );
 
 
@@ -1708,14 +1714,6 @@ CREATE TABLE studies (
     completion_date date,
     first_received_results_date date,
     download_date date,
-    start_date_str character varying,
-    first_received_date_str character varying,
-    verification_date_str character varying,
-    last_changed_date_str character varying,
-    primary_completion_date_str character varying,
-    completion_date_str character varying,
-    first_received_results_date_str character varying,
-    download_date_str character varying,
     completion_date_type character varying,
     primary_completion_date_type character varying,
     org_study_id character varying,
@@ -1746,7 +1744,13 @@ CREATE TABLE studies (
     updated_at timestamp without time zone NOT NULL,
     first_received_results_disposition_date date,
     plan_to_share_ipd character varying,
-    plan_to_share_description character varying
+    plan_to_share_description character varying,
+    start_date_month_day character varying,
+    verification_date_month_day character varying,
+    primary_completion_date_month_day character varying,
+    completion_date_month_day character varying,
+    first_received_results_date_month_day character varying,
+    nlm_download_date_description character varying
 );
 
 
@@ -2672,6 +2676,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160805131436');
 INSERT INTO schema_migrations (version) VALUES ('20160807222113');
 
 INSERT INTO schema_migrations (version) VALUES ('20160807222740');
+
+INSERT INTO schema_migrations (version) VALUES ('20160808024029');
+
+INSERT INTO schema_migrations (version) VALUES ('20160809010254');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809133136');
 

@@ -1,20 +1,15 @@
 class ReportedEvent < StudyRelationship
   extend FastCount
 
+  belongs_to :group
+
   def self.create_all_from(opts)
     nct_id=opts[:nct_id]
     opts[:xml]=opts[:xml].xpath("//reported_events")
     opts[:time_frame]=opts[:xml].xpath('time_frame').text
     opts[:description]=opts[:xml].xpath('desc').text
-    group_xmls=opts[:xml].xpath("group_list").xpath('group')
-    groups=[]
-    xml=group_xmls.pop
-    while xml
-      groups << {xml.attribute('group_id').text=>{:title=>xml.xpath('title').text,:description=>xml.xpath('description').text}}
-      xml=group_xmls.pop
-    end
-
-    opts[:groups]=groups
+    #  TODO Move #create_group_set to ResultGroup - just worried about doing it now cuz team members are changing that class right now and want to try to avoid merge conflicts.
+    opts[:groups]=create_group_set(opts[:xml])
 
     event_type='serious'
     opts[:type]=event_type
@@ -90,7 +85,8 @@ class ReportedEvent < StudyRelationship
             puts "TODO  need to account for no events"
           else
             while e_xml
-              opts[:title]=e_xml.xpath('sub_title').text
+              opts[:adverse_event_term]=e_xml.xpath('sub_title').text
+              opts[:vocab]=e_xml.xpath('sub_title').attribute('vocab').try(:value)
               count_xmls=e_xml.xpath("counts")
               o_xml=count_xmls.pop
               if o_xml.nil?
@@ -117,30 +113,26 @@ class ReportedEvent < StudyRelationship
 
   def attribs
     {
-      :category => get_opt(:category),
+      :group => get_group(opts[:groups]),
+      :ctgov_group_code => gid,
+      :organ_system => get_opt(:category),
       :event_type => get_opt(:type),
       :time_frame => get_opt(:time_frame),
       :description => get_opt(:description),
-      :frequency_threshold => get_opt(:frequency_threshold),
+      :frequency_threshold => (get_opt(:frequency_threshold).to_i),
       :default_vocab => get_opt(:default_vocab),
       :default_assessment => get_opt(:default_assessment),
-      :title => get_opt(:title),
+      :adverse_event_term => get_opt(:adverse_event_term),
       :event_count => get_opt(:event_count),
       :subjects_affected => get_opt(:subjects_affected),
       :subjects_at_risk => get_opt(:subjects_at_risk),
-      :ctgov_group_id => gid,
-      :ctgov_group_enumerator => integer_in(gid),
-      :group_description => (ginfo[:description] if ginfo),
-      :group_title => (ginfo[:title] if ginfo)
+      :assessment => xml.xpath('assessment'),
+      :vocab => get_opt(:vocab),
     }
   end
 
   def gid
     opts[:group_id]
-  end
-
-  def ginfo
-    get_opt(:groups).first[gid]
   end
 
   def type
