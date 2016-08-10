@@ -1403,7 +1403,6 @@ CREATE TABLE result_agreements (
     id integer NOT NULL,
     pi_employee character varying,
     agreement text,
-    agreement_type character varying,
     nct_id character varying
 );
 
@@ -2739,6 +2738,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160725200349');
 INSERT INTO schema_migrations (version) VALUES ('20160726124957');
 
 INSERT INTO schema_migrations (version) VALUES ('20160805131436');
+
+INSERT INTO schema_migrations (version) VALUES ('20160807222113');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809133136');
 
