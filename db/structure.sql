@@ -429,38 +429,6 @@ ALTER SEQUENCE design_outcomes_id_seq OWNED BY design_outcomes.id;
 
 
 --
--- Name: design_validations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE design_validations (
-    id integer NOT NULL,
-    design_name character varying,
-    design_value character varying,
-    masked_role character varying,
-    nct_id character varying
-);
-
-
---
--- Name: design_validations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE design_validations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: design_validations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE design_validations_id_seq OWNED BY design_validations.id;
-
-
---
 -- Name: designs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1842,13 +1810,6 @@ ALTER TABLE ONLY design_outcomes ALTER COLUMN id SET DEFAULT nextval('design_out
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY design_validations ALTER COLUMN id SET DEFAULT nextval('design_validations_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY designs ALTER COLUMN id SET DEFAULT nextval('designs_id_seq'::regclass);
 
 
@@ -2183,14 +2144,6 @@ ALTER TABLE ONLY design_groups
 
 ALTER TABLE ONLY design_outcomes
     ADD CONSTRAINT design_outcomes_pkey PRIMARY KEY (id);
-
-
---
--- Name: design_validations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY design_validations
-    ADD CONSTRAINT design_validations_pkey PRIMARY KEY (id);
 
 
 --
@@ -2624,4 +2577,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160809133136');
 INSERT INTO schema_migrations (version) VALUES ('20160810141928');
 
 INSERT INTO schema_migrations (version) VALUES ('20160810142332');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810150320');
 
