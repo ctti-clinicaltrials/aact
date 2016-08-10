@@ -1196,98 +1196,6 @@ ALTER SEQUENCE participant_flows_id_seq OWNED BY participant_flows.id;
 
 
 --
--- Name: pma_mappings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE pma_mappings (
-    id integer NOT NULL,
-    unique_id character varying,
-    ct_pma_id integer,
-    pma_number character varying,
-    supplement_number character varying,
-    nct_id character varying
-);
-
-
---
--- Name: pma_mappings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE pma_mappings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pma_mappings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE pma_mappings_id_seq OWNED BY pma_mappings.id;
-
-
---
--- Name: pma_records; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE pma_records (
-    id integer NOT NULL,
-    unique_id character varying,
-    pma_number character varying,
-    supplement_number character varying,
-    supplement_type character varying,
-    supplement_reason character varying,
-    applicant character varying,
-    street_1 character varying,
-    street_2 character varying,
-    city character varying,
-    state character varying,
-    zip character varying,
-    zip_ext character varying,
-    last_updated date,
-    date_received date,
-    decision_date date,
-    decision_code character varying,
-    expedited_review_flag character varying,
-    advisory_committee character varying,
-    advisory_committee_description character varying,
-    device_name character varying,
-    device_class character varying,
-    product_code character varying,
-    generic_name character varying,
-    trade_name character varying,
-    medical_specialty_description character varying,
-    docket_number character varying,
-    regulation_number character varying,
-    fei_numbers text,
-    registration_numbers text,
-    ao_statement text,
-    nct_id character varying
-);
-
-
---
--- Name: pma_records_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE pma_records_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pma_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE pma_records_id_seq OWNED BY pma_records.id;
-
-
---
 -- Name: reported_event_overviews; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2088,20 +1996,6 @@ ALTER TABLE ONLY participant_flows ALTER COLUMN id SET DEFAULT nextval('particip
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pma_mappings ALTER COLUMN id SET DEFAULT nextval('pma_mappings_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY pma_records ALTER COLUMN id SET DEFAULT nextval('pma_records_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY reported_event_overviews ALTER COLUMN id SET DEFAULT nextval('reported_event_overviews_id_seq'::regclass);
 
 
@@ -2468,22 +2362,6 @@ ALTER TABLE ONLY participant_flows
 
 
 --
--- Name: pma_mappings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY pma_mappings
-    ADD CONSTRAINT pma_mappings_pkey PRIMARY KEY (id);
-
-
---
--- Name: pma_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY pma_records
-    ADD CONSTRAINT pma_records_pkey PRIMARY KEY (id);
-
-
---
 -- Name: reported_event_overviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2742,4 +2620,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160805131436');
 INSERT INTO schema_migrations (version) VALUES ('20160807222113');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809133136');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810141928');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810142332');
 

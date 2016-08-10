@@ -23,8 +23,4 @@ FactoryGirl.define do
   factory :calculated_value do
 
   end
-
-  factory :pma_mapping do
-
-  end
 end

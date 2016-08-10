@@ -4,7 +4,6 @@ class CalculatedValue < ActiveRecord::Base
   def create_from(new_study)
     self.study=new_study
     assign_attributes(attribs) if !attribs.blank?
-    create_pma_records
     self
   end
 
@@ -69,20 +68,4 @@ class CalculatedValue < ActiveRecord::Base
     study.groups.each{|g|g.set_participant_count}
     study.groups.sum(:derived_participant_count)
   end
-
-  def pma_mapping_ids
-    study.pma_mappings.collect{|p| {:pma_number=>p.pma_number,:supplement_number=>p.supplement_number} }
-  end
-
-  def create_pma_records
-    return if study.pma_mappings.empty?
-    recs=[]
-    pma_mapping_ids.each{|id|
-      data=""
-      rec = PmaRecord.new.create_from(data) if !data.nil?
-      study.pma_records << rec if !rec.nil?
-    }
-    recs
-  end
-
 end
