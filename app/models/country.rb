@@ -12,7 +12,6 @@ class Country < StudyRelationship
 
   def self.removed_countries(opts)
     opts[:xml].xpath('//removed_countries').collect{|xml|
-      puts xml
-      Country.new({:name=>xml.text.strip, :nct_id=>opts[:nct_id], :removed=>'true'})}
+      Country.new({:name=>xml.text.strip, :nct_id=>opts[:nct_id], :removed=>true})}
   end
 end

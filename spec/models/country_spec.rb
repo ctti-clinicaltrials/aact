@@ -37,7 +37,7 @@ RSpec.describe Country, type: :model do
     end
 
     it 'should return a value of true for removed for removed_countries' do
-      expect(test_country.removed).to eq('true')
+      expect(test_country.removed).to eq(true)
     end
   end
 
