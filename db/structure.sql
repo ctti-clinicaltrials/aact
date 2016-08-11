@@ -1481,36 +1481,6 @@ ALTER SEQUENCE search_results_id_seq OWNED BY search_results.id;
 
 
 --
--- Name: secondary_ids; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE secondary_ids (
-    id integer NOT NULL,
-    secondary_id character varying,
-    nct_id character varying
-);
-
-
---
--- Name: secondary_ids_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE secondary_ids_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: secondary_ids_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE secondary_ids_id_seq OWNED BY secondary_ids.id;
-
-
---
 -- Name: sponsors; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1985,13 +1955,6 @@ ALTER TABLE ONLY search_results ALTER COLUMN id SET DEFAULT nextval('search_resu
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY secondary_ids ALTER COLUMN id SET DEFAULT nextval('secondary_ids_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY sponsors ALTER COLUMN id SET DEFAULT nextval('sponsors_id_seq'::regclass);
 
 
@@ -2345,14 +2308,6 @@ ALTER TABLE ONLY search_results
 
 
 --
--- Name: secondary_ids_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY secondary_ids
-    ADD CONSTRAINT secondary_ids_pkey PRIMARY KEY (id);
-
-
---
 -- Name: sponsors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2527,4 +2482,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160810152651');
 INSERT INTO schema_migrations (version) VALUES ('20160810173055');
 
 INSERT INTO schema_migrations (version) VALUES ('20160810185321');
+
+INSERT INTO schema_migrations (version) VALUES ('20160811154112');
 

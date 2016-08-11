@@ -49,7 +49,6 @@ class Study < ActiveRecord::Base
   has_many :responsible_parties,   :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_agreements,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_contacts,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :secondary_ids,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :sponsors,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :references,            :foreign_key => 'nct_id', dependent: :delete_all
 
@@ -127,7 +126,6 @@ class Study < ActiveRecord::Base
     ResponsibleParty.create_all_from(opts)
     ResultAgreement.create_all_from(opts)
     ResultContact.create_all_from(opts)
-    SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
     CalculatedValue.new.create_from(self).save
