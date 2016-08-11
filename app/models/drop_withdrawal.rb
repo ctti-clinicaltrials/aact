@@ -40,7 +40,7 @@ class DropWithdrawal < StudyRelationship
       :period_title => get_opt(:period_title),
       :participant_count => get_attribute('count').to_i,
       :ctgov_group_code => gid,
-      :group => get_group,
+      :result_group => get_group,
     }
   end
 

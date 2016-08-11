@@ -18,7 +18,7 @@ describe Study do
 
     it { should have_many(:design_groups).dependent(:delete_all) }
     it { should have_many(:design_outcomes).dependent(:delete_all) }
-    it { should have_many(:groups).dependent(:delete_all) }
+    it { should have_many(:result_groups).dependent(:delete_all) }
     it { should have_many(:outcomes).dependent(:delete_all) }
     it { should have_many(:baseline_measures).dependent(:delete_all) }
     it { should have_many(:browse_conditions).dependent(:delete_all) }
