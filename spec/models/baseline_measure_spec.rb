@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Study do
+describe BaselineMeasure do
   it "study should have expected baseline measure values" do
     nct_id='NCT02028676'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
