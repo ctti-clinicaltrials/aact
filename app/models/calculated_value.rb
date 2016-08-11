@@ -18,7 +18,33 @@ class CalculatedValue < ActiveRecord::Base
       :number_of_facilities        => calc_number_of_facilities,
       :number_of_sae_subjects      => calc_number_of_sae_subjects,
       :number_of_nsae_subjects     => calc_number_of_nsae_subjects,
+
+      :start_date                  => study.start_date_month_day.to_date,
+      :completion_date             => study.completion_date_month_day.to_date,
+      :primary_completion_date     => study.primary_completion_date_month_day.to_date,
+      :verification_date           => study.verification_date_month_day.to_date,
+      :first_received_results_date => study.first_received_results_date_month_day.to_date,
+      :nlm_download_date           => get_download_date
     }
+  end
+
+  def get_download_date
+    dt=study.nlm_download_date_description.split('ClinicalTrials.gov processed this data on ').last
+    dt.to_date if dt
+  end
+
+  def calc_link_to_data
+      if study.org_study_id.upcase[/^NIDA/]
+        url="https://datashare.nida.nih.gov/protocol/#{study.org_study_id.gsub(' ','')}"
+        results=""#Faraday.get(url).body
+        url if !results.downcase.include?('page not found')
+      else
+        #protocol link.....
+        #url="http://clinicalstudies.info.nih.gov/cgi/cs/processqry3.pl?sort=1&search=#{nct_id}&searchtype=0&patient_type=All&protocoltype=All&institute=%25&conditions=All"
+        #results=Faraday.get(url).body
+        #self.link_to_data=url if !results.downcase.include?('page not found')
+        #end
+      end
   end
 
   def calc_sponsor_type
@@ -42,7 +68,7 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_registered_in_calendar_year
-    study.first_received_date.year
+    study.first_received_date.year if study.first_received_date
   end
 
   def calc_number_of_facilities

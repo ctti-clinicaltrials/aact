@@ -130,7 +130,7 @@ class Study < ActiveRecord::Base
     SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
-    # CalculatedValue.new.create_from(self).save
+    CalculatedValue.new.create_from(self).save
     self
   end
 
@@ -212,23 +212,16 @@ class Study < ActiveRecord::Base
 
   def attribs
     {
-      :start_date => get_date(get('start_date')),
+      :verification_date_month_day => get('verification_date'),
+      :last_changed_date => get_date(get('lastchanged_date')),
       :first_received_date => get_date(get('firstreceived_date')),
       :first_received_results_disposition_date => get_date(get('firstreceived_results_disposition_date')),
-      :verification_date => get_date(get('verification_date')),
-      :last_changed_date => get_date(get('lastchanged_date')),
-      :primary_completion_date => get_date(get('primary_completion_date')),
-      :completion_date => get_date(get('completion_date')),
-      :first_received_results_date => get_date(get('firstreceived_results_date')),
 
-      :start_date_str => get('start_date'),
-      :first_received_date_str => get('firstreceived_date'),
-      :verification_date_str => get('verification_date'),
-      :last_changed_date_str => get('lastchanged_date'),
-      :primary_completion_date_str => get('primary_completion_date'),
-      :completion_date_str => get('completion_date'),
-      :first_received_results_date_str => get('firstreceived_results_date'),
-      :download_date_str => xml.xpath('//download_date').text,
+      :start_date_month_day => get('start_date'),
+      :primary_completion_date_month_day => get('primary_completion_date'),
+      :completion_date_month_day => get('completion_date'),
+      :first_received_results_date_month_day => get('firstreceived_results_date'),
+      :nlm_download_date_description => xml.xpath('//download_date').text,
 
       :org_study_id => xml.xpath('//org_study_id').text,
       :acronym =>get('acronym'),
@@ -248,8 +241,7 @@ class Study < ActiveRecord::Base
       :enrollment_type => get_type('enrollment'),
       :study_type => get('study_type'),
       :biospec_retention =>get('biospec_retention').strip,
-      :limitations_and_caveats  =>get('limitations_and_caveats'),
-
+      :limitations_and_caveats  =>xml.xpath('//limitations_and_caveats').text,
       :is_section_801 => get_boolean('is_section_801'),
       :is_fda_regulated => get_boolean('is_fda_regulated'),
       :plan_to_share_ipd => get('patient_data/sharing_ipd'),

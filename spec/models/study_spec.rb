@@ -17,6 +17,7 @@ describe Study do
     it { should have_one(:study_xml_record) }
 
     it { should have_many(:reviews).dependent(:delete_all) }
+
     it { should have_many(:design_groups).dependent(:delete_all) }
     it { should have_many(:design_outcomes).dependent(:delete_all) }
     it { should have_many(:groups).dependent(:delete_all) }
@@ -50,9 +51,7 @@ describe Study do
       expect(subject).to be_persisted
     end
 
-    it 'should create a calculated value record for each study' do
-      Study.create_calculated_values
-
+    it 'should have created a calculated value record for each study' do
       expect(CalculatedValue.count).to eq(1)
     end
   end

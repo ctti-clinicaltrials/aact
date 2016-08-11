@@ -20,6 +20,17 @@ describe Study do
     end
   end
 
+  context 'study has limitations and caveats' do
+    nct_id='NCT00023673'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+
+    it 'should have expected limitations and caveats value' do
+      expect(study.limitations_and_caveats).to eq('This study was originally designed to escalate 3DRT via increasing doses per fraction. However, due to excessive toxicity at dose level 1 (75.25 Gy, 2.15 Gy/fraction), the protocol was amended in January 2003 to de-escalate 3DRT dose.')
+    end
+
+  end
+
   context 'when patient data section does not exist' do
     xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
     study=Study.new({xml: xml, nct_id: 'NCT02260193'}).create
