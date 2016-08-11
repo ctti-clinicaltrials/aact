@@ -78,9 +78,6 @@ describe Study do
     xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02389088.xml'))
     nct_id='NCT02389088'
     study=Study.new({xml: xml, nct_id: nct_id}).create
-		puts "==========================="
-    study.baseline_measures.each{|x| x.inspect}
-		puts "==========================="
     baseline_array=study.baseline_measures.select{|x| x.title=='Age' and x.population=='9 PCOS women' and x.ctgov_group_code=='B1'}
     expect(baseline_array.size).to eq(1)
     expect(baseline_array.first.units).to eq('years')

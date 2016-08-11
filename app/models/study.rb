@@ -20,7 +20,7 @@ class Study < ActiveRecord::Base
   has_one  :eligibility,           :foreign_key => 'nct_id', dependent: :delete
   has_one  :participant_flow,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :result_detail,         :foreign_key => 'nct_id', dependent: :delete
-  #has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
+  has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
   has_many :pma_mappings,          :foreign_key => 'nct_id'
@@ -28,9 +28,7 @@ class Study < ActiveRecord::Base
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
-  #has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
-  #has_many :milestones,            :foreign_key => 'nct_id', dependent: :delete_all
+  #has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
   #has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
   #has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
   #has_many :outcome_measured_values, :foreign_key => 'nct_id', dependent: :delete_all
@@ -118,9 +116,9 @@ class Study < ActiveRecord::Base
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     BaselineMeasure.create_all_from(opts)
-    #Milestone.create_all_from(opts.merge(:groups=>self.result_groups))
-    #DropWithdrawal.create_all_from(opts.merge(:groups=>self.result_groups))
-    #Outcome.create_all_from(opts.merge(:groups=>self.result_groups))
+    Milestone.create_all_from(opts)
+    DropWithdrawal.create_all_from(opts)
+    Outcome.create_all_from(opts)
     #  ResultGroups get created in the process of creating the 4 above
     OversightAuthority.create_all_from(opts)
     OverallOfficial.create_all_from(opts)
@@ -291,6 +289,14 @@ class Study < ActiveRecord::Base
 
   def baseline_measures
     BaselineMeasure.where('nct_id=?',nct_id)
+  end
+
+  def milestones
+    Milestone.where('nct_id=?',nct_id)
+  end
+
+  def drop_withdrawals
+    DropWithdrawal.where('nct_id=?',nct_id)
   end
 
   def reported_events

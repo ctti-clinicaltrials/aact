@@ -2,7 +2,11 @@ class DropWithdrawal < StudyRelationship
   belongs_to :result_group
 
   def self.create_all_from(opts)
-    DropWithdrawal.import(self.nested_pop_create(opts.merge(:name=>'drop_withdraw_reason')))
+    opts[:xml]=opts[:xml].xpath('//participant_flow')
+    opts[:result_type]='Drop/Withdrawal'
+    opts[:groups]=create_group_set(opts)
+
+    import(self.nested_pop_create(opts.merge(:name=>'drop_withdraw_reason')))
   end
 
   def self.nested_pop_create(opts)
@@ -24,22 +28,17 @@ class DropWithdrawal < StudyRelationship
     col.flatten
   end
 
-  def get_group
-    opts[:groups].each{|g|
-      return g if g.ctgov_group_code==gid
-    }
-  end
-
   def gid
     get_attribute('group_id')
   end
 
   def attribs
     {
+      :result_group => get_group(opts[:groups]),
+      :ctgov_group_code => gid,
+      :participant_count => get_attribute('count').to_i,
       :reason => get_opt(:reason),
       :period => get_opt(:period),
-      :participant_count => get_attribute('count').to_i,
-      :ctgov_group_code => gid,
     }
   end
 

@@ -8,6 +8,10 @@ class Outcome < StudyRelationship
   has_many :outcome_analyses, inverse_of: :outcome, autosave: true
 
   def self.create_all_from(opts)
+    xml=opts[:xml].xpath('//clinical_results').xpath("outcome_list").xpath('outcome')
+    opts[:xml]=xml
+    opts[:result_type]='Outcome'
+    opts[:groups]=create_group_set(opts)
     all=opts[:xml].xpath('//clinical_results').xpath("outcome_list").xpath('outcome')
     col=[]
     xml=all.pop
@@ -66,10 +70,10 @@ class Outcome < StudyRelationship
 
   def attribs
     {
+      :result_group => get_group(opts[:groups]),
       :ctgov_group_code => get_attribute('result_group_id'),
       :participant_count => get_attribute('count').to_i,
       :outcome_type => get_opt(:type),
-      :result_group => get_group,
       :title        => get_opt(:title),
       :time_frame   => get_opt(:time_frame),
       :safety_issue => get_opt(:safety_issue),
@@ -80,11 +84,11 @@ class Outcome < StudyRelationship
     }
   end
 
-  def gid
+  def xxxxgid
     opts[:xml].attribute('group_id').try(:value)
   end
 
-  def get_group
+  def xxxxget_group
     opts[:groups].each{|g| return g if g.ctgov_group_code==gid}
     # found case where groups were not defined in participant_flow tag,
     # but referenced in outcomes.  In that case, create a group for this outcome.
