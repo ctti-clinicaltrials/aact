@@ -9,6 +9,26 @@ class ResultGroup < StudyRelationship
   has_many :milestones
   has_many :drop_withdrawals
 
+  def self.create_group_set(xml)
+    group_xmls=xml.xpath("group_list").xpath('group')
+    groups=[]
+    xml=group_xmls.pop
+    while xml
+      groups << create_group_from(xml)
+      xml=group_xmls.pop
+    end
+    groups
+  end
+
+  def self.create_group_from(xml)
+    g=new({:ctgov_group_code => xml.attribute('group_id'),
+           :title => xml.xpath('title').text,
+           :description=>xml.xpath('description').text
+          })
+    g.save!
+    g
+  end
+
   def self.create_all_from(opts)
     opts[:xml]=opts[:xml].xpath('//participant_flow')
     groups=pop_create(opts.merge(:name=>'group'))

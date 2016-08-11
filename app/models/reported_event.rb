@@ -8,7 +8,6 @@ class ReportedEvent < StudyRelationship
     opts[:xml]=opts[:xml].xpath("//reported_events")
     opts[:time_frame]=opts[:xml].xpath('time_frame').text
     opts[:description]=opts[:xml].xpath('desc').text
-    #  TODO Move #create_group_set to ResultGroup - just worried about doing it now cuz team members are changing that class right now and want to try to avoid merge conflicts.
     opts[:groups]=create_group_set(opts[:xml])
 
     event_type='serious'

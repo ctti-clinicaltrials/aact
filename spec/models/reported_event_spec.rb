@@ -1,10 +1,9 @@
 require 'rails_helper'
 describe ReportedEvent do
   it "should have expected values" do
-		nct_id='NCT00023673'
+    nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    #g1=study.reported_events.select{|x|x.ctgov_group_code=='E1'}
 
     e1=study.reported_events.select{|x|x.ctgov_group_code=='E1'}
     e2=study.reported_events.select{|x|x.ctgov_group_code=='E2'}

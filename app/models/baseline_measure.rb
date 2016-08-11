@@ -21,7 +21,7 @@ class BaselineMeasure < StudyRelationship
       xml=all.pop
     end
 
-    BaselineMeasure.import(col.flatten)
+    import(col.flatten)
   end
 
   def self.nested_pop_create(opts)
@@ -56,10 +56,6 @@ class BaselineMeasure < StudyRelationship
       :description => get_opt(:description),
       :units => get_opt(:units),
     }
-  end
-
-  def gid
-    get_attribute('group_id')
   end
 
 end
