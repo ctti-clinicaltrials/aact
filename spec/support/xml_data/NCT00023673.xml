@@ -1,0 +1,2110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 04, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT00023673</url>
+  </required_header>
+  <id_info>
+    <org_study_id>RTOG L-0117</org_study_id>
+    <secondary_id>CDR0000068850</secondary_id>
+    <secondary_id>NCI-2012-02401</secondary_id>
+    <nct_id>NCT00023673</nct_id>
+  </id_info>
+  <brief_title>Radiation Therapy Combined With Paclitaxel and Carboplatin in Treating Patients With Stage III Non-Small Cell Lung Cancer</brief_title>
+  <official_title>A Phase I/II Dose Intensification Study Using Three Dimensional Conformal Radiation Therapy And Concurrent Chemotherapy For Patients With Inoperable, Non-Small Cell Lung Cancer</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Radiation Therapy Oncology Group</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>National Cancer Institute (NCI)</agency>
+      <agency_class>NIH</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Radiation Therapy Oncology Group</source>
+  <oversight_info>
+    <authority>United States: Federal Government</authority>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      RATIONALE: Radiation therapy uses high-energy x-rays to damage tumor cells. Drugs used in
+      chemotherapy, such as paclitaxel and carboplatin, work in different ways to stop tumor cells
+      from dividing so they stop growing or die. Combining more than one drug and giving them with
+      specialized radiation therapy may kill more tumor cells.
+
+      PURPOSE: This phase I/II trial is studying the effectiveness of radiation therapy combined
+      with paclitaxel and carboplatin in treating patients who have stage III non-small cell lung
+      cancer.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      OBJECTIVES:
+
+        -  Determine the maximum tolerated dose of 3-dimensional conformal radiotherapy when
+           administered concurrently with paclitaxel and carboplatin in patients with inoperable
+           stage IIIA or IIIB non-small cell lung cancer. (Phase I) (Closed to accrual as of
+           01/13/04.)
+
+        -  Determine the 12-month survival rate in patients treated with this regimen. (Phase II)
+           (Closed to accrual as of 11/27/07.)
+
+        -  Determine the toxicity of this regimen in these patients.
+
+        -  Determine the partial organ tolerance doses for the lung and esophagus in patients
+           treated with this regimen.
+
+        -  Determine the complete response rate in patients treated with this regimen.
+
+      OUTLINE: This is a multicenter, dose-escalation study of 3-dimensional conformal
+      radiotherapy.
+
+        -  Phase I (closed to accrual as of 01/13/04): Patients undergo 3-dimensional conformal
+           radiotherapy once daily five days a week for 7-8 weeks. Patients also receive
+           concurrent chemotherapy comprising paclitaxel IV over 1 hour followed by carboplatin IV
+           over 30 minutes on days 1, 8, 15, 22, 29, 36, and 43.
+
+      Cohorts of 7-9 patients receive de-escalating doses of 3-dimensional conformal radiotherapy
+      until the maximum tolerated dose (MTD) is determined when given in combination with
+      chemotherapy. The MTD is defined as the highest dose at which no more than 1 patient
+      experiences dose-limiting toxicity.
+
+        -  Phase II: Additional patients are accrued and treated as above at the MTD. At least 3
+           weeks after completing radiotherapy, patients may receive additional chemotherapy
+           comprising paclitaxel IV over 3 hours once and carboplatin IV over 30 minutes once.
+           Treatment with paclitaxel and carboplatin may repeat every 3 weeks for up to 2 courses.
+
+      Patients are followed every 3 months for 1 year, every 4 months for 1 year, every 6 months
+      for 3-5 years, and then annually thereafter.
+
+      PROJECTED ACCRUAL: A maximum of 73 patients (up to 27 for phase I [closed to accrual as of
+      10/28/04] and 46 for phase II) will be accrued for this study within 1-1.5 years.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>July 2001</start_date>
+  <completion_date type="Actual">November 2013</completion_date>
+  <primary_completion_date type="Actual">January 2009</primary_completion_date>
+  <phase>Phase 1/Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Non-Randomized, Intervention Model: Single Group Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Maximum Tolerated Dose (MTD) of Three-dimensional Conformal Radiation Therapy (3DRT), in Terms of Gy Per Fraction, Combined With Concurrent Chemotherapy</measure>
+    <time_frame>From start of treatment to 90 days</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on RTOG (Radiation Therapy Oncolgy Group) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
+Rating scale: 0 = not the MTD, 1 = MTD</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Percentage of Patients Who Survive at Least 12 Months</measure>
+    <time_frame>From registration to 1 year</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Null hypothesis: p&lt;= 62.3% (the best arm of RTOG 94-10); alternative hypothesis: p&gt;= 77.9%. Where p is the percentage of patients alive at at 12 months. Using a one-group chi-square test with alpha = 0.10, a sample size of 50 patients provides at least 87% power to detect a 25% or greater relative increase in the 12-month survival rate, or equivalently, an absolute increase of at least 15.6 percentage points (62.3 versus 77.9). If the point estimate is greater than 71.1% (upper bound), then the conclusion is that the 12-month survival rate from the new treatment significantly improved from 62.3%.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Toxicity</measure>
+    <time_frame>From start of treatment to end of follow-up</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Partial Organ Tolerance Doses for Lung and Esophagus</measure>
+    <time_frame>From start of treatment to end of follow-up</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Complete Response Rate at 3 Months After Therapy</measure>
+    <time_frame>From start of treatment until 3 months after completion of therapy</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <number_of_arms>4</number_of_arms>
+  <enrollment type="Actual">63</enrollment>
+  <condition>Lung Cancer</condition>
+  <arm_group>
+    <arm_group_label>Phase I: 75.25 Gy/36 fx + chemotherapy</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 75.25 Gy given in 36 fractions (2.15 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Phase I: 74 Gy/37 fx + chemotherapy</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Phase I: 70 Gy/35 fx + chemotherapy</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 70 Gy given in 35 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Phase II: 74 Gy/37 fx + chemotherapy</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Phase II: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>carboplatin</intervention_name>
+    <arm_group_label>Phase I: 75.25 Gy/36 fx + chemotherapy</arm_group_label>
+    <arm_group_label>Phase I: 74 Gy/37 fx + chemotherapy</arm_group_label>
+    <arm_group_label>Phase I: 70 Gy/35 fx + chemotherapy</arm_group_label>
+    <arm_group_label>Phase II: 74 Gy/37 fx + chemotherapy</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>paclitaxel</intervention_name>
+    <arm_group_label>Phase I: 75.25 Gy/36 fx + chemotherapy</arm_group_label>
+    <arm_group_label>Phase I: 74 Gy/37 fx + chemotherapy</arm_group_label>
+    <arm_group_label>Phase I: 70 Gy/35 fx + chemotherapy</arm_group_label>
+    <arm_group_label>Phase II: 74 Gy/37 fx + chemotherapy</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Radiation</intervention_type>
+    <intervention_name>three-dimensional conformal radiation therapy</intervention_name>
+    <arm_group_label>Phase I: 75.25 Gy/36 fx + chemotherapy</arm_group_label>
+    <arm_group_label>Phase I: 74 Gy/37 fx + chemotherapy</arm_group_label>
+    <arm_group_label>Phase I: 70 Gy/35 fx + chemotherapy</arm_group_label>
+    <arm_group_label>Phase II: 74 Gy/37 fx + chemotherapy</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        DISEASE CHARACTERISTICS:
+
+          -  Histologically or cytologically confirmed unresectable stage IIIB non-small cell lung
+             cancer
+
+               -  Squamous cell carcinoma
+
+               -  Adenocarcinoma
+
+               -  Large cell carcinoma
+
+               -  Non-small cell carcinoma not otherwise specified
+
+          -  All detectable primary tumor and involved regional lymph nodes must be encompassed by
+             radiotherapy fields
+
+          -  Measurable disease on 3-dimensional planning CT scan
+
+          -  No undifferentiated small cell (oat cell or high-grade neuroendocrine) carcinoma
+
+          -  No stage IV or recurrent disease
+
+          -  No distant metastases or supraclavicular lymph node involvement
+
+          -  No significant atelectasis (i.e., atelectasis of an entire lung)
+
+          -  No pleural effusions, pericardial effusions, or superior vena cava syndrome
+
+          -  No lung cancer within the past 2 years
+
+          -  Ineligible for currently open Radiation Therapy Oncology Group (RTOG) phase III lung
+             protocols
+
+        PATIENT CHARACTERISTICS:
+
+        Age:
+
+          -  Not specified
+
+        Performance status:
+
+          -  Zubrod 0-1
+
+        Life expectancy:
+
+          -  Not specified
+
+        Hematopoietic:
+
+          -  Granulocyte count at least 1,500/mm^3
+
+          -  Platelet count at least 100,000/mm^3
+
+        Hepatic:
+
+          -  Bilirubin less than 1.5 mg/dL
+
+          -  Aspartate aminotransferase (AST) less than 2 times upper limit of normal
+
+        Renal:
+
+          -  Creatinine no greater than 2.0 mg/dL
+
+        Pulmonary:
+
+          -  Forced expiratory volume (FEV)_1 at least 1.0 L
+
+        Other:
+
+          -  Not pregnant or nursing
+
+          -  Fertile patients must use effective contraception
+
+          -  No weight loss greater than 5% in the past 6 months
+
+          -  No other malignancy within the past year except nonmelanoma skin cancer
+
+          -  Completed 3D plan with total lung V20 &lt;/= 30% mean esophageal dose &lt;/= 34 Gy and
+             esophageal V55 &lt;/= 30%
+
+        PRIOR CONCURRENT THERAPY:
+
+        Biologic therapy:
+
+          -  No prior biologic response modifiers for current lung cancer
+
+          -  At least 5 years since prior biologic response modifiers
+
+        Chemotherapy:
+
+          -  No prior chemotherapy for current lung cancer
+
+          -  At least 5 years since prior chemotherapy
+
+        Endocrine therapy:
+
+          -  Not specified
+
+        Radiotherapy:
+
+          -  See Disease Characteristics
+
+          -  No prior radiotherapy to the thorax
+
+        Surgery:
+
+          -  No prior complete tumor resection
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>N/A</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Jeffrey Bradley, MD</last_name>
+    <role>Study Chair</role>
+    <affiliation>Mallinckrodt Institute of Radiology at Washington University Medical Center</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Mobile Infirmary Medical Center</name>
+      <address>
+        <city>Mobile</city>
+        <state>Alabama</state>
+        <zip>36652-2144</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Arizona Oncology Services Foundation</name>
+      <address>
+        <city>Phoenix</city>
+        <state>Arizona</state>
+        <zip>85013</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Providence Saint Joseph Medical Center - Burbank</name>
+      <address>
+        <city>Burbank</city>
+        <state>California</state>
+        <zip>91505</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Providence Holy Cross Cancer Center</name>
+      <address>
+        <city>Mission Hills</city>
+        <state>California</state>
+        <zip>91346-9600</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of California Davis Cancer Center</name>
+      <address>
+        <city>Sacramento</city>
+        <state>California</state>
+        <zip>95817</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Bay Medical</name>
+      <address>
+        <city>Panama City</city>
+        <state>Florida</state>
+        <zip>32401</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Northeast Georgia Medical Center</name>
+      <address>
+        <city>Gainesville</city>
+        <state>Georgia</state>
+        <zip>30501</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Saint Anthony's Hospital at Saint Anthony's Health Center</name>
+      <address>
+        <city>Alton</city>
+        <state>Illinois</state>
+        <zip>62002</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Alexian Brothers Radiation Oncology</name>
+      <address>
+        <city>Elk Grove Village</city>
+        <state>Illinois</state>
+        <zip>60007</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Good Samaritan Regional Health Center</name>
+      <address>
+        <city>Mt. Vernon</city>
+        <state>Illinois</state>
+        <zip>62864</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Oncology Center at Saint Margaret Mercy Healthcare Center</name>
+      <address>
+        <city>Hammond</city>
+        <state>Indiana</state>
+        <zip>46320</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cancer Center at Ball Memorial Hospital</name>
+      <address>
+        <city>Muncie</city>
+        <state>Indiana</state>
+        <zip>47303-3499</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Regional Cancer Center at Singing River Hospital</name>
+      <address>
+        <city>Pascagoula</city>
+        <state>Mississippi</state>
+        <zip>39581</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cancer Institute of Cape Girardeau, LLC</name>
+      <address>
+        <city>Cape Girardeau</city>
+        <state>Missouri</state>
+        <zip>63703</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Saint Francis Medical Center</name>
+      <address>
+        <city>Cape Girardeau</city>
+        <state>Missouri</state>
+        <zip>63703</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Southeast Missouri Regional Cancer Center at Southeast Missouri Hospital</name>
+      <address>
+        <city>Gape Girardeau</city>
+        <state>Missouri</state>
+        <zip>63701</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>David C. Pratt Cancer Center at St. John's Mercy</name>
+      <address>
+        <city>Saint Louis</city>
+        <state>Missouri</state>
+        <zip>63141</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>CCOP - Cancer Research for the Ozarks</name>
+      <address>
+        <city>Springfield</city>
+        <state>Missouri</state>
+        <zip>65802</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Hulston Cancer Center at Cox Medical Center South</name>
+      <address>
+        <city>Springfield</city>
+        <state>Missouri</state>
+        <zip>65807</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>CCOP - St. Louis-Cape Girardeau</name>
+      <address>
+        <city>St. Louis</city>
+        <state>Missouri</state>
+        <zip>63141</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Ocean Medical Center at Meridian Health</name>
+      <address>
+        <city>Brick</city>
+        <state>New Jersey</state>
+        <zip>08724</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>J. Phillip Citta Regional Cancer Center at Community Medical Center</name>
+      <address>
+        <city>Toms River</city>
+        <state>New Jersey</state>
+        <zip>08755</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Franklin &amp; Edith Scarpa Regional Cancer Center at South Jersey Healthcare</name>
+      <address>
+        <city>Vineland</city>
+        <state>New Jersey</state>
+        <zip>08360</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>CCOP - Hematology-Oncology Associates of Central New York</name>
+      <address>
+        <city>East Syracuse</city>
+        <state>New York</state>
+        <zip>13057</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>High Point Regional Hospital</name>
+      <address>
+        <city>High Point</city>
+        <state>North Carolina</state>
+        <zip>27261</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Summa Center for Cancer Care at Akron City Hospital</name>
+      <address>
+        <city>Akron</city>
+        <state>Ohio</state>
+        <zip>44309-2090</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cleveland Clinic Cancer Center at Fairview Hospital</name>
+      <address>
+        <city>Cleveland</city>
+        <state>Ohio</state>
+        <zip>44111</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cleveland Clinic Taussig Cancer Center</name>
+      <address>
+        <city>Cleveland</city>
+        <state>Ohio</state>
+        <zip>44195</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cancer Treatment Center</name>
+      <address>
+        <city>Wooster</city>
+        <state>Ohio</state>
+        <zip>44691</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Three Rivers Community Hospital</name>
+      <address>
+        <city>Grants Pass</city>
+        <state>Oregon</state>
+        <zip>97527</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Dubs Cancer Center at Rogue Valley Medical Center</name>
+      <address>
+        <city>Medford</city>
+        <state>Oregon</state>
+        <zip>97504</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Providence Cancer Center at PMCC</name>
+      <address>
+        <city>Medford</city>
+        <state>Oregon</state>
+        <zip>97504</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Albert Einstein Cancer Center</name>
+      <address>
+        <city>Philadelphia</city>
+        <state>Pennsylvania</state>
+        <zip>19141</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Rapid City Regional Hospital</name>
+      <address>
+        <city>Rapid City</city>
+        <state>South Dakota</state>
+        <zip>57701</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of Texas Medical Branch</name>
+      <address>
+        <city>Galveston</city>
+        <state>Texas</state>
+        <zip>77555-0361</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Joe Arrington Cancer Research and Treatment Center</name>
+      <address>
+        <city>Lubbock</city>
+        <state>Texas</state>
+        <zip>79410-1894</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Schiffler Cancer Center at Wheeling Hospital</name>
+      <address>
+        <city>Wheeling</city>
+        <state>West Virginia</state>
+        <zip>26003</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Gundersen Lutheran Cancer Center at Gundersen Lutheran Medical Center</name>
+      <address>
+        <city>La Crosse</city>
+        <state>Wisconsin</state>
+        <zip>54601</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Medical College of Wisconsin Cancer Center</name>
+      <address>
+        <city>Milwaukee</city>
+        <state>Wisconsin</state>
+        <zip>53226</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Veterans Affairs Medical Center - Milwaukee</name>
+      <address>
+        <city>Milwaukee</city>
+        <state>Wisconsin</state>
+        <zip>53295</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Tom Baker Cancer Centre - Calgary</name>
+      <address>
+        <city>Calgary</city>
+        <state>Alberta</state>
+        <zip>T2N 4N2</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>Canada</country>
+    <country>United States</country>
+  </location_countries>
+  <results_reference>
+    <citation>Bradley JD, Bae K, Graham MV, Byhardt R, Govindan R, Fowler J, Purdy JA, Michalski JM, Gore E, Choy H. Primary analysis of the phase II component of a phase I/II dose intensification study using three-dimensional conformal radiation therapy and concurrent chemotherapy for patients with inoperable non-small-cell lung cancer: RTOG 0117. J Clin Oncol. 2010 May 10;28(14):2475-80. doi: 10.1200/JCO.2009.27.1205. Epub 2010 Apr 5.</citation>
+    <PMID>20368547</PMID>
+  </results_reference>
+  <results_reference>
+    <citation>Bradley JD, Moughan J, Graham MV, Byhardt R, Govindan R, Fowler J, Purdy JA, Michalski JM, Gore E, Choy H. A phase I/II radiation dose escalation study with concurrent chemotherapy for patients with inoperable stages I to III non-small-cell lung cancer: phase I results of RTOG 0117. Int J Radiat Oncol Biol Phys. 2010 Jun 1;77(2):367-72. doi: 10.1016/j.ijrobp.2009.04.029.</citation>
+    <PMID>20457350</PMID>
+  </results_reference>
+  <results_reference>
+    <citation>Bradley JD, Graham M, Suzanne S, et al.: Phase I results of RTOG L-0117: a phase I/II dose intensification study using 3DCRT and concurrent chemotherapy for patients with inoperable NSCLC. [Abstract] J Clin Oncol 23 (Suppl 16): A-7063, 636s, 2005.</citation>
+  </results_reference>
+  <verification_date>November 2015</verification_date>
+  <lastchanged_date>November 14, 2015</lastchanged_date>
+  <firstreceived_date>September 13, 2001</firstreceived_date>
+  <firstreceived_results_date>February 12, 2014</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>squamous cell lung cancer</keyword>
+  <keyword>large cell lung cancer</keyword>
+  <keyword>stage IIIA non-small cell lung cancer</keyword>
+  <keyword>stage IIIB non-small cell lung cancer</keyword>
+  <keyword>adenocarcinoma of the lung</keyword>
+  <keyword>adenosquamous cell lung cancer</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Lung Neoplasms</mesh_term>
+    <mesh_term>Carcinoma, Non-Small-Cell Lung</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Paclitaxel</mesh_term>
+    <mesh_term>Albumin-Bound Paclitaxel</mesh_term>
+    <mesh_term>Carboplatin</mesh_term>
+  </intervention_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <group_list>
+        <group group_id="P1">
+          <title>Phase I: 75.25 Gy/36 fx + Chemotherapy</title>
+          <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 75.25 Gy given in 36 fractions (2.15 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+        </group>
+        <group group_id="P2">
+          <title>Phase I: 74 Gy/37 fx + Chemotherapy</title>
+          <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+        </group>
+        <group group_id="P3">
+          <title>Phase I: 70 Gy/35 fx + Chemotherapy</title>
+          <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 70 Gy given in 35 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+        </group>
+        <group group_id="P4">
+          <title>Phase II: 74 Gy/37 fx + Chemotherapy</title>
+          <description>Phase II: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="8"/>
+                <participants group_id="P2" count="9"/>
+                <participants group_id="P3" count="0"/>
+                <participants group_id="P4" count="46"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="8">Phase I eligible patients starting protocol treatment are considered to have completed the study.</participants>
+                <participants group_id="P2" count="9">Phase I eligible patients starting protocol treatment are considered to have completed the study.</participants>
+                <participants group_id="P3" count="0">This arm was not used since further de-escalation was not required.</participants>
+                <participants group_id="P4" count="44">Phase II subjects contributing data to primary analysis are considered to have completed the study.</participants>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="0"/>
+                <participants group_id="P3" count="0"/>
+                <participants group_id="P4" count="2"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Ineligible / no protocol treatment</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="0"/>
+                <participants group_id="P3" count="0"/>
+                <participants group_id="P4" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Patient withdrew consent</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="0"/>
+                <participants group_id="P3" count="0"/>
+                <participants group_id="P4" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <population>Eligible patients who started protocol treatment.</population>
+      <group_list>
+        <group group_id="B1">
+          <title>Phase I: 75.25 Gy/36 fx + Chemotherapy</title>
+          <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 75.25 Gy given in 36 fractions (2.15 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+        </group>
+        <group group_id="B2">
+          <title>Phase I: 74 Gy/37 fx + Chemotherapy</title>
+          <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+        </group>
+        <group group_id="B3">
+          <title>Phase II: 74 Gy/37 fx + Chemotherapy</title>
+          <description>Phase II: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+        </group>
+        <group group_id="B4">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <measure_list>
+        <measure>
+          <title>Number of Participants</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="8"/>
+                <measurement group_id="B2" value="9"/>
+                <measurement group_id="B3" value="44"/>
+                <measurement group_id="B4" value="61"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Median</param>
+          <dispersion>Full Range</dispersion>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="65.5" lower_limit="48" upper_limit="77"/>
+                <measurement group_id="B2" value="68" lower_limit="52" upper_limit="81"/>
+                <measurement group_id="B3" value="67" lower_limit="43" upper_limit="83"/>
+                <measurement group_id="B4" value="67" lower_limit="43" upper_limit="83"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Female</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1"/>
+                <measurement group_id="B2" value="8"/>
+                <measurement group_id="B3" value="7"/>
+                <measurement group_id="B4" value="16"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Male</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="7"/>
+                <measurement group_id="B2" value="1"/>
+                <measurement group_id="B3" value="37"/>
+                <measurement group_id="B4" value="45"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Maximum Tolerated Dose (MTD) of Three-dimensional Conformal Radiation Therapy (3DRT), in Terms of Gy Per Fraction, Combined With Concurrent Chemotherapy</title>
+        <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on RTOG (Radiation Therapy Oncolgy Group) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
+Rating scale: 0 = not the MTD, 1 = MTD</description>
+        <time_frame>From start of treatment to 90 days</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <population>The first seven eligible patients who started protocol treatment at each dose level.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Phase I: 75.25 Gy/36 fx + Chemotherapy</title>
+            <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 75.25 Gy given in 36 fractions (2.15 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+          </group>
+          <group group_id="O2">
+            <title>Phase I: 74 Gy/37 fx + Chemotherapy</title>
+            <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="7"/>
+                  <measurement group_id="O2" value="7"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Maximum Tolerated Dose (MTD) of Three-dimensional Conformal Radiation Therapy (3DRT), in Terms of Gy Per Fraction, Combined With Concurrent Chemotherapy</title>
+            <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on RTOG (Radiation Therapy Oncolgy Group) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
+Rating scale: 0 = not the MTD, 1 = MTD</description>
+            <units>units on a scale</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="0"/>
+                  <measurement group_id="O2" value="1"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Patients Who Survive at Least 12 Months</title>
+        <description>Null hypothesis: p&lt;= 62.3% (the best arm of RTOG 94-10); alternative hypothesis: p&gt;= 77.9%. Where p is the percentage of patients alive at at 12 months. Using a one-group chi-square test with alpha = 0.10, a sample size of 50 patients provides at least 87% power to detect a 25% or greater relative increase in the 12-month survival rate, or equivalently, an absolute increase of at least 15.6 percentage points (62.3 versus 77.9). If the point estimate is greater than 71.1% (upper bound), then the conclusion is that the 12-month survival rate from the new treatment significantly improved from 62.3%.</description>
+        <time_frame>From registration to 1 year</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>Eligible patients at the MTD dose level who started protocol treatment.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Phase I/II: 74 Gy/37 fx + Chemotherapy</title>
+            <description>Phase I/II: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.
+carboplatin
+paclitaxel
+three-dimensional conformal radiation therapy</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="53"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Patients Who Survive at Least 12 Months</title>
+            <description>Null hypothesis: p&lt;= 62.3% (the best arm of RTOG 94-10); alternative hypothesis: p&gt;= 77.9%. Where p is the percentage of patients alive at at 12 months. Using a one-group chi-square test with alpha = 0.10, a sample size of 50 patients provides at least 87% power to detect a 25% or greater relative increase in the 12-month survival rate, or equivalently, an absolute increase of at least 15.6 percentage points (62.3 versus 77.9). If the point estimate is greater than 71.1% (upper bound), then the conclusion is that the 12-month survival rate from the new treatment significantly improved from 62.3%.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="75.5" lower_limit="61.5" upper_limit="85.0"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Toxicity</title>
+        <time_frame>From start of treatment to end of follow-up</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Partial Organ Tolerance Doses for Lung and Esophagus</title>
+        <time_frame>From start of treatment to end of follow-up</time_frame>
+        <safety_issue>Yes</safety_issue>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Complete Response Rate at 3 Months After Therapy</title>
+        <time_frame>From start of treatment until 3 months after completion of therapy</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <desc>Subjects experiencing more than one of a given SAE (serious adverse event) are counted only once for that SAE. The same methodology was applied for non-SAE adverse events (AE).</desc>
+      <group_list>
+        <group group_id="E1">
+          <title>Phase I: 75.25 Gy/36 fx + Chemotherapy</title>
+          <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 75.25 Gy given in 36 fractions (2.15 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+        </group>
+        <group group_id="E2">
+          <title>Phase I/II: 74 Gy/37 fx + Chemotherapy</title>
+          <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <default_vocab>CTCAE (2.0)</default_vocab>
+        <default_assessment>Non-systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="36" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Blood and lymphatic system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hemoglobin decreased</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hemolysis NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Packed red blood cell transfusion</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Platelet transfusion</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Arrhythmia NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Sinus tachycardia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Supraventricular arrhythmia NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Dyspepsia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dysphagia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Esophageal spasm</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Esophagitis NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>GI-other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Ileus</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Nausea</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Vomiting NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Esophagus</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Heart</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Lung</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="8" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Other</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pain-other</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Immune system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hypersensitivity NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Infection NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="5" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Infection with grade 3 or 4 neutropenia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Infection with unknown ANC</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Infection, Other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Injury, poisoning and procedural complications</title>
+            <event_list>
+              <event>
+                <sub_title>Dermatitis radiation NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Operative injury of vein/artery</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>Cardiac troponin I increased</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Leukopenia NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="19" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Lymphopenia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Neutropenia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Metabolism and nutrition disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anorexia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dehydration</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hyperglycemia NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hypokalemia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Musculoskeletal and connective tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Muscle weakness NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Convulsions NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Syncope</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Renal and urinary disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Renal failure NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Renal/GU-Other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Respiratory, thoracic and mediastinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Dyspnea NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="7" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hemoptysis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hypoxia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pleural effusion</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pneumonitis NOS</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pulmonary-other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Vascular disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hypotension NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Peripheral ischaemia NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Thrombosis NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <default_vocab>CTCAE (2.0)</default_vocab>
+        <default_assessment>Non-systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="8" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="52" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Blood and lymphatic system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hematologic-Other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="6" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hemoglobin decreased</sub_title>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="34" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Pericardial effusion</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Sinus tachycardia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Supraventricular arrhythmia NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Ear and labyrinth disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hearing-Other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Abdominal pain NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Constipation</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="22" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Diarrhea NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dry mouth</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dyspepsia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dysphagia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Esophageal spasm</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="17" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Esophagitis NOS</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="19" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>GI-other</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Gastritis NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Nausea</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="17" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Radiation mucositis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Rectal bleeding</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Stomatitis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Vomiting NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Chest pain</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Edema NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Fatigue</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="40" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Bone</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Esophagus</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="4" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Heart</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Lung</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="26" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Other</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="8" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Skin (within the irradiated field)</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="5" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Spinal cord</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title vocab="RTOG/EORTC Late Tox.">Late RT Toxicity: Subcutaneous tissue</sub_title>
+                <assessment>Systematic Assessment</assessment>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pain due to radiation</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="11" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pain-other</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="13" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pyrexia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Rigors</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Hepatobiliary disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hepatic-Other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Immune system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hypersensitivity NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Infection NOS</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Infection with unknown ANC</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Injury, poisoning and procedural complications</title>
+            <event_list>
+              <event>
+                <sub_title>Dermatitis radiation NOS</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="14" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>Activated partial thromboplastin time prolonged</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Alanine aminotransferase increased</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="6" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Aspartate aminotransferase increased</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Blood alkaline phosphatase NOS increased</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Blood bilirubin increased</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Blood creatine phosphokinase increased</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Blood creatinine increased</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="5" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Forced expiratory volume decreased</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Leukopenia NOS</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="29" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Lymphopenia</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="17" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Metabolic-Other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Neutropenia</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="25" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Platelet count decreased</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="20" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Prothrombin time prolonged</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Weight decreased</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="13" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Metabolism and nutrition disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anorexia</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="21" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Blood albumin decreased</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="8" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Blood bicarbonate decreased</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Blood magnesium decreased</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dehydration</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="5" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hypercalcemia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hyperglycemia NOS</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="6" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hyperkalemia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hypernatremia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hypocalcemia</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hypoglycaemia NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hypokalemia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hyponatremia</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hypophosphatemia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Musculoskeletal and connective tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Bone pain</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Joint, muscle, or bone-Other</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Myalgia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Amnesia NEC</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Ataxia NEC</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Convulsions NOS</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dizziness (exc vertigo)</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="5" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Headache NOS</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Neuralgia NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Neurologic-Other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Peripheral motor neuropathy</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Peripheral sensory neuropathy</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="8" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Speech disorder NEC</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Taste disturbance</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="5" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Tremor NEC</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Psychiatric disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anxiety NEC</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="5" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Confusion</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Depression NEC</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="5" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Insomnia NEC</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="12" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Libido decreased</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Renal and urinary disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Renal failure NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Renal/GU-Other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Ureteric obstruction</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Urinary frequency</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Respiratory, thoracic and mediastinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Cough</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="24" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dysphonia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dyspnea NOS</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="18" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Epistaxis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hemoptysis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hiccups</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pleural effusion</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pleuritic pain</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pneumonitis NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pneumothorax NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Pulmonary-other</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Alopecia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="10" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dermatitis exfoliative NOS</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Dry skin</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Erythema multiforme</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Nail abnormality NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Skin discoloration</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Skin-Other</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Vascular disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Flushing</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hypertension NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="53"/>
+              </event>
+              <event>
+                <sub_title>Hypotension NOS</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="8"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="53"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <limitations_and_caveats>This study was originally designed to escalate 3DRT via increasing doses per fraction. However, due to excessive toxicity at dose level 1 (75.25 Gy, 2.15 Gy/fraction), the protocol was amended in January 2003 to de-escalate 3DRT dose.</limitations_and_caveats>
+    <point_of_contact>
+      <name_or_title>Wendy Seiferheld</name_or_title>
+      <organization>Radiation Therapy Oncology Group</organization>
+      <email>wseiferheld@acr.org</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
