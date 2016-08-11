@@ -50,11 +50,11 @@ class StudyRelationship < ActiveRecord::Base
   end
 
   def get_group(groups)
-   groups.select{|g|g.ctgov_group_id==gid}.first
+   groups.select{|g|g.ctgov_group_code==gid}.first
   end
 
   def self.create_group_from(xml)
-    g=Group.new({:ctgov_group_id => xml.attribute('group_id'),
+    g=ResultGroup.new({:ctgov_group_code => xml.attribute('group_id'),
                  :title => xml.xpath('title').text,
                  :description=>xml.xpath('description').text
                 })

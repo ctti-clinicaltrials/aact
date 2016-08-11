@@ -1,7 +1,7 @@
 class ReportedEvent < StudyRelationship
   extend FastCount
 
-  belongs_to :group
+  belongs_to :result_group
 
   def self.create_all_from(opts)
     nct_id=opts[:nct_id]
@@ -39,7 +39,7 @@ class ReportedEvent < StudyRelationship
                 puts "TODO  need to account for no counts"
               else
                 while o_xml
-                  opts[:group_id]=o_xml.attribute('group_id').try(:value)
+                  opts[:result_group_id]=o_xml.attribute('result_group_id').try(:value)
                   opts[:event_count]=o_xml.attribute('events').try(:value)
                   opts[:subjects_affected]=o_xml.attribute('subjects_affected').try(:value)
                   opts[:subjects_at_risk]=o_xml.attribute('subjects_at_risk').try(:value)
@@ -93,7 +93,7 @@ class ReportedEvent < StudyRelationship
                 puts "TODO  need to account for no counts"
               else
                 while o_xml
-                  opts[:group_id]=o_xml.attribute('group_id').try(:value)
+                  opts[:result_group_id]=o_xml.attribute('group_id').try(:value)
                   opts[:event_count]=o_xml.attribute('events').try(:value)
                   opts[:subjects_affected]=o_xml.attribute('subjects_affected').try(:value)
                   opts[:subjects_at_risk]=o_xml.attribute('subjects_at_risk').try(:value)
@@ -113,7 +113,7 @@ class ReportedEvent < StudyRelationship
 
   def attribs
     {
-      :group => get_group(opts[:groups]),
+      :result_group => get_group(opts[:groups]),
       :ctgov_group_code => gid,
       :organ_system => get_opt(:category),
       :event_type => get_opt(:type),
@@ -132,7 +132,7 @@ class ReportedEvent < StudyRelationship
   end
 
   def gid
-    opts[:group_id]
+    opts[:result_group_id]
   end
 
   def type

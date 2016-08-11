@@ -107,8 +107,7 @@ class CalculatedValue < ActiveRecord::Base
 
   def calc_enrollment
     # TODO = this is just a stub - find better way to calculate
-    study.groups.each{|g|g.set_participant_count}
-    study.groups.sum(:derived_participant_count)
+    study.result_groups.each{|g|g.set_participant_count}
   end
 
 end

@@ -67,14 +67,14 @@ CREATE TABLE baseline_measures (
     nct_id character varying,
     population character varying,
     ctgov_group_code character varying,
-    group_id integer,
     param_type character varying,
     param_value character varying,
     dispersion_type character varying,
     dispersion_value character varying,
     dispersion_lower_limit character varying,
     dispersion_upper_limit character varying,
-    explanation_of_na character varying
+    explanation_of_na character varying,
+    result_group_id integer
 );
 
 
@@ -542,12 +542,11 @@ ALTER SEQUENCE detailed_descriptions_id_seq OWNED BY detailed_descriptions.id;
 CREATE TABLE drop_withdrawals (
     id integer NOT NULL,
     period_title character varying,
-    ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
     reason character varying,
     participant_count integer,
     nct_id character varying,
-    group_id integer
+    ctgov_group_code character varying,
+    result_group_id integer
 );
 
 
@@ -707,42 +706,6 @@ CREATE SEQUENCE facility_investigators_id_seq
 --
 
 ALTER SEQUENCE facility_investigators_id_seq OWNED BY facility_investigators.id;
-
-
---
--- Name: groups; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE groups (
-    id integer NOT NULL,
-    ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
-    group_type character varying,
-    title character varying,
-    description text,
-    participant_count integer,
-    derived_participant_count integer,
-    nct_id character varying
-);
-
-
---
--- Name: groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE groups_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE groups_id_seq OWNED BY groups.id;
 
 
 --
@@ -944,13 +907,12 @@ ALTER SEQUENCE load_events_id_seq OWNED BY load_events.id;
 CREATE TABLE milestones (
     id integer NOT NULL,
     period_title character varying,
-    ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
     title character varying,
     description text,
     participant_count integer,
     nct_id character varying,
-    group_id integer
+    ctgov_group_code character varying,
+    result_group_id integer
 );
 
 
@@ -979,8 +941,6 @@ ALTER SEQUENCE milestones_id_seq OWNED BY milestones.id;
 
 CREATE TABLE outcome_analyses (
     id integer NOT NULL,
-    ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
     title character varying,
     non_inferiority character varying,
     non_inferiority_description text,
@@ -995,12 +955,13 @@ CREATE TABLE outcome_analyses (
     ci_upper_limit numeric,
     method character varying,
     description text,
-    group_description text,
     method_description text,
     estimate_description text,
     nct_id character varying,
     outcome_id integer,
-    group_id integer
+    group_id integer,
+    ctgov_group_code character varying,
+    result_group_id integer
 );
 
 
@@ -1029,8 +990,6 @@ ALTER SEQUENCE outcome_analyses_id_seq OWNED BY outcome_analyses.id;
 
 CREATE TABLE outcome_measures (
     id integer NOT NULL,
-    ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
     category character varying,
     title text,
     description text,
@@ -1044,7 +1003,8 @@ CREATE TABLE outcome_measures (
     measure_description text,
     nct_id character varying,
     outcome_id integer,
-    group_id integer
+    ctgov_group_code character varying,
+    result_group_id integer
 );
 
 
@@ -1074,10 +1034,6 @@ ALTER SEQUENCE outcome_measures_id_seq OWNED BY outcome_measures.id;
 CREATE TABLE outcomes (
     id integer NOT NULL,
     outcome_type character varying,
-    ctgov_group_id character varying,
-    ctgov_group_enumerator integer,
-    group_title text,
-    group_description text,
     title text,
     description text,
     measure character varying,
@@ -1086,7 +1042,8 @@ CREATE TABLE outcomes (
     population text,
     participant_count integer,
     nct_id character varying,
-    group_id integer
+    ctgov_group_code character varying,
+    result_group_id integer
 );
 
 
@@ -1341,12 +1298,12 @@ CREATE TABLE reported_events (
     event_count integer,
     nct_id character varying,
     ctgov_group_code character varying,
-    group_id integer,
     organ_system character varying,
     adverse_event_term character varying,
     frequency_threshold integer,
     vocab character varying,
-    assessment character varying
+    assessment character varying,
+    result_group_id integer
 );
 
 
@@ -1497,6 +1454,41 @@ CREATE SEQUENCE result_details_id_seq
 --
 
 ALTER SEQUENCE result_details_id_seq OWNED BY result_details.id;
+
+
+--
+-- Name: result_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE result_groups (
+    id integer NOT NULL,
+    group_type character varying,
+    title character varying,
+    description text,
+    participant_count integer,
+    nct_id character varying,
+    ctgov_group_code character varying,
+    result_type character varying
+);
+
+
+--
+-- Name: result_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE result_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: result_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE result_groups_id_seq OWNED BY result_groups.id;
 
 
 --
@@ -1955,13 +1947,6 @@ ALTER TABLE ONLY facility_investigators ALTER COLUMN id SET DEFAULT nextval('fac
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY groups ALTER COLUMN id SET DEFAULT nextval('groups_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY intervention_arm_group_labels ALTER COLUMN id SET DEFAULT nextval('intervention_arm_group_labels_id_seq'::regclass);
 
 
@@ -2103,6 +2088,13 @@ ALTER TABLE ONLY result_contacts ALTER COLUMN id SET DEFAULT nextval('result_con
 --
 
 ALTER TABLE ONLY result_details ALTER COLUMN id SET DEFAULT nextval('result_details_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY result_groups ALTER COLUMN id SET DEFAULT nextval('result_groups_id_seq'::regclass);
 
 
 --
@@ -2314,14 +2306,6 @@ ALTER TABLE ONLY facility_investigators
 
 
 --
--- Name: groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY groups
-    ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
-
-
---
 -- Name: intervention_arm_group_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2487,6 +2471,14 @@ ALTER TABLE ONLY result_contacts
 
 ALTER TABLE ONLY result_details
     ADD CONSTRAINT result_details_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: result_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY result_groups
+    ADD CONSTRAINT result_groups_pkey PRIMARY KEY (id);
 
 
 --
@@ -2682,4 +2674,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160808024029');
 INSERT INTO schema_migrations (version) VALUES ('20160809010254');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809133136');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810232659');
 

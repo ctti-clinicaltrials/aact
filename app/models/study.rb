@@ -25,9 +25,9 @@ class Study < ActiveRecord::Base
 
   has_many :pma_mappings,          :foreign_key => 'nct_id'
   has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :groups,                :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
@@ -102,10 +102,10 @@ class Study < ActiveRecord::Base
   def create
     update(attribs)
     DesignGroup.create_all_from(opts)
-    Group.create_all_from(opts)
-    Outcome.create_all_from(opts.merge(:groups=>self.groups))
-    Milestone.create_all_from(opts.merge(:groups=>self.groups))
-    DropWithdrawal.create_all_from(opts.merge(:groups=>self.groups))
+    ResultGroup.create_all_from(opts)
+    Outcome.create_all_from(opts.merge(:groups=>self.result_groups))
+    Milestone.create_all_from(opts.merge(:groups=>self.result_groups))
+    DropWithdrawal.create_all_from(opts.merge(:groups=>self.result_groups))
     DetailedDescription.new.create_from(opts).save
     Design.new.create_from(opts).save
     BriefSummary.new.create_from(opts).save
@@ -257,7 +257,7 @@ class Study < ActiveRecord::Base
   end
 
   def get_groups(opts)
-    self.groups=Group.create_all_from(opts)
+    self.groups=ResultGroup.create_all_from(opts)
   end
 
   def get(label)

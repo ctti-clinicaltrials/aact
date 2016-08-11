@@ -1,5 +1,5 @@
 class Milestone < StudyRelationship
-  belongs_to :group
+  belongs_to :result_group
 
   def self.create_all_from(opts)
     Milestone.import(self.nested_pop_create(opts.merge(:name=>'milestone')))
@@ -22,12 +22,11 @@ class Milestone < StudyRelationship
 
   def attribs
     {
-      :ctgov_group_id => get_attribute('group_id'),
-      :ctgov_group_enumerator => integer_in(get_attribute('group_id')),
+      :ctgov_group_code => get_attribute('group_id'),
       :participant_count => get_attribute('count').to_i,
       :description => xml.text,
       :title => get_opt('title'),
-      :group => get_group,
+      :result_group => get_group,
       :period_title => get_opt(:period_title)
     }
   end
@@ -36,7 +35,7 @@ class Milestone < StudyRelationship
     group_node=xml.attribute('group_id')
     gid=group_node.try(:value)
     opts[:groups].each{|g|
-      if g.ctgov_group_enumerator==integer_in(gid)
+      if g.ctgov_group_code==gid
         return g
       end
     }

@@ -1,6 +1,6 @@
 class OutcomeAnalysis < StudyRelationship
   belongs_to :outcome, inverse_of: :outcome_analyses, autosave: true
-  belongs_to :group
+  belongs_to :result_group
 
   def self.create_all_from(opts)
     all=opts[:xml].xpath("analysis_list").xpath('analysis')
@@ -22,7 +22,6 @@ class OutcomeAnalysis < StudyRelationship
       opts[:ci_lower_limit]=xml.xpath('ci_lower_limit').text
       opts[:ci_upper_limit]=xml.xpath('ci_upper_limit').text
       opts[:method]=xml.xpath('method').text
-      opts[:group_description]=xml.xpath('groups_desc').text
       opts[:method_description]=xml.xpath('method_desc').text
       opts[:estimate_description]=xml.xpath('estimate_desc').text
       col << pop_create(opts.merge(:name=>'group_id'))
@@ -33,8 +32,7 @@ class OutcomeAnalysis < StudyRelationship
 
   def attribs
     {
-      :ctgov_group_id => xml.text,
-      :ctgov_group_enumerator => integer_in(xml.text),
+      :ctgov_group_code => xml.text,
       :title => get_opt(:title),
       :non_inferiority => get_opt(:non_inferiority),
       :non_inferiority_description => get_opt(:non_inferiority_description),
@@ -48,20 +46,19 @@ class OutcomeAnalysis < StudyRelationship
       :ci_lower_limit => get_opt(:ci_lower_limit),
       :ci_upper_limit => get_opt(:ci_upper_limit),
       :method => get_opt(:method),
-      :group_description => get_opt(:group_description),
       :method_description => get_opt(:method_description),
       :estimate_description => get_opt(:estimate_description),
       :outcome => get_opt(:outcome),
-      :group => get_group,
+      :result_group => get_group,
     }
   end
 
   def gid
-    integer_in(opts[:xml].text)
+    opts[:xml].text
   end
 
   def get_group
-    opts[:groups].each {|g| return g if g.ctgov_group_enumerator==gid }
+    opts[:groups].each {|g| return g if g.ctgov_group_code==gid }
   end
 
   def conditionally_create_from(opts)

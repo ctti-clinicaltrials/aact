@@ -3,7 +3,7 @@ class Outcome < StudyRelationship
 
   attr_accessor :milestones, :drop_withdrawals
 
-  belongs_to :group
+  belongs_to :result_group
   has_many :outcome_measures, inverse_of: :outcome, autosave: true
   has_many :outcome_analyses, inverse_of: :outcome, autosave: true
 
@@ -66,13 +66,10 @@ class Outcome < StudyRelationship
 
   def attribs
     {
-      :ctgov_group_id => get_attribute('group_id'),
-      :ctgov_group_enumerator => integer_in(get_attribute('group_id')),
-      :group_description => get('description'),
-      :group_title => get('title'),
+      :ctgov_group_code => get_attribute('result_group_id'),
       :participant_count => get_attribute('count').to_i,
       :outcome_type => get_opt(:type),
-      :group        => get_group,
+      :result_group => get_group,
       :title        => get_opt(:title),
       :time_frame   => get_opt(:time_frame),
       :safety_issue => get_opt(:safety_issue),
@@ -88,13 +85,13 @@ class Outcome < StudyRelationship
   end
 
   def get_group
-    opts[:groups].each{|g| return g if g.ctgov_group_enumerator==integer_in(gid)}
+    opts[:groups].each{|g| return g if g.ctgov_group_code==gid}
     # found case where groups were not defined in participant_flow tag,
     # but referenced in outcomes.  In that case, create a group for this outcome.
     # But if this outcome doesn't define any groups (gid is nil), then just
     # link the outcome to the study and not to any groups.
     if !gid.nil?
-      new_group=Group.create_from(opts)
+      new_group=ResultGroup.create_from(opts)
       opts[:groups] << new_group
       return new_group
     end

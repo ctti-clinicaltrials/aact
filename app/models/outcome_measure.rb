@@ -1,6 +1,6 @@
 class OutcomeMeasure < StudyRelationship
   belongs_to :outcome, inverse_of: :outcome_measures, autosave: true
-  belongs_to :group
+  belongs_to :result_group
   attr_accessor :category_xml
 
   def self.create_all_from(opts)
@@ -53,15 +53,14 @@ class OutcomeMeasure < StudyRelationship
       :title => get_opt(:title),
       :units => get_opt(:units),
       :param => get_opt(:param),
-      :ctgov_group_id => get_opt(:group_id),
-      :ctgov_group_enumerator => integer_in(get_opt(:group_id)),
+      :ctgov_group_code => get_opt(:group_id),
       :category => get_opt(:category),
       :measure_value => get_opt(:value),
       :spread => get_opt(:spread),
       :dispersion => get_opt(:dispersion),
       :description => get_opt(:description),
       :outcome => get_opt(:outcome),
-      :group => get_group
+      :result_group => get_group
     }
   end
 
@@ -71,15 +70,15 @@ class OutcomeMeasure < StudyRelationship
   end
 
   def gid
-    integer_in(opts[:group_id_of_interest])
+    opts[:group_id_of_interest]
   end
 
   def get_group
     # TODO duplicate code in outcome.rb
-    opts[:groups].each {|g| return g if g.ctgov_group_enumerator==gid }
+    opts[:groups].each {|g| return g if g.ctgov_group_code==gid }
     #puts "OutcomeMeasure - get_group. Didn't find the group....creating....  "
     # if group doesn't yet exist, create it...
-    new_group=Group.create_from(opts)
+    new_group=ResultGroup.create_from(opts)
     opts[:groups] << new_group
     return new_group
   end

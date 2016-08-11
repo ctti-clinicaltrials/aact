@@ -1,4 +1,4 @@
-class Group < StudyRelationship
+class ResultGroup < StudyRelationship
   attr_accessor :baseline_measures
 
   has_many :baseline_measures
@@ -17,13 +17,12 @@ class Group < StudyRelationship
     opts[:groups]=groups
     groups
 
-    Group.import(groups)
+    import(groups)
   end
 
   def attribs
     {
-      :ctgov_group_id => get_attribute('group_id'),
-      :ctgov_group_enumerator => integer_in(get_attribute('group_id')),
+      :ctgov_group_code => get_attribute('group_id'),
       :description => get('description'),
       :title => get('title'),
       :participant_count => get_attribute('count').to_i,
@@ -35,7 +34,6 @@ class Group < StudyRelationship
   end
 
   def set_participant_count
-    self.derived_participant_count=calc_participant_count
     self.save!
   end
 

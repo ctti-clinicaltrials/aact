@@ -1,5 +1,5 @@
 class DropWithdrawal < StudyRelationship
-  belongs_to :group
+  belongs_to :result_group
 
   def self.create_all_from(opts)
     DropWithdrawal.import(self.nested_pop_create(opts.merge(:name=>'drop_withdraw_reason')))
@@ -26,7 +26,7 @@ class DropWithdrawal < StudyRelationship
 
   def get_group
     opts[:groups].each{|g|
-      return g if g.ctgov_group_enumerator==integer_in(gid)
+      return g if g.ctgov_group_code==gid
     }
   end
 
@@ -39,8 +39,7 @@ class DropWithdrawal < StudyRelationship
       :reason => get_opt(:reason),
       :period_title => get_opt(:period_title),
       :participant_count => get_attribute('count').to_i,
-      :ctgov_group_id => gid,
-      :ctgov_group_enumerator => integer_in(gid),
+      :ctgov_group_code => gid,
       :group => get_group,
     }
   end
