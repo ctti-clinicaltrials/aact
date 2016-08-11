@@ -1,5 +1,5 @@
-class OutcomeMeasure < StudyRelationship
-  belongs_to :outcome, inverse_of: :outcome_measures, autosave: true
+class OutcomeMeasuredValue < StudyRelationship
+  belongs_to :outcome
   belongs_to :result_group
   attr_accessor :category_xml
 
@@ -13,8 +13,8 @@ class OutcomeMeasure < StudyRelationship
       while xml
         opts[:title]=xml.xpath('title').text
         opts[:units]=xml.xpath('units').text
-        opts[:param]=xml.xpath('param').text
-        opts[:dispersion]=xml.xpath('dispersion').text
+        opts[:param_type]=xml.xpath('param').text
+        opts[:dispersion_type]=xml.xpath('dispersion').text
         opts[:description]=xml.xpath('description').text
         categories=xml.xpath("category_list").xpath('category')
         category=categories.pop
@@ -30,8 +30,8 @@ class OutcomeMeasure < StudyRelationship
             else
               while gr
                 opts[:group_id]=gr.attribute('group_id').try(:value)
-                opts[:value]=gr.attribute('value').try(:value)
-                opts[:spread]=gr.attribute('spread').try(:value)
+                opts[:param_value]=gr.attribute('value').try(:value)
+                opts[:dispersion_value]=gr.attribute('spread').try(:value)
                 col << new.conditionally_create_from(opts)
                 gr=grps.pop
               end
@@ -48,19 +48,19 @@ class OutcomeMeasure < StudyRelationship
 
   def attribs
     {
-      :lower_limit => get_attribute('lower_limit'),
-      :upper_limit => get_attribute('upper_limit'),
-      :title => get_opt(:title),
-      :units => get_opt(:units),
-      :param => get_opt(:param),
-      :ctgov_group_code => get_opt(:group_id),
-      :category => get_opt(:category),
-      :measure_value => get_opt(:value),
-      :spread => get_opt(:spread),
-      :dispersion => get_opt(:dispersion),
-      :description => get_opt(:description),
-      :outcome => get_opt(:outcome),
-      :result_group => get_group
+      :ctgov_group_code       => get_opt(:group_id),
+      :result_group           => get_group,
+      :title                  => get_opt(:title),
+      :category               => get_opt(:category),
+      :description            => get_opt(:description),
+      :param_type             => get_opt(:param_type),
+#      :param_value            => get_opt(:value),
+      :dispersion_type        => get_opt(:dispersion_type),
+      :dispersion_value       => get_opt(:dispersion_value),
+      :dispersion_lower_limit => get_attribute('lower_limit'),
+      :dispersion_upper_limit => get_attribute('upper_limit'),
+      :units                  => get_opt(:units),
+      :outcome                => get_opt(:outcome),
     }
   end
 
@@ -76,7 +76,6 @@ class OutcomeMeasure < StudyRelationship
   def get_group
     # TODO duplicate code in outcome.rb
     opts[:groups].each {|g| return g if g.ctgov_group_code==gid }
-    #puts "OutcomeMeasure - get_group. Didn't find the group....creating....  "
     # if group doesn't yet exist, create it...
     new_group=ResultGroup.create_from(opts)
     opts[:groups] << new_group

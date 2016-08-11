@@ -4,7 +4,7 @@ class Outcome < StudyRelationship
   attr_accessor :milestones, :drop_withdrawals
 
   belongs_to :result_group
-  has_many :outcome_measures, inverse_of: :outcome, autosave: true
+  has_many :outcome_measured_values
   has_many :outcome_analyses, inverse_of: :outcome, autosave: true
 
   def self.create_all_from(opts)
@@ -35,10 +35,10 @@ class Outcome < StudyRelationship
     xml=all.pop
     if xml.blank?
       outcome = create_from(opts)
-      outcome_measures = OutcomeMeasure.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
+      outcome_measured_values = OutcomeMeasuredValue.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
       outcome_analyses = OutcomeAnalysis.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
-      outcome_measures.each do |outcome_measure|
-        outcome.outcome_measures.build(outcome_measure)
+      outcome_measured_values.each do |outcome_measure|
+        outcome.outcome_measured_values.build(outcome_measure)
       end
 
       outcome_analyses.each do |outcome_analysis|
@@ -49,10 +49,10 @@ class Outcome < StudyRelationship
       while xml
         opts[:xml]=xml
         outcome = create_from(opts)
-        outcome_measures = OutcomeMeasure.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
+        outcome_measures = OutcomeMeasuredValue.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
         outcome_analyses = OutcomeAnalysis.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
-        outcome_measures.each do |outcome_measure|
-          outcome.outcome_measures.build(outcome_measure)
+        outcome_measures.each do |om|
+          outcome.outcome_measured_values.build(om)
         end
         outcome_analyses.each do |outcome_analysis|
           outcome.outcome_analyses.build(outcome_analysis)

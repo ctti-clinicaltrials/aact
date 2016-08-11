@@ -32,7 +32,7 @@ describe Study do
     it { should have_many(:keywords).dependent(:delete_all) }
     it { should have_many(:links).dependent(:delete_all) }
     it { should have_many(:milestones).dependent(:delete_all) }
-    it { should have_many(:outcome_measures).dependent(:delete_all) }
+    it { should have_many(:outcome_measured_values).dependent(:delete_all) }
     it { should have_many(:overall_officials).dependent(:delete_all) }
     it { should have_many(:oversight_authorities).dependent(:delete_all) }
     it { should have_many(:reported_events).dependent(:delete_all) }
