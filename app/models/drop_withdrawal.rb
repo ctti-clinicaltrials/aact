@@ -12,7 +12,7 @@ class DropWithdrawal < StudyRelationship
     xml=all.pop
     while xml
       opts[:reason]=xml.xpath('title').text
-      opts[:period_title]=xml.parent.parent.xpath('title').text
+      opts[:period]=xml.parent.parent.xpath('title').text
       groups=xml.xpath("participants_list").xpath('participants')
       group=groups.pop
       while group
@@ -37,10 +37,9 @@ class DropWithdrawal < StudyRelationship
   def attribs
     {
       :reason => get_opt(:reason),
-      :period_title => get_opt(:period_title),
+      :period => get_opt(:period),
       :participant_count => get_attribute('count').to_i,
       :ctgov_group_code => gid,
-      :result_group => get_group,
     }
   end
 
@@ -50,8 +49,8 @@ class DropWithdrawal < StudyRelationship
     CSV.open("#{self.name}_Summary.csv", "wb", :write_headers=> true, :headers => column_headers) {|csv|
       all.each{|x|
         csv << [x.nct_id,
-                x.period_title,
-                x.group.title,
+                x.period,
+                x.result_group.title,
                 x.participant_count,
                 x.reason]
       }

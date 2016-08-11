@@ -541,12 +541,12 @@ ALTER SEQUENCE detailed_descriptions_id_seq OWNED BY detailed_descriptions.id;
 
 CREATE TABLE drop_withdrawals (
     id integer NOT NULL,
-    period_title character varying,
     reason character varying,
     participant_count integer,
     nct_id character varying,
     ctgov_group_code character varying,
-    result_group_id integer
+    result_group_id integer,
+    period character varying
 );
 
 
@@ -906,13 +906,13 @@ ALTER SEQUENCE load_events_id_seq OWNED BY load_events.id;
 
 CREATE TABLE milestones (
     id integer NOT NULL,
-    period_title character varying,
     title character varying,
     description text,
     participant_count integer,
     nct_id character varying,
     ctgov_group_code character varying,
-    result_group_id integer
+    result_group_id integer,
+    period character varying
 );
 
 
@@ -1461,7 +1461,6 @@ ALTER SEQUENCE result_details_id_seq OWNED BY result_details.id;
 
 CREATE TABLE result_groups (
     id integer NOT NULL,
-    group_type character varying,
     title character varying,
     description text,
     participant_count integer,
@@ -2677,4 +2676,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160809133136');
 INSERT INTO schema_migrations (version) VALUES ('20160810232659');
 
 INSERT INTO schema_migrations (version) VALUES ('20160811002521');
+
+INSERT INTO schema_migrations (version) VALUES ('20160811013332');
 

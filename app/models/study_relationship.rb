@@ -36,8 +36,8 @@ class StudyRelationship < ActiveRecord::Base
     puts '#top_level_label: subclass responsibility!'
   end
 
-  def self.create_group_set(xml)
-		ResultGroup.create_group_set(xml)
+  def self.create_group_set(opts)
+		ResultGroup.create_group_set(opts)
   end
 
   def get_group(groups)

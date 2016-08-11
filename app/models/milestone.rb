@@ -1,8 +1,8 @@
 class Milestone < StudyRelationship
-  belongs_to :result_group
+  belongs_to :participant_flow
 
   def self.create_all_from(opts)
-    Milestone.import(self.nested_pop_create(opts.merge(:name=>'milestone')))
+    import(self.nested_pop_create(opts.merge(:name=>'milestone')))
   end
 
   def self.nested_pop_create(opts)
@@ -13,7 +13,7 @@ class Milestone < StudyRelationship
     while xml
       opts[:xml]=xml
       opts[:title]=xml.xpath('title').text
-      opts[:period_title]=xml.parent.parent.xpath('title').text
+      opts[:period]=xml.parent.parent.xpath('title').text
       col << self.pop_create(opts.merge(:name=>'participants'))
       xml=all.pop
     end
@@ -26,18 +26,7 @@ class Milestone < StudyRelationship
       :participant_count => get_attribute('count').to_i,
       :description => xml.text,
       :title => get_opt('title'),
-      :result_group => get_group,
-      :period_title => get_opt(:period_title)
-    }
-  end
-
-  def get_group
-    group_node=xml.attribute('group_id')
-    gid=group_node.try(:value)
-    opts[:groups].each{|g|
-      if g.ctgov_group_code==gid
-        return g
-      end
+      :period => get_opt(:period)
     }
   end
 

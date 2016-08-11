@@ -8,7 +8,8 @@ class ReportedEvent < StudyRelationship
     opts[:xml]=opts[:xml].xpath("//reported_events")
     opts[:time_frame]=opts[:xml].xpath('time_frame').text
     opts[:description]=opts[:xml].xpath('desc').text
-    opts[:groups]=create_group_set(opts[:xml])
+    opts[:result_type]='Reported Event'
+    opts[:groups]=create_group_set(opts)
 
     event_type='serious'
     opts[:type]=event_type
@@ -38,7 +39,7 @@ class ReportedEvent < StudyRelationship
                 puts "TODO  need to account for no counts"
               else
                 while o_xml
-                  opts[:result_group_id]=o_xml.attribute('result_group_id').try(:value)
+                  opts[:group_id]=o_xml.attribute('group_id').try(:value)
                   opts[:event_count]=o_xml.attribute('events').try(:value)
                   opts[:subjects_affected]=o_xml.attribute('subjects_affected').try(:value)
                   opts[:subjects_at_risk]=o_xml.attribute('subjects_at_risk').try(:value)
@@ -57,9 +58,8 @@ class ReportedEvent < StudyRelationship
     serious=get_events(opts)
     opts[:type]='other'
     other=get_events(opts)
-    events = (serious+other).flatten
 
-    ReportedEvent.import(events)
+    import((serious + other).flatten)
   end
 
   # TODO  this can and should be refactored in 100 different ways, but it works for now.
@@ -92,7 +92,7 @@ class ReportedEvent < StudyRelationship
                 puts "TODO  need to account for no counts"
               else
                 while o_xml
-                  opts[:result_group_id]=o_xml.attribute('group_id').try(:value)
+                  opts[:group_id]=o_xml.attribute('group_id').try(:value)
                   opts[:event_count]=o_xml.attribute('events').try(:value)
                   opts[:subjects_affected]=o_xml.attribute('subjects_affected').try(:value)
                   opts[:subjects_at_risk]=o_xml.attribute('subjects_at_risk').try(:value)
@@ -131,10 +131,7 @@ class ReportedEvent < StudyRelationship
   end
 
   def gid
-    opts[:result_group_id]
+    opts[:group_id]
   end
 
-  def type
-    event_type
-  end
 end

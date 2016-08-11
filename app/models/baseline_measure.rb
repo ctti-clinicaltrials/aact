@@ -2,10 +2,17 @@ class BaselineMeasure < StudyRelationship
 
   belongs_to :result_group
 
+  def self.top_level_label
+    '//baseline'
+  end
+
   def self.create_all_from(opts={})
     xml=opts[:xml].xpath('//baseline')
+    opts[:xml]=xml
+    opts[:result_type]='Baseline Measure'
+    opts[:groups]=create_group_set(opts)
+
     opts[:population]=xml.xpath("population").inner_html
-    opts[:groups]=create_group_set(xml)
     all=xml.xpath("measure_list").xpath('measure')
     col=[]
     xml=all.pop
@@ -20,8 +27,7 @@ class BaselineMeasure < StudyRelationship
       col << self.nested_pop_create(opts)
       xml=all.pop
     end
-
-    import(col.flatten)
+    col.flatten.each{|x|x.save!}
   end
 
   def self.nested_pop_create(opts)
@@ -36,7 +42,7 @@ class BaselineMeasure < StudyRelationship
       col << pop_create(opts)
       xml=all.pop
     end
-    col.flatten
+    col
   end
 
   def attribs

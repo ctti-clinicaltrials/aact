@@ -2,11 +2,12 @@ require 'rails_helper'
 
 describe Study do
   it "study should have expected baseline measure values" do
-    xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02028676.xml'))
     nct_id='NCT02028676'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     expect(study.nct_id).to eq(nct_id)
+    expect(BaselineMeasure.count).to eq(390)
     expect(study.baseline_measures.size).to eq(390)
 
     baselines=(study.baseline_measures.select{|m|m.title=='Gender'})
@@ -18,6 +19,7 @@ describe Study do
     expect(female_b1_array.size).to eq (1)
     female_b1=female_b1_array.first
     expect(female_b1.description).to eq('')
+    expect(female_b1.result_group.result_type).to eq('Baseline Measure')
     expect(female_b1.param_type).to eq('Number')
     expect(female_b1.param_value).to eq('308')
     expect(female_b1.units).to eq('participants')
@@ -76,6 +78,9 @@ describe Study do
     xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02389088.xml'))
     nct_id='NCT02389088'
     study=Study.new({xml: xml, nct_id: nct_id}).create
+		puts "==========================="
+    study.baseline_measures.each{|x| x.inspect}
+		puts "==========================="
     baseline_array=study.baseline_measures.select{|x| x.title=='Age' and x.population=='9 PCOS women' and x.ctgov_group_code=='B1'}
     expect(baseline_array.size).to eq(1)
     expect(baseline_array.first.units).to eq('years')

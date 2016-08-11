@@ -15,6 +15,7 @@ describe ReportedEvent do
     e2_serious=serious.first
     expect(e2_serious.subjects_affected).to eq(36)
     expect(e2_serious.subjects_at_risk).to eq(53)
+    expect(e2_serious.result_group.result_type).to eq('Reported Event')
     expect(e2_serious.default_vocab).to eq('CTCAE (2.0)')
     expect(e2_serious.default_assessment).to eq('Non-systematic Assessment')
     expect(e2_serious.adverse_event_term).to eq('Total, serious adverse events')
