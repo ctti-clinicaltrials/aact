@@ -2,7 +2,7 @@ $(function() {
 
 
     $("#jsGrid").jsGrid({
-        height: "80vh",
+        height: "160vh",
         width: "100%",
         filtering: true,
         inserting: false,
@@ -29,10 +29,10 @@ $(function() {
             { name: "Column Name", type: "text" },
             { name: "AACT Contribution", type: "text" },
             { name: "XML Source", type: "text" },
-            { name: "NLM Documentation", type: "text" },
+            { name: "NLM Documentation", type: "text", width: 120 },
             { name: "AACT1 Variable", type: "text" },
             { name: "PRS Label", type: "text"},
-            { name: "CTTI Note", type: "text" },
+            { name: "CTTI Note", type: "text", width: 260 },
             { name: "Data Type", type: "text" },
             { name: "# of rows in table", type: "text" },
             { name: "Distinct Column Values", type: "text" },

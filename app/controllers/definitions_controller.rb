@@ -41,6 +41,17 @@ class DefinitionsController < ApplicationController\
                                 'Common Values' => 'common values',
                                 'NLM Required' => 'nlm requred',
                                 'FDAAA Required' => 'fdaaa required'}) do |hash|
+
+      if hash["XML Source"]
+        hash["XML Source"].html_safe
+
+      end
+
+      if hash["NLM Documentation"].present?
+        hash["NLM Documentation"] = '<a href=" https://prsinfo.clinicaltrials.gov/definitions.html#'+hash["NLM Documentation"]+'" target="_blank">'+hash["NLM Documentation"]+'</a>'
+
+      end
+
       dataResult << hash
 
     end

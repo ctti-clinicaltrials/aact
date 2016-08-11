@@ -22,10 +22,10 @@ section.dataDictionaryShow {
   }
 
   div.gridContainer {
-    width: 100%;
+    @include columnify(12, true);
     display: block;
     margin: 0 auto;
-    padding: 60px 25px;
+    padding: 60px 20px;
     background-color: $white;
   }
 
@@ -39,9 +39,6 @@ section.dataDictionaryShow {
     letter-spacing: 1px;
     border-color: $primary;
 
-    &:nth-of-type(5) {
-      font-size: 7px;
-    }
   }
 
   .jsgrid-cell {
@@ -53,7 +50,7 @@ section.dataDictionaryShow {
       margin: 5px 0px;
     }
 
-    b, p {
+    b, p, a {
       font-size: 12px;
     }
 
