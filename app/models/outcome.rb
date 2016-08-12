@@ -1,21 +1,23 @@
 class Outcome < StudyRelationship
   extend FastCount
+  belongs_to :result_group, autosave: true
 
-  attr_accessor :milestones, :drop_withdrawals
-
-  belongs_to :result_group
-  has_many :outcome_measured_values
+  has_many :outcome_groups, inverse_of: :outcome, autosave: true
   has_many :outcome_analyses, inverse_of: :outcome, autosave: true
+  has_many :outcome_measured_values
+
+  accepts_nested_attributes_for :outcome_groups
 
   def self.create_all_from(opts)
-    xml=opts[:xml].xpath('//clinical_results').xpath("outcome_list").xpath('outcome')
-    opts[:xml]=xml
-    opts[:result_type]='Outcome'
-    opts[:groups]=create_group_set(opts)
     all=opts[:xml].xpath('//clinical_results').xpath("outcome_list").xpath('outcome')
     col=[]
+    outcome_groups=[]
+    outcomes=[]
     xml=all.pop
     while xml
+      opts[:xml]=xml
+      opts[:result_type]='Outcome'
+      opts[:groups]=create_group_set(opts)
       opts[:type]=xml.xpath('type').text
       opts[:title]=xml.xpath('title').text
       opts[:description]=xml.xpath('description').text
@@ -23,94 +25,38 @@ class Outcome < StudyRelationship
       opts[:safety_issue]=xml.xpath('safety_issue').text
       opts[:population]=xml.xpath('population').text
       opts[:xml]=xml
-      col << nested_pop_create(opts.merge(:name=>'group'))
+      outcome=new({
+        :nct_id       => opts[:nct_id],
+        :outcome_type => opts[:type],
+        :title        => opts[:title],
+        :description  => opts[:description],
+        :time_frame   => opts[:time_frame],
+        :safety_issue => opts[:safety_issue],
+        :measure      => opts[:measure],
+        :population   => opts[:population],
+      })
+      grps=get_outcome_groups(opts.merge(:outcome=>outcome))
+			puts "grps size is #{grps.size}"
+      outcomes << outcome
       xml=all.pop
     end
-    outcomes = col.flatten
-
-    Outcome.import(outcomes, recursive: true)
+    import(outcomes.flatten)
   end
 
-  def self.nested_pop_create(opts)
-    name=opts[:name]
-    opts[:outer_xml]=opts[:xml]
-    all=opts[:xml].xpath("#{name}_list").xpath(name)
+  def self.get_outcome_groups(opts)
+    #opts[:outer_xml]=opts[:xml]
+    all=opts[:xml].xpath("group_list").xpath('group')
     col=[]
     xml=all.pop
-    if xml.blank?
-      outcome = create_from(opts)
-      outcome_measured_values = OutcomeMeasuredValue.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
-      outcome_analyses = OutcomeAnalysis.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
-      outcome_measured_values.each do |outcome_measure|
-        outcome.outcome_measured_values.build(outcome_measure)
-      end
-
-      outcome_analyses.each do |outcome_analysis|
-        outcome.outcome_analyses.build(outcome_analysis)
-      end
-      col << outcome
-    else
-      while xml
-        opts[:xml]=xml
-        outcome = create_from(opts)
-        outcome_measures = OutcomeMeasuredValue.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
-        outcome_analyses = OutcomeAnalysis.create_all_from(opts.merge(:outcome=>outcome,:xml=>opts[:outer_xml],:group_id_of_interest=>outcome.gid)).compact
-        outcome_measures.each do |om|
-          outcome.outcome_measured_values.build(om)
-        end
-        outcome_analyses.each do |outcome_analysis|
-          outcome.outcome_analyses.build(outcome_analysis)
-        end
-        col << outcome
-        xml=all.pop
-      end
+    while xml
+      opts[:xml]=xml
+      og = OutcomeGroup.create_from(opts)
+			col << og
+			opts[:outcome].outcome_groups << og
+			puts "Number of groups for outcome #{opts[:outcome].outcome_groups.size}"
+      xml=all.pop
     end
-    col.flatten
-  end
-
-  def attribs
-    {
-      :result_group => get_group(opts[:groups]),
-      :ctgov_group_code => get_attribute('result_group_id'),
-      :participant_count => get_attribute('count').to_i,
-      :outcome_type => get_opt(:type),
-      :title        => get_opt(:title),
-      :time_frame   => get_opt(:time_frame),
-      :safety_issue => get_opt(:safety_issue),
-      :population   => get_opt(:population),
-      :description  => get_opt(:description),
-      # :outcome_analyses => OutcomeAnalysis.create_all_from(opts.merge(:outcome=>self,:xml=>opts[:outer_xml],:group_id_of_interest=>gid)).compact,
-      # :outcome_measures => OutcomeMeasure.create_all_from(opts.merge(:outcome=>self,:xml=>opts[:outer_xml],:group_id_of_interest=>gid)).compact,
-    }
-  end
-
-  def xxxxgid
-    opts[:xml].attribute('group_id').try(:value)
-  end
-
-  def xxxxget_group
-    opts[:groups].each{|g| return g if g.ctgov_group_code==gid}
-    # found case where groups were not defined in participant_flow tag,
-    # but referenced in outcomes.  In that case, create a group for this outcome.
-    # But if this outcome doesn't define any groups (gid is nil), then just
-    # link the outcome to the study and not to any groups.
-    if !gid.nil?
-      new_group=ResultGroup.create_from(opts)
-      opts[:groups] << new_group
-      return new_group
-    end
-  end
-
-  def measures
-    outcome_measures
-  end
-
-  def analyses
-    outcome_analyses
-  end
-
-  def type
-    outcome_type
+    col
   end
 
 end

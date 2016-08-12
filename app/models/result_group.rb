@@ -1,12 +1,13 @@
 class ResultGroup < StudyRelationship
 
-  has_many :baseline_measures
-  has_many :reported_events
-  has_many :outcomes
-  has_many :milestones
-  has_many :drop_withdrawals
+  has_many :baseline_measures, autosave: true
+  has_many :reported_events, autosave: true
+  has_many :outcome_groups, autosave: true
+  has_many :milestones, autosave: true
+  has_many :drop_withdrawals, autosave: true
   has_many :outcome_measures
   has_many :outcome_analyses
+  accepts_nested_attributes_for :outcome_groups
 
 
   def self.create_group_set(opts)

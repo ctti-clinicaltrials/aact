@@ -10,6 +10,11 @@ class Study < ActiveRecord::Base
     self.interventional and self.current
   end
 
+  def self.try(nct_id='NCT00023673')
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    Study.new({xml: xml, nct_id: nct_id}).create
+  end
+
   self.primary_key = 'nct_id'
 
   has_many :reviews,               :foreign_key => 'nct_id', dependent: :delete_all
@@ -28,10 +33,10 @@ class Study < ActiveRecord::Base
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
-  #has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
-  #has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
-  #has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
-  #has_many :outcome_measured_values, :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :reported_events,       :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcome_measured_values, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_conditions,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_interventions,  :foreign_key => 'nct_id', dependent: :delete_all
   has_many :central_contacts,      :foreign_key => 'nct_id', dependent: :delete_all
@@ -43,7 +48,7 @@ class Study < ActiveRecord::Base
   has_many :interventions,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :keywords,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :reported_events,       :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :oversight_authorities, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :responsible_parties,   :foreign_key => 'nct_id', dependent: :delete_all
@@ -52,6 +57,7 @@ class Study < ActiveRecord::Base
   has_many :secondary_ids,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :sponsors,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :references,            :foreign_key => 'nct_id', dependent: :delete_all
+  accepts_nested_attributes_for :outcomes
 
   scope :started_between, lambda {|sdate, edate| where("start_date >= ? AND created_at <= ?", sdate, edate )}
   scope :changed_since,   lambda {|cdate| where("last_changed_date >= ?", cdate )}

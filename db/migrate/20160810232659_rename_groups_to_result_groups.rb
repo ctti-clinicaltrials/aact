@@ -30,8 +30,6 @@ class RenameGroupsToResultGroups < ActiveRecord::Migration
     remove_column :outcomes, :ctgov_group_enumerator, :integer
     remove_column :outcomes, :group_title, :integer
     remove_column :outcomes, :group_description, :integer
-    add_column    :outcomes, :ctgov_group_code, :string
-    add_column    :outcomes, :result_group_id, :integer, references: :result_groups
 
     remove_column :outcome_measures, :group_id, :integer
     remove_column :outcome_measures, :ctgov_group_id, :string
