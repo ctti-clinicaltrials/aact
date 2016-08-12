@@ -1,4 +1,5 @@
 require 'dotenv'
+require Rails.root.join("config/smtp")
 
 Dotenv.load("#{Rails.root}/.env")
 
@@ -13,7 +14,8 @@ Rails.application.configure do
     Bullet.bullet_logger = true
     Bullet.rails_logger = true
   end
-  config.action_mailer.delivery_method = :file
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = SMTP_SETTINGS
   config.active_support.deprecation = :log
   config.active_record.migration_error = :page_load
   config.assets.debug = true

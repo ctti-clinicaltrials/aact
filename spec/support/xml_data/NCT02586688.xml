@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study rank="19145">
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on July 17, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02586688</url>
+  </required_header>
+  <id_info>
+    <org_study_id>44-02219-000</org_study_id>
+    <nct_id>NCT02586688</nct_id>
+  </id_info>
+  <brief_title>Safety and Effectiveness of NeuroStar® Transcranial Magnetic Stimulation (TMS) Therapy in Depressed Adolescents</brief_title>
+  <official_title>A Randomized, Sham-Controlled Trial Evaluating the Safety and Effectiveness of NeuroStar® Transcranial Magnetic Stimulation (TMS) Therapy in Depressed Adolescents</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Neuronetics</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Neuronetics</source>
+  <oversight_info>
+    <authority>United States: Food and Drug Administration</authority>
+    <authority>United States: Institutional Review Board</authority>
+    <authority>United States: Data and Safety Monitoring Board</authority>
+    <authority>Canada: Health Canada</authority>
+    <authority>Canada: Ethics Review Committee</authority>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      To evaluate the safety and efficacy of daily, active Neurostar® TMS (when compared with sham
+      treatment) in adolescents meeting criteria for Major Depressive Disorder (MDD).
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      To evaluate the antidepressant effects of daily, active TMS (when compared with sham
+      treatment) in adolescents meeting criteria for Major Depressive Disorder, single or
+      recurrent episode (Phase I).
+
+      Secondary:
+
+      To evaluate the acute and long term safety of TMS treatment in adolescent MDD subjects.
+
+      To evaluate the durability of benefit of TMS treatment over the course of 6 months in
+      subjects who received clinical benefit from acute treatment course(s) (Phase III).
+
+      To evaluate the benefit of daily, active, open-label TMS in Phase I subjects who did not
+      receive protocol-defined clinical benefit; as new acute treatment (sham to active) or as
+      extended treatment course (blinded active to open label active) (Phase II).
+    </textblock>
+  </detailed_description>
+  <overall_status>Recruiting</overall_status>
+  <start_date>October 2015</start_date>
+  <completion_date type="Anticipated">December 2018</completion_date>
+  <primary_completion_date type="Anticipated">November 2017</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Endpoint Classification: Safety/Efficacy Study, Intervention Model: Parallel Assignment, Masking: Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor), Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Hamilton Depression Rating Scale-24(HAMD24) total score change from baseline value.</measure>
+    <time_frame>6 weeks</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <number_of_arms>4</number_of_arms>
+  <enrollment type="Anticipated">100</enrollment>
+  <condition>Major Depressive Disorder</condition>
+  <arm_group>
+    <arm_group_label>Phase I TMS Active</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Blinded Active TMS coil (Phase I). Active NeuroStar® Transcranial Magnetic Stimulation (TMS)</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Phase I TMS Sham</arm_group_label>
+    <arm_group_type>Sham Comparator</arm_group_type>
+    <description>Blinded Sham TMS coil (Phase I) Sham NeuroStar® Transcranial Magnetic Stimulation (TMS)</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Phase II Open Label Active TMS</arm_group_label>
+    <arm_group_type>Other</arm_group_type>
+    <description>Open label active TMS coil. Open label active NeuroStar® TMS.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Phase III Long-Term Follow up TMS Active</arm_group_label>
+    <arm_group_type>Other</arm_group_type>
+    <description>Long term follow up with open label active TMS for retreatment as needed. Open label active NeuroStar® TMS.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Device</intervention_type>
+    <intervention_name>Active NeuroStar® Transcranial Magnetic Stimulation (TMS)</intervention_name>
+    <description>Compare active NeuroStar® coil with sham NeuroStar® coil.</description>
+    <arm_group_label>Phase I TMS Active</arm_group_label>
+    <other_name>TMS</other_name>
+    <other_name>NeuroStar®</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Device</intervention_type>
+    <intervention_name>Sham NeuroStar® Transcranial Magnetic Stimulation (TMS)</intervention_name>
+    <description>Compare active NeuroStar® coil with sham NeuroStar® coil.</description>
+    <arm_group_label>Phase I TMS Sham</arm_group_label>
+    <other_name>TMS</other_name>
+    <other_name>NeuroStar®</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Device</intervention_type>
+    <intervention_name>Open Label Active NeuroStar® TMS</intervention_name>
+    <description>Open label NeuroStar® coil.</description>
+    <arm_group_label>Phase II Open Label Active TMS</arm_group_label>
+    <arm_group_label>Phase III Long-Term Follow up TMS Active</arm_group_label>
+    <other_name>TMS</other_name>
+    <other_name>NeuroStar®</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Primary diagnosis of unipolar major depressive disorder, in a current major
+             depressive episode, without psychotic features
+
+          -  Duration of current episode of depression ≥4 weeks and ≤3 years
+
+          -  Clinical Global Impression - Severity of Illness ≥ 4
+
+          -  Resistance to antidepressant treatment in a discrete illness episode
+
+          -  HAMD24 Item 1 ≥ 2 and total score ≥ 20
+
+          -  Subjects able to commit to protocol visit schedule
+
+          -  At the end of the baseline visit, subject must have a HAMD24 score of ≥ 18 and change
+             in score may not be ≥ 25% decrease from that seen at the screening visit
+
+        Exclusion Criteria:
+
+          -  Prior TMS, vagus nerve stimulation (VNS), or electroconvulsive therapy (ECT)
+
+          -  Contraindication to TMS
+
+          -  Cardiac pacemakers, implanted medication pumps, intracardiac lines
+
+          -  History of neurological disorder
+
+          -  Unstable medical conditions
+
+          -  Any psychiatric disorder, which in the judgement of the Investigator may hinder the
+             subject in completing the procedures required by the study protocol.
+
+          -  Significant acute suicide risk
+
+          -  Inability to locate and quantify a motor threshold
+
+          -  If sexually active female, not on an accepted method of birth control.
+
+          -  Diagnoses of the following conditions (current unless otherwise stated):
+
+               -  Depression secondary to a general medical condition, or substance induced:
+
+               -  Seasonal pattern of depression as defined by Diagnostic and Statistical Manual
+                  of Mental Disorders (DSM-5)
+
+               -  Any psychotic disorder (lifetime), including history of schizophrenia,
+                  schizoaffective disorder, other psychosis, psychotic features in this or
+                  previous episodes, amnestic disorder,
+
+               -  Intellectually disabled,
+
+               -  Substance dependence or abuse within the past year (except nicotine or
+                  caffeine),
+
+               -  Bipolar disorder,
+
+               -  Obsessive compulsive disorder (lifetime),
+
+               -  Post-traumatic stress disorder (lifetime),
+
+               -  Eating disorder (lifetime).
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>12 Years</minimum_age>
+    <maximum_age>21 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Mark Demitrack, MD</last_name>
+    <role>Study Chair</role>
+    <affiliation>Neuronetics</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Karen Heart</last_name>
+    <role>Study Director</role>
+    <affiliation>Neuronetics</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Melissa Reitenbaugh</last_name>
+    <phone>610- 640-4202</phone>
+    <phone_ext>1039</phone_ext>
+    <email>mreitenbaugh@neuronetics.com</email>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>Denene Finnerty</last_name>
+    <phone>610 640-4202</phone>
+    <phone_ext>1020</phone_ext>
+    <email>dfinnerty@neuronetics.com</email>
+  </overall_contact_backup>
+  <location>
+    <facility>
+      <name>Dothan Behavioral Medicine</name>
+      <address>
+        <city>Dothan</city>
+        <state>Alabama</state>
+        <zip>36303</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Melinda Vasbinder</last_name>
+      <phone>334-702-7222</phone>
+      <phone_ext>233</phone_ext>
+      <email>mvasbinder@harmonex.us</email>
+    </contact>
+    <investigator>
+      <last_name>Emmalynn McDowell, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>Rocky Mountain TMS</name>
+      <address>
+        <city>Grand Junction</city>
+        <state>Colorado</state>
+        <zip>81501</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Christopher Blackburn</last_name>
+      <phone>970-697-1020</phone>
+      <email>christopher@tmssolutions.com</email>
+    </contact>
+    <investigator>
+      <last_name>Robert Sammons, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>Florida Clinical Practice Association, Inc.</name>
+      <address>
+        <city>Gainesville</city>
+        <state>Florida</state>
+        <zip>32606</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Dana Mason</last_name>
+      <phone>352-273-8540</phone>
+      <email>dmason@ufl.edu</email>
+    </contact>
+    <investigator>
+      <last_name>Richard Holbert, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>Anchor Neuroscience</name>
+      <address>
+        <city>Pensacola</city>
+        <state>Florida</state>
+        <zip>32502</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Whitney Vaughan</last_name>
+      <phone>850-433-1656</phone>
+      <phone_ext>2</phone_ext>
+      <email>wvaughan@anchorneuroscience.com</email>
+    </contact>
+    <investigator>
+      <last_name>Pashia Groom, PhD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>Beacon Medical Group</name>
+      <address>
+        <city>South Bend</city>
+        <state>Indiana</state>
+        <zip>46601</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Toni Riehm</last_name>
+      <phone>547-647-6584</phone>
+      <email>triehm@beaconhealthsystem.org</email>
+    </contact>
+    <investigator>
+      <last_name>Ahmed Elmaadawi, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>Integrative Psychiatry</name>
+      <address>
+        <city>Louisville</city>
+        <state>Kentucky</state>
+        <zip>40222</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Alex Schrodt</last_name>
+      <phone>502-930-7881</phone>
+      <email>louisvilletmsstudy@gmail.com</email>
+    </contact>
+    <investigator>
+      <last_name>G. Randolph Schrodt, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>Sheppard Pratt Health System</name>
+      <address>
+        <city>Baltimore</city>
+        <state>Maryland</state>
+        <zip>21285</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Jennifer Sklar</last_name>
+      <phone>410-938-3136</phone>
+      <email>jsklar@sheppardpratt.org</email>
+    </contact>
+    <investigator>
+      <last_name>Scott Aaronson, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>Mayo Clinic</name>
+      <address>
+        <city>Rochester</city>
+        <state>Minnesota</state>
+        <zip>55905</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Tara Johnson</last_name>
+      <phone>507-255-0761</phone>
+      <email>Johnson.Tara@mayo.edu</email>
+    </contact>
+    <investigator>
+      <last_name>Paul Croarkin, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>University of Cincinnati College of Medicine</name>
+      <address>
+        <city>Cincinnati</city>
+        <state>Ohio</state>
+        <zip>45219</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Sara Varney</last_name>
+      <phone>513-558-2931</phone>
+      <email>varneysa@ucmail.uc.edu</email>
+    </contact>
+    <investigator>
+      <last_name>Jeffrey R Strawn, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>The Ohio State University</name>
+      <address>
+        <city>Columbus</city>
+        <state>Ohio</state>
+        <zip>43210</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Nichole Storey</last_name>
+      <phone>614-685-8754</phone>
+      <email>Nichole.Storey@osumc.edu</email>
+    </contact>
+    <contact_backup>
+      <last_name>Anne-Marie Duchemin</last_name>
+      <phone>(614) 293-5517</phone>
+    </contact_backup>
+    <investigator>
+      <last_name>Kevin Reeves, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>Medical University of South Carolina</name>
+      <address>
+        <city>Charleston</city>
+        <state>South Carolina</state>
+        <zip>29425</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Annabel Franz</last_name>
+      <phone>843-876-5141</phone>
+      <email>franza@musc.edu</email>
+    </contact>
+    <investigator>
+      <last_name>Mark George, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <removed_countries>
+    <country>Canada</country>
+  </removed_countries>
+  <results_reference>
+    <citation>O'Reardon JP, Solvason HB, Janicak PG, Sampson S, Isenberg KE, Nahas Z, McDonald WM, Avery D, Fitzgerald PB, Loo C, Demitrack MA, George MS, Sackeim HA. Efficacy and safety of transcranial magnetic stimulation in the acute treatment of major depression: a multisite randomized controlled trial. Biol Psychiatry. 2007 Dec 1;62(11):1208-16. Epub 2007 Jun 14.</citation>
+    <PMID>17573044</PMID>
+  </results_reference>
+  <results_reference>
+    <citation>Carpenter LL, Janicak PG, Aaronson ST, Boyadjis T, Brock DG, Cook IA, Dunner DL, Lanocha K, Solvason HB, Demitrack MA. Transcranial magnetic stimulation (TMS) for major depression: a multisite, naturalistic, observational study of acute treatment outcomes in clinical practice. Depress Anxiety. 2012 Jul;29(7):587-96. doi: 10.1002/da.21969. Epub 2012 Jun 11.</citation>
+    <PMID>22689344</PMID>
+  </results_reference>
+  <results_reference>
+    <citation>Wall CA, Croarkin PE, Sim LA, Husain MM, Janicak PG, Kozel FA, Emslie GJ, Dowd SM, Sampson SM. Adjunctive use of repetitive transcranial magnetic stimulation in depressed adolescents: a prospective, open pilot study. J Clin Psychiatry. 2011 Sep;72(9):1263-9. doi: 10.4088/JCP.11m07003.</citation>
+    <PMID>21951987</PMID>
+  </results_reference>
+  <verification_date>June 2016</verification_date>
+  <lastchanged_date>June 15, 2016</lastchanged_date>
+  <firstreceived_date>October 23, 2015</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>child depression</keyword>
+  <keyword>depression</keyword>
+  <keyword>Transcranial Magnetic Stimulation</keyword>
+  <keyword>Adolescent Major Depressive Disorder</keyword>
+  <keyword>TMS</keyword>
+  <keyword>adolescent depression</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Depressive Disorder</mesh_term>
+    <mesh_term>Depression</mesh_term>
+    <mesh_term>Depressive Disorder, Major</mesh_term>
+  </condition_browse>
+  <patient_data>
+    <sharing_ipd>Undecided</sharing_ipd>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                -->
+</clinical_study>
