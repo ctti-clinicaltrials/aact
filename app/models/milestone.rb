@@ -31,7 +31,7 @@ class Milestone < StudyRelationship
       :participant_count => get_attribute('count').to_i,
       :description => xml.text,
       :title => get_opt('title'),
-      :period => get_opt(:period)
+      :period => get_opt('period')
     }
   end
 
