@@ -2,16 +2,9 @@ class Outcome < StudyRelationship
   extend FastCount
   belongs_to :result_group, autosave: true
 
-  has_many :outcome_groups, inverse_of: :outcome, autosave: true
-  has_many :outcome_analyses, inverse_of: :outcome, autosave: true
-  has_many :outcome_measured_values
-
-  accepts_nested_attributes_for :outcome_groups
-
   def self.create_all_from(opts)
     all=opts[:xml].xpath('//clinical_results').xpath("outcome_list").xpath('outcome')
     col=[]
-    outcome_groups=[]
     outcomes=[]
     xml=all.pop
     while xml
@@ -35,28 +28,10 @@ class Outcome < StudyRelationship
         :measure      => opts[:measure],
         :population   => opts[:population],
       })
-      grps=get_outcome_groups(opts.merge(:outcome=>outcome))
-			puts "grps size is #{grps.size}"
       outcomes << outcome
       xml=all.pop
     end
     import(outcomes.flatten)
-  end
-
-  def self.get_outcome_groups(opts)
-    #opts[:outer_xml]=opts[:xml]
-    all=opts[:xml].xpath("group_list").xpath('group')
-    col=[]
-    xml=all.pop
-    while xml
-      opts[:xml]=xml
-      og = OutcomeGroup.create_from(opts)
-			col << og
-			opts[:outcome].outcome_groups << og
-			puts "Number of groups for outcome #{opts[:outcome].outcome_groups.size}"
-      xml=all.pop
-    end
-    col
   end
 
 end

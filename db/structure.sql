@@ -985,39 +985,6 @@ ALTER SEQUENCE outcome_analyses_id_seq OWNED BY outcome_analyses.id;
 
 
 --
--- Name: outcome_groups; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE outcome_groups (
-    id integer NOT NULL,
-    participant_count integer,
-    ctgov_group_code character varying,
-    nct_id character varying,
-    result_group_id integer,
-    outcome_id integer
-);
-
-
---
--- Name: outcome_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE outcome_groups_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: outcome_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE outcome_groups_id_seq OWNED BY outcome_groups.id;
-
-
---
 -- Name: outcome_measured_values; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2032,13 +1999,6 @@ ALTER TABLE ONLY outcome_analyses ALTER COLUMN id SET DEFAULT nextval('outcome_a
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY outcome_groups ALTER COLUMN id SET DEFAULT nextval('outcome_groups_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY outcome_measured_values ALTER COLUMN id SET DEFAULT nextval('outcome_measured_values_id_seq'::regclass);
 
 
@@ -2403,14 +2363,6 @@ ALTER TABLE ONLY milestones
 
 ALTER TABLE ONLY outcome_analyses
     ADD CONSTRAINT outcome_analyses_pkey PRIMARY KEY (id);
-
-
---
--- Name: outcome_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY outcome_groups
-    ADD CONSTRAINT outcome_groups_pkey PRIMARY KEY (id);
 
 
 --
