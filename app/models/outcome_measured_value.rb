@@ -20,35 +20,28 @@ class OutcomeMeasuredValue < StudyRelationship
 
           while category
             opts[:measure_category]=category.xpath('sub_title').text
-            col << new.create_from(opts)
+
+
+            measurements=category.xpath("measurement_list").xpath('measurement')
+            gr=measurements.pop
+            if gr.blank?
+              col << new.create_from(opts)
+            else
+              while gr
+                opts[:param_value]=gr.attribute('value').try(:value)
+                opts[:dispersion_value]=gr.attribute('spread').try(:value)
+                opts[:lower_limit]=gr.attribute('lower_limit').try(:value)
+                opts[:upper_limit]=gr.attribute('upper_limit').try(:value)
+                opts[:ctgov_group_code]=gr.attribute('group_id').try(:value)
+                opts[:explanation_of_na]=gr.text,
+                m=new.create_from(opts)
+                col << m
+                gr=measurements.pop
+              end
+            end
+
             category=categories.pop
           end
-
-
-
-
-            #measurements=category.xpath("measurement_list").xpath('measurement')
-            #gr=measurements.pop
-            #if gr.blank?
-            #  m= new.create_from(opts)
-						#	puts "gr.blank?"
-						#	puts m
-            #  col << m
-            #else
-            #  while gr
-            #    opts[:param_value]=gr.attribute('value').try(:value)
-            #    opts[:dispersion_value]=gr.attribute('spread').try(:value)
-            #    m=new.create_from(opts)
-  		      #    #if opts[:title]=='Percentage of Participants With Change in MIRCERA Treatment'
-						#		  puts "while gr"
-			      #      puts m.inspect
-			      #    #end
-			      #    col << m
-            #    gr=measurements.pop
-            #  end
-            #end
-
-
 
 
        end
@@ -59,16 +52,18 @@ class OutcomeMeasuredValue < StudyRelationship
 
   def attribs
     {
+      :ctgov_group_code       => get_attribute('group_id'),
       :title                  => get_opt(:measure_title),
       :description            => get_opt(:measure_description),
       :units                  => get_opt(:measure_units),
       :category               => get_opt(:measure_category),
       :param_type             => get_opt(:param_type),
+      :param_value            => get_opt(:param_value),
       :dispersion_type        => get_opt(:dispersion_type),
-      :param_value            => get_opt(:value),
       :dispersion_value       => get_opt(:dispersion_value),
-      :dispersion_lower_limit => get_attribute('lower_limit'),
-      :dispersion_upper_limit => get_attribute('upper_limit'),
+      :dispersion_lower_limit => get_opt('lower_limit'),
+      :dispersion_upper_limit => get_opt('upper_limit'),
+      :explanation_of_na      => get_opt('explanation_of_na'),
       :outcome                => get_opt(:outcome),
     }
   end

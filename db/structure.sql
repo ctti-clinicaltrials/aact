@@ -1016,37 +1016,6 @@ ALTER SEQUENCE outcome_groups_id_seq OWNED BY outcome_groups.id;
 
 
 --
--- Name: outcome_measured_value_groups; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE outcome_measured_value_groups (
-    id integer NOT NULL,
-    param_value integer,
-    result_group_id integer,
-    outcome_measured_value_id integer
-);
-
-
---
--- Name: outcome_measured_value_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE outcome_measured_value_groups_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: outcome_measured_value_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE outcome_measured_value_groups_id_seq OWNED BY outcome_measured_value_groups.id;
-
-
---
 -- Name: outcome_measured_values; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1058,14 +1027,15 @@ CREATE TABLE outcome_measured_values (
     units character varying,
     nct_id character varying,
     outcome_id integer,
+    ctgov_group_code character varying,
     result_group_id integer,
     param_type character varying,
     dispersion_type character varying,
     dispersion_value character varying,
-    dispersion_lower_limit character varying,
-    dispersion_upper_limit character varying,
     explanation_of_na text,
-    param_value integer
+    param_value numeric,
+    dispersion_lower_limit numeric,
+    dispersion_upper_limit numeric
 );
 
 
@@ -2068,13 +2038,6 @@ ALTER TABLE ONLY outcome_groups ALTER COLUMN id SET DEFAULT nextval('outcome_gro
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY outcome_measured_value_groups ALTER COLUMN id SET DEFAULT nextval('outcome_measured_value_groups_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY outcome_measured_values ALTER COLUMN id SET DEFAULT nextval('outcome_measured_values_id_seq'::regclass);
 
 
@@ -2447,14 +2410,6 @@ ALTER TABLE ONLY outcome_analyses
 
 ALTER TABLE ONLY outcome_groups
     ADD CONSTRAINT outcome_groups_pkey PRIMARY KEY (id);
-
-
---
--- Name: outcome_measured_value_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY outcome_measured_value_groups
-    ADD CONSTRAINT outcome_measured_value_groups_pkey PRIMARY KEY (id);
 
 
 --
