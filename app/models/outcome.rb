@@ -1,5 +1,6 @@
 class Outcome < StudyRelationship
   extend FastCount
+	has_many :outcome_measured_values, autosave: true
 	has_many :outcome_groups, inverse_of: :outcome, autosave: true
 	has_many :result_groups, :through => :outcome_groups
 
@@ -8,12 +9,10 @@ class Outcome < StudyRelationship
     outcomes=[]
     xml=all.pop
     while xml
+      opts[:outcome_xml]=xml
       opts[:xml]=xml
       opts[:result_type]='Outcome'
-
-      opts[:groups]=nil
       opts[:groups]=create_group_set(opts)
-
       opts[:result_type]='Outcome'
       opts[:type]=xml.xpath('type').text
       opts[:title]=xml.xpath('title').text
@@ -38,6 +37,7 @@ class Outcome < StudyRelationship
       :measure        => get_opt('measure'),
       :population     => get_opt('population'),
       :outcome_groups => OutcomeGroup.create_all_from({:outcome=>self,:groups=>opts[:groups]}),
+      :outcome_measured_values => OutcomeMeasuredValue.create_all_from(opts.merge(:outcome=>self)),
     }
   end
 
