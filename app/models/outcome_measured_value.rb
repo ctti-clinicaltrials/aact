@@ -1,5 +1,6 @@
 class OutcomeMeasuredValue < StudyRelationship
   belongs_to :outcome, autosave: true
+  belongs_to :result_group, autosave: true
 
   def self.create_all_from(opts)
     all=opts[:outcome_xml].xpath("measure_list").xpath('measure')
@@ -34,15 +35,13 @@ class OutcomeMeasuredValue < StudyRelationship
                 opts[:upper_limit]=gr.attribute('upper_limit').try(:value)
                 opts[:ctgov_group_code]=gr.attribute('group_id').try(:value)
                 opts[:explanation_of_na]=gr.text,
-                m=new.create_from(opts)
-                col << m
+                col << new.create_from(opts)
                 gr=measurements.pop
               end
             end
 
             category=categories.pop
           end
-
 
        end
        xml=all.pop
@@ -52,6 +51,7 @@ class OutcomeMeasuredValue < StudyRelationship
 
   def attribs
     {
+      :result_group           => get_group(opts[:groups]),
       :ctgov_group_code       => get_attribute('group_id'),
       :title                  => get_opt(:measure_title),
       :description            => get_opt(:measure_description),

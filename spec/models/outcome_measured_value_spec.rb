@@ -24,6 +24,7 @@ describe OutcomeMeasuredValue do
     expect(measured_value2.dispersion_lower_limit).to eq(61.5)
     expect(measured_value2.dispersion_upper_limit).to eq(85.0)
     expect(measured_value2.ctgov_group_code).to eq('O1')
+    expect(measured_value2.result_group.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
   end
 
   it "study should have expected outcome_measured_values" do
