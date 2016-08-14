@@ -949,7 +949,6 @@ CREATE TABLE outcome_analyses (
     param_value numeric,
     dispersion_type character varying,
     dispersion_value numeric,
-    ci_percent character varying,
     ci_n_sides character varying,
     ci_lower_limit numeric,
     ci_upper_limit numeric,
@@ -961,7 +960,9 @@ CREATE TABLE outcome_analyses (
     outcome_id integer,
     group_id integer,
     ctgov_group_code character varying,
-    result_group_id integer
+    outcome_analysis_result_group_id integer,
+    groups_description character varying,
+    ci_percent integer
 );
 
 
@@ -982,6 +983,37 @@ CREATE SEQUENCE outcome_analyses_id_seq
 --
 
 ALTER SEQUENCE outcome_analyses_id_seq OWNED BY outcome_analyses.id;
+
+
+--
+-- Name: outcome_analysis_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE outcome_analysis_groups (
+    id integer NOT NULL,
+    participant_count integer,
+    result_group_id integer,
+    outcome_id integer
+);
+
+
+--
+-- Name: outcome_analysis_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE outcome_analysis_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: outcome_analysis_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE outcome_analysis_groups_id_seq OWNED BY outcome_analysis_groups.id;
 
 
 --
@@ -2031,6 +2063,13 @@ ALTER TABLE ONLY outcome_analyses ALTER COLUMN id SET DEFAULT nextval('outcome_a
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY outcome_analysis_groups ALTER COLUMN id SET DEFAULT nextval('outcome_analysis_groups_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY outcome_groups ALTER COLUMN id SET DEFAULT nextval('outcome_groups_id_seq'::regclass);
 
 
@@ -2405,6 +2444,14 @@ ALTER TABLE ONLY outcome_analyses
 
 
 --
+-- Name: outcome_analysis_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY outcome_analysis_groups
+    ADD CONSTRAINT outcome_analysis_groups_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: outcome_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2729,4 +2776,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160811013332');
 INSERT INTO schema_migrations (version) VALUES ('20160812141340');
 
 INSERT INTO schema_migrations (version) VALUES ('20160813125212');
+
+INSERT INTO schema_migrations (version) VALUES ('20160814024245');
 

@@ -1,6 +1,7 @@
 class Outcome < StudyRelationship
   extend FastCount
 	has_many :outcome_measured_values, autosave: true
+	has_many :outcome_analyses, inverse_of: :outcome, autosave: true
 	has_many :outcome_groups, inverse_of: :outcome, autosave: true
 	has_many :result_groups, :through => :outcome_groups
 
@@ -38,6 +39,7 @@ class Outcome < StudyRelationship
       :population     => get_opt('population'),
       :outcome_groups => OutcomeGroup.create_all_from({:outcome=>self,:groups=>opts[:groups]}),
       :outcome_measured_values => OutcomeMeasuredValue.create_all_from(opts.merge(:outcome=>self)),
+      :outcome_analyses        => OutcomeAnalysis.create_all_from(opts.merge(:outcome=>self)),
     }
   end
 
