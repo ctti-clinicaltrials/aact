@@ -1,9 +1,9 @@
 class OutcomeAnalysis < StudyRelationship
   belongs_to :outcome, inverse_of: :outcome_analyses, autosave: true
-  belongs_to :result_group
+#  belongs_to :result_group
 
   def self.create_all_from(opts)
-    all=opts[:xml].xpath("analysis_list").xpath('analysis')
+    all=opts[:outcome_xml].xpath("analysis_list").xpath('analysis')
     col=[]
     xml=all.pop
     return col if xml.blank?
@@ -24,10 +24,12 @@ class OutcomeAnalysis < StudyRelationship
       opts[:method]=xml.xpath('method').text
       opts[:method_description]=xml.xpath('method_desc').text
       opts[:estimate_description]=xml.xpath('estimate_desc').text
-      col << pop_create(opts.merge(:name=>'group_id'))
+      opts[:groups_description]=xml.xpath('groups_desc').text
+      a=new.create_from(opts)
+      col << a
       xml=all.pop
     end
-    col.flatten.compact.map(&:attributes)
+    col
   end
 
   def attribs
@@ -48,23 +50,10 @@ class OutcomeAnalysis < StudyRelationship
       :method => get_opt(:method),
       :method_description => get_opt(:method_description),
       :estimate_description => get_opt(:estimate_description),
+      :groups_description => get_opt(:groups_description),
       :outcome => get_opt(:outcome),
-      :result_group => get_group,
+#      :result_group => get_group,
     }
-  end
-
-  def gid
-    opts[:xml].text
-  end
-
-  def get_group
-    opts[:groups].each {|g| return g if g.ctgov_group_code==gid }
-  end
-
-  def conditionally_create_from(opts)
-    @opts=opts
-    return nil if opts[:xml].text != opts[:group_id_of_interest]
-    create_from(opts)
   end
 
 end
