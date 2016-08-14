@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe OutcomeMeasuredValue do
-  it "study should have expected outcome_measured_values" do
+  it "should belong to study as expected" do
 
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -25,6 +25,27 @@ describe OutcomeMeasuredValue do
     expect(measured_value2.dispersion_upper_limit).to eq(85.0)
     expect(measured_value2.ctgov_group_code).to eq('O1')
     expect(measured_value2.result_group.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
+  end
+
+	it "should have correct attributes" do
+    nct_id='NCT02028676'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    o=study.outcomes.select{|x|x.title=='LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death'}.first
+    measured_values=o.outcome_measured_values.select{|x|x.title=='Number of Participants'}
+    expect(o.outcome_measured_values.size).to eq(4)
+		o1_measured_values=o.outcome_measured_values.select{|x|x.ctgov_group_code=='O1'}
+		o2_measured_values=o.outcome_measured_values.select{|x|x.ctgov_group_code=='O2'}
+    expect(o1_measured_values.size).to eq(2)
+    expect(o2_measured_values.size).to eq(2)
+		o1=o1_measured_values.select{|x|x.title=='Number of Participants'}.first
+		o2=o2_measured_values.select{|x|x.title=='Number of Participants'}.first
+		expect(o1.param_value).to eq(606)
+		expect(o2.param_value).to eq(600)
+		o1=o1_measured_values.select{|x|x.title=='LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death'}.first
+		o2=o2_measured_values.select{|x|x.title=='LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death'}.first
+		expect(o1.param_value).to eq(47)
+		expect(o2.param_value).to eq(39)
   end
 
   it "study should have expected outcome_measured_values" do

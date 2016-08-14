@@ -18,11 +18,8 @@ class OutcomeMeasuredValue < StudyRelationship
       if category.blank?
         col << new.create_from(opts)
       else
-
           while category
             opts[:measure_category]=category.xpath('sub_title').text
-
-
             measurements=category.xpath("measurement_list").xpath('measurement')
             gr=measurements.pop
             if gr.blank?
@@ -52,19 +49,19 @@ class OutcomeMeasuredValue < StudyRelationship
   def attribs
     {
       :result_group           => get_group(opts[:groups]),
-      :ctgov_group_code       => get_attribute('group_id'),
-      :title                  => get_opt(:measure_title),
-      :description            => get_opt(:measure_description),
-      :units                  => get_opt(:measure_units),
-      :category               => get_opt(:measure_category),
-      :param_type             => get_opt(:param_type),
-      :param_value            => get_opt(:param_value),
-      :dispersion_type        => get_opt(:dispersion_type),
-      :dispersion_value       => get_opt(:dispersion_value),
+      :ctgov_group_code       => get_opt('ctgov_group_code'),
+      :title                  => get_opt('measure_title'),
+      :description            => get_opt('measure_description'),
+      :units                  => get_opt('measure_units'),
+      :category               => get_opt('measure_category'),
+      :param_type             => get_opt('param_type'),
+      :param_value            => get_opt('param_value'),
+      :dispersion_type        => get_opt('dispersion_type'),
+      :dispersion_value       => get_opt('dispersion_value'),
       :dispersion_lower_limit => get_opt('lower_limit'),
       :dispersion_upper_limit => get_opt('upper_limit'),
       :explanation_of_na      => get_opt('explanation_of_na'),
-      :outcome                => get_opt(:outcome),
+      :outcome                => get_opt('outcome'),
     }
   end
 
