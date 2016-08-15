@@ -35,13 +35,11 @@ describe BaselineMeasure do
     females_b10=females.select{|x|x.ctgov_group_code=='B10'}
     expect(females_b10.size).to eq(1)
     female_b10=females_b10.first
-
     expect(female_b10.units).to eq('participants')
     expect(female_b10.param_type).to eq('Number')
-		expect(female_b10.param_value).to eq('NA')
+    expect(female_b10.param_value).to eq('NA')
     expect(female_b10.explanation_of_na).to eq('Total not calculated because data are not available (NA) in one or more arms.')
-
-		expect(female_b10.population).to eq('All participants who were randomized were included except those who were randomised in error (main enrollment: 1 child HIV-uninfected, 2 on main phase of tuberculosis treatment; cotrimoxazole secondary randomization: 2 children receiving dapsone prophylaxis not cotrimoxazole).')
+    expect(female_b10.population).to eq('All participants who were randomized were included except those who were randomised in error (main enrollment: 1 child HIV-uninfected, 2 on main phase of tuberculosis treatment; cotrimoxazole secondary randomization: 2 children receiving dapsone prophylaxis not cotrimoxazole).')
 
     baseline_title="Weight-for-age Z-score: Period 3 (randomization to once vs twice daily ABC+3TC)"
     period3_zscore=[]
@@ -65,13 +63,12 @@ describe BaselineMeasure do
 
     b1_age=(b1_baselines.select{|m|m.title=='Age'})
     expect(b1_age.size).to eq(1)
-		expect(b1_age.first.description).to eq('Age at trial enrollment (antiretroviral therapy initiation).')
-		expect(b1_age.first.units).to eq('years')
-		expect(b1_age.first.param_type).to eq('Median')
+    expect(b1_age.first.description).to eq('Age at trial enrollment (antiretroviral therapy initiation).')
+    expect(b1_age.first.units).to eq('years')
+    expect(b1_age.first.param_type).to eq('Median')
     expect(b1_age.first.param_value).to eq('5.9')
     expect(b1_age.first.dispersion_lower_limit).to eq('2.2')
     expect(b1_age.first.dispersion_upper_limit).to eq('9.2')
-
   end
 
   it "study should have baseline measure with expected dispersion value" do
@@ -85,6 +82,6 @@ describe BaselineMeasure do
     expect(baseline_array.first.param_value).to eq('26')
     expect(baseline_array.first.dispersion_value).to eq('1.2')
     expect(baseline_array.first.dispersion_type).to eq('Standard Deviation')
-	end
+  end
 
 end
