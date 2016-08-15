@@ -37,6 +37,41 @@ section.homeHero {
 }
 
 
+div.circleButtons {
+  margin-bottom: 4rem;
+  @include display-flex;
+  @include align-items(center);
+  @include justify-content(center);
+
+  a {
+    width: 100px;
+    margin: 0px 40px;
+    @include display-flex;
+    @include align-items(center);
+    @include flex-direction(column);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: .8rem;
+  }
+
+  i {
+    display: block;
+    color: $white;
+    position: absolute;
+    @include center(xy);
+    font-size: 2.2rem;
+  }
+
+  div.iconWrap {
+    background-color: $primary;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 10px;
+  }
+}
+
 
 div.heroPanelRow {
   background-color: $white;
@@ -54,6 +89,13 @@ div.heroPanelRow {
     color: $primary;
     padding-bottom: 1rem;
     font-weight: bold;
+  }
+
+  span.title {
+    position: absolute;
+    bottom: 40px;
+    left: 30px;
+    font-size: 1.2rem;
   }
 
   i.fa {

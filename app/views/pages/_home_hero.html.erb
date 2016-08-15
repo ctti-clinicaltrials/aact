@@ -12,19 +12,25 @@
   <div class="circleButtons">
 
     <a href="#">
-      <%= icon('plug') %>
+      <div class="iconWrap">
+        <%= icon('plug') %>
+      </div>
       <span>Connect
     </span>
     </a>
 
     <a href="/download_aact">
-      <%= icon('download') %>
+      <div class="iconWrap">
+        <%= icon('download') %>
+      </div>
       <span>Download
     </span>
     </a>
 
-    <a href="#">
-      <%= icon('university') %>
+    <a href="/learn_more">
+      <div class="iconWrap">
+        <%= icon('university') %>
+      </div>
       <span>Learn More
     </span>
     </a>
@@ -36,13 +42,13 @@
     <a class="button small light" href="/points_to_consider">
       <%= icon('info-circle') %>
       <span class="type">Recommendation</span>
-      Points to Consider
+      <span class="title">Points to Consider</span>
     </a>
-    <a class="button big" href="/learn_more">
-      <%= icon('university') %>
+    <a class="button big" href="#">
+      <%= icon('newspaper-o') %>
       <span class="type">Publication</span>
-      Learn about AACT
+      <span class="title">News</span>
     </a>
   </div>
-  
+
 </section>
