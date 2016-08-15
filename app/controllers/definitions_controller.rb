@@ -85,7 +85,13 @@ class DefinitionsController < ApplicationController\
           # hash["Table Name"] == params["Table Name"]
           require 'string/similarity'
 
-          String::Similarity.cosine(hash[key].try(:downcase), value.try(:downcase)) > 0.6
+          if hash[key].nil? || value.nil?
+            0.0
+          else
+            String::Similarity.cosine(hash[key].try(:downcase), value.try(:downcase)) > 0.7
+          end
+
+
 
         end
 
