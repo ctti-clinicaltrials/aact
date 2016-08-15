@@ -52,6 +52,10 @@ class DefinitionsController < ApplicationController\
 
       end
 
+      unless hash["Table Name"] == "table"
+        hash["# of rows in table"] = hash["Table Name"].sub(/_/, "").constantize.count
+      end
+      
       dataResult << hash
 
     end
