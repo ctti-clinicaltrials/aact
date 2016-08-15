@@ -26,7 +26,7 @@ class OutcomeAnalysis < StudyRelationship
       opts[:method_description]=xml.xpath('method_desc').text
       opts[:estimate_description]=xml.xpath('estimate_desc').text
       opts[:groups_description]=xml.xpath('groups_desc').text
-			group_ids=create_group_list(xml)
+      group_ids=create_group_list(xml)
       a=new.create_from(opts)
       a.outcome_analysis_groups = OutcomeAnalysisGroup.create_all_from({:outcome_analysis=>a,:group_ids=>group_ids,:groups=>opts[:groups]})
       col << a
@@ -35,11 +35,11 @@ class OutcomeAnalysis < StudyRelationship
     col
   end
 
-	def self.create_group_list(xml)
+  def self.create_group_list(xml)
     group_xmls=xml.xpath('group_id_list').xpath('group_id')
-		groups=[]
-		xml=group_xmls.pop
-		while xml
+    groups=[]
+    xml=group_xmls.pop
+    while xml
       if !xml.blank?
         groups << xml.text
       end
