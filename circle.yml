@@ -7,6 +7,6 @@ test:
 checkout:
   post:
     - mkdir -p tmp
- machine:
+machine:
   services:
     - redis
