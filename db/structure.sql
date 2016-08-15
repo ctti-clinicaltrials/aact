@@ -746,6 +746,37 @@ ALTER SEQUENCE groups_id_seq OWNED BY groups.id;
 
 
 --
+-- Name: id_informations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE id_informations (
+    id integer NOT NULL,
+    nct_id character varying,
+    id_type character varying,
+    id_value character varying
+);
+
+
+--
+-- Name: id_informations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE id_informations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: id_informations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE id_informations_id_seq OWNED BY id_informations.id;
+
+
+--
 -- Name: intervention_arm_group_labels; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1962,6 +1993,13 @@ ALTER TABLE ONLY groups ALTER COLUMN id SET DEFAULT nextval('groups_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY id_informations ALTER COLUMN id SET DEFAULT nextval('id_informations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY intervention_arm_group_labels ALTER COLUMN id SET DEFAULT nextval('intervention_arm_group_labels_id_seq'::regclass);
 
 
@@ -2319,6 +2357,14 @@ ALTER TABLE ONLY facility_investigators
 
 ALTER TABLE ONLY groups
     ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: id_informations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY id_informations
+    ADD CONSTRAINT id_informations_pkey PRIMARY KEY (id);
 
 
 --
@@ -2682,6 +2728,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160808024029');
 INSERT INTO schema_migrations (version) VALUES ('20160809010254');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809133136');
+
+INSERT INTO schema_migrations (version) VALUES ('20160809172406');
 
 INSERT INTO schema_migrations (version) VALUES ('20160810185321');
 
