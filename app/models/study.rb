@@ -32,6 +32,7 @@ class Study < ActiveRecord::Base
   has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :reported_events,       :foreign_key => 'nct_id', dependent: :delete_all
@@ -48,6 +49,7 @@ class Study < ActiveRecord::Base
   has_many :interventions,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :keywords,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :milestones,            :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :oversight_authorities, :foreign_key => 'nct_id', dependent: :delete_all
@@ -287,30 +289,6 @@ class Study < ActiveRecord::Base
 
   def get_date(str)
     Date.parse(str) if !str.blank?
-  end
-
-  def participant_flows
-    ParticipantFlow.where('nct_id=?',nct_id)
-  end
-
-  def baseline_measures
-    BaselineMeasure.where('nct_id=?',nct_id)
-  end
-
-  def milestones
-    Milestone.where('nct_id=?',nct_id)
-  end
-
-  def drop_withdrawals
-    DropWithdrawal.where('nct_id=?',nct_id)
-  end
-
-  def reported_events
-    ReportedEvent.where('nct_id=?',nct_id)
-  end
-
-  def outcomes
-    Outcome.where('nct_id=?',nct_id)
   end
 
   def lead_sponsor
