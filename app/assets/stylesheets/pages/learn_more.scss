@@ -3,11 +3,10 @@ div.basicHero {
 }
 
 section.learnMore {
-
+  background-color: $white;
 
   div.overview {
     background-color: $white;
-    padding: 100px 0px;
     padding-bottom: 500px;
   }
 }
