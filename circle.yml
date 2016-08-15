@@ -4,7 +4,9 @@ database:
 test:
   override:
     - COVERAGE=true bin/rake
-
 checkout:
   post:
     - mkdir -p tmp
+ machine:
+  services:
+    - redis
