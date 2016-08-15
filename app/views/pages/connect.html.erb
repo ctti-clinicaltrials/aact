@@ -1,0 +1,51 @@
+
+<div class="wrap">
+
+  <div class="basicHero">
+    <h1>Connect to AACT2</h1>
+    <p>
+      Connect to AACT using one of the popular tools displayed below, or take a look at the <a href="#credentials">access credentials</a> for direct access.
+    </p>
+  </div>
+
+</div>
+
+
+<section class="connect">
+
+  <div class="connectionTypes">
+    <a href="/pgadmin" class="connectionCard">
+      <h4>pgAdmin</h4>
+      <p>
+        Connect to AACT using a pgAdmin tool. Instructions here are for pgAdmin3 specifically.
+      </p>
+      <%= icon("plug") %>
+    </a>
+
+    <a href="/r" class="connectionCard">
+      <h4>R</h4>
+      <p>
+        Use R and RStudio to connect to the AACT2 database.
+      </p>
+      <%= icon("plug") %>
+    </a>
+
+    <a href="/sas" class="connectionCard">
+      <h4>SAS</h4>
+      <p>
+        Connect to AACT using SAS as a connection tool.
+      </p>
+      <%= icon("plug") %>
+    </a>
+
+  </div>
+
+  <div class="wrap">
+
+    <%= render 'access/credentials' %>
+    <%= render 'access/intro' %>
+    <%= render 'access/api' %>
+
+  </div>
+
+</section>

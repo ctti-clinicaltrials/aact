@@ -1,67 +1,58 @@
 
+<div class="wrap">
 
-<section class="learnMore">
-
-  <div class="wrap">
-
-    <div class="basicHero">
-      <h1>Learn more about AACT</h1>
-
-    </div>
+  <div class="basicHero">
+    <h1>Learn more about AACT</h1>
 
   </div>
 
-  <div class="quickLinks">
-    <div class="wrap">
-      <div class="quickLink">
-        <a href="/">
-          <div class="card">
-            <h3>Database Schema</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-        </a>
-      </div>
-      <div class="quickLink">
-        <a href="/data_dictionary">
-          <div class="card">
-            <h3>Data Dictionary</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-        </a>
-      </div>
-      <div class="quickLink">
-        <a href="/">
-          <div class="card">
-            <h3>Sample SQL</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-        </a>
-      </div>
-      <div class="quickLink">
-        <a href="/">
-          <div class="card">
-            <h3>Frequently Asked Questions</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-        </a>
-      </div>
+</div>
 
-    </div>
+<section class="learnMore">
+
+
+  <div class="learnMoreCards">
+
+    <a href="https://s3-us-west-2.amazonaws.com/aact2/20160714_aact2_schema.png" target="_blank" class="learnMoreCard">
+      <h3>Database Schema</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <%= icon("database") %>
+    </a>
+
+    <a href="/data_dictionary" class="learnMoreCard">
+      <h3>Data Dictionary</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <%= icon("graduation-cap") %>
+    </a>
+  </div>
+
+  <div class="learnMoreCards">
+
+    <a href="/" class="learnMoreCard">
+      <h3>Sample SQL</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <%= icon("terminal") %>
+    </a>
+
+    <a href="/" class="learnMoreCard">
+      <h3>Frequently Asked Questions</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <%= icon("question-circle-o") %>
+    </a>
 
   </div>
 
   <div class="overview">
     <div class="wrap">
       <%= render 'overview' %>
-
     </div>
   </div>
 

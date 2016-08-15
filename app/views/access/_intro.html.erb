@@ -1,45 +1,49 @@
+  <section class="intro">
 
-  <p>
-    The simplest way to directly access the AACT2 database is using the command line tool <a href="#">psql</a>. This command line tool comes with <a href="#">Postgres</a>, so if you have Postgres installed, you should also be able to run psql commands from your terminal. If you have another access method in mind already, skip down to <a href="#credentials">the credentials section</a>.
-  </p>
-  <p>
-    You can confirm that psql is installed by running the following command in your terminal:
-  </p>
-  <pre>
-    <code>> psql</code>
-    <code class="output">psql (9.4.5, server 9.4.0)</code>
-    <code class="output">Type "help" for help.</code>
-    <code>username=#  _</code>
-  </pre>
-  <p>
-    You'll notice you're now inside of the psql console. From here you are able to manage your local Postgres databases and run SQL commands on them. Here's a simple example:
-  </p>
-  <pre>
-    <code>username=#  select * from table_name;</code>
-  </pre>
-  <p>
-    To connect to the AACT2 database, make sure you are outside of the psql console (exit by typing '\q' and hitting return). Run the psql command with these parameters.
-  </p>
-  <pre>
-    <code>> psql --host <%= ENV["RDS_DB_HOSTNAME"] %> --port=5432 --username=<%= ENV["RDS_DB_READONLY_USERNAME"] %> --dbname=<%= ENV["RDS_DB_READONLY_DBNAME"] %></code>
-  </pre>
-  <p>
-    You will then be prompted to enter a password for the database. Enter the password, which will not appear in your terminal but should be entered as follows:
-  </p>
-  <pre>
-    <code>Password for user <%= ENV["RDS_DB_READONLY_USERNAME"] %>: <%= ENV["RDS_DB_READONLY_PASSWORD"] %></code>
-    <code class="output">psql (9.5, server 9.5)</code>
-    <code class="output">SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)</code>
-    <code class="output">Type "help" for help.</code>
-    <code><%= ENV["RDS_DB_READONLY_DBNAME"] %>=> _</code>
-  </pre>
-  <p>
-    Here is an example query you can run on the database to make sure that you are properly connected:
-  </p>
-  <pre>
-    <code><%= ENV["RDS_DB_READONLY_DBNAME"] %>=> select count(*) from studies;</code>
-    <code class="output"> count</code>
-    <code class="output">--------</code>
-    <code class="output"> <%= number_with_delimiter(220500) %></code>
-    <code class="output">(1 row)</code>
-  </pre>
+    <h2>Direct Access</h2>
+    <p>
+      The simplest way to directly access the AACT2 database is using the command line tool <a href="#">psql</a>. This command line tool comes with <a href="#">Postgres</a>, so if you have Postgres installed, you should also be able to run psql commands from your terminal. If you have another access method in mind already, skip down to <a href="#credentials">the credentials section</a>.
+    </p>
+    <p>
+      You can confirm that psql is installed by running the following command in your terminal:
+    </p>
+    <pre>
+      <code>> psql</code>
+      <code class="output">psql (9.4.5, server 9.4.0)</code>
+      <code class="output">Type "help" for help.</code>
+      <code>username=#  _</code>
+    </pre>
+    <p>
+      You'll notice you're now inside of the psql console. From here you are able to manage your local Postgres databases and run SQL commands on them. Here's a simple example:
+    </p>
+    <pre>
+      <code>username=#  select * from table_name;</code>
+    </pre>
+    <p>
+      To connect to the AACT2 database, make sure you are outside of the psql console (exit by typing '\q' and hitting return). Run the psql command with these parameters.
+    </p>
+    <pre>
+      <code>> psql --host <%= ENV["RDS_DB_HOSTNAME"] %> --port=5432 --username=<%= ENV["RDS_DB_READONLY_USERNAME"] %> --dbname=<%= ENV["RDS_DB_READONLY_DBNAME"] %></code>
+    </pre>
+    <p>
+      You will then be prompted to enter a password for the database. Enter the password, which will not appear in your terminal but should be entered as follows:
+    </p>
+    <pre>
+      <code>Password for user <%= ENV["RDS_DB_READONLY_USERNAME"] %>: <%= ENV["RDS_DB_READONLY_PASSWORD"] %></code>
+      <code class="output">psql (9.5, server 9.5)</code>
+      <code class="output">SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)</code>
+      <code class="output">Type "help" for help.</code>
+      <code><%= ENV["RDS_DB_READONLY_DBNAME"] %>=> _</code>
+    </pre>
+    <p>
+      Here is an example query you can run on the database to make sure that you are properly connected:
+    </p>
+    <pre>
+      <code><%= ENV["RDS_DB_READONLY_DBNAME"] %>=> select count(*) from studies;</code>
+      <code class="output"> count</code>
+      <code class="output">--------</code>
+      <code class="output"> <%= number_with_delimiter(220500) %></code>
+      <code class="output">(1 row)</code>
+    </pre>
+
+  </section>
