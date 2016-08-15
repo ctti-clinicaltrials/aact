@@ -13,8 +13,9 @@ namespace :import do
         load_event.update(new_studies: new_studies_count, changed_studies: changed_studies_count)
         StudyUpdater.new.update_studies(nct_ids: nct_ids_to_be_updated_or_added)
 
-
         load_event.complete
+
+        LoadMailer.send_notification(load_event).deliver
       else
         puts "First of the month - running full import"
       end
