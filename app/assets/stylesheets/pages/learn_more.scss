@@ -29,13 +29,6 @@ div.quickLinks {
     padding: 1rem;
   }
 
-  div.card {
-    background-color: rgb(249,249,249);
-    color: $grey;
-    @include box-shadow(3px 3px 11px $light-grey);
-    padding: 1rem;
-  }
-
   h3 {
     font-size: 1.5rem;
     color: $secondary;

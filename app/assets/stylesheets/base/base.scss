@@ -156,3 +156,26 @@ pre {
 div.wrap {
   @extend %container;
 }
+
+a.card {
+  background-color: rgb(249,249,249);
+  color: $grey;
+  padding: 2rem;
+  @include box-shadow(3px 3px 11px $light-grey);
+  @include columnify(6);
+  display: inline-block;
+  margin-bottom: 2rem;
+  vertical-align: top;
+
+
+  &:nth-of-type(2n) {
+    margin-right: 0px;
+
+  }
+
+  h4 {
+    color: $secondary;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}

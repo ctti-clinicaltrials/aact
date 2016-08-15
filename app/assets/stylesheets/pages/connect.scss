@@ -1,0 +1,46 @@
+section.connect {
+  background-color: $white;
+  padding-bottom: 500px;
+}
+
+div.connectionTypes {
+  @include display-flex;
+  padding: 2rem;
+
+  h4 {
+    font-size: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  i {
+    position: absolute;
+    top: .5rem;
+    right: 0rem;
+    font-size: 6rem;
+    opacity: .2;
+    color: $light-grey;
+  }
+
+  a.connectionCard {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    background-color: rgb(249,249,249);
+    color: $grey;
+    padding: 2rem;
+    @include box-shadow(3px 3px 11px $light-grey);
+    margin: 1rem;
+    position: relative;
+    bottom: 100px;
+  }
+
+}
+
+section.credentials {
+  margin-bottom: 4rem;
+}
+
+section.intro {
+  margin-bottom: 4rem;
+}
