@@ -6,6 +6,7 @@ section.homeHero {
   text-align: left;
   position: relative;
   text-align: center;
+  padding-bottom: 500px;
 
   h1 {
     padding: 0px;
@@ -154,120 +155,6 @@ div.heroPanelRow {
   }
 }
 
-
-
-div.homeContent {
-  position: relative;
-  padding-bottom: 350px;
-}
-
-
-
-aside.docsMenu {
-  padding-top: 1rem;
-  margin-bottom: 300px;
-  z-index: 100;
-  background-color: $secondary;
-  color: $white;
-  padding: 1rem;
-  @include box-shadow(3px 3px 11px $light-grey);
-  display: none;
-  height: 100vh;
-  overflow-y: scroll;
-
-  a {
-    display: block;
-    margin-bottom: 7px;
-    color: $white;
-    font-size: .8rem;
-
-    &.menuRoot {
-      font-weight: bold;
-      padding-top: 10px;
-      font-size: .9rem;
-      color: $turquoise;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-  }
-
-  ul {
-    list-style: none;
-    padding: 0px;
-  }
-
-  @include MQ(L) {
-    @include columnify(3, true);
-    position: absolute;
-    top: 0;
-    left: 20px;
-  }
-
-  &.fixed {
-    position: fixed;
-  }
-}
-
-
-section.documentation {
-  padding: 1rem;
-  padding-bottom: 1000px;
-  background-color: $white;
-
-  h2 {
-    font-size: 2.2rem;
-    padding: 0px;
-    margin-bottom: 1rem;
-    margin-top: 8rem;
-    padding-top: 1rem;
-    border-top: 1px solid #bfbfbf;
-
-  }
-
-  h4 {
-    font-size: 1.2rem;
-    padding: 0px;
-    margin-bottom: 1rem;
-    margin-top: 6rem;
-    padding-top: 1rem;
-    text-transform: uppercase;
-
-    &:first-of-type {
-      margin-top: 0px;
-    }
-  }
-
-  b {
-    font-size: 1.1rem;
-    display: block;
-    font-weight: bold;
-    font-family: $font-sans;
-    margin-bottom: 1rem;
-    padding-top: 2rem;
-  }
-
-  p.note {
-    font-style: italic;
-    color: lighten($grey, 30);
-  }
-
-  section {
-    margin-bottom: 20px;
-  }
-
-  @include MQ(L) {
-    @include columnify(9, true);
-    @include offset(3);
-    position: relative;
-    right: $gutter_width;
-  }
-}
-
-section.overview {
-  h2 {
-    margin-top: 0px;
-  }
-}
 
 section.pgAdmin {
   img {

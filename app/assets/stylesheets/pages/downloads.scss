@@ -12,15 +12,21 @@ section.downloadAact {
 }
 
 
-div.centerTile {
+div.card {
   background-color: rgb(249,249,249);
   color: $grey;
   padding: 2rem;
   @include box-shadow(3px 3px 11px $light-grey);
-  max-width: 80%;
-  display: block;
-  margin: 0 auto;
+  @include columnify(6);
+  display: inline-block;
   margin-bottom: 2rem;
+  vertical-align: top;
+
+
+  &:nth-of-type(2n) {
+    margin-right: 0px;
+
+  }
 
   h4 {
     color: $secondary;
