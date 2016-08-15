@@ -3,7 +3,7 @@ section.connect {
   padding-bottom: 500px;
 }
 
-div.connectionTypes {
+div.connectionTypes, div.downloadTypes {
   @include display-flex;
   padding: 2rem;
 
@@ -21,7 +21,7 @@ div.connectionTypes {
     color: $light-grey;
   }
 
-  a.connectionCard {
+  a.connectionCard, a.downloadCard {
     width: 80%;
     display: block;
     margin: 0 auto;
