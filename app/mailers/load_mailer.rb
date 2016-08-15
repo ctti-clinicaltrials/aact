@@ -1,5 +1,5 @@
-class StudyValidationMailer < ApplicationMailer
-  def alert(error)
+class LoadMailer < ApplicationMailer
+  def send_notification(load_event)
     emails = ['garrett@sturdy.work']
 
     if ENV['EMAIL_DUKE_TEAM']
@@ -7,10 +7,10 @@ class StudyValidationMailer < ApplicationMailer
       emails << 'williamhoos@gmail.com'
     end
 
-    @error = JSON.parse(error).symbolize_keys
+    @load_event = load_event
 
     emails.each do |email|
-      mail(to: email, subject: 'Study data validation for new load failed!')
+      mail(to: email, subject: 'Load completed!')
     end
   end
 end

@@ -13,6 +13,9 @@ namespace :import do
         client.populate_studies
 
         load_event.complete
+
+        StudyValidator.new.validate_studies
+        LoadMailer.send_notification(load_event)
       else
         puts "Not the first of the month - not running full import"
       end
