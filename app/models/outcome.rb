@@ -1,9 +1,9 @@
 class Outcome < StudyRelationship
   extend FastCount
-	has_many :outcome_measured_values, autosave: true
-	has_many :outcome_analyses, inverse_of: :outcome, autosave: true
-	has_many :outcome_groups, inverse_of: :outcome, autosave: true
-	has_many :result_groups, :through => :outcome_groups
+  has_many :outcome_measured_values, autosave: true
+  has_many :outcome_analyses, inverse_of: :outcome, autosave: true
+  has_many :outcome_groups, inverse_of: :outcome, autosave: true
+  has_many :result_groups, :through => :outcome_groups
 
   def self.create_all_from(opts)
     all=opts[:xml].xpath('//clinical_results').xpath("outcome_list").xpath('outcome')
@@ -37,7 +37,7 @@ class Outcome < StudyRelationship
       :safety_issue   => get_opt('safety_issue'),
       :measure        => get_opt('measure'),
       :population     => get_opt('population'),
-      :outcome_groups => OutcomeGroup.create_all_from({:outcome=>self,:groups=>opts[:groups]}),
+      :outcome_groups          => OutcomeGroup.create_all_from({:outcome=>self,:groups=>opts[:groups]}),
       :outcome_measured_values => OutcomeMeasuredValue.create_all_from(opts.merge(:outcome=>self)),
       :outcome_analyses        => OutcomeAnalysis.create_all_from(opts.merge(:outcome=>self)),
     }

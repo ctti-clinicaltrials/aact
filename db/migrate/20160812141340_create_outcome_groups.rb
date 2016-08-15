@@ -1,6 +1,7 @@
 class CreateOutcomeGroups < ActiveRecord::Migration
   def change
     create_table :outcome_groups do |t|
+      t.string  :ctgov_group_code
       t.integer :participant_count
     end
     add_column  :outcome_groups, :result_group_id, :integer, references: :result_groups

@@ -991,9 +991,9 @@ ALTER SEQUENCE outcome_analyses_id_seq OWNED BY outcome_analyses.id;
 
 CREATE TABLE outcome_analysis_groups (
     id integer NOT NULL,
-    participant_count integer,
+    ctgov_group_code character varying,
     result_group_id integer,
-    outcome_id integer
+    outcome_analysis_id integer
 );
 
 
@@ -1022,6 +1022,7 @@ ALTER SEQUENCE outcome_analysis_groups_id_seq OWNED BY outcome_analysis_groups.i
 
 CREATE TABLE outcome_groups (
     id integer NOT NULL,
+    ctgov_group_code character varying,
     participant_count integer,
     result_group_id integer,
     outcome_id integer

@@ -5,6 +5,6 @@ class OutcomeGroup < StudyRelationship
 
   def self.create_all_from(hash)
     return [] if hash[:groups].empty?
-    hash[:groups].collect{|g| new({:outcome=>hash[:outcome],:result_group=>g}) }
+    hash[:groups].collect{|g| new({:outcome=>hash[:outcome],:result_group=>g,:ctgov_group_code=>g.ctgov_group_code}) }
   end
 end

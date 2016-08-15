@@ -1,6 +1,7 @@
 class OutcomeAnalysis < StudyRelationship
-  belongs_to :outcome, inverse_of: :outcome_analyses, autosave: true
-#  belongs_to :result_group
+  belongs_to :outcome,        inverse_of: :outcome_analyses, autosave: true
+  has_many   :outcome_analysis_groups,  inverse_of: :outcome_analysis, autosave: true
+  has_many   :result_groups, :through => :outcome_analysis_groups
 
   def self.create_all_from(opts)
     all=opts[:outcome_xml].xpath("analysis_list").xpath('analysis')
@@ -25,16 +26,30 @@ class OutcomeAnalysis < StudyRelationship
       opts[:method_description]=xml.xpath('method_desc').text
       opts[:estimate_description]=xml.xpath('estimate_desc').text
       opts[:groups_description]=xml.xpath('groups_desc').text
+			group_ids=create_group_list(xml)
       a=new.create_from(opts)
+      a.outcome_analysis_groups = OutcomeAnalysisGroup.create_all_from({:outcome_analysis=>a,:group_ids=>group_ids,:groups=>opts[:groups]})
       col << a
       xml=all.pop
     end
     col
   end
 
+	def self.create_group_list(xml)
+    group_xmls=xml.xpath('group_id_list').xpath('group_id')
+		groups=[]
+		xml=group_xmls.pop
+		while xml
+      if !xml.blank?
+        groups << xml.text
+      end
+      xml=group_xmls.pop
+    end
+    groups
+  end
+
   def attribs
     {
-      :ctgov_group_code => xml.text,
       :title => get_opt(:title),
       :non_inferiority => get_opt(:non_inferiority),
       :non_inferiority_description => get_opt(:non_inferiority_description),
@@ -50,9 +65,8 @@ class OutcomeAnalysis < StudyRelationship
       :method => get_opt(:method),
       :method_description => get_opt(:method_description),
       :estimate_description => get_opt(:estimate_description),
-      :groups_description => get_opt(:groups_description),
       :outcome => get_opt(:outcome),
-#      :result_group => get_group,
+      :groups_description => get_opt(:groups_description),
     }
   end
 

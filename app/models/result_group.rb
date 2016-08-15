@@ -6,6 +6,7 @@ class ResultGroup < StudyRelationship
   has_many :drop_withdrawals, autosave: true
   has_many :outcome_measured_values, autosave: true
   has_many :outcome_groups, inverse_of: :result_group, autosave: true
+  has_many :outcome_analysis_groups, inverse_of: :result_group, autosave: true
   has_many :outcomes, :through => :outcome_groups
 
   def self.create_group_set(opts)
