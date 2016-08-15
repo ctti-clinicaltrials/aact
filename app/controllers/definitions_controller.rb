@@ -53,9 +53,16 @@ class DefinitionsController < ApplicationController\
       end
 
       unless hash["Table Name"] == "table"
-        hash["# of rows in table"] = hash["Table Name"].sub(/_/, "").constantize.count
+
+        begin
+          table = hash["Table Name"].sub(/_/, "").singularize.try(:constantize)
+          hash["# of rows in table"] = table.count
+        rescue NameError
+          hash["# of rows in table"] = "N/A"
+        end
+
       end
-      
+
       dataResult << hash
 
     end
