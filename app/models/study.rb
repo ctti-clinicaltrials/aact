@@ -10,11 +10,6 @@ class Study < ActiveRecord::Base
     self.interventional and self.current
   end
 
-  def self.try(nct_id='NCT00023673')
-    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-    Study.new({xml: xml, nct_id: nct_id}).create
-  end
-
   self.primary_key = 'nct_id'
 
   has_many :reviews,               :foreign_key => 'nct_id', dependent: :delete_all
