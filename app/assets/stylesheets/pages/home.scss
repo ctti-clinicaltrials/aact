@@ -6,6 +6,7 @@ section.homeHero {
   text-align: left;
   position: relative;
   text-align: center;
+  padding-bottom: 500px;
 
   h1 {
     padding: 0px;
@@ -28,80 +29,6 @@ section.homeHero {
     padding: 4rem 3rem;
   }
 
-  div.heroPanelRow {
-    background-color: $white;
-    @include display-flex;
-    padding: 0rem 6rem;
-
-    span.type {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: .8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 2px solid $primary;
-      color: $primary;
-      padding-bottom: 1rem;
-      font-weight: bold;
-    }
-
-    i.fa {
-      font-size: 15rem;
-      position: absolute;
-      bottom: -30px;
-      right: -20px;
-      opacity: .2;
-    }
-
-    a {
-      padding: 7rem 1rem;
-      @include box-shadow(3px 3px 11px $light-grey);
-      text-align: left;
-      position: relative;
-      bottom: 70px;
-      text-transform: none;
-      font-weight: normal;
-      font-size: 1.3rem;
-      overflow: hidden;
-
-      &.big {
-        width: 60%;
-        background-color: $secondary;
-        border-color: $secondary;
-
-        &:hover {
-          background-color: darken($secondary, 5);
-          border-color: darken($secondary, 5);
-        }
-      }
-
-      &.small {
-        width: 40%;
-
-        span.type {
-          border-bottom: 2px solid $secondary;
-          color: $secondary;
-        }
-      }
-
-      &.light {
-        background-color: rgb(249,249,249);
-        border-color: rgb(249,249,249);
-        color: $grey;
-
-        &:hover {
-          background-color: darken(rgb(249,249,249), 10);
-          border-color: darken(rgb(249,249,249), 10);
-        }
-
-        span.type {
-          border-bottom: 2px solid darken(rgb(249,249,249), 25);
-          color: darken(rgb(249,249,249), 25);
-        }
-      }
-    }
-  }
 
   a.button {
     margin: 1rem;
@@ -110,160 +37,120 @@ section.homeHero {
   }
 }
 
-div.homeContent {
-  position: relative;
-  padding-bottom: 350px;
-}
 
-aside.docsMenu {
-  padding-top: 1rem;
-  margin-bottom: 300px;
-  z-index: 100;
-  background-color: $secondary;
-  color: $white;
-  padding: 1rem;
-  @include box-shadow(3px 3px 11px $light-grey);
-  display: none;
-  height: 100vh;
-  overflow-y: scroll;
+div.circleButtons {
+  margin-bottom: 4rem;
+  @include display-flex;
+  @include align-items(center);
+  @include justify-content(center);
 
   a {
-    display: block;
-    margin-bottom: 7px;
-    color: $white;
-    font-size: .8rem;
-
-    &.menuRoot {
-      font-weight: bold;
-      padding-top: 10px;
-      font-size: .9rem;
-      color: $turquoise;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-  }
-
-  ul {
-    list-style: none;
-    padding: 0px;
-  }
-
-  @include MQ(L) {
-    @include columnify(3, true);
-    position: absolute;
-    top: 0;
-    left: 20px;
-  }
-
-  &.fixed {
-    position: fixed;
-  }
-}
-
-
-section.documentation {
-  padding: 1rem;
-  padding-bottom: 1000px;
-  background-color: $white;
-
-  h2 {
-    font-size: 2.2rem;
-    padding: 0px;
-    margin-bottom: 1rem;
-    margin-top: 8rem;
-    padding-top: 1rem;
-    border-top: 1px solid #bfbfbf;
-
-  }
-
-  h4 {
-    font-size: 1.2rem;
-    padding: 0px;
-    margin-bottom: 1rem;
-    margin-top: 6rem;
-    padding-top: 1rem;
+    width: 100px;
+    margin: 0px 40px;
+    @include display-flex;
+    @include align-items(center);
+    @include flex-direction(column);
     text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: .8rem;
+  }
 
-    &:first-of-type {
-      margin-top: 0px;
+  i {
+    display: block;
+    color: $white;
+    position: absolute;
+    @include center(xy);
+    font-size: 2.2rem;
+  }
+
+  div.iconWrap {
+    background-color: $primary;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 10px;
+  }
+}
+
+
+div.heroPanelRow {
+  background-color: $white;
+  @include display-flex;
+  padding: 3rem 6rem;
+
+  span.type {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid $primary;
+    color: $primary;
+    padding-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  span.title {
+    position: absolute;
+    bottom: 40px;
+    left: 30px;
+    font-size: 1.2rem;
+  }
+
+  i.fa {
+    font-size: 15rem;
+    position: absolute;
+    bottom: -30px;
+    right: -20px;
+    opacity: .2;
+  }
+
+  a {
+    padding: 7rem 1rem;
+    @include box-shadow(3px 3px 11px $light-grey);
+    text-align: left;
+    position: relative;
+    text-transform: none;
+    font-weight: normal;
+    font-size: 1.3rem;
+    overflow: hidden;
+
+    &.big {
+      width: 60%;
+      background-color: $secondary;
+      border-color: $secondary;
+
+      &:hover {
+        background-color: darken($secondary, 5);
+        border-color: darken($secondary, 5);
+      }
+    }
+
+    &.small {
+      width: 40%;
+
+      span.type {
+        border-bottom: 2px solid $secondary;
+        color: $secondary;
+      }
+    }
+
+    &.light {
+      background-color: rgb(249,249,249);
+      border-color: rgb(249,249,249);
+      color: $grey;
+
+      &:hover {
+        background-color: darken(rgb(249,249,249), 10);
+        border-color: darken(rgb(249,249,249), 10);
+      }
+
+      span.type {
+        border-bottom: 2px solid darken(rgb(249,249,249), 25);
+        color: darken(rgb(249,249,249), 25);
+      }
     }
   }
-
-  b {
-    font-size: 1.1rem;
-    display: block;
-    font-weight: bold;
-    font-family: $font-sans;
-    margin-bottom: 1rem;
-    padding-top: 2rem;
-  }
-
-  p.note {
-    font-style: italic;
-    color: lighten($grey, 30);
-  }
-
-  section {
-    margin-bottom: 20px;
-  }
-
-  @include MQ(L) {
-    @include columnify(9, true);
-    @include offset(3);
-    position: relative;
-    right: $gutter_width;
-  }
-}
-
-section.overview {
-  h2 {
-    margin-top: 0px;
-  }
-}
-
-section.pgAdmin {
-  img {
-    max-width: 80%;
-    display: block;
-    margin: 0 auto;
-    padding-top: 1rem;
-    margin-bottom: 3rem;
-    @include box-shadow(1px 1px 6px #ccc);
-  }
-}
-
-div.credentialRow {
-  @include display-flex;
-  @include flex-direction(row);
-  @include align-items(center);
-  margin-bottom: 10px;
-
-  p {
-    margin-bottom: 0px;
-    margin-right: $gutter_width;
-  }
-
-  pre {
-    margin: 0px;
-    padding: 10px;
-  }
-}
-
-td, th {
-  padding:10px;
-  border:solid 1px #eee;
-  font-size: 14px;
-}
-
-input {
-  border:solid 1px #ccc;
-  border-radius: 5px;
-  padding:7px 14px;
-  margin-bottom:10px;
-  font-size: 12px;
-}
-
-div.dataDefinitionsTools {
-  @include display-flex;
-  @include justify-content(space-between);
 }
