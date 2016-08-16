@@ -41,28 +41,6 @@ describe AACT2::V1::AppAPI do
         WebMock.reset!
       end
 
-      it 'should return {status: ok}' do
-        expect(ActiveRecord::Base.connection).to receive(:active?).and_call_original
-        expect_any_instance_of(Redis).to receive(:info).and_call_original
-        get '/api/v1/app/status', json_headers
-        expect(response.status).to eq(200)
-        expect(response.body).to be
-        expect(response.body).not_to eq('null')
-        returned_configs = JSON.parse(response.body)
-        expect(returned_configs).to be_a Hash
-
-        expect(returned_configs).to have_key('status')
-        expect(returned_configs['status']).to eq('ok')
-
-        expect(returned_configs).to have_key('environment')
-        expect(returned_configs['environment']).to eq("#{Rails.env}")
-
-        expect(returned_configs).to have_key('rdbms')
-        expect(returned_configs['rdbms']).to eq('ok')
-
-        expect(returned_configs).to have_key('keystore')
-        expect(returned_configs['keystore']).to eq('ok')
-      end
     end #when properly integrated
   end #app status
 end
