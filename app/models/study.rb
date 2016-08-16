@@ -28,8 +28,6 @@ class Study < ActiveRecord::Base
   has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
-  has_many :pma_mappings,          :foreign_key => 'nct_id'
-  has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
@@ -60,11 +58,6 @@ class Study < ActiveRecord::Base
   has_many :sponsors,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :references,            :foreign_key => 'nct_id', dependent: :delete_all
   accepts_nested_attributes_for :outcomes
-
-  scope :started_between, lambda {|sdate, edate| where("start_date >= ? AND created_at <= ?", sdate, edate )}
-  scope :changed_since,   lambda {|cdate| where("last_changed_date >= ?", cdate )}
-  scope :completed_since, lambda {|cdate| where("completion_date >= ?", cdate )}
-  scope :sponsored_by,    lambda {|agency| joins(:sponsors).where("sponsors.agency LIKE ?", "#{agency}%")}
 
   def initialize(hash)
     super
@@ -231,7 +224,6 @@ class Study < ActiveRecord::Base
       :first_received_results_date_month_day => get('firstreceived_results_date'),
       :nlm_download_date_description => xml.xpath('//download_date').text,
 
-      :org_study_id => xml.xpath('//org_study_id').text,
       :acronym =>get('acronym'),
       :number_of_arms => get('number_of_arms'),
       :number_of_groups =>get('number_of_groups'),
@@ -257,7 +249,6 @@ class Study < ActiveRecord::Base
       :has_expanded_access => get_boolean('has_expanded_access'),
       :has_dmc => get_boolean('has_dmc'),
       :why_stopped =>get('why_stopped').strip,
-      #:delivery_mechanism =>delivery_mechanism,
 
     }
   end

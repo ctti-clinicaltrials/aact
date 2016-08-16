@@ -195,13 +195,11 @@ CREATE TABLE calculated_values (
     id integer NOT NULL,
     sponsor_type character varying,
     actual_duration numeric(5,2),
-    enrollment integer,
     results_reported boolean,
     months_to_report_results integer,
     number_of_facilities integer,
     number_of_nsae_subjects integer,
     number_of_sae_subjects integer,
-    study_rank character varying,
     nct_id character varying,
     registered_in_calendar_year integer,
     start_date date,
@@ -617,8 +615,6 @@ CREATE TABLE facilities (
     state character varying,
     zip character varying,
     country character varying,
-    latitude character varying,
-    longitude character varying,
     nct_id character varying
 );
 
@@ -958,9 +954,6 @@ CREATE TABLE outcome_analyses (
     estimate_description text,
     nct_id character varying,
     outcome_id integer,
-    group_id integer,
-    ctgov_group_code character varying,
-    outcome_analysis_result_group_id integer,
     groups_description character varying,
     ci_percent integer
 );
@@ -1100,7 +1093,6 @@ CREATE TABLE outcomes (
     outcome_type character varying,
     title text,
     description text,
-    measure character varying,
     time_frame text,
     safety_issue character varying,
     population text,
@@ -1759,18 +1751,11 @@ ALTER SEQUENCE statistics_id_seq OWNED BY statistics.id;
 
 CREATE TABLE studies (
     nct_id character varying,
-    start_date date,
     first_received_date date,
-    verification_date date,
     last_changed_date date,
-    primary_completion_date date,
-    completion_date date,
     first_received_results_date date,
-    download_date date,
     completion_date_type character varying,
     primary_completion_date_type character varying,
-    org_study_id character varying,
-    secondary_id character varying,
     study_type character varying,
     overall_status character varying,
     phase character varying,
@@ -1780,7 +1765,6 @@ CREATE TABLE studies (
     source character varying,
     biospec_retention character varying,
     limitations_and_caveats character varying,
-    delivery_mechanism character varying,
     description character varying,
     acronym character varying,
     number_of_arms integer,
@@ -2779,4 +2763,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160812141340');
 INSERT INTO schema_migrations (version) VALUES ('20160813125212');
 
 INSERT INTO schema_migrations (version) VALUES ('20160814024245');
+
+INSERT INTO schema_migrations (version) VALUES ('20160816202221');
 
