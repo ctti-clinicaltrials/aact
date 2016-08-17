@@ -70,7 +70,7 @@ class StudyValidator
         actual_result: actual_result
       }
 
-      StudyValidationMailer.alert(error.to_json).deliver_now
+      StudyValidationMailer.send_alerts(error.to_json)
 
       raise StudyValidatorError, "\nExpected: #{expected_result}\nActual: #{actual_result}"
     else
