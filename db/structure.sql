@@ -956,7 +956,8 @@ CREATE TABLE outcome_analyses (
     nct_id character varying,
     outcome_id integer,
     groups_description character varying,
-    ci_percent integer
+    ci_percent integer,
+    p_value_description character varying
 );
 
 

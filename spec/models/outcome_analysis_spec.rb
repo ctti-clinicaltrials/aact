@@ -15,7 +15,7 @@ describe OutcomeAnalysis do
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.outcomes.size).to eq(58)
-o=study.outcomes.select{|x|x.title=='LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death'}.first
+    o=study.outcomes.select{|x|x.title=='LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death'}.first
 
     expect(o.outcome_analyses.size).to eq(2)
     a=o.outcome_analyses.select{|x|x.method=='Comparison of poisson rates'}.first
@@ -43,6 +43,10 @@ o=study.outcomes.select{|x|x.title=='LCM vs CDM: Disease Progression to a New WH
     expect(o2_group.ctgov_group_code).to eq('O2')
     expect(o2_group.result_group.ctgov_group_code).to eq('O2')
     expect(o2_group.result_group.title).to eq('Laboratory Plus Clinical Monitoring (LCM)')
+
+    o=study.outcomes.select{|x|x.title=='Cotrimoxazole: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks)'}.first
+    expect(o.outcome_analyses.size).to eq(1)
+    expect(o.outcome_analyses.first.p_value_description).to eq('Adjusted for randomization stratification factors')
   end
 
 end
