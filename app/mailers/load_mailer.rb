@@ -5,6 +5,7 @@ class LoadMailer < ApplicationMailer
     if ENV['EMAIL_DUKE_TEAM']
       emails << 'sheri.tibbs@duke.edu'
       emails << 'williamhoos@gmail.com'
+      emails << 'nancy.walden@duke.edu'
     end
 
     @load_event = load_event
