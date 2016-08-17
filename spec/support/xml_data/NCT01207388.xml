@@ -1,0 +1,2000 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 16, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01207388</url>
+  </required_header>
+  <id_info>
+    <org_study_id>MT103-203</org_study_id>
+    <nct_id>NCT01207388</nct_id>
+  </id_info>
+  <brief_title>Confirmatory Phase II Study of Blinatumomab (MT103) in Patients With Minimal Residual Disease of B-precursor Acute Lymphoblastic Leukemia (ALL)</brief_title>
+  <acronym>BLAST</acronym>
+  <official_title>A Confirmatory Multicenter, Single-arm Study to Assess the Efficacy, Safety, and Tolerability of the BiTE® Antibody Blinatumomab in Adult Patients With Minimal Residual Disease (MRD) of B-precursor Acute Lymphoblastic Leukemia (BLAST)</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Amgen Research (Munich) GmbH</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Amgen Research (Munich) GmbH</source>
+  <oversight_info>
+    <authority>Germany: Paul-Ehrlich-Institut</authority>
+    <authority>Austria: Agency for Health and Food Safety</authority>
+    <authority>Belgium: Federal Agency for Medicinal Products and Health Products</authority>
+    <authority>France: Afssaps - Agence française de sécurité sanitaire des produits de santé (Saint-Denis)</authority>
+    <authority>Spain: Agencia Española de Medicamentos y Productos Sanitarios</authority>
+    <authority>United Kingdom: Medicines and Healthcare Products Regulatory Agency</authority>
+    <authority>Russia: Ministry of Health of the Russian Federation</authority>
+    <authority>Romania: National Medicines Agency</authority>
+    <authority>Netherlands: The Central Committee on Research Involving Human Subjects (CCMO)</authority>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to confirm whether the bispecific T cell engager blinatumomab
+      (MT103) is effective, safe and tolerable in the treatment of ALL patients with minimal
+      residual disease.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      The detection of minimal residual disease (MRD) after induction therapy and/or consolidation
+      therapy is an independent prognostic factor for poor outcome of adult ALL. No standard
+      treatments are available for patients with MRD-positive B-precursor ALL. Blinatumomab
+      (MT103) is a bispecific single-chain antibody construct designed to link B cells and T cells
+      resulting in T-cell activation and a cytotoxic T-cell response against CD19 expressing
+      cells. The purpose of this study is to confirm whether the bispecific T-cell engager
+      blinatumomab (MT103) is effective, safe and tolerable in the treatment of ALL patients with
+      minimal residual disease.
+
+      Participants will receive up to four 4-week cycles of intravenous blinatumomab treatment
+      followed by an infusion-free period of 14 days. A safety follow-up will be performed 30 days
+      after the end of the last infusion and efficacy follow-ups will occurr until 24 months after
+      treatment start. Participants will be followed for up to 5 years after the start of
+      treatment for survival.
+    </textblock>
+  </detailed_description>
+  <overall_status>Active, not recruiting</overall_status>
+  <start_date>November 2010</start_date>
+  <completion_date type="Anticipated">January 2019</completion_date>
+  <primary_completion_date type="Actual">February 2014</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Endpoint Classification: Safety/Efficacy Study, Intervention Model: Single Group Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Percentage of Participants With a Minimal Residual Disease (MRD) Response Within the First Treatment Cycle</measure>
+    <time_frame>During the first cycle (6 weeks)</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>At the end of the first treatment cycle (Day 29) a bone marrow aspiration/biopsy was performed and evaluated by the central MRD laboratory.
+Complete MRD response is defined as no polymerase chain reaction (PCR) amplification of individual rearrangements of immunoglobulin (Ig)- or T-cell receptor (TCR)-genes detected after completion of the first cycle.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Hematological Relapse-free Survival Rate</measure>
+    <time_frame>18 months</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Overall Survival</measure>
+    <time_frame>5 years</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>100-Day Mortality After Allogeneic Hematopoietic Stem Cell Transplant</measure>
+    <time_frame>100 days after HSCT</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Time to Hematological Relapse</measure>
+    <time_frame>Up to 2 years</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Duration of Complete MRD Response</measure>
+    <time_frame>2 years</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>MRD Level</measure>
+    <time_frame>Up to 2 years</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of Participants With Adverse Events</measure>
+    <time_frame>Adverse events are reported until the data cut-off date of 21 February 2014; the median treatment duration was 52 days.</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>Adverse events (AEs) were evaluated for severity according to the the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE), version 4, as follows: Grade 1 - Mild AE; Grade 2 - Moderate AE; Grade 3 - Severe AE; Grade 4 - Life-threatening or disabling AE; Grade 5 - Death.
+The investigator used medical judgment to determine if there was a causal relationship (ie, related, unrelated) between an adverse event and blinatumomab.
+An AE was considered &quot;serious&quot; if it resulted in death, was life-threatening, required or prolonged inpatient hospitalization, resulted in persistent or significant incapacity or substantial disruption to conduct normal life functions, was a congenital anomaly or birth defect or was a medically important condition.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Quality of Life</measure>
+    <time_frame>Up to 2 years</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Resource Utilization</measure>
+    <time_frame>2 years</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <number_of_arms>1</number_of_arms>
+  <enrollment type="Actual">116</enrollment>
+  <condition>B-cell Acute Lymphoblastic Leukemia</condition>
+  <arm_group>
+    <arm_group_label>Blinatumomab</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Blinatumomab</intervention_name>
+    <description>Continuous intravenous infusion</description>
+    <arm_group_label>Blinatumomab</arm_group_label>
+    <other_name>AMG103</other_name>
+    <other_name>MT103</other_name>
+    <other_name>BLINCYTO™</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Patients with B-precursor ALL in complete hematological remission after at least 3
+             intense chemotherapy blocks
+
+          -  Presence of minimal residual disease at a level of ≥ 10^-3
+
+          -  Availability of bone marrow specimen from primary diagnosis for clone-specific MRD
+             assessment
+
+          -  Negative human immunodeficiency virus (HIV) test, negative hepatitis B (HbsAg) test
+             and hepatitis C virus (anti-HCV) test
+
+          -  Negative pregnancy test in women of childbearing potential
+
+          -  Eastern Cooperative Oncology Group (ECOG) performance status 0 or 1
+
+        Exclusion Criteria:
+
+          -  Presence of circulating blasts or current extra-medullary involvement by ALL
+
+          -  History of relevant central nervous system (CNS) pathology or current CNS pathology
+
+          -  Prior allogeneic hematopoietic stem cell transplant (HSCT)
+
+          -  Eligibility for treatment with tyrosine-kinase inhibitors (TKI)
+
+          -  Systemic cancer chemotherapy within 2 weeks prior to study treatment
+
+          -  Therapy with monoclonal antibodies (rituximab, alemtuzumab) within 4 weeks prior to
+             study treatment
+
+          -  Previous treatment with blinatumomab
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Ralf Bargou, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Medizinische Klinik und Poliklinik II, Würzburg</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Nicola Gökbuget, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Klinikum der Goethe Universität Frankfurt</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>1102 - LKH Graz</name>
+      <address>
+        <city>Graz</city>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1107 - Krankenhaus der Elisabethinen</name>
+      <address>
+        <city>Linz</city>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1106</name>
+      <address>
+        <city>Salzburg</city>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1101 - AKH Wien</name>
+      <address>
+        <city>Vienna</city>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1504</name>
+      <address>
+        <city>Antwerpen</city>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1502 - Cliniques Universitaires de Saint-Luc</name>
+      <address>
+        <city>Brussels</city>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1505</name>
+      <address>
+        <city>Brügge</city>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1503</name>
+      <address>
+        <city>Gent</city>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1501 - Cliniques Universitaires UCL de Mont Godinne</name>
+      <address>
+        <city>Yvoir</city>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1211 - CHU d'Angers</name>
+      <address>
+        <city>Angers</city>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1210 - CHU de Besançon</name>
+      <address>
+        <city>Besançon</city>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1206 - Hôpital de Pontoise</name>
+      <address>
+        <city>Cergy Pontoise</city>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1205 - CHU Henri Mondor</name>
+      <address>
+        <city>Créteil</city>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1209 - CHU de Lyon</name>
+      <address>
+        <city>Lyon</city>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1212 - Hôpital de l'hôtel Dieu</name>
+      <address>
+        <city>Nantes</city>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1213 - Centre Hospitalier Universitaire de Nice</name>
+      <address>
+        <city>Nice</city>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1201 - Hôpital Saint Louis</name>
+      <address>
+        <city>Paris</city>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1202 - CHU de Bordeaux - Hôpital Haut Lévêque</name>
+      <address>
+        <city>Pessac</city>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1208 - CHU de Purpan</name>
+      <address>
+        <city>Toulouse</city>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1011 - Charité Berlin</name>
+      <address>
+        <city>Berlin</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1022 - Universitätsklinkum Carl Gustav Carus Dresden</name>
+      <address>
+        <city>Dresden</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1009 - Universitätsklinikum Essen</name>
+      <address>
+        <city>Essen</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1002 - Klinikum der Goethe Universität</name>
+      <address>
+        <city>Frankfurt</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1014 - Asklepiosklinik St. Georg</name>
+      <address>
+        <city>Hamburg</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1018 - Medizinische Hochschule Hannover</name>
+      <address>
+        <city>Hannover</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1012 - Universitätsklinikum Heidelberg</name>
+      <address>
+        <city>Heidelberg</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1003 - Universitätsklinikum Schleswig-Holstein</name>
+      <address>
+        <city>Kiel</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1019 - Universitätsklinikum Leipzig</name>
+      <address>
+        <city>Leipzig</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1010 - Klinikum der Universität München - Großhadern</name>
+      <address>
+        <city>Munich</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1004 - Universitätsklinikum Münster</name>
+      <address>
+        <city>Münster</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1016 - Universitätsklinikum Regensburg</name>
+      <address>
+        <city>Regensburg</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1020 - Universitätsklinikum Rostock</name>
+      <address>
+        <city>Rostock</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1007 - Robert-Bosch-Krankenhaus</name>
+      <address>
+        <city>Stuttgart</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1015 - Universitätsklinikum Tübingen</name>
+      <address>
+        <city>Tübingen</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1005 - Universitätsklinikum Ulm</name>
+      <address>
+        <city>Ulm</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1001 - Julius-Maximilians-Universität Würzburg</name>
+      <address>
+        <city>Würzburg</city>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1301 - Ospedali Riuniti di Bergamo</name>
+      <address>
+        <city>Bergamo</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1303 - Istituto di Ematologia &quot;L.&amp; A.Seràgnoli&quot; Azienda</name>
+      <address>
+        <city>Bologna</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1314 - Azienda Ospedaliera Spedali Civili Brescia</name>
+      <address>
+        <city>Brescia</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1313 - Universita di Catania</name>
+      <address>
+        <city>Catania</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1312 - Azienda Ospedaliera Universitaria San Martino</name>
+      <address>
+        <city>Genoa</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1305 - Ospedale San Gerardo</name>
+      <address>
+        <city>Monza</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1309 - Azienda Ospedaliera Antonio Cardarelli</name>
+      <address>
+        <city>Napoli</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1308 - Ospedali Riuniti &quot;Villa Sofia-Cervello&quot;</name>
+      <address>
+        <city>Palermo</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1302 - Università La Sapienza di Roma</name>
+      <address>
+        <city>Rome</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1310 - Fondazione Policlinico Tor Vergata</name>
+      <address>
+        <city>Rome</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1315 - Azienda Ospedaliero-Universitaria S. Giovanni Battista (Le Molinette)</name>
+      <address>
+        <city>Torino</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1311 - Azienda Ospedaliera di Verona</name>
+      <address>
+        <city>Verona</city>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>2204 - UMC Groningen</name>
+      <address>
+        <city>Groningen</city>
+        <country>Netherlands</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>2201 - Daniel Den Hoed Hospitaal</name>
+      <address>
+        <city>Rotterdam</city>
+        <country>Netherlands</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1905 - Uniwersytecki Szpital Kliniczny w Białymstoku</name>
+      <address>
+        <city>Bialystok</city>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1907 - Uniwersyteckie Centrum Kliniczne</name>
+      <address>
+        <city>Gdansk</city>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1908 - Swietokrzyskie Centrum Onkologii</name>
+      <address>
+        <city>Kielce</city>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1902 - Uniwersytet Medyczny w Lublinie</name>
+      <address>
+        <city>Lublin</city>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1901 - Klinika Hematologii - Instytut Hematologii i Transfuzjologii</name>
+      <address>
+        <city>Warsaw</city>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1906 - MTZ Clinical Research Sp. z o.o.</name>
+      <address>
+        <city>Warsaw</city>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1904 - Samodzielny Publiczny</name>
+      <address>
+        <city>Wrocław</city>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>2101 - Institutul Clinic Fundeni, Hematologie II</name>
+      <address>
+        <city>Bucharest</city>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>2102 - Spitalul Clinic Coltea, Hematologie</name>
+      <address>
+        <city>Bucharest</city>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>2106 - Institutul Oncologic &quot;Prof. Dr. I. Chiricuta&quot;</name>
+      <address>
+        <city>Cluj-Napoca</city>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>2105 - Institutul Regional de Oncologie</name>
+      <address>
+        <city>Iasi</city>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>2001 - Russian Hematology Research Center</name>
+      <address>
+        <city>Moscow</city>
+        <country>Russian Federation</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>2003 - Municipal Hospital No. 15</name>
+      <address>
+        <city>St. Petersburg</city>
+        <country>Russian Federation</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1401 - ICO Hospital Germans Trias I Pujol</name>
+      <address>
+        <city>Badalona</city>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1404 - Hospital Clínic Servei d´Hematologia</name>
+      <address>
+        <city>Barcelona</city>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1402 - Complexo Hospitalario Universitario A Coruña</name>
+      <address>
+        <city>La Coruña</city>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1408 - Hospital 12 de Octubre</name>
+      <address>
+        <city>Madrid</city>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1405 - Hospital Universitari Son Espases</name>
+      <address>
+        <city>Mallorca</city>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1407 - Unidad de Citogenética Oncológica</name>
+      <address>
+        <city>Salamanca</city>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1406 - Hospital Universitari i Politècnic La Fe de Valencia</name>
+      <address>
+        <city>Valencia</city>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1605 - Queen Elizabeth Hospital</name>
+      <address>
+        <city>Birmingham</city>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1602 - Bristol Royal Infirmary</name>
+      <address>
+        <city>Bristol</city>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1604 - University Hospital of Wales</name>
+      <address>
+        <city>Cardiff</city>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1601 - Royal Free Hospital</name>
+      <address>
+        <city>London</city>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>1607 - Nottingham City Hospital NHS Trust</name>
+      <address>
+        <city>Nottingham</city>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>Austria</country>
+    <country>Belgium</country>
+    <country>France</country>
+    <country>Germany</country>
+    <country>Italy</country>
+    <country>Netherlands</country>
+    <country>Poland</country>
+    <country>Romania</country>
+    <country>Russian Federation</country>
+    <country>Spain</country>
+    <country>United Kingdom</country>
+  </location_countries>
+  <verification_date>September 2015</verification_date>
+  <lastchanged_date>September 16, 2015</lastchanged_date>
+  <firstreceived_date>September 21, 2010</firstreceived_date>
+  <firstreceived_results_date>January 28, 2015</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>Blinatumomab</keyword>
+  <keyword>MRD</keyword>
+  <keyword>B-ALL</keyword>
+  <keyword>Minimal residual disease</keyword>
+  <keyword>adult ALL</keyword>
+  <keyword>Leukemia</keyword>
+  <keyword>ALL</keyword>
+  <keyword>Lymphatic diseases</keyword>
+  <keyword>Lymphoproliferative disorders</keyword>
+  <keyword>bispecific antibody</keyword>
+  <keyword>anti-CD19</keyword>
+  <keyword>Immunotherapeutic treatment</keyword>
+  <is_fda_regulated>No</is_fda_regulated>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Leukemia</mesh_term>
+    <mesh_term>Precursor Cell Lymphoblastic Leukemia-Lymphoma</mesh_term>
+    <mesh_term>Leukemia, Lymphoid</mesh_term>
+    <mesh_term>Neoplasm, Residual</mesh_term>
+    <mesh_term>Burkitt Lymphoma</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Blinatumomab</mesh_term>
+    <mesh_term>Antibodies, Bispecific</mesh_term>
+  </intervention_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <recruitment_details>This study was open to adults with a diagnosis of minimal residual disease (MRD; ≥ 10^-3 leukemic cells) -positive B-precursor acute lymphoblastic leukemia (ALL) who were in complete hematologic remission.</recruitment_details>
+      <pre_assignment_details>Results are reported for the primary analysis (conducted when all participants had been evaluated for the primary efficacy endpoint; data cutoff date of 21 February 2014). The core study was defined as completing 4 cycles for participants not proceeding to HSCT and completion of at least Day 29 of Cycle 1 for those proceeding to HSCT.</pre_assignment_details>
+      <group_list>
+        <group group_id="P1">
+          <title>Blinatumomab</title>
+          <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.
+Participants suitable for allogeneic hematopoietic stem cell transplant (HSCT) after treatment with at least 1 cycle of blinatumomab may have undergone allogeneic HSCT instead of receiving further cycles with blinatumomab.</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="116"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="74">Completed the core study</participants>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="42"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Adverse Event</title>
+              <participants_list>
+                <participants group_id="P1" count="20"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Disease Relapse</title>
+              <participants_list>
+                <participants group_id="P1" count="11"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Physician Decision</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Treatment Ongoing</title>
+              <participants_list>
+                <participants group_id="P1" count="10"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <group_list>
+        <group group_id="B1">
+          <title>Blinatumomab</title>
+          <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
+        </group>
+      </group_list>
+      <measure_list>
+        <measure>
+          <title>Number of Participants</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="116"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="44.6" spread="16.4"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age, Customized</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>≥ 18 and &lt;35 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="36"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>≥ 35 and &lt; 55 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="41"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>≥ 55 and &lt; 65 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="24"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>≥ 65 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="15"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Female</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="48"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Male</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="68"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Race/Ethnicity, Customized</title>
+          <description>Race was not permitted to be collected in France.</description>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>White</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="102"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Asian</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Mixed</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Unknown</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="12"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Philadelphia Chromosome Disease Status</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Positive</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="5"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Negative</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="111"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Confirmed t(4;11) Translocation / MLL-AF4+ ALL</title>
+          <description>t(4;11)(q21;q23) translocation, resulting in the fusion of the mixed lineage leukemia (MLL) gene on chromosome 11 and the AF4 gene on chromosome 4</description>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="5"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>MRD Level at Baseline by Central Laboratory</title>
+          <description>Measured by polymerase chain reaction (PCR) performed on bone marrow and assessed by the central laboratory; Lower limit of quantification = 10^-4 leukemic cells.</description>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>≥ 10^-1 and &lt; 1</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="9"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>≥ 10^-2 and &lt; 10^-1</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="45"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>≥ 10^-3 and &lt; 10^-2</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="52"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>&lt; 10^-3</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="3"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Below Lower Limit of Quantification</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="5"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Unknown</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="2"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>White Blood Cells at First Diagnosis</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>≤ 30,000/mL</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="78"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>&gt; 30,000/mL</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="18"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Unknown</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="20"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Participants With a Minimal Residual Disease (MRD) Response Within the First Treatment Cycle</title>
+        <description>At the end of the first treatment cycle (Day 29) a bone marrow aspiration/biopsy was performed and evaluated by the central MRD laboratory.
+Complete MRD response is defined as no polymerase chain reaction (PCR) amplification of individual rearrangements of immunoglobulin (Ig)- or T-cell receptor (TCR)-genes detected after completion of the first cycle.</description>
+        <time_frame>During the first cycle (6 weeks)</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>Primary endpoint full analysis set (Prim EP FAS) included all participants with an Ig TCR PCR MRD assay with the minimum required sensitivity of 1 x 10^-4 at central lab established at Baseline.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Blinatumomab</title>
+            <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="113"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants With a Minimal Residual Disease (MRD) Response Within the First Treatment Cycle</title>
+            <description>At the end of the first treatment cycle (Day 29) a bone marrow aspiration/biopsy was performed and evaluated by the central MRD laboratory.
+Complete MRD response is defined as no polymerase chain reaction (PCR) amplification of individual rearrangements of immunoglobulin (Ig)- or T-cell receptor (TCR)-genes detected after completion of the first cycle.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="77.9" lower_limit="69.1" upper_limit="85.1"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Hematological Relapse-free Survival Rate</title>
+        <time_frame>18 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <posting_date>08/2017</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Overall Survival</title>
+        <time_frame>5 years</time_frame>
+        <safety_issue>No</safety_issue>
+        <posting_date>08/2017</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>100-Day Mortality After Allogeneic Hematopoietic Stem Cell Transplant</title>
+        <time_frame>100 days after HSCT</time_frame>
+        <safety_issue>No</safety_issue>
+        <posting_date>08/2017</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Time to Hematological Relapse</title>
+        <time_frame>Up to 2 years</time_frame>
+        <safety_issue>No</safety_issue>
+        <posting_date>08/2017</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Duration of Complete MRD Response</title>
+        <time_frame>2 years</time_frame>
+        <safety_issue>No</safety_issue>
+        <posting_date>08/2017</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>MRD Level</title>
+        <time_frame>Up to 2 years</time_frame>
+        <safety_issue>No</safety_issue>
+        <posting_date>08/2017</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Number of Participants With Adverse Events</title>
+        <description>Adverse events (AEs) were evaluated for severity according to the the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE), version 4, as follows: Grade 1 – Mild AE; Grade 2 – Moderate AE; Grade 3 - Severe AE; Grade 4 - Life-threatening or disabling AE; Grade 5 - Death.
+The investigator used medical judgment to determine if there was a causal relationship (ie, related, unrelated) between an adverse event and blinatumomab.
+An AE was considered “serious” if it resulted in death, was life-threatening, required or prolonged inpatient hospitalization, resulted in persistent or significant incapacity or substantial disruption to conduct normal life functions, was a congenital anomaly or birth defect or was a medically important condition.</description>
+        <time_frame>Adverse events are reported until the data cut-off date of 21 February 2014; the median treatment duration was 52 days.</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <population>All participants who received any infusion of blinatumomab.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Blinatumomab</title>
+            <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="116"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Number of Participants With Adverse Events</title>
+            <description>Adverse events (AEs) were evaluated for severity according to the the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE), version 4, as follows: Grade 1 – Mild AE; Grade 2 – Moderate AE; Grade 3 - Severe AE; Grade 4 - Life-threatening or disabling AE; Grade 5 - Death.
+The investigator used medical judgment to determine if there was a causal relationship (ie, related, unrelated) between an adverse event and blinatumomab.
+An AE was considered “serious” if it resulted in death, was life-threatening, required or prolonged inpatient hospitalization, resulted in persistent or significant incapacity or substantial disruption to conduct normal life functions, was a congenital anomaly or birth defect or was a medically important condition.</description>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <sub_title>Any adverse event</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="116"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Serious adverse events</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="69"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Adverse events of at least CTC grade 3</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="68"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Adverse events of at least CTC grade 4</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="31"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Fatal adverse events</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="3"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>AEs leading to discontinuation of blinatumomab</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="20"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>AEs leading to interruption of blinatumomab</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="35"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Treatment-related adverse events</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="112"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Treatment-related serious adverse events</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="59"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Related adverse events of at least CTC grade 3</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="58"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Related adverse events of at least CTC grade 4</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="26"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Treatment-related fatal adverse events</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="1"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Quality of Life</title>
+        <time_frame>Up to 2 years</time_frame>
+        <safety_issue>No</safety_issue>
+        <posting_date>08/2017</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Resource Utilization</title>
+        <time_frame>2 years</time_frame>
+        <safety_issue>No</safety_issue>
+        <posting_date>08/2017</posting_date>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>Adverse events are reported until the data cut-off date of 21 February 2014; the median treatment duration was 52 days.</time_frame>
+      <desc>Other Adverse Events summarizes the non-serious occurrences of adverse events that exceed the indicated frequency threshold.
+Summary of Adverse Events includes only those participants who received at least one dose of investigational product.</desc>
+      <group_list>
+        <group group_id="E1">
+          <title>Blinatumomab</title>
+          <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <default_vocab>MedDRA 17.0</default_vocab>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="69" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Blood and lymphatic system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anaemia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Bone marrow failure</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Febrile neutropenia</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Leukopenia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Neutropenia</sub_title>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Thrombocytopenia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Sinus bradycardia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Sinus tachycardia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Abdominal pain</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Gastrointestinal haemorrhage</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Device issue</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Device malfunction</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Fatigue</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Gait disturbance</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Infusion site extravasation</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Product contamination microbial</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Puncture site pain</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Pyrexia</sub_title>
+                <counts group_id="E1" subjects_affected="17" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Thrombosis in device</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Hepatobiliary disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hepatotoxicity</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Immune system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Cytokine release syndrome</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Hypersensitivity</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Acinetobacter bacteraemia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Atypical pneumonia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Bronchopneumonia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Bronchopulmonary aspergillosis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Cystitis klebsiella</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Device related infection</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>H1N1 influenza</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Osteomyelitis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Sepsis</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Sinusitis</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Staphylococcal infection</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Upper respiratory tract infection</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Urinary tract infection staphylococcal</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Injury, poisoning and procedural complications</title>
+            <event_list>
+              <event>
+                <sub_title>Incision site haemorrhage</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Infusion related reaction</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Overdose</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Post lumbar puncture syndrome</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Spinal fracture</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Subdural haemorrhage</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>Alanine aminotransferase increased</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Aspartate aminotransferase increased</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Blood bilirubin increased</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>C-reactive protein increased</sub_title>
+                <counts group_id="E1" subjects_affected="4" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Hepatic enzyme increased</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Liver function test abnormal</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Prothrombin time prolonged</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Neoplasms benign, malignant and unspecified (incl cysts and polyps)</title>
+            <event_list>
+              <event>
+                <sub_title>Kaposi's sarcoma</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Aphasia</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Ataxia</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Cognitive disorder</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Convulsion</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Dysarthria</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Encephalopathy</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Grand mal convulsion</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Headache</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Intention tremor</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Leukoencephalopathy</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Motor dysfunction</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Paraesthesia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Tremor</sub_title>
+                <counts group_id="E1" subjects_affected="8" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Psychiatric disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Agitation</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Confusional state</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Disorientation</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Dermatitis contact</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Rash maculo-papular</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Vascular disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hypotension</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Thrombosis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Vena cava thrombosis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>5</frequency_threshold>
+        <default_vocab>MedDRA 17.0</default_vocab>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="110" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Blood and lymphatic system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anaemia</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Leukopenia</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Neutropenia</sub_title>
+                <counts group_id="E1" subjects_affected="13" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Constipation</sub_title>
+                <counts group_id="E1" subjects_affected="13" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Diarrhoea</sub_title>
+                <counts group_id="E1" subjects_affected="22" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Nausea</sub_title>
+                <counts group_id="E1" subjects_affected="26" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Vomiting</sub_title>
+                <counts group_id="E1" subjects_affected="26" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Chills</sub_title>
+                <counts group_id="E1" subjects_affected="29" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Fatigue</sub_title>
+                <counts group_id="E1" subjects_affected="27" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Pyrexia</sub_title>
+                <counts group_id="E1" subjects_affected="97" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Device related infection</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Nasopharyngitis</sub_title>
+                <counts group_id="E1" subjects_affected="8" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>C-reactive protein increased</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Weight increased</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Metabolism and nutrition disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hypokalaemia</sub_title>
+                <counts group_id="E1" subjects_affected="18" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Hypomagnesaemia</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Musculoskeletal and connective tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Arthralgia</sub_title>
+                <counts group_id="E1" subjects_affected="14" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Back pain</sub_title>
+                <counts group_id="E1" subjects_affected="9" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Pain in extremity</sub_title>
+                <counts group_id="E1" subjects_affected="8" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Aphasia</sub_title>
+                <counts group_id="E1" subjects_affected="9" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Dizziness</sub_title>
+                <counts group_id="E1" subjects_affected="9" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Headache</sub_title>
+                <counts group_id="E1" subjects_affected="44" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Paraesthesia</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Tremor</sub_title>
+                <counts group_id="E1" subjects_affected="27" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Psychiatric disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Insomnia</sub_title>
+                <counts group_id="E1" subjects_affected="17" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Respiratory, thoracic and mediastinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Cough</sub_title>
+                <counts group_id="E1" subjects_affected="14" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Night sweats</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Rash</sub_title>
+                <counts group_id="E1" subjects_affected="11" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Vascular disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hypertension</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Hypotension</sub_title>
+                <counts group_id="E1" subjects_affected="13" subjects_at_risk="116"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>The Clinical Trial Agreement generally does not restrict an investigator's discussion of trial results after completion. The Agreement permits Amgen a limited period of time to review material discussing trial results (typically up to 45 days and possible extension). Amgen may remove confidential information, but authors have final control and approval of publication content. For multicenter studies, the investigator agrees not to publish any results before the first multi-center publication.</restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Study Director</name_or_title>
+      <organization>Amgen Inc.</organization>
+      <phone>866-572-6436</phone>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>

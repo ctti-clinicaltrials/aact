@@ -1099,7 +1099,8 @@ CREATE TABLE outcomes (
     safety_issue character varying,
     population text,
     participant_count integer,
-    nct_id character varying
+    nct_id character varying,
+    anticipated_posting_month_year character varying
 );
 
 
