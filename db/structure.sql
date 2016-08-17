@@ -372,11 +372,11 @@ ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
 
 CREATE TABLE design_groups (
     id integer NOT NULL,
-    ctgov_group_id character varying,
-    label character varying,
     group_type character varying,
     description text,
-    nct_id character varying
+    nct_id character varying,
+    ctgov_group_code character varying,
+    title character varying
 );
 
 
@@ -1453,11 +1453,11 @@ ALTER SEQUENCE result_agreements_id_seq OWNED BY result_agreements.id;
 
 CREATE TABLE result_contacts (
     id integer NOT NULL,
-    name_or_title character varying,
     organization character varying,
     phone character varying,
     email character varying,
-    nct_id character varying
+    nct_id character varying,
+    name character varying
 );
 
 
@@ -1585,69 +1585,6 @@ ALTER SEQUENCE sanity_checks_id_seq OWNED BY sanity_checks.id;
 CREATE TABLE schema_migrations (
     version character varying NOT NULL
 );
-
-
---
--- Name: search_results; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE search_results (
-    id integer NOT NULL,
-    search_datestamp date,
-    search_term character varying,
-    nct_id character varying,
-    "order" integer,
-    score numeric(6,4)
-);
-
-
---
--- Name: search_results_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE search_results_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: search_results_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE search_results_id_seq OWNED BY search_results.id;
-
-
---
--- Name: secondary_ids; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE secondary_ids (
-    id integer NOT NULL,
-    secondary_id character varying,
-    nct_id character varying
-);
-
-
---
--- Name: secondary_ids_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE secondary_ids_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: secondary_ids_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE secondary_ids_id_seq OWNED BY secondary_ids.id;
 
 
 --
@@ -2137,20 +2074,6 @@ ALTER TABLE ONLY sanity_checks ALTER COLUMN id SET DEFAULT nextval('sanity_check
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY search_results ALTER COLUMN id SET DEFAULT nextval('search_results_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY secondary_ids ALTER COLUMN id SET DEFAULT nextval('secondary_ids_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY sponsors ALTER COLUMN id SET DEFAULT nextval('sponsors_id_seq'::regclass);
 
 
@@ -2525,22 +2448,6 @@ ALTER TABLE ONLY result_groups
 
 ALTER TABLE ONLY sanity_checks
     ADD CONSTRAINT sanity_checks_pkey PRIMARY KEY (id);
-
-
---
--- Name: search_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY search_results
-    ADD CONSTRAINT search_results_pkey PRIMARY KEY (id);
-
-
---
--- Name: secondary_ids_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY secondary_ids
-    ADD CONSTRAINT secondary_ids_pkey PRIMARY KEY (id);
 
 
 --

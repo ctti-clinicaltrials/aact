@@ -6,7 +6,7 @@ class ResponsibleParty < StudyRelationship
 
   def self.create_all_from(opts)
     objects = super
-    ResponsibleParty.import(objects)
+    import(objects)
   end
 
   def attribs
