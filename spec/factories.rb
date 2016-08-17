@@ -1,8 +1,5 @@
 FactoryGirl.define do
 
-  factory :load_event, class: ClinicalTrials::LoadEvent do
-  end
-
   factory :sanity_check do
   end
 
