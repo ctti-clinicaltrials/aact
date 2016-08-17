@@ -1,11 +1,30 @@
+
+<div class="wrap">
+
+  <div class="basicHero">
+    <h1>Download AACT</h1>
+
+  </div>
+
+</div>
+
 <section class="downloadAact">
+  <div class="downloadTypes">
 
-  <div class="wrap">
+    <a href="/snapshots" class="downloadCard">
+      <h4>Restore from a snapshot</h4>
+      <p>The latest snapshot of the AACT2 database was captured on <%= Date.today.strftime("%B %e") %> at 3am Eastern Standard Time. Click here for instructions on how to utitlize snapshots.
+      </p>
+      <%= icon("download") %>
+    </a>
 
-    <div class="basicHero">
-      <h1>Download AACT</h1>
-
-    </div>
+    <a href="https://s3-us-west-2.amazonaws.com/aact2/csv_pipe_exports/<%= Date.today.strftime('%Y-%m-%d') %>-pipe-delimited-export" class="downloadCard">
+      <h4>Pipe delimited package</h4>
+      <p>
+        Click here to download a pipe delimited copy of the database. These pipe delimited files are compatible with many data visualization tools like SAS and R.
+      </p>
+      <%= icon("download") %>
+    </a>
 
   </div>
 
@@ -13,6 +32,7 @@
     <div class="wrap">
 
       <section class="downloadIntro">
+        <h2>Overview</h2>
         <p>Postgres is well established and relatively easy to install and manage. Postgres documentation/online support is plentiful, and the platform is light-weight and designed for use by people/organizations that don't have resources to administer relational database systems. Anyone can replicate the current AACT database to their local machine, and then analyze the data using their own local instance of Postgres.</p>
 
         <p>Monthly snapshots of AACT are available for download. People interested in using a snapshot of AACT can install Postgres locally, then download and unpack the AACT snapshot and freely query/analyze the data on their local copy.</p>
@@ -21,20 +41,6 @@
 
       </section>
 
-      <div class="centerTile">
-        <h4 id="snapshots">Download a Snapshot of AACT</h4>
-        <%= render 'access/snapshots' %>
-      </div>
-
-      <div class="centerTile">
-        <h4 id="replicate">Restore local database from AACT2 snapshot</h4>
-        <%= render 'access/restore_snapshot' %>
-      </div>
-
-      <div class="centerTile">
-        <h4 id="csv">Download pipe delimited packages</h4>
-        <%= render 'access/download_package' %>
-      </div>
 
     </div>
 

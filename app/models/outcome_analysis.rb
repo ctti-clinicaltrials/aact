@@ -1,9 +1,10 @@
 class OutcomeAnalysis < StudyRelationship
-  belongs_to :outcome, inverse_of: :outcome_analyses, autosave: true
-  belongs_to :group
+  belongs_to :outcome,        inverse_of: :outcome_analyses, autosave: true
+  has_many   :outcome_analysis_groups,  inverse_of: :outcome_analysis, autosave: true
+  has_many   :result_groups, :through => :outcome_analysis_groups
 
   def self.create_all_from(opts)
-    all=opts[:xml].xpath("analysis_list").xpath('analysis')
+    all=opts[:outcome_xml].xpath("analysis_list").xpath('analysis')
     col=[]
     xml=all.pop
     return col if xml.blank?
@@ -22,19 +23,33 @@ class OutcomeAnalysis < StudyRelationship
       opts[:ci_lower_limit]=xml.xpath('ci_lower_limit').text
       opts[:ci_upper_limit]=xml.xpath('ci_upper_limit').text
       opts[:method]=xml.xpath('method').text
-      opts[:group_description]=xml.xpath('groups_desc').text
       opts[:method_description]=xml.xpath('method_desc').text
       opts[:estimate_description]=xml.xpath('estimate_desc').text
-      col << pop_create(opts.merge(:name=>'group_id'))
+      opts[:groups_description]=xml.xpath('groups_desc').text
+      group_ids=create_group_list(xml)
+      a=new.create_from(opts)
+      a.outcome_analysis_groups = OutcomeAnalysisGroup.create_all_from({:outcome_analysis=>a,:group_ids=>group_ids,:groups=>opts[:groups]})
+      col << a
       xml=all.pop
     end
-    col.flatten.compact.map(&:attributes)
+    col
+  end
+
+  def self.create_group_list(xml)
+    group_xmls=xml.xpath('group_id_list').xpath('group_id')
+    groups=[]
+    xml=group_xmls.pop
+    while xml
+      if !xml.blank?
+        groups << xml.text
+      end
+      xml=group_xmls.pop
+    end
+    groups
   end
 
   def attribs
     {
-      :ctgov_group_id => xml.text,
-      :ctgov_group_enumerator => integer_in(xml.text),
       :title => get_opt(:title),
       :non_inferiority => get_opt(:non_inferiority),
       :non_inferiority_description => get_opt(:non_inferiority_description),
@@ -48,26 +63,11 @@ class OutcomeAnalysis < StudyRelationship
       :ci_lower_limit => get_opt(:ci_lower_limit),
       :ci_upper_limit => get_opt(:ci_upper_limit),
       :method => get_opt(:method),
-      :group_description => get_opt(:group_description),
       :method_description => get_opt(:method_description),
       :estimate_description => get_opt(:estimate_description),
       :outcome => get_opt(:outcome),
-      :group => get_group,
+      :groups_description => get_opt(:groups_description),
     }
-  end
-
-  def gid
-    integer_in(opts[:xml].text)
-  end
-
-  def get_group
-    opts[:groups].each {|g| return g if g.ctgov_group_enumerator==gid }
-  end
-
-  def conditionally_create_from(opts)
-    @opts=opts
-    return nil if opts[:xml].text != opts[:group_id_of_interest]
-    create_from(opts)
   end
 
 end

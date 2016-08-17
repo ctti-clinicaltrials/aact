@@ -25,18 +25,19 @@ class Study < ActiveRecord::Base
 
   has_many :pma_mappings,          :foreign_key => 'nct_id'
   has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :groups,                :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :reported_events,       :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcome_measured_values, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_conditions,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_interventions,  :foreign_key => 'nct_id', dependent: :delete_all
   has_many :central_contacts,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :conditions,            :foreign_key => 'nct_id', dependent: :delete_all
   has_many :countries,             :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :facilities,            :foreign_key => 'nct_id', dependent: :delete_all
   has_many :facility_contacts,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :facility_investigators,:foreign_key => 'nct_id', dependent: :delete_all
@@ -44,16 +45,16 @@ class Study < ActiveRecord::Base
   has_many :keywords,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all
   has_many :milestones,            :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_measures,      :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :oversight_authorities, :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :reported_events,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :responsible_parties,   :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_agreements,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_contacts,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :secondary_ids,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :sponsors,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :references,            :foreign_key => 'nct_id', dependent: :delete_all
+  accepts_nested_attributes_for :outcomes
 
   scope :started_between, lambda {|sdate, edate| where("start_date >= ? AND created_at <= ?", sdate, edate )}
   scope :changed_since,   lambda {|cdate| where("last_changed_date >= ?", cdate )}
@@ -102,17 +103,12 @@ class Study < ActiveRecord::Base
   def create
     update(attribs)
     DesignGroup.create_all_from(opts)
-    Group.create_all_from(opts)
-    Outcome.create_all_from(opts.merge(:groups=>self.groups))
-    Milestone.create_all_from(opts.merge(:groups=>self.groups))
-    DropWithdrawal.create_all_from(opts.merge(:groups=>self.groups))
     DetailedDescription.new.create_from(opts).save
     Design.new.create_from(opts).save
     BriefSummary.new.create_from(opts).save
     Eligibility.new.create_from(opts).save
     ParticipantFlow.new.create_from(opts).save
     ResultDetail.new.create_from(opts).save
-    BaselineMeasure.create_all_from(opts)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     CentralContact.create_all_from(opts)
@@ -122,6 +118,11 @@ class Study < ActiveRecord::Base
     Intervention.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
+    BaselineMeasure.create_all_from(opts)
+    Milestone.create_all_from(opts)
+    DropWithdrawal.create_all_from(opts)
+    Outcome.create_all_from(opts)
+    #  ResultGroups get created in the process of creating the 4 above
     OversightAuthority.create_all_from(opts)
     OverallOfficial.create_all_from(opts)
     DesignOutcome.create_all_from(opts)
@@ -257,7 +258,7 @@ class Study < ActiveRecord::Base
   end
 
   def get_groups(opts)
-    self.groups=Group.create_all_from(opts)
+    self.groups=ResultGroup.create_all_from(opts)
   end
 
   def get(label)

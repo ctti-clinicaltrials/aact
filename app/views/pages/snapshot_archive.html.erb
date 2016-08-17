@@ -1,19 +1,28 @@
 
+<div class="wrap">
+
+  <div class="basicHero">
+    <h1>Snapshot Archive</h1>
+
+  </div>
+
+</div>
 <section class="snapshot_archive">
-  <h2>Snapshot Archive</h2>
-  <ul>
-    <%= 90.days.ago.to_date.upto(Date.today).to_a.reverse.each do |date| %>
+  <div class="wrap">
+    <ul>
+      <%= 90.days.ago.to_date.upto(Date.today).to_a.reverse.each do |date| %>
+        <li>
+          <a href="https://s3-us-west-2.amazonaws.com/aact2/snapshots/postgres.aact2.dump.<%= date.strftime('%Y%m%d') %>-07%3A00.gz"><%= date.strftime('%B %e %Y') %></a>
+        </li>
+      <% end %>
+
       <li>
-        <a href="https://s3-us-west-2.amazonaws.com/aact2/snapshots/postgres.aact2.dump.<%= date.strftime('%Y%m%d') %>-07%3A00.gz"><%= date.strftime('%B %e %Y') %></a>
+        <a href="https://s3-us-west-2.amazonaws.com/aact2/snapshots/postgres.aact2.dump.<%= Date.today.strftime('%Y%m%d') %>-07%3A00.gz"><%= Date.today.strftime('%B %e %Y') %></a>
       </li>
-    <% end %>
 
-    <li>
-      <a href="https://s3-us-west-2.amazonaws.com/aact2/snapshots/postgres.aact2.dump.<%= Date.today.strftime('%Y%m%d') %>-07%3A00.gz"><%= Date.today.strftime('%B %e %Y') %></a>
-    </li>
-
-    <li>
-      <a href="https://s3-us-west-2.amazonaws.com/aact2/snapshots/postgres.aact2.dump.<%= Date.today.strftime('%Y%m%d') %>-07%3A00.gz"><%= Date.today.strftime('%B %e %Y') %></a>
-    </li>
-  </ul>
+      <li>
+        <a href="https://s3-us-west-2.amazonaws.com/aact2/snapshots/postgres.aact2.dump.<%= Date.today.strftime('%Y%m%d') %>-07%3A00.gz"><%= Date.today.strftime('%B %e %Y') %></a>
+      </li>
+    </ul>
+  </div>
 </section>

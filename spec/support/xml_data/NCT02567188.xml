@@ -1,0 +1,1924 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 11, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02567188</url>
+  </required_header>
+  <id_info>
+    <org_study_id>ML22439</org_study_id>
+    <nct_id>NCT02567188</nct_id>
+  </id_info>
+  <brief_title>A Study of MIRCERA in Participants With Chronic Kidney Disease Stage 3-4 and Not on Dialysis</brief_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Hoffmann-La Roche</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Hoffmann-La Roche</source>
+  <oversight_info>
+    <authority>Sweden:Swedish Medical Products Agency</authority>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      An observational, longitudinal, multi-center, non-interventional study in participants with
+      chronic kidney disease (CKD) stage 3-4, assessed by Modification of Diet in Renal Disease
+      (MDRD) to collect data regarding safety and efficacy in participants with pre-dialysis
+      situation who are treated with MIRCERA in normal clinical environment.
+    </textblock>
+  </brief_summary>
+  <overall_status>Completed</overall_status>
+  <start_date>April 2009</start_date>
+  <completion_date type="Actual">April 2011</completion_date>
+  <primary_completion_date type="Actual">April 2011</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Observational</study_type>
+  <study_design>Observational Model: Case Control, Time Perspective: Cross-Sectional</study_design>
+  <primary_outcome>
+    <measure>Percentage of Participants Reaching a Hemoglobin (Hb) Value of Greater Than (&gt;) 100 and Less Than (&lt;) 120 Grams Per Liter (gm/L) at Month 6 Before Inclusion</measure>
+    <time_frame>Pre-baseline (Month -6)</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Percentage of Participants Reaching a Hb Value of &gt;100 and &lt; 120 gm/L at Month 3 Before Inclusion</measure>
+    <time_frame>Pre-baseline (Month -3)</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Percentage of Participants Reaching a Hb Value of &gt;100 and &lt; 120 gm/L at Baseline</measure>
+    <time_frame>Baseline</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 3 After Inclusion</measure>
+    <time_frame>Month 3</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 6 After Inclusion</measure>
+    <time_frame>Month 6</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 9 After Inclusion</measure>
+    <time_frame>Month 9</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 12 After Inclusion</measure>
+    <time_frame>Month 12</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Mean Hb Value at Month 6 Before Inclusion</measure>
+    <time_frame>Pre-baseline (Month -6)</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Mean Hb Value at Month 3 Before Inclusion</measure>
+    <time_frame>Pre-baseline (Month -3)</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Mean Hb Value at Baseline</measure>
+    <time_frame>Baseline</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Mean Hb Value at Month 3 After Inclusion</measure>
+    <time_frame>Month 3</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Mean Hb Value at Month 6 After Inclusion</measure>
+    <time_frame>Month 6</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Mean Hb Value at Month 9 After Inclusion</measure>
+    <time_frame>Month 9</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Mean Hb Value at Month 12 After Inclusion</measure>
+    <time_frame>Month 12</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Percentage of Participants With Hb Fluctuation From Pre-Baseline (Month -6) to Baseline</measure>
+    <time_frame>Pre-baseline (Month -6) to Baseline</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Hb fluctuation was defined as change in Hb value &gt;15 gm/L between 2 visits.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Percentage of Participants With Hb Fluctuation From Baseline to Month 12</measure>
+    <time_frame>Baseline to Month 12</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Hb fluctuation was defined as change in Hb value &gt;15 gm/L between 2 visits.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Percentage of Participants With Change in MIRCERA Treatment</measure>
+    <time_frame>Months 3, 6, 9, and 12</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Change in MIRCERA treatment included changes in dose, frequency, and route of administration.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Percentage of Participants With Number of MIRCERA Dose Changes</measure>
+    <time_frame>Baseline to Month 12</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Correlation of Hb Levels With Underlying Disease</measure>
+    <time_frame>Baseline to 12 months</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Correlation of Hb Levels With Levels of Inflammation</measure>
+    <time_frame>Baseline to 12 months</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Percentage of Participants With Changes in Iron Supplement</measure>
+    <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Percentage of participants who had any change in their iron supplement medication at a specified visit were reported.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Percentage of Participants With Changes in Immunosuppressive Treatment</measure>
+    <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Percentage of participants who had any change in their immunosuppressive medication at a specified visit were reported.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Percentage of Participants With Changes in AntihypertensiveTreatment</measure>
+    <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Percentage of participants who had any change in their antihypertensive medication at a specified visit were reported.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of Participants With Different Medication Treatment</measure>
+    <time_frame>Pre-baseline (Month -6) to Month 12</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Number of participants who were receiving different treatments (antihypertensive, immunosuppressive, iron supplements, and others) before and/or after baseline were reported. Same participant could be reported in more than one category.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Percentage of Participants Who Required Blood Transfusion</measure>
+    <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Percentage of Participants Who Required Renal Replacement Therapy</measure>
+    <time_frame>Months 3, 6, 9, and 12</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Renal replacement therapy was defined as hemodialysis and peritoneal dialysis.</description>
+  </secondary_outcome>
+  <number_of_groups>1</number_of_groups>
+  <enrollment type="Actual">144</enrollment>
+  <condition>Anemia</condition>
+  <arm_group>
+    <arm_group_label>Cohort of CKD Participants</arm_group_label>
+    <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Other</intervention_type>
+    <intervention_name>MIRCERA</intervention_name>
+    <arm_group_label>Cohort of CKD Participants</arm_group_label>
+  </intervention>
+  <eligibility>
+    <study_pop>
+      <textblock>
+        Adult participants with CKD Stage 3-4 treated with MIRCERA
+      </textblock>
+    </study_pop>
+    <sampling_method>Non-Probability Sample</sampling_method>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Adult participants above 18 years of age
+
+          -  Pre-dialysis participants with CKD stage 3-4 treated with MIRCERA and continue in the
+             pre-dialysis state for the whole study period
+
+          -  Estimated glomerular filteration rate (e-GFR) between 15-60 milliliter per minute
+             (mL/min) (calculated)
+
+        Exclusion Criteria:
+
+          -  Participants involved in interventional trials
+
+          -  Participants with life expectancy less than 1 year
+
+          -  Active malignancy
+
+          -  Planned living kidney transplant within 6 months.
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Clinical Trials</last_name>
+    <role>Study Director</role>
+    <affiliation>Hoffmann-La Roche</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <address>
+        <city>Angeholm</city>
+        <zip>S-262 81</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Bollnas</city>
+        <zip>821 81</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Eskilstuna</city>
+        <zip>63188</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Gaevle</city>
+        <zip>80187</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Goeteborg</city>
+        <zip>41345</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Gothenburg</city>
+        <zip>S-402 76</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Huddinge</city>
+        <zip>14186</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Jonkoping</city>
+        <zip>55185</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Karlshamn</city>
+        <zip>S-374 80</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Karlstad</city>
+        <zip>65185</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Kristianstad</city>
+        <zip>29185</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Linkoeping</city>
+        <zip>S-581 85</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Mölndal</city>
+        <zip>S-431 80</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Norrkoeping</city>
+        <zip>60182</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Skövde</city>
+        <zip>54185</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Stockholm</city>
+        <zip>17176</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Stockholm</city>
+        <zip>18288</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Umea</city>
+        <zip>90185</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Värnamo</city>
+        <zip>33185</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Västervik</city>
+        <zip>59381</zip>
+        <country>Sweden</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>Sweden</country>
+  </location_countries>
+  <verification_date>January 2016</verification_date>
+  <lastchanged_date>January 14, 2016</lastchanged_date>
+  <firstreceived_date>September 28, 2015</firstreceived_date>
+  <firstreceived_results_date>November 2, 2015</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>No</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+
+  <clinical_results>
+
+    <participant_flow>
+      <group_list>
+        <group group_id="P1">
+          <title>Chronic Kidney Disease (CKD) Participants</title>
+          <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="144"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="109"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="35"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Death</title>
+              <participants_list>
+                <participants group_id="P1" count="10"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Terminated Mircera Treatment</title>
+              <participants_list>
+                <participants group_id="P1" count="9"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Lost to Follow-up</title>
+              <participants_list>
+                <participants group_id="P1" count="5"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Adverse Event</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Withdrawal by Subject</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Refused Treatment/ Did not Cooperate</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Moved and Changed Clinic</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Started Hemodialysis</title>
+              <participants_list>
+                <participants group_id="P1" count="2"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Protocol Violation</title>
+              <participants_list>
+                <participants group_id="P1" count="5"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <population>All enrolled participants with available data for baseline characteristics.</population>
+      <group_list>
+        <group group_id="B1">
+          <title>CKD Participants</title>
+          <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+        </group>
+      </group_list>
+      <measure_list>
+        <measure>
+          <title>Number of Participants</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="141"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="66.2" spread="16.5"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Female</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="64"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Male</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="77"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Participants Reaching a Hemoglobin (Hb) Value of Greater Than (&gt;) 100 and Less Than (&lt;) 120 Grams Per Liter (gm/L) at Month 6 Before Inclusion</title>
+        <time_frame>Pre-baseline (Month -6)</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="125"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants Reaching a Hemoglobin (Hb) Value of Greater Than (&gt;) 100 and Less Than (&lt;) 120 Grams Per Liter (gm/L) at Month 6 Before Inclusion</title>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="56.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Participants Reaching a Hb Value of &gt;100 and &lt; 120 gm/L at Month 3 Before Inclusion</title>
+        <time_frame>Pre-baseline (Month -3)</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="116"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants Reaching a Hb Value of &gt;100 and &lt; 120 gm/L at Month 3 Before Inclusion</title>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="56.0"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Participants Reaching a Hb Value of &gt;100 and &lt; 120 gm/L at Baseline</title>
+        <time_frame>Baseline</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="139"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants Reaching a Hb Value of &gt;100 and &lt; 120 gm/L at Baseline</title>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="42.4"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 3 After Inclusion</title>
+        <time_frame>Month 3</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="122"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 3 After Inclusion</title>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="41.0"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 6 After Inclusion</title>
+        <time_frame>Month 6</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="113"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 6 After Inclusion</title>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="41.6"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 9 After Inclusion</title>
+        <time_frame>Month 9</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="106"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 9 After Inclusion</title>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="33.0"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 12 After Inclusion</title>
+        <time_frame>Month 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="110"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 12 After Inclusion</title>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="45.5"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Mean Hb Value at Month 6 Before Inclusion</title>
+        <time_frame>Pre-baseline (Month -6)</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="125"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Mean Hb Value at Month 6 Before Inclusion</title>
+            <units>gm/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="113.2" spread="11.7"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Percentage of Participants With Change in MIRCERA Treatment</title>
+        <description>Change in MIRCERA treatment included changes in dose, frequency, and route of administration.</description>
+        <time_frame>Months 3, 6, 9, and 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants evaluable for this outcome measure. n = number of participants evaluable at the specified time frame.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="130"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants With Change in MIRCERA Treatment</title>
+            <description>Change in MIRCERA treatment included changes in dose, frequency, and route of administration.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <sub_title>Month 3 (n= 130)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="43.1"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 6 (n= 117)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="30.8"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 9 (n= 110)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="22.7"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 12 (n= 112)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="23.2"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Percentage of Participants With Number of MIRCERA Dose Changes</title>
+        <time_frame>Baseline to Month 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with available data for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="91"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants With Number of MIRCERA Dose Changes</title>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <sub_title>No change</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="26.4"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>One change</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="41.8"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Two changes</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="17.6"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Three changes</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="13.2"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Four changes</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="1.1"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Correlation of Hb Levels With Underlying Disease</title>
+        <time_frame>Baseline to 12 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>The units usage at and between study centres did change during the study and therefore no descriptive statistics could be performed on the laboratory variables.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="0"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Correlation of Hb Levels With Underlying Disease</title>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Correlation of Hb Levels With Levels of Inflammation</title>
+        <time_frame>Baseline to 12 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>The units usage at and between study centres did change during the study and therefore no descriptive statistics could be performed on the laboratory variables.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="0"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Correlation of Hb Levels With Levels of Inflammation</title>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Percentage of Participants With Changes in Iron Supplement</title>
+        <description>Percentage of participants who had any change in their iron supplement medication at a specified visit were reported.</description>
+        <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants evaluable for this outcome measure and n= participants evaluable for specified time points.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Cohort of CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="142"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants With Changes in Iron Supplement</title>
+            <description>Percentage of participants who had any change in their iron supplement medication at a specified visit were reported.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <sub_title>Pre-baseline (Month -6) (n= 134)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="31.3"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Pre-baseline (Month -3) (n= 125)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="12.8"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Baseline (n= 142)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="15.5"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 3 (n= 130)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="11.5"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 6 (n= 115)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="13.0"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 9 (n= 109)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="9.2"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 12 (n= 112)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="12.5"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Mean Hb Value at Month 3 Before Inclusion</title>
+        <time_frame>Pre-baseline (Month -3)</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="116"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Mean Hb Value at Month 3 Before Inclusion</title>
+            <units>gm/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="112.6" spread="13.2"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Mean Hb Value at Baseline</title>
+        <time_frame>Baseline</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="139"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Mean Hb Value at Baseline</title>
+            <units>gm/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="117.5" spread="15.0"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Mean Hb Value at Month 3 After Inclusion</title>
+        <time_frame>Month 3</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="122"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Mean Hb Value at Month 3 After Inclusion</title>
+            <units>gm/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="120.2" spread="13.2"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Mean Hb Value at Month 6 After Inclusion</title>
+        <time_frame>Month 6</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="113"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Mean Hb Value at Month 6 After Inclusion</title>
+            <units>gm/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="120.0" spread="13.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Mean Hb Value at Month 9 After Inclusion</title>
+        <time_frame>Month 9</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="106"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Mean Hb Value at Month 9 After Inclusion</title>
+            <units>gm/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="120.0" spread="14.3"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Mean Hb Value at Month 12 After Inclusion</title>
+        <time_frame>Month 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="110"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Mean Hb Value at Month 12 After Inclusion</title>
+            <units>gm/L</units>
+            <param>Mean</param>
+            <dispersion>Standard Deviation</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="118.4" spread="12.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Participants With Hb Fluctuation From Pre-Baseline (Month -6) to Baseline</title>
+        <description>Hb fluctuation was defined as change in Hb value &gt;15 gm/L between 2 visits.</description>
+        <time_frame>Pre-baseline (Month -6) to Baseline</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with at least 2 non-missing Hb assessments between pre-baseline (Month -6) and baseline.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="126"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants With Hb Fluctuation From Pre-Baseline (Month -6) to Baseline</title>
+            <description>Hb fluctuation was defined as change in Hb value &gt;15 gm/L between 2 visits.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="36.5"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Percentage of Participants With Hb Fluctuation From Baseline to Month 12</title>
+        <description>Hb fluctuation was defined as change in Hb value &gt;15 gm/L between 2 visits.</description>
+        <time_frame>Baseline to Month 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants with at least 2 non-missing Hb assessments between baseline and Month 12.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="117"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants With Hb Fluctuation From Baseline to Month 12</title>
+            <description>Hb fluctuation was defined as change in Hb value &gt;15 gm/L between 2 visits.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="43.6"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Percentage of Participants With Changes in Immunosuppressive Treatment</title>
+        <description>Percentage of participants who had any change in their immunosuppressive medication at a specified visit were reported.</description>
+        <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed = participants evaluable for this outcome measure and n= participants evaluable for specified time points.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="142"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants With Changes in Immunosuppressive Treatment</title>
+            <description>Percentage of participants who had any change in their immunosuppressive medication at a specified visit were reported.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <sub_title>Pre-baseline (Month -6) (n= 135)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="23.0"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Pre-baseline (Month -3) (n= 125)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="4.0"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Baseline (n= 142)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="5.6"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 3 (n= 129)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="8.5"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 6 (n= 114)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="8.8"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 9 (n= 109)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="2.8"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 12 (n= 111)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="5.4"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Percentage of Participants With Changes in AntihypertensiveTreatment</title>
+        <description>Percentage of participants who had any change in their antihypertensive medication at a specified visit were reported.</description>
+        <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed = participants evaluable for this outcome measure and n= participants evaluable for specified time points.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="141"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants With Changes in AntihypertensiveTreatment</title>
+            <description>Percentage of participants who had any change in their antihypertensive medication at a specified visit were reported.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <sub_title>Pre-baseline (Month -6) (n= 135)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="78.5"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Pre-baseline (Month -3) (n= 125)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="22.4"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Baseline (n= 141)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="22.7"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 3 (n= 130)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="12.3"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 6 (n= 115)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="13.0"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 9 (n= 109)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="16.5"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 12 (n= 111)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="19.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Number of Participants With Different Medication Treatment</title>
+        <description>Number of participants who were receiving different treatments (antihypertensive, immunosuppressive, iron supplements, and others) before and/or after baseline were reported. Same participant could be reported in more than one category.</description>
+        <time_frame>Pre-baseline (Month -6) to Month 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants evaluable for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="142"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Number of Participants With Different Medication Treatment</title>
+            <description>Number of participants who were receiving different treatments (antihypertensive, immunosuppressive, iron supplements, and others) before and/or after baseline were reported. Same participant could be reported in more than one category.</description>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <sub_title>Anti-hypertensive treatment</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="123"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Immunosuppressive treatment</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="35"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Iron treatment</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="71"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Other treatment</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="55"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Percentage of Participants Who Required Blood Transfusion</title>
+        <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants evaluable for this outcome measure and n= participants evaluable for specified time points.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="142"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants Who Required Blood Transfusion</title>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <sub_title>Pre-baseline (Month -6) (n= 136)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="0"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Pre-baseline (Month -3) (n= 128)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="2.3"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Baseline (n= 142)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="5.6"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 3 (n= 131)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="1.5"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 6 (n= 115)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="1.7"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 9 (n= 109)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="3.7"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Month 12 (n= 110)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="1.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Percentage of Participants Who Required Renal Replacement Therapy</title>
+        <description>Renal replacement therapy was defined as hemodialysis and peritoneal dialysis.</description>
+        <time_frame>Months 3, 6, 9, and 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All enrolled participants. Here, number of participants analyzed= participants evaluable for this outcome measure and n= participants evaluable for specified time points.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>CKD Participants</title>
+            <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="130"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants Who Required Renal Replacement Therapy</title>
+            <description>Renal replacement therapy was defined as hemodialysis and peritoneal dialysis.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <sub_title>Hemodialysis done: Month 3 (n= 130)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="0.8"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Hemodialysis done: Month 6 (n= 113)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="0.9"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Hemodialysis done: Month 9 (n= 107)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="0.9"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Hemodialysis done: Month 12 (n= 110)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="1.8"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Peritoneal dialysis done: Month 3 (n= 130)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="0.8"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Peritoneal dialysis done: Month 6 (n= 113)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="0"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Peritoneal dialysis done: Month 9 (n= 107)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="0.9"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>Peritoneal dialysis done: Month 12 (n= 110)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="1.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>Pre-baseline (Month -6) to Month 12</time_frame>
+      <desc>All enrolled participants with data recorded for adverse events were included.</desc>
+      <group_list>
+        <group group_id="E1">
+          <title>CKD Participants</title>
+          <description>Pre-dialysis participants with CKD treated with MIRCERA according to the current standard of care and in line with the current local summary of product characteristics were observed for maximum of 12 months.</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="141"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <default_vocab>Volume 9A of EU CTD</default_vocab>
+        <default_assessment>Non-systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="141"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Skin Reaction</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="141"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>The study being conducted under this Agreement is part of the Overall Study. Investigator is free to publish in reputable journals or to present at professional conferences the results of the study, but only after the first publication or presentation that involves the Overall Study. The sponsor may request that the confidential information be deleted and/or the publication to be postponed inorder to present the Sponsor's intellectual property rights.</restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Medical Communications</name_or_title>
+      <organization>Hoffmann-LaRoche</organization>
+      <phone>800-821-8590</phone>
+      <email>genentech@druginfo.com</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
