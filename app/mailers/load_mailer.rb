@@ -1,5 +1,5 @@
 class LoadMailer < ApplicationMailer
-  def send_notification(load_event)
+  def self.send_notifications(load_event)
     emails = ['garrett@sturdy.work']
 
     if ENV['EMAIL_DUKE_TEAM']
@@ -8,10 +8,14 @@ class LoadMailer < ApplicationMailer
       emails << 'nancy.walden@duke.edu'
     end
 
+    emails.each do |email|
+      send_notification(email, load_event).deliver_now
+    end
+  end
+
+  def send_notification(email, load_event)
     @load_event = load_event
 
-    emails.each do |email|
-      mail(to: email, subject: 'Load completed!')
-    end
+    mail(to: email, subject: 'Load completed!')
   end
 end
