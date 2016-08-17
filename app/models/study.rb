@@ -51,7 +51,6 @@ class Study < ActiveRecord::Base
   has_many :responsible_parties,   :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_agreements,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_contacts,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :secondary_ids,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :sponsors,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :references,            :foreign_key => 'nct_id', dependent: :delete_all
 
@@ -225,7 +224,6 @@ class Study < ActiveRecord::Base
       :first_received_results_date_month_day => get('firstreceived_results_date'),
       :nlm_download_date_description => xml.xpath('//download_date').text,
 
-      :org_study_id => xml.xpath('//org_study_id').text,
       :acronym =>get('acronym'),
       :number_of_arms => get('number_of_arms'),
       :number_of_groups =>get('number_of_groups'),

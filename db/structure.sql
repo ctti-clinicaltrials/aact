@@ -1747,8 +1747,6 @@ CREATE TABLE studies (
     download_date date,
     completion_date_type character varying,
     primary_completion_date_type character varying,
-    org_study_id character varying,
-    secondary_id character varying,
     study_type character varying,
     overall_status character varying,
     phase character varying,
@@ -2732,4 +2730,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160809133136');
 INSERT INTO schema_migrations (version) VALUES ('20160809172406');
 
 INSERT INTO schema_migrations (version) VALUES ('20160810185321');
+
+INSERT INTO schema_migrations (version) VALUES ('20160817141109');
 
