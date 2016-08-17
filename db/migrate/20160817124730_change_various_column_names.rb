@@ -4,5 +4,7 @@ class ChangeVariousColumnNames < ActiveRecord::Migration
     add_column :eligibilities, :population, :string
     remove_column :calculated_values, :results_reported, :boolean
     add_column :calculated_values, :were_results_reported, :boolean
+    remove_column :studies, :plan_to_share_description, :string
+    add_column :studies, :plan_to_share_ipd_description, :string
   end
 end

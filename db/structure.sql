@@ -1689,12 +1689,12 @@ CREATE TABLE studies (
     updated_at timestamp without time zone NOT NULL,
     first_received_results_disposition_date date,
     plan_to_share_ipd character varying,
-    plan_to_share_description character varying,
     nlm_download_date_description character varying,
     start_month_year character varying,
     verification_month_year character varying,
     completion_month_year character varying,
-    primary_completion_month_year character varying
+    primary_completion_month_year character varying,
+    plan_to_share_ipd_description character varying
 );
 
 

@@ -45,7 +45,7 @@ describe Study do
     end
 
     it 'should have expected ipd description value' do
-      expect(study.plan_to_share_description).to eq('NC')
+      expect(study.plan_to_share_ipd_description).to eq('NC')
     end
   end
 
@@ -69,7 +69,7 @@ describe Study do
     end
 
     it 'should return empty string for ipd description value' do
-      expect(study.plan_to_share_description).to eq('')
+      expect(study.plan_to_share_ipd_description).to eq('')
     end
   end
 end
