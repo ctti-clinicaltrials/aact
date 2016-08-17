@@ -50,8 +50,3 @@ RSpec.describe IdInformation, type: :model do
     end
   end
 end
-
-
-# <org_study_id>2014-005586-75</org_study_id>
-# <secondary_id>2014/2204</secondary_id>
-# <nct_id>NCT02679963</nct_id>
