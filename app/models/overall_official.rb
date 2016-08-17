@@ -6,7 +6,7 @@ class OverallOfficial < StudyRelationship
 
   def self.create_all_from(opts)
     objects = super
-    OverallOfficial.import(objects)
+    import(objects)
   end
 
   def attribs

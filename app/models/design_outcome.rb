@@ -8,7 +8,7 @@ class DesignOutcome < StudyRelationship
 
     secondary=options[:xml].xpath("//secondary_outcome").collect{|xml|
       create_from({:xml=>xml,:type=>'secondary',:nct_id=>nct_id})}
-    DesignOutcome.import(primary + secondary)
+    import(primary + secondary)
   end
 
   def attribs

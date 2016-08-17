@@ -2,17 +2,17 @@ class CentralContact < StudyRelationship
 
   def self.create_all_from(opts)
     central_contacts = contacts(opts) + backup_contacts(opts)
-    CentralContact.import(central_contacts)
+    import(central_contacts)
   end
 
   def self.contacts(opts)
     opts[:xml].xpath('//overall_contact').collect{|xml|
-      CentralContact.new.create_from({:xml=>xml, :nct_id=>opts[:nct_id], :contact_type=>'primary'})}
+      new.create_from({:xml=>xml, :nct_id=>opts[:nct_id], :contact_type=>'primary'})}
   end
 
   def self.backup_contacts(opts)
     opts[:xml].xpath('//overall_contact_backup').collect{|xml|
-      CentralContact.new.create_from({:xml=>xml,:nct_id=>opts[:nct_id], :contact_type=>'backup'})}
+      new.create_from({:xml=>xml,:nct_id=>opts[:nct_id], :contact_type=>'backup'})}
   end
 
   def attribs

@@ -7,11 +7,11 @@ class Reference < StudyRelationship
 
   def self.create_all_from(opts)
     col=[]
-    Reference.nodes(opts).each{|xml|
+    nodes(opts).each{|xml|
       opts[:xml]=xml
       col << create_from(opts)
     }
-    Reference.import(col.compact)
+    import(col.compact)
   end
 
   def attribs

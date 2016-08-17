@@ -24,7 +24,7 @@ class Intervention < StudyRelationship
       intervention
     }.compact
 
-    Intervention.import(objects, recursive: true)
+    import(objects, recursive: true)
   end
 
   def attribs
