@@ -1392,7 +1392,8 @@ CREATE TABLE responsible_parties (
     affiliation text,
     name character varying,
     title character varying,
-    nct_id character varying
+    nct_id character varying,
+    organization character varying
 );
 
 
@@ -2628,4 +2629,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160814024245');
 INSERT INTO schema_migrations (version) VALUES ('20160816202221');
 
 INSERT INTO schema_migrations (version) VALUES ('20160817124730');
+
+INSERT INTO schema_migrations (version) VALUES ('20160817204937');
 
