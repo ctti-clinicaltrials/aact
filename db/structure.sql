@@ -375,7 +375,6 @@ CREATE TABLE design_groups (
     group_type character varying,
     description text,
     nct_id character varying,
-    ctgov_group_code character varying,
     title character varying
 );
 

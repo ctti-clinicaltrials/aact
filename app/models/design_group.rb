@@ -11,7 +11,6 @@ class DesignGroup < StudyRelationship
 
   def attribs
     {
-      :ctgov_group_code => get_attribute('group_id'),
       :group_type => get('arm_group_type'),
       :title => get('arm_group_label'),
       :description => get('description'),
