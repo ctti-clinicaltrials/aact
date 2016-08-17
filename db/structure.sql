@@ -580,9 +580,9 @@ CREATE TABLE eligibilities (
     minimum_age character varying,
     maximum_age character varying,
     healthy_volunteers character varying,
-    study_population text,
     criteria text,
-    nct_id character varying
+    nct_id character varying,
+    population character varying
 );
 
 
@@ -2627,4 +2627,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160813125212');
 INSERT INTO schema_migrations (version) VALUES ('20160814024245');
 
 INSERT INTO schema_migrations (version) VALUES ('20160816202221');
+
+INSERT INTO schema_migrations (version) VALUES ('20160817124730');
 
