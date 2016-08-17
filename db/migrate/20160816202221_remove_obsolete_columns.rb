@@ -32,5 +32,12 @@ class RemoveObsoleteColumns < ActiveRecord::Migration
     remove_column :outcome_analyses, :ctgov_group_code, :string
     remove_column :outcome_analyses, :outcome_analysis_result_group_id, :integer
 #    remove_column :outcomes, :measure, :string
+    remove_column :result_contacts, :name_or_title, :string
+    add_column :result_contacts, :name, :string
+
+    remove_column :design_groups, :ctgov_group_id, :string
+    remove_column :design_groups, :label, :string
+    add_column :design_groups, :ctgov_group_code, :string
+    add_column :design_groups, :title, :string
   end
 end

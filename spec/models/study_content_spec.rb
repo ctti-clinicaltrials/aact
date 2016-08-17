@@ -19,6 +19,15 @@ describe Study do
     expect(study.calculated_value.verification_date).to eq(study.verification_month_year.to_date)
     expect(study.calculated_value.completion_date).to eq(study.completion_month_year.to_date)
     expect(study.calculated_value.primary_completion_date).to eq(study.primary_completion_month_year.to_date)
+
+    expect(study.result_contacts.first.name).to eq('Wendy Seiferheld')
+    expect(study.result_contacts.first.organization).to eq('Radiation Therapy Oncology Group')
+    expect(study.result_contacts.first.email).to eq('wseiferheld@acr.org')
+
+    expect(study.design_groups.size).to eq(4)
+    g=study.design_groups.select{|x|x.title=='Phase I: 75.25 Gy/36 fx + chemotherapy'}.first
+    expect(g.description).to eq('Phase I: Three-dimensional conformal radiation therapy (3DRT) of 75.25 Gy given in 36 fractions (2.15 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.')
+   expect(g.group_type).to eq('Experimental')
   end
 
   it "should have expected date values" do
