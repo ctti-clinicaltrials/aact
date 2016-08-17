@@ -3,11 +3,10 @@ div.basicHero {
 }
 
 section.learnMore {
-
+  background-color: $white;
 
   div.overview {
     background-color: $white;
-    padding: 100px 0px;
     padding-bottom: 500px;
   }
 }
@@ -26,13 +25,6 @@ div.quickLinks {
   div.quickLink {
     width: 50%;
     display: inline-block;
-    padding: 1rem;
-  }
-
-  div.card {
-    background-color: rgb(249,249,249);
-    color: $grey;
-    @include box-shadow(3px 3px 11px $light-grey);
     padding: 1rem;
   }
 

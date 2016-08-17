@@ -1,8 +1,12 @@
 class DropWithdrawal < StudyRelationship
-  belongs_to :group
+  belongs_to :result_group
 
   def self.create_all_from(opts)
-    DropWithdrawal.import(self.nested_pop_create(opts.merge(:name=>'drop_withdraw_reason')))
+    opts[:xml]=opts[:xml].xpath('//participant_flow')
+    opts[:result_type]='Drop/Withdrawal'
+    opts[:groups]=create_group_set(opts)
+
+    import(self.nested_pop_create(opts.merge(:name=>'drop_withdraw_reason')))
   end
 
   def self.nested_pop_create(opts)
@@ -12,7 +16,7 @@ class DropWithdrawal < StudyRelationship
     xml=all.pop
     while xml
       opts[:reason]=xml.xpath('title').text
-      opts[:period_title]=xml.parent.parent.xpath('title').text
+      opts[:period]=xml.parent.parent.xpath('title').text
       groups=xml.xpath("participants_list").xpath('participants')
       group=groups.pop
       while group
@@ -24,24 +28,17 @@ class DropWithdrawal < StudyRelationship
     col.flatten
   end
 
-  def get_group
-    opts[:groups].each{|g|
-      return g if g.ctgov_group_enumerator==integer_in(gid)
-    }
-  end
-
   def gid
     get_attribute('group_id')
   end
 
   def attribs
     {
-      :reason => get_opt(:reason),
-      :period_title => get_opt(:period_title),
+      :result_group => get_group(opts[:groups]),
+      :ctgov_group_code => gid,
       :participant_count => get_attribute('count').to_i,
-      :ctgov_group_id => gid,
-      :ctgov_group_enumerator => integer_in(gid),
-      :group => get_group,
+      :reason => get_opt(:reason),
+      :period => get_opt(:period),
     }
   end
 
@@ -51,8 +48,8 @@ class DropWithdrawal < StudyRelationship
     CSV.open("#{self.name}_Summary.csv", "wb", :write_headers=> true, :headers => column_headers) {|csv|
       all.each{|x|
         csv << [x.nct_id,
-                x.period_title,
-                x.group.title,
+                x.period,
+                x.result_group.title,
                 x.participant_count,
                 x.reason]
       }

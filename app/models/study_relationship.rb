@@ -36,32 +36,17 @@ class StudyRelationship < ActiveRecord::Base
     puts '#top_level_label: subclass responsibility!'
   end
 
-  #=================================
-  #  TODO  - move next 3 methods to ResultGroup class (currently called Group) - coordinate with other changes
-  def self.create_group_set(xml)
-    group_xmls=xml.xpath("group_list").xpath('group')
-    groups=[]
-    xml=group_xmls.pop
-    while xml
-      groups << create_group_from(xml)
-      xml=group_xmls.pop
-    end
-    groups
+  def self.create_group_set(opts)
+		ResultGroup.create_group_set(opts)
   end
 
   def get_group(groups)
-   groups.select{|g|g.ctgov_group_id==gid}.first
+   groups.select{|g|g.ctgov_group_code==gid}.first
   end
 
-  def self.create_group_from(xml)
-    g=Group.new({:ctgov_group_id => xml.attribute('group_id'),
-                 :title => xml.xpath('title').text,
-                 :description=>xml.xpath('description').text
-                })
-    g.save!
-    g
+  def gid
+    get_attribute('group_id')
   end
-  #=================================
 
   def self.xml_entries(opts)
     opts[:xml].xpath(top_level_label)

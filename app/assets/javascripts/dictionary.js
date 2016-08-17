@@ -2,16 +2,16 @@ $(function() {
 
 
     $("#jsGrid").jsGrid({
-        height: "80vh",
+        height: "160vh",
         width: "100%",
         filtering: true,
         inserting: false,
         editing: false,
         sorting: true,
-        paging: true,
+        paging: false,
         autoload: true,
-        pageSize: 10,
-        pageButtonCount: 5,
+        // pageSize: 10,
+        // pageButtonCount: 5,
         deleteConfirm: "Do you really want to delete client?",
         controller: {
             loadData: function(filter) {
@@ -23,17 +23,26 @@ $(function() {
             }
         },
         fields: [
-            { name: "Table Name", type: "text", width: 95 },
-            { name: "Column Name", type: "text", width: 105 },
-            { name: "PRS Label", type: "text", width: 95},
-            { name: "Data Type", type: "text", width: 90 },
-            { name: "Max Length Used", type: "text", width: 40},
-            { name: "Comments", type: "text", width: 270  },
-            { name: "NLM Description", type: "text", width: 280 },
-            { name: "NLM Req", type: "text", width: 50 },
-            { name: "FDAAA Req", type: "text", width: 50 },
-            { name: "Enumerations", type:"text", width: 100  },
-            { type: "control", deleteButton: false, editButton: false }
+          { type: "control", deleteButton: false, editButton: false },
+            { name: "Table Section", type: "text" },
+            { name: "Table Name", type: "text" },
+            { name: "Column Name", type: "text" },
+            { name: "AACT Contribution", type: "text" },
+            { name: "XML Source", type: "text" },
+            { name: "NLM Documentation", type: "text", width: 120 },
+            { name: "AACT1 Variable", type: "text" },
+            { name: "PRS Label", type: "text"},
+            { name: "CTTI Note", type: "text", width: 260 },
+            { name: "Data Type", type: "text" },
+            { name: "# of rows in table", type: "text" },
+            { name: "Distinct Column Values", type: "text" },
+            { name: "Max Length Allowed", type: "text" },
+            { name: "Max Length Current", type: "text" },
+            { name: "Min Length Current", type: "text" },
+            { name: "Avg. Length Current", type: "text" },
+            { name: "Common Values", type: "text" },
+            { name: "NLM Required", type: "text" },
+            { name: "FDAAA Required", type: "text" }
         ]
     });
 });

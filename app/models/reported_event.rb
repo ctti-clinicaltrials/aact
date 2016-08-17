@@ -1,15 +1,15 @@
 class ReportedEvent < StudyRelationship
   extend FastCount
 
-  belongs_to :group
+  belongs_to :result_group
 
   def self.create_all_from(opts)
     nct_id=opts[:nct_id]
     opts[:xml]=opts[:xml].xpath("//reported_events")
     opts[:time_frame]=opts[:xml].xpath('time_frame').text
     opts[:description]=opts[:xml].xpath('desc').text
-    #  TODO Move #create_group_set to ResultGroup - just worried about doing it now cuz team members are changing that class right now and want to try to avoid merge conflicts.
-    opts[:groups]=create_group_set(opts[:xml])
+    opts[:result_type]='Reported Event'
+    opts[:groups]=create_group_set(opts)
 
     event_type='serious'
     opts[:type]=event_type
@@ -58,9 +58,8 @@ class ReportedEvent < StudyRelationship
     serious=get_events(opts)
     opts[:type]='other'
     other=get_events(opts)
-    events = (serious+other).flatten
 
-    ReportedEvent.import(events)
+    import((serious + other).flatten)
   end
 
   # TODO  this can and should be refactored in 100 different ways, but it works for now.
@@ -113,7 +112,7 @@ class ReportedEvent < StudyRelationship
 
   def attribs
     {
-      :group => get_group(opts[:groups]),
+      :result_group => get_group(opts[:groups]),
       :ctgov_group_code => gid,
       :organ_system => get_opt(:category),
       :event_type => get_opt(:type),
@@ -135,7 +134,4 @@ class ReportedEvent < StudyRelationship
     opts[:group_id]
   end
 
-  def type
-    event_type
-  end
 end

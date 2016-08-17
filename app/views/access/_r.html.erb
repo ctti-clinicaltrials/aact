@@ -1,9 +1,31 @@
+<div class="wrap">
+
+  <div class="basicHero">
+    <h1>Connect to AACT2 using R & RStudio</h1>
+
+  </div>
+
+</div>
+
 <section class="rAccess">
-  <b>R</b>
+  <div class="wrap">
+
+
+  <div class="step">
+    <span class="stepNumber">1</span>
+    <h3 class="stepName">Download and install R and RStudio</h3>
+  </div>
+
   <p>If R and RStudio are not already installed, install from these two links:</p>
 
   <p><a href="https://cran.r-project.org/">Install R from your closest mirror</a></p>
   <p><a href="https://www.rstudio.com/products/rstudio/">Install RStudio</a></p>
+
+
+  <div class="step">
+    <span class="stepNumber">2</span>
+    <h3 class="stepName">Connect RStudio to AACT from the command line</h3>
+  </div>
 
   <p>Once R and RStudio are installed, run the following commands using the latest AACT 2.0 connection information</p>
   <pre>
@@ -19,4 +41,6 @@
     <code>> aact2_sample <- dbGetQuery(con,"select distinct study_type from studies")</code>
     <code>> write.csv(aact2_sample, file='aact2_sample.csv')</code>
   </pre>
+</div>
+
 </section>

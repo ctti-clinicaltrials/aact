@@ -18,24 +18,18 @@ describe Study do
 
     it { should have_many(:design_groups).dependent(:delete_all) }
     it { should have_many(:design_outcomes).dependent(:delete_all) }
-    it { should have_many(:groups).dependent(:delete_all) }
-    it { should have_many(:outcomes).dependent(:delete_all) }
-    it { should have_many(:baseline_measures).dependent(:delete_all) }
+    it { should have_many(:result_groups).dependent(:delete_all) }
     it { should have_many(:browse_conditions).dependent(:delete_all) }
     it { should have_many(:browse_interventions).dependent(:delete_all) }
     it { should have_many(:central_contacts).dependent(:delete_all) }
     it { should have_many(:conditions).dependent(:delete_all) }
     it { should have_many(:countries).dependent(:delete_all) }
-    it { should have_many(:drop_withdrawals).dependent(:delete_all) }
     it { should have_many(:facilities).dependent(:delete_all) }
     it { should have_many(:interventions).dependent(:delete_all) }
     it { should have_many(:keywords).dependent(:delete_all) }
     it { should have_many(:links).dependent(:delete_all) }
-    it { should have_many(:milestones).dependent(:delete_all) }
-    it { should have_many(:outcome_measures).dependent(:delete_all) }
     it { should have_many(:overall_officials).dependent(:delete_all) }
     it { should have_many(:oversight_authorities).dependent(:delete_all) }
-    it { should have_many(:reported_events).dependent(:delete_all) }
     it { should have_many(:responsible_parties).dependent(:delete_all) }
     it { should have_many(:result_agreements).dependent(:delete_all) }
     it { should have_many(:result_contacts).dependent(:delete_all) }

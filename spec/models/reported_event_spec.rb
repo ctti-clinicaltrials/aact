@@ -1,10 +1,9 @@
 require 'rails_helper'
 describe ReportedEvent do
   it "should have expected values" do
-		nct_id='NCT00023673'
+    nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    #g1=study.reported_events.select{|x|x.ctgov_group_code=='E1'}
 
     e1=study.reported_events.select{|x|x.ctgov_group_code=='E1'}
     e2=study.reported_events.select{|x|x.ctgov_group_code=='E2'}
@@ -16,10 +15,11 @@ describe ReportedEvent do
     e2_serious=serious.first
     expect(e2_serious.subjects_affected).to eq(36)
     expect(e2_serious.subjects_at_risk).to eq(53)
+    expect(e2_serious.result_group.result_type).to eq('Reported Event')
     expect(e2_serious.default_vocab).to eq('CTCAE (2.0)')
     expect(e2_serious.default_assessment).to eq('Non-systematic Assessment')
     expect(e2_serious.adverse_event_term).to eq('Total, serious adverse events')
-    expect(e2_serious.group.ctgov_group_id).to eq(e2_serious.ctgov_group_code)
+    expect(e2_serious.result_group.ctgov_group_code).to eq(e2_serious.ctgov_group_code)
 
     e1_serious_cardiac_array=e1.select{|x|x.event_type=='serious' and x.organ_system=='Cardiac disorders'}
     expect(e1_serious_cardiac_array.size).to eq(3)
