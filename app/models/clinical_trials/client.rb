@@ -13,17 +13,21 @@ module ClinicalTrials
     end
 
     def download_xml_files
-      load_event = ClinicalTrials::LoadEvent.create(
-        event_type: 'get_studies'
-      ) unless @dry_run
+      tries ||= 5
 
       file = Tempfile.new('xml')
 
-      download = RestClient::Request.execute({
-        url:          @url,
-        method:       :get,
-        content_type: 'application/zip'
-      })
+      begin
+        download = RestClient::Request.execute({
+          url:          @url,
+          method:       :get,
+          content_type: 'application/zip'
+        })
+      rescue Errno::ECONNRESET => e
+        if (tries -=1) > 0
+          retry
+        end
+      end
 
       file.binmode
       file.write(download)
@@ -35,8 +39,6 @@ module ClinicalTrials
           create_study_xml_record(study_xml)
         end
       end
-
-      load_event.complete unless @dry_run
     end
 
     def create_study_xml_record(xml)
@@ -68,12 +70,6 @@ module ClinicalTrials
     end
 
     def import_xml_file(study_xml, benchmark: false)
-      if benchmark
-        load_event = ClinicalTrials::LoadEvent.create(
-          event_type: 'get_studies'
-        )
-      end
-
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
 
@@ -82,10 +78,6 @@ module ClinicalTrials
           xml: study,
           nct_id: nct_id
         }).create
-      end
-
-      if benchmark
-        load_event.complete
       end
     end
 

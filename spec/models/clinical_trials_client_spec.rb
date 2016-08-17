@@ -69,10 +69,8 @@ describe ClinicalTrials::Client do
     context 'default dry_run false' do
       it 'should create a study xml record and load event' do
         expect {
-          expect {
-            subject.download_xml_files
-          }.to change{StudyXmlRecord.count}.by(2)
-        }.to change{ClinicalTrials::LoadEvent.count}.by(1)
+          subject.download_xml_files
+        }.to change{StudyXmlRecord.count}.by(2)
 
         study_xml_record_1 = StudyXmlRecord.find_by(nct_id:'NCT00513591')
         expect(study_xml_record_1).to be
@@ -80,9 +78,6 @@ describe ClinicalTrials::Client do
         raw_xml_content = Nokogiri::XML(raw_study_xml_1).child.to_xml
         existing_xml_content = Nokogiri::XML(study_xml_record_1.content).child.to_xml
         expect(existing_xml_content).to eq(raw_xml_content)
-
-        load_event = ClinicalTrials::LoadEvent.first
-        expect(load_event.event_type).to eq('get_studies')
       end
     end
 
@@ -182,18 +177,6 @@ describe ClinicalTrials::Client do
       study_1 = Study.find_by(nct_id: study_nct_id_1)
       expect(study_1).to be_truthy
       expect(Study.count).to be(1)
-    end
-
-    it 'should create a load event if benchmark is true' do
-      study_xml_record_1 = StudyXmlRecord.find_by(nct_id: study_nct_id_1)
-      expect {
-        subject.import_xml_file(study_xml_record_1.content, benchmark: true)
-      }.to change{ClinicalTrials::LoadEvent.count}.by(1)
-
-      last_load_event = ClinicalTrials::LoadEvent.last
-      expect(last_load_event.event_type).to eq('get_studies')
-      expect(last_load_event.status).to eq('complete')
-      expect(last_load_event.load_time).not_to be_nil
     end
 
     it 'should not create a load event if benchmark is nil or false' do
