@@ -17,7 +17,7 @@ class CalculatedValue < ActiveRecord::Base
 
       :sponsor_type                => calc_sponsor_type,
       :actual_duration             => calc_actual_duration,
-#     :results_reported            => calc_results_reported,
+      :were_results_reported       => calc_results_reported,
       :months_to_report_results    => calc_months_to_report_results,
       :registered_in_calendar_year => calc_registered_in_calendar_year,
       :number_of_facilities        => calc_number_of_facilities,

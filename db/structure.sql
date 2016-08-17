@@ -195,7 +195,6 @@ CREATE TABLE calculated_values (
     id integer NOT NULL,
     sponsor_type character varying,
     actual_duration numeric(5,2),
-    results_reported boolean,
     months_to_report_results integer,
     number_of_facilities integer,
     number_of_nsae_subjects integer,
@@ -209,7 +208,8 @@ CREATE TABLE calculated_values (
     first_received_results_date date,
     nlm_download_date date,
     first_received_date date,
-    first_received_result_date date
+    first_received_result_date date,
+    were_results_reported boolean
 );
 
 
