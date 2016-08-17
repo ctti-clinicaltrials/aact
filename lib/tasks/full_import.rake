@@ -14,6 +14,7 @@ namespace :import do
 
         load_event.complete
 
+        SanityCheck.new.run
         StudyValidator.new.validate_studies
         LoadMailer.send_notifications(load_event)
       else
