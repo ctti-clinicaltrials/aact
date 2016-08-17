@@ -48,6 +48,8 @@ RSpec.describe StudySerializer, type: :serializer do
         expect(serialized_study['result_detail']["nct_id"]).to eq(resource.result_detail.nct_id)
         expect(serialized_study['result_detail']["pre_assignment_details"]).to eq(resource.result_detail.pre_assignment_details)
         expect(serialized_study['result_detail']["recruitment_details"]).to eq(resource.result_detail.recruitment_details)
+        expect(serialized_study['org_study_id']["id_value"]).to eq(resource.id_information.id_value)
+        expect(serialized_study['secondary_id']["id_value"]).to eq(resource.id_information.id_value)
       end
     end
   end
