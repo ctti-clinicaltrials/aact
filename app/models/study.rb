@@ -2,17 +2,11 @@ require 'csv'
 class Study < ActiveRecord::Base
   attr_accessor :xml, :with_related_records
 
-  scope :interventional,  -> {where(study_type: 'Interventional')}
-  scope :observational,   -> {where(study_type: 'Observational')}
-  scope :current, -> { where("first_received_date >= '2007/10/01' and study_type='Interventional'") }
-
   def self.current_interventional
     self.interventional and self.current
   end
 
   self.primary_key = 'nct_id'
-
-  has_many :reviews,               :foreign_key => 'nct_id', dependent: :delete_all
 
   has_one  :brief_summary,         :foreign_key => 'nct_id', dependent: :delete
   has_one  :design,                :foreign_key => 'nct_id', dependent: :delete
@@ -49,7 +43,6 @@ class Study < ActiveRecord::Base
   has_many :responsible_parties,   :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_agreements,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_contacts,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :secondary_ids,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :sponsors,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :references,            :foreign_key => 'nct_id', dependent: :delete_all
   accepts_nested_attributes_for :outcomes
@@ -123,7 +116,6 @@ class Study < ActiveRecord::Base
     ResponsibleParty.create_all_from(opts)
     ResultAgreement.create_all_from(opts)
     ResultContact.create_all_from(opts)
-    SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
     CalculatedValue.new.create_from(self).save
@@ -208,16 +200,17 @@ class Study < ActiveRecord::Base
 
   def attribs
     {
-      :verification_date_month_day => get('verification_date'),
-      :last_changed_date => get_date(get('lastchanged_date')),
-      :first_received_date => get_date(get('firstreceived_date')),
-      :first_received_results_disposition_date => get_date(get('firstreceived_results_disposition_date')),
+      :start_month_year => get('start_date'),
+      :verification_month_year => get('verification_date'),
+      :completion_month_year => get('completion_date'),
+      :primary_completion_month_year => get('primary_completion_date'),
 
-      :start_date_month_day => get('start_date'),
-      :primary_completion_date_month_day => get('primary_completion_date'),
-      :completion_date_month_day => get('completion_date'),
-      :first_received_results_date_month_day => get('firstreceived_results_date'),
+      :first_received_date => get_date(get('firstreceived_date')),
+      :first_received_results_date => get_date(get('firstreceived_results_date')),
+      :last_changed_date => get_date(get('lastchanged_date')),
+
       :nlm_download_date_description => xml.xpath('//download_date').text,
+      :first_received_results_disposition_date => get_date(get('firstreceived_results_disposition_date')),
 
       :acronym =>get('acronym'),
       :number_of_arms => get('number_of_arms'),

@@ -207,7 +207,9 @@ CREATE TABLE calculated_values (
     primary_completion_date date,
     completion_date date,
     first_received_results_date date,
-    nlm_download_date date
+    nlm_download_date date,
+    first_received_date date,
+    first_received_result_date date
 );
 
 
@@ -1093,6 +1095,7 @@ CREATE TABLE outcomes (
     outcome_type character varying,
     title text,
     description text,
+    measure character varying,
     time_frame text,
     safety_issue character varying,
     population text,
@@ -1545,38 +1548,6 @@ ALTER SEQUENCE result_groups_id_seq OWNED BY result_groups.id;
 
 
 --
--- Name: reviews; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE reviews (
-    id integer NOT NULL,
-    rating integer,
-    comment text,
-    nct_id character varying,
-    user_id character varying
-);
-
-
---
--- Name: reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE reviews_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE reviews_id_seq OWNED BY reviews.id;
-
-
---
 -- Name: sanity_checks; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1782,12 +1753,11 @@ CREATE TABLE studies (
     first_received_results_disposition_date date,
     plan_to_share_ipd character varying,
     plan_to_share_description character varying,
-    start_date_month_day character varying,
-    verification_date_month_day character varying,
-    primary_completion_date_month_day character varying,
-    completion_date_month_day character varying,
-    first_received_results_date_month_day character varying,
-    nlm_download_date_description character varying
+    nlm_download_date_description character varying,
+    start_month_year character varying,
+    verification_month_year character varying,
+    completion_month_year character varying,
+    primary_completion_month_year character varying
 );
 
 
@@ -2154,13 +2124,6 @@ ALTER TABLE ONLY result_details ALTER COLUMN id SET DEFAULT nextval('result_deta
 --
 
 ALTER TABLE ONLY result_groups ALTER COLUMN id SET DEFAULT nextval('result_groups_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY reviews ALTER COLUMN id SET DEFAULT nextval('reviews_id_seq'::regclass);
 
 
 --
@@ -2554,14 +2517,6 @@ ALTER TABLE ONLY result_details
 
 ALTER TABLE ONLY result_groups
     ADD CONSTRAINT result_groups_pkey PRIMARY KEY (id);
-
-
---
--- Name: reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY reviews
-    ADD CONSTRAINT reviews_pkey PRIMARY KEY (id);
 
 
 --

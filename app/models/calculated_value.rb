@@ -9,12 +9,11 @@ class CalculatedValue < ActiveRecord::Base
 
   def attribs
     {
-      :start_date                  => study.start_date_month_day.to_date,
-      :first_received__date        => study.first_received_date_month_day.to_date,
-      :completion_date             => study.completion_date_month_day.to_date,
-      :primary_completion_date     => study.primary_completion_date_month_day.to_date,
-      :verification_date           => study.verification_date_month_day.to_date,
-      :first_received_results_date => study.first_received_results_date_month_day.to_date,
+      :start_date                  => study.start_month_year.to_date,
+      :verification_date           => study.verification_month_year.to_date,
+      :completion_date             => study.completion_month_year.to_date,
+      :primary_completion_date     => study.primary_completion_month_year.to_date,
+      :nlm_download_date           => get_download_date,
 
       :sponsor_type                => calc_sponsor_type,
       :actual_duration             => calc_actual_duration,
@@ -24,7 +23,6 @@ class CalculatedValue < ActiveRecord::Base
       :number_of_facilities        => calc_number_of_facilities,
       :number_of_sae_subjects      => calc_number_of_sae_subjects,
       :number_of_nsae_subjects     => calc_number_of_nsae_subjects,
-      :nlm_download_date           => get_download_date
     }
   end
 
@@ -85,8 +83,8 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_months_to_report_results
-    return nil if first_received_results_date.nil? or primary_completion_date.nil?
-    ((first_received_results_date.to_time -  primary_completion_date.to_time)/1.month.second).to_i
+    return nil if study.first_received_results_date.nil? or primary_completion_date.nil?
+    ((study.first_received_results_date.to_time -  primary_completion_date.to_time)/1.month.second).to_i
   end
 
 end

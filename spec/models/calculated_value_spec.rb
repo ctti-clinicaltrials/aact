@@ -10,10 +10,10 @@ RSpec.describe CalculatedValue, type: :model do
 
       expect(study.first_received_date).to eq('June 1, 2007'.to_date)
       expect(study.last_changed_date).to eq('October 23, 2015'.to_date)
-      expect(study.start_date_month_day).to eq('June 2006')
-      expect(study.verification_date_month_day).to eq('October 2015')
-      expect(study.primary_completion_date_month_day).to eq('July 2016')
-      expect(study.completion_date_month_day).to eq('July 2016')
+      expect(study.start_month_year).to eq('June 2006')
+      expect(study.verification_month_year).to eq('October 2015')
+      expect(study.primary_completion_month_year).to eq('July 2016')
+      expect(study.completion_month_year).to eq('July 2016')
       expect(study.nlm_download_date_description).to eq('ClinicalTrials.gov processed this data on June 27, 2016')
 
       expect(study.calculated_value.nct_id).to eq(nct_id)
