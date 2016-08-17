@@ -12,7 +12,6 @@ describe Study do
     it { should have_one(:detailed_description).dependent(:delete) }
     it { should have_one(:eligibility).dependent(:delete) }
     it { should have_one(:participant_flow).dependent(:delete) }
-    it { should have_one(:result_detail).dependent(:delete) }
     it { should have_one(:calculated_value).dependent(:delete) }
     it { should have_one(:study_xml_record) }
 
