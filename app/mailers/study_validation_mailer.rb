@@ -1,5 +1,5 @@
 class StudyValidationMailer < ApplicationMailer
-  def alert(error)
+  def self.send_alerts(error)
     emails = ['garrett@sturdy.work']
 
     if ENV['EMAIL_DUKE_TEAM']
@@ -7,10 +7,15 @@ class StudyValidationMailer < ApplicationMailer
       emails << 'williamhoos@gmail.com'
     end
 
-    @error = JSON.parse(error).symbolize_keys
 
     emails.each do |email|
-      mail(to: email, subject: 'Study data validation for new load failed!')
+      alert(email, error).deliver_now
     end
   end
+
+  def alert(email, error)
+    @error = JSON.parse(error).symbolize_keys
+    mail(to: email, subject: 'Study data validation for new load failed!')
+  end
 end
+
