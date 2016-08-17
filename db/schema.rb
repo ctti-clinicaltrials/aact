@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816202221) do
+ActiveRecord::Schema.define(version: 20160817124730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20160816202221) do
   create_table "calculated_values", force: :cascade do |t|
     t.string  "sponsor_type"
     t.decimal "actual_duration",             precision: 5, scale: 2
-    t.boolean "results_reported"
     t.integer "months_to_report_results"
     t.integer "number_of_facilities"
     t.integer "number_of_nsae_subjects"
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160816202221) do
     t.date    "nlm_download_date"
     t.date    "first_received_date"
     t.date    "first_received_result_date"
+    t.boolean "were_results_reported"
   end
 
   create_table "central_contacts", force: :cascade do |t|
@@ -104,11 +104,10 @@ ActiveRecord::Schema.define(version: 20160816202221) do
   end
 
   create_table "design_groups", force: :cascade do |t|
-    t.string "ctgov_group_id"
-    t.string "label"
     t.string "group_type"
     t.text   "description"
     t.string "nct_id"
+    t.string "title"
   end
 
   create_table "design_outcomes", force: :cascade do |t|
@@ -162,9 +161,9 @@ ActiveRecord::Schema.define(version: 20160816202221) do
     t.string "minimum_age"
     t.string "maximum_age"
     t.string "healthy_volunteers"
-    t.text   "study_population"
     t.text   "criteria"
     t.string "nct_id"
+    t.string "population"
   end
 
   create_table "facilities", force: :cascade do |t|
@@ -183,15 +182,15 @@ ActiveRecord::Schema.define(version: 20160816202221) do
     t.string  "name"
     t.string  "phone"
     t.string  "email"
-    t.string  "nct_id"
     t.string  "contact_type"
+    t.integer "nct_id"
     t.integer "facility_id"
   end
 
   create_table "facility_investigators", force: :cascade do |t|
     t.string  "name"
     t.string  "role"
-    t.string  "nct_id"
+    t.integer "nct_id"
     t.integer "facility_id"
   end
 
@@ -420,11 +419,11 @@ ActiveRecord::Schema.define(version: 20160816202221) do
   end
 
   create_table "result_contacts", force: :cascade do |t|
-    t.string "name_or_title"
     t.string "organization"
     t.string "phone"
     t.string "email"
     t.string "nct_id"
+    t.string "name"
   end
 
   create_table "result_details", force: :cascade do |t|
@@ -450,24 +449,11 @@ ActiveRecord::Schema.define(version: 20160816202221) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "search_results", force: :cascade do |t|
-    t.date    "search_datestamp"
-    t.string  "search_term"
-    t.string  "nct_id"
-    t.integer "order"
-    t.decimal "score",            precision: 6, scale: 4
-  end
-
-  create_table "secondary_ids", force: :cascade do |t|
-    t.string "secondary_id"
-    t.string "nct_id"
-  end
-
   create_table "sponsors", force: :cascade do |t|
-    t.string "sponsor_type"
-    t.string "agency"
     t.string "agency_class"
     t.string "nct_id"
+    t.string "lead_or_collaborator"
+    t.string "name"
   end
 
   create_table "statistics", force: :cascade do |t|
@@ -484,7 +470,6 @@ ActiveRecord::Schema.define(version: 20160816202221) do
     t.date     "first_received_date"
     t.date     "last_changed_date"
     t.date     "first_received_results_date"
-    t.date     "first_received_results_disposition_date"
     t.string   "completion_date_type"
     t.string   "primary_completion_date_type"
     t.string   "study_type"
@@ -510,13 +495,14 @@ ActiveRecord::Schema.define(version: 20160816202221) do
     t.text     "biospec_description"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
+    t.date     "first_received_results_disposition_date"
     t.string   "plan_to_share_ipd"
-    t.string   "plan_to_share_description"
     t.string   "nlm_download_date_description"
     t.string   "start_month_year"
     t.string   "verification_month_year"
     t.string   "completion_month_year"
     t.string   "primary_completion_month_year"
+    t.string   "plan_to_share_ipd_description"
   end
 
   add_index "studies", ["nct_id"], name: "index_studies_on_nct_id", using: :btree

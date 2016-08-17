@@ -11,5 +11,25 @@ class ChangeVariousColumnNames < ActiveRecord::Migration
     add_column :sponsors, :lead_or_collaborator, :string
     remove_column :sponsors, :agency, :string
     add_column :sponsors, :name, :string
+
+		drop_table :facility_investigators
+		drop_table :facility_contacts
+
+    create_table :facility_investigators do |t|
+      t.string :name
+      t.string :role
+      t.string :nct_id
+    end
+    add_column  :facility_investigators, :facility_id, :integer, references: :facilities
+
+    create_table :facility_contacts do |t|
+      t.string :name
+      t.string :phone
+      t.string :email
+      t.string :contact_type
+      t.string :nct_id
+    end
+    add_column  :facility_contacts, :facility_id, :integer, references: :facilities
+
   end
 end
