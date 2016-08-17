@@ -10,7 +10,6 @@ class DesignGroup < StudyRelationship
   end
 
   def attribs
-		puts xml
     {
       :ctgov_group_code => get_attribute('group_id'),
       :group_type => get('arm_group_type'),
