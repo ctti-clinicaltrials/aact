@@ -7,3 +7,8 @@ test:
 checkout:
   post:
     - mkdir -p tmp
+deployment:
+  heroku-aact-dev:
+    branch: develop
+    heroku:
+      appname: aact-dev
