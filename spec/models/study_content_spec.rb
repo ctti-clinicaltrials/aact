@@ -28,6 +28,15 @@ describe Study do
     g=study.design_groups.select{|x|x.title=='Phase I: 75.25 Gy/36 fx + chemotherapy'}.first
     expect(g.description).to eq('Phase I: Three-dimensional conformal radiation therapy (3DRT) of 75.25 Gy given in 36 fractions (2.15 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.')
    expect(g.group_type).to eq('Experimental')
+
+   # verify sponsor info
+   expect(study.sponsors.size).to eq(2)
+   lead=study.sponsors.select{|x|x.lead_or_collaborator=='lead'}.first
+   collaborator=study.sponsors.select{|x|x.lead_or_collaborator=='collaborator'}.first
+   expect(lead.name).to eq('Radiation Therapy Oncology Group')
+   expect(lead.agency_class).to eq('Other')
+   expect(collaborator.name).to eq('National Cancer Institute (NCI)')
+   expect(collaborator.agency_class).to eq('NIH')
   end
 
   it "should have expected date values" do

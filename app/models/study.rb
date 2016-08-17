@@ -157,13 +157,12 @@ class Study < ActiveRecord::Base
   end
 
   def lead_sponsor
-    # sponsors.select{|s|s.sponsor_type=='lead'}.first
-    sponsors.find_by(sponsor_type: 'lead')
+    #TODO  May be multiple
+    sponsors.where(lead_or_collaborator: 'lead')
   end
 
   def collaborators
-    # sponsors.select{|s|s.sponsor_type=='collaborator'}
-    sponsors.where(sponsor_type: 'collaborator')
+    sponsors.where(lead_or_collaborator: 'collaborator')
   end
 
   def lead_sponsor_name
@@ -258,11 +257,6 @@ class Study < ActiveRecord::Base
 
   def get_date(str)
     Date.parse(str) if !str.blank?
-  end
-
-  def lead_sponsor
-    #TODO  May be multiple
-    sponsors.each{|s|return s if s.sponsor_type=='lead'}
   end
 
   def average_rating

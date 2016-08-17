@@ -1592,10 +1592,10 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE sponsors (
     id integer NOT NULL,
-    sponsor_type character varying,
-    agency character varying,
     agency_class character varying,
-    nct_id character varying
+    nct_id character varying,
+    lead_or_collaborator character varying,
+    name character varying
 );
 
 

@@ -1,5 +1,5 @@
 class Sponsor < StudyRelationship
-  scope :named, lambda {|agency| where("agency LIKE ?", "#{agency}%" )}
+  scope :named, lambda {|agency| where("name LIKE ?", "#{agency}%" )}
 
   def self.create_all_from(opts)
     sponsors = leads(opts) + collaborators(opts)
@@ -19,9 +19,9 @@ class Sponsor < StudyRelationship
   def attribs
     {
       :nct_id => get_opt(:nct_id),
-      :sponsor_type => get_opt('type'),
+      :lead_or_collaborator => get_opt('type'),
       :agency_class => get('agency_class'),
-      :agency => get('agency'),
+      :name => get('agency'),
     }
   end
 
