@@ -406,7 +406,6 @@ ALTER SEQUENCE design_groups_id_seq OWNED BY design_groups.id;
 CREATE TABLE design_outcomes (
     id integer NOT NULL,
     outcome_type character varying,
-    title text,
     measure text,
     time_frame text,
     safety_issue character varying,
@@ -433,38 +432,6 @@ CREATE SEQUENCE design_outcomes_id_seq
 --
 
 ALTER SEQUENCE design_outcomes_id_seq OWNED BY design_outcomes.id;
-
-
---
--- Name: design_validations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE design_validations (
-    id integer NOT NULL,
-    design_name character varying,
-    design_value character varying,
-    masked_role character varying,
-    nct_id character varying
-);
-
-
---
--- Name: design_validations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE design_validations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: design_validations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE design_validations_id_seq OWNED BY design_validations.id;
 
 
 --
@@ -580,7 +547,7 @@ CREATE TABLE eligibilities (
     minimum_age character varying,
     maximum_age character varying,
     healthy_volunteers character varying,
-    study_population text,
+    population text,
     criteria text,
     nct_id character varying
 );
@@ -1253,98 +1220,6 @@ ALTER SEQUENCE participant_flows_id_seq OWNED BY participant_flows.id;
 
 
 --
--- Name: pma_mappings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE pma_mappings (
-    id integer NOT NULL,
-    unique_id character varying,
-    ct_pma_id integer,
-    pma_number character varying,
-    supplement_number character varying,
-    nct_id character varying
-);
-
-
---
--- Name: pma_mappings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE pma_mappings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pma_mappings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE pma_mappings_id_seq OWNED BY pma_mappings.id;
-
-
---
--- Name: pma_records; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE pma_records (
-    id integer NOT NULL,
-    unique_id character varying,
-    pma_number character varying,
-    supplement_number character varying,
-    supplement_type character varying,
-    supplement_reason character varying,
-    applicant character varying,
-    street_1 character varying,
-    street_2 character varying,
-    city character varying,
-    state character varying,
-    zip character varying,
-    zip_ext character varying,
-    last_updated date,
-    date_received date,
-    decision_date date,
-    decision_code character varying,
-    expedited_review_flag character varying,
-    advisory_committee character varying,
-    advisory_committee_description character varying,
-    device_name character varying,
-    device_class character varying,
-    product_code character varying,
-    generic_name character varying,
-    trade_name character varying,
-    medical_specialty_description character varying,
-    docket_number character varying,
-    regulation_number character varying,
-    fei_numbers text,
-    registration_numbers text,
-    ao_statement text,
-    nct_id character varying
-);
-
-
---
--- Name: pma_records_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE pma_records_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pma_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE pma_records_id_seq OWNED BY pma_records.id;
-
-
---
 -- Name: reported_event_overviews; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1429,7 +1304,8 @@ CREATE TABLE responsible_parties (
     affiliation text,
     name character varying,
     title character varying,
-    nct_id character varying
+    nct_id character varying,
+    organization character varying
 );
 
 
@@ -1689,36 +1565,6 @@ ALTER SEQUENCE search_results_id_seq OWNED BY search_results.id;
 
 
 --
--- Name: secondary_ids; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE secondary_ids (
-    id integer NOT NULL,
-    secondary_id character varying,
-    nct_id character varying
-);
-
-
---
--- Name: secondary_ids_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE secondary_ids_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: secondary_ids_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE secondary_ids_id_seq OWNED BY secondary_ids.id;
-
-
---
 -- Name: sponsors; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1824,9 +1670,9 @@ CREATE TABLE studies (
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    first_received_results_disposition_date date,
     plan_to_share_ipd character varying,
     plan_to_share_description character varying,
-    first_received_results_disposition_date date,
     start_date_month_day character varying,
     verification_date_month_day character varying,
     primary_completion_date_month_day character varying,
@@ -1975,13 +1821,6 @@ ALTER TABLE ONLY design_groups ALTER COLUMN id SET DEFAULT nextval('design_group
 --
 
 ALTER TABLE ONLY design_outcomes ALTER COLUMN id SET DEFAULT nextval('design_outcomes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY design_validations ALTER COLUMN id SET DEFAULT nextval('design_validations_id_seq'::regclass);
 
 
 --
@@ -2149,20 +1988,6 @@ ALTER TABLE ONLY participant_flows ALTER COLUMN id SET DEFAULT nextval('particip
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pma_mappings ALTER COLUMN id SET DEFAULT nextval('pma_mappings_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY pma_records ALTER COLUMN id SET DEFAULT nextval('pma_records_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY reported_event_overviews ALTER COLUMN id SET DEFAULT nextval('reported_event_overviews_id_seq'::regclass);
 
 
@@ -2227,13 +2052,6 @@ ALTER TABLE ONLY sanity_checks ALTER COLUMN id SET DEFAULT nextval('sanity_check
 --
 
 ALTER TABLE ONLY search_results ALTER COLUMN id SET DEFAULT nextval('search_results_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY secondary_ids ALTER COLUMN id SET DEFAULT nextval('secondary_ids_id_seq'::regclass);
 
 
 --
@@ -2350,14 +2168,6 @@ ALTER TABLE ONLY design_groups
 
 ALTER TABLE ONLY design_outcomes
     ADD CONSTRAINT design_outcomes_pkey PRIMARY KEY (id);
-
-
---
--- Name: design_validations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY design_validations
-    ADD CONSTRAINT design_validations_pkey PRIMARY KEY (id);
 
 
 --
@@ -2545,22 +2355,6 @@ ALTER TABLE ONLY participant_flows
 
 
 --
--- Name: pma_mappings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY pma_mappings
-    ADD CONSTRAINT pma_mappings_pkey PRIMARY KEY (id);
-
-
---
--- Name: pma_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY pma_records
-    ADD CONSTRAINT pma_records_pkey PRIMARY KEY (id);
-
-
---
 -- Name: reported_event_overviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2638,14 +2432,6 @@ ALTER TABLE ONLY sanity_checks
 
 ALTER TABLE ONLY search_results
     ADD CONSTRAINT search_results_pkey PRIMARY KEY (id);
-
-
---
--- Name: secondary_ids_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY secondary_ids
-    ADD CONSTRAINT secondary_ids_pkey PRIMARY KEY (id);
 
 
 --
@@ -2812,6 +2598,18 @@ INSERT INTO schema_migrations (version) VALUES ('20160809133136');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809172406');
 
+INSERT INTO schema_migrations (version) VALUES ('20160810141928');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810142332');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810150320');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810150747');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810152651');
+
+INSERT INTO schema_migrations (version) VALUES ('20160810173055');
+
 INSERT INTO schema_migrations (version) VALUES ('20160810185321');
 
 INSERT INTO schema_migrations (version) VALUES ('20160810232659');
@@ -2819,6 +2617,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160810232659');
 INSERT INTO schema_migrations (version) VALUES ('20160811002521');
 
 INSERT INTO schema_migrations (version) VALUES ('20160811013332');
+
+INSERT INTO schema_migrations (version) VALUES ('20160811154112');
 
 INSERT INTO schema_migrations (version) VALUES ('20160812141340');
 

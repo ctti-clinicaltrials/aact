@@ -1,5 +1,4 @@
 class Facility < StudyRelationship
-  attr_accessor :coordinates
 
   has_many :facility_contacts, inverse_of: :facility, autosave: true
   has_many :facility_investigators, inverse_of: :facility, autosave: true
@@ -45,8 +44,6 @@ class Facility < StudyRelationship
       :zip => get_addr('zip'),
       :country => get_addr('country'),
       :status => get_from_wrapper1('status'),
-      :latitude => get_latitude,
-      :longitude => get_longitude,
     }
   end
 
@@ -67,23 +64,4 @@ class Facility < StudyRelationship
   def address
     "#{name}, #{city}, #{state}, #{country}"
   end
-
-  def coordinates
-    @coordinates ||= Asker.get_coordinates(formatted_addr)
-  end
-
-  def get_latitude
-    coordinates[:latitude]
-  end
-
-  def get_longitude
-    coordinates[:longitude]
-  end
-
-  def fix_coordinates
-    self.latitude=get_latitude
-    self.longitude=get_longitude
-    self.save!
-  end
-
 end

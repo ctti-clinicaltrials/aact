@@ -17,6 +17,8 @@ describe Study do
     it { should have_one(:calculated_value).dependent(:delete) }
     it { should have_one(:study_xml_record) }
 
+    it { should have_many(:reviews).dependent(:delete_all) }
+
     it { should have_many(:design_groups).dependent(:delete_all) }
     it { should have_many(:design_outcomes).dependent(:delete_all) }
     it { should have_many(:result_groups).dependent(:delete_all) }

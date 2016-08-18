@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study rank="114579">
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on July 17, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01339988</url>
+  </required_header>
+  <id_info>
+    <org_study_id>TASMC-11-MB-442-CTIL</org_study_id>
+    <nct_id>NCT01339988</nct_id>
+  </id_info>
+  <brief_title>Busulfan and Cyclophosphamide Instead of Total Boby Irradiation (TBI) and Cyclophosphamide for Hematological Malignancies Hematocrit (HCT)</brief_title>
+  <official_title>Treatment Plan for Hematologic Malignancies Using Intravenous Busulfan and Cyclophosphamide Instead of Total Boby Irradiation (TBI) and Cyclophosphamide to Examine Results, Success and Side Effects of Treatment With Chemotherapy Only, as a Preparative Therapy for Patients With Cord Blood Transplants</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Tel-Aviv Sourasky Medical Center</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Tel-Aviv Sourasky Medical Center</source>
+  <oversight_info>
+    <authority>Israel: Ethics Commission</authority>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      Long-term follow-up studies have demonstrated significant late toxicities of total body
+      irradiation (TBI), which are most marked in children radiated at a young age. Growth
+      failure, decline in cognitive function, and endocrine abnormalities have all been described.
+      Good outcomes can be achieved with alkylating agents only as a preparative regimen. This
+      plan will use a combination of busulfan and cyclophosphamide (Bu/Cy) with or without
+      antithymocyte globulin (ATG) to reduce the late toxicities of therapy that includes TBI.
+    </textblock>
+  </brief_summary>
+  <overall_status>Not yet recruiting</overall_status>
+  <start_date>June 2011</start_date>
+  <completion_date type="Anticipated">June 2019</completion_date>
+  <primary_completion_date type="Anticipated">June 2014</primary_completion_date>
+  <phase>Phase 4</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Intervention Model: Single Group Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Overall survival</measure>
+    <time_frame>Five years</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Disease free survival</measure>
+    <time_frame>Five years</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <number_of_arms>1</number_of_arms>
+  <enrollment type="Anticipated">10</enrollment>
+  <condition>Acute Leukemias</condition>
+  <condition>Chronic Leukemias</condition>
+  <condition>Myelodysplastic Syndrome</condition>
+  <condition>Juvenile Myelomonocytic Leukemia</condition>
+  <arm_group>
+    <arm_group_label>Busulfan/Cyclophosphamide</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Busulfan/Cyclophosphamide</intervention_name>
+    <description>Conditioning regimen:
+Cyclophosphamide 50mg/kg/day for 4 days + Busulfan 0.8-1.0mg/kg/day for 4 days.</description>
+    <arm_group_label>Busulfan/Cyclophosphamide</arm_group_label>
+    <other_name>Cytoxan</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Suitable cord blood from matched unrelated or related donor.
+
+          -  Cardiac (Echo/EKG): shortening fraction ≥ 27%
+
+          -  Electrolytes within normal CCHMC limits.
+
+          -  Pulmonary function tests: DLCO ≥ 50%
+
+          -  Renal: creatinine clearance/GFR ≥ 60 ml/minute/1.73m2
+
+          -  Lumbar puncture: no leukemic infiltrate.
+
+          -  CBC: ANC ≥ 1000ml and unsupported platelet count of ≥ 50,000/ml
+
+          -  Documented HSV and CMV titers, Hepatitis B surface antigen, Hepatitis C by serology,
+             HIV by serology: all negative.
+
+          -  Hepatic transaminases &lt; 2.5x normal; Total bilirubin &lt; 2 mg/dl Patients who do not
+             meet above organ function criteria (liver, cardiac, renal), due to the presence of a
+             tumor compromising these organs, may have exception made for these criteria and
+             remain eligible for treatment plan after consultation with Program Director of Blood
+             and Marrow Transplant
+
+        Exclusion Criteria:
+
+          -  Patients with neoplastic or non-neoplastic disease of any major organ system that
+             would compromise their ability to withstand the pre-transplant conditioning regimen.
+
+          -  Patients with uncontrolled (culture or biopsy positive) infections requiring
+             intravenous antivirals, antibiotics, or antifungals. Patients on prolonged antifungal
+             therapy with a history of fungal infection should be considered for a
+             non-myeloablative protocol.
+
+          -  Patients who are pregnant or lactating. Patients of childbearing potential must
+             practice an effective method of birth control while participating on this treatment
+             plan.
+
+          -  HIV seropositive patients
+      </textblock>
+    </criteria>
+    <gender>Male</gender>
+    <minimum_age>N/A</minimum_age>
+    <maximum_age>21 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <verification_date>April 2011</verification_date>
+  <lastchanged_date>April 20, 2011</lastchanged_date>
+  <firstreceived_date>April 20, 2011</firstreceived_date>
+  <responsible_party>
+    <name_title>Menachem Bitan</name_title>
+    <organization>Tel-Aviv Sourasky Medical Center</organization>
+  </responsible_party>
+  <keyword>Stem-cells</keyword>
+  <keyword>Transplantation</keyword>
+  <keyword>Busulfex</keyword>
+  <keyword>Cyclophosphamide</keyword>
+  <keyword>Total-Body-Ittadiation</keyword>
+  <is_fda_regulated>No</is_fda_regulated>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Myelodysplastic Syndromes</mesh_term>
+    <mesh_term>Preleukemia</mesh_term>
+    <mesh_term>Leukemia</mesh_term>
+    <mesh_term>Leukemia, Myelomonocytic, Juvenile</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Cyclophosphamide</mesh_term>
+    <mesh_term>Busulfan</mesh_term>
+  </intervention_browse>
+  <!-- Results have not yet been posted for this study                                -->
+</clinical_study>

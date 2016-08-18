@@ -24,8 +24,6 @@ class Study < ActiveRecord::Base
   has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
-  has_many :pma_mappings,          :foreign_key => 'nct_id'
-  has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
@@ -131,7 +129,6 @@ class Study < ActiveRecord::Base
     ResponsibleParty.create_all_from(opts)
     ResultAgreement.create_all_from(opts)
     ResultContact.create_all_from(opts)
-    SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
     CalculatedValue.new.create_from(self).save
