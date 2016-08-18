@@ -19,7 +19,7 @@ class CentralContact < StudyRelationship
     {
       :contact_type => get_opt('contact_type'),
       :name => get('last_name'),
-      :phone => get('phone') + get('phone_ext'),
+      :phone => get_phone,
       :email => get('email'),
     }
   end
