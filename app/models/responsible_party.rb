@@ -9,6 +9,14 @@ class ResponsibleParty < StudyRelationship
     import(objects)
   end
 
+  def name_field(opts)
+    if opts[:xml].xpath('name_title').present?
+      return get('name_title')
+    else
+      return get('investigator_full_name')
+    end
+  end
+
   def attribs
     {
       :responsible_party_type => get('responsible_party_type'),

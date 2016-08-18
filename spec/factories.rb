@@ -1,4 +1,17 @@
 FactoryGirl.define do
+  factory :id_information do
+    nct_id "MyString"
+    id_type "MyString"
+    id_value "MyString"
+  end
+
+  factory :central_contact do
+    nct_id "MyString"
+    contact_type "MyString"
+    name "MyString"
+    phone "MyString"
+    email "MyString"
+  end
 
   factory :sanity_check do
   end
@@ -10,4 +23,6 @@ FactoryGirl.define do
     nct_id 'NCT123'
   end
 
+  factory :calculated_value do
+  end
 end
