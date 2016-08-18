@@ -676,6 +676,37 @@ ALTER SEQUENCE facility_investigators_id_seq OWNED BY facility_investigators.id;
 
 
 --
+-- Name: id_informations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE id_informations (
+    id integer NOT NULL,
+    nct_id character varying,
+    id_type character varying,
+    id_value character varying
+);
+
+
+--
+-- Name: id_informations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE id_informations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: id_informations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE id_informations_id_seq OWNED BY id_informations.id;
+
+
+--
 -- Name: intervention_arm_group_labels; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1615,8 +1646,6 @@ CREATE TABLE studies (
     download_date date,
     completion_date_type character varying,
     primary_completion_date_type character varying,
-    org_study_id character varying,
-    secondary_id character varying,
     study_type character varying,
     overall_status character varying,
     phase character varying,
@@ -1841,6 +1870,13 @@ ALTER TABLE ONLY facility_contacts ALTER COLUMN id SET DEFAULT nextval('facility
 --
 
 ALTER TABLE ONLY facility_investigators ALTER COLUMN id SET DEFAULT nextval('facility_investigators_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY id_informations ALTER COLUMN id SET DEFAULT nextval('id_informations_id_seq'::regclass);
 
 
 --
@@ -2188,6 +2224,14 @@ ALTER TABLE ONLY facility_contacts
 
 ALTER TABLE ONLY facility_investigators
     ADD CONSTRAINT facility_investigators_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: id_informations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY id_informations
+    ADD CONSTRAINT id_informations_pkey PRIMARY KEY (id);
 
 
 --
@@ -2552,6 +2596,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160809010254');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809133136');
 
+INSERT INTO schema_migrations (version) VALUES ('20160809172406');
+
 INSERT INTO schema_migrations (version) VALUES ('20160810141928');
 
 INSERT INTO schema_migrations (version) VALUES ('20160810142332');
@@ -2579,4 +2625,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160812141340');
 INSERT INTO schema_migrations (version) VALUES ('20160813125212');
 
 INSERT INTO schema_migrations (version) VALUES ('20160814024245');
+
+INSERT INTO schema_migrations (version) VALUES ('20160817141109');
 

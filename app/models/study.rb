@@ -18,6 +18,7 @@ class Study < ActiveRecord::Base
   has_one  :design,                :foreign_key => 'nct_id', dependent: :delete
   has_one  :detailed_description,  :foreign_key => 'nct_id', dependent: :delete
   has_one  :eligibility,           :foreign_key => 'nct_id', dependent: :delete
+  has_one  :id_information,        :foreign_key => 'nct_id', dependent: :delete
   has_one  :participant_flow,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :result_detail,         :foreign_key => 'nct_id', dependent: :delete
   has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
@@ -113,6 +114,7 @@ class Study < ActiveRecord::Base
     Country.create_all_from(opts)
     Facility.create_all_from(opts)
     Intervention.create_all_from(opts)
+    IdInformation.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     BaselineMeasure.create_all_from(opts)
@@ -222,7 +224,6 @@ class Study < ActiveRecord::Base
       :first_received_results_date_month_day => get('firstreceived_results_date'),
       :nlm_download_date_description => xml.xpath('//download_date').text,
 
-      :org_study_id => xml.xpath('//org_study_id').text,
       :acronym =>get('acronym'),
       :number_of_arms => get('number_of_arms'),
       :number_of_groups =>get('number_of_groups'),

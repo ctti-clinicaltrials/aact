@@ -26,8 +26,6 @@ shared_examples 'a serialized study' do
       nlm_download_date_description
       completion_date_type
       primary_completion_date_type
-      org_study_id
-      secondary_id
       study_type
       overall_status
       phase
@@ -80,8 +78,6 @@ shared_examples 'a serialized study' do
     expect(serialized_study['nlm_download_date_description']).to eq(resource.nlm_download_date_description)
     expect(serialized_study['completion_date_type']).to eq(resource.completion_date_type)
     expect(serialized_study['primary_completion_date_type']).to eq(resource.primary_completion_date_type)
-    expect(serialized_study['org_study_id']).to eq(resource.org_study_id)
-    expect(serialized_study['secondary_id']).to eq(resource.secondary_id)
     expect(serialized_study['study_type']).to eq(resource.study_type)
     expect(serialized_study['overall_status']).to eq(resource.overall_status)
     expect(serialized_study['phase']).to eq(resource.phase)
