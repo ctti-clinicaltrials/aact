@@ -268,6 +268,34 @@ ALTER SEQUENCE central_contacts_id_seq OWNED BY central_contacts.id;
 
 
 --
+-- Name: columns_for_eligibility_roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE columns_for_eligibility_roles (
+    id integer NOT NULL
+);
+
+
+--
+-- Name: columns_for_eligibility_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE columns_for_eligibility_roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: columns_for_eligibility_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE columns_for_eligibility_roles_id_seq OWNED BY columns_for_eligibility_roles.id;
+
+
+--
 -- Name: conditions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -511,7 +539,11 @@ CREATE TABLE designs (
     allocation character varying,
     time_perspective character varying,
     observational_model character varying,
-    nct_id character varying
+    nct_id character varying,
+    subject_masked boolean,
+    caregiver_masked boolean,
+    investigator_masked boolean,
+    outcomes_assessor_masked boolean
 );
 
 
@@ -1842,6 +1874,13 @@ ALTER TABLE ONLY central_contacts ALTER COLUMN id SET DEFAULT nextval('central_c
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY columns_for_eligibility_roles ALTER COLUMN id SET DEFAULT nextval('columns_for_eligibility_roles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY conditions ALTER COLUMN id SET DEFAULT nextval('conditions_id_seq'::regclass);
 
 
@@ -2185,6 +2224,14 @@ ALTER TABLE ONLY calculated_values
 
 ALTER TABLE ONLY central_contacts
     ADD CONSTRAINT central_contacts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: columns_for_eligibility_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY columns_for_eligibility_roles
+    ADD CONSTRAINT columns_for_eligibility_roles_pkey PRIMARY KEY (id);
 
 
 --
@@ -2682,4 +2729,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160817124730');
 INSERT INTO schema_migrations (version) VALUES ('20160817204937');
 
 INSERT INTO schema_migrations (version) VALUES ('20160818122657');
+
+INSERT INTO schema_migrations (version) VALUES ('20160818175556');
+
+INSERT INTO schema_migrations (version) VALUES ('20160818180156');
 
