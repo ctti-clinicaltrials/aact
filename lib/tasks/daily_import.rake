@@ -13,8 +13,11 @@ namespace :import do
         load_event.update(new_studies: new_studies_count, changed_studies: changed_studies_count)
         StudyUpdater.new.update_studies(nct_ids: nct_ids_to_be_updated_or_added)
 
-
         load_event.complete
+
+        SanityCheck.new.run
+        StudyValidator.new.validate_studies
+        LoadMailer.send_notifications(load_event)
       else
         puts "First of the month - running full import"
       end

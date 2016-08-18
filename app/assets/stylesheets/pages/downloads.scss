@@ -1,9 +1,9 @@
 section.downloadAact {
   padding-bottom: 500px;
+  background-color: $white;
 
   section.instructions {
     background-color: $white;
-    padding: 60px 0px;
   }
 
   section.downloadIntro {
@@ -11,20 +11,9 @@ section.downloadAact {
   }
 }
 
+section.snapshots {
+  padding: 4rem 0rem;
+  padding-bottom: 500px;
+  background-color: $white;
 
-div.centerTile {
-  background-color: rgb(249,249,249);
-  color: $grey;
-  padding: 2rem;
-  @include box-shadow(3px 3px 11px $light-grey);
-  max-width: 80%;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 2rem;
-
-  h4 {
-    color: $secondary;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
 }

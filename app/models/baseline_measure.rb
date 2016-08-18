@@ -1,11 +1,18 @@
 class BaselineMeasure < StudyRelationship
 
-  belongs_to :group
+  belongs_to :result_group
+
+  def self.top_level_label
+    '//baseline'
+  end
 
   def self.create_all_from(opts={})
     xml=opts[:xml].xpath('//baseline')
+    opts[:xml]=xml
+    opts[:result_type]='Baseline Measure'
+    opts[:groups]=create_group_set(opts)
+
     opts[:population]=xml.xpath("population").inner_html
-    opts[:groups]=create_group_set(xml)
     all=xml.xpath("measure_list").xpath('measure')
     col=[]
     xml=all.pop
@@ -20,8 +27,7 @@ class BaselineMeasure < StudyRelationship
       col << self.nested_pop_create(opts)
       xml=all.pop
     end
-
-    BaselineMeasure.import(col.flatten)
+    col.flatten.each{|x|x.save!}
   end
 
   def self.nested_pop_create(opts)
@@ -36,12 +42,12 @@ class BaselineMeasure < StudyRelationship
       col << pop_create(opts)
       xml=all.pop
     end
-    col.flatten
+    col
   end
 
   def attribs
     {
-      :group => get_group(opts[:groups]),
+      :result_group => get_group(opts[:groups]),
       :ctgov_group_code => gid,
       :population => get_opt(:population),
       :param_type => get_opt(:param),
@@ -56,10 +62,6 @@ class BaselineMeasure < StudyRelationship
       :description => get_opt(:description),
       :units => get_opt(:units),
     }
-  end
-
-  def gid
-    get_attribute('group_id')
   end
 
 end

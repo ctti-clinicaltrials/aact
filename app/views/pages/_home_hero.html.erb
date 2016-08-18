@@ -9,29 +9,46 @@
 
   </div>
 
-  <div class="heroPanelRow">
-    <a class="button big" href="#access">
-      <%= icon('plug') %>
-      <span class="type">Instructions</span>
-      Connect to AACT2
+  <div class="circleButtons">
+
+    <a href="/connect">
+      <div class="iconWrap">
+        <%= icon('plug') %>
+      </div>
+      <span>Connect
+    </span>
     </a>
-    <a class="button small" href="/download_aact">
-      <%= icon('download') %>
-      <span class="type">Instructions</span>
-      Database Download
+
+    <a href="/download_aact">
+      <div class="iconWrap">
+        <%= icon('download') %>
+      </div>
+      <span>Download
+    </span>
     </a>
+
+    <a href="/learn_more">
+      <div class="iconWrap">
+        <%= icon('university') %>
+      </div>
+      <span>Learn More
+    </span>
+    </a>
+
   </div>
+
 
   <div class="heroPanelRow">
     <a class="button small light" href="/points_to_consider">
       <%= icon('info-circle') %>
       <span class="type">Recommendation</span>
-      Points to Consider
+      <span class="title">Points to Consider</span>
     </a>
-    <a class="button big" href="/learn_more">
-      <%= icon('university') %>
+    <a class="button big" href="#">
+      <%= icon('newspaper-o') %>
       <span class="type">Publication</span>
-      Learn about AACT
+      <span class="title">News</span>
     </a>
   </div>
+
 </section>

@@ -1,8 +1,27 @@
+<div class="wrap">
+
+  <div class="step">
+    <span class="stepNumber">1</span>
+    <h3 class="stepName">Download a Snapshot</h3>
+  </div>
+
+  <p>You can download the latest snapshot of the AACT2 database <a href="https://s3-us-west-2.amazonaws.com/aact2/snapshots/postgres.aact2.dump.<%= Date.today.strftime('%Y%m%d') %>-07%3A00.gz">here</a>, which was captured on <%= Date.today.strftime("%B %e") %> at 3am Eastern Standard Time.</p>
+  <p>
+    To see a list of all archived backups from the past three months, visit the <a href="/snapshot_archive">snapshot archive</a>.
+  </p>
+
+  <div class="step">
+    <span class="stepNumber">2</span>
+    <h3 class="stepName">Populate local database with snapshot</h3>
+  </div>
+
 
   <p>If you want to interact with the full dataset on your own machine, you can download one of the database snapshots from the above section. You'll need to use the pg_restore command line tool that comes with Postgres by running the following command:</p>
 
   <pre>
-    <code>pg_restore -U yourusername -d yourdbname -1 -f filename.dump</code>
+    <code>createdb -U yourusername databasename</code>
+    <code>pg_restore -e -v -O -x -d databasename -U yourusername filename.dump</code>
   </pre>
 
   <p class="note">Note: this restore can take up to several hours depending on the speed of your machine.</p>
+</div>

@@ -1,0 +1,87 @@
+section.connect {
+  background-color: $white;
+  padding-bottom: 500px;
+}
+
+div.connectionTypes, div.downloadTypes, div.learnMoreCards {
+  @include display-flex;
+  padding: 2rem;
+  padding-bottom: 0rem;
+
+  h4 {
+    font-size: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  i {
+    position: absolute;
+    bottom: .5rem;
+    right: 0rem;
+    font-size: 6rem;
+    opacity: .2;
+    color: $light-grey;
+  }
+
+  p {
+    padding-right: 2rem;
+  }
+
+  a.connectionCard, a.downloadCard, a.learnMoreCard {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    background-color: rgb(249,249,249);
+    color: $grey;
+    padding: 2rem;
+    @include box-shadow(3px 3px 11px $light-grey);
+    margin: 1rem;
+    position: relative;
+    bottom: 100px;
+  }
+
+}
+
+
+section.credentials {
+  margin-bottom: 4rem;
+}
+
+section.intro {
+  margin-bottom: 4rem;
+}
+
+
+div.credentialRow {
+  @include display-flex;
+  @include flex-direction(row);
+  @include align-items(center);
+  margin-bottom: 10px;
+
+  p {
+    margin-bottom: 0px;
+    margin-right: $gutter_width;
+  }
+
+  pre {
+    margin: 0px;
+    padding: 10px;
+  }
+}
+
+
+
+section.pgAdmin, section.rAccess, section.sasAccess {
+  background-color: $white;
+  padding-top: 6rem;
+  padding-bottom: 500px;
+
+  img {
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+    padding-top: 1rem;
+    margin-bottom: 3rem;
+    @include box-shadow(1px 1px 6px #ccc);
+  }
+}

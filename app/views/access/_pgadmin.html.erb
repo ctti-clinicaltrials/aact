@@ -1,60 +1,103 @@
+<div class="wrap">
+
+  <div class="basicHero">
+    <h1>Connect to AACT2 using pgAdmin</h1>
+
+  </div>
+
+</div>
+
 <section class="pgAdmin">
-  <b>pgAdmin</b>
-  <p>
-    If you don't have pgAdmin installed, make sure to download the latest version for <a href="https://www.pgadmin.org/download/macosx.php" target="_blank">Mac</a> or <a href="https://www.pgadmin.org/download/windows.php" target="_blank">PC</a>. After you select a version, click on the .dmg file (not .dmg.sig) to download and install the pgAdmin.
-  </p>
+  <div class="wrap">
 
-  <%= image_tag("dmgfile.png") %>
+    <div class="step">
+      <span class="stepNumber">1</span>
+      <h3 class="stepName">Install pgAdmin3</h3>
+    </div>
 
-  <p>
-    The instructions that follow here use examples from pgAdmin3, so, if you are using an older version of pgAdmin, some of the screenshots here may look different from your interface.
-  </p>
+    <p>
+      If you don't have pgAdmin installed, make sure to download the latest version for <a href="https://www.pgadmin.org/download/macosx.php" target="_blank">Mac</a> or <a href="https://www.pgadmin.org/download/windows.php" target="_blank">PC</a>. After you select a version, click on the .dmg file (not .dmg.sig) to download and install the pgAdmin.
+    </p>
 
-  <p>
-    With pgAdmin3 installed, open the application and click on the plug icon in the upper left of the menu bar to establish a new server connection.
-  </p>
+    <%= image_tag("dmgfile.png") %>
 
-  <%= image_tag("plug_icon.png") %>
+    <p>
+      The instructions that follow here use examples from pgAdmin3, so, if you are using an older version of pgAdmin, some of the screenshots here may look different from your interface.
+    </p>
 
-  <p>
-    Fill out the "New Server Registration" form with the <a href="#credentials">credentials</a> provided in this documentation. For this form you will be required to enter a name, host, port, username, and password.
-  </p>
+    <div class="step">
+      <span class="stepNumber">2</span>
+      <h3 class="stepName">Establish a new server connection</h3>
+    </div>
 
-  <%= image_tag("newserver.png") %>
+    <p>
+      With pgAdmin3 installed, open the application and click on the plug icon in the upper left of the menu bar to establish a new server connection.
+    </p>
 
-  <p>
-    To make sure you are connected, spill out the folder structure in the navigation pane until you see a line item for aact in the Servers folder. Click on the aact connection, and in the display window on the right you should see the "Connected?" status as "Yes".
-  </p>
+    <%= image_tag("plug_icon.png") %>
 
-  <%= image_tag("connected.png") %>
+    <p>
+      Fill out the "New Server Registration" form with the <a href="#credentials">credentials</a> provided in this documentation. For this form you will be required to enter a name, host, port, username, and password.
+    </p>
 
-  <p>
-    Open that aact server connection, and in the databases folder you should again find a line item (in this case the actual database), for aact. Select it from this list.
-  </p>
-  <p class="note">
-    Note: There might be a little red x over the database icon when you first navigate to this structure. It should go away after being clicked.
-  </p>
+    <%= image_tag("newserver.png") %>
 
-  <%= image_tag("selectaact.png") %>
+    <div class="step">
+      <span class="stepNumber">3</span>
+      <h3 class="stepName">Confirm Connection</h3>
+    </div>
 
-  <p>
-    With the aact database selected click on the icon for "Execute Arbitrary SQL queries". It looks like a magnifying glass over a database icon with the letters "SQL" inside.
-  </p>
+    <p>
+      To make sure you are connected, spill out the folder structure in the navigation pane until you see a line item for aact in the Servers folder. Click on the aact connection, and in the display window on the right you should see the "Connected?" status as "Yes".
+    </p>
 
-  <%= image_tag("newquery.png") %>
+    <%= image_tag("connected.png") %>
 
-  <p>
-    You should then get a popout window that looks something like this:
-  </p>
-  <%= image_tag("emptyquery.png") %>
+    <div class="step">
+      <span class="stepNumber">3</span>
+      <h3 class="stepName">Select the AACT database</h3>
+    </div>
 
-  <p>
-    From this interface you can run SQL queries as you might be used to. Type your query into the SQL Editor in the upper left, and hit the play button to run the query on the AACT2 database.
-  </p>
-  <%= image_tag("playquery.png") %>
-  <p>
-    Here's a simple example of a query that has returned the number of records in the studies table.
-  </p>
-  <%= image_tag("countresults.png") %>
+    <p>
+      Open that aact server connection, and in the databases folder you should again find a line item (in this case the actual database), for aact. Select it from this list.
+    </p>
+    <p class="note">
+      Note: There might be a little red x over the database icon when you first navigate to this structure. It should go away after being clicked.
+    </p>
 
+    <%= image_tag("selectaact.png") %>
+
+
+    <div class="step">
+      <span class="stepNumber">4</span>
+      <h3 class="stepName">Open the query window</h3>
+    </div>
+
+    <p>
+      With the aact database selected click on the icon for "Execute Arbitrary SQL queries". It looks like a magnifying glass over a database icon with the letters "SQL" inside.
+    </p>
+
+    <%= image_tag("newquery.png") %>
+
+    <p>
+      You should then get a popout window that looks something like this:
+    </p>
+    <%= image_tag("emptyquery.png") %>
+
+
+    <div class="step">
+      <span class="stepNumber">5</span>
+      <h3 class="stepName">Execute a query</h3>
+    </div>
+    <p>
+      From this interface you can run SQL queries as you might be used to. Type your query into the SQL Editor in the upper left, and hit the play button to run the query on the AACT2 database.
+    </p>
+    <%= image_tag("playquery.png") %>
+    <p>
+      Here's a simple example of a query that has returned the number of records in the studies table.
+    </p>
+    <%= image_tag("countresults.png") %>
+
+
+  </div>
 </section>
