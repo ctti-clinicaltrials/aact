@@ -87,7 +87,8 @@ class Study < ActiveRecord::Base
 
   def create
     update(attribs)
-    DesignGroup.create_all_from(opts)
+    groups=DesignGroup.create_all_from(opts)
+    Intervention.create_all_from(opts.merge(:design_groups=>groups))
     DetailedDescription.new.create_from(opts).save
     Design.new.create_from(opts).save
     BriefSummary.new.create_from(opts).save
@@ -99,7 +100,6 @@ class Study < ActiveRecord::Base
     Condition.create_all_from(opts)
     Country.create_all_from(opts)
     Facility.create_all_from(opts)
-    Intervention.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     BaselineMeasure.create_all_from(opts)

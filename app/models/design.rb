@@ -1,5 +1,5 @@
 class Design < StudyRelationship
-  attr_accessor :source
+  extend FastCount
 
   def attribs
     {

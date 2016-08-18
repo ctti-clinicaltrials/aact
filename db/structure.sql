@@ -205,6 +205,7 @@ CREATE TABLE calculated_values (
     verification_date date,
     primary_completion_date date,
     completion_date date,
+    first_received_results_date date,
     nlm_download_date date,
     first_received_date date,
     first_received_result_date date,
@@ -363,6 +364,36 @@ CREATE SEQUENCE data_definitions_id_seq
 --
 
 ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
+
+
+--
+-- Name: design_group_interventions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE design_group_interventions (
+    id integer NOT NULL,
+    design_group_id integer,
+    intervention_id integer
+);
+
+
+--
+-- Name: design_group_interventions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE design_group_interventions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: design_group_interventions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE design_group_interventions_id_seq OWNED BY design_group_interventions.id;
 
 
 --
@@ -1664,6 +1695,7 @@ CREATE TABLE studies (
     nct_id character varying,
     first_received_date date,
     last_changed_date date,
+    first_received_results_date date,
     completion_date_type character varying,
     primary_completion_date_type character varying,
     study_type character varying,
@@ -1689,9 +1721,8 @@ CREATE TABLE studies (
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    plan_to_share_ipd character varying,
-    first_received_results_date date,
     first_received_results_disposition_date date,
+    plan_to_share_ipd character varying,
     nlm_download_date_description character varying,
     start_month_year character varying,
     verification_month_year character varying,
@@ -1826,6 +1857,13 @@ ALTER TABLE ONLY countries ALTER COLUMN id SET DEFAULT nextval('countries_id_seq
 --
 
 ALTER TABLE ONLY data_definitions ALTER COLUMN id SET DEFAULT nextval('data_definitions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY design_group_interventions ALTER COLUMN id SET DEFAULT nextval('design_group_interventions_id_seq'::regclass);
 
 
 --
@@ -2171,6 +2209,14 @@ ALTER TABLE ONLY countries
 
 ALTER TABLE ONLY data_definitions
     ADD CONSTRAINT data_definitions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: design_group_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY design_group_interventions
+    ADD CONSTRAINT design_group_interventions_pkey PRIMARY KEY (id);
 
 
 --
@@ -2634,4 +2680,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160816202221');
 INSERT INTO schema_migrations (version) VALUES ('20160817124730');
 
 INSERT INTO schema_migrations (version) VALUES ('20160817204937');
+
+INSERT INTO schema_migrations (version) VALUES ('20160818122657');
 

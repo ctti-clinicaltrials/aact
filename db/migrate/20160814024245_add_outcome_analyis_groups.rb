@@ -8,7 +8,7 @@ class AddOutcomeAnalyisGroups < ActiveRecord::Migration
     add_column :outcome_analyses, :ci_percent, :integer
 
     create_table :outcome_analysis_groups do |t|
-			t.string  :ctgov_group_code
+      t.string  :ctgov_group_code
     end
     add_column  :outcome_analysis_groups, :result_group_id, :integer, references: :result_groups
     add_column  :outcome_analysis_groups, :outcome_analysis_id, :integer, references: :outcome_analyses
