@@ -1,5 +1,5 @@
 # AACT2
-Aggregated Analysis of ClincalTrials.gov
+Aggregated Analysis of ClinicalTrials.gov
 
 ## Getting Started
 

@@ -1,7 +1,6 @@
 class RemoveObsoleteColumns < ActiveRecord::Migration
   def change
     drop_table :reviews
-    drop_table :secondary_ids
     drop_table :search_results
     remove_column :studies, :start_date_month_day, :string
     add_column    :studies, :start_month_year, :string

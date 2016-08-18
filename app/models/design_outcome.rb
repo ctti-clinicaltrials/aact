@@ -14,7 +14,6 @@ class DesignOutcome < StudyRelationship
   def attribs
     {
       :measure => get('measure'),
-      :title => get('measure'),
       :time_frame => get('time_frame'),
       :safety_issue => get('safety_issue'),
       :description => get('description'),
