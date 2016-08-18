@@ -1061,9 +1061,11 @@ CREATE TABLE outcome_measured_values (
     dispersion_type character varying,
     dispersion_value character varying,
     explanation_of_na text,
-    param_value numeric,
     dispersion_lower_limit numeric,
-    dispersion_upper_limit numeric
+    dispersion_upper_limit numeric,
+    param_value character varying,
+    param_value_num numeric,
+    dispersion_value_num numeric
 );
 
 
