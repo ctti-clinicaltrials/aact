@@ -8,6 +8,7 @@ describe Intervention do
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     i=study.interventions.select{|x|x.name=='carboplatin'}.first
+    expect(i.nct_id).to eq(nct_id)
     expect(i.intervention_type).to eq('Drug')
     expect(i.design_group_interventions.size).to eq(4)
     expect(i.design_group_interventions.size).to eq(4)

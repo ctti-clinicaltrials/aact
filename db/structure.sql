@@ -373,7 +373,8 @@ ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
 CREATE TABLE design_group_interventions (
     id integer NOT NULL,
     design_group_id integer,
-    intervention_id integer
+    intervention_id integer,
+    nct_id character varying
 );
 
 
@@ -2574,4 +2575,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160817124730');
 INSERT INTO schema_migrations (version) VALUES ('20160817204937');
 
 INSERT INTO schema_migrations (version) VALUES ('20160818122657');
+
+INSERT INTO schema_migrations (version) VALUES ('20160818234153');
 
