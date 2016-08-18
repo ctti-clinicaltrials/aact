@@ -33,20 +33,6 @@ class CalculatedValue < ActiveRecord::Base
     dt.to_date if dt
   end
 
-  def calc_link_to_data
-      if study.org_study_id.upcase[/^NIDA/]
-        url="https://datashare.nida.nih.gov/protocol/#{study.org_study_id.gsub(' ','')}"
-        results=""#Faraday.get(url).body
-        url if !results.downcase.include?('page not found')
-      else
-        #protocol link.....
-        #url="http://clinicalstudies.info.nih.gov/cgi/cs/processqry3.pl?sort=1&search=#{nct_id}&searchtype=0&patient_type=All&protocoltype=All&institute=%25&conditions=All"
-        #results=Faraday.get(url).body
-        #self.link_to_data=url if !results.downcase.include?('page not found')
-        #end
-      end
-  end
-
   def calc_sponsor_type
     val=study.lead_sponsor.try(:agency_class)
     return val if val=='Industry' or val=='NIH'

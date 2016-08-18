@@ -15,8 +15,6 @@ class StudySerializer < ActiveModel::Serializer
             :nlm_download_date_description,
             :completion_date_type,
             :primary_completion_date_type,
-            :org_study_id,
-            :secondary_id,
             :study_type,
             :overall_status,
             :phase,
@@ -54,7 +52,9 @@ class StudySerializer < ActiveModel::Serializer
         detailed_description: object.detailed_description.attributes,
         eligibility: object.eligibility.attributes,
         participant_flow: object.participant_flow.attributes,
-        result_detail: object.result_detail.attributes
+        result_detail: object.result_detail.attributes,
+        org_study_id: object.id_information.attributes,
+        secondary_id: object.id_information.attributes
       }
     else
       {}

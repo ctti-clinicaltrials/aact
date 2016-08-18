@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study rank="11998">
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on July 17, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02679963</url>
+  </required_header>
+  <id_info>
+    <org_study_id>2014-005586-75</org_study_id>
+    <secondary_id>2014/2204</secondary_id>
+    <nct_id>NCT02679963</nct_id>
+  </id_info>
+  <brief_title>Trial Evaluating Maintenance Olaparib in Patients With Platinum-sensitive Advanced Non-small Cell Lung Cancer</brief_title>
+  <acronym>PIPSeN</acronym>
+  <official_title>A Randomized Double-blind Phase II Trial Evaluating Maintenance Olaparib Versus Placebo in Patients With Platinum-sensitive Advanced Non-small Cell Lung Cancer</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Gustave Roussy, Cancer Campus, Grand Paris</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Gustave Roussy, Cancer Campus, Grand Paris</source>
+  <oversight_info>
+    <authority>France: Agence Nationale de Sécurité du Médicament et des produits de santé</authority>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      This is a multicentre randomised double-blind phase II trial, sponsored by Gustave Roussy
+      and involving one French center as well as the Spanish Lung Cancer Group (≈20 centers of the
+      SLCG).
+
+      Five hundred patients with diagnosis of stage IIIB/IV NSCLC will initially be registered
+      prior to receiving the first line platinum-based chemotherapy and provide consent for
+      retrieving archival tissue collection and providing translational blood samples and tumor
+      biopsies.
+
+        1. - Induction chemotherapy phase All patients will initially be treated with 6 cycles of
+           platinum-based induction chemotherapy. Cycle duration will be 21 days. Doublets should
+           either consist of a pemetrexed-platinum (cisplatin or carboplatin) doublet
+           (preferentially for non-squamous NSCLC) or a gemcitabine - or vinorelbine - platinum
+           doublet for squamous NSCLC. Taxanes-platinum doublets will not be accepted.
+           Translational blood samples will be taken at the beginning of induction chemotherapy
+           for all patients.
+
+           Patients displaying progressive disease or stable disease after induction chemotherapy
+           will be withdrawn and further optimally managed according to local practice. For them,
+           an optional tumour biopsy will be performed at the end of the induction treatment.
+
+        2. - Randomisation and maintenance phase Only patients who respond to platinum-based
+           induction chemotherapy will be further randomised between olaparib and placebo. These
+           patients must have been treated with 6 cycles of chemotherapy. However, patients who
+           haven't received 6 cycles of the induction chemotherapy due to severe toxicity (grade 3
+           or 4, NCI CTCAE v4.0) could be randomized only if they had received 4 chemotherapy
+           cycles at least and if all treatment related toxicities are resolved to a grade ≤ 1
+           (NCI CTCAE v4.0).
+
+      Treatment will be administered at a dose of 600 mg daily (2 doses of 300 mg [2 tablets of
+      150 mg] taken approximately 12 hours apart) and cycle duration will be 28 days. Disease will
+      be assessed every 2 cycles by CTscan (MRI or PET-scan if the scan is not contributive) and
+      treatment will be administered until disease progression or unacceptable toxicity. Patients
+      will then be optimally managed according to local practice. Follow-up will be for a minimum
+      of 15 months from the time of randomization, and until last venue. All randomised patients
+      will be asked to provide translational blood samples at randomization, on treatment and at
+      the end of the treatment. Optional tumour biopsies will be performed at randomization, at
+      the end of the treatment (or at disease progression if available).
+    </textblock>
+  </brief_summary>
+  <overall_status>Recruiting</overall_status>
+  <start_date>January 2016</start_date>
+  <completion_date type="Anticipated">January 2021</completion_date>
+  <primary_completion_date type="Anticipated">January 2020</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Endpoint Classification: Safety/Efficacy Study, Intervention Model: Parallel Assignment, Masking: Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor), Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Progression Free Survival</measure>
+    <time_frame>Assessed every 56 days up to 15 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>By CT scan, MRI or TEP-scan according to RECIST 1.1 criteria</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Overall Survival</measure>
+    <time_frame>Measured from patient randomization to death or last follow-up for patient alive or consent withdrawal up to 15 months</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Anticipated">500</enrollment>
+  <condition>Non Small Cell Lung Cancer</condition>
+  <arm_group>
+    <arm_group_label>Maintenance Olaparib</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Olaparib (experimental arm): 600 mg daily (2 doses of 300 mg (2*2 tablets of 150 mg) taken approximately 12 hours apart) po, administered until disease progression or toxicity requiring its interruption. Olaparib has to be started no later than 6 weeks after the last administration of induction chemotherapy, and no later than 3 weeks after the CT scan confirming response to induction chemotherapy</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Placebo</arm_group_label>
+    <arm_group_type>Placebo Comparator</arm_group_type>
+    <description>Placebo (control arm): 2 doses of 300 mg per day (2*2 tablets of 150 mg) taken approximately 12 hours apart</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Olaparib</intervention_name>
+    <arm_group_label>Maintenance Olaparib</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Placebo</intervention_name>
+    <arm_group_label>Placebo</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        For inclusion in the study subjects should fulfill the following criteria:
+
+          1. Provision of written informed consent to treatment and companion translational
+             studies prior to any study specific procedures
+
+          2. Patients must be &gt; 18 years of age.
+
+          3. Affiliation to an health insurance
+
+          4. Histological diagnosis of NSCLC
+
+          5. Advanced or metastatic disease (stage IIIB/IV)
+
+          6. Access to the original tumor biopsy or planning of a fresh tumor biopsy
+
+          7. Chemonaive for NSCLC
+
+          8. No other cancer in the previous 3 years, except cervical cancer or cutaneous cancer
+
+          9. Absence of EGFR-sensitising mutation or ALK translocation
+
+         10. ECOG Performance Status of 0-1
+
+         11. Fit to receive 6 cycles of platinum-based induction chemotherapy
+
+         12. Measurable lesions by RECIST v1.1 criteria, i.e. at least one lesion, not previously
+             irradiated, that can be accurately measured at baseline as ≥ 10mm in the longest
+             diameter (except lymph nodes that must have short axis ≥ 15mm) with computed
+             tomography (CT), magnetic resonance imaging (MRI) or clinical examination and which
+             is suitable for accurate repeated measurements.
+
+         13. Patients must have normal organ and bone marrow function measured within 14 days
+             prior to administration of the platinum based treatment
+
+               -  Haemoglobin ≥ 10.0 g/dL
+
+               -  Absolute neutrophil count (ANC) ≥ 1.5 x 109/L
+
+               -  Platelet count ≥ 100 x 109/L
+
+               -  Total bilirubin ≤ 1.5 x institutional upper limit of normal (ULN)
+
+               -  AST (SGOT)/ALT (SGPT) ≤ 2.5 x institutional upper limit of normal unless liver
+                  metastases are present in which case it must be ≤ 5x ULN
+
+               -  Creatinine clearance &gt; 60mL/min as calculated by Cockroft-Gault formula for
+                  cisplatin administration; creatinine clearance &gt; 50mL/min by Cockroft-Gault
+                  formula for carboplatin administration
+
+         14. Evidence of non-childbearing status for women of childbearing potential: negative
+             serum pregnancy test within 14 days of study treatment.
+
+             Postmenopausal is defined as:
+
+               -  Amenorrheic for 1 year or more following cessation of exogenous hormonal
+                  treatments,
+
+               -  LH and FSH levels in the post-menopausal range for women under 50,
+
+               -  Radiation-induced oophorectomy with last menses &gt;1 year ago,
+
+               -  Chemotherapy-induced menopause with &gt;1 year interval since last menses,
+
+               -  Or surgical sterilisation (bilateral oophorectomy or hysterectomy).
+
+         15. Both men and women (of childbearing potential) who are sexually active should accept
+             to use adequate contraception, during and for at least 6 months post-treatment
+
+         16. Patient is willing and able to comply with the protocol for the duration of the study
+             including undergoing treatment and scheduled visits and examinations including follow
+             up.
+
+        Non-inclusion criteria:
+
+          1. Uncontrolled or symptomatic brain metastases. Controlled brain metastases are defined
+             as stable for 1 month. A scan to confirm the absence of brain metastases is not
+             required. Corticosteroids therapy will be allowed if administered at a stable dose
+             for at least one month before entering the trial.
+
+          2. Previous enrolment (or randomisation) in the present study Any previous systemic
+             treatment for cancer in the previous 3 years.
+
+          3. Any previous treatment with a PARP inhibitor, including olaparib.
+
+          4. Patients receiving any radiotherapy or considering to require radiotherapy to the
+             lung at the time of study entry or in the near future, except for palliative reasons.
+             The patient can receive a stable dose of bisphosphonates for bone metastases, before
+             and during the study as long as these were started at least 4 weeks prior to
+             inclusion.
+
+          5. Patients receiving the following classes of inhibitors of CYP3A4 (see Section 6.5 for
+             guidelines and wash out periods).
+
+               -  Azole antifungals
+
+               -  Macrolide antibiotics
+
+               -  Protease inhibitors
+
+          6. Major surgery within 14 days of registration and patients who have not recovered from
+             any effects of any major surgery.
+
+          7. Patients considered a poor medical risk due to a serious, uncontrolled medical
+             disorder, non-malignant systemic disease or active, uncontrolled infection. Examples
+             include, but are not limited to, uncontrolled ventricular arrhythmia, coronary artery
+             disease, cardiomyopathy, uncontrolled hypertension, myocardial infarction in the last
+             3 months, unstable spinal cord compression (untreated and unstable for at least 28
+             days prior to study entry), superior vena cava syndrome, extensive bilateral lung
+             disease on HRCT scan or any psychiatric disorder that prohibits obtaining informed
+             consent.
+
+          8. Pregnant and/or breast-feeding women.
+
+          9. Patients who are known to be serologically positive for human immunodeficiency virus
+             (HIV) and/or are receiving antiviral therapy. Systematic serologies to confirm the
+             absence of this disease are not required.
+
+         10. Patients with known active hepatic disease (i.e., Hepatitis B or C) Systematic
+             serologies to confirm the absence of these diseases are not required.
+
+         11. Patients with a known hypersensitivity to olaparib/placebo, cisplatin, carboplatin,
+             or other platinum containing compounds, or any of the excipients of the product.
+
+         12. Concomitant yellow fever vaccine
+
+         13. Patients unable to swallow orally administered medication and patients with
+             gastrointestinal disorders likely to interfere with absorption of olaparib/placebo.
+
+         14. Symptomatic peripheral neuropathy ≥ grade 2
+
+         15. Patients with uncontrolled seizures
+
+         16. Patients with myelodysplastic syndrome/acute myeloid leukaemia.
+
+         17. Enrolment in another clinical trial (except observational study).
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_contact>
+    <last_name>Sophie Postel-Vinay, MD</last_name>
+    <phone>0142114343</phone>
+    <phone_ext>+33</phone_ext>
+    <email>sophie.postel-vinay@gustaveroussy.fr</email>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>Valérie Mairot</last_name>
+    <phone>0142113730</phone>
+    <email>Valerie.mairot@gustaveroussy.fr</email>
+  </overall_contact_backup>
+  <location>
+    <facility>
+      <name>Gustave Roussy Cancer Campus</name>
+      <address>
+        <city>Villejuif</city>
+        <state>Val de Marne</state>
+        <zip>94805</zip>
+        <country>France</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Valérie Mairot</last_name>
+      <phone>0142113730</phone>
+      <phone_ext>+33</phone_ext>
+      <email>Valerie.mairot@gustaveroussy.fr</email>
+    </contact>
+  </location>
+  <location_countries>
+    <country>France</country>
+  </location_countries>
+  <verification_date>June 2016</verification_date>
+  <lastchanged_date>June 8, 2016</lastchanged_date>
+  <firstreceived_date>January 26, 2016</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <is_fda_regulated>No</is_fda_regulated>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Lung Neoplasms</mesh_term>
+    <mesh_term>Carcinoma, Non-Small-Cell Lung</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Olaparib</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                -->
+</clinical_study>
