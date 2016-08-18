@@ -15,7 +15,9 @@ namespace :import do
 
         load_event.complete
 
-        LoadMailer.send_notification(load_event).deliver
+        SanityCheck.new.run
+        StudyValidator.new.validate_studies
+        LoadMailer.send_notifications(load_event)
       else
         puts "First of the month - running full import"
       end

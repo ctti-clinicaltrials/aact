@@ -66,7 +66,7 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_registered_in_calendar_year
-    first_received_date.year if first_received_date
+    study.first_received_date.year if study.first_received_date
   end
 
   def calc_number_of_facilities

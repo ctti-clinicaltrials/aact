@@ -1,59 +1,80 @@
 class StudyValidator
-  def initialize
-    @conditions = [
-      {
-        nct_id: 'NCT00734539',
-        columns_or_associated_objects: {
-          outcomes: { count: 24 },
-          brief_title: { to_s: 'Fluconazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight' },
-          study_type: { to_s: 'Interventional' }
-        }
-      },
-      {
-        nct_id: 'NCT01076361',
-        columns_or_associated_objects: {
-          outcomes: { count: 1 },
-          baseline_measures: { count: 13 },
-          study_type: { to_s: 'Observational [Patient Registry]' }
-        }
-      }
-    ]
-  end
-
   def validate_studies
-    @conditions.each do |condition|
-      study = Study.find_by(nct_id: condition[:nct_id])
+    study1 = Study.find_by(nct_id: 'NCT00734539')
+    study2 = Study.find_by(nct_id: 'NCT01076361')
 
-      raise StudyValidatorError, 'Missing study!'  unless study.present?
+    assert(
+      nct_id: study1.nct_id,
+      validation_title: 'Outcome count',
+      expected_result: 24,
+      actual_result: study1.outcomes.count
+    )
 
-      condition[:columns_or_associated_objects].each do |key, value|
+    assert(
+      nct_id: study1.nct_id,
+      validation_title: 'Brief title',
+      expected_result: 'Fluconazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight',
+      actual_result: study1.brief_title
+    )
 
-        value.each do |method, expected_result|
-          actual_result = study.send(key).send(method)
-          if actual_result != expected_result
-            error = {
-              data_attribute: key,
-              nct_id: study.nct_id,
-              expected_result: expected_result,
-              actual_result: actual_result
-            }
+    assert(
+      nct_id: study1.nct_id,
+      validation_title: 'Study type',
+      expected_result: 'Interventional',
+      actual_result: study1.study_type
+    )
 
-            StudyValidationMailer.alert(error.to_json).deliver_now
+    assert(
+      nct_id: study2.nct_id,
+      validation_title: 'Outcome count',
+      expected_result: 1,
+      actual_result: study2.outcomes.count
+    )
 
-            raise StudyValidatorError, "\nExpected: #{expected_result}\nActual: #{actual_result}"
-          end
-        end
+    assert(
+      nct_id: study2.nct_id,
+      validation_title: 'Baseline measure count',
+      expected_result: 13,
+      actual_result: study2.baseline_measures.count
+    )
 
-      end
+    assert(
+      nct_id: study2.nct_id,
+      validation_title: 'Baseline measure count',
+      expected_result: 13,
+      actual_result: study2.baseline_measures.count
+    )
 
-    end
-
-    true
+    assert(
+      nct_id: study2.nct_id,
+      validation_title: 'Study type',
+      expected_result: 'Observational [Patient Registry]',
+      actual_result: study2.study_type
+    )
   end
 
   class StudyValidatorError < StandardError
     def initialize(msg='Study validation failed')
       super
+    end
+  end
+
+  private
+
+  def assert(nct_id:, expected_result:, actual_result:, validation_title:)
+    if actual_result != expected_result
+      error = {
+        nct_id: nct_id,
+        validation_title: validation_title,
+        expected_result: expected_result,
+        actual_result: actual_result
+      }
+
+      StudyValidationMailer.send_alerts(error.to_json)
+
+      raise StudyValidatorError, "\nExpected: #{expected_result}\nActual: #{actual_result}"
+    else
+      true
     end
   end
 end
