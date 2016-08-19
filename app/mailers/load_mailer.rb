@@ -16,6 +16,6 @@ class LoadMailer < ApplicationMailer
   def send_notification(email, load_event)
     @load_event = load_event
 
-    mail(to: email, subject: 'Load completed!')
+    mail(from: 'Daily Load <daily_load@aact2.org>', to: email, subject: 'Load completed!')
   end
 end
