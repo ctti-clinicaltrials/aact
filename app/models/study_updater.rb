@@ -1,8 +1,8 @@
 class StudyUpdater
   def update_studies(nct_ids:)
+    destroy_old_records(nct_ids)
     nct_ids.each do |nct_id|
       @client = ClinicalTrials::Client.new(search_term: nct_id)
-      destroy_old_record(nct_id)
       create_new_xml_record(nct_id)
       create_new_study(nct_id)
     end
@@ -10,14 +10,15 @@ class StudyUpdater
 
   private
 
-  def destroy_old_record(nct_id)
-    xml = StudyXmlRecord.find_by(nct_id: nct_id)
-    study = Study.find_by(nct_id: nct_id)
+  def destroy_old_records(nct_ids)
+    xml_records = StudyXmlRecord.where(nct_id: nct_ids)
+    studies = Study.where(nct_id: nct_ids)
 
-    xml.try(:destroy)
-    puts "Destroyed #{xml}"
-    study.try(:destroy)
-    puts "Destroyed #{study}"
+    puts "Destroying #{xml_records.count} xml records"
+    xml_records.try(:destroy_all)
+
+    puts "Destroying #{studies.count} studies and their related tables"
+    studies.try(:destroy_all)
   end
 
   def create_new_xml_record(nct_id)
