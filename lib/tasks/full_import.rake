@@ -1,7 +1,7 @@
 namespace :import do
   namespace :full do
-    task run: :environment do
-      if Date.today.day == 1
+    task :run, [:force] => :environment do |t, args|
+      if Date.today.day == 1 || args[:force]
         load_event = ClinicalTrials::LoadEvent.create(
           event_type: 'full_import'
         )
@@ -14,7 +14,7 @@ namespace :import do
 
         load_event.complete
 
-        SanityCheck.new.run
+        SanityCheck.run
         StudyValidator.new.validate_studies
         LoadMailer.send_notifications(load_event)
       else
