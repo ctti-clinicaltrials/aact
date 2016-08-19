@@ -1,0 +1,37 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+    - name: create S3 buckets
+      s3_bucket:
+        name: "{{ item }}"
+        policy:
+          Version: "2012-10-17"
+          Statement:
+            -
+              Sid: "Stmt1470845581678"
+              Effect: "Allow"
+              Principal: "*"
+              Action:
+                - "s3:GetBucketLocation"
+                - "s3:ListBucket"
+              Resource: "arn:aws:s3:::{{ item }}"
+            -
+              Sid: "Stmt1470845605315"
+              Effect: "Allow"
+              Principal: "*"
+              Action: "s3:GetObject"
+              Resource: "arn:aws:s3:::{{ item }}/*"
+      with_items:
+        - aact-dev
+        - aact-prod
+
+# add agent 'aact-prod-agent' IAM account with inline policy to write to the s3 aact-prod  and aact-dev buckets, no logins
+
+# prod RDS security group
+#
+# prod RDS postgres instance
+#  - dbt2.medium, 20 GB
+#
+# create RO User in RDS postgres (sql script)
