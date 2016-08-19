@@ -15,11 +15,14 @@ class StudyUpdater
     study = Study.find_by(nct_id: nct_id)
 
     xml.try(:destroy)
+    puts "Destroyed #{xml}"
     study.try(:destroy)
+    puts "Destroyed #{study}"
   end
 
   def create_new_xml_record(nct_id)
     @client.download_xml_files
+    puts "Downloaded xml"
     extraneous_nct_ids = @client.processed_studies[:new_studies].select { |id| id != nct_id }
 
     if extraneous_nct_ids.present?
@@ -32,5 +35,6 @@ class StudyUpdater
   def create_new_study(nct_id)
     new_xml = StudyXmlRecord.find_by(nct_id: nct_id).content
     @client.import_xml_file(new_xml)
+    puts "Imported study #{nct_id}"
   end
 end
