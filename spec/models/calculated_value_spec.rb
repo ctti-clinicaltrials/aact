@@ -21,12 +21,14 @@ RSpec.describe CalculatedValue, type: :model do
       expect(study.calculated_value.primary_completion_date).to eq('July 2016'.to_date)
       expect(study.calculated_value.nlm_download_date).to eq('June 27, 2016'.to_date)
       expect(study.calculated_value.were_results_reported).to eq(true)
+      expect(study.minimum_age).to eq('N/A')
+      expect(study.maximum_age).to eq('N/A')
       expect(study.calculated_value.has_minimum_age).to eq(false)
       expect(study.calculated_value.has_maximum_age).to eq(false)
       expect(study.calculated_value.minimum_age_num).to eq(nil)
       expect(study.calculated_value.maximum_age_num).to eq(nil)
-      expect(study.calculated_value.minimum_age_unit).to eq(nil)
-      expect(study.calculated_value.maximum_age_unit).to eq(nil)
+      expect(study.calculated_value.minimum_age_unit).to eq('N/A')
+      expect(study.calculated_value.maximum_age_unit).to eq('N/A')
     end
 
     it 'should have expected age info' do
