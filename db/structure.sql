@@ -479,7 +479,11 @@ CREATE TABLE designs (
     allocation character varying,
     time_perspective character varying,
     observational_model character varying,
-    nct_id character varying
+    nct_id character varying,
+    subject_masked boolean,
+    caregiver_masked boolean,
+    investigator_masked boolean,
+    outcomes_assessor_masked boolean
 );
 
 
@@ -2575,6 +2579,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160817124730');
 INSERT INTO schema_migrations (version) VALUES ('20160817204937');
 
 INSERT INTO schema_migrations (version) VALUES ('20160818122657');
+
+INSERT INTO schema_migrations (version) VALUES ('20160818180156');
 
 INSERT INTO schema_migrations (version) VALUES ('20160818234153');
 
