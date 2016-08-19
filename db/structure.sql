@@ -209,7 +209,13 @@ CREATE TABLE calculated_values (
     nlm_download_date date,
     first_received_date date,
     first_received_result_date date,
-    were_results_reported boolean
+    were_results_reported boolean,
+    has_minimum_age boolean,
+    has_maximum_age boolean,
+    minimum_age_num integer,
+    maximum_age_num integer,
+    minimum_age_unit character varying,
+    maximum_age_unit character varying
 );
 
 
@@ -2574,4 +2580,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160817124730');
 INSERT INTO schema_migrations (version) VALUES ('20160817204937');
 
 INSERT INTO schema_migrations (version) VALUES ('20160818122657');
+
+INSERT INTO schema_migrations (version) VALUES ('20160819001315');
 
