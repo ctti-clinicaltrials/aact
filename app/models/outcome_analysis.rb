@@ -30,7 +30,7 @@ class OutcomeAnalysis < StudyRelationship
       opts[:groups_description]=xml.xpath('groups_desc').text
       group_ids=create_group_list(xml)
       a=new.create_from(opts)
-      a.outcome_analysis_groups = OutcomeAnalysisGroup.create_all_from({:outcome_analysis=>a,:group_ids=>group_ids,:groups=>opts[:groups]})
+      a.outcome_analysis_groups = OutcomeAnalysisGroup.create_all_from({:outcome_analysis=>a,:group_ids=>group_ids,:groups=>opts[:groups],:nct_id=>opts[:nct_id]})
       col << a
       xml=all.pop
     end

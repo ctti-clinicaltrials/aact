@@ -36,6 +36,7 @@ describe OutcomeAnalysis do
     o1_group=a.outcome_analysis_groups.select{|x|x.ctgov_group_code=='O1'}.first
     o2_group=a.outcome_analysis_groups.select{|x|x.ctgov_group_code=='O2'}.first
 
+    expect(o1_group.nct_id).to eq(nct_id)
     expect(o1_group.ctgov_group_code).to eq('O1')
     expect(o1_group.result_group.ctgov_group_code).to eq('O1')
     expect(o1_group.result_group.title).to eq('Clinically Driven Monitoring (CDM)')
