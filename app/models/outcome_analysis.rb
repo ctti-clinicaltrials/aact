@@ -1,7 +1,7 @@
 class OutcomeAnalysis < StudyRelationship
   extend FastCount
-  belongs_to :outcome,        inverse_of: :outcome_analyses, autosave: true
-  has_many   :outcome_analysis_groups,  inverse_of: :outcome_analysis, autosave: true
+  belongs_to :outcome, inverse_of: :outcome_analyses, autosave: true
+  has_many   :outcome_analysis_groups, inverse_of: :outcome_analysis, autosave: true
   has_many   :result_groups, :through => :outcome_analysis_groups
 
   def self.create_all_from(opts)
@@ -24,6 +24,7 @@ class OutcomeAnalysis < StudyRelationship
       opts[:ci_n_sides]=xml.xpath('ci_n_sides').text
       opts[:ci_lower_limit]=xml.xpath('ci_lower_limit').text
       opts[:ci_upper_limit]=xml.xpath('ci_upper_limit').text
+      opts[:ci_upper_limit_na_comment]=xml.xpath('ci_upper_limit_na_comment').text
       opts[:method]=xml.xpath('method').text
       opts[:method_description]=xml.xpath('method_desc').text
       opts[:estimate_description]=xml.xpath('estimate_desc').text
@@ -65,6 +66,7 @@ class OutcomeAnalysis < StudyRelationship
       :ci_n_sides => get_opt(:ci_n_sides),
       :ci_lower_limit => get_opt(:ci_lower_limit),
       :ci_upper_limit => get_opt(:ci_upper_limit),
+      :ci_upper_limit_na_comment => get_opt(:ci_upper_limit_na_comment),
       :method => get_opt(:method),
       :method_description => get_opt(:method_description),
       :estimate_description => get_opt(:estimate_description),

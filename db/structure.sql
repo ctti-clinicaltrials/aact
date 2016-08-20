@@ -922,7 +922,8 @@ CREATE TABLE outcome_analyses (
     outcome_id integer,
     groups_description character varying,
     ci_percent integer,
-    p_value_description character varying
+    p_value_description character varying,
+    ci_upper_limit_na_comment character varying
 );
 
 

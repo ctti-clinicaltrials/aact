@@ -2034,6 +2034,7 @@ cumulative loss to follow-up is 10% at 5 years. See below for rest of sample siz
             <ci_n_sides>2-Sided</ci_n_sides>
             <ci_lower_limit>-0.47</ci_lower_limit>
             <ci_upper_limit>1.12</ci_upper_limit>
+            <ci_upper_limit_na_comment>this is a ci upper limit comment</ci_upper_limit_na_comment>
             <estimate_desc>Difference is CDM minus LCM</estimate_desc>
           </analysis>
         </analysis_list>

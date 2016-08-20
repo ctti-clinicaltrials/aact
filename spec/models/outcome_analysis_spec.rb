@@ -30,6 +30,7 @@ describe OutcomeAnalysis do
     expect(a.ci_n_sides).to eq('2-Sided')
     expect(a.ci_lower_limit).to eq(-0.47)
     expect(a.ci_upper_limit).to eq(1.12)
+    expect(a.ci_upper_limit_na_comment).to eq('this is a ci upper limit comment')
     expect(a.estimate_description).to eq('Difference is CDM minus LCM')
     expect(a.groups_description.gsub(/\n/,' ')).to eq('Assumptions: control group (LCM) event rate 3% per year rates are reduced to 2% per year in the best of the induction-maintenance arms leading to an overall rate of progression to new WHO stage 4 or death of 2.5% recruitment is over 1.5 years and follow-up for a minimum further 3.5 years. cumulative loss to follow-up is 10% at 5 years. See below for rest of sample size as this box is not big enough.')
     expect(a.outcome_analysis_groups.size).to eq(2)

@@ -15,5 +15,6 @@ class MiscDatabaseChanges < ActiveRecord::Migration
     add_column :links, :url, :string
     remove_column :outcome_measured_values, :title, :text
     add_column :outcome_measured_values, :title, :string
+    add_column :outcome_analyses, :ci_upper_limit_na_comment, :string
   end
 end
