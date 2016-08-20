@@ -207,8 +207,6 @@ CREATE TABLE calculated_values (
     completion_date date,
     first_received_results_date date,
     nlm_download_date date,
-    first_received_date date,
-    first_received_result_date date,
     were_results_reported boolean,
     has_minimum_age boolean,
     has_maximum_age boolean,
@@ -248,9 +246,7 @@ CREATE TABLE central_contacts (
     contact_type character varying,
     name character varying,
     phone character varying,
-    email character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    email character varying
 );
 
 
@@ -440,7 +436,6 @@ CREATE TABLE designs (
     id integer NOT NULL,
     description text,
     masking character varying,
-    masked_roles character varying,
     primary_purpose character varying,
     intervention_model character varying,
     endpoint_classification character varying,
@@ -704,37 +699,6 @@ CREATE SEQUENCE id_informations_id_seq
 --
 
 ALTER SEQUENCE id_informations_id_seq OWNED BY id_informations.id;
-
-
---
--- Name: intervention_arm_group_labels; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE intervention_arm_group_labels (
-    id integer NOT NULL,
-    label character varying,
-    nct_id character varying,
-    intervention_id integer
-);
-
-
---
--- Name: intervention_arm_group_labels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE intervention_arm_group_labels_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: intervention_arm_group_labels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE intervention_arm_group_labels_id_seq OWNED BY intervention_arm_group_labels.id;
 
 
 --
@@ -1780,13 +1744,6 @@ ALTER TABLE ONLY id_informations ALTER COLUMN id SET DEFAULT nextval('id_informa
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY intervention_arm_group_labels ALTER COLUMN id SET DEFAULT nextval('intervention_arm_group_labels_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY intervention_other_names ALTER COLUMN id SET DEFAULT nextval('intervention_other_names_id_seq'::regclass);
 
 
@@ -2108,14 +2065,6 @@ ALTER TABLE ONLY facility_investigators
 
 ALTER TABLE ONLY id_informations
     ADD CONSTRAINT id_informations_pkey PRIMARY KEY (id);
-
-
---
--- Name: intervention_arm_group_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY intervention_arm_group_labels
-    ADD CONSTRAINT intervention_arm_group_labels_pkey PRIMARY KEY (id);
 
 
 --
