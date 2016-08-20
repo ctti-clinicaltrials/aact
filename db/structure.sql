@@ -1625,7 +1625,6 @@ CREATE TABLE studies (
     source character varying,
     biospec_retention character varying,
     limitations_and_caveats character varying,
-    description character varying,
     acronym character varying,
     number_of_arms integer,
     number_of_groups integer,
@@ -1646,7 +1645,8 @@ CREATE TABLE studies (
     verification_month_year character varying,
     completion_month_year character varying,
     primary_completion_month_year character varying,
-    plan_to_share_ipd_description character varying
+    plan_to_share_ipd_description character varying,
+    description text
 );
 
 
