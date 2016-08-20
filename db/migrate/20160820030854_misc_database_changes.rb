@@ -11,5 +11,9 @@ class MiscDatabaseChanges < ActiveRecord::Migration
     remove_column :central_contacts, :created_at, :datetime
     remove_column :central_contacts, :updated_at, :datetime
     remove_column :designs, :masked_roles, :string
+    remove_column :links, :url, :text
+    add_column :links, :url, :string
+    remove_column :outcome_measured_values, :title, :text
+    add_column :outcome_measured_values, :title, :string
   end
 end

@@ -800,9 +800,9 @@ ALTER SEQUENCE keywords_id_seq OWNED BY keywords.id;
 
 CREATE TABLE links (
     id integer NOT NULL,
-    url text,
     description text,
-    nct_id character varying
+    nct_id character varying,
+    url character varying
 );
 
 
@@ -1016,7 +1016,6 @@ ALTER SEQUENCE outcome_groups_id_seq OWNED BY outcome_groups.id;
 CREATE TABLE outcome_measured_values (
     id integer NOT NULL,
     category character varying,
-    title text,
     description text,
     units character varying,
     nct_id character varying,
@@ -1031,7 +1030,8 @@ CREATE TABLE outcome_measured_values (
     dispersion_upper_limit numeric,
     param_value character varying,
     param_value_num numeric,
-    dispersion_value_num numeric
+    dispersion_value_num numeric,
+    title character varying
 );
 
 
@@ -2272,13 +2272,6 @@ ALTER TABLE ONLY study_xml_records
 --
 
 CREATE INDEX index_facilities_on_nct_id ON facilities USING btree (nct_id);
-
-
---
--- Name: index_outcome_measured_values_on_title; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_outcome_measured_values_on_title ON outcome_measured_values USING btree (title);
 
 
 --
