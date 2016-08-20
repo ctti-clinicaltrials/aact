@@ -3,6 +3,11 @@
   gather_facts: False
 
   tasks:
+    - set_fact:
+        buckets:
+          - aact-dev
+          - aact-prod
+
     - name: create S3 buckets
       s3_bucket:
         name: "{{ item }}"
@@ -23,11 +28,30 @@
               Principal: "*"
               Action: "s3:GetObject"
               Resource: "arn:aws:s3:::{{ item }}/*"
-      with_items:
-        - aact-dev
-        - aact-prod
+      with_items: "{{ buckets }}"
 
-# add agent 'aact-prod-agent' IAM account with inline policy to write to the s3 aact-prod  and aact-dev buckets, no logins
+    - name: create agent IAM accounts
+      iam:
+        iam_type: user
+        name: "{{ item }}-agent"
+        state: present
+      with_items: "{{ buckets }}"
+
+    - name: create dev-agent-policy
+      iam_policy:
+        state: present
+        iam_name: aact-dev-agent
+        iam_type: user
+        policy_name: aact-dev-agent-policy
+        policy_document: aact-dev-agent-policy.json
+
+    - name: create prod-agent-policy
+      iam_policy:
+        state: present
+        iam_name: aact-prod-agent
+        iam_type: user
+        policy_name: aact-prod-agent-policy
+        policy_document: aact-prod-agent-policy.json
 
 # prod RDS security group
 #
