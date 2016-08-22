@@ -16,6 +16,8 @@ bin/rake dev:prime
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
 mkdir -p .git/safe
 
+cp ./.env.example ./.env
+
 # Only if this isn't CI
 # if [ -z "$CI" ]; then
 # fi
