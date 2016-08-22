@@ -1,3 +1,9 @@
+class String
+    def is_i?
+       /\A[-+]?\d+\z/ === self
+    end
+end
+
 class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
@@ -14,7 +20,6 @@ class CalculatedValue < ActiveRecord::Base
       :completion_date             => study.completion_month_year.to_date,
       :primary_completion_date     => study.primary_completion_month_year.to_date,
       :nlm_download_date           => get_download_date,
-
       :sponsor_type                => calc_sponsor_type,
       :actual_duration             => calc_actual_duration,
       :were_results_reported       => calc_results_reported,
@@ -23,7 +28,31 @@ class CalculatedValue < ActiveRecord::Base
       :number_of_facilities        => calc_number_of_facilities,
       :number_of_sae_subjects      => calc_number_of_sae_subjects,
       :number_of_nsae_subjects     => calc_number_of_nsae_subjects,
+      :has_minimum_age             => calc_has_age_limit('min'),
+      :has_maximum_age             => calc_has_age_limit('max'),
+      :minimum_age_num             => calc_age('min'),
+      :maximum_age_num             => calc_age('max'),
+      :minimum_age_unit            => calc_age_unit('min'),
+      :maximum_age_unit            => calc_age_unit('max'),
     }
+  end
+
+  def get_age(type)
+    type=='min' ?  study.eligibility.minimum_age : study.eligibility.maximum_age
+  end
+
+  def calc_age_unit(type)
+    get_age(type).split(' ').last
+  end
+
+  def calc_has_age_limit(type)
+    !calc_age(type).nil?
+  end
+
+  def calc_age(type)
+    age=get_age(type)
+    first_part=age.split(' ').first
+    first_part.to_i if first_part and first_part.is_i?
   end
 
   def get_download_date

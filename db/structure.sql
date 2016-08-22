@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.4.1
+-- Dumped from database version 9.5.3
 -- Dumped by pg_dump version 9.5.3
 
 SET statement_timeout = 0;
@@ -209,7 +209,13 @@ CREATE TABLE calculated_values (
     nlm_download_date date,
     first_received_date date,
     first_received_result_date date,
-    were_results_reported boolean
+    were_results_reported boolean,
+    has_minimum_age boolean,
+    has_maximum_age boolean,
+    minimum_age_num integer,
+    maximum_age_num integer,
+    minimum_age_unit character varying,
+    maximum_age_unit character varying
 );
 
 
@@ -373,7 +379,8 @@ ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
 CREATE TABLE design_group_interventions (
     id integer NOT NULL,
     design_group_id integer,
-    intervention_id integer
+    intervention_id integer,
+    nct_id character varying
 );
 
 
@@ -478,7 +485,11 @@ CREATE TABLE designs (
     allocation character varying,
     time_perspective character varying,
     observational_model character varying,
-    nct_id character varying
+    nct_id character varying,
+    subject_masked boolean,
+    caregiver_masked boolean,
+    investigator_masked boolean,
+    outcomes_assessor_masked boolean
 );
 
 
@@ -1627,8 +1638,8 @@ CREATE TABLE studies (
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    first_received_results_disposition_date date,
     plan_to_share_ipd character varying,
+    first_received_results_disposition_date date,
     nlm_download_date_description character varying,
     start_month_year character varying,
     verification_month_year character varying,
@@ -2467,7 +2478,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150409002646');
 
@@ -2574,4 +2585,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160817124730');
 INSERT INTO schema_migrations (version) VALUES ('20160817204937');
 
 INSERT INTO schema_migrations (version) VALUES ('20160818122657');
+
+INSERT INTO schema_migrations (version) VALUES ('20160818180156');
+
+INSERT INTO schema_migrations (version) VALUES ('20160818234153');
+
+INSERT INTO schema_migrations (version) VALUES ('20160819001315');
 

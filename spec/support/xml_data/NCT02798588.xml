@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 16, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02798588</url>
+  </required_header>
+  <id_info>
+    <org_study_id>69HCL15_0669</org_study_id>
+    <nct_id>NCT02798588</nct_id>
+  </id_info>
+  <brief_title>Improving Awakening Prognostication After Non Anoxic Coma Using PET-MRI in Intensive Care Unit</brief_title>
+  <acronym>ETIC</acronym>
+  <official_title>Improving Awakening Prognostication After Non Anoxic Coma Using PET-MRI in Intensive Care Unit</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Hospices Civils de Lyon</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Hospices Civils de Lyon</source>
+  <oversight_info>
+    <authority>France: Agence Nationale de Sécurité du Médicament et des produits de santé</authority>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      In last decades, several advances in the neuro-intensive management have lead to decrease
+      mortality in Intensive Care Units. A significant morbidity remains as patients survive after
+      a traumatic coma with uncertain quality of awakening and a high risk of functional
+      disability. Predicting awareness recovery and functional disability of those who will awake
+      constitutes a major challenge to inform patients' relatives, to give the best chances in
+      terms of rehabilitation resources or to adapt intensive cares to a reasonable level. Tools
+      currently available are not sufficient neither to predict bad awakening outcome nor to
+      predict good functional outcome. In many countries, life's support cessation is a constant
+      call for robust evaluation as soon as possible in ICU but it is mandatory to reach a
+      positive predictive value of non-awaking close to 100%. Many clinical,
+      electro-physiological, biological, radiological and functional parameters have been
+      conducted with comatose patients assuming the purpose to predict outcome. Regarding
+      unfavourable outcome, the gold standard is the abolition of the N20 component of
+      somatosensory evoked potentials but the specificity is high enough only for patients with
+      anoxic coma. Several neurophysiological markers such as MMN, P300 are correlated to a
+      favourable outcome but the sensitivity and specificity remains low for patients who suffered
+      a severe traumatic brain injury. New Diffusion Tensor imaging sequences provide
+      complementary information to detect small structural lesions (diffuse axonal lesions).
+      Recently, functional MRI analyzing Resting State has also been proposed as a prognostic
+      marker during coma. PET using Fluoro-Desoxy-Glucose is able to assess the metabolism in key
+      regions of the awakening network in either anaesthesia or sleep. Recent studies have
+      reported interesting results at the chronic stage but to knowledge, these tools have only
+      been used to address pathophysiology's issues and never to improve coma prognosis at the
+      initial stage. The investigators hypothesize that the heterogeneity of the population
+      requires a global and accurate assessment of the central nervous system, combining
+      structural, metabolic and functional information in order to refine the prognosis.
+
+      The protocol integrates in one-sequence most radiological markers of brain injury within a
+      unique PET-MRI in Lyon. The most relevant originality of the study consists in confronting
+      FDG-PET and MRI sequences to a large clinical, electrophysiological and biological battery.
+      The added clinical value would be to question the synergistic effect of each parameter and
+      to find out which ones are the most useful for awakening prediction, as they have not been
+      compared in a multi-parametric database.
+
+      PET-MRI, as a new device combining physiological and prognostic questioning, allows us:
+
+        -  to implement a more integrative physio-pathological analysis
+
+        -  to avoid the cofounding effect of awareness' fluctuations in recording simultaneously
+           multiple functional imaging techniques.
+
+      The RS will be analyzed at 2 epochs in order to assess the stability of brain connectivity,
+      related to neuronal activity (glucose metabolism) and brain perfusion.
+    </textblock>
+  </brief_summary>
+  <overall_status>Not yet recruiting</overall_status>
+  <start_date>June 2016</start_date>
+  <completion_date type="Anticipated">June 2018</completion_date>
+  <primary_completion_date type="Anticipated">June 2018</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Endpoint Classification: Safety/Efficacy Study, Intervention Model: Single Group Assignment, Masking: Double Blind (Caregiver, Investigator, Outcomes Assessor)</study_design>
+  <primary_outcome>
+    <measure>Analysis of feasibility (pilot study) with Number of patients included during a 12-months period</measure>
+    <time_frame>at 12 months</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Analysis of feasibility (pilot study) with ratio of patient included vs patient admissible according to the screening</measure>
+    <time_frame>at 12 months</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Analysis of feasibility (pilot study) with respect of deadline for completion of PET MRI</measure>
+    <time_frame>at 12 months</time_frame>
+    <safety_issue>No</safety_issue>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Analysis of security (pilot study) with tolerance of the PET-MRI</measure>
+    <time_frame>at 12 months</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Unfavorable clinical evolution towards awareness (dichotomic criteria : absence of awareness with functional communication)</measure>
+    <time_frame>at 12 month</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>Building a prognostic tool including miscellaneous parameters (clinical, biological, electrophysiological, metabolic PET and multimodal MRI) for the prediction of an unfavourable outcome (death, vegetative state, minimally conscious state) at 1 year after a non-anoxic brain injury (focal or multifocal; either traumatic or vascular causes)</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Unfavorable clinical evolution in absence of awareness (ordinal criteria within unfavorable outcome) with Coma Recovery Scale-Revised</measure>
+    <time_frame>at 12 month</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>Defining an association of criteria, which are available in the 1st month after coma, that are able to predict at 1 year with a high positive predictive value the level of disorder of consciousness in the subgroup with unfavourable outcome in analyzing (according to Coma Recovery Scale-Revised) the evolution of :
+vegetative state patients
+minimally-conscious patients
+dead patients</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Functional clinical evolution in presence of awareness (ordinal criteria within favorable outcome) according to Glasgow Outcome Scale (GOS)</measure>
+    <time_frame>at 12 month</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Defining an association of criteria which are available in the 1st month after coma, that are able to predict at 1 year with a high positive predictive value the quality of functional outcome in the subgroup with favourable outcome in analyzing the level of autonomy according to Glasgow Outcome Scale (GOS)</description>
+  </secondary_outcome>
+  <number_of_arms>1</number_of_arms>
+  <enrollment type="Anticipated">20</enrollment>
+  <condition>Coma</condition>
+  <arm_group>
+    <arm_group_label>Comatose patients in ICU</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+  </arm_group>
+  <intervention>
+    <intervention_type>Radiation</intervention_type>
+    <intervention_name>PET-MRI</intervention_name>
+    <description>18Fluoro-Desoxy-Glucose's infusion for PET (glucose neural metabolism assessment, with quantitative information permitted by radioactivity monitoring through arterial catheter ; dosage = 1,5 MBq/Kg + 18,5 MBq as loading dose 5 min= Outside the scanner, Installation and movement management: Curare+/- sedative injection with standardized routine care protocol 10 min= Outside the scanner, Starting PET continuous acquisitionT= 0, Morphological MRI sequences- 3DT1, 3DFlair, T2SE, T2 HR on brainstem, Susceptibility and simple Diffusion Weighted Imaging-Specifically dedicated MR sequences based upon clinical issues 25 min, MRI in Resting state N°1 (global short-term functional connectivity)13 min, MRI DTI acquisition, 64 directions, sensitive to white matter injury 8 min, IRM in 2D-Arterial Spin Labelling:Quantitative Cerebral blood flow information (no Gadolinium)-&gt;8 min, IRM in Resting state 2 (repeated occurrence to assess stationarity) 13 min, End of PET continuous acquisition</description>
+    <arm_group_label>Comatose patients in ICU</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          1. Patients presenting either vascular or traumatic lesions
+
+          2. Patients with no response to simple command 48h after sedation's cessation
+
+          3. Patients included between 7 days (to reduce the effect of early oedema) and 30 days
+             after the coma (to control the homogeneity of our cohort)
+
+          4. Patients included between 18 and 75 years old, to limit the risk of care withdrawal
+             for poor previous medical condition
+
+          5. Patients evaluated by a global electrophysiological assessment at beside in ICU in a
+             short delay before or after PET-MRI
+
+        Exclusion Criteria:
+
+          1. Patient with an associated anoxic encephalopathy
+
+          2. Patients with contra-indication to MRI
+
+          3. Patients with hypersensibility to the active molecules (FDG) or to one of this
+             excipient
+
+          4. Pregnant women
+
+          5. Minor patients
+
+          6. Patients under legal protection
+
+          7. Patients not affiliated to French health care system
+
+          8. Patients in poor medical condition (hemodynamic, respiratory instability)
+
+          9. Patients moribund or with previous decision of care withdrawal
+
+         10. Absence of relatives to give written consent
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>75 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Frédéric DAILLER, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Réanimation polyvalente neurologique Hospices Civils de Lyon</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Frédéric DAILLER, MD</last_name>
+    <phone>4 72 35 75 76</phone>
+    <phone_ext>+33</phone_ext>
+    <email>frederic.dailler@chu-lyon.fr</email>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>Florent GOBERT, MD</last_name>
+    <phone>6 78 64 90 66</phone>
+    <phone_ext>+33</phone_ext>
+    <email>gobert.flo@gmail.com</email>
+  </overall_contact_backup>
+  <location>
+    <facility>
+      <name>Réanimation polyvalente neurologique Hôpital Neurologique HCL</name>
+      <address>
+        <city>Bron</city>
+        <zip>69500</zip>
+        <country>France</country>
+      </address>
+    </facility>
+    <status>Not yet recruiting</status>
+    <contact>
+      <last_name>Frédéric DAILLER, MD</last_name>
+      <phone>472 35 75 76</phone>
+      <phone_ext>+33</phone_ext>
+      <email>frederic.dailler@chu-lyon.fr</email>
+    </contact>
+    <contact_backup>
+      <last_name>Florent GOBERT, MD</last_name>
+      <phone>6 78 64 90 66</phone>
+      <phone_ext>+33</phone_ext>
+      <email>gobert.flo@gmail.com</email>
+    </contact_backup>
+    <investigator>
+      <last_name>Frédéric DAILLER, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+    <investigator>
+      <last_name>Jacques LUAUTE, MD</last_name>
+      <role>Sub-Investigator</role>
+    </investigator>
+    <investigator>
+      <last_name>Nathalie ANDRE-OBADIA, MD</last_name>
+      <role>Sub-Investigator</role>
+    </investigator>
+  </location>
+  <location_countries>
+    <country>France</country>
+  </location_countries>
+  <verification_date>May 2016</verification_date>
+  <lastchanged_date>June 8, 2016</lastchanged_date>
+  <firstreceived_date>May 27, 2016</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>coma</keyword>
+  <keyword>prognosis</keyword>
+  <keyword>comparative study</keyword>
+  <keyword>functional imaging</keyword>
+  <keyword>PET-MRI</keyword>
+  <keyword>electrophysiology</keyword>
+  <is_fda_regulated>No</is_fda_regulated>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Coma</mesh_term>
+  </condition_browse>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                -->
+</clinical_study>

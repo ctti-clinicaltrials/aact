@@ -8,7 +8,7 @@ class DesignGroupIntervention < StudyRelationship
     col=[]
     opts[:group_titles].collect{|group_title|
       group=opts[:design_groups].select{|g|g.title==group_title.text}.first
-      col << new({:intervention=>opts[:intervention],:design_group=>group}) if group
+      col << new({:intervention=>opts[:intervention],:design_group=>group,:nct_id=>opts[:nct_id]}) if group
     }
    col.compact
   end
