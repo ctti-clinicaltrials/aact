@@ -31,6 +31,13 @@ The full import will download the entire dataset from clinicaltrials.gov. This r
 
 The daily import will check the RSS feed at clinicaltrials.gov for studies that have been added or changed. You can specify how many days back to look in the dataset with the `days_back` argument above. To import changed/new studies from two days back: `bundle exec rake import:daily:run[2]`
 
+On Heroku, we use Heroku Scheduler to run these rake tasks on a recurring basis.
+
+
+## Sanity checks
+
+Sanity checks are a simple way for us to check that the tables in the database have been imported correctly and gives some insight into how the data looks at a high level. Both the daily and full import rake tasks run the sanity check automatically. To run it manually, open up a Rails console and enter `SanityCheck.run`. This will create a record in the `sanity_checks` table with a report represented in JSON.
+
 ## Guidelines
 
 Use the following guides for getting things done, programming well, and
