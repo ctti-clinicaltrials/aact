@@ -15,7 +15,7 @@ your machine with [this script].
 
 ## Environment variables
 
-After running `bin/setup`, you'll have a `.env` file that has an empty template for the environment variables you'll need. These variables are copied from `.env.example`
+After running `bin/setup`, you'll have a `.env` file that contains an empty template for the environment variables you'll need. These variables are copied from `.env.example`
 
 ## Importing studies from clinicaltrials.gov
 
