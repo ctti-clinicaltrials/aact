@@ -1,14 +1,13 @@
 - hosts: localhost
   connection: local
   gather_facts: False
+  vars:
+    instances:
+      - aact-dev
+      - aact-prod
 
   tasks:
-    - set_fact:
-        buckets:
-          - aact-dev
-          - aact-prod
-
-    - name: create S3 buckets
+    - name: create S3 instances
       s3_bucket:
         name: "{{ item }}"
         policy:
@@ -28,34 +27,88 @@
               Principal: "*"
               Action: "s3:GetObject"
               Resource: "arn:aws:s3:::{{ item }}/*"
-      with_items: "{{ buckets }}"
+      with_items: "{{ instances }}"
 
     - name: create agent IAM accounts
       iam:
         iam_type: user
         name: "{{ item }}-agent"
         state: present
-      with_items: "{{ buckets }}"
+      with_items: "{{ instances }}"
 
-    - name: create dev-agent-policy
+    - name: "create {{ item }}-policy"
       iam_policy:
         state: present
-        iam_name: aact-dev-agent
+        iam_name: "{{ item }}-agent"
         iam_type: user
-        policy_name: aact-dev-agent-policy
-        policy_document: aact-dev-agent-policy.json
+        policy_name: "{{ item }}-agent-policy"
+        policy_document: "{{ item }}-agent-policy.json"
+      with_items: "{{ instances }}"
 
-    - name: create prod-agent-policy
-      iam_policy:
+    - name: Create Security Groups to manage access to rds
+      ec2_group:
+        name: "postgres-{{ item }}-public"
+        description: "PostgreSQL public (internet) access to {{ item }} "
+        region: us-east-1
+        rules:
+          - proto: tcp
+            from_port: 5432
+            to_port: 5432
+            cidr_ip: 0.0.0.0/0
+        rules_egress:
+          - proto: all
+            from_port: All
+            cidr_ip: 0.0.0.0/0
         state: present
-        iam_name: aact-prod-agent
-        iam_type: user
-        policy_name: aact-prod-agent-policy
-        policy_document: aact-prod-agent-policy.json
+      register: "rdsgroup"
+      with_items: "{{ instances }}"
 
-# prod RDS security group
-#
-# prod RDS postgres instance
-#  - dbt2.medium, 20 GB
-#
+    - name: Provision RDS Postgres Instances
+          # https://github.com/ansible/ansible-modules-core/issues/633
+          # rds module will not support storage_type SSD until it is refactored
+          # to use boto3
+          # rds:
+          #   command: create
+          #   instance_name: "{{ item.item }}"
+          #   instance_type: db.t2.medium
+          #   vpc_security_groups: "{{ item.group_id }}"
+          #   subnet: default
+          #   size: 20
+          #   db_engine: postgres
+          #   db_name: aact
+          #   username: dbadmin
+          #   password: "{{ lookup('password', 'rds.' + item.item + '.secret') }}"
+          #   publicly_accessible: yes
+          #   region: us-east-1
+          #   zone: us-east-1e
+          #   backup_retention: 7
+          #   backup_window: 10:21-10:51
+          #   maint_window: wed:08:03-wed:08:33
+      command: "aws rds create-db-instance
+                --db-instance-identifier {{ item.item }}
+                --db-instance-class db.t2.medium
+                --vpc-security-group-ids {{ item.group_id }}
+                --db-subnet-group-name default
+                --engine postgres
+                --storage-type gp2
+                --allocated-storage 20
+                --db-name aact
+                --master-username dbadmin
+                --master-user-password {{ lookup('password', 'rds.' + item.item + '.secret length=17') }}
+                --publicly-accessible
+                --region us-east-1
+                --availability-zone us-east-1e
+                --backup-retention-period 7
+                --preferred-backup-window 10:21-10:51
+                --preferred-maintenance-window wed:08:03-wed:08:33
+                --port 5432
+                --tags Key=workload-type,Value=other
+                --copy-tags-to-snapshot
+                --no-multi-az"
+      register: result
+      failed_when: >
+        result.rc != 0 and ('DBInstanceAlreadyExists' not in result.stderr)
+      changed_when: "result.rc == 0"
+      with_items: "{{ rdsgroup.results }}"
+
 # create RO User in RDS postgres (sql script)
