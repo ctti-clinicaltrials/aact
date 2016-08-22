@@ -207,7 +207,7 @@ class Study < ActiveRecord::Base
       :acronym =>get('acronym'),
       :number_of_arms => get('number_of_arms'),
       :number_of_groups =>get('number_of_groups'),
-      :source => get('study_source'),
+      :source => get('source'),
       :brief_title  => get('brief_title') ,
       :official_title => get('official_title'),
       :overall_status => get('overall_status'),
