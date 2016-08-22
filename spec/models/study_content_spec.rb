@@ -2,7 +2,7 @@ require 'rails_helper'
 
 
 describe Study do
-  it "should have correct date attribs" do
+  it "our validation study should have correct attribs" do
     nct_id='NCT02654730'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
