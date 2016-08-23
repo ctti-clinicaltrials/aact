@@ -9,9 +9,98 @@
 
 <section class="sasAccess">
   <div class="wrap">
-    <p>There are two ways to access the AACT database using SAS.</p>
-    <p>The first is to connect directly to the PostgreSQL database using the credentials provided above.</p>
-    <p>The second is to import the pipe delimited CSV copy of the database made available from the AACT website.</p>
+    <p>This method for accessing the AACT database is recommended for SAS users wanting to run analyses or queries using the live database. </p>
 
+    <h3>Note:</h3>
+    <ul>
+      <li>This method can also be used to create a local SAS copy of a particular instance of the database (a “snapshot”), for example by using PROC COPY as illustrated below in Example 3.e. However this is not recommended if a user has limited internet bandwidth or computational power (e.g., working on PC SAS). Two alternative methods for SAS users wanting to work with a snapshot of the database are available and are recommended. </li>
+      <li>For SAS users with SAS/ACCESS interface to PostgreSQL and PostgreSQL software installed on their machine, a snapshot of the database can be downloaded and used to populate a local version of the database. SAS can then be used to connect to, and query, the local database.  See instructions:  “SAS – downloading and connecting to a local copy of the PostgreSQL AACT database”.</li>
+      <li>For SAS users without SAS/ACCESS interface to PostgreSQL, the AACT database tables can be downloaded in delimited text file format.  See instructions: “SAS – downloading and working with the delimited text file version of AACT database snapshots”.</li>
+    </ul>
+
+    <div class="step">
+      <span class="stepNumber">1</span>
+      <h3 class="stepName">SAS Installation requirements</h3>
+    </div>
+    <p>
+      SAS software must be installed.  SAS/ACCESS interface to PostgreSQL is required.
+    </p>
+    <p>
+      <b>Note:</b>  These instructions were tested on SAS 9.4 (TS1M2) installed on a PC and on Linux.
+    </p>
+    <p>
+      If the steps described below do not work, the SAS/ACCESS interface to ODBC may need to be configured. For help, contact your SAS administrator, or refer to the <a href="http://support.sas.com/kb/13/848.html">SAS knowledgebase</a>.
+    </p>
+
+    <div class="step">
+      <span class="stepNumber">2</span>
+      <h3 class="stepName">Assign a SAS ‘libref’ to the PostreSQL database. </h3>
+    </div>
+
+    <p>
+      Using the LIBNAME statement in SAS, assign a ‘libref’ (a shortcut name) to the PostgreSQL database, and specify the database connection options. The access credentials for the live AACT database are provided at the <a href="/connect">AACT Connect webpage</a>.
+    </p>
+
+    <p>
+      For example:
+    </p>
+
+    <pre>
+      <code>libname</code>
+      <code class="output">cloud             /* my libref  */</code>
+      <code class="output">postgres          /* postgres engine  */</code>
+      <code class="output">user="aact2"      /* supply the AACT2 login credentials  */</code>
+      <code class="output">password="aact2"</code>
+      <code class="output">database="aact2"</code>
+      <code class="output">server="aact2-main.cbj0v72pdrrv.us-east-1.rds.amazonaws.com"</code>
+      <code class="output">port=5432</code>
+      <code class="output">dbmax_text=32767  /* sets the length of long text variables */</code>
+      <code class="output">preserve_tab_names=yes</code>
+      <code class="output">access=readonly</code>
+    </pre>
+
+    <p>
+      <b>Note:</b> In the PostgreSQL database, character variables are stored either as varchar(n) which is a ‘variable-length’ character type with a maximum limit on length, or as text character type which has unlimited length. SAS only has one type of character variable. For character variables of varchar(n) type, SAS will use the length limit assigned in the PostgreSQL database (default limit is n=255) for the variable. The dbmax_text= option in the libname statement is used to control the length assigned to character variables of text type. The maximum length available in SAS is 32767. Setting dbmax_text=32767 will minimize the risk of truncating information contained within these long variables. However, it may also result in excessively long variables that will increase storage and memory requirements, and reduce computational performance.  When working with a particular dataset, the maximum character variable length may be set for that dataset using the dbmax_text data set option (see example in Step 3, below).
+    </p>
+
+    <p>
+      Refer to SAS documentation for additional PostgreSQL options and arguments for the LIBNAME statement.
+    </p>
+
+    <p>
+      If you are working in PC SAS, then after submitting the above LIBNAME statement you will be able to view the available database tables as SAS data sets using the Explorer window.
+    </p>
+
+    <div class="step">
+      <span class="stepNumber">3</span>
+      <h3 class="stepName">Use the assigned libref to perform tasks in SAS. </h3>
+    </div>
+
+    <p>
+      In these examples, the assigned libref is called ‘cloud’.
+    </p>
+
+    <h4>Example 3.a - Get listing of contents of the database</h4>
+
+    <pre>
+      <code>proc contents data=cloud._all_;</code>
+      <code>run;</code>
+    </pre>
+
+    <h4>Example 3.b - Count number of studies by values of the study_type variable using SAS PROC FREQ</h4>
+
+    <pre>
+      <code>title 'Number of studies by type';</code>
+      <code>proc freq data=cloud.studies;</code>
+      <code>tables study_type;</code>
+      <code>run;</code>
+      <code>title;</code>
+    </pre>
+
+    <h4>Example 3.c – Example SAS PROC SQL queries </h4>
+
+    <pre>
+      
+    </pre>
   </div>
 </section>
