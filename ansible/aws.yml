@@ -3,7 +3,7 @@
   gather_facts: False
   vars:
     instances:
-      - aact-dev
+      # - aact-dev
       - aact-prod
 
   tasks:
@@ -119,6 +119,20 @@
       register: dbfacts
       with_items: "{{ instances }}"
 
+      # http://dba.stackexchange.com/questions/35316/why-is-a-new-user-allowed-to-create-a-table
+    - name: REVOKE CREATE ON SCHEMA public FROM public
+      postgresql_privs:
+        login_host: "{{ item.instance.endpoint }}"
+        login_user: dbadmin
+        login_password: "{{ lookup('password', 'rds.' + item.item + '.secret length=17') }}"
+        db: aact
+        privs: CREATE
+        type: schema
+        objs: public
+        role: public
+        state: absent
+      with_items: "{{ dbfacts.results }}"
+
     - name: create RO Users in RDS postgres instances
       postgresql_user:
         login_host: "{{ item.instance.endpoint }}"
@@ -130,7 +144,7 @@
         no_password_changes: yes
       with_items: "{{ dbfacts.results }}"
 
-    - name: REVOKE ALL ON DATABASE aact TO RO User
+    - name: REVOKE ALL ON DATABASE aact FROM RO User
       postgresql_privs:
         login_host: "{{ item.instance.endpoint }}"
         login_user: dbadmin
