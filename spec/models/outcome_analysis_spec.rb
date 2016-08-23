@@ -1,13 +1,22 @@
 require 'rails_helper'
 
 describe OutcomeAnalysis do
-	it "study should be fine without any outcome analyses" do
+  it "should retain numbers after decimal in percent" do
+    nct_id='NCT01642004'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    o=study.outcome_analyses.select{|x|x.p_value_description=='Stratified by region (US/Canada, Rest Of World (ROW), Europe) and prior treatment regimen (Paclitaxel, Another agent) as entered in the Interactive Voice Response System (IVRS).' and x.param_value==0.59}
+    expect(o.size).to eq(1)
+    expect(o.first.ci_percent).to eq(BigDecimal.new("96.85"))
+  end
+
+  it "study should be fine without any outcome analyses" do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     o=study.outcomes.select{|x|x.title=='Percentage of Patients Who Survive at Least 12 Months'}.first
     expect(o.outcome_analyses.size).to eq(0)
-	end
+  end
 
   it "study should have expected outcomes" do
     #  This Study is good for testing OutcomeAnalysis - contains several rare attributes
