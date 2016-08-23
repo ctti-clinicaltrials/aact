@@ -111,4 +111,91 @@
       changed_when: "result.rc == 0"
       with_items: "{{ rdsgroup.results }}"
 
-# create RO User in RDS postgres (sql script)
+    - name: Get facts about each RDS instance
+      rds:
+        command: facts
+        instance_name: "{{ item }}"
+        region: us-east-1
+      register: dbfacts
+      with_items: "{{ instances }}"
+
+    - name: create RO Users in RDS postgres instances
+      postgresql_user:
+        login_host: "{{ item.instance.endpoint }}"
+        login_user: dbadmin
+        login_password: "{{ lookup('password', 'rds.' + item.item + '.secret length=17') }}"
+        db: aact
+        name: aact
+        password: aact
+        no_password_changes: yes
+      with_items: "{{ dbfacts.results }}"
+
+    - name: REVOKE ALL ON DATABASE aact TO RO User
+      postgresql_privs:
+        login_host: "{{ item.instance.endpoint }}"
+        login_user: dbadmin
+        login_password: "{{ lookup('password', 'rds.' + item.item + '.secret length=17') }}"
+        db: aact
+        type: database
+        state: absent
+        privs: ALL
+        role: aact
+      with_items: "{{ dbfacts.results }}"
+
+    - name: GRANT CONNECT ON DATABASE aact TO RO User
+      postgresql_privs:
+        login_host: "{{ item.instance.endpoint }}"
+        login_user: dbadmin
+        login_password: "{{ lookup('password', 'rds.' + item.item + '.secret length=17') }}"
+        db: aact
+        type: database
+        privs: CONNECT
+        role: aact
+      with_items: "{{ dbfacts.results }}"
+
+    - name: GRANT USAGE ON SCHEMA public TO RO User
+      postgresql_privs:
+        login_host: "{{ item.instance.endpoint }}"
+        login_user: dbadmin
+        login_password: "{{ lookup('password', 'rds.' + item.item + '.secret length=17') }}"
+        db: aact
+        privs: USAGE
+        type: schema
+        objs: public
+        role: aact
+      with_items: "{{ dbfacts.results }}"
+
+    - name: REVOKE ALL ON ALL TABLES IN SCHEMA public FROM RO User
+      postgresql_privs:
+        login_host: "{{ item.instance.endpoint }}"
+        login_user: dbadmin
+        login_password: "{{ lookup('password', 'rds.' + item.item + '.secret length=17') }}"
+        db: aact
+        state: absent
+        privs: ALL
+        objs: ALL_IN_SCHEMA
+        schema: public
+        roles: aact
+      with_items: "{{ dbfacts.results }}"
+
+    - name: GRANT SELECT ON ALL TABLES IN SCHEMA public TO RO User
+      postgresql_privs:
+        login_host: "{{ item.instance.endpoint }}"
+        login_user: dbadmin
+        login_password: "{{ lookup('password', 'rds.' + item.item + '.secret length=17') }}"
+        db: aact
+        privs: SELECT
+        type: table
+        objs: ALL_IN_SCHEMA
+        schema: public
+        roles: aact
+      with_items: "{{ dbfacts.results }}"
+
+      # this is not ideal, but I cannot find any other way to do it. It is not really idempotent
+      # e.g. it always runs.
+    - name: ALTER DEFAULT PRIVILEGES IN SCHEMA public	GRANT SELECT ON TABLES TO RO User
+      shell: "export PGPASSWORD={{ lookup('password', 'rds.' + item.item + '.secret length=17') }} && psql -w -h {{ item.instance.endpoint }} -U dbadmin -c 'ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO aact' aact"
+      args:
+        executable: /bin/bash
+      register: result
+      with_items: "{{ dbfacts.results }}"
