@@ -6,20 +6,30 @@ class ResponsibleParty < StudyRelationship
 
   def self.create_all_from(opts)
     objects = super
-    ResponsibleParty.import(objects)
+    import(objects)
+  end
+
+  def name_field(opts)
+    if opts[:xml].xpath('name_title').present?
+      return get('name_title')
+    else
+      return get('investigator_full_name')
+    end
   end
 
   def attribs
     {
       :responsible_party_type => get('responsible_party_type'),
       :affiliation => get('investigator_affiliation'),
-      :name => get('investigator_full_name'),
+      :organization => get('organization'),
       :title => get('investigator_title'),
+      :name => get_name,
     }
   end
 
-  def label
-    "#{try(:name)} #{try(:title)}"
+  def get_name
+    n=get('investigator_full_name')
+    !n.blank? ? n : get('name_title')
   end
 
 end

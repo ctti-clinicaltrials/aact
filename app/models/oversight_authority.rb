@@ -10,7 +10,7 @@ class OversightAuthority < StudyRelationship
     oversight_authorities = (xml.collect {|node|
       self.new({:name=>node.text,:nct_id=>nct_id}) if node.name=='authority'}).compact
 
-    OversightAuthority.import(oversight_authorities)
+    import(oversight_authorities)
   end
 
 end

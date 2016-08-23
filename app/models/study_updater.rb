@@ -1,8 +1,8 @@
 class StudyUpdater
   def update_studies(nct_ids:)
+    destroy_old_records(nct_ids)
     nct_ids.each do |nct_id|
       @client = ClinicalTrials::Client.new(search_term: nct_id)
-      destroy_old_record(nct_id)
       create_new_xml_record(nct_id)
       create_new_study(nct_id)
     end
@@ -10,16 +10,20 @@ class StudyUpdater
 
   private
 
-  def destroy_old_record(nct_id)
-    xml = StudyXmlRecord.find_by(nct_id: nct_id)
-    study = Study.find_by(nct_id: nct_id)
+  def destroy_old_records(nct_ids)
+    xml_records = StudyXmlRecord.where(nct_id: nct_ids)
+    studies = Study.where(nct_id: nct_ids)
 
-    xml.try(:destroy)
-    study.try(:destroy)
+    puts "Destroying #{xml_records.count} xml records"
+    xml_records.try(:destroy_all)
+
+    puts "Destroying #{studies.count} studies and their related tables"
+    studies.try(:destroy_all)
   end
 
   def create_new_xml_record(nct_id)
     @client.download_xml_files
+    puts "Downloaded xml"
     extraneous_nct_ids = @client.processed_studies[:new_studies].select { |id| id != nct_id }
 
     if extraneous_nct_ids.present?
@@ -32,5 +36,6 @@ class StudyUpdater
   def create_new_study(nct_id)
     new_xml = StudyXmlRecord.find_by(nct_id: nct_id).content
     @client.import_xml_file(new_xml)
+    puts "Imported study #{nct_id}"
   end
 end

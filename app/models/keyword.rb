@@ -6,7 +6,7 @@ class Keyword < StudyRelationship
 
   def self.create_all_from(opts)
     objects = super
-    Keyword.import(objects)
+    import(objects)
   end
 
   def attribs

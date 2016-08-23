@@ -1,25 +1,31 @@
 class DesignGroup < StudyRelationship
+  has_many :design_group_interventions,  inverse_of: :design_group, autosave: true
+  has_many :interventions, :through => :design_group_interventions
 
   def self.top_level_label
     '//arm_group'
   end
 
+  def self.xcreate_all_from(opts)
+    objects=xml_entries(opts).collect{|xml|
+      opts[:xml]=xml
+      create.create_from(opts)
+    }.compact
+    objects
+  end
+
   def self.create_all_from(opts)
     objects = super
-    DesignGroup.import(objects)
+    import(objects, recursive: true)
+    return objects
   end
 
   def attribs
     {
-      :ctgov_group_id => get_attribute('group_id'),
       :group_type => get('arm_group_type'),
-      :label => get('arm_group_label'),
+      :title => get('arm_group_label'),
       :description => get('description'),
     }
-  end
-
-  def type
-    group_type
   end
 
 end

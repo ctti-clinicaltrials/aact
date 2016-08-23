@@ -37,4 +37,16 @@ describe Outcome do
 
   end
 
+  it "study should have expected outcomes" do
+    nct_id='NCT01207388'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+
+    expect(study.outcomes.select{|x|x.title=='Hematological Relapse-free Survival Rate'}.size).to eq(1)
+    o=study.outcomes.select{|x|x.title=='Hematological Relapse-free Survival Rate'}.first
+    expect(o.anticipated_posting_month_year).to eq('08/2017')
+    o=study.outcomes.select{|x|x.title=='MRD Level'}.first
+    expect(o.anticipated_posting_month_year).to eq('08/2017')
+  end
+
 end

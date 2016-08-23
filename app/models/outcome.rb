@@ -21,6 +21,7 @@ class Outcome < StudyRelationship
       opts[:time_frame]=xml.xpath('time_frame').text
       opts[:safety_issue]=xml.xpath('safety_issue').text
       opts[:population]=xml.xpath('population').text
+      opts[:posting_date]=xml.xpath('posting_date').text
       o=new.create_from(opts)
       outcomes << o
       xml=all.pop
@@ -37,6 +38,7 @@ class Outcome < StudyRelationship
       :safety_issue   => get_opt('safety_issue'),
       :measure        => get_opt('measure'),
       :population     => get_opt('population'),
+      :anticipated_posting_month_year  => get_opt('posting_date'),
       :outcome_groups          => OutcomeGroup.create_all_from({:outcome=>self,:groups=>opts[:groups]}),
       :outcome_measured_values => OutcomeMeasuredValue.create_all_from(opts.merge(:outcome=>self)),
       :outcome_analyses        => OutcomeAnalysis.create_all_from(opts.merge(:outcome=>self)),

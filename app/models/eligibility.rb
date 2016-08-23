@@ -3,7 +3,7 @@ class Eligibility < StudyRelationship
   def attribs
     {
       :sampling_method=>get('sampling_method'),
-      :study_population=>get_text('study_pop'),
+      :population=>get_text('study_pop').strip,
       :maximum_age=>get('maximum_age'),
       :minimum_age=>get('minimum_age'),
       :gender=>get('gender'),

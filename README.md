@@ -1,5 +1,5 @@
 # AACT2
-Aggregated Analysis of ClincalTrials.gov
+Aggregated Analysis of ClinicalTrials.gov
 
 ## Getting Started
 
@@ -13,22 +13,30 @@ your machine with [this script].
 
 [this script]: https://github.com/thoughtbot/laptop
 
+## Environment variables
+
+After running `bin/setup`, you'll have a `.env` file that contains an empty template for the environment variables you'll need. These variables are copied from `.env.example`
+
 ## Importing studies from clinicaltrials.gov
 
-Start by opening `rails console`.
+### Full import
 
-To load the full clinicaltrials.gov database, call `client = ClinicalTrials::Client.new`.
+`bundle exec rake import:full:run`
 
-Run `client.download_xml_files` to populate the database with the raw XML files from clinicaltrials.gov. This is will take ~2 hours.
+The full import will download the entire dataset from clinicaltrials.gov. This rake task is designed to only work on the first of the month. To run the task and ignore the date, run `bundle exec rake import:full:run[force]`
 
-Run `client.populate_studies` to populate the database with studies and all their related records. This will take ~12 hours
+### Daily import
 
-To determine the run time of the import, run `ClinicalTrials::LoadEvent.last(2)`. The first record will show the time it took to download the raw XML, the second record will show the time to populate the study records in the db.
+`bundle exec rake import:daily:run[{days_back}]`
 
-If you want to run this with a subset of the data, you can instantiate the client with a `search_term`: `ClinicalTrials::Client.new(search_term: 'pancreatic cancer.')`
+The daily import will check the RSS feed at clinicaltrials.gov for studies that have been added or changed. You can specify how many days back to look in the dataset with the `days_back` argument above. To import changed/new studies from two days back: `bundle exec rake import:daily:run[2]`
 
-### Incremental load
-Coming soon
+On Heroku, we use Heroku Scheduler to run these rake tasks on a recurring basis.
+
+
+## Sanity checks
+
+Sanity checks are a simple way for us to check that the tables in the database have been imported correctly and gives some insight into how the data looks at a high level. Both the daily and full import rake tasks run the sanity check automatically. To run it manually, open up a Rails console and enter `SanityCheck.run`. This will create a record in the `sanity_checks` table with a report represented in JSON.
 
 ## Guidelines
 

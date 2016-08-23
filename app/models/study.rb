@@ -2,31 +2,24 @@ require 'csv'
 class Study < ActiveRecord::Base
   attr_accessor :xml, :with_related_records
 
-  scope :interventional,  -> {where(study_type: 'Interventional')}
-  scope :observational,   -> {where(study_type: 'Observational')}
-  scope :current, -> { where("first_received_date >= '2007/10/01' and study_type='Interventional'") }
-
   def self.current_interventional
     self.interventional and self.current
   end
 
   self.primary_key = 'nct_id'
 
-  has_many :reviews,               :foreign_key => 'nct_id', dependent: :delete_all
-
   has_one  :brief_summary,         :foreign_key => 'nct_id', dependent: :delete
   has_one  :design,                :foreign_key => 'nct_id', dependent: :delete
   has_one  :detailed_description,  :foreign_key => 'nct_id', dependent: :delete
   has_one  :eligibility,           :foreign_key => 'nct_id', dependent: :delete
+  has_one  :id_information,        :foreign_key => 'nct_id', dependent: :delete
   has_one  :participant_flow,      :foreign_key => 'nct_id', dependent: :delete
-  has_one  :result_detail,         :foreign_key => 'nct_id', dependent: :delete
   has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
-  has_many :pma_mappings,          :foreign_key => 'nct_id'
-  has_many :pma_records,           :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :design_group_interventions, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
@@ -51,15 +44,9 @@ class Study < ActiveRecord::Base
   has_many :responsible_parties,   :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_agreements,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_contacts,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :secondary_ids,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :sponsors,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :references,            :foreign_key => 'nct_id', dependent: :delete_all
   accepts_nested_attributes_for :outcomes
-
-  scope :started_between, lambda {|sdate, edate| where("start_date >= ? AND created_at <= ?", sdate, edate )}
-  scope :changed_since,   lambda {|cdate| where("last_changed_date >= ?", cdate )}
-  scope :completed_since, lambda {|cdate| where("completion_date >= ?", cdate )}
-  scope :sponsored_by,    lambda {|agency| joins(:sponsors).where("sponsors.agency LIKE ?", "#{agency}%")}
 
   def initialize(hash)
     super
@@ -102,20 +89,20 @@ class Study < ActiveRecord::Base
 
   def create
     update(attribs)
-    DesignGroup.create_all_from(opts)
+    groups=DesignGroup.create_all_from(opts)
+    Intervention.create_all_from(opts.merge(:design_groups=>groups))
     DetailedDescription.new.create_from(opts).save
     Design.new.create_from(opts).save
     BriefSummary.new.create_from(opts).save
     Eligibility.new.create_from(opts).save
     ParticipantFlow.new.create_from(opts).save
-    ResultDetail.new.create_from(opts).save
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     CentralContact.create_all_from(opts)
     Condition.create_all_from(opts)
     Country.create_all_from(opts)
     Facility.create_all_from(opts)
-    Intervention.create_all_from(opts)
+    IdInformation.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     BaselineMeasure.create_all_from(opts)
@@ -130,7 +117,6 @@ class Study < ActiveRecord::Base
     ResponsibleParty.create_all_from(opts)
     ResultAgreement.create_all_from(opts)
     ResultContact.create_all_from(opts)
-    SecondaryId.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
     CalculatedValue.new.create_from(self).save
@@ -174,13 +160,12 @@ class Study < ActiveRecord::Base
   end
 
   def lead_sponsor
-    # sponsors.select{|s|s.sponsor_type=='lead'}.first
-    sponsors.find_by(sponsor_type: 'lead')
+    #TODO  May be multiple
+    sponsors.where(lead_or_collaborator: 'lead')
   end
 
   def collaborators
-    # sponsors.select{|s|s.sponsor_type=='collaborator'}
-    sponsors.where(sponsor_type: 'collaborator')
+    sponsors.where(lead_or_collaborator: 'collaborator')
   end
 
   def lead_sponsor_name
@@ -205,32 +190,24 @@ class Study < ActiveRecord::Base
     brief_title
   end
 
-  def recruitment_details
-    result_detail.try(:recruitment_details)
-  end
-
-  def pre_assignment_details
-    result_detail.try(:pre_assignment_details)
-  end
-
   def attribs
     {
-      :verification_date_month_day => get('verification_date'),
-      :last_changed_date => get_date(get('lastchanged_date')),
+      :start_month_year => get('start_date'),
+      :verification_month_year => get('verification_date'),
+      :completion_month_year => get('completion_date'),
+      :primary_completion_month_year => get('primary_completion_date'),
+
       :first_received_date => get_date(get('firstreceived_date')),
+      :first_received_results_date => get_date(get('firstreceived_results_date')),
+      :last_changed_date => get_date(get('lastchanged_date')),
+
+      :nlm_download_date_description => xml.xpath('//download_date').text,
       :first_received_results_disposition_date => get_date(get('firstreceived_results_disposition_date')),
 
-      :start_date_month_day => get('start_date'),
-      :primary_completion_date_month_day => get('primary_completion_date'),
-      :completion_date_month_day => get('completion_date'),
-      :first_received_results_date_month_day => get('firstreceived_results_date'),
-      :nlm_download_date_description => xml.xpath('//download_date').text,
-
-      :org_study_id => xml.xpath('//org_study_id').text,
       :acronym =>get('acronym'),
       :number_of_arms => get('number_of_arms'),
       :number_of_groups =>get('number_of_groups'),
-      :source => get('study_source'),
+      :source => get('source'),
       :brief_title  => get('brief_title') ,
       :official_title => get('official_title'),
       :overall_status => get('overall_status'),
@@ -248,11 +225,10 @@ class Study < ActiveRecord::Base
       :is_section_801 => get_boolean('is_section_801'),
       :is_fda_regulated => get_boolean('is_fda_regulated'),
       :plan_to_share_ipd => get('patient_data/sharing_ipd'),
-      :plan_to_share_description => get('patient_data/ipd_description'),
+      :plan_to_share_ipd_description => get('patient_data/ipd_description'),
       :has_expanded_access => get_boolean('has_expanded_access'),
       :has_dmc => get_boolean('has_dmc'),
       :why_stopped =>get('why_stopped').strip,
-      #:delivery_mechanism =>delivery_mechanism,
 
     }
   end
@@ -284,11 +260,6 @@ class Study < ActiveRecord::Base
 
   def get_date(str)
     Date.parse(str) if !str.blank?
-  end
-
-  def lead_sponsor
-    #TODO  May be multiple
-    sponsors.each{|s|return s if s.sponsor_type=='lead'}
   end
 
   def average_rating

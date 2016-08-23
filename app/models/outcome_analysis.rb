@@ -1,6 +1,7 @@
 class OutcomeAnalysis < StudyRelationship
-  belongs_to :outcome,        inverse_of: :outcome_analyses, autosave: true
-  has_many   :outcome_analysis_groups,  inverse_of: :outcome_analysis, autosave: true
+  extend FastCount
+  belongs_to :outcome, inverse_of: :outcome_analyses, autosave: true
+  has_many   :outcome_analysis_groups, inverse_of: :outcome_analysis, autosave: true
   has_many   :result_groups, :through => :outcome_analysis_groups
 
   def self.create_all_from(opts)
@@ -14,6 +15,7 @@ class OutcomeAnalysis < StudyRelationship
       opts[:non_inferiority]=xml.xpath('non_inferiority').text
       opts[:non_inferiority_description]=xml.xpath('non_inferiority_desc').text
       opts[:p_value]=xml.xpath('p_value').text
+      opts[:p_value_desc]=xml.xpath('p_value_desc').text
       opts[:param_type]=xml.xpath('param_type').text
       opts[:param_value]=xml.xpath('param_value').text
       opts[:dispersion_type]=xml.xpath('dispersion_type').text
@@ -22,13 +24,14 @@ class OutcomeAnalysis < StudyRelationship
       opts[:ci_n_sides]=xml.xpath('ci_n_sides').text
       opts[:ci_lower_limit]=xml.xpath('ci_lower_limit').text
       opts[:ci_upper_limit]=xml.xpath('ci_upper_limit').text
+      opts[:ci_upper_limit_na_comment]=xml.xpath('ci_upper_limit_na_comment').text
       opts[:method]=xml.xpath('method').text
       opts[:method_description]=xml.xpath('method_desc').text
       opts[:estimate_description]=xml.xpath('estimate_desc').text
       opts[:groups_description]=xml.xpath('groups_desc').text
       group_ids=create_group_list(xml)
       a=new.create_from(opts)
-      a.outcome_analysis_groups = OutcomeAnalysisGroup.create_all_from({:outcome_analysis=>a,:group_ids=>group_ids,:groups=>opts[:groups]})
+      a.outcome_analysis_groups = OutcomeAnalysisGroup.create_all_from({:outcome_analysis=>a,:group_ids=>group_ids,:groups=>opts[:groups],:nct_id=>opts[:nct_id]})
       col << a
       xml=all.pop
     end
@@ -54,6 +57,7 @@ class OutcomeAnalysis < StudyRelationship
       :non_inferiority => get_opt(:non_inferiority),
       :non_inferiority_description => get_opt(:non_inferiority_description),
       :p_value => get_opt(:p_value),
+      :p_value_description => get_opt(:p_value_desc),
       :param_type => get_opt(:param_type),
       :param_value => get_opt(:param_value),
       :dispersion_type => get_opt(:dispersion_type),
@@ -62,6 +66,7 @@ class OutcomeAnalysis < StudyRelationship
       :ci_n_sides => get_opt(:ci_n_sides),
       :ci_lower_limit => get_opt(:ci_lower_limit),
       :ci_upper_limit => get_opt(:ci_upper_limit),
+      :ci_upper_limit_na_comment => get_opt(:ci_upper_limit_na_comment),
       :method => get_opt(:method),
       :method_description => get_opt(:method_description),
       :estimate_description => get_opt(:estimate_description),

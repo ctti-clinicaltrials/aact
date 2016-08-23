@@ -6,7 +6,7 @@ class ResultAgreement < StudyRelationship
 
   def self.create_all_from(opts)
     objects = super
-    ResultAgreement.import(objects)
+    import(objects)
   end
 
   def attribs

@@ -1,89 +1,37 @@
 class Facility < StudyRelationship
-  attr_accessor :coordinates
 
-  has_many :facility_contacts, inverse_of: :facility, autosave: true
-  has_many :facility_investigators, inverse_of: :facility, autosave: true
+  has_many :facility_contacts, autosave: true
+  has_many :facility_investigators, autosave: true
 
   def self.create_all_from(opts)
-    all=opts[:xml]
-    results=all.xpath("//location").collect{|wrapper1|
-      opts[:wrapper1_xml]=wrapper1
-      wrapper1.xpath("facility").collect{|xml|
+    col=[]
+    opts[:xml].xpath("//location").collect{|location|
+      opts[:location]=location
+      opts[:status]=location.xpath('status').text
+
+      location.xpath("facility").collect{|xml|
         opts[:xml]=xml
-        facility = new.create_from(opts)
-        facility_contacts = FacilityContact.create_all_from(opts[:wrapper1_xml])
-        if facility_contacts.present?
-          facility_contacts.each do |facility_contact|
-            facility.facility_contacts.build(facility_contact.attributes)
-          end
-        end
-
-        facility_investigators = FacilityInvestigator.create_all_from(opts[:wrapper1_xml])
-        if facility_investigators.present?
-          facility_investigators.each do |facility_investigator|
-            facility.facility_investigators.build(facility_investigator.attributes)
-          end
-        end
-
-        facility
+        col << new.create_from(opts)
       }
-    }.flatten!
-    if results.nil?
-      results = []
-    else
-      results
-    end
-
-    Facility.import(results, recursive: true)
+    }
+    import col, recursive: true
   end
 
   def attribs
     {
-      :name => get('name'),
-      :city => get_addr('city'),
-      :state => get_addr('state'),
-      :zip => get_addr('zip'),
+      :name    => get('name'),
+      :city    => get_addr('city'),
+      :state   => get_addr('state'),
+      :zip     => get_addr('zip'),
       :country => get_addr('country'),
-      :status => get_from_wrapper1('status'),
-      :latitude => get_latitude,
-      :longitude => get_longitude,
+      :status  => get_opt('status'),
+      :facility_contacts => FacilityContact.create_all_from(opts.merge(:facility=>self)),
+      :facility_investigators => FacilityInvestigator.create_all_from(opts.merge(:facility=>self)),
     }
   end
 
-  def get_from(sublevel,label)
-    elem=wrapper1_xml.xpath(sublevel).try(:xpath,label)
-    elem.text if elem
-  end
-
   def get_addr(label)
-    elem=xml.xpath('address').try(:xpath,label)
-    elem.text if elem
-  end
-
-  def formatted_addr
-    address.tr(' ','+') if address
-  end
-
-  def address
-    "#{name}, #{city}, #{state}, #{country}"
-  end
-
-  def coordinates
-    @coordinates ||= Asker.get_coordinates(formatted_addr)
-  end
-
-  def get_latitude
-    coordinates[:latitude]
-  end
-
-  def get_longitude
-    coordinates[:longitude]
-  end
-
-  def fix_coordinates
-    self.latitude=get_latitude
-    self.longitude=get_longitude
-    self.save!
+    xml.xpath('address').try(:xpath,label).try(:text)
   end
 
 end

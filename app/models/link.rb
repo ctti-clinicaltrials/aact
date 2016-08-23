@@ -6,7 +6,7 @@ class Link < StudyRelationship
 
   def self.create_all_from(opts)
     objects = super
-    Link.import(objects)
+    import(objects)
   end
 
   def attribs

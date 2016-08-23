@@ -1,5 +1,5 @@
 class Design < StudyRelationship
-  attr_accessor :source
+  extend FastCount
 
   def attribs
     {
@@ -11,7 +11,10 @@ class Design < StudyRelationship
       :endpoint_classification => get_value_for('Endpoint Classification:'),
       :allocation => get_value_for('Allocation:'),
       :masking => get_masking,
-      :masked_roles => get_masked_roles,
+      :subject_masked => is_masked?('Subject'),
+      :caregiver_masked => is_masked?('Caregiver'),
+      :investigator_masked => is_masked?('Investigator'),
+      :outcomes_assessor_masked => is_masked?('Outcomes Assessor'),
     }
   end
 
@@ -26,6 +29,10 @@ class Design < StudyRelationship
   def get_masking
     val=get_value_for('Masking:')
     val.split('(').first.try(:strip) if val
+  end
+
+  def is_masked?(role)
+    get_masked_roles.try(:include?,role)
   end
 
   def get_masked_roles

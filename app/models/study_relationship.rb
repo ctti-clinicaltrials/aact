@@ -123,4 +123,10 @@ class StudyRelationship < ActiveRecord::Base
     val.downcase=='yes'||val.downcase=='y'||val.downcase=='true' if !val.blank?
   end
 
+  def get_phone
+    ext = get('phone_ext')
+    return "#{get('phone')} ext #{ext}" if !ext.blank?
+    get('phone')
+  end
+
 end

@@ -84,8 +84,11 @@ class ReportedEvent < StudyRelationship
             puts "TODO  need to account for no events"
           else
             while e_xml
-              opts[:adverse_event_term]=e_xml.xpath('sub_title').text
-              opts[:vocab]=e_xml.xpath('sub_title').attribute('vocab').try(:value)
+              sub_title=e_xml.xpath('sub_title')
+              if !sub_title.blank?
+                opts[:adverse_event_term]=sub_title.text
+                opts[:vocab]=sub_title.attribute('vocab').try(:value)
+              end
               count_xmls=e_xml.xpath("counts")
               o_xml=count_xmls.pop
               if o_xml.nil?

@@ -4,9 +4,14 @@ class ResultContact < StudyRelationship
     '//point_of_contact'
   end
 
+  def self.create_all_from(opts)
+    objects = super
+    import(objects)
+  end
+
   def attribs
     {
-      :name_or_title => get('name_or_title'),
+      :name => get('name_or_title'),
       :organization => get('organization'),
       :phone => get('phone'),
       :email => get('email'),

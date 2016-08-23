@@ -8,13 +8,12 @@ class DesignOutcome < StudyRelationship
 
     secondary=options[:xml].xpath("//secondary_outcome").collect{|xml|
       create_from({:xml=>xml,:type=>'secondary',:nct_id=>nct_id})}
-    DesignOutcome.import(primary + secondary)
+    import(primary + secondary)
   end
 
   def attribs
     {
       :measure => get('measure'),
-      :title => get('measure'),
       :time_frame => get('time_frame'),
       :safety_issue => get('safety_issue'),
       :description => get('description'),
