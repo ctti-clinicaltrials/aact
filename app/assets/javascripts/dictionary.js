@@ -10,6 +10,7 @@ $(function() {
         sorting: true,
         paging: false,
         autoload: true,
+        noDataContent: "...Loading...",
         // pageSize: 10,
         // pageButtonCount: 5,
         deleteConfirm: "Do you really want to delete client?",
