@@ -40,12 +40,27 @@
 
   </div>
 
+  <div class="connectionTypes">
+
+    <a href="/psql" class="connectionCard">
+      <h4>psql</h4>
+      <p>
+        Use the command line tool psql to access AACT
+      </p>
+      <%= icon("plug") %>
+    </a>
+
+    <a href="/api_connect" class="connectionCard">
+      <h4>API</h4>
+      <p>
+        Refer to the AACT API docs to use our RESTful API
+      </p>
+      <%= icon("plug") %>
+    </a>
+  </div>
+
   <div class="wrap">
-
     <%= render 'access/credentials' %>
-    <%= render 'access/intro' %>
-    <%= render 'access/api' %>
-
   </div>
 
 </section>

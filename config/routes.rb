@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "/pgadmin"              => "pages#pgadmin"
   get "/r"                    => "pages#r"
   get "/sas"                  => "pages#sas"
+  get "/psql"                 => "pages#psql"
+  get "/api_connect"          => "pages#api_connect"
 
   get "/points_to_consider"   => "pages#points_to_consider"
 
