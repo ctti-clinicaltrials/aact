@@ -3,7 +3,7 @@
   gather_facts: False
   vars:
     instances:
-      # - aact-dev
+      - aact-dev
       - aact-prod
 
   tasks:
