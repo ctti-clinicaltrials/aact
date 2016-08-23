@@ -8,7 +8,7 @@ class OutcomeAnalysisGroup < StudyRelationship
     oa=hash[:outcome_analysis]
     hash[:group_ids].collect{|group_id|
       group=hash[:groups].select{|g|g.ctgov_group_code==group_id}.first
-      new({:outcome_analysis=>oa,:ctgov_group_code=>group_id,:result_group=>group})
+      new({:nct_id=>hash[:nct_id],:outcome_analysis=>oa,:ctgov_group_code=>group_id,:result_group=>group})
     }
   end
 end

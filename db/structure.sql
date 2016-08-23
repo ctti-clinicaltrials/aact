@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.3
+-- Dumped from database version 9.4.1
 -- Dumped by pg_dump version 9.5.3
 
 SET statement_timeout = 0;
@@ -207,8 +207,6 @@ CREATE TABLE calculated_values (
     completion_date date,
     first_received_results_date date,
     nlm_download_date date,
-    first_received_date date,
-    first_received_result_date date,
     were_results_reported boolean,
     has_minimum_age boolean,
     has_maximum_age boolean,
@@ -248,9 +246,7 @@ CREATE TABLE central_contacts (
     contact_type character varying,
     name character varying,
     phone character varying,
-    email character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    email character varying
 );
 
 
@@ -332,44 +328,6 @@ CREATE SEQUENCE countries_id_seq
 --
 
 ALTER SEQUENCE countries_id_seq OWNED BY countries.id;
-
-
---
--- Name: data_definitions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE data_definitions (
-    id integer NOT NULL,
-    column_name character varying,
-    table_name character varying,
-    value_list text,
-    ctgov_source character varying,
-    nlm_required character varying,
-    fdaaa_required character varying,
-    nlm_definition text,
-    ctti_notes text,
-    data_source character varying,
-    data_field character varying
-);
-
-
---
--- Name: data_definitions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE data_definitions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: data_definitions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
 
 
 --
@@ -478,7 +436,6 @@ CREATE TABLE designs (
     id integer NOT NULL,
     description text,
     masking character varying,
-    masked_roles character varying,
     primary_purpose character varying,
     intervention_model character varying,
     endpoint_classification character varying,
@@ -745,37 +702,6 @@ ALTER SEQUENCE id_informations_id_seq OWNED BY id_informations.id;
 
 
 --
--- Name: intervention_arm_group_labels; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE intervention_arm_group_labels (
-    id integer NOT NULL,
-    label character varying,
-    nct_id character varying,
-    intervention_id integer
-);
-
-
---
--- Name: intervention_arm_group_labels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE intervention_arm_group_labels_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: intervention_arm_group_labels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE intervention_arm_group_labels_id_seq OWNED BY intervention_arm_group_labels.id;
-
-
---
 -- Name: intervention_other_names; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -874,9 +800,9 @@ ALTER SEQUENCE keywords_id_seq OWNED BY keywords.id;
 
 CREATE TABLE links (
     id integer NOT NULL,
-    url text,
     description text,
-    nct_id character varying
+    nct_id character varying,
+    url character varying
 );
 
 
@@ -996,7 +922,8 @@ CREATE TABLE outcome_analyses (
     outcome_id integer,
     groups_description character varying,
     ci_percent integer,
-    p_value_description character varying
+    p_value_description character varying,
+    ci_upper_limit_na_comment character varying
 );
 
 
@@ -1027,7 +954,8 @@ CREATE TABLE outcome_analysis_groups (
     id integer NOT NULL,
     ctgov_group_code character varying,
     result_group_id integer,
-    outcome_analysis_id integer
+    outcome_analysis_id integer,
+    nct_id character varying
 );
 
 
@@ -1089,7 +1017,6 @@ ALTER SEQUENCE outcome_groups_id_seq OWNED BY outcome_groups.id;
 CREATE TABLE outcome_measured_values (
     id integer NOT NULL,
     category character varying,
-    title text,
     description text,
     units character varying,
     nct_id character varying,
@@ -1104,7 +1031,8 @@ CREATE TABLE outcome_measured_values (
     dispersion_upper_limit numeric,
     param_value character varying,
     param_value_num numeric,
-    dispersion_value_num numeric
+    dispersion_value_num numeric,
+    title character varying
 );
 
 
@@ -1432,39 +1360,6 @@ ALTER SEQUENCE result_contacts_id_seq OWNED BY result_contacts.id;
 
 
 --
--- Name: result_details; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE result_details (
-    id integer NOT NULL,
-    recruitment_details text,
-    pre_assignment_details text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    nct_id character varying
-);
-
-
---
--- Name: result_details_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE result_details_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: result_details_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE result_details_id_seq OWNED BY result_details.id;
-
-
---
 -- Name: result_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1624,7 +1519,6 @@ CREATE TABLE studies (
     source character varying,
     biospec_retention character varying,
     limitations_and_caveats character varying,
-    description character varying,
     acronym character varying,
     number_of_arms integer,
     number_of_groups integer,
@@ -1638,14 +1532,15 @@ CREATE TABLE studies (
     biospec_description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    plan_to_share_ipd character varying,
     first_received_results_disposition_date date,
+    plan_to_share_ipd character varying,
     nlm_download_date_description character varying,
     start_month_year character varying,
     verification_month_year character varying,
     completion_month_year character varying,
     primary_completion_month_year character varying,
-    plan_to_share_ipd_description character varying
+    plan_to_share_ipd_description character varying,
+    description text
 );
 
 
@@ -1773,13 +1668,6 @@ ALTER TABLE ONLY countries ALTER COLUMN id SET DEFAULT nextval('countries_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY data_definitions ALTER COLUMN id SET DEFAULT nextval('data_definitions_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY design_group_interventions ALTER COLUMN id SET DEFAULT nextval('design_group_interventions_id_seq'::regclass);
 
 
@@ -1851,13 +1739,6 @@ ALTER TABLE ONLY facility_investigators ALTER COLUMN id SET DEFAULT nextval('fac
 --
 
 ALTER TABLE ONLY id_informations ALTER COLUMN id SET DEFAULT nextval('id_informations_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY intervention_arm_group_labels ALTER COLUMN id SET DEFAULT nextval('intervention_arm_group_labels_id_seq'::regclass);
 
 
 --
@@ -1997,13 +1878,6 @@ ALTER TABLE ONLY result_contacts ALTER COLUMN id SET DEFAULT nextval('result_con
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY result_details ALTER COLUMN id SET DEFAULT nextval('result_details_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY result_groups ALTER COLUMN id SET DEFAULT nextval('result_groups_id_seq'::regclass);
 
 
@@ -2107,14 +1981,6 @@ ALTER TABLE ONLY countries
 
 
 --
--- Name: data_definitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY data_definitions
-    ADD CONSTRAINT data_definitions_pkey PRIMARY KEY (id);
-
-
---
 -- Name: design_group_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2200,14 +2066,6 @@ ALTER TABLE ONLY facility_investigators
 
 ALTER TABLE ONLY id_informations
     ADD CONSTRAINT id_informations_pkey PRIMARY KEY (id);
-
-
---
--- Name: intervention_arm_group_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY intervention_arm_group_labels
-    ADD CONSTRAINT intervention_arm_group_labels_pkey PRIMARY KEY (id);
 
 
 --
@@ -2363,14 +2221,6 @@ ALTER TABLE ONLY result_contacts
 
 
 --
--- Name: result_details_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY result_details
-    ADD CONSTRAINT result_details_pkey PRIMARY KEY (id);
-
-
---
 -- Name: result_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2426,13 +2276,6 @@ CREATE INDEX index_facilities_on_nct_id ON facilities USING btree (nct_id);
 
 
 --
--- Name: index_outcome_measured_values_on_title; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_outcome_measured_values_on_title ON outcome_measured_values USING btree (title);
-
-
---
 -- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2478,7 +2321,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user", public;
+SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150409002646');
 
@@ -2591,4 +2434,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160818180156');
 INSERT INTO schema_migrations (version) VALUES ('20160818234153');
 
 INSERT INTO schema_migrations (version) VALUES ('20160819001315');
+
+INSERT INTO schema_migrations (version) VALUES ('20160820030854');
 

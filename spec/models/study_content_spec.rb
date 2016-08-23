@@ -2,6 +2,13 @@ require 'rails_helper'
 
 
 describe Study do
+  it "our validation study should have correct attribs" do
+    nct_id='NCT02654730'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.source).to eq('London School of Hygiene and Tropical Medicine')
+  end
+
   it "should have correct date attribs" do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))

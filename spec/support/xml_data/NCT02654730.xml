@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 21, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02654730</url>
+  </required_header>
+  <id_info>
+    <org_study_id>SAFEPRIM-II</org_study_id>
+    <nct_id>NCT02654730</nct_id>
+  </id_info>
+  <brief_title>Evaluation of the Safety of Primaquine in Combination With Dihydroartemisinin-piperaquine in G6PD Deficient Males in The Gambia</brief_title>
+  <acronym>SAFEPRIM-II</acronym>
+  <official_title>Evaluation of the Safety of Primaquine in Combination With Dihydroartemisinin-piperaquine in G6PD Deficient Males in The Gambia</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>London School of Hygiene and Tropical Medicine</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Medical Research Council Unit, The Gambia</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>London School of Hygiene and Tropical Medicine</source>
+  <oversight_info>
+    <authority>United Kingdom: London School of Hygiene &amp; Tropical Medicine</authority>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to evaluate the tolerability and safety of increasing doses of
+      primaquine in combination with dihydroartemisinin-piperaquine in G6PD deficient males.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      In the current study the investigators aim to assess safety of PQ, in particular the risk of
+      acute haemolysis, when given together with dihydroartemisinin-piperaquine (DHAP) in G6PD
+      deficient individuals. Forty male participants with haemoglobin levels (≥11g/dL), reduced
+      G6PD enzyme function, and aged ≥10years will be sequentially enrolled into two dosing
+      cohorts consisting of 20 individuals and doses of 0.25 and 0.4 mg/kg PQ in combination with
+      a full three-day course of DHAP. Participants will first be assigned to the lowest open
+      cohort; enrolment in the next cohort is initiated after tolerability and short-term safety
+      is demonstrated at the preceding lower dose. Furthermore, the investigators will include 3
+      control groups into the first cohort: i) 10 male participants aged ≥10years with normal
+      haemoglobin levels (≥11g/dL) and a reduced G6PD enzyme function will receive DHAP only, ii)
+      10 male participants with normal haemoglobin levels (≥11g/dL) and normal G6PD enzyme
+      function will receive 0.25 mg/kg PQ in combination with a full three-day course of DHAP, and
+      iii) 10 male participants with normal haemoglobin levels (≥11g/dL) and normal G6PD enzyme
+      function will receive 0.4 mg/kg PQ with DHAP.
+
+      Enrolment and group assignment Individuals who agree to participate for screening and meet
+      all inclusion criteria, will be invited for enrolment. During this, participants and/or
+      their carers will be informed again about the objectives and practical consequences of
+      participation in the current study and asked to sign an informed consent form. The
+      possibility of withdrawal from the study, at any time and without any declaration of the
+      reason will again be pointed out.
+
+      After enrolment, participants will be assigned to the lowest-dose open cohort, with
+      enrolment in the second cohort initiated after tolerability and short-term safety is
+      demonstrated at the preceding lower dose (this enrolment to the second cohort accounts for
+      G6PD deficient participants only). Within each cohort, the first 2 participants of the
+      intervention group are treated and monitored for 6 days for immediate side-effects and
+      haematological abnormalities before the rest of the participants of that particular
+      intervention group are enrolled and treated. Once safety of these first 2 participants is
+      confirmed, the next 4 subjects are enrolled and treatment for the next 4 subjects is
+      initiated on day 2 of the last treated participant of the preceding 4 subjects. The last two
+      groups for each intervention group comprise 5 individuals, making a total of 20. After
+      inclusion of the intervention group of the first cohort (n=20) is completed (follow-up day
+      14 of last participant in that group), a 10-day safety observation period is installed
+      before enrolment of the intervention group of the second cohort is initiated.
+
+      Interventions and evaluation Clinical follow-up of participants and sampling will be done
+      twice daily for the first 4 days (days 0, 1, 2 and 3) and once daily on days 4, 5, 7, 10, 14
+      and 28. At each time-point participants will be examined clinically (except for day 28) and
+      a structured questionnaire is used to determine the occurrence of side effects. Furthermore,
+      laboratory safety parameters are measured, including haematology, biochemistry, and urine
+      dipstick for haemoglobinuria/urobilinogen. Five individuals from each intervention group
+      (total of 10) will also be asked to provide seven venous blood samples (of less than 1 mls
+      each) on days 0, 1 and 2 to study pharmacokinetics of PQ in G6PD deficient individuals
+    </textblock>
+  </detailed_description>
+  <overall_status>Recruiting</overall_status>
+  <start_date>December 2015</start_date>
+  <completion_date type="Anticipated">August 2016</completion_date>
+  <primary_completion_date type="Anticipated">June 2016</primary_completion_date>
+  <phase>Phase 2/Phase 3</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Endpoint Classification: Safety Study, Intervention Model: Parallel Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Haemoglobin concentration relative to baseline value as measured by HemoCue</measure>
+    <time_frame>28 days</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Haematology abnormalities during follow-up: haptoglobin concentration measured in venous blood samples by full blood count analysis</measure>
+    <time_frame>28 days</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Biochemistry abnormalities during follow-up: bilirubin concentration</measure>
+    <time_frame>28 days</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Biochemistry abnormalities during follow-up: lactate dehydrogenase</measure>
+    <time_frame>28 days</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Biochemistry abnormalities during follow-up: creatinine</measure>
+    <time_frame>28 days</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Biochemistry abnormalities during follow-up: potassium</measure>
+    <time_frame>28 days</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of participants with treatment-related adverse events graded and evaluated in terms of relatedness</measure>
+    <time_frame>28 days</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>grading and assessing relatedness will be done following according to criteria of the NIH/NIAID division of microbiology and infectious diseases (DMID)https://www.niaid.nih.gov/LabsAndResources/resources/DMIDClinRsrch/Documents/dmidadulttox.pdf</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Haematology abnormalities during follow-up: mean corpuscular volume (MCV) measured in venous blood samples by full blood count analysis</measure>
+    <time_frame>28 days</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Haematology abnormalities during follow-up: red cell distribution width (RDW) measured in venous blood samples by full blood count analysis</measure>
+    <time_frame>28 days</time_frame>
+    <safety_issue>No</safety_issue>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Haematology abnormalities during follow-up: leukocyte count measured in venous blood samples by full blood count analysis</measure>
+    <time_frame>28 days</time_frame>
+    <safety_issue>Yes</safety_issue>
+  </secondary_outcome>
+  <number_of_arms>5</number_of_arms>
+  <enrollment type="Anticipated">70</enrollment>
+  <condition>Malaria</condition>
+  <arm_group>
+    <arm_group_label>G6PD deficient 0.25 mg/kg PQ + DHAP</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>G6PD deficient 0.4 mg/kg PQ + DHAP</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>G6PD deficient DHAP only</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>G6PD normal 0.25 mg/kg PQ + DHAP</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>G6PD normal 0.4 mg/kg PQ + DHAP</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) administered to G6PD deficient individuals</intervention_name>
+    <description>G6PD deficient participants will be treated with dihydroartemisinin-piperaquine (Eurartesim®; Sigma Tau) administered as 3 tablets (40mg PPQ, 320mg DHA) in a once daily regimen for three days</description>
+    <arm_group_label>G6PD deficient DHAP only</arm_group_label>
+    <other_name>Eurartesim</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.25 mg/kg primaquine administered to G6PD deficient individuals</intervention_name>
+    <description>G6PD deficient participants will be treated with dihydroartemisinin-piperaquine (Eurartesim®; Sigma Tau) administered as 3 tablets (40mg PPQ, 320mg DHA) in a once daily regimen for three days in combination with a single dose of 0.25mg/kg of primaquine on the first day of DHAP treatment.</description>
+    <arm_group_label>G6PD deficient 0.25 mg/kg PQ + DHAP</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.4 mg/kg primaquine administered to G6PD deficient individuals</intervention_name>
+    <description>G6PD deficient participants will be treated with dihydroartemisinin-piperaquine (Eurartesim®; Sigma Tau) administered as 3 tablets (40mg PPQ, 320mg DHA) in a once daily regimen for three days in combination with a single dose of 0.4mg/kg of primaquine on the first day of DHAP treatment.</description>
+    <arm_group_label>G6PD deficient 0.4 mg/kg PQ + DHAP</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.25 mg/kg primaquine administered to G6PD normal individuals</intervention_name>
+    <description>G6PD normal participants will be treated with dihydroartemisinin-piperaquine (Eurartesim®; Sigma Tau) administered as 3 tablets (40mg PPQ, 320mg DHA) in a once daily regimen for three days in combination with a single dose of 0.25mg/kg of primaquine on the first day of DHAP treatment.</description>
+    <arm_group_label>G6PD normal 0.25 mg/kg PQ + DHAP</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.4 mg/kg primaquine administered to G6PD normal individuals</intervention_name>
+    <description>G6PD normal participants will be treated with dihydroartemisinin-piperaquine (Eurartesim®; Sigma Tau) administered as 3 tablets (40mg PPQ, 320mg DHA) in a once daily regimen for three days in combination with a single dose of 0.4mg/kg of primaquine on the first day of DHAP treatment.</description>
+    <arm_group_label>G6PD normal 0.4 mg/kg PQ + DHAP</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  G6PD deficiency by fluorescent Spot test (for intervention groups and control group
+             receiving DHA-PPQ only (N=50)
+
+          -  G6PD normal activity by fluorescent Spot test for control groups (N=20)
+
+          -  Informed consent by participant or caregiver (an assent is required for those 12-17
+             years)
+
+        Exclusion Criteria:
+
+          -  Enrolled in another clinical trial
+
+          -  Fever: temperature &gt;37.5°C (axillary) or history of fever in the last 24 hours
+
+          -  Evidence of severe illness or active infection other than malaria
+
+          -  Known allergy to study medications
+
+          -  Hb &lt;11 g/dL
+
+          -  Antimalarials taken within the last 2 weeks
+
+          -  PQ taken within the last 4 weeks and blood transfusion within the last 90 days
+
+          -  Current use of tuberculosis or anti-retroviral medication, sulphonamides, dapsone,
+             nitrofurantoin, nalidixic acid, ciprofloxacin, methylene blue, toluidine blue,
+             phenazopyridine and co-trimoxazole.
+
+          -  History of severe chronic illness
+      </textblock>
+    </criteria>
+    <gender>Male</gender>
+    <minimum_age>10 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
+  </eligibility>
+  <overall_contact>
+    <last_name>Teun Bousema, PhD</last_name>
+    <phone>+31243617574</phone>
+    <email>teun.bousema@lshtm.ac.uk</email>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>Chris Drakeley, PhD</last_name>
+    <phone>+44 2079272289</phone>
+    <email>chris.drakeley@lshtm.ac.uk</email>
+  </overall_contact_backup>
+  <location>
+    <facility>
+      <name>Medical Research Council Laboratories</name>
+      <address>
+        <city>Fajara</city>
+        <country>Gambia</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Joseph Okebe, PhD</last_name>
+      <phone>+220 449 5442</phone>
+      <phone_ext>4009</phone_ext>
+      <email>jokebe@mrc.gm</email>
+    </contact>
+    <contact_backup>
+      <last_name>Umberto d'Alessandro, PhD</last_name>
+      <phone>+220 4495442/6</phone>
+      <email>udalessandro@mrc.gm</email>
+    </contact_backup>
+  </location>
+  <location_countries>
+    <country>Gambia</country>
+  </location_countries>
+  <reference>
+    <citation>Eziefula AC, Pett H, Grignard L, Opus S, Kiggundu M, Kamya MR, Yeung S, Staedke SG, Bousema T, Drakeley C. Glucose-6-phosphate dehydrogenase status and risk of hemolysis in Plasmodium falciparum-infected African children receiving single-dose primaquine. Antimicrob Agents Chemother. 2014 Aug;58(8):4971-3. doi: 10.1128/AAC.02889-14. Epub 2014 Jun 9.</citation>
+    <PMID>24913169</PMID>
+  </reference>
+  <verification_date>January 2016</verification_date>
+  <lastchanged_date>January 11, 2016</lastchanged_date>
+  <firstreceived_date>January 5, 2016</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <is_fda_regulated>No</is_fda_regulated>
+  <has_expanded_access>No</has_expanded_access>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Primaquine</mesh_term>
+    <mesh_term>Piperaquine</mesh_term>
+    <mesh_term>Dihydroartemisinin</mesh_term>
+    <mesh_term>Artemisinins</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>Yes</sharing_ipd>
+    <ipd_description>WWARN</ipd_description>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                -->
+</clinical_study>

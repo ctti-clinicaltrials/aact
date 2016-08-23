@@ -9,7 +9,6 @@ class Design < StudyRelationship
       :observational_model => get_value_for('Observational Model:'),
       :intervention_model => get_value_for('Intervention Model:'),
       :endpoint_classification => get_value_for('Endpoint Classification:'),
-      :time_perspective => get_value_for('Time Perspective:'),
       :allocation => get_value_for('Allocation:'),
       :masking => get_masking,
       :subject_masked => is_masked?('Subject'),

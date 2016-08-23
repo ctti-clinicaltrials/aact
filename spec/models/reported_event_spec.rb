@@ -1,5 +1,12 @@
 require 'rails_helper'
 describe ReportedEvent do
+  it "should not fail when expected data elements (such as sub_title) don't exist" do
+    nct_id='NCT02317510'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    serious=study.reported_events.select{|x|x.event_type=='serious'}
+  end
+
   it "should have expected values" do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -31,10 +38,10 @@ describe ReportedEvent do
     events_with_assessment=study.reported_events.select{|x| x.adverse_event_term=='Late RT Toxicity: Bone'}
 
     event=events_with_assessment.select{|x| x.adverse_event_term=='Late RT Toxicity: Bone' and x.ctgov_group_code=='E2'}.first
-		expect(event.subjects_affected).to eq(1)
-		expect(event.subjects_at_risk).to eq(53)
-		expect(event.vocab).to eq('RTOG/EORTC Late Tox.')
-	end
+    expect(event.subjects_affected).to eq(1)
+    expect(event.subjects_at_risk).to eq(53)
+    expect(event.vocab).to eq('RTOG/EORTC Late Tox.')
+  end
 
   it "should have expected values" do
     nct_id='NCT02028676'
@@ -46,6 +53,5 @@ describe ReportedEvent do
     expect(other_events.select{|x|x.default_vocab=='Trial-specific'}.size).to eq(36)
     expect(other_events.select{|x|x.default_assessment=='Systematic Assessment'}.size).to eq(36)
 
-	end
+  end
 end
-
