@@ -14,3 +14,4 @@
 dump.rdb
 .env
 *.secret
+docker-compose.override.yml
