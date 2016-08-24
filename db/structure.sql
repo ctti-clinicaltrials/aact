@@ -921,7 +921,7 @@ CREATE TABLE outcome_analyses (
     nct_id character varying,
     outcome_id integer,
     groups_description character varying,
-    ci_percent integer,
+    ci_percent numeric,
     p_value_description character varying,
     ci_upper_limit_na_comment character varying
 );
@@ -2436,4 +2436,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160818234153');
 INSERT INTO schema_migrations (version) VALUES ('20160819001315');
 
 INSERT INTO schema_migrations (version) VALUES ('20160820030854');
+
+INSERT INTO schema_migrations (version) VALUES ('20160823120646');
 
