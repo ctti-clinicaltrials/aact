@@ -903,7 +903,6 @@ ALTER SEQUENCE milestones_id_seq OWNED BY milestones.id;
 
 CREATE TABLE outcome_analyses (
     id integer NOT NULL,
-    title character varying,
     non_inferiority character varying,
     non_inferiority_description text,
     p_value numeric,
@@ -2436,4 +2435,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160818234153');
 INSERT INTO schema_migrations (version) VALUES ('20160819001315');
 
 INSERT INTO schema_migrations (version) VALUES ('20160820030854');
+
+INSERT INTO schema_migrations (version) VALUES ('20160824005447');
 
