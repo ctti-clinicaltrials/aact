@@ -7,7 +7,8 @@ describe OutcomeAnalysis do
     study=Study.new({xml: xml, nct_id: nct_id}).create
     o=study.outcomes.select{|x|x.title=='Percentage of Patients Who Survive at Least 12 Months'}.first
     expect(o.outcome_analyses.size).to eq(0)
-	end
+    expect(o.outcome_measured_values.size).to eq(2)
+  end
 
   it "study should have expected outcomes" do
     #  This Study is good for testing OutcomeAnalysis - contains several rare attributes
