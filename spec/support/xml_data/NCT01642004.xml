@@ -1,0 +1,3455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 21, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01642004</url>
+  </required_header>
+  <id_info>
+    <org_study_id>CA209-017</org_study_id>
+    <secondary_id>2011-004792-36</secondary_id>
+    <nct_id>NCT01642004</nct_id>
+  </id_info>
+  <brief_title>Study of BMS-936558 (Nivolumab) Compared to Docetaxel in Previously Treated Advanced or Metastatic Squamous Cell Non-small Cell Lung Cancer (NSCLC) (CheckMate 017)</brief_title>
+  <official_title>An Open-Label Randomized Phase III Trial of BMS-936558 (Nivolumab) Versus Docetaxel in Previously Treated Advanced or Metastatic Squamous Cell Non-small Cell Lung Cancer (NSCLC)</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Bristol-Myers Squibb</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Bristol-Myers Squibb</source>
+  <oversight_info>
+    <authority>Argentina: Administracion Nacional de Medicamentos, Alimentos y Tecnologia Medica</authority>
+    <authority>Australia: Department of Health and Ageing Therapeutic Goods Administration</authority>
+    <authority>Austria: Federal Office for Safety in Health Care</authority>
+    <authority>Canada: Health Canada</authority>
+    <authority>Chile: Instituto de Salud Pública de Chile</authority>
+    <authority>Czech Republic: State Institute for Drug Control</authority>
+    <authority>France: Afssaps - Agence française de sécurité sanitaire des produits de santé (Saint-Denis)</authority>
+    <authority>Germany: Federal Institute for Drugs and Medical Devices</authority>
+    <authority>Hungary: National Institute of Pharmacy</authority>
+    <authority>Ireland: Irish Medicines Board</authority>
+    <authority>Italy: Ministry of Health</authority>
+    <authority>Mexico: Federal Commission for Sanitary Risks Protection</authority>
+    <authority>Netherlands: The Central Committee on Research Involving Human Subjects (CCMO)</authority>
+    <authority>Norway: Data Protection Authority</authority>
+    <authority>Norway: Directorate of Health</authority>
+    <authority>Peru: Instituto Nacional de Salud</authority>
+    <authority>Poland: National Institute of Medicines</authority>
+    <authority>Romania: National Medicines Agency</authority>
+    <authority>Russia: Ethics Committee</authority>
+    <authority>Russia: Ministry of Health of the Russian Federation</authority>
+    <authority>South Africa: Medicines Control Council</authority>
+    <authority>Spain: Spanish Agency of Medicines</authority>
+    <authority>Turkey: Ministry of Health</authority>
+    <authority>United States: Food and Drug Administration</authority>
+    <authority>United Kingdom: Medicines and Healthcare Products Regulatory Agency</authority>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of the study is to compare the overall survival of BMS-936558 as compared with
+      Docetaxel in subjects with squamous cell non-small cell lung cancer (NSCLC), after failure
+      of prior platinum-based chemotherapy.
+    </textblock>
+  </brief_summary>
+  <overall_status>Active, not recruiting</overall_status>
+  <start_date>September 2012</start_date>
+  <completion_date type="Anticipated">January 2017</completion_date>
+  <primary_completion_date type="Actual">November 2014</primary_completion_date>
+  <phase>Phase 3</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Endpoint Classification: Efficacy Study, Intervention Model: Parallel Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Overall Survival (OS) Time in Months for All Randomized Participants at Primary Endpoint</measure>
+    <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Overall Survival (OS) Rate in All Randomized Participants</measure>
+    <time_frame>Randomization to 18 months post-randomization, up to June 2015</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>The overall survival rate is the probability that a participant will be alive at 6, 12, and 18 months following randomization. Overall survival was defined as the time between the date of randomization and the date of death as a result of any cause. Survival rates were determined via Kaplan-Meier estimates.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Number of Deaths From Any Cause in All Randomized Participants at Primary Endpoint</measure>
+    <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>The number of participants who died from any cause was reported for each arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Objective Response Rate (ORR) in All Randomized Participants at Primary Endpoint</measure>
+    <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). BOR was defined as the best investigator-assessed response designation, recorded between the date of randomization and the date of objectively documented progression per Response Evaluation Criteria in Solid Tumors version 1.1 (RECIST v1.1) or the date of subsequent anti-cancer therapy (excluding on-treatment palliative radiotherapy of non-target bone lesions or Central Nervous System (CNS) lesions), whichever occurred first.
+CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Time To Response (TTR) in Months for All Confirmed Responders at Primary Endpoint</measure>
+    <time_frame>Randomization until confirmed response, up to November 2014, approximately 25 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Time to Response (TTR) for participants demonstrating a response (either CR or PR) was defined as the time from the date of randomization to the date of the first confirmed response. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Duration of Objective Response (DOR) in Months for All Confirmed Responders at Primary Endpoint</measure>
+    <time_frame>Date of confirmed response to date of documented tumor progression, up to November 2014, approximately 25 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>DOR was defined as the time from the date of first confirmed response to the date of the first documented tumor progression (per RECIST v1.1), as determined by the investigator, or death due to any cause, whichever occurred first. DOR was evaluated only for confirmed responders (i.e. participants with confirmed CR or PR).
+CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.
+Participants who neither progressed nor died were censored on the date of their last evaluable tumor assessment.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Progression-Free Survival (PFS) at Primary Endpoint</measure>
+    <time_frame>Randomization to 12 months post-randomization, up to November 2014</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>PFS rate was defined as the probability that participants will experience no disease progression or death from any cause at a given time point following randomization. Progression was assessed by investigators according to RECIST v1.1. 95% CIs were estimated using the Kaplan-Meier method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative radiation therapy (RT) of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Progression-Free Survival (PFS) Time in Months for All Randomized Participants at Primary Endpoint</measure>
+    <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. Participants underwent radiographic tumor assessments every 6 weeks (+/- 5 days) from week 9 (+/- 5 days) for the first year on treatment, then every 12 weeks after the first year on treatment until documented disease progression. The PFS curves were estimated using KM method. Two-sided 95% CI for median PFS were computed by Brookmeyer and Crowley method (using log-log transformation). Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative RT of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Percentage of Participants Experiencing Disease-related Symptom Improvement by Week 12</measure>
+    <time_frame>Randomization to Week 12</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Disease-related symptom improvement rate by Week 12 was defined as the percentage of randomized participants who had a 10 point or greater decrease from baseline in average symptom burden index score at any time between randomization and Week 12. The participant portion of the Lung Cancer Symptom Scale (LCSS) consisted of 6 symptom-specific questions that addressed cough, dyspnea, fatigue, pain, hemoptysis, and anorexia, plus 3 summary items on symptom distress, interference with activity level, and global health-related Quality of Life (QoL). The scores range from 0 to 100, with 0 representing the best possible score and 100 being the worst possible score. The average symptom burden index score at each assessment was defined as the mean of the 6 symptom-specific questions of the LCSS. 95% CIs were computed using Clopper-Pearson Method.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Overall Survival (OS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</measure>
+    <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>OS was measured in months for all randomized participants grouped by their baseline PD-L1 expression level. PD-L1 expression was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Objective Response Rate (ORR) by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</measure>
+    <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>ORR was reported for all randomized participants grouped by their baseline PD-L1 expression level. ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). PD-L1 expression in participants was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Progression Free Survival (PFS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</measure>
+    <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>PFS time was measured for all randomized participants grouped by their baseline PD-L1 expression levels. PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. The PFS curves were estimated using KM method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started subsequent anti-cancer therapy (including on-treatment palliative radiotherapy of non-target bone lesions or CNS lesions) without a prior reported progression were censored at the last evaluable tumor assessment prior to subsequent anti-cancer therapy. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+  </secondary_outcome>
+  <other_outcome>
+    <measure>Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up</measure>
+    <time_frame>Randomization until July 2015, approximately 33 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Survival follow-up analysis occurred 7.4 months after Primary Endpoint was reached, representing a minimum OS follow-up time of 18.0 months.</description>
+  </other_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">352</enrollment>
+  <condition>Squamous Cell Non-small Cell Lung Cancer</condition>
+  <arm_group>
+    <arm_group_label>Arm A: Nivolumab</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Arm B: Docetaxel</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Docetaxel 75 mg/m2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>Nivolumab</intervention_name>
+    <arm_group_label>Arm A: Nivolumab</arm_group_label>
+    <other_name>BMS-936558</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Docetaxel</intervention_name>
+    <arm_group_label>Arm B: Docetaxel</arm_group_label>
+    <other_name>Taxotere®</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        For more information regarding BMS clinical trial participation, please visit
+        www.BMSStudyConnect.com
+
+        Inclusion Criteria:
+
+          -  Men and women ≥18 years of age
+
+          -  Subjects with histologically or cytologically-documented squamous cell NSCLC who
+             present with Stage IIIB/IV disease or with recurrent or progressive disease following
+             multimodal therapy (radiation therapy, surgical resection or definitive
+             chemoradiation therapy for locally advanced disease)
+
+          -  Disease recurrence or progression during/after one prior platinum doublet-based
+             chemotherapy regimen for advanced or metastatic disease
+
+          -  Measurable disease by computed tomography (CT)/Magnetic resonance imaging (MRI) per
+             Response Evaluation Criteria in Solid Tumors (RECIST) 1.1 criteria
+
+          -  Eastern Cooperative Oncology Group (ECOG) performance status ≤1
+
+          -  A formalin fixed, paraffin-embedded (FFPE) tumor tissue block or unstained slides of
+             tumor sample (archival or recent) must be available for biomarker evaluation.
+             Specimens must be received by the central lab prior to randomization. Biopsy should
+             be excisional, incisional or core needle. Fine needle aspiration is insufficient
+
+        Exclusion Criteria:
+
+          -  Subjects with untreated central nervous system (CNS) metastases are excluded.
+             Subjects are eligible if CNS metastases are treated and subjects are neurologically
+             returned to baseline for at least 2 weeks prior to enrollment. In addition, subjects
+             must be either off corticosteroids, or on a stable or decreasing dose of ≤10 mg daily
+             prednisone (or equivalent)
+
+          -  Subjects with carcinomatous meningitis
+
+          -  Subjects with active, known or suspected autoimmune disease. Subjects with type I
+             diabetes mellitus, hypothyroidism only requiring hormone replacement, skin disorders
+             (such as vitiligo, psoriasis, or alopecia) not requiring systemic treatment, or
+             conditions not expected to recur in the absence of an external trigger are permitted
+             to enroll
+
+          -  Subjects with a condition requiring systemic treatment with either corticosteroids or
+             other immunosuppressive medications within 14 days of randomization
+
+          -  Prior therapy with anti-Programmed death-1 (PD-1), anti-Programmed cell death ligand
+             1 (PD-L1), anti-Programmed cell death ligand 2 (PD-L2), anti-CD137, or anti-Cytotoxic
+             T lymphocyte-associated antigen 4 (CTLA-4) antibody (including ipilimumab or any
+             other antibody or drug specifically targeting T-cell co-stimulation or checkpoint
+             pathways)
+
+          -  Prior treatment on the first line study CA184104 first line NSCLC study
+
+          -  Prior treatment with Docetaxel
+
+          -  Subjects with interstitial lung disease that is symptomatic or may interfere with the
+             detection or management of suspected drug-related pulmonary toxicity
+
+          -  Treatment with any investigational agent within 14 days of first administration of
+             study treatment
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Bristol-Myers Squibb</last_name>
+    <role>Study Director</role>
+    <affiliation>Bristol-Myers Squibb</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Mayo Clinic Arizona</name>
+      <address>
+        <city>Scottsdale</city>
+        <state>Arizona</state>
+        <zip>85259</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>City Of Hope National Medical Center</name>
+      <address>
+        <city>Duarte</city>
+        <state>California</state>
+        <zip>91010</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Yale University</name>
+      <address>
+        <city>New Haven</city>
+        <state>Connecticut</state>
+        <zip>06520</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>H. Lee Moffitt Cancer Center</name>
+      <address>
+        <city>Tampa</city>
+        <state>Florida</state>
+        <zip>33612</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Northwest Georgia Oncology Center, P.C.</name>
+      <address>
+        <city>Marietta</city>
+        <state>Georgia</state>
+        <zip>30060</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University Of Chicago Medical Center</name>
+      <address>
+        <city>Chicago</city>
+        <state>Illinois</state>
+        <zip>60637</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>The Johns Hopkins University</name>
+      <address>
+        <city>Baltimore</city>
+        <state>Maryland</state>
+        <zip>21287</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Massachusetts General Hospital</name>
+      <address>
+        <city>Boston</city>
+        <state>Massachusetts</state>
+        <zip>02114</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Winthrop University Hospital</name>
+      <address>
+        <city>Mineola</city>
+        <state>New York</state>
+        <zip>11501</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Columbia University Medical Center</name>
+      <address>
+        <city>New York</city>
+        <state>New York</state>
+        <zip>10032</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Memorial Sloan Kettering Cancer Center</name>
+      <address>
+        <city>New York</city>
+        <state>New York</state>
+        <zip>10065</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Duke University Medical Center</name>
+      <address>
+        <city>Durham</city>
+        <state>North Carolina</state>
+        <zip>27710</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Oncology Hematology Care</name>
+      <address>
+        <city>Cincinnati</city>
+        <state>Ohio</state>
+        <zip>45242</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>St Mary Medical Center</name>
+      <address>
+        <city>Langhorne</city>
+        <state>Pennsylvania</state>
+        <zip>19047</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Fox Chase Cancer Center</name>
+      <address>
+        <city>Philadelphia</city>
+        <state>Pennsylvania</state>
+        <zip>19111</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Guthrie Clinic, Ltd</name>
+      <address>
+        <city>Sayre</city>
+        <state>Pennsylvania</state>
+        <zip>18840</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>South Carolina Oncology Associates</name>
+      <address>
+        <city>Columbia</city>
+        <state>South Carolina</state>
+        <zip>29210</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Chattanooga Oncology Hematology Associates</name>
+      <address>
+        <city>Chattanooga</city>
+        <state>Tennessee</state>
+        <zip>37404</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Tennessee Oncology, Pllc</name>
+      <address>
+        <city>Nashville</city>
+        <state>Tennessee</state>
+        <zip>37203</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Vanderbilt-Ingram Cancer Center</name>
+      <address>
+        <city>Nashville</city>
+        <state>Tennessee</state>
+        <zip>37232</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University Of Texas Southwestern Medical Center</name>
+      <address>
+        <city>Dallas</city>
+        <state>Texas</state>
+        <zip>75390</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>The University Of Texas Md Anderson Cancer Center</name>
+      <address>
+        <city>Houston</city>
+        <state>Texas</state>
+        <zip>77030</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Swedish Cancer Institute</name>
+      <address>
+        <city>Seattle</city>
+        <state>Washington</state>
+        <zip>98104</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Seattle Cancer Care Alliance</name>
+      <address>
+        <city>Seattle</city>
+        <state>Washington</state>
+        <zip>98109</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>West Virginia University-Mbrcc</name>
+      <address>
+        <city>Morgantown</city>
+        <state>West Virginia</state>
+        <zip>26506</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Capital Federal</city>
+        <state>Buenos Aires</state>
+        <zip>1431</zip>
+        <country>Argentina</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Ciudad Autonoma De Buenos Aire</city>
+        <state>Buenos Aires</state>
+        <zip>CP1426ANZ</zip>
+        <country>Argentina</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>San Miguel De Tucuman</city>
+        <state>Tucuman</state>
+        <zip>CPT4000IAK</zip>
+        <country>Argentina</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Buenos Aires</city>
+        <zip>1417</zip>
+        <country>Argentina</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Buenos Aires</city>
+        <zip>C1280AEB</zip>
+        <country>Argentina</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Cordoba</city>
+        <zip>X5002AOQ</zip>
+        <country>Argentina</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Wollongong</city>
+        <state>New South Wales</state>
+        <zip>2500</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Adelaide</city>
+        <state>South Australia</state>
+        <zip>SA 5000</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Elizabeth Vale</city>
+        <state>South Australia</state>
+        <zip>5112</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Kurralta Park</city>
+        <state>South Australia</state>
+        <zip>5037</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>East Bentleigh</city>
+        <state>Victoria</state>
+        <zip>3165</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Linz</city>
+        <zip>4020</zip>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Salzburg</city>
+        <zip>5020</zip>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Vienna</city>
+        <zip>1130</zip>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Wels</city>
+        <zip>4600</zip>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cancercare Manitoba</name>
+      <address>
+        <city>Winnipeg</city>
+        <state>Manitoba</state>
+        <zip>R3E 0V9</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Jewish General Hospital</name>
+      <address>
+        <city>Montreal</city>
+        <state>Quebec</state>
+        <zip>H3T 1E2</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Centre De Sante Et De Services Sociaux Rimouski Neigette</name>
+      <address>
+        <city>Rimouski</city>
+        <state>Quebec</state>
+        <zip>G5L 5T1</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Santiago</city>
+        <state>Metropolitana</state>
+        <zip>7600448</zip>
+        <country>Chile</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Recoleta</city>
+        <state>Santiago de Chile</state>
+        <country>Chile</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Vi?a Del Mar</city>
+        <state>Valparaiso</state>
+        <country>Chile</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Antofagasta</city>
+        <zip>240000</zip>
+        <country>Chile</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Santiago</city>
+        <zip>7630370</zip>
+        <country>Chile</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Praha 8</city>
+        <zip>180 81</zip>
+        <country>Czech Republic</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Avignon Cedes 9</city>
+        <zip>84918</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Caen</city>
+        <zip>14000</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Dijon</city>
+        <zip>21000</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>La Roche Sur Yon Cedex 9</city>
+        <zip>85925</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Lyon Cedex 08</city>
+        <zip>69373</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Marseille Cedex 20</city>
+        <zip>13915</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Pierre Benite</city>
+        <zip>69495</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Rennes Cedex 9</city>
+        <zip>35033</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Strasbourg</city>
+        <zip>67090</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Toulouse</city>
+        <zip>31300</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Bad Berka</city>
+        <zip>99437</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Essen</city>
+        <zip>45122</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Gerlingen</city>
+        <zip>70839</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Grosshansdorf</city>
+        <zip>22927</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Heidelberg</city>
+        <zip>69126</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Koeln</city>
+        <zip>51109</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Budapest</city>
+        <zip>H-1121</zip>
+        <country>Hungary</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Dublin 8</city>
+        <state>Dublin</state>
+        <country>Ireland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Dublin 9</city>
+        <state>Dublin</state>
+        <country>Ireland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Bologna</city>
+        <zip>40138</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Meldola (fc)</city>
+        <zip>47014</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Milano</city>
+        <zip>20133</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Padova</city>
+        <zip>35128</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Perugia</city>
+        <zip>06132</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Ravenna</city>
+        <zip>48100</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Siena</city>
+        <zip>53100</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Mexico City</city>
+        <state>Distrito Federal</state>
+        <zip>14080</zip>
+        <country>Mexico</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Mexico</city>
+        <state>Distrito Federal</state>
+        <zip>06735</zip>
+        <country>Mexico</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Leon, Guanajato</city>
+        <state>Guanajuato</state>
+        <zip>37000</zip>
+        <country>Mexico</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Hermosillo</city>
+        <state>Sonora</state>
+        <zip>83280</zip>
+        <country>Mexico</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Amsterdam</city>
+        <zip>1066 CX</zip>
+        <country>Netherlands</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Rotterdam</city>
+        <zip>3015 CE</zip>
+        <country>Netherlands</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Arequipa</city>
+        <zip>54</zip>
+        <country>Peru</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Lima</city>
+        <zip>34</zip>
+        <country>Peru</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Gdansk</city>
+        <zip>80-952</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Krakow</city>
+        <zip>31-202</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Olsztyn</city>
+        <zip>10-513</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Szczecin</city>
+        <zip>70-891</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Warszawa</city>
+        <zip>02-781</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Bucuresti</city>
+        <zip>010976</zip>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Cluj-Napoca</city>
+        <zip>400352</zip>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Constanta</city>
+        <zip>900591</zip>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Craiova</city>
+        <zip>200385</zip>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Iasi</city>
+        <zip>700106</zip>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Timisoara</city>
+        <zip>300167</zip>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Moscow</city>
+        <zip>115 478</zip>
+        <country>Russian Federation</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>St. Petersburg</city>
+        <zip>198255</zip>
+        <country>Russian Federation</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Barakaldo</city>
+        <zip>48903</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Barcelona</city>
+        <zip>08035</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Madrid</city>
+        <zip>28040</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Madrid</city>
+        <zip>28050</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Sevilla</city>
+        <zip>41013</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Cottingham</city>
+        <state>East Yorkshire</state>
+        <zip>HU16 5JQ</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Southampton</city>
+        <state>Hampshire</state>
+        <zip>SO16 6YD</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Withington</city>
+        <state>Manchester</state>
+        <zip>M20 4BX</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Sheffield</city>
+        <state>Yorkshire</state>
+        <zip>S10 2SJ</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>Argentina</country>
+    <country>Australia</country>
+    <country>Austria</country>
+    <country>Canada</country>
+    <country>Chile</country>
+    <country>Czech Republic</country>
+    <country>France</country>
+    <country>Germany</country>
+    <country>Hungary</country>
+    <country>Ireland</country>
+    <country>Italy</country>
+    <country>Mexico</country>
+    <country>Netherlands</country>
+    <country>Peru</country>
+    <country>Poland</country>
+    <country>Romania</country>
+    <country>Russian Federation</country>
+    <country>Spain</country>
+    <country>United Kingdom</country>
+    <country>United States</country>
+  </location_countries>
+  <removed_countries>
+    <country>Brazil</country>
+    <country>Greece</country>
+    <country>Norway</country>
+    <country>South Africa</country>
+    <country>Turkey</country>
+  </removed_countries>
+  <link>
+    <url>http://ctr.bms.com/ctd/start.do</url>
+    <description>BMS Clinical Trial Information</description>
+  </link>
+  <link>
+    <url>http://www.bms.com/studyconnect/Pages/home.aspx</url>
+    <description>BMS clinical trial educational resource</description>
+  </link>
+  <link>
+    <url>http://www.bms.com/clinical_trials/Pages/Investigator_Inquiry_form.aspx</url>
+    <description>Investigator Inquiry form</description>
+  </link>
+  <link>
+    <url>http://www.fda.gov/MEDWATCH/safety.htm</url>
+    <description>FDA Safety Alerts and Recalls</description>
+  </link>
+  <verification_date>March 2016</verification_date>
+  <lastchanged_date>March 16, 2016</lastchanged_date>
+  <firstreceived_date>July 9, 2012</firstreceived_date>
+  <firstreceived_results_date>February 19, 2016</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Lung Neoplasms</mesh_term>
+    <mesh_term>Carcinoma, Non-Small-Cell Lung</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Docetaxel</mesh_term>
+    <mesh_term>Nivolumab</mesh_term>
+    <mesh_term>Antibodies, Monoclonal</mesh_term>
+  </intervention_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <pre_assignment_details>A total of 352 participants enrolled in the study; 272 were randomized to a treatment group. Of the 80 participants not randomized, 67 no longer met study criteria, 6 experienced an Adverse Event (AE), 3 withdrew consent, 3 died, and 1 failed screening. Study is ongoing.</pre_assignment_details>
+      <group_list>
+        <group group_id="P1">
+          <title>Nivolumab</title>
+          <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+        </group>
+        <group group_id="P2">
+          <title>Docetaxel</title>
+          <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Randomization</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="135"/>
+                <participants group_id="P2" count="137"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="131"/>
+                <participants group_id="P2" count="129"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="4"/>
+                <participants group_id="P2" count="8"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Adverse Event unrelated to study drug</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Withdrawal by Subject</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+                <participants group_id="P2" count="6"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>No longer meets study criteria</title>
+              <participants_list>
+                <participants group_id="P1" count="2"/>
+                <participants group_id="P2" count="2"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+        <period>
+          <title>Treatment</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="131"/>
+                <participants group_id="P2" count="129"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="21"/>
+                <participants group_id="P2" count="2"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="110"/>
+                <participants group_id="P2" count="127"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Disease progression</title>
+              <participants_list>
+                <participants group_id="P1" count="88"/>
+                <participants group_id="P2" count="80"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Study drug toxicity</title>
+              <participants_list>
+                <participants group_id="P1" count="5"/>
+                <participants group_id="P2" count="13"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Death</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Adverse event unrelated to study drug</title>
+              <participants_list>
+                <participants group_id="P1" count="6"/>
+                <participants group_id="P2" count="13"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Withdrawal by Subject</title>
+              <participants_list>
+                <participants group_id="P1" count="5"/>
+                <participants group_id="P2" count="9"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Maximum clinical benefit</title>
+              <participants_list>
+                <participants group_id="P1" count="2"/>
+                <participants group_id="P2" count="7"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Poor/non-compliance</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>No longer meets study criteria</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+                <participants group_id="P2" count="2"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Unspecified</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+                <participants group_id="P2" count="2"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Missing from data</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <population>All randomized participants</population>
+      <group_list>
+        <group group_id="B1">
+          <title>Nivolumab</title>
+          <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+        </group>
+        <group group_id="B2">
+          <title>Docetaxel</title>
+          <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+        </group>
+        <group group_id="B3">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <measure_list>
+        <measure>
+          <title>Number of Participants</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="135"/>
+                <measurement group_id="B2" value="137"/>
+                <measurement group_id="B3" value="272"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="62.2" spread="8.33"/>
+                <measurement group_id="B2" value="64.4" spread="8.28"/>
+                <measurement group_id="B3" value="63.3" spread="8.36"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age, Customized</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>&lt;= 18 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+                <measurement group_id="B2" value="0"/>
+                <measurement group_id="B3" value="0"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>&lt; 65 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="79"/>
+                <measurement group_id="B2" value="73"/>
+                <measurement group_id="B3" value="152"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>&gt;= 65 AND &lt; 75 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="45"/>
+                <measurement group_id="B2" value="46"/>
+                <measurement group_id="B3" value="91"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>&gt;= 75 AND &lt; 85 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="10"/>
+                <measurement group_id="B2" value="18"/>
+                <measurement group_id="B3" value="28"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>&gt;= 85 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1"/>
+                <measurement group_id="B2" value="0"/>
+                <measurement group_id="B3" value="1"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Female</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="24"/>
+                <measurement group_id="B2" value="40"/>
+                <measurement group_id="B3" value="64"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Male</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="111"/>
+                <measurement group_id="B2" value="97"/>
+                <measurement group_id="B3" value="208"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>PD-L1 Expression Level</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>PD-L1 expression &gt;= 5%</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="42"/>
+                <measurement group_id="B2" value="39"/>
+                <measurement group_id="B3" value="81"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>PD-L1 expression &lt; 5%</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="75"/>
+                <measurement group_id="B2" value="69"/>
+                <measurement group_id="B3" value="144"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>PD-L1 not quantifiable at baseline</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="18"/>
+                <measurement group_id="B2" value="29"/>
+                <measurement group_id="B3" value="47"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Other Pre-specified</type>
+        <title>Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up</title>
+        <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Survival follow-up analysis occurred 7.4 months after Primary Endpoint was reached, representing a minimum OS follow-up time of 18.0 months.</description>
+        <time_frame>Randomization until July 2015, approximately 33 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up</title>
+            <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Survival follow-up analysis occurred 7.4 months after Primary Endpoint was reached, representing a minimum OS follow-up time of 18.0 months.</description>
+            <units>months</units>
+            <param>Median</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="9.23" lower_limit="7.33" upper_limit="12.62"/>
+                  <measurement group_id="O2" value="6.01" lower_limit="5.29" upper_limit="7.39"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <non_inferiority>No</non_inferiority>
+            <p_value>0.0004</p_value>
+            <p_value_desc>Stratified by region (US/Canada, Rest Of World (ROW), Europe) and prior treatment regimen (Paclitaxel, Another agent) as entered in the Interactive Voice Response System (IVRS).</p_value_desc>
+            <method>Log Rank</method>
+            <param_type>Hazard Ratio (HR)</param_type>
+            <param_value>0.62</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.47</ci_lower_limit>
+            <ci_upper_limit>0.81</ci_upper_limit>
+            <estimate_desc>Hazard Ratio (HR) = Nivolumab over Docetaxel</estimate_desc>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Objective Response Rate (ORR) in All Randomized Participants at Primary Endpoint</title>
+        <description>ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). BOR was defined as the best investigator-assessed response designation, recorded between the date of randomization and the date of objectively documented progression per Response Evaluation Criteria in Solid Tumors version 1.1 (RECIST v1.1) or the date of subsequent anti-cancer therapy (excluding on-treatment palliative radiotherapy of non-target bone lesions or Central Nervous System (CNS) lesions), whichever occurred first.
+CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
+        <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Objective Response Rate (ORR) in All Randomized Participants at Primary Endpoint</title>
+            <description>ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). BOR was defined as the best investigator-assessed response designation, recorded between the date of randomization and the date of objectively documented progression per Response Evaluation Criteria in Solid Tumors version 1.1 (RECIST v1.1) or the date of subsequent anti-cancer therapy (excluding on-treatment palliative radiotherapy of non-target bone lesions or Central Nervous System (CNS) lesions), whichever occurred first.
+CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="20.0" lower_limit="13.6" upper_limit="27.7"/>
+                  <measurement group_id="O2" value="8.8" lower_limit="4.6" upper_limit="14.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <non_inferiority>No</non_inferiority>
+            <p_value>0.0083</p_value>
+            <method>Cochran-Mantel-Haenszel</method>
+            <method_desc>Stratified by region (US/Canada vs Europe vs ROW) and prior treatment regimen (Paclitaxel vs Another Agent) as entered into the IVRS.</method_desc>
+            <param_type>Odds Ratio (OR)</param_type>
+            <param_value>2.64</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>1.27</ci_lower_limit>
+            <ci_upper_limit>5.49</ci_upper_limit>
+            <estimate_desc>OR = Nivolumab over Docetaxel</estimate_desc>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Overall Survival (OS) Time in Months for All Randomized Participants at Primary Endpoint</title>
+        <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+        <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Overall Survival (OS) Time in Months for All Randomized Participants at Primary Endpoint</title>
+            <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+            <units>months</units>
+            <param>Median</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="9.23" lower_limit="7.33" upper_limit="13.27"/>
+                  <measurement group_id="O2" value="6.01" lower_limit="5.13" upper_limit="7.33"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <non_inferiority>No</non_inferiority>
+            <p_value>0.0002</p_value>
+            <p_value_desc>Stratified by region (US/Canada, Rest Of World (ROW), Europe) and prior treatment regimen (Paclitaxel, Another agent) as entered in the Interactive Voice Response System (IVRS).</p_value_desc>
+            <method>Log Rank</method>
+            <param_type>Hazard Ratio (HR)</param_type>
+            <param_value>0.59</param_value>
+            <ci_percent>96.85</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.43</ci_lower_limit>
+            <ci_upper_limit>0.81</ci_upper_limit>
+            <estimate_desc>Stratified Cox proportional hazard model. HR = Nivolumab over Docetaxel</estimate_desc>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Overall Survival (OS) Rate in All Randomized Participants</title>
+        <description>The overall survival rate is the probability that a participant will be alive at 6, 12, and 18 months following randomization. Overall survival was defined as the time between the date of randomization and the date of death as a result of any cause. Survival rates were determined via Kaplan-Meier estimates.</description>
+        <time_frame>Randomization to 18 months post-randomization, up to June 2015</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Overall Survival (OS) Rate in All Randomized Participants</title>
+            <description>The overall survival rate is the probability that a participant will be alive at 6, 12, and 18 months following randomization. Overall survival was defined as the time between the date of randomization and the date of death as a result of any cause. Survival rates were determined via Kaplan-Meier estimates.</description>
+            <units>percent probability of OS</units>
+            <param>Number</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <sub_title>6 months</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="63.7" lower_limit="55.0" upper_limit="71.2"/>
+                  <measurement group_id="O2" value="50.7" lower_limit="42.1" upper_limit="58.8"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>12 months</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="42.2" lower_limit="33.8" upper_limit="50.4"/>
+                  <measurement group_id="O2" value="24.3" lower_limit="17.4" upper_limit="31.7"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>18 months</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="28.1" lower_limit="20.8" upper_limit="35.8"/>
+                  <measurement group_id="O2" value="12.5" lower_limit="7.6" upper_limit="18.7"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Time To Response (TTR) in Months for All Confirmed Responders at Primary Endpoint</title>
+        <description>Time to Response (TTR) for participants demonstrating a response (either CR or PR) was defined as the time from the date of randomization to the date of the first confirmed response. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.</description>
+        <time_frame>Randomization until confirmed response, up to November 2014, approximately 25 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All confirmed responders (participants demonstrating CR or PR)</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="27"/>
+                  <measurement group_id="O2" value="12"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Time To Response (TTR) in Months for All Confirmed Responders at Primary Endpoint</title>
+            <description>Time to Response (TTR) for participants demonstrating a response (either CR or PR) was defined as the time from the date of randomization to the date of the first confirmed response. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.</description>
+            <units>months</units>
+            <param>Median</param>
+            <dispersion>Full Range</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="2.23" lower_limit="1.6" upper_limit="11.8"/>
+                  <measurement group_id="O2" value="2.09" lower_limit="1.8" upper_limit="9.5"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Duration of Objective Response (DOR) in Months for All Confirmed Responders at Primary Endpoint</title>
+        <description>DOR was defined as the time from the date of first confirmed response to the date of the first documented tumor progression (per RECIST v1.1), as determined by the investigator, or death due to any cause, whichever occurred first. DOR was evaluated only for confirmed responders (i.e. participants with confirmed CR or PR).
+CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.
+Participants who neither progressed nor died were censored on the date of their last evaluable tumor assessment.</description>
+        <time_frame>Date of confirmed response to date of documented tumor progression, up to November 2014, approximately 25 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All confirmed responders (participants demonstrating CR or PR)</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="27"/>
+                  <measurement group_id="O2" value="12"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Duration of Objective Response (DOR) in Months for All Confirmed Responders at Primary Endpoint</title>
+            <description>DOR was defined as the time from the date of first confirmed response to the date of the first documented tumor progression (per RECIST v1.1), as determined by the investigator, or death due to any cause, whichever occurred first. DOR was evaluated only for confirmed responders (i.e. participants with confirmed CR or PR).
+CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.
+Participants who neither progressed nor died were censored on the date of their last evaluable tumor assessment.</description>
+            <units>months</units>
+            <param>Median</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="NA" lower_limit="9.76">Median DOR was not reached in the Nivolumab group</measurement>
+                  <measurement group_id="O2" value="8.41" lower_limit="3.58" upper_limit="10.84"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Progression-Free Survival (PFS) at Primary Endpoint</title>
+        <description>PFS rate was defined as the probability that participants will experience no disease progression or death from any cause at a given time point following randomization. Progression was assessed by investigators according to RECIST v1.1. 95% CIs were estimated using the Kaplan-Meier method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative radiation therapy (RT) of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy</description>
+        <time_frame>Randomization to 12 months post-randomization, up to November 2014</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants (105 PFS events in Nivolumab arm; 122 PFS events in Docetaxel arm)</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Progression-Free Survival (PFS) at Primary Endpoint</title>
+            <description>PFS rate was defined as the probability that participants will experience no disease progression or death from any cause at a given time point following randomization. Progression was assessed by investigators according to RECIST v1.1. 95% CIs were estimated using the Kaplan-Meier method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative radiation therapy (RT) of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy</description>
+            <units>percent probability of PFS</units>
+            <param>Number</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <sub_title>6 months</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="38.4" lower_limit="30.0" upper_limit="46.8"/>
+                  <measurement group_id="O2" value="21.9" lower_limit="15.1" upper_limit="29.5"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>12 months</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="20.8" lower_limit="14.0" upper_limit="28.4"/>
+                  <measurement group_id="O2" value="6.4" lower_limit="2.9" upper_limit="11.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Progression-Free Survival (PFS) Time in Months for All Randomized Participants at Primary Endpoint</title>
+        <description>PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. Participants underwent radiographic tumor assessments every 6 weeks (+/- 5 days) from week 9 (+/- 5 days) for the first year on treatment, then every 12 weeks after the first year on treatment until documented disease progression. The PFS curves were estimated using KM method. Two-sided 95% CI for median PFS were computed by Brookmeyer and Crowley method (using log-log transformation). Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative RT of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy.</description>
+        <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants (105 PFS events in Nivolumab arm; 122 PFS events in Docetaxel arm)</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Progression-Free Survival (PFS) Time in Months for All Randomized Participants at Primary Endpoint</title>
+            <description>PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. Participants underwent radiographic tumor assessments every 6 weeks (+/- 5 days) from week 9 (+/- 5 days) for the first year on treatment, then every 12 weeks after the first year on treatment until documented disease progression. The PFS curves were estimated using KM method. Two-sided 95% CI for median PFS were computed by Brookmeyer and Crowley method (using log-log transformation). Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative RT of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy.</description>
+            <units>months</units>
+            <param>Median</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="3.48" lower_limit="2.14" upper_limit="4.86"/>
+                  <measurement group_id="O2" value="2.83" lower_limit="2.10" upper_limit="3.52"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <non_inferiority>No</non_inferiority>
+            <p_value>0.0004</p_value>
+            <method>Log Rank</method>
+            <method_desc>Stratified by region (US/Canada vs Europe vs ROW) and prior treatment regimen (Paclitaxel vs Another Agent) as entered into the IVRS.</method_desc>
+            <param_type>Hazard Ratio (HR)</param_type>
+            <param_value>0.62</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.47</ci_lower_limit>
+            <ci_upper_limit>0.81</ci_upper_limit>
+            <estimate_desc>HR = Nivolumab over Docetaxel</estimate_desc>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Percentage of Participants Experiencing Disease-related Symptom Improvement by Week 12</title>
+        <description>Disease-related symptom improvement rate by Week 12 was defined as the percentage of randomized participants who had a 10 point or greater decrease from baseline in average symptom burden index score at any time between randomization and Week 12. The participant portion of the Lung Cancer Symptom Scale (LCSS) consisted of 6 symptom-specific questions that addressed cough, dyspnea, fatigue, pain, hemoptysis, and anorexia, plus 3 summary items on symptom distress, interference with activity level, and global health-related Quality of Life (QoL). The scores range from 0 to 100, with 0 representing the best possible score and 100 being the worst possible score. The average symptom burden index score at each assessment was defined as the mean of the 6 symptom-specific questions of the LCSS. 95% CIs were computed using Clopper-Pearson Method.</description>
+        <time_frame>Randomization to Week 12</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Percentage of Participants Experiencing Disease-related Symptom Improvement by Week 12</title>
+            <description>Disease-related symptom improvement rate by Week 12 was defined as the percentage of randomized participants who had a 10 point or greater decrease from baseline in average symptom burden index score at any time between randomization and Week 12. The participant portion of the Lung Cancer Symptom Scale (LCSS) consisted of 6 symptom-specific questions that addressed cough, dyspnea, fatigue, pain, hemoptysis, and anorexia, plus 3 summary items on symptom distress, interference with activity level, and global health-related Quality of Life (QoL). The scores range from 0 to 100, with 0 representing the best possible score and 100 being the worst possible score. The average symptom burden index score at each assessment was defined as the mean of the 6 symptom-specific questions of the LCSS. 95% CIs were computed using Clopper-Pearson Method.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="18.5" lower_limit="12.4" upper_limit="26.1"/>
+                  <measurement group_id="O2" value="21.2" lower_limit="14.7" upper_limit="29.0"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Overall Survival (OS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
+        <description>OS was measured in months for all randomized participants grouped by their baseline PD-L1 expression level. PD-L1 expression was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+        <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Overall Survival (OS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
+            <description>OS was measured in months for all randomized participants grouped by their baseline PD-L1 expression level. PD-L1 expression was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+            <units>months</units>
+            <param>Median</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <sub_title>PD-L1 expression &gt;= 5% (n=42,39)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="9.95" lower_limit="5.82" upper_limit="17.15"/>
+                  <measurement group_id="O2" value="6.37" lower_limit="4.50" upper_limit="9.03"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>PD-L1 expression &lt; 5% (n=50,55)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="8.54" lower_limit="5.49" upper_limit="13.27"/>
+                  <measurement group_id="O2" value="6.14" lower_limit="5.13" upper_limit="8.28"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>PD-L1 not quantifiable at baseline (n=18,29)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="9.41" lower_limit="7.10">Upper CI not reached</measurement>
+                  <measurement group_id="O2" value="5.06" lower_limit="3.02" upper_limit="6.11"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>PD-L1 expression &gt;= 5%</groups_desc>
+            <non_inferiority>No</non_inferiority>
+            <param_type>Hazard Ratio (HR)</param_type>
+            <param_value>0.53</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.31</ci_lower_limit>
+            <ci_upper_limit>0.89</ci_upper_limit>
+            <estimate_desc>HR = Nivolumab over Docetaxel; PD-L1 expression &gt;= 5%</estimate_desc>
+          </analysis>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>PD-L1 expression &lt; 5%</groups_desc>
+            <non_inferiority>No</non_inferiority>
+            <param_type>Hazard Ratio (HR)</param_type>
+            <param_value>0.70</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.47</ci_lower_limit>
+            <ci_upper_limit>1.02</ci_upper_limit>
+            <estimate_desc>HR = Nivolumab over Docetaxel; PD-L1 expression &lt; 5%</estimate_desc>
+          </analysis>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>PD-L1 expression not quantifiable at baseline</groups_desc>
+            <non_inferiority>No</non_inferiority>
+            <param_type>Hazard Ratio (HR)</param_type>
+            <param_value>0.39</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.19</ci_lower_limit>
+            <ci_upper_limit>0.82</ci_upper_limit>
+            <estimate_desc>HR = Nivolumab over Docetaxel; PD-L1 not quantifiable at baseline</estimate_desc>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Objective Response Rate (ORR) by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
+        <description>ORR was reported for all randomized participants grouped by their baseline PD-L1 expression level. ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). PD-L1 expression in participants was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
+        <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Objective Response Rate (ORR) by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
+            <description>ORR was reported for all randomized participants grouped by their baseline PD-L1 expression level. ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). PD-L1 expression in participants was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
+            <units>percentage of participants</units>
+            <param>Number</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <sub_title>PD-L1 expression &gt;= 5% (n=42,39)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="21.4" lower_limit="10.3" upper_limit="36.8"/>
+                  <measurement group_id="O2" value="7.7" lower_limit="1.6" upper_limit="20.9"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>PD-L1 expression &lt; 5% (n=75,69)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="14.7" lower_limit="7.6" upper_limit="24.7"/>
+                  <measurement group_id="O2" value="11.6" lower_limit="5.1" upper_limit="21.6"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>PD-L1 not quantifiable at baseline (n=18,29)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="38.9" lower_limit="17.3" upper_limit="64.3"/>
+                  <measurement group_id="O2" value="3.4" lower_limit="0.1" upper_limit="17.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>PD-L1 expression &gt;= 5%</groups_desc>
+            <non_inferiority>No</non_inferiority>
+            <param_type>Odds Ratio (OR)</param_type>
+            <param_value>3.3</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.7</ci_lower_limit>
+            <ci_upper_limit>20.1</ci_upper_limit>
+            <estimate_desc>OR = Nivolumab over Docetaxel; PD-L1 expression &gt;= 5%</estimate_desc>
+          </analysis>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>PD-L1 &lt; 5%</groups_desc>
+            <non_inferiority>No</non_inferiority>
+            <param_type>Odds Ratio (OR)</param_type>
+            <param_value>1.3</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.4</ci_lower_limit>
+            <ci_upper_limit>4.0</ci_upper_limit>
+            <estimate_desc>OR = Nivolumab over Docetaxel; PD-L1 expression &lt; 5%</estimate_desc>
+          </analysis>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>PD-L1 expression not quantifiable at baseline</groups_desc>
+            <non_inferiority>No</non_inferiority>
+            <param_type>Odds Ratio (OR)</param_type>
+            <param_value>17.8</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>1.8</ci_lower_limit>
+            <ci_upper_limit>830.7</ci_upper_limit>
+            <estimate_desc>OR = Nivolumab over Docetaxel; PD-L1 expression not quantifiable at baseline</estimate_desc>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Progression Free Survival (PFS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
+        <description>PFS time was measured for all randomized participants grouped by their baseline PD-L1 expression levels. PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. The PFS curves were estimated using KM method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started subsequent anti-cancer therapy (including on-treatment palliative radiotherapy of non-target bone lesions or CNS lesions) without a prior reported progression were censored at the last evaluable tumor assessment prior to subsequent anti-cancer therapy. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+        <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Progression Free Survival (PFS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
+            <description>PFS time was measured for all randomized participants grouped by their baseline PD-L1 expression levels. PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. The PFS curves were estimated using KM method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started subsequent anti-cancer therapy (including on-treatment palliative radiotherapy of non-target bone lesions or CNS lesions) without a prior reported progression were censored at the last evaluable tumor assessment prior to subsequent anti-cancer therapy. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+            <units>months</units>
+            <param>Median</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <sub_title>PD-L1 expression &gt;= 5% (n=42,39)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="4.80" lower_limit="2.10" upper_limit="7.56"/>
+                  <measurement group_id="O2" value="3.06" lower_limit="1.94" upper_limit="4.63"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>PD-L1 expression &lt; 5% (n=75,69)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="2.23" lower_limit="1.94" upper_limit="4.73"/>
+                  <measurement group_id="O2" value="2.92" lower_limit="2.10" upper_limit="3.55"/>
+                </measurement_list>
+              </category>
+              <category>
+                <sub_title>PD-L1 not quantifiable at baseline (n=18,29)</sub_title>
+                <measurement_list>
+                  <measurement group_id="O1" value="5.39" lower_limit="2.10" upper_limit="10.45"/>
+                  <measurement group_id="O2" value="2.23" lower_limit="2.04" upper_limit="4.40"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>PD-L1 expression &gt;= 5%</groups_desc>
+            <non_inferiority>No</non_inferiority>
+            <param_type>Hazard Ratio (HR)</param_type>
+            <param_value>0.54</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.32</ci_lower_limit>
+            <ci_upper_limit>0.90</ci_upper_limit>
+            <estimate_desc>HR = Nivolumab over Docetaxel; PD-L1 expression &gt;= 5%</estimate_desc>
+          </analysis>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>PD-L1 expression &lt; 5%</groups_desc>
+            <non_inferiority>No</non_inferiority>
+            <param_type>Hazard Ratio (HR)</param_type>
+            <param_value>0.75</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.52</ci_lower_limit>
+            <ci_upper_limit>1.08</ci_upper_limit>
+            <estimate_desc>HR = Nivolumab over Docetaxel; PD-L1 expression &lt; 5%</estimate_desc>
+          </analysis>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>PD-L1 expression not quantifiable at baseline</groups_desc>
+            <non_inferiority>No</non_inferiority>
+            <param_type>Hazard Ratio (HR)</param_type>
+            <param_value>0.45</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>0.23</ci_lower_limit>
+            <ci_upper_limit>0.89</ci_upper_limit>
+            <estimate_desc>HR = Nivolumab over Docetaxel; PD-L1 expression not quantifiable at baseline</estimate_desc>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of Deaths From Any Cause in All Randomized Participants at Primary Endpoint</title>
+        <description>The number of participants who died from any cause was reported for each arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+        <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>All randomized participants</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nivolumab</title>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+          <group group_id="O2">
+            <title>Docetaxel</title>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="135"/>
+                  <measurement group_id="O2" value="137"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Number of Deaths From Any Cause in All Randomized Participants at Primary Endpoint</title>
+            <description>The number of participants who died from any cause was reported for each arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="86"/>
+                  <measurement group_id="O2" value="113"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>From first dose to last dose plus 30 days up to Primary Endpoint (November 2014)</time_frame>
+      <desc>Study initiated: October 2012; Primary Endpoint: November 2014</desc>
+      <group_list>
+        <group group_id="E1">
+          <title>NIVOLUMAB</title>
+          <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+        </group>
+        <group group_id="E2">
+          <title>DOCETAXEL</title>
+          <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <default_vocab>MedDRA 17.1</default_vocab>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="61" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="70" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Blood and lymphatic system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anaemia</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Febrile neutropenia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="13" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Neutropenia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Febrile bone marrow aplasia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Pancytopenia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Cardiac tamponade</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Sinus bradycardia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Cardio-respiratory arrest</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Atrial thrombosis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Atrial fibrillation</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Endocrine disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hypothyroidism</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Goitre</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Vomiting</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Diarrhoea</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Intestinal perforation</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Nausea</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Abdominal pain</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Dysphagia</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Constipation</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Pyrexia</sub_title>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Chills</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Asthenia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>General physical health deterioration</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Sudden death</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Enterocolitis infectious</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Infection</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Skin infection</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Pneumonia</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="10" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Lung infection</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Upper respiratory tract infection</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Lower respiratory tract infection</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Neutropenic infection</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Bronchitis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Septic shock</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Bronchopneumonia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Clostridium difficile colitis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Lobar pneumonia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Respiratory tract infection</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Sepsis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Urinary tract infection</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>C-reactive protein increased</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Metabolism and nutrition disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Dehydration</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Hypercalcaemia</sub_title>
+                <counts group_id="E1" subjects_affected="4" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Hyponatraemia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Hypoglycaemia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Hypophosphataemia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Musculoskeletal and connective tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Back pain</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Musculoskeletal pain</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Neoplasms benign, malignant and unspecified (incl cysts and polyps)</title>
+            <event_list>
+              <event>
+                <sub_title>Tumour pain</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Malignant neoplasm progression</sub_title>
+                <counts group_id="E1" subjects_affected="18" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Metastases to central nervous system</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Generalised tonic-clonic seizure</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Cerebrovascular accident</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Ischaemic stroke</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Aphasia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Myasthenic syndrome</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Convulsion</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Peripheral sensory neuropathy</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Spinal cord compression</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>VIIth nerve paralysis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Psychiatric disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Mental status changes</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Delirium</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Confusional state</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Renal and urinary disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Calculus ureteric</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Tubulointerstitial nephritis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Respiratory, thoracic and mediastinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Oropharyngeal pain</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Pneumothorax</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Dyspnoea</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Haemoptysis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Cough</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Pneumonitis</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Pulmonary haemorrhage</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Acute respiratory failure</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Chronic obstructive pulmonary disease</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Pleural effusion</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Pulmonary thrombosis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Stridor</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Interstitial lung disease</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Respiratory failure</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Pulmonary embolism</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Vascular disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Arterial haemorrhage</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Peripheral ischaemia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Superior vena cava syndrome</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>5</frequency_threshold>
+        <default_vocab>MedDRA 17.1</default_vocab>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="114" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="119" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Blood and lymphatic system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anaemia</sub_title>
+                <counts group_id="E1" subjects_affected="22" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="37" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Leukopenia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Neutropenia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="41" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Vomiting</sub_title>
+                <counts group_id="E1" subjects_affected="10" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="17" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Diarrhoea</sub_title>
+                <counts group_id="E1" subjects_affected="20" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="33" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Nausea</sub_title>
+                <counts group_id="E1" subjects_affected="20" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="32" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Abdominal pain</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Constipation</sub_title>
+                <counts group_id="E1" subjects_affected="17" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="19" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Pyrexia</sub_title>
+                <counts group_id="E1" subjects_affected="20" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="24" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Chest pain</sub_title>
+                <counts group_id="E1" subjects_affected="10" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="12" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Chills</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Mucosal inflammation</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="13" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Fatigue</sub_title>
+                <counts group_id="E1" subjects_affected="40" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="51" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Asthenia</sub_title>
+                <counts group_id="E1" subjects_affected="20" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="27" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Oedema peripheral</sub_title>
+                <counts group_id="E1" subjects_affected="10" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="16" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Upper respiratory tract infection</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Bronchitis</sub_title>
+                <counts group_id="E1" subjects_affected="12" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>Neutrophil count decreased</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="8" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Weight decreased</sub_title>
+                <counts group_id="E1" subjects_affected="12" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="6" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>White blood cell count decreased</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="8" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Metabolism and nutrition disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hypercalcaemia</sub_title>
+                <counts group_id="E1" subjects_affected="8" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Hypomagnesaemia</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="4" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Decreased appetite</sub_title>
+                <counts group_id="E1" subjects_affected="32" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="35" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Hyperglycaemia</sub_title>
+                <counts group_id="E1" subjects_affected="9" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="10" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Musculoskeletal and connective tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Bone pain</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="7" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Musculoskeletal chest pain</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Myalgia</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="15" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Back pain</sub_title>
+                <counts group_id="E1" subjects_affected="12" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="11" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Arthralgia</sub_title>
+                <counts group_id="E1" subjects_affected="13" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="16" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Musculoskeletal pain</sub_title>
+                <counts group_id="E1" subjects_affected="8" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="7" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Paraesthesia</sub_title>
+                <counts group_id="E1" subjects_affected="4" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="8" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Headache</sub_title>
+                <counts group_id="E1" subjects_affected="18" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Dizziness</sub_title>
+                <counts group_id="E1" subjects_affected="11" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="12" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Neuropathy peripheral</sub_title>
+                <counts group_id="E1" subjects_affected="4" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="15" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Psychiatric disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Insomnia</sub_title>
+                <counts group_id="E1" subjects_affected="7" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="6" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Respiratory, thoracic and mediastinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Dyspnoea</sub_title>
+                <counts group_id="E1" subjects_affected="46" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="38" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Haemoptysis</sub_title>
+                <counts group_id="E1" subjects_affected="8" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Cough</sub_title>
+                <counts group_id="E1" subjects_affected="40" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="24" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Dysphonia</sub_title>
+                <counts group_id="E1" subjects_affected="9" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Pruritus</sub_title>
+                <counts group_id="E1" subjects_affected="10" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Rash</sub_title>
+                <counts group_id="E1" subjects_affected="10" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="11" subjects_at_risk="129"/>
+              </event>
+              <event>
+                <sub_title>Alopecia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="131"/>
+                <counts group_id="E2" subjects_affected="29" subjects_at_risk="129"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>Bristol-Myers Squibb Co. agreements with investigators vary; constant is our right to embargo communications regarding trial results prior to public release for a period ≤60 days from submittal for review. We will not prohibit investigators from publishing, but will prohibit the disclosure of previously undisclosed confidential information other than study results, and request postponement of single-center publications until after disclosure of the clinical trial's primary publication.</restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Bristol-Myers Squibb Study Director</name_or_title>
+      <organization>Bristol-Myers Squibb</organization>
+      <email>Clinical.Trials@bms.com</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
