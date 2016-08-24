@@ -11,13 +11,14 @@ namespace :import do
         new_studies_count = nct_ids_to_be_updated_or_added.count - changed_studies_count
         $stderr.puts "Number of studies changed or added: #{nct_ids_to_be_updated_or_added.count}"
         load_event.update(new_studies: new_studies_count, changed_studies: changed_studies_count)
-        StudyUpdater.new.update_studies(nct_ids: nct_ids_to_be_updated_or_added)
+
+        updater = StudyUpdater.new.update_studies(nct_ids: nct_ids_to_be_updated_or_added)
 
         load_event.complete
 
         SanityCheck.run
         StudyValidator.new.validate_studies
-        LoadMailer.send_notifications(load_event)
+        LoadMailer.send_notifications(load_event, updater.errors)
       else
         puts "First of the month - running full import"
       end
