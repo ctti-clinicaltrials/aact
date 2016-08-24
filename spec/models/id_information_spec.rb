@@ -1,52 +1,30 @@
 require 'rails_helper'
 
-RSpec.describe IdInformation, type: :model do
-  context 'when id information exists with nct_id' do
-    let!(:xml) {Nokogiri::XML(File.read('spec/support/xml_data/NCT02028676.xml'))}
-    let!(:opts) {{xml: xml, nct_id: 'NCT02028676'}}
-    let!(:id_informations) {IdInformation.create_all_from(opts)}
-    let!(:sample_id_information) {IdInformation.first}
-    let!(:more_id_information) {IdInformation.second}
-    let!(:even_more_id_information) {IdInformation.third}
+describe IdInformation do
+  it "should save multiple secondary IDs" do
+    nct_id='NCT00023673'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.id_information.size).to eq(3)
+    org_study_id=study.id_information.select{|x|x.id_type=='org_study_id'}.first
+    secondary_ids=study.id_information.select{|x|x.id_type=='secondary_id'}
+    expect(secondary_ids.size).to eq(2)
+    expect(secondary_ids.select{|x|x.id_value=='CDR0000068850'}.size).to eq(1)
+    expect(secondary_ids.select{|x|x.id_value=='NCI-2012-02401'}.size).to eq(1)
+    expect(org_study_id.id_value).to eq('RTOG L-0117')
+    expect(org_study_id.nct_id).to eq(nct_id)
+  end
 
-    it 'should return the correct number of records' do
-      expect(id_informations.count).to eq(3)
-    end
-
-    it 'should have the expected id_type for the first record' do
-      expect(sample_id_information.id_type).to eq('org_study_id')
-    end
-
-    it 'should have the expected id_value for the the first record' do
-      expect(sample_id_information.id_value).to eq('G0300400')
-    end
-
-    it 'should have the expected nct_id value for the first record' do
-      expect(sample_id_information.nct_id).to eq('NCT02028676')
-    end
-
-    it 'should have the expected id_type for the second record' do
-      expect(more_id_information.id_type).to eq('secondary_id')
-    end
-
-    it 'should have the expected id_value for the second record' do
-      expect(more_id_information.id_value).to eq('24791884')
-    end
-
-    it 'should have the expected nct_id value for the second record' do
-      expect(more_id_information.nct_id).to eq('NCT02028676')
-    end
-
-    it 'should have the expected id_type for the third record' do
-      expect(even_more_id_information.id_type).to eq('secondary_id')
-    end
-
-    it 'should have the expected id_Value for the third record' do
-      expect(even_more_id_information.id_value).to eq('G0300400')
-    end
-
-    it 'should have the expected nct_id value for the third record' do
-      expect(even_more_id_information.nct_id).to eq('NCT02028676')
-    end
+	it "should have correct values for all 3 types of ID" do
+    nct_id='NCT00980226'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.id_information.size).to eq(3)
+    org_study_id=study.id_information.select{|x|x.id_type=='org_study_id'}.first
+    nct_alias=study.id_information.select{|x|x.id_type=='nct_alias'}.first
+    secondary_id=study.id_information.select{|x|x.id_type=='secondary_id'}.first
+    expect(org_study_id.id_value).to eq('CR006724')
+    expect(secondary_id.id_value).to eq('TMC114-C215')
+    expect(nct_alias.id_value).to eq('NCT00980226')
   end
 end
