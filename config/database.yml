@@ -1,6 +1,6 @@
 development: &default
   adapter: postgresql
-  database: aact_dev
+  database: aact2_development
   encoding: utf8
   min_messages: warning
   pool: <%= Integer(ENV.fetch("DB_POOL", 5)) %>
@@ -9,7 +9,7 @@ development: &default
 
 test:
   <<: *default
-  database: aact_test
+  database: aact2_test
 
 production: &deploy
   encoding: utf8
@@ -22,10 +22,10 @@ staging: *deploy
 
 docker: &docker
   <<: *default
-  username: aact
+  username: aact2
   password: abc123
   host: postgres.db.host
 
 docker_test:
   <<: *docker
-  database: aact_test
+  database: aact2_test
