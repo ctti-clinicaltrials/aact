@@ -1,4 +1,8 @@
 class StudyValidator
+  def initialize
+    @errors = []
+  end
+
   def validate_studies
     study1 = Study.find_by(nct_id: 'NCT00734539')
     study2 = Study.find_by(nct_id: 'NCT01076361')
@@ -18,7 +22,7 @@ class StudyValidator
     assert(
       nct_id: study1.nct_id,
       validation_title: 'Brief title',
-      expected_result: 'Fluconazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight',
+      expected_result: 'Flnazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight',
       actual_result: study1.brief_title
     )
 
@@ -475,6 +479,14 @@ class StudyValidator
     #   expected_result: '',
     #   actual_result:
     # )
+
+    if @errors.present?
+      StudyValidationMailer.send_alerts(@errors)
+
+      raise StudyValidatorError
+    else
+      true
+    end
   end
 
   class StudyValidatorError < StandardError
@@ -494,9 +506,7 @@ class StudyValidator
         actual_result: actual_result
       }
 
-      StudyValidationMailer.send_alerts(error.to_json)
-
-      raise StudyValidatorError, "\nExpected: #{expected_result}\nActual: #{actual_result}"
+      @errors << error
     else
       true
     end
