@@ -91,6 +91,11 @@ describe OutcomeMeasuredValue do
     expect(om.dispersion_value).to eq(nil)
     expect(om.dispersion_value_num).to eq(nil)
     expect(om.explanation_of_na).to eq('Stimulated value not measured.')
+    om=study.outcome_measured_values.select{|x|x.title=='Estradiol During Phase I and Phase II'}
+    expect(om.size).to eq(10)
+    om1=om.select{|x|x.ctgov_group_code=='O1'}.first
+    expect(om1.dispersion_value).to eq('131')
+    expect(om1.param_value).to eq('451.7')
   end
 
 end

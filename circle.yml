@@ -4,7 +4,11 @@ database:
 test:
   override:
     - COVERAGE=true bin/rake
-
 checkout:
   post:
     - mkdir -p tmp
+deployment:
+  heroku-aact-dev:
+    branch: develop
+    heroku:
+      appname: aact-dev
