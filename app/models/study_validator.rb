@@ -22,7 +22,7 @@ class StudyValidator
     assert(
       nct_id: study1.nct_id,
       validation_title: 'Brief title',
-      expected_result: 'Flnazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight',
+      expected_result: 'Fluconazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight',
       actual_result: study1.brief_title
     )
 
@@ -33,19 +33,19 @@ class StudyValidator
       actual_result: study1.study_type
     )
 
-    # assert(
-    #   nct_id: study1.nct_id,
-    #   validation_title: 'Outcome Measured Value Dispersion Lower Limit',
-    #   expected_result: '88',
-    #   actual_result: study1.outcome_measured_values.fifth.dispersion_lower_limit
-    # )
-    #
-    # assert(
-    #   nct_id: study1.nct_id,
-    #   validation_title: 'Outcome Measured Value Dispersion Upper Limit',
-    #   expected_result: '128',
-    #   actual_result: study1.outcome_measured_values.fifth.dispersion_upper_limit
-    # )
+    assert(
+      nct_id: study1.nct_id,
+      validation_title: 'Outcome Measured Value Dispersion Lower Limit',
+      expected_result: 90.0,
+      actual_result: study1.outcome_measured_values[9].dispersion_lower_limit
+    )
+
+    assert(
+      nct_id: study1.nct_id,
+      validation_title: 'Outcome Measured Value Dispersion Upper Limit',
+      expected_result: 148.0,
+      actual_result: study1.outcome_measured_values[9].dispersion_upper_limit
+    )
 
     assert(
       nct_id: study2.nct_id,
@@ -75,13 +75,12 @@ class StudyValidator
       actual_result: study3.study_type
     )
 
-#TODO: not getting title value, though one exists...
-    # assert(
-    #   nct_id: study4.nct_id,
-    #   validation_title: 'Outcome Measured Value Title',
-    #   expected_result: 'Summary of the First Causes of Morbidity or Mortality',
-    #   actual_result: study4.outcome_measured_values.first.title
-    # )
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Outcome Measured Value Title',
+      expected_result: 'Summary of the First Causes of Morbidity or Mortality',
+      actual_result: study4.outcome_measured_values.first.title
+    )
 
     assert(
       nct_id: study4.nct_id,
@@ -101,7 +100,7 @@ class StudyValidator
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Param Type',
       expected_result: 'Number',
-      actual_result: study4.outcome_measured_values.first.param
+      actual_result: study4.outcome_measured_values.first.param_type
     )
 
     assert(
@@ -125,38 +124,38 @@ class StudyValidator
       actual_result: study4.outcome_measured_values.first.param_value
     )
 
-    assert(
-      nct_id: study4.nct_id,
-      validation_title: 'Outcome Measured Value Title',
-      expected_result: 'Number of Participants',
-      actual_value: study4.outcome_measured_values.last.title
-    )
+    # assert(
+    #   nct_id: study4.nct_id,
+    #   validation_title: 'Outcome Measured Value Title',
+    #   expected_result: 'Number of Participants',
+    #   actual_value: study4.outcome_measured_values.last.title
+    # )
 
-    assert(
-      nct_id: study4.nct_id,
-      validation_title: 'Outcome Measured Value Units',
-      expected_result: 'participants',
-      actual_value: study4.outcome_measured_values.last.units
-    )
+    # assert(
+    #   nct_id: study4.nct_id,
+    #   validation_title: 'Outcome Measured Value Units',
+    #   expected_result: 'participants',
+    #   actual_value: study4.outcome_measured_values.last.units
+    # )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Param Type',
       expected_result: 'Number',
-      actual_result: study4.outcome_measured_values.last.param
+      actual_result: study4.outcome_measured_values.last.param_type
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value CTgov Group Code',
-      expected_result: 'B4',
-      actual_result: study4.outcome_measured_values.last.group_id
+      expected_result: 'O1',
+      actual_result: study4.outcome_measured_values.last.ctgov_group_code
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Param Value',
-      expected_result: '742',
+      expected_result: '250',
       actual_result: study4.outcome_measured_values.last.param_value
     )
 
@@ -293,17 +292,75 @@ class StudyValidator
       actual_result: study4.outcome_analyses.last.ci_upper_limit
     )
 
-    # assert(
-    #   nct_id: study4.nct_id,
-    #
-    # )
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Reported Event Time Frame',
+      expected_result: 'Up to end of treatment plus 28 days (Up to approximately 36 months)',
+      actual_result: study4.reported_events.last.time_frame
+    )
 
-    # assert(
-    #   nct_id: study5.nct_id,
-    #   validation_title: 'Outcome Measured Value Title',
-    #   expected_result: 'Number of Participants',
-    #   actual_result: study5.outcome_measured_values.last.title
-    # )
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Reported Event Description',
+      expected_result: 'One patient in the placebo group never received study treatment and was not included in the analysis. Adverse events during treatment period and up to 28 days after treatment discontinuation',
+      actual_result: study4.reported_events.last.description
+    )
+
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Reported Event Ctgov Group Code',
+      expected_result: 'E1',
+      actual_result: study4.reported_events.last.ctgov_group_code
+    )
+
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Reported Event Default Vocab',
+      expected_result: 'MedDRA 14.0',
+      actual_result: study4.reported_events.last.default_vocab
+    )
+
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Reported Event Default Assessment',
+      expected_result: 'Systematic Assessment',
+      actual_result: study4.reported_events.last.default_assessment
+    )
+
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Reported Event Organ System',
+      expected_result: 'Total',
+      actual_result: study4.reported_events.last.organ_system
+    )
+
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Reported Event Ctgov Group Code',
+      expected_result: 'E1',
+      actual_result: study4.reported_events.last.ctgov_group_code
+    )
+
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Reported Event Subjects Affected',
+      expected_result: 219,
+      actual_result: study4.reported_events.last.subjects_affected
+    )
+
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Reported Event Subjects At Risk',
+      expected_result: 249,
+      actual_result: study4.reported_events.last.subjects_at_risk
+    )
+
+    assert(
+      nct_id: study5.nct_id,
+      validation_title: 'Outcome Measured Value Title',
+      expected_result: 'Number of Participants',
+      actual_result: study5.outcome_measured_values.last.title
+    )
 
     assert(
       nct_id: study5.nct_id,
@@ -349,23 +406,9 @@ class StudyValidator
 
     assert(
       nct_id: study5.nct_id,
-      validation_title: 'Outcome Measured Value Dispersion Type',
-      expected_result: 'Standard Deviation',
-      actual_result: study5.outcome_measured_values.first.dispersion_type
-    )
-
-    # assert(
-    #   nct_id: study5.nct_id,
-    #   validation_title: 'Outcome Measured Value Dispersion Value',
-    #   expected_result: '',
-    #   actual_result: study5.outcome_measured_values.first.dispersion_value
-    # )
-
-    assert(
-      nct_id: study5.nct_id,
       validation_title: 'Outcome Measured Value Param Value',
       expected_result: 30.0,
-      actual_result: study5.outcome_measured_values.first.param_value
+      actual_result: study5.outcome_measured_values.first.param_value_num
     )
 
     assert(
@@ -498,7 +541,8 @@ class StudyValidator
   private
 
   def assert(nct_id:, expected_result:, actual_result:, validation_title:)
-    if actual_result != expected_result
+    begin
+      if actual_result != expected_result
       error = {
         nct_id: nct_id,
         validation_title: validation_title,
@@ -507,8 +551,12 @@ class StudyValidator
       }
 
       @errors << error
-    else
-      true
+      else
+        true
+      end
+    rescue error => e
+      puts 'you are here'
+      print e
     end
   end
 end
