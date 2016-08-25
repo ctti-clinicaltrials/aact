@@ -1,10 +1,17 @@
+machine:
+  environment:
+    SECRET_KEY_BASE: 2da8abbe44bb7adf533b442e08637d3c938f6888a05410285e152ab13c1791b590db0971526d26e4861178825c9b4175a5afb76ca25e67201bad9894a91869c9
 database:
   override:
     - bin/setup
 test:
   override:
     - COVERAGE=true bin/rake
-
 checkout:
   post:
     - mkdir -p tmp
+deployment:
+  heroku-aact-dev:
+    branch: develop
+    heroku:
+      appname: aact-dev
