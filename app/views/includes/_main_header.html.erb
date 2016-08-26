@@ -9,6 +9,12 @@
       <input type="button" name="name" value=">"></input>
     </div>
     <nav>
+      <% unless current_page?(root_url) %>
+        <a href="/connect" class="navItem">
+          <%= icon("plug") %>
+          Home
+        </a>
+      <% end %>
       <a href="/connect" class="navItem">
         <%= icon("plug") %>
         Connect
