@@ -57,10 +57,8 @@ docker-compose down
 
 A second yaml file has been placed in the application root, docker-compose.dev.yml.  
 
-Here is a list of docker-compose commands available using this example
-docker-compose.dev.yml:
-
-
+You can use the services defined in this docker-compose file in one of two ways:
+A. use '-f docker-compose.yml -f docker-compose.dev.yml' in your docker-compose commands.
 Run the rspec (as RAILS_ENV=test)
 ```
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml run rspec
@@ -68,35 +66,63 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml run rspec spec/re
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml run rspec spec/models/survey_spec.rb
 ```
 
+B. create a symlink from docker-compose.dev.yml to docker-compose.override.yml,
+which docker-compose looks for with the docker-compose.yml file by default.
+Run the rspec (as RAILS_ENV=test)
+```
+ln -s docker-compose.dev.yml docker-compose.override.yml
+docker-compose run rspec
+docker-compose run rspec spec/requests
+docker-compose run rspec spec/models/survey_spec.rb
+```
+
+**Note** docker-compose.override.yml is in the .gitignore so that it does not
+get committed to the git repo. This allows non-developers to be able to run
+a local instance of the server with docker-compose up -d. If you create this
+symlink, you **should not** use docker-compose up -d, as it will attempt to run
+the rspec, rails, and rake services and print confusing errors.
+
+Here is a list of docker-compose commands available using this example
+docker-compose.dev.yml symlinked to docker-compose.override.yml:
+
+
+Run the rspec (as RAILS_ENV=test)
+```
+docker-compose run rspec
+docker-compose run rspec spec/requests
+docker-compose run rspec spec/models/survey_spec.rb
+```
+
 Run bundle install (you will need to do this even if you
 have built the application, or the Gemfile.lock file will
 not get updated to reflect the newly installed gems.):
 ```
-docker-compose run -f docker-compose.yml -f docker-compose.dev.yml run bundle
+docker-compose run run bundle
 ```
 
 Run rake commands (default RAILS_ENV=development):
 ```
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml run rake db:migrate
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml run rake db:seed
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml run rake db:migrate RAILS_ENV=test
+docker-compose run rake db:migrate
+docker-compose run rake db:seed
+docker-compose run rake db:migrate RAILS_ENV=test
 ```
 
 Run rails commands (default RAILS_ENV=development):
 ```
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml run rails c
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml run rails c RAILS_ENV=docker_test
+docker-compose run rails c
+docker-compose run rails c RAILS_ENV=docker_test
 ```
 
 Launching the Application
 -------------------------
-You can build and launch the application using the following command:
+You can build and launch the application using the following command (**Do
+Note** run this if you have a docker-compose.override.yml in the directory):
 ```bash
 docker-compose up -d
 ```
 If you have not already migrated your migrations, you will then need to run:
 ```bash
-docker-compose run -f docker-compose.yml -f docker-compose.dev.yml rake db:migrate
+docker-compose run rake db:migrate
 ```
 
 A shell script has been placed in this directory to make it easy for anyone
