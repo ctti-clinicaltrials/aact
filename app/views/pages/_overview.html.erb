@@ -2,7 +2,7 @@
   <h2>Overview</h2>
   <h4 id="background">Background</h4>
   <p>
-    The FDA and Duke co-founded the Clinical Trials Transformation Initiative (CTTI) to identify and promote practices that will increase the quality and efficiency of clinical trials. To this end, CTTI conceived, developed and supports AACT2, a relational database that aggregates the content of ClinicalTrials.gov and makes the information freely available to the public. Our aim is to lower the bar to access clinical trial data, and encourage patients, researchers, and healthcare partners to use this information.
+    The FDA and Duke co-founded the Clinical Trials Transformation Initiative (CTTI) to identify and promote practices that will increase the quality and efficiency of clinical trials. To this end, CTTI conceived, developed and supports AACT, a relational database that aggregates the content of ClinicalTrials.gov and makes the information freely available to the public. Our aim is to lower the bar to access clinical trial data, and encourage patients, researchers, and healthcare partners to use this information.
   </p>
 
   <h4 id="objectives">Objectives</h4>
@@ -10,23 +10,23 @@
   </p>
   <h4 id="easyAccess">Easy to Access</h4>
 
-  <p><i>Direct Connect: </i>AACT2 is a relational database in the cloud; it can be directly accessed via freely available tools such as pgAdmin, RStudio and Tableau Public, or other popular proprietary products such as SAS and Toad.  For many of these tools, access is simply a matter of entering connection credentials and the database is immediately accessible to query.  Click <a href="#access">here</a> for instructions about how to access the database.
+  <p><i>Direct Connect: </i>AACT is a relational database in the cloud; it can be directly accessed via freely available tools such as pgAdmin, RStudio and Tableau Public, or other popular proprietary products such as SAS and Toad.  For many of these tools, access is simply a matter of entering connection credentials and the database is immediately accessible to query.  Click <a href="#access">here</a> for instructions about how to access the database.
   </p>
 
-  <p><i>Replication: </i>AACT2 uses postgres, an open-source database platform, making it free and easy to download a copy.  Postgres is well established and has a relatively low bar of entry. It is free, documentation/online support is plentiful, and the platform is light-weight and designed for this type of project. Click <a href="#replicate">here</a> for instructions about how to replicate the database.
+  <p><i>Replication: </i>AACT uses postgres, an open-source database platform, making it free and easy to download a copy.  Postgres is well established and has a relatively low bar of entry. It is free, documentation/online support is plentiful, and the platform is light-weight and designed for this type of project. Click <a href="#replicate">here</a> for instructions about how to replicate the database.
   </p>
 
-  <p><i>Snapshots: </i>AACT2 provides links to database snapshots and sets of csv files taken at monthly intervals. A database snapshot can be downloaded, unpacked, and accessed via a postgres client tool.  Csv packages can be downloaded, unpacked, and used as a data source for analytic tools such as SAS and R.  Click <a href="#csv">here</a> for instructions.
+  <p><i>Snapshots: </i>AACT provides links to database snapshots and sets of csv files taken at monthly intervals. A database snapshot can be downloaded, unpacked, and accessed via a postgres client tool.  Csv packages can be downloaded, unpacked, and used as a data source for analytic tools such as SAS and R.  Click <a href="#csv">here</a> for instructions.
   </p>
 
 
   <h4 id="easyUnderstand">Easy to Understand</h4>
   <p>
-    CTTI has attempted to make the aggregated content of ClinicalTrials.gov as intuitive and easy to interpret as possible.  Each study is retrieved from the ClinicalTrials.gov API as XML, then parsed and saved as a related set of rows in the 45 tables that make up the AACT2 database. The structure of the database has been designed to balance several important criteria with the aim to make it easy to understand while remaining absolutely true to the data saved to ClinicalTrials.gov. The criteria considered when designing the database can be viewed here.  The database schema is available <a href="#">here</a> (Link to ER Diagram).
+    CTTI has attempted to make the aggregated content of ClinicalTrials.gov as intuitive and easy to interpret as possible.  Each study is retrieved from the ClinicalTrials.gov API as XML, then parsed and saved as a related set of rows in the 45 tables that make up the AACT database. The structure of the database has been designed to balance several important criteria with the aim to make it easy to understand while remaining absolutely true to the data saved to ClinicalTrials.gov. The criteria considered when designing the database can be viewed here.  The database schema is available <a href="#">here</a> (Link to ER Diagram).
   </p>
 
   <h4 id="completeSet">Presented as a Complete & Accurate Data Set</h4>
-  <p>The process that pulls data into the AACT2 database from ClinicalTrials.gov includes a set of validation and sanity checks. <%= link_to 'Click here', sanity_check_path %> to see the a report of our database statistics.</p>
+  <p>The process that pulls data into the AACT database from ClinicalTrials.gov includes a set of validation and sanity checks. <%= link_to 'Click here', sanity_check_path %> to see the a report of our database statistics.</p>
 
   <h4 id="analyze">Available for Analysis & Visualization</h4>
   <p>CTTI encourages every type of professional, careful, creative analysis of the AACT database content and sincerely hopes people from around the world will find ways to analyze this information and derive useful findings using analytical and visualization tools.</p>
