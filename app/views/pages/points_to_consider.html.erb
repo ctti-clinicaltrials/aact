@@ -2,7 +2,7 @@
 <div class="wrap">
 
   <div class="basicHero">
-    <h1>Points to consider for statistical analysis using AACT</h1>
+    <h1>Guide to Using Aggregate Analysis of ClinicalTrials.gov (AACT) for Statistical and Aggregate Analysis</h1>
 
   </div>
 
@@ -12,19 +12,18 @@
 <section class="pointsToConsider">
   <div class="wrap">
 
-    <h2>Introduction</h2>
+    <h2>What is AACT?</h2>
 
-    <p>  This document suggests points for investigators to consider when planning a statistical analysis of the database for Aggregate Analysis of ClinicalTrials.gov (AACT). It is not intended to be a comprehensive guide for using or analyzing data in AACT. AACT includes both the study registration fields and the basic results and adverse events reporting fields.</p>
+    <p>AACT is the database for Aggregate Analysis of ClinicalTrials.gov. Version 2 of AACT is a postgreSQL relational database containing information about clinical studies that have been been registered at ClinicalTrials.gov. AACT includes all of the protocol and results data elements for studies that are publicly available at ClinicalTrials.gov. Content is downloaded daily from ClinicalTrials.gov and loaded into AACT.</p>
 
     <p> <a href="http://ec2-52-87-233-209.compute-1.amazonaws.com/aact_points_to_consider.docx" download>Download a word document</a> containing the   information on this page.</p>
 
-    <h2>Population: studies likely to be represented</h2>
+    <h2>What population of studies is represented in AACT? </h2>
 
-    <p>Virtually any clinical study may be registered at ClinicalTrials.gov and therefore be included in AACT. However, the registry is more likely to include certain types of study relative to others. These biases are summarized by Zarin et al. [1]:</p>
+    <p>All studies registered and publicly available at ClinicalTrials.gov are included in AACT. The ClinicalTrials.gov was released for the registration of studies on February 29, 2000. The registry accepts interventional studies in which participants are assigned according to a research protocol to receive specific interventions, as well as observational studies. It also includes Expanded Access records which describe the procedure for obtaining an experimental drug or device for patients who are not adequately treated by existing therapy and who are unable to participate in a controlled clinical study.</p>
 
-    <p>“… [T]here are undoubtedly trials that are not registered in ClinicalTrials.gov or any other publicly accessible registry. Coverage in ClinicalTrials.gov is likely to be most complete for trials of drugs or devices that are sponsored by U.S.-based or multinational organizations (e.g., major pharmaceutical companies).”</p>
-
-    <p>The ClinicalTrials.gov trial registry was released for the registration of studies on February 29, 2000. The registration of studies and reporting of results and adverse events has been mandated to a large extent by requirements (both legal and institutional) implemented as part of the Food and Drug Administration Amendments Act (FDAAA), as well as by requirements introduced by the International Committee of Medical Journal Editors (ICMJE) and the European Medicines Agency (EMA) regarding registration of clinical studies. Table 1 describes the scope of these requirements.</p>
+    <p>The registration of studies and reporting of results and adverse events has been mandated to a large extent by requirements (both legal and institutional) implemented as part of the Food and Drug Administration Amendments Act (FDAAA), as well as by requirements introduced by the International Committee of Medical Journal Editors (ICMJE) and the European Medicines Agency (EMA) regarding registration of clinical studies. Table 1 describes the scope of these requirements.
+Table 1: Scope of Interventional Studies Covered by Major Reporting Policiesxxxxxxx</p>
 
     <p>Based on these requirements, the following are examples of characteristics that may influence the likelihood that a study is included in the ClinicalTrials.gov registry:</p>
 
@@ -36,64 +35,66 @@
       <li>Studies involving a drug or device that is manufactured in the United States are more likely to be registered than studies involving a drug or device manufactured outside of the United States.</li>
       <li>Studies subject to an IND or IDE are more likely to be registered (i.e., if the study is intended to support approval for marketing in the United States).</li>
       <li>Phase 1 adult drug studies or small feasibility studies of devices are less likely to be registered.</li>
-      Studies in pediatric populations may be more likely to be registered.
+      <li>Studies in pediatric populations may be more likely to be registered.</li>
     </ul>
 
-    <h2>Duplicate records</h2>
+    <h2>How are unique studies identified in AACT?</h2>
 
-    <p>Studies registered at ClinicalTrials.gov are identified by a unique identifier, the NCT_ID. Because of the quality assurance measures applied by ClinicalTrials.gov staff on registration entries, we can be reasonably certain that each study (i.e., NCT_ID) entered in ClinialTrials.gov refers to a unique clinical study. However there may be a small number of duplicate records within the database [6].</p>
+    <p>Studies registered at ClinicalTrials.gov are identified by a unique identifier, the NCT_ID.  Because of the quality assurance measures applied by ClinicalTrials.gov staff on registration entries, we can be reasonably certain that each study (i.e., NCT_ID) entered in ClinialTrials.gov refers to a unique clinical study, however a small number of duplicate records may exist in the database [6].  xxxxxxxx</p>
 
-    <h2>Types of questions that can be investigated using the ClinicalTrials.gov data</h2>
+    <h2>What types of questions can be investigated using ClinicalTrials.gov data?</h2>
 
-    <p>The version of the ClinicalTrials.gov database that has been made publicly available through the CTTI and the DCRI contains study registration and results records. The registration records describe the study characteristics, including sponsor, disease condition, type of intervention, participant eligibility, anticipated enrollment, study design, locations, and outcome measures. Summary results and adverse events data are included in the current version of the AACT database. The article by Tse et al [8] may be helpful in understanding the components of the basic results that are reported at ClinicalTrials.gov.</p>
+    <p>The AACT database contains both ‘study protocol’ and ‘results data’ elements. The protocol (or registration) records describe the study characteristics including sponsor, disease condition, type of intervention, participant eligibility, anticipated enrollment, study design, locations, and outcome measures. Summary results data elements including participant flow, baseline characteristics, outcome results, and frequencies of serious and other adverse events are included in AACT.  The article by Tse et al [8] xxxxx[link here] may be helpful in understanding the components of the basic results that are reported at ClinicalTrials.gov.</p>
 
-    <h2>Using the study registration data</h2>
+    <h3>Using the study registration data:</h3>
 
     <p>We anticipate that investigators will use the current database to explore the characteristics of selected subsets of clinical studies (e.g., typical enrollment for a phase 3 study in breast cancer patients), and to compare and contrast these characteristics across different subgroups of studies (e.g., sponsor; device versus drug intervention; or prevention versus treatment).</p>
 
-    <h2>Using the study results and adverse events data</h2>
+    <h2>Using the study results and adverse events data:</h2>
 
-    <p>Researchers may be able to use the basic results and adverse events summary data reported at ClinicalTrials.gov for meta-analysis or systematic review (e.g., to compare the efficacy and safety of different types of diabetes therapies). However because only a small subset of studies registered in ClinicalTrials.gov are required to report results, the results data from ClinicalTrials.gov will most likely be a useful supplement to traditional data sources used for meta-analysis or systematic review, such as published and unpublished manuscripts and abstracts. Standard techniques for valid meta-analysis or systematic review (e.g., PRISMA statement [7]) should be used when determining how to appropriately identify and aggregate summary data gleaned from ClinicalTrials.gov and/or literature.</p>
+    <p>Researchers may be able to use the basic results and adverse events summary data reported at ClinicalTrials.gov for meta-analysis or systematic review (e.g., to compare the efficacy and safety of different types of diabetes therapies).  However, because only a small subset of studies registered at ClinicalTrials.gov are required to report results, the results data from ClinicalTrials.gov will most likely be a useful supplement to traditional data sources used for a meta-analysis or systematic review, such as published and unpublished manuscripts and abstracts, rather than the core data source. Standard techniques for valid meta-analysis or systematic review (e.g., PRISMA statement xxxxxx  [7]) should be used when determining how to appropriately identify and aggregate summary data gleaned from ClinicalTrials.gov and/or literature.</p>
 
-    <h2>Interpretation of variables</h2>
+    <h2>How should data elements be interpreted?</h2>
 
-    <p>When interpreting the study characteristics collected for a study registered with ClinicalTrials.gov, investigators are encouraged to refer to 2 NLM sites that provide authoritative definitions for the data element: study registration data elements and basic results data elements. Interpretation of a variable may depend on:</p>
+    <p>When interpreting the data elements of a ClinicalTrials.gov study, you’re encouraged to refer to the authoritative definitions for data elements provided by the National Library of Medicine (NLM): xxxxxxxstudy registration data elements and basic results data elements.  Attribute interpretation may depend on:</p>
 
     <ul>
-      <li>How the question was phrased. For example, the definition of “Sponsor” does not necessarily imply that the sponsor is the agency paying for the clinical study, as might be expected from the common use of the term.</li>
-      <li>Whether the respondent can enter a free-text answer to a specific question, or is restricted to a fixed set of possible responses. **Note that the definition of a data element and the available responses may have changed over time. The most recent data element definitions are available at ClinicalTrials.gov Protocol Data Element Definitions Study Data Site and Results Data Site. A history of changes through September 2011 for the study variable definitions can be viewed in the Comprehensive Data Dictionary 2011 available <a href="http://ctti-clinicaltrials.org/files/documents/AACTcomprehensiveDataDictionaryV3_2011.xlsx" download>here</a>.</li>
-      <li>Whether there is dependence between fields. Certain data elements need to be interpreted together with other data elements. For example, data elements such as enrollment date and completion date have a companion data element that indicates whether the value in the first field is an anticipated or actual value.</li>
+      <li><b>How the question was phrased.</b> For example, the definition of “Sponsor” does not necessarily imply that the sponsor is the agency paying for the clinical study, as might be expected from the common use of the term.</li>
+      <li><b>Whether the respondent can enter a free-text answer to a specific question, or is restricted to a fixed set of possible responses.</b> **Note that the definition of a data element and the available responses may have changed over time. The most recent data element definitions are available at ClinicalTrials.gov Protocol Data Element Definitions Study Data Site and Results Data Site. A history of changes through September 2011 for the study variable definitions can be viewed in the Comprehensive Data Dictionary 2011 available <a href="http://ctti-clinicaltrials.org/files/documents/AACTcomprehensiveDataDictionaryV3_2011.xlsx" download>here</a>.</li>
+      <li><b>Whether there is dependence between fields.</b> Certain data elements need to be interpreted together with other data elements. For example, data elements such as enrollment date and completion date have a companion data element that indicates whether the value in the first field is an anticipated or actual value.</li>
     </ul>
 
     <p class="note">Note that the study record may be updated by the owner of the record at any time. Fields such as enrollment type may be changed from anticipated to actual, indicating that the value entered now reflects the actual rather than the planned enrollment. When data are downloaded, the result is a snapshot of the database at that particular time point, and the history of changes made to the field is lost.</p>
 
-    <h2>Data completeness and accuracy</h2>
+    <h2>How complete and accurate are the data?</h2>
 
     <p>The presence of a record in a dataset indicates that information was submitted to ClinicalTrials.gov for at least one variable in that data set before the data were downloaded from ClinicalTrials.gov. Some data elements are more/less likely than others to have missing information, depending on several known factors. For example:</p>
 
     <ul>
-      <li>The data element being required by the FDAAA and/or the ClinicalTrials.gov website. Refer to data element definitions and the comprehensive data dictionary for specifics regarding these requirements. Requirements may have changed over the history of the ClincalTrials.gov database.</li>
-      <li>The date when the data element was introduced. Not all data elements were included in the database at the time of its launch in 2000, but were added later. Studies registered after FDAAA when into effect must meet more requirements than studies registered earlier in the life of ClinicalTrials.gov.</li>
-      <li>The branching structure of questions. The availability of certain questions to the person submitting data depends on answers to previous questions. For example, questions about bio-specimen retention are only available for observational studies. Therefore, interventional studies should be excluded when analyzing data elements pertaining to bio-specimens.</li>
-      <li>The list of possible answers for data elements with a fixed set of responses. For example, questions that include “N/A” as a possible response are likely to have fewer missing values than questions that do not provide a “N/A” response.</li>
+      <li><b>The data element being required by the FDAAA and/or the ClinicalTrials.gov website.</b> Refer to data element definitions xxxxxxxxxxxfor specifics regarding these requirements. Requirements may have changed over the history of the ClincalTrials.gov database.</li>
+      <li><b>The date when the data element was introduced.</b> Not all data elements were included in the database at the time of its launch in 2000, but were added later. Studies registered after FDAAA when into effect must meet more requirements than studies registered earlier in the life of ClinicalTrials.gov.</li>
+      <li><b>The branching structure of questions.</b> The availability of certain questions to the person submitting data depends on answers to previous questions. For example, questions about bio-specimen retention are only available for observational studies. Therefore, interventional studies should be excluded when analyzing data elements pertaining to bio-specimens.</li>
+      <li><b>The list of possible answers for data elements with a fixed set of responses.</b> For example, questions that include “N/A” as a possible response are likely to have fewer missing values than questions that do not provide a “N/A” response.</li>
     </ul>
 
-    <p>“Missingness” of data may also depend on other unknown factors. However, regardless of the cause of missing data, users of ClinicalTrials.gov datasets are encouraged to specify clearly how missing values and “N/A” values are handled in their analysis. For example, are studies with missing values excluded from statistics summarizing that data element, or are they included? In some cases, missing values may be imputed based on other fields (e.g., if a study has a single arm, it cannot employ a randomized design). In other cases, a sensitivity analysis may be appropriate for exploring the effect of different assumptions about the missing values on analysis results.</p>
+    <p>“Missingness” of data may also depend on other unknown factors. However, regardless of the cause of missing data, users of ClinicalTrials.gov data sets are encouraged to specify clearly how missing values and “N/A” values are handled in their statistical analysis. For example, are studies with missing values excluded from statistics summarizing that data element, or are they included? In some cases, missing values may be imputed based on other fields (e.g., if a study has a single arm, it cannot employ a randomized design).</p>
 
     <p>Although the FDAAA and other requirements do not apply to all fields in the database, users might consider including only studies registered post-FDAAA (September 2007), or studies with a primary completion date after December 2007. This will help to limit the number of missing values across many data elements. Users could also consider annotating data elements used in analysis according to whether or not they are FDAAA-required fields, if the user believes this might affect the extent of missing data.</p>
 
-    <p>Even when the data elements for a particular study are complete, users are cautioned to have modest expectations about the accuracy of the data. In particular, results data posted at ClinicalTrials.gov may not be subject to the same level of critical scrutiny as results published in a peer-reviewed journal. As described by Zarin and colleagues [1], ClinicalTrials.gov has implemented several measures to assure data quality. For example, staff applies automated business rules that alert providers when required data are missing or are internally inconsistent. In addition, some manual review is performed, and a record may be returned to the data provider if revision is required. However, ClinicalTrials.gov staff cannot always validate the accuracy of submitted data (e.g., against an independent source). As Zarin et al. note, “… individual record review has inherent limitations, and posting does not guarantee that the record is fully compliant with either ClinialTrials.gov or legal requirements” [1].</p>
+    <p>Even when the data elements for a particular study are complete, users are cautioned to have modest expectations about their accuracy. In particular, results data posted at ClinicalTrials.gov may not be subject to the same level of critical scrutiny as results published in a peer-reviewed journal. As described by Zarin and colleagues [1]xxxxx, ClinicalTrials.gov has implemented several measures to ensure data quality. For example, NLM staff apply automated business rules that alert data-providers when required elements are missing or inconsistent. In addition, some manual review is performed by NLM, and a record may be returned to the data-provider if revision is required.  However, ClinicalTrials.gov staff cannot always validate the accuracy of submitted data (e.g., against an independent source).  As Zarin et al. note, “… individual record review has inherent limitations, and posting does not guarantee that the record is fully compliant with either ClinialTrials.gov or legal requirements” [1]xxxxx.</p>
 
-    <p>During our own analysis of the ClinicalTrials.gov database, several potentially unrealistic values for numeric data elements were encountered, such as an anticipated enrollment of several million subjects. When aggregate summaries of numeric data are provided, analysts are encouraged to use measures that are robust to outliers, such as medians and interquartile ranges, rather than measures such as means ± SD, which could be strongly influenced by unusually large or small values. Users may also wish to run their own consistency checks (e.g., to compare whether the number of arm descriptions provided for the study matches the data element that quantifies the number of arms in the study design).</p>
+    <p>During our own analysis of the ClinicalTrials.gov database, several extreme values for numeric data elements were encountered, such as an anticipated enrollment of several million subjects. Before proceeding with aggregate analysis, users are encouraged to review data distributions in order to select appropriate analysis methods, and to run their own consistency checks (e.g., to compare whether the number of arm descriptions provided for the study matches the data element that quantifies the number of arms in the study design) as needed.</p>
 
-    <h2>AACT is a snapshot at one time point</h2>
+    <h2>Downloaded AACT is a snapshot at one point in time</h2>
 
-    <p>The data downloaded from ClinicalTrials.gov and stored in the database for Aggregate Analysis of ClinicalTrials.gov (AACT) is a snapshot of the information that was publicly available at ClinicalTrials.gov on the download date. Data submitters may update their ClinicalTrials.gov study record at any time but a particular version of AACT only captures the information present at one point in time. Although changes to a study are stored in an archive history at ClinicalTrials.gov, these changes are not captured in a particular version of AACT. A user may find that information contained in AACT differs from information currently listed on ClinicalTrials.gov.</p>
+    <p>The data downloaded from ClinicalTrials.gov and stored in AACT is a snapshot of the information that was publicly available at ClinicalTrials.gov on the download date.  Data submitters may update their ClinicalTrials.gov study record at any time but a particular instance of AACT only captures the information present at one point in time.  Although changes to a study are stored in an archive history at ClinicalTrials.gov, these changes are not currently captured in a particular version of AACT. </p>
+
+<h3>Should we alter this to reflect how the person may access AACT? If they download it is a snapshot on that date. If the access directly - it is up to date as of the previous day? Or should it be removed and a blurb be placed somewhere else on the AACT2 site?</h3>
 
 
     <h2>Use of appropriate statistical inference</h2>
 
-    <p>If the AACT results data are to be used to support a meta-analysis or systematic review of the safety or efficacy of a particular intervention, then standard methods of meta-analysis or systematic review (e.g., the PRISMA statement [7]) should be used to appropriately account for study-to-study variability and other sources of uncertainty or bias. We recommend that authors consider the following points when deciding whether to report p-values, confidence intervals, or other probability-based inference when performing aggregate analysis of the ClinicalTrials.gov database.</p>
+    <p>If the AACT results data are to be used to support a meta-analysis or systematic review of the safety or efficacy of a particular intervention, then standard methods of meta-analysis or systematic review (e.g., the PRISMA statementxxxxxx[7]) should be used to appropriately account for study-to-study variability and other sources of uncertainty or bias. We recommend that authors consider the following points when deciding whether to report p-values, confidence intervals, or other probability-based inference when performing aggregate analysis of the ClinicalTrials.gov database:  </p>
 
     <h3>Is the data-generating mechanism random?</h3>
     <p>Methods of statistical inference such as p-values and 95% confidence intervals are most appropriate when used to quantify the uncertainty of estimates or comparisons due to a random process that generates the data. Examples of such processes include selection of a random sample of subjects from a broader population, randomly assigning a treatment to a cohort of subjects, or a coin toss about which we aim to predict future results.</p>
@@ -106,44 +107,53 @@
 
     <h2>How can I objectively identify important differences?</h2>
 
-    <p>In practice, p-values and confidence intervals are often employed even when there is no random data generating process in order to help highlight differences that are larger than “noise” (e.g., authors may want to highlight differences with a p-value < .001). While this practice may not have a strong foundation in statistical philosophy, we acknowledge that many audiences (e.g., journal peer reviewers) may demand p-values because they appear to provide objective criteria for identifying larger-than-expected signals in the data. While we don’t encourage reporting of p-values for this purpose, we do encourage analysts to specify objective criteria for evaluating signals in the data. For example,</p>
+    <p>In practice, p-values and confidence intervals are often employed even when there is no random data generating process to highlight differences that are larger than “noise” (e.g., authors may want to highlight differences with a p-value < .001).  While this practice may not have a strong foundation in statistical philosophy, we acknowledge that many audiences (e.g., journal peer reviewers) may demand p-values because they appear to provide objective criteria for identifying larger-than-expected signals in the data.  While we don’t encourage reporting of p-values for this purpose, we do encourage analysts to specify objective criteria for evaluating signals in the data.  Examples are provided:</p>
 
     <p>a) Prior to examining the data, specify comparisons of major interest, or quantities to be estimated. </p>
 
-    <p>b) Determine the magnitude of differences that would have practical significance. E.g., a 25% difference in source of funding between studies of two pediatric conditions, or a difference in enrollment of 100 participants.</p>
+    <p>b) Determine the magnitude of differences that would have practical significance.  (e.g., a 25% difference in source of funding between studies of 2 pediatric conditions, or a difference in enrollment of 100 participants).  </p>
 
-    <p>c) Determine appropriate formulas for quantifying differences between groups or summarizing population variability. This quantification could take account of the observed difference, variability in the data, and the number of observations. For example,</p>
+    <p>c) Determine appropriate formulas for quantifying differences between groups or summarizing population variability.  This quantification could take into account of the observed difference, variability in the data, and the number of observations.  Examples are provided:</p>
 
     <ul>
       <li>When summarizing a continuous characteristic such as enrollment, the analyst might choose to report the median and 5th to 95th percentiles.</li>
-      <li>To quantify signal to noise, the analyst could calculate a t-statistic or a chi-squared statistic (without the p-value) and rank differences between two groups based on these values. The analyst might pre-specify a threshold (e.g., absolute value of 3) to flag notable differences.</li>
+      <li>To quantify signal to noise, the analyst could calculate a t-statistic or a chi-squared statistic (without the p-value) and rank differences between 2 groups based on these values.  The analyst might pre-specify a threshold (e.g., absolute value of 3) to flag notable differences.</li>
     </ul>
 
-    <h2>Other tips</h2>
+    <h2>Specific tips for working with the AACT database</h2>
 
     <ul>
-      <li>Users are encouraged to refer to the Schema diagram in the Comprehensive Data Dictionary to determine the relationships between the different data sets that comprise AACT. These relationships determine how data sets may be merged together.</li>
+      <li>Users are encouraged to use the Schema Diagram xxxxx to determine relationships between different AACT tables/datasets (referred to as ‘datasets’ on this page). These relationships determine how datasets may be linked or merged together in software such as SAS & SQL.</li>
 
-      <li>Each table contains the NCT_ID which uniquely identifies the study related to the data. Every row in every study-related table is linked to its study through this NCT_ID.</li>
+      <li>The NCT_ID uniquely identifies each study; it serves as the primary key in the STUDIES dataset.  In other words, each record in the STUDIES dataset has a unique NCT_ID value.  NCT_ID also appears in every dataset related to STUDIES so that every record in every dataset can link back to the study to which it refers.</li>
 
-      <li>The MESH_THESAURUS table does not have a formal relationship with AACT tables. The MESH_THESAURUS is provided so that users may look up a particular MeSH term (MESH_TERM) in the thesaurus, for example, to determine the position of this term in the MeSH trees hierarchy (MESH_ID). Information in the MESH_THESAURUS table is periodically updated from NLM’s MeSH Site. For more information on MeSH, please refer to the section below titled ‘MeSH terms in CONDITION_BROWSE and INTERVENTION_BROWSE’ and to NLM’s MeSH Site.</li>
+      <li>Every dataset other than STUDIES has a primary key named ‘id’, which provides an integer that uniquely identifies each row in that dataset. (The STUDIES dataset uses ‘NCT_ID’ instead of ‘id’  as the unique identifier for each row.)</li>
+			<li>To link dataset information to the study to which it refers, you simply match the NCT_IDs.  For example, every record in the CONDITIONS dataset with an NCT_ID of ‘NCT0000001’ refers to the study with the NCT_ID: ‘NCT0000001’ (saved in STUDIES.nct_id).  The CONDITIONS dataset may contain multiple records with an NCT_ID of  ‘NCT0000001’ which means this study was defined in ClinicalTrials.gov as being associated with the conditions listed in CONDITIONS with that NCT_ID.</li>
+			<li>Information in several datasets are also related to information in other datasets.  In this case, the dataset that belongs to another dataset will include a foreign key that identifies the record to which it belongs. Foreign keys are always named according to a simple rule:  the singular name of the related dataset followed by: ‘_id’.   For example, FACILITY_CONTACTS includes a data element: facility_id which is the foreign key to FACILITY.id</li>
+			<li> Each record’s foreign_key (ie. facility_id) contains the value of the unique identifier (id) of the record in the other dataset to which it belongs. For example, a facility may have multiple contacts.  To find the contacts for a particular facility, look for the records in FACILITY_CONTACTS where the value in facility_id is same as the value in id for that facility in FACILITIES.  In short, datasets are related to each other with this pattern: dataset1.<dataset2_name>_id = dataset2.id </li>
+
     </ul>
+		<p>Example:</p>
+		<p>facilities.id = contacts.facility_id  (this finds  all contacts for a facility)</p>
+		<p>or inversely</p>
+		<p>contacts.facility_id = facilities.id   (this finds the facility for a particular contact)</p>
 
-    <h2>Use of the GROUPS table</h2>
+		<h2>Information about trial sites (FACILITIES and COUNTRIES) </h2>
+		<p> Information about organizations (trial sites) where the study is/was conducted is stored in the FACILITIES dataset.  This is a snapshot of the facility information that was included in the study record on the date that information was downloaded from ClinicalTrials.gov.  Naturally, study sites initiated after ClinicalTrials.gov data were downloaded to AACT are not included in AACT.</p>
+		<p>AACT also includes a COUNTRIES dataset, which contains one record per unique country per study. Rows in the COUNTRIES dataset come from two sources:</p>
+		<ul>
+			<li>Countries where study facilities are located as determined by an NLM algorithm that identifies the set of unique countries associated with a study; these are stored in the COUNTRIES dataset with the flag removed=false. </li>
+			<li>In some cases, ClinicalTrials.gov data submitters remove sites from the study record.  Removed sites do not appear in the FACILITIES dataset. If all of a country’s sites have been removed from a study record, the NLM algorithm creates a ‘Removed Country’ record. In AACT, this record is stored in the COUNTRIES dataset with removed=true. </li>
 
-    <p>The GROUPS table contains records that describe the arms or groups in the clinical study. For example a two arm study may assign participants to one of two study arms: the first in which participants receive placebo drug in addition to standard of care, and the second in which participants receive an experimental drug in addition to standard of care. Information about arms or groups is provided by the data submitter when a study is first registered with ClinicalTrials.gov. Once the study is completed, results data may be submitted to ClinicalTrials.gov. At that time results will be described for each arm or group (and potentially also for the overall study population), along with a description of the arm or group.</p>
+			<p>The reasons sites are removed from the FACILITIES dataset are varied but unknown.  A site may have been removed because it was never initiated or because it was entered with incorrect information.  The recommended action for sites that have completed or have terminated enrollment is to change the enrollment status to “Completed” or “Terminated”; however, such sites are sometimes deleted from the study record by the responsible party.  Data analysts may consider using Countries where  removed=TRUE to supplement the information about trial locations that is contained in FACILITIES, particularly for studies that have completed enrollment and have no records in FACILITIES.</p>
 
-    <p>Users may wish to merge records from the GROUPS table with records in one or more of the results data sets, for example to see the age distribution of participants in the Placebo arm. This can be achieved by joining the required tables (e.g., baseline_measures with groups) by the NCT_ID & ctgov_group_enumerator.</p>
+			<p>Users who are interested in identifying countries where participants are being/were enrolled may use either the FACILITIES or COUNTRIES dataset (where COUNTRIES.removed=false) with equivalent results.</p>
 
-    <p>Information about trial sites (FACILITIES, REMOVED_COUNTRIES, and LOCATION_COUNTRIES)
-    In some cases, data submitters remove sites from the study record. If a site was removed before the data were downloaded then it is not included in the FACILITIES dataset. If all sites in a country have been removed from the study record for a particular NCT_ID then an algorithm run at the National Library of Medicine (NLM) creates a record for that country and NCT_ID in the REMOVED_COUNTRIES table. The reasons why sites are removed from the FACILITIES table are varied but unknown. For example, a site may have been removed because it was never initiated or because it was entered with incorrect information. The recommended action for sites that have completed or terminated enrollment is to change the enrollment status to “Completed” or “Terminated”, however, such sites are sometimes deleted from the study record by the responsible party. Data analysts may consider using information from the REMOVED_COUNTRIES dataset to supplement the information about trial locations that is contained in FACILITIES, particularly for studies that have completed enrollment and have no records in FACILITIES.</p>
 
-    <p>The Countries table provides unique instances of Countries identified for a study in Facilities The COUNTRIES table is created by a National Library of Medicine (NLM) algorithm from the FACILITIES table. This algorithm identifies the unique facility countries associated with each NCT_ID in the FACILITIES table and stores these countries in the COUNTRIES table for each NCT_ID. In general, all countries listed in the FACILITIES table for a particular NCT_ID were also listed in the COUNTRIES table for that NCT_ID, and vice versa. Users who are interested in identifying countries where participants are being/were enrolled may use either the FACILITIES or the COUNTRIES tables with equivalent results.</p>
+		<h2>MeSH terms in BROWSE_CONDITIONS and BROWSE_INTERVENTIONS</h2>
+    <p>When data submitters provide information to ClinicalTrials.gov about a study, they’re encouraged to use Medical Subject Heading (MeSH) terminology for interventions, conditions, and keywords.  The BROWSE_CONDITIONS and BROWSE_INTERVENTIONS datasets contain MeSH terms generated by an algorithm run by NLM. The NLM algorithm is re-run nightly on all studies in the ClinicalTrials.gov database, and sources the most up-to-date information in the study record, the latest version of the algorithm, and the version of the MeSH thesaurus in use at that time.</p>
 
-    <b>MeSH terms in CONDITION_BROWSE and INTERVENTION_BROWSE</b>
-    <p>When data submitters provide information about studies at ClinicalTrials.gov they are encouraged to use Medical Subject Heading (MeSH) terminology in fields such as interventions, conditions, and keywords. The CONDITION_BROWSE and INTERVENTION_BROWSE tables contain relevant MeSH terms generated by an NLM algorithm that may be used to supplement the information about study conditions and interventions supplied by the data submitter. The CONDITION_BROWSE and INTERVENTION_BROWSE tables contain Medical Subject Heading (MeSH) terms generated by an algorithm run by the National Library of Medicine (NLM). The NLM algorithm is re-run nightly on all studies in the ClinicalTrials.gov database, and sources the most up-to-date information in the study record, the latest version of the algorithm, and the version of the MeSH thesaurus in use at that time.</p>
-
-    <b>“Delayed Results” data elements available in AACT</b>
+		<h2>>“Delayed Results” data elements available in AACT</h2>
 
     <p>A responsible party may delay the deadline for submitting results information to ClinicalTrials.gov if one of the following two certification conditions applies to the trial:</p>
 
@@ -161,16 +171,15 @@
     <h2>References</h2>
 
     <ol>
-      <li>Zarin, D. A., Tse, T. T., Williams, R. J., Califf, R. M., and Ide, N. C. (2011). <a href="">The ClinicalTrials.gov results database – update and key issues</a>. N Engl J Med 364: 852–60.</li>
-      <li><a href="">Food and Drug Administration Amendments Act of 2007</a>. Public Law 110-95.</li>
-      <li>Laine, C., Horton R., DeAngelis C.D., et al. <a href="">Clinical trial registration – looking back and moving ahead</a>. N Engl J Med 356: 2734–6.</li>
-      <li><a href="">Communication from the Commission regarding the guideline on the data fields contained in the clinical trials database provided for in Article 11 of Directive 2001/20/EC to be included in the database on medicinal products provided for in Article 57 or Regulation (EC) No 726/2004</a>. In: European Commission, ed. Official Journal of the European Union, 2008. (2008/C 168/02.)</li>
-      <li><a href="">Guidance on the information concerning paediatric clinical trials to be entered into the EU Database on Clinical Trials (EudraCT) and on the information to be made public by the European Medicines Agency (EMEA), in accordance with Article 41 of Regulation (EC) No 1901/2006</a>. In: European Commission, ed. Official Journal of the European Union, 2009. (2009/C 28/01.)</li>
-      <li>Zarin, D. A., Ide, N. C., Tse, T. et al. (2007). <a href="">Issues in the registration of clinical trials</a>. JAMA 297: 2112—2120.</li>
-      <li>Moher, D., Liberati, A., Tetzlaff, J. and Altman, D. G. (for the PRISMA Group)(2009). <a href="">Preferred reporting items for systematic reviews and meta-analyses: the PRISMA statement</a>, BMJ 339: 332—336.</li>
-      <li>Tse, T., Williams, R. J., Zarin, D. A. (2009). <a href="">Reporting “basic results” in ClinicalTrials.gov</a>. CHEST 136: 295—303.</li>
+      <li>Zarin, D. A., Tse, T. T., Williams, R. J., Califf, R. M., and Ide, N. C. (2011). <a href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article">The ClinicalTrials.gov results database – update and key issues</a>. N Engl J Med 364: 852–60.</li>
+      <li><a href="http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm">Food and Drug Administration Amendments Act of 2007</a>. Public Law 110-95.</li>
+      <li>Laine, C., Horton R., DeAngelis C.D., et al. <a href="http://www.nejm.org/doi/full/10.1056/NEJMe078110#t=article">Clinical trial registration – looking back and moving ahead</a>. N Engl J Med 356: 2734–6.</li>
+      <li><a href="http://ec.europa.eu/health/files/eudralex/vol-10/2008_07/c_16820080703en00030004_en.pdf">Communication from the Commission regarding the guideline on the data fields contained in the clinical trials database provided for in Article 11 of Directive 2001/20/EC to be included in the database on medicinal products provided for in Article 57 or Regulation (EC) No 726/2004</a>. In: European Commission, ed. Official Journal of the European Union, 2008. (2008/C 168/02.)</li>
+      <li><a href="http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000044.jsp">Guidance on the information concerning paediatric clinical trials to be entered into the EU Database on Clinical Trials (EudraCT) and on the information to be made public by the European Medicines Agency (EMEA), in accordance with Article 41 of Regulation (EC) No 1901/2006</a>. In: European Commission, ed. Official Journal of the European Union, 2009. (2009/C 28/01.)</li>
+      <li>Zarin, D. A., Ide, N. C., Tse, T. et al. (2007). <a href="http://www.ncbi.nlm.nih.gov/pubmed/17507347">Issues in the registration of clinical trials</a>. JAMA 297: 2112—2120.</li>
+      <li>Moher, D., Liberati, A., Tetzlaff, J. and Altman, D. G. (for the PRISMA Group)(2009). <a href="http://annals.org/article.aspx?articleid=744664">Preferred reporting items for systematic reviews and meta-analyses: the PRISMA statement</a>, BMJ 339: 332—336.</li>
+      <li>Tse, T., Williams, R. J., Zarin, D. A. (2009). <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2821287/">Reporting “basic results” in ClinicalTrials.gov</a>. CHEST 136: 295—303.</li>
     </ol>
-
 
   </div>
 </section>
