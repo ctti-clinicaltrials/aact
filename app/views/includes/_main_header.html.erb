@@ -5,6 +5,12 @@
 
   <div class="navContainer">
     <nav>
+      <% unless current_page?(root_url) %>
+        <a href="/" class="navItem">
+          <%= icon("home") %>
+          Home
+        </a>
+      <% end %>
       <a href="/connect" class="navItem">
         <%= icon("plug") %>
         Connect
