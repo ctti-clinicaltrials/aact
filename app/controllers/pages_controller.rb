@@ -8,7 +8,8 @@ class PagesController < ApplicationController
   end
 
   def points_to_consider
-    #code
+    @schema_diagram="#{ENV['FILESERVER_ENDPOINT']}/documentation/aact_schema.png"
+    @data_dictionary="#{ENV['FILESERVER_ENDPOINT']}/documentation/data_dictionary.png"
   end
 
   def download_aact
@@ -16,7 +17,8 @@ class PagesController < ApplicationController
   end
 
   def learn_more
-    #code
+    @schema_diagram="#{ENV['FILESERVER_ENDPOINT']}/documentation/aact_schema.png"
+    @data_dictionary="#{ENV['FILESERVER_ENDPOINT']}/documentation/data_dictionary.png"
   end
 
   def sanity_check
