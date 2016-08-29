@@ -1,6 +1,6 @@
-
-span.question {
-  color: red;
+.question {
+	border-style: solid;
+  border-color: red;
   font-weight: bold;
 }
 
@@ -11,7 +11,7 @@ section.homeHero {
   text-align: left;
   position: relative;
   text-align: center;
-  padding-bottom: 500px;
+  padding-bottom: 360px;
 
   h1 {
     padding: 0px;
@@ -81,11 +81,10 @@ div.circleButtons {
   }
 }
 
-
 div.heroPanelRow {
   background-color: $white;
   @include display-flex;
-  padding: 3rem 6rem;
+  padding: 0px 4px 4px 4px;
 
   span.type {
     position: absolute;
