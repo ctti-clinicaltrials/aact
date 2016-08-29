@@ -23,7 +23,7 @@
 
     <h4>Table 1: Scope of Interventional Studies Covered by Major Reporting Policies*</h4>
 
-  <table id='table1' class='pointsToConsider'>
+  <table id='table1' class='regularDisplay'>
     <tr>
       <th>Policy Requirements</th>
       <th>Registration & Results Reporting Requirements</th>
@@ -39,7 +39,7 @@
   <tr>
     <td><a target='_blank' href='http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm'>FDAAA</a></td>
     <td>The following must be registered in ClinicalTrials.gov:
-      <ul class='pointsToConsider'>
+      <ul class='regularDisplay'>
         <li>Interventional studies of drugs, biologics, or devices (whether or not approved for marketing)</li>
         <li>Studies phases 2 through 4</li>
         <li>Studies with at least 1 US site or conducted under IND/IDE</li>
@@ -71,7 +71,7 @@
   <tr>
     <td><a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'>EMA</a></td>
     <td><p>The following must be registered in ClinicalTrials.gov or other approved registry:
-      <ul class='pointsToConsider'>
+      <ul class='regularDisplay'>
         <li>Interventional studies of drugs or biologics (whether or not approved for marketing)</li>
         <li>Pediatric phase 1 studies;</li>
         <li>Studies in phases 2 through 4</li>
@@ -94,7 +94,7 @@
 
     <p>Based on these requirements, the following are examples of characteristics that may influence the likelihood that a study is included in the ClinicalTrials.gov registry:</p>
 
-    <ul class='pointsToConsider'>
+    <ul class='regularDisplay'>
       <li>Interventional studies are more likely to be registered than observational studies.</li>
       <li>Studies that began before the <a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'>ICMJE</a> requirement in <b>July, 2005</b> are less likely to be registered, especially if their results are unpublished (e.g., negative studies).</li>
       <li>Studies with drug, biological, or device interventions are more likely to be registered than studies of other interventions.</li>
@@ -124,7 +124,7 @@
     <h2>How should data elements be interpreted?</h2>
 
     <p>When interpreting this information, you’re encouraged to refer to the authoritative definitions provided by the National Library of Medicine (NLM). The most recent data element definitions are available on the NLM site for <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html'>studies</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html'>results</a> data. Data interpretation may depend on:</p>
-    <ul class='pointsToConsider'>
+    <ul class='regularDisplay'>
       <li><b>How the question was phrased.</b> For example, the definition of “Sponsor” does not necessarily imply that the sponsor is the agency paying for the clinical study, as might be expected from the common use of the term.</li>
       <li><b>Whether the respondent can enter a free-text answer to a specific question, or is restricted to a fixed set of possible responses.</b> Note that the definition of a data element and the available responses may have changed over time. The most recent data element definitions are available at the ClinicalTrials.gov site for <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html'>study</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html'>results</a> data. A history of changes through September 2011 for the study definitions can be viewed in the <a href="http://ctti-clinicaltrials.org/files/documents/AACTcomprehensiveDataDictionaryV3_2011.xlsx" download>AACT 2011 Data Dictionary</a>.</li>
       <li><b>Whether there is dependence between fields.</b> Certain data elements need to be interpreted together with other data elements. For example, data elements such as enrollment date and completion date have a companion data element that indicates whether the value in the first field is an anticipated or actual value.</li>
@@ -136,7 +136,7 @@
 
     <p>The presence of a record in a dataset indicates that information was submitted to ClinicalTrials.gov for at least one element in that data set before the data were downloaded from ClinicalTrials.gov. Some data elements are more/less likely than others to have missing information, depending on several known factors. For example:</p>
 
-    <ul class='pointsToConsider'>
+    <ul class='regularDisplay'>
       <li><b>The data element being required by the FDAAA and/or the ClinicalTrials.gov website.</b> Refer to NLM's <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html'>study</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html'>results</a> data element definitions for specifics regarding these requirements. Requirements may have changed over the history of the ClincalTrials.gov database.</li>
       <li><b>The date when the data element was introduced.</b> Not all data elements were included in the database at the time of its launch in 2000, but were added later. Studies registered after FDAAA when into effect must meet more requirements than studies registered earlier in the life of ClinicalTrials.gov.</li>
       <li><b>The branching structure of questions.</b> The availability of certain questions to the person submitting data depends on answers to previous questions. For example, questions about bio-specimen retention are only available for observational studies. Therefore, interventional studies should be excluded when analyzing data elements pertaining to bio-specimens.</li>
@@ -181,14 +181,14 @@
 
     <p>c) Determine appropriate formulas for quantifying differences between groups or summarizing population variability.  This quantification could take into account of the observed difference, variability in the data, and the number of observations.  Examples are provided:</p>
 
-    <ul class='pointsToConsider'>
+    <ul class='regularDisplay'>
       <li>When summarizing a continuous characteristic such as enrollment, the analyst might choose to report the median and 5th to 95th percentiles.</li>
       <li>To quantify signal to noise, the analyst could calculate a t-statistic or a chi-squared statistic (without the p-value) and rank differences between 2 groups based on these values.  The analyst might pre-specify a threshold (e.g., absolute value of 3) to flag notable differences.</li>
     </ul>
 
     <h2>Specific tips for working with the AACT database</h2>
 
-    <ul class='pointsToConsider'>
+    <ul class='regularDisplay'>
       <li>Users are encouraged to use the <a href=<%= @schema_diagram %> target="_blank">Schema Diagram</a> to determine relationships between different AACT tables/datasets (referred to as ‘datasets’ on this page). These relationships determine how datasets may be linked or merged together in software such as SAS & SQL.</li>
       <li>The NCT_ID uniquely identifies each study; it serves as the primary key in the STUDIES dataset. In other words, each record in the STUDIES dataset has a unique NCT_ID value. NCT_ID also appears in every dataset related to STUDIES so that every record in every dataset can link back to the study to which it refers.</li>
       <li>Every dataset other than STUDIES has a primary key named ‘id’, which provides an integer that uniquely identifies each row in that dataset. (The STUDIES dataset uses ‘NCT_ID’ instead of ‘id’  as the unique identifier for each row.)</li>
@@ -197,7 +197,7 @@
       <li> Each record’s foreign_key (ie. facility_id) contains the value of the unique identifier (id) of the record in the other dataset to which it belongs. For example, a facility may have multiple contacts. To find the contacts for a particular facility, look for the records in FACILITY_CONTACTS where the value in facility_id is same as the value in id for that facility in FACILITIES. In short, datasets are related to each other with this pattern: dataset1.<dataset2_name>_id = dataset2.id </li>
     </ul>
 <p class='question'> this section needs a bit more work</p>
-    <table class='pointsToConsider'>
+    <table class='regularDisplay'>
       <tr>
         <td>facilities.id = facility_contacts.facility_id</td>
         <td>finds all contacts for a facility</td>
@@ -211,7 +211,7 @@
     <h2>Information about trial sites (FACILITIES and COUNTRIES) </h2>
      <p> Information about organizations (trial sites) where the study is/was conducted is stored in the FACILITIES dataset.  This is a snapshot of the facility information that was included in the study record on the date that information was downloaded from ClinicalTrials.gov.  Naturally, study sites initiated after ClinicalTrials.gov data were downloaded to AACT are not included in AACT.</p>
 		<p>AACT also includes a COUNTRIES dataset, which contains one record per unique country per study. Rows in the COUNTRIES dataset come from two sources:</p>
-    <ul class='pointsToConsider'>
+    <ul class='regularDisplay'>
 			<li>Countries where study facilities are located as determined by an NLM algorithm that identifies the set of unique countries associated with a study; these are stored in the COUNTRIES dataset with the flag removed=false. </li>
 			<li>In some cases, ClinicalTrials.gov data submitters remove sites from the study record.  Removed sites do not appear in the FACILITIES dataset. If all of a country’s sites have been removed from a study record, the NLM algorithm creates a ‘Removed Country’ record. In AACT, this record is stored in the COUNTRIES dataset with removed=true. </li>
 		</ul>
@@ -228,7 +228,7 @@
 
     <p>A responsible party may delay the deadline for submitting results information to ClinicalTrials.gov if one of the following two certification conditions applies to the trial:</p>
 
-    <ul class='pointsToConsider'>
+    <ul class='regularDisplay'>
       <li>Initial approval: trial completed before a drug, biologic or device studied in the trial is initially approved, licensed or cleared by the FDA for any use.</li>
       <li>New use: the manufacturer of a drug, biologic or device is the sponsor of the trial and has filed or will file within one year, an application seeking FDA approval, licensure, or clearance of the new use studied in the trial. A responsible party may also request, for good cause, an extension of the deadline for the submission of results.</li>
     </ul>
