@@ -14,14 +14,6 @@ section.pointsToConsider {
     padding-top: 30px;
   }
 
-  table.pointsToConsider, ul.pointsToConsider {
-    font-family: Roboto;
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.5;
-    margin: 0 0 1rem;
-  }
-
   div.wrap {
     @include columnify(10, true);
     display: block;
