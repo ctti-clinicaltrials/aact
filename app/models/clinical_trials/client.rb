@@ -2,7 +2,7 @@ module ClinicalTrials
   class Client
     BASE_URL = 'https://clinicaltrials.gov'
 
-    attr_reader :url, :processed_studies, :dry_run
+    attr_reader :url, :processed_studies, :dry_run, :errors
     def initialize(search_term: nil, dry_run: false)
       @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
       @processed_studies = {
@@ -10,6 +10,7 @@ module ClinicalTrials
         new_studies: []
       }
       @dry_run = dry_run
+      @errors = []
     end
 
     def download_xml_files
@@ -63,7 +64,22 @@ module ClinicalTrials
 
       StudyXmlRecord.find_each do |xml_record|
         raw_xml = xml_record.content
-        import_xml_file(raw_xml)
+
+        begin
+          import_xml_file(raw_xml)
+        rescue StandardError => e
+          existing_error = @errors.find do |err|
+            err[:name] == e.name && err[:first_backtrace_line] == e.backtrace.first
+          end
+
+          if existing_error.present?
+            existing_error[:count] += 1
+          else
+            @errors << { name: e.name, first_backtrace_line: e.backtrace.first, count: 0 }
+          end
+
+          next
+        end
       end
 
       load_event.complete

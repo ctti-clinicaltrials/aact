@@ -1,50 +1,41 @@
-
 <div class="wrap">
-
   <div class="basicHero">
     <h1>Learn more about AACT</h1>
-
   </div>
-
 </div>
 
 <section class="learnMore">
 
-
   <div class="learnMoreCards">
 
-    <a href="https://s3-us-west-2.amazonaws.com/aact2/20160714_aact2_schema.png" target="_blank" class="learnMoreCard">
+    <a href=<%= @schema_diagram %> target="_blank" class="learnMoreCard">
       <h3>Database Schema</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Provides a blueprint for how AACT is structured and how ClinicalTrials.gov protocol & result data have been organized into related tables. Defines the conventions and considerations that went into the db design.
       </p>
       <%= icon("database") %>
     </a>
 
-    <a href="/data_dictionary" class="learnMoreCard">
+    <a href=<%= @data_dictionary %> target="_blank" class="learnMoreCard">
       <h3>Data Dictionary</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+       Provides detailed information about all AACT data elements and how they relate to ClinicalTrials.gov information and corresponding definitions from the National Library or Medicine’s data definitions.
       </p>
       <%= icon("graduation-cap") %>
     </a>
   </div>
 
   <div class="learnMoreCards">
-
-    <a href="/" class="learnMoreCard">
-      <h3>Sample SQL</h3>
+    <a href="points_to_consider" class="learnMoreCard">
+      <h3>AACT Guide for Researchers and Analysts</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Provides guidelines for investigators to consider when planning a statistical analysis of the ClinicalTrials.gov database. This focuses on the content of the database and how to use it to conduct research.
       </p>
       <%= icon("terminal") %>
     </a>
 
     <a href="/" class="learnMoreCard">
       <h3>Frequently Asked Questions</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      </p>
       <%= icon("question-circle-o") %>
     </a>
 
