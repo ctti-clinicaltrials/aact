@@ -12,6 +12,6 @@ checkout:
     - mkdir -p tmp
 deployment:
   heroku-aact-dev:
-    branch: develop
+    branch: development
     heroku:
       appname: aact-dev
