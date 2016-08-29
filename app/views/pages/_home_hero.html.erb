@@ -1,22 +1,17 @@
-
-<section class="homeHero">
-
+<section class="basicHero">
 
   <div class="copy">
-    <h1>Improving the Public Interface for Use of Aggregate Data in ClinicalTrials.gov.</h1>
+    <h1>Improving Public Access to Aggregate Content of ClinicalTrials.gov</h1>
 
-    <h4>What is AACT?</h4>
-    <p>AACT is a publicly available relational database which contains all information (protocol and results data elements) about clinical studies that have been registered at ClinicalTrials.gov. Content is downloaded daily from ClinicalTrials.gov and loaded into AACT.   In Sept, 2016, CTTI enhanced AACT to include the following features: </p>
-    <ul>
+    <h3>What is AACT?</h3>
+    <p>AACT is a publicly available relational database that contains all information (protocol and result data elements) about every study registered in ClinicalTrials.gov. Content is downloaded from ClinicalTrials.gov daily and loaded into AACT. The Clinical Trials Transformation Initiative (CTTI) enhanced AACT in October, 2016 to include the following features:</p>
+    <ul class='regularDisplay'>
       <li>Database content refreshed daily</li>
-      <li>Uses open source technologies (postgreSQL)</li>
-      <li>Accessible in the Cloud</li>
+      <li>Based on open source technologies (postgreSQL, Ruby on Rails)</li>
+      <li>Database accessible in the cloud</li>
       <li>Snapshots available for download</li>
-      <li>Source code available via Github</li>
+      <li>Source code available via <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact'>Github</a></li>
     </ul>
-    <p>
-      If you are interested in the original AACT data extracts from March, 2016 and earlier, please visit <a href="https://www.ctti-clinicaltrials.org/aact-database">the original AACT webpage</a>.
-    </p>
   </div>
 
   <div class="circleButtons">
@@ -41,24 +36,29 @@
       <div class="iconWrap">
         <%= icon('university') %>
       </div>
-      <span>Learn More
+      <span>Learn
     </span>
     </a>
-
   </div>
+  <p>
+    Note: If you're interested in data extracted via the original AACT system (March, 2016 and earlier), please visit <a href="https://www.ctti-clinicaltrials.org/aact-database">the original AACT webpage</a>.
+  </p>
+</section>
 
-
+<section class="homeHero">
   <div class="heroPanelRow">
-    <a class="button small light" href="/points_to_consider">
-      <%= icon('info-circle') %>
+    <a href="/points_to_consider" class="button small light">
       <span class="type">Info for Researchers and Analysts</span>
       <span class="title">Guide to using AACT</span>
+      <%= icon('info-circle') %>
     </a>
-    <a class="button big" href="#">
+
+    <a href="#" class="button big">
       <%= icon('newspaper-o') %>
       <span class="type">Publication</span>
       <span class="title">News</span>
     </a>
-  </div>
 
+  </div>
 </section>
+
