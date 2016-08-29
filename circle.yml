@@ -15,3 +15,7 @@ deployment:
     branch: development
     heroku:
       appname: aact-dev
+  heroku-aact-prod:
+    branch: production
+    heroku:
+      appname: aact-prod
