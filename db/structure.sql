@@ -671,10 +671,10 @@ ALTER SEQUENCE facility_investigators_id_seq OWNED BY facility_investigators.id;
 
 
 --
--- Name: id_informations; Type: TABLE; Schema: public; Owner: -
+-- Name: id_information; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE id_informations (
+CREATE TABLE id_information (
     id integer NOT NULL,
     nct_id character varying,
     id_type character varying,
@@ -683,10 +683,10 @@ CREATE TABLE id_informations (
 
 
 --
--- Name: id_informations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: id_information_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE id_informations_id_seq
+CREATE SEQUENCE id_information_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -695,10 +695,10 @@ CREATE SEQUENCE id_informations_id_seq
 
 
 --
--- Name: id_informations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: id_information_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE id_informations_id_seq OWNED BY id_informations.id;
+ALTER SEQUENCE id_information_id_seq OWNED BY id_information.id;
 
 
 --
@@ -903,7 +903,6 @@ ALTER SEQUENCE milestones_id_seq OWNED BY milestones.id;
 
 CREATE TABLE outcome_analyses (
     id integer NOT NULL,
-    title character varying,
     non_inferiority character varying,
     non_inferiority_description text,
     p_value numeric,
@@ -1738,7 +1737,7 @@ ALTER TABLE ONLY facility_investigators ALTER COLUMN id SET DEFAULT nextval('fac
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY id_informations ALTER COLUMN id SET DEFAULT nextval('id_informations_id_seq'::regclass);
+ALTER TABLE ONLY id_information ALTER COLUMN id SET DEFAULT nextval('id_information_id_seq'::regclass);
 
 
 --
@@ -2061,11 +2060,11 @@ ALTER TABLE ONLY facility_investigators
 
 
 --
--- Name: id_informations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: id_information_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY id_informations
-    ADD CONSTRAINT id_informations_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY id_information
+    ADD CONSTRAINT id_information_pkey PRIMARY KEY (id);
 
 
 --
@@ -2438,4 +2437,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160819001315');
 INSERT INTO schema_migrations (version) VALUES ('20160820030854');
 
 INSERT INTO schema_migrations (version) VALUES ('20160823120646');
+
+INSERT INTO schema_migrations (version) VALUES ('20160824000456');
+
+INSERT INTO schema_migrations (version) VALUES ('20160824005447');
 

@@ -1,7 +1,7 @@
 <div class="wrap">
 
   <div class="basicHero">
-    <h1>Connect to AACT2 using R & RStudio</h1>
+    <h1>Connect to AACT using R & RStudio</h1>
 
   </div>
 
@@ -38,8 +38,8 @@
     <code class="output">Loading required package: DBI</code>
     <code>> drv <- dbDriver('PostgreSQL')</code>
     <code>> con <- dbConnect(drv, dbname="<%= ENV["RDS_DB_READONLY_DBNAME"] %>",host="<%= ENV["RDS_DB_HOSTNAME"] %>",port=5432,user="<%= ENV["RDS_DB_READONLY_USERNAME"] %>",password="<%= ENV["RDS_DB_READONLY_PASSWORD"] %>")</code>
-    <code>> aact2_sample <- dbGetQuery(con,"select distinct study_type from studies")</code>
-    <code>> write.csv(aact2_sample, file='aact2_sample.csv')</code>
+    <code>> aact_sample <- dbGetQuery(con,"select distinct study_type from studies")</code>
+    <code>> write.csv(aact_sample, file='aact_sample.csv')</code>
   </pre>
 </div>
 

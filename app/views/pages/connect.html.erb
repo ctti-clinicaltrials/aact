@@ -2,14 +2,13 @@
 <div class="wrap">
 
   <div class="basicHero">
-    <h1>Connect to AACT2</h1>
-    <p>
-      Connect to AACT using one of the popular tools displayed below, or take a look at the <a href="#credentials">access credentials</a> for direct access.
-    </p>
+    <h1>Connect to AACT</h1>
+     <p>As a cloud-hosted PostgreSQL database, AACT can be directly accessed via standard query & analytic tools. Several popular tools, such as pgAdmin and RStudio, are free and relatively easy to install and configure. Other proprietary tools are popular and provide powerful analytic and/or relational database utility; these tools include SAS, Toad, and Tableau. In many cases, access is a matter of installing the software package, configuring it to use PostgreSQL, and providing AACT connection credentials.
+     </p>
+     <p>Connecting directly is recommended for users who want to run analyses or queries using the most current, live data.</p>
   </div>
 
 </div>
-
 
 <section class="connect">
 
@@ -17,15 +16,15 @@
     <a href="/pgadmin" class="connectionCard">
       <h4>pgAdmin</h4>
       <p>
-        Connect to AACT using a pgAdmin tool. Instructions here are for pgAdmin3 specifically.
+      Click here to receive instructions on how to use a standard graphical user interface to query the cloud-based AACT directly with SQL.
       </p>
       <%= icon("plug") %>
     </a>
 
     <a href="/r" class="connectionCard">
-      <h4>R</h4>
+      <h4>R and RStudio</h4>
       <p>
-        Use R and RStudio to connect to the AACT2 database.
+      Click here to receive instructions about how to use R/RStudio to analyze the AACT data directly.
       </p>
       <%= icon("plug") %>
     </a>
@@ -33,19 +32,34 @@
     <a href="/sas" class="connectionCard">
       <h4>SAS</h4>
       <p>
-        Connect to AACT using SAS as a connection tool.
+      Click here to receive instructions about how to use SAS to analyze the AACT data directly.
       </p>
       <%= icon("plug") %>
     </a>
 
   </div>
 
-  <div class="wrap">
+  <div class="connectionTypes">
 
-    <%= render 'access/credentials' %>
-    <%= render 'access/intro' %>
-    <%= render 'access/api' %>
+    <a href="/psql" class="connectionCard">
+      <h4>psql</h4>
+      <p>
+      Click here to receive instructions on how to use the command line PostgreSQL tool to query the cloud-based AACT directly with SQL.
+      </p>
+      <%= icon("plug") %>
+    </a>
 
+    <a href="/api_connect" class="connectionCard">
+      <h4>API/Webservices</h4>
+      <p>
+       Users interested in accessing the data via another application or program (in XML or json format), should click here for AACT API syntax.
+      </p>
+      <%= icon("plug") %>
+    </a>
   </div>
+
+    <h2>Credentials</h2>
+    <p>You will need the following information to access the database directly in the cloud.</p>
+    <%= render 'access/credentials' %>
 
 </section>
