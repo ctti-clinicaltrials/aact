@@ -1,12 +1,6 @@
 class LoadMailer < ApplicationMailer
   def self.send_notifications(load_event, errors)
-    emails = ['garrett@sturdy.work']
-
-    if ENV['EMAIL_DUKE_TEAM']
-      emails << 'sheri.tibbs@duke.edu'
-      emails << 'williamhoos@gmail.com'
-      emails << 'nancy.walden@duke.edu'
-    end
+    emails = ['sheri.tibbs@duke.edu']
 
     emails.each do |email|
       send_notification(email, load_event, errors).deliver_now

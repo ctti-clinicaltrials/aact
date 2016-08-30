@@ -1,65 +1,18 @@
 class StudyValidator
+  attr_accessor :errors, :nct_id
+
   def initialize
     @errors = []
   end
 
   def validate_studies
-    study1 = Study.find_by(nct_id: 'NCT00734539')
-    study2 = Study.find_by(nct_id: 'NCT01076361')
-
-    assert(
-      nct_id: study1.nct_id,
-      validation_title: 'Outcome count',
-      expected_result: 22,
-      actual_result: study1.outcomes.count
-    )
-
-    assert(
-      nct_id: study1.nct_id,
-      validation_title: 'Brief title',
-      expected_result: 'Flnazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight',
-      actual_result: study1.brief_title
-    )
-
-    assert(
-      nct_id: study1.nct_id,
-      validation_title: 'Study type',
-      expected_result: 'Interventional',
-      actual_result: study1.study_type
-    )
-
-    assert(
-      nct_id: study2.nct_id,
-      validation_title: 'Outcome count',
-      expected_result: 1,
-      actual_result: study2.outcomes.count
-    )
-
-    assert(
-      nct_id: study2.nct_id,
-      validation_title: 'Baseline measure count',
-      expected_result: 13,
-      actual_result: study2.baseline_measures.count
-    )
-
-    assert(
-      nct_id: study2.nct_id,
-      validation_title: 'Baseline measure count',
-      expected_result: 13,
-      actual_result: study2.baseline_measures.count
-    )
-
-    assert(
-      nct_id: study2.nct_id,
-      validation_title: 'Study type',
-      expected_result: 'Observational [Patient Registry]',
-      actual_result: study2.study_type
-    )
-
-
-    if @errors.present?
-      StudyValidationMailer.send_alerts(@errors)
-
+    ValidationCriteria.study_ids.each{|id|
+      @nct_id=id.to_s
+      study = Study.find_by(nct_id: nct_id)
+      study ? validate_study(study) : report_missing
+    }
+    if errors.present?
+      StudyValidationMailer.send_alerts(errors)
       raise StudyValidatorError
     else
       true
@@ -74,18 +27,20 @@ class StudyValidator
 
   private
 
-  def assert(nct_id:, expected_result:, actual_result:, validation_title:)
-    if actual_result != expected_result
-      error = {
-        nct_id: nct_id,
-        validation_title: validation_title,
-        expected_result: expected_result,
-        actual_result: actual_result
-      }
-
-      @errors << error
-    else
-      true
-    end
+  def report_missing
+    errors << {nct_id: nct_id, validation_title: 'Missing Study'}
   end
+
+  def validate_study(study)
+    ValidationCriteria.for(nct_id).each{|label, actual_expected|
+      actual=eval actual_expected.first
+      expected=actual_expected.last
+      if actual != expected
+        errors << { nct_id: nct_id, validation_title: label, expected_result: expected, actual_result: actual }
+      else
+        true
+      end
+    }
+  end
+
 end
