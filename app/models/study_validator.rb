@@ -10,14 +10,14 @@ class StudyValidator
     assert(
       nct_id: study1.nct_id,
       validation_title: 'Outcome count',
-      expected_result: 22,
+      expected_result: 12,
       actual_result: study1.outcomes.count
     )
 
     assert(
       nct_id: study1.nct_id,
       validation_title: 'Brief title',
-      expected_result: 'Flnazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight',
+      expected_result: 'Fluconazole Prophylaxis for the Prevention of Candidiasis in Infants Less Than 750 Grams Birthweight',
       actual_result: study1.brief_title
     )
 
