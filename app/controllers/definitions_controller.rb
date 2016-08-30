@@ -26,7 +26,7 @@ class DefinitionsController < ApplicationController\
                               'Max Length Allowed' => 'max length allowed',
                               'Max Length Current' => 'max length current',
                               'Min Length Current' => 'min length current',
-                              'Avg. Length Current' => 'average length current',
+                              'Avg Length Current' => 'average length current',
                               'Common Values' => 'common values',
                               'NLM Required' => 'nlm requred',
                               'FDAAA Required' => 'fdaaa required'}) do |hash|
@@ -41,6 +41,8 @@ class DefinitionsController < ApplicationController\
 
       end
 
+
+
       unless hash["Table Name"] == "table"
 
         begin
@@ -50,7 +52,32 @@ class DefinitionsController < ApplicationController\
           hash["# of rows in table"] = "N/A"
         end
 
+
       end
+
+      unless hash["Column Name"] == "id" || hash["Column Name"] == "column"
+        db_table_name = hash["Table Name"].try(:pluralize).try(:downcase)
+
+        if db_table_name.present?
+          begin
+          column_stats = SanityCheck.last.report[db_table_name]['column_stats'][hash['Column Name']]
+        rescue NoMethodError
+          puts db_table_name
+        end
+
+        end
+
+      end
+
+      if column_stats.present?
+        hash['Max Length Current'] = column_stats['max_length']
+        hash['Min Length Current'] = column_stats['min_length']
+        hash['Common Values'] = column_stats['frequent_values']
+        hash['Avg Length Current'] = column_stats['avg_length']
+
+
+      end
+
 
       dataResult << hash
 

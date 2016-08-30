@@ -40,7 +40,7 @@ $(function() {
             { name: "Max Length Allowed", type: "text" },
             { name: "Max Length Current", type: "text" },
             { name: "Min Length Current", type: "text" },
-            { name: "Avg. Length Current", type: "text" },
+            { name: "Avg Length Current", type: "text" },
             { name: "Common Values", type: "text" },
             { name: "NLM Required", type: "text" },
             { name: "FDAAA Required", type: "text" }
