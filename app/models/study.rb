@@ -35,6 +35,7 @@ class Study < ActiveRecord::Base
   has_many :facility_contacts,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :facility_investigators,:foreign_key => 'nct_id', dependent: :delete_all
   has_many :interventions,         :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :intervention_other_names, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :keywords,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all
   has_many :milestones,            :foreign_key => 'nct_id', dependent: :delete_all

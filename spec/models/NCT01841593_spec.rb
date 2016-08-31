@@ -34,11 +34,16 @@ describe Study do
     expect(study.pick('design_groups','Group A').description).to eq('DAYS 1 to 7: raltegravir 400 mg BID DAYS 8 to 14: raltegravir 400 mg BID PLUS amlodipine 5 mg OD DAYS 15 to 21: amlodipine 5 mg OD')
     expect(study.pick('design_groups','Group B').group_type).to eq('Experimental')
     expect(study.pick('design_groups','Group B').description).to eq('DAYS 1 to 7: amlodipine 5 mg OD DAYS 8 to 14: raltegravir 400 mg BID PLUS amlodipine 5 mg OD DAYS 15 to 21: raltegravir 400 mg BID')
-    expect(study.pick('interventions','Raltegravir').intervention_type).to eq('Drug')
-    expect(study.pick('interventions','Raltegravir').description).to eq('Isentress 400mg tablet taken twice daily')
-    expect(study.pick('interventions','Raltegravir').design_group_interventions.size).to eq(2)
-    expect(study.pick('interventions','Raltegravir').intervention_other_names.size).to eq(1)
-    expect(study.has('intervention_other_names','Isentress')).to eq(true)
+    i=study.pick('interventions','Raltegravir')
+    expect(i.intervention_type).to eq('Drug')
+    expect(i.description).to eq('Isentress 400mg tablet taken twice daily')
+    expect(i.design_group_interventions.size).to eq(2)
+    expect(i.intervention_other_names.size).to eq(1)
+    expect(i.intervention_other_names.first.name).to eq('Isentress')
+    i=study.pick('interventions','Amlodipine')
+    expect(i.description).to eq('generic amlodipine 5mg tablets (Accord healthcare Limited, UK)')
+    expect(i.intervention_other_names.size).to eq(1)
+    expect(i.intervention_other_names.first.name).to eq('Amlodipine 5mg tablets')
   end
 
 end
