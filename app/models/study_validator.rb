@@ -257,13 +257,12 @@ class StudyValidator
       actual_result: study4.enrollment
     )
 
-    #TODO: figure out why this validation is getting an incorrect value ("Condition")
-    # assert(
-    #   nct_id: study4.nct_id,
-    #   validation_title: 'Condition Name',
-    #   expected_result: 'Pulmonary Arterial Hypertension',
-    #   actual_result: study4.conditions.first.name
-    # )
+    assert(
+      nct_id: study4.nct_id,
+      validation_title: 'Condition Name',
+      expected_result: 'Pulmonary Arterial Hypertension',
+      actual_result: study4.conditions.first.name
+    )
 
     assert(
       nct_id: study4.nct_id,
