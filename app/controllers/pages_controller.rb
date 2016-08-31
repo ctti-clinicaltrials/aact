@@ -4,14 +4,16 @@ class PagesController < ApplicationController
   end
 
   def snapshot_archive
+    @snapshot_exports="#{ENV['FILESERVER_ENDPOINT']}/snapshots"
     @snapshots = Date.today..90.days.ago
   end
 
   def pipe_delimited
-    #code
+    @pipe_exports="#{ENV['FILESERVER_ENDPOINT']}/csv_pipe_exports"
   end
 
   def points_to_consider
+    @analyst_guide="#{ENV['FILESERVER_ENDPOINT']}/documentation/analyst_guide.png"
     @schema_diagram="#{ENV['FILESERVER_ENDPOINT']}/documentation/aact_schema.png"
     @data_dictionary="#{ENV['FILESERVER_ENDPOINT']}/documentation/data_dictionary.png"
   end
