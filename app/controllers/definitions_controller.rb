@@ -98,16 +98,10 @@ class DefinitionsController < ApplicationController\
         puts "#***********************************#"
 
         dataResult = dataResult.select do |hash|
-          # hash["Table Name"] == params["Table Name"]
-          require 'string/similarity'
 
-          if hash[key].nil? || value.nil?
-            0.0
-          else
-            String::Similarity.cosine(hash[key].try(:downcase), value.try(:downcase)) > 0.7
+          unless hash[key].nil? || value.nil?
+            hash[key].include?(value)
           end
-
-
 
         end
 
