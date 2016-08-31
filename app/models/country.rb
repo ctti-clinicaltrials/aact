@@ -6,12 +6,12 @@ class Country < StudyRelationship
   end
 
   def self.location_countries(opts)
-    opts[:xml].xpath('//location_countries').collect{|xml|
+    opts[:xml].xpath('//location_countries/country').collect{|xml|
       new({:name=>xml.text.strip, :nct_id=>opts[:nct_id]})}
   end
 
   def self.removed_countries(opts)
-    opts[:xml].xpath('//removed_countries').collect{|xml|
+    opts[:xml].xpath('//removed_countries/country').collect{|xml|
       new({:name=>xml.text.strip, :nct_id=>opts[:nct_id], :removed=>true})}
   end
 end
