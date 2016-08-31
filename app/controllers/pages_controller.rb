@@ -7,6 +7,10 @@ class PagesController < ApplicationController
     @snapshots = Date.today..90.days.ago
   end
 
+  def pipe_delimited
+    #code
+  end
+
   def points_to_consider
     @schema_diagram="#{ENV['FILESERVER_ENDPOINT']}/documentation/aact_schema.png"
     @data_dictionary="#{ENV['FILESERVER_ENDPOINT']}/documentation/data_dictionary.png"

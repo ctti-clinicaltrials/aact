@@ -6,6 +6,7 @@
 
 <section class="pgAdmin">
   <div class="wrap">
+
     <div class="step">
       <span class="stepNumber">1</span>
       <h3 class="stepName">Install pgAdmin3</h3>
@@ -93,6 +94,11 @@
       Here's a simple example of a query that has returned the number of records in the studies table.
     </p>
     <%= image_tag("countresults.png") %>
+
+
+    <h2>Credentials</h2>
+    <p>You will need the following information to access the database directly in the cloud.</p>
+    <%= render 'access/credentials' %>
 
 
   </div>

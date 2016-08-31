@@ -5,7 +5,7 @@ class StudyValidator
     @errors = []
   end
 
-  def validate_studies
+  def run
     ValidationCriteria.study_ids.each{|id|
       @nct_id=id.to_s
       study = Study.find_by(nct_id: nct_id)
