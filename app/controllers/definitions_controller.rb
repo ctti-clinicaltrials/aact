@@ -26,7 +26,7 @@ class DefinitionsController < ApplicationController\
                               'Max Length Allowed' => 'max length allowed',
                               'Max Length Current' => 'max length current',
                               'Min Length Current' => 'min length current',
-                              'Avg. Length Current' => 'average length current',
+                              'Avg Length Current' => 'average length current',
                               'Common Values' => 'common values',
                               'NLM Required' => 'nlm requred',
                               'FDAAA Required' => 'fdaaa required'}) do |hash|
@@ -37,9 +37,18 @@ class DefinitionsController < ApplicationController\
       end
 
       if hash["NLM Documentation"].present?
-        hash["NLM Documentation"] = '<a href=" https://prsinfo.clinicaltrials.gov/definitions.html#'+hash["NLM Documentation"]+'" target="_blank">'+hash["NLM Documentation"]+'</a>'
+
+        if hash["Table Section"] == "Results"
+          hash["NLM Documentation"] = '<a href=" https://prsinfo.clinicaltrials.gov/results_definitions.html#'+hash["NLM Documentation"]+'" target="_blank">'+hash["NLM Documentation"]+'</a>'
+
+        else 
+          hash["NLM Documentation"] = '<a href=" https://prsinfo.clinicaltrials.gov/definitions.html#'+hash["NLM Documentation"]+'" target="_blank">'+hash["NLM Documentation"]+'</a>'
+
+        end
 
       end
+
+
 
       unless hash["Table Name"] == "table"
 
@@ -50,7 +59,32 @@ class DefinitionsController < ApplicationController\
           hash["# of rows in table"] = "N/A"
         end
 
+
       end
+
+      unless hash["Column Name"] == "id" || hash["Column Name"] == "column"
+        db_table_name = hash["Table Name"].try(:pluralize).try(:downcase)
+
+        if db_table_name.present?
+          begin
+          column_stats = SanityCheck.last.report[db_table_name]['column_stats'][hash['Column Name']]
+        rescue NoMethodError
+          puts db_table_name
+        end
+
+        end
+
+      end
+
+      if column_stats.present?
+        hash['Max Length Current'] = column_stats['max_length']
+        hash['Min Length Current'] = column_stats['min_length']
+        hash['Common Values'] = column_stats['frequent_values']
+        hash['Avg Length Current'] = column_stats['avg_length']
+
+
+      end
+
 
       dataResult << hash
 
@@ -71,16 +105,10 @@ class DefinitionsController < ApplicationController\
         puts "#***********************************#"
 
         dataResult = dataResult.select do |hash|
-          # hash["Table Name"] == params["Table Name"]
-          require 'string/similarity'
 
-          if hash[key].nil? || value.nil?
-            0.0
-          else
-            String::Similarity.cosine(hash[key].try(:downcase), value.try(:downcase)) > 0.7
+          unless hash[key].nil? || value.nil?
+            hash[key].include?(value)
           end
-
-
 
         end
 
