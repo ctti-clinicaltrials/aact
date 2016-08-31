@@ -16,6 +16,12 @@ class ValidationCriteria
     }
   end
 
+  def self.NCT01841593
+    {
+    'Outcome Count': ['study.outcomes.size', 5],
+    }
+  end
+
   def self.NCT01076361
     { 'NCT ID'=> ['nct_id','NCT01076361'] }
   end

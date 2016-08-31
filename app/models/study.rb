@@ -284,4 +284,25 @@ class Study < ActiveRecord::Base
     return lead_sponsor.agency
   end
 
+  def has(attrib,label)
+		!pick(attrib,label).nil?
+	end
+
+  def pick(attrib,label)
+    # generic way to find element in one-to-many attrib with the 'label'
+    if send(attrib).respond_to? :proxy_association
+      col=send(attrib.to_sym)
+      val=col.select{|x|x.title==label if x.respond_to? :title}.first
+      return val if val
+      val=col.select{|x|x.label==label if x.respond_to? :label}.first
+      return val if val
+      val=col.select{|x|x.name==label if x.respond_to? :name}.first
+      return val if val
+      val=col.select{|x|x.id_type==label if x.respond_to? :id_type}.first
+      return val if val
+    else
+      col.send(attrib).send(label)
+    end
+  end
+
 end
