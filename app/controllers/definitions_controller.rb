@@ -37,7 +37,14 @@ class DefinitionsController < ApplicationController\
       end
 
       if hash["NLM Documentation"].present?
-        hash["NLM Documentation"] = '<a href=" https://prsinfo.clinicaltrials.gov/definitions.html#'+hash["NLM Documentation"]+'" target="_blank">'+hash["NLM Documentation"]+'</a>'
+
+        if hash["Table Section"] == "Results"
+          hash["NLM Documentation"] = '<a href=" https://prsinfo.clinicaltrials.gov/results_definitions.html#'+hash["NLM Documentation"]+'" target="_blank">'+hash["NLM Documentation"]+'</a>'
+
+        else 
+          hash["NLM Documentation"] = '<a href=" https://prsinfo.clinicaltrials.gov/definitions.html#'+hash["NLM Documentation"]+'" target="_blank">'+hash["NLM Documentation"]+'</a>'
+
+        end
 
       end
 
