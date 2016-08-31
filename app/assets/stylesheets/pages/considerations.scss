@@ -1,22 +1,23 @@
 section.pointsToConsider {
   background-color: $white;
-  padding-bottom: 500px;
+  padding-bottom: 400px;
 
   h1 {
-    padding-top: 100px;
+    padding-top: 80px;
   }
 
   h2 {
-    padding-top: 60px;
+    padding-top: 40px;
   }
 
   h4 {
-    padding-top: 40px;
+    padding-top: 30px;
   }
 
   div.wrap {
     @include columnify(10, true);
     display: block;
     margin: 0 auto;
+    font-family: Roboto;
   }
 }

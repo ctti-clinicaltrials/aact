@@ -1,6 +1,6 @@
 section.connect {
   background-color: $white;
-  padding-bottom: 500px;
+  padding-bottom: 360px;
 }
 
 div.connectionTypes, div.downloadTypes, div.learnMoreCards {
@@ -71,13 +71,12 @@ div.credentialRow {
 
 
 
-section.pgAdmin, section.rAccess, section.sasAccess {
+section.pgAdmin, section.rAccess, section.sasAccess, section.psqlAccess, section.apiAccess {
   background-color: $white;
-  padding-top: 6rem;
-  padding-bottom: 500px;
+  padding-bottom: 400px;
 
   img {
-    max-width: 80%;
+    max-width: 70%;
     display: block;
     margin: 0 auto;
     padding-top: 1rem;

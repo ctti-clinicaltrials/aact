@@ -29,7 +29,7 @@ namespace :import do
 
         SanityCheck.run
         StudyValidator.new.validate_studies
-        LoadMailer.send_notifications(load_event)
+        LoadMailer.send_notifications(load_event, client.errors)
       else
         puts "Not the first of the month - not running full import"
       end

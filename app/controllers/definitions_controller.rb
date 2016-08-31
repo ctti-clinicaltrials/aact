@@ -11,36 +11,25 @@ class DefinitionsController < ApplicationController\
 
     dataResult = []
 
-    # dictionary.sheet(0).each({'Table Name' => 'table',
-    #                           'Column Name' => 'Variable Name',
-    #                           'Data Type' => 'DATA TYPE',
-    #                           'NLM Description' => 'NLM Definitions',
-    #                           'Comments' => 'CTTI Notes',
-    #                           'NLM Req' => 'NLM Required',
-    #                           'FDAAA Req' => 'FDAAA Required',
-    #                           'Max Length Used' => 'MAX LENGTH UTILIZED',
-    #                           'PRS Label' => 'Variable Label'}) do |hash|
-
-
-      dictionary.sheet(0).each({'Table Section' => 'table section',
-                                'Table Name' => 'table',
-                                'Column Name' => 'column',
-                                'AACT Contribution' => 'AACT contribution',
-                                'XML Source' => 'xml source',
-                                'NLM Documentation' => 'nlm documentation',
-                                'AACT1 Variable' => 'AACT1 Variable',
-                                'PRS Label' => 'PRS Label',
-                                'CTTI Note' => 'CTTI Note',
-                                'Data Type' => 'Data Type',
-                                '# of rows in table' => 'number of rows in table',
-                                'Distinct Column Values' => 'distinct values in column',
-                                'Max Length Allowed' => 'max length allowed',
-                                'Max Length Current' => 'max length current',
-                                'Min Length Current' => 'min length current',
-                                'Avg. Length Current' => 'average length current',
-                                'Common Values' => 'common values',
-                                'NLM Required' => 'nlm requred',
-                                'FDAAA Required' => 'fdaaa required'}) do |hash|
+    dictionary.sheet(0).each({'Table Section' => 'table section',
+                              'Table Name' => 'table',
+                              'Column Name' => 'column',
+                              'AACT Contribution' => 'AACT contribution',
+                              'XML Source' => 'xml source',
+                              'NLM Documentation' => 'nlm documentation',
+                              'AACT1 Variable' => 'AACT1 Variable',
+                              'PRS Label' => 'PRS Label',
+                              'CTTI Note' => 'CTTI Note',
+                              'Data Type' => 'Data Type',
+                              '# of rows in table' => 'number of rows in table',
+                              'Distinct Column Values' => 'distinct values in column',
+                              'Max Length Allowed' => 'max length allowed',
+                              'Max Length Current' => 'max length current',
+                              'Min Length Current' => 'min length current',
+                              'Avg. Length Current' => 'average length current',
+                              'Common Values' => 'common values',
+                              'NLM Required' => 'nlm requred',
+                              'FDAAA Required' => 'fdaaa required'}) do |hash|
 
       if hash["XML Source"]
         hash["XML Source"].html_safe

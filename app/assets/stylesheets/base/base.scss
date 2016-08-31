@@ -10,6 +10,16 @@
 
 html {
   height: 100%;
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+table.regularDisplay, ul.regularDisplay {
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0 0 1rem;
 }
 
 ::-webkit-scrollbar {
@@ -149,7 +159,8 @@ pre {
 %container {
   margin: 0 auto;
   max-width: $wrap_width;
-  padding: 0 $gutter_width;
+  padding-left:  40px;
+  padding-right:  40px;
   position: relative;
 }
 
