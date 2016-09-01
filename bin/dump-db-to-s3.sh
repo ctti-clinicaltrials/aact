@@ -6,7 +6,7 @@ export S3CMD_CFG_FILE=$WORK_DIR/s3cfg
 rm -rf $WORK_DIR
 mkdir $WORK_DIR
 
-export BACKUP_TIME=`date +%Y%m%d-%H:%M`
+export BACKUP_TIME=`date +%Y%m%d`
 
 ifStart=`date '+%d'`
 
@@ -22,7 +22,7 @@ then
   echo "secret_key=${AWS_SECRET_ACCESS_KEY}" >> ${S3CMD_CFG_FILE}
 
   s3cmd -c $S3CMD_CFG_FILE put ${DUMP_FILE_NAME}.gz \
-    s3://$S3_BUCKET_NAME/snapshots/postgres.$RDS_DB_READONLY_DBNAME.dump.${BACKUP_TIME}.gz
+    s3://$S3_BUCKET_NAME/snapshots/${BACKUP_TIME}_$RDS_DB_READONLY_DBNAME.gz
 else
   echo "Not the first of the month, not running."
 fi
