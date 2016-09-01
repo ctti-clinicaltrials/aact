@@ -10,6 +10,7 @@ class PagesController < ApplicationController
 
   def snapshot_archive
     @snapshot_exports="#{ENV['FILESERVER_ENDPOINT']}/snapshots"
+    @files=ClinicalTrials::FileManager.snapshot_files
   end
 
   def pipe_delimited

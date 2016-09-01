@@ -1,22 +1,22 @@
 
 <div class="wrap">
-  <div class="basicHero">
     <h1>Snapshot Archive</h1>
-  </div>
 </div>
+
+  <p>
+    Most recent snapshot:  <a href="<%= @snapshot_exports %>/postgres.aact.dump.<%= Date.today.strftime('%Y%m%d') %>-02%3A00.gz"><%= Date.today.strftime('%B %e %Y') %></a>
+  </p>
 
 <section class="snapshot_archive">
   <div class="wrap">
-    <ul>
-      <%= 90.days.ago.to_date.upto(Date.today).to_a.reverse.each do |date| %>
-        <li>
-          <a href="<%= @snapshot_exports %>/postgres.aact.dump.<%= date.strftime('%Y%m%d') %>-02%3A00.gz"><%= date.strftime('%B %e %Y') %></a>
-        </li>
+    <table>
+      <th>Created</>
+      <th>Size</>
+      <%= @files.each do |file| %>
+        <tr>
+          <td><a href="<%= file[:url] %>"><%= file[:last_modified] %></a></td><td><%= file[:size] %></td>
+        </tr>
       <% end %>
-
-      <li>
-        <a href="<%= @snapshot_exports %>/postgres.aact.dump.<%= Date.today.strftime('%Y%m%d') %>-02%3A00.gz"><%= Date.today.strftime('%B %e %Y') %></a>
-      </li>
-    </ul>
+    </table>
   </div>
 </section>
