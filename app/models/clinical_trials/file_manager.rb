@@ -3,12 +3,28 @@ include ActionView::Helpers::NumberHelper
 module ClinicalTrials
   class FileManager
 
+    def self.server
+      ENV['FILESERVER_ENDPOINT']
+    end
+
     def self.snapshot_files
       files_in("snapshots")
     end
 
-    def self.csv_pipe_files
+    def self.pipe_delimited_files
       files_in("csv_pipe_exports")
+    end
+
+    def self.analyst_guide
+      "#{server}/documentation/analyst_guide.png"
+    end
+
+    def self.schema_diagram
+      "#{server}/documentation/schema_diagram.png"
+    end
+
+    def self.data_dictionary
+      "#{server}/documentation/data_dictionary.png"
     end
 
     def self.files_in(dir)

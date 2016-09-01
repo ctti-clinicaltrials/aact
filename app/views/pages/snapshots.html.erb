@@ -5,5 +5,33 @@
 </div>
 
 <section class="snapshots">
-  <%= render 'access/restore_snapshot' %>
+<div class="wrap">
+
+  <div class="step">
+    <span class="stepNumber">1</span>
+    <h3 class="stepName">Download a Snapshot</h3>
+  </div>
+
+  <p>
+    Most recent: <a href="<%= @most_recent[:url] %>"><%= @most_recent[:last_modified] %></a> (<%= @most_recent[:size] %>)
+  </p>
+
+  <p>
+    <%= render 'file_archive' %>
+  </p>
+
+  <div class="step">
+    <span class="stepNumber">2</span>
+    <h3 class="stepName">Populate local database with snapshot</h3>
+  </div>
+
+  <p>If you want to interact with the full dataset on your own machine, you can download one of the database snapshots from the above section. You'll need to use the pg_restore command line tool that comes with Postgres by running the following command:</p>
+
+  <pre>
+    <code>createdb -U yourusername databasename</code>
+    <code>pg_restore -e -v -O -x -d databasename -U yourusername filename.dump</code>
+  </pre>
+
+  <p class="note">Note: this restore can take up to several hours depending on the speed of your machine.</p>
+</div>
 </section>
