@@ -79,4 +79,8 @@ class OutcomeMeasuredValue < StudyRelationship
     }
   end
 
+  def gid
+    opts[:ctgov_group_code]
+  end
+
 end

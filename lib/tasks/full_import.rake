@@ -25,11 +25,12 @@ namespace :import do
         client.download_xml_files
         client.populate_studies
 
+        load_event.update(new_studies: Study.count, changed_studies: 0)
         load_event.complete
 
         SanityCheck.run
         StudyValidator.new.validate_studies
-        LoadMailer.send_notifications(load_event)
+        LoadMailer.send_notifications(load_event, client.errors)
       else
         puts "Not the first of the month - not running full import"
       end

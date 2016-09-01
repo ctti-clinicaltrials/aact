@@ -17,11 +17,14 @@ Rails.application.routes.draw do
   get "/pgadmin"              => "pages#pgadmin"
   get "/r"                    => "pages#r"
   get "/sas"                  => "pages#sas"
+  get "/psql"                 => "pages#psql"
+  get "/api_connect"          => "pages#api_connect"
 
   get "/points_to_consider"   => "pages#points_to_consider"
 
   get "/download_aact"        => "pages#download_aact"
   get "/snapshots"            => "pages#snapshots"
+  get "/pipe_delimited"       => "pages#pipe_delimited"
   get "/snapshot_archive"     => "pages#snapshot_archive"
 
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
