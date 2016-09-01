@@ -1,11 +1,15 @@
 class PagesController < ApplicationController
   def home
     @lastUpdate = ClinicalTrials::LoadEvent.last.try(:updated_at)
+    @snapshot_exports="#{ENV['FILESERVER_ENDPOINT']}/snapshots"
+  end
+
+  def snapshots
+    @snapshot_exports="#{ENV['FILESERVER_ENDPOINT']}/snapshots"
   end
 
   def snapshot_archive
     @snapshot_exports="#{ENV['FILESERVER_ENDPOINT']}/snapshots"
-    @snapshots = Date.today..90.days.ago
   end
 
   def pipe_delimited
