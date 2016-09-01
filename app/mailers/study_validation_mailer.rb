@@ -1,12 +1,6 @@
 class StudyValidationMailer < ApplicationMailer
   def self.send_alerts(errors)
-    emails = ['garrett@sturdy.work']
-
-    if ENV['EMAIL_DUKE_TEAM']
-      emails << 'sheri.tibbs@duke.edu'
-      emails << 'williamhoos@gmail.com'
-    end
-
+    emails = ['sheri.tibbs@duke.edu']
 
     emails.each do |email|
       alert(email, errors).deliver_now

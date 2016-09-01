@@ -35,6 +35,7 @@ class Study < ActiveRecord::Base
   has_many :facility_contacts,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :facility_investigators,:foreign_key => 'nct_id', dependent: :delete_all
   has_many :interventions,         :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :intervention_other_names, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :keywords,              :foreign_key => 'nct_id', dependent: :delete_all
   has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all
   has_many :milestones,            :foreign_key => 'nct_id', dependent: :delete_all
@@ -282,6 +283,27 @@ class Study < ActiveRecord::Base
     #  This isn't real.  Just proof of concept.
     return facilities.first.address if facilities.size > 0
     return lead_sponsor.agency
+  end
+
+  def has(attrib,label)
+		!pick(attrib,label).nil?
+	end
+
+  def pick(attrib,label)
+    # generic way to find element in one-to-many attrib with the 'label'
+    if send(attrib).respond_to? :proxy_association
+      col=send(attrib.to_sym)
+      val=col.select{|x|x.title==label if x.respond_to? :title}.first
+      return val if val
+      val=col.select{|x|x.label==label if x.respond_to? :label}.first
+      return val if val
+      val=col.select{|x|x.name==label if x.respond_to? :name}.first
+      return val if val
+      val=col.select{|x|x.id_type==label if x.respond_to? :id_type}.first
+      return val if val
+    else
+      col.send(attrib).send(label)
+    end
   end
 
 end

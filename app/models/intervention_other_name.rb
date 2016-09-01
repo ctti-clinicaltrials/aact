@@ -5,13 +5,11 @@ class InterventionOtherName < StudyRelationship
     'other_name'
   end
 
-  def self.create_all_from(opts)
-    objects = super
-    objects.map(&:attributes)
-  end
-
   def attribs
-    {:name=>opts[:xml].text}
+    {
+     :name=>opts[:xml].text,
+     :intervention=>opts[:intervention]
+    }
   end
 
 end
