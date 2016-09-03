@@ -2,7 +2,6 @@
 
   <div class="basicHero">
     <h1>Connect to AACT using psql</h1>
-
   </div>
 
 </div>
@@ -29,7 +28,7 @@
       <code>username=#  select * from table_name;</code>
     </pre>
     <p>
-      To connect to the AACT database, make sure you are outside of the psql console (exit by typing '\q' and hitting return). Run the psql command with these parameters.
+      To connect to the AACT database, make sure you're not already in the psql console (exit by entering '\q' and hitting return). Run the psql command with these parameters.
     </p>
     <pre>
       <code>> psql --host <%= ENV["RDS_DB_HOSTNAME"] %> --port=5432 --username=<%= ENV["RDS_DB_READONLY_USERNAME"] %> --dbname=<%= ENV["RDS_DB_READONLY_DBNAME"] %></code>
