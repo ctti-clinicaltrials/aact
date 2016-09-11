@@ -1,3 +1,12 @@
+.question {
+	border-style: solid;
+  border-color: red;
+  font-weight: bold;
+}
+
+div.copy {
+  padding: 60px 0px 10px 40px;
+}
 
 section.homeHero {
   display: block;
@@ -6,7 +15,7 @@ section.homeHero {
   text-align: left;
   position: relative;
   text-align: center;
-  padding-bottom: 500px;
+  padding-bottom: 20px;
 
   h1 {
     padding: 0px;
@@ -18,8 +27,8 @@ section.homeHero {
   }
 
   p {
-    font-size: 1.1rem;
-    margin-bottom: 40px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
   }
 
   div.copy {
@@ -34,6 +43,9 @@ section.homeHero {
     margin: 1rem;
     font-size: 1rem;
     text-align: center;
+  }
+  ul {
+    list-style: none;
   }
 }
 
@@ -73,11 +85,10 @@ div.circleButtons {
   }
 }
 
-
 div.heroPanelRow {
   background-color: $white;
   @include display-flex;
-  padding: 3rem 6rem;
+  padding: 0px 4px 4px 4px;
 
   span.type {
     position: absolute;

@@ -1,105 +1,34 @@
-class DefinitionsController < ApplicationController\
+class DefinitionsController < ApplicationController
+
+  # *******///********
+  # To update this info, replace the spreadsheet on the AWS server and ensure column names
+  # on lines 10-18 match those in the spreadsheet.
+  # *******///********
+
+  @results_url=ClinicalTrials::FileManager.nlm_results_data_url
+  @protocol_url=ClinicalTrials::FileManager.nlm_protocol_data_url
 
   def index
-
-    # *******///********
-    # TO UPDATE THE DATA IN THIS DICTIONARY DICTIONARY, REPLACE THIS SPREADSHEET AND MAKE SURE THE COLUMN NAMES ON LINES 10-18 MATCH THOSE IN THE SPREADSHEET
-    # *******///********
-
-    # Retrieve dictionary.xlsx from public folder
-    dictionary = Roo::Spreadsheet.open('./public/dictionary.xlsx')
-
-    dataResult = []
-
-    # dictionary.sheet(0).each({'Table Name' => 'table',
-    #                           'Column Name' => 'Variable Name',
-    #                           'Data Type' => 'DATA TYPE',
-    #                           'NLM Description' => 'NLM Definitions',
-    #                           'Comments' => 'CTTI Notes',
-    #                           'NLM Req' => 'NLM Required',
-    #                           'FDAAA Req' => 'FDAAA Required',
-    #                           'Max Length Used' => 'MAX LENGTH UTILIZED',
-    #                           'PRS Label' => 'Variable Label'}) do |hash|
-
-
-      dictionary.sheet(0).each({'Table Section' => 'table section',
-                                'Table Name' => 'table',
-                                'Column Name' => 'column',
-                                'AACT Contribution' => 'AACT contribution',
-                                'XML Source' => 'xml source',
-                                'NLM Documentation' => 'nlm documentation',
-                                'AACT1 Variable' => 'AACT1 Variable',
-                                'PRS Label' => 'PRS Label',
-                                'CTTI Note' => 'CTTI Note',
-                                'Data Type' => 'Data Type',
-                                '# of rows in table' => 'number of rows in table',
-                                'Distinct Column Values' => 'distinct values in column',
-                                'Max Length Allowed' => 'max length allowed',
-                                'Max Length Current' => 'max length current',
-                                'Min Length Current' => 'min length current',
-                                'Avg. Length Current' => 'average length current',
-                                'Common Values' => 'common values',
-                                'NLM Required' => 'nlm requred',
-                                'FDAAA Required' => 'fdaaa required'}) do |hash|
-
-      if hash["XML Source"]
-        hash["XML Source"].html_safe
-
-      end
-
-      if hash["NLM Documentation"].present?
-        hash["NLM Documentation"] = '<a href=" https://prsinfo.clinicaltrials.gov/definitions.html#'+hash["NLM Documentation"]+'" target="_blank">'+hash["NLM Documentation"]+'</a>'
-
-      end
-
-      unless hash["Table Name"] == "table"
-
-        begin
-          table = hash["Table Name"].sub(/_/, "").singularize.try(:constantize)
-          hash["# of rows in table"] = table.count
-        rescue NameError
-          hash["# of rows in table"] = "N/A"
-        end
-
-      end
-
-      dataResult << hash
-
-    end
-
-    # Take the column names out of the resulting array
-    dataResult.shift
-
-
-    # Filtering
-    params.each do |key, value|
-      puts key
-
-      if value.present? && key != "action" && key != "controller"
-        puts "#***********************************#"
-        puts key
-        puts value
-        puts "#***********************************#"
-
-        dataResult = dataResult.select do |hash|
-          # hash["Table Name"] == params["Table Name"]
-          require 'string/similarity'
-
-          if hash[key].nil? || value.nil?
-            0.0
-          else
-            String::Similarity.cosine(hash[key].try(:downcase), value.try(:downcase)) > 0.7
-          end
-
-
-
-        end
-
-
+    data = Roo::Spreadsheet.open(ClinicalTrials::FileManager.data_dictionary)
+    dataOut = []
+    header = data.first
+    (2..data.last_row).each do |i|
+      row = Hash[[header, data.row(i)].transpose]
+      if !row['table'].nil? and !row['column'].nil?
+        fix_attribs(row)
+        dataOut << row
       end
     end
-
-    # Return an array of objects as JSON that has the root key removed
-    render json: dataResult, root: false
+    render json: dataOut, root: false
   end
+
+  def fix_attribs(hash)
+    hash["xml source"].html_safe if hash["xml source"]
+
+    if hash["nlm documentation"].present?
+      hash["db section"].downcase == "results" ? url=@results_url : url=@protocol_url
+      hash["nlm documentation"] = "<a href='#{url}'#"+hash["nlm documentation"]+'" target="_blank">'+'NLM Info'+'</a>'
+    end
+  end
+
 end

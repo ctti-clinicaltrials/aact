@@ -1,38 +1,54 @@
-
 <section class="dataDictionaryShow">
   <div class="wrap">
-    <div class="basicHero">
-      <h1>AACT2 Data Dictionary</h1>
-
-    </div>
-  </div>
-
-  <section class="dictionaryOverview">
+    <h1>AACT Data Dictionary</h1>
+    <p>You are welcome to download a copy of database design specifications:</p>
     <div class="wrap">
-      <h2>Overview</h2>
-      <p>
-        AACT2, sponsored by the Clinical Trials Transformation Initiative (CTTI), is freely available in the cloud to anyone interested in studying ClinicalTrials.gov information and developing their own visualizations.  This data dictionary provides detailed information about all AACT2 data elements and how they relate to ClinicalTrials.gov information. 
-      </p>
-
       <ul>
-        <h5>Here are few tools that might be helpful while using the data dictionary:</h5>
-
-        <li>Take a look at the latest copy of the <a href="https://s3-us-west-2.amazonaws.com/aact2/20160714_aact2_schema.png" target="_blank">AACT2 schema diagram</a>.</li>
-
-        <li>Download a copy of the <a href="https://s3.amazonaws.com/cbgriffin/AACT201603_comprehensive_data_dictionary+(5).xlsx" download>data dictionary spreadsheet</a>, which contains the data displayed below in a static document.</li>
-
-        <li>Check out the National Library of Medicine's documentation on <a href="http://prsinfo.clinicaltrials.gov/definitions.html" target="_blank">study documentation</a> and <a href="http://prsinfo.clinicaltrials.gov/results_definitions.html" target="_blank">results documenation</a>.</li>
+        <li><a href=<%= @schema_diagram %> target="_blank">Schema Diagram</a></li>
+        <li><a href=<%= @data_dictionary %> target="_blank">Excel Version of the Data Dictionary</a></li>
       </ul>
     </div>
+    <p>Refer to the National Library of Medicine's documentation for authoritative definitions of all <a href="http://prsinfo.clinicaltrials.gov/definitions.html" target="_blank">study/protocol</a> and <a href="http://prsinfo.clinicaltrials.gov/results_definitions.html" target="_blank">results data</a> data elements.</p>
+
+    <p>
+      The table below provides detailed information about each data element in the AACT database. Every table and column in the AACT relational database is represented as a row in this table.
+    </p>
+    <!-- <ul>
+      <li>Current Variables:  list of all tables/columns with descriptive data</li>
+      <li>Enumerations:  A list of drop-down menus and the values available for each</li>
+      <li>Record Counts:  A list of all tables with the current row count</li>
+      <li>Schema:  The ER Diagram</li>
+    </ul> -->
+
+    <div class="gridContainer">
+      <div id="jsGrid"></div>
+    </div>
+
+  </div>
+    <ul>
+       <li>
+          <p>
+          The input box that appears under each column name <b>apply filters</b> to their respective columns. Simply type in a search term and hit Enter/Return on your keyboard, and your filtered results will be returned.
+          </p>
+       </li>
+
+       <li>
+          <p>
+          The last column of the table is the <b>control column</b>. The large magnifying glass in the upper right cell toggles the display of the filter row. The smaller magnifying glass in the cell below submits your search terms (same as hitting Enter/Return from within a field). The filter icon will <b>clear all your applied filters</b>.
+          </p>
+       </li>
+       <li>
+          <p>
+          To <b>sort alphanumerically</b> by column, simple click on a column header.
+          </p>
+       </li>
+     </ul>
   </section>
-
-
 
   <section class="namingConventions">
     <div class="wrap">
-      <h2>Naming Conventions</h2>
+      <h2>Database Design Considerations</h2>
 
-      <h4>Criteria</h4>
       <p>When designing the database schema, we tried to balance the following goals:</p>
       <ul>
         <li>Structure & name tables/columns to be as intuitive as possible.</li>
@@ -45,7 +61,6 @@
 
       <h4>Conventions</h4>
       <ul>
-
         <li>Table names are plural.</li>
         <li>Column names are singular.</li>
         <li>Words are delimited with underscores.</li>
@@ -61,8 +76,6 @@
         <li>Avoid one-to-one relationships unless it's clearly more intuitive that way.</li>
       </ul>
 
-
-
       <h4>Considerations</h4>
       <ul>
         <li>We struggled with whether to use the term arm, group, or group_arm.  (Observational studies have xml tags named ‘group’ and Interventional studies have ‘arms’.  They are effectively the same thing.)</li>
@@ -71,56 +84,3 @@
 
     </div>
   </section>
-
-
-  <section class="dataDefinitions">
-    <div class="wrap">
-      <h2>Data Definitions</h2>
-
-      <p>
-        The purpose of the data definitions table is to provide detailed information about each data element in the AACT2 databse. Every column in the AACT2 relational database table is represented as a row in the table below.
-      </p>
-
-      <p>
-        <b>
-          A few tips to help you get started with the data dictionary...
-        </b>
-      </p>
-      <ul>
-
-        <li>
-          <p>
-          The text fields below each column name <b>apply filters</b> to their respective columns. Simply type in a search term and hit Enter/Return on your keyboard, and your filtered results will be returned.
-          </p>
-        </li>
-
-        <li>
-          <p>
-          The last column of the table is the <b>control column</b>. The large magnifying glass in the upper right cell toggles the display of the filter row. The smaller magnifying glass in the cell below submits your search terms (same as hitting Enter/Return from within a field). The filter icon will <b>clear all your applied filters</b>.
-          </p>
-        </li>
-        <li>
-          <p>
-          To <b>sort alphanumerically</b> by column, simple click on a column header.
-          </p>
-        </li>
-      </ul>
-
-    </div>
-
-    <!-- <ul>
-      <li>Current Variables:  list of all tables/columns with descriptive data</li>
-      <li>Enumerations:  A list of drop-down menus and the values available for each</li>
-      <li>Record Counts:  A list of all tables with the current row count</li>
-      <li>Schema:  The ER Diagram</li>
-    </ul> -->
-
-    <div class="gridContainer">
-      <div id="jsGrid"></div>
-
-    </div>
-
-
-  </section>
-
-</section>

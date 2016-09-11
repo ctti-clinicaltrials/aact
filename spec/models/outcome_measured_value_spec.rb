@@ -2,7 +2,18 @@ require 'rails_helper'
 
 describe OutcomeMeasuredValue do
   it "should belong to study as expected" do
+    nct_id='NCT02389088'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    outcome=(study.outcomes.select{|o|o.outcome_type=='Primary' and o.title=='LH and FSH During Phase I and Phase II'}).first
+    expect(outcome.outcome_measured_values.size).to eq(30)
+    fsh=outcome.outcome_measured_values.select{|x|x.category=='FSH'}
+    expect(fsh.size).to eq(10)
+    o1=fsh.select{|x|x.ctgov_group_code=='O10'}.first
+    expect(o1.result_group.ctgov_group_code).to eq(o1.ctgov_group_code)
+  end
 
+  it "should belong to study as expected" do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create

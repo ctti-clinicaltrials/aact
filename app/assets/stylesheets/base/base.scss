@@ -8,12 +8,37 @@
   @include border-box;
 }
 
+.standardLayout {
+   padding-left: 100px;
+   padding-right: 100px;
+   padding-bottom: 40px;
+   max-width: 1000px;
+}
+
 html {
-  height: 100%;
+    height: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+table.regularDisplay, ul.regularDisplay {
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+}
+
+ul.indent {
+    margin: 20px 60px 20px;
 }
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+div.wrap {
+  position: relative;
 }
 
 body {
@@ -22,7 +47,6 @@ body {
   font-family: $font-serif;
   color: $text-color;
   // background-attachment: fixed;
-  background: url("https://s3-us-west-2.amazonaws.com/cttiaact2/download.svg") #f9f9f9;
   @include bg-size(30px 20px);
   position: relative;
 }
@@ -149,7 +173,8 @@ pre {
 %container {
   margin: 0 auto;
   max-width: $wrap_width;
-  padding: 0 $gutter_width;
+  padding-left:  40px;
+  padding-right:  40px;
   position: relative;
 }
 
@@ -217,7 +242,4 @@ div.step {
     margin-right: .5rem;
     font-family: $font-sans;
   }
-
-
-
 }

@@ -1,0 +1,35 @@
+<div class="col-sm-9 col-md-9">
+   <h2 style='font-family:benton sans thin'>Accessing AACT2 Database</h2>
+The AACT2 database is freely available to anyone interested. Access to AACT2 can be obtained through four basic methods.
+   <br>
+    <ul class='well' style='list-style-type:none; font-family:benton sans thin'>
+      <h3 style='font-family:benton sans thin'>Methods</h3>
+      <li><b>Direct Connect:</b> As a cloud-hosted database, AACT2 can be directly accessed via standard query & analytic tools. Several popular tools, such as pgAdmin & RStudio, are free and relatively easy to install and configure. Other proprietary tools are popular and provide powerful analytic and/or relational database utility; these tools include SAS, Toad, and Tableau. In many cases, access is a matter of installing the software package, configuring it to use Postgres, and providing AACT2 connection credentials. Click here for instructions on how to access the database directly.</li>
+      <br>
+      <li><b>Replication:</b> AACT2 uses an open-source database - <a href='https://www.postgresql.org'>Postgres</a> - making it free and easy to replicate locally. Postgres is well established and relatively easy to install and manage. Postgres documentation/online support is plentiful, and the platform is light-weight and designed for use by people/orgaizations that don't have resources to administer relational database systems. Anyone may replicate the current AACT2 database to their local machine and then analyze the data using their own local instance of Postgres. Click here for instructions about how to replicate the database locally.</li>
+      <br>
+      <li><b>Snapshot:</b> Monthly snapshots of AACT2 are available for download. As with <b>'Replication'</b>, people interested in using a snapshot of AACT2 must install Postgres locally, then download and unpack the AACT2 snapshot, and freely query/analyze the data on their local copy.</li>
+      <br>
+      <li><b>CSV Files:</b> A zip file containing the entire content of the database is provided each month as a set of csv files which can be downloaded. Downloaded csv files can then be unpacked and used as a data source for analytic tools such as SAS and R.</li>
+      <br>
+    </ul>
+
+    <ul class='well' style='list-style-type:none; font-family:benton sans thin'>
+      <h3 style='font-family:benton sans thin'>Recommended Tools</h3>
+      <li><b><a href='https://www.pgadmin.org/'>pgAdmin</a></b> Popular and feature-rich open source administration/SQL-query tool</li>
+      <br>
+      <li><b><a href='http://www.sas.com/en_us/software/analytics/stat.html'>SAS</a></b> Proprietary data analysis software package</li>
+      <br>
+      <li><b><a href='https://www.rstudio.com/'>R/RStudio</a></b> Free and open source data analysis software package</li>
+      <br>
+      <li><b><a href='http://tableau.com/'>Tableau</a></b> Analytic software known for generating sophisticated visualizations & graphics.</li>
+      <br>
+			<li><b><a href='https://tylingsoft.com/postgresql-master/'>PostgreSQL Master</a></b>Intuitive SQL tool with graphic interface - for Mac users only.</li>
+<br>
+    </ul>
+
+		<%= render partial: "download_postgres_driver" %>
+		<%= render partial: "sas_connect" %>
+		<%= render partial: "r_connect" %>
+
+</div>

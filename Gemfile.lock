@@ -344,6 +344,7 @@ DEPENDENCIES
   bullet
   bundler-audit (>= 0.5.0)
   capybara-webkit
+  coderay
   database_cleaner
   dotenv-rails
   enumerize

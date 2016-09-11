@@ -1,50 +1,30 @@
-
 <div class="wrap">
 
   <div class="basicHero">
     <h1>Download AACT</h1>
-
-  </div>
-
-</div>
-
-<section class="downloadAact">
-  <div class="downloadTypes">
-
-    <a href="/snapshots" class="downloadCard">
-      <h4>Restore from a snapshot</h4>
-      <p>The latest snapshot of the AACT2 database was captured on <%= Date.today.strftime("%B %e") %> at 3am Eastern Standard Time. Click here for instructions on how to utitlize snapshots.
-      </p>
-      <%= icon("download") %>
-    </a>
-
-    <a href="https://s3-us-west-2.amazonaws.com/aact2/csv_pipe_exports/<%= Date.today.strftime('%Y-%m-%d') %>-pipe-delimited-export" class="downloadCard">
-      <h4>Pipe delimited package</h4>
-      <p>
-        Click here to download a pipe delimited copy of the database. These pipe delimited files are compatible with many data visualization tools like SAS and R.
-      </p>
-      <%= icon("download") %>
-    </a>
-
-  </div>
-
-  <section class="instructions">
-    <div class="wrap">
-
-      <section class="downloadIntro">
-        <h2>Overview</h2>
-        <p>Postgres is well established and relatively easy to install and manage. Postgres documentation/online support is plentiful, and the platform is light-weight and designed for use by people/organizations that don't have resources to administer relational database systems. Anyone can replicate the current AACT database to their local machine, and then analyze the data using their own local instance of Postgres.</p>
-
-        <p>Monthly snapshots of AACT are available for download. People interested in using a snapshot of AACT can install Postgres locally, then download and unpack the AACT snapshot and freely query/analyze the data on their local copy.</p>
-
-        <p>Also monthly, a zip file containing the entire content of the database is provided as a set of .csv files that can be downloaded. Downloaded .csv files can be unpacked and used as a data source for analytic tools such as SAS and R.</p>
-
-      </section>
-
-
+       <p>
+       A static copy (snapshot) of the AACT database is created on the first of each month. The most recent and archived <a href='/snapshots'>snapshots</a> are available for download. These can be used to create a local copy of a particular instance of the database. A number of query and analytic tools (such as SAS, pgAdmin & R) can then be used to connect to and query your local copy.</p>
+       <p>For those who prefer to access the data via simple flat files, each snapshot is also available as a <a href='/pipe-delimited'>zipped package of pipe-delimited files</a>.<p>
     </div>
 
+  <section class="downloadAact">
+     <div class="downloadTypes">
+<section class="homeHero">
+       <a href="/snapshots" class="downloadCard">
+         <h4>Download Database Snapshot</h4>
+         <p>The latest snapshot of the AACT database was captured on <%= Date.today.strftime("%B %e") %> at 3am Eastern Standard Time. Click here for instructions on how to utitlize snapshots.
+         </p>
+         <%= icon("download") %>
+      </a>
+
+      <a href="/pipe_delimited" class="downloadCard">
+         <h4>Download Set of Pipe-Delimited CSV Files</h4>
+         <p>
+           Click here to download a pipe delimited copy of the database. These pipe delimited files are compatible with many data visualization tools like SAS and R.
+         </p>
+         <%= icon("download") %>
+      </a>
+
+     </div>
   </section>
-
-
-</section>
+</div>
