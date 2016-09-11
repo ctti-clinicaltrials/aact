@@ -3,6 +3,14 @@ include ActionView::Helpers::NumberHelper
 module ClinicalTrials
   class FileManager
 
+    def self.nlm_protocol_data_url
+      "https://prsinfo.clinicaltrials.gov/definitions.html"
+    end
+
+    def self.nlm_results_data_url
+      "https://prsinfo.clinicaltrials.gov/results_definitions.html"
+    end
+
     def self.server
       ENV['FILESERVER_ENDPOINT']
     end
@@ -20,11 +28,11 @@ module ClinicalTrials
     end
 
     def self.schema_diagram
-      "#{server}/documentation/schema_diagram.png"
+      "#{server}/documentation/aact_schema.png"
     end
 
     def self.data_dictionary
-      "#{server}/documentation/data_dictionary.png"
+      "#{server}/documentation/aact_data_definitions.xlsx"
     end
 
     def self.files_in(dir)

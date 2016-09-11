@@ -1,0 +1,39 @@
+<div class="well">
+		<h2>Get PostgreSQL Driver</h2>
+    <div class="well">
+			<p>Some desktop Postgres tools will expect to find the driver.  You'll need to download a copy of the <a href='https://jdbc.postgresql.org/download.html'>postgres driver</a> then follow these steps to put it in the directory where postgres tools expect to find it...</p>
+		</div>
+
+		<h4>Linux</h4>
+		    <div class="CodeRay">
+					<div class="code">
+             <pre>
+<span class="command-prompt"> $</span> <span class="command-entry">which postgres</span>
+<span class="command-response"> /var/lib/postgresql/<i>[version]</i></span>
+<span style="command-prompt"> $</span> <span class="command-entry">cd /var/lib/postgresql/<i>[version]</i>/lib</span>
+<span style="command-prompt"> $</span> <span class="command-entry">sudo cp ~/postgresql-<i>[version]</i>.jar .</span>
+<span style="command-prompt"> $</span> <span class="command-entry">sudo ln -s postgresql-<i>[version]</i>.jar postgresql.jar</span>
+						</pre>
+				</div>
+      </div>
+		<h4>MacOS</h4>
+		    <div class="CodeRay">
+					<div class="code">
+             <pre>
+<span class="command-prompt"> -></span> <span class="command-entry">which postgres</span>
+<span class="command-response"> /Library/PostgreSQL/<i>9.4</i>/bin/postgres</span>
+<span style="command-prompt"> -></span> <span class="command-entry">cd /Library/PostgreSQL/<i>9.4</i>/lib</span>
+<span style="command-prompt"> -></span> <span class="command-entry">sudo cp ~/Downloads/postgresql-<i>9.4.1208</i>.jar .</span>
+<span style="command-prompt"> -></span> <span class="command-entry">sudo ln -s postgresql-<i>9.4.1208</i>.jar postgresql.jar</span>
+						</pre>
+				</div>
+    	</div>
+		<h4>Windows</h4>
+		<div class="CodeRay">
+      <div class="code">
+         <pre>
+           <p>???</p>
+         </pre>
+      </div>
+    </div>
+</div>

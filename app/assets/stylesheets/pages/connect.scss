@@ -1,12 +1,19 @@
 section.connect {
   background-color: $white;
-  padding-bottom: 360px;
+  padding-bottom: 40px;
+}
+
+pre {
+    background: #262626 none repeat scroll 0 0;
+    border: 1px dashed #999;
+    color: white;
+    overflow: auto;
+    padding: 0.5em;
 }
 
 div.connectionTypes, div.downloadTypes, div.learnMoreCards {
   @include display-flex;
-  padding: 2rem;
-  padding-bottom: 0rem;
+	padding: 2rem 0rem 0rem;
 
   h4 {
     font-size: 1.5rem;
@@ -37,7 +44,7 @@ div.connectionTypes, div.downloadTypes, div.learnMoreCards {
     @include box-shadow(3px 3px 11px $light-grey);
     margin: 1rem;
     position: relative;
-    bottom: 100px;
+    bottom: 40px;
   }
 
 }
