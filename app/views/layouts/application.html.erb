@@ -13,6 +13,9 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,400italic' rel='stylesheet' type='text/css'>
 
 
+   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/black-tie/jquery-ui.css" rel="stylesheet">
+   <link href="css/aact.css" rel="stylesheet" type="text/css">
+
   <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.css" />
   <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid-theme.min.css" />
 
@@ -23,14 +26,15 @@
   <header>
     <%= render 'includes/main_header' %>
   </header>
+  <div class='standardLayout'>
+    <%= render "flashes" -%>
+    <%= yield %>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script> -->
 
-  <%= render "flashes" -%>
-  <%= yield %>
-  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script> -->
-
-  <%= render "javascript" %>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.js"></script>
-  <%= render "css_overrides" %>
+    <%= render "javascript" %>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.js"></script>
+    <%= render "css_overrides" %>
+  </div>
 
   <footer>
     <%= render 'includes/main_footer' %>

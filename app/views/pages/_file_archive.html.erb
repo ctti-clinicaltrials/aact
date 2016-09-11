@@ -1,0 +1,11 @@
+  <div class="wrap">
+    <table>
+      <th>Created</>
+      <th>Size</>
+      <%= @files.each do |file| %>
+        <tr>
+          <td><a href="<%= file[:url] %>"><%= file[:last_modified] %></a></td><td><%= file[:size] %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>

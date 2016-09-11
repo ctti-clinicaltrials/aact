@@ -9,9 +9,9 @@
   <div class="learnMoreCards">
 
     <a href=<%= @schema_diagram %> target="_blank" class="learnMoreCard">
-      <h3>Database Schema</h3>
+      <h3>Schema</h3>
       <p>
-        Provides a blueprint for how AACT is structured and how ClinicalTrials.gov protocol & result data have been organized into related tables. Defines the conventions and considerations that went into the db design.
+        Provides a blueprint for how AACT is structured and how ClinicalTrials.gov protocol & result data have been organized into related tables. Also defines the conventions and considerations that went into the db design.
       </p>
       <%= icon("database") %>
     </a>
@@ -26,25 +26,22 @@
   </div>
 
   <div class="learnMoreCards">
-    <a href="points_to_consider" class="learnMoreCard">
+    <a href="/points_to_consider" class="learnMoreCard">
       <h3>AACT Guide for Researchers and Analysts</h3>
       <p>
-      Provides guidelines for investigators to consider when planning a statistical analysis of the ClinicalTrials.gov database. This focuses on the content of the database and how to use it to conduct research.
+      Provides guidelines for investigators to consider when planning a statistical analysis of the ClinicalTrials.gov data. This focuses on the content of the database and how to use it to conduct research.
       </p>
       <%= icon("terminal") %>
     </a>
 
-    <a href="/" class="learnMoreCard">
+    <a href="/frequently_asked_questions" class="learnMoreCard">
       <h3>Frequently Asked Questions</h3>
       <%= icon("question-circle-o") %>
     </a>
 
+    <a href="/background" class="learnMoreCard">
+      <h3>Additional Background</h3>
+      <%= icon("question-circle-o") %>
+    </a>
   </div>
-
-  <div class="overview">
-    <div class="wrap">
-      <%= render 'overview' %>
-    </div>
-  </div>
-
 </section>

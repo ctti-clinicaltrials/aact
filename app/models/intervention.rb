@@ -24,13 +24,9 @@ class Intervention < StudyRelationship
       :intervention_type=>get('intervention_type'),
       :name => get('intervention_name'),
       :description => get('description'),
+      :intervention_other_names => InterventionOtherName.create_all_from(opts.merge(:intervention=>self)),
       :design_group_interventions => DesignGroupIntervention.create_all_from(opts.merge(:intervention=>self)),
-      :intervention_other_names => InterventionOtherName.create_all_from(opts),
     }
-  end
-
-  def other_names
-    intervention_other_names
   end
 
 end

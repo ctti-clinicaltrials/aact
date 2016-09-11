@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
+ and an XML DTD at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 29, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01841593</url>
+  </required_header>
+  <id_info>
+    <org_study_id>SSAT 051</org_study_id>
+    <nct_id>NCT01841593</nct_id>
+  </id_info>
+  <brief_title>A Two Way Cross Over Pharmacokinetic Interaction Study Between Raltegravir and Amlodipine in Healthy Volunteers</brief_title>
+  <official_title>A Two Way Cross Over Pharmacokinetic (PK) Interaction Study Between Raltegravir and Amlodipine in Healthy Volunteers</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>St Stephens Aids Trust</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>St Stephens Aids Trust</source>
+  <oversight_info>
+    <authority>United Kingdom: Medicines and Healthcare Products Regulatory Agency</authority>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of the study is to look at the levels of an HIV medication (raltegravir) in the
+      blood, and how it is affected if raltegravir is taken at the same time as another medicine
+      for high blood pressure (amlodipine). Many patients with HIV will also have high blood
+      pressure, so it is important to know which drugs for each of these conditions can be taken
+      together without affecting how well they work individually.
+
+      Over a 3 week period, participants took amlodipine for 2 weeks, and raltegravir for 2 weeks,
+      with the middle week being on both drugs. The investigators will look at and compare the
+      levels of these two drugs in the blood after subjects have taken them separately and both
+      together.
+
+      This study is randomised into two groups with both study medications received by all
+      participants in a three-period crossover pattern; randomisation determined which medication
+      was taken first. Once randomised allocation was performed, medications were administered in
+      an open-label fashion.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      HIV-negative male and female volunteers will be enrolled, after written confirmation of
+      informed consent, in a phase I, open-label, cross-over, PK study (approved by Westminster
+      Research Ethics Committee and UK Regulatory Authorities; Eudra number 2012-005400-18).
+
+      Subjects are randomized to receive either raltegravir 400mg twice-daily (seven days),
+      followed by raltegravir 400mg twice-daily plus amlodipine 5mg once-daily (seven days),
+      followed by amlodipine 5mg once-daily alone (seven days), or the same treatments in the
+      opposite order, in the fasted state (at least eight hours) with 240mL of water.
+
+      Intensive PK sampling and safety laboratory analysis are performed at the end of each phase
+      (Days 7, 14 and 21). Raltegravir and amlodipine plasma concentrations will be analysed by a
+      validated liquid chromatography-mass spectrometry (LC-MS/MS) method.
+
+      PK parameters are determined by non-compartmental methods [WinNonlin Phoenix (version 6.1;
+      Pharsight Corp, Mountain View, CA, USA]. These are the concentrations measured 12 and 24
+      hours post-dose (C12h, C24h) for raltegravir and amlodipine, respectively; the maximum
+      concentration (Cmax); and the area under the curve over 12 and 24 hours (AUC12h, AUC24h) for
+      raltegravir and amlodipine, respectively.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>April 2013</start_date>
+  <completion_date type="Actual">September 2013</completion_date>
+  <primary_completion_date type="Actual">September 2013</primary_completion_date>
+  <phase>Phase 1</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Intervention Model: Crossover Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Maximum Observed Concentration (Cmax) of Raltegravir and Amlodipine Without and With Co-administration of the Other Studied Drug.</measure>
+    <time_frame>Day 7 of each intervention (0 (pre-dose), 2, 4, 8 and 12 hours post dose (both drugs) and 24 hours post dose (amlodipine only))</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>To investigate the pharmacokinetics of raltegravir and amlodipine co-administration. The pharmacokinetic parameters calculated for raltegravir and amlodipine will be trough concentration (Ctrough), defined as the concentration at 24 hours after the observed drug dose, the maximum observed plasma concentration (Cmax), elimination half-life (t1/2), time point at Cmax (Tmax), and total drug exposure, expressed as the area under the plasma concentration-time curve from 0-24 hours after dosing (AUC0-24h).
+All pharmacokinetic parameters will be calculated using non-compartmental modeling techniques (WinNonlin®) and all statistical calculations performed and analyzed using SAS version 9.1 or SPSS V17.0.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Raltegravir C12h</measure>
+    <time_frame>12 hours post-dose on day 7 of daily dosing.</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>measured concentration 12 hours after dose in the absence, and presence, of amlodipine.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Amlodipine C24h</measure>
+    <time_frame>12 hours post-dose on day 7 of daily dosing.</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>measured concentration 24 hours after dose in the absence, and presence, of raltegravir</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Raltegravir AUC(0-12h )</measure>
+    <time_frame>Post dose after day 7 of daily dosing</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>AUC0-12h: Area under the concentration time curve over 12 hours in the absence, and presence, of amlodipine.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Amlodipine AUC(0-24h)</measure>
+    <time_frame>Post-dose on day 7 of daily dosing</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>AUC0-24h: Area under the concentration time curve 24 hours in the absence, and presence, of raltegravir</description>
+  </primary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">19</enrollment>
+  <condition>HIV</condition>
+  <arm_group>
+    <arm_group_label>Group A</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>DAYS 1 to 7: raltegravir 400 mg BID DAYS 8 to 14: raltegravir 400 mg BID PLUS amlodipine 5 mg OD DAYS 15 to 21: amlodipine 5 mg OD</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Group B</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>DAYS 1 to 7: amlodipine 5 mg OD DAYS 8 to 14: raltegravir 400 mg BID PLUS amlodipine 5 mg OD DAYS 15 to 21: raltegravir 400 mg BID</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Raltegravir</intervention_name>
+    <description>Isentress 400mg tablet taken twice daily</description>
+    <arm_group_label>Group A</arm_group_label>
+    <arm_group_label>Group B</arm_group_label>
+    <other_name>Isentress</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Amlodipine</intervention_name>
+    <description>generic amlodipine 5mg tablets (Accord healthcare Limited, UK)</description>
+    <arm_group_label>Group A</arm_group_label>
+    <arm_group_label>Group B</arm_group_label>
+    <other_name>Amlodipine 5mg tablets</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+        Subjects must meet all of the following inclusion criteria within 28 days prior to the
+        baseline visit:
+
+          -  The ability to understand and sign a written informed consent form, prior to
+             participation in any screening procedures and must be willing to comply with all
+             study requirements
+
+          -  Male or non-pregnant, non-lactating females
+
+          -  Between 18 to 65 years, inclusive
+
+          -  Body Mass Index (BMI) of 18 to 35 kg/m2, inclusive.
+
+          -  Women of childbearing potential (WOCBP) must be using an adequate method of
+             contraception to avoid pregnancy throughout the study and for a period of at least 12
+             weeks after the study
+
+          -  Willing to consent to their personal details being entered onto The Over-volunteering
+             Prevention Scheme (TOPS) database
+
+          -  Willing to provide photographic identification at each visit.
+
+          -  Registered with a GP in the UK
+
+        Exclusion Criteria:
+
+        Subjects who meet any of the following exclusion criteria are not to be enrolled in this
+        study.
+
+          -  Any significant acute or chronic medical illness including hypertension (BP
+             persistently &gt;140/90 mmHg) or hypotension (BP persistently &lt;90/60 mmHg)
+
+          -  Evidence of organ dysfunction or any clinically significant deviation from normal in
+             physical examination, vital signs, ECG or clinical laboratory determinations
+
+          -  Positive blood screen for hepatitis B surface antigen and/or C antibodies
+
+          -  Positive blood screen for HIV-1 and/or 2 antibodies
+
+          -  Current or recent (within 3 months) gastrointestinal disease
+
+          -  Clinically relevant alcohol or drug use (positive urine drug screen) or history of
+             alcohol or drug use considered by the Investigator to be sufficient to hinder
+             compliance with treatment, follow-up procedures or evaluation of adverse events.
+             Smoking is permitted, but tobacco intake should remain consistent throughout the
+             study
+
+          -  Exposure to any investigational drug or placebo within 3 months of first dose of
+             study drug
+
+          -  Use of any other drugs (unless approved by the Investigator), including
+             over-the-counter medications and herbal preparations, within two weeks prior to first
+             dose of study drug, unless approved/prescribed by the Principal Investigator as known
+             not to interact with study drugs.
+
+          -  Females of childbearing potential without the use of effective non-hormonal birth
+             control methods, or not willing to continue practising these birth control methods
+             for at least 12 weeks after the end of the treatment period
+
+          -  Previous allergy to any of the constituents of the pharmaceuticals administered in
+             this trial
+
+          -  Lactose intolerance
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>65 Years</maximum_age>
+    <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Marta Boffito, Dr</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>St Stephen's AIDS Trust</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>St Stephen's AIDS Trust</name>
+      <address>
+        <city>London</city>
+        <zip>SW10 9TH</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United Kingdom</country>
+  </location_countries>
+  <verification_date>September 2014</verification_date>
+  <lastchanged_date>September 23, 2014</lastchanged_date>
+  <firstreceived_date>April 16, 2013</firstreceived_date>
+  <firstreceived_results_date>July 14, 2014</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <is_fda_regulated>No</is_fda_regulated>
+  <has_expanded_access>No</has_expanded_access>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Amlodipine</mesh_term>
+    <mesh_term>Raltegravir Potassium</mesh_term>
+  </intervention_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <group_list>
+        <group group_id="P1">
+          <title>Group A (Raltegravir Then Amlodipine)</title>
+          <description>DAYS 1 to 7: raltegravir 400 mg BID DAYS 8 to 14: raltegravir 400 mg BID PLUS amlodipine 5 mg OD DAYS 15 to 21: amlodipine 5 mg OD</description>
+        </group>
+        <group group_id="P2">
+          <title>Group B (Amlodipine Then Raltegravir)</title>
+          <description>DAYS 1 to 7: amlodipine 5 mg OD DAYS 8 to 14: raltegravir 400 mg BID PLUS amlodipine 5 mg OD DAYS 15 to 21: raltegravir 400 mg BID</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>First Intervention (Days 1 to 7)</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="12"/>
+                <participants group_id="P2" count="7"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="12"/>
+                <participants group_id="P2" count="6"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="1"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Protocol Violation</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+        <period>
+          <title>Second Intervention (Days 8 to 14)</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="12"/>
+                <participants group_id="P2" count="6"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="11"/>
+                <participants group_id="P2" count="6"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Adverse Event</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+        <period>
+          <title>Third Intervention (Days 15 to 21)</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="11"/>
+                <participants group_id="P2" count="6"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="11"/>
+                <participants group_id="P2" count="6"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <population>All enrolled participants who completed at least two of three pharmacokinetic sessions for comparison were included in the analysis.</population>
+      <group_list>
+        <group group_id="B1">
+          <title>Group A</title>
+          <description>DAYS 1 to 7: raltegravir 400 mg BID DAYS 8 to 14: raltegravir 400 mg BID PLUS amlodipine 5 mg OD DAYS 15 to 21: amlodipine 5 mg OD</description>
+        </group>
+        <group group_id="B2">
+          <title>Group B</title>
+          <description>DAYS 1 to 7: amlodipine 5 mg OD DAYS 8 to 14: raltegravir 400 mg BID PLUS amlodipine 5 mg OD DAYS 15 to 21: raltegravir 400 mg BID</description>
+        </group>
+        <group group_id="B3">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <measure_list>
+        <measure>
+          <title>Number of Participants</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <measurement_list>
+                <measurement group_id="B1" value="11"/>
+                <measurement group_id="B2" value="6"/>
+                <measurement group_id="B3" value="17"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>&lt;=18 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+                <measurement group_id="B2" value="0"/>
+                <measurement group_id="B3" value="0"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Between 18 and 65 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="11"/>
+                <measurement group_id="B2" value="6"/>
+                <measurement group_id="B3" value="17"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>&gt;=65 years</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="0"/>
+                <measurement group_id="B2" value="0"/>
+                <measurement group_id="B3" value="0"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <category_list>
+            <category>
+              <sub_title>Female</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="10"/>
+                <measurement group_id="B2" value="3"/>
+                <measurement group_id="B3" value="13"/>
+              </measurement_list>
+            </category>
+            <category>
+              <sub_title>Male</sub_title>
+              <measurement_list>
+                <measurement group_id="B1" value="1"/>
+                <measurement group_id="B2" value="3"/>
+                <measurement group_id="B3" value="4"/>
+              </measurement_list>
+            </category>
+          </category_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Maximum Observed Concentration (Cmax) of Raltegravir and Amlodipine Without and With Co-administration of the Other Studied Drug.</title>
+        <description>To investigate the pharmacokinetics of raltegravir and amlodipine co-administration. The pharmacokinetic parameters calculated for raltegravir and amlodipine will be trough concentration (Ctrough), defined as the concentration at 24 hours after the observed drug dose, the maximum observed plasma concentration (Cmax), elimination half-life (t1/2), time point at Cmax (Tmax), and total drug exposure, expressed as the area under the plasma concentration–time curve from 0–24 hours after dosing (AUC0–24h).
+All pharmacokinetic parameters will be calculated using non-compartmental modeling techniques (WinNonlin®) and all statistical calculations performed and analyzed using SAS version 9.1 or SPSS V17.0.</description>
+        <time_frame>Day 7 of each intervention (0 (pre-dose), 2, 4, 8 and 12 hours post dose (both drugs) and 24 hours post dose (amlodipine only))</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>Data from all enrolled participants who participated in at least two of the three PK assessments were included in the analysis.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Raltegravir PK (Alone)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+          <group group_id="O2">
+            <title>Raltegravir PK (Administered With Amlodipine)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+          <group group_id="O3">
+            <title>Amlodipine PK (Alone)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+          <group group_id="O4">
+            <title>Amlodipine PK (Administered With Raltegravir)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="17"/>
+                  <measurement group_id="O2" value="17"/>
+                  <measurement group_id="O3" value="17"/>
+                  <measurement group_id="O4" value="17"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Maximum Observed Concentration (Cmax) of Raltegravir and Amlodipine Without and With Co-administration of the Other Studied Drug.</title>
+            <description>To investigate the pharmacokinetics of raltegravir and amlodipine co-administration. The pharmacokinetic parameters calculated for raltegravir and amlodipine will be trough concentration (Ctrough), defined as the concentration at 24 hours after the observed drug dose, the maximum observed plasma concentration (Cmax), elimination half-life (t1/2), time point at Cmax (Tmax), and total drug exposure, expressed as the area under the plasma concentration–time curve from 0–24 hours after dosing (AUC0–24h).
+All pharmacokinetic parameters will be calculated using non-compartmental modeling techniques (WinNonlin®) and all statistical calculations performed and analyzed using SAS version 9.1 or SPSS V17.0.</description>
+            <units>ng/mL</units>
+            <param>Geometric Mean</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="1178" lower_limit="966" upper_limit="2318"/>
+                  <measurement group_id="O2" value="1866" lower_limit="1779" upper_limit="4511"/>
+                  <measurement group_id="O3" value="8.47" lower_limit="7.58" upper_limit="10.0"/>
+                  <measurement group_id="O4" value="8.49" lower_limit="7.65" upper_limit="9.94"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Raltegravir C12h</title>
+        <description>measured concentration 12 hours after dose in the absence, and presence, of amlodipine.</description>
+        <time_frame>12 hours post-dose on day 7 of daily dosing.</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Raltegravir PK (Alone)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+          <group group_id="O2">
+            <title>Raltegravir PK (Administered With Amlodipine)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="17"/>
+                  <measurement group_id="O2" value="17"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Raltegravir C12h</title>
+            <description>measured concentration 12 hours after dose in the absence, and presence, of amlodipine.</description>
+            <units>ng/mL</units>
+            <param>Geometric Mean</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="48" lower_limit="35" upper_limit="95"/>
+                  <measurement group_id="O2" value="37" lower_limit="30" upper_limit="67"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Amlodipine C24h</title>
+        <description>measured concentration 24 hours after dose in the absence, and presence, of raltegravir</description>
+        <time_frame>12 hours post-dose on day 7 of daily dosing.</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Amlodipine PK (Alone)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+          <group group_id="O2">
+            <title>Amlodipine PK (Administered With Raltegravir)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="17"/>
+                  <measurement group_id="O2" value="17"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Amlodipine C24h</title>
+            <description>measured concentration 24 hours after dose in the absence, and presence, of raltegravir</description>
+            <units>ng/mL</units>
+            <param>Geometric Mean</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="4.91" lower_limit="4.23" upper_limit="6.36"/>
+                  <measurement group_id="O2" value="4.55" lower_limit="4.11" upper_limit="5.34"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Raltegravir AUC(0-12h )</title>
+        <description>AUC0-12h: Area under the concentration time curve over 12 hours in the absence, and presence, of amlodipine.</description>
+        <time_frame>Post dose after day 7 of daily dosing</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Raltegravir PK (Alone)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+          <group group_id="O2">
+            <title>Raltegravir PK (Administered With Amlodipine)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="17"/>
+                  <measurement group_id="O2" value="17"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Raltegravir AUC(0-12h )</title>
+            <description>AUC0-12h: Area under the concentration time curve over 12 hours in the absence, and presence, of amlodipine.</description>
+            <units>ng*h/mL</units>
+            <param>Geometric Mean</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="4600" lower_limit="3888" upper_limit="7652"/>
+                  <measurement group_id="O2" value="6410" lower_limit="5649" upper_limit="12138"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Amlodipine AUC(0-24h)</title>
+        <description>AUC0-24h: Area under the concentration time curve 24 hours in the absence, and presence, of raltegravir</description>
+        <time_frame>Post-dose on day 7 of daily dosing</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Amlodipine PK (Alone)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+          <group group_id="O2">
+            <title>Amlodipine PK (Administered With Raltegravir)</title>
+            <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
+          </group>
+        </group_list>
+        <measure_list>
+          <measure>
+            <title>Number of Participants</title>
+            <units>participants</units>
+            <param>Number</param>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="17"/>
+                  <measurement group_id="O2" value="17"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+          <measure>
+            <title>Amlodipine AUC(0-24h)</title>
+            <description>AUC0-24h: Area under the concentration time curve 24 hours in the absence, and presence, of raltegravir</description>
+            <units>ng*h/mL</units>
+            <param>Geometric Mean</param>
+            <dispersion>95% Confidence Interval</dispersion>
+            <category_list>
+              <category>
+                <measurement_list>
+                  <measurement group_id="O1" value="166.0" lower_limit="146.3" upper_limit="202.9"/>
+                  <measurement group_id="O2" value="165.9" lower_limit="148.7" upper_limit="195.8"/>
+                </measurement_list>
+              </category>
+            </category_list>
+          </measure>
+        </measure_list>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>Event data collected from time of signing informed consent at screen, until discharge from study (14 days after completion).</time_frame>
+      <group_list>
+        <group group_id="E1">
+          <title>Group A</title>
+          <description>DAYS 1 to 7: raltegravir 400 mg BID DAYS 8 to 14: raltegravir 400 mg BID PLUS amlodipine 5 mg OD DAYS 15 to 21: amlodipine 5 mg OD</description>
+        </group>
+        <group group_id="E2">
+          <title>Group B</title>
+          <description>DAYS 1 to 7: amlodipine 5 mg OD DAYS 8 to 14: raltegravir 400 mg BID PLUS amlodipine 5 mg OD DAYS 15 to 21: raltegravir 400 mg BID</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <default_assessment>Non-systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="12"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="7"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Gastroenteritis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="12"/>
+                <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="7"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="12"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="7"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>vomiting</sub_title>
+                <counts group_id="E1" events="0" subjects_affected="0" subjects_at_risk="12"/>
+                <counts group_id="E2" events="1" subjects_affected="1" subjects_at_risk="7"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Headache</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="12"/>
+                <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="7"/>
+              </event>
+              <event>
+                <sub_title>light-headed</sub_title>
+                <counts group_id="E1" events="0" subjects_affected="0" subjects_at_risk="12"/>
+                <counts group_id="E2" events="1" subjects_affected="1" subjects_at_risk="7"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Cellulitis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="12"/>
+                <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="7"/>
+              </event>
+              <event>
+                <sub_title>gingivitis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="12"/>
+                <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="7"/>
+              </event>
+              <event>
+                <sub_title>pruritic rash</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="12"/>
+                <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="7"/>
+              </event>
+              <event>
+                <sub_title>pedal oedema</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="12"/>
+                <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="7"/>
+              </event>
+              <event>
+                <sub_title>insect bite</sub_title>
+                <counts group_id="E1" events="0" subjects_affected="0" subjects_at_risk="12"/>
+                <counts group_id="E2" events="1" subjects_affected="1" subjects_at_risk="7"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Vascular disorders</title>
+            <event_list>
+              <event>
+                <sub_title>thrombophlebitis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="12"/>
+                <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="7"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>All Principal Investigators ARE employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Dr. Marta Boffito</name_or_title>
+      <organization>SSAT Research, Chelsea &amp; Westminster Hospital</organization>
+      <phone>+442033155601</phone>
+      <email>marta.boffito@chelwest.nhs.uk</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>

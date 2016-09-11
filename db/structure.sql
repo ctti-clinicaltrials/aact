@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.3
+-- Dumped from database version 9.4.1
 -- Dumped by pg_dump version 9.5.3
 
 SET statement_timeout = 0;
@@ -986,7 +986,8 @@ CREATE TABLE outcome_groups (
     ctgov_group_code character varying,
     participant_count integer,
     result_group_id integer,
-    outcome_id integer
+    outcome_id integer,
+    nct_id character varying
 );
 
 
@@ -2320,7 +2321,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user", public;
+SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150409002646');
 
@@ -2441,4 +2442,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160823120646');
 INSERT INTO schema_migrations (version) VALUES ('20160824000456');
 
 INSERT INTO schema_migrations (version) VALUES ('20160824005447');
+
+INSERT INTO schema_migrations (version) VALUES ('20160901234313');
 

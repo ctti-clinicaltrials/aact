@@ -25,6 +25,7 @@ namespace :import do
         client.download_xml_files
         client.populate_studies
 
+        load_event.update(new_studies: Study.count, changed_studies: 0)
         load_event.complete
 
         SanityCheck.run

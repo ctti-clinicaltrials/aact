@@ -16,6 +16,24 @@ RSpec.describe Country, type: :model do
     end
   end
 
+  it "saves multiple current and removed countries" do
+    nct_id='NCT01642004'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.countries.size).to eq(25)
+    expect(study.countries.select{|x|x.removed==true}.size).to eq(5)
+    expect(study.countries.select{|x|x.name=='Peru' and x.removed==nil}.size).to eq(1)
+    expect(study.countries.select{|x|x.name=='Peru' and x.removed==true}.size).to eq(0)
+    expect(study.countries.select{|x|x.name=='Norway' and x.removed==true}.size).to eq(1)
+  end
+
+  it "has removed country" do
+    nct_id='NCT02586688'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.countries.select{|x|x.removed==true}.first.name).to eq('Canada')
+  end
+
   context 'when location_countries and removed_countries exist' do
     let!(:xml) {Nokogiri::XML(File.read('spec/support/xml_data/NCT02586688.xml'))}
     let!(:opts) {{xml: xml, nct_id: 'NCT02586688'}}
