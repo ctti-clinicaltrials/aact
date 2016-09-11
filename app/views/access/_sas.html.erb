@@ -34,11 +34,11 @@
 
     <div class="step">
       <span class="stepNumber">2</span>
-      <h3 class="stepName">Assign a SAS ‘libref’ to the PostreSQL database. </h3>
+      <h3 class="stepName">Assign a SAS <i>libref</i> to the PostreSQL database. </h3>
     </div>
 
     <p>
-      Using the LIBNAME statement in SAS, assign a ‘libref’ (a shortcut name) to the PostgreSQL database, and specify the database connection options. The access credentials for the live AACT database are provided at the <a href="/connect">AACT Connect webpage</a>.
+Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to the PostgreSQL database, and specify the database connection options. The access credentials for the live AACT database are provided at the <a href="/connect">AACT Connect webpage</a>.
     </p>
 
     <p>
@@ -64,20 +64,22 @@
     </p>
 
     <p>
-      Refer to SAS documentation for additional PostgreSQL options and arguments for the LIBNAME statement.
+    Refer to <a href='http://support.sas.com/documentation/cdl/en/acreldb/69039/HTML/default/p0nc2tikruabp6n1008nkdf0buee.htm'>SAS documentation</a> for additional PostgreSQL options and arguments for the LIBNAME statement.
     </p>
 
     <p>
-      If you are working in PC SAS, then after submitting the above LIBNAME statement you will be able to view the available database tables as SAS data sets using the Explorer window.
+      If you are working in PC SAS, then after submitting the above LIBNAME statement you will be able to view the available database tables as SAS datasets using the Explorer window.
     </p>
+
+    <%= image_tag("sas_datasets_available.png") %>
 
     <div class="step">
       <span class="stepNumber">3</span>
-      <h3 class="stepName">Use the assigned libref to perform tasks in SAS. </h3>
+      <h3 class="stepName">Use the assigned <i>libref</i> to perform tasks in SAS. </h3>
     </div>
 
     <p>
-      In these examples, the assigned libref is called ‘cloud’.
+    In these examples, the assigned <i>libref</i> is called ‘cloud’.
     </p>
 
     <h4>Example 3.a - Get listing of contents of the database</h4>
@@ -160,7 +162,7 @@
 
     <p>For SAS users intending to use SAS PROC SQL to connect to and query the live AACT database, the following method may be used in place of the methods described in Step 2 and Step 3.</p>
 
-    <p>In general, the connection method described in Step 2 above that uses a SAS/ACCESS LIBNAME statement with postgres engine name for the PostgreSQL interface is recommended. However, in some situations, connection using the PROC SQL Pass-Through Facility may be needed.  For a description of advantages and disadvantages of the two approaches, refer to <a href="http://support.sas.com/documentation/cdl/en/acreldb/69039/HTML/default/p1hadwfhakpxh3n1i4qvd9f09jqp.htm" target="_blank">this link</a>.</p>
+    <p>In general, the connection method described in Step 2 above that uses a SAS/ACCESS LIBNAME statement with postgres engine name for the PostgreSQL interface is recommended. However, in some situations, connection using the PROC SQL Pass-Through Facility may be needed.  For a description of advantages and disadvantages of the two approaches, refer to <a href="http://support.sas.com/documentation/cdl/en/acreldb/69039/HTML/default/p1hadwfhakpxh3n1i4qvd9f09jqp.htm" target="_blank">this information provided by SAS</a>.</p>
 
     <p>The following example illustrates use of the Pass-Through Facility in SAS PROC SQL. The connect to statement establishes the connection to the live PostgreSQL database and provides the database access credentials; the disconnect from statement closes the connection. This first ‘select’ query returns the total count of studies in the database; the second ‘select’ query counts the number of studies by values of the study_type variable.    </p>
 
@@ -186,11 +188,10 @@
       <code>quit;</code>
       <code>title;</code>
     </pre>
-    
+
     <h2>Credentials</h2>
     <p>You will need the following information to access the database directly in the cloud.</p>
     <%= render 'access/credentials' %>
-
 
   </div>
 </section>
