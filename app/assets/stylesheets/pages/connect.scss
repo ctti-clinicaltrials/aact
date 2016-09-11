@@ -1,6 +1,6 @@
 section.connect {
   background-color: $white;
-  padding-bottom: 360px;
+  padding-bottom: 40px;
 }
 
 pre {
@@ -44,7 +44,7 @@ div.connectionTypes, div.downloadTypes, div.learnMoreCards {
     @include box-shadow(3px 3px 11px $light-grey);
     margin: 1rem;
     position: relative;
-    bottom: 100px;
+    bottom: 40px;
   }
 
 }

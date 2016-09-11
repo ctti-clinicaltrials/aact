@@ -13,7 +13,6 @@ $(function() {
         noDataContent: "...Loading...",
         // pageSize: 10,
         // pageButtonCount: 5,
-        deleteConfirm: "Do you really want to delete client?",
         controller: {
             loadData: function(filter) {
                 return $.ajax({
