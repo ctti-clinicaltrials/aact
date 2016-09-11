@@ -22,10 +22,6 @@ class PagesController < ApplicationController
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
   end
 
-  def download_aact
-    #code
-  end
-
   def learn_more
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
@@ -34,4 +30,15 @@ class PagesController < ApplicationController
   def sanity_check
     @sanity_check_report = SanityCheck.last.report
   end
+
+  def background
+  end
+
+  def frequently_asked_questions
+  end
+
+  def download_aact
+    #code
+  end
+
 end
