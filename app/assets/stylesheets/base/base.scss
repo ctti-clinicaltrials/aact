@@ -8,6 +8,10 @@
   @include border-box;
 }
 
+.command-prompt { color: #aeaeae; }
+.command-entry { color: #f8f8f8; }
+.command-response { color: #adc6ee; }
+
 .standardLayout {
    padding-left: 100px;
    padding-right: 100px;
