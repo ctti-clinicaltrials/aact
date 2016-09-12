@@ -9,97 +9,94 @@
 
     <div class="step">
       <span class="stepNumber">1</span>
-      <h3 class="stepName">Install pgAdmin3</h3>
+        <h3 class="stepName">Install Database Platform: <i>PostgreSQL</i></h3>
     </div>
-
-    <p>
-      If you don't have pgAdmin installed, make sure to download the latest version for <a href="https://www.pgadmin.org/download/macosx.php" target="_blank">Mac</a> or <a href="https://www.pgadmin.org/download/windows.php" target="_blank">PC</a>. After you select a version, click on the .dmg file (not .dmg.sig) to download and install the pgAdmin. Also, make sure you have Postgres installed. The current AACT application is running Postgres version 9.4.5.
-    </p>
-
-    <%= image_tag("dmgfile.png") %>
-
-    <p>
-      The instructions that follow here use examples from pgAdmin3, so, if you are using an older version of pgAdmin, some of the screenshots here may look different from your interface.
-    </p>
+    <p>AACT is currently running on version 9.5.2 of PostgreSQL; it's recommended you install this version or higher. Refer to the <a href='http://www.enterprisedb.com/products-services-training/pgdownload#macosx'>PostgreSQL Installation site</a> for the free software and installation instructions.</p>
 
     <div class="step">
       <span class="stepNumber">2</span>
-      <h3 class="stepName">Establish a new server connection</h3>
+        <h3 class="stepName">Install Database Query Tool:  <i>pgAdmin3</i></h3>
     </div>
 
     <p>
-      With pgAdmin3 installed, open the application and click on the plug icon in the upper left of the menu bar to establish a new server connection.
+      Download version pgAdmin v1.22.1 or greater from the <a href="https://www.postgresql.org/ftp/pgadmin3/" target="_blank">PostgreSQL site</a>.
+    </p>
+    <p><a href="https://www.postgresql.org/ftp/pgadmin3/release/v1.22.1/osx/" target="_blank">Mac Users: </a> Click on the .dmg file (not .dmg.sig).</p>
+    <p><a href="https://www.postgresql.org/ftp/pgadmin3/release/v1.22.1/win32/" target="_blank">PC Users:</a> Click on the .zip file (not .zip.sig).</p>
+
+    <p>
+      The following instructions present examples for pgAdmin3 on a PC. Screenshots will appear differently for other versions and/or operating systems.
+    </p>
+
+    <div class="step">
+      <span class="stepNumber">3</span>
+      <h3 class="stepName">Establish a connection to the AACT database</h3>
+    </div>
+
+    <p>
+      Once pgAdmin3 is installed, open it and click on the plug icon in the upper left of the menu bar.
     </p>
 
     <%= image_tag("plug_icon.png") %>
 
     <p>
-      Fill out the "New Server Registration" form with the <a href="#credentials">credentials</a> provided in this documentation. For this form you will be required to enter a name, host, port, username, and password.
+      Enter "New Server Registration" info with the following credentials.
     </p>
+    <%= render 'access/credentials' %>
+
 
     <%= image_tag("newserver.png") %>
 
     <div class="step">
-      <span class="stepNumber">3</span>
+      <span class="stepNumber">4</span>
       <h3 class="stepName">Confirm Connection</h3>
     </div>
 
     <p>
-      To make sure you are connected, spill out the folder structure in the navigation pane until you see a line item for aact in the Servers folder. Click on the aact connection, and in the display window on the right you should see the "Connected?" status as "Yes".
+      Click the AACT server icon that was just created in the left pane and scroll to the properties in the right pane to confirm that 'Connected?' status is 'Yes'.
     </p>
 
     <%= image_tag("connected.png") %>
 
     <div class="step">
-      <span class="stepNumber">3</span>
+      <span class="stepNumber">5</span>
       <h3 class="stepName">Select the AACT database</h3>
     </div>
 
     <p>
-      Open that aact server connection, and in the databases folder you should again find a line item (in this case the actual database), for aact. Select it from this list.
+      Double click the AACT server icon to expand the folders and click the aact database folder within the server.
     </p>
     <p class="note">
-      Note: There might be a little red x over the database icon when you first navigate to this structure. It should go away after being clicked.
+      Note: There might be a red x over the database icon when you first navigate to this structure. It should go away after being clicked.
     </p>
 
     <%= image_tag("selectaact.png") %>
 
 
     <div class="step">
-      <span class="stepNumber">4</span>
+      <span class="stepNumber">6</span>
       <h3 class="stepName">Open the query window</h3>
     </div>
 
     <p>
-      With the aact database selected click on the icon for "Execute Arbitrary SQL queries". It looks like a magnifying glass over a database icon with the letters "SQL" inside.
+    With the aact database selected click on the icon for "Execute Arbitrary SQL queries". It looks like a magnifying glass over a database icon with the letters "SQL" inside <%= image_tag("newquery.png", size: "40x50") %>.
+    This will trigger a popout SQL query tool.
     </p>
 
-    <%= image_tag("newquery.png") %>
-
-    <p>
-      You should then get a popout window that looks something like this:
-    </p>
     <%= image_tag("emptyquery.png") %>
 
-
     <div class="step">
-      <span class="stepNumber">5</span>
+      <span class="stepNumber">7</span>
       <h3 class="stepName">Execute a query</h3>
     </div>
     <p>
-      From this interface you can run SQL queries as you might be used to. Type your query into the SQL Editor in the upper left, and hit the play button to run the query on the AACT database.
+      Enter queries in the SQL Editor in the upper left, and run them against the AACT database by pressing the green triangular play button.
     </p>
     <%= image_tag("playquery.png") %>
     <p>
-      Here's a simple example of a query that has returned the number of records in the studies table.
+      A simple example of a query that has returns the number of studies in the AACT database:
     </p>
     <%= image_tag("countresults.png") %>
-
-
-    <h2>Credentials</h2>
-    <p>You will need the following information to access the database directly in the cloud.</p>
-    <%= render 'access/credentials' %>
-
 
   </div>
 </section>
