@@ -1040,6 +1040,7 @@ ALTER SEQUENCE outcome_measured_values_id_seq OWNED BY outcome_measured_values.i
 
 CREATE TABLE outcomes (
     id integer NOT NULL,
+    nct_id character varying,
     outcome_type character varying,
     title text,
     description text,
@@ -1048,7 +1049,6 @@ CREATE TABLE outcomes (
     safety_issue character varying,
     population text,
     participant_count integer,
-    nct_id character varying,
     anticipated_posting_month_year character varying
 );
 
@@ -1078,10 +1078,10 @@ ALTER SEQUENCE outcomes_id_seq OWNED BY outcomes.id;
 
 CREATE TABLE overall_officials (
     id integer NOT NULL,
+    nct_id character varying,
     name character varying,
     role character varying,
-    affiliation character varying,
-    nct_id character varying
+    affiliation character varying
 );
 
 
@@ -1110,8 +1110,8 @@ ALTER SEQUENCE overall_officials_id_seq OWNED BY overall_officials.id;
 
 CREATE TABLE oversight_authorities (
     id integer NOT NULL,
-    name character varying,
-    nct_id character varying
+    nct_id character varying,
+    name character varying
 );
 
 
@@ -1140,9 +1140,9 @@ ALTER SEQUENCE oversight_authorities_id_seq OWNED BY oversight_authorities.id;
 
 CREATE TABLE participant_flows (
     id integer NOT NULL,
+    nct_id character varying,
     recruitment_details text,
-    pre_assignment_details text,
-    nct_id character varying
+    pre_assignment_details text
 );
 
 
@@ -1171,9 +1171,9 @@ ALTER SEQUENCE participant_flows_id_seq OWNED BY participant_flows.id;
 
 CREATE TABLE reported_event_overviews (
     id integer NOT NULL,
+    nct_id character varying,
     time_frame character varying,
-    description text,
-    nct_id character varying
+    description text
 );
 
 
@@ -1202,6 +1202,7 @@ ALTER SEQUENCE reported_event_overviews_id_seq OWNED BY reported_event_overviews
 
 CREATE TABLE reported_events (
     id integer NOT NULL,
+    nct_id character varying,
     description text,
     time_frame text,
     event_type character varying,
@@ -1210,7 +1211,6 @@ CREATE TABLE reported_events (
     subjects_affected integer,
     subjects_at_risk integer,
     event_count integer,
-    nct_id character varying,
     ctgov_group_code character varying,
     organ_system character varying,
     adverse_event_term character varying,
@@ -2303,4 +2303,12 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150409002646');
+
+INSERT INTO schema_migrations (version) VALUES ('20160910000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20160911000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20160912000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20160912002646');
 
