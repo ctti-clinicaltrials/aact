@@ -1,284 +1,456 @@
 class CreateStudies < ActiveRecord::Migration
+
   def change
-    create_table :studies, {:id => false} do |t|
-      t.string :nct_id, primary: true
 
-      t.date :start_date
-      t.date :first_received_date
-      t.date :verification_date
-      t.date :last_changed_date
-      t.date :primary_completion_date
-      t.date :completion_date
-      t.date :first_received_results_date
-      t.date :download_date
+  create_table "baseline_measures", force: :cascade do |t|
+    t.string  "category"
+    t.string  "title"
+    t.text    "description"
+    t.string  "units"
+    t.string  "nct_id"
+    t.string  "population"
+    t.string  "ctgov_group_code"
+    t.string  "param_type"
+    t.string  "param_value"
+    t.string  "dispersion_type"
+    t.string  "dispersion_value"
+    t.string  "dispersion_lower_limit"
+    t.string  "dispersion_upper_limit"
+    t.string  "explanation_of_na"
+    t.integer "result_group_id"
+  end
 
-      t.string  :start_date_str
-      t.string  :first_received_date_str
-      t.string  :verification_date_str
-      t.string  :last_changed_date_str
-      t.string  :primary_completion_date_str
-      t.string  :completion_date_str
-      t.string  :first_received_results_date_str
-      t.string  :download_date_str
-      t.string  :completion_date_type
-      t.string  :primary_completion_date_type
-      t.string  :org_study_id
-      t.string  :secondary_id
-      t.string  :study_type
-      t.string  :overall_status
-      t.string  :phase
-      t.string  :target_duration
-      t.integer :enrollment
-      t.string  :enrollment_type
-      t.string  :source
-      t.string  :biospec_retention
-      t.string  :limitations_and_caveats
-      t.string  :delivery_mechanism
-      t.string  :description
-      t.string  :acronym
-      t.integer :number_of_arms
-      t.integer :number_of_groups
-      t.string  :why_stopped
-      t.boolean :has_expanded_access
-      t.boolean :has_dmc
-      t.boolean :is_section_801
-      t.boolean :is_fda_regulated
-      t.text    :brief_title
-      t.text    :official_title
-      t.text    :biospec_description
-      t.timestamps null: false
-    end
-    add_index :studies, :nct_id
-    add_index :studies, :study_type
+  create_table "brief_summaries", force: :cascade do |t|
+    t.text   "description"
+    t.string "nct_id"
+  end
 
-    create_table :derived_values do |t|
-      t.string  :sponsor_type
-      t.decimal :actual_duration, :precision => 5, :scale => 2
-      t.integer :enrollment
-      t.boolean :results_reported
-      t.integer :months_to_report_results
-      t.integer :registered_in_fiscal_year
-      t.integer :number_of_facilities
-      t.integer :number_of_nsae_subjects
-      t.integer :number_of_sae_subjects
-      t.string  :study_rank
-      t.string  :link_to_study_data
-      t.timestamps null: false
-    end
-    add_column :derived_values, :nct_id, :string, references: :studies
-    add_index :derived_values, :nct_id
-    add_index :derived_values, :sponsor_type
+  create_table "browse_conditions", force: :cascade do |t|
+    t.string "mesh_term"
+    t.string "nct_id"
+  end
 
-    create_table :facilities do |t|
-      t.string :name
-      t.string :status
-      t.string :city
-      t.string :state
-      t.string :zip
-      t.string :country
-      t.string :latitude
-      t.string :longitude
-      t.string :contact_name
-      t.string :contact_phone
-      t.string :contact_email
-      t.string :contact_backup_name
-      t.string :contact_backup_phone
-      t.string :contact_backup_email
-      t.text   :investigator_name
-      t.text   :investigator_role
-      t.timestamps null: false
-    end
-    add_column :facilities, :nct_id, :string, references: :studies
-    add_index :facilities, :nct_id
+  create_table "browse_interventions", force: :cascade do |t|
+    t.string "mesh_term"
+    t.string "nct_id"
+  end
 
-    create_table :expected_groups do |t|
-      t.string  :ctgov_group_id
-      t.integer :ctgov_group_enumerator
-      t.string  :title
-      t.string  :group_type
-      t.text    :description
-      t.timestamps null: false
-    end
-    add_column :expected_groups, :nct_id, :string, references: :studies
-    add_index :expected_groups, :nct_id
+  create_table "calculated_values", force: :cascade do |t|
+    t.string  "sponsor_type"
+    t.decimal "actual_duration",             precision: 5, scale: 2
+    t.integer "months_to_report_results"
+    t.integer "number_of_facilities"
+    t.integer "number_of_nsae_subjects"
+    t.integer "number_of_sae_subjects"
+    t.string  "nct_id"
+    t.integer "registered_in_calendar_year"
+    t.date    "start_date"
+    t.date    "verification_date"
+    t.date    "primary_completion_date"
+    t.date    "completion_date"
+    t.date    "first_received_results_date"
+    t.date    "nlm_download_date"
+    t.boolean "were_results_reported"
+    t.boolean "has_minimum_age"
+    t.boolean "has_maximum_age"
+    t.integer "minimum_age_num"
+    t.integer "maximum_age_num"
+    t.string  "minimum_age_unit"
+    t.string  "maximum_age_unit"
+  end
 
-    create_table :conditions do |t|
-      t.string  :name
-      t.timestamps null: false
-    end
-    add_column :conditions, :nct_id, :string, references: :studies
-    add_index :conditions, :nct_id
-    add_index :conditions, :name
+  create_table "central_contacts", force: :cascade do |t|
+    t.string "nct_id"
+    t.string "contact_type"
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+  end
 
-    create_table :interventions do |t|
-      t.string  :intervention_type
-      t.string  :name
-      t.text    :description
-      t.timestamps null: false
-    end
-    add_column :interventions, :nct_id, :string, references: :studies
-    add_index :interventions, :nct_id
-    add_index :interventions, :name
+  create_table "conditions", force: :cascade do |t|
+    t.string "name"
+    t.string "nct_id"
+  end
 
-    create_table :intervention_other_names do |t|
-      t.string  :name
-      t.timestamps null: false
-    end
-    add_column :intervention_other_names, :nct_id, :string, references: :studies
-    add_column :intervention_other_names, :intervention_id, :string, references: :studies
-    add_index :intervention_other_names, :nct_id
-    add_index :intervention_other_names, :name
-    add_index :intervention_other_names, :intervention_id
+  create_table "countries", force: :cascade do |t|
+    t.string  "name"
+    t.string  "nct_id"
+    t.boolean "removed"
+  end
 
-    create_table :intervention_arm_group_labels do |t|
-      t.string  :label
-      t.timestamps null: false
-    end
-    add_column :intervention_arm_group_labels, :nct_id, :string, references: :studies
-    add_column :intervention_arm_group_labels, :intervention_id, :string, references: :studies
-    add_index :intervention_arm_group_labels, :nct_id
-    add_index :intervention_arm_group_labels, :intervention_id
+  create_table "design_group_interventions", force: :cascade do |t|
+    t.integer "design_group_id"
+    t.integer "intervention_id"
+    t.string  "nct_id"
+  end
 
-    create_table :keywords do |t|
-      t.string :name
-      t.timestamps null: false
-    end
-    add_column :keywords, :nct_id, :string, references: :studies
-    add_index :keywords, :nct_id
-    add_index :keywords, :name
+  create_table "design_groups", force: :cascade do |t|
+    t.string "group_type"
+    t.text   "description"
+    t.string "nct_id"
+    t.string "title"
+  end
 
-    create_table :browse_conditions do |t|
-      t.string :mesh_term
-      t.timestamps null: false
-    end
-    add_column :browse_conditions, :nct_id, :string, references: :studies
-    add_index :browse_conditions, :nct_id
+  create_table "design_outcomes", force: :cascade do |t|
+    t.string "outcome_type"
+    t.text   "measure"
+    t.text   "time_frame"
+    t.string "safety_issue"
+    t.string "population"
+    t.text   "description"
+    t.string "nct_id"
+  end
 
-    create_table :browse_interventions do |t|
-      t.string :mesh_term
-      t.timestamps null: false
-    end
-    add_column :browse_interventions, :nct_id, :string, references: :studies
-    add_index :browse_interventions, :nct_id
+  create_table "designs", force: :cascade do |t|
+    t.text    "description"
+    t.string  "masking"
+    t.string  "primary_purpose"
+    t.string  "intervention_model"
+    t.string  "endpoint_classification"
+    t.string  "allocation"
+    t.string  "time_perspective"
+    t.string  "observational_model"
+    t.string  "nct_id"
+    t.boolean "subject_masked"
+    t.boolean "caregiver_masked"
+    t.boolean "investigator_masked"
+    t.boolean "outcomes_assessor_masked"
+  end
 
-    create_table :expected_outcomes do |t|
-      t.string :outcome_type
-      t.text   :title
-      t.text   :measure
-      t.text   :time_frame
-      t.string :safety_issue
-      t.string :population
-      t.text   :description
-    end
-    add_column :expected_outcomes, :nct_id, :string, references: :studies
-    add_index :expected_outcomes, :nct_id
+  create_table "detailed_descriptions", force: :cascade do |t|
+    t.text   "description"
+    t.string "nct_id"
+  end
 
-    create_table :study_references do |t|
-      t.text   :citation
-      t.string :pmid
-      t.string :reference_type
-    end
-    add_column :study_references, :nct_id, :string, references: :studies
-    add_index :study_references, :nct_id
+  create_table "drop_withdrawals", force: :cascade do |t|
+    t.string  "reason"
+    t.integer "participant_count"
+    t.string  "nct_id"
+    t.string  "ctgov_group_code"
+    t.integer "result_group_id"
+    t.string  "period"
+  end
 
-    create_table :responsible_parties do |t|
-      t.string :responsible_party_type
-      t.text   :affiliation
-      t.string :name
-      t.string :title
-    end
-    add_column :responsible_parties, :nct_id, :string, references: :studies
-    add_index :responsible_parties, :nct_id
+  create_table "eligibilities", force: :cascade do |t|
+    t.string "sampling_method"
+    t.string "gender"
+    t.string "minimum_age"
+    t.string "maximum_age"
+    t.string "healthy_volunteers"
+    t.text   "population"
+    t.text   "criteria"
+    t.string "nct_id"
+  end
 
-    create_table :design_validations do |t|
-      t.string  :design_name
-      t.string  :design_value
-      t.string  :masked_role
-    end
-    add_column :design_validations, :nct_id, :string, references: :studies
-    add_index :design_validations, :nct_id
+  create_table "facilities", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "country"
+    t.string "nct_id"
+  end
 
-    create_table :designs do |t|
-      t.text   :description
-      t.string :masking
-      t.string :masked_roles
-      t.string :primary_purpose
-      t.string :intervention_model
-      t.string :endpoint_classification
-      t.string :allocation
-      t.string :time_perspective
-      t.string :observational_model
-    end
-    add_column :designs, :nct_id, :string, references: :studies
-    add_index :designs, :nct_id
+  add_index "facilities", ["nct_id"], name: "index_facilities_on_nct_id", using: :btree
 
-    create_table :location_countries do |t|
-      t.string :name
-      t.string :removed
-    end
-    add_column :location_countries, :nct_id, :string, references: :studies
-    add_index :location_countries, :nct_id
-    add_index :location_countries, :name
+  create_table "facility_contacts", force: :cascade do |t|
+    t.string  "name"
+    t.string  "phone"
+    t.string  "email"
+    t.string  "contact_type"
+    t.string  "nct_id"
+    t.integer "facility_id"
+  end
 
-    create_table :sponsors do |t|
-      t.string :sponsor_type
-      t.string :agency
-      t.string :agency_class
-    end
-    add_column :sponsors, :nct_id, :string, references: :studies
-    add_index :sponsors, :nct_id
+  create_table "facility_investigators", force: :cascade do |t|
+    t.string  "name"
+    t.string  "role"
+    t.string  "nct_id"
+    t.integer "facility_id"
+  end
 
-    create_table :overall_officials do |t|
-      t.string :name
-      t.string :role
-      t.string :affiliation
-    end
-    add_column :overall_officials, :nct_id, :string, references: :studies
-    add_index :overall_officials, :nct_id
+  create_table "id_information", force: :cascade do |t|
+    t.string "nct_id"
+    t.string "id_type"
+    t.string "id_value"
+  end
 
-    create_table :oversight_authorities do |t|
-      t.string :name
-    end
-    add_column :oversight_authorities, :nct_id, :string, references: :studies
-    add_index  :oversight_authorities, :nct_id
+  create_table "intervention_other_names", force: :cascade do |t|
+    t.string  "name"
+    t.string  "nct_id"
+    t.integer "intervention_id"
+  end
 
-    create_table :links do |t|
-      t.text   :url
-      t.text   :description
-    end
-    add_column :links, :nct_id, :string, references: :studies
-    add_index  :links, :nct_id
+  create_table "interventions", force: :cascade do |t|
+    t.string "intervention_type"
+    t.string "name"
+    t.text   "description"
+    t.string "nct_id"
+  end
 
-    create_table :secondary_ids do |t|
-      t.string :secondary_id
-    end
-    add_column :secondary_ids, :nct_id, :string, references: :studies
-    add_index  :secondary_ids, :nct_id
+  create_table "keywords", force: :cascade do |t|
+    t.string "name"
+    t.string "nct_id"
+  end
 
-    create_table :eligibilities do |t|
-      t.string :sampling_method
-      t.string :gender
-      t.string :minimum_age
-      t.string :maximum_age
-      t.string :healthy_volunteers
-      t.text   :study_population
-      t.text   :criteria
-    end
-    add_column :eligibilities, :nct_id, :string, references: :studies
-    add_index  :eligibilities, :nct_id
+  create_table "links", force: :cascade do |t|
+    t.text   "description"
+    t.string "nct_id"
+    t.string "url"
+  end
 
-    create_table :detailed_descriptions do |t|
-      t.text :description
-    end
-    add_column :detailed_descriptions, :nct_id, :string, references: :studies
-    add_index  :detailed_descriptions, :nct_id
+  create_table "load_events", force: :cascade do |t|
+    t.string   "event_type"
+    t.string   "status"
+    t.text     "description"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.datetime "completed_at"
+    t.string   "load_time"
+    t.integer  "new_studies"
+    t.integer  "changed_studies"
+  end
 
-    create_table :brief_summaries do |t|
-      t.text :description
-    end
-    add_column :brief_summaries, :nct_id, :string, references: :studies
-    add_index  :brief_summaries, :nct_id
+  create_table "milestones", force: :cascade do |t|
+    t.string  "title"
+    t.text    "description"
+    t.integer "participant_count"
+    t.string  "nct_id"
+    t.string  "ctgov_group_code"
+    t.integer "result_group_id"
+    t.string  "period"
+  end
 
+  create_table "outcome_analyses", force: :cascade do |t|
+    t.string  "non_inferiority"
+    t.text    "non_inferiority_description"
+    t.decimal "p_value"
+    t.string  "param_type"
+    t.decimal "param_value"
+    t.string  "dispersion_type"
+    t.decimal "dispersion_value"
+    t.string  "ci_n_sides"
+    t.decimal "ci_lower_limit"
+    t.decimal "ci_upper_limit"
+    t.string  "method"
+    t.text    "description"
+    t.text    "method_description"
+    t.text    "estimate_description"
+    t.string  "nct_id"
+    t.integer "outcome_id"
+    t.string  "groups_description"
+    t.decimal "ci_percent"
+    t.string  "p_value_description"
+    t.string  "ci_upper_limit_na_comment"
+  end
+
+  create_table "outcome_analysis_groups", force: :cascade do |t|
+    t.string  "ctgov_group_code"
+    t.integer "result_group_id"
+    t.integer "outcome_analysis_id"
+    t.string  "nct_id"
+  end
+
+  create_table "outcome_groups", force: :cascade do |t|
+    t.string  "ctgov_group_code"
+    t.integer "participant_count"
+    t.integer "result_group_id"
+    t.integer "outcome_id"
+    t.string  "nct_id"
+  end
+
+  create_table "outcome_measured_values", force: :cascade do |t|
+    t.string  "category"
+    t.text    "description"
+    t.string  "units"
+    t.string  "nct_id"
+    t.integer "outcome_id"
+    t.string  "ctgov_group_code"
+    t.integer "result_group_id"
+    t.string  "param_type"
+    t.string  "dispersion_type"
+    t.string  "dispersion_value"
+    t.text    "explanation_of_na"
+    t.decimal "dispersion_lower_limit"
+    t.decimal "dispersion_upper_limit"
+    t.string  "param_value"
+    t.decimal "param_value_num"
+    t.decimal "dispersion_value_num"
+    t.string  "title"
+  end
+
+  create_table "outcomes", force: :cascade do |t|
+    t.string  "outcome_type"
+    t.text    "title"
+    t.text    "description"
+    t.string  "measure"
+    t.text    "time_frame"
+    t.string  "safety_issue"
+    t.text    "population"
+    t.integer "participant_count"
+    t.string  "nct_id"
+    t.string  "anticipated_posting_month_year"
+  end
+
+  add_index "outcomes", ["nct_id"], name: "index_outcomes_on_nct_id", using: :btree
+
+  create_table "overall_officials", force: :cascade do |t|
+    t.string "name"
+    t.string "role"
+    t.string "affiliation"
+    t.string "nct_id"
+  end
+
+  create_table "oversight_authorities", force: :cascade do |t|
+    t.string "name"
+    t.string "nct_id"
+  end
+
+  create_table "participant_flows", force: :cascade do |t|
+    t.text   "recruitment_details"
+    t.text   "pre_assignment_details"
+    t.string "nct_id"
+  end
+
+  create_table "reported_event_overviews", force: :cascade do |t|
+    t.string "time_frame"
+    t.text   "description"
+    t.string "nct_id"
+  end
+
+  create_table "reported_events", force: :cascade do |t|
+    t.text    "description"
+    t.text    "time_frame"
+    t.string  "event_type"
+    t.string  "default_vocab"
+    t.string  "default_assessment"
+    t.integer "subjects_affected"
+    t.integer "subjects_at_risk"
+    t.integer "event_count"
+    t.string  "nct_id"
+    t.string  "ctgov_group_code"
+    t.string  "organ_system"
+    t.string  "adverse_event_term"
+    t.integer "frequency_threshold"
+    t.string  "vocab"
+    t.string  "assessment"
+    t.integer "result_group_id"
+  end
+
+  add_index "reported_events", ["event_type"], name: "index_reported_events_on_event_type", using: :btree
+  add_index "reported_events", ["nct_id"], name: "index_reported_events_on_nct_id", using: :btree
+  add_index "reported_events", ["subjects_affected"], name: "index_reported_events_on_subjects_affected", using: :btree
+
+  create_table "responsible_parties", force: :cascade do |t|
+    t.string "responsible_party_type"
+    t.text   "affiliation"
+    t.string "name"
+    t.string "title"
+    t.string "nct_id"
+    t.string "organization"
+  end
+
+  create_table "result_agreements", force: :cascade do |t|
+    t.string "pi_employee"
+    t.text   "agreement"
+    t.string "nct_id"
+  end
+
+  create_table "result_contacts", force: :cascade do |t|
+    t.string "organization"
+    t.string "phone"
+    t.string "email"
+    t.string "nct_id"
+    t.string "name"
+  end
+
+  create_table "result_groups", force: :cascade do |t|
+    t.string  "title"
+    t.text    "description"
+    t.integer "participant_count"
+    t.string  "nct_id"
+    t.string  "ctgov_group_code"
+    t.string  "result_type"
+  end
+
+  create_table "sanity_checks", force: :cascade do |t|
+    t.text     "report",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sponsors", force: :cascade do |t|
+    t.string "agency_class"
+    t.string "nct_id"
+    t.string "lead_or_collaborator"
+    t.string "name"
+  end
+
+  create_table "statistics", force: :cascade do |t|
+    t.date    "start_date"
+    t.date    "end_date"
+    t.string  "sponsor_type"
+    t.string  "stat_category"
+    t.string  "stat_value"
+    t.integer "number_of_studies"
+  end
+
+  create_table "studies", id: false, force: :cascade do |t|
+    t.string   "nct_id"
+    t.date     "first_received_date"
+    t.date     "last_changed_date"
+    t.date     "first_received_results_date"
+    t.string   "completion_date_type"
+    t.string   "primary_completion_date_type"
+    t.string   "study_type"
+    t.string   "overall_status"
+    t.string   "phase"
+    t.string   "target_duration"
+    t.integer  "enrollment"
+    t.string   "enrollment_type"
+    t.string   "source"
+    t.string   "biospec_retention"
+    t.string   "limitations_and_caveats"
+    t.string   "acronym"
+    t.integer  "number_of_arms"
+    t.integer  "number_of_groups"
+    t.string   "why_stopped"
+    t.boolean  "has_expanded_access"
+    t.boolean  "has_dmc"
+    t.boolean  "is_section_801"
+    t.boolean  "is_fda_regulated"
+    t.text     "brief_title"
+    t.text     "official_title"
+    t.text     "biospec_description"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.date     "first_received_results_disposition_date"
+    t.string   "plan_to_share_ipd"
+    t.string   "nlm_download_date_description"
+    t.string   "start_month_year"
+    t.string   "verification_month_year"
+    t.string   "completion_month_year"
+    t.string   "primary_completion_month_year"
+    t.string   "plan_to_share_ipd_description"
+    t.text     "description"
+  end
+
+  add_index "studies", ["nct_id"], name: "index_studies_on_nct_id", using: :btree
+
+  create_table "study_references", force: :cascade do |t|
+    t.text   "citation"
+    t.string "pmid"
+    t.string "reference_type"
+    t.string "nct_id"
+  end
+
+  create_table "study_xml_records", force: :cascade do |t|
+    t.xml      "content"
+    t.string   "nct_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
   end
 
 end
