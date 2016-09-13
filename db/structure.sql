@@ -1061,6 +1061,7 @@ ALTER SEQUENCE outcome_measured_values_id_seq OWNED BY outcome_measured_values.i
 
 CREATE TABLE outcomes (
     id integer NOT NULL,
+    nct_id character varying,
     outcome_type character varying,
     title text,
     description text,
@@ -1069,7 +1070,6 @@ CREATE TABLE outcomes (
     safety_issue character varying,
     population text,
     participant_count integer,
-    nct_id character varying,
     anticipated_posting_month_year character varying
 );
 
@@ -1099,10 +1099,10 @@ ALTER SEQUENCE outcomes_id_seq OWNED BY outcomes.id;
 
 CREATE TABLE overall_officials (
     id integer NOT NULL,
+    nct_id character varying,
     name character varying,
     role character varying,
-    affiliation character varying,
-    nct_id character varying
+    affiliation character varying
 );
 
 
@@ -1131,8 +1131,8 @@ ALTER SEQUENCE overall_officials_id_seq OWNED BY overall_officials.id;
 
 CREATE TABLE oversight_authorities (
     id integer NOT NULL,
-    name character varying,
-    nct_id character varying
+    nct_id character varying,
+    name character varying
 );
 
 
@@ -1161,9 +1161,9 @@ ALTER SEQUENCE oversight_authorities_id_seq OWNED BY oversight_authorities.id;
 
 CREATE TABLE participant_flows (
     id integer NOT NULL,
+    nct_id character varying,
     recruitment_details text,
-    pre_assignment_details text,
-    nct_id character varying
+    pre_assignment_details text
 );
 
 
@@ -1192,9 +1192,9 @@ ALTER SEQUENCE participant_flows_id_seq OWNED BY participant_flows.id;
 
 CREATE TABLE reported_event_overviews (
     id integer NOT NULL,
+    nct_id character varying,
     time_frame character varying,
-    description text,
-    nct_id character varying
+    description text
 );
 
 
@@ -1223,6 +1223,7 @@ ALTER SEQUENCE reported_event_overviews_id_seq OWNED BY reported_event_overviews
 
 CREATE TABLE reported_events (
     id integer NOT NULL,
+    nct_id character varying,
     description text,
     time_frame text,
     event_type character varying,
@@ -1231,7 +1232,6 @@ CREATE TABLE reported_events (
     subjects_affected integer,
     subjects_at_risk integer,
     event_count integer,
-    nct_id character varying,
     ctgov_group_code character varying,
     organ_system character varying,
     adverse_event_term character varying,
@@ -2323,125 +2323,13 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20150409002646');
-
-INSERT INTO schema_migrations (version) VALUES ('20150415155251');
-
-INSERT INTO schema_migrations (version) VALUES ('20150629193710');
-
-INSERT INTO schema_migrations (version) VALUES ('20160215004455');
-
-INSERT INTO schema_migrations (version) VALUES ('20160215212240');
-
-INSERT INTO schema_migrations (version) VALUES ('20160301202629');
-
-INSERT INTO schema_migrations (version) VALUES ('20160516150711');
-
-INSERT INTO schema_migrations (version) VALUES ('20160516153846');
-
-INSERT INTO schema_migrations (version) VALUES ('20160516165522');
-
-INSERT INTO schema_migrations (version) VALUES ('20160527195736');
-
-INSERT INTO schema_migrations (version) VALUES ('20160603193415');
-
-INSERT INTO schema_migrations (version) VALUES ('20160604163139');
-
-INSERT INTO schema_migrations (version) VALUES ('20160608173256');
-
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
-INSERT INTO schema_migrations (version) VALUES ('20160713192539');
+INSERT INTO schema_migrations (version) VALUES ('20160910000000');
 
-INSERT INTO schema_migrations (version) VALUES ('20160714191041');
+INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 
-INSERT INTO schema_migrations (version) VALUES ('20160718140832');
+INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 
-INSERT INTO schema_migrations (version) VALUES ('20160718182917');
-
-INSERT INTO schema_migrations (version) VALUES ('20160719180756');
-
-INSERT INTO schema_migrations (version) VALUES ('20160720212026');
-
-INSERT INTO schema_migrations (version) VALUES ('20160721150701');
-
-INSERT INTO schema_migrations (version) VALUES ('20160722143257');
-
-INSERT INTO schema_migrations (version) VALUES ('20160722150719');
-
-INSERT INTO schema_migrations (version) VALUES ('20160722152031');
-
-INSERT INTO schema_migrations (version) VALUES ('20160725161424');
-
-INSERT INTO schema_migrations (version) VALUES ('20160725195950');
-
-INSERT INTO schema_migrations (version) VALUES ('20160725200349');
-
-INSERT INTO schema_migrations (version) VALUES ('20160726124957');
-
-INSERT INTO schema_migrations (version) VALUES ('20160805131436');
-
-INSERT INTO schema_migrations (version) VALUES ('20160807222113');
-
-INSERT INTO schema_migrations (version) VALUES ('20160807222740');
-
-INSERT INTO schema_migrations (version) VALUES ('20160808024029');
-
-INSERT INTO schema_migrations (version) VALUES ('20160809010254');
-
-INSERT INTO schema_migrations (version) VALUES ('20160809133136');
-
-INSERT INTO schema_migrations (version) VALUES ('20160809172406');
-
-INSERT INTO schema_migrations (version) VALUES ('20160810141928');
-
-INSERT INTO schema_migrations (version) VALUES ('20160810142332');
-
-INSERT INTO schema_migrations (version) VALUES ('20160810150320');
-
-INSERT INTO schema_migrations (version) VALUES ('20160810150747');
-
-INSERT INTO schema_migrations (version) VALUES ('20160810152651');
-
-INSERT INTO schema_migrations (version) VALUES ('20160810173055');
-
-INSERT INTO schema_migrations (version) VALUES ('20160810185321');
-
-INSERT INTO schema_migrations (version) VALUES ('20160810232659');
-
-INSERT INTO schema_migrations (version) VALUES ('20160811002521');
-
-INSERT INTO schema_migrations (version) VALUES ('20160811013332');
-
-INSERT INTO schema_migrations (version) VALUES ('20160811154112');
-
-INSERT INTO schema_migrations (version) VALUES ('20160812141340');
-
-INSERT INTO schema_migrations (version) VALUES ('20160813125212');
-
-INSERT INTO schema_migrations (version) VALUES ('20160814024245');
-
-INSERT INTO schema_migrations (version) VALUES ('20160816202221');
-
-INSERT INTO schema_migrations (version) VALUES ('20160817124730');
-
-INSERT INTO schema_migrations (version) VALUES ('20160817204937');
-
-INSERT INTO schema_migrations (version) VALUES ('20160818122657');
-
-INSERT INTO schema_migrations (version) VALUES ('20160818180156');
-
-INSERT INTO schema_migrations (version) VALUES ('20160818234153');
-
-INSERT INTO schema_migrations (version) VALUES ('20160819001315');
-
-INSERT INTO schema_migrations (version) VALUES ('20160820030854');
-
-INSERT INTO schema_migrations (version) VALUES ('20160823120646');
-
-INSERT INTO schema_migrations (version) VALUES ('20160824000456');
-
-INSERT INTO schema_migrations (version) VALUES ('20160824005447');
-
-INSERT INTO schema_migrations (version) VALUES ('20160901234313');
+INSERT INTO schema_migrations (version) VALUES ('20160912002646');
 
