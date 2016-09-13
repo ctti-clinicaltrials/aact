@@ -2,23 +2,26 @@ namespace :import do
   namespace :daily do
     task :run, [:days_back] => :environment do |t, args|
       if Date.today.day != 1
-        load_event = ClinicalTrials::LoadEvent.create(
-          event_type: 'daily_import'
-        )
+        begin
+          load_event = ClinicalTrials::LoadEvent.create(event_type: 'daily_import')
+          nct_ids_to_be_updated_or_added = ClinicalTrials::RssReader.new(days_back: args[:days_back]).get_changed_nct_ids
+          changed_studies_count = (Study.pluck(:nct_id) & nct_ids_to_be_updated_or_added).count
+          new_studies_count = nct_ids_to_be_updated_or_added.count - changed_studies_count
+          $stderr.puts "Number of studies changed or added: #{nct_ids_to_be_updated_or_added.count}"
+          load_event.update(new_studies: new_studies_count, changed_studies: changed_studies_count)
 
-        nct_ids_to_be_updated_or_added = ClinicalTrials::RssReader.new(days_back: args[:days_back]).get_changed_nct_ids
-        changed_studies_count = (Study.pluck(:nct_id) & nct_ids_to_be_updated_or_added).count
-        new_studies_count = nct_ids_to_be_updated_or_added.count - changed_studies_count
-        $stderr.puts "Number of studies changed or added: #{nct_ids_to_be_updated_or_added.count}"
-        load_event.update(new_studies: new_studies_count, changed_studies: changed_studies_count)
+          updater = StudyUpdater.new.update_studies(nct_ids: nct_ids_to_be_updated_or_added)
 
-        updater = StudyUpdater.new.update_studies(nct_ids: nct_ids_to_be_updated_or_added)
+          load_event.complete
 
-        load_event.complete
-
-        SanityCheck.run
-        StudyValidator.new.validate_studies
-        LoadMailer.send_notifications(load_event, updater.errors)
+          SanityCheck.run
+          StudyValidator.new.validate_studies
+          LoadMailer.send_notifications(load_event, updater.errors)
+        rescue StandardError => e
+          updater.errors << {:name => 'An error was raised during the load.', :first_backtrace_line => e}
+          LoadMailer.send_notifications(load_event, updater.errors)
+          raise e
+        end
       else
         puts "First of the month - running full import"
       end
