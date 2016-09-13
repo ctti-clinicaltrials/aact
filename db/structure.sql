@@ -29,6 +29,27 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: count_estimate(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION count_estimate(query text) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        rec   record;
+        ROWS  INTEGER;
+      BEGIN
+        FOR rec IN EXECUTE 'EXPLAIN ' || query LOOP
+          ROWS := SUBSTRING(rec."QUERY PLAN" FROM ' rows=([[:digit:]]+)');
+          EXIT WHEN ROWS IS NOT NULL;
+      END LOOP;
+
+      RETURN ROWS;
+      END
+      $$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -2302,7 +2323,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 SET search_path TO "$user",public;
 
-INSERT INTO schema_migrations (version) VALUES ('20150409002646');
+INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
 INSERT INTO schema_migrations (version) VALUES ('20160910000000');
 
