@@ -30,17 +30,16 @@ div.connectionTypes, div.downloadTypes, div.learnMoreCards {
   }
 
   p {
-    padding-right: 2rem;
+    padding-right: 1rem;
   }
 
   a.connectionCard, a.downloadCard, a.learnMoreCard {
-    width: 80%;
+    width: 96%;
     display: block;
-    margin: 0 auto;
     margin-bottom: 60px;
     background-color: rgb(249,249,249);
     color: $grey;
-    padding: 2rem;
+    padding: 1rem;
     @include box-shadow(3px 3px 11px $light-grey);
     margin: 1rem;
     position: relative;
