@@ -1,2 +1,51 @@
+<div class="wrap">
 
-<%= render 'access/r' %>
+  <div class="basicHero">
+    <h1>Connect to AACT using R</h1>
+  </div>
+
+  <p>'R' is a free, reliable and popular software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.  R provides one of the easiest and cheapest ways to access and analyze the wealth of information in the AACT database.</p>
+  <p>You can access the PostgreSQL AACT database in the cloud using 'R' without needing to install PostgreSQL on your local machine.</p>
+</div>
+
+<section class="rAccess">
+  <div class="wrap">
+
+    <div class="step">
+      <span class="stepNumber">1</span>
+      <h3 class="stepName">Download and install R & RStudio</h3>
+    </div>
+
+    <p>If R is not already installed on your local machine, you may install it from the following links:</p>
+
+    <ul>
+      <li><a href='https://cran.r-project.org/' target='_blank'>R</a></li>
+      <li><a href='https://www.rstudio.com/products/rstudio/' target='_blank'>RStudio (Optional)</a></li>
+    </ul>
+
+    <div class="step">
+      <span class="stepNumber">2</span>
+      <h3 class="stepName">Connect R (or RStudio) to AACT</h3>
+    </div>
+
+    <p>Once R is installed, launch R (or RStudio) and enter the following commands at the prompts.</p>
+    <p class='CodeRay'>
+    <pre>
+      <p class='code'>
+        <span class='command-prompt'>> </span><span class='command-entry'> install.packages("RPostgreSQL")</span>
+        <span class='command-response'>trying URL 'https://cran.rstudio.com/bin/macosx/mavericks/contrib/3.3/RPostgreSQL_0.4-1.tgz'</span>
+        <span class='command-response'>Content type 'application/x-gzip' length 306320 bytes (299 KB)</span>
+        <span class='command-response'>==================================================</span>
+        <span class='command-response'>downloaded 299 KB</span>
+        <span class='command-prompt'>> </span><span class='command-entry'> library(RPostgreSQL)</span>
+        <span class='command-response'>Loading required package: DBI</span>
+        <span class='command-prompt'>> </span><span class='command-entry'> drv &lt;- dbDriver('PostgreSQL')</span>
+        <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%= ENV['RDS_DB_READONLY_DBNAME'] %>",host="<%= ENV['RDS_DB_HOSTNAME'] %>", port=5432, user="<%= ENV['RDS_DB_READONLY_USERNAME'] %>", password="<%= ENV['RDS_DB_READONLY_PASSWORD'] %>")</span>
+        <span class='command-prompt'>> </span><span class='command-entry'> aact_sample <- dbGetQuery(con, "select distinct study_type from studies")</span>
+        <span class='command-prompt'>> </span><span class='command-entry'> write.csv(aact_sample, file='aact_sample.csv')</span>
+        <span class='command-prompt'>> </span><span class='command-entry'> print(aact_sample)</span>
+      </p>
+    </pre>
+
+  </div>
+</section>
