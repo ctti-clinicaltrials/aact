@@ -5,8 +5,8 @@ class DefinitionsController < ApplicationController
   # on lines 10-18 match those in the spreadsheet.
   # *******///********
 
-  @results_url=ClinicalTrials::FileManager.nlm_results_data_url
-  @protocol_url=ClinicalTrials::FileManager.nlm_protocol_data_url
+  @@results_url=ClinicalTrials::FileManager.nlm_results_data_url
+  @@protocol_url=ClinicalTrials::FileManager.nlm_protocol_data_url
 
   def index
     data = Roo::Spreadsheet.open(ClinicalTrials::FileManager.data_dictionary)
@@ -23,11 +23,14 @@ class DefinitionsController < ApplicationController
   end
 
   def fix_attribs(hash)
-    hash["xml source"].html_safe if hash["xml source"]
+    if hash['xml source']
+      fixed_content=hash['xml source'].gsub(/\u003c/, "&lt;").gsub(/>/, "&gt;")
+      hash['xml source']=fixed_content
+    end
 
     if hash["nlm documentation"].present?
-      hash["db section"].downcase == "results" ? url=@results_url : url=@protocol_url
-      hash["nlm documentation"] = "<a href='#{url}'#"+hash["nlm documentation"]+'" target="_blank">'+'NLM Info'+'</a>'
+      url=hash["db section"].downcase == "results" ? @@results_url : @@protocol_url
+      hash["nlm documentation"] = "<a href=#{url}##{hash['nlm documentation']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
     end
   end
 
