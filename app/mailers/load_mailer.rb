@@ -11,6 +11,7 @@ class LoadMailer < ApplicationMailer
     @load_event = load_event
     @errors = errors
 
-    mail(from: 'Daily Load <daily_load@aact2.org>', to: email, subject: 'Load completed!')
+    subject_line="AACT #{ENV['RAILS_ENV']} load completed with #{@errors.size} errors"
+    mail(from: 'Daily Load <daily_load@aact2.org>', to: email, subject: subject_line)
   end
 end
