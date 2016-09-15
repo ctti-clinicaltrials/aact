@@ -1,4 +1,12 @@
 <section class="dataDictionaryShow">
+  stylesheet_link_tag "jsgrid"
+  stylesheet_link_tag "jsgrid.min"
+  stylesheet_link_tag "jsgrid-theme"
+  stylesheet_link_tag "jsgrid-theme.min"
+  stylesheet_link_tag "dictionary/_grid"
+  javascript_include_tag "jsgrid"
+  javascript_include_tag "jsgrid.min"
+  javascript_include_tag "dictionary"
   <div class="wrap">
     <h1>AACT Data Dictionary</h1>
     <p>You are welcome to download a copy of database design specifications:</p>
@@ -13,74 +21,12 @@
     <p>
       The table below provides detailed information about each data element in the AACT database. Every table and column in the AACT relational database is represented as a row in this table.
     </p>
-    <!-- <ul>
-      <li>Current Variables:  list of all tables/columns with descriptive data</li>
-      <li>Enumerations:  A list of drop-down menus and the values available for each</li>
-      <li>Record Counts:  A list of all tables with the current row count</li>
-      <li>Schema:  The ER Diagram</li>
-    </ul> -->
 
     <div class="gridContainer">
       <div id="jsGrid"></div>
     </div>
 
+    <%= render 'grid_instructions' %>
+
   </div>
-    <ul>
-       <li>
-          <p>
-          The input box that appears under each column name <b>apply filters</b> to their respective columns. Simply type in a search term and hit Enter/Return on your keyboard, and your filtered results will be returned.
-          </p>
-       </li>
-
-       <li>
-          <p>
-          The last column of the table is the <b>control column</b>. The large magnifying glass in the upper right cell toggles the display of the filter row. The smaller magnifying glass in the cell below submits your search terms (same as hitting Enter/Return from within a field). The filter icon will <b>clear all your applied filters</b>.
-          </p>
-       </li>
-       <li>
-          <p>
-          To <b>sort alphanumerically</b> by column, simple click on a column header.
-          </p>
-       </li>
-     </ul>
-  </section>
-
-  <section class="namingConventions">
-    <div class="wrap">
-      <h2>Database Design Considerations</h2>
-
-      <p>When designing the database schema, we tried to balance the following goals:</p>
-      <ul>
-        <li>Structure & name tables/columns to be as intuitive as possible.</li>
-        <li>Present data exactly as it appears in ClinicalTrials.gov - do not attempt to correct content.</li>
-        <li>Use the variable names assigned by ClinicalTrials.gov unless there is a good reason not to.</li>
-        <li>Assign consistent names.  For example, tables such as Studies, Design_Groups, Interventions all have ‘description’ columns – this attribute is not varyingly named descr, descrip, description.</li>
-        <li>Provide value-added attributes, but separate them from the data received from ClinicalTrials.gov by storing them all in the Calculated_Values table.</li>
-      </ul>
-      <p>Honoring all these criteria in every case wasn't possible; several situations demanded compromise.  For example, it would be most intuitive to make the study’s start-date a date-type value, however this date is provided as a 'month, year' string value, so converting it to a date-type would require a change to the content (a date-type needs a day value).  Since the string-type-date is less useful than the date-type-date, we'd like to name the more commonly used attribute with the more intuitive label.  However, since start date as a date-type is a derived value (we use 1 for the missing day value), it must follow rules set to identify it as a derived-value.  If we establish the rule to prefix all derived values with ‘d_’, then the start_date column will be named d_start_date, which isn’t as intuitive & forces the user to recognize this rule, even though, we expect that in most situations, users will not care that 1 was used in the absence of an existing value.</p>
-
-      <h4>Conventions</h4>
-      <ul>
-        <li>Table names are plural.</li>
-        <li>Column names are singular.</li>
-        <li>Words are delimited with underscores.</li>
-        <li>Every table has an NCT_ID column to link the data to its study.</li>
-        <li>The primary key for each table is  the ‘id’ column with one exception: The Study table’s primary key is nct_id</li>
-        <li>Columns that end with ‘_id’ are foreign keys that relate to the table identified in the prefix of the column.</li>
-        <li>A foreign key always links to the id column of the related table.  (For example, a row in Facility_Contacts can be linked to it’s facility through the facility_id column.  Facility_Contacts.facility_id = Facility.id)</li>
-        <li>Columns that end with ‘_date’ contain date-type values.</li>
-        <li>Columns that contain dates as month/year string have a ‘_month_year’ suffix.</li>
-        <li>Any column that contains a derived or altered value (content doesn’t exactly match the data pulled from ClinicalTrials.gov) is stored in the Calculated_Values table.</li>
-        <li>One-to-many related tables created for the study protocol (as opposed to study results) have the prefix ‘Design_’.  (ie. Design_Groups and Design_Outcomes)</li>
-        <li>If a shorter, simpler name is equally clear to a longer name, use the shorter name.  For example:  Study.study_source or Study.source - use Study.source</li>
-        <li>Avoid one-to-one relationships unless it's clearly more intuitive that way.</li>
-      </ul>
-
-      <h4>Considerations</h4>
-      <ul>
-        <li>We struggled with whether to use the term arm, group, or group_arm.  (Observational studies have xml tags named ‘group’ and Interventional studies have ‘arms’.  They are effectively the same thing.)</li>
-        <li>The ClinicalTrials.gov data entry system assigns a unique number to each group/arm defined in the results. (Why we didn't link related data per group needs to be explained.  The numbers, uniquely assigned to each group in a study are revealed as XML tags – for example, P1 uniquely identifies participant-related data for group 1, M1 identifies milestone-related data for group 1, and O1 identifies outcomes-related data for group 1. Users can override how the data entry system works.  To what degree do we trust that users have entered info as expected?  Should we make assumptions about linking info to the associated group/arm.</li>
-      </ul>
-
-    </div>
-  </section>
+</section>
