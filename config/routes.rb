@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get "/learn_more"           => "pages#learn_more"
+  get "/schema"               => "pages#schema"
   get "/data_dictionary"      => "dictionary#show"
   get 'dictionary/show'
 
