@@ -1,0 +1,38 @@
+<section class="namingConventions">
+   <h2>Design Considerations</h2>
+
+   <p>When designing the database, we tried to balance the following objectives:</p>
+   <ul class='regularDisplay indent'>
+     <li>Make the information as easy to interpret & query as possible.</li>
+     <li>Present data exactly as it exists in ClinicalTrials.gov.</li>
+     <li>Apply standard naming conventions. (ie. table names are pluralized; column names are singular.)
+     <li>Provide value-added attributes, identify them as such, and keep them separate from the raw ClinicalTrials.gov content. (The <i>Calculated_Values</i> table contains data elements that were derived from existing data.)</li>
+     <li>If a short, simple name is as clear as a longer name, use the shorter name.</li>
+     <li>Avoid unnecssary, duplicate verbiage. For example: <i>Study.source</i> instead of <i>Study.study_source</i></li>
+     <li>Be consistent.  For example, several tables include a ‘description’ value. Name them all <i>description</i> as opposed to some <i>descr</i> and others <i>description</i>.</li>
+   </ul>
+   <p>It wasn't possible to honor each criterion in every case; compromises were made. For example, It seems intuitive that a study's start-date would be in the Studies table as a date-type value so that people can easily query for studies started before/after a certain date. However, the start-date in ClinicalTrials.gov includes only month and year; to store as a date-type value, we would need to assign an arbitrary day such as the 1st of the month.  Since adding a day value would violate our rule to provide data precisely as it's found in ClinicalTrials.gov, we saved the string-type start-date to the <i>Studies</i> table (as <i>start_date_month_year</i>) and created a date-type start-date which is stored in the <i>Calculated_Values</i> table (as <i>start_date</i>).</li>
+
+
+   <h2>Conventions</h2>
+   <ul class='regularDisplay indent'>
+     <li>Table names are plural.</li>
+     <li>Column names are singular.</li>
+     <li>All names are underscore-delimited words.</li>
+     <li>Every table has an <i>nct_id</i> to link each row to its related study.</li>
+     <li>Every table has a primary key: <i>id</i> with one exception: the Studies table’s primary key is <i>nct_id</i></li>
+     <li>Columns that end with <i>_id</i> are foreign keys that relate to the table identified by the prefix that appears in front of the <i>_id</i>.</li>
+     <li>A foreign key always links to the <i>id</i> column of the related table.  (For example, a row in <i>Facility_Contacts</i> can be linked to it’s <i>Facility</i> through the <i>facility_id</i> column. <i>Facility_Contacts.facility_id = Facility.id</i>)</li>
+     <li>Columns that end with <i>_date</i> contain date-type values.</li>
+     <li>Columns that contain month/year dates are saved as strings in a column with a <i>_month_year</i> suffix and a date-type version (using the 1st of the month as the 'day') is saved to <i>Calculated_Values</i> with a <i>_date</i> suffix.</li>
+     <li>Any column that contains a derived or altered value (content doesn’t exactly match the data pulled from ClinicalTrials.gov) is stored in the <i>Calculated_Values</i> table.</li>
+     <li>Some protocol-related tables have the prefix <i>Design_</i> to distinguish them from the corresponding result-related tables. (ie. <i>Design_Groups</i>  vs <i>Result_Groups</i> and <i>Design_Outcomes</i> as opposed to <i>Outcomes</i>)</li>
+   </ul>
+
+   <h2>Other Considerations</h2>
+   <ul class='regularDisplay indent'>
+     <li>We struggled with whether to use the term arm, group, or group_arm.  (Observational studies have xml tags named ‘group’ and Interventional studies have ‘arms’.  They are effectively the same thing.)</li>
+     <li>The ClinicalTrials.gov data entry system assigns a unique number to each group/arm defined in the results. (Why we didn't link related data per group needs to be explained.  The numbers, uniquely assigned to each group in a study are revealed as XML tags – for example, P1 uniquely identifies participant-related data for group 1, M1 identifies milestone-related data for group 1, and O1 identifies outcomes-related data for group 1. Users can override how the data entry system works.  To what degree do we trust that users have entered info as expected?  Should we make assumptions about linking info to the associated group/arm.</li>
+   </ul>
+
+</section>

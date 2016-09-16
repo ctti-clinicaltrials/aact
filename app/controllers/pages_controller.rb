@@ -27,6 +27,11 @@ class PagesController < ApplicationController
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
   end
 
+  def schema
+    @schema_diagram=ClinicalTrials::FileManager.schema_diagram
+    @data_dictionary=ClinicalTrials::FileManager.data_dictionary
+  end
+
   def sanity_check
     @sanity_check_report = SanityCheck.last.report
   end
