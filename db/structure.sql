@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.3
--- Dumped by pg_dump version 9.5.3
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2266,48 +2266,6 @@ ALTER TABLE ONLY study_references
 
 ALTER TABLE ONLY study_xml_records
     ADD CONSTRAINT study_xml_records_pkey PRIMARY KEY (id);
-
-
---
--- Name: index_facilities_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_facilities_on_nct_id ON facilities USING btree (nct_id);
-
-
---
--- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_outcomes_on_nct_id ON outcomes USING btree (nct_id);
-
-
---
--- Name: index_reported_events_on_event_type; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_reported_events_on_event_type ON reported_events USING btree (event_type);
-
-
---
--- Name: index_reported_events_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_reported_events_on_nct_id ON reported_events USING btree (nct_id);
-
-
---
--- Name: index_reported_events_on_subjects_affected; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_reported_events_on_subjects_affected ON reported_events USING btree (subjects_affected);
-
-
---
--- Name: index_studies_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
 
 
 --
