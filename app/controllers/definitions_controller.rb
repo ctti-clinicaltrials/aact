@@ -7,19 +7,16 @@ class DefinitionsController < ApplicationController
 
   @@results_url=ClinicalTrials::FileManager.nlm_results_data_url
   @@protocol_url=ClinicalTrials::FileManager.nlm_protocol_data_url
-  @filters=[]
 
   def index
-    @filters=set_filters(params)
     data = Roo::Spreadsheet.open(ClinicalTrials::FileManager.data_dictionary)
     header = data.first
     dataOut = []
-   (2..data.last_row).each do |i|
+    (2..data.last_row).each do |i|
       row = Hash[[header, data.row(i)].transpose]
       if !row['table'].nil? and !row['column'].nil?
-        if !filtered?(params) or passes_filter?(row)
-          fix_attribs(row)
-          dataOut << row
+        if !filtered?(params) or passes_filter?(row,params)
+          dataOut << fix_attribs(row)
         end
       end
     end
@@ -31,30 +28,22 @@ class DefinitionsController < ApplicationController
     return false
   end
 
-  def set_filters(params)
-    @filters=[]
+  def filters(params)
+    col=[]
     searchable_attribs.each{|attrib|
       if !params[attrib].blank?
         filter = {attrib=>params[attrib]}
-        @filters << filter
+        col << filter
       end
     }
-    @filters
+    col
   end
 
-  def passes_filter?(row)
-    @filters.each{|filter_hash|
-      filter=filter_hash.first
-      row.each{|attrib|
-        if filter.first == attrib.first
-          if !attrib.blank? && attrib.last.downcase.include?(filter.last.downcase)
-            return true
-          end
-        end
-      }
-      return false
+  def passes_filter?(row,params)
+    filters(params).each{|filter|
+      return false if !row[filter.keys.first].try(:downcase).include?(filter.values.first.downcase)
     }
-    return false
+    return true
   end
 
   def fix_attribs(hash)
@@ -67,6 +56,7 @@ class DefinitionsController < ApplicationController
       url=hash["db section"].downcase == "results" ? @@results_url : @@protocol_url
       hash["nlm documentation"] = "<a href=#{url}##{hash['nlm documentation']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
     end
+    hash
   end
 
   def searchable_attribs
