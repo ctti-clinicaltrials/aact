@@ -1,0 +1,17 @@
+<section class="snapshots-notes">
+  <div>
+    <p class="note">This restore can take up to several hours, depending on the speed of your machine.</p>
+    <p class="note">If you get the error: <span class='error'>"pg_restore: [archiver (db)] could not execute query: ERROR:  unrecognized configuration parameter "row_security"</span> you will need to upgrade your version of PostgreSQL.</p>
+    <p class="note">If you get the error: </p>
+      <div class='error'>
+        <ul>
+          <li>pg_restore: connecting to database for restore</li>
+          <li>pg_restore: creating DATABASE "aact"</li>
+          <li>pg_restore: [archiver (db)] Error while PROCESSING TOC:</li>
+          <li>pg_restore: [archiver (db)] Error from TOC entry 3543; 1262 16389 DATABASE aact dbadmin</li>
+          <li>pg_restore: [archiver (db)] could not execute query: ERROR:  database "aact" already exists</li>
+        </ul>
+      </div>
+      <p>you will need to drop or rename the existing local AACT database.</p>
+  </div>
+</section>

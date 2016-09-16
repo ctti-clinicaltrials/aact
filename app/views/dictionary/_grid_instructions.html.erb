@@ -1,0 +1,53 @@
+<main>
+  <section>
+    <p>
+      The table below provides detailed information about each data element in the AACT database. Every table and column in the AACT relational database is represented as a row in this table.
+    </p>
+  </section>
+
+  <section>
+
+    <p> </p>
+    <p>You are welcome to download a copy of database design specifications:</p>
+    <div class="wrap">
+      <ul>
+        <li><a href=<%= @schema_diagram %> target="_blank">Schema Diagram</a></li>
+        <li><a href=<%= @data_dictionary %> target="_blank">Excel Version of the Data Dictionary</a></li>
+      </ul>
+    </div>
+
+    <p>Refer to the National Library of Medicine's documentation for authoritative definitions of all <a href="http://prsinfo.clinicaltrials.gov/definitions.html" target="_blank">study/protocol</a> and <a href="http://prsinfo.clinicaltrials.gov/results_definitions.html" target="_blank">results data</a> data elements.</p>
+
+  </section>
+
+  <input id="toggle" type="checkbox" style="display: none; visibility: hidden;" unchecked>
+    <label for="toggle">Hints for Perusing Data Dictionary</label>
+  </input>
+
+  <div id="expand">
+    <section>
+       <ul>
+         <li>
+           <p><b><i>Sort: </i></b> Click on a column header to sort the table alphabetically by the values in that column.</p>
+         </li>
+         <li>
+           <p><b><i>Filter: </i></b> An input box appears under each column name. Enter a search term in one or more boxes & press [Enter] to filter the display.</p>
+         </li>
+
+         <li>
+           <p><b><i>Search Support: </i></b> The first column provides icons that support filtering. The larger <i class='fa fa-search'></i> magnifying glass in the top row toggles display of the filter row. The smaller magnifying glass below it can be clicked to launch a search (same as pressing [Enter]). Clicking the <i class='fa fa-filter'></i> funnel icon will clear filter values.</p>
+         </li>
+         <li>
+           <p><b><i>Authoritative Source: </i></b> Please refer to the National Library of Medicine's (NLM) documentation for official definitions of all <a href="http://prsinfo.clinicaltrials.gov/definitions.html" target="_blank">study/protocol</a> and <a href="http://prsinfo.clinicaltrials.gov/results_definitions.html" target="_blank">results data</a> data elements. The <i class='fa fa-book'></i> icon that appears at the beginning of a row will open another tab in your browser to display NLM information about the data element on that row.</p>
+         </li>
+         <li>
+           <p><b><i>Horizontal Scroll: </i></b> All columns do not fit on a page; you may scroll horizontally to view additional information about the data elements.</p>
+         </li>
+         <li>
+           <p><b><i>XML Source: </i></b> This column identifies the tag path used to obtain values for the data element from XML source documents.  Click <a href='https://clinicaltrials.gov/ct2/html/images/info/public.xsd' target='_blank'>here</a> for the XML format specifications (xsd) and <a href='https://clinicaltrials.gov/show/NCT00006409?resultsxml=true' target='_blank'>here</a> to see an example of a study as provided by NLM via their API; this represents the source of information used to populate the AACT database.</p>
+         </li>
+       </ul>
+     </section>
+  </div>
+
+</main>
