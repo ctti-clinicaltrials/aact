@@ -1,4 +1,4 @@
-$max_width: 1080px;
+$max_width: 1000px;
 $gutter_width: 20px;
 $wrap_width: $max-width + ($gutter_width * 2);
 $col_count: 12;
@@ -19,9 +19,6 @@ $col_width: ($max_width - $total_gutter_width) / $col_count;
 @mixin offset($num_cols) {
     margin-left: ($col_width + $gutter_width) * $num_cols;
 }
-
-
-
 
 div.grid {
   @include columnify(6, true);
