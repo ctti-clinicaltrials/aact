@@ -2,7 +2,7 @@ namespace :import do
   namespace :full do
     task :run, [:force] => :environment do |t, args|
       begin
-        if Date.today.day == 1 || args[:force]
+        if [1,4,8,12,16,22,26,30].include? Date.today.day || args[:force]
           load_event = ClinicalTrials::LoadEvent.create( event_type: 'full_import')
           all_tables = ActiveRecord::Base.connection.tables
 
