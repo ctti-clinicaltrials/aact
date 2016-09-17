@@ -9,24 +9,9 @@
   javascript_include_tag "dictionary"
   <div class="wrap">
     <h1>AACT Data Dictionary</h1>
-    <p>You are welcome to download a copy of database design specifications:</p>
-    <div class="wrap">
-      <ul>
-        <li><a href=<%= @schema_diagram %> target="_blank">Schema Diagram</a></li>
-        <li><a href=<%= @data_dictionary %> target="_blank">Excel Version of the Data Dictionary</a></li>
-      </ul>
-    </div>
-    <p>Refer to the National Library of Medicine's documentation for authoritative definitions of all <a href="http://prsinfo.clinicaltrials.gov/definitions.html" target="_blank">study/protocol</a> and <a href="http://prsinfo.clinicaltrials.gov/results_definitions.html" target="_blank">results data</a> data elements.</p>
-
-    <p>
-      The table below provides detailed information about each data element in the AACT database. Every table and column in the AACT relational database is represented as a row in this table.
-    </p>
-
+    <%= render 'grid_instructions' %>
     <div class="gridContainer">
       <div id="jsGrid"></div>
     </div>
-
-    <%= render 'grid_instructions' %>
-
   </div>
 </section>
