@@ -16,7 +16,7 @@ main {
 }
 
 #toggle:checked ~ #expand {
-  height: 500px;
+  height: 550px;
 }
 #toggle:checked ~ label::before {
   content: "Hide Hints";
@@ -57,8 +57,6 @@ label::before {
 #  background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
   background: #008aa1;
 }
-
-
 
 section.dataDictionaryShow {
   padding-bottom: 500px;
