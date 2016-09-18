@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.4.1
--- Dumped by pg_dump version 9.5.3
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2276,6 +2276,13 @@ CREATE INDEX index_facilities_on_nct_id ON facilities USING btree (nct_id);
 
 
 --
+-- Name: index_outcome_measured_values_on_title; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_measured_values_on_title ON outcome_measured_values USING btree (title);
+
+
+--
 -- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2321,7 +2328,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
@@ -2331,5 +2338,5 @@ INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 
-INSERT INTO schema_migrations (version) VALUES ('20160912002646');
+INSERT INTO schema_migrations (version) VALUES ('20160918000000');
 
