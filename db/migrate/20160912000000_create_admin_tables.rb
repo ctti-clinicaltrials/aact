@@ -35,6 +35,11 @@ class CreateAdminTables < ActiveRecord::Migration
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
     end
+
+    execute <<-SQL
+      CREATE USER aact WITH PASSWORD 'aact';
+      GRANT SELECT ON ALL TABLES IN SCHEMA public TO aact;
+    SQL
   end
 
 end
