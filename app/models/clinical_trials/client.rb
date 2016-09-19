@@ -58,12 +58,13 @@ module ClinicalTrials
 
     def populate_studies
       return if @dry_run
-      load_event = ClinicalTrials::LoadEvent.create(
-        event_type: 'populate_studies'
-      )
+      load_event = ClinicalTrials::LoadEvent.create(event_type: 'populate_studies')
 
+      study_counter=0
       StudyXmlRecord.find_each do |xml_record|
         raw_xml = xml_record.content
+        study_counter=study_counter + 1
+        show_progress(study_counter)
 
         begin
           import_xml_file(raw_xml)
@@ -101,6 +102,16 @@ module ClinicalTrials
 
     def extract_nct_id_from_study(study)
       Nokogiri::XML(study).xpath('//nct_id').text
+    end
+
+    def show_progress(study_counter)
+      if study_counter % 1000 == 0
+        $stdout.puts " #{study_counter} "
+        $stdout.flush
+      else
+        print '.'
+        $stdout.flush
+      end
     end
 
   end
