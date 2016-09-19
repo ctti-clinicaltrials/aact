@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get "/background"           => "pages#background"
 
   get "/points_to_consider"   => "pages#points_to_consider"
+  get "/news"                 => "pages#news"
 
   get "/download_aact"        => "pages#download_aact"
   get "/snapshots"            => "pages#snapshots"
