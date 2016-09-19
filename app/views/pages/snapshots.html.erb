@@ -32,16 +32,26 @@
   <p>Once PostgreSQL is installed on your local machine and you have a snapshot of the AACT database, you can create and populate your own database via a terminal session using the following commands.</p>
 
   <p class='CodeRay'>
+    <p>You'll need to create a root database in your local PostgreSQL instance if one doesn't yet exist. From a terminal session, enter the following command to seed your local PostgreSQL with a database named 'postgres'...</p>
     <pre>
       <p class='code'>
-        <span class='command-prompt'>-&gt; </span><span class='command-entry'> createdb seed_db</i></span> <span class='command-prompt'>(Only if this db doesn't already exist on your local PostgreSQL instance.)</span>
-        <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=seed_db</i> --no-owner --create  <i>&lt;snapshot-filename&gt;</i></span>
+        <span class='command-prompt'>-&gt; </span><span class='command-entry'> createdb postgres</i></span> <span class='command-prompt'></span>
       </p>
     </pre>
   </p>
 
-  <p class="note">Note: this restore can take up to several hours, depending on the speed of your machine.</p>
-  <p class="note">Note: If you get the error: <span class='error'>"pg_restore: [archiver (db)] could not execute query: ERROR:  unrecognized configuration parameter "row_security"</span> you will need to upgrade your version of PostgreSQL.</p>
+  <p class='CodeRay'>
+    <p>Enter the following command to create the AACT database from the snapshot you've downloaded. From a terminal session, enter the following command...</p>
+    <pre>
+      <p class='code'>
+        <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=postgres</i> --no-owner --create  <i>&lt;snapshot-filename&gt;</i></span>
+      </p>
+    </pre>
+  </p>
+
+  <p class="note">Note: this restore can take several hours, depending on the speed of your machine.</p>
+
+  <%= render 'download_database_errors' %>
 
 </div>
 </section>
