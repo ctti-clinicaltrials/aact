@@ -3,7 +3,7 @@ namespace :import do
     task :run, [:days_back] => :environment do |t, args|
       if ![1,4,8,12,16,22,26,30].include? Date.today.day || args[:force]
         begin
-          $stdout.puts 'Daily Import: begin...'
+          $stdout.puts "Daily Import: #{Time.now} begin..."
           $stdout.flush
           load_event = ClinicalTrials::LoadEvent.create(event_type: 'daily_import')
           nct_ids_to_be_updated_or_added = ClinicalTrials::RssReader.new(days_back: args[:days_back]).get_changed_nct_ids
