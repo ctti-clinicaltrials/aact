@@ -53,7 +53,7 @@ module ClinicalTrials
           entries << {:name=>dir_and_file.last,:last_modified=>last_modified,:size=>number_to_human_size(size), :url=>file_url}
         end
       }
-      entries
+			entries.sort_by {|entry| entry[:last_modified]}.reverse!
     end
   end
 end
