@@ -22,6 +22,9 @@ class PagesController < ApplicationController
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
   end
 
+  def news
+  end
+
   def learn_more
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
