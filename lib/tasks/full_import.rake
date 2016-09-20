@@ -2,7 +2,7 @@ namespace :import do
   namespace :full do
     task :run, [:force] => :environment do |t, args|
       begin
-        if [1,4,8,12,16,22,26,30].include? Date.today.day || args[:force]
+#        if [1,4,8,12,16,22,26,30].include? Date.today.day || args[:force]
           $stdout.puts 'Full Import: begin...'
           $stdout.flush
           load_event = ClinicalTrials::LoadEvent.create( event_type: 'full_import')
@@ -48,10 +48,10 @@ namespace :import do
           $stdout.puts "Full Import: #{Time.now}  load notification..."
           $stdout.flush
           LoadMailer.send_notifications(load_event, client.errors)
-        else
-          $stdout.puts "Not the first of the month - not running full import"
-          $stdout.flush
-        end
+#        else
+#          $stdout.puts "Not the first of the month - not running full import"
+#          $stdout.flush
+#        end
       rescue StandardError => e
         $stdout.puts "Full Import: #{Time.now}  Error encountered:  #{e}"
         $stdout.flush
