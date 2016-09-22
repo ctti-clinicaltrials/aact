@@ -31,6 +31,7 @@ RSpec.describe StudySerializer, type: :serializer do
           detailed_description
           eligibility
           participant_flow
+          facilities
         ).each do |rr_key|
           expect(serialized_study).to have_key(rr_key)
         end
@@ -43,6 +44,8 @@ RSpec.describe StudySerializer, type: :serializer do
         expect(serialized_study['participant_flow']["recruitment_details"]).to eq(resource.participant_flow.recruitment_details)
         expect(serialized_study['participant_flow']["pre_assignment_details"]).to eq(resource.participant_flow.pre_assignment_details)
         expect(serialized_study['participant_flow']["nct_id"]).to eq(resource.participant_flow.nct_id)
+        expect(serialized_study['facilities'].size).to eq(1)
+        expect(serialized_study['facilities'].first['name']).to eq(resource.facilities.first.name)
       end
     end
   end
