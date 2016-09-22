@@ -33,7 +33,8 @@ class StudySerializer < ActiveModel::Serializer
             :official_title,
             :biospec_description,
             :created_at,
-            :updated_at
+            :updated_at,
+            :facilities
 
   def attributes
     super.merge(other_attributes)
@@ -52,4 +53,11 @@ class StudySerializer < ActiveModel::Serializer
       {}
     end
   end
+
+  def facilities
+    object.facilities.map {|f|
+      FacilitySerializer.new(f,scope: scope, root: false, study: object)
+    }
+  end
+
 end
