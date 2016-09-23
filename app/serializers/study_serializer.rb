@@ -34,6 +34,11 @@ class StudySerializer < ActiveModel::Serializer
             :biospec_description,
             :created_at,
             :updated_at,
+            :brief_summary,
+            :design,
+            :detailed_description,
+            :participant_flow,
+            :eligibility,
             :facilities,
             :outcomes,
             :sponsors
