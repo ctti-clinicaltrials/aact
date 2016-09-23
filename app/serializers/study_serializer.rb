@@ -34,7 +34,14 @@ class StudySerializer < ActiveModel::Serializer
             :biospec_description,
             :created_at,
             :updated_at,
-            :facilities
+            :brief_summary,
+            :design,
+            :detailed_description,
+            :participant_flow,
+            :eligibility,
+            :facilities,
+            :outcomes,
+            :sponsors
 
   def attributes
     super.merge(other_attributes)
@@ -57,6 +64,18 @@ class StudySerializer < ActiveModel::Serializer
   def facilities
     object.facilities.map {|f|
       FacilitySerializer.new(f,scope: scope, root: false, study: object)
+    }
+  end
+
+  def outcomes
+    object.outcomes.map {|f|
+      OutcomeSerializer.new(f,scope: scope, root: false, study: object)
+    }
+  end
+
+  def sponsors
+    object.sponsors.map {|f|
+      SponsorSerializer.new(f,scope: scope, root: false, study: object)
     }
   end
 
