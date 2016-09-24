@@ -1530,8 +1530,6 @@ CREATE TABLE studies (
     brief_title text,
     official_title text,
     biospec_description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     first_received_results_disposition_date date,
     plan_to_share_ipd character varying,
     nlm_download_date_description character varying,
@@ -1540,7 +1538,9 @@ CREATE TABLE studies (
     completion_month_year character varying,
     primary_completion_month_year character varying,
     plan_to_share_ipd_description character varying,
-    description text
+    description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 

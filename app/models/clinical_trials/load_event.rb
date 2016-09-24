@@ -5,7 +5,7 @@ module ClinicalTrials
     enumerize :event_type, in: %w(
       get_studies
       populate_studies
-      daily_import
+      daily_update
       full_import
       table_export
     )
