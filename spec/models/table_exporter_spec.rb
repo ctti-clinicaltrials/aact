@@ -31,7 +31,7 @@ describe TableExporter do
 
     context 'with specific tables' do
       it 'should only contain the csv files for the specified tables' do
-        exporter = TableExporter.new(tables: %w(studies))
+        exporter = TableExporter.new(['studies'])
         exporter.run
 
         entries = Zip::File.open(zipfile_name) do |zipfile|
