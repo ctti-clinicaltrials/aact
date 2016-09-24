@@ -61,7 +61,8 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_sponsor_type
-    val=study.lead_sponsor.try(:agency_class)
+    return nil if study.lead_sponsors.size > 1
+    val=study.lead_sponsors.first.try(:agency_class)
     return val if val=='Industry' or val=='NIH'
     study.collaborators.each{|c|return 'NIH' if c.agency_class=='NIH'}
     study.collaborators.each{|c|return 'Industry' if c.agency_class=='Industry'}
