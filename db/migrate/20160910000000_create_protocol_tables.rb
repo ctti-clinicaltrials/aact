@@ -226,8 +226,6 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.text     "brief_title"
       t.text     "official_title"
       t.text     "biospec_description"
-      t.datetime "created_at",                              null: false
-      t.datetime "updated_at",                              null: false
       t.date     "first_received_results_disposition_date"
       t.string   "plan_to_share_ipd"
       t.string   "nlm_download_date_description"
@@ -237,6 +235,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string   "primary_completion_month_year"
       t.string   "plan_to_share_ipd_description"
       t.text     "description"
+      t.timestamps null: false
     end
 
     create_table "study_references", force: :cascade do |t|
