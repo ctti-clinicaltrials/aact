@@ -10,7 +10,7 @@ class PagesController < ApplicationController
     @most_recent=@files.last
   end
 
-  def pipe_delimited
+  def pipe_files
     #@pipe_exports="#{ENV['FILESERVER_ENDPOINT']}/csv_pipe_exports"
     @files=ClinicalTrials::FileManager.pipe_delimited_files
     @most_recent=@files.last
@@ -20,9 +20,6 @@ class PagesController < ApplicationController
     @analyst_guide=ClinicalTrials::FileManager.analyst_guide
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
-  end
-
-  def news
   end
 
   def learn_more
@@ -37,16 +34,6 @@ class PagesController < ApplicationController
 
   def sanity_check
     @sanity_check_report = SanityCheck.last.report
-  end
-
-  def background
-  end
-
-  def frequently_asked_questions
-  end
-
-  def download_aact
-    #code
   end
 
 end
