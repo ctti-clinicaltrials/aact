@@ -63,13 +63,13 @@ module ClinicalTrials
       $stdout.flush
     end
 
-    def self.loadable_tables
+    def self.loadable_tables(params={})
       blacklist = %w(
-          schema_migrations
-          load_events
-          sanity_checks
-          statistics
-          study_xml_records
+        schema_migrations
+        load_events
+        sanity_checks
+        statistics
+        study_xml_records
       )
       ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
     end
