@@ -22,7 +22,6 @@ class TableExporter
       end
 
       if should_upload_to_s3
-        puts '  uploading to file server...'
         upload_to_s3(delimiter)
       end
 
@@ -37,12 +36,11 @@ class TableExporter
 
   def create_tempfiles(delimiter)
     create_temp_dir_if_none_exists!
-    if @table_names
+    if !@table_names.empty?
       tables=@table_names
     else
       tables=ClinicalTrials::Updater.loadable_tables
     end
-    puts "NUMBER OF TABLES TO EXPORT:   #{tables.size}"
     tempfiles = tables.map { |table_name| delimiter == ',' ? "#{table_name}.csv" : "#{table_name}.txt" }
                            .map do |file_name|
                              path = "#{@temp_dir}/#{file_name}"
@@ -54,7 +52,6 @@ class TableExporter
   end
 
   def export_table_to_csv(file_name, path, delimiter)
-    puts "  exporting file #{file_name}"
     table = File.basename(file_name, delimiter == ',' ? '.csv' : '.txt')
     string = ''
     @connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
