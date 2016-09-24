@@ -12,6 +12,7 @@ class CreateAdminTables < ActiveRecord::Migration
       t.string   "load_time"
       t.integer  "new_studies"
       t.integer  "changed_studies"
+      t.timestamps null: false
     end
 
     create_table "sanity_checks", force: :cascade do |t|
