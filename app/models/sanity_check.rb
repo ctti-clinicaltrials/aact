@@ -2,7 +2,7 @@ class SanityCheck < ActiveRecord::Base
   def initialize
     super
     @connection = ActiveRecord::Base.connection
-    @table_names = TableExporter.new.send(:get_table_names, all: true)
+    @table_names = ClinicalTrials::Updater.loadable_tables
   end
 
   def self.run

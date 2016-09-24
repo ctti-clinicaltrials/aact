@@ -90,7 +90,7 @@
     <p class='CodeRay'>
     <pre>
       <p class='code'>
-        <span class='command-prompt'>sz &lt;- object.size(d0)   </span><span class='command-response'>#  determine approximate memory used to store d0</span>
+        <span class='command-entry'>sz &lt;- object.size(d0)   </span><span class='command-response'>#  determine approximate memory used to store d0</span>
         <span class='command-response'>#  multiply by (nrows for full data set / 1000) </span>
         <span class='command-response'>#  to estimate total memory needed to store the full data</span>
         <span class='command-entry'> print( sz * 250000 / 1000, units="Mb")</span>
@@ -219,7 +219,17 @@ print( sz * 250000 / 1000, units="Gb")   </p>
         <p class='code'>
           <span class='command-response'> #  Specify appropriate variable types based on d0 and Data Dictionary</span>
 
-          <span class='command-prompt'>Classes = c("character", rep("Date",3), rep("character",6), "integer", rep("character",6), rep("integer",2), rep("character",11), "Date", rep("character",6) )</span>
+          <span class='command-prompt'>Classes = c(</span>
+          <span class='command-prompt'>  "character",</span>
+          <span class='command-prompt'>  rep("Date",3), </span>
+          <span class='command-prompt'>  rep("character",6), </span>
+          <span class='command-prompt'>  "integer", </span>
+          <span class='command-prompt'>  rep("character",6), </span>
+          <span class='command-prompt'>  rep("integer",2), </span>
+          <span class='command-prompt'>  rep("character",11), </span>
+          <span class='command-prompt'>  "Date", </span>
+          <span class='command-prompt'>  rep("character",6)</span>
+          <span class='command-prompt'>)</span>
         </p>
       </pre>
     </p>
@@ -227,7 +237,7 @@ print( sz * 250000 / 1000, units="Gb")   </p>
     <p class='CodeRay'>
       <pre>
         <p class='code'>
-           <span class='command-prompt'> #  read the full data set</span>
+           <span class='command-response'> #  read full dataset of studies</span>
            <span class='command-prompt'>d1 &lt;- read.table(file =  </span><span class='command-entry'>"studies.txt",</span>
            <span class='command-prompt'>                 header =  </span><span class='command-entry'>TRUE,</span>
            <span class='command-prompt'>                 sep =  </span><span class='command-entry'>"|",</span>
@@ -240,6 +250,5 @@ print( sz * 250000 / 1000, units="Gb")   </p>
         </p>
       </pre>
     </p>
-
 
 </div>
