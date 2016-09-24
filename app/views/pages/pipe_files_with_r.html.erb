@@ -1,0 +1,254 @@
+  <div class="wrap">
+
+    <p></p>
+    <h2>Tips for Analyzing Data in Pipe-Delimited Files Using R</h2>
+    <p>The pipe-delimited text files can be read using the <i>read.table()</i> function in base R.  R is powerful and can provide a lot of useful information with very little effort (as demonstrated in the instructions below). <i>Note: These instructions were tested using R 3.1.2 installed on a Linux platform.</i></p>
+
+    <%= render 'install_r' %>
+
+    <div class="step">
+      <span class="stepNumber">2</span>
+      <h3 class="stepName">Start by Reading a Small File</h3>
+    </div>
+    <p>Assuming you have installed/launched R, and have downloaded/unzipped a set of AACT pipe-delimited files... </p>
+    <p>When getting started, first try reading a smaller file (e.g., <b>‘id_information.txt’</b>). This may help troubleshoot minor issues. Example R code: </p>
+
+    <p class='CodeRay'>
+    <pre>
+      <p class='code'>
+        <span class='command-prompt'>d1 &lt;- read.table(file = </span><span class='command-entry'>"id_information.txt",</span>
+        <span class='command-prompt'>         header = </span><span class='command-entry'>TRUE,</span>
+        <span class='command-prompt'>         sep = </span><span class='command-entry'>"|",</span>
+        <span class='command-prompt'>         na.strings = </span><span class='command-entry'>"",</span>
+        <span class='command-prompt'>         comment.char = </span><span class='command-entry'>"",</span>
+        <span class='command-prompt'>         quote = </span><span class='command-entry'>"\"",</span>
+        <span class='command-prompt'>         fill = </span><span class='command-entry'>FALSE,</span>
+        <span class='command-prompt'>         nrows = </span><span class='command-entry'>200000)</span>
+        <span class='command-prompt'></span>
+        <span class='command-prompt'>summary(d1)    </span><span class='command-response'># print a summary of dataframe d1</span>
+      </p>
+    </pre>
+  </p>
+
+  <p>R should respond with something like:</p>
+  <div class='showcaseCenterImage'>
+    <%= image_tag("id_information_r_summary.png", :size => '1200x200', :title => 'Example output of R summary command for ID_Information') %>
+  </div>
+  <p>Notes:</p>
+  <ul class='regularDisplay'>
+    <li>R assumes the file <b>‘id_information.txt’</b> is in the current working directory.  Substitute appropriate path and file information as needed.</li>
+    <li>Decreasing <i>nrows</i> value may improve processing time, but also decreases the sample size. Make sure it's set large enough to be meaningful. Refer to the <a href='/data_dictionary' target='_blank'>AACT Data Dictionary</a> for information about expected row counts. The <b>‘sanity_checks.txt’</b> file also provides information about number of records, frequently encountered variable values, and maximum variable length or each data file.</li>
+      <li>The quote = "\"" argument enables quoting of character variables using the " character. This is needed to avoid reading embedded | within a string as a field delimiter. </li>
+  </ul>
+
+    <div class="step">
+      <span class="stepNumber">3</span>
+      <h3 class="stepName">Read a Larger File</h3>
+    </div>
+    <p>
+    Once you have successfully read a small file, try reading the file <b>‘designs.txt’</b>. This file is larger, but still contains just simple structured data elements (no free text).  Reading this file may help test memory requirements on your system, and is a good file on which to develop strategies for reading larger files.  (To try this out, replace <b>id_information.txt</b> with <b>designs.txt</b> in the previous code sample and rerun in R.)
+    </p>
+  <p>R should respond with something a bit more interesting like:</p>
+  <div class='showcaseCenterImage'>
+    <%= image_tag("designs_r_summary.png", :size => '1200x600', :title => 'Example output of R summary command for Designs data') %>
+  </div>
+
+    <div class="step">
+      <span class="stepNumber">3.a</span>
+      <h3 class="stepName">Read Small Number of Rows First to Determine Memory Requirements</h3>
+    </div>
+
+    <p>Example code:</p>
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+          <span class='command-prompt'>d1 &lt;- read.table(file = </span><span class='command-entry'>"designs.txt",</span>
+          <span class='command-prompt'>         header = </span><span class='command-entry'>TRUE,</span>
+          <span class='command-prompt'>         na.strings = </span><span class='command-entry'>"",</span>
+          <span class='command-prompt'>         stringsAsFactors = </span><span class='command-entry'>FALSE,</span>
+          <span class='command-prompt'>         comment.char = </span><span class='command-entry'>"",</span>
+          <span class='command-prompt'>         quote = </span><span class='command-entry'>"\"",</span>
+          <span class='command-prompt'>         fill = </span><span class='command-entry'>FALSE,</span>
+          <span class='command-prompt'>         nrows = </span><span class='command-entry'>1000</span><span class='command-prompt'>)</span>
+          <span class='command-prompt'></span>
+        </p>
+      </pre>
+    </p>
+
+  <p>Notes:</p>
+  <ul class='regularDisplay'>
+    <li>Specifying <i>stringsAsFactors=FALSE</i> prevents  character variables from being converted into factors. </li>
+    <li>Because <i>nrows=1000</i> is specified, only the first 1000 records will be read. This is too little, but sufficient for evaluating memory requirements.</li>
+  </ul>
+
+  <div class="step">
+    <span class="stepNumber">3.b</span>
+    <h3 class="stepName">Determine Memory Requirements</h3>
+  </div>
+  <p> The following code can be used to estimate the approximate memory needed to read the full dataset</p>
+
+    <p class='CodeRay'>
+    <pre>
+      <p class='code'>
+        <span class='command-entry'>sz &lt;- object.size(d0)   </span><span class='command-response'>#  determine approximate memory used to store d0</span>
+        <span class='command-response'>#  multiply by (nrows for full data set / 1000) </span>
+        <span class='command-response'>#  to estimate total memory needed to store the full data</span>
+        <span class='command-entry'> print( sz * 250000 / 1000, units="Mb")</span>
+        <span class='command-response'>#  Estimate that ~50 Mb of memory will be needed. </span>
+        <span class='command-response'>#  This is fine since my system has &gt; 4 Gb of RAM.</span>
+      </p>
+    </pre>
+  </p>
+
+  <div class="step">
+    <span class="stepNumber">3.c</span>
+    <h3 class="stepName">Read Full Dataset</h3>
+  </div>
+  <p>
+
+  </p>
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+          <span class='command-prompt'>d1 &lt;- read.table(file = </span><span class='command-entry'>"designs.txt",</span>
+          <span class='command-prompt'>         header = </span><span class='command-entry'>TRUE,</span>
+          <span class='command-prompt'>         sep = </span><span class='command-entry'>"|",</span>
+          <span class='command-prompt'>         na.strings = </span><span class='command-entry'>"",</span>
+          <span class='command-prompt'>         colClasses = </span><span class='command-entry'>c("integer", rep("character",14) ),  </span>
+          <span class='command-prompt'>         comment.char = </span><span class='command-entry'>"",</span>
+          <span class='command-prompt'>         quote = </span><span class='command-entry'>"\"",</span>
+          <span class='command-prompt'>         fill = </span><span class='command-entry'>FALSE,</span>
+          <span class='command-prompt'>         nrows = </span><span class='command-entry'>250000</span><span class='command-prompt'>)    </span><span class='command-response'># a bit larger than needed</span>
+        </p>
+      </pre>
+    </p>
+
+  <div class="step">
+    <span class="stepNumber">3.d</span>
+    <h3 class="stepName">If Memory Constraints Prevent Access - Try Reading Subset That Contains Studies of Interest</h3>
+  </div>
+  <p> Example 1:  Read  rows 1000 to 1999 in the data file: </p>
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+          <span class='command-prompt'>d1 &lt;- read.table(</span><span class='command-entry'>"designs.txt",</span>
+          <span class='command-prompt'>         skip = </span><span class='command-entry'>999,            </span><span class='command-response'># skip first 999 records</span>
+          <span class='command-prompt'>         nrows = </span><span class='command-entry'>1000,          </span><span class='command-response'># read the next 1000 records</span>
+          <span class='command-prompt'>         header = </span><span class='command-entry'>FALSE,        </span><span class='command-response'># turn off header row</span>
+          <span class='command-prompt'>         col.names = </span><span class='command-entry'>names(d0), </span><span class='command-response'># use column names determined from d0</span>
+          <span class='command-prompt'>         na.strings = </span><span class='command-entry'>"",</span>
+          <span class='command-prompt'>         sep = </span><span class='command-entry'>"|",</span>
+          <span class='command-prompt'>         comment.char = </span><span class='command-entry'>"",</span>
+          <span class='command-prompt'>         quote = </span><span class='command-entry'>"\"",</span>
+          <span class='command-prompt'>         fill = </span><span class='command-entry'>FALSE,</span>
+          <span class='command-prompt'>         nrows = </span><span class='command-entry'>250000</span><span class='command-prompt'>)    </span><span class='command-response'># a bit larger than needed</span>
+          <span class='command-prompt'></span>
+        </p>
+      </pre>
+    </p>
+
+    <p>To identify row number(s) containing string "NCT00000558"...</p>
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+           <span class='command-entry'>grep("NCT00000558", readLines("designs.txt"))</span>
+           <span class='command-response'> [1] 222688</span>
+        </p>
+      </pre>
+    </p>
+
+    <p>The above reveals that NCT00000558 occurs in line 222,688 of the <b>designs.txt</b> file.</p>
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+          <span class='command-response'># Read just the desired lines with read.table using skip and nrows</span>
+          <span class='command-prompt'>d1 &lt;- read.table(</span><span class='command-entry'>"designs.txt",</span>
+          <span class='command-prompt'>         skip = </span><span class='command-entry'>214443,         </span><span class='command-response'># skip first 214443 records</span>
+          <span class='command-prompt'>         nrows = </span><span class='command-entry'>1,                </span><span class='command-response'># read 1 record</span>
+          <span class='command-prompt'>         header = </span><span class='command-entry'>FALSE,        </span><span class='command-response'># turn off header row</span>
+          <span class='command-prompt'>         col.names = </span><span class='command-entry'>names(d0), </span><span class='command-response'># use column names determined from d0</span>
+          <span class='command-prompt'>         na.strings = </span><span class='command-entry'>"",</span>
+          <span class='command-prompt'>         sep = </span><span class='command-entry'>"|",</span>
+          <span class='command-prompt'>         colClasses = </span><span class='command-entry'>c("integer", rep("character",14) ),</span>
+          <span class='command-prompt'>         comment.char = </span><span class='command-entry'>"",</span>
+          <span class='command-prompt'>         quote = </span><span class='command-entry'>"\"",</span>
+          <span class='command-prompt'>         fill = </span><span class='command-entry'>FALSE)</span>
+          <span class='command-prompt'></span>
+        </p>
+      </pre>
+    </p>
+
+  <div class="step">
+    <span class="stepNumber">4</span>
+    <h3 class="stepName">Investigate Content of Other Files</h3>
+  </div>
+  <p> Once you have successfully read the two files mentioned above, you are ready to try reading some other files.  The file <b>‘studies.txt’</b> contains one record per study (NCT_ID is the unique identifier), and contains many of the study protocol data elements.</p>
+
+  <p>The following code reads the first 1000 records from the file <b>‘studies.txt’</b>.</p>
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+          <span class='command-prompt'>         d0 &lt;- read.table(file =  </span><span class='command-entry'>"studies.txt",</span>
+          <span class='command-prompt'>               header =  </span><span class='command-entry'>TRUE,</span>
+          <span class='command-prompt'>               sep =  </span><span class='command-entry'>"|",</span>
+          <span class='command-prompt'>               na.strings =  </span><span class='command-entry'>"",</span>
+          <span class='command-prompt'>               stringsAsFactors =  </span><span class='command-entry'>FALSE, </span>
+          <span class='command-prompt'>               comment.char =  </span><span class='command-entry'>"",</span>
+          <span class='command-prompt'>               quote =  </span><span class='command-entry'>"\"",</span>
+          <span class='command-prompt'>               fill =  </span><span class='command-entry'>FALSE,</span>
+          <span class='command-prompt'>               nrows =  </span><span class='command-entry'>1000)</span>
+        </p>
+      </pre>
+    </p>
+
+<p>Check memory requirements, assuming ~ 250000 rows:
+sz &lt;- object.size(d0)
+print( sz * 250000 / 1000, units="Gb")   </p>
+
+
+<p>Reading the full dataset will require about 0.2 Gb of memory.</p>
+
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+          <span class='command-response'> #  Specify appropriate variable types based on d0 and Data Dictionary</span>
+
+          <span class='command-prompt'>Classes = c(</span>
+          <span class='command-prompt'>  "character",</span>
+          <span class='command-prompt'>  rep("Date",3), </span>
+          <span class='command-prompt'>  rep("character",6), </span>
+          <span class='command-prompt'>  "integer", </span>
+          <span class='command-prompt'>  rep("character",6), </span>
+          <span class='command-prompt'>  rep("integer",2), </span>
+          <span class='command-prompt'>  rep("character",11), </span>
+          <span class='command-prompt'>  "Date", </span>
+          <span class='command-prompt'>  rep("character",6)</span>
+          <span class='command-prompt'>)</span>
+        </p>
+      </pre>
+    </p>
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+           <span class='command-response'> #  read full dataset of studies</span>
+           <span class='command-prompt'>d1 &lt;- read.table(file =  </span><span class='command-entry'>"studies.txt",</span>
+           <span class='command-prompt'>                 header =  </span><span class='command-entry'>TRUE,</span>
+           <span class='command-prompt'>                 sep =  </span><span class='command-entry'>"|",</span>
+           <span class='command-prompt'>                 na.strings =  </span><span class='command-entry'>"",</span>
+           <span class='command-prompt'>                 colClasses =  </span><span class='command-entry'>Classes,</span>
+           <span class='command-prompt'>                 comment.char =  </span><span class='command-entry'>"",</span>
+           <span class='command-prompt'>                 nrows =  </span><span class='command-entry'>250000,            </span><span class='command-response'># a bit larger than needed</span>
+           <span class='command-prompt'>                 quote =  </span><span class='command-entry'>"\"",</span>
+           <span class='command-prompt'>                 fill =  </span><span class='command-entry'>FALSE)</span>
+        </p>
+      </pre>
+    </p>
+
+</div>

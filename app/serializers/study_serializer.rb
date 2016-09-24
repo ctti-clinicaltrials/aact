@@ -36,20 +36,47 @@ class StudySerializer < ActiveModel::Serializer
             :updated_at
 
   def attributes
-    super.merge(other_attributes)
+    super.merge(one_to_one_relationships).merge(other_attributes)
+  end
+
+  def one_to_one_relationships
+    {
+      brief_summary:        object.brief_summary.try(:attributes),
+      design:               object.design.try(:attributes),
+      detailed_description: object.detailed_description.try(:attributes),
+      eligibility:          object.eligibility.try(:attributes),
+      participant_flow:     object.participant_flow.try(:attributes),
+    }
   end
 
   def other_attributes
     if object.with_related_records
       {
-        brief_summary: object.brief_summary.attributes,
-        design: object.design.attributes,
-        detailed_description: object.detailed_description.attributes,
-        eligibility: object.eligibility.attributes,
-        participant_flow: object.participant_flow.attributes,
+       :facilities => serialized_facilities,
+       :outcomes   => serialized_outcomes,
+       :sponsors   => serialized_sponsors
       }
     else
       {}
     end
   end
+
+  def serialized_facilities
+    object.facilities.map {|f|
+      FacilitySerializer.new(f,scope: scope, root: false, study: object)
+    }
+  end
+
+  def serialized_outcomes
+    object.outcomes.map {|f|
+      OutcomeSerializer.new(f,scope: scope, root: false, study: object)
+    }
+  end
+
+  def serialized_sponsors
+    object.sponsors.map {|f|
+      SponsorSerializer.new(f,scope: scope, root: false, study: object)
+    }
+  end
+
 end

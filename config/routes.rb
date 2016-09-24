@@ -26,9 +26,11 @@ Rails.application.routes.draw do
   get "/points_to_consider"   => "pages#points_to_consider"
   get "/news"                 => "pages#news"
 
-  get "/download_aact"        => "pages#download_aact"
+  get "/download"             => "pages#download"
   get "/snapshots"            => "pages#snapshots"
-  get "/pipe_delimited"       => "pages#pipe_delimited"
+  get "/pipe_files"           => "pages#pipe_files"
+  get "/pipe_files_with_r"    => "pages#pipe_files_with_r"
+  get "/pipe_files_with_sas"  => "pages#pipe_files_with_sas"
   get "/snapshot_archive"     => "pages#snapshot_archive"
 
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check

@@ -160,8 +160,7 @@ class Study < ActiveRecord::Base
     "#{minimum_age} - #{maximum_age}"
   end
 
-  def lead_sponsor
-    #TODO  May be multiple
+  def lead_sponsors
     sponsors.where(lead_or_collaborator: 'lead')
   end
 
@@ -169,8 +168,8 @@ class Study < ActiveRecord::Base
     sponsors.where(lead_or_collaborator: 'collaborator')
   end
 
-  def lead_sponsor_name
-    lead_sponsor.try(:agency)
+  def lead_sponsor_names
+    lead_sponsors.select{|s|s.name}
   end
 
   def number_of_sites

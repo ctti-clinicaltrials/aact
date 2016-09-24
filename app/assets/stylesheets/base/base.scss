@@ -24,7 +24,7 @@ html {
     padding-right: 100px;
 }
 
-table.regularDisplay, ul.regularDisplay {
+table.regularDisplay, ul.regularDisplay, ol.regularDisplay {
     font-family: Roboto;
     font-size: 1rem;
     font-weight: 300;
@@ -201,7 +201,7 @@ a.card {
 
   }
 
-  h4 {
+h4 {
     color: $secondary;
     text-align: center;
     margin-bottom: 1rem;
