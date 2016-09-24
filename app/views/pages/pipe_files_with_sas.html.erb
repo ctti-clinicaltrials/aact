@@ -13,8 +13,8 @@
       <p class='code'>
         <span class='command-response'>/* first try reading file with PROC IMPORT */ </span>
         <span class='command-prompt'>proc import</span>
-        <span class='command-prompt'>   datafile = "id_informations.txt"</span>
-        <span class='command-prompt'>   out = id_informations</span>
+        <span class='command-prompt'>   datafile = "id_information.txt"</span>
+        <span class='command-prompt'>   out = id_information</span>
         <span class='command-prompt'>      ;</span>
         <span class='command-prompt'>   delimiter = '|';</span>
         <span class='command-prompt'>   getnames = YES;</span>
@@ -26,7 +26,7 @@
 
   <p>Notes: </p>
   <ul class='regularDisplay'>
-    <li>The code assumes that the file ‘id_informations.txt’ is located in the current working directory.  Substitute appropriate path and file information as needed.</li>
+    <li>The code assumes that the file ‘id_information.txt’ is located in the current working directory.  Substitute appropriate path and file information as needed.</li>
       <li>When guessingrows=100, SAS will use the first 100 records to guess appropriate input formatting for variables. A larger value can be set, however, a very large value may be computationally intensive.</li>
       <li>PROC IMPORT determines that the data file contains four variables in the order: ID, NCT_ID, ID_TYPE, ID_VALUE. It guesses that the ID variable is numeric, and that the three other variables are character with lengths of at least 11, 12, and 28 respectively. </li>
       <li>PROC IMPORT determined that the maximum record length was 60.  </li>
@@ -42,9 +42,9 @@
       <p class='code'>
 
         <span class='command-response'>/* An explicit DATA STEP is recommended for reading the file */ </span>
-        <span class='command-prompt'>filename infl "id_informations.txt"  encoding='latin1' ;</span>
+        <span class='command-prompt'>filename infl "id_information.txt"  encoding='latin1' ;</span>
 
-        <span class='command-prompt'>data id_informations;</span>
+        <span class='command-prompt'>data id_information;</span>
         <span class='command-prompt'>    infile infl </span>
         <span class='command-prompt'>           delimiter = '|' </span>
         <span class='command-prompt'>           termstr=lf</span>
