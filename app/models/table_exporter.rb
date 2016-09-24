@@ -1,16 +1,14 @@
 class TableExporter
   attr_reader :zipfile_name
 
-  def initialize(tables: get_table_names(all: true))
+  def initialize
     @temp_dir     = "#{Rails.root}/tmp"
     @zipfile_name = "#{@temp_dir}/export.zip"
     @connection   = ActiveRecord::Base.connection.raw_connection
-    @tables       = tables
   end
 
-  def run(delimiter: ',', should_upload_to_s3: false)
+  def run(delimiter: '|', should_upload_to_s3: true)
     load_event = ClinicalTrials::LoadEvent.create(event_type: 'table_export')
-
     File.delete(@zipfile_name) if File.exist?(@zipfile_name)
 
     begin
@@ -23,6 +21,7 @@ class TableExporter
       end
 
       if should_upload_to_s3
+        puts '  uploading to file server...'
         upload_to_s3(delimiter)
       end
 
@@ -35,29 +34,9 @@ class TableExporter
 
   private
 
-  def get_table_names(all: false, tables: nil)
-    all_tables = ActiveRecord::Base.connection.tables
-
-    blacklist = %w(
-      schema_migrations
-      load_events
-      study_xml_records
-    )
-
-    if !all
-      blacklist.concat(all_tables - tables)
-    end
-
-    all_tables.reject do |table|
-      blacklist.include?(table)
-    end
-  end
-
   def create_tempfiles(delimiter)
     create_temp_dir_if_none_exists!
-
-    table_names = get_table_names(tables: @tables)
-
+    table_names = ClinicalTrials::Updater.loadable_tables
     tempfiles = table_names.map { |table_name| delimiter == ',' ? "#{table_name}.csv" : "#{table_name}.txt" }
                            .map do |file_name|
                              path = "#{@temp_dir}/#{file_name}"
@@ -69,6 +48,7 @@ class TableExporter
   end
 
   def export_table_to_csv(file_name, path, delimiter)
+    puts "  exporting file #{file_name}"
     table = File.basename(file_name, delimiter == ',' ? '.csv' : '.txt')
     string = ''
     @connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
