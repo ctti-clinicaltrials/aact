@@ -1,13 +1,9 @@
 <section class="pipe-delimited">
-  <div class="wrap">
-    <div class="basicHero">
-      <h2>Downloading & Using Pipe-Delimited Text Files</h2>
-    </div>
-  </div>
+  <h2>Downloading & Using Pipe-Delimited Text Files</h2>
 
   <p>These instructions are for users who have trouble connecting to the live PostreSQL database, or who would like to create a local static copy of the AACT database from the pipe-delimited text file extracts. These text files are created monthly from the live AACT database.</p>
 
-  <h2>General information about the text files:</h2>
+  <h2>General information about Text Files</h2>
   <ol class='regularDisplay'>
     <li>Structure of Text Files:  The text files were created under a PC environment using UTF-8 encoding. Fields within each file are separated by the vertical bar character (“|”) commonly referred to as a “pipe”. A null or missing value for a field is delineated by consecutive “pipes” in the data stream. Records within each file are delimited by the line feed (LF) character. The first row of each file contains a delimited list of field names and the order of these names indicates the order of the data fields in the text file. Most fields are character and are not enclosed within quotes, although single or double quotes may appear embedded within many of the descriptive fields. </li>
     <li>Modifications to Source Content to Facilitate Use of Text Files:  In rare cases, the content within a field may contain an embedded pipe (“|”). To prevent software from interpreting the embedded pipe as a delimiter, the entire string has been enclosed in double quotes. Line feed and paragraph break characters within fields, which might otherwise be interpreted as end of record characters, have been removed from the text file database extracts.</li>
@@ -29,13 +25,13 @@
 
   <div class="step">
     <span class="stepNumber">2</span>
-    <h3 class="stepName">Extract the contents of the zip file</h3>
+    <h3 class="stepName">Extract Contents of Zip File</h3>
   </div>
   <p>In Windows, this can be done by right clicking on the file and selecting ‘Extract All…’ from the menu. You will be given the opportunity to choose or create a destination folder to contain the extracted text files. Once the file extraction has completed your destination folder will contain the extracted text files. Files are named according to the database table to which they correspond, for example studies.txt contains the records and variables from the studies database table.</p>
 
   <div class="step">
     <span class="stepNumber">3</span>
-    <h3 class="stepName">Access the contents with your favorite data analysis tool</h3>
+    <h3 class="stepName">Access Content with Favorite Analysis Tool</h3>
   </div>
   <p>The text files can be read with many software tools. The files can even be opened in MS Excel (specify the pipe character as delimiter), however some of the files are very large and this is not recommended. Tips are provided for SAS and R software. </p>
 
@@ -43,17 +39,15 @@
      <div class="downloadTypes">
        <section class="homeHero">
          <a href="/pipe_files_with_r" class="downloadCard">
-          <h4>Using R with Text Files</h4>
+          <h4>Using R</h4>
           <%= icon("download") %>
           <p>Click here for hints about how to use R with the Pipe-delimited Files</p>
          </a>
        </section>
-     </div>
 
-     <div class="downloadTypes">
        <section class="homeHero">
          <a href="/pipe_files_with_sas" class="downloadCard">
-           <h4>Using SAS with Text Files</h4>
+           <h4>Using SAS</h4>
            <%= icon("download") %>
           <p>Click here for hints about how to use SAS with the Pipe-delimited Files</p>
          </a>
