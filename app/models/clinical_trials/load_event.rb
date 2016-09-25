@@ -10,23 +10,30 @@ module ClinicalTrials
       table_export
     )
 
-    def complete
-      if completed_at.present?
-        raise AlreadyCompletedError
-      end
+    def self.start(type)
+      create(event_type: type, created_at: Time.now)
+    end
 
-      self.status = 'complete'
+    def complete(params={})
+      raise AlreadyCompletedError if completed_at.present?
+      status      = (params[:status] ?  params[:status] : 'complete')
+      description = params[:description]
+      errors      = "Errors: \n#{params[:errors].join('\n')}" if params[:errors]
+      description << errors if errors
+      self.description = description
+      self.status = status
       self.completed_at = Time.now
       self.load_time = calculate_load_time
-
-      save!
+      self.new_studies = params[:new_studies]
+      self.changed_studies = params[:changed_studies]
+      self.save!
     end
 
     def calculate_load_time
       time = completed_at - created_at
       minutes, seconds = time.divmod(60)
-
-      "#{minutes} minutes and #{seconds.round} seconds"
+      val="#{minutes} minutes and #{seconds.round} seconds"
+      val
     end
 
     def generate_report(new:, changed:)
