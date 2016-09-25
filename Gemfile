@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.2.3"
 
+gem "faraday"
 gem "autoprefixer-rails"
 gem "flutie"
 gem "high_voltage"

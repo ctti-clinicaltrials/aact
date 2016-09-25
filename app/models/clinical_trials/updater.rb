@@ -1,69 +1,65 @@
 module ClinicalTrials
   class Updater
+    attr_reader :load_type, :errors, :progress_log, :client
+
+    def initialize
+      @errors = []
+      @progress_log=[]
+    end
 
     def full(params={})
+      @load_type='Full'
       log('Full Update: begin...')
-      load_event = ClinicalTrials::LoadEvent.create( event_type: 'full_update',created_at: Time.now)
+      load_event = ClinicalTrials::LoadEvent.start('full_update')
       truncate_tables
       client = ClinicalTrials::Client.new
-      log("Full Update: #{Time.now}  download xml files...")
+      log("download xml files...")
       client.download_xml_files
-      log("Full Update: #{Time.now}  populate studies...")
+      log("populate studies...")
       client.populate_studies
-      load_event.update(new_studies: Study.count, changed_studies: 0)
-      load_event.complete
-      log("Full Update: #{Time.now}  sanity check...")
+      log("sanity check...")
       SanityCheck.run
-      log("Full Update: #{Time.now}  send email notification...")
-      LoadMailer.send_notifications(load_event, client.errors)
+      log("send email notification...")
       if !params[:create_snapshots]==false
-        log("Full Update: #{Time.now}  exporting db snapshot...")
+        log("exporting db snapshot...")
         TableExporter.new.run
       end
+      #LoadMailer.send_notifications(load_event, client.errors)
+      load_event.complete({:errors=>errors, :description=>@progress_log,:new_studies=> Study.count})
     end
 
     def incremental(params={})
+      @load_type='Incremental'
+      @progress_log=''
       begin
-        days_back=(params[:days_back] ? params[:days_back] : 7)
-        log("Incremental Update: #{Time.now} begin...")
-        load_event = ClinicalTrials::LoadEvent.create(event_type: 'incremental_update',created_at: Time.now)
-        ids_updated_or_added = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
-        changed_count = (Study.pluck(:nct_id) & ids_updated_or_added).count
-        new_count = ids_updated_or_added.count - changed_count
-        log("Incremental Update: #{Time.now}  changed: #{changed_count}  added: #{new_count}")
-        updater = StudyUpdater.new.update_studies(nct_ids: ids_updated_or_added)
-        load_event.update(new_studies: new_count, changed_studies: changed_count)
-        load_event.complete
-        log("Incremental Update: #{Time.now}  sanity check...")
+        log("begin...")
+        days_back=(params[:days_back] ? params[:days_back] : 3)
+        load_event = ClinicalTrials::LoadEvent.start('incremental_update')
+        ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
+        changed_count = (Study.pluck(:nct_id) & ids).count
+        new_count = ids.count - changed_count
+        log("changed: #{changed_count}  added: #{new_count}")
+
+        update_studies(ids)
+        log("sanity check...")
         SanityCheck.run
-        log("Incremental Update: #{Time.now}  load notification...")
+        log("load notification...")
         if !params[:create_snapshots]==false
-          log("Incremental Update: #{Time.now}  exporting db snapshot...")
+          log("exporting db snapshot...")
           TableExporter.new.run
         end
-        LoadMailer.send_notifications(load_event, updater.errors)
+        LoadMailer.send_notifications(load_event, errors)
+        load_event.complete({:errors=>errors, :description=>@progress_log,:new_studies=> new_count, :changed_studies => changed_count})
       rescue StandardError => e
         log("Error encountered in incremental update...  #{e}")
-        updater.errors << {:name => 'An error was raised during the load.', :first_backtrace_line => e}
-        LoadMailer.send_notifications(load_event, updater.errors)
+        @errors << {:name => 'An error was raised during the load.', :first_backtrace_line => e}
+        load_event.complete({:status=> 'failed',:description=>@progress_log})
+        LoadMailer.send_notifications(load_event, errors)
         raise e
       end
     end
 
-    def truncate_tables
-      log('Full Update: truncate tables...')
-      Updater.loadable_tables.each do |table|
-        log("  truncate #{table}")
-        ActiveRecord::Base.connection.truncate(table)
-      end
-    end
-
-    def log(msg)
-      $stdout.puts msg
-      $stdout.flush
-    end
-
-    def self.loadable_tables(params={})
+    def self.loadable_tables()
       blacklist = %w(
         schema_migrations
         load_events
@@ -73,5 +69,68 @@ module ClinicalTrials
       )
       ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
     end
+
+    def update_studies(nct_ids)
+      @client = ClinicalTrials::Client.new
+      study_counter=0
+      nct_ids.each {|nct_id|
+        begin
+          refresh_study(nct_id)
+          study_counter=study_counter + 1
+          show_progress(study_counter,nct_id)
+        rescue StandardError => e
+          existing_error = @errors.find do |err|
+            (err[:name] == e) && (err[:first_backtrace_line] == e.backtrace.first)
+          end
+          if existing_error.present?
+            existing_error[:count] += 1
+          else
+            @errors << { :name => e, :first_backtrace_line => e.backtrace.first, :count => 0 }
+          end
+          next
+        end
+      }
+      self
+    end
+
+    private
+
+    def log(msg)
+      stamped_message="    #{load_type}: #{Time.now} #{msg}"
+      @progress_log << msg
+      $stdout.puts stamped_message
+      $stdout.flush
+    end
+
+    def truncate_tables
+      log("   #{Time.now} truncate tables...")
+      Updater.loadable_tables.each { |table|
+        log("  truncate #{table}")
+        ActiveRecord::Base.connection.truncate(table)
+      }
+    end
+
+    def refresh_study(nct_id)
+      old_xml_records = StudyXmlRecord.where(nct_id: nct_id) #should only be one
+      old_studies=Study.where(nct_id: nct_id)    #should only be one
+      old_xml_records.each{|old| old.destroy }
+      old_studies.each{|old| old.destroy }
+
+      new_xml=@client.get_xml_for(nct_id)
+      StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
+      Study.create({ xml: new_xml, nct_id: nct_id })
+      check_study=Study.where('nct_id=?',nct_id)
+    end
+
+    def show_progress(study_counter,nct_id)
+      if study_counter % 100 == 0
+        $stdout.puts "#{study_counter} (#{nct_id})"
+        $stdout.flush
+      else
+        print '.'
+        $stdout.flush
+      end
+    end
+
   end
 end
