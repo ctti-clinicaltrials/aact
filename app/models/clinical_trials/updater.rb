@@ -7,6 +7,7 @@ module ClinicalTrials
       type=(@params[:event_type] ? @params[:event_type] : 'incremental')
       @load_event = ClinicalTrials::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @client = ClinicalTrials::Client.new(updater: self)
+      @study_counter={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
       self
     end
 
@@ -41,7 +42,7 @@ module ClinicalTrials
         export_snapshots
         export_tables
         send_notification
-        @load_event.complete({:new_studies=> study_counter[:add], :changed_studies => study_counter[:change]})
+        @load_event.complete({:new_studies=> @study_counter[:add], :changed_studies => @study_counter[:change]})
       rescue StandardError => e
         @load_event.add_problem({:name=>"Error encountered in incremental update.",:first_backtrace_line=>  "#{e.backtrace.to_s}"})
         @load_event.complete({:status=> 'failed'})
@@ -62,13 +63,11 @@ module ClinicalTrials
     end
 
     def update_studies(nct_ids)
-      countdown=nct_ids.size
-      @study_counter={:add=>0,:change=>0}
+      @study_counter[:count_down]=nct_ids.size
       nct_ids.each {|nct_id|
         begin
           refresh_study(nct_id)
-          countdown=countdown - 1
-          show_progress(countdown,nct_id)
+          show_progress(nct_id)
         rescue StandardError => e
           @load_event.add_problem({:name=> "error #{nct_id}", :first_backtrace_line=>e.backtrace.to_s})
           @load_event.add_problem({:name=> "occurred after processing #{countdown} studies", :first_backtrace_line=>''})
@@ -128,21 +127,22 @@ module ClinicalTrials
 
     def send_notification
       log("send email notification...")
-      #LoadMailer.send_notifications(@load_event)
+      LoadMailer.send_notifications(@load_event)
     end
 
     def log_expected_counts(ids)
-      should_change_count = (Study.pluck(:nct_id) & ids).count
-      should_add_count = ids.count - should_change_count
-      log("should change: #{should_change_count};  should add: #{should_add_count}")
+      @study_counter[:should_change] = (Study.pluck(:nct_id) & ids).count
+      @study_counter[:should_add] = (ids.count - should_change_count)
+      log("should change: #{@study_counter[:should_change]};  should add: #{@study_counter[:should_add]}")
     end
 
     def log(msg)
       @load_event.log(msg)
     end
 
-    def show_progress(countdown, nct_id)
-      @load_event.show_progress(countdown, nct_id)
+    def show_progress(nct_id)
+      @study_counts[:count_down]-=1
+      @load_event.show_progress(@study_counts[:count_down], nct_id)
     end
 
     def increment_study_counter(study_exists)
