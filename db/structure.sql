@@ -834,6 +834,7 @@ CREATE TABLE load_events (
     event_type character varying,
     status character varying,
     description text,
+    problems text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     completed_at timestamp without time zone,
