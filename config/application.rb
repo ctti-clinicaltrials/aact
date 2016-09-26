@@ -12,6 +12,7 @@ require 'zip'
 Bundler.require(*Rails.groups)
 module Aact2
   class Application < Rails::Application
+    config.time_zone = 'Eastern Time (US & Canada)'
     config.quiet_assets = true
     config.generators do |generate|
       generate.helper false
