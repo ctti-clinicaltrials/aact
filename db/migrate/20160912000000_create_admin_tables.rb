@@ -6,6 +6,7 @@ class CreateAdminTables < ActiveRecord::Migration
       t.string   "event_type"
       t.string   "status"
       t.text     "description"
+      t.text     "problems"
       t.datetime "created_at",      null: false
       t.datetime "updated_at",      null: false
       t.datetime "completed_at"
