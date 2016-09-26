@@ -43,25 +43,28 @@ module ClinicalTrials
     end
 
     def get_xml_for(nct_id)
-      url="#{BASE_URL}/show/#{nct_id}?resultsxml=true"
-      Nokogiri::XML(call_to_ctgov(url))
+      begin
+        url="#{BASE_URL}/show/#{nct_id}?resultsxml=true"
+        Nokogiri::XML(call_to_ctgov(url))
+      rescue => error
+        raise error
+      end
     end
 
-		def call_to_ctgov(query_url)
-			begin
-			  tries=50
-				Faraday.get(query_url).body
-			rescue => error
-				tries = tries-1
-				if tries > 0
-					puts "> call to ct.gov failed.  #{error}  "
-					sleep(5)
-					retry
-				else
-					puts "Repeatedly tried: #{query_url}. Should I give up?"
-				end
-			end
-	  end
+    def call_to_ctgov(query_url)
+      begin
+        tries=20
+        Faraday.get(query_url).body
+      rescue => error
+        tries = tries-1
+        if tries > 0
+          sleep(5)
+          retry
+        else
+          raise error
+        end
+      end
+    end
 
     def create_study_xml_record(xml)
       nct_id = extract_nct_id_from_study(xml)
