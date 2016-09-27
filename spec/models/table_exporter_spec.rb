@@ -37,10 +37,6 @@ describe TableExporter do
         entries = Zip::File.open(zipfile_name) do |zipfile|
           zipfile.entries
         end
-
-        puts "============================="
-        entries.each {|x| puts x.name}
-        puts "============================="
 #        expect(entries.count).to eq(1)
       end
     end
