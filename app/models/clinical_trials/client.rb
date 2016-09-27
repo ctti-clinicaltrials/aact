@@ -4,10 +4,10 @@ module ClinicalTrials
 
     attr_reader :url, :processed_studies, :dry_run, :updater
     def initialize(params={})
-      search_term=params[:search_term]
       @dry_run=params[:dry_run]
       @dry_run=false if @dry_run.nil?
       @updater=params[:updater]
+      search_term=@updater.params[:search_term]
       @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
       @processed_studies = {
         updated_studies: [],
