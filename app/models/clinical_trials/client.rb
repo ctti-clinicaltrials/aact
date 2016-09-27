@@ -3,11 +3,12 @@ module ClinicalTrials
     BASE_URL = 'https://clinicaltrials.gov'
 
     attr_reader :url, :processed_studies, :dry_run, :updater
-    def initialize(search_term: nil, dry_run: false, updater: updater)
-      @updater=updater
-#      @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
-      #     TODO - Take this out!!   smaller set for initial test
-      @url = "#{BASE_URL}/search?term=pancreatic+cancer&resultsxml=true"
+    def initialize(params={})
+      search_term=params[:search_term]
+      @dry_run=params[:dry_run]
+      @dry_run=false if @dry_run.nil?
+      @updater=params[:updater]
+      @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
       @processed_studies = {
         updated_studies: [],
         new_studies: []
@@ -119,7 +120,6 @@ module ClinicalTrials
     def import_xml_file(study_xml, benchmark: false)
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
-      puts 'nct_id'
       unless Study.find_by(nct_id: nct_id).present?
         Study.new({
           xml: study,

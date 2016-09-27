@@ -6,7 +6,7 @@ module ClinicalTrials
       @params=args
       type=(@params[:event_type] ? @params[:event_type] : 'incremental')
       @load_event = ClinicalTrials::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
-      @client = ClinicalTrials::Client.new(updater: self)
+      @client = ClinicalTrials::Client.new({:updater =>self})
       @study_counts={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
       self
     end
@@ -87,7 +87,6 @@ module ClinicalTrials
     end
 
     def log(msg)
-      puts msg
       @load_event.log(msg)
     end
 
