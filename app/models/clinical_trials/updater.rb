@@ -36,11 +36,13 @@ module ClinicalTrials
         log("begin ...")
         days_back=(@params[:days_back] ? @params[:days_back] : 4)
         ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
-        log_expected_counts(ids)
+        set_expected_counts(ids)
         update_studies(ids)
         run_sanity_checks
         export_snapshots
         export_tables
+        log_expected_counts
+        log_actual_counts
         send_notification
         @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       rescue StandardError => e
@@ -87,8 +89,12 @@ module ClinicalTrials
       @load_event.log(msg)
     end
 
-    def show_progress(nct_id)
-      @load_event.show_progress(@study_counts[:count_down], nct_id)
+    def show_progress(nct_id,action)
+      @load_event.show_progress(@study_counts[:count_down], nct_id,action)
+    end
+
+    def decrement_count_down
+      @study_counts[:count_down]-=1
     end
 
     def increment_study_counts(study_exists)
@@ -142,7 +148,7 @@ module ClinicalTrials
 
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-      Study.new({ xml: new_xml, nct_id: nct_id }).create
+      Study.create({ xml: new_xml, nct_id: nct_id })
     end
 
     def send_notification
@@ -150,11 +156,17 @@ module ClinicalTrials
       LoadMailer.send_notifications(@load_event)
     end
 
-    def log_expected_counts(ids)
+    def set_expected_counts(ids)
       @study_counts[:should_change] = (Study.pluck(:nct_id) & ids).count
-      @study_counts[:should_add] = (ids.count - @study_counts[:should_change])
-      log("should change: #{@study_counts[:should_change]};  should add: #{@study_counts[:should_add]}")
+      @study_counts[:should_add]    = (ids.count - @study_counts[:should_change])
     end
 
+    def log_expected_counts
+      log("should change: #{@study_counts[:should_change]};  should add: #{@study_counts[:should_add]}\n")
+    end
+
+    def log_actual_counts
+      log("should change: #{@study_counts[:change]};  should add: #{@study_counts[:add]}\n")
+    end
   end
 end
