@@ -48,7 +48,7 @@ module ClinicalTrials
     end
 
     def show_progress(study_counter, nct_id)
-      if study_counter % 10 == 0
+      if study_counter % 1000 == 0
         self.description << "\n  #{study_counter} (#{nct_id})"
         self.save!
       else
