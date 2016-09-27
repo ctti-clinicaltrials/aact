@@ -3,7 +3,7 @@ class StudySerializer < ActiveModel::Serializer
             :first_received_date,
             :last_changed_date,
             :first_received_results_date,
-            :first_received_results_disposition_date,
+            :received_results_disposit_date,
             :start_month_year,
             :verification_month_year,
             :primary_completion_month_year,
