@@ -203,7 +203,7 @@ class Study < ActiveRecord::Base
       :last_changed_date => get_date(get('lastchanged_date')),
 
       :nlm_download_date_description => xml.xpath('//download_date').text,
-      :first_received_results_disposition_date => get_date(get('firstreceived_results_disposition_date')),
+      :received_results_disposit_date => get_date(get('firstreceived_results_disposition_date')),
 
       :acronym =>get('acronym'),
       :number_of_arms => get('number_of_arms'),
