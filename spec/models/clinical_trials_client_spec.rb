@@ -2,10 +2,11 @@ require 'rails_helper'
 
 describe ClinicalTrials::Client do
   let(:search_term) { 'duke lupus rheumatoid arthritis' }
+  let(:updater)     { ClinicalTrials::Updater.new }
   let(:expected_url) { 'https://clinicaltrials.gov/search?term=duke+lupus+rheumatoid+arthritis&resultsxml=true' }
   let(:stub_request_headers) { {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'} }
 
-  subject { described_class.new(search_term: search_term) }
+  subject { described_class.new({:search_term => search_term, :updater => updater}) }
 
   let(:zipped_studies) { File.read(Rails.root.join('spec','support','xml_data','download_xml_files.zip')) }
 
@@ -50,7 +51,7 @@ describe ClinicalTrials::Client do
 
       context 'set in initialization' do
         let(:expected_dry_run) { true }
-        subject { described_class.new(search_term: search_term, dry_run: expected_dry_run) }
+        subject { described_class.new({:search_term => search_term, :dry_run => expected_dry_run}) }
 
         it 'should set dry_run' do
           expect(subject.dry_run).to be true
@@ -82,14 +83,12 @@ describe ClinicalTrials::Client do
     end
 
     context 'dry_run true' do
-      subject { described_class.new(search_term: search_term, dry_run: true) }
+      subject { described_class.new({:search_term => search_term, :dry_run => true, :updater => updater}) }
 
-      it 'should not create a study xml records or load events' do
+      it 'should not create a study xml records' do
         expect {
-          expect {
-            subject.download_xml_files
-          }.not_to change{StudyXmlRecord.count}
-        }.not_to change{ClinicalTrials::LoadEvent.count}
+          subject.download_xml_files
+        }.not_to change{StudyXmlRecord.count}
       end
     end
   end
@@ -112,7 +111,7 @@ describe ClinicalTrials::Client do
     end
 
     context 'dry_run true' do
-      subject { described_class.new(search_term: search_term, dry_run: true) }
+      subject { described_class.new({:search_term => search_term, :dry_run => true, :updater => updater}) }
 
       it 'should report a study xml record' do
         expect {
@@ -150,7 +149,7 @@ describe ClinicalTrials::Client do
     end
 
     context 'dry_run true' do
-      subject { described_class.new(search_term: search_term, dry_run: true) }
+      subject { described_class.new({:search_term => search_term, :dry_run => true, :updater => updater}) }
 
       it 'should return without running' do
         expect {
