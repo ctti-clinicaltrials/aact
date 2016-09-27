@@ -23,7 +23,7 @@ module ClinicalTrials
       file = Tempfile.new('xml')
 
       begin
-        @updater.log('client: downloading xml file')
+        log('client: downloading xml file')
         download = RestClient::Request.execute({
           url:          @url,
           method:       :get,
@@ -31,7 +31,7 @@ module ClinicalTrials
         })
       rescue Errno::ECONNRESET => e
         if (tries -=1) > 0
-          @updater.log("client: error connecting to #{@url}. Retry...")
+          log("client: error connecting to #{@url}. Retry...")
           retry
         end
       end
@@ -41,7 +41,7 @@ module ClinicalTrials
       file.size
 
       Zip::File.open(file.path) do |zipfile|
-        @updater.log("client: download xml file size: #{file.size}  studies: #{zipfile.entries.size}")
+        log("client: download xml file size: #{file.size}  studies: #{zipfile.entries.size}")
         @updater.set_count_down(zipfile.entries.size)
         zipfile.each do |file|
           study_xml = file.get_input_stream.read
@@ -82,17 +82,17 @@ module ClinicalTrials
       end
       @processed_studies[:new_studies] << nct_id
       unless @dry_run
-        @updater.log('client: creating xml_records')
+        log('client: creating xml_records')
         StudyXmlRecord.where(nct_id: nct_id).first_or_create do |xml_record|
           @updater.decrement_count_down
-          @updater.show_progress(nct_id,'stashing xml')
+          show_progress(nct_id,'stashing xml')
           xml_record.content = xml
         end
       end
     end
 
     def populate_studies
-      @updater.log('client: populating study tables...')
+      log('client: populating study tables...')
       return if @dry_run
 
       study_counter=0
@@ -120,6 +120,7 @@ module ClinicalTrials
     def import_xml_file(study_xml, benchmark: false)
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
+      show_progress(nct_id,'creating study')
       unless Study.find_by(nct_id: nct_id).present?
         Study.new({
           xml: study,
@@ -129,6 +130,14 @@ module ClinicalTrials
     end
 
     private
+
+    def log(msg)
+      @updater.log(msg)
+    end
+
+    def show_progress(nct_id,action)
+      @updater.show_progress(nct_id,action)
+    end
 
     def extract_nct_id_from_study(study)
       Nokogiri::XML(study).xpath('//nct_id').text
