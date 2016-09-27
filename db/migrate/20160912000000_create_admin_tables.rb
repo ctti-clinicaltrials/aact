@@ -39,6 +39,7 @@ class CreateAdminTables < ActiveRecord::Migration
     end
 
     execute <<-SQL
+      DROP USER aact;
       CREATE USER aact WITH PASSWORD 'aact';
       GRANT SELECT ON ALL TABLES IN SCHEMA public TO aact;
     SQL
