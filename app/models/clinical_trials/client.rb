@@ -82,9 +82,10 @@ module ClinicalTrials
       end
       @processed_studies[:new_studies] << nct_id
       unless @dry_run
+        @updater.log('client: creating xml_records')
         StudyXmlRecord.where(nct_id: nct_id).first_or_create do |xml_record|
           @updater.decrement_count_down
-          @updater.show_progress(nct_id)
+          @updater.show_progress(nct_id,'stashing xml')
           xml_record.content = xml
         end
       end
@@ -98,7 +99,6 @@ module ClinicalTrials
       StudyXmlRecord.find_each do |xml_record|
         raw_xml = xml_record.content
         study_counter=study_counter + 1
-
         begin
           import_xml_file(raw_xml)
         rescue StandardError => e

@@ -66,17 +66,14 @@ module ClinicalTrials
       @study_counts[:count_down]=sum
     end
 
-    def decrement_count_down
-      @study_counts[:count_down]-=1
-    end
-
     def update_studies(nct_ids)
+      log('update_studies...\n')
       set_count_down(nct_ids.size)
       nct_ids.each {|nct_id|
         begin
           refresh_study(nct_id)
           decrement_count_down
-          show_progress(nct_id)
+          show_progress(nct_id,'refreshing study')
         rescue StandardError => e
           @load_event.add_problem({:name=> "error #{nct_id}", :first_backtrace_line=>e.backtrace.to_s})
           @load_event.add_problem({:name=> "occurred after processing #{@study_counts[:count_down]} studies", :first_backtrace_line=>''})
