@@ -155,7 +155,7 @@ module ClinicalTrials
 
     def log_expected_counts(ids)
       @study_counts[:should_change] = (Study.pluck(:nct_id) & ids).count
-      @study_counts[:should_add] = (ids.count - should_change_count)
+      @study_counts[:should_add] = (ids.count - @study_counts[:should_change])
       log("should change: #{@study_counts[:should_change]};  should add: #{@study_counts[:should_add]}")
     end
 
