@@ -2,10 +2,9 @@ require 'rails_helper'
 
 describe ClinicalTrials::Client do
   let(:search_term) { 'duke lupus rheumatoid arthritis' }
-  let(:updater)     { ClinicalTrials::Updater.new }
+  let(:updater)     { ClinicalTrials::Updater.new({:search_term=>'duke lupus rheumatoid arthritis'}) }
   let(:expected_url) { 'https://clinicaltrials.gov/search?term=duke+lupus+rheumatoid+arthritis&resultsxml=true' }
   let(:stub_request_headers) { {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'} }
-
   subject { described_class.new({:search_term => search_term, :updater => updater}) }
 
   let(:zipped_studies) { File.read(Rails.root.join('spec','support','xml_data','download_xml_files.zip')) }
@@ -51,7 +50,7 @@ describe ClinicalTrials::Client do
 
       context 'set in initialization' do
         let(:expected_dry_run) { true }
-        subject { described_class.new({:search_term => search_term, :dry_run => expected_dry_run}) }
+        subject { described_class.new({:search_term => search_term, :dry_run => expected_dry_run, :updater=>updater}) }
 
         it 'should set dry_run' do
           expect(subject.dry_run).to be true
@@ -138,6 +137,7 @@ describe ClinicalTrials::Client do
 
     context 'default dry_run' do
       it 'should create studies from an existing study xml records' do
+
         subject.populate_studies
         study_1 = Study.find_by(nct_id: study_nct_id_1)
         expect(study_1.last_changed_date).to eq(study_last_changed_date_1.to_date)
