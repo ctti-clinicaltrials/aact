@@ -72,7 +72,8 @@ class Study < ActiveRecord::Base
     # studies that have changed.
 
     load_event = ClinicalTrials::LoadEvent.create(
-      event_type: 'populate_studies'
+      event_type: 'create_calculated_values',
+      status: 'running'
     )
 
     batch_size = 500

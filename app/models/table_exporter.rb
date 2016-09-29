@@ -9,7 +9,7 @@ class TableExporter
   end
 
   def run(delimiter: '|', should_upload_to_s3: true)
-    load_event = ClinicalTrials::LoadEvent.create(event_type: 'table_export')
+    load_event = ClinicalTrials::LoadEvent.create({:event_type=>'table_export',:status=>'running',:description=>'',:problems=>''})
     File.delete(@zipfile_name) if File.exist?(@zipfile_name)
 
     begin
@@ -28,7 +28,6 @@ class TableExporter
     ensure
       cleanup_tempfiles!
     end
-
     load_event.complete
   end
 

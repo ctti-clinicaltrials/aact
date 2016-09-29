@@ -1,69 +1,59 @@
 module ClinicalTrials
   class Updater
+    attr_reader :params, :load_event, :client, :study_counts
 
-    def full(params={})
-      log('Full Update: begin...')
-      load_event = ClinicalTrials::LoadEvent.create( event_type: 'full_update',created_at: Time.now)
-      truncate_tables
-      client = ClinicalTrials::Client.new
-      log("Full Update: #{Time.now}  download xml files...")
-      client.download_xml_files
-      log("Full Update: #{Time.now}  populate studies...")
-      client.populate_studies
-      load_event.update(new_studies: Study.count, changed_studies: 0)
-      load_event.complete
-      log("Full Update: #{Time.now}  sanity check...")
-      SanityCheck.run
-      log("Full Update: #{Time.now}  send email notification...")
-      LoadMailer.send_notifications(load_event, client.errors)
-      if !params[:create_snapshots]==false
-        log("Full Update: #{Time.now}  exporting db snapshot...")
-        TableExporter.new.run
+    def initialize(args={})
+      @params=args
+      type=(@params[:event_type] ? @params[:event_type] : 'incremental')
+      @load_event = ClinicalTrials::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
+      @client = ClinicalTrials::Client.new({:updater =>self})
+      @study_counts={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
+      self
+    end
+
+    def run
+      if @load_event.event_type=='full'
+        full
+      else
+        incremental
       end
     end
 
-    def incremental(params={})
+    def full
+      log('begin ...')
+      truncate_tables
+      download_xml_files
+      populate_studies
+      run_sanity_checks
+      export_snapshots
+      export_tables
+      send_notification
+      @load_event.complete({:new_studies=> Study.count})
+    end
+
+    def incremental
       begin
-        days_back=(params[:days_back] ? params[:days_back] : 7)
-        log("Incremental Update: #{Time.now} begin...")
-        load_event = ClinicalTrials::LoadEvent.create(event_type: 'incremental_update',created_at: Time.now)
-        ids_updated_or_added = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
-        changed_count = (Study.pluck(:nct_id) & ids_updated_or_added).count
-        new_count = ids_updated_or_added.count - changed_count
-        log("Incremental Update: #{Time.now}  changed: #{changed_count}  added: #{new_count}")
-        updater = StudyUpdater.new.update_studies(nct_ids: ids_updated_or_added)
-        load_event.update(new_studies: new_count, changed_studies: changed_count)
-        load_event.complete
-        log("Incremental Update: #{Time.now}  sanity check...")
-        SanityCheck.run
-        log("Incremental Update: #{Time.now}  load notification...")
-        if !params[:create_snapshots]==false
-          log("Incremental Update: #{Time.now}  exporting db snapshot...")
-          TableExporter.new.run
-        end
-        LoadMailer.send_notifications(load_event, updater.errors)
+        log("begin ...")
+        days_back=(@params[:days_back] ? @params[:days_back] : 4)
+        ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
+        set_expected_counts(ids)
+        update_studies(ids)
+        run_sanity_checks
+        export_snapshots
+        export_tables
+        log_expected_counts
+        log_actual_counts
+        send_notification
+        @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       rescue StandardError => e
-        log("Error encountered in incremental update...  #{e}")
-        updater.errors << {:name => 'An error was raised during the load.', :first_backtrace_line => e}
-        LoadMailer.send_notifications(load_event, updater.errors)
+        @load_event.add_problem({:name=>"Error encountered in incremental update.",:first_backtrace_line=>  "#{e.backtrace.to_s}"})
+        @load_event.complete({:status=> 'failed'})
+        LoadMailer.send_notifications(@load_event)
         raise e
       end
     end
 
-    def truncate_tables
-      log('Full Update: truncate tables...')
-      Updater.loadable_tables.each do |table|
-        log("  truncate #{table}")
-        ActiveRecord::Base.connection.truncate(table)
-      end
-    end
-
-    def log(msg)
-      $stdout.puts msg
-      $stdout.flush
-    end
-
-    def self.loadable_tables(params={})
+    def self.loadable_tables()
       blacklist = %w(
         schema_migrations
         load_events
@@ -72,6 +62,111 @@ module ClinicalTrials
         study_xml_records
       )
       ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
+    end
+
+    def set_count_down(sum)
+      @study_counts[:count_down]=sum
+    end
+
+    def update_studies(nct_ids)
+      log('update_studies...\n')
+      set_count_down(nct_ids.size)
+      nct_ids.each {|nct_id|
+        begin
+          refresh_study(nct_id)
+          decrement_count_down
+          show_progress(nct_id,'refreshing study')
+        rescue StandardError => e
+          @load_event.add_problem({:name=> "error #{nct_id}", :first_backtrace_line=>e.backtrace.to_s})
+          @load_event.add_problem({:name=> "occurred after processing #{@study_counts[:count_down]} studies", :first_backtrace_line=>''})
+          next
+        end
+      }
+      self
+    end
+
+    def log(msg)
+      @load_event.log(msg)
+    end
+
+    def show_progress(nct_id,action)
+      @load_event.show_progress(@study_counts[:count_down], nct_id,action)
+    end
+
+    def decrement_count_down
+      @study_counts[:count_down]-=1
+    end
+
+    def increment_study_counts(study_exists)
+      if study_exists > 0
+        @study_counts[:change]+=1
+      else
+        @study_counts[:add]+=1
+      end
+    end
+
+    def download_xml_files
+      log("download xml file...")
+      @client.download_xml_files
+    end
+
+    def populate_studies
+      log("populate studies...")
+      @client.populate_studies
+    end
+
+    def run_sanity_checks
+      log("sanity check...")
+      SanityCheck.run
+    end
+
+    def export_tables
+      if !@params[:create_snapshots]==false
+        log("exporting tables...")
+        TableExporter.new.run
+      end
+    end
+
+    def export_snapshots
+      log("exporting db snapshot...")
+      #Snapshotter.new.run
+    end
+
+    def truncate_tables
+      Updater.loadable_tables.each { |table|
+        log("  truncate #{table}")
+        ActiveRecord::Base.connection.truncate(table)
+      }
+    end
+
+    def refresh_study(nct_id)
+      old_xml_record = StudyXmlRecord.where(nct_id: nct_id) #should only be one
+      old_study=Study.where(nct_id: nct_id)    #should only be one
+      increment_study_counts(old_study.size)
+      old_xml_record.each{|old| old.destroy }  # but remove all... just in case
+      old_study.each{|old| old.destroy }
+
+      new_xml=@client.get_xml_for(nct_id)
+      StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
+      Study.create({ xml: new_xml, nct_id: nct_id })
+    end
+
+    def send_notification
+      log("send email notification...")
+      LoadMailer.send_notifications(@load_event)
+    end
+
+    def set_expected_counts(ids)
+      @study_counts[:should_change] = (Study.pluck(:nct_id) & ids).count
+      @study_counts[:should_add]    = (ids.count - @study_counts[:should_change])
+    end
+
+    def log_expected_counts
+      log("should change: #{@study_counts[:should_change]};  should add: #{@study_counts[:should_add]}\n")
+    end
+
+    def log_actual_counts
+      log("should change: #{@study_counts[:change]};  should add: #{@study_counts[:add]}\n")
     end
   end
 end
