@@ -39,7 +39,10 @@ module ClinicalTrials
       file.binmode
       file.write(download)
       file.size
+      populate_xml_table(file)
+    end
 
+    def populate_xml_table(file)
       Zip::File.open(file.path) do |zipfile|
         log("client: download xml file size: #{file.size}  studies: #{zipfile.entries.size}")
         @updater.set_count_down(zipfile.entries.size)
@@ -92,15 +95,16 @@ module ClinicalTrials
     end
 
     def populate_studies
-      log('client: populating study tables...')
       return if @dry_run
-
       study_counter=0
-      StudyXmlRecord.find_each do |xml_record|
+      unloaded_xml_records=StudyXmlRecord.not_yet_loaded
+      log("client: populating study tables with #{unloaded_xml_records.size} xml records...")
+      unloaded_xml_records.each{|xml_record|
         raw_xml = xml_record.content
         study_counter=study_counter + 1
         begin
           import_xml_file(raw_xml)
+          xml_record.was_created
         rescue StandardError => e
           existing_error = @errors.find do |err|
             err[:name] == e.name && err[:first_backtrace_line] == e.backtrace.first
@@ -114,14 +118,17 @@ module ClinicalTrials
 
           next
         end
-      end
+      }
     end
 
     def import_xml_file(study_xml, benchmark: false)
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
-      show_progress(nct_id,'creating study')
-      unless Study.find_by(nct_id: nct_id).present?
+      show_progress(nct_id,'stashing xml')
+      if Study.find_by(nct_id: nct_id).present?
+        log "Study #{nct_id} already exists"
+      else
+        puts "Creating study #{nct_id}"
         Study.new({
           xml: study,
           nct_id: nct_id

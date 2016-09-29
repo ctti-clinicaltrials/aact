@@ -11,6 +11,10 @@ module ClinicalTrials
       self
     end
 
+    def self.trial_run
+      new({:event_type=>'full',:search_term=>'pancreatic cancer nutrition'}).run
+    end
+
     def run
       if @load_event.event_type=='full'
         full
@@ -19,15 +23,15 @@ module ClinicalTrials
       end
     end
 
-    def full
+    def full(file=nil)
       log('begin ...')
       truncate_tables
-      download_xml_files
+      file.nil? ? download_xml_files : populate_xml_table(file)
       populate_studies
-      run_sanity_checks
-      export_snapshots
-      export_tables
-      send_notification
+#      run_sanity_checks
+#      export_snapshots
+#      export_tables
+#      send_notification
       @load_event.complete({:new_studies=> Study.count})
     end
 
@@ -39,11 +43,11 @@ module ClinicalTrials
         set_expected_counts(ids)
         update_studies(ids)
         run_sanity_checks
-        export_snapshots
+#        export_snapshots
         export_tables
         log_expected_counts
         log_actual_counts
-        send_notification
+#        send_notification
         @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       rescue StandardError => e
         @load_event.add_problem({:name=>"Error encountered in incremental update.",:first_backtrace_line=>  "#{e.backtrace.to_s}"})
@@ -129,14 +133,16 @@ module ClinicalTrials
 
     def export_snapshots
       log("exporting db snapshot...")
-      #Snapshotter.new.run
+      Snapshotter.new.run
     end
 
     def truncate_tables
-      Updater.loadable_tables.each { |table|
-        log("  truncate #{table}")
-        ActiveRecord::Base.connection.truncate(table)
-      }
+      Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
+      ActiveRecord::Base.connection.truncate('study_xml_records') unless should_rerun?
+    end
+
+    def should_rerun?
+      @params[:rerun]==true && StudyXmlRecord.not_yet_loaded.size > 0
     end
 
     def refresh_study(nct_id)
