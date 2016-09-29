@@ -23,7 +23,7 @@ module ClinicalTrials
       file = Tempfile.new('xml')
 
       begin
-        @updater.log('client: downloading xml file')
+        log('client: downloading xml file')
         download = RestClient::Request.execute({
           url:          @url,
           method:       :get,
@@ -31,7 +31,7 @@ module ClinicalTrials
         })
       rescue Errno::ECONNRESET => e
         if (tries -=1) > 0
-          @updater.log("client: error connecting to #{@url}. Retry...")
+          log("client: error connecting to #{@url}. Retry...")
           retry
         end
       end
@@ -39,9 +39,12 @@ module ClinicalTrials
       file.binmode
       file.write(download)
       file.size
+      populate_xml_table(file)
+    end
 
+    def populate_xml_table(file)
       Zip::File.open(file.path) do |zipfile|
-        @updater.log("client: download xml file size: #{file.size}  studies: #{zipfile.entries.size}")
+        log("client: download xml file size: #{file.size}  studies: #{zipfile.entries.size}")
         @updater.set_count_down(zipfile.entries.size)
         zipfile.each do |file|
           study_xml = file.get_input_stream.read
@@ -82,25 +85,26 @@ module ClinicalTrials
       end
       @processed_studies[:new_studies] << nct_id
       unless @dry_run
+        log('client: creating xml_records')
         StudyXmlRecord.where(nct_id: nct_id).first_or_create do |xml_record|
           @updater.decrement_count_down
-          @updater.show_progress(nct_id)
+          show_progress(nct_id,'stashing xml')
           xml_record.content = xml
         end
       end
     end
 
     def populate_studies
-      @updater.log('client: populating study tables...')
       return if @dry_run
-
       study_counter=0
-      StudyXmlRecord.find_each do |xml_record|
+      unloaded_xml_records=StudyXmlRecord.not_yet_loaded
+      log("client: populating study tables with #{unloaded_xml_records.size} xml records...")
+      unloaded_xml_records.each{|xml_record|
         raw_xml = xml_record.content
         study_counter=study_counter + 1
-
         begin
           import_xml_file(raw_xml)
+          xml_record.was_created
         rescue StandardError => e
           existing_error = @errors.find do |err|
             err[:name] == e.name && err[:first_backtrace_line] == e.backtrace.first
@@ -114,13 +118,17 @@ module ClinicalTrials
 
           next
         end
-      end
+      }
     end
 
     def import_xml_file(study_xml, benchmark: false)
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
-      unless Study.find_by(nct_id: nct_id).present?
+      show_progress(nct_id,'stashing xml')
+      if Study.find_by(nct_id: nct_id).present?
+        log "Study #{nct_id} already exists"
+      else
+        puts "Creating study #{nct_id}"
         Study.new({
           xml: study,
           nct_id: nct_id
@@ -129,6 +137,14 @@ module ClinicalTrials
     end
 
     private
+
+    def log(msg)
+      @updater.log(msg)
+    end
+
+    def show_progress(nct_id,action)
+      @updater.show_progress(nct_id,action)
+    end
 
     def extract_nct_id_from_study(study)
       Nokogiri::XML(study).xpath('//nct_id').text

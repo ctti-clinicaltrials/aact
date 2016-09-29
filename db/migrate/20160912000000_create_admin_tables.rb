@@ -7,19 +7,16 @@ class CreateAdminTables < ActiveRecord::Migration
       t.string   "status"
       t.text     "description"
       t.text     "problems"
-      t.datetime "created_at",      null: false
-      t.datetime "updated_at",      null: false
-      t.datetime "completed_at"
-      t.string   "load_time"
       t.integer  "new_studies"
       t.integer  "changed_studies"
+      t.string   "load_time"
+      t.datetime "completed_at"
       t.timestamps null: false
     end
 
     create_table "sanity_checks", force: :cascade do |t|
       t.text     "report",     null: false
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
+      t.timestamps null: false
     end
 
     create_table "statistics", force: :cascade do |t|
@@ -32,10 +29,10 @@ class CreateAdminTables < ActiveRecord::Migration
     end
 
     create_table "study_xml_records", force: :cascade do |t|
-      t.xml      "content"
       t.string   "nct_id"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
+      t.xml      "content"
+      t.datetime "created_study_at"
+      t.timestamps null: false
     end
 
     execute <<-SQL
