@@ -26,7 +26,7 @@ module ClinicalTrials
     def full(file=nil)
       log('begin ...')
       truncate_tables
-      file.nil? ? download_xml_files : populate_xml_table(file)
+      file.nil? ? download_xml_files : @client.populate_xml_table(File.open(file))
       populate_studies
 #      run_sanity_checks
 #      export_snapshots

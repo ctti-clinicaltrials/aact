@@ -39,11 +39,11 @@ module ClinicalTrials
       file.binmode
       file.write(download)
       file.size
-      populate_xml_table(file)
+      populate_xml_table(file.path)
     end
 
     def populate_xml_table(file)
-      Zip::File.open(file.path) do |zipfile|
+      Zip::File.open(file) do |zipfile|
         log("client: download xml file size: #{file.size}  studies: #{zipfile.entries.size}")
         @updater.set_count_down(zipfile.entries.size)
         zipfile.each do |file|
@@ -85,7 +85,6 @@ module ClinicalTrials
       end
       @processed_studies[:new_studies] << nct_id
       unless @dry_run
-        log('client: creating xml_records')
         StudyXmlRecord.where(nct_id: nct_id).first_or_create do |xml_record|
           @updater.decrement_count_down
           show_progress(nct_id,'stashing xml')
@@ -99,9 +98,11 @@ module ClinicalTrials
       study_counter=0
       unloaded_xml_records=StudyXmlRecord.not_yet_loaded
       log("client: populating study tables with #{unloaded_xml_records.size} xml records...")
+      @updater.study_counts[:should_add]=unloaded_xml_records.size
+      @updater.study_counts[:count_down]=unloaded_xml_records.size
       unloaded_xml_records.each{|xml_record|
         raw_xml = xml_record.content
-        study_counter=study_counter + 1
+        @updater.decrement_count_down
         begin
           import_xml_file(raw_xml)
           xml_record.was_created
