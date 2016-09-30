@@ -9,6 +9,8 @@ class CreateIndices < ActiveRecord::Migration
     add_index :facilities, :nct_id
     add_index :outcomes, :nct_id
     add_index :outcome_measured_values, :title
+    add_index :study_xml_records, :nct_id
+    add_index :study_xml_records, :created_study_at
 
   end
 

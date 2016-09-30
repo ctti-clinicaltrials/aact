@@ -47,7 +47,7 @@ module ClinicalTrials
         export_tables
         log_expected_counts
         log_actual_counts
-#        send_notification
+        send_notification
         @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       rescue StandardError => e
         @load_event.add_problem({:name=>"Error encountered in incremental update.",:first_backtrace_line=>  "#{e.backtrace.to_s}"})
