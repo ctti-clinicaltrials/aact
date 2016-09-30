@@ -834,12 +834,13 @@ CREATE TABLE load_events (
     event_type character varying,
     status character varying,
     description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    completed_at timestamp without time zone,
-    load_time character varying,
+    problems text,
     new_studies integer,
-    changed_studies integer
+    changed_studies integer,
+    load_time character varying,
+    completed_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1508,8 +1509,14 @@ CREATE TABLE studies (
     first_received_date date,
     last_changed_date date,
     first_received_results_date date,
+    received_results_disposit_date date,
+    start_month_year character varying,
+    verification_month_year character varying,
+    completion_month_year character varying,
+    primary_completion_month_year character varying,
     completion_date_type character varying,
     primary_completion_date_type character varying,
+    nlm_download_date_description character varying,
     study_type character varying,
     overall_status character varying,
     phase character varying,
@@ -1530,15 +1537,9 @@ CREATE TABLE studies (
     brief_title text,
     official_title text,
     biospec_description text,
-    first_received_results_disposition_date date,
-    plan_to_share_ipd character varying,
-    nlm_download_date_description character varying,
-    start_month_year character varying,
-    verification_month_year character varying,
-    completion_month_year character varying,
-    primary_completion_month_year character varying,
-    plan_to_share_ipd_description character varying,
     description text,
+    plan_to_share_ipd character varying,
+    plan_to_share_ipd_description character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1582,8 +1583,9 @@ ALTER SEQUENCE study_references_id_seq OWNED BY study_references.id;
 
 CREATE TABLE study_xml_records (
     id integer NOT NULL,
-    content xml,
     nct_id character varying,
+    content xml,
+    created_study_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

@@ -15,7 +15,7 @@ module AACT2
             primary_completion_date: "2012-07-01",
             completion_date: "2012-07-01",
             first_received_results_date: "2013-10-16",
-            first_received_results_disposition_date: null,
+            received_results_disposit_date: null,
             start_month_year: "February 2009",
             verification_month_year: "October 2013",
             primary_completion_month_day: "July 2012",

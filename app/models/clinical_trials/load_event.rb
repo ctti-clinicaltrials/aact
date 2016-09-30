@@ -2,26 +2,9 @@ module ClinicalTrials
   class LoadEvent < ActiveRecord::Base
     extend Enumerize
 
-    enumerize :event_type, in: %w(
-      get_studies
-      populate_studies
-      incremental_update
-      full_update
-      table_export
-    )
-
-    def self.start(type)
-      create(event_type: type, created_at: Time.now)
-    end
-
     def complete(params={})
-      raise AlreadyCompletedError if completed_at.present?
-      status      = (params[:status] ?  params[:status] : 'complete')
-      description = params[:description]
-      errors      = "Errors: \n#{params[:errors].join('\n')}" if params[:errors]
-      description << errors if errors
-      self.description = description
-      self.status = status
+      raise AlreadyCompletedError if self.completed_at.present?
+      self.status  = (params[:status] ?  params[:status] : 'complete')
       self.completed_at = Time.now
       self.load_time = calculate_load_time
       self.new_studies = params[:new_studies]
@@ -29,8 +12,18 @@ module ClinicalTrials
       self.save!
     end
 
+    def add_problem(errors={})
+      err="\n#{errors[:name]}"
+      desc="\n#{errors[:first_backtrace_line]}"
+      self.problems = "#{self.problems}#{err}"
+      self.problems = "#{self.problems}#{desc}"
+      $stdout.puts err
+      $stdout.puts desc
+      $stdout.flush
+    end
+
     def calculate_load_time
-      time = completed_at - created_at
+      time = self.completed_at - self.created_at
       minutes, seconds = time.divmod(60)
       val="#{minutes} minutes and #{seconds.round} seconds"
       val
@@ -40,11 +33,27 @@ module ClinicalTrials
       if event_type != 'populate_studies'
         raise IncorrectEventTypeError
       end
-
       update(
         new_studies:     new,
         changed_studies: changed
       )
+    end
+
+    def log(msg)
+      stamped_message="\n#{Time.now.to_formatted_s(:db)} #{msg}"
+      self.description << stamped_message
+      self.save!
+      $stdout.puts stamped_message
+      $stdout.flush
+    end
+
+    def show_progress(study_counter, nct_id, action)
+      if study_counter % 10000 == 0
+        self.description << "\n#{action}: #{study_counter} (#{nct_id})"
+        self.save!
+      else
+        self.description << '.' if study_counter % 1000 == 0
+      end
     end
 
     class AlreadyCompletedError < StandardError; end

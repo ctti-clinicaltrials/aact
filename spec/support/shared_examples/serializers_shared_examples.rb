@@ -15,7 +15,7 @@ shared_examples 'a serialized study' do
       first_received_date
       last_changed_date
       first_received_results_date
-      first_received_results_disposition_date
+      received_results_disposit_date
 
       start_month_year
       verification_month_year
@@ -56,7 +56,7 @@ shared_examples 'a serialized study' do
       first_received_date
       last_changed_date
       first_received_results_date
-      first_received_results_disposition_date
+      received_results_disposit_date
     ).each do |date_key|
       if serialized_study[date_key]
         expect(Date.parse(serialized_study[date_key])).to eq(resource.send(date_key))
