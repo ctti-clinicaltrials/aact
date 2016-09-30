@@ -26,7 +26,7 @@ module ClinicalTrials
     def full(file=nil)
       log('begin ...')
       truncate_tables
-      file.nil? ? download_xml_files : populate_xml_table(file)
+      file.nil? ? download_xml_files : @client.populate_xml_table(File.open(file))
       populate_studies
 #      run_sanity_checks
 #      export_snapshots
@@ -47,7 +47,7 @@ module ClinicalTrials
         export_tables
         log_expected_counts
         log_actual_counts
-#        send_notification
+        send_notification
         @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       rescue StandardError => e
         @load_event.add_problem({:name=>"Error encountered in incremental update.",:first_backtrace_line=>  "#{e.backtrace.to_s}"})

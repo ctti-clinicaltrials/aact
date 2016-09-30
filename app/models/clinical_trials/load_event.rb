@@ -47,12 +47,12 @@ module ClinicalTrials
       $stdout.flush
     end
 
-    def show_progress(study_counter, nct_id,action)
-      if study_counter % 1000 == 0
+    def show_progress(study_counter, nct_id, action)
+      if study_counter % 10000 == 0
         self.description << "\n#{action}: #{study_counter} (#{nct_id})"
         self.save!
       else
-        self.description << '.' if study_counter % 100 == 0
+        self.description << '.' if study_counter % 1000 == 0
       end
     end
 
