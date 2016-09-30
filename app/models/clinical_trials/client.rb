@@ -87,7 +87,7 @@ module ClinicalTrials
       unless @dry_run
         StudyXmlRecord.where(nct_id: nct_id).first_or_create do |xml_record|
           @updater.decrement_count_down
-          show_progress(nct_id,'stashing xml')
+          show_progress(nct_id,'creating study')
           xml_record.content = xml
         end
       end
