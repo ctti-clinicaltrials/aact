@@ -1,8 +1,8 @@
 module ClinicalTrials
   class Client
     BASE_URL = 'https://clinicaltrials.gov'
-
     attr_reader :url, :processed_studies, :dry_run, :updater
+
     def initialize(params={})
       @dry_run=params[:dry_run]
       @dry_run=false if @dry_run.nil?
@@ -17,9 +17,27 @@ module ClinicalTrials
       @errors = []
     end
 
+    def self.download_xml_file
+      tries = 5
+      file = Tempfile.new('xml')
+      begin
+        download = RestClient::Request.execute({
+          url:          "https://clinicaltrials.gov/search?term=&resultsxml=true",
+          method:       :get,
+          content_type: 'application/zip'
+        })
+      rescue Errno::ECONNRESET => e
+        if (tries -=1) > 0
+          puts "client: error connecting to https://clinicaltrials.gov/search?term=&resultsxml=true. Retry..."
+          retry
+        end
+      end
+      file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
+      ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
+    end
+
     def download_xml_files
       tries ||= 5
-
       file = Tempfile.new('xml')
 
       begin
@@ -39,7 +57,7 @@ module ClinicalTrials
       file.binmode
       file.write(download)
       file.size
-      populate_xml_table(file.path)
+      file
     end
 
     def populate_xml_table(file)
@@ -93,7 +111,7 @@ module ClinicalTrials
       end
     end
 
-    def populate_studies
+    def create_studies
       return if @dry_run
       study_counter=0
       unloaded_xml_records=StudyXmlRecord.not_yet_loaded
