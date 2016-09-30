@@ -1,14 +1,18 @@
 module ClinicalTrials
   class Updater
-    attr_reader :params, :load_event, :client, :study_counter
+    attr_reader :params, :load_event, :client, :study_counts
 
     def initialize(args={})
       @params=args
       type=(@params[:event_type] ? @params[:event_type] : 'incremental')
       @load_event = ClinicalTrials::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
-      @client = ClinicalTrials::Client.new(updater: self)
-      @study_counter={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
+      @client = ClinicalTrials::Client.new({:updater =>self})
+      @study_counts={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
       self
+    end
+
+    def self.trial_run
+      new({:event_type=>'full',:search_term=>'pancreatic cancer nutrition'}).run
     end
 
     def run
@@ -19,15 +23,15 @@ module ClinicalTrials
       end
     end
 
-    def full
+    def full(file=nil)
       log('begin ...')
       truncate_tables
-      download_xml_file_from_ctgov
+      file.nil? ? download_xml_files : @client.populate_xml_table(File.open(file))
       populate_studies
-      run_sanity_checks
-      export_snapshots
-      export_tables
-      send_notification
+#      run_sanity_checks
+#      export_snapshots
+#      export_tables
+#      send_notification
       @load_event.complete({:new_studies=> Study.count})
     end
 
@@ -36,13 +40,15 @@ module ClinicalTrials
         log("begin ...")
         days_back=(@params[:days_back] ? @params[:days_back] : 4)
         ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
-        log_expected_counts(ids)
-        update_studies(ids[0..200])  # TODO  Take this restriction out - just for initial verification that it works on server
+        set_expected_counts(ids)
+        update_studies(ids)
         run_sanity_checks
-        export_snapshots
+#        export_snapshots
         export_tables
-        send_notification
-        @load_event.complete({:new_studies=> @study_counter[:add], :changed_studies => @study_counter[:change]})
+        log_expected_counts
+        log_actual_counts
+#        send_notification
+        @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       rescue StandardError => e
         @load_event.add_problem({:name=>"Error encountered in incremental update.",:first_backtrace_line=>  "#{e.backtrace.to_s}"})
         @load_event.complete({:status=> 'failed'})
@@ -62,25 +68,49 @@ module ClinicalTrials
       ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
     end
 
+    def set_count_down(sum)
+      @study_counts[:count_down]=sum
+    end
+
     def update_studies(nct_ids)
-      @study_counter[:count_down]=nct_ids.size
+      log('update_studies...\n')
+      set_count_down(nct_ids.size)
       nct_ids.each {|nct_id|
         begin
           refresh_study(nct_id)
-          show_progress(nct_id)
+          decrement_count_down
+          show_progress(nct_id,'refreshing study')
         rescue StandardError => e
           @load_event.add_problem({:name=> "error #{nct_id}", :first_backtrace_line=>e.backtrace.to_s})
-          @load_event.add_problem({:name=> "occurred after processing #{countdown} studies", :first_backtrace_line=>''})
+          @load_event.add_problem({:name=> "occurred after processing #{@study_counts[:count_down]} studies", :first_backtrace_line=>''})
           next
         end
       }
       self
     end
 
-    private
+    def log(msg)
+      @load_event.log(msg)
+    end
 
-    def download_xml_file_from_ctgov
-      log("download xml file(s)...")
+    def show_progress(nct_id,action)
+      @load_event.show_progress(@study_counts[:count_down], nct_id,action)
+    end
+
+    def decrement_count_down
+      @study_counts[:count_down]-=1
+    end
+
+    def increment_study_counts(study_exists)
+      if study_exists > 0
+        @study_counts[:change]+=1
+      else
+        @study_counts[:add]+=1
+      end
+    end
+
+    def download_xml_files
+      log("download xml file...")
       @client.download_xml_files
     end
 
@@ -103,26 +133,28 @@ module ClinicalTrials
 
     def export_snapshots
       log("exporting db snapshot...")
-      #Snapshotter.new.run
+      Snapshotter.new.run
     end
 
     def truncate_tables
-      Updater.loadable_tables.each { |table|
-        log("  truncate #{table}")
-        ActiveRecord::Base.connection.truncate(table)
-      }
+      Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
+      ActiveRecord::Base.connection.truncate('study_xml_records') unless should_rerun?
+    end
+
+    def should_rerun?
+      @params[:rerun]==true && StudyXmlRecord.not_yet_loaded.size > 0
     end
 
     def refresh_study(nct_id)
       old_xml_record = StudyXmlRecord.where(nct_id: nct_id) #should only be one
       old_study=Study.where(nct_id: nct_id)    #should only be one
-      increment_study_counter(old_study.size)
+      increment_study_counts(old_study.size)
       old_xml_record.each{|old| old.destroy }  # but remove all... just in case
       old_study.each{|old| old.destroy }
 
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-      Study.new({ xml: new_xml, nct_id: nct_id }).create
+      Study.create({ xml: new_xml, nct_id: nct_id })
     end
 
     def send_notification
@@ -130,27 +162,17 @@ module ClinicalTrials
       LoadMailer.send_notifications(@load_event)
     end
 
-    def log_expected_counts(ids)
-      @study_counter[:should_change] = (Study.pluck(:nct_id) & ids).count
-      @study_counter[:should_add] = (ids.count - should_change_count)
-      log("should change: #{@study_counter[:should_change]};  should add: #{@study_counter[:should_add]}")
+    def set_expected_counts(ids)
+      @study_counts[:should_change] = (Study.pluck(:nct_id) & ids).count
+      @study_counts[:should_add]    = (ids.count - @study_counts[:should_change])
     end
 
-    def log(msg)
-      @load_event.log(msg)
+    def log_expected_counts
+      log("should change: #{@study_counts[:should_change]};  should add: #{@study_counts[:should_add]}\n")
     end
 
-    def show_progress(nct_id)
-      @study_counts[:count_down]-=1
-      @load_event.show_progress(@study_counts[:count_down], nct_id)
-    end
-
-    def increment_study_counter(study_exists)
-      if study_exists > 0
-        @study_counter[:change]+=1
-      else
-        @study_counter[:add]+=1
-      end
+    def log_actual_counts
+      log("should change: #{@study_counts[:change]};  should add: #{@study_counts[:add]}\n")
     end
   end
 end

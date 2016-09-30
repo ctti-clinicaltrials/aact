@@ -835,12 +835,12 @@ CREATE TABLE load_events (
     status character varying,
     description text,
     problems text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    completed_at timestamp without time zone,
-    load_time character varying,
     new_studies integer,
-    changed_studies integer
+    changed_studies integer,
+    load_time character varying,
+    completed_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1583,8 +1583,9 @@ ALTER SEQUENCE study_references_id_seq OWNED BY study_references.id;
 
 CREATE TABLE study_xml_records (
     id integer NOT NULL,
-    content xml,
     nct_id character varying,
+    content xml,
+    created_study_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
