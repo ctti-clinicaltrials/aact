@@ -112,7 +112,9 @@ module ClinicalTrials
 
     def download_xml_files
       log("download xml file...")
-      @client.download_xml_files
+      file=@client.download_xml_files
+      file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
+      ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
     end
 
     def populate_studies
