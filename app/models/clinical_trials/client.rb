@@ -111,7 +111,7 @@ module ClinicalTrials
       end
     end
 
-    def populate_studies
+    def create_studies
       return if @dry_run
       study_counter=0
       unloaded_xml_records=StudyXmlRecord.not_yet_loaded
