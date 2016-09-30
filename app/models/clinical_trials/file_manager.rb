@@ -55,5 +55,14 @@ module ClinicalTrials
       }
       entries.sort_by {|entry| entry[:last_modified]}.reverse!
     end
+
+    def upload_to_s3(params={})
+      directory_name=params[:directory_name]
+      file_name=params[:file_name]
+      file=params[:file]
+      s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
+      obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("#{directory_name}/#{file_name}")
+      obj.upload_file(file)
+    end
   end
 end

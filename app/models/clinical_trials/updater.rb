@@ -27,8 +27,9 @@ module ClinicalTrials
       log('begin ...')
       @load_event.event_type='full'
       truncate_tables
-      file.nil? ? download_xml_files : @client.populate_xml_table(File.open(file))
-      populate_studies
+      file=download_xml_file if file.nil?
+      populate_xml_table(file)
+      create_studies
 #      run_sanity_checks
 #      export_snapshots
 #      export_tables
@@ -110,14 +111,22 @@ module ClinicalTrials
       end
     end
 
-    def download_xml_files
+    def download_xml_file
       log("download xml file...")
-      @client.download_xml_files
+      file=@client.download_xml_file
+      file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
+      ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
+      return file
     end
 
-    def populate_studies
-      log("populate studies...")
-      @client.populate_studies
+    def populate_xml_table(file)
+      log("populate xml table...")
+      @client.populate_xml_table(file)
+    end
+
+    def create_studies
+      log("create studies...")
+      @client.create_studies
     end
 
     def run_sanity_checks
