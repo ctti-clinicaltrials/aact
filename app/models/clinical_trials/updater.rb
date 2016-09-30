@@ -25,6 +25,7 @@ module ClinicalTrials
 
     def full(file=nil)
       log('begin ...')
+      @load_event.event_type='full'
       truncate_tables
       file.nil? ? download_xml_files : @client.populate_xml_table(File.open(file))
       populate_studies
