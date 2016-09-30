@@ -2320,6 +2320,20 @@ CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
 
 
 --
+-- Name: index_study_xml_records_on_created_study_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_study_xml_records_on_created_study_at ON study_xml_records USING btree (created_study_at);
+
+
+--
+-- Name: index_study_xml_records_on_nct_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_study_xml_records_on_nct_id ON study_xml_records USING btree (nct_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
