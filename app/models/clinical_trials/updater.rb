@@ -1,6 +1,6 @@
 module ClinicalTrials
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts
+    attr_reader :params, :load_event, :client, :study_counts, :download_file_name
 
     def initialize(args={})
       @params=args
@@ -23,12 +23,12 @@ module ClinicalTrials
       end
     end
 
-    def full(file=nil)
+    def full
       log('begin ...')
       @load_event.event_type='full'
       truncate_tables
-      file=download_xml_file if file.nil?
-      populate_xml_table(file)
+      download_xml_file
+      populate_xml_table
       create_studies
 #      run_sanity_checks
 #      export_snapshots
@@ -114,8 +114,8 @@ module ClinicalTrials
     def download_xml_file
       log("download xml file...")
       file=@client.download_xml_file
-      file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
-      ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
+      @download_file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
+      ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>@download_file_name,:file=>file})
       return file
     end
 
