@@ -118,7 +118,8 @@ module ClinicalTrials
     end
 
     def download_xml_file
-      log("download xml file...")
+      set_download_file_name({:download_file_name=>"ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip"})
+      log("download xml file...#{@download_file_name}")
       #@download_file=@client.download_xml_file
       @client.download_xml_file
     end
