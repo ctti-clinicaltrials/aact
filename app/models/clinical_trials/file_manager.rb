@@ -38,7 +38,6 @@ module ClinicalTrials
     def self.get_file(params)
       file_name=params[:file_name]
       directory_name=params[:directory_name] ||= 'xml_downloads'
-      return Zip::File.open(file_name) if File.exist?(file_name)
       File.open("#{file_name}", 'wb') { |out_file|
         s3 = Aws::S3::Client.new(region: ENV['AWS_REGION'])
         s3.get_object({ bucket: ENV['S3_BUCKET_NAME'], key: "#{directory_name}/#{file_name}"}, target: out_file)

@@ -44,15 +44,14 @@ module ClinicalTrials
       file.write(download)
       file.close
       file.open
-      puts ">>>>>>>>>>>>>>> file type is #{file.class}"
       obj.upload_file(file)
       #ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
       file
     end
 
     def populate_xml_table
-      puts ">>>>>>>>>>>>>>> @download_file type is #{@updater.download_file.class}"
       if @updater.download_file.nil?
+        log('Need to retrieve zip file from S3...')
         zip_file=ClinicalTrials::FileManager.get_file(@updater.download_file_name)
       else
         zip_file=@updater.download_file
@@ -135,11 +134,10 @@ module ClinicalTrials
     def import_xml_file(study_xml, benchmark: false)
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
-      show_progress(nct_id,'stashing xml')
+      #show_progress(nct_id,'stashing xml')
       if Study.find_by(nct_id: nct_id).present?
         log "Study #{nct_id} already exists"
       else
-        puts "Creating study #{nct_id}"
         Study.new({
           xml: study,
           nct_id: nct_id

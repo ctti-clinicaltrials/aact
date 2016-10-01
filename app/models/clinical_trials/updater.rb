@@ -126,7 +126,6 @@ module ClinicalTrials
 
     def populate_xml_table
       @download_file ||= ClinicalTrials::FileManager.get_file({:directory_name=>'xml_downloads',:file_name=>@download_file_name})
-      puts ">>>>>>>>>>>>>>> @download_file type is #{@download_file.class}"
       log("populate xml table...")
       @client.populate_xml_table
     end
