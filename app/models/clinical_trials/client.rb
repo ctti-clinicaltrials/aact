@@ -20,8 +20,9 @@ module ClinicalTrials
     end
 
     def download_xml_file
-      file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip"
-      @updater.set_download_file_name(:download_file_name=>file_name)
+      file_name=@updater.download_file_name
+      s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
+      obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("xml_downloads/#{file_name}")
       tries ||= 5
       file = Tempfile.new('zip')
 
@@ -43,8 +44,6 @@ module ClinicalTrials
       file.write(download)
       file.close
       file.open
-      s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
-      obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("xml_downloads/#{file_name}")
       puts ">>>>>>>>>>>>>>> file type is #{file.class}"
       obj.upload_file(file)
       #ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
