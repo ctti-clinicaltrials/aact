@@ -19,7 +19,7 @@ module ClinicalTrials
 
     def set_download_file_name(params)
       @download_file_name = params[:download_file_name]
-      @download_file_name = "ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip" if @donwload_file_name.nil?
+      @download_file_name = "ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip" if @download_file_name.nil?
     end
 
     def run
