@@ -41,7 +41,10 @@ module ClinicalTrials
       file.size
       file
       file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
-      ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
+      s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
+      obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("xml_downloads/#{file_name}")
+      obj.upload_file(file)
+      #ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
     end
 
     def populate_xml_table(file_name)
