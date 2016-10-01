@@ -1,6 +1,7 @@
 module ClinicalTrials
   class Client
     BASE_URL = 'https://clinicaltrials.gov'
+		TEST_URL="https://clinicaltrials.gov/search?term=pancreatic+cancer+nutrition&resultsxml=true"
     attr_reader :url, :processed_studies, :dry_run, :updater
 
     def initialize(params={})
@@ -19,8 +20,11 @@ module ClinicalTrials
     end
 
     def download_xml_file
+      file_name=@updater.download_file_name
+      s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
+      obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("xml_downloads/#{file_name}")
       tries ||= 5
-      file = Tempfile.new('xml')
+      file = Tempfile.new('zip')
 
       begin
         log('client: downloading xml file')
@@ -38,15 +42,21 @@ module ClinicalTrials
 
       file.binmode
       file.write(download)
-      file.size
+      file.close
+      file.open
+      obj.upload_file(file)
+      #ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
       file
-      file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
-      ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
     end
 
-    def populate_xml_table(file_name)
-      zipfile=ClinicalTrials::FileManager.get_file({:directory_name=>'xml_downloads',:file_name=>file_name})
-      zipfile.each do |file|
+    def populate_xml_table
+      if @updater.download_file.nil?
+        log('Need to retrieve zip file from S3...')
+        zip_file=ClinicalTrials::FileManager.get_file(@updater.download_file_name)
+      else
+        zip_file=@updater.download_file
+      end
+      zip_file.each do |file|
         study_xml = file.get_input_stream.read
         create_study_xml_record(study_xml)
       end
@@ -124,11 +134,10 @@ module ClinicalTrials
     def import_xml_file(study_xml, benchmark: false)
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
-      show_progress(nct_id,'stashing xml')
+      #show_progress(nct_id,'stashing xml')
       if Study.find_by(nct_id: nct_id).present?
         log "Study #{nct_id} already exists"
       else
-        puts "Creating study #{nct_id}"
         Study.new({
           xml: study,
           nct_id: nct_id

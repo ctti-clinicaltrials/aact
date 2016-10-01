@@ -1,18 +1,25 @@
 module ClinicalTrials
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :download_file_name
+    attr_reader :params, :load_event, :client, :study_counts, :download_file, :download_file_name
 
-    def initialize(args={})
-      @params=args
-      type=(@params[:event_type] ? @params[:event_type] : 'incremental')
+    def initialize(params={})
+      @params=params
+      type=(params[:event_type] ? params[:event_type] : 'incremental')
       @load_event = ClinicalTrials::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @client = ClinicalTrials::Client.new({:updater =>self})
+      @download_file = @params[:download_file]
+      set_download_file_name(params)
       @study_counts={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
       self
     end
 
     def self.trial_run
-      new({:event_type=>'full',:search_term=>'pancreatic cancer nutrition'}).run
+      new({:event_type=>'full',:download_file_name=>'bs.zip',:search_term=>'pancreatic cancer nutrition'}).run
+    end
+
+    def set_download_file_name(params)
+      @download_file_name = params[:download_file_name]
+      @download_file_name = "ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip" if @download_file_name.nil?
     end
 
     def run
@@ -25,7 +32,6 @@ module ClinicalTrials
 
     def full
       log('begin ...')
-      @load_event.event_type='full'
       truncate_tables
       download_xml_file
       populate_xml_table
@@ -112,16 +118,16 @@ module ClinicalTrials
     end
 
     def download_xml_file
-      log("download xml file...")
-      file=@client.download_xml_file
-      @download_file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
-      ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>@download_file_name,:file=>file})
-      return file
+      set_download_file_name({:download_file_name=>"ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip"})
+      log("download xml file...#{@download_file_name}")
+      #@download_file=@client.download_xml_file
+      @client.download_xml_file
     end
 
-    def populate_xml_table(file)
+    def populate_xml_table
+      @download_file ||= ClinicalTrials::FileManager.get_file({:directory_name=>'xml_downloads',:file_name=>@download_file_name})
       log("populate xml table...")
-      @client.populate_xml_table(file)
+      @client.populate_xml_table
     end
 
     def create_studies
