@@ -15,28 +15,10 @@ module ClinicalTrials
       }
       @dry_run = dry_run
       @errors = []
+      self
     end
 
-    def self.download_xml_file
-      tries = 5
-      file = Tempfile.new('xml')
-      begin
-        download = RestClient::Request.execute({
-          url:          "https://clinicaltrials.gov/search?term=&resultsxml=true",
-          method:       :get,
-          content_type: 'application/zip'
-        })
-      rescue Errno::ECONNRESET => e
-        if (tries -=1) > 0
-          puts "client: error connecting to https://clinicaltrials.gov/search?term=&resultsxml=true. Retry..."
-          retry
-        end
-      end
-      file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
-      ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
-    end
-
-    def download_xml_files
+    def download_xml_file
       tries ||= 5
       file = Tempfile.new('xml')
 
@@ -58,16 +40,18 @@ module ClinicalTrials
       file.write(download)
       file.size
       file
+      file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
+      s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
+      obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("xml_downloads/#{file_name}")
+      obj.upload_file(file)
+      #ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
     end
 
-    def populate_xml_table(file)
-      Zip::File.open(file) do |zipfile|
-        log("client: download xml file size: #{file.size}  studies: #{zipfile.entries.size}")
-        @updater.set_count_down(zipfile.entries.size)
-        zipfile.each do |file|
-          study_xml = file.get_input_stream.read
-          create_study_xml_record(study_xml)
-        end
+    def populate_xml_table(file_name)
+      zipfile=ClinicalTrials::FileManager.get_file({:directory_name=>'xml_downloads',:file_name=>file_name})
+      zipfile.each do |file|
+        study_xml = file.get_input_stream.read
+        create_study_xml_record(study_xml)
       end
     end
 
