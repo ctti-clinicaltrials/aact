@@ -1,8 +1,8 @@
 module ClinicalTrials
   class Client
     BASE_URL = 'https://clinicaltrials.gov'
-
     attr_reader :url, :processed_studies, :dry_run, :updater
+
     def initialize(params={})
       @dry_run=params[:dry_run]
       @dry_run=false if @dry_run.nil?
@@ -15,11 +15,11 @@ module ClinicalTrials
       }
       @dry_run = dry_run
       @errors = []
+      self
     end
 
-    def download_xml_files
+    def download_xml_file
       tries ||= 5
-
       file = Tempfile.new('xml')
 
       begin
@@ -39,17 +39,16 @@ module ClinicalTrials
       file.binmode
       file.write(download)
       file.size
-      populate_xml_table(file.path)
+      file
+      file_name="ctgov_#{Time.now.strftime("%Y%m%d%H")}.xml"
+      ClinicalTrials::FileManager.new.upload_to_s3({:directory_name=>'xml_downloads',:file_name=>file_name,:file=>file})
     end
 
-    def populate_xml_table(file)
-      Zip::File.open(file) do |zipfile|
-        log("client: download xml file size: #{file.size}  studies: #{zipfile.entries.size}")
-        @updater.set_count_down(zipfile.entries.size)
-        zipfile.each do |file|
-          study_xml = file.get_input_stream.read
-          create_study_xml_record(study_xml)
-        end
+    def populate_xml_table(file_name)
+      zipfile=ClinicalTrials::FileManager.get_file({:directory_name=>'xml_downloads',:file_name=>file_name})
+      zipfile.each do |file|
+        study_xml = file.get_input_stream.read
+        create_study_xml_record(study_xml)
       end
     end
 
@@ -93,7 +92,7 @@ module ClinicalTrials
       end
     end
 
-    def populate_studies
+    def create_studies
       return if @dry_run
       study_counter=0
       unloaded_xml_records=StudyXmlRecord.not_yet_loaded
