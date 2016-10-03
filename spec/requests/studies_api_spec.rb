@@ -11,7 +11,7 @@ describe AACT2::V1::StudiesAPI do
 
     @xml_record = StudyXmlRecord.create(content: xml, nct_id: 'NCT00002475')
     client = ClinicalTrials::Client.new({:updater=>ClinicalTrials::Updater.new})
-    client.populate_studies
+    client.create_studies
   end
 
   let(:study) { Study.last }
