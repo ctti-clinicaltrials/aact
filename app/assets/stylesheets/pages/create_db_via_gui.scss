@@ -10,6 +10,7 @@ section.createDbViaGui {
   }
   #toggle:checked ~ label::before {
     content: "Hide GUI Instructions";
+    width: 260px;
   }
 
   #expand {
@@ -35,7 +36,7 @@ section.createDbViaGui {
     font-size: 16px;
     color: white;
     content: "View GUI Instructions";
-    width: 240px;
+    width: 260px;
     text-align: left;
     padding-top: 4px;
     padding-left: 10px;

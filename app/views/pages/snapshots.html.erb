@@ -5,7 +5,7 @@
       <h1>Create Local Database from AACT Snapshots</h1>
     </div>
 
-    <p>If you would like to work with the full dataset on your own machine, install PostgreSQL locally, download an AACT database snapshot, and populate a local PostgreSQL database instance with it.</p>
+    <p>If you would like to work with the full clinical trials dataset on your own machine, install PostgreSQL locally, download an AACT database snapshot, and populate a local PostgreSQL database instance with it. This page provides basic instructions on how to do this.</p>
 
     <%= render 'install_postgres' %>
 
@@ -21,7 +21,7 @@
       <h3 class="stepName">Populate Local PostgreSQL Database from Snapshot</h3>
     </div>
 
-    <p>Once PostgreSQL is installed on your local machine and you have downloaded a snapshot of the AACT database, you can create and populate your own database. You have two basic alternatives: 1) via a terminal session using command lines or 2) via a graphical user interface (GUI) such as <i>pgAdmin</i>.</p>
+    <p>Once PostgreSQL is installed on your local machine and you have downloaded a snapshot of the AACT database, you can create and populate your own database. You have two alternatives for installing the snapshot: 1) via a terminal session using command lines or 2) via a graphical user interface (GUI) such as <i>pgAdmin</i>. The command line option is somewhat simpler, so we've highlighted instructions for this below and provided guidance for using the GUI <a href='/snapshots#createDbViaGui'>here</a>.</p>
 
 
     <h4>Database Creation Via Command Line</h4>
@@ -73,8 +73,7 @@
       </pre>
     </p>
 
-    <h4>Database Creation Via Graphical User Interface</h4>
-    <p><%= render 'create_db_via_gui' %></>
+    <p id='createDbViaGui'><%= render 'create_db_via_gui' %></p>
 
     <p><%= render 'download_database_errors' %></p>
 
