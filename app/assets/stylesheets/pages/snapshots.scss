@@ -1,34 +1,7 @@
+section.snapshots {
 
-section.snapshot_archive {
   background-color: $white;
-  padding-top: 6rem;
-  padding-bottom: 40px;
+  padding-top: 2rem;
+  padding-bottom: 20px;
 
-  ul {
-    border-radius: $border-radius;
-    padding: 10px;
-
-  }
-
-  a {
-    font-size: 1.1rem;
-    display: block;
-    color: $secondary;
-    @include transition(all 220ms ease);
-  }
-
-  li {
-    border-bottom: 1px solid rgb(192,192,192);
-    padding: 10px 5 px;
-    list-style: none;
-    @include transition(all 220ms ease);
-
-    &:hover {
-      background-color: $secondary;
-
-      a {
-        color: $white;
-      }
-    }
-  }
 }
