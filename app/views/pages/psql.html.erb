@@ -21,35 +21,10 @@
     <p>
     Once PostgreSQL is installed on your local machine, you can access pSQL from a terminal session by entering the command: <i>psql</i>. To access the AACT cloud-hosted database, open a terminal window and enter the <i>psql</i> command with the following syntax.
     </p>
-    <pre>
-      <p class='code'>
-        <span class='command-prompt'>-&gt; </span><span class='command-entry'> psql --host <%= ENV["RDS_DB_HOSTNAME"] %> --port=5432 --username=<%= ENV["RDS_DB_READONLY_USERNAME"] %> --dbname=<%= ENV["RDS_DB_READONLY_DBNAME"] %></span>
-        <span class='command-response'> </span>
-        <span class='command-response'>  psql (9.5.3, server 9.5.2)</span>
-        <span class='command-response'>  SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)</span>
-        <span class='command-response'>  Type "help" for help.</span>
-        <span class='command-response'> </span>
-        <span class='command-prompt'>aact=&gt; _</span>
-      </p>
-    </pre>
-    <p>
-    The  <i><span class='command-prompt'>aact=&gt; </span></i>  prompt indicates that you're in a pSQL console session and can enter SQL queries against the AACT database. A simple example:
-    </p>
-    <pre>
-      <p class='code'>
-       <span class='command-prompt'>aact=&gt; </span><span class='command-entry'> select count(*) from studies;</span>
-        <span class='command-response'> </span>
-        <span class='command-response'>  count</span>
-        <span class='command-response'>  --------</span>
-        <span class='command-response'>  221382</span>
-        <span class='command-response'>  (1 row)</span>
-        <span class='command-response'> </span>
-        <span class='command-prompt'>aact=&gt; _</span>
-      </p>
-    </pre>
-    <p>
 
-    <p>Important note:  To exit pSQL, enter '\q' and hit return.</p>
+    <p><%= render 'psql_remote_login' %></p>
+
+    <p>Important note:  To exit pSQL, enter the (not entirely intuitive) command: <i>\q</i> and hit return.</p>
     </p>
     <pre>
       <p class='code'>
