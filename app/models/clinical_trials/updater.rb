@@ -36,10 +36,10 @@ module ClinicalTrials
       download_xml_file
       populate_xml_table
       create_studies
-#      run_sanity_checks
-#      export_snapshots
-#      export_tables
-#      send_notification
+      run_sanity_checks
+      export_snapshots
+      export_tables
+      send_notification
       @load_event.complete({:new_studies=> Study.count})
     end
 
@@ -49,11 +49,11 @@ module ClinicalTrials
         days_back=(@params[:days_back] ? @params[:days_back] : 4)
         ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
         set_expected_counts(ids)
+        log_expected_counts
         update_studies(ids)
         run_sanity_checks
-#        export_snapshots
+        export_snapshots
         export_tables
-        log_expected_counts
         log_actual_counts
         send_notification
         @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
