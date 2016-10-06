@@ -36,10 +36,10 @@ module ClinicalTrials
       download_xml_file
       populate_xml_table
       create_studies
-#      run_sanity_checks
-#      export_snapshots
-#      export_tables
-#      send_notification
+      run_sanity_checks
+      export_snapshots
+      export_tables
+      send_notification
       @load_event.complete({:new_studies=> Study.count})
     end
 
@@ -47,13 +47,15 @@ module ClinicalTrials
       begin
         log("begin ...")
         days_back=(@params[:days_back] ? @params[:days_back] : 4)
+        log("finding studies changed in past #{days_back} days...")
         ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
+        log("found #{ids.size} studies that have changed")
         set_expected_counts(ids)
+        log_expected_counts
         update_studies(ids)
         run_sanity_checks
-#        export_snapshots
+        export_snapshots
         export_tables
-        log_expected_counts
         log_actual_counts
         send_notification
         @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
@@ -98,6 +100,7 @@ module ClinicalTrials
     end
 
     def log(msg)
+      puts msg
       @load_event.log(msg)
     end
 
@@ -170,6 +173,7 @@ module ClinicalTrials
 
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
+      log("creating #{nct_id}")
       Study.create({ xml: new_xml, nct_id: nct_id })
     end
 

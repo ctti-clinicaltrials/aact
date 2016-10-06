@@ -68,14 +68,18 @@
     <p class='CodeRay'>
       <pre>
         <p class='code'>
-          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=postgres</i> --no-owner --create  <i>~/Downloads/YYYYMMDD_aact.sql </i></span>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=postgres</i> --no-owner --clean --create  <i>~/Downloads/YYYYMMDD_aact.sql </i></span>
         </p>
       </pre>
     </p>
 
+    <h5>Verify Database</h5>
+
+    <p><%= render partial: 'psql_local_login' %></p>
+
     <p id='createDbViaGui'><%= render 'create_db_via_gui' %></p>
 
-    <p><%= render 'download_database_errors' %></p>
+    <p><%= render 'create_db_troubleshooting' %></p>
 
   </div>
 </section>

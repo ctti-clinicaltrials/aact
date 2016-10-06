@@ -32,6 +32,11 @@ table.regularDisplay, ul.regularDisplay, ol.regularDisplay {
     margin: 0 0 1rem;
 }
 
+table.gridDisplay, th.gridDisplay, tr.gridDisplay, td.gridDisplay {
+  border-style: solid;
+  border-color: $primary;
+}
+
 ul.indent {
     margin: 20px 60px 20px;
 }
