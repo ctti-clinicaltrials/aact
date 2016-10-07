@@ -44,27 +44,20 @@ module ClinicalTrials
     end
 
     def incremental
-      begin
         log("begin ...")
-        days_back=(@params[:days_back] ? @params[:days_back] : 4)
+        days_back=(@params[:days_back] ? @params[:days_back] : 1)
         log("finding studies changed in past #{days_back} days...")
         ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
         log("found #{ids.size} studies that have changed")
         set_expected_counts(ids)
         log_expected_counts
         update_studies(ids)
-        run_sanity_checks
-        export_snapshots
-        export_tables
+        #run_sanity_checks
+        #export_snapshots
+        #export_tables
         log_actual_counts
         send_notification
         @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
-      rescue StandardError => e
-        @load_event.add_problem({:name=>"Error encountered in incremental update.",:first_backtrace_line=>  "#{e.backtrace.to_s}"})
-        @load_event.complete({:status=> 'failed'})
-        LoadMailer.send_notifications(@load_event)
-        raise e
-      end
     end
 
     def self.loadable_tables()
