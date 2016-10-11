@@ -60,7 +60,7 @@ module ClinicalTrials
       rescue StandardError => e
         @load_event.add_problem({:name=>"Error encountered in incremental update.",:first_backtrace_line=>  "#{e.backtrace.to_s}"})
         @load_event.complete({:status=> 'failed'})
-        LoadMailer.send_notifications(@load_event)
+        send_notification
         raise e
       end
     end
@@ -120,7 +120,6 @@ module ClinicalTrials
     def download_xml_file
       set_download_file_name({:download_file_name=>"ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip"})
       log("download xml file...#{@download_file_name}")
-      #@download_file=@client.download_xml_file
       @client.download_xml_file
     end
 
