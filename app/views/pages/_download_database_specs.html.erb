@@ -1,15 +1,16 @@
-  <section>
+<section class="learnMore">
 
-    <p> </p>
-    <p>You are welcome to download a copy of database design specifications:</p>
-    <div class="wrap">
+  <p></p>
+  <p>You are welcome to download a copy of database design specifications:</p>
+  <div class="wrap">
       <ul>
-        <li><a href=<%= @schema_diagram %> target="_blank">Schema Diagram</a></li>
-        <li><a href=<%= @data_dictionary %> target="_blank">Excel Version of the Data Dictionary</a></li>
+        <li><a href=<%= @schema_diagram %> target="_blank" onClick="ga('send','event','download','schema page: download schema')"  >Schema Diagram</a></li>
+
+        <li><a href=<%= @data_dictionary %> target="_blank" onClick="ga('send','event','download','schema page: download data dictionary')">Excel Version of the Data Dictionary</a></li>
       </ul>
-    </div>
+  </div>
 
-    <p>Please refer to the National Library of Medicine's documentation for authoritative definitions of all <a href="http://prsinfo.clinicaltrials.gov/definitions.html" target="_blank">study/protocol</a> and <a href="http://prsinfo.clinicaltrials.gov/results_definitions.html" target="_blank">results data</a> data elements.</p>
+  <p>Please refer to the National Library of Medicine's documentation for authoritative definitions of all <a href="https://prsinfo.clinicaltrials.gov/definitions.html" target="_blank" onClick="ga('send','event','external link','schema page: NLM Protocols')">study/protocol</a> and <a href="https://prsinfo.clinicaltrials.gov/results_definitions.html" target="_blank" onClick="ga('send','event','external link','schema page: NLM Results')">results data</a> data elements.</p>
 
-  </section>
+</section>
 

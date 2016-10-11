@@ -1,0 +1,33 @@
+<section class='tips'>
+
+  <input id="toggle-tips" type="checkbox" style="display: none; visibility: hidden;" unchecked>
+    <label for="toggle-tips"></label>
+  </input>
+
+  <div id="expand-tips">
+      <p></p>
+      <p>We are compiling a list of commonly encountered problems... </p>
+          <table class='gridDisplay'>
+            <th class='gridDisplay'>Error</th>
+            <th class='gridDisplay'>Possible Resolution</th>
+            <tr class='gridDisplay'>
+              <td class='error gridDisplay'>
+                <p>"pg_restore: [archiver (db)] could not execute query: ERROR:  unrecognized configuration parameter "row_security"</p>
+              </td>
+              <td class='gridDisplay'>Upgrade your version of PostgreSQL to <%= ENV['DB_VERSION'] %>.</td>
+            </tr>
+            <tr class='gridDisplay'>
+              <td class='error gridDisplay'>
+                <p>pg_restore: connecting to database for restore</p>
+                <p>pg_restore: creating DATABASE "aact"</p>
+                <p>pg_restore: [archiver (db)] Error while PROCESSING TOC:</p>
+                <p>pg_restore: [archiver (db)] Error from TOC entry 3543; 1262 1525913 DATABASE aact dbadmin</p>
+                <p>pg_restore: [archiver (db)] could not execute query: ERROR:  database "aact" already exists</p>
+               </td>
+               <td class='gridDisplay'>Make sure to include <i>--clean</i> in the command to drop the table before creating it.</td>
+            </tr>
+          </table>
+      </p>
+  </div>
+
+</section>

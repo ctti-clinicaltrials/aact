@@ -90,29 +90,50 @@ class Study < ActiveRecord::Base
   end
 
   def create
+    puts ">>>>>>>>>>>> entering create study..."
     update(attribs)
+    puts ">>>>>>>>>>>>       have updated attribs..."
     groups=DesignGroup.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created groups..."
     Intervention.create_all_from(opts.merge(:design_groups=>groups))
+    puts ">>>>>>>>>>>>       have created interventions..."
     DetailedDescription.new.create_from(opts).save
+    puts ">>>>>>>>>>>>       have created detailed descriptions..."
     Design.new.create_from(opts).save
+    puts ">>>>>>>>>>>>       have created designs..."
     BriefSummary.new.create_from(opts).save
+    puts ">>>>>>>>>>>>       have created brief summaries..."
     Eligibility.new.create_from(opts).save
+    puts ">>>>>>>>>>>>       have created eligibilities..."
     ParticipantFlow.new.create_from(opts).save
+    puts ">>>>>>>>>>>>       have created participant_flows..."
     BrowseCondition.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created browse conditions..."
     BrowseIntervention.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created browser_interventions..."
     CentralContact.create_all_from(opts)
     Condition.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created conditions..."
     Country.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created countries..."
     Facility.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created facilities..."
     IdInformation.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created id info..."
     Keyword.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created keywords..."
     Link.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created links..."
     BaselineMeasure.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created baseline_measures..."
     Milestone.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created milestones..."
     DropWithdrawal.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created drop_withdrawals..."
     Outcome.create_all_from(opts)
     #  ResultGroups get created in the process of creating the 4 above
     OversightAuthority.create_all_from(opts)
+    puts ">>>>>>>>>>>>       have created oversight authorities..."
     OverallOfficial.create_all_from(opts)
     DesignOutcome.create_all_from(opts)
     ReportedEvent.create_all_from(opts)
@@ -122,6 +143,7 @@ class Study < ActiveRecord::Base
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
     CalculatedValue.new.create_from(self).save
+    puts ">>>>>>>>>>>> ending create study..."
     self
   end
 
