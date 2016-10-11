@@ -44,6 +44,7 @@ module ClinicalTrials
     end
 
     def incremental
+      begin
         log("begin ...")
         days_back=(@params[:days_back] ? @params[:days_back] : 1)
         log("finding studies changed in past #{days_back} days...")
@@ -52,12 +53,18 @@ module ClinicalTrials
         set_expected_counts(ids)
         log_expected_counts
         update_studies(ids)
-        #run_sanity_checks
-        #export_snapshots
-        #export_tables
+        run_sanity_checks
+        export_snapshots
+        export_tables
         log_actual_counts
         send_notification
         @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
+      rescue StandardError => e
+        @load_event.add_problem({:name=>"Error encountered in incremental update.",:first_backtrace_line=>  "#{e.backtrace.to_s}"})
+        @load_event.complete({:status=> 'failed'})
+        send_notification
+        raise e
+      end
     end
 
     def self.loadable_tables()
@@ -110,7 +117,6 @@ module ClinicalTrials
     def download_xml_file
       set_download_file_name({:download_file_name=>"ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip"})
       log("download xml file...#{@download_file_name}")
-      #@download_file=@client.download_xml_file
       @client.download_xml_file
     end
 
