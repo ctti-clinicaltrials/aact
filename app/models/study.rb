@@ -328,4 +328,9 @@ class Study < ActiveRecord::Base
     end
   end
 
+  def self.all_with_mesh_term(term)
+    joins(:browse_conditions).where(browse_conditions: { mesh_term: [term] }) +
+    joins(:browse_interventions).where(browse_interventions: { mesh_term: [term] })
+  end
+
 end

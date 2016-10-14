@@ -109,6 +109,44 @@ describe AACT2::V1::StudiesAPI do
     end
   end
 
+  describe '[GET] study by mesh_term' do
+    let(:term) { 'Mesothelioma' }
+    subject { get "/api/v1/studies/mesh_term/#{term}" }
+
+    context 'success' do
+      it 'should return 1 study with this term' do
+        is_expected.to eq(200)
+        expect(response.body).to be
+        expect(response.body).not_to eq('null')
+        studies_results = JSON.parse(response.body)[":mesh_term"]
+        expect(studies_results).to be_a Array
+        expect(studies_results.length).to eq(1)
+      end
+
+      context 'with related records' do
+        before do
+          study.with_related_records = true
+        end
+        subject { get "/api/v1/studies/mesh_term/#{term}?with_related_records=true" }
+
+        context 'all one to one relationships' do
+
+          it 'should return all related records for study' do
+            is_expected.to eq(200)
+            expect(response.body).to be
+            expect(response.body).not_to eq('null')
+            returned_study_info = JSON.parse(response.body)
+            expect(returned_study_info).to be_a Hash
+            expect(returned_study_info).to have_key(':mesh_term')
+
+          end
+        end
+
+      end
+    end
+
+  end
+
   describe '[GET] study counts by year' do
     subject { get '/api/v1/studies/counts/by_year' }
     it 'should return a hash of years with counts of studies' do
