@@ -66,74 +66,30 @@ class Study < ActiveRecord::Base
     all.collect{|s|s.nct_id}
   end
 
-  def self.create_calculated_values
-    # TODO once we figure out the nightly differential,
-    # change this method to only update calculated values for
-    # studies that have changed.
-
-    load_event = ClinicalTrials::LoadEvent.create(
-      event_type: 'create_calculated_values',
-      status: 'running'
-    )
-
-    batch_size = 500
-    ids = Study.pluck(:nct_id)
-
-    ids.each_slice(batch_size) do |batch|
-      batch.each do |id|
-        study = Study.find_by(nct_id: id)
-        CalculatedValue.new.create_from(study).save
-      end
-    end
-
-    load_event.complete
-  end
-
   def create
-    puts ">>>>>>>>>>>> entering create study..."
     update(attribs)
-    puts ">>>>>>>>>>>>       have updated attribs..."
     groups=DesignGroup.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created groups..."
     Intervention.create_all_from(opts.merge(:design_groups=>groups))
-    puts ">>>>>>>>>>>>       have created interventions..."
     DetailedDescription.new.create_from(opts).save
-    puts ">>>>>>>>>>>>       have created detailed descriptions..."
     Design.new.create_from(opts).save
-    puts ">>>>>>>>>>>>       have created designs..."
     BriefSummary.new.create_from(opts).save
-    puts ">>>>>>>>>>>>       have created brief summaries..."
     Eligibility.new.create_from(opts).save
-    puts ">>>>>>>>>>>>       have created eligibilities..."
     ParticipantFlow.new.create_from(opts).save
-    puts ">>>>>>>>>>>>       have created participant_flows..."
     BrowseCondition.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created browse conditions..."
     BrowseIntervention.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created browser_interventions..."
     CentralContact.create_all_from(opts)
     Condition.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created conditions..."
     Country.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created countries..."
     Facility.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created facilities..."
     IdInformation.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created id info..."
     Keyword.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created keywords..."
     Link.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created links..."
     BaselineMeasure.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created baseline_measures..."
     Milestone.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created milestones..."
     DropWithdrawal.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created drop_withdrawals..."
     Outcome.create_all_from(opts)
     #  ResultGroups get created in the process of creating the 4 above
     OversightAuthority.create_all_from(opts)
-    puts ">>>>>>>>>>>>       have created oversight authorities..."
     OverallOfficial.create_all_from(opts)
     DesignOutcome.create_all_from(opts)
     ReportedEvent.create_all_from(opts)
@@ -143,7 +99,6 @@ class Study < ActiveRecord::Base
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
     CalculatedValue.new.create_from(self).save
-    puts ">>>>>>>>>>>> ending create study..."
     self
   end
 
@@ -283,14 +238,6 @@ class Study < ActiveRecord::Base
 
   def get_date(str)
     Date.parse(str) if !str.blank?
-  end
-
-  def average_rating
-    if reviews.size==0
-      0
-    else
-      reviews.average(:rating).round(2)
-    end
   end
 
   def intervention_names
