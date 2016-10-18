@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source "http://rubygems.org"
 
 ruby "2.2.3"
 
@@ -41,6 +41,7 @@ gem 'grape','>= 0.10.0'
 gem 'grape-swagger'
 gem 'kaminari'
 gem 'grape-kaminari'
+gem 'will_paginate'
 gem 'api-pagination'
 gem "hashie-forbidden_attributes" #overrides strong_params in grape endpoints
 gem 'active_model_serializers', '~> 0.9.0'
