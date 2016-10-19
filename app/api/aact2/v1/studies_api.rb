@@ -101,10 +101,14 @@ module AACT2
       end
       paginate per_page: 500
       get '/studies', root: false do
-        paginate Study.all
+        study_req_params = declared(params, include_missing: false)
+        page=(study_req_params[:page] ? study_req_params[:page] : 1)
+        per_page=(study_req_params[:per_page] ? study_req_params[:per_page] : 500)
+        studies=Study.all
+        @studies=WillPaginate::Collection.create(page, per_page,studies.size) {|pager|pager.replace studies[pager.offset, pager.per_page]}
       end
 
-      desc '[GET] study by mesh term' do
+      desc '[GET] all studies by mesh term' do
         detail <<-EOS
           <p>Returns a set of Studies associated with a mesh term.</p>
           <p>Example Response:</p>
@@ -155,7 +159,7 @@ module AACT2
           }
           </code>
         EOS
-        named 'Show a set of studies'
+        named 'Show a set of studies by mesh term'
         failure [
           [200, 'Success'],
           [404, 'No Studies Found']
@@ -165,11 +169,14 @@ module AACT2
         requires :mesh_term, type: String, desc: 'mesh term'
         optional :with_related_records, type: Boolean, desc: 'return studies with their related records'
       end
+      paginate per_page: 500
       get '/studies/mesh_term/:mesh_term' do
         study_req_params = declared(params, include_missing: false)
         term=study_req_params[:mesh_term]
-        @studies = Study.all_with_mesh_term(term)
-        @studies.each{|s| s.with_related_records = true } if study_req_params[:with_related_records]
+        page=(study_req_params[:page] ? study_req_params[:page] : 1)
+        per_page=(study_req_params[:per_page] ? study_req_params[:per_page] : 500)
+        studies=Study.all_with_mesh_term(term)
+        @studies=WillPaginate::Collection.create(page, per_page,studies.size) {|pager|pager.replace studies[pager.offset, pager.per_page]}
         @studies
       end
 
