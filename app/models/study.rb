@@ -6,6 +6,7 @@ class Study < ActiveRecord::Base
     self.interventional and self.current
   end
 
+  scope :one_to_ones, -> { includes(:eligibility, :brief_summary, :design, :detailed_description, :participant_flow) }
   self.primary_key = 'nct_id'
 
   has_one  :brief_summary,         :foreign_key => 'nct_id', dependent: :delete
@@ -275,9 +276,16 @@ class Study < ActiveRecord::Base
     end
   end
 
-  def self.all_with_mesh_term(term)
-    joins(:browse_conditions).where(browse_conditions: { mesh_term: [term] }) +
-    joins(:browse_interventions).where(browse_interventions: { mesh_term: [term] })
+  def self.all_with_mesh_term(value)
+    term=make_queriable(value)
+    one_to_ones.joins(:browse_conditions).where(browse_conditions: { mesh_term: [term] }) +
+    one_to_ones.joins(:browse_interventions).where(browse_interventions: { mesh_term: [term] })
+  end
+
+  def self.make_queriable(value)
+    downcase_words = ['of', 'the', 'and', 'to']
+    words=value.gsub("+", " ")
+    words.split(' ').each{ |word| (downcase_words.include? word.downcase) ? word.downcase! : word.capitalize! }.join(' ')
   end
 
 end
