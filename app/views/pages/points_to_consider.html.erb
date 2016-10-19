@@ -11,15 +11,13 @@
 
     <h2>What is AACT?</h2>
 
-    <p>AACT is the database for Aggregate Analysis of <a target='_blank' href='clinicaltrials.gov'>ClinicalTrials.gov</a>. Version 2 of AACT is a postgreSQL relational database containing information about clinical studies that have been been registered at ClinicalTrials.gov. AACT includes all of the protocol and results data elements for studies that are publicly available at ClinicalTrials.gov. Content is downloaded daily from ClinicalTrials.gov and loaded into AACT.</p>
-
-    <p class='question'> <a target='_blank' href=<%= @analyst_guide %> download>Download a word document</a> containing the   information on this page.</p>
+    <p>AACT is the database for Aggregate Analysis of <a target='_blank' href="https://clinicaltrials.gov"  onClick="ga('send','event','external link','guide page: clinicaltrials.gov')">ClinicalTrials.gov</a>. Version 2 of AACT is a postgreSQL relational database containing information about clinical studies that have been been registered at ClinicalTrials.gov. AACT includes all of the protocol and results data elements for studies that are publicly available at ClinicalTrials.gov. Content is downloaded daily from ClinicalTrials.gov and loaded into AACT.</p>
 
     <h2>What population of studies is represented in AACT?</h2>
 
     <p>All studies registered and publicly available at ClinicalTrials.gov are included in AACT. The ClinicalTrials.gov was released for the registration of studies on <b>February 29, 2000</b>. The registry accepts interventional studies in which participants are assigned according to a research protocol to receive specific interventions, as well as observational studies. It also includes Expanded Access records which describe the procedure for obtaining an experimental drug or device for patients who are not adequately treated by existing therapy and who are unable to participate in a controlled clinical study.</p>
 
-    <p>The registration of studies and reporting of results and adverse events has been mandated to a large extent by requirements (both legal and institutional) implemented as part of the Food and Drug Administration Amendments Act (FDAAA), as well as by requirements introduced by the International Committee of Medical Journal Editors (<a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'>ICMJE</a>) and the European Medicines Agency (EMA) regarding registration of clinical studies. Table 1 describes the scope of these requirements.</p>
+    <p>The registration of studies and reporting of results and adverse events has been mandated to a large extent by requirements (both legal and institutional) implemented as part of the Food and Drug Administration Amendments Act (FDAAA), as well as by requirements introduced by the International Committee of Medical Journal Editors (<a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'  onClick="ga('send','event','external link','guide page: ICMJE')">ICMJE</a>) and the European Medicines Agency (EMA) regarding registration of clinical studies. Table 1 describes the scope of these requirements.</p>
 
     <h4>Table 1: Scope of Interventional Studies Covered by Major Reporting Policies*</h4>
 
@@ -31,13 +29,13 @@
     </tr>
 
     <tr>
-      <td><p><a target='_blank' href='http://grants.nih.gov/grants/guide/notice-files/NOT-CA-15-011.html'>NCI Access Policy</a></p></td>
+      <td><p><a target='_blank' href='http://grants.nih.gov/grants/guide/notice-files/NOT-CA-15-011.html' onClick="ga('send','event','external link','guide page: NCI Access Policy')">NCI Access Policy</a></p></td>
       <td><p>The NCI, NIH, issued its Policy Ensuring Public Availability of Results from NCI-supported Clinical Trials. Generally, for "all initiated or commenced NCI-Supported Interventional Clinical Trials whether extramural or intramural" (Covered Trials), "Final Trial Results are expected to be reported in a publicly accessible manner within 12 months of the Trial's Primary Completion Date regardless of whether the clinical trial was completed as planned or terminated earlier." This policy "will be incorporated as a Term and Condition of the award."</p></td>
       <td><p><b>January, 2015</b></p></td>
   </tr>
 
   <tr>
-    <td><a target='_blank' href='http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm'>FDAAA</a></td>
+    <td><a target='_blank' href='http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm' onClick="ga('send','event','external link','guide page: FDAAA')">FDAAA</a></td>
     <td>The following must be registered in ClinicalTrials.gov:
       <ul class='regularDisplay'>
         <li>Interventional studies of drugs, biologics, or devices (whether or not approved for marketing)</li>
@@ -58,7 +56,7 @@
   </tr>
 
   <tr>
-    <td><a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'>ICMJE</a></td>
+    <td><a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/' onClick="ga('send','event','external link','guide page: ICMJE')">ICMJE</a></td>
     <td>
       Interventional studies of any intervention type, phase, or geographical location must be registered in ClinicalTrials.gov or other approved registry.
       <br>No results reporting requirements.
@@ -69,7 +67,7 @@
   </tr>
 
   <tr>
-    <td><a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'>EMA</a></td>
+    <td><a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df' onClick="ga('send','event','external link','guide page: EMA')">EMA</a></td>
     <td><p>The following must be registered in ClinicalTrials.gov or other approved registry:
       <ul class='regularDisplay'>
         <li>Interventional studies of drugs or biologics (whether or not approved for marketing)</li>
@@ -81,9 +79,9 @@
     </td>
     <td>
         <p>
-          <b>May 1, 2004</b>. <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'>EMA</a> launched <a target='_blank' href='https://eudract.ema.europa.eu/'>EudraCT</a>
+          <b>May 1, 2004</b>. <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'  onClick="ga('send','event','external link','guide page: EMA')">EMA</a> launched <a target='_blank' href='https://eudract.ema.europa.eu/'  onClick="ga('send','event','external link','guide page: EudraCT')">EudraCT</a>
           <br><br>
-          <b>March 22, 2011</b>. The <a target='_blank' href='https://www.clinicaltrialsregister.eu/'>EU Clinical Trials Register</a> was launched by the <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'>EMA</a>
+          <b>March 22, 2011</b>. <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df' onClick="ga('send','event','external link','guide page: EMA')">EMA</a> launched the <a target='_blank' href='https://www.clinicaltrialsregister.eu/' onClick="ga('send','event','external link','guide page: EU Clinical Trials Register')">EU Clinical Trials Register</a>
        </p>
     </td>
   </tr>
@@ -137,7 +135,7 @@
     <p>The presence of a record in a dataset indicates that information was submitted to ClinicalTrials.gov for at least one element in that data set before the data were downloaded from ClinicalTrials.gov. Some data elements are more/less likely than others to have missing information, depending on several known factors. For example:</p>
 
     <ul class='regularDisplay'>
-      <li><b>The data element being required by the FDAAA and/or the ClinicalTrials.gov website.</b> Refer to NLM's <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html'>study</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html'>results</a> data element definitions for specifics regarding these requirements. Requirements may have changed over the history of the ClincalTrials.gov database.</li>
+      <li><b>The data element being required by the FDAAA and/or the ClinicalTrials.gov website.</b> Refer to NLM's <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html' onClick="ga('send','event','external link','guide page: NLM Protocols')">study</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html' onClick="ga('send','event','external link','guide page: NLM Results')">results</a> data element definitions for specifics regarding these requirements. Requirements may have changed over the history of the ClincalTrials.gov database.</li>
       <li><b>The date when the data element was introduced.</b> Not all data elements were included in the database at the time of its launch in 2000, but were added later. Studies registered after FDAAA when into effect must meet more requirements than studies registered earlier in the life of ClinicalTrials.gov.</li>
       <li><b>The branching structure of questions.</b> The availability of certain questions to the person submitting data depends on answers to previous questions. For example, questions about bio-specimen retention are only available for observational studies. Therefore, interventional studies should be excluded when analyzing data elements pertaining to bio-specimens.</li>
       <li><b>The list of possible answers for data elements with a fixed set of responses.</b> For example, questions that include “N/A” as a possible response are likely to have fewer missing values than questions that do not provide a “N/A” response.</li>
@@ -147,7 +145,7 @@
 
     <p>Although the FDAAA and other requirements do not apply to all fields in the database, users might consider including only studies registered post-FDAAA (September 2007), or studies with a primary completion date after December 2007. This will help to limit the number of missing values across many data elements. Users could also consider annotating data elements used in analysis according to whether or not they are FDAAA-required fields, if the user believes this might affect the extent of missing data.</p>
 
-		<p>Even when the data elements for a particular study are complete, users are cautioned to have modest expectations about their accuracy. In particular, results data posted at ClinicalTrials.gov may not be subject to the same level of critical scrutiny as results published in a peer-reviewed journal. As described by <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article">Zarin and colleagues in <i>'The ClinicalTrials.gov results database – update and key issues'</i></a>, ClinicalTrials.gov has implemented several measures to ensure data quality. For example, NLM staff apply automated business rules that alert data-providers when required elements are missing or inconsistent. In addition, some manual review is performed by NLM, and a record may be returned to the data-provider if revision is required.  However, ClinicalTrials.gov staff cannot always validate the accuracy of submitted data (e.g., against an independent source).  As Zarin et al. note, “… individual record review has inherent limitations, and posting does not guarantee that the record is fully compliant with either ClinialTrials.gov or legal requirements” <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article"><sup>[1]</sup></a></p>
+		<p>Even when the data elements for a particular study are complete, users are cautioned to have modest expectations about their accuracy. In particular, results data posted at ClinicalTrials.gov may not be subject to the same level of critical scrutiny as results published in a peer-reviewed journal. As described by <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article" onClick="ga('send','event','external link','guide page: Zarin ref')">Zarin and colleagues in <i>'The ClinicalTrials.gov results database – update and key issues'</i></a>, ClinicalTrials.gov has implemented several measures to ensure data quality. For example, NLM staff apply automated business rules that alert data-providers when required elements are missing or inconsistent. In addition, some manual review is performed by NLM, and a record may be returned to the data-provider if revision is required.  However, ClinicalTrials.gov staff cannot always validate the accuracy of submitted data (e.g., against an independent source).  As Zarin et al. note, “… individual record review has inherent limitations, and posting does not guarantee that the record is fully compliant with either ClinialTrials.gov or legal requirements” <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article" onClick="ga('send','event','external link','guide page: Zarin ref')"><sup>[1]</sup></a></p>
 
     <p>During our own analysis of the ClinicalTrials.gov database, several extreme values for numeric data elements were encountered, such as an anticipated enrollment of several million subjects. Before proceeding with aggregate analysis, users are encouraged to review data distributions in order to select appropriate analysis methods, and to run their own consistency checks (e.g., to compare whether the number of arm descriptions provided for the study matches the data element that quantifies the number of arms in the study design) as needed.</p>
 
@@ -160,7 +158,7 @@
 
     <h2>Use of appropriate statistical inference</h2>
 
-    <p>If the AACT results data are to be used to support a meta-analysis or systematic review of the safety or efficacy of a particular intervention, then standard methods of meta-analysis or systematic review (e.g., the <a target='_blank' href="http://annals.org/article.aspx?articleid=744664">PRISMA statement</a> should be used to appropriately account for study-to-study variability and other sources of uncertainty or bias. We recommend that authors consider the following points when deciding whether to report p-values, confidence intervals, or other probability-based inference when performing aggregate analysis of the ClinicalTrials.gov database:  </p>
+    <p>If the AACT results data are to be used to support a meta-analysis or systematic review of the safety or efficacy of a particular intervention, then standard methods of meta-analysis or systematic review (e.g., the <a target='_blank' href="http://annals.org/article.aspx?articleid=744664" onClick="ga('send','event','external link','guide page: PRISMA')">PRISMA statement</a> should be used to appropriately account for study-to-study variability and other sources of uncertainty or bias. We recommend that authors consider the following points when deciding whether to report p-values, confidence intervals, or other probability-based inference when performing aggregate analysis of the ClinicalTrials.gov database:  </p>
 
     <h3>Is the data-generating mechanism random?</h3>
     <p>Methods of statistical inference such as p-values and 95% confidence intervals are most appropriate when used to quantify the uncertainty of estimates or comparisons due to a random process that generates the data. Examples of such processes include selection of a random sample of subjects from a broader population, randomly assigning a treatment to a cohort of subjects, or a coin toss about which we aim to predict future results.</p>
@@ -189,7 +187,7 @@
     <h2>Specific tips for working with the AACT database</h2>
 
     <ul class='regularDisplay'>
-      <li>Users are encouraged to use the <a href=<%= @schema_diagram %> target="_blank">Schema Diagram</a> to determine relationships between different AACT tables/datasets (referred to as ‘datasets’ on this page). These relationships determine how datasets may be linked or merged together in software such as SAS & SQL.</li>
+      <li>Users are encouraged to use the <a href=<%= @schema_diagram %> target="_blank"  onClick="ga('send','event','download','guide page: download schema')">Schema Diagram</a> to determine relationships between different AACT tables/datasets (referred to as ‘datasets’ on this page). These relationships determine how datasets may be linked or merged together in software such as SAS & SQL.</li>
       <li>The NCT_ID uniquely identifies each study; it serves as the primary key in the STUDIES dataset. In other words, each record in the STUDIES dataset has a unique NCT_ID value. NCT_ID also appears in every dataset related to STUDIES so that every record in every dataset can link back to the study to which it refers.</li>
       <li>Every dataset other than STUDIES has a primary key named ‘id’, which provides an integer that uniquely identifies each row in that dataset. (The STUDIES dataset uses ‘NCT_ID’ instead of ‘id’  as the unique identifier for each row.)</li>
       <li>To link dataset information to the study to which it refers, you simply match on NCT_ID. For example, every record in the CONDITIONS dataset with an NCT_ID of ‘NCT0000001’ refers to the study with the NCT_ID: ‘NCT0000001’ (saved in STUDIES.nct_id). The CONDITIONS dataset may contain multiple records with an NCT_ID of ‘NCT0000001’ which means this study was defined in ClinicalTrials.gov as being associated with the conditions listed in CONDITIONS with that NCT_ID.</li>
@@ -240,14 +238,14 @@
     <h2>References</h2>
 
     <ol>
-      <li>Zarin, D. A., Tse, T. T., Williams, R. J., Califf, R. M., and Ide, N. C. (2011). <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article">The ClinicalTrials.gov results database – update and key issues</a>. N Engl J Med 364: 852–60.</li>
-      <li><a target='_blank' href="http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm">Food and Drug Administration Amendments Act of 2007</a>. Public Law 110-95.</li>
-      <li>Laine, C., Horton R., DeAngelis C.D., et al. <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMe078110#t=article">Clinical trial registration – looking back and moving ahead</a>. N Engl J Med 356: 2734–6.</li>
-      <li><a target='_blank' href="http://ec.europa.eu/health/files/eudralex/vol-10/2008_07/c_16820080703en00030004_en.pdf">Communication from the Commission regarding the guideline on the data fields contained in the clinical trials database provided for in Article 11 of Directive 2001/20/EC to be included in the database on medicinal products provided for in Article 57 or Regulation (EC) No 726/2004</a>. In: European Commission, ed. Official Journal of the European Union, 2008. (2008/C 168/02.)</li>
-      <li><a target='_blank' href="http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000044.jsp">Guidance on the information concerning paediatric clinical trials to be entered into the EU Database on Clinical Trials (EudraCT) and on the information to be made public by the European Medicines Agency (EMEA), in accordance with Article 41 of Regulation (EC) No 1901/2006</a>. In: European Commission, ed. Official Journal of the European Union, 2009. (2009/C 28/01.)</li>
-      <li>Zarin, D. A., Ide, N. C., Tse, T. et al. (2007). <a target='_blank' href="http://www.ncbi.nlm.nih.gov/pubmed/17507347">Issues in the registration of clinical trials</a>. JAMA 297: 2112—2120.</li>
-      <li>Moher, D., Liberati, A., Tetzlaff, J. and Altman, D. G. (for the PRISMA Group)(2009). <a target='_blank' href="http://annals.org/article.aspx?articleid=744664">Preferred reporting items for systematic reviews and meta-analyses: the PRISMA statement</a>, BMJ 339: 332—336.</li>
-      <li>Tse, T., Williams, R. J., Zarin, D. A. (2009). <a target='_blank' href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2821287/">Reporting “basic results” in ClinicalTrials.gov</a>. CHEST 136: 295—303.</li>
+      <li>Zarin, D. A., Tse, T. T., Williams, R. J., Califf, R. M., and Ide, N. C. (2011). <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article" onClick="ga('send','event','external link','guide page: Zarin 1 ref')">The ClinicalTrials.gov results database – update and key issues</a>. N Engl J Med 364: 852–60.</li>
+      <li><a target='_blank' href="http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm"  onClick="ga('send','event','external link','guide page: FDA ref')" >Food and Drug Administration Amendments Act of 2007</a>. Public Law 110-95.</li>
+      <li>Laine, C., Horton R., DeAngelis C.D., et al. <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMe078110#t=article"  onClick="ga('send','event','external link','guide page: Laine ref')">Clinical trial registration – looking back and moving ahead</a>. N Engl J Med 356: 2734–6.</li>
+      <li><a target='_blank' href="http://ec.europa.eu/health/files/eudralex/vol-10/2008_07/c_16820080703en00030004_en.pdf" onClick="ga('send','event','external link','guide page: European Commission ref')" >Communication from the Commission regarding the guideline on the data fields contained in the clinical trials database provided for in Article 11 of Directive 2001/20/EC to be included in the database on medicinal products provided for in Article 57 or Regulation (EC) No 726/2004</a>. In: European Commission, ed. Official Journal of the European Union, 2008. (2008/C 168/02.)</li>
+      <li><a target='_blank' href="http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000044.jsp"  onClick="ga('send','event','external link','guide page: EudraCT ref')">Guidance on the information concerning paediatric clinical trials to be entered into the EU Database on Clinical Trials (EudraCT) and on the information to be made public by the European Medicines Agency (EMEA), in accordance with Article 41 of Regulation (EC) No 1901/2006</a>. In: European Commission, ed. Official Journal of the European Union, 2009. (2009/C 28/01.)</li>
+      <li>Zarin, D. A., Ide, N. C., Tse, T. et al. (2007). <a target='_blank' href="http://www.ncbi.nlm.nih.gov/pubmed/17507347"  onClick="ga('send','event','external link','guide page: Zarin2 ref')">Issues in the registration of clinical trials</a>. JAMA 297: 2112—2120.</li>
+      <li>Moher, D., Liberati, A., Tetzlaff, J. and Altman, D. G. (for the PRISMA Group)(2009). <a target='_blank' href="http://annals.org/article.aspx?articleid=744664"  onClick="ga('send','event','external link','guide page: Moher ref')">Preferred reporting items for systematic reviews and meta-analyses: the PRISMA statement</a>, BMJ 339: 332—336.</li>
+      <li>Tse, T., Williams, R. J., Zarin, D. A. (2009). <a target='_blank' href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2821287/"  onClick="ga('send','event','external link','guide page: Tse ref')">Reporting “basic results” in ClinicalTrials.gov</a>. CHEST 136: 295—303.</li>
     </ol>
 
   </div>

@@ -37,7 +37,6 @@ module ClinicalTrials
       populate_xml_table
       create_studies
       run_sanity_checks
-      export_snapshots
       export_tables
       send_notification
       @load_event.complete({:new_studies=> Study.count})
@@ -54,7 +53,6 @@ module ClinicalTrials
         log_expected_counts
         update_studies(ids)
         run_sanity_checks
-        export_snapshots
         export_tables
         log_actual_counts
         send_notification
@@ -141,11 +139,6 @@ module ClinicalTrials
         log("exporting tables...")
         TableExporter.new.run
       end
-    end
-
-    def export_snapshots
-      log("exporting db snapshot...")
-      Snapshotter.new.run
     end
 
     def truncate_tables
