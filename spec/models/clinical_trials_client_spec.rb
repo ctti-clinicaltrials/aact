@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe ClinicalTrials::Client do
   let(:search_term) { 'duke lupus rheumatoid arthritis' }
-  let(:updater)     { ClinicalTrials::Updater.new({:search_term=>'duke lupus rheumatoid arthritis'}) }
   let(:expected_url) { 'https://clinicaltrials.gov/search?term=duke+lupus+rheumatoid+arthritis&resultsxml=true' }
   let(:stub_request_headers) { {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'} }
-  subject { described_class.new({:search_term => search_term, :updater => updater}) }
+
+  subject { described_class.new(search_term: search_term) }
 
   let(:zipped_studies) { File.read(Rails.root.join('spec','support','xml_data','download_xml_files.zip')) }
 
@@ -50,7 +50,7 @@ describe ClinicalTrials::Client do
 
       context 'set in initialization' do
         let(:expected_dry_run) { true }
-        subject { described_class.new({:search_term => search_term, :dry_run => expected_dry_run, :updater=>updater}) }
+        subject { described_class.new(search_term: search_term, dry_run: expected_dry_run) }
 
         it 'should set dry_run' do
           expect(subject.dry_run).to be true
@@ -59,7 +59,7 @@ describe ClinicalTrials::Client do
     end
   end
 
-  describe '#download_xml_file' do
+  describe '#download_xml_files' do
     before do
       stub_request(:get, expected_url).
         with(:headers => stub_request_headers).
@@ -67,9 +67,9 @@ describe ClinicalTrials::Client do
     end
 
     context 'default dry_run false' do
-      xit 'should create a study xml record and load event' do
+      it 'should create a study xml record and load event' do
         expect {
-          subject.populate_xml_table(subject.download_xml_file)
+          subject.download_xml_files
         }.to change{StudyXmlRecord.count}.by(2)
 
         study_xml_record_1 = StudyXmlRecord.find_by(nct_id:'NCT00513591')
@@ -82,12 +82,14 @@ describe ClinicalTrials::Client do
     end
 
     context 'dry_run true' do
-      subject { described_class.new({:search_term => search_term, :dry_run => true, :updater => updater}) }
+      subject { described_class.new(search_term: search_term, dry_run: true) }
 
-      xit 'should not create a study xml records' do
+      it 'should not create a study xml records or load events' do
         expect {
-          subject.download_xml_file
-        }.not_to change{StudyXmlRecord.count}
+          expect {
+            subject.download_xml_files
+          }.not_to change{StudyXmlRecord.count}
+        }.not_to change{ClinicalTrials::LoadEvent.count}
       end
     end
   end
@@ -110,7 +112,7 @@ describe ClinicalTrials::Client do
     end
 
     context 'dry_run true' do
-      subject { described_class.new({:search_term => search_term, :dry_run => true, :updater => updater}) }
+      subject { described_class.new(search_term: search_term, dry_run: true) }
 
       it 'should report a study xml record' do
         expect {
@@ -127,18 +129,17 @@ describe ClinicalTrials::Client do
     end
   end
 
-  describe '#create_studies' do
+  describe '#populate_studies' do
     before do
       stub_request(:get, expected_url).
         with(:headers => stub_request_headers).
         to_return(:status => 200, :body => zipped_studies, :headers => {})
-      subject.populate_xml_table(subject.download_xml_file)
+      subject.download_xml_files
     end
 
     context 'default dry_run' do
-      xit 'should create studies from an existing study xml records' do
-
-        subject.create_studies
+      it 'should create studies from an existing study xml records' do
+        subject.populate_studies
         study_1 = Study.find_by(nct_id: study_nct_id_1)
         expect(study_1.last_changed_date).to eq(study_last_changed_date_1.to_date)
 
@@ -149,11 +150,11 @@ describe ClinicalTrials::Client do
     end
 
     context 'dry_run true' do
-      subject { described_class.new({:search_term => search_term, :dry_run => true, :updater => updater}) }
+      subject { described_class.new(search_term: search_term, dry_run: true) }
 
-      xit 'should return without running' do
+      it 'should return without running' do
         expect {
-          subject.create_studies
+          subject.populate_studies
         }.not_to change{ ClinicalTrials::LoadEvent.count }
       end
     end
@@ -164,10 +165,10 @@ describe ClinicalTrials::Client do
       stub_request(:get, expected_url).
         with(:headers => stub_request_headers).
         to_return(:status => 200, :body => zipped_studies, :headers => {})
-      subject.populate_xml_table(subject.download_xml_file)
+      subject.download_xml_files
     end
 
-    xit 'should create a study from an existing study xml record' do
+    it 'should create a study from an existing study xml record' do
       study_xml_record_1 = StudyXmlRecord.find_by(nct_id: study_nct_id_1)
       expect(study_xml_record_1).to be_truthy
       expect(Study.count).to be(0)
@@ -178,7 +179,7 @@ describe ClinicalTrials::Client do
       expect(Study.count).to be(1)
     end
 
-    xit 'should not create a load event if benchmark is nil or false' do
+    it 'should not create a load event if benchmark is nil or false' do
       study_xml_record_1 = StudyXmlRecord.find_by(nct_id: study_nct_id_1)
 
       expect {
