@@ -101,7 +101,83 @@ module AACT2
       end
       paginate per_page: 500
       get '/studies', root: false do
-        paginate Study.all
+        study_req_params = declared(params, include_missing: false)
+        page=(study_req_params[:page] ? study_req_params[:page] : 1)
+        per_page=(study_req_params[:per_page] ? study_req_params[:per_page] : 500)
+        studies=Study.all
+        @studies=WillPaginate::Collection.create(page, per_page,studies.size) {|pager|pager.replace studies[pager.offset, pager.per_page]}
+      end
+
+      desc '[GET] all studies by mesh term' do
+        detail <<-EOS
+          <p>Returns a set of Studies associated with a mesh term.</p>
+          <p>Example Response:</p>
+          <code>
+          {
+            study: {
+              nct_id: "NCT00836407",
+              start_date: "2009-02-01",
+              first_received_date: "2009-02-03",
+              verification_date: "2013-10-01",
+              last_changed_date: "2013-10-16",
+              primary_completion_date: "2012-07-01",
+              completion_date: "2012-07-01",
+              first_received_results_date: "2013-10-16",
+              download_date: null,
+              start_month_year: "February 2009",
+              verification_month_year: "October 2013",
+              primary_completion_month_year: "July 2012",
+              completion_month_year: "July 2012",
+              nlm_download_date_description: "ClinicalTrials.gov processed this data on June 19, 2016",
+              completion_date_type: "Actual",
+              primary_completion_date_type: "Actual",
+              study_type: "Interventional",
+              overall_status: "Completed",
+              phase: "Phase 1",
+              target_duration: "",
+              enrollment: 30,
+              enrollment_type: "Actual",
+              source: "",
+              biospec_retention: "",
+              limitations_and_caveats: "",
+              delivery_mechanism: null,
+              description: null,
+              acronym: "",
+              number_of_arms: 2,
+              number_of_groups: null,
+              why_stopped: "",
+              has_expanded_access: false,
+              has_dmc: true,
+              is_section_801: true,
+              is_fda_regulated: true,
+              brief_title: "Ipilimumab +/- Vaccine Therapy in Treating Patients With Locally Advanced, Unresectable or Metastatic Pancreatic Cancer",
+              official_title: "A Phase Ib Trial Evaluating the Safety and Feasibility of Ipilimumab (BMS-734016) Alone or in Combination With Allogeneic Pancreatic Tumor Cells Transfected With a GM-CSF Gene for the Treatment of Locally Advanced, Unresectable or Metastatic Pancreatic Adenocarcinoma",
+              biospec_description: "",
+              created_at: "2016-06-20T21:32:48Z",
+              updated_at: "2016-06-20T21:32:48Z"
+            }
+          }
+          </code>
+        EOS
+        named 'Show a set of studies by mesh term'
+        failure [
+          [200, 'Success'],
+          [404, 'No Studies Found']
+        ]
+      end
+      params do
+        requires :mesh_term, type: String, desc: 'mesh term'
+        optional :with_related_records, type: Boolean, desc: 'return studies with their related records'
+      end
+      paginate per_page: 500
+      get '/studies/mesh_term/:mesh_term' do
+        study_req_params = declared(params, include_missing: false)
+        term=study_req_params[:mesh_term]
+        page=(study_req_params[:page] ? study_req_params[:page] : 1)
+        per_page=(study_req_params[:per_page] ? study_req_params[:per_page] : 500)
+        studies=Study.all_with_mesh_term(term)
+        @studies=WillPaginate::Collection.create(page, per_page,studies.size) {|pager|pager.replace studies[pager.offset, pager.per_page]}
+        @studies
       end
 
       desc '[GET] study by nct_id' do
