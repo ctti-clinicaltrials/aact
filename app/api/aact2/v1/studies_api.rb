@@ -101,7 +101,11 @@ module AACT2
       end
       paginate per_page: 500
       get '/studies', root: false do
-        paginate Study.all
+        study_req_params = declared(params, include_missing: false)
+        page=(study_req_params[:page] ? study_req_params[:page] : 1)
+        per_page=(study_req_params[:per_page] ? study_req_params[:per_page] : 500)
+        studies=Study.all
+        @studies=WillPaginate::Collection.create(page, per_page,studies.size) {|pager|pager.replace studies[pager.offset, pager.per_page]}
       end
 
       desc '[GET] all studies by mesh term' do
@@ -169,8 +173,10 @@ module AACT2
       get '/studies/mesh_term/:mesh_term' do
         study_req_params = declared(params, include_missing: false)
         term=study_req_params[:mesh_term]
+        page=(study_req_params[:page] ? study_req_params[:page] : 1)
+        per_page=(study_req_params[:per_page] ? study_req_params[:per_page] : 500)
         studies=Study.all_with_mesh_term(term)
-        @studies=WillPaginate::Collection.create(study_req_params[:page], study_req_params[:per_page],studies.size) {|pager|pager.replace studies[pager.offset, pager.per_page]}
+        @studies=WillPaginate::Collection.create(page, per_page,studies.size) {|pager|pager.replace studies[pager.offset, pager.per_page]}
         @studies
       end
 
