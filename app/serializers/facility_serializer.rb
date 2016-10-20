@@ -1,6 +1,5 @@
 class FacilitySerializer < ActiveModel::Serializer
-  attributes :nct_id,
-             :name,
+  attributes :name,
              :status,
              :city,
              :state,
