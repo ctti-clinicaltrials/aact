@@ -1,6 +1,5 @@
 class SponsorSerializer < ActiveModel::Serializer
-  attributes :nct_id,
-      :agency_class,
+  attributes :agency_class,
       :lead_or_collaborator,
       :name
 
