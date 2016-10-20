@@ -36,7 +36,7 @@ class StudySerializer < ActiveModel::Serializer
             :updated_at
 
   def attributes
-    super.merge(one_to_one_relationships).merge(other_attributes)
+    super.merge(one_to_one_relationships).merge(organization_relationships).merge(other_attributes)
   end
 
   def one_to_one_relationships
@@ -49,21 +49,53 @@ class StudySerializer < ActiveModel::Serializer
     }
   end
 
+  def organization_relationships
+    {
+      sponsors:                serialized_sponsors,
+      facilities:              serialized_facilities,
+      central_contacts:        serialized_central_contacts,
+      oversight_authorities:   serialized_oversight_authorities,
+      responsible_parties:     serialized_responsible_parties
+    }
+  end
+
   def other_attributes
     if object.with_related_records
       {
-       :facilities => serialized_facilities,
        :outcomes   => serialized_outcomes,
-       :sponsors   => serialized_sponsors
       }
     else
       {}
     end
   end
 
+  def serialized_central_contacts
+    object.central_contacts.map {|f|
+      CentralContactSerializer.new(f,scope: scope, root: false, study: object)
+    }
+  end
+
+  def serialized_oversight_authorities
+    object.oversight_authorities.map {|f|
+      OversightAuthoritySerializer.new(f,scope: scope, root: false, study: object)
+    }
+  end
+
+  def serialized_responsible_parties
+    object.responsible_parties.map {|f|
+      ResponsiblePartySerializer.new(f,scope: scope, root: false, study: object)
+    }
+  end
+
   def serialized_facilities
     object.facilities.map {|f|
       FacilitySerializer.new(f,scope: scope, root: false, study: object)
+    }
+  end
+
+  def serialized_sponsors
+    object.sponsors.map {|f|
+      SponsorSerializer.new(f,scope: scope, root: false, study: object)
     }
   end
 
@@ -73,10 +105,5 @@ class StudySerializer < ActiveModel::Serializer
     }
   end
 
-  def serialized_sponsors
-    object.sponsors.map {|f|
-      SponsorSerializer.new(f,scope: scope, root: false, study: object)
-    }
-  end
 
 end

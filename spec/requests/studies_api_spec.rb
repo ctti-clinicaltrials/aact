@@ -47,7 +47,7 @@ describe AACT2::V1::StudiesAPI do
             expect(returned_study_info).to be_a Hash
             expect(returned_study_info).to have_key('study')
             expect(response.body).to include(StudySerializer.new(study).to_json)
-            
+
           end
         end
 

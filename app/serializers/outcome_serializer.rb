@@ -1,6 +1,5 @@
 class OutcomeSerializer < ActiveModel::Serializer
-  attributes :nct_id,
-      :outcome_type,
+  attributes :outcome_type,
       :title,
       :description,
       :measure,
