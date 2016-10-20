@@ -94,18 +94,23 @@ module AACT2
         ]
         </code>
         EOS
-        named 'Show a specific study'
+        named 'Show a set of studies'
         failure [
           [200, 'Success']
         ]
       end
       params do
+        optional :mesh_term, type: String, desc: 'MeSH Term'
         optional :with_related_records, type: Boolean, desc: 'return studies with related records'
       end
       paginate per_page: 400
-      paginate with_related_records: true
       get '/studies', root: false do
-        paginate Study.all
+        study_params = declared(params, include_missing: false)
+        if study_params[:mesh_term].nil?
+          paginate Study.all
+        else
+          Kaminari.paginate_array(Study.find_all_by_mesh_term(study_params[:mesh_term])).page(study_params[:page]).per(100)
+        end
       end
 
       desc '[GET] study by nct_id' do
