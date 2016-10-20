@@ -3,7 +3,7 @@ module AACT2
     class StudiesAPI < Grape::API
       desc '[GET] all studies' do
         detail <<-EOS
-        <p>This endpoint is paginated with 500 records per page by default.</p>
+        <p>This endpoint is paginated with 20 records per page by default.</p>
         <p>Response Example:</p>
         <code>
         [
@@ -103,13 +103,13 @@ module AACT2
         optional :mesh_term, type: String, desc: 'MeSH Term'
         optional :with_related_records, type: Boolean, desc: 'return studies with related records'
       end
-      paginate per_page: 400
+      paginate per_page: 20
       get '/studies', root: false do
         study_params = declared(params, include_missing: false)
         if study_params[:mesh_term].nil?
           paginate Study.all
         else
-          Kaminari.paginate_array(Study.find_all_by_mesh_term(study_params[:mesh_term])).page(study_params[:page]).per(100)
+          Kaminari.paginate_array(Study.find_all_by_mesh_term(study_params[:mesh_term])).page(study_params[:page]).per(20)
         end
       end
 
