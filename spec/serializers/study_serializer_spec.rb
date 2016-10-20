@@ -25,8 +25,8 @@ RSpec.describe StudySerializer, type: :serializer do
           eligibility
           participant_flow
           facilities
-          outcomes
           sponsors
+          outcomes
         ).each do |rr_key|
           expect(serialized_study).to have_key(rr_key)
         end
