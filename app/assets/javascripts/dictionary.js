@@ -2,7 +2,7 @@ $(function() {
 
   $("#jsGrid").jsGrid({
         height: "160vh",
-        width: "90%",
+        width: "100%",
         filtering: true,
         inserting: false,
         editing: false,
@@ -12,8 +12,7 @@ $(function() {
         noDataContent: "...Loading...",
         searchButtonTooltip: "Search",
         clearFilterButtonTooltip: "Clear filter",
-        // pageSize: 10,
-        // pageButtonCount: 5,
+        pageSize: 40,
         controller: {
             loadData: function(filter) {
                 return $.ajax({
@@ -25,14 +24,13 @@ $(function() {
         },
         fields: [
             { type: 'control', deleteButton: false, editButton: false },
-            { name: 'nlm documentation', width: 22, align: 'center' },
-//            { name: "db section", type: "select", width: 75, items: ['','Results','Protocol'] },
+            { name: 'nlm doc',            width: 38, align: 'center' },
             { name: 'db section',         type: "text", width: 75 },
             { name: 'table',              type: "text", width: 180 },
-            { name: 'column',             type: "text" },
+            { name: 'column',             type: "text", width: 180 },
             { name: 'data type',          type: "text", width: 70 },
             { name: 'xml source',         type: "text", width: 260 },
-            { name: 'AACT contribution',  type: "text" },
+            { name: 'AACT contribution',  type: "text", width: 160 },
             { name: 'CTTI Note',          type: "textarea", width: 260 },
             { name: 'AACT1 Variable',     type: "text" },
             { name: 'PRS Label',          type: "text" },
