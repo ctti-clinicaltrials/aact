@@ -280,8 +280,8 @@ class Study < ActiveRecord::Base
 
   def self.find_all_by_mesh_term(user_provided_term)
     term=make_queriable(user_provided_term)
-    joins(:browse_conditions).where(browse_conditions: { mesh_term: [term] }) +
-      joins(:browse_interventions).where(browse_interventions: { mesh_term: [term] })
+    with_one_to_ones.with_organizations.joins(:browse_conditions).where(browse_conditions: { mesh_term: [term] }) +
+      with_one_to_ones.with_organizations.joins(:browse_interventions).where(browse_interventions: { mesh_term: [term] })
   end
 
   def self.make_queriable(value)

@@ -52,9 +52,9 @@ class DefinitionsController < ApplicationController
       hash['xml source']=fixed_content
     end
 
-    if hash["nlm documentation"].present?
+    if hash["nlm doc"].present?
       url=hash["db section"].downcase == "results" ? @@results_url : @@protocol_url
-      hash["nlm documentation"] = "<a href=#{url}##{hash['nlm documentation']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
+      hash["nlm doc"] = "<a href=#{url}##{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
     end
     hash
   end
