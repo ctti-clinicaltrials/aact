@@ -53,7 +53,7 @@ class StudySerializer < ActiveModel::Serializer
   def organization_relationships
     {
       sponsors:                serialized_sponsors,
-      facilities:              serialized_facilities,
+#      facilities:              serialized_facilities,
 #      central_contacts:        serialized_central_contacts,
 #      oversight_authorities:   serialized_oversight_authorities,
 #      responsible_parties:     serialized_responsible_parties
