@@ -6,7 +6,8 @@ class Study < ActiveRecord::Base
     self.interventional and self.current
   end
 
-  scope :with_one_to_ones, -> { includes(:eligibility, :brief_summary, :design, :detailed_description, :participant_flow) }
+  scope :with_one_to_ones,   -> { includes(:eligibility, :brief_summary, :design, :detailed_description) }
+  scope :with_sponsors,      -> { includes(:sponsors) }
   scope :with_organizations, -> { includes(:sponsors, :facilities, :central_contacts, :oversight_authorities, :responsible_parties) }
   scope :with_outcomes, -> { includes(:outcomes, :reported_events, :baseline_measures) }
   self.primary_key = 'nct_id'
@@ -278,10 +279,10 @@ class Study < ActiveRecord::Base
     end
   end
 
-  def self.find_all_by_mesh_term(user_provided_term)
+  def self.with_mesh_term(user_provided_term)
     term=make_queriable(user_provided_term)
-    with_one_to_ones.with_organizations.joins(:browse_conditions).where(browse_conditions: { mesh_term: [term] }) +
-      with_one_to_ones.with_organizations.joins(:browse_interventions).where(browse_interventions: { mesh_term: [term] })
+    ids=BrowseCondition.where('mesh_term=?',term).pluck(:nct_id) + BrowseIntervention.where('mesh_term=?',term).pluck(:nct_id)
+    where(nct_id: ids)
   end
 
   def self.make_queriable(value)
