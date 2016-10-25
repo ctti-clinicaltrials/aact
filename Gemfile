@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.2.3"
 
+gem "rails", "~> 4.2.6"
 gem "faraday"
 gem "autoprefixer-rails"
 gem "flutie"
@@ -13,7 +14,6 @@ gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem "coderay"
-gem "rails", "~> 4.2.0"
 gem "recipient_interceptor"
 gem "sass-rails", "~> 5.0"
 gem "sprockets", ">= 3.0.0"
@@ -27,7 +27,6 @@ gem 'enumerize'
 gem 'bulk_insert'
 gem 'activerecord-import'
 gem 'sinatra', :require => nil
-gem 'nokogiri-diff'
 gem 'aws-sdk', '~> 2'
 gem 'font-awesome-sass'
 gem 'roo', '~> 2.4.0'
