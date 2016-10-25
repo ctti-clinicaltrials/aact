@@ -180,9 +180,6 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    nokogiri-diff (0.2.0)
-      nokogiri (~> 1.5)
-      tdiff (~> 0.3, >= 0.3.2)
     normalize-rails (3.0.3)
     pg (0.18.4)
     pkg-config (1.1.7)
@@ -303,7 +300,6 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     string-similarity (2.0.0)
-    tdiff (0.3.3)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
@@ -367,7 +363,6 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
-  nokogiri-diff
   normalize-rails (~> 3.0.0)
   pg
   pry-byebug
@@ -378,7 +373,7 @@ DEPENDENCIES
   rack-cors
   rack-mini-profiler
   rack-timeout
-  rails (~> 4.2.0)
+  rails (~> 4.2.6)
   rails-erd
   recipient_interceptor
   rest-client

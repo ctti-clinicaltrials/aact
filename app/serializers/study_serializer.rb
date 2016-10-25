@@ -36,7 +36,8 @@ class StudySerializer < ActiveModel::Serializer
             :updated_at
 
   def attributes
-    super.merge(one_to_one_relationships).merge(organization_relationships).merge(other_attributes)
+    #super.merge(one_to_one_relationships).merge(organization_relationships).merge(other_attributes)
+    super.merge(one_to_one_relationships).merge(organization_relationships)
   end
 
   def one_to_one_relationships
@@ -45,17 +46,17 @@ class StudySerializer < ActiveModel::Serializer
       design:               object.design.try(:attributes),
       detailed_description: object.detailed_description.try(:attributes),
       eligibility:          object.eligibility.try(:attributes),
-      participant_flow:     object.participant_flow.try(:attributes),
+#      participant_flow:     object.participant_flow.try(:attributes),
     }
   end
 
   def organization_relationships
     {
       sponsors:                serialized_sponsors,
-      facilities:              serialized_facilities,
-      central_contacts:        serialized_central_contacts,
-      oversight_authorities:   serialized_oversight_authorities,
-      responsible_parties:     serialized_responsible_parties
+#      facilities:              serialized_facilities,
+#      central_contacts:        serialized_central_contacts,
+#      oversight_authorities:   serialized_oversight_authorities,
+#      responsible_parties:     serialized_responsible_parties
     }
   end
 

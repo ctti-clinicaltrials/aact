@@ -103,13 +103,14 @@ module AACT2
         optional :mesh_term, type: String, desc: 'MeSH Term'
         optional :with_related_records, type: Boolean, desc: 'return studies with related records'
       end
-      paginate per_page: 20
+      paginate page: 1
+      paginate per_page: 500
       get '/studies', root: false do
         study_params = declared(params, include_missing: false)
         if study_params[:mesh_term].nil?
           paginate Study.all
         else
-          Kaminari.paginate_array(Study.find_all_by_mesh_term(study_params[:mesh_term])).page(study_params[:page]).per(20)
+          paginate Study.with_mesh_term(study_params[:mesh_term])
         end
       end
 
