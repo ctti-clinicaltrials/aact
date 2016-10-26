@@ -1,6 +1,6 @@
 require 'csv'
 class Study < ActiveRecord::Base
-  attr_accessor :xml, :with_related_records
+  attr_accessor :xml, :with_related_records, :with_related_organizations
 
   def self.current_interventional
     self.interventional and self.current
@@ -279,9 +279,19 @@ class Study < ActiveRecord::Base
     end
   end
 
+  def self.with_organization(user_provided_org)
+    org=make_queriable(user_provided_org)
+    ids=(ResponsibleParty.where('organization like ?',"%#{org}%").pluck(:nct_id) \
+      + OverallOfficial.where('affiliation like ?',"%#{org}%").pluck(:nct_id) \
+      + Facility.where('name like ?',"%#{org}%").pluck(:nct_id) \
+      + where('source like ?',"%#{org}%").pluck(:nct_id)).flatten.uniq
+    where(nct_id: ids)
+  end
+
   def self.with_mesh_term(user_provided_term)
     term=make_queriable(user_provided_term)
-    ids=BrowseCondition.where('mesh_term=?',term).pluck(:nct_id) + BrowseIntervention.where('mesh_term=?',term).pluck(:nct_id)
+    ids=(BrowseCondition.where('mesh_term=?',term).pluck(:nct_id) \
+         +  BrowseIntervention.where('mesh_term=?',term).pluck(:nct_id)).flatten.uniq
     where(nct_id: ids)
   end
 
