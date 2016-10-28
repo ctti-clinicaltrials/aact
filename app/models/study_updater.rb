@@ -5,7 +5,7 @@ class StudyUpdater
     @errors = []
   end
 
-  def update_studies(nct_ids:)
+  def update_studies(nct_ids)
     destroy_old_records(nct_ids)
     nct_ids.each do |nct_id|
       begin
