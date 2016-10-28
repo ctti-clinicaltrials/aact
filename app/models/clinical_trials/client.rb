@@ -42,6 +42,11 @@ module ClinicalTrials
       end
     end
 
+    def get_xml_for(nct_id)
+      url="#{BASE_URL}/show/#{nct_id}?resultsxml=true"
+      Nokogiri::XML(Faraday.get(url).body)
+    end
+
     def create_study_xml_record(xml)
       nct_id = extract_nct_id_from_study(xml)
 

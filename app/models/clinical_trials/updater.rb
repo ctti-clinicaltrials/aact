@@ -1,25 +1,14 @@
 module ClinicalTrials
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :download_file, :download_file_name
+    attr_reader :params, :load_event, :client, :study_counts, :download_file_name
 
     def initialize(params={})
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
+      @client = ClinicalTrials::Client.new
       @load_event = ClinicalTrials::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
-      @client = ClinicalTrials::Client.new({:updater =>self})
-      @download_file = @params[:download_file]
-      set_download_file_name(params)
       @study_counts={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
       self
-    end
-
-    def self.trial_run
-      new({:event_type=>'full',:download_file_name=>'bs.zip',:search_term=>'pancreatic cancer nutrition'}).run
-    end
-
-    def set_download_file_name(params)
-      @download_file_name = params[:download_file_name]
-      @download_file_name = "ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip" if @download_file_name.nil?
     end
 
     def run
@@ -31,6 +20,7 @@ module ClinicalTrials
     end
 
     def full
+      @download_file_name = "ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip" if @download_file_name.nil?
       log('begin ...')
       truncate_tables
       download_xml_file
@@ -43,26 +33,18 @@ module ClinicalTrials
     end
 
     def incremental
-      begin
-        log("begin ...")
-        days_back=(@params[:days_back] ? @params[:days_back] : 1)
-        log("finding studies changed in past #{days_back} days...")
-        ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
-        log("found #{ids.size} studies that have changed")
-        set_expected_counts(ids)
-        log_expected_counts
-        update_studies(ids)
-        run_sanity_checks
-        export_tables
-        log_actual_counts
-        send_notification
-        @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
-      rescue StandardError => e
-        @load_event.add_problem({:name=>"Error encountered in incremental update.",:first_backtrace_line=>  "#{e.backtrace.to_s}"})
-        @load_event.complete({:status=> 'failed'})
-        send_notification
-        raise e
-      end
+      log("begin ...")
+      days_back=(@params[:days_back] ? @params[:days_back] : 1)
+      log("finding studies changed in past #{days_back} days...")
+      ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
+      log("found #{ids.size} studies that have changed")
+      set_expected_counts(ids)
+      update_studies(ids)
+      run_sanity_checks
+      export_tables
+      log_actual_counts
+      @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
+      send_notification
     end
 
     def self.loadable_tables()
@@ -92,12 +74,11 @@ module ClinicalTrials
     end
 
     def log(msg)
-      puts msg
       @load_event.log(msg)
     end
 
     def show_progress(nct_id,action)
-      @load_event.show_progress(@study_counts[:count_down], nct_id,action)
+      @load_event.log("#{action}: #{@study_counts[:count_down]} (#{nct_id})")
     end
 
     def decrement_count_down
@@ -156,11 +137,9 @@ module ClinicalTrials
       increment_study_counts(old_study.size)
       old_xml_record.each{|old| old.destroy }  # but remove all... just in case
       old_study.each{|old| old.destroy }
-
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-      log("creating #{nct_id}")
-      Study.create({ xml: new_xml, nct_id: nct_id })
+      Study.new({ xml: new_xml, nct_id: nct_id }).create
     end
 
     def send_notification
@@ -171,9 +150,6 @@ module ClinicalTrials
     def set_expected_counts(ids)
       @study_counts[:should_change] = (Study.pluck(:nct_id) & ids).count
       @study_counts[:should_add]    = (ids.count - @study_counts[:should_change])
-    end
-
-    def log_expected_counts
       log("should change: #{@study_counts[:should_change]};  should add: #{@study_counts[:should_add]}\n")
     end
 

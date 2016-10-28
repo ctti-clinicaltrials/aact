@@ -21,7 +21,7 @@ describe StudyUpdater do
         end
 
         updater = described_class.new
-        updater.update_studies(nct_ids: nct_ids)
+        updater.update_studies(nct_ids)
 
         old_studies_are_gone = (Study.pluck(:created_at) & created_at_dates).length == 0
 
