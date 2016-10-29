@@ -5,10 +5,10 @@ class StudyUpdater
     @errors = []
   end
 
-  def update_studies(nct_ids:)
-    destroy_old_records(nct_ids)
+  def update_studies(nct_ids)
     nct_ids.each do |nct_id|
       begin
+        destroy_old_records([nct_id])
         @client = ClinicalTrials::Client.new(search_term: nct_id)
         create_new_xml_record(nct_id)
         create_new_study(nct_id)
@@ -33,13 +33,9 @@ class StudyUpdater
   private
 
   def destroy_old_records(nct_ids)
-    xml_records = StudyXmlRecord.where(nct_id: nct_ids)
-    studies = Study.where(nct_id: nct_ids)
-
-    puts "Destroying #{xml_records.count} xml records"
+    xml_records = StudyXmlRecord.where(nct_id: nct_ids.flatten)
+    studies = Study.where(nct_id: nct_ids.flatten)
     xml_records.try(:destroy_all)
-
-    puts "Destroying #{studies.count} studies and their related tables"
     studies.try(:destroy_all)
   end
 
