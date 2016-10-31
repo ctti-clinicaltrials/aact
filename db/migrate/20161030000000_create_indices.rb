@@ -4,7 +4,6 @@ class CreateIndices < ActiveRecord::Migration
 
     add_index :browse_conditions, :nct_id
     add_index :browse_interventions, :nct_id
-    add_index :facilities, :nct_id
     add_index :overall_officials, :nct_id
     add_index :responsible_parties, :nct_id
     add_index :studies, :nct_id
