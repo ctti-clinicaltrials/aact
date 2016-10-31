@@ -12,6 +12,7 @@ class StudySerializer < ActiveModel::Serializer
             :completion_date_type,
             :primary_completion_date_type,
             :study_type,
+            :source,
             :overall_status,
             :phase,
             :target_duration,
@@ -36,7 +37,6 @@ class StudySerializer < ActiveModel::Serializer
             :updated_at
 
   def attributes
-    #super.merge(one_to_one_relationships).merge(organization_relationships).merge(other_attributes)
     super.merge(one_to_one_relationships).merge(organization_relationships)
   end
 
@@ -46,28 +46,16 @@ class StudySerializer < ActiveModel::Serializer
       design:               object.design.try(:attributes),
       detailed_description: object.detailed_description.try(:attributes),
       eligibility:          object.eligibility.try(:attributes),
-#      participant_flow:     object.participant_flow.try(:attributes),
     }
   end
 
   def organization_relationships
     {
+      facilities:              serialized_facilities,
+      overall_officials:       serialized_overall_officials,
+      responsible_parties:     serialized_responsible_parties,
       sponsors:                serialized_sponsors,
-#      facilities:              serialized_facilities,
-#      central_contacts:        serialized_central_contacts,
-#      oversight_authorities:   serialized_oversight_authorities,
-#      responsible_parties:     serialized_responsible_parties
     }
-  end
-
-  def other_attributes
-    if object.with_related_records
-      {
-       :outcomes   => serialized_outcomes,
-      }
-    else
-      {}
-    end
   end
 
   def serialized_central_contacts
@@ -76,9 +64,9 @@ class StudySerializer < ActiveModel::Serializer
     }
   end
 
-  def serialized_oversight_authorities
-    object.oversight_authorities.map {|f|
-      OversightAuthoritySerializer.new(f,scope: scope, root: false, study: object)
+  def serialized_overall_officials
+    object.overall_officials.map {|f|
+      OverallOfficialSerializer.new(f,scope: scope, root: false, study: object)
     }
   end
 
@@ -99,12 +87,5 @@ class StudySerializer < ActiveModel::Serializer
       SponsorSerializer.new(f,scope: scope, root: false, study: object)
     }
   end
-
-  def serialized_outcomes
-    object.outcomes.map {|f|
-      OutcomeSerializer.new(f,scope: scope, root: false, study: object)
-    }
-  end
-
 
 end
