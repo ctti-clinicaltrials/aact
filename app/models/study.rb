@@ -53,6 +53,7 @@ class Study < ActiveRecord::Base
   accepts_nested_attributes_for :outcomes
 
   def initialize(hash)
+    super
     @xml=hash[:xml]
     self.nct_id=hash[:nct_id]
   end
