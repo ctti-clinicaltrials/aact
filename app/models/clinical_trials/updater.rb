@@ -63,7 +63,7 @@ module ClinicalTrials
     end
 
     def update_studies(nct_ids)
-      log('update_studies...\n')
+      log('update_studies...')
       set_count_down(nct_ids.size)
       nct_ids.each {|nct_id|
         refresh_study(nct_id)
