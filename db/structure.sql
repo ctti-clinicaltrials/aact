@@ -2271,6 +2271,41 @@ ALTER TABLE ONLY study_xml_records
 
 
 --
+-- Name: index_browse_conditions_on_mesh_term; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_browse_conditions_on_mesh_term ON browse_conditions USING btree (mesh_term);
+
+
+--
+-- Name: index_browse_conditions_on_nct_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_browse_conditions_on_nct_id ON browse_conditions USING btree (nct_id);
+
+
+--
+-- Name: index_browse_interventions_on_mesh_term; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_browse_interventions_on_mesh_term ON browse_interventions USING btree (mesh_term);
+
+
+--
+-- Name: index_browse_interventions_on_nct_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_browse_interventions_on_nct_id ON browse_interventions USING btree (nct_id);
+
+
+--
+-- Name: index_facilities_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_facilities_on_name ON facilities USING btree (name);
+
+
+--
 -- Name: index_facilities_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2278,38 +2313,31 @@ CREATE INDEX index_facilities_on_nct_id ON facilities USING btree (nct_id);
 
 
 --
--- Name: index_outcome_measured_values_on_title; Type: INDEX; Schema: public; Owner: -
+-- Name: index_overall_officials_on_affiliation; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_outcome_measured_values_on_title ON outcome_measured_values USING btree (title);
-
-
---
--- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_outcomes_on_nct_id ON outcomes USING btree (nct_id);
+CREATE INDEX index_overall_officials_on_affiliation ON overall_officials USING btree (affiliation);
 
 
 --
--- Name: index_reported_events_on_event_type; Type: INDEX; Schema: public; Owner: -
+-- Name: index_overall_officials_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_reported_events_on_event_type ON reported_events USING btree (event_type);
-
-
---
--- Name: index_reported_events_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_reported_events_on_nct_id ON reported_events USING btree (nct_id);
+CREATE INDEX index_overall_officials_on_nct_id ON overall_officials USING btree (nct_id);
 
 
 --
--- Name: index_reported_events_on_subjects_affected; Type: INDEX; Schema: public; Owner: -
+-- Name: index_responsible_parties_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_reported_events_on_subjects_affected ON reported_events USING btree (subjects_affected);
+CREATE INDEX index_responsible_parties_on_nct_id ON responsible_parties USING btree (nct_id);
+
+
+--
+-- Name: index_responsible_parties_on_organization; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_responsible_parties_on_organization ON responsible_parties USING btree (organization);
 
 
 --
@@ -2317,6 +2345,13 @@ CREATE INDEX index_reported_events_on_subjects_affected ON reported_events USING
 --
 
 CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
+
+
+--
+-- Name: index_studies_on_source; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_source ON studies USING btree (source);
 
 
 --
@@ -2354,5 +2389,5 @@ INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 
-INSERT INTO schema_migrations (version) VALUES ('20160918000000');
+INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 

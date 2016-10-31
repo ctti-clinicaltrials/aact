@@ -90,7 +90,6 @@ module AACT2
             created_at: "2016-06-20T21:32:49Z",
             updated_at: "2016-06-20T21:32:49Z"
           },
-          ...
         ]
         </code>
         EOS
@@ -100,17 +99,21 @@ module AACT2
         ]
       end
       params do
+        optional :organization, type: String, desc: 'Organization'
         optional :mesh_term, type: String, desc: 'MeSH Term'
-        optional :with_related_records, type: Boolean, desc: 'return studies with related records'
       end
       paginate page: 1
-      paginate per_page: 500
+      paginate per_page: 100
       get '/studies', root: false do
         study_params = declared(params, include_missing: false)
-        if study_params[:mesh_term].nil?
-          paginate Study.all
-        else
+        if !study_params[:mesh_term].nil?
           paginate Study.with_mesh_term(study_params[:mesh_term])
+        else
+          if !study_params[:organization].nil?
+            paginate Study.with_organization(study_params[:organization])
+          else
+            paginate Study.all
+          end
         end
       end
 
@@ -174,12 +177,16 @@ module AACT2
       params do
         requires :nct_id, type: String, desc: 'Study NCT ID'
         optional :with_related_records, type: Boolean, desc: 'return study with related records'
+        optional :with_related_organizations, type: Boolean, desc: 'return study with related organizations'
       end
       get '/studies/:nct_id' do
         study_req_params = declared(params, include_missing: false)
         @study = Study.find_by!(nct_id: study_req_params[:nct_id])
         if study_req_params[:with_related_records]
           @study.with_related_records = true
+        end
+        if study_req_params[:with_related_organizations]
+          @study.with_related_organizations = true
         end
         @study
       end
