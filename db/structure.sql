@@ -194,7 +194,7 @@ ALTER SEQUENCE browse_interventions_id_seq OWNED BY browse_interventions.id;
 CREATE TABLE calculated_values (
     id integer NOT NULL,
     sponsor_type character varying,
-    actual_duration numeric(5,2),
+    actual_duration integer,
     months_to_report_results integer,
     number_of_facilities integer,
     number_of_nsae_subjects integer,
@@ -2303,13 +2303,6 @@ CREATE INDEX index_browse_interventions_on_nct_id ON browse_interventions USING 
 --
 
 CREATE INDEX index_facilities_on_name ON facilities USING btree (name);
-
-
---
--- Name: index_facilities_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_facilities_on_nct_id ON facilities USING btree (nct_id);
 
 
 --

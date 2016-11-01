@@ -19,7 +19,7 @@ class CreateProtocolTables < ActiveRecord::Migration
 
     create_table "calculated_values", force: :cascade do |t|
       t.string  "sponsor_type"
-      t.decimal "actual_duration",             precision: 5, scale: 2
+      t.integer "actual_duration"
       t.integer "months_to_report_results"
       t.integer "number_of_facilities"
       t.integer "number_of_nsae_subjects"
