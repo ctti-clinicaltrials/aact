@@ -1,45 +1,31 @@
 require 'rails_helper'
 
-RSpec.describe CalculatedValue, type: :model do
-    it 'should have expected dates and calculated values' do
-      nct_id='NCT00482794'
-      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-      study=Study.new({xml: xml, nct_id: nct_id}).create
+describe CalculatedValue do
+  it "should not have actual_duration if completion date is 'anticipated'" do
+    nct_id='NCT00482794'
+    # this study's primary completion date is 'anticipated'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.completion_date_type).to eq('Anticipated')
+    cv=study.calculated_value
+    expect(cv.actual_duration).to eq(nil)
+    expect(cv.months_to_report_results).to eq(nil)
+  end
 
-      expect(study.calculated_value.nct_id).to eq(nct_id)
-      expect(study.first_received_date).to eq('June 1, 2007'.to_date)
-      expect(study.last_changed_date).to eq('October 23, 2015'.to_date)
-      expect(study.start_month_year).to eq('June 2006')
-      expect(study.verification_month_year).to eq('October 2015')
-      expect(study.primary_completion_month_year).to eq('July 2016')
-      expect(study.completion_month_year).to eq('July 2016')
-      expect(study.nlm_download_date_description).to eq('ClinicalTrials.gov processed this data on June 27, 2016')
+  it "should not have actual_duration if completion date is 'anticipated'" do
+    nct_id='NCT00023673'
+    # this study's primary completion date is 'actual'
+    #  actual duration:   7/01-1/09 = 7 years & 6 months (91 months)
+    #  months to report:  1/09-2/14 = 5 years & 2 months (62 months)
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.start_month_year).to eq('July 2001')
+    expect(study.primary_completion_month_year).to eq('January 2009')
+    expect(study.primary_completion_date_type).to eq('Actual')
+    expect(study.first_received_results_date.strftime('%m/%d/%Y')).to eq('02/12/2014')
+    cv=study.calculated_value
+    expect(cv.actual_duration).to eq(91)
+    expect(cv.months_to_report_results).to eq(62)
+  end
 
-      expect(study.calculated_value.start_date).to eq('June 2006'.to_date)
-      expect(study.calculated_value.verification_date).to eq('October 2015'.to_date)
-      expect(study.calculated_value.completion_date).to eq('July 2016'.to_date)
-      expect(study.calculated_value.primary_completion_date).to eq('July 2016'.to_date)
-      expect(study.calculated_value.nlm_download_date).to eq('June 27, 2016'.to_date)
-      expect(study.calculated_value.were_results_reported).to eq(true)
-      expect(study.minimum_age).to eq('N/A')
-      expect(study.maximum_age).to eq('N/A')
-      expect(study.calculated_value.has_minimum_age).to eq(false)
-      expect(study.calculated_value.has_maximum_age).to eq(false)
-      expect(study.calculated_value.minimum_age_num).to eq(nil)
-      expect(study.calculated_value.maximum_age_num).to eq(nil)
-      expect(study.calculated_value.minimum_age_unit).to eq('N/A')
-      expect(study.calculated_value.maximum_age_unit).to eq('N/A')
-    end
-
-    it 'should have expected age info' do
-      nct_id='NCT02586688'
-      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-      study=Study.new({xml: xml, nct_id: nct_id}).create
-      expect(study.calculated_value.has_minimum_age).to eq(true)
-      expect(study.calculated_value.has_maximum_age).to eq(true)
-      expect(study.calculated_value.minimum_age_num).to eq(12)
-      expect(study.calculated_value.maximum_age_num).to eq(21)
-      expect(study.calculated_value.minimum_age_unit).to eq('Years')
-      expect(study.calculated_value.maximum_age_unit).to eq('Years')
-    end
 end
