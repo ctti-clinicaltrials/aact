@@ -10,6 +10,8 @@ class CalculatedValue < ActiveRecord::Base
   def create_from(new_study)
     self.study=new_study
     assign_attributes(attribs) if !attribs.blank?
+    self.actual_duration = calc_actual_duration
+    self.months_to_report_results = calc_months_to_report_results
     self
   end
 
@@ -21,9 +23,7 @@ class CalculatedValue < ActiveRecord::Base
       :primary_completion_date     => study.primary_completion_month_year.to_date,
       :nlm_download_date           => get_download_date,
       :sponsor_type                => calc_sponsor_type,
-      :actual_duration             => calc_actual_duration,
       :were_results_reported       => calc_results_reported,
-      :months_to_report_results    => calc_months_to_report_results,
       :registered_in_calendar_year => calc_registered_in_calendar_year,
       :number_of_facilities        => calc_number_of_facilities,
       :number_of_sae_subjects      => calc_number_of_sae_subjects,
@@ -91,7 +91,8 @@ class CalculatedValue < ActiveRecord::Base
 
   def calc_actual_duration
     return if !primary_completion_date or !start_date
-    (primary_completion_date - start_date).to_f/365
+    return if study.primary_completion_date_type != 'Actual'
+    ((primary_completion_date.to_time -  start_date.to_time)/1.month.second).to_i
   end
 
   def calc_results_reported
@@ -99,7 +100,9 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_months_to_report_results
-    return nil if study.first_received_results_date.nil? or primary_completion_date.nil?
+    return if !study.primary_completion_month_year or !study.first_received_results_date
+    return if study.primary_completion_date_type != 'Actual'
+    return if study.first_received_results_date.nil?
     ((study.first_received_results_date.to_time -  primary_completion_date.to_time)/1.month.second).to_i
   end
 end
