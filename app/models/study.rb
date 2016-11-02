@@ -6,9 +6,8 @@ class Study < ActiveRecord::Base
     self.interventional and self.current
   end
 
-  scope :with_one_to_ones,   -> { includes(:eligibility, :brief_summary, :design, :detailed_description) }
-  scope :with_sponsors,      -> { includes(:sponsors) }
-  scope :with_organizations, -> { includes(:sponsors, :facilities, :central_contacts, :oversight_authorities, :responsible_parties) }
+  scope :with_one_to_ones,   -> { joins(:eligibility, :brief_summary, :design, :detailed_description) }
+  scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :oversight_authorities, :responsible_parties) }
   scope :with_outcomes, -> { includes(:outcomes, :reported_events, :baseline_measures) }
   self.primary_key = 'nct_id'
 
@@ -285,14 +284,14 @@ class Study < ActiveRecord::Base
       + OverallOfficial.where('affiliation like ?',"%#{org}%").pluck(:nct_id) \
       + Facility.where('name like ?',"%#{org}%").pluck(:nct_id) \
       + where('source like ?',"%#{org}%").pluck(:nct_id)).flatten.uniq
-    where(nct_id: ids)
+    where(nct_id: ids).includes(:sponsors).includes(:facilities).includes(:brief_summary).includes(:detailed_description).includes(:design).includes(:eligibility).includes(:overall_officials).includes(:responsible_parties)
   end
 
   def self.with_mesh_term(user_provided_term)
     term=make_queriable(user_provided_term)
     ids=(BrowseCondition.where('mesh_term=?',term).pluck(:nct_id) \
          +  BrowseIntervention.where('mesh_term=?',term).pluck(:nct_id)).flatten.uniq
-    where(nct_id: ids)
+    where(nct_id: ids).includes(:sponsors).includes(:facilities).includes(:brief_summary).includes(:detailed_description).includes(:design).includes(:eligibility).includes(:overall_officials).includes(:responsible_parties)
   end
 
   def self.make_queriable(value)
