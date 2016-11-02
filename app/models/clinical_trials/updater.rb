@@ -99,6 +99,11 @@ module ClinicalTrials
       @client.download_xml_file
     end
 
+    def set_download_file_name(params)
+      @download_file_name = params[:download_file_name]
+      @download_file_name = "ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip" if @download_file_name.nil?
+    end
+
     def populate_xml_table
       @download_file ||= ClinicalTrials::FileManager.get_file({:directory_name=>'xml_downloads',:file_name=>@download_file_name})
       log("populate xml table...")
