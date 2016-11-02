@@ -30,7 +30,6 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.date    "verification_date"
       t.date    "primary_completion_date"
       t.date    "completion_date"
-      t.date    "first_received_results_date"
       t.date    "nlm_download_date"
       t.boolean "were_results_reported"
       t.boolean "has_minimum_age"
@@ -232,7 +231,6 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.text     "brief_title"
       t.text     "official_title"
       t.text     "biospec_description"
-      t.text     "description"
       t.string   "plan_to_share_ipd"
       t.string   "plan_to_share_ipd_description"
       t.timestamps null: false
