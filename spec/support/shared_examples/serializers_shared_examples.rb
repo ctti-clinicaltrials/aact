@@ -34,7 +34,6 @@ shared_examples 'a serialized study' do
       source
       biospec_retention
       limitations_and_caveats
-      description
       acronym
       number_of_arms
       number_of_groups
@@ -81,7 +80,6 @@ shared_examples 'a serialized study' do
     expect(serialized_study['source']).to eq(resource.source)
     expect(serialized_study['biospec_retention']).to eq(resource.biospec_retention)
     expect(serialized_study['limitations_and_caveats']).to eq(resource.limitations_and_caveats)
-    expect(serialized_study['description']).to eq(resource.description)
     expect(serialized_study['acronym']).to eq(resource.acronym)
     expect(serialized_study['number_of_arms']).to eq(resource.number_of_arms)
     expect(serialized_study['number_of_groups']).to eq(resource.number_of_groups)
