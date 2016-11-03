@@ -213,9 +213,7 @@ CREATE TABLE calculated_values (
     minimum_age_num integer,
     maximum_age_num integer,
     minimum_age_unit character varying,
-    maximum_age_unit character varying,
-    has_us_facility boolean DEFAULT false,
-    has_single_facility boolean DEFAULT false
+    maximum_age_unit character varying
 );
 
 
@@ -2273,97 +2271,6 @@ ALTER TABLE ONLY study_xml_records
 
 
 --
--- Name: index_browse_conditions_on_mesh_term; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_browse_conditions_on_mesh_term ON browse_conditions USING btree (mesh_term);
-
-
---
--- Name: index_browse_conditions_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_browse_conditions_on_nct_id ON browse_conditions USING btree (nct_id);
-
-
---
--- Name: index_browse_interventions_on_mesh_term; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_browse_interventions_on_mesh_term ON browse_interventions USING btree (mesh_term);
-
-
---
--- Name: index_browse_interventions_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_browse_interventions_on_nct_id ON browse_interventions USING btree (nct_id);
-
-
---
--- Name: index_facilities_on_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_facilities_on_name ON facilities USING btree (name);
-
-
---
--- Name: index_overall_officials_on_affiliation; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_overall_officials_on_affiliation ON overall_officials USING btree (affiliation);
-
-
---
--- Name: index_overall_officials_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_overall_officials_on_nct_id ON overall_officials USING btree (nct_id);
-
-
---
--- Name: index_responsible_parties_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_responsible_parties_on_nct_id ON responsible_parties USING btree (nct_id);
-
-
---
--- Name: index_responsible_parties_on_organization; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_responsible_parties_on_organization ON responsible_parties USING btree (organization);
-
-
---
--- Name: index_studies_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
-
-
---
--- Name: index_studies_on_source; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_studies_on_source ON studies USING btree (source);
-
-
---
--- Name: index_study_xml_records_on_created_study_at; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_study_xml_records_on_created_study_at ON study_xml_records USING btree (created_study_at);
-
-
---
--- Name: index_study_xml_records_on_nct_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_study_xml_records_on_nct_id ON study_xml_records USING btree (nct_id);
-
-
---
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2383,8 +2290,4 @@ INSERT INTO schema_migrations (version) VALUES ('20160910000000');
 INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20160912000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20161030000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20161103150339');
 
