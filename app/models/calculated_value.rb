@@ -29,6 +29,7 @@ class CalculatedValue < ActiveRecord::Base
       :number_of_sae_subjects      => calc_number_of_sae_subjects,
       :number_of_nsae_subjects     => calc_number_of_nsae_subjects,
       :has_us_facility             => calc_has_us_facility,
+      :has_single_facility         => calc_has_single_facility,
       :has_minimum_age             => calc_has_age_limit('min'),
       :has_maximum_age             => calc_has_age_limit('max'),
       :minimum_age_num             => calc_age('min'),
@@ -44,6 +45,10 @@ class CalculatedValue < ActiveRecord::Base
 
   def calc_has_us_facility
     !study.facilities.detect{|f|f.country=='United States'}.nil?
+  end
+
+  def calc_has_single_facility
+    study.facilities.size==1
   end
 
   def calc_age_unit(type)

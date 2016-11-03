@@ -9,6 +9,7 @@ describe CalculatedValue do
     expect(study.completion_date_type).to eq('Anticipated')
     cv=study.calculated_value
     expect(cv.has_us_facility).to eq(false)
+    expect(cv.has_single_facility).to eq(true)
     expect(cv.actual_duration).to eq(nil)
     expect(cv.months_to_report_results).to eq(nil)
   end
@@ -26,6 +27,7 @@ describe CalculatedValue do
     expect(study.first_received_results_date.strftime('%m/%d/%Y')).to eq('02/12/2014')
     cv=study.calculated_value
     expect(cv.has_us_facility).to eq(true)
+    expect(cv.has_single_facility).to eq(false)
     expect(cv.actual_duration).to eq(91)
     expect(cv.months_to_report_results).to eq(62)
   end

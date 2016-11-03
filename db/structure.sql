@@ -214,7 +214,8 @@ CREATE TABLE calculated_values (
     maximum_age_num integer,
     minimum_age_unit character varying,
     maximum_age_unit character varying,
-    has_us_facility boolean DEFAULT false
+    has_us_facility boolean DEFAULT false,
+    has_single_facility boolean DEFAULT false
 );
 
 
