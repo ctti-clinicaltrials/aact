@@ -213,7 +213,9 @@ CREATE TABLE calculated_values (
     minimum_age_num integer,
     maximum_age_num integer,
     minimum_age_unit character varying,
-    maximum_age_unit character varying
+    maximum_age_unit character varying,
+    has_us_facility boolean DEFAULT false,
+    has_single_facility boolean DEFAULT false
 );
 
 
@@ -2383,4 +2385,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20161103150339');
 
