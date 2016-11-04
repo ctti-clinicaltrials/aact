@@ -14,7 +14,6 @@ class CreateIndices < ActiveRecord::Migration
     add_index :calculated_values, :months_to_report_results
     add_index :calculated_values, :number_of_facilities
     add_index :calculated_values, :primary_completion_date
-    add_index :calculated_values, :primary_completion_date_type
     add_index :calculated_values, :sponsor_type
     add_index :calculated_values, :start_date
     add_index :designs, :masking
@@ -36,6 +35,7 @@ class CreateIndices < ActiveRecord::Migration
     add_index :result_contacts, :organization
     add_index :sponsors, :name
     add_index :studies, :phase
+    add_index :studies, :primary_completion_date_type
     add_index :studies, :source
     add_index :studies, :study_type
     add_index :studies, :first_received_results_date
