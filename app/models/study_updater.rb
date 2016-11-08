@@ -14,13 +14,14 @@ class StudyUpdater
         create_new_study(nct_id)
       rescue StandardError => e
         existing_error = @errors.find do |err|
-          err[:name] == e.name && err[:first_backtrace_line] == e.backtrace.first
+          err[:name] == e.message && err[:first_backtrace_line] == e.backtrace.first
         end
 
         if existing_error.present?
           existing_error[:count] += 1
         else
-          @errors << { name: e.name, first_backtrace_line: e.backtrace.first, count: 0 }
+          puts e
+          @errors << { name: e.message, first_backtrace_line: e.backtrace.first, count: 0 }
         end
 
         next
