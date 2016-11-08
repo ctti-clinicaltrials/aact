@@ -112,7 +112,7 @@ module ClinicalTrials
 
     def create_studies
       log("create studies...")
-      @client.create_studies
+      @client.populate_studies
     end
 
     def run_sanity_checks

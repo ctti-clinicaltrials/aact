@@ -11,12 +11,36 @@ class CreateIndices < ActiveRecord::Migration
 
     add_index :browse_conditions, :mesh_term
     add_index :browse_interventions, :mesh_term
+    add_index :calculated_values, :actual_duration
+    add_index :calculated_values, :months_to_report_results
+    add_index :calculated_values, :number_of_facilities
+    add_index :calculated_values, :primary_completion_date
+    add_index :calculated_values, :sponsor_type
+    add_index :calculated_values, :start_date
+    add_index :designs, :masking
+    add_index :designs, :subject_masked
+    add_index :designs, :caregiver_masked
+    add_index :designs, :investigator_masked
+    add_index :designs, :outcomes_assessor_masked
+    add_index :eligibilities, :gender
+    add_index :eligibilities, :healthy_volunteers
+    add_index :eligibilities, :minimum_age
+    add_index :eligibilities, :maximum_age
     add_index :facilities, :name
+    add_index :facilities, :city
+    add_index :facilities, :state
+    add_index :facilities, :country
     add_index :overall_officials, :affiliation
+    add_index :oversight_authorities, :name
     add_index :responsible_parties, :organization
+    add_index :result_contacts, :organization
+    add_index :sponsors, :name
+    add_index :studies, :phase
+    add_index :studies, :primary_completion_date_type
     add_index :studies, :source
+    add_index :studies, :study_type
+    add_index :studies, :first_received_results_date
     add_index :study_xml_records, :created_study_at
-
   end
 
 end
