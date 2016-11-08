@@ -11,6 +11,7 @@ class CreateIndices < ActiveRecord::Migration
 
     add_index :browse_conditions, :mesh_term
     add_index :browse_interventions, :mesh_term
+    add_index :calculated_values, :actual_duration
     add_index :calculated_values, :months_to_report_results
     add_index :calculated_values, :number_of_facilities
     add_index :calculated_values, :primary_completion_date
