@@ -12,6 +12,7 @@ describe CalculatedValue do
     expect(cv.has_single_facility).to eq(true)
     expect(cv.actual_duration).to eq(nil)
     expect(cv.months_to_report_results).to eq(nil)
+    expect(cv.were_results_reported).to eq(false)
   end
 
   it "should not have actual_duration if completion date is 'anticipated'" do
@@ -26,6 +27,7 @@ describe CalculatedValue do
     expect(study.primary_completion_date_type).to eq('Actual')
     expect(study.first_received_results_date.strftime('%m/%d/%Y')).to eq('02/12/2014')
     cv=study.calculated_value
+    expect(cv.were_results_reported).to eq(true)
     expect(cv.has_us_facility).to eq(true)
     expect(cv.has_single_facility).to eq(false)
     expect(cv.actual_duration).to eq(91)

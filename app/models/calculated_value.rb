@@ -80,13 +80,13 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_number_of_sae_subjects
-    if ReportedEvent.fast_count_estimate(study.reported_events) > 0
+    if study.reported_events.size > 0
       study.reported_events.where('event_type = \'serious\' and subjects_affected is not null').sum(:subjects_affected)
     end
   end
 
   def calc_number_of_nsae_subjects
-    if ReportedEvent.fast_count_estimate(study.reported_events) > 0
+    if study.reported_events.size > 0
       study.reported_events.where('event_type != \'serious\' and subjects_affected is not null').sum(:subjects_affected)
     end
   end
@@ -106,7 +106,7 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_results_reported
-    1 if Outcome.fast_count_estimate(study.reported_events) > 0
+    study.outcomes.size > 0
   end
 
   def calc_months_to_report_results
