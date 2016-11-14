@@ -81,11 +81,11 @@ describe Study do
     study=Study.new({xml: xml, nct_id: 'NCT02260193'}).create
 
     it 'should return empty string for sharing ipd value' do
-      expect(study.plan_to_share_ipd).to eq('')
+      expect(study.plan_to_share_ipd).to eq(nil)
     end
 
     it 'should return empty string for ipd description value' do
-      expect(study.plan_to_share_ipd_description).to eq('')
+      expect(study.plan_to_share_ipd_description).to eq(nil)
     end
   end
 end

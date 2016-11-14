@@ -47,7 +47,7 @@ describe Facility do
     expect(f3_contact.email).to eq('Nichole.Storey@osumc.edu')
     expect(f3_backup.name).to eq('Anne-Marie Duchemin')
     expect(f3_backup.phone).to eq('(614) 293-5517')
-    expect(f3_backup.email).to eq('')
+    expect(f3_backup.email).to eq(nil)
   end
 
 end

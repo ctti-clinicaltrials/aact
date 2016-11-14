@@ -17,10 +17,10 @@ class CalculatedValue < ActiveRecord::Base
 
   def attribs
     {
-      :start_date                  => study.start_month_year.to_date,
-      :verification_date           => study.verification_month_year.to_date,
-      :completion_date             => study.completion_month_year.to_date,
-      :primary_completion_date     => study.primary_completion_month_year.to_date,
+      :start_date                  => study.start_month_year.try(:to_date),
+      :verification_date           => study.verification_month_year.try(:to_date),
+      :completion_date             => study.completion_month_year.try(:to_date),
+      :primary_completion_date     => study.primary_completion_month_year.try(:to_date),
       :nlm_download_date           => get_download_date,
       :sponsor_type                => calc_sponsor_type,
       :were_results_reported       => calc_results_reported,
