@@ -153,9 +153,6 @@
 
     <p>The data downloaded from ClinicalTrials.gov and stored in AACT is a snapshot of the information that was publicly available at ClinicalTrials.gov on the download date.  Data submitters may update their ClinicalTrials.gov study record at any time but a particular instance of AACT only captures the information present at one point in time.  Although changes to a study are stored in an archive history at ClinicalTrials.gov, these changes are not currently captured in a particular version of AACT. </p>
 
-<p class='question'>Should we alter this to reflect how the person may access AACT? If they download it is a snapshot on that date. If the access directly - it is up to date as of the previous day? Or should it be removed and a blurb be placed somewhere else on the AACT2 site?</p>
-
-
     <h2>Use of appropriate statistical inference</h2>
 
     <p>If the AACT results data are to be used to support a meta-analysis or systematic review of the safety or efficacy of a particular intervention, then standard methods of meta-analysis or systematic review (e.g., the <a target='_blank' href="http://annals.org/article.aspx?articleid=744664" onClick="ga('send','event','external link','guide page: PRISMA')">PRISMA statement</a> should be used to appropriately account for study-to-study variability and other sources of uncertainty or bias. We recommend that authors consider the following points when deciding whether to report p-values, confidence intervals, or other probability-based inference when performing aggregate analysis of the ClinicalTrials.gov database:  </p>
@@ -194,18 +191,6 @@
       <li>Information in several datasets are also related to information in other datasets. In this case, the dataset that belongs to another dataset will include a foreign key that identifies the record to which it belongs. Foreign keys are always named according to a simple rule: the singular name of the related dataset followed by: ‘_id’.  For example, FACILITY_CONTACTS includes a data element: facility_id which is the foreign key to FACILITY.id</li>
       <li> Each record’s foreign_key (ie. facility_id) contains the value of the unique identifier (id) of the record in the other dataset to which it belongs. For example, a facility may have multiple contacts. To find the contacts for a particular facility, look for the records in FACILITY_CONTACTS where the value in facility_id is same as the value in id for that facility in FACILITIES. In short, datasets are related to each other with this pattern: dataset1.<dataset2_name>_id = dataset2.id </li>
     </ul>
-<p class='question'> this section needs a bit more work</p>
-    <table class='regularDisplay'>
-      <tr>
-        <td>facilities.id = facility_contacts.facility_id</td>
-        <td>finds all contacts for a facility</td>
-      </tr>
-      <tr>
-        <td>facility_contacts.facility_id = facilities.id</td>
-        <td>inversely: finds the facility for a particular contact</td>
-      </tr>
-    </table>
-
     <h2>Information about trial sites (FACILITIES and COUNTRIES) </h2>
      <p> Information about organizations (trial sites) where the study is/was conducted is stored in the FACILITIES dataset.  This is a snapshot of the facility information that was included in the study record on the date that information was downloaded from ClinicalTrials.gov.  Naturally, study sites initiated after ClinicalTrials.gov data were downloaded to AACT are not included in AACT.</p>
 		<p>AACT also includes a COUNTRIES dataset, which contains one record per unique country per study. Rows in the COUNTRIES dataset come from two sources:</p>

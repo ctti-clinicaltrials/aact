@@ -79,7 +79,8 @@ class StudyRelationship < ActiveRecord::Base
   end
 
   def get(label)
-    xml.xpath("#{label}").text
+    value=(xml.xpath("#{label}").text).strip
+    value=='' ? nil : value
   end
 
   def get_text(label)
