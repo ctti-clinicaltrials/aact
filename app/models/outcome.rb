@@ -1,5 +1,4 @@
 class Outcome < StudyRelationship
-  extend FastCount
   has_many :outcome_measured_values, autosave: true
   has_many :outcome_analyses, inverse_of: :outcome, autosave: true
   has_many :outcome_groups, inverse_of: :outcome, autosave: true

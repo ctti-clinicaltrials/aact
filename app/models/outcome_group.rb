@@ -1,5 +1,4 @@
 class OutcomeGroup < StudyRelationship
-  extend FastCount
   belongs_to :outcome, inverse_of: :outcome_groups, autosave: true
   belongs_to :result_group, inverse_of: :outcome_groups, autosave: true
 

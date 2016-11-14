@@ -17,10 +17,10 @@ class CalculatedValue < ActiveRecord::Base
 
   def attribs
     {
-      :start_date                  => study.start_month_year.to_date,
-      :verification_date           => study.verification_month_year.to_date,
-      :completion_date             => study.completion_month_year.to_date,
-      :primary_completion_date     => study.primary_completion_month_year.to_date,
+      :start_date                  => study.start_month_year.try(:to_date),
+      :verification_date           => study.verification_month_year.try(:to_date),
+      :completion_date             => study.completion_month_year.try(:to_date),
+      :primary_completion_date     => study.primary_completion_month_year.try(:to_date),
       :nlm_download_date           => get_download_date,
       :sponsor_type                => calc_sponsor_type,
       :were_results_reported       => calc_results_reported,
@@ -80,13 +80,13 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_number_of_sae_subjects
-    if ReportedEvent.fast_count_estimate(study.reported_events) > 0
+    if study.reported_events.size > 0
       study.reported_events.where('event_type = \'serious\' and subjects_affected is not null').sum(:subjects_affected)
     end
   end
 
   def calc_number_of_nsae_subjects
-    if ReportedEvent.fast_count_estimate(study.reported_events) > 0
+    if study.reported_events.size > 0
       study.reported_events.where('event_type != \'serious\' and subjects_affected is not null').sum(:subjects_affected)
     end
   end
@@ -106,7 +106,7 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_results_reported
-    1 if Outcome.fast_count_estimate(study.reported_events) > 0
+    study.outcomes.size > 0
   end
 
   def calc_months_to_report_results

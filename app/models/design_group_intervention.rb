@@ -1,5 +1,4 @@
 class DesignGroupIntervention < StudyRelationship
-  extend FastCount
   belongs_to :intervention, inverse_of: :design_group_interventions, autosave: true
   belongs_to :design_group, inverse_of: :design_group_interventions, autosave: true
 
