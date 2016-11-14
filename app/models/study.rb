@@ -195,13 +195,12 @@ class Study < ActiveRecord::Base
       :phase => get('phase'),
       :target_duration => get('target_duration'),
       :enrollment => get('enrollment'),
-      :biospec_description =>get_text('biospec_descr').strip,
-
+      :biospec_description =>get_text('biospec_descr'),
       :primary_completion_date_type => get_type('primary_completion_date'),
       :completion_date_type => get_type('completion_date'),
       :enrollment_type => get_type('enrollment'),
       :study_type => get('study_type'),
-      :biospec_retention =>get('biospec_retention').strip,
+      :biospec_retention =>get('biospec_retention'),
       :limitations_and_caveats  =>xml.xpath('//limitations_and_caveats').text,
       :is_section_801 => get_boolean('is_section_801'),
       :is_fda_regulated => get_boolean('is_fda_regulated'),
@@ -209,7 +208,7 @@ class Study < ActiveRecord::Base
       :plan_to_share_ipd_description => get('patient_data/ipd_description'),
       :has_expanded_access => get_boolean('has_expanded_access'),
       :has_dmc => get_boolean('has_dmc'),
-      :why_stopped =>get('why_stopped').strip,
+      :why_stopped =>get('why_stopped')
 
     }
   end
@@ -219,7 +218,8 @@ class Study < ActiveRecord::Base
   end
 
   def get(label)
-    xml.xpath('//clinical_study').xpath("#{label}").text
+    value=(xml.xpath('//clinical_study').xpath("#{label}").text).strip
+    value=='' ? nil : value
   end
 
   def get_text(label)

@@ -21,7 +21,7 @@ describe ResponsibleParty do
 
     expect(rp.responsible_party_type).to eq('Principal Investigator')
     expect(rp.affiliation).to eq('University of California, San Diego')
-    expect(rp.organization).to eq('')
+    expect(rp.organization).to eq(nil)
     expect(rp.title).to eq('Professor Emeritus of Reproductive Medicine Division of Reproductive Endocrinology and Infertility')
     expect(rp.name).to eq('Jeffrey Chang, MD')
   end
