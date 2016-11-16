@@ -105,6 +105,12 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
     <safety_issue>No</safety_issue>
     <description>AUC0-24h: Area under the concentration time curve 24 hours in the absence, and presence, of raltegravir</description>
   </primary_outcome>
+  <other_outcome>
+    <measure>Hospital costs</measure>
+    <time_frame>Hospital stay</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>$US</description>
+  </other_outcome>
   <number_of_arms>2</number_of_arms>
   <enrollment type="Actual">19</enrollment>
   <condition>HIV</condition>
