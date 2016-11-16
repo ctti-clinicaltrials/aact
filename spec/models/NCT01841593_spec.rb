@@ -24,7 +24,14 @@ describe Study do
     expect(study.design.intervention_model).to eq('Crossover Assignment')
     expect(study.design.masking).to eq('Open Label')
     expect(study.design.primary_purpose).to eq('Treatment')
-    expect(study.design_outcomes.size).to eq(5)
+    expect(study.design_outcomes.size).to eq(6)
+    other_outcomes=study.design_outcomes.select{|o|o.outcome_type=='other'}
+    expect(other_outcomes.size).to eq(1)
+    other_outcome=other_outcomes.first
+    expect(other_outcome.measure).to eq('Hospital costs')
+    expect(other_outcome.time_frame).to eq('Hospital stay')
+    expect(other_outcome.safety_issue).to eq('No')
+    expect(other_outcome.description).to eq('$US')
     expect(study.number_of_arms).to eq(2)
     expect(study.enrollment).to eq(19)
     expect(study.enrollment_type).to eq('Actual')
