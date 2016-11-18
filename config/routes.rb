@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
-  get '/tableau',         :to => redirect('/tableau.html')
-  get '/tableau_connect', :to => redirect('/tableau.html')
+  get '/old_tableau',         :to => redirect('/tableau.html')
+  get "tableau"               => "tableau#index"
   get "api_docs"              => "swaggerui#index"
   get "/learn_more"           => "pages#learn_more"
   get "/schema"               => "pages#schema"
