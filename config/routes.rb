@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   mount AACT2::Base, at: '/'
   mount Sidekiq::Web => '/sidekiq'
 
+  get '/npm', :to => redirect('/npm.html')
+  get 'npm.js', :to => redirect('/npm.js')
+
+  get '/tableau', :to => redirect('/tableau.html')
+  get '/wdc',     :to => redirect('/wdc.html')
+  get 'wdc.js',   :to => redirect('/wdc.js')
 
   get "api_docs"              => "swaggerui#index"
 
