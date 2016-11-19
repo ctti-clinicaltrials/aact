@@ -13,12 +13,21 @@
 </head>
 
 <body>
-    <h1>Clinical Trials</h1>
+    <h2>Retrieve Clinical Trials Associated with an Organization or MeSH Term</h2>
     <div class="container container-table">
-        <div class="row vertical-center-row">
-            <div class="text-center col-md-4 col-md-offset-4">
-                <button type="button" id="submitButton" class="btn btn-success" style="margin: 10px;">Get Sample Studies</button>
-            </div>
+        <div>
+          <form role='form' id='orgForm'>
+               <div class="row col-md-4" style="margin-top:10px">
+                    <div class="input-group">
+                        <input id="organization" type="text" class="form-control" placeholder="Organization">
+                        <input id="meshTerm" type="text" class="form-control" placeholder="MeSH Term">
+                        <div class="row col-md-2 input-group-btn">
+                            <button id="submitButton" class="btn btn-default" type="button">Go!</button>
+                        </div>
+                    </div>
+                </div>
+
+          </form>
         </div>
     </div>
 </body>

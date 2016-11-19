@@ -27,12 +27,21 @@
     };
 
     myConnector.getData = function (table, doneCallback) {
-      //$.getJSON("http://aact.ctti-clinicaltrials.org/api/v1/studies?organization=Duke&page=1", function(resp) {
-      $.getJSON("http://aact-dev.herokuapp.com/api/v1/studies?organization=Amsterdam&page=1", function(resp) {
-      //$.getJSON("http://localhost:3000/api/v1/studies?organization=Amsterdam&page=1", function(resp) {
-            var tableData = [];
-            //var studies = JSON.stringify(resp);
+      var criteria = JSON.parse(tableau.connectionData)
+      if (!criteria.meshTerm) {
+        if (!criteria.organization) {
+          var apiCall = "http://aact-dev.herokuapp.com/api/v1/studies";
+        } else {
+          var apiCall = "http://aact-dev.herokuapp.com/api/v1/studies?organizataion="+criteria.organization;
+          //var apiCall = "http://aact-dev.herokuapp.com/api/v1/studies?organization="+criteria.organization+"?with_related_records=true&with_related_organizations=true";
+        }
+      } else {
+        var apiCall = "http://aact-dev.herokuapp.com/api/v1/studies?meshTerm="+criteria.meshTerm;
+        //var apiCall = "http://aact-dev.herokuapp.com/api/v1/studies?meshTerm="+criteria.meshTerm+"?with_related_records=true&with_related_organizations=true";
+      }
 
+      $.getJSON(apiCall, function(resp) {
+            var tableData = [];
             for (var i = 0, len = resp.length; i < len; i++) {
               tableData.push({
                 "nct_id": resp[i].nct_id,
@@ -58,7 +67,12 @@
 
 $(document).ready(function () {
     $("#submitButton").click(function () {
-        tableau.connectionName = "Duke Studies";
+        var criteria = {
+            organization: $('#organization').val().trim(),
+            meshTerm: $('#meshTerm').val().trim(),
+        };
+        tableau.connectionData =  JSON.stringify(criteria);
+        tableau.connectionName = "Select Clinical Trials";
         tableau.submit();
     });
 });
