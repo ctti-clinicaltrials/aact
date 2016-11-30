@@ -1657,6 +1657,8 @@ CREATE TABLE use_cases (
     submitter_name character varying,
     contact_info character varying,
     email character varying,
+    image bytea,
+    remote_image_url character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

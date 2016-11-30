@@ -2,31 +2,40 @@
 
   <div class="basicHero">
     <h1>Examples & Ideas</h1>
-       <p>Everyone is welcome to develop analytical tools and applications that use AACT data & encouraged to share their work and discoveries with the community. Analysis worth sharing will be posted for public access on this page.</p>
-       <p>Examples of how AACT might be used:
+    <p>Everyone is welcome to develop analytical tools and applications based on AACT data & encouraged to share their work and discoveries with the community. Analysis worth sharing will be posted for public access on this page.</p>
+    <p>Examples of how AACT might be used:
          <ul>
-           <li>Identify general patterns and trends in clinical trial reserach.</li>
+           <li>Identify general patterns and trends in clinical trial research.</li>
            <li>Assess FDAAA compliance by sponsor, responsible party, study type, etc.</li>
            <li>Discover where research is being (and has been) conducted for specific clinical domains.</li>
            <li>Develop websites to better organize and/or enhance this dataset.</li>
          </ul>
-         <p>
-       <p>Examples of how AACT is currently being used by various individuals and organization.</p>
+    </p>
+    <h3>How AACT is Currently Being Used</h3>
   </div>
 
-
   <section class="useCases">
-    <div class="downloadTypes">
-      <section class="homeHero">
 
+    <table class='table dataTable data-table table-striped table-condensed table-hover'>
+
+     <tbody>
       <% @use_cases.each do |use_case| %>
-        <a href="/use_cases/<%= use_case.id %>" class="downloadCard">
-           <h4><%= use_case.title %></h4>
-           <p><%= use_case.brief_summary %></p>
-           <%= icon("download") %>
-        </a>
+        <tr>
+          <td>
+            <a target='_blank' href='<%= use_case.id %>'>
+            <%= image_tag use_case.image_url(:thumb) if use_case.image? %>
+            </a>
+          </td>
+          <td>
+            <a href='/use_cases/<%= use_case.id %>'>
+              <h4><%= use_case.title %></h4>
+              <p><%= use_case.brief_summary %></p>
+            </a>
+          </td>
+        </tr>
       <% end %>
+     </tbody>
+   </table>
 
-    </div>
   </section>
 </div>
