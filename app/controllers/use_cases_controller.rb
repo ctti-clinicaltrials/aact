@@ -69,8 +69,8 @@ class UseCasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def use_case_params
-      #params.fetch(:use_case, {})
-      params.require(:title).permit(:detailed_description, :url, :contact_info, :status, :brief_summary, :submitter_name, :email)
+      params.fetch(:use_case, {})
+      params.require(:use_case).permit(:utf8, :authenticity_token, :commit, :_method, :id, :title, :detailed_description, :url, :contact_info, :status, :brief_summary, :submitter_name, :email, :image, :remote_image_url)
     end
 end
 

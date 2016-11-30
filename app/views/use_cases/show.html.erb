@@ -1,11 +1,16 @@
 <p id="notice"><%= notice %></p>
 
- <h4><%= @use_case.title %></h4>
- <p><%= @use_case.brief_summary %></p>
- <p><a target='_blank' href='<%= @use_case.url %>'><%= @use_case.url %></a></p>
- <p><%= @use_case.submitter_name %></p>
- <p><%= @use_case.contact_info %></p>
- <p><%= @use_case.email %></p>
+ <h2><a target='_blank' href='<%= @use_case.url %>'><%= @use_case.title %></a></h2>
+ <p>
+   <a target='_blank' href='<%= @use_case.url if @use_case.url %>'>
+     <%= image_tag @use_case.image_url(:thumb) if @use_case.image? %>
+   </a>
+ </p>
+ <p>
+   <%= @use_case.brief_summary %>
+ </p>
+ <p>Contact: <%= @use_case.submitter_name %> <%= @use_case.contact_info %> <%= @use_case.email %></p>
+
  <p><%= @use_case.detailed_description %></p>
 
  <p><%= link_to 'Edit', edit_use_case_path(@use_case) %> </p>
