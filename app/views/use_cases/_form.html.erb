@@ -1,0 +1,45 @@
+<%= form_for(@use_case) do |f| %>
+  <% if @use_case.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@use_case.errors.count, "error") %> prohibited this use_case from being saved:</h2>
+
+      <ul>
+      <% @use_case.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    Title <%= f.text_field :title, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Brief Summary <%= f.text_field :brief_summary, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    URL <%= f.text_field :url, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Submitted by <%= f.text_field :submitter_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Contact Info <%= f.text_field :contact_info, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Email <%= f.text_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Details <%= f.text_field :detailed_description, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

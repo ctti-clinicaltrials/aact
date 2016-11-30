@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.4
--- Dumped by pg_dump version 9.5.4
+-- Dumped from database version 9.5.5
+-- Dumped by pg_dump version 9.5.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -194,7 +194,7 @@ ALTER SEQUENCE browse_interventions_id_seq OWNED BY browse_interventions.id;
 CREATE TABLE calculated_values (
     id integer NOT NULL,
     sponsor_type character varying,
-    actual_duration numeric(5,2),
+    actual_duration integer,
     months_to_report_results integer,
     number_of_facilities integer,
     number_of_nsae_subjects integer,
@@ -213,7 +213,9 @@ CREATE TABLE calculated_values (
     minimum_age_num integer,
     maximum_age_num integer,
     minimum_age_unit character varying,
-    maximum_age_unit character varying
+    maximum_age_unit character varying,
+    has_us_facility boolean DEFAULT false,
+    has_single_facility boolean DEFAULT false
 );
 
 
@@ -1611,6 +1613,77 @@ ALTER SEQUENCE study_xml_records_id_seq OWNED BY study_xml_records.id;
 
 
 --
+-- Name: use_case_attachments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE use_case_attachments (
+    id integer NOT NULL,
+    use_case_id integer,
+    file_name character varying,
+    payload bytea,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: use_case_attachments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE use_case_attachments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_case_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE use_case_attachments_id_seq OWNED BY use_case_attachments.id;
+
+
+--
+-- Name: use_cases; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE use_cases (
+    id integer NOT NULL,
+    status character varying,
+    title character varying,
+    brief_summary character varying,
+    detailed_description text,
+    url character varying,
+    submitter_name character varying,
+    contact_info character varying,
+    email character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: use_cases_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE use_cases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_cases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE use_cases_id_seq OWNED BY use_cases.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1916,6 +1989,20 @@ ALTER TABLE ONLY study_references ALTER COLUMN id SET DEFAULT nextval('study_ref
 --
 
 ALTER TABLE ONLY study_xml_records ALTER COLUMN id SET DEFAULT nextval('study_xml_records_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY use_case_attachments ALTER COLUMN id SET DEFAULT nextval('use_case_attachments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY use_cases ALTER COLUMN id SET DEFAULT nextval('use_cases_id_seq'::regclass);
 
 
 --
@@ -2271,45 +2358,229 @@ ALTER TABLE ONLY study_xml_records
 
 
 --
--- Name: index_facilities_on_nct_id; Type: INDEX; Schema: public; Owner: -
+-- Name: use_case_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-CREATE INDEX index_facilities_on_nct_id ON facilities USING btree (nct_id);
-
-
---
--- Name: index_outcome_measured_values_on_title; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_outcome_measured_values_on_title ON outcome_measured_values USING btree (title);
+ALTER TABLE ONLY use_case_attachments
+    ADD CONSTRAINT use_case_attachments_pkey PRIMARY KEY (id);
 
 
 --
--- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: public; Owner: -
+-- Name: use_cases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-CREATE INDEX index_outcomes_on_nct_id ON outcomes USING btree (nct_id);
-
-
---
--- Name: index_reported_events_on_event_type; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_reported_events_on_event_type ON reported_events USING btree (event_type);
+ALTER TABLE ONLY use_cases
+    ADD CONSTRAINT use_cases_pkey PRIMARY KEY (id);
 
 
 --
--- Name: index_reported_events_on_nct_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_browse_conditions_on_mesh_term; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_reported_events_on_nct_id ON reported_events USING btree (nct_id);
+CREATE INDEX index_browse_conditions_on_mesh_term ON browse_conditions USING btree (mesh_term);
 
 
 --
--- Name: index_reported_events_on_subjects_affected; Type: INDEX; Schema: public; Owner: -
+-- Name: index_browse_conditions_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_reported_events_on_subjects_affected ON reported_events USING btree (subjects_affected);
+CREATE INDEX index_browse_conditions_on_nct_id ON browse_conditions USING btree (nct_id);
+
+
+--
+-- Name: index_browse_interventions_on_mesh_term; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_browse_interventions_on_mesh_term ON browse_interventions USING btree (mesh_term);
+
+
+--
+-- Name: index_browse_interventions_on_nct_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_browse_interventions_on_nct_id ON browse_interventions USING btree (nct_id);
+
+
+--
+-- Name: index_calculated_values_on_months_to_report_results; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_calculated_values_on_months_to_report_results ON calculated_values USING btree (months_to_report_results);
+
+
+--
+-- Name: index_calculated_values_on_number_of_facilities; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_calculated_values_on_number_of_facilities ON calculated_values USING btree (number_of_facilities);
+
+
+--
+-- Name: index_calculated_values_on_primary_completion_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_calculated_values_on_primary_completion_date ON calculated_values USING btree (primary_completion_date);
+
+
+--
+-- Name: index_calculated_values_on_sponsor_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_calculated_values_on_sponsor_type ON calculated_values USING btree (sponsor_type);
+
+
+--
+-- Name: index_calculated_values_on_start_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_calculated_values_on_start_date ON calculated_values USING btree (start_date);
+
+
+--
+-- Name: index_designs_on_caregiver_masked; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_designs_on_caregiver_masked ON designs USING btree (caregiver_masked);
+
+
+--
+-- Name: index_designs_on_investigator_masked; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_designs_on_investigator_masked ON designs USING btree (investigator_masked);
+
+
+--
+-- Name: index_designs_on_masking; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_designs_on_masking ON designs USING btree (masking);
+
+
+--
+-- Name: index_designs_on_outcomes_assessor_masked; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_designs_on_outcomes_assessor_masked ON designs USING btree (outcomes_assessor_masked);
+
+
+--
+-- Name: index_designs_on_subject_masked; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_designs_on_subject_masked ON designs USING btree (subject_masked);
+
+
+--
+-- Name: index_eligibilities_on_gender; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_eligibilities_on_gender ON eligibilities USING btree (gender);
+
+
+--
+-- Name: index_eligibilities_on_healthy_volunteers; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_eligibilities_on_healthy_volunteers ON eligibilities USING btree (healthy_volunteers);
+
+
+--
+-- Name: index_eligibilities_on_maximum_age; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_eligibilities_on_maximum_age ON eligibilities USING btree (maximum_age);
+
+
+--
+-- Name: index_eligibilities_on_minimum_age; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_eligibilities_on_minimum_age ON eligibilities USING btree (minimum_age);
+
+
+--
+-- Name: index_facilities_on_city; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_facilities_on_city ON facilities USING btree (city);
+
+
+--
+-- Name: index_facilities_on_country; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_facilities_on_country ON facilities USING btree (country);
+
+
+--
+-- Name: index_facilities_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_facilities_on_name ON facilities USING btree (name);
+
+
+--
+-- Name: index_facilities_on_state; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_facilities_on_state ON facilities USING btree (state);
+
+
+--
+-- Name: index_overall_officials_on_affiliation; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_overall_officials_on_affiliation ON overall_officials USING btree (affiliation);
+
+
+--
+-- Name: index_overall_officials_on_nct_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_overall_officials_on_nct_id ON overall_officials USING btree (nct_id);
+
+
+--
+-- Name: index_oversight_authorities_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oversight_authorities_on_name ON oversight_authorities USING btree (name);
+
+
+--
+-- Name: index_responsible_parties_on_nct_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_responsible_parties_on_nct_id ON responsible_parties USING btree (nct_id);
+
+
+--
+-- Name: index_responsible_parties_on_organization; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_responsible_parties_on_organization ON responsible_parties USING btree (organization);
+
+
+--
+-- Name: index_result_contacts_on_organization; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_result_contacts_on_organization ON result_contacts USING btree (organization);
+
+
+--
+-- Name: index_sponsors_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sponsors_on_name ON sponsors USING btree (name);
+
+
+--
+-- Name: index_studies_on_first_received_results_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_first_received_results_date ON studies USING btree (first_received_results_date);
 
 
 --
@@ -2317,6 +2588,34 @@ CREATE INDEX index_reported_events_on_subjects_affected ON reported_events USING
 --
 
 CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
+
+
+--
+-- Name: index_studies_on_phase; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_phase ON studies USING btree (phase);
+
+
+--
+-- Name: index_studies_on_primary_completion_date_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_primary_completion_date_type ON studies USING btree (primary_completion_date_type);
+
+
+--
+-- Name: index_studies_on_source; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_source ON studies USING btree (source);
+
+
+--
+-- Name: index_studies_on_study_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_study_type ON studies USING btree (study_type);
 
 
 --
@@ -2355,4 +2654,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20160918000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20161030000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20161103150339');
+
+INSERT INTO schema_migrations (version) VALUES ('20161129151700');
 
