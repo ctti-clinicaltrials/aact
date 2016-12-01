@@ -28,7 +28,7 @@ class SanityCheck < ActiveRecord::Base
   def generate_column_width_stats(table_name)
     blacklist = %w(
         search_results
-        derived_values
+        calculated_values
     )
 
     return if blacklist.include?(table_name)
