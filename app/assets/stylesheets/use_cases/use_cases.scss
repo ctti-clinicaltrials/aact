@@ -1,9 +1,25 @@
+@import "base/variables";
+@import "base/library";
+@import "base/grid";
+@import "base/buttons";
+@import "base/forms";
+
 section.useCases {
   padding-bottom: 10px;
-  background-color: $white;
-
   section.instructions {
-    background-color: $white;
   }
 }
+
+tr.useCaseExample {
+    width: 96%;
+    display: block;
+    margin-bottom: 60px;
+    background-color: rgb(249,249,249);
+    color: $grey;
+    padding: 1rem;
+    @include box-shadow(3px 3px 11px $light-grey);
+    margin: 1rem;
+    position: relative;
+    bottom: 40px;
+  }
 
