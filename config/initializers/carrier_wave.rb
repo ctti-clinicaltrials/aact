@@ -3,8 +3,6 @@ CarrierWave.configure do |config|
   config.cache_dir = 'carrierwave'
   config.fog_credentials = {
     :provider               => 'AWS',
-    :s3_access_key_id      => 'test', #ENV['S3_ACCESS_KEY'],                        # required
-    :s3_secret_access_key  => 'test', #ENV['S3_SECRET_KEY'],                     # required
     :aws_access_key_id      => 'test', #ENV['AWS_ACCESS_KEY_ID'],
     :aws_secret_access_key  => 'test', #ENV['AWS_SECRET_ACCESS_KEY']
   }
