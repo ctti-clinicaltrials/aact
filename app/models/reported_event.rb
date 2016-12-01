@@ -1,5 +1,4 @@
 class ReportedEvent < StudyRelationship
-  extend FastCount
 
   belongs_to :result_group
 

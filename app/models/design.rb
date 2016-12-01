@@ -1,5 +1,4 @@
 class Design < StudyRelationship
-  extend FastCount
 
   def attribs
     {
