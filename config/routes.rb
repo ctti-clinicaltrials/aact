@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
 
   resources :definitions
+  resources :use_cases
 end
