@@ -54,6 +54,7 @@ module ClinicalTrials
         sanity_checks
         statistics
         study_xml_records
+        use_cases
       )
       ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
     end

@@ -1,7 +1,8 @@
+<%=  stylesheet_link_tag "use_cases/use_cases" %>
 <div class="wrap">
 
   <div class="basicHero">
-    <h1>Examples & Ideas</h1>
+    <h1>Gallery</h1>
     <p>Everyone is welcome to develop analytical tools and applications based on AACT data & encouraged to share their work and discoveries with the community. Analysis worth sharing will be posted for public access on this page.</p>
     <p>Examples of how AACT might be used:
          <ul>
@@ -20,10 +21,14 @@
 
      <tbody>
       <% @use_cases.each do |use_case| %>
-        <tr>
+        <tr class='useCaseExample'>
           <td>
             <a target='_blank' href='<%= use_case.id %>'>
-            <%= image_tag use_case.image_url(:thumb) if use_case.image? %>
+              <% if use_case.image? %>
+                <%= image_tag use_case.image_url(:thumb) if use_case.image? %>
+              <% else %>
+                Missing Image
+              <% end %>
             </a>
           </td>
           <td>

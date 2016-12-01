@@ -12,6 +12,7 @@ namespace :import do
           sanity_checks
           schema_migrations
           load_events
+          use_cases
         )
 
         tables_to_truncate = all_tables.reject do |table|
