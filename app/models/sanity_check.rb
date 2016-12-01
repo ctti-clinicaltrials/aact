@@ -29,6 +29,7 @@ class SanityCheck < ActiveRecord::Base
     blacklist = %w(
         search_results
         calculated_values
+        use_cases
     )
 
     return if blacklist.include?(table_name)

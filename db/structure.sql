@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.4
--- Dumped by pg_dump version 9.5.4
+-- Dumped from database version 9.5.5
+-- Dumped by pg_dump version 9.5.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -205,7 +205,6 @@ CREATE TABLE calculated_values (
     verification_date date,
     primary_completion_date date,
     completion_date date,
-    first_received_results_date date,
     nlm_download_date date,
     were_results_reported boolean,
     has_minimum_age boolean,
@@ -1539,7 +1538,6 @@ CREATE TABLE studies (
     brief_title text,
     official_title text,
     biospec_description text,
-    description text,
     plan_to_share_ipd character varying,
     plan_to_share_ipd_description character varying,
     created_at timestamp without time zone NOT NULL,
@@ -1610,6 +1608,79 @@ CREATE SEQUENCE study_xml_records_id_seq
 --
 
 ALTER SEQUENCE study_xml_records_id_seq OWNED BY study_xml_records.id;
+
+
+--
+-- Name: use_case_attachments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE use_case_attachments (
+    id integer NOT NULL,
+    use_case_id integer,
+    file_name character varying,
+    payload bytea,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: use_case_attachments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE use_case_attachments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_case_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE use_case_attachments_id_seq OWNED BY use_case_attachments.id;
+
+
+--
+-- Name: use_cases; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE use_cases (
+    id integer NOT NULL,
+    status character varying,
+    title character varying,
+    brief_summary character varying,
+    detailed_description text,
+    url character varying,
+    submitter_name character varying,
+    contact_info character varying,
+    email character varying,
+    image bytea,
+    remote_image_url character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: use_cases_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE use_cases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_cases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE use_cases_id_seq OWNED BY use_cases.id;
 
 
 --
@@ -1918,6 +1989,20 @@ ALTER TABLE ONLY study_references ALTER COLUMN id SET DEFAULT nextval('study_ref
 --
 
 ALTER TABLE ONLY study_xml_records ALTER COLUMN id SET DEFAULT nextval('study_xml_records_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY use_case_attachments ALTER COLUMN id SET DEFAULT nextval('use_case_attachments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY use_cases ALTER COLUMN id SET DEFAULT nextval('use_cases_id_seq'::regclass);
 
 
 --
@@ -2273,6 +2358,22 @@ ALTER TABLE ONLY study_xml_records
 
 
 --
+-- Name: use_case_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY use_case_attachments
+    ADD CONSTRAINT use_case_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: use_cases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY use_cases
+    ADD CONSTRAINT use_cases_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: index_browse_conditions_on_mesh_term; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2298,6 +2399,13 @@ CREATE INDEX index_browse_interventions_on_mesh_term ON browse_interventions USI
 --
 
 CREATE INDEX index_browse_interventions_on_nct_id ON browse_interventions USING btree (nct_id);
+
+
+--
+-- Name: index_calculated_values_on_actual_duration; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_calculated_values_on_actual_duration ON calculated_values USING btree (actual_duration);
 
 
 --
@@ -2555,4 +2663,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20161103150339');
+
+INSERT INTO schema_migrations (version) VALUES ('20161129151700');
 
