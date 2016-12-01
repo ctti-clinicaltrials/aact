@@ -20,7 +20,6 @@ class StudySerializer < ActiveModel::Serializer
             :source,
             :biospec_retention,
             :limitations_and_caveats,
-            :description,
             :acronym,
             :number_of_arms,
             :number_of_groups,
