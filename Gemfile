@@ -31,7 +31,9 @@ gem 'aws-sdk', '~> 2'
 gem 'font-awesome-sass'
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
-gem 'rmagick'
+
+gem 'fog'
+gem 'mini_magick'
 gem 'carrierwave'
 
 # Grape API

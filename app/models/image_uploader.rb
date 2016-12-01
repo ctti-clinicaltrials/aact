@@ -1,10 +1,10 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
-  include CarrierWave::RMagick
-  storage :file
+  include CarrierWave::MiniMagick
+  storage :fog
 
   def store_dir
-    "public/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   version :thumb do

@@ -8,6 +8,7 @@ namespace :simple_sanity_check do
       blacklist = %w(
         search_results
         calculated_values
+        use_cases
       )
 
       next table_hash if blacklist.include?(table_name)
