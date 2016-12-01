@@ -10,6 +10,7 @@
 /public/system
 /public/assets
 /tags
+/vendor
 /tmp/*
 dump.rdb
 .env
