@@ -33,7 +33,7 @@ gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
 
 gem 'fog'
-gem 'rmagick'
+gem 'mini_magick'
 gem 'carrierwave'
 
 # Grape API
