@@ -2,48 +2,53 @@
 <div class="wrap">
 
   <div class="basicHero">
-    <h1>Gallery</h1>
-    <p>Everyone is welcome to develop analytical tools and applications based on AACT data & encouraged to share their work and discoveries with the community. Analysis worth sharing will be posted for public access on this page.</p>
-    <p>Examples of how AACT might be used:
-         <ul class='regularDisplay'>
-           <li>Identify general patterns and trends in clinical trial research.</li>
-           <li>Determine how well an organization is complying with regulations.</li>
-           <li>Discover where research is being conducted for a particular clinical field.</li>
-           <li>Develop websites to better organize and/or enhance this dataset.</li>
-         </ul>
-    </p>
+    <a target='_blank' href='use_cases/new'>
 
-    <p>
-      <a class='button' href='/use_cases/new' target='_blank'>Showcase your work to the AACT Gallery</a>
-    </p>
+      <p class='useCaseInvitation'>All are welcome to develop analytic tools, visualizations and websites that use AACT data. Examples of how AACT might be used:</p>
+       <ul class='useCaseInvitation'>
+         <li class='useCaseInvitation'>Identify patterns and trends in clinical trial research.</li>
+         <li class='useCaseInvitation'>Find out how well an organization is complying with regulations.</li>
+         <li class='useCaseInvitation'>Discover where clinical research is being conducted in a particular field.</li>
+         <li class='useCaseInvitation'>Develop websites to better organize and/or enhance the dataset.</li>
+       </ul>
+      <p class='useCaseInvitation'>We encourage you to share your work and discoveries with the community so that everyone can benefit.</p>
+      <br>
 
-    <h3>How AACT is Currently Being Used</h3>
+      <p class='useCaseInvitation'>
+        <%= button_to "Showcase your work in the AACT Gallery", new_use_case_path, :id => "addUseCaseButton",
+       :class => "inbox-sf-add-btn tip", :method => :get %>
+      </p>
+    </a>
+
   </div>
 
-  <section class="useCases">
+  <div class="useCase">
+    <h1 id='galleryHeading'>Gallery</h1>
+    <section class="useCases">
 
-    <table class='useCaseTable table dataTable data-table table-striped table-condensed table-hover'>
+      <table class='useCaseTable table dataTable data-table table-striped table-condensed table-hover'>
 
-     <tbody>
-      <% @use_cases.each do |use_case| %>
-        <tr class='useCaseExample'>
-          <td>
-            <a target='_blank' href='<%= use_case.id %>'>
-              <% if use_case.image? %>
-                <%= image_tag use_case.image_url(:thumb) %>
-              <% end %>
-            </a>
-          </td>
-          <td>
-            <a href='/use_cases/<%= use_case.id %>'>
-              <h4><%= use_case.title %></h4>
-              <p><%= use_case.brief_summary %></p>
-            </a>
-          </td>
-        </tr>
-      <% end %>
-     </tbody>
-   </table>
+       <tbody>
+        <% @use_cases.each do |use_case| %>
+          <tr class='useCaseExample'>
+            <td>
+              <a target='_blank' href='<%= use_case.id %>'>
+                <% if use_case.image? %>
+                  <%= image_tag use_case.image_url(:thumb) %>
+                <% end %>
+              </a>
+            </td>
+            <td>
+              <a href='/use_cases/<%= use_case.id %>'>
+                <h4><%= use_case.title %></h4>
+                <p><%= use_case.brief_summary %></p>
+              </a>
+            </td>
+          </tr>
+        <% end %>
+       </tbody>
+     </table>
+    </section>
+  </div>
 
-  </section>
 </div>
