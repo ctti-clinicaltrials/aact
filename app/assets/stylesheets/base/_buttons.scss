@@ -17,7 +17,7 @@ button, input[type="submit"], a.button {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: $font-sans;
-  font-weight: bold;
+  font-weight: 100;
 
   &:hover {
     color: $button-text-color;
@@ -71,7 +71,7 @@ button, input[type="submit"], a.button {
   }
 
   &.small {
-    font-size: .8rem;
+    font-size: 1rem;
     padding: .5rem 1rem;
   }
 
@@ -81,7 +81,7 @@ button, input[type="submit"], a.button {
     border-radius: $border-radius;
 
     i.fa {
-      font-size: 40px;
+      font-size: 50px;
       left: 30px;
     }
 
