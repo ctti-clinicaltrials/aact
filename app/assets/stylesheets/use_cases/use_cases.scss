@@ -4,7 +4,18 @@
 @import "base/buttons";
 @import "base/forms";
 
+#addUseCaseButton {
+  //background-color: rgb(249,249,249);
+  //color: $grey;
+  padding: 1rem;
+  @include box-shadow(3px 3px 11px $grey);
+  font-weight: 100;
+  margin:0 auto;
+  display:block;
+}
+
 section.useCases {
+  font-weight: 100;
   padding-bottom: 10px;
   section.instructions {
   }
@@ -14,27 +25,46 @@ section.useCases {
      border: 0;
 }
 
-#useCaseTable tbody tr:nth-child(odd) {
-     background-color: #A3B9D2;
-}
 
-#useCaseTable tbody tr:nth-child(even) {
-     background-color: #E7EDF3;
-}
 
 tr.useCaseExample {
     width: 96%;
     display: block;
-    margin-bottom: 60px;
+    font-weight: 100;
     background-color: rgb(249,249,249);
     color: $grey;
-    padding: 1rem;
-    @include box-shadow(3px 3px 11px $light-grey);
+    @include box-shadow(3px 3px 11px $grey);
     margin: 1rem;
     position: relative;
-    bottom: 40px;
+    bottom: 20px;
   }
 
-a.button {
-  align: center;
+p, ul, li.useCaseInvitation {
+  font-family: Roboto;
+  font-size: 1.2rem;
+  font-weight: 100;
+  line-height: 1.2;
+  color: black;
+  position: relative;
+  bottom: 10px;
 }
+
+#galleryHeading {
+  color: black;
+  text-align: center;
+  font-weight: 300;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+}
+
+div.useCaseInvitation {
+  width: 96%;
+  display: block;
+  margin-bottom: 80px;
+  background-color: $light-grey;
+  padding: 2rem;
+  @include box-shadow(3px 3px 11px $grey);
+  margin: 1rem;
+  position: relative;
+  }
+
