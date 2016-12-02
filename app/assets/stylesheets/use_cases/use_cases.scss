@@ -10,6 +10,18 @@ section.useCases {
   }
 }
 
+#useCaseTable table, tr, td, th {
+     border: 0;
+}
+
+#useCaseTable tbody tr:nth-child(odd) {
+     background-color: #A3B9D2;
+}
+
+#useCaseTable tbody tr:nth-child(even) {
+     background-color: #E7EDF3;
+}
+
 tr.useCaseExample {
     width: 96%;
     display: block;
@@ -23,3 +35,6 @@ tr.useCaseExample {
     bottom: 40px;
   }
 
+a.button {
+  align: center;
+}

@@ -6,8 +6,4 @@ class UseCase < ActiveRecord::Base
     use_case_attachments
   end
 
-  def image_changed?
-    # TODO - this is just to debug carrierwave error on heroku.  remove this method
-    false
-  end
 end

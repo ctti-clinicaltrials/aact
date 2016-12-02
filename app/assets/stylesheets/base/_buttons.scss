@@ -6,12 +6,12 @@ button, input[type="submit"], a.button {
   color: $button-text-color;
   font-size: 1rem;
   padding: 1rem 2.5rem;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
   border-color: $button-color;
   cursor: pointer;
   outline: none;
   display: block;
-  width: 100%;
+  width: 80%;
   margin-bottom: 1rem;
   border-radius: $border-radius;
   text-transform: uppercase;
