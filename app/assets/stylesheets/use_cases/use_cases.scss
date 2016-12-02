@@ -5,8 +5,6 @@
 @import "base/forms";
 
 #addUseCaseButton {
-  //background-color: rgb(249,249,249);
-  //color: $grey;
   padding: 1rem;
   @include box-shadow(3px 3px 11px $grey);
   font-weight: 100;
@@ -17,15 +15,11 @@
 section.useCases {
   font-weight: 100;
   padding-bottom: 10px;
-  section.instructions {
-  }
 }
 
 #useCaseTable table, tr, td, th {
      border: 0;
 }
-
-
 
 tr.useCaseExample {
     width: 96%;
@@ -49,6 +43,19 @@ p, ul, li.useCaseInvitation {
   bottom: 10px;
 }
 
+#useCaseHeading {
+  color: black;
+  font-weight: 300;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+#useCase {
+  background-color: $light-grey;
+  @include box-shadow(3px 3px 11px $grey);
+  padding: 2rem;
+}
+
 #galleryHeading {
   color: black;
   text-align: center;
@@ -57,7 +64,7 @@ p, ul, li.useCaseInvitation {
   margin-bottom: 50px;
 }
 
-div.useCaseInvitation {
+div.useCase {
   width: 96%;
   display: block;
   margin-bottom: 80px;
