@@ -50,9 +50,10 @@
     Image
     <%= f.file_field :image %>
   </p>
+
   <p>
-    Image Url:
-    <%= f.text_field :remote_image_url %>
+    Secret Word
+    <%= f.text_field :pwd unless @use_case.new_record? %>
   </p>
 
   <br>
