@@ -31,13 +31,13 @@
        <tbody>
         <% @use_cases.each do |use_case| %>
           <tr class='useCaseExample'>
-            <td>
+            <!-- <td>
               <a target='_blank' href='<%= use_case.id %>'>
                 <% if use_case.image? %>
                   <%= image_tag use_case.image_url(:thumb) %>
                 <% end %>
               </a>
-            </td>
+            </td>  -->
             <td>
               <a href='/use_cases/<%= use_case.id %>'>
                 <h4><%= use_case.title %></h4>
