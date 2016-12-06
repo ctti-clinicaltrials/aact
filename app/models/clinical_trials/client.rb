@@ -72,6 +72,8 @@ module ClinicalTrials
 
         begin
           import_xml_file(raw_xml)
+          xml_record.created_study_at=Date.today
+          xml_record.save!
         rescue StandardError => e
           existing_error = @errors.find do |err|
             err[:name] == e.name && err[:first_backtrace_line] == e.backtrace.first
