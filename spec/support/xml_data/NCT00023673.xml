@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 04, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on December 06, 2016</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00023673</url>
   </required_header>
@@ -747,7 +745,7 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
     <country>United States</country>
   </location_countries>
   <results_reference>
-    <citation>Bradley JD, Bae K, Graham MV, Byhardt R, Govindan R, Fowler J, Purdy JA, Michalski JM, Gore E, Choy H. Primary analysis of the phase II component of a phase I/II dose intensification study using three-dimensional conformal radiation therapy and concurrent chemotherapy for patients with inoperable non-small-cell lung cancer: RTOG 0117. J Clin Oncol. 2010 May 10;28(14):2475-80. doi: 10.1200/JCO.2009.27.1205. Epub 2010 Apr 5.</citation>
+    <citation>Bradley JD, Bae K, Graham MV, Byhardt R, Govindan R, Fowler J, Purdy JA, Michalski JM, Gore E, Choy H. Primary analysis of the phase II component of a phase I/II dose intensification study using three-dimensional conformal radiation therapy and concurrent chemotherapy for patients with inoperable non-small-cell lung cancer: RTOG 0117. J Clin Oncol. 2010 May 10;28(14):2475-80. doi: 10.1200/JCO.2009.27.1205.</citation>
     <PMID>20368547</PMID>
   </results_reference>
   <results_reference>
@@ -882,62 +880,71 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
           <description>Total of all reporting groups</description>
         </group>
       </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="8"/>
+            <count group_id="B2" value="9"/>
+            <count group_id="B3" value="44"/>
+            <count group_id="B4" value="61"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
       <measure_list>
-        <measure>
-          <title>Number of Participants</title>
-          <units>participants</units>
-          <param>Number</param>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="8"/>
-                <measurement group_id="B2" value="9"/>
-                <measurement group_id="B3" value="44"/>
-                <measurement group_id="B4" value="61"/>
-              </measurement_list>
-            </category>
-          </category_list>
-        </measure>
         <measure>
           <title>Age</title>
           <units>years</units>
           <param>Median</param>
           <dispersion>Full Range</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="65.5" lower_limit="48" upper_limit="77"/>
-                <measurement group_id="B2" value="68" lower_limit="52" upper_limit="81"/>
-                <measurement group_id="B3" value="67" lower_limit="43" upper_limit="83"/>
-                <measurement group_id="B4" value="67" lower_limit="43" upper_limit="83"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="65.5" lower_limit="48" upper_limit="77"/>
+                    <measurement group_id="B2" value="68" lower_limit="52" upper_limit="81"/>
+                    <measurement group_id="B3" value="67" lower_limit="43" upper_limit="83"/>
+                    <measurement group_id="B4" value="67" lower_limit="43" upper_limit="83"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Gender</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Female</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1"/>
-                <measurement group_id="B2" value="8"/>
-                <measurement group_id="B3" value="7"/>
-                <measurement group_id="B4" value="16"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Male</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="7"/>
-                <measurement group_id="B2" value="1"/>
-                <measurement group_id="B3" value="37"/>
-                <measurement group_id="B4" value="45"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1"/>
+                    <measurement group_id="B2" value="8"/>
+                    <measurement group_id="B3" value="7"/>
+                    <measurement group_id="B4" value="16"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="7"/>
+                    <measurement group_id="B2" value="1"/>
+                    <measurement group_id="B3" value="37"/>
+                    <measurement group_id="B4" value="45"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
       </measure_list>
     </baseline>
@@ -961,36 +968,36 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
             <description>Phase I: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="7"/>
-                  <measurement group_id="O2" value="7"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Maximum Tolerated Dose (MTD) of Three-dimensional Conformal Radiation Therapy (3DRT), in Terms of Gy Per Fraction, Combined With Concurrent Chemotherapy</title>
-            <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on RTOG (Radiation Therapy Oncolgy Group) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
+        <measure>
+          <title>Maximum Tolerated Dose (MTD) of Three-dimensional Conformal Radiation Therapy (3DRT), in Terms of Gy Per Fraction, Combined With Concurrent Chemotherapy</title>
+          <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on RTOG (Radiation Therapy Oncolgy Group) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
 Rating scale: 0 = not the MTD, 1 = MTD</description>
-            <units>units on a scale</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="0"/>
-                  <measurement group_id="O2" value="1"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+          <population>The first seven eligible patients who started protocol treatment at each dose level.</population>
+          <units>units on a scale</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="7"/>
+                <count group_id="O2" value="7"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Primary</type>
@@ -1008,34 +1015,34 @@ paclitaxel
 three-dimensional conformal radiation therapy</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="53"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Percentage of Patients Who Survive at Least 12 Months</title>
-            <description>Null hypothesis: p&lt;= 62.3% (the best arm of RTOG 94-10); alternative hypothesis: p&gt;= 77.9%. Where p is the percentage of patients alive at at 12 months. Using a one-group chi-square test with alpha = 0.10, a sample size of 50 patients provides at least 87% power to detect a 25% or greater relative increase in the 12-month survival rate, or equivalently, an absolute increase of at least 15.6 percentage points (62.3 versus 77.9). If the point estimate is greater than 71.1% (upper bound), then the conclusion is that the 12-month survival rate from the new treatment significantly improved from 62.3%.</description>
-            <units>percentage of participants</units>
-            <param>Number</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="75.5" lower_limit="61.5" upper_limit="85.0"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Percentage of Patients Who Survive at Least 12 Months</title>
+          <description>Null hypothesis: p&lt;= 62.3% (the best arm of RTOG 94-10); alternative hypothesis: p&gt;= 77.9%. Where p is the percentage of patients alive at at 12 months. Using a one-group chi-square test with alpha = 0.10, a sample size of 50 patients provides at least 87% power to detect a 25% or greater relative increase in the 12-month survival rate, or equivalently, an absolute increase of at least 15.6 percentage points (62.3 versus 77.9). If the point estimate is greater than 71.1% (upper bound), then the conclusion is that the 12-month survival rate from the new treatment significantly improved from 62.3%.</description>
+          <population>Eligible patients at the MTD dose level who started protocol treatment.</population>
+          <units>percentage of participants</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="53"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="75.5" lower_limit="61.5" upper_limit="85.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>

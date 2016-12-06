@@ -13,6 +13,7 @@ class BaselineMeasure < StudyRelationship
     opts[:groups]=create_group_set(opts)
 
     opts[:population]=xml.xpath("population").inner_html
+    analyzed=xml.xpath("analyzed_list").xpath('analyzed')
     all=xml.xpath("measure_list").xpath('measure')
     col=[]
     xml=all.pop
@@ -22,9 +23,15 @@ class BaselineMeasure < StudyRelationship
       opts[:units]=xml.xpath('units').text
       opts[:param]=xml.xpath('param').text
       opts[:dispersion]=xml.xpath('dispersion').text
-      opts[:name]='category'
-      opts[:xml]=xml
-      col << self.nested_pop_create(opts)
+      classifications=xml.xpath("class_list").xpath('class')
+      a_class=classifications.pop
+      while a_class
+        opts[:classification]=a_class.xpath('title').text
+        opts[:xml]=a_class
+        opts[:name]='category'
+        col << self.nested_pop_create(opts)
+        a_class=classifications.pop
+      end
       xml=all.pop
     end
     col.flatten.each{|x|x.save!}
@@ -57,6 +64,7 @@ class BaselineMeasure < StudyRelationship
       :dispersion_lower_limit => get_attribute('lower_limit'),
       :dispersion_upper_limit => get_attribute('upper_limit'),
       :explanation_of_na => xml.text,
+      :classification => get_opt('classification'),
       :category => get_opt(:category),
       :title => get_opt(:title),
       :description => get_opt(:description),

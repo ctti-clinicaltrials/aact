@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 04, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on December 06, 2016</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02389088</url>
   </required_header>
@@ -261,231 +259,320 @@ The FSH stimulation test will be repeated, as described above, at 5 weeks (early
           <description>9 PCOS women</description>
         </group>
       </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="9"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
       <measure_list>
-        <measure>
-          <title>Number of Participants</title>
-          <units>participants</units>
-          <param>Number</param>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="9"/>
-              </measurement_list>
-            </category>
-          </category_list>
-        </measure>
         <measure>
           <title>Age</title>
           <units>years</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="26" spread="1.2"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="26" spread="1.2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Gender</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Female</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="9"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Male</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Race (NIH/OMB)</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>American Indian or Alaska Native</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Asian</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Native Hawaiian or Other Pacific Islander</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Black or African American</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>White</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="7"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>More than one race</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Unknown or Not Reported</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>American Indian or Alaska Native</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Asian</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Native Hawaiian or Other Pacific Islander</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Black or African American</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>White</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>More than one race</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Unknown or Not Reported</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Region of Enrollment</title>
           <description>San Diego</description>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>United States</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="9"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>United States</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Phase I - LH, FSH</title>
           <units>IU/L</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <sub_title>LH</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="9.5" spread="4.04"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>FSH</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="5.1" spread="1.03"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>LH</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="9.5" spread="4.04"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>FSH</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5.1" spread="1.03"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Phase I - Testosterone, Androstenedione, 17-OH Progesterone</title>
           <units>nmol/L</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <sub_title>Testosterone</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1.34" spread="0.3"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Androstenedione</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="5.29" spread="1.3"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>17-OH Progesterone</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="47.3" spread="24.6"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Testosterone</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1.34" spread="0.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Androstenedione</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5.29" spread="1.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>17-OH Progesterone</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="47.3" spread="24.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Phase I - Estradiol</title>
           <units>pmol/L</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="180.4" spread="25.5"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="180.4" spread="25.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Phase II - LH, FSH</title>
           <units>IU/L</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <sub_title>LH</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="8.6" spread="4.4"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>FSH</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="4.7" spread="1.3"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>LH</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="8.6" spread="4.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>FSH</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="4.7" spread="1.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Phase II - Testosterone, Androstenedione, 17-OH Progesterone</title>
           <units>nmol/L</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <sub_title>Testosterone</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1.3" spread="0.4"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Androstenedione</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="5.5" spread="1.6"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>17-OH Progesterone</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="53.3" spread="43.7"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Testosterone</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1.3" spread="0.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Androstenedione</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5.5" spread="1.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>17-OH Progesterone</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="53.3" spread="43.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Phase II - Estradiol</title>
           <units>pmol/L</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="195.7" spread="97.4"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="195.7" spread="97.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
       </measure_list>
     </baseline>
@@ -530,52 +617,52 @@ The FSH stimulation test will be repeated, as described above, at 5 weeks (early
             <title>Phase II - Week 6 - 24 Hours</title>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="9"/>
-                  <measurement group_id="O2" value="9"/>
-                  <measurement group_id="O3" value="9"/>
-                  <measurement group_id="O4" value="9"/>
-                  <measurement group_id="O5" value="9"/>
-                  <measurement group_id="O6" value="9"/>
-                  <measurement group_id="O7" value="9"/>
-                  <measurement group_id="O8" value="9"/>
-                  <measurement group_id="O9" value="9"/>
-                  <measurement group_id="O10" value="9"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Estradiol During Phase I and Phase II</title>
-            <description>Estradiol (pmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
-            <units>pmol/L</units>
-            <param>Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="451.7" spread="131"/>
-                  <measurement group_id="O2" value="116" spread="27.8"/>
-                  <measurement group_id="O3" value="247.2" spread="105.5"/>
-                  <measurement group_id="O4" value="131.4" spread="20.2"/>
-                  <measurement group_id="O5" value="347.5" spread="83.9"/>
-                  <measurement group_id="O6" value="401.4" spread="103.4"/>
-                  <measurement group_id="O7" value="57.9" spread="27"/>
-                  <measurement group_id="O8" value="91.3" spread="80.8"/>
-                  <measurement group_id="O9" value="66.5" spread="36.6"/>
-                  <measurement group_id="O10" value="126.6" spread="117.7"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Estradiol During Phase I and Phase II</title>
+          <description>Estradiol (pmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+          <population>Phase I and Phase II - PCOS patients.</population>
+          <units>pmol/L</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="9"/>
+                <count group_id="O2" value="9"/>
+                <count group_id="O3" value="9"/>
+                <count group_id="O4" value="9"/>
+                <count group_id="O5" value="9"/>
+                <count group_id="O6" value="9"/>
+                <count group_id="O7" value="9"/>
+                <count group_id="O8" value="9"/>
+                <count group_id="O9" value="9"/>
+                <count group_id="O10" value="9"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="451.7" spread="131"/>
+                    <measurement group_id="O2" value="116" spread="27.8"/>
+                    <measurement group_id="O3" value="247.2" spread="105.5"/>
+                    <measurement group_id="O4" value="131.4" spread="20.2"/>
+                    <measurement group_id="O5" value="347.5" spread="83.9"/>
+                    <measurement group_id="O6" value="401.4" spread="103.4"/>
+                    <measurement group_id="O7" value="57.9" spread="27"/>
+                    <measurement group_id="O8" value="91.3" spread="80.8"/>
+                    <measurement group_id="O9" value="66.5" spread="36.6"/>
+                    <measurement group_id="O10" value="126.6" spread="117.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Primary</type>
@@ -616,52 +703,52 @@ The FSH stimulation test will be repeated, as described above, at 5 weeks (early
             <title>Phase II - Week 6 - 24 Hours</title>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="9"/>
-                  <measurement group_id="O2" value="9"/>
-                  <measurement group_id="O3" value="9"/>
-                  <measurement group_id="O4" value="9"/>
-                  <measurement group_id="O5" value="9"/>
-                  <measurement group_id="O6" value="9"/>
-                  <measurement group_id="O7" value="9"/>
-                  <measurement group_id="O8" value="9"/>
-                  <measurement group_id="O9" value="9"/>
-                  <measurement group_id="O10" value="9"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Inhibin B During Phase I and Phase II</title>
-            <description>Inhibin B (ng/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
-            <units>ng/L</units>
-            <param>Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="420.6" spread="120"/>
-                  <measurement group_id="O2" value="87.9" spread="76.5"/>
-                  <measurement group_id="O3" value="395.1" spread="186.5"/>
-                  <measurement group_id="O4" value="85.2" spread="40.2"/>
-                  <measurement group_id="O5" value="445.5" spread="169"/>
-                  <measurement group_id="O6" value="390" spread="142.4"/>
-                  <measurement group_id="O7" value="165.2" spread="202.7"/>
-                  <measurement group_id="O8" value="340" spread="309"/>
-                  <measurement group_id="O9" value="184.3" spread="192.1"/>
-                  <measurement group_id="O10" value="427.3" spread="260"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Inhibin B During Phase I and Phase II</title>
+          <description>Inhibin B (ng/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+          <population>Phase I and Phase II - PCOS patients.</population>
+          <units>ng/L</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="9"/>
+                <count group_id="O2" value="9"/>
+                <count group_id="O3" value="9"/>
+                <count group_id="O4" value="9"/>
+                <count group_id="O5" value="9"/>
+                <count group_id="O6" value="9"/>
+                <count group_id="O7" value="9"/>
+                <count group_id="O8" value="9"/>
+                <count group_id="O9" value="9"/>
+                <count group_id="O10" value="9"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="420.6" spread="120"/>
+                    <measurement group_id="O2" value="87.9" spread="76.5"/>
+                    <measurement group_id="O3" value="395.1" spread="186.5"/>
+                    <measurement group_id="O4" value="85.2" spread="40.2"/>
+                    <measurement group_id="O5" value="445.5" spread="169"/>
+                    <measurement group_id="O6" value="390" spread="142.4"/>
+                    <measurement group_id="O7" value="165.2" spread="202.7"/>
+                    <measurement group_id="O8" value="340" spread="309"/>
+                    <measurement group_id="O9" value="184.3" spread="192.1"/>
+                    <measurement group_id="O10" value="427.3" spread="260"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Primary</type>
@@ -702,68 +789,72 @@ The FSH stimulation test will be repeated, as described above, at 5 weeks (early
             <title>Phase II - Week 6 - 24 Hours</title>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="9"/>
-                  <measurement group_id="O2" value="9"/>
-                  <measurement group_id="O3" value="9"/>
-                  <measurement group_id="O4" value="9"/>
-                  <measurement group_id="O5" value="9"/>
-                  <measurement group_id="O6" value="9"/>
-                  <measurement group_id="O7" value="9"/>
-                  <measurement group_id="O8" value="9"/>
-                  <measurement group_id="O9" value="9"/>
-                  <measurement group_id="O10" value="9"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>LH and FSH During Phase I and Phase II</title>
-            <description>LH and FSH (IU/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
-            <units>IU/L</units>
-            <param>Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <sub_title>LH</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="NA">Stimulated value not measured.</measurement>
-                  <measurement group_id="O2" value="0.6" spread="0.8"/>
-                  <measurement group_id="O3" value="NA">Stimulated value not measured.</measurement>
-                  <measurement group_id="O4" value="2.0" spread="2.0"/>
-                  <measurement group_id="O5" value="NA">Stimulated value not measured.</measurement>
-                  <measurement group_id="O6" value="NA">Stimulated value not measured.</measurement>
-                  <measurement group_id="O7" value="1.22" spread="1.8"/>
-                  <measurement group_id="O8" value="NA">Stimulated value not measured.</measurement>
-                  <measurement group_id="O9" value="3.6" spread="3.9"/>
-                  <measurement group_id="O10" value="NA">Stimulated value not measured.</measurement>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>FSH</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="NA">Stimulated value not measured.</measurement>
-                  <measurement group_id="O2" value="3.5" spread="1.2"/>
-                  <measurement group_id="O3" value="NA">Stimulated value not measured.</measurement>
-                  <measurement group_id="O4" value="4.3" spread="0.9"/>
-                  <measurement group_id="O5" value="NA">Stimulated value not measured.</measurement>
-                  <measurement group_id="O6" value="NA">Stimulated value not measured.</measurement>
-                  <measurement group_id="O7" value="8.0" spread="2.6"/>
-                  <measurement group_id="O8" value="NA">Stimulated value not measured.</measurement>
-                  <measurement group_id="O9" value="9.3" spread="3.1"/>
-                  <measurement group_id="O10" value="NA">Stimulated value not measured.</measurement>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>LH and FSH During Phase I and Phase II</title>
+          <description>LH and FSH (IU/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+          <population>Phase I and Phase II - PCOS patients.</population>
+          <units>IU/L</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="9"/>
+                <count group_id="O2" value="9"/>
+                <count group_id="O3" value="9"/>
+                <count group_id="O4" value="9"/>
+                <count group_id="O5" value="9"/>
+                <count group_id="O6" value="9"/>
+                <count group_id="O7" value="9"/>
+                <count group_id="O8" value="9"/>
+                <count group_id="O9" value="9"/>
+                <count group_id="O10" value="9"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>LH</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="NA">Stimulated value not measured.</measurement>
+                    <measurement group_id="O2" value="0.6" spread="0.8"/>
+                    <measurement group_id="O3" value="NA">Stimulated value not measured.</measurement>
+                    <measurement group_id="O4" value="2.0" spread="2.0"/>
+                    <measurement group_id="O5" value="NA">Stimulated value not measured.</measurement>
+                    <measurement group_id="O6" value="NA">Stimulated value not measured.</measurement>
+                    <measurement group_id="O7" value="1.22" spread="1.8"/>
+                    <measurement group_id="O8" value="NA">Stimulated value not measured.</measurement>
+                    <measurement group_id="O9" value="3.6" spread="3.9"/>
+                    <measurement group_id="O10" value="NA">Stimulated value not measured.</measurement>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>FSH</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="NA">Stimulated value not measured.</measurement>
+                    <measurement group_id="O2" value="3.5" spread="1.2"/>
+                    <measurement group_id="O3" value="NA">Stimulated value not measured.</measurement>
+                    <measurement group_id="O4" value="4.3" spread="0.9"/>
+                    <measurement group_id="O5" value="NA">Stimulated value not measured.</measurement>
+                    <measurement group_id="O6" value="NA">Stimulated value not measured.</measurement>
+                    <measurement group_id="O7" value="8.0" spread="2.6"/>
+                    <measurement group_id="O8" value="NA">Stimulated value not measured.</measurement>
+                    <measurement group_id="O9" value="9.3" spread="3.1"/>
+                    <measurement group_id="O10" value="NA">Stimulated value not measured.</measurement>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Primary</type>
@@ -804,83 +895,91 @@ The FSH stimulation test will be repeated, as described above, at 5 weeks (early
             <title>Phase II - Week 6 - 24 Hours</title>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="9"/>
-                  <measurement group_id="O2" value="9"/>
-                  <measurement group_id="O3" value="9"/>
-                  <measurement group_id="O4" value="9"/>
-                  <measurement group_id="O5" value="9"/>
-                  <measurement group_id="O6" value="9"/>
-                  <measurement group_id="O7" value="9"/>
-                  <measurement group_id="O8" value="9"/>
-                  <measurement group_id="O9" value="9"/>
-                  <measurement group_id="O10" value="9"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Testosterone, Androstenedione and 17-OH Progesterone During Phase I and Phase II</title>
-            <description>Testosterone, Androstenedione and 17-OH Progesterone (nmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
-            <units>nmol/L</units>
-            <param>Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <sub_title>Testosterone</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O2" value="0.6" spread="0.2"/>
-                  <measurement group_id="O3" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O4" value="0.8" spread="0.4"/>
-                  <measurement group_id="O5" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O6" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O7" value="0.6" spread="0.2"/>
-                  <measurement group_id="O8" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O9" value="0.01" spread="0.44"/>
-                  <measurement group_id="O10" value="NA">Stimulated values not measured</measurement>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>Androstenedione</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O2" value="2.8" spread="0.9"/>
-                  <measurement group_id="O3" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O4" value="3.6" spread="1.0"/>
-                  <measurement group_id="O5" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O6" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O7" value="2.9" spread="0.8"/>
-                  <measurement group_id="O8" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O9" value="4.3" spread="1.9"/>
-                  <measurement group_id="O10" value="NA">Stimulated values not measured</measurement>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>17OH-Progesterone</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O2" value="32.1" spread="17.5"/>
-                  <measurement group_id="O3" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O4" value="31.1" spread="9.8"/>
-                  <measurement group_id="O5" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O6" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O7" value="24.0" spread="16.1"/>
-                  <measurement group_id="O8" value="NA">Stimulated values not measured</measurement>
-                  <measurement group_id="O9" value="37.4" spread="22.1"/>
-                  <measurement group_id="O10" value="NA">Stimulated values not measured</measurement>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Testosterone, Androstenedione and 17-OH Progesterone During Phase I and Phase II</title>
+          <description>Testosterone, Androstenedione and 17-OH Progesterone (nmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
+          <population>Phase I and Phase II - PCOS patients.</population>
+          <units>nmol/L</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="9"/>
+                <count group_id="O2" value="9"/>
+                <count group_id="O3" value="9"/>
+                <count group_id="O4" value="9"/>
+                <count group_id="O5" value="9"/>
+                <count group_id="O6" value="9"/>
+                <count group_id="O7" value="9"/>
+                <count group_id="O8" value="9"/>
+                <count group_id="O9" value="9"/>
+                <count group_id="O10" value="9"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Testosterone</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O2" value="0.6" spread="0.2"/>
+                    <measurement group_id="O3" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O4" value="0.8" spread="0.4"/>
+                    <measurement group_id="O5" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O6" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O7" value="0.6" spread="0.2"/>
+                    <measurement group_id="O8" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O9" value="0.01" spread="0.44"/>
+                    <measurement group_id="O10" value="NA">Stimulated values not measured</measurement>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Androstenedione</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O2" value="2.8" spread="0.9"/>
+                    <measurement group_id="O3" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O4" value="3.6" spread="1.0"/>
+                    <measurement group_id="O5" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O6" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O7" value="2.9" spread="0.8"/>
+                    <measurement group_id="O8" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O9" value="4.3" spread="1.9"/>
+                    <measurement group_id="O10" value="NA">Stimulated values not measured</measurement>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>17OH-Progesterone</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O2" value="32.1" spread="17.5"/>
+                    <measurement group_id="O3" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O4" value="31.1" spread="9.8"/>
+                    <measurement group_id="O5" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O6" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O7" value="24.0" spread="16.1"/>
+                    <measurement group_id="O8" value="NA">Stimulated values not measured</measurement>
+                    <measurement group_id="O9" value="37.4" spread="22.1"/>
+                    <measurement group_id="O10" value="NA">Stimulated values not measured</measurement>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
     </outcome_list>
 
