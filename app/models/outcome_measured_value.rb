@@ -3,7 +3,7 @@ class OutcomeMeasuredValue < StudyRelationship
   belongs_to :result_group, autosave: true
 
   def self.create_all_from(opts)
-    all=opts[:outcome_xml].xpath("measure_list").xpath('measure')
+    all=opts[:outcome_xml].xpath("measure")
 
     col=[]
     xml=all.pop
@@ -13,47 +13,62 @@ class OutcomeMeasuredValue < StudyRelationship
       opts[:measure_units]=xml.xpath('units').text
       opts[:param_type]=xml.xpath('param').text
       opts[:dispersion_type]=xml.xpath('dispersion').text
-      categories=xml.xpath("category_list").xpath('category')
-      category=categories.pop
-      if category.blank?
+      analyzed=xml.xpath("analyzed_list").xpath('analyzed')
+      analysis=analyzed.pop
+      while analysis
+        analysis=analyzed.pop
+      end
+
+      classes=xml.xpath("class_list").xpath('class')
+      a_class=classes.pop
+      if a_class.blank?
         col << new.create_from(opts)
       else
-          while category
-            opts[:category]=category.xpath('sub_title').text
-            measurements=category.xpath("measurement_list").xpath('measurement')
-            gr=measurements.pop
-            if gr.blank?
-              col << new.create_from(opts)
-            else
-              while gr
-                opts[:param_value]=gr.attribute('value').try(:value)
-                if opts[:param_value] == 'NA'
-                  opts[:param_value_num]=''
-                else
-                  opts[:param_value_num]=opts[:param_value]
-                end
-                opts[:dispersion_value]=gr.attribute('spread').try(:value)
-                if opts[:dispersion_value] == 'NA'
-                  opts[:dispersion_value_num]=''
-                else
-                  opts[:dispersion_value_num]=opts[:dispersion_value]
-                end
+        while a_class
+          opts[:classification]=a_class.xpath('title').text
 
-                opts[:lower_limit]=gr.attribute('lower_limit').try(:value)
-                opts[:upper_limit]=gr.attribute('upper_limit').try(:value)
-                opts[:ctgov_group_code]=gr.attribute('group_id').try(:value)
-                opts[:explanation_of_na]=gr.text
-                om = new.create_from(opts)
-                col << om
-                gr=measurements.pop
+          categories=a_class.xpath("category_list").xpath('category')
+          category=categories.pop
+          if category.blank?
+            col << new.create_from(opts)
+          else
+            while category
+              opts[:category]=category.xpath('sub_title').text
+              measurements=category.xpath("measurement_list").xpath('measurement')
+              gr=measurements.pop
+              if gr.blank?
+                col << new.create_from(opts)
+              else
+                while gr
+                  opts[:param_value]=gr.attribute('value').try(:value)
+                  if opts[:param_value] == 'NA'
+                    opts[:param_value_num]=''
+                  else
+                    opts[:param_value_num]=opts[:param_value]
+                  end
+                  opts[:dispersion_value]=gr.attribute('spread').try(:value)
+                  if opts[:dispersion_value] == 'NA'
+                    opts[:dispersion_value_num]=''
+                  else
+                    opts[:dispersion_value_num]=opts[:dispersion_value]
+                  end
+
+                  opts[:lower_limit]=gr.attribute('lower_limit').try(:value)
+                  opts[:upper_limit]=gr.attribute('upper_limit').try(:value)
+                  opts[:ctgov_group_code]=gr.attribute('group_id').try(:value)
+                  opts[:explanation_of_na]=gr.text
+                  om = new.create_from(opts)
+                  col << om
+                  gr=measurements.pop
+                end
               end
+              category=categories.pop
             end
-
-            category=categories.pop
           end
-
-       end
-       xml=all.pop
+          a_class=classes.pop
+        end
+      end
+      xml=all.pop
     end
     col
   end
@@ -65,6 +80,7 @@ class OutcomeMeasuredValue < StudyRelationship
       :title                  => get_opt('measure_title'),
       :description            => get_opt('measure_description'),
       :units                  => get_opt('measure_units'),
+      :classification         => get_opt('classification'),
       :category               => get_opt('category'),
       :param_type             => get_opt('param_type'),
       :param_value            => get_opt('param_value'),

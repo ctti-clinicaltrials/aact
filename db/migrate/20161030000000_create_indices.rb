@@ -1,5 +1,6 @@
 class CreateIndices < ActiveRecord::Migration
 
+  # If you add an index, add it to the indexes method of ClinicalTrials::Updater too.  (or find a better way)
   def change
 
     add_index :browse_conditions, :nct_id

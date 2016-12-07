@@ -3,6 +3,7 @@ class CreateResultTables < ActiveRecord::Migration
   def change
 
     create_table "baseline_measures", force: :cascade do |t|
+      t.string  "classification"
       t.string  "category"
       t.string  "title"
       t.text    "description"
@@ -78,6 +79,7 @@ class CreateResultTables < ActiveRecord::Migration
     end
 
     create_table "outcome_measured_values", force: :cascade do |t|
+      t.string  "classification"
       t.string  "category"
       t.text    "description"
       t.string  "units"
