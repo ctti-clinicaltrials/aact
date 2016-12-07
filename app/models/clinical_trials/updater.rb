@@ -36,6 +36,8 @@ module ClinicalTrials
 
     def indexes
       [
+       [:baseline_measures, :category],
+       [:baseline_measures, :classification],
        [:browse_interventions, :nct_id],
        [:overall_officials, :nct_id],
        [:responsible_parties, :nct_id],
@@ -62,6 +64,8 @@ module ClinicalTrials
        [:facilities, :country],
        [:overall_officials, :affiliation],
        [:oversight_authorities, :name],
+       [:outcome_measured_values, :category],
+       [:outcome_measured_values, :classification],
        [:responsible_parties, :organization],
        [:result_contacts, :organization],
        [:sponsors, :name],

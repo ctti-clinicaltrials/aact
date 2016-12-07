@@ -2377,6 +2377,20 @@ ALTER TABLE ONLY use_cases
 
 
 --
+-- Name: index_baseline_measures_on_category; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_baseline_measures_on_category ON baseline_measures USING btree (category);
+
+
+--
+-- Name: index_baseline_measures_on_classification; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_baseline_measures_on_classification ON baseline_measures USING btree (classification);
+
+
+--
 -- Name: index_browse_conditions_on_mesh_term; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2535,6 +2549,20 @@ CREATE INDEX index_facilities_on_name ON facilities USING btree (name);
 --
 
 CREATE INDEX index_facilities_on_state ON facilities USING btree (state);
+
+
+--
+-- Name: index_outcome_measured_values_on_category; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_measured_values_on_category ON outcome_measured_values USING btree (category);
+
+
+--
+-- Name: index_outcome_measured_values_on_classification; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_measured_values_on_classification ON outcome_measured_values USING btree (classification);
 
 
 --

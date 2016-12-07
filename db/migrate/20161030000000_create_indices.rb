@@ -1,6 +1,8 @@
 class CreateIndices < ActiveRecord::Migration
 
-  # If you add an index, add it to the indexes method of ClinicalTrials::Updater too.  (or find a better way)
+  #  DON'T FORGET.....
+  # If you add an index, add it to indexes method in ClinicalTrials::Updater.  (or find a better way)
+
   def change
 
     add_index :browse_conditions, :nct_id
@@ -10,6 +12,8 @@ class CreateIndices < ActiveRecord::Migration
     add_index :studies, :nct_id
     add_index :study_xml_records, :nct_id
 
+    add_index :baseline_measures, :category
+    add_index :baseline_measures, :classification
     add_index :browse_conditions, :mesh_term
     add_index :browse_interventions, :mesh_term
     add_index :calculated_values, :actual_duration
@@ -33,6 +37,8 @@ class CreateIndices < ActiveRecord::Migration
     add_index :facilities, :country
     add_index :overall_officials, :affiliation
     add_index :oversight_authorities, :name
+    add_index :outcome_measured_values, :category
+    add_index :outcome_measured_values, :classification
     add_index :responsible_parties, :organization
     add_index :result_contacts, :organization
     add_index :sponsors, :name
