@@ -2,15 +2,17 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.5
--- Dumped by pg_dump version 9.5.5
+-- Dumped from database version 9.6.1
+-- Dumped by pg_dump version 9.6.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -59,6 +61,7 @@ SET default_with_oids = false;
 
 CREATE TABLE baseline_measures (
     id integer NOT NULL,
+    classification character varying,
     category character varying,
     title character varying,
     description text,
@@ -1017,6 +1020,7 @@ ALTER SEQUENCE outcome_groups_id_seq OWNED BY outcome_groups.id;
 
 CREATE TABLE outcome_measured_values (
     id integer NOT NULL,
+    classification character varying,
     category character varying,
     description text,
     units character varying,
@@ -1683,329 +1687,329 @@ ALTER SEQUENCE use_cases_id_seq OWNED BY use_cases.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: baseline_measures id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY baseline_measures ALTER COLUMN id SET DEFAULT nextval('baseline_measures_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: brief_summaries id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY brief_summaries ALTER COLUMN id SET DEFAULT nextval('brief_summaries_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: browse_conditions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY browse_conditions ALTER COLUMN id SET DEFAULT nextval('browse_conditions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: browse_interventions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY browse_interventions ALTER COLUMN id SET DEFAULT nextval('browse_interventions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: calculated_values id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY calculated_values ALTER COLUMN id SET DEFAULT nextval('calculated_values_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: central_contacts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY central_contacts ALTER COLUMN id SET DEFAULT nextval('central_contacts_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: conditions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY conditions ALTER COLUMN id SET DEFAULT nextval('conditions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: countries id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY countries ALTER COLUMN id SET DEFAULT nextval('countries_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: design_group_interventions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_group_interventions ALTER COLUMN id SET DEFAULT nextval('design_group_interventions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: design_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_groups ALTER COLUMN id SET DEFAULT nextval('design_groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: design_outcomes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_outcomes ALTER COLUMN id SET DEFAULT nextval('design_outcomes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: designs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY designs ALTER COLUMN id SET DEFAULT nextval('designs_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: detailed_descriptions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY detailed_descriptions ALTER COLUMN id SET DEFAULT nextval('detailed_descriptions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: drop_withdrawals id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY drop_withdrawals ALTER COLUMN id SET DEFAULT nextval('drop_withdrawals_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: eligibilities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY eligibilities ALTER COLUMN id SET DEFAULT nextval('eligibilities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: facilities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facilities ALTER COLUMN id SET DEFAULT nextval('facilities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: facility_contacts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facility_contacts ALTER COLUMN id SET DEFAULT nextval('facility_contacts_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: facility_investigators id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facility_investigators ALTER COLUMN id SET DEFAULT nextval('facility_investigators_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id_information id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY id_information ALTER COLUMN id SET DEFAULT nextval('id_information_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: intervention_other_names id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY intervention_other_names ALTER COLUMN id SET DEFAULT nextval('intervention_other_names_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: interventions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interventions ALTER COLUMN id SET DEFAULT nextval('interventions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: keywords id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY keywords ALTER COLUMN id SET DEFAULT nextval('keywords_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: links id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY links ALTER COLUMN id SET DEFAULT nextval('links_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: load_events id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY load_events ALTER COLUMN id SET DEFAULT nextval('load_events_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: milestones id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY milestones ALTER COLUMN id SET DEFAULT nextval('milestones_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcome_analyses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_analyses ALTER COLUMN id SET DEFAULT nextval('outcome_analyses_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcome_analysis_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_analysis_groups ALTER COLUMN id SET DEFAULT nextval('outcome_analysis_groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcome_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_groups ALTER COLUMN id SET DEFAULT nextval('outcome_groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcome_measured_values id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_measured_values ALTER COLUMN id SET DEFAULT nextval('outcome_measured_values_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcomes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcomes ALTER COLUMN id SET DEFAULT nextval('outcomes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: overall_officials id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY overall_officials ALTER COLUMN id SET DEFAULT nextval('overall_officials_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: oversight_authorities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY oversight_authorities ALTER COLUMN id SET DEFAULT nextval('oversight_authorities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: participant_flows id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY participant_flows ALTER COLUMN id SET DEFAULT nextval('participant_flows_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: reported_event_overviews id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reported_event_overviews ALTER COLUMN id SET DEFAULT nextval('reported_event_overviews_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: reported_events id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reported_events ALTER COLUMN id SET DEFAULT nextval('reported_events_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: responsible_parties id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY responsible_parties ALTER COLUMN id SET DEFAULT nextval('responsible_parties_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: result_agreements id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_agreements ALTER COLUMN id SET DEFAULT nextval('result_agreements_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: result_contacts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_contacts ALTER COLUMN id SET DEFAULT nextval('result_contacts_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: result_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_groups ALTER COLUMN id SET DEFAULT nextval('result_groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sanity_checks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sanity_checks ALTER COLUMN id SET DEFAULT nextval('sanity_checks_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sponsors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sponsors ALTER COLUMN id SET DEFAULT nextval('sponsors_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: statistics id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY statistics ALTER COLUMN id SET DEFAULT nextval('statistics_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: study_references id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY study_references ALTER COLUMN id SET DEFAULT nextval('study_references_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: study_xml_records id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY study_xml_records ALTER COLUMN id SET DEFAULT nextval('study_xml_records_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: use_case_attachments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY use_case_attachments ALTER COLUMN id SET DEFAULT nextval('use_case_attachments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: use_cases id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY use_cases ALTER COLUMN id SET DEFAULT nextval('use_cases_id_seq'::regclass);
 
 
 --
--- Name: baseline_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: baseline_measures baseline_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY baseline_measures
@@ -2013,7 +2017,7 @@ ALTER TABLE ONLY baseline_measures
 
 
 --
--- Name: brief_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: brief_summaries brief_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY brief_summaries
@@ -2021,7 +2025,7 @@ ALTER TABLE ONLY brief_summaries
 
 
 --
--- Name: browse_conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: browse_conditions browse_conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY browse_conditions
@@ -2029,7 +2033,7 @@ ALTER TABLE ONLY browse_conditions
 
 
 --
--- Name: browse_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: browse_interventions browse_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY browse_interventions
@@ -2037,7 +2041,7 @@ ALTER TABLE ONLY browse_interventions
 
 
 --
--- Name: calculated_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: calculated_values calculated_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY calculated_values
@@ -2045,7 +2049,7 @@ ALTER TABLE ONLY calculated_values
 
 
 --
--- Name: central_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: central_contacts central_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY central_contacts
@@ -2053,7 +2057,7 @@ ALTER TABLE ONLY central_contacts
 
 
 --
--- Name: conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: conditions conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY conditions
@@ -2061,7 +2065,7 @@ ALTER TABLE ONLY conditions
 
 
 --
--- Name: countries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: countries countries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY countries
@@ -2069,7 +2073,7 @@ ALTER TABLE ONLY countries
 
 
 --
--- Name: design_group_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: design_group_interventions design_group_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_group_interventions
@@ -2077,7 +2081,7 @@ ALTER TABLE ONLY design_group_interventions
 
 
 --
--- Name: design_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: design_groups design_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_groups
@@ -2085,7 +2089,7 @@ ALTER TABLE ONLY design_groups
 
 
 --
--- Name: design_outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: design_outcomes design_outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_outcomes
@@ -2093,7 +2097,7 @@ ALTER TABLE ONLY design_outcomes
 
 
 --
--- Name: designs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: designs designs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY designs
@@ -2101,7 +2105,7 @@ ALTER TABLE ONLY designs
 
 
 --
--- Name: detailed_descriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: detailed_descriptions detailed_descriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY detailed_descriptions
@@ -2109,7 +2113,7 @@ ALTER TABLE ONLY detailed_descriptions
 
 
 --
--- Name: drop_withdrawals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: drop_withdrawals drop_withdrawals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY drop_withdrawals
@@ -2117,7 +2121,7 @@ ALTER TABLE ONLY drop_withdrawals
 
 
 --
--- Name: eligibilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: eligibilities eligibilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY eligibilities
@@ -2125,7 +2129,7 @@ ALTER TABLE ONLY eligibilities
 
 
 --
--- Name: facilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: facilities facilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facilities
@@ -2133,7 +2137,7 @@ ALTER TABLE ONLY facilities
 
 
 --
--- Name: facility_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: facility_contacts facility_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facility_contacts
@@ -2141,7 +2145,7 @@ ALTER TABLE ONLY facility_contacts
 
 
 --
--- Name: facility_investigators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: facility_investigators facility_investigators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facility_investigators
@@ -2149,7 +2153,7 @@ ALTER TABLE ONLY facility_investigators
 
 
 --
--- Name: id_information_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: id_information id_information_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY id_information
@@ -2157,7 +2161,7 @@ ALTER TABLE ONLY id_information
 
 
 --
--- Name: intervention_other_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: intervention_other_names intervention_other_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY intervention_other_names
@@ -2165,7 +2169,7 @@ ALTER TABLE ONLY intervention_other_names
 
 
 --
--- Name: interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: interventions interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interventions
@@ -2173,7 +2177,7 @@ ALTER TABLE ONLY interventions
 
 
 --
--- Name: keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: keywords keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY keywords
@@ -2181,7 +2185,7 @@ ALTER TABLE ONLY keywords
 
 
 --
--- Name: links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: links links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY links
@@ -2189,7 +2193,7 @@ ALTER TABLE ONLY links
 
 
 --
--- Name: load_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: load_events load_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY load_events
@@ -2197,7 +2201,7 @@ ALTER TABLE ONLY load_events
 
 
 --
--- Name: milestones_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: milestones milestones_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY milestones
@@ -2205,7 +2209,7 @@ ALTER TABLE ONLY milestones
 
 
 --
--- Name: outcome_analyses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_analyses outcome_analyses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_analyses
@@ -2213,7 +2217,7 @@ ALTER TABLE ONLY outcome_analyses
 
 
 --
--- Name: outcome_analysis_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_analysis_groups outcome_analysis_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_analysis_groups
@@ -2221,7 +2225,7 @@ ALTER TABLE ONLY outcome_analysis_groups
 
 
 --
--- Name: outcome_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_groups outcome_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_groups
@@ -2229,7 +2233,7 @@ ALTER TABLE ONLY outcome_groups
 
 
 --
--- Name: outcome_measured_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_measured_values outcome_measured_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_measured_values
@@ -2237,7 +2241,7 @@ ALTER TABLE ONLY outcome_measured_values
 
 
 --
--- Name: outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcomes outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcomes
@@ -2245,7 +2249,7 @@ ALTER TABLE ONLY outcomes
 
 
 --
--- Name: overall_officials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: overall_officials overall_officials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY overall_officials
@@ -2253,7 +2257,7 @@ ALTER TABLE ONLY overall_officials
 
 
 --
--- Name: oversight_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: oversight_authorities oversight_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY oversight_authorities
@@ -2261,7 +2265,7 @@ ALTER TABLE ONLY oversight_authorities
 
 
 --
--- Name: participant_flows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: participant_flows participant_flows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY participant_flows
@@ -2269,7 +2273,7 @@ ALTER TABLE ONLY participant_flows
 
 
 --
--- Name: reported_event_overviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reported_event_overviews reported_event_overviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reported_event_overviews
@@ -2277,7 +2281,7 @@ ALTER TABLE ONLY reported_event_overviews
 
 
 --
--- Name: reported_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reported_events reported_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reported_events
@@ -2285,7 +2289,7 @@ ALTER TABLE ONLY reported_events
 
 
 --
--- Name: responsible_parties_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: responsible_parties responsible_parties_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY responsible_parties
@@ -2293,7 +2297,7 @@ ALTER TABLE ONLY responsible_parties
 
 
 --
--- Name: result_agreements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: result_agreements result_agreements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_agreements
@@ -2301,7 +2305,7 @@ ALTER TABLE ONLY result_agreements
 
 
 --
--- Name: result_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: result_contacts result_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_contacts
@@ -2309,7 +2313,7 @@ ALTER TABLE ONLY result_contacts
 
 
 --
--- Name: result_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: result_groups result_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_groups
@@ -2317,7 +2321,7 @@ ALTER TABLE ONLY result_groups
 
 
 --
--- Name: sanity_checks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sanity_checks sanity_checks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sanity_checks
@@ -2325,7 +2329,7 @@ ALTER TABLE ONLY sanity_checks
 
 
 --
--- Name: sponsors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sponsors sponsors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sponsors
@@ -2333,7 +2337,7 @@ ALTER TABLE ONLY sponsors
 
 
 --
--- Name: statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: statistics statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY statistics
@@ -2341,7 +2345,7 @@ ALTER TABLE ONLY statistics
 
 
 --
--- Name: study_references_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: study_references study_references_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY study_references
@@ -2349,7 +2353,7 @@ ALTER TABLE ONLY study_references
 
 
 --
--- Name: study_xml_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: study_xml_records study_xml_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY study_xml_records
@@ -2357,7 +2361,7 @@ ALTER TABLE ONLY study_xml_records
 
 
 --
--- Name: use_case_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: use_case_attachments use_case_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY use_case_attachments
@@ -2365,7 +2369,7 @@ ALTER TABLE ONLY use_case_attachments
 
 
 --
--- Name: use_cases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: use_cases use_cases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY use_cases
