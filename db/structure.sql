@@ -1024,6 +1024,7 @@ CREATE TABLE outcome_measured_values (
     category character varying,
     description text,
     units character varying,
+    units_analyzed character varying,
     nct_id character varying,
     outcome_id integer,
     ctgov_group_code character varying,

@@ -9,6 +9,15 @@ describe OutcomeMeasuredValue do
     study=Study.new({xml: xml, nct_id: nct_id}).create
   end
 
+  it "saves units_analyzed" do
+    nct_id='NCT00277524'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    o=study.outcomes.select{|x|x.title=='ICD/CRT-D Device Baseline Programming Frequencies'}.first
+    m=o.outcome_measured_values.select{|x|x.title=='ICD/CRT-D Device Baseline Programming Frequencies'}.first
+    expect(m.units_analyzed).to eq('Participants')
+  end
+
   it "should belong to study as expected" do
     nct_id='NCT02389088'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
