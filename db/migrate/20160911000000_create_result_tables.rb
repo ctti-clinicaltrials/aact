@@ -2,15 +2,28 @@ class CreateResultTables < ActiveRecord::Migration
 
   def change
 
+    create_table "baselines", force: :cascade do |t|
+      t.string  "nct_id"
+      t.string  "population"
+    end
+
+    create_table "baseline_groups", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "baseline_id"
+      t.string  "ctgov_group_code"
+      t.string  "title"
+      t.string  "description"
+    end
+
     create_table "baseline_measures", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "baseline_id"
+      t.string  "ctgov_group_code"
       t.string  "classification"
       t.string  "category"
       t.string  "title"
       t.text    "description"
       t.string  "units"
-      t.string  "nct_id"
-      t.string  "population"
-      t.string  "ctgov_group_code"
       t.string  "param_type"
       t.string  "param_value"
       t.string  "dispersion_type"
@@ -18,7 +31,15 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "dispersion_lower_limit"
       t.string  "dispersion_upper_limit"
       t.string  "explanation_of_na"
-      t.integer "result_group_id"
+    end
+
+    create_table "baseline_analyses", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "baseline_id"
+      t.string  "ctgov_group_code"
+      t.string  "units"
+      t.string  "scope"
+      t.integer "count"
     end
 
     create_table "drop_withdrawals", force: :cascade do |t|
