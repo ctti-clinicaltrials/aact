@@ -42,11 +42,14 @@ class CreateIndices < ActiveRecord::Migration
     add_index :responsible_parties, :organization
     add_index :result_contacts, :organization
     add_index :sponsors, :name
+    add_index :studies, :last_known_status
+    add_index :studies, :overall_status
     add_index :studies, :phase
     add_index :studies, :primary_completion_date_type
     add_index :studies, :source
     add_index :studies, :study_type
     add_index :studies, :first_received_results_date
+    add_index :studies, :received_results_disposit_date
     add_index :study_xml_records, :created_study_at
   end
 

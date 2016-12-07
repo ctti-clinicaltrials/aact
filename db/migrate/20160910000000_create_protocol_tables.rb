@@ -213,6 +213,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string   "nlm_download_date_description"
       t.string   "study_type"
       t.string   "overall_status"
+      t.string   "last_known_status"
       t.string   "phase"
       t.string   "target_duration"
       t.integer  "enrollment"

@@ -11,6 +11,7 @@ class OutcomeMeasuredValue < StudyRelationship
       opts[:measure_title]=xml.xpath('title').text
       opts[:measure_description]=xml.xpath('description').text
       opts[:measure_units]=xml.xpath('units').text
+      opts[:units_analyzed]=xml.xpath('units_analyzed').text
       opts[:param_type]=xml.xpath('param').text
       opts[:dispersion_type]=xml.xpath('dispersion').text
       analyzed=xml.xpath("analyzed_list").xpath('analyzed')
@@ -80,6 +81,7 @@ class OutcomeMeasuredValue < StudyRelationship
       :title                  => get_opt('measure_title'),
       :description            => get_opt('measure_description'),
       :units                  => get_opt('measure_units'),
+      :units_analyzed         => get_opt('units_analyzed'),
       :classification         => get_opt('classification'),
       :category               => get_opt('category'),
       :param_type             => get_opt('param_type'),

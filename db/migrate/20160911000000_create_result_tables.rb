@@ -83,6 +83,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "category"
       t.text    "description"
       t.string  "units"
+      t.string  "units_analyzed"
       t.string  "nct_id"
       t.integer "outcome_id"
       t.string  "ctgov_group_code"
