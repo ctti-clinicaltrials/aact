@@ -192,6 +192,7 @@ class Study < ActiveRecord::Base
       :brief_title  => get('brief_title') ,
       :official_title => get('official_title'),
       :overall_status => get('overall_status'),
+      :last_known_status => get('last_known_status'),
       :phase => get('phase'),
       :target_duration => get('target_duration'),
       :enrollment => get('enrollment'),

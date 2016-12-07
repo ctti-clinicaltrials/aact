@@ -68,12 +68,15 @@ module ClinicalTrials
        [:outcome_measured_values, :classification],
        [:responsible_parties, :organization],
        [:result_contacts, :organization],
+       [:sponsors, :last_known_status],
+       [:sponsors, :overall_status],
        [:sponsors, :name],
        [:studies, :phase],
        [:studies, :primary_completion_date_type],
        [:studies, :source],
        [:studies, :study_type],
-       [:studies, :first_received_results_date]
+       [:studies, :first_received_results_date],
+       [:studies, :received_results_disposit_date]
       ]
     end
 

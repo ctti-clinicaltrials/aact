@@ -1523,6 +1523,7 @@ CREATE TABLE studies (
     nlm_download_date_description character varying,
     study_type character varying,
     overall_status character varying,
+    last_known_status character varying,
     phase character varying,
     target_duration character varying,
     enrollment integer,
@@ -2622,10 +2623,24 @@ CREATE INDEX index_studies_on_first_received_results_date ON studies USING btree
 
 
 --
+-- Name: index_studies_on_last_known_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_last_known_status ON studies USING btree (last_known_status);
+
+
+--
 -- Name: index_studies_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
+
+
+--
+-- Name: index_studies_on_overall_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_overall_status ON studies USING btree (overall_status);
 
 
 --
@@ -2640,6 +2655,13 @@ CREATE INDEX index_studies_on_phase ON studies USING btree (phase);
 --
 
 CREATE INDEX index_studies_on_primary_completion_date_type ON studies USING btree (primary_completion_date_type);
+
+
+--
+-- Name: index_studies_on_received_results_disposit_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_received_results_disposit_date ON studies USING btree (received_results_disposit_date);
 
 
 --
