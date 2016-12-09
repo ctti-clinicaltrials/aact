@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 21, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on December 07, 2016</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02654730</url>
   </required_header>
@@ -85,10 +83,15 @@
       each) on days 0, 1 and 2 to study pharmacokinetics of PQ in G6PD deficient individuals
     </textblock>
   </detailed_description>
-  <overall_status>Recruiting</overall_status>
+  <overall_status>Terminated</overall_status>
+  <last_known_status>Recruiting</last_known_status>
+  <why_stopped>
+    Enrollment took longer than anticipated; it was financially and logistically impossible to
+    recruit the final cohort (G6PDd 0.4mg/kg PQ).
+  </why_stopped>
   <start_date>December 2015</start_date>
-  <completion_date type="Anticipated">August 2016</completion_date>
-  <primary_completion_date type="Anticipated">June 2016</primary_completion_date>
+  <completion_date type="Anticipated">December 2016</completion_date>
+  <primary_completion_date type="Actual">September 2016</primary_completion_date>
   <phase>Phase 2/Phase 3</phase>
   <study_type>Interventional</study_type>
   <study_design>Allocation: Randomized, Endpoint Classification: Safety Study, Intervention Model: Parallel Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
@@ -144,7 +147,7 @@
     <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <number_of_arms>5</number_of_arms>
-  <enrollment type="Anticipated">70</enrollment>
+  <enrollment type="Actual">61</enrollment>
   <condition>Malaria</condition>
   <arm_group>
     <arm_group_label>G6PD deficient 0.25 mg/kg PQ + DHAP</arm_group_label>
@@ -168,32 +171,32 @@
   </arm_group>
   <intervention>
     <intervention_type>Drug</intervention_type>
-    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) administered to G6PD deficient individuals</intervention_name>
+    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) administered to G6PD deficient</intervention_name>
     <description>G6PD deficient participants will be treated with dihydroartemisinin-piperaquine (Eurartesim®; Sigma Tau) administered as 3 tablets (40mg PPQ, 320mg DHA) in a once daily regimen for three days</description>
     <arm_group_label>G6PD deficient DHAP only</arm_group_label>
     <other_name>Eurartesim</other_name>
   </intervention>
   <intervention>
     <intervention_type>Drug</intervention_type>
-    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.25 mg/kg primaquine administered to G6PD deficient individuals</intervention_name>
+    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.25 mg/kg primaquine administered to G6PD deficient</intervention_name>
     <description>G6PD deficient participants will be treated with dihydroartemisinin-piperaquine (Eurartesim®; Sigma Tau) administered as 3 tablets (40mg PPQ, 320mg DHA) in a once daily regimen for three days in combination with a single dose of 0.25mg/kg of primaquine on the first day of DHAP treatment.</description>
     <arm_group_label>G6PD deficient 0.25 mg/kg PQ + DHAP</arm_group_label>
   </intervention>
   <intervention>
     <intervention_type>Drug</intervention_type>
-    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.4 mg/kg primaquine administered to G6PD deficient individuals</intervention_name>
+    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.4 mg/kg primaquine administered to G6PD deficient</intervention_name>
     <description>G6PD deficient participants will be treated with dihydroartemisinin-piperaquine (Eurartesim®; Sigma Tau) administered as 3 tablets (40mg PPQ, 320mg DHA) in a once daily regimen for three days in combination with a single dose of 0.4mg/kg of primaquine on the first day of DHAP treatment.</description>
     <arm_group_label>G6PD deficient 0.4 mg/kg PQ + DHAP</arm_group_label>
   </intervention>
   <intervention>
     <intervention_type>Drug</intervention_type>
-    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.25 mg/kg primaquine administered to G6PD normal individuals</intervention_name>
+    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.25 mg/kg primaquine administered to G6PD normal</intervention_name>
     <description>G6PD normal participants will be treated with dihydroartemisinin-piperaquine (Eurartesim®; Sigma Tau) administered as 3 tablets (40mg PPQ, 320mg DHA) in a once daily regimen for three days in combination with a single dose of 0.25mg/kg of primaquine on the first day of DHAP treatment.</description>
     <arm_group_label>G6PD normal 0.25 mg/kg PQ + DHAP</arm_group_label>
   </intervention>
   <intervention>
     <intervention_type>Drug</intervention_type>
-    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.4 mg/kg primaquine administered to G6PD normal individuals</intervention_name>
+    <intervention_name>Dihydroartemisinin-piperaquine (DHAP) + 0.4 mg/kg primaquine administered to G6PD normal</intervention_name>
     <description>G6PD normal participants will be treated with dihydroartemisinin-piperaquine (Eurartesim®; Sigma Tau) administered as 3 tablets (40mg PPQ, 320mg DHA) in a once daily regimen for three days in combination with a single dose of 0.4mg/kg of primaquine on the first day of DHAP treatment.</description>
     <arm_group_label>G6PD normal 0.4 mg/kg PQ + DHAP</arm_group_label>
   </intervention>
@@ -238,16 +241,6 @@
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
   </eligibility>
-  <overall_contact>
-    <last_name>Teun Bousema, PhD</last_name>
-    <phone>+31243617574</phone>
-    <email>teun.bousema@lshtm.ac.uk</email>
-  </overall_contact>
-  <overall_contact_backup>
-    <last_name>Chris Drakeley, PhD</last_name>
-    <phone>+44 2079272289</phone>
-    <email>chris.drakeley@lshtm.ac.uk</email>
-  </overall_contact_backup>
   <location>
     <facility>
       <name>Medical Research Council Laboratories</name>
@@ -256,28 +249,16 @@
         <country>Gambia</country>
       </address>
     </facility>
-    <status>Recruiting</status>
-    <contact>
-      <last_name>Joseph Okebe, PhD</last_name>
-      <phone>+220 449 5442</phone>
-      <phone_ext>4009</phone_ext>
-      <email>jokebe@mrc.gm</email>
-    </contact>
-    <contact_backup>
-      <last_name>Umberto d'Alessandro, PhD</last_name>
-      <phone>+220 4495442/6</phone>
-      <email>udalessandro@mrc.gm</email>
-    </contact_backup>
   </location>
   <location_countries>
     <country>Gambia</country>
   </location_countries>
   <reference>
-    <citation>Eziefula AC, Pett H, Grignard L, Opus S, Kiggundu M, Kamya MR, Yeung S, Staedke SG, Bousema T, Drakeley C. Glucose-6-phosphate dehydrogenase status and risk of hemolysis in Plasmodium falciparum-infected African children receiving single-dose primaquine. Antimicrob Agents Chemother. 2014 Aug;58(8):4971-3. doi: 10.1128/AAC.02889-14. Epub 2014 Jun 9.</citation>
+    <citation>Eziefula AC, Pett H, Grignard L, Opus S, Kiggundu M, Kamya MR, Yeung S, Staedke SG, Bousema T, Drakeley C. Glucose-6-phosphate dehydrogenase status and risk of hemolysis in Plasmodium falciparum-infected African children receiving single-dose primaquine. Antimicrob Agents Chemother. 2014 Aug;58(8):4971-3. doi: 10.1128/AAC.02889-14.</citation>
     <PMID>24913169</PMID>
   </reference>
   <verification_date>January 2016</verification_date>
-  <lastchanged_date>January 11, 2016</lastchanged_date>
+  <lastchanged_date>September 8, 2016</lastchanged_date>
   <firstreceived_date>January 5, 2016</firstreceived_date>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>

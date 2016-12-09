@@ -1,0 +1,3300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on December 07, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT00277524</url>
+  </required_header>
+  <id_info>
+    <org_study_id>601</org_study_id>
+    <nct_id>NCT00277524</nct_id>
+  </id_info>
+  <brief_title>OMNI Study--Assessing Therapies in Medtronic Pacemaker, Defibrillator, and Cardiac Resynchronization Therapy Devices.</brief_title>
+  <acronym>OMNI</acronym>
+  <official_title>OMNI Study--Assessing Therapies in Medtronic Pacemaker, Defibrillator, and Cardiac Resynchronization Therapy Devices.</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Medtronic Cardiac Rhythm and Heart Failure</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Medtronic</agency>
+      <agency_class>Industry</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Medtronic Cardiac Rhythm and Heart Failure</source>
+  <oversight_info>
+    <authority>United States: Institutional Review Board</authority>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of the OMNI study is to characterize therapy and diagnostic utilization in study
+      participants implanted with study devices and to describe Implantable Cardioverter
+      Defibrillator(ICD)therapy utilization for life threatening arrhythmias in primary and
+      secondary prevention study participants. This study will assess therapies in Medtronic
+      pacemaker, defibrillator, and cardiac resynchronization therapy devices.
+
+      The first therapy is for reducing unnecessary pacing in pacemaker patients. The second
+      therapy provides pacing therapy in an attempt to stop fast or life threatening ventricular
+      arrhythmias in lieu of delivering a defibrillation shock. The third therapy is a diagnostic
+      measurement of a patient's fluid status and provides the physician information on the
+      patient's heart failure status.
+
+      The study will also assess the time to a patient's first defibrillation shock and will
+      verify that the shock was for a fast or life threatening ventricular rhythm.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      The OMNI results demonstrate the importance of Medtronic's ongoing efforts to increase
+      adoption of evidence based shock-reduction programming strategies. Longer VF NID (number of
+      intervals to detect in the VF zone) should be utilized with the Anti-tachycardia Pacing
+      (ATP) During Charging Feature. ATP during Charging allows physicians to treat with ATP
+      without delay to shock. Therefore, VF NID may be extended to allow episodes the chance to
+      self-terminate immediately to shock by use of the ATP during the charging feature.
+    </textblock>
+  </detailed_description>
+  <overall_status>Terminated</overall_status>
+  <why_stopped>
+    Ended follow-up after four years
+  </why_stopped>
+  <start_date>August 2005</start_date>
+  <completion_date type="Actual">November 2010</completion_date>
+  <primary_completion_date type="Actual">November 2010</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Observational</study_type>
+  <study_design>Time Perspective: Prospective</study_design>
+  <primary_outcome>
+    <measure>Implanted Systems Frequencies</measure>
+    <time_frame>Baseline</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Frequencies of implanted systems were measured among patients who were implanted with a device (IPT, ICD or CRT-D).</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Implantable Pulse Generator (IPG) Device Baseline Programming Frequencies.</measure>
+    <time_frame>Baseline</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Pacing mode is based on the NASPE/BPEG Generic (NBG) Pacemake coding which includes: I, the chambers paced (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); II, the chambers sensed (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); III, the mode of response (T=Triggered, I=Inhibited, D=Dual Triggered/Inhibited, O=None); IV, the programmable functions(R=Rate Modulated, C=Communicating, M=Multiprogrammable, P=Simple Programmable, O=None); V, the antitachycardia functions (O=None, P=Paced, S=Shocks, D=Dual (P&amp;S)). In addition, MVP (managed ventricular pacing) is a mode that promotes AV conduction by reducing or eliminating unnecessary RV pacing but maintains dual chamber ventricular support in the event that AV conduction is lost.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>ICD/CRT-D Device Baseline Programming Frequencies</measure>
+    <time_frame>Baseline</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>ICD/CRT-D baseline programming, pacing mode and detection. Pacing mode is based on the NASPE/BPEG Generic (NBG) Pacemake coding which includes: I, the chambers paced (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); II, the chambers sensed (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); III, the mode of response (T=Triggered, I=Inhibited, D=Dual Triggered/Inhibited, O=None); IV, the programmable functions(R=Rate Modulated, C=Communicating, M=Multiprogrammable, P=Simple Programmable, O=None); V, the antitachycardia functions (O=None, P=Paced, S=Shocks, D=Dual (P&amp;S)). In addition, MVP (managed ventricular pacing) is a mode that promotes AV conduction by reducing or eliminating unnecessary RV pacing but maintains dual chamber ventricular support in the event that AV conduction is lost.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>ICD/CRT-D Device Baseline Programming Measurements</measure>
+    <time_frame>Baseline</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>ICD/CRT-D baseline programming measurements, detection interval. Implanted Cardioverter/Defibrillator paces a patient's heart in a tachyarrhythmia prevention-pacing mode.
+Detection intervals are used to detect atrial tachyarrhythmia. Detection Intervals are programmable heart rate thresholds. R-R intervals that are less than the VT or VF detection intervals (in ms) are considered evidence of VT or VF, respectively. R-R intervals that are between the FVT and the VF detection intervals are considered evidence of FVT. Thus, these detection interval thresholds demarcate rate zones of detection. The rate zones are used to determine the type of therapy applied once detection occurs.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>AV Block Status by Device Type at 6 and 12 Months.</measure>
+    <time_frame>12 months post enrollment</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Frequencies of subject with AV block over time between ICD and Implantable Pulse Generator(IPG) study participants.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>AV Block Status by Severity of Historical AV Block</measure>
+    <time_frame>4 years post implant</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Frequencies of Subjects with AV Block Over Time by Severity of Historical AV Block</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Summary of ATP Episodes Within All Treated Episodes</measure>
+    <time_frame>4 years post enrollment</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Evaluate the utility of the Antitachycardia Pacing (ATP) During Charging feature of the device.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Compare First Shock Rate Between Medtronic &quot;PainFREE&quot; Programming and &quot;SCD-HeFT&quot; Programming in Primary Prevention Study Participants.</measure>
+    <time_frame>4 years post implant</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>First shock rate for VF and FVT zones was estimated using Kaplan-Meier method.
+OMNI &quot;PainFREE&quot; definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
+OMNI &quot;SCD-HeFT&quot; definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Frequencies of Subjects With OptiVol Trends and Disease Progression.</measure>
+    <time_frame>4 years post implant</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Estimate the correlation between OptiVol trends and disease progression.
+A subject's disease status was said to have progressed if:
+The NYHA classification number increases (example: I to II), or
+The LVEF decreases by at least 20% (relative difference) and by at least a 5% absolute difference, or
+The subject expires
+A subject who crossed OptiVol threshold since last visit was regarded as 'crossed threshold'.</description>
+  </secondary_outcome>
+  <number_of_groups>1</number_of_groups>
+  <enrollment type="Actual">3032</enrollment>
+  <condition>Tachycardia, Ventricular</condition>
+  <condition>Heart Failure, Congestive</condition>
+  <condition>Ventricular Fibrillation</condition>
+  <condition>Ventricular Dysfunction</condition>
+  <condition>Bradycardia</condition>
+  <arm_group>
+    <arm_group_label>Overall</arm_group_label>
+    <description>All patients enrolled in OMNI. Patient sub-groups include device type, history of atrial fibrillation (AF), history of investigate atrioventricular (AV) block, implant indication, and managed ventricular pacing (MVP) enabled.</description>
+  </arm_group>
+  <eligibility>
+    <study_pop>
+      <textblock>
+        Patients receiving a specified Medtronic Implantable Pulse Generator(IPG), Implantable
+        Cardioverter Defibrillator(ICD), or Cardiac Resynchronization Therapy-Defibrillator(CRT-D)
+        device where informed consent and/or authorization to use and disclose health information
+        permission has been granted.
+      </textblock>
+    </study_pop>
+    <sampling_method>Non-Probability Sample</sampling_method>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Implant of new or replacement study device. Enrollment must occur no later than 40
+             days post-implant.
+
+          -  Study participants must be 18 years of age or older.
+
+        Exclusion Criteria:
+
+          -  Study participants enrolled or intend to participate in another clinical device trial
+             during the course of this study that required specific treatment or programming.
+
+          -  Study participants unwilling and unable to comply with follow-up schedule.
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Michael O. Sweeney</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Cardiovascular Division Brigham and Womens</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Southern Arizona Health Care System</name>
+      <address>
+        <city>Tucson</city>
+        <state>Arizona</state>
+        <zip>85712-2836</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Arkansas Cardiology PA (Little Rock AR)</name>
+      <address>
+        <city>Little Rock</city>
+        <state>Arkansas</state>
+        <zip>72205-6231</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>California Heart Medical Associates</name>
+      <address>
+        <city>Fresno</city>
+        <state>California</state>
+        <zip>93720</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Apex Cardiology</name>
+      <address>
+        <city>Inglewood</city>
+        <state>California</state>
+        <zip>90301-4057</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Scripps Green Hospital Scripps Clinic Torrey Pines</name>
+      <address>
+        <city>La Jolla</city>
+        <state>California</state>
+        <zip>92037-1027</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Northern California Heart Care</name>
+      <address>
+        <city>Larkspur</city>
+        <state>California</state>
+        <zip>94939</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Mission Internal Medical Group</name>
+      <address>
+        <city>Mission Viejo</city>
+        <state>California</state>
+        <zip>92691-6384</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Orange County Heart Institute &amp; Research Center</name>
+      <address>
+        <city>Orange</city>
+        <state>California</state>
+        <zip>92868</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Foothill Cardiology</name>
+      <address>
+        <city>Pasadena</city>
+        <state>California</state>
+        <zip>91105</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Desert Cardiology Center / Desert Cardiology Medical Group Consultants</name>
+      <address>
+        <city>Rancho Mirage</city>
+        <state>California</state>
+        <zip>92270</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Brett Berman Cardiology &amp; Cardiac Electrophysiology</name>
+      <address>
+        <city>San Diego</city>
+        <state>California</state>
+        <zip>92103</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Dwain L Coggins MD FACC</name>
+      <address>
+        <city>San Jose</city>
+        <state>California</state>
+        <zip>95124</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiology Clinic of San Antonio</name>
+      <address>
+        <city>Tarzana</city>
+        <state>California</state>
+        <zip>91356</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Erol Kosar MD Inc</name>
+      <address>
+        <city>Torrance</city>
+        <state>California</state>
+        <zip>90503</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Rocky Mountain Cardiology PC</name>
+      <address>
+        <city>Boulder</city>
+        <state>Colorado</state>
+        <zip>80304</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Pikes Peak Cardiology</name>
+      <address>
+        <city>Colorado Springs</city>
+        <state>Colorado</state>
+        <zip>80909</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Daytona Heart</name>
+      <address>
+        <city>Daytona Beach</city>
+        <state>Florida</state>
+        <zip>32114</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Florida Arrhythmia Consultants</name>
+      <address>
+        <city>Fort Lauderdale</city>
+        <state>Florida</state>
+        <zip>33308</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Clark &amp; Daughtrey Medical Group PA</name>
+      <address>
+        <city>Lakeland</city>
+        <state>Florida</state>
+        <zip>33803</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Melbourne Internal Medicine Associates / Century Research Associates</name>
+      <address>
+        <city>Melbourne</city>
+        <state>Florida</state>
+        <zip>32901</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>C. Raghavan MD PA</name>
+      <address>
+        <city>Orlando</city>
+        <state>Florida</state>
+        <zip>32819</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Northwest Florida Heart Group PA</name>
+      <address>
+        <city>Pensacola</city>
+        <state>Florida</state>
+        <zip>32514</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Heart &amp; Vascular Institute of Florida</name>
+      <address>
+        <city>Safety Harbor</city>
+        <state>Florida</state>
+        <zip>34695-6604</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Florida Cardiovascular Institute PA</name>
+      <address>
+        <city>Tampa</city>
+        <state>Florida</state>
+        <zip>33609</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Interventional Cardiac Consultants PLC</name>
+      <address>
+        <city>Trinity</city>
+        <state>Florida</state>
+        <zip>34655</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Emory University Hospital</name>
+      <address>
+        <city>Atlanta</city>
+        <state>Georgia</state>
+        <zip>30322</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Northeast Georgia Heart Center PC</name>
+      <address>
+        <city>Gainesville</city>
+        <state>Georgia</state>
+        <zip>30501</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Macon Electrophysiology Associates PC</name>
+      <address>
+        <city>Macon</city>
+        <state>Georgia</state>
+        <zip>31201</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiovascular Consultants (Savannah GA)</name>
+      <address>
+        <city>Savannah</city>
+        <state>Georgia</state>
+        <zip>31404</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Edward N Shen MD Inc</name>
+      <address>
+        <city>Honolulu</city>
+        <state>Hawaii</state>
+        <zip>96813</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Midwest Cardiology PC</name>
+      <address>
+        <city>Belleville</city>
+        <state>Illinois</state>
+        <zip>62226</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiovascular Associates</name>
+      <address>
+        <city>Elk Grove Village</city>
+        <state>Illinois</state>
+        <zip>60007</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>The Heart Group PC</name>
+      <address>
+        <city>Evansville</city>
+        <state>Indiana</state>
+        <zip>47710-1656</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Saint Mary Medical Center (Community Healthcare System)</name>
+      <address>
+        <city>Hobart</city>
+        <state>Indiana</state>
+        <zip>46342</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiologists PC</name>
+      <address>
+        <city>Cedar Rapids</city>
+        <state>Iowa</state>
+        <zip>52403</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>King's Daughters Medical Center</name>
+      <address>
+        <city>Ashland</city>
+        <state>Kentucky</state>
+        <zip>41101-2843</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University Medical Associates</name>
+      <address>
+        <city>Louisville</city>
+        <state>Kentucky</state>
+        <zip>40202-1901</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiovascular Associates LLC</name>
+      <address>
+        <city>Covington</city>
+        <state>Louisiana</state>
+        <zip>70433</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiology Associates PC</name>
+      <address>
+        <city>Annapolis</city>
+        <state>Maryland</state>
+        <zip>21401</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiovascular Specialists of Frederick</name>
+      <address>
+        <city>Frederick</city>
+        <state>Maryland</state>
+        <zip>21702</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>The Heart Center</name>
+      <address>
+        <city>Glen Burnie</city>
+        <state>Maryland</state>
+        <zip>21061-5613</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Baltimore Heart Associates (Randallstown MD)</name>
+      <address>
+        <city>Randallstown</city>
+        <state>Maryland</state>
+        <zip>21133-4707</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Shady Grove Adventist Hospital</name>
+      <address>
+        <city>Rockville</city>
+        <state>Maryland</state>
+        <zip>20850</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Peninsula Cardiology Associates</name>
+      <address>
+        <city>Salisbury</city>
+        <state>Maryland</state>
+        <zip>21804</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Internal Medicine &amp; Cardiology Associates of Southeastern New England PC</name>
+      <address>
+        <city>Fall River</city>
+        <state>Massachusetts</state>
+        <zip>02720</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>New Bedford Medical Associates</name>
+      <address>
+        <city>New Bedford</city>
+        <state>Massachusetts</state>
+        <zip>02740</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>North Shore Cardiology Associates</name>
+      <address>
+        <city>Salem</city>
+        <state>Massachusetts</state>
+        <zip>01970</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of Massachusetts Memorial Medical Center</name>
+      <address>
+        <city>Worcester</city>
+        <state>Massachusetts</state>
+        <zip>01655-0002</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of Michigan Health System (UMHS) VA Medical Center</name>
+      <address>
+        <city>Ann Arbor</city>
+        <state>Michigan</state>
+        <zip>48105-2303</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Genesys Regional Medical Center</name>
+      <address>
+        <city>Grand Blanc</city>
+        <state>Michigan</state>
+        <zip>48439</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Borgess Medical Center</name>
+      <address>
+        <city>Kalamazoo</city>
+        <state>Michigan</state>
+        <zip>49048</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiology Consultants of East Michigan</name>
+      <address>
+        <city>Lapeer</city>
+        <state>Michigan</state>
+        <zip>48446</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiovascular Clinical Associates PC</name>
+      <address>
+        <city>Southfield</city>
+        <state>Michigan</state>
+        <zip>48034</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Great Lakes Heart and Vascular Institute PC</name>
+      <address>
+        <city>St. Joseph</city>
+        <state>Michigan</state>
+        <zip>49085</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of Minnesota</name>
+      <address>
+        <city>Minneapolis</city>
+        <state>Minnesota</state>
+        <zip>55455-0368</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Mayo Clinic</name>
+      <address>
+        <city>Rochester</city>
+        <state>Minnesota</state>
+        <zip>55905-0001</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Saint Paul Cardiology</name>
+      <address>
+        <city>St. Paul</city>
+        <state>Minnesota</state>
+        <zip>55102-1036</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Hattiesburg Clinic/Forrest General</name>
+      <address>
+        <city>Hattiesburg</city>
+        <state>Mississippi</state>
+        <zip>39401</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiovascular Consultants (Cape Giradeau MO)</name>
+      <address>
+        <city>Cape Girardeau</city>
+        <state>Missouri</state>
+        <zip>63703</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Saint Louis Heart &amp; Vascular PC</name>
+      <address>
+        <city>Saint Louis</city>
+        <state>Missouri</state>
+        <zip>63136-6111</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiology Consultants of Saint Louis County PC</name>
+      <address>
+        <city>St. Louis</city>
+        <state>Missouri</state>
+        <zip>63128</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Heart Consultants PC</name>
+      <address>
+        <city>Omaha</city>
+        <state>Nebraska</state>
+        <zip>68122</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Reno Heart Physicians</name>
+      <address>
+        <city>Reno</city>
+        <state>Nevada</state>
+        <zip>89503-4541</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>New Jersey Heart (Elizabeth NJ)</name>
+      <address>
+        <city>Elizabeth</city>
+        <state>New Jersey</state>
+        <zip>07202</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Englewood Hospital &amp; Medical Center</name>
+      <address>
+        <city>Englewood</city>
+        <state>New Jersey</state>
+        <zip>07631</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Saint Joseph's Regional Medical Center</name>
+      <address>
+        <city>Paterson</city>
+        <state>New Jersey</state>
+        <zip>07503</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiology Associates</name>
+      <address>
+        <city>West Paterson</city>
+        <state>New Jersey</state>
+        <zip>07424</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Albany Associates in Cardiology</name>
+      <address>
+        <city>Albany</city>
+        <state>New York</state>
+        <zip>12205-1438</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardio Research of New York Inc</name>
+      <address>
+        <city>Bayside</city>
+        <state>New York</state>
+        <zip>11361</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>New York Medical Center of Queens</name>
+      <address>
+        <city>New York City</city>
+        <state>New York</state>
+        <zip>10001</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Heartwise Cardiology</name>
+      <address>
+        <city>New York</city>
+        <state>New York</state>
+        <zip>10016</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Arrhythmia Associates of New York</name>
+      <address>
+        <city>New York</city>
+        <state>New York</state>
+        <zip>10028-1802</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University Cardiovascular Associates (UCVA)</name>
+      <address>
+        <city>Rochester</city>
+        <state>New York</state>
+        <zip>14618-2663</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiology Associates of Schenectady PC</name>
+      <address>
+        <city>Schenectady</city>
+        <state>New York</state>
+        <zip>12304</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Saint Catherine of Sienna Medical Center</name>
+      <address>
+        <city>Smithtown</city>
+        <state>New York</state>
+        <zip>11787-1628</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Sanger Heart and Vascular Institute-Charlotte</name>
+      <address>
+        <city>Charlotte</city>
+        <state>North Carolina</state>
+        <zip>28203</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Heart Rhythm Associates PLLC</name>
+      <address>
+        <city>Greenville</city>
+        <state>North Carolina</state>
+        <zip>27834</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>High Point Regional Health System</name>
+      <address>
+        <city>High Point</city>
+        <state>North Carolina</state>
+        <zip>27262</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Wake Heart &amp; Vascular Associates</name>
+      <address>
+        <city>Raleigh</city>
+        <state>North Carolina</state>
+        <zip>27610-1231</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Wilmington Cardiology LLC</name>
+      <address>
+        <city>Wilmington</city>
+        <state>North Carolina</state>
+        <zip>28403-5345</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Forsyth Medical Center</name>
+      <address>
+        <city>Winston-Salem</city>
+        <state>North Carolina</state>
+        <zip>27103</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Altru Hospital</name>
+      <address>
+        <city>Grand Forks</city>
+        <state>North Dakota</state>
+        <zip>58201-4032</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>TriHealth Good Samaritan Hos</name>
+      <address>
+        <city>Cincinnati</city>
+        <state>Ohio</state>
+        <zip>45220-2475</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>EMH Elyria Medical Center</name>
+      <address>
+        <city>Elyria</city>
+        <state>Ohio</state>
+        <zip>44035</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Heart Care Inc</name>
+      <address>
+        <city>Gahanna</city>
+        <state>Ohio</state>
+        <zip>43230</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Stark Medical Specialties Inc</name>
+      <address>
+        <city>Massillon</city>
+        <state>Ohio</state>
+        <zip>44646</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Ohio Institute of Cardiac Care Inc</name>
+      <address>
+        <city>Springfield</city>
+        <state>Ohio</state>
+        <zip>45504</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>The Toledo Clinic</name>
+      <address>
+        <city>Toledo</city>
+        <state>Ohio</state>
+        <zip>43623-4231</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Bluestem Cardiology PC</name>
+      <address>
+        <city>Bartlesville</city>
+        <state>Oklahoma</state>
+        <zip>74006</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Heart Consultants</name>
+      <address>
+        <city>Midwest City</city>
+        <state>Oklahoma</state>
+        <zip>73110</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Terrance Khastgir MD PC</name>
+      <address>
+        <city>Oklahoma City</city>
+        <state>Oklahoma</state>
+        <zip>73112-4457</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Pacific Heart Associates</name>
+      <address>
+        <city>Portland</city>
+        <state>Oregon</state>
+        <zip>97227</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Altoona Regional Health Center</name>
+      <address>
+        <city>Altoona</city>
+        <state>Pennsylvania</state>
+        <zip>16601-4804</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Arrhythmia Institute</name>
+      <address>
+        <city>Newtown</city>
+        <state>Pennsylvania</state>
+        <zip>18940-1885</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiology Consultants of Philadelphia</name>
+      <address>
+        <city>Philadelphia</city>
+        <state>Pennsylvania</state>
+        <zip>19107</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Marshall-Rismiller &amp; Associates</name>
+      <address>
+        <city>Pottsville</city>
+        <state>Pennsylvania</state>
+        <zip>17901</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Columbia Heart Clinic PA</name>
+      <address>
+        <city>Columbia</city>
+        <state>South Carolina</state>
+        <zip>29203</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Pee Dee Cardiology</name>
+      <address>
+        <city>Florence</city>
+        <state>South Carolina</state>
+        <zip>29506</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Piedmont Cardiology Associates (Greenwood SC)</name>
+      <address>
+        <city>Greenwood</city>
+        <state>South Carolina</state>
+        <zip>29646</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Memphis Heart Clinic</name>
+      <address>
+        <city>Memphis</city>
+        <state>Tennessee</state>
+        <zip>38120</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>James H Quillen VA Medical Center</name>
+      <address>
+        <city>Mountain Home</city>
+        <state>Tennessee</state>
+        <zip>37604</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Amarillo Heart Group</name>
+      <address>
+        <city>Amarillo</city>
+        <state>Texas</state>
+        <zip>79106-2430</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Dallas VA Medical Center</name>
+      <address>
+        <city>Dallas</city>
+        <state>Texas</state>
+        <zip>75216</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Hall Garcia Cardiology Associates</name>
+      <address>
+        <city>Houston</city>
+        <state>Texas</state>
+        <zip>77030-2309</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Heart Clinic PLLC</name>
+      <address>
+        <city>McAllen</city>
+        <state>Texas</state>
+        <zip>78503</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Medical Center Hospital Odessa</name>
+      <address>
+        <city>Odessa</city>
+        <state>Texas</state>
+        <zip>76761</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiology Clinic of San Antonio</name>
+      <address>
+        <city>San Antonio</city>
+        <state>Texas</state>
+        <zip>78229</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Cardiovascular Associates of East Texas PA</name>
+      <address>
+        <city>Tyler</city>
+        <state>Texas</state>
+        <zip>75701</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Utah Cardiology (Ogden UT)</name>
+      <address>
+        <city>Ogden</city>
+        <state>Utah</state>
+        <zip>84405-7420</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Virginia Cardiovascular Specialists PC</name>
+      <address>
+        <city>Richmond</city>
+        <state>Virginia</state>
+        <zip>23226-1928</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>CAMC Institute Clinical Trials Center</name>
+      <address>
+        <city>Charleston</city>
+        <state>West Virginia</state>
+        <zip>25304</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Wisconsin Heart SC</name>
+      <address>
+        <city>Madison</city>
+        <state>Wisconsin</state>
+        <zip>53713-2319</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Arrhythmia Consultants of Milwaukee SC</name>
+      <address>
+        <city>Wauwatosa</city>
+        <state>Wisconsin</state>
+        <zip>53226-4362</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <reference>
+    <citation>Wathen MS, DeGroot PJ, Sweeney MO, Stark AJ, Otterness MF, Adkisson WO, Canby RC, Khalighi K, Machado C, Rubenstein DS, Volosin KJ; PainFREE Rx II Investigators.. Prospective randomized multicenter trial of empirical antitachycardia pacing versus shocks for spontaneous rapid ventricular tachycardia in patients with implantable cardioverter-defibrillators: Pacing Fast Ventricular Tachycardia Reduces Shock Therapies (PainFREE Rx II) trial results. Circulation. 2004 Oct 26;110(17):2591-6.</citation>
+    <PMID>15492306</PMID>
+  </reference>
+  <reference>
+    <citation>Alpert JS. Are data from clinical registries of any value? Eur Heart J. 2000 Sep;21(17):1399-401.</citation>
+    <PMID>10952831</PMID>
+  </reference>
+  <reference>
+    <citation>Lamas GA, Williams A. Have the results of randomized clinical trials of pacing altered the practice of cardiac pacing? J Cardiovasc Electrophysiol. 2003 Sep;14(9 Suppl):S15-9.</citation>
+    <PMID>12950512</PMID>
+  </reference>
+  <reference>
+    <citation>Bardy GH, Lee KL, Mark DB, Poole JE, Packer DL, Boineau R, Domanski M, Troutman C, Anderson J, Johnson G, McNulty SE, Clapp-Channing N, Davidson-Ray LD, Fraulo ES, Fishbein DP, Luceri RM, Ip JH; Sudden Cardiac Death in Heart Failure Trial (SCD-HeFT) Investigators.. Amiodarone or an implantable cardioverter-defibrillator for congestive heart failure. N Engl J Med. 2005 Jan 20;352(3):225-37. Erratum in: N Engl J Med. 2005 May 19;352(20):2146.</citation>
+    <PMID>15659722</PMID>
+  </reference>
+  <reference>
+    <citation>Liang KY, Zeger S. Longitudinal data analysis using generalized linear models. Biometrika, 1986, 73:13-22.</citation>
+  </reference>
+  <verification_date>May 2013</verification_date>
+  <lastchanged_date>May 21, 2013</lastchanged_date>
+  <firstreceived_date>January 12, 2006</firstreceived_date>
+  <firstreceived_results_date>July 13, 2012</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>Pacemaker</keyword>
+  <keyword>Defibrillator</keyword>
+  <keyword>Cardiac Resynchronization</keyword>
+  <keyword>Dysynchrony</keyword>
+  <keyword>Heart failure</keyword>
+  <keyword>Arrhythmia</keyword>
+  <keyword>Tachycardia</keyword>
+  <keyword>Bradycardia</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Heart Failure</mesh_term>
+    <mesh_term>Tachycardia</mesh_term>
+    <mesh_term>Ventricular Dysfunction</mesh_term>
+    <mesh_term>Bradycardia</mesh_term>
+    <mesh_term>Ventricular Fibrillation</mesh_term>
+    <mesh_term>Tachycardia, Ventricular</mesh_term>
+  </condition_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <recruitment_details>The study included 147 outpatient cardiology practices in the United States. Inclusion criteria were(1) implant of an implantable pulse generator (IPG), implantable cardioverter defibrillator (ICD) or cardiac resynchronization therapy defibrillator (CRT-D); and (2) age 18 years or older. Enrollment period was from Aug 2005 to Jun 2006.</recruitment_details>
+      <pre_assignment_details>This is a post-market prospective study. No group assignment is given. Subjects implanted with IPGs were enrolled and followed at 6 and 12 months. Subjects implanted with ICDs or CRT-Ds were enrolled and followed at six, 12, 24, 36, 48, and 60 months.</pre_assignment_details>
+      <group_list>
+        <group group_id="P1">
+          <title>Subjects With IPG</title>
+          <description>Subjects implanted with an implantable pulse generator (IPG).</description>
+        </group>
+        <group group_id="P2">
+          <title>Subjects With Single Chamber ICD</title>
+          <description>Subjects implanted with a single chamber implantable cardioverter defibrillator (ICD).</description>
+        </group>
+        <group group_id="P3">
+          <title>Subjects With Dual Chamber ICD</title>
+          <description>Subjects implanted with a dual chamber implantable cardioverter defibrillator (ICD).</description>
+        </group>
+        <group group_id="P4">
+          <title>Subjects With CRT-D</title>
+          <description>Subjects implanted with a cardiac resynchronization therapy defibrillator (CRT-D).</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="621"/>
+                <participants group_id="P2" count="324"/>
+                <participants group_id="P3" count="1088"/>
+                <participants group_id="P4" count="850"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="621"/>
+                <participants group_id="P2" count="324"/>
+                <participants group_id="P3" count="1088"/>
+                <participants group_id="P4" count="850"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="0"/>
+                <participants group_id="P3" count="0"/>
+                <participants group_id="P4" count="0"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <population>Subjects implanted with an IPG, ICD or CRT-D and age 18 years or older were eligible for the OMNI study. Clinical data and device programming at baseline from all subjects was summarized for categorical and continuous variables using descriptive statistics.</population>
+      <group_list>
+        <group group_id="B1">
+          <title>Overall</title>
+          <description>All patients enrolled in OMNI.</description>
+        </group>
+      </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="2883"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
+      <measure_list>
+        <measure>
+          <title>Age</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>&lt;=18 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Between 18 and 65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="988"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&gt;=65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1895"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="68.7" spread="12.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="907"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1976"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Race/Ethnicity, Customized</title>
+          <description>2817 subjects had information on race or ethnic origin.</description>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>American Indian</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Asian</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="38"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Black</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="335"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Hispanic</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="206"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Native Hawaiian</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>White</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2217"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Other</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Region of Enrollment</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>United States</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2883"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Weight</title>
+          <description>2781 subjects had information on weight.</description>
+          <units>lbs</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="188" spread="45.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>QRS duration</title>
+          <description>2132 subjects had information on QRS duration.</description>
+          <units>ms</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="119.9" spread="34.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>PR interval</title>
+          <description>1829 subjects had information on PR interval.</description>
+          <units>ms</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="182.6" spread="45.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>LVEF(%)</title>
+          <description>2487 subjects had information on left ventricular ejection fraction (LVEF, %).</description>
+          <units>participants</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="33.4" spread="15.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>New York Heart Association (NYHA) classification</title>
+          <description>New York Heart Association (NYHA) classification is used to classify the extent of heart failure. It has four classes: Class I (Mild), Class II (Mild), Class III (Moderate), and Class IV (Severe).</description>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>I</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="104"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>II</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="627"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>III</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="857"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>IV</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="72"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>No Heart Failure</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="600"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Missing</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Heart failure (HF) stage</title>
+          <description>This is a new classification heart failure (HF) which include four stages:
+Stage A - At high risk for HF but without structural heart disease or symptoms of HF; Stage B - Structural heart disease but without signs or symptoms of HF; Stage C - Structural heart disease with prior or current symptoms of HF; Stage D - Refractory HF requiring specialized interventions.</description>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>A</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="44"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>B</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="229"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>C</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="713"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>D</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="44"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>No HF</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="578"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>NA</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1275"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Number of patients implanted</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2882"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Implanted Systems Frequencies</title>
+        <description>Frequencies of implanted systems were measured among patients who were implanted with a device (IPT, ICD or CRT-D).</description>
+        <time_frame>Baseline</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Implanted Subjects</title>
+            <description>All patients enrolled in OMNI.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Implanted Systems Frequencies</title>
+          <description>Frequencies of implanted systems were measured among patients who were implanted with a device (IPT, ICD or CRT-D).</description>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="2882"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>EnRhythm (P1501DR)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="620"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>EnTrust AT (D154ATG)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="820"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>EnTrust VR (D154VRC)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="321"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>InSync Sentry (7297)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="30"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>InSync Sentry (7299)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="820"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Intrinsic DR (7288)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="271"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Implantable Pulse Generator (IPG) Device Baseline Programming Frequencies.</title>
+        <description>Pacing mode is based on the NASPE/BPEG Generic (NBG) Pacemake coding which includes: I, the chambers paced (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); II, the chambers sensed (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); III, the mode of response (T=Triggered, I=Inhibited, D=Dual Triggered/Inhibited, O=None); IV, the programmable functions(R=Rate Modulated, C=Communicating, M=Multiprogrammable, P=Simple Programmable, O=None); V, the antitachycardia functions (O=None, P=Paced, S=Shocks, D=Dual (P&amp;S)). In addition, MVP (managed ventricular pacing) is a mode that promotes AV conduction by reducing or eliminating unnecessary RV pacing but maintains dual chamber ventricular support in the event that AV conduction is lost.</description>
+        <time_frame>Baseline</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>IPG Group</title>
+            <description>Subjects implanted with IPG</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Implantable Pulse Generator (IPG) Device Baseline Programming Frequencies.</title>
+          <description>Pacing mode is based on the NASPE/BPEG Generic (NBG) Pacemake coding which includes: I, the chambers paced (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); II, the chambers sensed (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); III, the mode of response (T=Triggered, I=Inhibited, D=Dual Triggered/Inhibited, O=None); IV, the programmable functions(R=Rate Modulated, C=Communicating, M=Multiprogrammable, P=Simple Programmable, O=None); V, the antitachycardia functions (O=None, P=Paced, S=Shocks, D=Dual (P&amp;S)). In addition, MVP (managed ventricular pacing) is a mode that promotes AV conduction by reducing or eliminating unnecessary RV pacing but maintains dual chamber ventricular support in the event that AV conduction is lost.</description>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="620"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Pacing Mode, DDD/DDDR</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="81"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pacing Mode, DDI/DDIR</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pacing Mode, MVP_AAIR_DD</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="380"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pacing Mode, MVP_AAI_DDD</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="148"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pacing Mode, VVI/VVIR</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>ICD/CRT-D Device Baseline Programming Frequencies</title>
+        <description>ICD/CRT-D baseline programming, pacing mode and detection. Pacing mode is based on the NASPE/BPEG Generic (NBG) Pacemake coding which includes: I, the chambers paced (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); II, the chambers sensed (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); III, the mode of response (T=Triggered, I=Inhibited, D=Dual Triggered/Inhibited, O=None); IV, the programmable functions(R=Rate Modulated, C=Communicating, M=Multiprogrammable, P=Simple Programmable, O=None); V, the antitachycardia functions (O=None, P=Paced, S=Shocks, D=Dual (P&amp;S)). In addition, MVP (managed ventricular pacing) is a mode that promotes AV conduction by reducing or eliminating unnecessary RV pacing but maintains dual chamber ventricular support in the event that AV conduction is lost.</description>
+        <time_frame>Baseline</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>ICD/CRT-D Group</title>
+            <description>Subjects implanted with ICD/CRT-D</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>ICD/CRT-D Device Baseline Programming Frequencies</title>
+          <description>ICD/CRT-D baseline programming, pacing mode and detection. Pacing mode is based on the NASPE/BPEG Generic (NBG) Pacemake coding which includes: I, the chambers paced (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); II, the chambers sensed (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); III, the mode of response (T=Triggered, I=Inhibited, D=Dual Triggered/Inhibited, O=None); IV, the programmable functions(R=Rate Modulated, C=Communicating, M=Multiprogrammable, P=Simple Programmable, O=None); V, the antitachycardia functions (O=None, P=Paced, S=Shocks, D=Dual (P&amp;S)). In addition, MVP (managed ventricular pacing) is a mode that promotes AV conduction by reducing or eliminating unnecessary RV pacing but maintains dual chamber ventricular support in the event that AV conduction is lost.</description>
+          <units>participants</units>
+          <param>Number</param>
+          <units_analyzed>Participants</units_analyzed>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="2262"/>
+              </count_list>
+            </analyzed>
+            <analyzed>
+              <units>ICD/CRT-D Devices</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="2262"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Pacing Mode, DDD/DDDR</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="804"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pacing Mode, DDI/DDIR</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pacing Mode, MVP_AAIR_DD</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="525"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pacing Mode, MVP_AAI_DDD</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="481"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pacing Mode, VVI/VVIR</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="424"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>ATP Status, Before Charging</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="23"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>ATP Status, During Charging</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1089"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>ATP Status, Off</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="26"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>VF Detection Enable, On</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2234"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>VT Detection Enable, On</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1283"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>VT Detection Enable, Monitor</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="345"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>VF Initial NID, 12/16</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1176"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>VF Initial NID, 18/24</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1077"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>VF Initial NID, 24/32</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>FVT Detection On via VF zone</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="829"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>FVT Detection On via VT zone</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="27"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>AV Block Status by Device Type at 6 and 12 Months.</title>
+        <description>Frequencies of subject with AV block over time between ICD and Implantable Pulse Generator(IPG) study participants.</description>
+        <time_frame>12 months post enrollment</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>IPG (N=610)</title>
+            <description>IPG Patients with MVP enabled and follow up data available</description>
+          </group>
+          <group group_id="O2">
+            <title>ICD (N=1029)</title>
+            <description>ICD Patients with MVP enabled and follow up data available</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>AV Block Status by Device Type at 6 and 12 Months.</title>
+          <description>Frequencies of subject with AV block over time between ICD and Implantable Pulse Generator(IPG) study participants.</description>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="610"/>
+                <count group_id="O2" value="1029"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>6 Months: Subjects with MVP enabled, N</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="441" spread="12.5"/>
+                    <measurement group_id="O2" value="815"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: AV Block 1st degree</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="103"/>
+                    <measurement group_id="O2" value="167"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: AV Block 2nd degree Type I</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="11"/>
+                    <measurement group_id="O2" value="7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: AV Block 2nd degree Type II</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="19"/>
+                    <measurement group_id="O2" value="7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: AV Block 3rd degree Intermittent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="39"/>
+                    <measurement group_id="O2" value="5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: AV Block 3rd degree Persistent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="11"/>
+                    <measurement group_id="O2" value="5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: None</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="250"/>
+                    <measurement group_id="O2" value="603"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: Subjects with MVP enabled, N</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="389"/>
+                    <measurement group_id="O2" value="732"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: AV Block 1st degree</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="90"/>
+                    <measurement group_id="O2" value="159"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: AV Block 2nd degree Type I</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12"/>
+                    <measurement group_id="O2" value="7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: AV Block 2nd degree Type II</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="7"/>
+                    <measurement group_id="O2" value="7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: AV Block 3rd degree Intermittent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="30"/>
+                    <measurement group_id="O2" value="5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: AV Block 3rd degree Persistent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="14"/>
+                    <measurement group_id="O2" value="7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: None</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="216"/>
+                    <measurement group_id="O2" value="523"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>AV Block Status by Severity of Historical AV Block</title>
+        <description>Frequencies of Subjects with AV Block Over Time by Severity of Historical AV Block</description>
+        <time_frame>4 years post implant</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Patients Without History of AV Block</title>
+            <description>Patients with MVP enabled and follow up data available</description>
+          </group>
+          <group group_id="O2">
+            <title>Patients With History of AV Block</title>
+            <description>Patients with MVP enabled and follow up data available</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>AV Block Status by Severity of Historical AV Block</title>
+          <description>Frequencies of Subjects with AV Block Over Time by Severity of Historical AV Block</description>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="1098"/>
+                <count group_id="O2" value="541"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>6 Months: Subjects with MVP enabled</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="883"/>
+                    <measurement group_id="O2" value="373"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: AV Block 1st degree</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="49"/>
+                    <measurement group_id="O2" value="221"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: AV Block 2nd degree Type I</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                    <measurement group_id="O2" value="17"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: AV Block 2nd degree Type II</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                    <measurement group_id="O2" value="25"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: AV Block 3rd degree Intermittent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2"/>
+                    <measurement group_id="O2" value="42"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: AV Block 3rd degree Persistent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3"/>
+                    <measurement group_id="O2" value="13"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 Months: None</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="818"/>
+                    <measurement group_id="O2" value="35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: Subjects with MVP enabled</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="786"/>
+                    <measurement group_id="O2" value="335"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: AV Block 1st degree</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="73"/>
+                    <measurement group_id="O2" value="176"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: AV Block 2nd degree Type I</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="19"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: AV Block 2nd degree Type II</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                    <measurement group_id="O2" value="13"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: AV Block 3rd degree Intermittent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5"/>
+                    <measurement group_id="O2" value="30"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: AV Block 3rd degree Persistent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3"/>
+                    <measurement group_id="O2" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 Months: None</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="689"/>
+                    <measurement group_id="O2" value="50"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 Months: Subjects with MVP enabled</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="426"/>
+                    <measurement group_id="O2" value="146"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 Months: AV Block 1st degree</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="51"/>
+                    <measurement group_id="O2" value="95"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 Months: AV Block 2nd degree Type I</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 Months: AV Block 2nd degree Type II</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 Months: AV Block 3rd degree Intermittent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                    <measurement group_id="O2" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 Months: AV Block 3rd degree Persistent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 Months: None</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="362"/>
+                    <measurement group_id="O2" value="24"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 Months: Subjects with MVP enabled</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="324"/>
+                    <measurement group_id="O2" value="105"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 Months: AV Block 1st degree</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="58"/>
+                    <measurement group_id="O2" value="69"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 Months: AV Block 2nd degree Type I</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                    <measurement group_id="O2" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 Months: AV Block 2nd degree Type II</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 Months: AV Block 3rd degree Intermittent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 Months: AV Block 3rd degree Persistent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 Months: None</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="253"/>
+                    <measurement group_id="O2" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>48 Months: Subjects with MVP enabled</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="269"/>
+                    <measurement group_id="O2" value="92"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>48 Months: AV Block 1st degree</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="59"/>
+                    <measurement group_id="O2" value="59"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>48 Months: AV Block 2nd degree Type I</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>48 Months: AV Block 2nd degree Type II</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>48 Months: AV Block 3rd degree Intermittent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>48 Months: AV Block 3rd degree Persistent</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                    <measurement group_id="O2" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>48 Months: None</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="201"/>
+                    <measurement group_id="O2" value="17"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Summary of ATP Episodes Within All Treated Episodes</title>
+        <description>Evaluate the utility of the Antitachycardia Pacing (ATP) During Charging feature of the device.</description>
+        <time_frame>4 years post enrollment</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>ATP During Charging</title>
+            <description>Patients who had an episode and were programmed with the ATP during charging feature.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Summary of ATP Episodes Within All Treated Episodes</title>
+          <description>Evaluate the utility of the Antitachycardia Pacing (ATP) During Charging feature of the device.</description>
+          <units>Episodes</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="343"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Number of episodes analyzed from 343 participants</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1584"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Episodes with ATP attempted</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1100"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Episodes with Sucessful ATP</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="650"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Compare First Shock Rate Between Medtronic &quot;PainFREE&quot; Programming and &quot;SCD-HeFT&quot; Programming in Primary Prevention Study Participants.</title>
+        <description>First shock rate for VF and FVT zones was estimated using Kaplan-Meier method.
+OMNI “PainFREE” definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
+OMNI “SCD-HeFT” definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
+        <time_frame>4 years post implant</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>&quot;PainFREE&quot; Programming</title>
+            <description>OMNI “PainFREE” definition: programming combinations that result in ATP therapy for VT at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.</description>
+          </group>
+          <group group_id="O2">
+            <title>&quot;SCD-HeFT&quot; Programming</title>
+            <description>OMNI “SCD-HeFT” definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Compare First Shock Rate Between Medtronic &quot;PainFREE&quot; Programming and &quot;SCD-HeFT&quot; Programming in Primary Prevention Study Participants.</title>
+          <description>First shock rate for VF and FVT zones was estimated using Kaplan-Meier method.
+OMNI “PainFREE” definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
+OMNI “SCD-HeFT” definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
+          <units>rate</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="1116"/>
+                <count group_id="O2" value="462"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>At implant</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0" spread="0"/>
+                    <measurement group_id="O2" value="0" spread="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 months after implant</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.10" spread="0.009"/>
+                    <measurement group_id="O2" value="0.15" spread="0.017"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 months after implant</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.14" spread="0.011"/>
+                    <measurement group_id="O2" value="0.21" spread="0.019"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 months after implant</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.18" spread="0.013"/>
+                    <measurement group_id="O2" value="0.24" spread="0.021"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>48 months after implant</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.20" spread="0.014"/>
+                    <measurement group_id="O2" value="0.27" spread="0.023"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Frequencies of Subjects With OptiVol Trends and Disease Progression.</title>
+        <description>Estimate the correlation between OptiVol trends and disease progression.
+A subject’s disease status was said to have progressed if:
+The NYHA classification number increases (example: I to II), or
+The LVEF decreases by at least 20% (relative difference) and by at least a 5% absolute difference, or
+The subject expires
+A subject who crossed OptiVol threshold since last visit was regarded as 'crossed threshold'.</description>
+        <time_frame>4 years post implant</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>12-month Follow-up</title>
+            <description>Total subjects with disease progressed at 12 months</description>
+          </group>
+          <group group_id="O2">
+            <title>24-month Follow-up</title>
+            <description>Total subjects with disease progressed at 24 months</description>
+          </group>
+          <group group_id="O3">
+            <title>36-month Follow-up</title>
+            <description>Total subjects with disease progressed at 36 months</description>
+          </group>
+          <group group_id="O4">
+            <title>48-month Follow-up</title>
+            <description>Total subjects with disease progressed at 48 months</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Frequencies of Subjects With OptiVol Trends and Disease Progression.</title>
+          <description>Estimate the correlation between OptiVol trends and disease progression.
+A subject’s disease status was said to have progressed if:
+The NYHA classification number increases (example: I to II), or
+The LVEF decreases by at least 20% (relative difference) and by at least a 5% absolute difference, or
+The subject expires
+A subject who crossed OptiVol threshold since last visit was regarded as 'crossed threshold'.</description>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="488"/>
+                <count group_id="O2" value="375"/>
+                <count group_id="O3" value="326"/>
+                <count group_id="O4" value="257"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Disease Progressed, N</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="97"/>
+                    <measurement group_id="O2" value="95"/>
+                    <measurement group_id="O3" value="93"/>
+                    <measurement group_id="O4" value="84"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Crossed Threshold, N</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="382"/>
+                    <measurement group_id="O2" value="327"/>
+                    <measurement group_id="O3" value="287"/>
+                    <measurement group_id="O4" value="224"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>ICD/CRT-D Device Baseline Programming Measurements</title>
+        <description>ICD/CRT-D baseline programming measurements, detection interval. Implanted Cardioverter/Defibrillator paces a patient's heart in a tachyarrhythmia prevention-pacing mode.
+Detection intervals are used to detect atrial tachyarrhythmia. Detection Intervals are programmable heart rate thresholds. R-R intervals that are less than the VT or VF detection intervals (in ms) are considered evidence of VT or VF, respectively. R-R intervals that are between the FVT and the VF detection intervals are considered evidence of FVT. Thus, these detection interval thresholds demarcate rate zones of detection. The rate zones are used to determine the type of therapy applied once detection occurs.</description>
+        <time_frame>Baseline</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>ICD/CRT-D Group</title>
+            <description>Subjects implanted with Implantable Cardioverter Defibrillator, Cardiac Resynchronization Therapy-Defibrillator (ICD/CRT-D).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>ICD/CRT-D Device Baseline Programming Measurements</title>
+          <description>ICD/CRT-D baseline programming measurements, detection interval. Implanted Cardioverter/Defibrillator paces a patient's heart in a tachyarrhythmia prevention-pacing mode.
+Detection intervals are used to detect atrial tachyarrhythmia. Detection Intervals are programmable heart rate thresholds. R-R intervals that are less than the VT or VF detection intervals (in ms) are considered evidence of VT or VF, respectively. R-R intervals that are between the FVT and the VF detection intervals are considered evidence of FVT. Thus, these detection interval thresholds demarcate rate zones of detection. The rate zones are used to determine the type of therapy applied once detection occurs.</description>
+          <units>ms</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="2262"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Pace AV</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="168" spread="39.2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Sense AV</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="139" spread="40.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>FVT Detection Interval</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="260" spread="24.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>VF Detection Interval</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="314" spread="17.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>VT Detection Interval</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="383" spread="25.2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <desc>The Medtronic OMNI Study is a post-market observational study conducted in the United States (US). Adverse events were not collected as a part of the OMNI study. Sites were instructed to report applicable events in the same manner as required for any commercially available device, through the Medical Device Reporting (MDR) process.</desc>
+      <group_list>
+        <group group_id="E1">
+          <description>The Medtronic OMNI Study is a post-market observational study conducted in the United States (US). Adverse events were not collected as a part of the OMNI study. Sites were instructed to report applicable events in the same manner as required for any commercially available device, through the Medical Device Reporting (MDR) process.</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="0"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="0"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Melinda Hoey, Clinical Research Specialist</name_or_title>
+      <organization>Medtronic Cardiac Rhythm Disease Management</organization>
+      <phone>763-526-2831</phone>
+      <email>Melinda.hoey@medtronic.com</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>

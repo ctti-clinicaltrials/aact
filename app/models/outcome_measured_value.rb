@@ -1,6 +1,7 @@
 class OutcomeMeasuredValue < StudyRelationship
   belongs_to :outcome, autosave: true
   belongs_to :result_group, autosave: true
+  has_many :analyzed_outcome_measured_values, autosave: true
 
   def self.create_all_from(opts)
     all=opts[:outcome_xml].xpath("measure")
@@ -8,17 +9,13 @@ class OutcomeMeasuredValue < StudyRelationship
     col=[]
     xml=all.pop
     while xml
+      opts[:outcome_measure]=xml
       opts[:measure_title]=xml.xpath('title').text
       opts[:measure_description]=xml.xpath('description').text
       opts[:measure_units]=xml.xpath('units').text
+      opts[:units_analyzed]=xml.xpath('units_analyzed').text
       opts[:param_type]=xml.xpath('param').text
       opts[:dispersion_type]=xml.xpath('dispersion').text
-      analyzed=xml.xpath("analyzed_list").xpath('analyzed')
-      analysis=analyzed.pop
-      while analysis
-        analysis=analyzed.pop
-      end
-
       classes=xml.xpath("class_list").xpath('class')
       a_class=classes.pop
       if a_class.blank?
@@ -80,6 +77,7 @@ class OutcomeMeasuredValue < StudyRelationship
       :title                  => get_opt('measure_title'),
       :description            => get_opt('measure_description'),
       :units                  => get_opt('measure_units'),
+      :units_analyzed         => get_opt('units_analyzed'),
       :classification         => get_opt('classification'),
       :category               => get_opt('category'),
       :param_type             => get_opt('param_type'),
@@ -92,6 +90,7 @@ class OutcomeMeasuredValue < StudyRelationship
       :dispersion_upper_limit => get_opt('upper_limit'),
       :explanation_of_na      => get_opt('explanation_of_na'),
       :outcome                => get_opt('outcome'),
+      :analyzed_outcome_measured_values => AnalyzedOutcomeMeasuredValue.create_all_from(opts.merge(:outcome_measured_value=>self)),
     }
   end
 
