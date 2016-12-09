@@ -61,6 +61,19 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "period"
     end
 
+    create_table "outcomes", force: :cascade do |t|
+      t.string  "nct_id"
+      t.string  "outcome_type"
+      t.text    "title"
+      t.text    "description"
+      t.string  "measure"
+      t.text    "time_frame"
+      t.string  "safety_issue"
+      t.text    "population"
+      t.integer "participant_count"
+      t.string  "anticipated_posting_month_year"
+    end
+
     create_table "outcome_analyses", force: :cascade do |t|
       t.string  "non_inferiority"
       t.text    "non_inferiority_description"
@@ -121,17 +134,13 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "title"
     end
 
-    create_table "outcomes", force: :cascade do |t|
+    create_table "analyzed_outcome_measured_values", force: :cascade do |t|
       t.string  "nct_id"
-      t.string  "outcome_type"
-      t.text    "title"
-      t.text    "description"
-      t.string  "measure"
-      t.text    "time_frame"
-      t.string  "safety_issue"
-      t.text    "population"
-      t.integer "participant_count"
-      t.string  "anticipated_posting_month_year"
+      t.integer "outcome_measured_value_id"
+      t.string  "ctgov_group_code"
+      t.string  "scope"
+      t.string  "units"
+      t.integer "count"
     end
 
     create_table "participant_flows", force: :cascade do |t|

@@ -77,18 +77,18 @@ describe OutcomeMeasuredValue do
     expect(o.outcome_measured_values.size).to eq(2)
     o1_measured_values=o.outcome_measured_values.select{|x|x.ctgov_group_code=='O1'}
     o2_measured_values=o.outcome_measured_values.select{|x|x.ctgov_group_code=='O2'}
-    expect(o1_measured_values.first.title).to eq('LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death')
+    o1=o1_measured_values.first
+    expect(o1.title).to eq('LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death')
+    expect(o1.description).to eq('Number of participants with disease progression to a new WHO stage 4 event or death, to be analysed using time-to-event methods')
+    expect(o1.param_value).to eq('47')
+    expect(o1.analyzed_outcome_measured_values.size).to eq(2)
+    expect(o1.analyzed_outcome_measured_values.select{|x|x.ctgov_group_code=='O1'}.first.count).to eq(606)
+    expect(o1.analyzed_outcome_measured_values.select{|x|x.ctgov_group_code=='O2'}.first.count).to eq(600)
+    expect(o1.analyzed_outcome_measured_values.select{|x|x.units=='Participants'}.size).to eq(2)
+    expect(o1.analyzed_outcome_measured_values.select{|x|x.scope=='Measure'}.size).to eq(2)
+
     expect(o2_measured_values.first.title).to eq('LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death')
-    expect(o1_measured_values.first.param_value).to eq('47')
     expect(o2_measured_values.first.param_value).to eq('39')
-    #  TODO  - need to add an outcome_analzed table
-    #  These are now in the analyzed_list
-    #o1=o1_measured_values.select{|x|x.title=='Number of Participants'}.first
-    #o2=o2_measured_values.select{|x|x.title=='Number of Participants'}.first
-    #expect(o1.param_value).to eq('606')
-    #expect(o1.param_value_num).to eq(606)
-    #expect(o2.param_value).to eq('600')
-    #expect(o2.param_value_num).to eq(600)
   end
 
   it "study should have expected outcome_measured_values" do
