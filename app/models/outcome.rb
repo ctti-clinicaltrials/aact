@@ -35,7 +35,6 @@ class Outcome < StudyRelationship
       :description    => get_opt('description'),
       :time_frame     => get_opt('time_frame'),
       :safety_issue   => get_opt('safety_issue'),
-      :measure        => get_opt('measure'),
       :population     => get_opt('population'),
       :anticipated_posting_month_year  => get_opt('posting_date'),
       :outcome_groups          => OutcomeGroup.create_all_from({:outcome=>self,:groups=>opts[:groups]}),
