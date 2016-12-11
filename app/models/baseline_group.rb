@@ -1,10 +1,12 @@
 class BaselineGroup < StudyRelationship
 
   belongs_to :baseline
+  belongs_to :result_group
 
   def self.create_all_from(opts={})
     xml=opts[:xml].xpath('//baseline')
     opts[:xml]=xml
+    opts[:groups]=create_group_set(opts)
     col=[]
     all=xml.xpath("group_list").xpath('group')
     xml=all.pop
@@ -20,7 +22,7 @@ class BaselineGroup < StudyRelationship
 
   def attribs
     {
-      #:result_group => get_group(opts[:groups]),
+      :result_group => get_group(opts[:groups]),
       :ctgov_group_code => get_attribute('group_id'),
       :description => get_opt(:description),
       :title => get_opt(:title),
