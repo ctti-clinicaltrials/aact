@@ -97,6 +97,7 @@ CREATE TABLE baseline_analyses (
     id integer NOT NULL,
     nct_id character varying,
     baseline_id integer,
+    result_group_id integer,
     ctgov_group_code character varying,
     units character varying,
     scope character varying,
@@ -131,6 +132,7 @@ CREATE TABLE baseline_groups (
     id integer NOT NULL,
     nct_id character varying,
     baseline_id integer,
+    result_group_id integer,
     ctgov_group_code character varying,
     title character varying,
     description character varying
@@ -164,6 +166,7 @@ CREATE TABLE baseline_measures (
     id integer NOT NULL,
     nct_id character varying,
     baseline_id integer,
+    result_group_id integer,
     ctgov_group_code character varying,
     classification character varying,
     category character varying,
