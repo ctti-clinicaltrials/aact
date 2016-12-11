@@ -7,6 +7,9 @@ describe Baseline do
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     expect(Baseline.count).to eq(1)
+    expect(BaselineGroup.count).to eq(10)
+    expect(BaselineMeasure.count).to eq(380)
+
     expect(study.baseline.population).to eq('All participants who were randomized were included except those who were randomised in error (main enrollment: 1 child HIV-uninfected, 2 on main phase of tuberculosis treatment; cotrimoxazole secondary randomization: 2 children receiving dapsone prophylaxis not cotrimoxazole).')
     expect(study.baseline.measures.size).to eq(380);
     bm=study.baseline.measures.select{|x|x.title=='Gender'  && x.classification=='Female' && x.ctgov_group_code=='B1'}.first
@@ -20,6 +23,9 @@ describe Baseline do
     expect(bm3.explanation_of_na).to eq('Different randomized comparison');
     expect(bm3.dispersion_upper_limit).to eq(nil);
 
+    analyses=BaselineAnalysis.where('nct_id=?',nct_id)
+    expect(analyses.size).to eq(10);
+    expect(study.baseline.analyses.size).to eq(10);
     expect(study.baseline.analyses.size).to eq(10);
     ba1=study.baseline.analyses.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B1'}.first
     ba3=study.baseline.analyses.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B3'}.first
