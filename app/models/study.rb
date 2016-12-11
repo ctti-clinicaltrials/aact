@@ -72,12 +72,12 @@ class Study < ActiveRecord::Base
     update(attribs)
     groups=DesignGroup.create_all_from(opts)
     Intervention.create_all_from(opts.merge(:design_groups=>groups))
-    DetailedDescription.new.create_from(opts).save
-    Design.new.create_from(opts).save
-    Baseline.new.create_from(opts).save
-    BriefSummary.new.create_from(opts).save
+    DetailedDescription.new.create_from(opts).try(:save)
+    Design.new.create_from(opts).try(:save)
+    Baseline.new.create_from(opts).try(:save)
+    BriefSummary.new.create_from(opts).try(:save)
     Eligibility.new.create_from(opts).save
-    ParticipantFlow.new.create_from(opts).save
+    ParticipantFlow.new.create_from(opts).try(:save)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     CentralContact.create_all_from(opts)
