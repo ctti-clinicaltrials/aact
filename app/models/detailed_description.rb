@@ -1,7 +1,12 @@
 class DetailedDescription < StudyRelationship
 
   def attribs
-    {:description=>get_text('detailed_description')}
+    val=get_text('detailed_description')
+    if val.blank?
+      nil
+    else
+      {:description=>val}
+    end
   end
 
 end
