@@ -23,12 +23,21 @@ class Baseline < StudyRelationship
     baseline_measures
   end
 
+  def baseline_tag_exists?
+    !opts[:xml].xpath('//baseline').blank?
+  end
+
   def attribs
-    { :population => opts[:xml].xpath('//baseline').xpath('population').try(:text),
-      :baseline_groups    => BaselineGroup.create_all_from(opts.merge(:baseline=>self)),
-      :baseline_measures  => BaselineMeasure.create_all_from(opts.merge(:baseline=>self)),
-      :baseline_analyses  => BaselineAnalysis.create_all_from(opts.merge(:baseline=>self)),
-    }
+    if baseline_tag_exists?
+      {
+       :population => opts[:xml].xpath('//baseline').xpath('population').try(:text),
+       :baseline_groups    => BaselineGroup.create_all_from(opts.merge(:baseline=>self)),
+       :baseline_measures  => BaselineMeasure.create_all_from(opts.merge(:baseline=>self)),
+       :baseline_analyses  => BaselineAnalysis.create_all_from(opts.merge(:baseline=>self)),
+      }
+    else
+      nil
+    end
   end
 
 end

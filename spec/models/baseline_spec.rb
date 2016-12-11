@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 describe Baseline do
+  it "doesn't create baseline rows for studies that don't have <baselline> tag" do
+    nct_id='NCT00513591'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.baseline).to eq(nil)
+  end
+
   it "study should have expected baseline" do
     nct_id='NCT02028676'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -41,6 +48,19 @@ describe Baseline do
 
     expect(bg1.description).to eq('Clinically Driven Monitoring (CDM): Participants were examined by a doctor and had routine full blood count with white cell differential, lymphocyte subsets (CD4, CD8), biochemistry tests (bilirubin, urea, creatinine, aspartate aminotransferase, alanine aminotransferase) at screening, randomisation (lymphocytes only), weeks 4, 8, and 12, then every 12 weeks. Screening results were used to assess eligibility. All subsequent results were only returned if requested for clinical management (authorised by centre project leaders); haemoglobin results at week 8 were automatically returned on the basis of early anaemia in a previous adult trial as were grade 4 laboratory toxicities (protocol safety criteria). Total lymphocytes and CD4 tests were never returned for CDM participants, but for all children other investigations (including tests from the routine panels) could be requested and concomitant drugs prescribed, as clinically indicated at extra patient-initiated or scheduled visits.')
     expect(bg10.description).to eq('Total of all reporting groups')
+  end
+
+  it "study should have baselines with expected dispersion value" do
+    xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02389088.xml'))
+    nct_id='NCT02389088'
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    baseline_array=study.baseline.measures.select{|x| x.title=='Age' and x.ctgov_group_code=='B1'}
+    expect(baseline_array.size).to eq(1)
+    expect(baseline_array.first.units).to eq('years')
+    expect(baseline_array.first.param_type).to eq('Mean')
+    expect(baseline_array.first.param_value).to eq('26')
+    expect(baseline_array.first.dispersion_value).to eq('1.2')
+    expect(baseline_array.first.dispersion_type).to eq('Standard Deviation')
   end
 
 end
