@@ -1,9 +1,11 @@
 class BaselineMeasure < StudyRelationship
 
   belongs_to :baseline
+  belongs_to :result_group
 
   def self.create_all_from(opts={})
     xml=opts[:xml].xpath('//baseline')
+    opts[:groups]=create_group_set(opts)
     opts[:xml]=xml
     col=[]
     all=xml.xpath("measure_list").xpath('measure')
@@ -45,7 +47,7 @@ class BaselineMeasure < StudyRelationship
 
   def attribs
     {
-      #:result_group => get_group(opts[:groups]),
+      :result_group => get_group(opts[:groups]),
       :ctgov_group_code => gid,
       :param_type => get_opt(:param),
       :param_value => get_attribute('value'),
