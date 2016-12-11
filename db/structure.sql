@@ -235,8 +235,8 @@ ALTER SEQUENCE baselines_id_seq OWNED BY baselines.id;
 
 CREATE TABLE brief_summaries (
     id integer NOT NULL,
-    description text,
-    nct_id character varying
+    nct_id character varying,
+    description text
 );
 
 
@@ -265,8 +265,8 @@ ALTER SEQUENCE brief_summaries_id_seq OWNED BY brief_summaries.id;
 
 CREATE TABLE browse_conditions (
     id integer NOT NULL,
-    mesh_term character varying,
-    nct_id character varying
+    nct_id character varying,
+    mesh_term character varying
 );
 
 
@@ -295,8 +295,8 @@ ALTER SEQUENCE browse_conditions_id_seq OWNED BY browse_conditions.id;
 
 CREATE TABLE browse_interventions (
     id integer NOT NULL,
-    mesh_term character varying,
-    nct_id character varying
+    nct_id character varying,
+    mesh_term character varying
 );
 
 
@@ -325,20 +325,20 @@ ALTER SEQUENCE browse_interventions_id_seq OWNED BY browse_interventions.id;
 
 CREATE TABLE calculated_values (
     id integer NOT NULL,
+    nct_id character varying,
     sponsor_type character varying,
-    actual_duration integer,
-    months_to_report_results integer,
     number_of_facilities integer,
     number_of_nsae_subjects integer,
     number_of_sae_subjects integer,
-    nct_id character varying,
     registered_in_calendar_year integer,
     start_date date,
     verification_date date,
     primary_completion_date date,
     completion_date date,
     nlm_download_date date,
+    actual_duration integer,
     were_results_reported boolean,
+    months_to_report_results integer,
     has_minimum_age boolean,
     has_maximum_age boolean,
     minimum_age_num integer,
@@ -408,8 +408,8 @@ ALTER SEQUENCE central_contacts_id_seq OWNED BY central_contacts.id;
 
 CREATE TABLE conditions (
     id integer NOT NULL,
-    name character varying,
-    nct_id character varying
+    nct_id character varying,
+    name character varying
 );
 
 
@@ -438,8 +438,8 @@ ALTER SEQUENCE conditions_id_seq OWNED BY conditions.id;
 
 CREATE TABLE countries (
     id integer NOT NULL,
-    name character varying,
     nct_id character varying,
+    name character varying,
     removed boolean
 );
 
@@ -469,9 +469,9 @@ ALTER SEQUENCE countries_id_seq OWNED BY countries.id;
 
 CREATE TABLE design_group_interventions (
     id integer NOT NULL,
+    nct_id character varying,
     design_group_id integer,
-    intervention_id integer,
-    nct_id character varying
+    intervention_id integer
 );
 
 
@@ -500,10 +500,10 @@ ALTER SEQUENCE design_group_interventions_id_seq OWNED BY design_group_intervent
 
 CREATE TABLE design_groups (
     id integer NOT NULL,
-    group_type character varying,
-    description text,
     nct_id character varying,
-    title character varying
+    group_type character varying,
+    title character varying,
+    description text
 );
 
 
@@ -532,13 +532,13 @@ ALTER SEQUENCE design_groups_id_seq OWNED BY design_groups.id;
 
 CREATE TABLE design_outcomes (
     id integer NOT NULL,
+    nct_id character varying,
     outcome_type character varying,
     measure text,
     time_frame text,
     safety_issue character varying,
     population character varying,
-    description text,
-    nct_id character varying
+    description text
 );
 
 
@@ -567,15 +567,15 @@ ALTER SEQUENCE design_outcomes_id_seq OWNED BY design_outcomes.id;
 
 CREATE TABLE designs (
     id integer NOT NULL,
+    nct_id character varying,
     description text,
-    masking character varying,
     primary_purpose character varying,
     intervention_model character varying,
     endpoint_classification character varying,
     allocation character varying,
     time_perspective character varying,
     observational_model character varying,
-    nct_id character varying,
+    masking character varying,
     subject_masked boolean,
     caregiver_masked boolean,
     investigator_masked boolean,
@@ -608,8 +608,8 @@ ALTER SEQUENCE designs_id_seq OWNED BY designs.id;
 
 CREATE TABLE detailed_descriptions (
     id integer NOT NULL,
-    description text,
-    nct_id character varying
+    nct_id character varying,
+    description text
 );
 
 
@@ -638,12 +638,12 @@ ALTER SEQUENCE detailed_descriptions_id_seq OWNED BY detailed_descriptions.id;
 
 CREATE TABLE drop_withdrawals (
     id integer NOT NULL,
-    reason character varying,
-    participant_count integer,
     nct_id character varying,
-    ctgov_group_code character varying,
     result_group_id integer,
-    period character varying
+    ctgov_group_code character varying,
+    period character varying,
+    reason character varying,
+    participant_count integer
 );
 
 
@@ -672,14 +672,14 @@ ALTER SEQUENCE drop_withdrawals_id_seq OWNED BY drop_withdrawals.id;
 
 CREATE TABLE eligibilities (
     id integer NOT NULL,
+    nct_id character varying,
+    population text,
     sampling_method character varying,
     gender character varying,
     minimum_age character varying,
     maximum_age character varying,
     healthy_volunteers character varying,
-    population text,
-    criteria text,
-    nct_id character varying
+    criteria text
 );
 
 
@@ -708,13 +708,13 @@ ALTER SEQUENCE eligibilities_id_seq OWNED BY eligibilities.id;
 
 CREATE TABLE facilities (
     id integer NOT NULL,
-    name character varying,
+    nct_id character varying,
     status character varying,
+    name character varying,
     city character varying,
     state character varying,
     zip character varying,
-    country character varying,
-    nct_id character varying
+    country character varying
 );
 
 
@@ -743,12 +743,12 @@ ALTER SEQUENCE facilities_id_seq OWNED BY facilities.id;
 
 CREATE TABLE facility_contacts (
     id integer NOT NULL,
-    name character varying,
-    phone character varying,
-    email character varying,
-    contact_type character varying,
     nct_id character varying,
-    facility_id integer
+    facility_id integer,
+    contact_type character varying,
+    name character varying,
+    email character varying,
+    phone character varying
 );
 
 
@@ -777,10 +777,10 @@ ALTER SEQUENCE facility_contacts_id_seq OWNED BY facility_contacts.id;
 
 CREATE TABLE facility_investigators (
     id integer NOT NULL,
-    name character varying,
-    role character varying,
     nct_id character varying,
-    facility_id integer
+    facility_id integer,
+    role character varying,
+    name character varying
 );
 
 
@@ -840,9 +840,9 @@ ALTER SEQUENCE id_information_id_seq OWNED BY id_information.id;
 
 CREATE TABLE intervention_other_names (
     id integer NOT NULL,
-    name character varying,
     nct_id character varying,
-    intervention_id integer
+    intervention_id integer,
+    name character varying
 );
 
 
@@ -871,10 +871,10 @@ ALTER SEQUENCE intervention_other_names_id_seq OWNED BY intervention_other_names
 
 CREATE TABLE interventions (
     id integer NOT NULL,
+    nct_id character varying,
     intervention_type character varying,
     name character varying,
-    description text,
-    nct_id character varying
+    description text
 );
 
 
@@ -903,8 +903,8 @@ ALTER SEQUENCE interventions_id_seq OWNED BY interventions.id;
 
 CREATE TABLE keywords (
     id integer NOT NULL,
-    name character varying,
-    nct_id character varying
+    nct_id character varying,
+    name character varying
 );
 
 
@@ -933,9 +933,9 @@ ALTER SEQUENCE keywords_id_seq OWNED BY keywords.id;
 
 CREATE TABLE links (
     id integer NOT NULL,
-    description text,
     nct_id character varying,
-    url character varying
+    url character varying,
+    description text
 );
 
 
@@ -1002,13 +1002,13 @@ ALTER SEQUENCE load_events_id_seq OWNED BY load_events.id;
 
 CREATE TABLE milestones (
     id integer NOT NULL,
-    title character varying,
-    description text,
-    participant_count integer,
     nct_id character varying,
-    ctgov_group_code character varying,
     result_group_id integer,
-    period character varying
+    ctgov_group_code character varying,
+    title character varying,
+    period character varying,
+    description text,
+    participant_count integer
 );
 
 
@@ -1037,26 +1037,26 @@ ALTER SEQUENCE milestones_id_seq OWNED BY milestones.id;
 
 CREATE TABLE outcome_analyses (
     id integer NOT NULL,
+    nct_id character varying,
+    outcome_id integer,
     non_inferiority character varying,
     non_inferiority_description text,
-    p_value numeric,
     param_type character varying,
     param_value numeric,
     dispersion_type character varying,
     dispersion_value numeric,
+    p_value numeric,
     ci_n_sides character varying,
+    ci_percent numeric,
     ci_lower_limit numeric,
     ci_upper_limit numeric,
-    method character varying,
-    description text,
-    method_description text,
-    estimate_description text,
-    nct_id character varying,
-    outcome_id integer,
-    groups_description character varying,
-    ci_percent numeric,
+    ci_upper_limit_na_comment character varying,
     p_value_description character varying,
-    ci_upper_limit_na_comment character varying
+    method character varying,
+    method_description text,
+    description text,
+    estimate_description text,
+    groups_description character varying
 );
 
 
@@ -1085,10 +1085,10 @@ ALTER SEQUENCE outcome_analyses_id_seq OWNED BY outcome_analyses.id;
 
 CREATE TABLE outcome_analysis_groups (
     id integer NOT NULL,
-    ctgov_group_code character varying,
-    result_group_id integer,
+    nct_id character varying,
     outcome_analysis_id integer,
-    nct_id character varying
+    result_group_id integer,
+    ctgov_group_code character varying
 );
 
 
@@ -1117,11 +1117,11 @@ ALTER SEQUENCE outcome_analysis_groups_id_seq OWNED BY outcome_analysis_groups.i
 
 CREATE TABLE outcome_groups (
     id integer NOT NULL,
-    ctgov_group_code character varying,
-    participant_count integer,
-    result_group_id integer,
+    nct_id character varying,
     outcome_id integer,
-    nct_id character varying
+    result_group_id integer,
+    ctgov_group_code character varying,
+    participant_count integer
 );
 
 
@@ -1150,25 +1150,25 @@ ALTER SEQUENCE outcome_groups_id_seq OWNED BY outcome_groups.id;
 
 CREATE TABLE outcome_measured_values (
     id integer NOT NULL,
-    classification character varying,
-    category character varying,
-    description text,
-    units character varying,
-    units_analyzed character varying,
     nct_id character varying,
     outcome_id integer,
-    ctgov_group_code character varying,
     result_group_id integer,
+    ctgov_group_code character varying,
+    classification character varying,
+    category character varying,
+    title character varying,
+    description text,
+    param_value character varying,
+    param_value_num numeric,
+    units character varying,
+    units_analyzed character varying,
     param_type character varying,
     dispersion_type character varying,
     dispersion_value character varying,
-    explanation_of_na text,
+    dispersion_value_num numeric,
     dispersion_lower_limit numeric,
     dispersion_upper_limit numeric,
-    param_value character varying,
-    param_value_num numeric,
-    dispersion_value_num numeric,
-    title character varying
+    explanation_of_na text
 );
 
 
@@ -1236,8 +1236,8 @@ ALTER SEQUENCE outcomes_id_seq OWNED BY outcomes.id;
 CREATE TABLE overall_officials (
     id integer NOT NULL,
     nct_id character varying,
-    name character varying,
     role character varying,
+    name character varying,
     affiliation character varying
 );
 
@@ -1360,21 +1360,21 @@ ALTER SEQUENCE reported_event_overviews_id_seq OWNED BY reported_event_overviews
 CREATE TABLE reported_events (
     id integer NOT NULL,
     nct_id character varying,
-    description text,
+    result_group_id integer,
+    ctgov_group_code character varying,
     time_frame text,
     event_type character varying,
     default_vocab character varying,
     default_assessment character varying,
     subjects_affected integer,
     subjects_at_risk integer,
+    description text,
     event_count integer,
-    ctgov_group_code character varying,
     organ_system character varying,
     adverse_event_term character varying,
     frequency_threshold integer,
     vocab character varying,
-    assessment character varying,
-    result_group_id integer
+    assessment character varying
 );
 
 
@@ -1403,12 +1403,12 @@ ALTER SEQUENCE reported_events_id_seq OWNED BY reported_events.id;
 
 CREATE TABLE responsible_parties (
     id integer NOT NULL,
+    nct_id character varying,
     responsible_party_type character varying,
-    affiliation text,
     name character varying,
     title character varying,
-    nct_id character varying,
-    organization character varying
+    organization character varying,
+    affiliation text
 );
 
 
@@ -1437,9 +1437,9 @@ ALTER SEQUENCE responsible_parties_id_seq OWNED BY responsible_parties.id;
 
 CREATE TABLE result_agreements (
     id integer NOT NULL,
+    nct_id character varying,
     pi_employee character varying,
-    agreement text,
-    nct_id character varying
+    agreement text
 );
 
 
@@ -1468,11 +1468,11 @@ ALTER SEQUENCE result_agreements_id_seq OWNED BY result_agreements.id;
 
 CREATE TABLE result_contacts (
     id integer NOT NULL,
-    organization character varying,
-    phone character varying,
-    email character varying,
     nct_id character varying,
-    name character varying
+    organization character varying,
+    name character varying,
+    phone character varying,
+    email character varying
 );
 
 
@@ -1501,12 +1501,12 @@ ALTER SEQUENCE result_contacts_id_seq OWNED BY result_contacts.id;
 
 CREATE TABLE result_groups (
     id integer NOT NULL,
-    title character varying,
-    description text,
-    participant_count integer,
     nct_id character varying,
     ctgov_group_code character varying,
-    result_type character varying
+    result_type character varying,
+    title character varying,
+    description text,
+    participant_count integer
 );
 
 
@@ -1575,8 +1575,8 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE sponsors (
     id integer NOT NULL,
-    agency_class character varying,
     nct_id character varying,
+    agency_class character varying,
     lead_or_collaborator character varying,
     name character varying
 );
@@ -1641,6 +1641,7 @@ ALTER SEQUENCE statistics_id_seq OWNED BY statistics.id;
 
 CREATE TABLE studies (
     nct_id character varying,
+    nlm_download_date_description character varying,
     first_received_date date,
     last_changed_date date,
     first_received_results_date date,
@@ -1648,21 +1649,21 @@ CREATE TABLE studies (
     start_month_year character varying,
     verification_month_year character varying,
     completion_month_year character varying,
-    primary_completion_month_year character varying,
     completion_date_type character varying,
+    primary_completion_month_year character varying,
     primary_completion_date_type character varying,
-    nlm_download_date_description character varying,
+    target_duration character varying,
     study_type character varying,
+    acronym character varying,
+    brief_title text,
+    official_title text,
     overall_status character varying,
     last_known_status character varying,
     phase character varying,
-    target_duration character varying,
     enrollment integer,
     enrollment_type character varying,
     source character varying,
-    biospec_retention character varying,
     limitations_and_caveats character varying,
-    acronym character varying,
     number_of_arms integer,
     number_of_groups integer,
     why_stopped character varying,
@@ -1670,8 +1671,7 @@ CREATE TABLE studies (
     has_dmc boolean,
     is_section_801 boolean,
     is_fda_regulated boolean,
-    brief_title text,
-    official_title text,
+    biospec_retention character varying,
     biospec_description text,
     plan_to_share_ipd character varying,
     plan_to_share_ipd_description character varying,
@@ -1686,10 +1686,10 @@ CREATE TABLE studies (
 
 CREATE TABLE study_references (
     id integer NOT NULL,
-    citation text,
+    nct_id character varying,
     pmid character varying,
     reference_type character varying,
-    nct_id character varying
+    citation text
 );
 
 

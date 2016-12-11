@@ -70,7 +70,7 @@ class StudyRelationship < ActiveRecord::Base
     @opts = opts
     @xml = opts[:xml] || opts
     self.nct_id=opts[:nct_id]
-    assign_attributes(attribs) if !attribs.blank?
+    assign_attributes(attribs) #if !attribs.blank?
     self
   end
 
