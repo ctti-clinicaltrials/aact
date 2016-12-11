@@ -66,7 +66,6 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "outcome_type"
       t.text    "title"
       t.text    "description"
-      t.string  "measure"
       t.text    "time_frame"
       t.string  "safety_issue"
       t.text    "population"
