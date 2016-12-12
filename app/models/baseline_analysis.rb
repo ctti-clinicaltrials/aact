@@ -4,9 +4,8 @@ class BaselineAnalysis < StudyRelationship
   belongs_to :result_group
 
   def self.create_all_from(opts={})
-    xml=opts[:xml].xpath('//baseline')
-    opts[:xml]=xml
-    opts[:groups]=create_group_set(opts)
+    original_xml=opts[:xml]
+    xml=opts[:xml]
     col=[]
     all=xml.xpath("analyzed_list").xpath('analyzed')
     xml=all.pop
@@ -22,6 +21,7 @@ class BaselineAnalysis < StudyRelationship
       end
       xml=all.pop
     end
+    opts[:xml]=original_xml
     col.flatten.each{|x|x.save!}
   end
 
