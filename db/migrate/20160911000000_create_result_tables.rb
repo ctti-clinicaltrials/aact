@@ -151,12 +151,6 @@ class CreateResultTables < ActiveRecord::Migration
       t.text   "pre_assignment_details"
     end
 
-    create_table "reported_event_overviews", force: :cascade do |t|
-      t.string "nct_id"
-      t.string "time_frame"
-      t.text   "description"
-    end
-
     create_table "reported_events", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
