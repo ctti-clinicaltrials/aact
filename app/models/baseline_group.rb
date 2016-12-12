@@ -6,6 +6,7 @@ class BaselineGroup < StudyRelationship
   def self.create_all_from(opts={})
     xml=opts[:xml].xpath('//baseline')
     opts[:xml]=xml
+    opts[:result_type]='Baseline'
     opts[:groups]=create_group_set(opts)
     col=[]
     all=xml.xpath("group_list").xpath('group')
