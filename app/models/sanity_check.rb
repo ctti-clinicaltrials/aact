@@ -27,11 +27,14 @@ class SanityCheck < ActiveRecord::Base
 
   def generate_column_width_stats(table_name)
     blacklist = %w(
-        search_results
-        calculated_values
+        schema_migrations
+        load_events
+        sanity_checks
+        statistics
+        study_xml_records
         use_cases
-    )
-
+        use_case_attachments
+      )
     return if blacklist.include?(table_name)
 
     column_names = @connection.execute("select column_name from information_schema.columns where table_name = '#{table_name}'")
