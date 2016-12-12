@@ -15,6 +15,8 @@ describe Baseline do
 
     expect(Baseline.count).to eq(1)
     expect(BaselineGroup.count).to eq(10)
+    expect(BaselineGroup.all.first.result_group.result_type).to eq('Baseline')
+    expect(ResultGroup.where('result_type=?','Baseline').size).to eq(10)
     expect(BaselineMeasure.count).to eq(380)
 
     expect(study.baseline.population).to eq('All participants who were randomized were included except those who were randomised in error (main enrollment: 1 child HIV-uninfected, 2 on main phase of tuberculosis treatment; cotrimoxazole secondary randomization: 2 children receiving dapsone prophylaxis not cotrimoxazole).')

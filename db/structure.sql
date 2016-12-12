@@ -1204,7 +1204,6 @@ CREATE TABLE outcomes (
     outcome_type character varying,
     title text,
     description text,
-    measure character varying,
     time_frame text,
     safety_issue character varying,
     population text,
