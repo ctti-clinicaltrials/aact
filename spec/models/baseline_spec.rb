@@ -8,16 +8,24 @@ describe Baseline do
     expect(study.baseline).to eq(nil)
   end
 
-  it "study should have expected baseline" do
+  it "study should have expected baseline relationships" do
     nct_id='NCT02028676'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     expect(Baseline.count).to eq(1)
     expect(BaselineGroup.count).to eq(10)
-    expect(BaselineGroup.all.first.result_group.result_type).to eq('Baseline')
     expect(ResultGroup.where('result_type=?','Baseline').size).to eq(10)
     expect(BaselineMeasure.count).to eq(380)
+    expect(BaselineGroup.first.nct_id).to eq(nct_id)
+    expect(BaselineGroup.first.result_group.result_type).to eq('Baseline')
+    expect(BaselineGroup.first.result_group.nct_id).to eq(nct_id)
+    expect(BaselineMeasure.first.nct_id).to eq(nct_id)
+    expect(BaselineMeasure.first.result_group.result_type).to eq('Baseline')
+    expect(BaselineMeasure.first.result_group.nct_id).to eq(nct_id)
+    expect(BaselineAnalysis.first.result_group.result_type).to eq('Baseline')
+    expect(BaselineAnalysis.first.result_group.nct_id).to eq(nct_id)
+    expect(BaselineAnalysis.first.nct_id).to eq(nct_id)
 
     expect(study.baseline.population).to eq('All participants who were randomized were included except those who were randomised in error (main enrollment: 1 child HIV-uninfected, 2 on main phase of tuberculosis treatment; cotrimoxazole secondary randomization: 2 children receiving dapsone prophylaxis not cotrimoxazole).')
     expect(study.baseline.measures.size).to eq(380);
