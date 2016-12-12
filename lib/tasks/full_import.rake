@@ -9,10 +9,13 @@ namespace :import do
         all_tables = ActiveRecord::Base.connection.tables
 
         blacklist = %w(
+          load_events
           sanity_checks
           schema_migrations
-          load_events
+          stat_manager
+          statistics
           use_cases
+          use_case_attachments
         )
 
         tables_to_truncate = all_tables.reject do |table|
