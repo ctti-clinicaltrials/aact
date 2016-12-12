@@ -14,19 +14,19 @@ class ResultGroup < StudyRelationship
   def self.create_group_set(opts)
     group_xmls=opts[:xml].xpath("group_list").xpath('group')
     groups=[]
-    xml=group_xmls.pop
-    while xml
-      if !xml.blank?
-        opts[:xml]=xml
+    group=group_xmls.pop
+    while group
+      if !group.blank?
+        opts[:group]=group
         groups << create_group_from(opts)
       end
-      xml=group_xmls.pop
+      group=group_xmls.pop
     end
     groups
   end
 
   def self.create_group_from(opts)
-    xml=opts[:xml]
+    xml=opts[:group]
     create({
       :nct_id           => opts[:nct_id],
       :ctgov_group_code => xml.attribute('group_id'),

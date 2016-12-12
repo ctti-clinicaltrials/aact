@@ -41,7 +41,7 @@ class StudyRelationship < ActiveRecord::Base
   end
 
   def get_group(groups)
-   groups.select{|g|g.ctgov_group_code==gid}.first
+    groups.select{|g|g.ctgov_group_code==gid}.first
   end
 
   def gid

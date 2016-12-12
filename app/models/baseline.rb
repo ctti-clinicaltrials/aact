@@ -29,8 +29,11 @@ class Baseline < StudyRelationship
 
   def attribs
     if baseline_tag_exists?
+      opts[:xml]=opts[:xml].xpath('//baseline')
+      opts[:result_type]='Baseline'
+      opts[:groups]=ResultGroup.create_group_set(opts)
       {
-       :population => opts[:xml].xpath('//baseline').xpath('population').try(:text),
+       :population =>opts[:xml].xpath('population').try(:text),
        :baseline_groups    => BaselineGroup.create_all_from(opts.merge(:baseline=>self)),
        :baseline_measures  => BaselineMeasure.create_all_from(opts.merge(:baseline=>self)),
        :baseline_analyses  => BaselineAnalysis.create_all_from(opts.merge(:baseline=>self)),
