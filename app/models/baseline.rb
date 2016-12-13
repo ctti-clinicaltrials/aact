@@ -2,7 +2,7 @@ class Baseline < StudyRelationship
 
   has_many :baseline_groups
   has_many :baseline_measures
-  has_many :baseline_analyses
+  has_many :analyzed_baseline_measures
 
   #  Not entirely clear, but appears that as of 12/2/16, there is one baseline per study.  Going with that assumptionased on query against 231,000 study xmls:
   #  SELECT nct_id, count(*) as cnt FROM study_xml_records WHERE XMLEXISTS('//baseline' PASSING BY REF content) group by nct_id order by cnt desc;    Found only one for every study
@@ -15,8 +15,8 @@ class Baseline < StudyRelationship
     baseline_groups
   end
 
-  def analyses
-    baseline_analyses
+  def analyzed_measures
+    analyzed_baseline_measures
   end
 
   def measures
@@ -36,7 +36,7 @@ class Baseline < StudyRelationship
        :population =>opts[:xml].xpath('population').try(:text),
        :baseline_groups    => BaselineGroup.create_all_from(opts.merge(:baseline=>self)),
        :baseline_measures  => BaselineMeasure.create_all_from(opts.merge(:baseline=>self)),
-       :baseline_analyses  => BaselineAnalysis.create_all_from(opts.merge(:baseline=>self)),
+       :analyzed_baseline_measures  => AnalyzedBaselineMeasure.create_all_from(opts.merge(:baseline=>self)),
       }
     else
       nil
