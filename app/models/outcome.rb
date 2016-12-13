@@ -13,7 +13,6 @@ class Outcome < StudyRelationship
       opts[:xml]=xml
       opts[:result_type]='Outcome'
       opts[:groups]=create_group_set(opts)
-      opts[:result_type]='Outcome'
       opts[:type]=xml.xpath('type').text
       opts[:title]=xml.xpath('title').text
       opts[:description]=xml.xpath('description').text
@@ -35,10 +34,9 @@ class Outcome < StudyRelationship
       :description    => get_opt('description'),
       :time_frame     => get_opt('time_frame'),
       :safety_issue   => get_opt('safety_issue'),
-      :measure        => get_opt('measure'),
       :population     => get_opt('population'),
       :anticipated_posting_month_year  => get_opt('posting_date'),
-      :outcome_groups          => OutcomeGroup.create_all_from({:outcome=>self,:groups=>opts[:groups]}),
+      :outcome_groups          => OutcomeGroup.create_all_from({:nct_id=>opts[:nct_id],:outcome=>self,:groups=>opts[:groups]}),
       :outcome_measured_values => OutcomeMeasuredValue.create_all_from(opts.merge(:outcome=>self)),
       :outcome_analyses        => OutcomeAnalysis.create_all_from(opts.merge(:outcome=>self)),
     }

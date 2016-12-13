@@ -8,9 +8,9 @@ class Study < ActiveRecord::Base
 
   scope :with_one_to_ones,   -> { joins(:eligibility, :brief_summary, :design, :detailed_description) }
   scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :oversight_authorities, :responsible_parties) }
-  scope :with_outcomes, -> { includes(:outcomes, :reported_events, :baseline_measures) }
   self.primary_key = 'nct_id'
 
+  has_one  :baseline,              :foreign_key => 'nct_id', dependent: :delete
   has_one  :brief_summary,         :foreign_key => 'nct_id', dependent: :delete
   has_one  :design,                :foreign_key => 'nct_id', dependent: :delete
   has_one  :detailed_description,  :foreign_key => 'nct_id', dependent: :delete
@@ -25,7 +25,6 @@ class Study < ActiveRecord::Base
   has_many :id_information,        :foreign_key => 'nct_id', dependent: :delete_all
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :reported_events,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcome_measured_values, :foreign_key => 'nct_id', dependent: :delete_all
@@ -73,11 +72,12 @@ class Study < ActiveRecord::Base
     update(attribs)
     groups=DesignGroup.create_all_from(opts)
     Intervention.create_all_from(opts.merge(:design_groups=>groups))
-    DetailedDescription.new.create_from(opts).save
-    Design.new.create_from(opts).save
-    BriefSummary.new.create_from(opts).save
+    DetailedDescription.new.create_from(opts).try(:save)
+    Design.new.create_from(opts).try(:save)
+    Baseline.new.create_from(opts).try(:save)
+    BriefSummary.new.create_from(opts).try(:save)
     Eligibility.new.create_from(opts).save
-    ParticipantFlow.new.create_from(opts).save
+    ParticipantFlow.new.create_from(opts).try(:save)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     CentralContact.create_all_from(opts)
@@ -87,7 +87,6 @@ class Study < ActiveRecord::Base
     IdInformation.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
-    BaselineMeasure.create_all_from(opts)
     Milestone.create_all_from(opts)
     DropWithdrawal.create_all_from(opts)
     Outcome.create_all_from(opts)
@@ -192,6 +191,7 @@ class Study < ActiveRecord::Base
       :brief_title  => get('brief_title') ,
       :official_title => get('official_title'),
       :overall_status => get('overall_status'),
+      :last_known_status => get('last_known_status'),
       :phase => get('phase'),
       :target_duration => get('target_duration'),
       :enrollment => get('enrollment'),

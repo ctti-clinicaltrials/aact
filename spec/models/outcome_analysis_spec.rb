@@ -16,7 +16,8 @@ describe OutcomeAnalysis do
     study=Study.new({xml: xml, nct_id: nct_id}).create
     o=study.outcomes.select{|x|x.title=='Percentage of Patients Who Survive at Least 12 Months'}.first
     expect(o.outcome_analyses.size).to eq(0)
-    expect(o.outcome_measured_values.size).to eq(2)
+    #TODO  o.analyzed_outcome_values.size).to eq(1)
+    expect(o.outcome_measured_values.size).to eq(1)
   end
 
   it "study should have expected outcomes" do
@@ -31,7 +32,6 @@ describe OutcomeAnalysis do
     a=o.outcome_analyses.select{|x|x.method=='Comparison of poisson rates'}.first
     expect(a.non_inferiority).to eq('Yes')
     expect(a.non_inferiority_description).to eq('With assumptions detailed above, >90% power and one-sided alpha=0.05, 1160 children would be required to exclude an increase in progression rate of 1.6% from 2.5% to 4.1% per year in the CDM arm (upper 95% confidence limit of LCM: CDM hazard ratio 1.64).')
-    expect(a.method).to eq('Comparison of poisson rates')
     expect(a.method_description).to eq('Statistical analysis plan specified that p-value was to be calculated from the log-rank test, so not provided for the risk difference')
     expect(a.p_value).to eq(0.43)
     expect(a.param_type).to eq('Risk Difference (RD)')

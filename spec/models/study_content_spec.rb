@@ -7,6 +7,8 @@ describe Study do
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.source).to eq('London School of Hygiene and Tropical Medicine')
+    expect(study.overall_status).to eq('Terminated')
+    expect(study.last_known_status).to eq('Recruiting')
   end
 
   it "should have correct date attribs" do

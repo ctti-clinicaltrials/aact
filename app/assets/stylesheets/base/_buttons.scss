@@ -6,18 +6,18 @@ button, input[type="submit"], a.button {
   color: $button-text-color;
   font-size: 1rem;
   padding: 1rem 2.5rem;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
   border-color: $button-color;
   cursor: pointer;
   outline: none;
   display: block;
-  width: 100%;
+  width: 80%;
   margin-bottom: 1rem;
   border-radius: $border-radius;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: $font-sans;
-  font-weight: bold;
+  font-weight: 100;
 
   &:hover {
     color: $button-text-color;
@@ -71,7 +71,7 @@ button, input[type="submit"], a.button {
   }
 
   &.small {
-    font-size: .8rem;
+    font-size: 1rem;
     padding: .5rem 1rem;
   }
 
@@ -81,7 +81,7 @@ button, input[type="submit"], a.button {
     border-radius: $border-radius;
 
     i.fa {
-      font-size: 40px;
+      font-size: 50px;
       left: 30px;
     }
 

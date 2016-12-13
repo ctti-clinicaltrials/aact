@@ -37,11 +37,11 @@ class StudyRelationship < ActiveRecord::Base
   end
 
   def self.create_group_set(opts)
-		ResultGroup.create_group_set(opts)
+    ResultGroup.create_group_set(opts)
   end
 
   def get_group(groups)
-   groups.select{|g|g.ctgov_group_code==gid}.first
+    groups.select{|g|g.ctgov_group_code==gid}.first
   end
 
   def gid
@@ -70,7 +70,12 @@ class StudyRelationship < ActiveRecord::Base
     @opts = opts
     @xml = opts[:xml] || opts
     self.nct_id=opts[:nct_id]
-    assign_attributes(attribs) if !attribs.blank?
+    a=attribs
+    if a.nil?
+      return nil
+    else
+      assign_attributes(a)
+    end
     self
   end
 

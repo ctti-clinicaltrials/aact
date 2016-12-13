@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 21, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on December 06, 2016</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01642004</url>
   </required_header>
@@ -1588,136 +1586,177 @@ Participants who neither progressed nor died were censored on the date of their 
           <description>Total of all reporting groups</description>
         </group>
       </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="135"/>
+            <count group_id="B2" value="137"/>
+            <count group_id="B3" value="272"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
       <measure_list>
-        <measure>
-          <title>Number of Participants</title>
-          <units>participants</units>
-          <param>Number</param>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="135"/>
-                <measurement group_id="B2" value="137"/>
-                <measurement group_id="B3" value="272"/>
-              </measurement_list>
-            </category>
-          </category_list>
-        </measure>
         <measure>
           <title>Age</title>
           <units>years</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="62.2" spread="8.33"/>
-                <measurement group_id="B2" value="64.4" spread="8.28"/>
-                <measurement group_id="B3" value="63.3" spread="8.36"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="62.2" spread="8.33"/>
+                    <measurement group_id="B2" value="64.4" spread="8.28"/>
+                    <measurement group_id="B3" value="63.3" spread="8.36"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Age, Customized</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>&lt;= 18 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-                <measurement group_id="B2" value="0"/>
-                <measurement group_id="B3" value="0"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>&lt; 65 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="79"/>
-                <measurement group_id="B2" value="73"/>
-                <measurement group_id="B3" value="152"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>&gt;= 65 AND &lt; 75 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="45"/>
-                <measurement group_id="B2" value="46"/>
-                <measurement group_id="B3" value="91"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>&gt;= 75 AND &lt; 85 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="10"/>
-                <measurement group_id="B2" value="18"/>
-                <measurement group_id="B3" value="28"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>&gt;= 85 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1"/>
-                <measurement group_id="B2" value="0"/>
-                <measurement group_id="B3" value="1"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>&lt;= 18 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&lt; 65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="79"/>
+                    <measurement group_id="B2" value="73"/>
+                    <measurement group_id="B3" value="152"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&gt;= 65 AND &lt; 75 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="45"/>
+                    <measurement group_id="B2" value="46"/>
+                    <measurement group_id="B3" value="91"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&gt;= 75 AND &lt; 85 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="10"/>
+                    <measurement group_id="B2" value="18"/>
+                    <measurement group_id="B3" value="28"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&gt;= 85 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Gender</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Female</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="24"/>
-                <measurement group_id="B2" value="40"/>
-                <measurement group_id="B3" value="64"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Male</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="111"/>
-                <measurement group_id="B2" value="97"/>
-                <measurement group_id="B3" value="208"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="24"/>
+                    <measurement group_id="B2" value="40"/>
+                    <measurement group_id="B3" value="64"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="111"/>
+                    <measurement group_id="B2" value="97"/>
+                    <measurement group_id="B3" value="208"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>PD-L1 Expression Level</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>PD-L1 expression &gt;= 5%</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="42"/>
-                <measurement group_id="B2" value="39"/>
-                <measurement group_id="B3" value="81"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>PD-L1 expression &lt; 5%</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="75"/>
-                <measurement group_id="B2" value="69"/>
-                <measurement group_id="B3" value="144"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>PD-L1 not quantifiable at baseline</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="18"/>
-                <measurement group_id="B2" value="29"/>
-                <measurement group_id="B3" value="47"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>PD-L1 expression &gt;= 5%</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="42"/>
+                    <measurement group_id="B2" value="39"/>
+                    <measurement group_id="B3" value="81"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>PD-L1 expression &lt; 5%</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="75"/>
+                    <measurement group_id="B2" value="69"/>
+                    <measurement group_id="B3" value="144"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>PD-L1 not quantifiable at baseline</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="18"/>
+                    <measurement group_id="B2" value="29"/>
+                    <measurement group_id="B3" value="47"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
       </measure_list>
     </baseline>
@@ -1740,36 +1779,36 @@ Participants who neither progressed nor died were censored on the date of their 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up</title>
-            <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Survival follow-up analysis occurred 7.4 months after Primary Endpoint was reached, representing a minimum OS follow-up time of 18.0 months.</description>
-            <units>months</units>
-            <param>Median</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="9.23" lower_limit="7.33" upper_limit="12.62"/>
-                  <measurement group_id="O2" value="6.01" lower_limit="5.29" upper_limit="7.39"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up</title>
+          <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Survival follow-up analysis occurred 7.4 months after Primary Endpoint was reached, representing a minimum OS follow-up time of 18.0 months.</description>
+          <population>All randomized participants</population>
+          <units>months</units>
+          <param>Median</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="9.23" lower_limit="7.33" upper_limit="12.62"/>
+                    <measurement group_id="O2" value="6.01" lower_limit="5.29" upper_limit="7.39"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
         <analysis_list>
           <analysis>
             <group_id_list>
@@ -1808,37 +1847,37 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Objective Response Rate (ORR) in All Randomized Participants at Primary Endpoint</title>
-            <description>ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). BOR was defined as the best investigator-assessed response designation, recorded between the date of randomization and the date of objectively documented progression per Response Evaluation Criteria in Solid Tumors version 1.1 (RECIST v1.1) or the date of subsequent anti-cancer therapy (excluding on-treatment palliative radiotherapy of non-target bone lesions or Central Nervous System (CNS) lesions), whichever occurred first.
+        <measure>
+          <title>Objective Response Rate (ORR) in All Randomized Participants at Primary Endpoint</title>
+          <description>ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). BOR was defined as the best investigator-assessed response designation, recorded between the date of randomization and the date of objectively documented progression per Response Evaluation Criteria in Solid Tumors version 1.1 (RECIST v1.1) or the date of subsequent anti-cancer therapy (excluding on-treatment palliative radiotherapy of non-target bone lesions or Central Nervous System (CNS) lesions), whichever occurred first.
 CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
-            <units>percentage of participants</units>
-            <param>Number</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="20.0" lower_limit="13.6" upper_limit="27.7"/>
-                  <measurement group_id="O2" value="8.8" lower_limit="4.6" upper_limit="14.8"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+          <population>All randomized participants</population>
+          <units>percentage of participants</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="20.0" lower_limit="13.6" upper_limit="27.7"/>
+                    <measurement group_id="O2" value="8.8" lower_limit="4.6" upper_limit="14.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
         <analysis_list>
           <analysis>
             <group_id_list>
@@ -1876,36 +1915,36 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Overall Survival (OS) Time in Months for All Randomized Participants at Primary Endpoint</title>
-            <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
-            <units>months</units>
-            <param>Median</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="9.23" lower_limit="7.33" upper_limit="13.27"/>
-                  <measurement group_id="O2" value="6.01" lower_limit="5.13" upper_limit="7.33"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Overall Survival (OS) Time in Months for All Randomized Participants at Primary Endpoint</title>
+          <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+          <population>All randomized participants</population>
+          <units>months</units>
+          <param>Median</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="9.23" lower_limit="7.33" upper_limit="13.27"/>
+                    <measurement group_id="O2" value="6.01" lower_limit="5.13" upper_limit="7.33"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
         <analysis_list>
           <analysis>
             <group_id_list>
@@ -1943,51 +1982,59 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Overall Survival (OS) Rate in All Randomized Participants</title>
-            <description>The overall survival rate is the probability that a participant will be alive at 6, 12, and 18 months following randomization. Overall survival was defined as the time between the date of randomization and the date of death as a result of any cause. Survival rates were determined via Kaplan-Meier estimates.</description>
-            <units>percent probability of OS</units>
-            <param>Number</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <sub_title>6 months</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="63.7" lower_limit="55.0" upper_limit="71.2"/>
-                  <measurement group_id="O2" value="50.7" lower_limit="42.1" upper_limit="58.8"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>12 months</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="42.2" lower_limit="33.8" upper_limit="50.4"/>
-                  <measurement group_id="O2" value="24.3" lower_limit="17.4" upper_limit="31.7"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>18 months</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="28.1" lower_limit="20.8" upper_limit="35.8"/>
-                  <measurement group_id="O2" value="12.5" lower_limit="7.6" upper_limit="18.7"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Overall Survival (OS) Rate in All Randomized Participants</title>
+          <description>The overall survival rate is the probability that a participant will be alive at 6, 12, and 18 months following randomization. Overall survival was defined as the time between the date of randomization and the date of death as a result of any cause. Survival rates were determined via Kaplan-Meier estimates.</description>
+          <population>All randomized participants</population>
+          <units>percent probability of OS</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>6 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="63.7" lower_limit="55.0" upper_limit="71.2"/>
+                    <measurement group_id="O2" value="50.7" lower_limit="42.1" upper_limit="58.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="42.2" lower_limit="33.8" upper_limit="50.4"/>
+                    <measurement group_id="O2" value="24.3" lower_limit="17.4" upper_limit="31.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>18 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="28.1" lower_limit="20.8" upper_limit="35.8"/>
+                    <measurement group_id="O2" value="12.5" lower_limit="7.6" upper_limit="18.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -2006,36 +2053,36 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="27"/>
-                  <measurement group_id="O2" value="12"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Time To Response (TTR) in Months for All Confirmed Responders at Primary Endpoint</title>
-            <description>Time to Response (TTR) for participants demonstrating a response (either CR or PR) was defined as the time from the date of randomization to the date of the first confirmed response. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.</description>
-            <units>months</units>
-            <param>Median</param>
-            <dispersion>Full Range</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="2.23" lower_limit="1.6" upper_limit="11.8"/>
-                  <measurement group_id="O2" value="2.09" lower_limit="1.8" upper_limit="9.5"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Time To Response (TTR) in Months for All Confirmed Responders at Primary Endpoint</title>
+          <description>Time to Response (TTR) for participants demonstrating a response (either CR or PR) was defined as the time from the date of randomization to the date of the first confirmed response. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.</description>
+          <population>All confirmed responders (participants demonstrating CR or PR)</population>
+          <units>months</units>
+          <param>Median</param>
+          <dispersion>Full Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="27"/>
+                <count group_id="O2" value="12"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2.23" lower_limit="1.6" upper_limit="11.8"/>
+                    <measurement group_id="O2" value="2.09" lower_limit="1.8" upper_limit="9.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -2056,38 +2103,38 @@ Participants who neither progressed nor died were censored on the date of their 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="27"/>
-                  <measurement group_id="O2" value="12"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Duration of Objective Response (DOR) in Months for All Confirmed Responders at Primary Endpoint</title>
-            <description>DOR was defined as the time from the date of first confirmed response to the date of the first documented tumor progression (per RECIST v1.1), as determined by the investigator, or death due to any cause, whichever occurred first. DOR was evaluated only for confirmed responders (i.e. participants with confirmed CR or PR).
+        <measure>
+          <title>Duration of Objective Response (DOR) in Months for All Confirmed Responders at Primary Endpoint</title>
+          <description>DOR was defined as the time from the date of first confirmed response to the date of the first documented tumor progression (per RECIST v1.1), as determined by the investigator, or death due to any cause, whichever occurred first. DOR was evaluated only for confirmed responders (i.e. participants with confirmed CR or PR).
 CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.
 Participants who neither progressed nor died were censored on the date of their last evaluable tumor assessment.</description>
-            <units>months</units>
-            <param>Median</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="NA" lower_limit="9.76">Median DOR was not reached in the Nivolumab group</measurement>
-                  <measurement group_id="O2" value="8.41" lower_limit="3.58" upper_limit="10.84"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+          <population>All confirmed responders (participants demonstrating CR or PR)</population>
+          <units>months</units>
+          <param>Median</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="27"/>
+                <count group_id="O2" value="12"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="NA" lower_limit="9.76">Median DOR was not reached in the Nivolumab group</measurement>
+                    <measurement group_id="O2" value="8.41" lower_limit="3.58" upper_limit="10.84"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -2106,44 +2153,48 @@ Participants who neither progressed nor died were censored on the date of their 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Progression-Free Survival (PFS) at Primary Endpoint</title>
-            <description>PFS rate was defined as the probability that participants will experience no disease progression or death from any cause at a given time point following randomization. Progression was assessed by investigators according to RECIST v1.1. 95% CIs were estimated using the Kaplan-Meier method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative radiation therapy (RT) of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy</description>
-            <units>percent probability of PFS</units>
-            <param>Number</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <sub_title>6 months</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="38.4" lower_limit="30.0" upper_limit="46.8"/>
-                  <measurement group_id="O2" value="21.9" lower_limit="15.1" upper_limit="29.5"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>12 months</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="20.8" lower_limit="14.0" upper_limit="28.4"/>
-                  <measurement group_id="O2" value="6.4" lower_limit="2.9" upper_limit="11.8"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Progression-Free Survival (PFS) at Primary Endpoint</title>
+          <description>PFS rate was defined as the probability that participants will experience no disease progression or death from any cause at a given time point following randomization. Progression was assessed by investigators according to RECIST v1.1. 95% CIs were estimated using the Kaplan-Meier method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative radiation therapy (RT) of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy</description>
+          <population>All randomized participants (105 PFS events in Nivolumab arm; 122 PFS events in Docetaxel arm)</population>
+          <units>percent probability of PFS</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>6 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="38.4" lower_limit="30.0" upper_limit="46.8"/>
+                    <measurement group_id="O2" value="21.9" lower_limit="15.1" upper_limit="29.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="20.8" lower_limit="14.0" upper_limit="28.4"/>
+                    <measurement group_id="O2" value="6.4" lower_limit="2.9" upper_limit="11.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -2162,36 +2213,36 @@ Participants who neither progressed nor died were censored on the date of their 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Progression-Free Survival (PFS) Time in Months for All Randomized Participants at Primary Endpoint</title>
-            <description>PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. Participants underwent radiographic tumor assessments every 6 weeks (+/- 5 days) from week 9 (+/- 5 days) for the first year on treatment, then every 12 weeks after the first year on treatment until documented disease progression. The PFS curves were estimated using KM method. Two-sided 95% CI for median PFS were computed by Brookmeyer and Crowley method (using log-log transformation). Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative RT of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy.</description>
-            <units>months</units>
-            <param>Median</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="3.48" lower_limit="2.14" upper_limit="4.86"/>
-                  <measurement group_id="O2" value="2.83" lower_limit="2.10" upper_limit="3.52"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Progression-Free Survival (PFS) Time in Months for All Randomized Participants at Primary Endpoint</title>
+          <description>PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. Participants underwent radiographic tumor assessments every 6 weeks (+/- 5 days) from week 9 (+/- 5 days) for the first year on treatment, then every 12 weeks after the first year on treatment until documented disease progression. The PFS curves were estimated using KM method. Two-sided 95% CI for median PFS were computed by Brookmeyer and Crowley method (using log-log transformation). Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative RT of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy.</description>
+          <population>All randomized participants (105 PFS events in Nivolumab arm; 122 PFS events in Docetaxel arm)</population>
+          <units>months</units>
+          <param>Median</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3.48" lower_limit="2.14" upper_limit="4.86"/>
+                    <measurement group_id="O2" value="2.83" lower_limit="2.10" upper_limit="3.52"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
         <analysis_list>
           <analysis>
             <group_id_list>
@@ -2229,36 +2280,36 @@ Participants who neither progressed nor died were censored on the date of their 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Percentage of Participants Experiencing Disease-related Symptom Improvement by Week 12</title>
-            <description>Disease-related symptom improvement rate by Week 12 was defined as the percentage of randomized participants who had a 10 point or greater decrease from baseline in average symptom burden index score at any time between randomization and Week 12. The participant portion of the Lung Cancer Symptom Scale (LCSS) consisted of 6 symptom-specific questions that addressed cough, dyspnea, fatigue, pain, hemoptysis, and anorexia, plus 3 summary items on symptom distress, interference with activity level, and global health-related Quality of Life (QoL). The scores range from 0 to 100, with 0 representing the best possible score and 100 being the worst possible score. The average symptom burden index score at each assessment was defined as the mean of the 6 symptom-specific questions of the LCSS. 95% CIs were computed using Clopper-Pearson Method.</description>
-            <units>percentage of participants</units>
-            <param>Number</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="18.5" lower_limit="12.4" upper_limit="26.1"/>
-                  <measurement group_id="O2" value="21.2" lower_limit="14.7" upper_limit="29.0"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Percentage of Participants Experiencing Disease-related Symptom Improvement by Week 12</title>
+          <description>Disease-related symptom improvement rate by Week 12 was defined as the percentage of randomized participants who had a 10 point or greater decrease from baseline in average symptom burden index score at any time between randomization and Week 12. The participant portion of the Lung Cancer Symptom Scale (LCSS) consisted of 6 symptom-specific questions that addressed cough, dyspnea, fatigue, pain, hemoptysis, and anorexia, plus 3 summary items on symptom distress, interference with activity level, and global health-related Quality of Life (QoL). The scores range from 0 to 100, with 0 representing the best possible score and 100 being the worst possible score. The average symptom burden index score at each assessment was defined as the mean of the 6 symptom-specific questions of the LCSS. 95% CIs were computed using Clopper-Pearson Method.</description>
+          <population>All randomized participants</population>
+          <units>percentage of participants</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="18.5" lower_limit="12.4" upper_limit="26.1"/>
+                    <measurement group_id="O2" value="21.2" lower_limit="14.7" upper_limit="29.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -2277,51 +2328,59 @@ Participants who neither progressed nor died were censored on the date of their 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Overall Survival (OS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
-            <description>OS was measured in months for all randomized participants grouped by their baseline PD-L1 expression level. PD-L1 expression was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
-            <units>months</units>
-            <param>Median</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <sub_title>PD-L1 expression &gt;= 5% (n=42,39)</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="9.95" lower_limit="5.82" upper_limit="17.15"/>
-                  <measurement group_id="O2" value="6.37" lower_limit="4.50" upper_limit="9.03"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>PD-L1 expression &lt; 5% (n=50,55)</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="8.54" lower_limit="5.49" upper_limit="13.27"/>
-                  <measurement group_id="O2" value="6.14" lower_limit="5.13" upper_limit="8.28"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>PD-L1 not quantifiable at baseline (n=18,29)</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="9.41" lower_limit="7.10">Upper CI not reached</measurement>
-                  <measurement group_id="O2" value="5.06" lower_limit="3.02" upper_limit="6.11"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Overall Survival (OS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
+          <description>OS was measured in months for all randomized participants grouped by their baseline PD-L1 expression level. PD-L1 expression was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+          <population>All randomized participants</population>
+          <units>months</units>
+          <param>Median</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>PD-L1 expression &gt;= 5% (n=42,39)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="9.95" lower_limit="5.82" upper_limit="17.15"/>
+                    <measurement group_id="O2" value="6.37" lower_limit="4.50" upper_limit="9.03"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>PD-L1 expression &lt; 5% (n=50,55)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="8.54" lower_limit="5.49" upper_limit="13.27"/>
+                    <measurement group_id="O2" value="6.14" lower_limit="5.13" upper_limit="8.28"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>PD-L1 not quantifiable at baseline (n=18,29)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="9.41" lower_limit="7.10">Upper CI not reached</measurement>
+                    <measurement group_id="O2" value="5.06" lower_limit="3.02" upper_limit="6.11"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
         <analysis_list>
           <analysis>
             <group_id_list>
@@ -2387,51 +2446,59 @@ Participants who neither progressed nor died were censored on the date of their 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Objective Response Rate (ORR) by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
-            <description>ORR was reported for all randomized participants grouped by their baseline PD-L1 expression level. ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). PD-L1 expression in participants was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
-            <units>percentage of participants</units>
-            <param>Number</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <sub_title>PD-L1 expression &gt;= 5% (n=42,39)</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="21.4" lower_limit="10.3" upper_limit="36.8"/>
-                  <measurement group_id="O2" value="7.7" lower_limit="1.6" upper_limit="20.9"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>PD-L1 expression &lt; 5% (n=75,69)</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="14.7" lower_limit="7.6" upper_limit="24.7"/>
-                  <measurement group_id="O2" value="11.6" lower_limit="5.1" upper_limit="21.6"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>PD-L1 not quantifiable at baseline (n=18,29)</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="38.9" lower_limit="17.3" upper_limit="64.3"/>
-                  <measurement group_id="O2" value="3.4" lower_limit="0.1" upper_limit="17.8"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Objective Response Rate (ORR) by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
+          <description>ORR was reported for all randomized participants grouped by their baseline PD-L1 expression level. ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). PD-L1 expression in participants was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
+          <population>All randomized participants</population>
+          <units>percentage of participants</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>PD-L1 expression &gt;= 5% (n=42,39)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="21.4" lower_limit="10.3" upper_limit="36.8"/>
+                    <measurement group_id="O2" value="7.7" lower_limit="1.6" upper_limit="20.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>PD-L1 expression &lt; 5% (n=75,69)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="14.7" lower_limit="7.6" upper_limit="24.7"/>
+                    <measurement group_id="O2" value="11.6" lower_limit="5.1" upper_limit="21.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>PD-L1 not quantifiable at baseline (n=18,29)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="38.9" lower_limit="17.3" upper_limit="64.3"/>
+                    <measurement group_id="O2" value="3.4" lower_limit="0.1" upper_limit="17.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
         <analysis_list>
           <analysis>
             <group_id_list>
@@ -2497,51 +2564,59 @@ Participants who neither progressed nor died were censored on the date of their 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Progression Free Survival (PFS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
-            <description>PFS time was measured for all randomized participants grouped by their baseline PD-L1 expression levels. PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. The PFS curves were estimated using KM method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started subsequent anti-cancer therapy (including on-treatment palliative radiotherapy of non-target bone lesions or CNS lesions) without a prior reported progression were censored at the last evaluable tumor assessment prior to subsequent anti-cancer therapy. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
-            <units>months</units>
-            <param>Median</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <sub_title>PD-L1 expression &gt;= 5% (n=42,39)</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="4.80" lower_limit="2.10" upper_limit="7.56"/>
-                  <measurement group_id="O2" value="3.06" lower_limit="1.94" upper_limit="4.63"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>PD-L1 expression &lt; 5% (n=75,69)</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="2.23" lower_limit="1.94" upper_limit="4.73"/>
-                  <measurement group_id="O2" value="2.92" lower_limit="2.10" upper_limit="3.55"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>PD-L1 not quantifiable at baseline (n=18,29)</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="5.39" lower_limit="2.10" upper_limit="10.45"/>
-                  <measurement group_id="O2" value="2.23" lower_limit="2.04" upper_limit="4.40"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Progression Free Survival (PFS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
+          <description>PFS time was measured for all randomized participants grouped by their baseline PD-L1 expression levels. PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. The PFS curves were estimated using KM method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started subsequent anti-cancer therapy (including on-treatment palliative radiotherapy of non-target bone lesions or CNS lesions) without a prior reported progression were censored at the last evaluable tumor assessment prior to subsequent anti-cancer therapy. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+          <population>All randomized participants</population>
+          <units>months</units>
+          <param>Median</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>PD-L1 expression &gt;= 5% (n=42,39)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4.80" lower_limit="2.10" upper_limit="7.56"/>
+                    <measurement group_id="O2" value="3.06" lower_limit="1.94" upper_limit="4.63"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>PD-L1 expression &lt; 5% (n=75,69)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2.23" lower_limit="1.94" upper_limit="4.73"/>
+                    <measurement group_id="O2" value="2.92" lower_limit="2.10" upper_limit="3.55"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>PD-L1 not quantifiable at baseline (n=18,29)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5.39" lower_limit="2.10" upper_limit="10.45"/>
+                    <measurement group_id="O2" value="2.23" lower_limit="2.04" upper_limit="4.40"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
         <analysis_list>
           <analysis>
             <group_id_list>
@@ -2607,35 +2682,35 @@ Participants who neither progressed nor died were censored on the date of their 
             <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="135"/>
-                  <measurement group_id="O2" value="137"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Number of Deaths From Any Cause in All Randomized Participants at Primary Endpoint</title>
-            <description>The number of participants who died from any cause was reported for each arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="86"/>
-                  <measurement group_id="O2" value="113"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Number of Deaths From Any Cause in All Randomized Participants at Primary Endpoint</title>
+          <description>The number of participants who died from any cause was reported for each arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
+          <population>All randomized participants</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="135"/>
+                <count group_id="O2" value="137"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="86"/>
+                    <measurement group_id="O2" value="113"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
     </outcome_list>
 

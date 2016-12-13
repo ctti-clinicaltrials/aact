@@ -11,42 +11,54 @@
     </div>
   <% end %>
 
-    <p>
-    Image <%= f.file_field :image %>
-  </p>
+  <div class="well form-group">
+    Title
+    <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: 'a few words to serve as a label for your project' %>
+  </div>
+
+  <div class="form-group">
+    Brief Summary
+    <%= f.text_field :brief_summary, placeholder: 'a few sentences that basically describes the work', class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    URL
+    <%= f.text_field :url, :size=>'100', placeholder: 'url link to a related website', class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Submitted by
+    <%= f.text_field :submitter_name, :size=>'20', placeholder: 'name of person responsible for this effort', class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Contact Info
+    <%= f.text_field :contact_info,  placeholder: "contact info (phone, address, etc)", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Email
+    <%= f.text_field :email, :size=>'20', placeholder: 'email address (we will send confirmation if/when your work is added to the gallery', :maxlength=>"254", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Details
+    <%= f.text_area :detailed_description, cols: '40', rows: '10', placeholder: "all the details you consider worth sharing", class: 'form-control' %>
+  </div>
+
   <p>
-    Image Url: <%= f.text_field :remote_image_url %>
+    Image
+    <%= f.file_field :image %>
   </p>
 
-  <div class="form-group">
-    Title <%= f.text_field :title, autofocus: true, class: "form-control" %>
-  </div>
+  <p>
+    Secret Word
+    <%= f.text_field :pwd unless @use_case.new_record? %>
+  </p>
 
-  <div class="form-group">
-    Brief Summary <%= f.text_field :brief_summary, placeholder: 'enter a brief summary', class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    URL <%= f.text_field :url, :size=>'100', placeholder: 'enter relevant url link', class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    Submitted by <%= f.text_field :submitter_name, placeholder: 'enter name of person responsible', class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    Contact Info <%= f.text_field :contact_info,  placeholder: "enter contact info (phone, address, etc)", class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    Email <%= f.text_field :email, :size=>"40", placeholder: "enter contact's email address", :maxlength=>"254", class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    Details <%= f.text_field :detailed_description, :size=>"800", placeholder: "enter details", :maxlength=>"4000", class: "form-control" %>
-  </div>
-
-  <div class="actions">
+  <br>
+  <p>By submitting, you agree that this information can be published for all to view in the AACT Gallery.</p>
+  <div class="button actions">
     <%= f.submit %>
   </div>
 <% end %>

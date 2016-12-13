@@ -25,11 +25,73 @@ module ClinicalTrials
       truncate_tables
       download_xml_file
       populate_xml_table
+      remove_indexes  # Index significantly slow the load process.
       create_studies
+      add_indexes
       run_sanity_checks
       export_tables
       send_notification
       @load_event.complete({:new_studies=> Study.count})
+    end
+
+    def indexes
+      [
+       [:baseline_measures, :category],
+       [:baseline_measures, :classification],
+       [:browse_interventions, :nct_id],
+       [:overall_officials, :nct_id],
+       [:responsible_parties, :nct_id],
+       [:browse_conditions, :mesh_term],
+       [:browse_interventions, :mesh_term],
+       [:calculated_values, :actual_duration],
+       [:calculated_values, :months_to_report_results],
+       [:calculated_values, :number_of_facilities],
+       [:calculated_values, :primary_completion_date],
+       [:calculated_values, :sponsor_type],
+       [:calculated_values, :start_date],
+       [:designs, :masking],
+       [:designs, :subject_masked],
+       [:designs, :caregiver_masked],
+       [:designs, :investigator_masked],
+       [:designs, :outcomes_assessor_masked],
+       [:eligibilities, :gender],
+       [:eligibilities, :healthy_volunteers],
+       [:eligibilities, :minimum_age],
+       [:eligibilities, :maximum_age],
+       [:facilities, :name],
+       [:facilities, :city],
+       [:facilities, :state],
+       [:facilities, :country],
+       [:overall_officials, :affiliation],
+       [:oversight_authorities, :name],
+       [:outcome_measured_values, :category],
+       [:outcome_measured_values, :classification],
+       [:responsible_parties, :organization],
+       [:result_contacts, :organization],
+       [:sponsors, :last_known_status],
+       [:sponsors, :overall_status],
+       [:sponsors, :name],
+       [:studies, :phase],
+       [:studies, :primary_completion_date_type],
+       [:studies, :source],
+       [:studies, :study_type],
+       [:studies, :first_received_results_date],
+       [:studies, :received_results_disposit_date]
+      ]
+    end
+
+    def remove_indexes
+      m=ActiveRecord::Migration.new
+      ClinicalTrials::Updater.loadable_tables.each {|table_name|
+        ActiveRecord::Base.connection.indexes(table_name).each{|index|
+          m.remove_index index.table, index.columns
+        }
+      }
+    end
+
+    def add_indexes
+      m=ActiveRecord::Migration.new
+      indexes.each{|index| m.add_index index.first, index.last}
     end
 
     def incremental
@@ -55,6 +117,7 @@ module ClinicalTrials
         statistics
         study_xml_records
         use_cases
+        use_case_attachments
       )
       ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
     end

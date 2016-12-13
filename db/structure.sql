@@ -2,11 +2,12 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.5
--- Dumped by pg_dump version 9.5.5
+-- Dumped from database version 9.6.1
+-- Dumped by pg_dump version 9.6.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -55,26 +56,130 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: analyzed_outcome_measured_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE analyzed_outcome_measured_values (
+    id integer NOT NULL,
+    nct_id character varying,
+    outcome_measured_value_id integer,
+    ctgov_group_code character varying,
+    scope character varying,
+    units character varying,
+    count integer
+);
+
+
+--
+-- Name: analyzed_outcome_measured_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE analyzed_outcome_measured_values_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: analyzed_outcome_measured_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE analyzed_outcome_measured_values_id_seq OWNED BY analyzed_outcome_measured_values.id;
+
+
+--
+-- Name: baseline_analyses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE baseline_analyses (
+    id integer NOT NULL,
+    nct_id character varying,
+    baseline_id integer,
+    result_group_id integer,
+    ctgov_group_code character varying,
+    units character varying,
+    scope character varying,
+    count integer
+);
+
+
+--
+-- Name: baseline_analyses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE baseline_analyses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: baseline_analyses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE baseline_analyses_id_seq OWNED BY baseline_analyses.id;
+
+
+--
+-- Name: baseline_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE baseline_groups (
+    id integer NOT NULL,
+    nct_id character varying,
+    baseline_id integer,
+    result_group_id integer,
+    ctgov_group_code character varying,
+    title character varying,
+    description character varying
+);
+
+
+--
+-- Name: baseline_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE baseline_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: baseline_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE baseline_groups_id_seq OWNED BY baseline_groups.id;
+
+
+--
 -- Name: baseline_measures; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE baseline_measures (
     id integer NOT NULL,
+    nct_id character varying,
+    baseline_id integer,
+    result_group_id integer,
+    ctgov_group_code character varying,
+    classification character varying,
     category character varying,
     title character varying,
     description text,
     units character varying,
-    nct_id character varying,
-    population character varying,
-    ctgov_group_code character varying,
     param_type character varying,
     param_value character varying,
     dispersion_type character varying,
     dispersion_value character varying,
     dispersion_lower_limit character varying,
     dispersion_upper_limit character varying,
-    explanation_of_na character varying,
-    result_group_id integer
+    explanation_of_na character varying
 );
 
 
@@ -98,13 +203,43 @@ ALTER SEQUENCE baseline_measures_id_seq OWNED BY baseline_measures.id;
 
 
 --
+-- Name: baselines; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE baselines (
+    id integer NOT NULL,
+    nct_id character varying,
+    population character varying
+);
+
+
+--
+-- Name: baselines_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE baselines_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: baselines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE baselines_id_seq OWNED BY baselines.id;
+
+
+--
 -- Name: brief_summaries; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE brief_summaries (
     id integer NOT NULL,
-    description text,
-    nct_id character varying
+    nct_id character varying,
+    description text
 );
 
 
@@ -133,8 +268,8 @@ ALTER SEQUENCE brief_summaries_id_seq OWNED BY brief_summaries.id;
 
 CREATE TABLE browse_conditions (
     id integer NOT NULL,
-    mesh_term character varying,
-    nct_id character varying
+    nct_id character varying,
+    mesh_term character varying
 );
 
 
@@ -163,8 +298,8 @@ ALTER SEQUENCE browse_conditions_id_seq OWNED BY browse_conditions.id;
 
 CREATE TABLE browse_interventions (
     id integer NOT NULL,
-    mesh_term character varying,
-    nct_id character varying
+    nct_id character varying,
+    mesh_term character varying
 );
 
 
@@ -193,20 +328,20 @@ ALTER SEQUENCE browse_interventions_id_seq OWNED BY browse_interventions.id;
 
 CREATE TABLE calculated_values (
     id integer NOT NULL,
+    nct_id character varying,
     sponsor_type character varying,
-    actual_duration integer,
-    months_to_report_results integer,
     number_of_facilities integer,
     number_of_nsae_subjects integer,
     number_of_sae_subjects integer,
-    nct_id character varying,
     registered_in_calendar_year integer,
     start_date date,
     verification_date date,
     primary_completion_date date,
     completion_date date,
     nlm_download_date date,
+    actual_duration integer,
     were_results_reported boolean,
+    months_to_report_results integer,
     has_minimum_age boolean,
     has_maximum_age boolean,
     minimum_age_num integer,
@@ -276,8 +411,8 @@ ALTER SEQUENCE central_contacts_id_seq OWNED BY central_contacts.id;
 
 CREATE TABLE conditions (
     id integer NOT NULL,
-    name character varying,
-    nct_id character varying
+    nct_id character varying,
+    name character varying
 );
 
 
@@ -306,8 +441,8 @@ ALTER SEQUENCE conditions_id_seq OWNED BY conditions.id;
 
 CREATE TABLE countries (
     id integer NOT NULL,
-    name character varying,
     nct_id character varying,
+    name character varying,
     removed boolean
 );
 
@@ -337,9 +472,9 @@ ALTER SEQUENCE countries_id_seq OWNED BY countries.id;
 
 CREATE TABLE design_group_interventions (
     id integer NOT NULL,
+    nct_id character varying,
     design_group_id integer,
-    intervention_id integer,
-    nct_id character varying
+    intervention_id integer
 );
 
 
@@ -368,10 +503,10 @@ ALTER SEQUENCE design_group_interventions_id_seq OWNED BY design_group_intervent
 
 CREATE TABLE design_groups (
     id integer NOT NULL,
-    group_type character varying,
-    description text,
     nct_id character varying,
-    title character varying
+    group_type character varying,
+    title character varying,
+    description text
 );
 
 
@@ -400,13 +535,13 @@ ALTER SEQUENCE design_groups_id_seq OWNED BY design_groups.id;
 
 CREATE TABLE design_outcomes (
     id integer NOT NULL,
+    nct_id character varying,
     outcome_type character varying,
     measure text,
     time_frame text,
     safety_issue character varying,
     population character varying,
-    description text,
-    nct_id character varying
+    description text
 );
 
 
@@ -435,15 +570,15 @@ ALTER SEQUENCE design_outcomes_id_seq OWNED BY design_outcomes.id;
 
 CREATE TABLE designs (
     id integer NOT NULL,
+    nct_id character varying,
     description text,
-    masking character varying,
     primary_purpose character varying,
     intervention_model character varying,
     endpoint_classification character varying,
     allocation character varying,
     time_perspective character varying,
     observational_model character varying,
-    nct_id character varying,
+    masking character varying,
     subject_masked boolean,
     caregiver_masked boolean,
     investigator_masked boolean,
@@ -476,8 +611,8 @@ ALTER SEQUENCE designs_id_seq OWNED BY designs.id;
 
 CREATE TABLE detailed_descriptions (
     id integer NOT NULL,
-    description text,
-    nct_id character varying
+    nct_id character varying,
+    description text
 );
 
 
@@ -506,12 +641,12 @@ ALTER SEQUENCE detailed_descriptions_id_seq OWNED BY detailed_descriptions.id;
 
 CREATE TABLE drop_withdrawals (
     id integer NOT NULL,
-    reason character varying,
-    participant_count integer,
     nct_id character varying,
-    ctgov_group_code character varying,
     result_group_id integer,
-    period character varying
+    ctgov_group_code character varying,
+    period character varying,
+    reason character varying,
+    participant_count integer
 );
 
 
@@ -540,14 +675,14 @@ ALTER SEQUENCE drop_withdrawals_id_seq OWNED BY drop_withdrawals.id;
 
 CREATE TABLE eligibilities (
     id integer NOT NULL,
+    nct_id character varying,
+    population text,
     sampling_method character varying,
     gender character varying,
     minimum_age character varying,
     maximum_age character varying,
     healthy_volunteers character varying,
-    population text,
-    criteria text,
-    nct_id character varying
+    criteria text
 );
 
 
@@ -576,13 +711,13 @@ ALTER SEQUENCE eligibilities_id_seq OWNED BY eligibilities.id;
 
 CREATE TABLE facilities (
     id integer NOT NULL,
-    name character varying,
+    nct_id character varying,
     status character varying,
+    name character varying,
     city character varying,
     state character varying,
     zip character varying,
-    country character varying,
-    nct_id character varying
+    country character varying
 );
 
 
@@ -611,12 +746,12 @@ ALTER SEQUENCE facilities_id_seq OWNED BY facilities.id;
 
 CREATE TABLE facility_contacts (
     id integer NOT NULL,
-    name character varying,
-    phone character varying,
-    email character varying,
-    contact_type character varying,
     nct_id character varying,
-    facility_id integer
+    facility_id integer,
+    contact_type character varying,
+    name character varying,
+    email character varying,
+    phone character varying
 );
 
 
@@ -645,10 +780,10 @@ ALTER SEQUENCE facility_contacts_id_seq OWNED BY facility_contacts.id;
 
 CREATE TABLE facility_investigators (
     id integer NOT NULL,
-    name character varying,
-    role character varying,
     nct_id character varying,
-    facility_id integer
+    facility_id integer,
+    role character varying,
+    name character varying
 );
 
 
@@ -708,9 +843,9 @@ ALTER SEQUENCE id_information_id_seq OWNED BY id_information.id;
 
 CREATE TABLE intervention_other_names (
     id integer NOT NULL,
-    name character varying,
     nct_id character varying,
-    intervention_id integer
+    intervention_id integer,
+    name character varying
 );
 
 
@@ -739,10 +874,10 @@ ALTER SEQUENCE intervention_other_names_id_seq OWNED BY intervention_other_names
 
 CREATE TABLE interventions (
     id integer NOT NULL,
+    nct_id character varying,
     intervention_type character varying,
     name character varying,
-    description text,
-    nct_id character varying
+    description text
 );
 
 
@@ -771,8 +906,8 @@ ALTER SEQUENCE interventions_id_seq OWNED BY interventions.id;
 
 CREATE TABLE keywords (
     id integer NOT NULL,
-    name character varying,
-    nct_id character varying
+    nct_id character varying,
+    name character varying
 );
 
 
@@ -801,9 +936,9 @@ ALTER SEQUENCE keywords_id_seq OWNED BY keywords.id;
 
 CREATE TABLE links (
     id integer NOT NULL,
-    description text,
     nct_id character varying,
-    url character varying
+    url character varying,
+    description text
 );
 
 
@@ -870,13 +1005,13 @@ ALTER SEQUENCE load_events_id_seq OWNED BY load_events.id;
 
 CREATE TABLE milestones (
     id integer NOT NULL,
-    title character varying,
-    description text,
-    participant_count integer,
     nct_id character varying,
-    ctgov_group_code character varying,
     result_group_id integer,
-    period character varying
+    ctgov_group_code character varying,
+    title character varying,
+    period character varying,
+    description text,
+    participant_count integer
 );
 
 
@@ -905,26 +1040,26 @@ ALTER SEQUENCE milestones_id_seq OWNED BY milestones.id;
 
 CREATE TABLE outcome_analyses (
     id integer NOT NULL,
+    nct_id character varying,
+    outcome_id integer,
     non_inferiority character varying,
     non_inferiority_description text,
-    p_value numeric,
     param_type character varying,
     param_value numeric,
     dispersion_type character varying,
     dispersion_value numeric,
+    p_value numeric,
     ci_n_sides character varying,
+    ci_percent numeric,
     ci_lower_limit numeric,
     ci_upper_limit numeric,
-    method character varying,
-    description text,
-    method_description text,
-    estimate_description text,
-    nct_id character varying,
-    outcome_id integer,
-    groups_description character varying,
-    ci_percent numeric,
+    ci_upper_limit_na_comment character varying,
     p_value_description character varying,
-    ci_upper_limit_na_comment character varying
+    method character varying,
+    method_description text,
+    description text,
+    estimate_description text,
+    groups_description character varying
 );
 
 
@@ -953,10 +1088,10 @@ ALTER SEQUENCE outcome_analyses_id_seq OWNED BY outcome_analyses.id;
 
 CREATE TABLE outcome_analysis_groups (
     id integer NOT NULL,
-    ctgov_group_code character varying,
-    result_group_id integer,
+    nct_id character varying,
     outcome_analysis_id integer,
-    nct_id character varying
+    result_group_id integer,
+    ctgov_group_code character varying
 );
 
 
@@ -985,11 +1120,11 @@ ALTER SEQUENCE outcome_analysis_groups_id_seq OWNED BY outcome_analysis_groups.i
 
 CREATE TABLE outcome_groups (
     id integer NOT NULL,
-    ctgov_group_code character varying,
-    participant_count integer,
-    result_group_id integer,
+    nct_id character varying,
     outcome_id integer,
-    nct_id character varying
+    result_group_id integer,
+    ctgov_group_code character varying,
+    participant_count integer
 );
 
 
@@ -1018,23 +1153,25 @@ ALTER SEQUENCE outcome_groups_id_seq OWNED BY outcome_groups.id;
 
 CREATE TABLE outcome_measured_values (
     id integer NOT NULL,
-    category character varying,
-    description text,
-    units character varying,
     nct_id character varying,
     outcome_id integer,
-    ctgov_group_code character varying,
     result_group_id integer,
+    ctgov_group_code character varying,
+    classification character varying,
+    category character varying,
+    title character varying,
+    description text,
+    param_value character varying,
+    param_value_num numeric,
+    units character varying,
+    units_analyzed character varying,
     param_type character varying,
     dispersion_type character varying,
     dispersion_value character varying,
-    explanation_of_na text,
+    dispersion_value_num numeric,
     dispersion_lower_limit numeric,
     dispersion_upper_limit numeric,
-    param_value character varying,
-    param_value_num numeric,
-    dispersion_value_num numeric,
-    title character varying
+    explanation_of_na text
 );
 
 
@@ -1067,7 +1204,6 @@ CREATE TABLE outcomes (
     outcome_type character varying,
     title text,
     description text,
-    measure character varying,
     time_frame text,
     safety_issue character varying,
     population text,
@@ -1102,8 +1238,8 @@ ALTER SEQUENCE outcomes_id_seq OWNED BY outcomes.id;
 CREATE TABLE overall_officials (
     id integer NOT NULL,
     nct_id character varying,
-    name character varying,
     role character varying,
+    name character varying,
     affiliation character varying
 );
 
@@ -1226,21 +1362,21 @@ ALTER SEQUENCE reported_event_overviews_id_seq OWNED BY reported_event_overviews
 CREATE TABLE reported_events (
     id integer NOT NULL,
     nct_id character varying,
-    description text,
+    result_group_id integer,
+    ctgov_group_code character varying,
     time_frame text,
     event_type character varying,
     default_vocab character varying,
     default_assessment character varying,
     subjects_affected integer,
     subjects_at_risk integer,
+    description text,
     event_count integer,
-    ctgov_group_code character varying,
     organ_system character varying,
     adverse_event_term character varying,
     frequency_threshold integer,
     vocab character varying,
-    assessment character varying,
-    result_group_id integer
+    assessment character varying
 );
 
 
@@ -1269,12 +1405,12 @@ ALTER SEQUENCE reported_events_id_seq OWNED BY reported_events.id;
 
 CREATE TABLE responsible_parties (
     id integer NOT NULL,
+    nct_id character varying,
     responsible_party_type character varying,
-    affiliation text,
     name character varying,
     title character varying,
-    nct_id character varying,
-    organization character varying
+    organization character varying,
+    affiliation text
 );
 
 
@@ -1303,9 +1439,9 @@ ALTER SEQUENCE responsible_parties_id_seq OWNED BY responsible_parties.id;
 
 CREATE TABLE result_agreements (
     id integer NOT NULL,
+    nct_id character varying,
     pi_employee character varying,
-    agreement text,
-    nct_id character varying
+    agreement text
 );
 
 
@@ -1334,11 +1470,11 @@ ALTER SEQUENCE result_agreements_id_seq OWNED BY result_agreements.id;
 
 CREATE TABLE result_contacts (
     id integer NOT NULL,
-    organization character varying,
-    phone character varying,
-    email character varying,
     nct_id character varying,
-    name character varying
+    organization character varying,
+    name character varying,
+    phone character varying,
+    email character varying
 );
 
 
@@ -1367,12 +1503,12 @@ ALTER SEQUENCE result_contacts_id_seq OWNED BY result_contacts.id;
 
 CREATE TABLE result_groups (
     id integer NOT NULL,
-    title character varying,
-    description text,
-    participant_count integer,
     nct_id character varying,
     ctgov_group_code character varying,
-    result_type character varying
+    result_type character varying,
+    title character varying,
+    description text,
+    participant_count integer
 );
 
 
@@ -1441,8 +1577,8 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE sponsors (
     id integer NOT NULL,
-    agency_class character varying,
     nct_id character varying,
+    agency_class character varying,
     lead_or_collaborator character varying,
     name character varying
 );
@@ -1507,6 +1643,7 @@ ALTER SEQUENCE statistics_id_seq OWNED BY statistics.id;
 
 CREATE TABLE studies (
     nct_id character varying,
+    nlm_download_date_description character varying,
     first_received_date date,
     last_changed_date date,
     first_received_results_date date,
@@ -1514,20 +1651,21 @@ CREATE TABLE studies (
     start_month_year character varying,
     verification_month_year character varying,
     completion_month_year character varying,
-    primary_completion_month_year character varying,
     completion_date_type character varying,
+    primary_completion_month_year character varying,
     primary_completion_date_type character varying,
-    nlm_download_date_description character varying,
-    study_type character varying,
-    overall_status character varying,
-    phase character varying,
     target_duration character varying,
+    study_type character varying,
+    acronym character varying,
+    brief_title text,
+    official_title text,
+    overall_status character varying,
+    last_known_status character varying,
+    phase character varying,
     enrollment integer,
     enrollment_type character varying,
     source character varying,
-    biospec_retention character varying,
     limitations_and_caveats character varying,
-    acronym character varying,
     number_of_arms integer,
     number_of_groups integer,
     why_stopped character varying,
@@ -1535,8 +1673,7 @@ CREATE TABLE studies (
     has_dmc boolean,
     is_section_801 boolean,
     is_fda_regulated boolean,
-    brief_title text,
-    official_title text,
+    biospec_retention character varying,
     biospec_description text,
     plan_to_share_ipd character varying,
     plan_to_share_ipd_description character varying,
@@ -1551,10 +1688,10 @@ CREATE TABLE studies (
 
 CREATE TABLE study_references (
     id integer NOT NULL,
-    citation text,
+    nct_id character varying,
     pmid character varying,
     reference_type character varying,
-    nct_id character varying
+    citation text
 );
 
 
@@ -1684,329 +1821,381 @@ ALTER SEQUENCE use_cases_id_seq OWNED BY use_cases.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: analyzed_outcome_measured_values id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY analyzed_outcome_measured_values ALTER COLUMN id SET DEFAULT nextval('analyzed_outcome_measured_values_id_seq'::regclass);
+
+
+--
+-- Name: baseline_analyses id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY baseline_analyses ALTER COLUMN id SET DEFAULT nextval('baseline_analyses_id_seq'::regclass);
+
+
+--
+-- Name: baseline_groups id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY baseline_groups ALTER COLUMN id SET DEFAULT nextval('baseline_groups_id_seq'::regclass);
+
+
+--
+-- Name: baseline_measures id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY baseline_measures ALTER COLUMN id SET DEFAULT nextval('baseline_measures_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: baselines id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY baselines ALTER COLUMN id SET DEFAULT nextval('baselines_id_seq'::regclass);
+
+
+--
+-- Name: brief_summaries id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY brief_summaries ALTER COLUMN id SET DEFAULT nextval('brief_summaries_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: browse_conditions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY browse_conditions ALTER COLUMN id SET DEFAULT nextval('browse_conditions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: browse_interventions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY browse_interventions ALTER COLUMN id SET DEFAULT nextval('browse_interventions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: calculated_values id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY calculated_values ALTER COLUMN id SET DEFAULT nextval('calculated_values_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: central_contacts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY central_contacts ALTER COLUMN id SET DEFAULT nextval('central_contacts_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: conditions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY conditions ALTER COLUMN id SET DEFAULT nextval('conditions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: countries id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY countries ALTER COLUMN id SET DEFAULT nextval('countries_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: design_group_interventions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_group_interventions ALTER COLUMN id SET DEFAULT nextval('design_group_interventions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: design_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_groups ALTER COLUMN id SET DEFAULT nextval('design_groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: design_outcomes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_outcomes ALTER COLUMN id SET DEFAULT nextval('design_outcomes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: designs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY designs ALTER COLUMN id SET DEFAULT nextval('designs_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: detailed_descriptions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY detailed_descriptions ALTER COLUMN id SET DEFAULT nextval('detailed_descriptions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: drop_withdrawals id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY drop_withdrawals ALTER COLUMN id SET DEFAULT nextval('drop_withdrawals_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: eligibilities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY eligibilities ALTER COLUMN id SET DEFAULT nextval('eligibilities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: facilities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facilities ALTER COLUMN id SET DEFAULT nextval('facilities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: facility_contacts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facility_contacts ALTER COLUMN id SET DEFAULT nextval('facility_contacts_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: facility_investigators id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facility_investigators ALTER COLUMN id SET DEFAULT nextval('facility_investigators_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id_information id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY id_information ALTER COLUMN id SET DEFAULT nextval('id_information_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: intervention_other_names id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY intervention_other_names ALTER COLUMN id SET DEFAULT nextval('intervention_other_names_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: interventions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interventions ALTER COLUMN id SET DEFAULT nextval('interventions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: keywords id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY keywords ALTER COLUMN id SET DEFAULT nextval('keywords_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: links id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY links ALTER COLUMN id SET DEFAULT nextval('links_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: load_events id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY load_events ALTER COLUMN id SET DEFAULT nextval('load_events_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: milestones id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY milestones ALTER COLUMN id SET DEFAULT nextval('milestones_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcome_analyses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_analyses ALTER COLUMN id SET DEFAULT nextval('outcome_analyses_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcome_analysis_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_analysis_groups ALTER COLUMN id SET DEFAULT nextval('outcome_analysis_groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcome_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_groups ALTER COLUMN id SET DEFAULT nextval('outcome_groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcome_measured_values id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_measured_values ALTER COLUMN id SET DEFAULT nextval('outcome_measured_values_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcomes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcomes ALTER COLUMN id SET DEFAULT nextval('outcomes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: overall_officials id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY overall_officials ALTER COLUMN id SET DEFAULT nextval('overall_officials_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: oversight_authorities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY oversight_authorities ALTER COLUMN id SET DEFAULT nextval('oversight_authorities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: participant_flows id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY participant_flows ALTER COLUMN id SET DEFAULT nextval('participant_flows_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: reported_event_overviews id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reported_event_overviews ALTER COLUMN id SET DEFAULT nextval('reported_event_overviews_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: reported_events id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reported_events ALTER COLUMN id SET DEFAULT nextval('reported_events_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: responsible_parties id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY responsible_parties ALTER COLUMN id SET DEFAULT nextval('responsible_parties_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: result_agreements id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_agreements ALTER COLUMN id SET DEFAULT nextval('result_agreements_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: result_contacts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_contacts ALTER COLUMN id SET DEFAULT nextval('result_contacts_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: result_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_groups ALTER COLUMN id SET DEFAULT nextval('result_groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sanity_checks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sanity_checks ALTER COLUMN id SET DEFAULT nextval('sanity_checks_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sponsors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sponsors ALTER COLUMN id SET DEFAULT nextval('sponsors_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: statistics id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY statistics ALTER COLUMN id SET DEFAULT nextval('statistics_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: study_references id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY study_references ALTER COLUMN id SET DEFAULT nextval('study_references_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: study_xml_records id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY study_xml_records ALTER COLUMN id SET DEFAULT nextval('study_xml_records_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: use_case_attachments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY use_case_attachments ALTER COLUMN id SET DEFAULT nextval('use_case_attachments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: use_cases id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY use_cases ALTER COLUMN id SET DEFAULT nextval('use_cases_id_seq'::regclass);
 
 
 --
--- Name: baseline_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: analyzed_outcome_measured_values analyzed_outcome_measured_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY analyzed_outcome_measured_values
+    ADD CONSTRAINT analyzed_outcome_measured_values_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: baseline_analyses baseline_analyses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY baseline_analyses
+    ADD CONSTRAINT baseline_analyses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: baseline_groups baseline_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY baseline_groups
+    ADD CONSTRAINT baseline_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: baseline_measures baseline_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY baseline_measures
@@ -2014,7 +2203,15 @@ ALTER TABLE ONLY baseline_measures
 
 
 --
--- Name: brief_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: baselines baselines_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY baselines
+    ADD CONSTRAINT baselines_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: brief_summaries brief_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY brief_summaries
@@ -2022,7 +2219,7 @@ ALTER TABLE ONLY brief_summaries
 
 
 --
--- Name: browse_conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: browse_conditions browse_conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY browse_conditions
@@ -2030,7 +2227,7 @@ ALTER TABLE ONLY browse_conditions
 
 
 --
--- Name: browse_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: browse_interventions browse_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY browse_interventions
@@ -2038,7 +2235,7 @@ ALTER TABLE ONLY browse_interventions
 
 
 --
--- Name: calculated_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: calculated_values calculated_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY calculated_values
@@ -2046,7 +2243,7 @@ ALTER TABLE ONLY calculated_values
 
 
 --
--- Name: central_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: central_contacts central_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY central_contacts
@@ -2054,7 +2251,7 @@ ALTER TABLE ONLY central_contacts
 
 
 --
--- Name: conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: conditions conditions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY conditions
@@ -2062,7 +2259,7 @@ ALTER TABLE ONLY conditions
 
 
 --
--- Name: countries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: countries countries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY countries
@@ -2070,7 +2267,7 @@ ALTER TABLE ONLY countries
 
 
 --
--- Name: design_group_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: design_group_interventions design_group_interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_group_interventions
@@ -2078,7 +2275,7 @@ ALTER TABLE ONLY design_group_interventions
 
 
 --
--- Name: design_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: design_groups design_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_groups
@@ -2086,7 +2283,7 @@ ALTER TABLE ONLY design_groups
 
 
 --
--- Name: design_outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: design_outcomes design_outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY design_outcomes
@@ -2094,7 +2291,7 @@ ALTER TABLE ONLY design_outcomes
 
 
 --
--- Name: designs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: designs designs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY designs
@@ -2102,7 +2299,7 @@ ALTER TABLE ONLY designs
 
 
 --
--- Name: detailed_descriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: detailed_descriptions detailed_descriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY detailed_descriptions
@@ -2110,7 +2307,7 @@ ALTER TABLE ONLY detailed_descriptions
 
 
 --
--- Name: drop_withdrawals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: drop_withdrawals drop_withdrawals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY drop_withdrawals
@@ -2118,7 +2315,7 @@ ALTER TABLE ONLY drop_withdrawals
 
 
 --
--- Name: eligibilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: eligibilities eligibilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY eligibilities
@@ -2126,7 +2323,7 @@ ALTER TABLE ONLY eligibilities
 
 
 --
--- Name: facilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: facilities facilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facilities
@@ -2134,7 +2331,7 @@ ALTER TABLE ONLY facilities
 
 
 --
--- Name: facility_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: facility_contacts facility_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facility_contacts
@@ -2142,7 +2339,7 @@ ALTER TABLE ONLY facility_contacts
 
 
 --
--- Name: facility_investigators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: facility_investigators facility_investigators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY facility_investigators
@@ -2150,7 +2347,7 @@ ALTER TABLE ONLY facility_investigators
 
 
 --
--- Name: id_information_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: id_information id_information_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY id_information
@@ -2158,7 +2355,7 @@ ALTER TABLE ONLY id_information
 
 
 --
--- Name: intervention_other_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: intervention_other_names intervention_other_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY intervention_other_names
@@ -2166,7 +2363,7 @@ ALTER TABLE ONLY intervention_other_names
 
 
 --
--- Name: interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: interventions interventions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interventions
@@ -2174,7 +2371,7 @@ ALTER TABLE ONLY interventions
 
 
 --
--- Name: keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: keywords keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY keywords
@@ -2182,7 +2379,7 @@ ALTER TABLE ONLY keywords
 
 
 --
--- Name: links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: links links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY links
@@ -2190,7 +2387,7 @@ ALTER TABLE ONLY links
 
 
 --
--- Name: load_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: load_events load_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY load_events
@@ -2198,7 +2395,7 @@ ALTER TABLE ONLY load_events
 
 
 --
--- Name: milestones_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: milestones milestones_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY milestones
@@ -2206,7 +2403,7 @@ ALTER TABLE ONLY milestones
 
 
 --
--- Name: outcome_analyses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_analyses outcome_analyses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_analyses
@@ -2214,7 +2411,7 @@ ALTER TABLE ONLY outcome_analyses
 
 
 --
--- Name: outcome_analysis_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_analysis_groups outcome_analysis_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_analysis_groups
@@ -2222,7 +2419,7 @@ ALTER TABLE ONLY outcome_analysis_groups
 
 
 --
--- Name: outcome_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_groups outcome_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_groups
@@ -2230,7 +2427,7 @@ ALTER TABLE ONLY outcome_groups
 
 
 --
--- Name: outcome_measured_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_measured_values outcome_measured_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcome_measured_values
@@ -2238,7 +2435,7 @@ ALTER TABLE ONLY outcome_measured_values
 
 
 --
--- Name: outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcomes outcomes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY outcomes
@@ -2246,7 +2443,7 @@ ALTER TABLE ONLY outcomes
 
 
 --
--- Name: overall_officials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: overall_officials overall_officials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY overall_officials
@@ -2254,7 +2451,7 @@ ALTER TABLE ONLY overall_officials
 
 
 --
--- Name: oversight_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: oversight_authorities oversight_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY oversight_authorities
@@ -2262,7 +2459,7 @@ ALTER TABLE ONLY oversight_authorities
 
 
 --
--- Name: participant_flows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: participant_flows participant_flows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY participant_flows
@@ -2270,7 +2467,7 @@ ALTER TABLE ONLY participant_flows
 
 
 --
--- Name: reported_event_overviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reported_event_overviews reported_event_overviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reported_event_overviews
@@ -2278,7 +2475,7 @@ ALTER TABLE ONLY reported_event_overviews
 
 
 --
--- Name: reported_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reported_events reported_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reported_events
@@ -2286,7 +2483,7 @@ ALTER TABLE ONLY reported_events
 
 
 --
--- Name: responsible_parties_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: responsible_parties responsible_parties_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY responsible_parties
@@ -2294,7 +2491,7 @@ ALTER TABLE ONLY responsible_parties
 
 
 --
--- Name: result_agreements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: result_agreements result_agreements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_agreements
@@ -2302,7 +2499,7 @@ ALTER TABLE ONLY result_agreements
 
 
 --
--- Name: result_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: result_contacts result_contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_contacts
@@ -2310,7 +2507,7 @@ ALTER TABLE ONLY result_contacts
 
 
 --
--- Name: result_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: result_groups result_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY result_groups
@@ -2318,7 +2515,7 @@ ALTER TABLE ONLY result_groups
 
 
 --
--- Name: sanity_checks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sanity_checks sanity_checks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sanity_checks
@@ -2326,7 +2523,7 @@ ALTER TABLE ONLY sanity_checks
 
 
 --
--- Name: sponsors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sponsors sponsors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sponsors
@@ -2334,7 +2531,7 @@ ALTER TABLE ONLY sponsors
 
 
 --
--- Name: statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: statistics statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY statistics
@@ -2342,7 +2539,7 @@ ALTER TABLE ONLY statistics
 
 
 --
--- Name: study_references_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: study_references study_references_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY study_references
@@ -2350,7 +2547,7 @@ ALTER TABLE ONLY study_references
 
 
 --
--- Name: study_xml_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: study_xml_records study_xml_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY study_xml_records
@@ -2358,7 +2555,7 @@ ALTER TABLE ONLY study_xml_records
 
 
 --
--- Name: use_case_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: use_case_attachments use_case_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY use_case_attachments
@@ -2366,11 +2563,25 @@ ALTER TABLE ONLY use_case_attachments
 
 
 --
--- Name: use_cases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: use_cases use_cases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY use_cases
     ADD CONSTRAINT use_cases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_baseline_measures_on_category; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_baseline_measures_on_category ON baseline_measures USING btree (category);
+
+
+--
+-- Name: index_baseline_measures_on_classification; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_baseline_measures_on_classification ON baseline_measures USING btree (classification);
 
 
 --
@@ -2535,6 +2746,20 @@ CREATE INDEX index_facilities_on_state ON facilities USING btree (state);
 
 
 --
+-- Name: index_outcome_measured_values_on_category; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_measured_values_on_category ON outcome_measured_values USING btree (category);
+
+
+--
+-- Name: index_outcome_measured_values_on_classification; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_measured_values_on_classification ON outcome_measured_values USING btree (classification);
+
+
+--
 -- Name: index_overall_officials_on_affiliation; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2591,10 +2816,24 @@ CREATE INDEX index_studies_on_first_received_results_date ON studies USING btree
 
 
 --
+-- Name: index_studies_on_last_known_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_last_known_status ON studies USING btree (last_known_status);
+
+
+--
 -- Name: index_studies_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
+
+
+--
+-- Name: index_studies_on_overall_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_overall_status ON studies USING btree (overall_status);
 
 
 --
@@ -2609,6 +2848,13 @@ CREATE INDEX index_studies_on_phase ON studies USING btree (phase);
 --
 
 CREATE INDEX index_studies_on_primary_completion_date_type ON studies USING btree (primary_completion_date_type);
+
+
+--
+-- Name: index_studies_on_received_results_disposit_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_received_results_disposit_date ON studies USING btree (received_results_disposit_date);
 
 
 --

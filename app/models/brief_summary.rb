@@ -1,7 +1,12 @@
 class BriefSummary < StudyRelationship
 
   def attribs
-    {:description=>get_text('brief_summary')}
+    val=get_text('brief_summary')
+    if val.blank?
+      nil
+    else
+      {:description=>val}
+    end
   end
 
 end
