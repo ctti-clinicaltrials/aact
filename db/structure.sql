@@ -62,8 +62,6 @@ SET default_with_oids = false;
 CREATE TABLE analyzed_baseline_measures (
     id integer NOT NULL,
     nct_id character varying,
-    baseline_id integer,
-    result_group_id integer,
     ctgov_group_code character varying,
     units character varying,
     scope character varying,
@@ -125,47 +123,12 @@ ALTER SEQUENCE analyzed_outcome_measured_values_id_seq OWNED BY analyzed_outcome
 
 
 --
--- Name: baseline_groups; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE baseline_groups (
-    id integer NOT NULL,
-    nct_id character varying,
-    baseline_id integer,
-    result_group_id integer,
-    ctgov_group_code character varying,
-    title character varying,
-    description character varying
-);
-
-
---
--- Name: baseline_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE baseline_groups_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: baseline_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE baseline_groups_id_seq OWNED BY baseline_groups.id;
-
-
---
 -- Name: baseline_measures; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE baseline_measures (
     id integer NOT NULL,
     nct_id character varying,
-    baseline_id integer,
     result_group_id integer,
     ctgov_group_code character varying,
     classification character varying,
@@ -200,36 +163,6 @@ CREATE SEQUENCE baseline_measures_id_seq
 --
 
 ALTER SEQUENCE baseline_measures_id_seq OWNED BY baseline_measures.id;
-
-
---
--- Name: baselines; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE baselines (
-    id integer NOT NULL,
-    nct_id character varying,
-    population character varying
-);
-
-
---
--- Name: baselines_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE baselines_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: baselines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE baselines_id_seq OWNED BY baselines.id;
 
 
 --
@@ -1325,37 +1258,6 @@ ALTER SEQUENCE participant_flows_id_seq OWNED BY participant_flows.id;
 
 
 --
--- Name: reported_event_overviews; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE reported_event_overviews (
-    id integer NOT NULL,
-    nct_id character varying,
-    time_frame character varying,
-    description text
-);
-
-
---
--- Name: reported_event_overviews_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE reported_event_overviews_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: reported_event_overviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE reported_event_overviews_id_seq OWNED BY reported_event_overviews.id;
-
-
---
 -- Name: reported_events; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1657,6 +1559,7 @@ CREATE TABLE studies (
     target_duration character varying,
     study_type character varying,
     acronym character varying,
+    baseline_population text,
     brief_title text,
     official_title text,
     overall_status character varying,
@@ -1835,24 +1738,10 @@ ALTER TABLE ONLY analyzed_outcome_measured_values ALTER COLUMN id SET DEFAULT ne
 
 
 --
--- Name: baseline_groups id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY baseline_groups ALTER COLUMN id SET DEFAULT nextval('baseline_groups_id_seq'::regclass);
-
-
---
 -- Name: baseline_measures id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY baseline_measures ALTER COLUMN id SET DEFAULT nextval('baseline_measures_id_seq'::regclass);
-
-
---
--- Name: baselines id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY baselines ALTER COLUMN id SET DEFAULT nextval('baselines_id_seq'::regclass);
 
 
 --
@@ -2080,13 +1969,6 @@ ALTER TABLE ONLY participant_flows ALTER COLUMN id SET DEFAULT nextval('particip
 
 
 --
--- Name: reported_event_overviews id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY reported_event_overviews ALTER COLUMN id SET DEFAULT nextval('reported_event_overviews_id_seq'::regclass);
-
-
---
 -- Name: reported_events id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2187,27 +2069,11 @@ ALTER TABLE ONLY analyzed_outcome_measured_values
 
 
 --
--- Name: baseline_groups baseline_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY baseline_groups
-    ADD CONSTRAINT baseline_groups_pkey PRIMARY KEY (id);
-
-
---
 -- Name: baseline_measures baseline_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY baseline_measures
     ADD CONSTRAINT baseline_measures_pkey PRIMARY KEY (id);
-
-
---
--- Name: baselines baselines_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY baselines
-    ADD CONSTRAINT baselines_pkey PRIMARY KEY (id);
 
 
 --
@@ -2464,14 +2330,6 @@ ALTER TABLE ONLY oversight_authorities
 
 ALTER TABLE ONLY participant_flows
     ADD CONSTRAINT participant_flows_pkey PRIMARY KEY (id);
-
-
---
--- Name: reported_event_overviews reported_event_overviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY reported_event_overviews
-    ADD CONSTRAINT reported_event_overviews_pkey PRIMARY KEY (id);
 
 
 --

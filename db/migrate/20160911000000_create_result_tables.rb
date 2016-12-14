@@ -2,23 +2,8 @@ class CreateResultTables < ActiveRecord::Migration
 
   def change
 
-    create_table "baselines", force: :cascade do |t|
-      t.string  "nct_id"
-      t.string  "population"
-    end
-
-    create_table "baseline_groups", force: :cascade do |t|
-      t.string  "nct_id"
-      t.integer "baseline_id"
-      t.integer "result_group_id"
-      t.string  "ctgov_group_code"
-      t.string  "title"
-      t.string  "description"
-    end
-
     create_table "baseline_measures", force: :cascade do |t|
       t.string  "nct_id"
-      t.integer "baseline_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
       t.string  "classification"
@@ -37,8 +22,6 @@ class CreateResultTables < ActiveRecord::Migration
 
     create_table "analyzed_baseline_measures", force: :cascade do |t|
       t.string  "nct_id"
-      t.integer "baseline_id"
-      t.integer "result_group_id"
       t.string  "ctgov_group_code"
       t.string  "units"
       t.string  "scope"
