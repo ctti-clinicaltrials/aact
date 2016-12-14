@@ -23,9 +23,9 @@ describe Baseline do
     expect(BaselineMeasure.first.nct_id).to eq(nct_id)
     expect(BaselineMeasure.first.result_group.result_type).to eq('Baseline')
     expect(BaselineMeasure.first.result_group.nct_id).to eq(nct_id)
-    expect(BaselineAnalysis.first.result_group.result_type).to eq('Baseline')
-    expect(BaselineAnalysis.first.result_group.nct_id).to eq(nct_id)
-    expect(BaselineAnalysis.first.nct_id).to eq(nct_id)
+    expect(AnalyzedBaselineMeasure.first.result_group.result_type).to eq('Baseline')
+    expect(AnalyzedBaselineMeasure.first.result_group.nct_id).to eq(nct_id)
+    expect(AnalyzedBaselineMeasure.first.nct_id).to eq(nct_id)
 
     expect(study.baseline.population).to eq('All participants who were randomized were included except those who were randomised in error (main enrollment: 1 child HIV-uninfected, 2 on main phase of tuberculosis treatment; cotrimoxazole secondary randomization: 2 children receiving dapsone prophylaxis not cotrimoxazole).')
     expect(study.baseline.measures.size).to eq(380);
@@ -40,12 +40,12 @@ describe Baseline do
     expect(bm3.explanation_of_na).to eq('Different randomized comparison');
     expect(bm3.dispersion_upper_limit).to eq(nil);
 
-    analyses=BaselineAnalysis.where('nct_id=?',nct_id)
+    analyses=AnalyzedBaselineMeasure.where('nct_id=?',nct_id)
     expect(analyses.size).to eq(10);
-    expect(study.baseline.analyses.size).to eq(10);
-    expect(study.baseline.analyses.size).to eq(10);
-    ba1=study.baseline.analyses.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B1'}.first
-    ba3=study.baseline.analyses.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B3'}.first
+    expect(study.baseline.analyzed_measures.size).to eq(10);
+    expect(study.baseline.analyzed_measures.size).to eq(10);
+    ba1=study.baseline.analyzed_measures.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B1'}.first
+    ba3=study.baseline.analyzed_measures.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B3'}.first
     expect(ba1.count).to eq(606);
     expect(ba3.count).to eq(397);
 

@@ -35,7 +35,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "explanation_of_na"
     end
 
-    create_table "baseline_analyses", force: :cascade do |t|
+    create_table "analyzed_baseline_measures", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "baseline_id"
       t.integer "result_group_id"
@@ -149,12 +149,6 @@ class CreateResultTables < ActiveRecord::Migration
       t.string "nct_id"
       t.text   "recruitment_details"
       t.text   "pre_assignment_details"
-    end
-
-    create_table "reported_event_overviews", force: :cascade do |t|
-      t.string "nct_id"
-      t.string "time_frame"
-      t.text   "description"
     end
 
     create_table "reported_events", force: :cascade do |t|
