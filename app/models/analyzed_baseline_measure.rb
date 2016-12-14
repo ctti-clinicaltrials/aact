@@ -1,4 +1,4 @@
-class BaselineAnalysis < StudyRelationship
+class AnalyzedBaselineMeasure < StudyRelationship
 
   belongs_to :baseline
   belongs_to :result_group
