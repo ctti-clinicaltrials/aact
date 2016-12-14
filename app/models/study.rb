@@ -19,7 +19,7 @@ class Study < ActiveRecord::Base
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
   has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :analyzed_baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :baseline_counts,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_group_interventions, :foreign_key => 'nct_id', dependent: :delete_all
@@ -80,7 +80,7 @@ class Study < ActiveRecord::Base
     ParticipantFlow.new.create_from(opts).try(:save)
 
     BaselineMeasure.create_all_from(opts)
-    AnalyzedBaselineMeasure.create_all_from(opts)
+    BaselineCount.create_all_from(opts)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     CentralContact.create_all_from(opts)

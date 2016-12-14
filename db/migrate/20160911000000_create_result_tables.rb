@@ -20,7 +20,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "explanation_of_na"
     end
 
-    create_table "analyzed_baseline_measures", force: :cascade do |t|
+    create_table "baseline_counts", force: :cascade do |t|
       t.string  "nct_id"
       t.string  "ctgov_group_code"
       t.string  "units"

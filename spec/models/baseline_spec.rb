@@ -7,7 +7,7 @@ describe BaselineMeasure do
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.baseline_population).to eq('')
     expect(study.baseline_measures).to eq([])
-    expect(study.analyzed_baseline_measures).to eq([])
+    expect(study.baseline_counts).to eq([])
   end
 
   it "study should have expected baseline relationships" do
@@ -20,13 +20,13 @@ describe BaselineMeasure do
     expect(BaselineMeasure.first.nct_id).to eq(nct_id)
     expect(BaselineMeasure.first.result_group.result_type).to eq('Baseline')
     expect(BaselineMeasure.first.result_group.nct_id).to eq(nct_id)
-    expect(AnalyzedBaselineMeasure.count).to eq(10)
-    b10=AnalyzedBaselineMeasure.where('ctgov_group_code=?','B10').first
+    expect(BaselineCount.count).to eq(10)
+    b10=BaselineCount.where('ctgov_group_code=?','B10').first
     expect(b10.nct_id).to eq(nct_id)
     expect(b10.count).to eq(3839)
     expect(b10.scope).to eq('Overall')
     expect(b10.units).to eq('Participants')
-    b3=AnalyzedBaselineMeasure.where('ctgov_group_code=?','B3').first
+    b3=BaselineCount.where('ctgov_group_code=?','B3').first
     expect(b3.nct_id).to eq(nct_id)
     expect(b3.count).to eq(397)
     expect(b3.scope).to eq('Overall')
@@ -45,12 +45,12 @@ describe BaselineMeasure do
     expect(bm3.explanation_of_na).to eq('Different randomized comparison');
     expect(bm3.dispersion_upper_limit).to eq(nil);
 
-    analyses=AnalyzedBaselineMeasure.where('nct_id=?',nct_id)
-    expect(analyses.size).to eq(10);
-    expect(study.analyzed_baseline_measures.size).to eq(10);
-    expect(study.analyzed_baseline_measures.size).to eq(10);
-    ba1=study.analyzed_baseline_measures.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B1'}.first
-    ba3=study.analyzed_baseline_measures.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B3'}.first
+    counts=BaselineCount.where('nct_id=?',nct_id)
+    expect(counts.size).to eq(10);
+    expect(study.baseline_counts.size).to eq(10);
+    expect(study.baseline_counts.size).to eq(10);
+    ba1=study.baseline_counts.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B1'}.first
+    ba3=study.baseline_counts.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B3'}.first
     expect(ba1.count).to eq(606);
     expect(ba3.count).to eq(397);
 

@@ -1,4 +1,4 @@
-class AnalyzedBaselineMeasure < StudyRelationship
+class BaselineCount < StudyRelationship
 
   def self.create_all_from(opts={})
     return [] if opts[:xml].xpath('//baseline').blank?
@@ -25,7 +25,6 @@ class AnalyzedBaselineMeasure < StudyRelationship
 
   def attribs
     {
-      #:result_group => get_group(opts[:groups]),
       :ctgov_group_code => get_attribute('group_id'),
       :units => get_opt(:units),
       :scope => get_opt(:scope),
