@@ -81,11 +81,11 @@ describe OutcomeMeasuredValue do
     expect(o1.title).to eq('LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death')
     expect(o1.description).to eq('Number of participants with disease progression to a new WHO stage 4 event or death, to be analysed using time-to-event methods')
     expect(o1.param_value).to eq('47')
-    expect(o1.analyzed_outcome_measured_values.size).to eq(2)
-    expect(o1.analyzed_outcome_measured_values.select{|x|x.ctgov_group_code=='O1'}.first.count).to eq(606)
-    expect(o1.analyzed_outcome_measured_values.select{|x|x.ctgov_group_code=='O2'}.first.count).to eq(600)
-    expect(o1.analyzed_outcome_measured_values.select{|x|x.units=='Participants'}.size).to eq(2)
-    expect(o1.analyzed_outcome_measured_values.select{|x|x.scope=='Measure'}.size).to eq(2)
+    expect(o1.outcome_counts.size).to eq(2)
+    expect(o1.outcome_counts.select{|x|x.ctgov_group_code=='O1'}.first.count).to eq(606)
+    expect(o1.outcome_counts.select{|x|x.ctgov_group_code=='O2'}.first.count).to eq(600)
+    expect(o1.outcome_counts.select{|x|x.units=='Participants'}.size).to eq(2)
+    expect(o1.outcome_counts.select{|x|x.scope=='Measure'}.size).to eq(2)
 
     expect(o2_measured_values.first.title).to eq('LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death')
     expect(o2_measured_values.first.param_value).to eq('39')
@@ -118,7 +118,7 @@ describe OutcomeMeasuredValue do
     expect(o.safety_issue).to eq("No")
     expect(o.population).to eq("Phase I and Phase II - PCOS patients.")
     # TODO - NLM has switched this data to be in <alayzed_list><analyzed>
-    #oa=o.analyzed_outcome_values.select{|x|x.title=='Participants'}
+    #oa=o.outcome_counts.select{|x|x.title=='Participants'}
     #expect(oa.size).to eq(10)
     #om.each{|x| expect(x.param_value).to eq('9')}
     #om.each{|x| expect(x.param_value_num).to eq(9)}

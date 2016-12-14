@@ -56,40 +56,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: analyzed_outcome_measured_values; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE analyzed_outcome_measured_values (
-    id integer NOT NULL,
-    nct_id character varying,
-    outcome_measured_value_id integer,
-    ctgov_group_code character varying,
-    scope character varying,
-    units character varying,
-    count integer
-);
-
-
---
--- Name: analyzed_outcome_measured_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE analyzed_outcome_measured_values_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: analyzed_outcome_measured_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE analyzed_outcome_measured_values_id_seq OWNED BY analyzed_outcome_measured_values.id;
-
-
---
 -- Name: baseline_counts; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1048,6 +1014,40 @@ ALTER SEQUENCE outcome_analysis_groups_id_seq OWNED BY outcome_analysis_groups.i
 
 
 --
+-- Name: outcome_counts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE outcome_counts (
+    id integer NOT NULL,
+    nct_id character varying,
+    outcome_measured_value_id integer,
+    ctgov_group_code character varying,
+    scope character varying,
+    units character varying,
+    count integer
+);
+
+
+--
+-- Name: outcome_counts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE outcome_counts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: outcome_counts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE outcome_counts_id_seq OWNED BY outcome_counts.id;
+
+
+--
 -- Name: outcome_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1724,13 +1724,6 @@ ALTER SEQUENCE use_cases_id_seq OWNED BY use_cases.id;
 
 
 --
--- Name: analyzed_outcome_measured_values id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY analyzed_outcome_measured_values ALTER COLUMN id SET DEFAULT nextval('analyzed_outcome_measured_values_id_seq'::regclass);
-
-
---
 -- Name: baseline_counts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1927,6 +1920,13 @@ ALTER TABLE ONLY outcome_analysis_groups ALTER COLUMN id SET DEFAULT nextval('ou
 
 
 --
+-- Name: outcome_counts id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY outcome_counts ALTER COLUMN id SET DEFAULT nextval('outcome_counts_id_seq'::regclass);
+
+
+--
 -- Name: outcome_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2050,14 +2050,6 @@ ALTER TABLE ONLY use_case_attachments ALTER COLUMN id SET DEFAULT nextval('use_c
 --
 
 ALTER TABLE ONLY use_cases ALTER COLUMN id SET DEFAULT nextval('use_cases_id_seq'::regclass);
-
-
---
--- Name: analyzed_outcome_measured_values analyzed_outcome_measured_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY analyzed_outcome_measured_values
-    ADD CONSTRAINT analyzed_outcome_measured_values_pkey PRIMARY KEY (id);
 
 
 --
@@ -2282,6 +2274,14 @@ ALTER TABLE ONLY outcome_analyses
 
 ALTER TABLE ONLY outcome_analysis_groups
     ADD CONSTRAINT outcome_analysis_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: outcome_counts outcome_counts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY outcome_counts
+    ADD CONSTRAINT outcome_counts_pkey PRIMARY KEY (id);
 
 
 --

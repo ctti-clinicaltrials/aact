@@ -1,7 +1,7 @@
 class OutcomeMeasuredValue < StudyRelationship
   belongs_to :outcome, autosave: true
   belongs_to :result_group, autosave: true
-  has_many :analyzed_outcome_measured_values, autosave: true
+  has_many :outcome_counts, autosave: true
 
   def self.create_all_from(opts)
     all=opts[:outcome_xml].xpath("measure")
@@ -90,7 +90,7 @@ class OutcomeMeasuredValue < StudyRelationship
       :dispersion_upper_limit => get_opt('upper_limit'),
       :explanation_of_na      => get_opt('explanation_of_na'),
       :outcome                => get_opt('outcome'),
-      :analyzed_outcome_measured_values => AnalyzedOutcomeMeasuredValue.create_all_from(opts.merge(:outcome_measured_value=>self)),
+      :outcome_counts => OutcomeCount.create_all_from(opts.merge(:outcome_measured_value=>self)),
     }
   end
 

@@ -2,6 +2,76 @@ class CreateResultTables < ActiveRecord::Migration
 
   def change
 
+    create_table "result_agreements", force: :cascade do |t|
+      t.string "nct_id"
+      t.string "pi_employee"
+      t.text   "agreement"
+    end
+
+    create_table "result_contacts", force: :cascade do |t|
+      t.string "nct_id"
+      t.string "organization"
+      t.string "name"
+      t.string "phone"
+      t.string "email"
+    end
+
+    create_table "result_groups", force: :cascade do |t|
+      t.string  "nct_id"
+      t.string  "ctgov_group_code"
+      t.string  "result_type"
+      t.string  "title"
+      t.text    "description"
+      t.integer "participant_count"
+    end
+
+    create_table "reported_events", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "result_group_id"
+      t.string  "ctgov_group_code"
+      t.text    "time_frame"
+      t.string  "event_type"
+      t.string  "default_vocab"
+      t.string  "default_assessment"
+      t.integer "subjects_affected"
+      t.integer "subjects_at_risk"
+      t.text    "description"
+      t.integer "event_count"
+      t.string  "organ_system"
+      t.string  "adverse_event_term"
+      t.integer "frequency_threshold"
+      t.string  "vocab"
+      t.string  "assessment"
+    end
+
+    # ----  Participant Flow Data ----------------------------
+
+    create_table "participant_flows", force: :cascade do |t|
+      t.string "nct_id"
+      t.text   "recruitment_details"
+      t.text   "pre_assignment_details"
+    end
+    create_table "drop_withdrawals", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "result_group_id"
+      t.string  "ctgov_group_code"
+      t.string  "period"
+      t.string  "reason"
+      t.integer "participant_count"
+    end
+
+    create_table "milestones", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "result_group_id"
+      t.string  "ctgov_group_code"
+      t.string  "title"
+      t.string  "period"
+      t.text    "description"
+      t.integer "participant_count"
+    end
+
+    # ----  Baseline Data ----------------------------
+
     create_table "baseline_measures", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
@@ -28,24 +98,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.integer "count"
     end
 
-    create_table "drop_withdrawals", force: :cascade do |t|
-      t.string  "nct_id"
-      t.integer "result_group_id"
-      t.string  "ctgov_group_code"
-      t.string  "period"
-      t.string  "reason"
-      t.integer "participant_count"
-    end
-
-    create_table "milestones", force: :cascade do |t|
-      t.string  "nct_id"
-      t.integer "result_group_id"
-      t.string  "ctgov_group_code"
-      t.string  "title"
-      t.string  "period"
-      t.text    "description"
-      t.integer "participant_count"
-    end
+    # ----  Outcomes Data ----------------------------
 
     create_table "outcomes", force: :cascade do |t|
       t.string  "nct_id"
@@ -119,7 +172,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.text    "explanation_of_na"
     end
 
-    create_table "analyzed_outcome_measured_values", force: :cascade do |t|
+    create_table "outcome_counts", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "outcome_measured_value_id"
       t.string  "ctgov_group_code"
@@ -128,52 +181,5 @@ class CreateResultTables < ActiveRecord::Migration
       t.integer "count"
     end
 
-    create_table "participant_flows", force: :cascade do |t|
-      t.string "nct_id"
-      t.text   "recruitment_details"
-      t.text   "pre_assignment_details"
-    end
-
-    create_table "reported_events", force: :cascade do |t|
-      t.string  "nct_id"
-      t.integer "result_group_id"
-      t.string  "ctgov_group_code"
-      t.text    "time_frame"
-      t.string  "event_type"
-      t.string  "default_vocab"
-      t.string  "default_assessment"
-      t.integer "subjects_affected"
-      t.integer "subjects_at_risk"
-      t.text    "description"
-      t.integer "event_count"
-      t.string  "organ_system"
-      t.string  "adverse_event_term"
-      t.integer "frequency_threshold"
-      t.string  "vocab"
-      t.string  "assessment"
-    end
-
-    create_table "result_agreements", force: :cascade do |t|
-      t.string "nct_id"
-      t.string "pi_employee"
-      t.text   "agreement"
-    end
-
-    create_table "result_contacts", force: :cascade do |t|
-      t.string "nct_id"
-      t.string "organization"
-      t.string "name"
-      t.string "phone"
-      t.string "email"
-    end
-
-    create_table "result_groups", force: :cascade do |t|
-      t.string  "nct_id"
-      t.string  "ctgov_group_code"
-      t.string  "result_type"
-      t.string  "title"
-      t.text    "description"
-      t.integer "participant_count"
-    end
   end
 end

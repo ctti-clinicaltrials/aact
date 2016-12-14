@@ -1,4 +1,4 @@
-class AnalyzedOutcomeMeasuredValue < StudyRelationship
+class OutcomeCount < StudyRelationship
   belongs_to :outcome_measured_value, autosave: true
 
   def self.create_all_from(opts)
