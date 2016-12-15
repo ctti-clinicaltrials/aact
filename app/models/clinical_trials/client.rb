@@ -87,16 +87,16 @@ module ClinicalTrials
     end
 
     def populate_studies
-      return if @dry_run
       load_event = ClinicalTrials::LoadEvent.create( event_type: 'populate_studies')
 
-      StudyXmlRecord.find_each do |xml_record|
+      StudyXmlRecord.where('created_study_at is null').each do |xml_record|
         raw_xml = xml_record.content
 
         begin
           import_xml_file(raw_xml)
           xml_record.created_study_at=Date.today
           xml_record.save!
+          puts "saved #{xml_record.nct_id}"
         rescue StandardError => e
           existing_error = @errors.find do |err|
             err[:name] == e.name && err[:first_backtrace_line] == e.backtrace.first

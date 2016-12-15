@@ -214,6 +214,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string   "target_duration"
       t.string   "study_type"
       t.string   "acronym"
+      t.text     "baseline_population"
       t.text     "brief_title"
       t.text     "official_title"
       t.string   "overall_status"

@@ -56,48 +56,12 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: analyzed_outcome_measured_values; Type: TABLE; Schema: public; Owner: -
+-- Name: baseline_counts; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE analyzed_outcome_measured_values (
+CREATE TABLE baseline_counts (
     id integer NOT NULL,
     nct_id character varying,
-    outcome_measured_value_id integer,
-    ctgov_group_code character varying,
-    scope character varying,
-    units character varying,
-    count integer
-);
-
-
---
--- Name: analyzed_outcome_measured_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE analyzed_outcome_measured_values_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: analyzed_outcome_measured_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE analyzed_outcome_measured_values_id_seq OWNED BY analyzed_outcome_measured_values.id;
-
-
---
--- Name: baseline_analyses; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE baseline_analyses (
-    id integer NOT NULL,
-    nct_id character varying,
-    baseline_id integer,
-    result_group_id integer,
     ctgov_group_code character varying,
     units character varying,
     scope character varying,
@@ -106,10 +70,10 @@ CREATE TABLE baseline_analyses (
 
 
 --
--- Name: baseline_analyses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: baseline_counts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE baseline_analyses_id_seq
+CREATE SEQUENCE baseline_counts_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -118,44 +82,10 @@ CREATE SEQUENCE baseline_analyses_id_seq
 
 
 --
--- Name: baseline_analyses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: baseline_counts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE baseline_analyses_id_seq OWNED BY baseline_analyses.id;
-
-
---
--- Name: baseline_groups; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE baseline_groups (
-    id integer NOT NULL,
-    nct_id character varying,
-    baseline_id integer,
-    result_group_id integer,
-    ctgov_group_code character varying,
-    title character varying,
-    description character varying
-);
-
-
---
--- Name: baseline_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE baseline_groups_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: baseline_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE baseline_groups_id_seq OWNED BY baseline_groups.id;
+ALTER SEQUENCE baseline_counts_id_seq OWNED BY baseline_counts.id;
 
 
 --
@@ -165,7 +95,6 @@ ALTER SEQUENCE baseline_groups_id_seq OWNED BY baseline_groups.id;
 CREATE TABLE baseline_measures (
     id integer NOT NULL,
     nct_id character varying,
-    baseline_id integer,
     result_group_id integer,
     ctgov_group_code character varying,
     classification character varying,
@@ -200,36 +129,6 @@ CREATE SEQUENCE baseline_measures_id_seq
 --
 
 ALTER SEQUENCE baseline_measures_id_seq OWNED BY baseline_measures.id;
-
-
---
--- Name: baselines; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE baselines (
-    id integer NOT NULL,
-    nct_id character varying,
-    population character varying
-);
-
-
---
--- Name: baselines_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE baselines_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: baselines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE baselines_id_seq OWNED BY baselines.id;
 
 
 --
@@ -1090,7 +989,6 @@ CREATE TABLE outcome_analysis_groups (
     id integer NOT NULL,
     nct_id character varying,
     outcome_analysis_id integer,
-    result_group_id integer,
     ctgov_group_code character varying
 );
 
@@ -1112,6 +1010,40 @@ CREATE SEQUENCE outcome_analysis_groups_id_seq
 --
 
 ALTER SEQUENCE outcome_analysis_groups_id_seq OWNED BY outcome_analysis_groups.id;
+
+
+--
+-- Name: outcome_counts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE outcome_counts (
+    id integer NOT NULL,
+    nct_id character varying,
+    outcome_measure_id integer,
+    ctgov_group_code character varying,
+    scope character varying,
+    units character varying,
+    count integer
+);
+
+
+--
+-- Name: outcome_counts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE outcome_counts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: outcome_counts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE outcome_counts_id_seq OWNED BY outcome_counts.id;
 
 
 --
@@ -1148,24 +1080,18 @@ ALTER SEQUENCE outcome_groups_id_seq OWNED BY outcome_groups.id;
 
 
 --
--- Name: outcome_measured_values; Type: TABLE; Schema: public; Owner: -
+-- Name: outcome_measurements; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE outcome_measured_values (
+CREATE TABLE outcome_measurements (
     id integer NOT NULL,
     nct_id character varying,
-    outcome_id integer,
-    result_group_id integer,
-    ctgov_group_code character varying,
+    outcome_measure_id integer,
     classification character varying,
     category character varying,
-    title character varying,
-    description text,
+    ctgov_group_code character varying,
     param_value character varying,
     param_value_num numeric,
-    units character varying,
-    units_analyzed character varying,
-    param_type character varying,
     dispersion_type character varying,
     dispersion_value character varying,
     dispersion_value_num numeric,
@@ -1176,10 +1102,10 @@ CREATE TABLE outcome_measured_values (
 
 
 --
--- Name: outcome_measured_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: outcome_measurements_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE outcome_measured_values_id_seq
+CREATE SEQUENCE outcome_measurements_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1188,10 +1114,47 @@ CREATE SEQUENCE outcome_measured_values_id_seq
 
 
 --
--- Name: outcome_measured_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: outcome_measurements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE outcome_measured_values_id_seq OWNED BY outcome_measured_values.id;
+ALTER SEQUENCE outcome_measurements_id_seq OWNED BY outcome_measurements.id;
+
+
+--
+-- Name: outcome_measures; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE outcome_measures (
+    id integer NOT NULL,
+    nct_id character varying,
+    outcome_id integer,
+    title character varying,
+    description text,
+    population character varying,
+    units character varying,
+    units_analyzed character varying,
+    dispersion character varying,
+    param_type character varying
+);
+
+
+--
+-- Name: outcome_measures_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE outcome_measures_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: outcome_measures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE outcome_measures_id_seq OWNED BY outcome_measures.id;
 
 
 --
@@ -1322,37 +1285,6 @@ CREATE SEQUENCE participant_flows_id_seq
 --
 
 ALTER SEQUENCE participant_flows_id_seq OWNED BY participant_flows.id;
-
-
---
--- Name: reported_event_overviews; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE reported_event_overviews (
-    id integer NOT NULL,
-    nct_id character varying,
-    time_frame character varying,
-    description text
-);
-
-
---
--- Name: reported_event_overviews_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE reported_event_overviews_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: reported_event_overviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE reported_event_overviews_id_seq OWNED BY reported_event_overviews.id;
 
 
 --
@@ -1657,6 +1589,7 @@ CREATE TABLE studies (
     target_duration character varying,
     study_type character varying,
     acronym character varying,
+    baseline_population text,
     brief_title text,
     official_title text,
     overall_status character varying,
@@ -1821,24 +1754,10 @@ ALTER SEQUENCE use_cases_id_seq OWNED BY use_cases.id;
 
 
 --
--- Name: analyzed_outcome_measured_values id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: baseline_counts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY analyzed_outcome_measured_values ALTER COLUMN id SET DEFAULT nextval('analyzed_outcome_measured_values_id_seq'::regclass);
-
-
---
--- Name: baseline_analyses id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY baseline_analyses ALTER COLUMN id SET DEFAULT nextval('baseline_analyses_id_seq'::regclass);
-
-
---
--- Name: baseline_groups id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY baseline_groups ALTER COLUMN id SET DEFAULT nextval('baseline_groups_id_seq'::regclass);
+ALTER TABLE ONLY baseline_counts ALTER COLUMN id SET DEFAULT nextval('baseline_counts_id_seq'::regclass);
 
 
 --
@@ -1846,13 +1765,6 @@ ALTER TABLE ONLY baseline_groups ALTER COLUMN id SET DEFAULT nextval('baseline_g
 --
 
 ALTER TABLE ONLY baseline_measures ALTER COLUMN id SET DEFAULT nextval('baseline_measures_id_seq'::regclass);
-
-
---
--- Name: baselines id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY baselines ALTER COLUMN id SET DEFAULT nextval('baselines_id_seq'::regclass);
 
 
 --
@@ -2038,6 +1950,13 @@ ALTER TABLE ONLY outcome_analysis_groups ALTER COLUMN id SET DEFAULT nextval('ou
 
 
 --
+-- Name: outcome_counts id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY outcome_counts ALTER COLUMN id SET DEFAULT nextval('outcome_counts_id_seq'::regclass);
+
+
+--
 -- Name: outcome_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2045,10 +1964,17 @@ ALTER TABLE ONLY outcome_groups ALTER COLUMN id SET DEFAULT nextval('outcome_gro
 
 
 --
--- Name: outcome_measured_values id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: outcome_measurements id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY outcome_measured_values ALTER COLUMN id SET DEFAULT nextval('outcome_measured_values_id_seq'::regclass);
+ALTER TABLE ONLY outcome_measurements ALTER COLUMN id SET DEFAULT nextval('outcome_measurements_id_seq'::regclass);
+
+
+--
+-- Name: outcome_measures id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY outcome_measures ALTER COLUMN id SET DEFAULT nextval('outcome_measures_id_seq'::regclass);
 
 
 --
@@ -2077,13 +2003,6 @@ ALTER TABLE ONLY oversight_authorities ALTER COLUMN id SET DEFAULT nextval('over
 --
 
 ALTER TABLE ONLY participant_flows ALTER COLUMN id SET DEFAULT nextval('participant_flows_id_seq'::regclass);
-
-
---
--- Name: reported_event_overviews id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY reported_event_overviews ALTER COLUMN id SET DEFAULT nextval('reported_event_overviews_id_seq'::regclass);
 
 
 --
@@ -2171,27 +2090,11 @@ ALTER TABLE ONLY use_cases ALTER COLUMN id SET DEFAULT nextval('use_cases_id_seq
 
 
 --
--- Name: analyzed_outcome_measured_values analyzed_outcome_measured_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: baseline_counts baseline_counts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY analyzed_outcome_measured_values
-    ADD CONSTRAINT analyzed_outcome_measured_values_pkey PRIMARY KEY (id);
-
-
---
--- Name: baseline_analyses baseline_analyses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY baseline_analyses
-    ADD CONSTRAINT baseline_analyses_pkey PRIMARY KEY (id);
-
-
---
--- Name: baseline_groups baseline_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY baseline_groups
-    ADD CONSTRAINT baseline_groups_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY baseline_counts
+    ADD CONSTRAINT baseline_counts_pkey PRIMARY KEY (id);
 
 
 --
@@ -2200,14 +2103,6 @@ ALTER TABLE ONLY baseline_groups
 
 ALTER TABLE ONLY baseline_measures
     ADD CONSTRAINT baseline_measures_pkey PRIMARY KEY (id);
-
-
---
--- Name: baselines baselines_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY baselines
-    ADD CONSTRAINT baselines_pkey PRIMARY KEY (id);
 
 
 --
@@ -2419,6 +2314,14 @@ ALTER TABLE ONLY outcome_analysis_groups
 
 
 --
+-- Name: outcome_counts outcome_counts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY outcome_counts
+    ADD CONSTRAINT outcome_counts_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: outcome_groups outcome_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2427,11 +2330,19 @@ ALTER TABLE ONLY outcome_groups
 
 
 --
--- Name: outcome_measured_values outcome_measured_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: outcome_measurements outcome_measurements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY outcome_measured_values
-    ADD CONSTRAINT outcome_measured_values_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY outcome_measurements
+    ADD CONSTRAINT outcome_measurements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: outcome_measures outcome_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY outcome_measures
+    ADD CONSTRAINT outcome_measures_pkey PRIMARY KEY (id);
 
 
 --
@@ -2464,14 +2375,6 @@ ALTER TABLE ONLY oversight_authorities
 
 ALTER TABLE ONLY participant_flows
     ADD CONSTRAINT participant_flows_pkey PRIMARY KEY (id);
-
-
---
--- Name: reported_event_overviews reported_event_overviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY reported_event_overviews
-    ADD CONSTRAINT reported_event_overviews_pkey PRIMARY KEY (id);
 
 
 --
@@ -2746,17 +2649,17 @@ CREATE INDEX index_facilities_on_state ON facilities USING btree (state);
 
 
 --
--- Name: index_outcome_measured_values_on_category; Type: INDEX; Schema: public; Owner: -
+-- Name: index_outcome_measurements_on_category; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_outcome_measured_values_on_category ON outcome_measured_values USING btree (category);
+CREATE INDEX index_outcome_measurements_on_category ON outcome_measurements USING btree (category);
 
 
 --
--- Name: index_outcome_measured_values_on_classification; Type: INDEX; Schema: public; Owner: -
+-- Name: index_outcome_measurements_on_classification; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_outcome_measured_values_on_classification ON outcome_measured_values USING btree (classification);
+CREATE INDEX index_outcome_measurements_on_classification ON outcome_measurements USING btree (classification);
 
 
 --
