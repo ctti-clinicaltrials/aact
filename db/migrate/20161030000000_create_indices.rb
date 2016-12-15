@@ -37,8 +37,8 @@ class CreateIndices < ActiveRecord::Migration
     add_index :facilities, :country
     add_index :overall_officials, :affiliation
     add_index :oversight_authorities, :name
-    add_index :outcome_measured_values, :category
-    add_index :outcome_measured_values, :classification
+    add_index :outcome_measurements, :category
+    add_index :outcome_measurements, :classification
     add_index :responsible_parties, :organization
     add_index :result_contacts, :organization
     add_index :sponsors, :name

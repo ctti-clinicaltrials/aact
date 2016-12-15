@@ -1,13 +1,16 @@
 class BaselineMeasure < StudyRelationship
 
-  belongs_to :baseline
   belongs_to :result_group
 
   def self.create_all_from(opts={})
+
+    return [] if opts[:xml].xpath('//baseline').blank?
     original_xml=opts[:xml]
-    xml=opts[:xml]
+    opts[:xml]=opts[:xml].xpath('//baseline')
+    opts[:result_type]='Baseline'
+    opts[:groups]=ResultGroup.create_group_set(opts)
     col=[]
-    all=xml.xpath("measure_list").xpath('measure')
+    all=opts[:xml].xpath("measure_list").xpath('measure')
     measure=all.pop
     while measure
       opts[:description]=measure.xpath('description').text

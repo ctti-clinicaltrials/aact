@@ -10,7 +10,6 @@ class Study < ActiveRecord::Base
   scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :oversight_authorities, :responsible_parties) }
   self.primary_key = 'nct_id'
 
-  has_one  :baseline,              :foreign_key => 'nct_id', dependent: :delete
   has_one  :brief_summary,         :foreign_key => 'nct_id', dependent: :delete
   has_one  :design,                :foreign_key => 'nct_id', dependent: :delete
   has_one  :detailed_description,  :foreign_key => 'nct_id', dependent: :delete
@@ -19,6 +18,8 @@ class Study < ActiveRecord::Base
   has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
+  has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :baseline_counts,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_group_interventions, :foreign_key => 'nct_id', dependent: :delete_all
@@ -26,8 +27,6 @@ class Study < ActiveRecord::Base
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :reported_events,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_measured_values, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_conditions,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_interventions,  :foreign_key => 'nct_id', dependent: :delete_all
   has_many :central_contacts,      :foreign_key => 'nct_id', dependent: :delete_all
@@ -42,6 +41,7 @@ class Study < ActiveRecord::Base
   has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all
   has_many :milestones,            :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :oversight_authorities, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :responsible_parties,   :foreign_key => 'nct_id', dependent: :delete_all
@@ -74,10 +74,12 @@ class Study < ActiveRecord::Base
     Intervention.create_all_from(opts.merge(:design_groups=>groups))
     DetailedDescription.new.create_from(opts).try(:save)
     Design.new.create_from(opts).try(:save)
-    Baseline.new.create_from(opts).try(:save)
     BriefSummary.new.create_from(opts).try(:save)
     Eligibility.new.create_from(opts).save
     ParticipantFlow.new.create_from(opts).try(:save)
+
+    BaselineMeasure.create_all_from(opts)
+    BaselineCount.create_all_from(opts)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     CentralContact.create_all_from(opts)
@@ -185,6 +187,7 @@ class Study < ActiveRecord::Base
       :received_results_disposit_date => get_date(get('firstreceived_results_disposition_date')),
 
       :acronym =>get('acronym'),
+      :baseline_population  =>xml.xpath('//baseline/population').try(:text),
       :number_of_arms => get('number_of_arms'),
       :number_of_groups =>get('number_of_groups'),
       :source => get('source'),
