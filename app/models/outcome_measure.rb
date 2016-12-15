@@ -23,6 +23,7 @@ class OutcomeMeasure < StudyRelationship
       opts[:population]=xml.xpath('population').text
       opts[:measure_units]=xml.xpath('units').text
       opts[:units_analyzed]=xml.xpath('units_analyzed').text
+      opts[:dispersion]=xml.xpath('dispersion').text
       opts[:param_type]=xml.xpath('param').text
       col << new.create_from(opts)
       xml=all.pop
@@ -37,6 +38,7 @@ class OutcomeMeasure < StudyRelationship
       :population             => get_opt('population'),
       :units                  => get_opt('measure_units'),
       :units_analyzed         => get_opt('units_analyzed'),
+      :dispersion             => get_opt('dispersion'),
       :param_type             => get_opt('param_type'),
       :outcome                => get_opt('outcome'),
       :outcome_counts => OutcomeCount.create_all_from(opts.merge(:outcome_measure=>self)),
