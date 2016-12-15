@@ -27,8 +27,6 @@ class Study < ActiveRecord::Base
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :reported_events,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_measured_values, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_conditions,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_interventions,  :foreign_key => 'nct_id', dependent: :delete_all
   has_many :central_contacts,      :foreign_key => 'nct_id', dependent: :delete_all
@@ -43,6 +41,7 @@ class Study < ActiveRecord::Base
   has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all
   has_many :milestones,            :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :oversight_authorities, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :responsible_parties,   :foreign_key => 'nct_id', dependent: :delete_all

@@ -37,14 +37,14 @@ class StudyValidator
       nct_id: study1.nct_id,
       validation_title: 'Outcome Measured Value Dispersion Lower Limit',
       expected_result: 90.0,
-      actual_result: study1.outcome_measured_values[9].dispersion_lower_limit
+      actual_result: study1.outcome_measures[9].dispersion_lower_limit
     )
 
     assert(
       nct_id: study1.nct_id,
       validation_title: 'Outcome Measured Value Dispersion Upper Limit',
       expected_result: 148.0,
-      actual_result: study1.outcome_measured_values[9].dispersion_upper_limit
+      actual_result: study1.outcome_measures[9].dispersion_upper_limit
     )
 
     assert(
@@ -664,84 +664,84 @@ class StudyValidator
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Title',
       expected_result: 'Summary of the First Causes of Morbidity or Mortality',
-      actual_result: study4.outcome_measured_values.first.title
+      actual_result: study4.outcome_measures.first.title
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Description',
       expected_result: 'Morbidity or mortality events were defined as: a) Death; b) Atrial septostomy; c) Lung transplantation; d) Initiation of intravenous (i.v.) or subcutaneous prostanoids, or; e) Other worsening of pulmonary arterial hypertension (PAH). Other worsening of PAH was defined by the combined occurrence of all the following 3 events: At least 15% decrease in the 6 minute walk distance from baseline, confirmed by 2 tests performed on separate days, within 2 weeks. AND worsening of PAH symptoms including at least one of the following: a) Increase in WHO Functional Class (WHO FC), or no change in patients in WHO FC IV at baseline; b) Appearance or worsening of signs of right heart failure that did not respond to optimized oral diuretic therapy AND need for new treatment(s) for PAH that included the following: a) Oral or inhaled prostanoids; b) Oral phosphodiesterase inhibitors; c) Endothelin receptor antagonists (only after discontinuation of study treatment; d) i.v. diuretics',
-      actual_result: study4.outcome_measured_values.first.description.gsub(/\n/," ")
+      actual_result: study4.outcome_measures.first.description.gsub(/\n/," ")
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Units',
       expected_result: 'participants',
-      actual_result: study4.outcome_measured_values.first.units
+      actual_result: study4.outcome_measures.first.units
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Param Type',
       expected_result: 'Number',
-      actual_result: study4.outcome_measured_values.first.param_type
+      actual_result: study4.outcome_measures.first.param_type
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Category',
       expected_result: 'Lung transplantation',
-      actual_result: study4.outcome_measured_values.first.category
+      actual_result: study4.outcome_measures.first.category
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value CTgov Group Code',
       expected_result: 'O3',
-      actual_result: study4.outcome_measured_values.first.ctgov_group_code
+      actual_result: study4.outcome_measures.first.ctgov_group_code
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Param Value',
       expected_result: '0',
-      actual_result: study4.outcome_measured_values.first.param_value
+      actual_result: study4.outcome_measures.first.param_value
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Title',
       expected_result: 'Number of Participants',
-      actual_result: study4.outcome_measured_values.last.title
+      actual_result: study4.outcome_measures.last.title
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Units',
       expected_result: 'participants',
-      actual_result: study4.outcome_measured_values.last.units
+      actual_result: study4.outcome_measures.last.units
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Param Type',
       expected_result: 'Number',
-      actual_result: study4.outcome_measured_values.last.param_type
+      actual_result: study4.outcome_measures.last.param_type
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value CTgov Group Code',
       expected_result: 'O1',
-      actual_result: study4.outcome_measured_values.last.ctgov_group_code
+      actual_result: study4.outcome_measures.last.ctgov_group_code
     )
 
     assert(
       nct_id: study4.nct_id,
       validation_title: 'Outcome Measured Value Param Value',
       expected_result: '250',
-      actual_result: study4.outcome_measured_values.last.param_value
+      actual_result: study4.outcome_measures.last.param_value
     )
 
     assert(
@@ -1017,56 +1017,56 @@ class StudyValidator
       nct_id: study5.nct_id,
       validation_title: 'Outcome Measured Value Title',
       expected_result: 'Number of Participants',
-      actual_result: study5.outcome_measured_values.last.title
+      actual_result: study5.outcome_measures.last.title
     )
 
     assert(
       nct_id: study5.nct_id,
       validation_title: 'Outcome Measured Value Category',
       expected_result: 'Not required',
-      actual_result: study5.outcome_measured_values.first.category
+      actual_result: study5.outcome_measures.first.category
     )
 
     assert(
       nct_id: study5.nct_id,
       validation_title: 'Outcome Measured Value Title',
       expected_result: 'Number of Patients Requiring Additional Treatment',
-      actual_result: study5.outcome_measured_values.first.title
+      actual_result: study5.outcome_measures.first.title
     )
 
     assert(
       nct_id: study5.nct_id,
       validation_title: 'Outcome Measured Value Description',
       expected_result: 'Requirement of antipyretics; increased dose/ duration of antibiotic usage other than standard protocol; need for change to higher antibiotics; requirement of drainage procedures for pus/ wound infections; requirement for additional dressing sessions',
-      actual_result: study5.outcome_measured_values.first.description
+      actual_result: study5.outcome_measures.first.description
     )
 
     assert(
       nct_id: study5.nct_id,
       validation_title: 'Outcome Measured Value Units',
       expected_result: 'participants',
-      actual_result: study5.outcome_measured_values.first.units
+      actual_result: study5.outcome_measures.first.units
     )
 
     assert(
       nct_id: study5.nct_id,
       validation_title: 'Outcome Measured Value Ctgov Group Code',
       expected_result: 'O2',
-      actual_result: study5.outcome_measured_values.first.ctgov_group_code
+      actual_result: study5.outcome_measures.first.ctgov_group_code
     )
 
     assert(
       nct_id: study5.nct_id,
       validation_title: 'Outcome Measured Value Param Type',
       expected_result: 'Number',
-      actual_result: study5.outcome_measured_values.first.param_type
+      actual_result: study5.outcome_measures.first.param_type
     )
 
     assert(
       nct_id: study5.nct_id,
       validation_title: 'Outcome Measured Value Param Value',
       expected_result: 30.0,
-      actual_result: study5.outcome_measured_values.first.param_value_num
+      actual_result: study5.outcome_measures.first.param_value_num
     )
 
     assert(

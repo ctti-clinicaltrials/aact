@@ -100,6 +100,15 @@ class CreateResultTables < ActiveRecord::Migration
 
     # ----  Outcomes Data ----------------------------
 
+    #  study
+    #     outcomes
+    #        outcome_groups
+    #        outcome_measures
+    #           outcome_counts
+    #           outcome_measurements
+    #        outcome_analyses
+    #           outcome_anaysis_groups
+
     create_table "outcomes", force: :cascade do |t|
       t.string  "nct_id"
       t.string  "outcome_type"
@@ -110,6 +119,50 @@ class CreateResultTables < ActiveRecord::Migration
       t.text    "population"
       t.integer "participant_count"
       t.string  "anticipated_posting_month_year"
+    end
+
+    create_table "outcome_groups", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "outcome_id"
+      t.integer "result_group_id"
+      t.string  "ctgov_group_code"
+      t.integer "participant_count"
+    end
+
+    create_table "outcome_measures", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "outcome_id"
+      t.string  "title"
+      t.text    "description"
+      t.string  "population"
+      t.string  "units"
+      t.string  "units_analyzed"
+      t.string  "param_type"
+    end
+
+    create_table "outcome_counts", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "outcome_measure_id"
+      t.string  "ctgov_group_code"
+      t.string  "scope"
+      t.string  "units"
+      t.integer "count"
+    end
+
+    create_table "outcome_measurements", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "outcome_measure_id"
+      t.string  "classification"
+      t.string  "category"
+      t.string  "ctgov_group_code"
+      t.string  "param_value"
+      t.decimal "param_value_num"
+      t.string  "dispersion_type"
+      t.string  "dispersion_value"
+      t.decimal "dispersion_value_num"
+      t.decimal "dispersion_lower_limit"
+      t.decimal "dispersion_upper_limit"
+      t.text    "explanation_of_na"
     end
 
     create_table "outcome_analyses", force: :cascade do |t|
@@ -135,50 +188,10 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "groups_description"
     end
 
-    create_table "outcome_groups", force: :cascade do |t|
-      t.string  "nct_id"
-      t.integer "outcome_id"
-      t.integer "result_group_id"
-      t.string  "ctgov_group_code"
-      t.integer "participant_count"
-    end
-
     create_table "outcome_analysis_groups", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "outcome_analysis_id"
-      t.integer "result_group_id"
       t.string  "ctgov_group_code"
-    end
-
-    create_table "outcome_measured_values", force: :cascade do |t|
-      t.string  "nct_id"
-      t.integer "outcome_id"
-      t.integer "result_group_id"
-      t.string  "ctgov_group_code"
-      t.string  "classification"
-      t.string  "category"
-      t.string  "title"
-      t.text    "description"
-      t.string  "param_value"
-      t.decimal "param_value_num"
-      t.string  "units"
-      t.string  "units_analyzed"
-      t.string  "param_type"
-      t.string  "dispersion_type"
-      t.string  "dispersion_value"
-      t.decimal "dispersion_value_num"
-      t.decimal "dispersion_lower_limit"
-      t.decimal "dispersion_upper_limit"
-      t.text    "explanation_of_na"
-    end
-
-    create_table "outcome_counts", force: :cascade do |t|
-      t.string  "nct_id"
-      t.integer "outcome_measured_value_id"
-      t.string  "ctgov_group_code"
-      t.string  "scope"
-      t.string  "units"
-      t.integer "count"
     end
 
   end
