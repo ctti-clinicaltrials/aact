@@ -1,13 +1,38 @@
 require 'rails_helper'
 
 describe OutcomeAnalysis do
-  it "should retain numbers after decimal in percent" do
+  it "should have proper relationships and retain numbers after decimal in percent" do
     nct_id='NCT01642004'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    o=study.outcome_analyses.select{|x|x.p_value_description=='Stratified by region (US/Canada, Rest Of World (ROW), Europe) and prior treatment regimen (Paclitaxel, Another agent) as entered in the Interactive Voice Response System (IVRS).' and x.param_value==0.59}
-    expect(o.size).to eq(1)
-    expect(o.first.ci_percent).to eq(BigDecimal.new("96.85"))
+    expect(study.outcomes.size).to eq(13)
+
+    expect(study.outcomes.select{|x|x.outcome_type=='Other Pre-specified'}.size).to eq(1)
+    o=study.outcomes.select{|x|x.outcome_type=='Other Pre-specified'}.first
+    expect(o.outcome_groups.size).to eq(2)
+    expect(o.measures.first.measurements.size).to eq(2)
+    expect(o.measures.first.dispersion).to eq('95% Confidence Interval')
+    expect(o.measures.first.param_type).to eq('Median')
+    expect(o.analyses.first.groups.size).to eq(2)
+    expect(o.title).to eq('Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up')
+    expect(o.time_frame).to eq('Randomization until July 2015, approximately 33 months')
+    expect(o.safety_issue).to eq('No')
+    expect(o.population).to eq('All randomized participants')
+
+    oa_col=o.analyses.select{|x|x.p_value_description=='Stratified by region (US/Canada, Rest Of World (ROW), Europe) and prior treatment regimen (Paclitaxel, Another agent) as entered in the Interactive Voice Response System (IVRS).'}
+    expect(oa_col.size).to eq(1)
+    oa=oa_col.first
+    expect(oa.param_value).to eq(0.62)
+    expect(oa.ci_n_sides).to eq('2-Sided')
+    expect(oa.non_inferiority).to eq('No')
+    expect(oa.p_value).to eq(BigDecimal.new('0.0004'))
+    expect(oa.ci_percent).to eq(BigDecimal.new("95"))
+    expect(oa.ci_lower_limit).to eq(BigDecimal.new("0.47"))
+    expect(oa.ci_upper_limit).to eq(BigDecimal.new("0.81"))
+    expect(oa.estimate_description).to eq('Hazard Ratio (HR) = Nivolumab over Docetaxel')
+    expect(oa.groups.size).to eq(2)
+    expect(oa.groups.select{|x| x.ctgov_group_code=='O1'}.size).to eq(1)
+    expect(oa.groups.select{|x| x.ctgov_group_code=='O2'}.size).to eq(1)
   end
 
   it "study should be fine without any outcome analyses" do
@@ -15,9 +40,19 @@ describe OutcomeAnalysis do
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     o=study.outcomes.select{|x|x.title=='Percentage of Patients Who Survive at Least 12 Months'}.first
+    expect(o.groups.size).to eq(1)
+    expect(o.groups.first.ctgov_group_code).to eq('O1')
+    expect(o.groups.first.result_group.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
+    expect(o.groups.first.result_group.result_type).to eq('Outcome')
     expect(o.outcome_analyses.size).to eq(0)
-    #TODO  o.analyzed_outcome_values.size).to eq(1)
     expect(o.outcome_measures.size).to eq(1)
+    expect(o.measures.size).to eq(1)
+    expect(o.measures.first.measurements.size).to eq(1)
+    m=o.measures.first.measurements.first
+    expect(m.dispersion_lower_limit).to eq(61.5)
+    expect(m.dispersion_upper_limit).to eq(85.0)
+    expect(m.param_value_num).to eq(75.5)
+    expect(m.ctgov_group_code).to eq('O1')
   end
 
   it "study should have expected outcomes" do
@@ -49,16 +84,6 @@ describe OutcomeAnalysis do
 
     expect(o1_group.nct_id).to eq(nct_id)
     expect(o1_group.ctgov_group_code).to eq('O1')
-#    expect(o1_group.result_group.ctgov_group_code).to eq('O1')
-#    expect(o1_group.result_group.title).to eq('Clinically Driven Monitoring (CDM)')
-
-#    expect(o2_group.ctgov_group_code).to eq('O2')
-#    expect(o2_group.result_group.ctgov_group_code).to eq('O2')
-#    expect(o2_group.result_group.title).to eq('Laboratory Plus Clinical Monitoring (LCM)')
-#
-#    o=study.outcomes.select{|x|x.title=='Cotrimoxazole: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks)'}.first
-#    expect(o.outcome_analyses.size).to eq(1)
-#    expect(o.outcome_analyses.first.p_value_description).to eq('Adjusted for randomization stratification factors')
   end
 
 end
