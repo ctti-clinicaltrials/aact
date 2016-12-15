@@ -5,6 +5,7 @@ module ClinicalTrials
     def initialize(params={})
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
+      puts "Restarting the load..." if params[:restart]
       @client = ClinicalTrials::Client.new
       @load_event = ClinicalTrials::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
@@ -22,9 +23,14 @@ module ClinicalTrials
     def full
       @download_file_name = "ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip" if @download_file_name.nil?
       log('begin ...')
-      truncate_tables
-      download_xml_file
-      populate_xml_table
+      if should_restart?
+        puts "restarting full load process..."
+      else
+        puts "initiating full load..."
+        download_xml_file
+        populate_xml_table
+        truncate_tables
+      end
       remove_indexes  # Index significantly slow the load process.
       create_studies
       add_indexes
@@ -158,9 +164,10 @@ module ClinicalTrials
     end
 
     def download_xml_file
+      log("download xml file...")
       set_download_file_name({:download_file_name=>"ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip"})
       log("download xml file...#{@download_file_name}")
-      @client.download_xml_file
+      @client.download_xml_files
     end
 
     def set_download_file_name(params)
@@ -169,6 +176,7 @@ module ClinicalTrials
     end
 
     def populate_xml_table
+      ActiveRecord::Base.connection.truncate('study_xml_records')
       @download_file ||= ClinicalTrials::FileManager.get_file({:directory_name=>'xml_downloads',:file_name=>@download_file_name})
       log("populate xml table...")
       @client.populate_xml_table
@@ -193,11 +201,10 @@ module ClinicalTrials
 
     def truncate_tables
       Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
-      ActiveRecord::Base.connection.truncate('study_xml_records') unless should_rerun?
     end
 
-    def should_rerun?
-      @params[:rerun]==true && StudyXmlRecord.not_yet_loaded.size > 0
+    def should_restart?
+      @params[:restart]==true && StudyXmlRecord.not_yet_loaded.size > 0
     end
 
     def refresh_study(nct_id)
