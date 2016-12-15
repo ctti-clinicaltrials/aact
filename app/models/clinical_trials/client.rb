@@ -61,6 +61,31 @@ module ClinicalTrials
       end
     end
 
+    def restart_populate_studies
+      load_event = ClinicalTrials::LoadEvent.create( event_type: 'restart populate_studies')
+      StudyXmlRecord.where('created_study_at is null').each {|xml_record|
+        raw_xml = xml_record.content
+        begin
+          import_xml_file(raw_xml)
+          xml_record.created_study_at=Date.today
+          xml_record.save!
+        rescue StandardError => e
+          existing_error = @errors.find do |err|
+            err[:name] == e.name && err[:first_backtrace_line] == e.backtrace.first
+          end
+
+          if existing_error.present?
+            existing_error[:count] += 1
+          else
+            @errors << { name: e.name, first_backtrace_line: e.backtrace.first, count: 0 }
+          end
+          next
+        end
+      }
+
+      load_event.complete
+    end
+
     def populate_studies
       load_event = ClinicalTrials::LoadEvent.create( event_type: 'populate_studies')
 
