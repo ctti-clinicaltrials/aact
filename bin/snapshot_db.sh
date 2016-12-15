@@ -2,6 +2,8 @@
 export WORK_DIR=/app/tmp/aact-dumps
 export DUMP_FILE_NAME=$WORK_DIR/db.dmp
 export S3CMD_CFG_FILE=$WORK_DIR/s3cfg
+export SCHEMA_DIAGRAM="https://s3.amazonaws.com/aact-prod/documentation/aact_schema.png"
+export DATA_DICTIONARY="https://s3.amazonaws.com/aact-prod/documentation/aact_data_definitions.xlsx"
 
 #  While testing, let this run on any day.
 #ifStart=`date '+%d'`
@@ -11,9 +13,10 @@ export S3CMD_CFG_FILE=$WORK_DIR/s3cfg
   mkdir $WORK_DIR
   export BACKUP_TIME=`date +%Y%m%d`
 
-   pg_dump -h $RDS_DB_HOSTNAME -p 5432 -U $RDS_DB_SUPER_USERNAME --no-owner --no-password --clean --exclude-table study_xml_records --exclude-table schema_migrations --exclude-table load_events  --exclude-table statistics --exclude-table sanity_checks -c -C -Fc -f $DUMP_FILE_NAME  $RDS_DB_READONLY_DBNAME
+   pg_dump -h $RDS_DB_HOSTNAME -p 5432 -U $RDS_DB_SUPER_USERNAME --no-owner --no-password --clean --exclude-table study_xml_records --exclude-table schema_migrations --exclude-table load_events  --exclude-table statistics --exclude-table sanity_checks --exclude-table use_cases --exclude-table use_case_attachments -c -C -Fc -f $DUMP_FILE_NAME  $RDS_DB_READONLY_DBNAME
 
-  gzip -9 $DUMP_FILE_NAME
+  tar cvzf $DUMP_FILE_NAME, $SCHEMA_DIAGRAM, $DATA_DICTIONARY
+  #gzip -9 $DUMP_FILE_NAME
 
   echo "[default]" > ${S3CMD_CFG_FILE}
   echo "access_key=${AWS_ACCESS_KEY_ID}" >> ${S3CMD_CFG_FILE}
