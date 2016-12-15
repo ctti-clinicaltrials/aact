@@ -1,18 +1,46 @@
-<p id="notice"><%= notice %></p>
+<%=  stylesheet_link_tag 'use_cases/use_cases' %>
+<div class="wrap">
+  <section id='useCase'>
 
- <h2><a target='_blank' href='<%= @use_case.url %>'><%= @use_case.title %></a></h2>
- <p>
-   <a target='_blank' href='<%= @use_case.url if @use_case.url %>'>
-     <%= image_tag @use_case.image_url(:thumb) if @use_case.image? %>
-   </a>
- </p>
- <p>
-   <%= @use_case.brief_summary %>
- </p>
- <p>Contact: <%= @use_case.submitter_name %> <%= @use_case.contact_info %> <%= @use_case.email %></p>
+    <% if !@use_case.url.blank? %>
+      <a target='_blank' href='<%= @use_case.url %>'>
+        <% if !@use_case.image.blank? %>
+          <div style="float:left; margin-right:30px;bottom-margin:10rem;border-style: solid;border-width:2px;">
+            <span style='padding:20px 20px 20px 20px;'><%= image_tag @use_case.image_url(:thumb) %></span>
+            <h4 style='text-align:center;'>Click for More Info</h4>
+          </div>
+        <% end %>
+      </a>
+    <% else %>
+        <% if !@use_case.image.blank? %>
+          <div style="float:left; margin-right:30px;bottom-margin:10rem;border-style: solid;border-width:2px;">
+            <span style='padding:20px 20px 20px 20px;'><%= image_tag @use_case.image_url(:thumb) %></span>
+          </div>
+        <% end %>
+    <% end %>
 
- <p><%= @use_case.detailed_description %></p>
+    <h1 id='useCaseHeading'>
+      <%= @use_case.title %>
+    </h1>
 
- <p><%= link_to 'Edit', edit_use_case_path(@use_case) %> </p>
+    <p>
+      <%= @use_case.brief_summary %>
+    </p>
 
- <p><%= link_to 'Return to Gallery', use_cases_path %></p>
+    <p>
+      Contact: <%= @use_case.submitter_name %> - <%= @use_case.email %>
+    </p>
+
+    <div>
+      <p>
+        Details:
+        <%= @use_case.detailed_description %>
+      </p>
+    </div>
+  </section>
+
+  <div style="margin:30px;">
+    <p><%= link_to 'Return to Gallery', use_cases_path %></p>
+  </div>
+
+</div>

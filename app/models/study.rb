@@ -8,7 +8,6 @@ class Study < ActiveRecord::Base
 
   scope :with_one_to_ones,   -> { joins(:eligibility, :brief_summary, :design, :detailed_description) }
   scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :oversight_authorities, :responsible_parties) }
-  scope :with_outcomes, -> { includes(:outcomes, :reported_events, :baseline_measures) }
   self.primary_key = 'nct_id'
 
   has_one  :brief_summary,         :foreign_key => 'nct_id', dependent: :delete
@@ -19,16 +18,15 @@ class Study < ActiveRecord::Base
   has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
+  has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :baseline_counts,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
   has_many :design_group_interventions, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :id_information,        :foreign_key => 'nct_id', dependent: :delete_all
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :reported_events,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_measured_values, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_conditions,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :browse_interventions,  :foreign_key => 'nct_id', dependent: :delete_all
   has_many :central_contacts,      :foreign_key => 'nct_id', dependent: :delete_all
@@ -43,6 +41,7 @@ class Study < ActiveRecord::Base
   has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all
   has_many :milestones,            :foreign_key => 'nct_id', dependent: :delete_all
   has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', dependent: :delete_all
   has_many :oversight_authorities, :foreign_key => 'nct_id', dependent: :delete_all
   has_many :responsible_parties,   :foreign_key => 'nct_id', dependent: :delete_all
@@ -73,11 +72,14 @@ class Study < ActiveRecord::Base
     update(attribs)
     groups=DesignGroup.create_all_from(opts)
     Intervention.create_all_from(opts.merge(:design_groups=>groups))
-    DetailedDescription.new.create_from(opts).save
-    Design.new.create_from(opts).save
-    BriefSummary.new.create_from(opts).save
+    DetailedDescription.new.create_from(opts).try(:save)
+    Design.new.create_from(opts).try(:save)
+    BriefSummary.new.create_from(opts).try(:save)
     Eligibility.new.create_from(opts).save
-    ParticipantFlow.new.create_from(opts).save
+    ParticipantFlow.new.create_from(opts).try(:save)
+
+    BaselineMeasure.create_all_from(opts)
+    BaselineCount.create_all_from(opts)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     CentralContact.create_all_from(opts)
@@ -87,7 +89,6 @@ class Study < ActiveRecord::Base
     IdInformation.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
-    BaselineMeasure.create_all_from(opts)
     Milestone.create_all_from(opts)
     DropWithdrawal.create_all_from(opts)
     Outcome.create_all_from(opts)
@@ -186,12 +187,14 @@ class Study < ActiveRecord::Base
       :received_results_disposit_date => get_date(get('firstreceived_results_disposition_date')),
 
       :acronym =>get('acronym'),
+      :baseline_population  =>xml.xpath('//baseline/population').try(:text),
       :number_of_arms => get('number_of_arms'),
       :number_of_groups =>get('number_of_groups'),
       :source => get('source'),
       :brief_title  => get('brief_title') ,
       :official_title => get('official_title'),
       :overall_status => get('overall_status'),
+      :last_known_status => get('last_known_status'),
       :phase => get('phase'),
       :target_duration => get('target_duration'),
       :enrollment => get('enrollment'),

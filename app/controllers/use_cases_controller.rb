@@ -1,5 +1,6 @@
 class UseCasesController < ApplicationController
   before_action :set_use_case, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user, only: [:edit, :destroy]
 
   # GET /use_cases
   # GET /use_cases.json
@@ -70,7 +71,20 @@ class UseCasesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def use_case_params
       params.fetch(:use_case, {})
-      params.require(:use_case).permit(:utf8, :authenticity_token, :commit, :_method, :id, :title, :detailed_description, :url, :contact_info, :status, :brief_summary, :submitter_name, :email, :image, :remote_image_url)
+      params.require(:use_case).permit(:utf8, :authenticity_token, :commit, :_method, :id, :title, :detailed_description, :url, :contact_info, :status, :brief_summary, :submitter_name, :email, :image, :remote_image_url,:pwd)
     end
+
+    def authenticate_user
+      if !params[:pwd] and !params['use_case']
+        render plain: "First  Only editable by authorized folks."
+      end
+      if params[:pwd] and params[:pwd] != ENV["PASSWORD_TO_EDIT_USE_CASE"]
+        render plain: "Second   Only editable by authorized folks."
+      end
+      if params['use_case'] and (!params['use_case']['pwd'] or params['use_case']['pwd'] != ENV["PASSWORD_TO_EDIT_USE_CASE"])
+        render plain: "Third   Only editable by authorized folks."
+      end
+    end
+
 end
 

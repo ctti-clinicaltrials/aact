@@ -29,6 +29,7 @@ describe Study do
     it { should have_one(:calculated_value).dependent(:delete) }
     it { should have_one(:study_xml_record) }
     it { should have_many(:baseline_measures).dependent(:delete_all) }
+    it { should have_many(:baseline_counts).dependent(:delete_all) }
     it { should have_many(:design_groups).dependent(:delete_all) }
     it { should have_many(:design_outcomes).dependent(:delete_all) }
     it { should have_many(:id_information).dependent(:delete_all) }
@@ -46,7 +47,6 @@ describe Study do
     it { should have_many(:milestones).dependent(:delete_all) }
     it { should have_many(:outcomes).dependent(:delete_all) }
     it { should have_many(:outcome_analyses).dependent(:delete_all) }
-    it { should have_many(:outcome_measured_values).dependent(:delete_all) }
     it { should have_many(:overall_officials).dependent(:delete_all) }
     it { should have_many(:oversight_authorities).dependent(:delete_all) }
     it { should have_many(:responsible_parties).dependent(:delete_all) }
