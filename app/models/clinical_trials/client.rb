@@ -87,6 +87,7 @@ module ClinicalTrials
     end
 
     def populate_studies
+      return if @dry_run
       load_event = ClinicalTrials::LoadEvent.create( event_type: 'populate_studies')
 
       StudyXmlRecord.where('created_study_at is null').each do |xml_record|
