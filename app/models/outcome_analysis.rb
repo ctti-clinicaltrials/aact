@@ -3,6 +3,10 @@ class OutcomeAnalysis < StudyRelationship
   has_many   :outcome_analysis_groups, inverse_of: :outcome_analysis, autosave: true
   has_many   :result_groups, :through => :outcome_analysis_groups
 
+  def groups
+    outcome_analysis_groups
+  end
+
   def self.create_all_from(opts)
     all=opts[:outcome_xml].xpath("analysis_list").xpath('analysis')
     col=[]

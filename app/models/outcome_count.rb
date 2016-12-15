@@ -1,8 +1,8 @@
-class AnalyzedOutcomeMeasuredValue < StudyRelationship
-  belongs_to :outcome_measured_value, autosave: true
+class OutcomeCount < StudyRelationship
+  belongs_to :outcome_measure, autosave: true
 
   def self.create_all_from(opts)
-    all_analyzed=opts[:outcome_measure].xpath("analyzed_list").xpath('analyzed')
+    all_analyzed=opts[:xml].xpath("analyzed_list").xpath('analyzed')
     col=[]
     a=all_analyzed.pop
     return col if a.blank?
@@ -24,6 +24,7 @@ class AnalyzedOutcomeMeasuredValue < StudyRelationship
 
   def attribs
     {
+     :outcome_measure => get_opt(:outcome_measure),
      :ctgov_group_code => get_attribute('group_id'),
      :scope => get_opt(:scope),
      :units => get_opt(:units),
