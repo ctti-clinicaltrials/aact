@@ -3,6 +3,14 @@ class OutcomeMeasure < StudyRelationship
   has_many :outcome_counts, autosave: true
   has_many :outcome_measurements, autosave: true
 
+  def counts
+    outcome_counts
+  end
+
+  def measurements
+    outcome_measurements
+  end
+
   def self.create_all_from(opts)
     all=opts[:outcome_xml].xpath("measure")
 

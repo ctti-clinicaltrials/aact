@@ -4,6 +4,18 @@ class Outcome < StudyRelationship
   has_many :outcome_analyses, inverse_of: :outcome, autosave: true
   has_many :result_groups, :through => :outcome_groups
 
+  def groups
+    outcome_groups
+  end
+
+  def measures
+    outcome_measures
+  end
+
+  def analyses
+    outcome_analyses
+  end
+
   def self.create_all_from(opts)
     all=opts[:xml].xpath('//clinical_results').xpath("outcome_list").xpath('outcome')
     outcomes=[]
