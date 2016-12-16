@@ -4,7 +4,8 @@ module ClinicalTrials
 
     attr_reader :url, :processed_studies, :dry_run, :errors
     def initialize(search_term: nil, dry_run: false)
-      @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
+      #@url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
+      @url = "#{BASE_URL}/search?term=Mesothelioma&resultsxml=true"
       @processed_studies = {
         updated_studies: [],
         new_studies: []
@@ -19,6 +20,7 @@ module ClinicalTrials
       file = Tempfile.new('xml')
 
       begin
+        puts "downloading xml file from #{@url}..."
         download = RestClient::Request.execute({
           url:          @url,
           method:       :get,
@@ -26,6 +28,7 @@ module ClinicalTrials
         })
       rescue Errno::ECONNRESET => e
         if (tries -=1) > 0
+          puts "  download failed.  trying again..."
           retry
         end
       end
@@ -55,71 +58,34 @@ module ClinicalTrials
       end
       @processed_studies[:new_studies] << nct_id
       unless @dry_run
-        StudyXmlRecord.where(nct_id: nct_id).first_or_create do |xml_record|
-          xml_record.content = xml
-        end
+        StudyXmlRecord.where(nct_id: nct_id).first_or_create {|rec|rec.content = xml}
+        #s=StudyXmlRecord.where(nct_id: nct_id)
+        #StudyXmlRecord.create({ :content =>xml, :nct_id=>nct_id}).save! if s.size ==0
       end
-    end
-
-    def restart_populate_studies
-      load_event = ClinicalTrials::LoadEvent.create( event_type: 'restart populate_studies')
-      StudyXmlRecord.where('created_study_at is null').each {|xml_record|
-        raw_xml = xml_record.content
-        begin
-          import_xml_file(raw_xml)
-          xml_record.created_study_at=Date.today
-          xml_record.save!
-        rescue StandardError => e
-          existing_error = @errors.find do |err|
-            err[:name] == e.name && err[:first_backtrace_line] == e.backtrace.first
-          end
-
-          if existing_error.present?
-            existing_error[:count] += 1
-          else
-            @errors << { name: e.name, first_backtrace_line: e.backtrace.first, count: 0 }
-          end
-          next
-        end
-      }
-
-      load_event.complete
     end
 
     def populate_studies
       return if @dry_run
       load_event = ClinicalTrials::LoadEvent.create( event_type: 'populate_studies')
 
-      StudyXmlRecord.where('created_study_at is null').each do |xml_record|
+      studies_to_load=StudyXmlRecord.not_yet_loaded
+      cntr=studies_to_load.size
+      puts "will load #{cntr} studies..."
+      studies_to_load.each do |xml_record|
         raw_xml = xml_record.content
 
-        begin
-          import_xml_file(raw_xml)
-          xml_record.created_study_at=Date.today
-          xml_record.save!
-          puts "saved #{xml_record.nct_id}"
-        rescue StandardError => e
-          existing_error = @errors.find do |err|
-            err[:name] == e.name && err[:first_backtrace_line] == e.backtrace.first
-          end
-
-          if existing_error.present?
-            existing_error[:count] += 1
-          else
-            @errors << { name: e.name, first_backtrace_line: e.backtrace.first, count: 0 }
-          end
-
-          next
-        end
+        import_xml_file(raw_xml)
+        xml_record.created_study_at=Date.today
+        xml_record.save!
+        puts "#{cntr} saved #{xml_record.nct_id}"
+        cntr=cntr-1
       end
-
       load_event.complete
     end
 
     def import_xml_file(study_xml, benchmark: false)
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
-
       unless Study.find_by(nct_id: nct_id).present?
         Study.new({xml: study, nct_id: nct_id}).create
       end

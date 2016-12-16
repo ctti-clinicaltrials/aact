@@ -5,15 +5,22 @@ module ClinicalTrials
     def initialize(params={})
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
-      puts "Restarting the load..." if params[:restart]
+      if params[:restart]
+        puts("Restarting the load...")
+        record_type='Restart'
+      else
+        puts("Starting the #{type} load...")
+        record_type=type
+      end
       @client = ClinicalTrials::Client.new
-      @load_event = ClinicalTrials::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
+
+      @load_event = ClinicalTrials::LoadEvent.create({:event_type=>record_type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
       self
     end
 
     def run
-      if @load_event.event_type=='full'
+      if @params[:event_type]=='full'
         full
       else
         incremental
@@ -22,16 +29,19 @@ module ClinicalTrials
 
     def full
       log('begin ...')
+      ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
       if should_restart?
-        puts "restarting full load process..."
+        log("restarting a full load...")
       else
-        puts "initiating full load..."
+        log("initiating full load...")
+        ActiveRecord::Base.connection.truncate('study_xml_records') if ! should_restart?
         @client.download_xml_files
         truncate_tables
       end
       remove_indexes  # Index significantly slow the load process.
-      create_studies
+      @client.populate_studies
       add_indexes
+      ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
       export_tables
       send_notification
@@ -105,7 +115,9 @@ module ClinicalTrials
       ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
       log("found #{ids.size} studies that have changed")
       set_expected_counts(ids)
+      ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
       update_studies(ids)
+      ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
       export_tables
       log_actual_counts
@@ -159,11 +171,6 @@ module ClinicalTrials
       else
         @study_counts[:add]+=1
       end
-    end
-
-    def create_studies
-      log("create studies...")
-      @client.populate_studies
     end
 
     def run_sanity_checks
