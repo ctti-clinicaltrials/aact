@@ -5,8 +5,4 @@ class StudyXmlRecord < ActiveRecord::Base
     where('created_study_at is null')
   end
 
-  def was_created
-    self.created_study_at=Time.now
-    self.save!
-  end
 end
