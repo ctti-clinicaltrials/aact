@@ -1,6 +1,6 @@
 module ClinicalTrials
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :download_file_name
+    attr_reader :params, :load_event, :client, :study_counts
 
     def initialize(params={})
       @params=params
@@ -13,7 +13,6 @@ module ClinicalTrials
         record_type=type
       end
       @client = ClinicalTrials::Client.new
-
       @load_event = ClinicalTrials::LoadEvent.create({:event_type=>record_type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
       self
@@ -28,24 +27,29 @@ module ClinicalTrials
     end
 
     def full
-      log('begin ...')
-      ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
-      if should_restart?
-        log("restarting a full load...")
-      else
-        log("initiating full load...")
-        ActiveRecord::Base.connection.truncate('study_xml_records') if ! should_restart?
-        @client.download_xml_files
-        truncate_tables
+      begin
+        log('begin ...')
+        revoke_db_privs
+        if should_restart?
+          log("restarting a full load...")
+        else
+          log("initiating full load...")
+          ActiveRecord::Base.connection.truncate('study_xml_records')
+          @client.download_xml_files
+          truncate_tables
+        end
+        remove_indexes  # Index significantly slow the load process.
+        @client.populate_studies
+        add_indexes
+        grant_db_privs
+        run_sanity_checks
+        export_tables
+        send_notification
+        @load_event.complete({:new_studies=> Study.count})
+      rescue
+        grant_db_privs
+        @load_event.complete({:status=>'failed',:new_studies=> Study.count})
       end
-      remove_indexes  # Index significantly slow the load process.
-      @client.populate_studies
-      add_indexes
-      ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
-      run_sanity_checks
-      export_tables
-      send_notification
-      @load_event.complete({:new_studies=> Study.count})
     end
 
     def indexes
@@ -109,11 +113,11 @@ module ClinicalTrials
     end
 
     def incremental
-      log("begin ...")
-      days_back=(@params[:days_back] ? @params[:days_back] : 1)
+      log("begin incremental load...")
+      days_back=(@params[:days_back] ? @params[:days_back] : 4)
       log("finding studies changed in past #{days_back} days...")
       ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
-      log("found #{ids.size} studies that have changed")
+      log("found #{ids.size} studies that have been changed or added")
       set_expected_counts(ids)
       ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
       update_studies(ids)
@@ -218,5 +222,21 @@ module ClinicalTrials
     def log_actual_counts
       log("should change: #{@study_counts[:change]};  should add: #{@study_counts[:add]}\n")
     end
+
+    private
+
+    def revoke_db_privs
+      ActiveRecord::Base.connection.execute("REVOKE ALL PRIVILEGES ON database #{db_name} FROM aact;")
+    end
+
+    def grant_db_privs
+      ActiveRecord::Base.connection.execute("GRANT CONNECT ON DATABASE #{db_name} TO aact;")
+      ActiveRecord::Base.connection.execute('GRANT SELECT ON ALL TABLES IN SCHEMA public TO aact;')
+    end
+
+    def db_name
+      ActiveRecord::Base.connection.current_database
+    end
+
   end
 end

@@ -94,14 +94,15 @@ describe ClinicalTrials::Client do
     end
   end
 
-  describe '#create_study_xml_record(xml)' do
+  describe '#create_study_xml_record(nct_id,xml)' do
     context 'default dry_run false' do
+      nct_id='NCT00513591'
       it 'should create a study xml record' do
-        subject.create_study_xml_record(raw_study_xml_1)
+        subject.create_study_xml_record(nct_id,raw_study_xml_1)
 
         processed_studies = {
           updated_studies: [],
-          new_studies: ["NCT00513591"]
+          new_studies: [nct_id]
         }
         expect(subject.processed_studies).to eq(processed_studies)
 
@@ -115,13 +116,14 @@ describe ClinicalTrials::Client do
       subject { described_class.new(search_term: search_term, dry_run: true) }
 
       it 'should report a study xml record' do
+        nct_id="NCT00513591"
         expect {
-          subject.create_study_xml_record(raw_study_xml_1)
+          subject.create_study_xml_record(nct_id,raw_study_xml_1)
         }.not_to change{StudyXmlRecord.count}
 
         processed_studies = {
           updated_studies: [],
-          new_studies: ["NCT00513591"]
+          new_studies: [nct_id]
         }
         expect(subject.processed_studies).to eq(processed_studies)
       end
