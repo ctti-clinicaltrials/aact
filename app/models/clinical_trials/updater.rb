@@ -21,13 +21,12 @@ module ClinicalTrials
     end
 
     def full
-      @download_file_name = "ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip" if @download_file_name.nil?
       log('begin ...')
       if should_restart?
         puts "restarting full load process..."
       else
         puts "initiating full load..."
-        download_xml_files
+        @client.download_xml_files
         truncate_tables
       end
       remove_indexes  # Index significantly slow the load process.
@@ -73,10 +72,10 @@ module ClinicalTrials
        [:outcome_measurements, :classification],
        [:responsible_parties, :organization],
        [:result_contacts, :organization],
-       [:sponsors, :last_known_status],
        [:sponsors, :overall_status],
        [:sponsors, :name],
        [:studies, :phase],
+       [:studies, :last_known_status],
        [:studies, :primary_completion_date_type],
        [:studies, :source],
        [:studies, :study_type],
@@ -160,18 +159,6 @@ module ClinicalTrials
       else
         @study_counts[:add]+=1
       end
-    end
-
-    def download_xml_files
-      log("download xml file...")
-      set_download_file_name({:download_file_name=>"ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip"})
-      log("download xml file...#{@download_file_name}")
-      @client.download_xml_files
-    end
-
-    def set_download_file_name(params)
-      @download_file_name = params[:download_file_name]
-      @download_file_name = "ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip" if @download_file_name.nil?
     end
 
     def create_studies
