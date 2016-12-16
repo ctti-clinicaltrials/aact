@@ -27,8 +27,7 @@ module ClinicalTrials
         puts "restarting full load process..."
       else
         puts "initiating full load..."
-        download_xml_file
-        populate_xml_table
+        download_xml_files
         truncate_tables
       end
       remove_indexes  # Index significantly slow the load process.
@@ -163,7 +162,7 @@ module ClinicalTrials
       end
     end
 
-    def download_xml_file
+    def download_xml_files
       log("download xml file...")
       set_download_file_name({:download_file_name=>"ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip"})
       log("download xml file...#{@download_file_name}")
@@ -173,13 +172,6 @@ module ClinicalTrials
     def set_download_file_name(params)
       @download_file_name = params[:download_file_name]
       @download_file_name = "ctgov_#{Time.now.strftime("%Y%m%d%H")}.zip" if @download_file_name.nil?
-    end
-
-    def populate_xml_table
-      ActiveRecord::Base.connection.truncate('study_xml_records')
-      @download_file ||= ClinicalTrials::FileManager.get_file({:directory_name=>'xml_downloads',:file_name=>@download_file_name})
-      log("populate xml table...")
-      @client.populate_xml_table
     end
 
     def create_studies
@@ -200,7 +192,7 @@ module ClinicalTrials
     end
 
     def truncate_tables
-      Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
+      ClinicalTrials::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
     end
 
     def should_restart?
