@@ -35,11 +35,11 @@ class CreateAdminTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-#    execute <<-SQL
-#      DROP USER aact;
-#      CREATE USER aact WITH PASSWORD 'aact';
-#      GRANT SELECT ON ALL TABLES IN SCHEMA public TO aact;
-#    SQL
+    execute <<-SQL
+      DROP USER aact;
+      CREATE USER aact WITH PASSWORD 'aact';
+      GRANT SELECT ON ALL TABLES IN SCHEMA public TO aact;
+    SQL
   end
 
 end
