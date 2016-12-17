@@ -31,7 +31,7 @@ module ClinicalTrials
         log('begin ...')
         revoke_db_privs
         if should_restart?
-          log("restarting a full load...")
+          log("restarting full load...")
         else
           log("initiating full load...")
           ActiveRecord::Base.connection.truncate('study_xml_records')
@@ -43,7 +43,7 @@ module ClinicalTrials
         add_indexes
         grant_db_privs
         run_sanity_checks
-        export_tables
+        take_snapshot
         send_notification
         @load_event.complete({:new_studies=> Study.count})
       rescue
@@ -123,7 +123,7 @@ module ClinicalTrials
       update_studies(ids)
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
-      export_tables
+      take_snapshot
       log_actual_counts
       @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       send_notification
@@ -182,9 +182,10 @@ module ClinicalTrials
       SanityCheck.run
     end
 
-    def export_tables
+    def take_snapshot
       if !@params[:create_snapshots]==false
-        log("exporting tables...")
+        ClinicalTrials::FileManager.new.take_snapshot
+        log("exporting tables as flat files...")
         TableExporter.new.run
       end
     end
