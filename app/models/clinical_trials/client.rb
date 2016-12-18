@@ -35,14 +35,15 @@ module ClinicalTrials
 
       file.binmode
       file.write(download)
-      cnt=file.size
+      file.size
 
       Zip::File.open(file.path) do |zipfile|
-        puts "Populating StudyXmlRecords table with #{zipfile.size} rows..."
+        cnt=zipfile.size
+        puts "Populating StudyXmlRecords table with #{cnt} rows..."
         zipfile.each do |file|
           xml = file.get_input_stream.read
           nct_id = extract_nct_id_from_study(xml)
-          puts "#{cnt} #{nct_id}"
+          puts "add study_xml_record: #{cnt} #{nct_id}"
           create_study_xml_record(nct_id,xml)
           cnt=cnt-1
         end
