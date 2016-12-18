@@ -114,11 +114,18 @@ module ClinicalTrials
       ]
     end
 
+    def should_keep_index?(index)
+       return true if index.table=='studies' and index.columns=='nct_id'
+       return true if index.table=='study_xml_records' and index.columns=='nct_id'
+       return true if index.table=='study_xml_records' and index.columns=='created_study_at'
+       false
+    end
+
     def remove_indexes
       m=ActiveRecord::Migration.new
       ClinicalTrials::Updater.loadable_tables.each {|table_name|
         ActiveRecord::Base.connection.indexes(table_name).each{|index|
-          m.remove_index index.table, index.columns
+          m.remove_index(index.table, index.columns) if !should_keep_index?(index)
         }
       }
     end
