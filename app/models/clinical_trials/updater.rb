@@ -1,13 +1,16 @@
 module ClinicalTrials
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts
+    attr_reader :params, :load_event, :client, :study_counts, :study_filter
 
     def initialize(params={})
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
         puts("Restarting the load...")
-        record_type='Restart'
+        # don't allow filtering by nct ID unless it's a restart because filtering is done so that multiple loads can run simultaneously
+        # if multiple jobs running for initial full load - they would step on each ther when study_xml_records table gets truncated
+        @study_filter=@params[:study_filter]
+        record_type="Restart #{@study_filter}"
       else
         puts("Starting the #{type} load...")
         record_type=type
@@ -19,10 +22,18 @@ module ClinicalTrials
     end
 
     def run
-      if @params[:event_type]=='full'
-        full
+      if study_filter
+        @client.populate_studies(study_filter)
+        @load_event.complete({:new_studies=> Study.count})
       else
-        incremental
+        case params[:event_type]
+        when 'full'
+          full
+        when 'finalize'
+          finalize_full_load
+        else
+          incremental
+        end
       end
     end
 
@@ -40,16 +51,21 @@ module ClinicalTrials
         end
         remove_indexes  # Index significantly slow the load process.
         @client.populate_studies
-        add_indexes
-        grant_db_privs
-        run_sanity_checks
-        take_snapshot
-        send_notification
+        finalize_full_load
         @load_event.complete({:new_studies=> Study.count})
       rescue
         grant_db_privs
         @load_event.complete({:status=>'failed',:new_studies=> Study.count})
       end
+    end
+
+    def finalize_full_load
+      add_indexes
+      grant_db_privs
+      run_sanity_checks
+      take_snapshot
+      send_notification
+      @load_event.complete({:new_studies=> Study.count})
     end
 
     def indexes
