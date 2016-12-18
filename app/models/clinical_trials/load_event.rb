@@ -3,7 +3,7 @@ module ClinicalTrials
     extend Enumerize
 
     def complete(params={})
-      raise AlreadyCompletedError if self.completed_at.present?
+      return if self.completed_at.present?
       self.status  = (params[:status] ?  params[:status] : 'complete')
       self.completed_at = Time.now
       self.load_time = calculate_load_time
