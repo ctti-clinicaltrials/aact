@@ -4,7 +4,7 @@ module ClinicalTrials
   class FileManager
 
     def self.data_dump_directory
-      '/app/tmp/aact-dump'
+      '/app/tmp'
     end
 
     def self.nlm_protocol_data_url
@@ -71,9 +71,9 @@ module ClinicalTrials
     end
 
     def dump_database
-      dump_file_name='/app/tmp/aact-dumps/postgres.dmp'
+      dump_file_name='/app/tmp/postgres.dmp'
       File.delete(dump_file_name) if File.exist?(dump_file_name)
-      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump -h aact-dev.cr4nrslb1lw7.us-east-1.rds.amazonaws.com -p 5432 -U dbadmin --no-password --clean --exclude-table study_xml_records --exclude-table schema_migrations --exclude-table load_events --exclude-table statistics --exclude-table sanity_checks --exclude-table use_cases --exclude-table use_case_attachments -c -C -Fc -f /app/tmp/aact-dumps/postgres.dmp aact`
+      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump -h aact-dev.cr4nrslb1lw7.us-east-1.rds.amazonaws.com -p 5432 -U dbadmin --no-password --clean --exclude-table study_xml_records --exclude-table schema_migrations --exclude-table load_events --exclude-table statistics --exclude-table sanity_checks --exclude-table use_cases --exclude-table use_case_attachments -c -C -Fc -f /app/tmp/postgres.dmp aact`
       return dump_file_name
     end
 
@@ -90,7 +90,7 @@ module ClinicalTrials
 
     def take_snapshot
       dump_database
-      postgres_dump_file=File.open('/app/tmp/aact-dumps/postgres.dmp')
+      postgres_dump_file=File.open('/app/tmp/postgres.dmp')
       schema_diagram_file=get_reg_file({:directory_name=>'documentation',:file_name=>'aact_schema.png'})
       data_dictionary_file=get_reg_file({:directory_name=>'documentation',:file_name=>'aact_data_definitions.xlsx'})
 
