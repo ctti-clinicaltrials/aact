@@ -94,7 +94,7 @@ module ClinicalTrials
       schema_diagram_file=get_reg_file({:directory_name=>'documentation',:file_name=>'aact_schema.png'})
       data_dictionary_file=get_reg_file({:directory_name=>'documentation',:file_name=>'aact_data_definitions.xlsx'})
 
-      zip_file_name="#{Time.now.strftime('%Y%m%d')}_clinical_trials.gz"
+      zip_file_name="#{Time.now.strftime('%Y%m%d')}_clinical_trials.zip"
       File.delete(zip_file_name) if File.exist?(zip_file_name)
       Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
         zipfile.add('data_dictionary.xlsx',data_dictionary_file)

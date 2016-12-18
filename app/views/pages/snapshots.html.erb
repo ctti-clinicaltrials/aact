@@ -53,11 +53,11 @@
     <p class='CodeRay'>
       <pre>
         <p class='code'>
-          <span class='command-prompt'>-&gt; </span><span class='command-entry'> gunzip <i>~/Downloads/YYYYMMDD_clinical_trials.gz </i></span>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> unzip <i>~/Downloads/YYYYMMDD_clinical_trials.zip </i></span>
         </p>
       </pre>
     </p>
-    <p>This will unpack the 3 files contained in the zip package and save them to a directory named <i>YYYYMMDD_clinical_trials</i>. This directory will contain 3 files:</p>
+    <p>This will unpack the 3 files contained in the zip package and save them to the directory where the zip file exists. This directory will contain 3 files:</p>
   </ul>
     <ul class='regularDisplay'>
       <li><i>postgres_data.dmp</i> Postgres dump file containing all the instructions and data required to create a local copy of the AACT database.</li>
@@ -72,7 +72,7 @@
     <p class='CodeRay'>
       <pre>
         <p class='code'>
-          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=postgres</i> --no-owner --clean --create  <i>~/Downloads/YYYYMMDD_clinical_trials/postgres_data.dmp</i></span>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=postgres</i> --no-owner --clean --create  <i>~/Downloads/postgres_data.dmp</i></span>
         </p>
       </pre>
     </p>
