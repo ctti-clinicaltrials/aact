@@ -62,11 +62,11 @@ module ClinicalTrials
       StudyXmlRecord.where(nct_id: nct_id).first_or_create {|rec|rec.content = xml} unless @dry_run
     end
 
-    def populate_studies
+    def populate_studies(study_filter=nil)
       return if @dry_run
       load_event = ClinicalTrials::LoadEvent.create( event_type: 'populate_studies')
 
-      studies_to_load=StudyXmlRecord.not_yet_loaded
+      studies_to_load=StudyXmlRecord.not_yet_loaded(study_filter)
       cntr=studies_to_load.size
       puts "will load #{cntr} studies..."
       studies_to_load.each do |xml_record|
