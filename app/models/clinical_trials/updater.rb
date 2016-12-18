@@ -38,7 +38,7 @@ module ClinicalTrials
         @client.download_xml_files
         truncate_tables
       end
-      remove_indexes  # Index significantly slow the load process.
+      #remove_indexes  # Index significantly slow the load process.
       @client.populate_studies
       add_indexes
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
