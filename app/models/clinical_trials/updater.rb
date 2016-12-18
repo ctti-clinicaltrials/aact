@@ -183,11 +183,10 @@ module ClinicalTrials
     end
 
     def take_snapshot
-      if !@params[:create_snapshots]==false
-        ClinicalTrials::FileManager.new.take_snapshot
-        log("exporting tables as flat files...")
-        TableExporter.new.run
-      end
+      puts "snapshot the database..."
+      ClinicalTrials::FileManager.new.take_snapshot
+      log("exporting tables as flat files...")
+      TableExporter.new.run
     end
 
     def truncate_tables
