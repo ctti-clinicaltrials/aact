@@ -35,12 +35,16 @@ module ClinicalTrials
 
       file.binmode
       file.write(download)
-      file.size
+      cnt=file.size
 
       Zip::File.open(file.path) do |zipfile|
+        puts "Populating StudyXmlRecords table with #{zipfile.size} rows..."
         zipfile.each do |file|
-          study_xml = file.get_input_stream.read
-          create_study_xml_record(study_xml)
+          xml = file.get_input_stream.read
+          nct_id = extract_nct_id_from_study(xml)
+          puts "#{cnt} #{nct_id}"
+          create_study_xml_record(nct_id,xml)
+          cnt=cnt-1
         end
       end
     end
@@ -50,25 +54,19 @@ module ClinicalTrials
       Nokogiri::XML(Faraday.get(url).body)
     end
 
-    def create_study_xml_record(xml)
-      nct_id = extract_nct_id_from_study(xml)
-
+    def create_study_xml_record(nct_id,xml)
       if @processed_studies[:updated_studies].include?(nct_id)
         @processed_studies[:updated_studies].delete(nct_id)
       end
       @processed_studies[:new_studies] << nct_id
-      unless @dry_run
-        StudyXmlRecord.where(nct_id: nct_id).first_or_create {|rec|rec.content = xml}
-        #s=StudyXmlRecord.where(nct_id: nct_id)
-        #StudyXmlRecord.create({ :content =>xml, :nct_id=>nct_id}).save! if s.size ==0
-      end
+      StudyXmlRecord.where(nct_id: nct_id).first_or_create {|rec|rec.content = xml} unless @dry_run
     end
 
-    def populate_studies
+    def populate_studies(study_filter=nil)
       return if @dry_run
       load_event = ClinicalTrials::LoadEvent.create( event_type: 'populate_studies')
 
-      studies_to_load=StudyXmlRecord.not_yet_loaded
+      studies_to_load=StudyXmlRecord.not_yet_loaded(study_filter)
       cntr=studies_to_load.size
       puts "will load #{cntr} studies..."
       studies_to_load.each do |xml_record|

@@ -11,7 +11,7 @@
 
     <div class="step">
       <span class="stepNumber">2</span>
-      <h3 class="stepName">Download an AACT Database Snapshot</h3>
+      <h3 class="stepName">Download AACT Database Snapshot Package</h3>
     </div>
 
     <p><%= render 'file_archive' %></p>
@@ -25,56 +25,61 @@
 
 
     <h4>Database Creation Via Command Line</h4>
-    <h5>Open a terminal session.</h5>
+    <h5>Open a terminal session</h5>
     <ul class='regularDisplay'>
       <li>On a Mac: press [Command] [Spacebar] and enter 'Terminal' in the 'Spotlight Search' dialog that pops up. </li>
       <li>On a PC: press [Start] and enter 'CMD' in the command input box.</li>
     </ul>
     <p>This should open a terminal session where you can enter the following commands.</p>
 
-    <h5>Prepare PostgreSQL</h5>
+    <h5>Initialize empty postgres database: aact</h5>
 
-    <p>Most PostgreSQL installations will have automatically initialized an empty 'starter' database named <i>postgres</i>. To confirm, enter the command below. If <i>postgres</i> already exists, you'll see the 'already exists' message; if not, it will be created.</p>
-
+    <p>After postgres is installed on your local machine, enter the following command to initialize the aact database. (You might get the error message 'already exists' if the database was already created; no harm done.)
     <p class='CodeRay'>
       <pre>
         <p class='code'>
-          <span class='command-prompt'>-&gt; </span><span class='command-entry'> createdb postgres </i></span> <span class='command-prompt'></span>
-          <span class='command-response'> createdb: database creation failed: ERROR:  database "postgres" already exists </span>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> createdb aact </i></span> <span class='command-prompt'></span>
+          <span class='command-response'> createdb: database creation failed: ERROR:  database "aact" already exists </span>
         </p>
       </pre>
     </p>
 
-    <h5>Locate and Unzip the AACT Snapshot</h5>
-    <p>Verify the location of the snapshot file - both the path and the file name. You'll need it unzip the file and then use the resulting file in the command to create and populate AACT.</p>
+    <h5>Locate and unzip the snapshot package</h5>
+    <p>Verify the location of the snapshot file you downloaded in step 2 - both the path and the file name. You'll need to unzip this package and use the data dump file it contains to create and populate your own, local instance of the database.</p>
     <ul class='regularDisplay'>
-      <li>On a Mac: The file should be <i>~/Downloads/YYYYMMDD_aact.gz</i> where YYYYMMDD represents the date the snapshot was taken.</li>
-      <li>On a PC: The file should be at C:\Downloads???</li>
+      <li>On a Mac: The zip package is probably here: <i>~/Downloads/YYYYMMDD_clinical_trials.zip</i> (where YYYYMMDD is the snapshot date).</li>
     </ul>
 
     <p class='CodeRay'>
       <pre>
         <p class='code'>
-          <span class='command-prompt'>-&gt; </span><span class='command-entry'> gunzip <i>~/Downloads/YYYYMMDD_aact.gz </i></span>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> unzip <i>~/Downloads/YYYYMMDD_clinical_trials.zip </i></span>
         </p>
       </pre>
     </p>
-    <p>This will unpack the content of the zip (gz) file, resulting in one single large SQL file that can be used to create & populate the AACT database.  The name of the resulting SQL file should be the same as the zip file, except it will have a .sql suffix.</p>
+    <p>This will unpack the 3 files contained in the zip package and save them to the directory where the zip file exists. This directory will contain 3 files:</p>
+  </ul>
+    <ul class='regularDisplay'>
+      <li><i>schema_diagram.png</i> Database schema diagram that illustrates the relationships between tables.</li>
+      <li><i>postgres_data.dmp</i> Postgres dump file containing all the instructions and data required to create a local copy of the AACT database.</li>
+      <li><i>data_dictionary.xlsx</i> Spreadsheet that describes all tables and columns in the AACT database.</li>
+    </ul>
 
-    <h5>Create and Populate a Local Instance of AACT</h5>
-    <p>Enter the following command to create a database named <i>aact</i> and populate it with the clinical trial content from the snapshot file.  (It seems odd to enter <i>--dbname=postgres</i> to create a database named <i>aact</i>, but that's how it works!</p>
-    <p class="note">Note: this restore can take several hours, depending on the speed of your machine.</p>
+    <h5>Create and populate your local database instance</h5>
+    <p>Enter the following command to create all database tables in <i>aact</i> and then populate them with clinical trials data.</p>
+    <p class="note">Note: this can take a while, depending on the speed of your machine.</p>
 
     <p class='CodeRay'>
       <pre>
         <p class='code'>
-          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=postgres</i> --no-owner --clean --create  <i>~/Downloads/YYYYMMDD_aact.sql </i></span>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=postgres</i> --no-owner --clean --create  <i>~/Downloads/postgres_data.dmp</i></span>
         </p>
       </pre>
     </p>
 
-    <h5>Verify Database</h5>
+    <h5>Verify the database</h5>
 
+    <p>Confirm the download was successful by logging into the database and perusing the data.</p>
     <p><%= render partial: 'psql_local_login' %></p>
 
     <p id='createDbViaGui'><%= render 'create_db_via_gui' %></p>

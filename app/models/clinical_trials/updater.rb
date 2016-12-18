@@ -1,49 +1,71 @@
 module ClinicalTrials
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :download_file_name
+    attr_reader :params, :load_event, :client, :study_counts, :study_filter
 
     def initialize(params={})
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
         puts("Restarting the load...")
-        record_type='Restart'
+        # don't allow filtering by nct ID unless it's a restart because filtering is done so that multiple loads can run simultaneously
+        # if multiple jobs running for initial full load - they would step on each ther when study_xml_records table gets truncated
+        @study_filter=@params[:study_filter]
+        record_type="Restart #{@study_filter}"
       else
         puts("Starting the #{type} load...")
         record_type=type
       end
       @client = ClinicalTrials::Client.new
-
       @load_event = ClinicalTrials::LoadEvent.create({:event_type=>record_type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
       self
     end
 
     def run
-      if @params[:event_type]=='full'
-        full
+      if study_filter
+        @client.populate_studies(study_filter)
+        @load_event.complete({:new_studies=> Study.count})
       else
-        incremental
+        case params[:event_type]
+        when 'full'
+          full
+        when 'finalize'
+          finalize_full_load
+        else
+          incremental
+        end
       end
     end
 
     def full
-      log('begin ...')
-      ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
-      if should_restart?
-        log("restarting a full load...")
-      else
-        log("initiating full load...")
-        ActiveRecord::Base.connection.truncate('study_xml_records') if ! should_restart?
-        @client.download_xml_files
-        truncate_tables
+      begin
+        log('begin ...')
+        revoke_db_privs
+        if should_restart?
+          log("restarting full load...")
+        else
+          log("initiating full load...")
+          ActiveRecord::Base.connection.truncate('study_xml_records')
+          @client.download_xml_files
+          truncate_tables
+        end
+        remove_indexes  # Index significantly slow the load process.
+        @client.populate_studies
+        finalize_full_load
+        @load_event.complete({:new_studies=> Study.count})
+      rescue
+        grant_db_privs
+        @load_event.complete({:status=>'failed',:new_studies=> Study.count})
       end
-      #remove_indexes  # Index significantly slow the load process.
+    end
+
+    def finalize_full_load
+      remove_indexes  # Index significantly slow the load process.
       @client.populate_studies
       add_indexes
-      ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
+      grant_db_privs
       run_sanity_checks
-      export_tables
+      take_snapshot
       send_notification
       @load_event.complete({:new_studies=> Study.count})
     end
@@ -116,17 +138,17 @@ module ClinicalTrials
     end
 
     def incremental
-      log("begin ...")
-      days_back=(@params[:days_back] ? @params[:days_back] : 1)
+      log("begin incremental load...")
+      days_back=(@params[:days_back] ? @params[:days_back] : 4)
       log("finding studies changed in past #{days_back} days...")
       ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
-      log("found #{ids.size} studies that have changed")
+      log("found #{ids.size} studies that have been changed or added")
       set_expected_counts(ids)
       ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
       update_studies(ids)
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
-      export_tables
+      take_snapshot
       log_actual_counts
       @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       send_notification
@@ -185,11 +207,11 @@ module ClinicalTrials
       SanityCheck.run
     end
 
-    def export_tables
-      if !@params[:create_snapshots]==false
-        log("exporting tables...")
-        TableExporter.new.run
-      end
+    def take_snapshot
+      puts "snapshot the database..."
+      ClinicalTrials::FileManager.new.take_snapshot
+      log("exporting tables as flat files...")
+      TableExporter.new.run
     end
 
     def truncate_tables
@@ -225,5 +247,21 @@ module ClinicalTrials
     def log_actual_counts
       log("should change: #{@study_counts[:change]};  should add: #{@study_counts[:add]}\n")
     end
+
+    private
+
+    def revoke_db_privs
+      ActiveRecord::Base.connection.execute("REVOKE ALL PRIVILEGES ON database #{db_name} FROM aact;")
+    end
+
+    def grant_db_privs
+      ActiveRecord::Base.connection.execute("GRANT CONNECT ON DATABASE #{db_name} TO aact;")
+      ActiveRecord::Base.connection.execute('GRANT SELECT ON ALL TABLES IN SCHEMA public TO aact;')
+    end
+
+    def db_name
+      ActiveRecord::Base.connection.current_database
+    end
+
   end
 end
