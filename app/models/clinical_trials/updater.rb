@@ -64,7 +64,7 @@ module ClinicalTrials
       grant_db_privs
       run_sanity_checks
       take_snapshot
-      send_notification
+      # send_notification
       @load_event.complete({:new_studies=> Study.count})
     end
 
