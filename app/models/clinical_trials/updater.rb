@@ -38,7 +38,7 @@ module ClinicalTrials
         @client.download_xml_files
         truncate_tables
       end
-      remove_indexes  # Index significantly slow the load process.
+      #remove_indexes  # Index significantly slow the load process.
       @client.populate_studies
       add_indexes
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
@@ -94,11 +94,18 @@ module ClinicalTrials
       ]
     end
 
+    def should_keep_index?(index)
+       return true if index.table=='studies' and index.columns=='nct_id'
+       return true if index.table=='study_xml_records' and index.columns=='nct_id'
+       return true if index.table=='study_xml_records' and index.columns=='created_study_at'
+       false
+    end
+
     def remove_indexes
       m=ActiveRecord::Migration.new
       ClinicalTrials::Updater.loadable_tables.each {|table_name|
         ActiveRecord::Base.connection.indexes(table_name).each{|index|
-          m.remove_index index.table, index.columns
+          m.remove_index(index.table, index.columns) if !should_keep_index?(index)
         }
       }
     end
