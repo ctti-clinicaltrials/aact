@@ -4,8 +4,8 @@ module ClinicalTrials
 
     attr_reader :url, :processed_studies, :dry_run, :errors
     def initialize(search_term: nil, dry_run: false)
-      @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
-      #@url = "#{BASE_URL}/search?term=Mesothelioma&resultsxml=true"
+      #@url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
+      @url = "#{BASE_URL}/search?term=Mesothelioma&resultsxml=true"
       @processed_studies = {
         updated_studies: [],
         new_studies: []
