@@ -1,6 +1,5 @@
 ---
-:concurrency: 5
-:timeout: 8
+:concurrency: 3
 :queues:
   - daily_import
   - full_import
