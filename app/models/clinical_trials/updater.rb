@@ -60,6 +60,8 @@ module ClinicalTrials
     end
 
     def finalize_full_load
+      remove_indexes  # Index significantly slow the load process.
+      @client.populate_studies
       add_indexes
       grant_db_privs
       run_sanity_checks
