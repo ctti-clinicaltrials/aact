@@ -1,7 +1,7 @@
 ---
-:concurrency: 3
+:concurrency: 5
+:timeout: 8
 :queues:
   - daily_import
-  - table_export
   - full_import
 
