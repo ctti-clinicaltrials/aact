@@ -4,8 +4,8 @@ module ClinicalTrials
 
     attr_reader :url, :processed_studies, :dry_run, :errors
     def initialize(search_term: nil, dry_run: false)
-      #@url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
-      @url = "#{BASE_URL}/search?term=Mesothelioma&resultsxml=true"
+      @url = "#{BASE_URL}/search?term=#{search_term.try(:split).try(:join, '+')}&resultsxml=true"
+      #@url = "#{BASE_URL}/search?term=Mesothelioma&resultsxml=true"
       @processed_studies = {
         updated_studies: [],
         new_studies: []
@@ -69,25 +69,29 @@ module ClinicalTrials
 
       studies_to_load=StudyXmlRecord.not_yet_loaded(study_filter)
       cntr=studies_to_load.size
-      puts "will load #{cntr} studies..."
+      start_time=Time.now
+      puts "Load #{cntr} studies ================================================ Start Time.....#{start_time}"
       studies_to_load.each do |xml_record|
-        raw_xml = xml_record.content
-
-        import_xml_file(raw_xml)
+        import_xml_file(xml_record.content)
         xml_record.created_study_at=Date.today
         xml_record.save!
         puts "#{cntr} saved #{xml_record.nct_id}"
         cntr=cntr-1
       end
       load_event.complete
+      end_time=Time.now
+      puts "================================================ End Time.....#{end_time}"
+      puts "================================================ Total Load Time:.....#{end_time - start_time}"
     end
 
     def import_xml_file(study_xml, benchmark: false)
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
-      unless Study.find_by(nct_id: nct_id).present?
+      stime=Time.now
+      #unless Study.find_by(nct_id: nct_id).present?
         Study.new({xml: study, nct_id: nct_id}).create
-      end
+      #end
+      puts "#{nct_id}====================================== Load Time: #{Time.now - stime}"
     end
 
     private
