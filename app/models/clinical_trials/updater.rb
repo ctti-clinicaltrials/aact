@@ -63,6 +63,7 @@ module ClinicalTrials
       remove_indexes  # Index significantly slow the load process.
       @client.populate_studies
       add_indexes
+      create_calculated_values
       grant_db_privs
       run_sanity_checks
       take_snapshot
@@ -72,11 +73,11 @@ module ClinicalTrials
 
     def indexes
       [
-       [:baseline_measures, :category],
-       [:baseline_measures, :classification],
        [:browse_interventions, :nct_id],
        [:overall_officials, :nct_id],
        [:responsible_parties, :nct_id],
+       [:baseline_measures, :category],
+       [:baseline_measures, :classification],
        [:browse_conditions, :mesh_term],
        [:browse_interventions, :mesh_term],
        [:calculated_values, :actual_duration],
@@ -102,8 +103,11 @@ module ClinicalTrials
        [:oversight_authorities, :name],
        [:outcome_measurements, :category],
        [:outcome_measurements, :classification],
+       [:reported_events, :event_type],
+       [:reported_events, :subjects_affected],
        [:responsible_parties, :organization],
        [:result_contacts, :organization],
+       [:sponsors, :agency_class],
        [:sponsors, :name],
        [:studies, :overall_status],
        [:studies, :phase],
@@ -130,6 +134,10 @@ module ClinicalTrials
           m.remove_index(index.table, index.columns) unless should_keep_index?(index)
         }
       }
+    end
+
+    def create_calculated_values
+      Study.each{|study| CalculatedValue.new.create_from(study).save! if study.calculated_value.nil?}
     end
 
     def add_indexes
@@ -230,7 +238,8 @@ module ClinicalTrials
       old_study.each{|old| old.destroy }
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-      Study.new({ xml: new_xml, nct_id: nct_id }).create
+      s=Study.new({ xml: new_xml, nct_id: nct_id }).create
+      CalculatedValue.new.create_from(s).save
     end
 
     def send_notification
