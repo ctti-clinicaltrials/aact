@@ -1469,7 +1469,9 @@ ALTER SEQUENCE result_groups_id_seq OWNED BY result_groups.id;
 
 CREATE TABLE sanity_checks (
     id integer NOT NULL,
-    report text NOT NULL,
+    table_name character varying,
+    row_count integer,
+    report text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

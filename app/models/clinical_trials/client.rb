@@ -72,26 +72,23 @@ module ClinicalTrials
       start_time=Time.now
       puts "Load #{cntr} studies ================================================ Start Time.....#{start_time}"
       studies_to_load.each do |xml_record|
+        stime=Time.now
         import_xml_file(xml_record.content)
         xml_record.created_study_at=Date.today
         xml_record.save!
-        puts "#{cntr} saved #{xml_record.nct_id}"
+        puts "#{cntr} saved #{xml_record.nct_id}:  #{Time.now - stime}"
         cntr=cntr-1
       end
       load_event.complete
-      end_time=Time.now
-      puts "================================================ End Time.....#{end_time}"
-      puts "================================================ Total Load Time:.....#{end_time - start_time}"
+      puts "================================================ Total Load Time:.....#{Time.now - start_time}"
     end
 
     def import_xml_file(study_xml, benchmark: false)
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
-      stime=Time.now
       unless Study.find_by(nct_id: nct_id).present?
         Study.new({xml: study, nct_id: nct_id}).create
       end
-      puts "#{nct_id}====================================== Load Time: #{Time.now - stime}"
     end
 
     private

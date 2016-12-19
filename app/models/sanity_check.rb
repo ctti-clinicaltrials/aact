@@ -5,6 +5,14 @@ class SanityCheck < ActiveRecord::Base
     @table_names = ClinicalTrials::Updater.loadable_tables
   end
 
+  def self.save_row_counts
+    ClinicalTrials::Updater.loadable_tables.each{|table_name|
+      table_name='references' if table_name=='study_references'
+      cnt=table_name.singularize.camelize.constantize.count
+      new({:table_name=>table_name,:row_count=>cnt}).save!
+    }
+  end
+
   def self.run
     sanity_check = new
     sanity_check.report = sanity_check.generate_report
