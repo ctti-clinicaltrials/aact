@@ -88,9 +88,9 @@ module ClinicalTrials
       study = Nokogiri::XML(study_xml)
       nct_id = extract_nct_id_from_study(study_xml)
       stime=Time.now
-      #unless Study.find_by(nct_id: nct_id).present?
+      unless Study.find_by(nct_id: nct_id).present?
         Study.new({xml: study, nct_id: nct_id}).create
-      #end
+      end
       puts "#{nct_id}====================================== Load Time: #{Time.now - stime}"
     end
 
