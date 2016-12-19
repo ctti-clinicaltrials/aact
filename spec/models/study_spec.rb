@@ -59,6 +59,7 @@ describe Study do
   describe '.create_calculated_values' do
     before do
       expect(subject).to be_persisted
+      CalculatedValue.new.create_from(subject).save!
     end
 
     it 'should have created a calculated value record for each study' do

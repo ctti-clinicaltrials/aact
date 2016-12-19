@@ -72,53 +72,39 @@ class Study < ActiveRecord::Base
     update(attribs)
     groups=DesignGroup.create_all_from(opts)
     Intervention.create_all_from(opts.merge(:design_groups=>groups))
-    stime=Time.now
     DetailedDescription.new.create_from(opts).try(:save)
-    puts "    #{nct_id}  detailed desc --------------> #{Time.now - stime}"
     Design.new.create_from(opts).try(:save)
     BriefSummary.new.create_from(opts).try(:save)
     Eligibility.new.create_from(opts).save
     ParticipantFlow.new.create_from(opts).try(:save)
 
-    stime=Time.now
     BaselineMeasure.create_all_from(opts)
     BaselineCount.create_all_from(opts)
-    puts "    #{nct_id}  baselines --------------> #{Time.now - stime}"
-    stime=Time.now
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
-    puts "    #{nct_id}  browse conditions/interventions --------------> #{Time.now - stime}"
     CentralContact.create_all_from(opts)
     Condition.create_all_from(opts)
     Country.create_all_from(opts)
-    stime=Time.now
     Facility.create_all_from(opts)
-    puts "    #{nct_id}  facilities --------------> #{Time.now - stime}"
     IdInformation.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     Milestone.create_all_from(opts)
     DropWithdrawal.create_all_from(opts)
-    stime=Time.now
     Outcome.create_all_from(opts)
-    puts "    #{nct_id}  outcomes --------------> #{Time.now - stime}"
     #  ResultGroups get created in the process of creating the 4 above
     OversightAuthority.create_all_from(opts)
     OverallOfficial.create_all_from(opts)
     DesignOutcome.create_all_from(opts)
-    stime=Time.now
     ReportedEvent.create_all_from(opts)
-    puts "    #{nct_id}  reported events --------------> #{Time.now - stime}"
     ResponsibleParty.create_all_from(opts)
     ResultAgreement.create_all_from(opts)
     ResultContact.create_all_from(opts)
     Reference.create_all_from(opts)
-    stime=Time.now
     Sponsor.create_all_from(opts)
-    puts "    #{nct_id}  sponsors --------------> #{Time.now - stime}"
-    stime=Time.now
-    CalculatedValue.new.create_from(self).save
-    puts "    #{nct_id}  calculated_values --------------> #{Time.now - stime}"
+    # During full load, indexes are dropped. Populating CalculatedValues requires several db queries - so they're scanned and very slow.
+    # Populate the CalculatedValues after the indexes have been recreated after the full load completes.
+    #CalculatedValue.new.create_from(self).save
     self
   end
 
