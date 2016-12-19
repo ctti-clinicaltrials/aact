@@ -2684,6 +2684,20 @@ CREATE INDEX index_oversight_authorities_on_name ON oversight_authorities USING 
 
 
 --
+-- Name: index_reported_events_on_event_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reported_events_on_event_type ON reported_events USING btree (event_type);
+
+
+--
+-- Name: index_reported_events_on_subjects_affected; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reported_events_on_subjects_affected ON reported_events USING btree (subjects_affected);
+
+
+--
 -- Name: index_responsible_parties_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2691,17 +2705,17 @@ CREATE INDEX index_responsible_parties_on_nct_id ON responsible_parties USING bt
 
 
 --
--- Name: index_responsible_parties_on_organization; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_responsible_parties_on_organization ON responsible_parties USING btree (organization);
-
-
---
 -- Name: index_result_contacts_on_organization; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_result_contacts_on_organization ON result_contacts USING btree (organization);
+
+
+--
+-- Name: index_sponsors_on_agency_class; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sponsors_on_agency_class ON sponsors USING btree (agency_class);
 
 
 --
@@ -2809,7 +2823,9 @@ INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 
-INSERT INTO schema_migrations (version) VALUES ('20160918000000');
+INSERT INTO schema_migrations (version) VALUES ('20161030000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20161103150339');
 
 INSERT INTO schema_migrations (version) VALUES ('20161129151700');
 

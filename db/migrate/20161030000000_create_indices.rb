@@ -39,8 +39,10 @@ class CreateIndices < ActiveRecord::Migration
     add_index :oversight_authorities, :name
     add_index :outcome_measurements, :category
     add_index :outcome_measurements, :classification
-    add_index :responsible_parties, :organization
+    add_index :reported_events, :event_type
+    add_index :reported_events, :subjects_affected
     add_index :result_contacts, :organization
+    add_index :sponsors, :agency_class
     add_index :sponsors, :name
     add_index :studies, :last_known_status
     add_index :studies, :overall_status
