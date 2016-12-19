@@ -102,7 +102,9 @@ class Study < ActiveRecord::Base
     ResultContact.create_all_from(opts)
     Reference.create_all_from(opts)
     Sponsor.create_all_from(opts)
-    CalculatedValue.new.create_from(self).save
+    # During full load, indexes are dropped. Populating CalculatedValues requires several db queries - so they're scanned and very slow.
+    # Populate the CalculatedValues after the indexes have been recreated after the full load completes.
+    #CalculatedValue.new.create_from(self).save
     self
   end
 

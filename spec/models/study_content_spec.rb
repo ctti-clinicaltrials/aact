@@ -15,6 +15,7 @@ describe Study do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+    CalculatedValue.new.create_from(study).save!
     expect(study.start_month_year).to eq('July 2001')
     expect(study.completion_month_year).to eq('November 2013')
     expect(study.primary_completion_month_year).to eq('January 2009')
