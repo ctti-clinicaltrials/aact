@@ -1,15 +1,23 @@
 class SanityCheck < ActiveRecord::Base
-  def initialize
-    super
-    @connection = ActiveRecord::Base.connection
-    @table_names = ClinicalTrials::Updater.loadable_tables
-  end
 
   def self.save_row_counts
     ClinicalTrials::Updater.loadable_tables.each{|table_name|
       table_name='references' if table_name=='study_references'
       cnt=table_name.singularize.camelize.constantize.count
       new({:table_name=>table_name,:row_count=>cnt}).save!
+    }
+  end
+
+  def self.report_duplication
+    ClinicalTrials::Updater.single_study_tables.each{|table_name|
+      results=ActiveRecord::Base.connection.execute("
+         SELECT nct_id, count(*)
+           FROM #{table_name}
+           GROUP BY nct_id
+           HAVING COUNT(*) = 1")
+      results.values.each{|row|
+        new({:table_name=>"#{table_name} duplicate",:nct_id=>row.first,:row_count=>row.last}).save!
+      }
     }
   end
 
@@ -24,7 +32,7 @@ class SanityCheck < ActiveRecord::Base
   end
 
   def generate_report
-    @table_names.inject({}) do |hash, table_name|
+    ClinicalTrials::Updater.loadable_tables.inject({}) do |hash, table_name|
       hash[table_name] = {
         row_count: @connection.execute("select count(*) from #{table_name}").values.flatten.first.to_i,
         column_stats: generate_column_width_stats(table_name)
