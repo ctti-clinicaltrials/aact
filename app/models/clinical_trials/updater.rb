@@ -60,8 +60,6 @@ module ClinicalTrials
     end
 
     def finalize_full_load
-      remove_indexes  # Index significantly slow the load process.
-      @client.populate_studies
       add_indexes
       create_calculated_values
       grant_db_privs
@@ -137,7 +135,20 @@ module ClinicalTrials
     end
 
     def create_calculated_values
-      Study.each{|study| CalculatedValue.new.create_from(study).save! if study.calculated_value.nil?}
+      studies=Study.includes(:calculated_value).where(:calculated_values =>{:id => nil})
+      cntr=studies.count
+      puts "creating calculated values for #{cntr} studies..."
+      studies.each{|study|
+        CalculatedValue.new.create_from(study).save!
+        cntr=cntr-1
+        # display progress by showing every 1000th nct_id
+        if cntr % 1000 == 0
+          puts "#{cntr}  #{study.nct_id} "
+        else
+          print '.'
+          $stdout.flush
+        end
+      }
     end
 
     def add_indexes
