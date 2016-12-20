@@ -60,14 +60,12 @@ module ClinicalTrials
     end
 
     def finalize_full_load
-      remove_indexes  # Index significantly slow the load process.
-      @client.populate_studies
       add_indexes
-      create_calculated_values
       grant_db_privs
+      create_calculated_values
       run_sanity_checks
       take_snapshot
-      # send_notification
+      send_notification
       @load_event.complete({:new_studies=> Study.count})
     end
 
@@ -137,7 +135,22 @@ module ClinicalTrials
     end
 
     def create_calculated_values
-      Study.each{|study| CalculatedValue.new.create_from(study).save! if study.calculated_value.nil?}
+      ActiveRecord::Base.connection.execute('REVOKE CONNECT ON TABLE calculated_values FROM aact;')
+      studies=Study.includes(:calculated_value).where(:calculated_values =>{:id => nil})
+      cntr=studies.count
+      puts "creating calculated values for #{cntr} studies..."
+      studies.each{|study|
+        CalculatedValue.new.create_from(study).save!
+        cntr=cntr-1
+        # display progress by showing every 1000th nct_id
+        if cntr % 1000 == 0
+          puts "#{cntr}  #{study.nct_id} "
+        else
+          print '.'
+          $stdout.flush
+        end
+      }
+      ActiveRecord::Base.connection.execute('GRANT CONNECT ON TABLE calculated_values TO aact;')
     end
 
     def add_indexes
@@ -162,7 +175,19 @@ module ClinicalTrials
       send_notification
     end
 
-    def self.loadable_tables()
+    def self.single_study_tables
+      [
+        'brief_summaries',
+        'designs',
+        'detailed_descriptions',
+        'eligibilities',
+        'participant_flows',
+        'calculated_values',
+        'studies'
+      ]
+    end
+
+    def self.loadable_tables
       blacklist = %w(
         schema_migrations
         load_events
@@ -212,7 +237,7 @@ module ClinicalTrials
 
     def run_sanity_checks
       log("sanity check...")
-      SanityCheck.run
+      SanityCheck.save_row_counts
     end
 
     def take_snapshot
