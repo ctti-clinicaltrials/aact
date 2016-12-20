@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
+  get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
   get "wdc"                   => "tableau#index"
   get '/old_tableau',         :to => redirect('/tableau.html')
   get "api_docs"              => "swaggerui#index"
