@@ -1,30 +1,28 @@
 require 'rails_helper'
 
 describe SanityCheck do
-  describe '.run' do
-    let(:sanity_check) { SanityCheck.last }
-    let!(:study) { Study.new({xml: Nokogiri::XML(File.read(Rails.root.join('spec',
-                                                                          'support',
-                                                                          'xml_data',
-                                                                          'example_study.xml'))), nct_id: 'NCT00002475'}).create }
-
+  describe '.save_row_counts' do
 
     before do
-      SanityCheck.run
+      nct_id='NCT00023673'
+      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+      study=Study.new({xml: xml, nct_id: nct_id}).create
+      CalculatedValue.new.create_from(study).save!
+      SanityCheck.save_row_counts
     end
 
-    it 'should create a sanity check record with the correct row counts' do
-      expect(sanity_check.present?).to eq(true)
-      expect(sanity_check.report[:studies].present?).to eq(true)
-      expect(sanity_check.report[:studies][:row_count]).to eq(1)
-      expect(sanity_check.report[:conditions][:row_count]).to eq(6)
+    it 'should have one row for each study-related table' do
+      expect(SanityCheck.count).to eq(43)
     end
 
-    it 'should create a sanity check record with the correct column length information' do
-      expect(sanity_check.report[:studies][:column_stats].present?).to eq(true)
-      expect(sanity_check.report[:studies][:column_stats][:nct_id][:max_length]).to eq(11)
-      expect(sanity_check.report[:studies][:column_stats][:nct_id][:min_length]).to eq(11)
-      expect(sanity_check.report[:studies][:column_stats][:nct_id][:avg_length]).to eq(11)
+    it 'should have row count 1 for each table that has 1-to-1 relationship with studies table' do
+      ClinicalTrials::Updater.single_study_tables.each{|table_name|
+         rows=SanityCheck.where('table_name=?',table_name)
+         expect(rows.size).to eq(1)
+         row=rows.first
+         expect(row.row_count).to eq(1)
+      }
     end
+
   end
 end
