@@ -135,7 +135,7 @@ module ClinicalTrials
     end
 
     def create_calculated_values
-      ActiveRecord::Base.connection.execute('REVOKE CONNECT ON TABLE calculated_values FROM aact;')
+      ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
       studies=Study.includes(:calculated_value).where(:calculated_values =>{:id => nil})
       cntr=studies.count
       puts "creating calculated values for #{cntr} studies..."
@@ -150,7 +150,7 @@ module ClinicalTrials
           $stdout.flush
         end
       }
-      ActiveRecord::Base.connection.execute('GRANT CONNECT ON TABLE calculated_values TO aact;')
+      ActiveRecord::Base.connection.execute('GRANT SELECT ON TABLE calculated_values TO aact;')
     end
 
     def add_indexes
