@@ -20,11 +20,13 @@ class CalculatedValue < ActiveRecord::Base
     self.has_us_facility           = calc_has_us_facility
     self.has_single_facility       = calc_has_single_facility
     self.number_of_facilities      = calc_number_of_facilities
-    self.number_of_sae_subjects    = calc_number_of_sae_subjects
-    self.number_of_nsae_subjects   = calc_number_of_nsae_subjects
     self.sponsor_type              = calc_sponsor_type
     self.registered_in_calendar_year = calc_registered_in_calendar_year
     self.actual_duration           = calc_actual_duration
+
+    re=study.reported_events.where('subjects_affected is not null')
+    self.number_of_sae_subjects    = calc_number_of_subjects(re,'serious')
+    self.number_of_nsae_subjects   = calc_number_of_subjects(re,'other')
 
     min_stuff=calc_age('min')
     self.minimum_age_num           = min_stuff.first
@@ -43,32 +45,11 @@ class CalculatedValue < ActiveRecord::Base
     self
   end
 
-  def attribs
-    {
-      :start_date                  => study.start_month_year.try(:to_date),
-      :verification_date           => study.verification_month_year.try(:to_date),
-      :completion_date             => study.completion_month_year.try(:to_date),
-      :primary_completion_date     => study.primary_completion_month_year.try(:to_date),
-      :nlm_download_date           => get_download_date,
-
-      :were_results_reported       => calc_results_reported,
-      :has_us_facility             => calc_has_us_facility,
-      :has_single_facility         => calc_has_single_facility,
-      :number_of_facilities        => calc_number_of_facilities,
-      :number_of_sae_subjects      => calc_number_of_sae_subjects,
-      :number_of_nsae_subjects     => calc_number_of_nsae_subjects,
-      :sponsor_type                => calc_sponsor_type,
-      :registered_in_calendar_year => calc_registered_in_calendar_year,
-    }
-  end
-
   def calc_has_us_facility
-    puts "HAS_US_FACILITY ========="
     !study.facilities.detect{|f|f.country=='United States'}.nil?
   end
 
   def calc_has_single_facility
-    puts "HAS_SINGLE_FACILITY ========="
     study.facilities.size==1
   end
 
@@ -109,22 +90,13 @@ class CalculatedValue < ActiveRecord::Base
     return 'Other'
   end
 
-  def calc_number_of_sae_subjects
-    puts "SAE SUBJECTS ========"
+  def calc_number_of_subjects(reported_events,type)
+    puts "SUBJECTS #{type}========"
     xtime=Time.now
-    result=study.reported_events.where('event_type = \'serious\' and subjects_affected is not null').sum(:subjects_affected)
+    all=reported_events.select{|re| re.event_type == type}.map(&:subjects_affected)
+    result=all.reduce(0, :+)
     tm=Time.now - xtime
-    puts "======================= number_of_sae_subjects  #{tm}    #{self.nct_id}" if tm > 1
-    return result
-  end
-
-  def calc_number_of_nsae_subjects
-    puts "NSAE SUBJECTS ========"
-    xtime=Time.now
-    result=nil
-    result=study.reported_events.where('event_type != \'serious\' and subjects_affected is not null').sum(:subjects_affected)
-    tm=Time.now - xtime
-    puts "======================= number_of_nsae_subjects  #{tm}    #{self.nct_id}" if tm > 1
+    puts "======================= number_of_subjects #{type} #{tm}    #{self.nct_id}" if tm > 1
     return result
   end
 
