@@ -27,8 +27,8 @@
     };
 
     myConnector.getData = function (table, doneCallback) {
-      //$.getJSON("http://aact.ctti-clinicaltrials.org/api/v1/studies?organization=Duke&page=1", function(resp) {
-      $.getJSON("http://aact-dev.herokuapp.com/api/v1/studies?organization=Amsterdam&page=1", function(resp) {
+      //$.getJSON("http://aact-prod.herokuapp.com/api/v1/studies?organization=Duke&page=1", function(resp) {
+      $.getJSON("https://aact-prod.herokuapp.com/api/v1/studies?organization=Amsterdam&page=1", function(resp) {
       //$.getJSON("http://localhost:3000/api/v1/studies?organization=Amsterdam&page=1", function(resp) {
             var tableData = [];
             //var studies = JSON.stringify(resp);
