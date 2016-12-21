@@ -16,6 +16,7 @@ class CreateAdminTables < ActiveRecord::Migration
 
     create_table "sanity_checks", force: :cascade do |t|
       t.string   'table_name'
+      t.string   'nct_id'
       t.integer  'row_count'
       t.text     'report'
       t.timestamps null: false

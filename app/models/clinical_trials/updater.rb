@@ -175,7 +175,19 @@ module ClinicalTrials
       send_notification
     end
 
-    def self.loadable_tables()
+    def self.single_study_tables
+      [
+        'brief_summaries',
+        'designs',
+        'detailed_descriptions',
+        'eligibilities',
+        'participant_flows',
+        'calculated_values',
+        'studies'
+      ]
+    end
+
+    def self.loadable_tables
       blacklist = %w(
         schema_migrations
         load_events
