@@ -387,7 +387,6 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    rmagick (2.16.0)
     roo (2.4.0)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
@@ -526,7 +525,6 @@ DEPENDENCIES
   rails-erd
   recipient_interceptor
   rest-client
-  rmagick
   roo (~> 2.4.0)
   rspec-rails (~> 3.4.0)
   rubyzip

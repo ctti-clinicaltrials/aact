@@ -29,7 +29,7 @@
       <b>Note:</b>  These instructions were tested on SAS 9.4 (TS1M2) installed on a PC and on Linux.
     </p>
     <p>
-      If the steps described below do not work, the SAS/ACCESS interface to ODBC may need to be configured. For help, contact your SAS administrator, or refer to the <a href="http://support.sas.com/kb/13/848.html">SAS knowledgebase</a>.
+      If the steps described below do not work, the SAS/ACCESS interface to ODBC may need to be configured. For help, contact your SAS administrator, or refer to the <a href="https://support.sas.com/kb/13/848.html">SAS knowledgebase</a>.
     </p>
 
     <div class="step">
@@ -69,7 +69,7 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
     </p>
 
     <p>
-    Refer to <a href='http://support.sas.com/documentation/cdl/en/acreldb/69039/HTML/default/p0nc2tikruabp6n1008nkdf0buee.htm'>SAS documentation</a> for additional PostgreSQL options and arguments for the LIBNAME statement.
+    Refer to <a href='https://support.sas.com/documentation/cdl/en/acreldb/69039/HTML/default/p0nc2tikruabp6n1008nkdf0buee.htm'>SAS documentation</a> for additional PostgreSQL options and arguments for the LIBNAME statement.
     </p>
 
     <p>
@@ -185,7 +185,7 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
 
     <p>For SAS users intending to use SAS PROC SQL to connect to and query the live AACT database, the following method may be used in place of the methods described in Step 2 and Step 3.</p>
 
-    <p>In general, the connection method described in Step 2 above that uses a SAS/ACCESS LIBNAME statement with postgres engine name for the PostgreSQL interface is recommended. However, in some situations, connection using the PROC SQL Pass-Through Facility may be needed.  For a description of advantages and disadvantages of the two approaches, refer to <a href="http://support.sas.com/documentation/cdl/en/acreldb/69039/HTML/default/p1hadwfhakpxh3n1i4qvd9f09jqp.htm" target="_blank">this information provided by SAS</a>.</p>
+    <p>In general, the connection method described in Step 2 above that uses a SAS/ACCESS LIBNAME statement with postgres engine name for the PostgreSQL interface is recommended. However, in some situations, connection using the PROC SQL Pass-Through Facility may be needed.  For a description of advantages and disadvantages of the two approaches, refer to <a href="https://support.sas.com/documentation/cdl/en/acreldb/69039/HTML/default/p1hadwfhakpxh3n1i4qvd9f09jqp.htm" target="_blank">this information provided by SAS</a>.</p>
 
     <p>The following example illustrates use of the Pass-Through Facility in SAS PROC SQL. The connect to statement establishes the connection to the live PostgreSQL database and provides the database access credentials; the disconnect from statement closes the connection. This first ‘select’ query returns the total count of studies in the database; the second ‘select’ query counts the number of studies by values of the study_type variable.    </p>
 
