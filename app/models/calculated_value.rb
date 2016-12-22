@@ -8,7 +8,6 @@ class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
   def create_from(new_study)
-    puts "OOOOOOOOOOOOOOOOOOO  CalculatedValue.create_from...."
     stime=Time.now
     self.study=new_study
     self.start_date                = study.start_month_year.try(:to_date)
@@ -25,8 +24,10 @@ class CalculatedValue < ActiveRecord::Base
     self.actual_duration           = calc_actual_duration
 
     re=study.reported_events.where('subjects_affected is not null')
-    self.number_of_sae_subjects    = calc_number_of_subjects(re,'serious')
-    self.number_of_nsae_subjects   = calc_number_of_subjects(re,'other')
+    if re.size > 0
+      self.number_of_sae_subjects    = calc_number_of_subjects(re,'serious')
+      self.number_of_nsae_subjects   = calc_number_of_subjects(re,'other')
+    end
 
     min_stuff=calc_age('min')
     self.minimum_age_num           = min_stuff.first
@@ -91,12 +92,11 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_number_of_subjects(reported_events,type)
-    puts "SUBJECTS #{type}========"
     xtime=Time.now
     all=reported_events.select{|re| re.event_type == type}.map(&:subjects_affected)
     result=all.reduce(0, :+)
     tm=Time.now - xtime
-    puts "======================= number_of_subjects #{type} #{tm}    #{self.nct_id}" if tm > 1
+    puts "time to load #{result}  #{type} subjects #{tm}    #{self.nct_id}" if tm > 1
     return result
   end
 
