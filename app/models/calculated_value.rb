@@ -8,7 +8,6 @@ class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
   def create_from(new_study)
-    puts "OOOOOOOOOOOOOOOOOOO  CalculatedValue.create_from...."
     stime=Time.now
     self.study=new_study
     self.start_date                = study.start_month_year.try(:to_date)
