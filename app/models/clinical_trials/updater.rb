@@ -143,12 +143,7 @@ module ClinicalTrials
         CalculatedValue.new.create_from(study).save!
         cntr=cntr-1
         # display progress by showing every 1000th nct_id
-        if cntr % 1000 == 0
-          puts "#{cntr}  #{study.nct_id} "
-        else
-          print '.'
-          $stdout.flush
-        end
+        puts "#{cntr}  #{study.nct_id} " if cntr % 1000 == 0
       }
       ActiveRecord::Base.connection.execute('GRANT SELECT ON TABLE calculated_values TO aact;')
     end
