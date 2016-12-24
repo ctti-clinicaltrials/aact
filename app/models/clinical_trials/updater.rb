@@ -135,17 +135,7 @@ module ClinicalTrials
     end
 
     def create_calculated_values
-      ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
-      studies=Study.includes(:calculated_value).where(:calculated_values =>{:id => nil})
-      cntr=studies.count
-      puts "creating calculated values for #{cntr} studies..."
-      studies.each{|study|
-        CalculatedValue.new.create_from(study).save!
-        cntr=cntr-1
-        # display progress by showing every 1000th nct_id
-        puts "#{cntr}  #{study.nct_id} " if cntr % 1000 == 0
-      }
-      ActiveRecord::Base.connection.execute('GRANT SELECT ON TABLE calculated_values TO aact;')
+      CalculatedValue.refresh_table
     end
 
     def add_indexes
