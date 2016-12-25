@@ -195,11 +195,13 @@ class CalculatedValue < ActiveRecord::Base
     self.start_date                = study.start_month_year.try(:to_date)
     self.verification_date         = study.verification_month_year.try(:to_date)
     self.completion_date           = study.completion_month_year.try(:to_date)
+    self.primary_completion_date   = study.primary_completion_month_year.try(:to_date)
     self.has_us_facility           = calc_has_us_facility
     self.has_single_facility       = calc_has_single_facility
     self.number_of_facilities      = calc_number_of_facilities
     self.actual_duration           = calc_actual_duration
     self.sponsor_type              = calc_sponsor_type
+    self.were_results_reported     = calc_were_results_reported
     self.registered_in_calendar_year = calc_registered_in_calendar_year
 
     re=study.reported_events.where('subjects_affected is not null')
@@ -298,7 +300,7 @@ class CalculatedValue < ActiveRecord::Base
     return if !self.study.primary_completion_month_year or !study.first_received_results_date
     return if self.study.primary_completion_date_type != 'Actual'
     return if self.study.first_received_results_date.nil?
-    ((self.study.first_received_results_date.to_time - primary_completion_date.to_time)/1.month.second).to_i
+    ((self.study.first_received_results_date.to_time - self.primary_completion_date.to_time)/1.month.second).to_i
   end
 
 end
