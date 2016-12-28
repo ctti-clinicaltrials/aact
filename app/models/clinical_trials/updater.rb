@@ -153,6 +153,7 @@ module ClinicalTrials
       ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
       update_studies(ids)
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
+      CalculatedValue.refresh_table_for_studies(ids)
       run_sanity_checks
       take_snapshot
       log_actual_counts
