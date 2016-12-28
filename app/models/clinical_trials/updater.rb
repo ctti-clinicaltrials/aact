@@ -202,11 +202,12 @@ module ClinicalTrials
     end
 
     def log(msg)
-      @load_event.log(msg)
+      puts msg
+      #@load_event.log(msg)
     end
 
     def show_progress(nct_id,action)
-      @load_event.log("#{action}: #{@study_counts[:count_down]} (#{nct_id})")
+      log("#{action}: #{@study_counts[:count_down]} (#{nct_id})")
     end
 
     def decrement_count_down
@@ -250,7 +251,6 @@ module ClinicalTrials
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
       s=Study.new({ xml: new_xml, nct_id: nct_id }).create
-      CalculatedValue.new.create_from(s).save
     end
 
     def send_notification
