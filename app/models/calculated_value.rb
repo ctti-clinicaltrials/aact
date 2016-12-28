@@ -26,167 +26,151 @@ class CalculatedValue < ActiveRecord::Base
                  to_date(substring(nlm_download_date_description,43), 'Month DD,YYYY')
             FROM studies")
 
-     ActiveRecord::Base.connection.execute("UPDATE calculated_values
-           SET registered_in_calendar_year = x.res
-          FROM (
-              SELECT nct_id, date_part('year', start_date) as res
-                FROM calculated_values c
-               ) x
-        WHERE x.nct_id = calculated_values.nct_id
-          AND calculated_values.start_date IS NOT NULL")
+    self.sql_methods.each{|method|
+      cmd='UPDATE calculated_values '+ CalculatedValue.send(method)
+      ActiveRecord::Base.connection.execute(cmd)
+    }
+    ActiveRecord::Base.connection.execute("GRANT SELECT ON TABLE calculated_values TO aact")
+  end
 
+  def self.refresh_table_for_studies(id_array)
+    ids=id_array.map { |i| "'" + i.to_s + "'" }.join(",")
+    ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
+    ActiveRecord::Base.connection.execute("DELETE FROM calculated_values WHERE NCT_ID IN (#{ids})")
+    ActiveRecord::Base.connection.execute("INSERT INTO calculated_values (
+                 nct_id,
+                 start_date,
+                 verification_date,
+                 completion_date,
+                 primary_completion_date,
+                 nlm_download_date
+          )
+          SELECT nct_id,
+                 to_date(start_month_year, 'Month YYYY'),
+                 to_date(verification_month_year, 'Month YYYY'),
+                 to_date(completion_month_year, 'Month YYYY'),
+                 to_date(primary_completion_month_year, 'Month YYYY'),
+                 to_date(substring(nlm_download_date_description,43), 'Month DD,YYYY')
+            FROM studies
+          WHERE NCT_ID IN (#{ids})")
+    self.sql_methods.each{|method|
+      cmd='UPDATE calculated_values '+ CalculatedValue.send(method) + " AND calculated_values.nct_id IN (#{ids})"
+      ActiveRecord::Base.connection.execute(cmd)
+    }
+    ActiveRecord::Base.connection.execute("GRANT SELECT ON TABLE calculated_values TO aact")
+  end
 
-    ActiveRecord::Base.connection.execute('UPDATE calculated_values SET were_results_reported=true WHERE nct_id in (SELECT distinct nct_id FROM outcomes)')
+  def self.sql_methods
+    [
+      :sql_for_registered_in_calendar_year,
+      :sql_for_were_results_reported,
+      :sql_for_has_single_facility,
+      :sql_for_has_us_facility,
+      :sql_for_number_of_facilities,
+      :sql_for_months_to_report_results,
+      :sql_for_actual_duration,
+      :sql_for_number_of_sae_subjects,
+      :sql_for_number_of_nsae_subjects,
+      :sql_for_minimum_age_num,
+      :sql_for_minimum_age_unit,
+      :sql_for_maximum_age_num,
+      :sql_for_maximum_age_unit,
+      :sql_for_sponsor_type1,
+      :sql_for_sponsor_type2,
+      :sql_for_sponsor_type3,
+      :sql_for_sponsor_type4
+    ]
 
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-           SET has_single_facility=true
-         WHERE nct_id in
-               (SELECT nct_id
-                  FROM facilities
-                 GROUP BY nct_id
-                HAVING count(*)=1)")
+  def self.sql_for_dates
+    "INSERT INTO calculated_values (
+                 nct_id,
+                 start_date,
+                 verification_date,
+                 completion_date,
+                 primary_completion_date,
+                 nlm_download_date
+          )
+          SELECT nct_id,
+                 to_date(start_month_year, 'Month YYYY'),
+                 to_date(verification_month_year, 'Month YYYY'),
+                 to_date(completion_month_year, 'Month YYYY'),
+                 to_date(primary_completion_month_year, 'Month YYYY'),
+                 to_date(substring(nlm_download_date_description,43), 'Month DD,YYYY')
+            FROM studies"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-           SET has_us_facility=true
-         WHERE nct_id in
-               (SELECT distinct nct_id
-                  FROM facilities
-                 WHERE country='United States')")
+  def self.sql_for_registered_in_calendar_year
+    "SET registered_in_calendar_year = x.res FROM ( SELECT nct_id, date_part('year', start_date) as res FROM calculated_values c) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.start_date IS NOT NULL"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-           SET number_of_facilities = x.res
-          FROM (
-              SELECT  nct_id, count(*) as res
-                FROM facilities f
-               GROUP BY nct_id
-               ) x
-        WHERE x.nct_id = calculated_values.nct_id
-          AND number_of_facilities is null")
+  def self.sql_for_were_results_reported
+    "SET were_results_reported=true WHERE nct_id in (SELECT distinct nct_id FROM outcomes)"
+  end
 
-     ActiveRecord::Base.connection.execute("UPDATE calculated_values
-           SET months_to_report_results = x.res
-          FROM (
-              SELECT  s.nct_id, (s.first_received_results_date - c.primary_completion_date)/30 as res
-                FROM studies s, calculated_values c
-               WHERE s.nct_id=c.nct_id
-               ) x
-        WHERE x.nct_id = calculated_values.nct_id")
+  def self.sql_for_has_single_facility
+    "SET has_single_facility=true WHERE nct_id in (SELECT nct_id FROM facilities GROUP BY nct_id HAVING count(*)=1)"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-           SET actual_duration = x.res
-          FROM (
-              SELECT  nct_id, (primary_completion_date -  start_date)/30 as res
-                FROM calculated_values c
-               ) x
-        WHERE x.nct_id = calculated_values.nct_id")
+  def self.sql_for_has_us_facility
+    "SET has_us_facility=true WHERE nct_id in (SELECT distinct nct_id FROM facilities WHERE country='United States')"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-           SET number_of_sae_subjects = x.res
-          FROM (
-               SELECT re.nct_id, sum(re.subjects_affected) as res
-                 FROM reported_events re
-                WHERE re.event_type='serious'
-             GROUP BY re.nct_id) x
-         WHERE x.nct_id = calculated_values.nct_id ")
+  def self.sql_for_number_of_facilities
+    "SET number_of_facilities = x.res FROM ( SELECT  nct_id, count(*) as res FROM facilities f GROUP BY nct_id) x WHERE x.nct_id = calculated_values.nct_id AND number_of_facilities is null"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-           SET number_of_nsae_subjects = x.res
-          FROM (
-               SELECT re.nct_id, sum(re.subjects_affected) as res
-                 FROM reported_events re
-                WHERE re.event_type='other'
-             GROUP BY re.nct_id) x
-         WHERE x.nct_id = calculated_values.nct_id ")
+  def self.sql_for_months_to_report_results
+    "SET months_to_report_results = x.res FROM ( SELECT  s.nct_id, (s.first_received_results_date - c.primary_completion_date)/30 as res FROM studies s, calculated_values c WHERE s.nct_id=c.nct_id) x WHERE x.nct_id = calculated_values.nct_id"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-         SET minimum_age_num = x.res
-          FROM (
-             SELECT nct_id, substring(minimum_age from 1 for position(' ' in minimum_age))::integer as res
-               FROM eligibilities
-              WHERE minimum_age != 'N/A'
-                AND minimum_age != ''
-              ) x
-         WHERE x.nct_id = calculated_values.nct_id")
+  def self.sql_for_actual_duration
+    "SET actual_duration = x.res FROM ( SELECT  nct_id, (primary_completion_date -  start_date)/30 as res FROM calculated_values c) x WHERE x.nct_id = calculated_values.nct_id"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-         SET maximum_age_num = x.res
-          FROM (
-             SELECT nct_id, substring(maximum_age from 1 for position(' ' in maximum_age))::integer as res
-               FROM eligibilities
-              WHERE maximum_age != 'N/A'
-                AND maximum_age != ''
-              ) x
-         WHERE x.nct_id = calculated_values.nct_id")
+  def self.sql_for_number_of_sae_subjects
+    "SET number_of_sae_subjects = x.res FROM ( SELECT re.nct_id, sum(re.subjects_affected) as res FROM reported_events re WHERE re.event_type='serious' GROUP BY re.nct_id) x WHERE x.nct_id = calculated_values.nct_id"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-         SET maximum_age_unit = x.res
-          FROM (
-             SELECT nct_id, substring(maximum_age from position(' ' in maximum_age)) as res
-               FROM eligibilities
-              WHERE maximum_age != 'N/A'
-                AND maximum_age != ''
-              ) x
-         WHERE x.nct_id = calculated_values.nct_id")
+  def self.sql_for_number_of_nsae_subjects
+    "SET number_of_nsae_subjects = x.res FROM ( SELECT re.nct_id, sum(re.subjects_affected) as res FROM reported_events re WHERE re.event_type='other' GROUP BY re.nct_id) x WHERE x.nct_id = calculated_values.nct_id "
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-         SET minimum_age_unit = x.res
-          FROM (
-             SELECT nct_id, substring(minimum_age from position(' ' in minimum_age)) as res
-               FROM eligibilities
-              WHERE minimum_age != 'N/A'
-                AND minimum_age != ''
-              ) x
-         WHERE x.nct_id = calculated_values.nct_id")
+  def self.sql_for_minimum_age_num
+    "SET minimum_age_num = x.res FROM ( SELECT nct_id, substring(minimum_age from 1 for position(' ' in minimum_age))::integer as res FROM eligibilities WHERE minimum_age != 'N/A' AND minimum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
+  end
 
+  def self.sql_for_maximum_age_num
+    "SET maximum_age_num = x.res FROM ( SELECT nct_id, substring(maximum_age from 1 for position(' ' in maximum_age))::integer as res FROM eligibilities WHERE maximum_age != 'N/A' AND maximum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_maximum_age_unit
+    "SET maximum_age_unit = x.res FROM ( SELECT nct_id, substring(maximum_age from position(' ' in maximum_age)) as res FROM eligibilities WHERE maximum_age != 'N/A' AND maximum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_minimum_age_unit
+    "SET minimum_age_unit = x.res FROM ( SELECT nct_id, substring(minimum_age from position(' ' in minimum_age)) as res FROM eligibilities WHERE minimum_age != 'N/A' AND minimum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_sponsor_type1
     #  FIRST: Set sponsor_type using lead sponsor if there's one (Should only be one lead?)
+    "SET sponsor_type= x.agency_class FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='lead' GROUP BY nct_id, agency_class HAVING count(*)=1) x WHERE x.nct_id = calculated_values.nct_id"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-         SET sponsor_type= x.agency_class
-        FROM (
-           SELECT distinct nct_id, agency_class
-             FROM sponsors
-            WHERE lead_or_collaborator='lead'
-           GROUP BY nct_id, agency_class
-           HAVING count(*)=1
-           ) x
-      WHERE x.nct_id = calculated_values.nct_id")
-
+  def self.sql_for_sponsor_type2
     #  SECOND: Set sponsor_type to NIH if no lead sponsor and one of the collaborators is NIH
+    "SET sponsor_type= 'NIH' FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='collaborator' AND agency_class='NIH' GROUP BY nct_id, agency_class) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.sponsor_type IS NULL"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-         SET sponsor_type= 'NIH'
-        FROM (
-           SELECT distinct nct_id, agency_class
-             FROM sponsors
-            WHERE lead_or_collaborator='collaborator'
-              AND agency_class='NIH'
-           GROUP BY nct_id, agency_class
-           ) x
-      WHERE x.nct_id = calculated_values.nct_id
-        AND calculated_values.sponsor_type IS NULL")
-
+  def self.sql_for_sponsor_type3
     #  THIRD: Set sponsor_type to Industry if no lead sponsor and no NIH collaborators
+    "SET sponsor_type= 'Industry' FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='collaborator' AND agency_class='Industry' GROUP BY nct_id, agency_class) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.sponsor_type IS NULL"
+  end
 
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-         SET sponsor_type= 'Industry'
-        FROM (
-           SELECT distinct nct_id, agency_class
-             FROM sponsors
-            WHERE lead_or_collaborator='collaborator'
-              AND agency_class='Industry'
-           GROUP BY nct_id, agency_class
-           ) x
-      WHERE x.nct_id = calculated_values.nct_id
-        AND calculated_values.sponsor_type IS NULL")
-
+  def self.sql_for_sponsor_type4
     #  FOURTH: If not yet set, set sponsor_type to 'Other'
-
-    ActiveRecord::Base.connection.execute("UPDATE calculated_values
-         SET sponsor_type= 'Other'
-        WHERE sponsor_type IS NULL")
-
-    ActiveRecord::Base.connection.execute('GRANT SELECT ON TABLE calculated_values TO aact;')
+    "SET sponsor_type= 'Other' WHERE sponsor_type IS NULL"
   end
 
   def create_from(new_study)
