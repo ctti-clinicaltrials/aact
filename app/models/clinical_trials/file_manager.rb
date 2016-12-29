@@ -73,7 +73,7 @@ module ClinicalTrials
     def dump_database
       dump_file_name='/app/tmp/postgres.dmp'
       File.delete(dump_file_name) if File.exist?(dump_file_name)
-      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump -h aact-dev.cr4nrslb1lw7.us-east-1.rds.amazonaws.com -p 5432 -U dbadmin --no-password --clean --exclude-table study_xml_records --exclude-table schema_migrations --exclude-table load_events --exclude-table statistics --exclude-table sanity_checks --exclude-table use_cases --exclude-table use_case_attachments -c -C -Fc -f /app/tmp/postgres.dmp aact`
+      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump -h $RDS_DB_HOSTNAME -p 5432 -U $RDS_DB_SUPER_USERNAME --no-password --clean --exclude-table study_xml_records --exclude-table schema_migrations --exclude-table load_events --exclude-table statistics --exclude-table sanity_checks --exclude-table use_cases --exclude-table use_case_attachments -c -C -Fc -f /app/tmp/postgres.dmp aact`
       return dump_file_name
     end
 
