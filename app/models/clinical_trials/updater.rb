@@ -53,9 +53,10 @@ module ClinicalTrials
         @client.populate_studies
         finalize_full_load
         @load_event.complete({:new_studies=> Study.count})
-      rescue
+      rescue e
+        puts "Full load failed:  #{e}"
         grant_db_privs
-        @load_event.complete({:status=>'failed',:new_studies=> Study.count})
+        @load_event.complete({:status=>'failed', :problems=> e.to_s, :new_studies=> Study.count})
       end
     end
 
