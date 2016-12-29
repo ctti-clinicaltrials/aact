@@ -4,7 +4,8 @@
       <th>Size</>
       <%= @files.each do |file| %>
         <tr>
-          <td><a href="<%= file[:url] %>" onClick="ga('send','event','download','download database')"><%= file[:last_modified] %></a></td><td><%= file[:size] %></td>
+          <td><a href="<%= file[:url] %>" onClick="ga('send','event','download','download database')"><%= file[:name] %></a></td>
+          <td><%= file[:size] %></td>
         </tr>
       <% end %>
     </table>
