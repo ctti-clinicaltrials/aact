@@ -57,14 +57,16 @@ module ClinicalTrials
       contents=doc.search('Contents')
       contents.each {|c|
         full_name=c.children.select{|c|c.name=='Key'}.first.children.text
-        last_modified=(c.children.select{|c|c.name=='LastModified'}.first.children.text).to_date.strftime('%Y-%m-%d')
+       last_modified=(c.children.select{|c|c.name=='LastModified'}.first.children.text).to_date.strftime('%Y-%m-%d')
         size=c.children.select{|c|c.name=='Size'}.first.children.text
 
         dir_and_file=full_name.split('/')
         if dir_and_file.first == dir
           file_name=dir_and_file.last
+          date_string=file_name.split('_').first
+          date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : date_string)
           file_url="#{server}/#{full_name}"
-          entries << {:name=>dir_and_file.last,:last_modified=>last_modified,:size=>number_to_human_size(size), :url=>file_url}
+          entries << {:name=>dir_and_file.last,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
         end
       }
       entries.sort_by {|entry| entry[:name]}.reverse!
