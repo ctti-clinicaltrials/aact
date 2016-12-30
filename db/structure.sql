@@ -241,8 +241,6 @@ CREATE TABLE calculated_values (
     actual_duration integer,
     were_results_reported boolean,
     months_to_report_results integer,
-    has_minimum_age boolean,
-    has_maximum_age boolean,
     minimum_age_num integer,
     maximum_age_num integer,
     minimum_age_unit character varying,
@@ -1470,6 +1468,7 @@ ALTER SEQUENCE result_groups_id_seq OWNED BY result_groups.id;
 CREATE TABLE sanity_checks (
     id integer NOT NULL,
     table_name character varying,
+    nct_id character varying,
     row_count integer,
     report text,
     created_at timestamp without time zone NOT NULL,

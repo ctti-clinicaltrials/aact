@@ -53,9 +53,10 @@ module ClinicalTrials
         @client.populate_studies
         finalize_full_load
         @load_event.complete({:new_studies=> Study.count})
-      rescue
+      rescue e
+        puts "Full load failed:  #{e}"
         grant_db_privs
-        @load_event.complete({:status=>'failed',:new_studies=> Study.count})
+        @load_event.complete({:status=>'failed', :problems=> e.to_s, :new_studies=> Study.count})
       end
     end
 
@@ -65,6 +66,7 @@ module ClinicalTrials
       create_calculated_values
       run_sanity_checks
       take_snapshot
+      create_flat_files
       send_notification
       @load_event.complete({:new_studies=> Study.count})
     end
@@ -155,7 +157,8 @@ module ClinicalTrials
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       CalculatedValue.refresh_table_for_studies(ids)
       run_sanity_checks
-      take_snapshot
+      #take_snapshot
+      #create_flat_files
       log_actual_counts
       @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       send_notification
@@ -232,6 +235,10 @@ module ClinicalTrials
       ClinicalTrials::FileManager.new.take_snapshot
       log("exporting tables as flat files...")
       TableExporter.new.run
+    end
+
+    def create_flat_files
+      TableExporter.new.run(delimiter: '|', should_upload_to_s3: true)
     end
 
     def truncate_tables
