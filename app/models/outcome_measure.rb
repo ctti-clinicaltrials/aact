@@ -13,6 +13,7 @@ class OutcomeMeasure < StudyRelationship
 
   def self.create_all_from(opts)
     all=opts[:outcome_xml].xpath("measure")
+    all=opts[:outcome_xml].xpath("measure_list").xpath("measure") if all.blank?
 
     col=[]
     xml=all.pop
@@ -23,9 +24,12 @@ class OutcomeMeasure < StudyRelationship
       opts[:population]=xml.xpath('population').text
       opts[:measure_units]=xml.xpath('units').text
       opts[:units_analyzed]=xml.xpath('units_analyzed').text
-      opts[:dispersion]=xml.xpath('dispersion').text
+      opts[:dispersion_type]=xml.xpath('dispersion').text
       opts[:param_type]=xml.xpath('param').text
-      col << new.create_from(opts)
+      om=new.create_from(opts)
+      om.outcome_counts       = OutcomeCount.create_all_from(opts.merge(:outcome_measure=>om))
+      om.outcome_measurements = OutcomeMeasurement.create_all_from(opts.merge(:outcome_measure=>om))
+      col << om
       xml=all.pop
     end
     col
@@ -38,11 +42,9 @@ class OutcomeMeasure < StudyRelationship
       :population             => get_opt('population'),
       :units                  => get_opt('measure_units'),
       :units_analyzed         => get_opt('units_analyzed'),
-      :dispersion             => get_opt('dispersion'),
+      :dispersion_type        => get_opt('dispersion_type'),
       :param_type             => get_opt('param_type'),
       :outcome                => get_opt('outcome'),
-      :outcome_counts => OutcomeCount.create_all_from(opts.merge(:outcome_measure=>self)),
-      :outcome_measurements => OutcomeMeasurement.create_all_from(opts.merge(:outcome_measure=>self)),
     }
   end
 
