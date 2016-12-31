@@ -156,6 +156,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "classification"
       t.string  "category"
       t.string  "ctgov_group_code"
+      t.string  "param_type"
       t.string  "param_value"
       t.decimal "param_value_num"
       t.string  "dispersion_type"
