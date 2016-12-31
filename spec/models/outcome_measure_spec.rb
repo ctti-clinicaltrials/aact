@@ -9,13 +9,43 @@ describe OutcomeMeasure do
     study=Study.new({xml: xml, nct_id: nct_id}).create
   end
 
-  it "saves units_analyzed" do
+  it "handles studies where outcomes have one measure - no <measure_list> tag" do
+    # and saves units_analyzed"
     nct_id='NCT00277524'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     o=study.outcomes.select{|x|x.title=='ICD/CRT-D Device Baseline Programming Frequencies'}.first
     m=o.outcome_measures.select{|x|x.title=='ICD/CRT-D Device Baseline Programming Frequencies'}.first
     expect(m.units_analyzed).to eq('Participants')
+  end
+
+  it "saves category in measurements" do
+    nct_id='NCT01065844'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    measures=study.outcome_measurements.select{|x|x.category=='Complete reponse (CR)'}
+    expect(measures.size).to eq(1)
+    expect(measures.first.ctgov_group_code).to eq('O1')
+  end
+
+  it "saves dispersion type in both measures and measurements" do
+    nct_id='NCT01174550'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    measures=study.outcome_measures.select{|x|x.title=='Quality of Life (QOL) as Measured by Duke Activity Status Index'}
+    expect(measures.size).to eq(1)
+    m=measures.first
+    expect(m.param_type).to eq('Median')
+    expect(m.dispersion_type).to eq('Inter-Quartile Range')
+    expect(m.outcome_measurements.first.dispersion_type).to eq('Inter-Quartile Range')
+    baseline_measurements=m.outcome_measurements.select{|x|x.classification=='Baseline'}
+    expect(baseline_measurements.size).to eq(2)
+    expect(baseline_measurements.first.dispersion_type).to eq('Inter-Quartile Range')
+    o1_baseline=baseline_measurements.select{|x|x.ctgov_group_code=='O1'}.first
+    expect(o1_baseline.dispersion_lower_limit).to eq(10.7)
+    expect(o1_baseline.dispersion_upper_limit).to eq(38.2)
+    expect(o1_baseline.param_value).to eq('21.5')
+    expect(o1_baseline.param_value_num).to eq(21.5)
   end
 
   it "should belong to study as expected" do
@@ -50,6 +80,13 @@ describe OutcomeMeasure do
     expect(outcome.outcome_measures.first.units).to eq('percentage of participants')
     expect(outcome.outcome_measures.first.outcome_measurements.size).to eq(1)
     m=outcome.outcome_measures.first.outcome_measurements.first
+    counts=outcome.outcome_measures.first.outcome_counts
+    expect(counts.size).to eq(1)
+    c=counts.first
+    expect(c.ctgov_group_code).to eq('O1')
+    expect(c.scope).to eq('Measure')
+    expect(c.units).to eq('Participants')
+    expect(c.count).to eq(53)
     expect(m.classification).to eq('')
     expect(m.category).to eq('')
     expect(m.param_value).to eq('75.5')
@@ -59,14 +96,16 @@ describe OutcomeMeasure do
 
     measure=outcome.outcome_measures.select{|m|m.title=='Percentage of Patients Who Survive at Least 12 Months'}.first
     expect(measure.description).to eq('Null hypothesis: p<= 62.3% (the best arm of RTOG 94-10); alternative hypothesis: p>= 77.9%. Where p is the percentage of patients alive at at 12 months. Using a one-group chi-square test with alpha = 0.10, a sample size of 50 patients provides at least 87% power to detect a 25% or greater relative increase in the 12-month survival rate, or equivalently, an absolute increase of at least 15.6 percentage points (62.3 versus 77.9). If the point estimate is greater than 71.1% (upper bound), then the conclusion is that the 12-month survival rate from the new treatment significantly improved from 62.3%.')
-#    expect(measured_value2.category).to eq('')
-#    expect(measured_value2.param_type).to eq('Number')
-#    expect(measured_value2.param_value_num).to eq(75.5)
-#    expect(measured_value2.dispersion_type).to eq('95% Confidence Interval')
-#    expect(measured_value2.dispersion_lower_limit).to eq(61.5)
-#    expect(measured_value2.dispersion_upper_limit).to eq(85.0)
-#    expect(measured_value2.ctgov_group_code).to eq('O1')
-#    expect(measured_value2.result_group.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
+    expect(measure.dispersion_type).to eq('95% Confidence Interval')
+    measurement=measure.outcome_measurements.first
+    expect(measurement.category).to eq('')
+    expect(measurement.param_type).to eq('Number')
+    expect(measurement.param_value_num).to eq(75.5)
+    expect(measurement.dispersion_type).to eq('95% Confidence Interval')
+    expect(measurement.dispersion_lower_limit).to eq(61.5)
+    expect(measurement.dispersion_upper_limit).to eq(85.0)
+    expect(measurement.ctgov_group_code).to eq('O1')
+    #expect(measurement.result_group.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
   end
 
   it "should have correct attributes" do

@@ -1,0 +1,1745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on December 29, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01174550</url>
+  </required_header>
+  <id_info>
+    <org_study_id>Pro00019865</org_study_id>
+    <secondary_id>R01HL098237-01</secondary_id>
+    <nct_id>NCT01174550</nct_id>
+  </id_info>
+  <brief_title>PROspective Multicenter Imaging Study for Evaluation of Chest Pain</brief_title>
+  <acronym>PROMISE</acronym>
+  <official_title>PROspective Multicenter Imaging Study for Evaluation of Chest Pain - The PROMISE Trial</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Duke University</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>National Heart, Lung, and Blood Institute (NHLBI)</agency>
+      <agency_class>NIH</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Duke University</source>
+  <oversight_info>
+    <authority>United States: Federal Government</authority>
+    <authority>United States: Institutional Review Board</authority>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      A prospective multicenter imaging study for evaluation of chest pain. Objective is to
+      determine whether an initial non-invasive anatomic imaging strategy with coronary CT
+      angiography (CTA) will improve clinical outcomes in subjects with symptoms concerning for
+      coronary artery disease relative to an initial functional testing strategy (usual care).
+      Study hypothesis: initial anatomic testing strategy will provide information that will
+      result in superior long-term health outcomes as compared to an initial functional testing
+      strategy.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Pragmatic randomized trial of clinical effectiveness of diagnostic testing strategies for
+      coronary artery disease (CAD), to be performed in outpatient settings including acute and
+      primary care and cardiology offices. Qualifying patients presenting with new or worsening
+      symptoms suspicious for clinically significant CAD who require diagnostic testing and have
+      not been previously evaluated will be randomized to an initial strategy of either anatomic
+      or functional testing. All subsequent decisions regarding additional testing, medications
+      and/or procedures will be at the discretion of the responsible clinical care team Within the
+      functional testing arm, the subject's care team will select the specific test to be
+      performed (exercise electrocardiogram (ECG), stress nuclear, or stress echocardiogram
+      (echo)) consistent with 'usual care' in that practice setting. The subject's care team will
+      be provided with 'Information sheets' summarizing current standards for test interpretation
+      and preventive care, but specific medical treatment will not be mandated by the trial.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>July 2010</start_date>
+  <completion_date type="Actual">October 2014</completion_date>
+  <primary_completion_date type="Actual">October 2014</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Intervention Model: Parallel Assignment, Masking: Open Label, Primary Purpose: Diagnostic</study_design>
+  <primary_outcome>
+    <measure>Time to Primary Endpoint</measure>
+    <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Time to primary endpoint as defined as a composite of death, myocardial infarction (MI), major complications from cardiovascular (CV) procedures or testing, and unstable angina hospitalization. The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Time to Death, Myocardial Infarction (MI), Unstable Angina Hospitalization</measure>
+    <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Time to this secondary endpoint as defined as a composite of death, myocardial infarction (MI), and unstable angina hospitalization. The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Time to Death or Myocardial Infarction (MI)</measure>
+    <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Time to this secondary endpoint as defined as a composite of death and myocardial infarction (MI). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Time to Major Complications From Cardiovascular (CV) Procedures</measure>
+    <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Time to this secondary endpoint as defined as a composite of major complications from cardiovascular procedures and testing (stroke, bleeding, anaphylaxis, renal failure). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Time to Death, Myocardial Infarction (MI), Unstable Angina (UA), Complications, No Coronary Artery Disease (CAD)</measure>
+    <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Time to primary endpoint as defined as a composite of death, myocardial infarction (MI), major complications from cardiovascular (CV) procedures or testing, unstable angina hospitalization, and no coronary artery disease (CAD). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Percentage of Invasive Cardiac Catheterization Events Without Obstructive Coronary Artery Disease Within 90 Days Following Participant Randomization</measure>
+    <time_frame>Up to 90 days following participant randomization</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Percentage of Invasive Cardiac Catheterization Events Without Obstructive Coronary Artery Disease (CAD)Within 90 Days Following Participant Randomization</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Medical Cost</measure>
+    <time_frame>90 days and 3 years cumulative</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Assess and compare total medical cost for the two diagnostic testing arms by intention to treat at both 90 days and 3 years cumulative.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Quality of Life (QOL) as Measured by Duke Activity Status Index</measure>
+    <time_frame>Baseline, 6 months, 12 months 24 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Participant score in Quality of Life as measured by Duke Activity Status Index (DASI). DASI measures a person's functional capacity based on a 12-item questionnaire that correlates with peak O2 uptake during exercise testing. The DASI is a self-administered questionnaire that measures a patient's functional capacity. It can be used to get a rough estimate of a patient's peak oxygen uptake. The maximum score for the DASI is 58.2 (better functional ability/capacity) and the minimum score is 0 (worse functional ability/capacity).</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Quality of Life (QOL) as Measured by Seattle Angina Scale Anginal Frequency Subscale</measure>
+    <time_frame>Baseline, 6 month, 12 month, 24 month</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Participant score Quality of Life measured by Seattle Angina Scale Anginal Frequency Subscale utilizing the Seattle Angina Questionnaire (SAQ). SAQ: 19-item, 5-6-point Likert, questionnaire measuring 5 dimensions of coronary artery disease: Anginal Stability: whether symptoms are changing. Anginal Frequency: how often patient having symptoms Physical Limitation: how much condition hampers ability to do what he wants.Treatment Satisfaction: how well patient understands care. Disease Perception: impact of condition on interpersonal relationships. Each dimension assigns response an value, beginning with 1 for response at the lowest level of functioning &amp; summing across items within each of the 5 scales. Scale scores transformed to 0-100 range by subtracting the lowest scale. Higher score suggest symptoms more stable &amp; less frequent, condition has less impact on activities, increased satisfaction with treatment, &amp; perception of disease has less impact on interpersonal relationships.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Quality of Life (QOL) as Measured by Seattle Anginal Quality of Life Subscale</measure>
+    <time_frame>Baseline, 6 months, 12 months, 24 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Participant score Quality of Life measured by Seattle Angina Scale Anginal Frequency Subscale utilizing the Seattle Angina Questionnaire (SAQ). SAQ: 19-item, 5-6-point Likert, questionnaire measuring 5 dimensions of coronary artery disease: Anginal Stability: whether symptoms are changing. Anginal Frequency: how often patient having symptoms Physical Limitation: how much condition hampers ability to do what he wants.Treatment Satisfaction: how well patient understands care. Disease Perception: impact of condition on interpersonal relationships. Each dimension assigns response an value, beginning with 1 for response at the lowest level of functioning &amp; summing across items within each of the 5 scales. Scale scores transformed to 0-100 range by subtracting the lowest scale. Higher score suggest symptoms more stable &amp; less frequent, condition has less impact on activities, increased satisfaction with treatment, &amp; perception of disease has less impact on interpersonal relationships.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Quality of Life (QOL) as Measured by Complete Resolution of Symptoms That Led to the Initial Testing</measure>
+    <time_frame>6 month, 12 month 24 month</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Percentage of participants with improvement in Quality of Life as measured by complete resolution of the symptoms that led to initial testing</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Cumulative Radiation Exposure Within 90 Days</measure>
+    <time_frame>90 days</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Cumulative radiation exposure from all cardiovascular diagnostic tests and procedures performed within 90 days after randomization.</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">10003</enrollment>
+  <condition>Chest Pain</condition>
+  <arm_group>
+    <arm_group_label>Functional diagnostic tests</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Anatomic diagnostic test</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Coronary Angiography</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Coronary Angiography</intervention_name>
+    <description>Use of standard equipment for usual-care testing</description>
+    <arm_group_label>Anatomic diagnostic test</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Stress Echocardiogram</intervention_name>
+    <description>Use of standard equipment for usual-care testing</description>
+    <arm_group_label>Functional diagnostic tests</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Nuclear Stress Test</intervention_name>
+    <description>Use of standard equipment for usual-care testing</description>
+    <arm_group_label>Functional diagnostic tests</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Exercise Electrocardiogram</intervention_name>
+    <description>Use of standard equipment for usual-care testing</description>
+    <arm_group_label>Functional diagnostic tests</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  new or worsening chest pain suspicious for clinically significant coronary artery
+             disease (CAD)
+
+          -  no prior evaluation for this episode of symptoms
+
+          -  planned non-invasive testing for diagnosis
+
+          -  men age ≥55 years
+
+          -  men age ≥45 years with increased probability of coronary artery disease (CAD) due to
+             either (A. Diabetes Mellitus (DM) requiring medical treatment OR Peripheral Arterial
+             Disease (PAD) defined as documented &gt;50% peripheral arterial stenosis treated
+             medically or invasively OR cerebrovascular disease (stroke, documented &gt; 50% carotid
+             stenosis treated medically or invasively) OR B. At least one of the following
+             cardiovascular risk factors: 1-Ongoing tobacco use, 2-Hypertension, 3-Abnormal ankle
+             brachial index (ABI) defined as less than &lt;0.9, 4-Dyslipidemia
+
+          -  women age ≥65 years
+
+          -  women age ≥50 years with increased probability of coronary artery disease (CAD) due
+             to either (A. Diabetes Mellitus (DM) requiring medical treatment OR Peripheral
+             Arterial Disease (PAD) defined as documented &gt;50% peripheral arterial stenosis
+             treated medically or invasively OR cerebrovascular disease (stroke, documented &gt; 50%
+             carotid stenosis treated medically or invasively) OR B. At least one of the following
+             cardiovascular risk factors: 1-Ongoing tobacco use, 2-Hypertension, 3-Abnormal ankle
+             brachial index (ABI) defined as less than &lt;0.9, 4-Dyslipidemia
+
+          -  Serum creatinine ≤ 1.5 mg/dL within the past 90 days
+
+          -  Negative urine/serum pregnancy test for female subjects of child-bearing potential
+
+        Exclusion Criteria:
+
+          -  Diagnosed or suspected acute coronary syndrome (ACS) requiring hospitalization or
+             urgent or emergent testing; Elevated troponin or creatine kinase-myocardial band
+             (CK-MB)
+
+          -  Hemodynamically or clinically unstable condition systolic blood pressure (BP) &lt; 90
+             mmHg, atrial or ventricular arrhythmias, or persistent resting chest pain felt to be
+             ischemic despite adequate therapy)
+
+          -  Known coronary artery disease (CAD) with prior Myocardial infarction (MI),
+             percutaneous coronary intervention (PCI), coronary artery bypass graft (CABG) or any
+             angiographic evidence of coronary artery disease (CAD) ≥50% lesion in a major
+             epicardial vessel
+
+          -  Any invasive coronary angiography or non-invasive anatomic or functional
+             cardiovascular (CV) test for detection of coronary artery disease (CAD), including
+             coronary tomographic angiography (CTA) and exercise electrocardiogram (ECG), within
+             the previous twelve (12) months
+
+          -  Known significant congenital, valvular (&gt; moderate) or cardiomyopathic process
+             (hypertrophic cardiomyopathy or reduced systolic left ventricular function (LVEF) ≤
+             40%)) which could explain cardiac symptoms
+
+          -  Contraindication to undergoing a coronary tomographic angiography (CTA), including
+             but not limited to: a. Allergy to iodinated contrast agent, b. Unable to receive beta
+             blockers unless heart rate &lt; 65 beats per minute, c. Pregnancy
+
+          -  Life expectancy &lt; 2 years
+
+          -  Unable to provide written informed consent or participate in long-term follow-up
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>45 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Pamela S Douglas, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Duke Clinical Research Institute</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Duke University Medical Center</name>
+      <address>
+        <city>Durham</city>
+        <state>North Carolina</state>
+        <zip>27701</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <link>
+    <url>http://www.promisetrial.org</url>
+    <description>PROMISE trial web site</description>
+  </link>
+  <verification_date>January 2016</verification_date>
+  <lastchanged_date>February 2, 2016</lastchanged_date>
+  <firstreceived_date>August 2, 2010</firstreceived_date>
+  <firstreceived_results_date>October 19, 2015</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>chest pain</keyword>
+  <keyword>coronary artery disease</keyword>
+  <keyword>CAD</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Chest Pain</mesh_term>
+  </condition_browse>
+  <patient_data>
+    <sharing_ipd>Yes</sharing_ipd>
+    <ipd_description>Data will be submitted to the NHLBI according to their guidelines which state&quot;The data sets must be submitted to the study NHLBI study Program Official no later than 3 years after the end of the clinical activity (final patient follow-up, etc.) or 2 years after the main paper of the trial has been published, whichever comes first. Data are prepared by the study coordinating center and sent to the PO for review prior to release.&quot;</ipd_description>
+  </patient_data>
+
+  <clinical_results>
+
+    <participant_flow>
+      <group_list>
+        <group group_id="P1">
+          <title>Functional Diagnostic Tests</title>
+          <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+        </group>
+        <group group_id="P2">
+          <title>Anatomic Diagnostic Test</title>
+          <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="5007"/>
+                <participants group_id="P2" count="4996"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="3737"/>
+                <participants group_id="P2" count="4123"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="1270"/>
+                <participants group_id="P2" count="873"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Death</title>
+              <participants_list>
+                <participants group_id="P1" count="75"/>
+                <participants group_id="P2" count="74"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Lost to Follow-up</title>
+              <participants_list>
+                <participants group_id="P1" count="652"/>
+                <participants group_id="P2" count="510"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Withdrawal by Subject</title>
+              <participants_list>
+                <participants group_id="P1" count="543"/>
+                <participants group_id="P2" count="289"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <group_list>
+        <group group_id="B1">
+          <title>Functional Diagnostic Tests</title>
+          <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+        </group>
+        <group group_id="B2">
+          <title>Anatomic Diagnostic Test</title>
+          <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+        </group>
+        <group group_id="B3">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="5007"/>
+            <count group_id="B2" value="4996"/>
+            <count group_id="B3" value="10003"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
+      <measure_list>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="60.9" spread="8.3"/>
+                    <measurement group_id="B2" value="60.7" spread="8.3"/>
+                    <measurement group_id="B3" value="60.8" spread="8.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2675"/>
+                    <measurement group_id="B2" value="2595"/>
+                    <measurement group_id="B3" value="5270"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2332"/>
+                    <measurement group_id="B2" value="2401"/>
+                    <measurement group_id="B3" value="4733"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Time to Primary Endpoint</title>
+        <description>Time to primary endpoint as defined as a composite of death, myocardial infarction (MI), major complications from cardiovascular (CV) procedures or testing, and unstable angina hospitalization. The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+        <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Time to Primary Endpoint</title>
+          <description>Time to primary endpoint as defined as a composite of death, myocardial infarction (MI), major complications from cardiovascular (CV) procedures or testing, and unstable angina hospitalization. The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+          <units>Percentage of participants with an event</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="4996"/>
+                <count group_id="O2" value="5007"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>90 days</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.0"/>
+                    <measurement group_id="O2" value="1.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.2"/>
+                    <measurement group_id="O2" value="1.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.8"/>
+                    <measurement group_id="O2" value="1.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>18 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2.5"/>
+                    <measurement group_id="O2" value="2.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2.9"/>
+                    <measurement group_id="O2" value="2.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>30 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3.5"/>
+                    <measurement group_id="O2" value="3.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4.6"/>
+                    <measurement group_id="O2" value="3.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>42 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5.3"/>
+                    <measurement group_id="O2" value="5.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Time to Death, Myocardial Infarction (MI), Unstable Angina Hospitalization</title>
+        <description>Time to this secondary endpoint as defined as a composite of death, myocardial infarction (MI), and unstable angina hospitalization. The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+        <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Time to Death, Myocardial Infarction (MI), Unstable Angina Hospitalization</title>
+          <description>Time to this secondary endpoint as defined as a composite of death, myocardial infarction (MI), and unstable angina hospitalization. The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+          <units>Percentage of participants with an event</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="4996"/>
+                <count group_id="O2" value="5007"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>90 day</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.9"/>
+                    <measurement group_id="O2" value="1.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.2"/>
+                    <measurement group_id="O2" value="1.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.8"/>
+                    <measurement group_id="O2" value="1.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>18 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2.5"/>
+                    <measurement group_id="O2" value="2.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2.9"/>
+                    <measurement group_id="O2" value="2.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>30 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3.5"/>
+                    <measurement group_id="O2" value="3.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4.6"/>
+                    <measurement group_id="O2" value="3.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>42 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5.2"/>
+                    <measurement group_id="O2" value="5.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Time to Death or Myocardial Infarction (MI)</title>
+        <description>Time to this secondary endpoint as defined as a composite of death and myocardial infarction (MI). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+        <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Time to Death or Myocardial Infarction (MI)</title>
+          <description>Time to this secondary endpoint as defined as a composite of death and myocardial infarction (MI). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+          <units>Percentage of participants with an event</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="4996"/>
+                <count group_id="O2" value="5007"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>90 Days</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.3"/>
+                    <measurement group_id="O2" value="0.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.4"/>
+                    <measurement group_id="O2" value="0.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.8"/>
+                    <measurement group_id="O2" value="1.2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>18 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.3"/>
+                    <measurement group_id="O2" value="1.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.7"/>
+                    <measurement group_id="O2" value="2.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>30 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2.2"/>
+                    <measurement group_id="O2" value="2.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3.3"/>
+                    <measurement group_id="O2" value="3.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>42 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3.9"/>
+                    <measurement group_id="O2" value="4.2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Time to Major Complications From Cardiovascular (CV) Procedures</title>
+        <description>Time to this secondary endpoint as defined as a composite of major complications from cardiovascular procedures and testing (stroke, bleeding, anaphylaxis, renal failure). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+        <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Time to Major Complications From Cardiovascular (CV) Procedures</title>
+          <description>Time to this secondary endpoint as defined as a composite of major complications from cardiovascular procedures and testing (stroke, bleeding, anaphylaxis, renal failure). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+          <units>Percentage of participants with an event</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="4996"/>
+                <count group_id="O2" value="5007"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>90 day</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.1"/>
+                    <measurement group_id="O2" value="0.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.2"/>
+                    <measurement group_id="O2" value="0.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.5"/>
+                    <measurement group_id="O2" value="0.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>18 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.0"/>
+                    <measurement group_id="O2" value="1.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.2"/>
+                    <measurement group_id="O2" value="1.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>30 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.7"/>
+                    <measurement group_id="O2" value="1.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2.6"/>
+                    <measurement group_id="O2" value="2.2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>42 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3.1"/>
+                    <measurement group_id="O2" value="3.2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Time to Death, Myocardial Infarction (MI), Unstable Angina (UA), Complications, No Coronary Artery Disease (CAD)</title>
+        <description>Time to primary endpoint as defined as a composite of death, myocardial infarction (MI), major complications from cardiovascular (CV) procedures or testing, unstable angina hospitalization, and no coronary artery disease (CAD). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+        <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Time to Death, Myocardial Infarction (MI), Unstable Angina (UA), Complications, No Coronary Artery Disease (CAD)</title>
+          <description>Time to primary endpoint as defined as a composite of death, myocardial infarction (MI), major complications from cardiovascular (CV) procedures or testing, unstable angina hospitalization, and no coronary artery disease (CAD). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
+          <units>Percentage of participants with an event</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="4996"/>
+                <count group_id="O2" value="5007"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>90 days</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4.4"/>
+                    <measurement group_id="O2" value="5.2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4.6"/>
+                    <measurement group_id="O2" value="5.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5.2"/>
+                    <measurement group_id="O2" value="6.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>18 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5.9"/>
+                    <measurement group_id="O2" value="6.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="6.3"/>
+                    <measurement group_id="O2" value="6.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>30 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="6.9"/>
+                    <measurement group_id="O2" value="7.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>36 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="8.0"/>
+                    <measurement group_id="O2" value="7.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>42 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="8.7"/>
+                    <measurement group_id="O2" value="9.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Percentage of Invasive Cardiac Catheterization Events Without Obstructive Coronary Artery Disease Within 90 Days Following Participant Randomization</title>
+        <description>Percentage of Invasive Cardiac Catheterization Events Without Obstructive Coronary Artery Disease (CAD)Within 90 Days Following Participant Randomization</description>
+        <time_frame>Up to 90 days following participant randomization</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Percentage of Invasive Cardiac Catheterization Events Without Obstructive Coronary Artery Disease Within 90 Days Following Participant Randomization</title>
+          <description>Percentage of Invasive Cardiac Catheterization Events Without Obstructive Coronary Artery Disease (CAD)Within 90 Days Following Participant Randomization</description>
+          <units>Percentage of events</units>
+          <param>Mean</param>
+          <dispersion>Standard Error</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="4996"/>
+                <count group_id="O2" value="5007"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3.4" spread="0.3"/>
+                    <measurement group_id="O2" value="4.3" spread="0.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Medical Cost</title>
+        <description>Assess and compare total medical cost for the two diagnostic testing arms by intention to treat at both 90 days and 3 years cumulative.</description>
+        <time_frame>90 days and 3 years cumulative</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>Patients enrolled in PROMISE and cared for in the fee-for-service sector of the US health care system were included in the economic study. Because the costing methods being used were not applicable to other health systems, patients enrolled in the Military/VA system , an Health maintenance Organization (HMO) , or in Canada were excluded.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Medical Cost</title>
+          <description>Assess and compare total medical cost for the two diagnostic testing arms by intention to treat at both 90 days and 3 years cumulative.</description>
+          <population>Patients enrolled in PROMISE and cared for in the fee-for-service sector of the US health care system were included in the economic study. Because the costing methods being used were not applicable to other health systems, patients enrolled in the Military/VA system , an Health maintenance Organization (HMO) , or in Canada were excluded.</population>
+          <units>Per participant cost in US dollars</units>
+          <param>Mean</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="4818"/>
+                <count group_id="O2" value="4831"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>90 days</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2494" lower_limit="2233" upper_limit="2821"/>
+                    <measurement group_id="O2" value="2240" lower_limit="1599" upper_limit="3119"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>3 years cumulative</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="7213" lower_limit="6501" upper_limit="8156"/>
+                    <measurement group_id="O2" value="6586" lower_limit="5683" upper_limit="7772"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Quality of Life (QOL) as Measured by Duke Activity Status Index</title>
+        <description>Participant score in Quality of Life as measured by Duke Activity Status Index (DASI). DASI measures a person's functional capacity based on a 12-item questionnaire that correlates with peak O2 uptake during exercise testing. The DASI is a self-administered questionnaire that measures a patient's functional capacity. It can be used to get a rough estimate of a patient's peak oxygen uptake. The maximum score for the DASI is 58.2 (better functional ability/capacity) and the minimum score is 0 (worse functional ability/capacity).</description>
+        <time_frame>Baseline, 6 months, 12 months 24 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>The number of participants were limited due to budget constraints.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Quality of Life (QOL) as Measured by Duke Activity Status Index</title>
+          <description>Participant score in Quality of Life as measured by Duke Activity Status Index (DASI). DASI measures a person's functional capacity based on a 12-item questionnaire that correlates with peak O2 uptake during exercise testing. The DASI is a self-administered questionnaire that measures a patient's functional capacity. It can be used to get a rough estimate of a patient's peak oxygen uptake. The maximum score for the DASI is 58.2 (better functional ability/capacity) and the minimum score is 0 (worse functional ability/capacity).</description>
+          <population>The number of participants were limited due to budget constraints.</population>
+          <units>participant score</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="2982"/>
+                <count group_id="O2" value="3003"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Baseline</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="21.5" lower_limit="10.7" upper_limit="38.2"/>
+                    <measurement group_id="O2" value="22.9" lower_limit="10.0" upper_limit="39.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="30.5" lower_limit="10.7" upper_limit="44.7"/>
+                    <measurement group_id="O2" value="30.2" lower_limit="15.2" upper_limit="44.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="29.2" lower_limit="13.5" upper_limit="44.7"/>
+                    <measurement group_id="O2" value="31.2" lower_limit="15.2" upper_limit="44.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="31.5" lower_limit="16.0" upper_limit="45.5"/>
+                    <measurement group_id="O2" value="31.2" lower_limit="16.0" upper_limit="45.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Quality of Life (QOL) as Measured by Seattle Angina Scale Anginal Frequency Subscale</title>
+        <description>Participant score Quality of Life measured by Seattle Angina Scale Anginal Frequency Subscale utilizing the Seattle Angina Questionnaire (SAQ). SAQ: 19-item, 5-6-point Likert, questionnaire measuring 5 dimensions of coronary artery disease: Anginal Stability: whether symptoms are changing. Anginal Frequency: how often patient having symptoms Physical Limitation: how much condition hampers ability to do what he wants.Treatment Satisfaction: how well patient understands care. Disease Perception: impact of condition on interpersonal relationships. Each dimension assigns response an value, beginning with 1 for response at the lowest level of functioning &amp; summing across items within each of the 5 scales. Scale scores transformed to 0-100 range by subtracting the lowest scale. Higher score suggest symptoms more stable &amp; less frequent, condition has less impact on activities, increased satisfaction with treatment, &amp; perception of disease has less impact on interpersonal relationships.</description>
+        <time_frame>Baseline, 6 month, 12 month, 24 month</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>The number of participants were limited due to budget constraints.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Quality of Life (QOL) as Measured by Seattle Angina Scale Anginal Frequency Subscale</title>
+          <description>Participant score Quality of Life measured by Seattle Angina Scale Anginal Frequency Subscale utilizing the Seattle Angina Questionnaire (SAQ). SAQ: 19-item, 5-6-point Likert, questionnaire measuring 5 dimensions of coronary artery disease: Anginal Stability: whether symptoms are changing. Anginal Frequency: how often patient having symptoms Physical Limitation: how much condition hampers ability to do what he wants.Treatment Satisfaction: how well patient understands care. Disease Perception: impact of condition on interpersonal relationships. Each dimension assigns response an value, beginning with 1 for response at the lowest level of functioning &amp; summing across items within each of the 5 scales. Scale scores transformed to 0-100 range by subtracting the lowest scale. Higher score suggest symptoms more stable &amp; less frequent, condition has less impact on activities, increased satisfaction with treatment, &amp; perception of disease has less impact on interpersonal relationships.</description>
+          <population>The number of participants were limited due to budget constraints.</population>
+          <units>participant score</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="2982"/>
+                <count group_id="O2" value="3003"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Baseline</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="70" lower_limit="70" upper_limit="90"/>
+                    <measurement group_id="O2" value="80" lower_limit="70" upper_limit="90"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="100" lower_limit="90" upper_limit="100"/>
+                    <measurement group_id="O2" value="100" lower_limit="90" upper_limit="100"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="100" lower_limit="90" upper_limit="100"/>
+                    <measurement group_id="O2" value="100" lower_limit="90" upper_limit="100"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="100" lower_limit="100" upper_limit="100"/>
+                    <measurement group_id="O2" value="100" lower_limit="100" upper_limit="100"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Quality of Life (QOL) as Measured by Seattle Anginal Quality of Life Subscale</title>
+        <description>Participant score Quality of Life measured by Seattle Angina Scale Anginal Frequency Subscale utilizing the Seattle Angina Questionnaire (SAQ). SAQ: 19-item, 5-6-point Likert, questionnaire measuring 5 dimensions of coronary artery disease: Anginal Stability: whether symptoms are changing. Anginal Frequency: how often patient having symptoms Physical Limitation: how much condition hampers ability to do what he wants.Treatment Satisfaction: how well patient understands care. Disease Perception: impact of condition on interpersonal relationships. Each dimension assigns response an value, beginning with 1 for response at the lowest level of functioning &amp; summing across items within each of the 5 scales. Scale scores transformed to 0-100 range by subtracting the lowest scale. Higher score suggest symptoms more stable &amp; less frequent, condition has less impact on activities, increased satisfaction with treatment, &amp; perception of disease has less impact on interpersonal relationships.</description>
+        <time_frame>Baseline, 6 months, 12 months, 24 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>The number of participants were limited due to budget constraints.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Quality of Life (QOL) as Measured by Seattle Anginal Quality of Life Subscale</title>
+          <description>Participant score Quality of Life measured by Seattle Angina Scale Anginal Frequency Subscale utilizing the Seattle Angina Questionnaire (SAQ). SAQ: 19-item, 5-6-point Likert, questionnaire measuring 5 dimensions of coronary artery disease: Anginal Stability: whether symptoms are changing. Anginal Frequency: how often patient having symptoms Physical Limitation: how much condition hampers ability to do what he wants.Treatment Satisfaction: how well patient understands care. Disease Perception: impact of condition on interpersonal relationships. Each dimension assigns response an value, beginning with 1 for response at the lowest level of functioning &amp; summing across items within each of the 5 scales. Scale scores transformed to 0-100 range by subtracting the lowest scale. Higher score suggest symptoms more stable &amp; less frequent, condition has less impact on activities, increased satisfaction with treatment, &amp; perception of disease has less impact on interpersonal relationships.</description>
+          <population>The number of participants were limited due to budget constraints.</population>
+          <units>participant score</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="2982"/>
+                <count group_id="O2" value="3003"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Baseline</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="58.3" lower_limit="41.7" upper_limit="75.0"/>
+                    <measurement group_id="O2" value="58.3" lower_limit="41.7" upper_limit="75.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>6 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="83.3" lower_limit="75.0" upper_limit="91.7"/>
+                    <measurement group_id="O2" value="83.3" lower_limit="75.0" upper_limit="100"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="83.3" lower_limit="75.0" upper_limit="100"/>
+                    <measurement group_id="O2" value="91.7" lower_limit="75.0" upper_limit="100"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 month</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="91.7" lower_limit="75" upper_limit="100"/>
+                    <measurement group_id="O2" value="91.7" lower_limit="75.0" upper_limit="100"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Quality of Life (QOL) as Measured by Complete Resolution of Symptoms That Led to the Initial Testing</title>
+        <description>Percentage of participants with improvement in Quality of Life as measured by complete resolution of the symptoms that led to initial testing</description>
+        <time_frame>6 month, 12 month 24 month</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>The number of participants were limited due to budget constraints.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Quality of Life (QOL) as Measured by Complete Resolution of Symptoms That Led to the Initial Testing</title>
+          <description>Percentage of participants with improvement in Quality of Life as measured by complete resolution of the symptoms that led to initial testing</description>
+          <population>The number of participants were limited due to budget constraints.</population>
+          <units>% of participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="2982"/>
+                <count group_id="O2" value="3003"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>6 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="43.3"/>
+                    <measurement group_id="O2" value="46.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="47.3"/>
+                    <measurement group_id="O2" value="48.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>24 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="52.1"/>
+                    <measurement group_id="O2" value="54.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Cumulative Radiation Exposure Within 90 Days</title>
+        <description>Cumulative radiation exposure from all cardiovascular diagnostic tests and procedures performed within 90 days after randomization.</description>
+        <time_frame>90 days</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Anatomic Diagnostic Test</title>
+            <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+          </group>
+          <group group_id="O2">
+            <title>Functional Diagnostic Tests</title>
+            <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Cumulative Radiation Exposure Within 90 Days</title>
+          <description>Cumulative radiation exposure from all cardiovascular diagnostic tests and procedures performed within 90 days after randomization.</description>
+          <units>milliSievert (mSv)</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="4996"/>
+                <count group_id="O2" value="5007"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="10.0" lower_limit="5.6" upper_limit="17.2"/>
+                    <measurement group_id="O2" value="11.3" lower_limit="0.0" upper_limit="13.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>Events occuring within 24 hours following the study intervention (initial test) were collected and reported by study personnel.</time_frame>
+      <desc>Severe Events/complications related to cardiovascular testing or cardiovascular procedures that are trial endpoints were collected throughout the duration of the trial and were considered related to testing or procedure only if occuring within 72 hours of test or procedure.</desc>
+      <group_list>
+        <group group_id="E1">
+          <title>Functional Diagnostic Tests</title>
+          <description>Stress Echocardiogram Nuclear Stress Test Exercise Electrocardiogram
+Stress Echocardiogram: Use of standard equipment for usual-care testing
+Nuclear Stress Test: Use of standard equipment for usual-care testing
+Exercise Electrocardiogram: Use of standard equipment for usual-care testing</description>
+        </group>
+        <group group_id="E2">
+          <title>Anatomic Diagnostic Test</title>
+          <description>Coronary Angiography
+Coronary Angiography: Use of standard equipment for usual-care testing</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="161" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="168" subjects_at_risk="4996"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Death- Cardiovascular</sub_title>
+                <counts group_id="E1" subjects_affected="21" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="14" subjects_at_risk="4996"/>
+              </event>
+              <event>
+                <sub_title>Major Bleeding</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="4996"/>
+              </event>
+              <event>
+                <sub_title>Myocardial Infarction</sub_title>
+                <counts group_id="E1" subjects_affected="40" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="30" subjects_at_risk="4996"/>
+              </event>
+              <event>
+                <sub_title>Stroke</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="4996"/>
+              </event>
+              <event>
+                <sub_title>Unstable Angina Hospitalization</sub_title>
+                <counts group_id="E1" subjects_affected="41" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="61" subjects_at_risk="4996"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Death - Non cardiovascular known cause</sub_title>
+                <counts group_id="E1" subjects_affected="27" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="33" subjects_at_risk="4996"/>
+              </event>
+              <event>
+                <sub_title>Death - unknown cause</sub_title>
+                <counts group_id="E1" subjects_affected="27" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="27" subjects_at_risk="4996"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="16" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="37" subjects_at_risk="4996"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Exercise Induced Hypotension</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="4996"/>
+              </event>
+              <event>
+                <sub_title>Stress Induced Symptoms Related to Functional Testing</sub_title>
+                <counts group_id="E1" subjects_affected="4" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="4996"/>
+              </event>
+              <event>
+                <sub_title>Ventricular Tachycardia</sub_title>
+                <counts group_id="E1" subjects_affected="4" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="4996"/>
+              </event>
+              <event>
+                <sub_title>Hemodynamic Instability</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="4996"/>
+              </event>
+              <event>
+                <sub_title>Any Event Potentially Related to Vasodilators</sub_title>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="4996"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hospital Admission Not In The Primary Endpoint</sub_title>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="4996"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Mild Contrast Reaction (rash or hives)</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="22" subjects_at_risk="4996"/>
+              </event>
+              <event>
+                <sub_title>Extravasion of Contrast Into Surrounding Tissue</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="5007"/>
+                <counts group_id="E2" subjects_affected="12" subjects_at_risk="4996"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Dr. Pamela Douglas</name_or_title>
+      <organization>Duke University Medical Center</organization>
+      <phone>919-668-8700</phone>
+      <email>pamela.douglas@duke.edu</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>

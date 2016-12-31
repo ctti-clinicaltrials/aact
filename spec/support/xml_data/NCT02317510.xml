@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 21, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on December 30, 2016</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02317510</url>
   </required_header>
@@ -206,7 +204,7 @@
     <country>Turkey</country>
   </location_countries>
   <reference>
-    <citation>Bessa SS, Katri KM, Abdel-Salam WN, El-Kayal el-SA, Tawfik TA. Spinal versus general anesthesia for day-case laparoscopic cholecystectomy: a prospective randomized study. J Laparoendosc Adv Surg Tech A. 2012 Jul-Aug;22(6):550-5. doi: 10.1089/lap.2012.0110. Epub 2012 Jun 11.</citation>
+    <citation>Bessa SS, Katri KM, Abdel-Salam WN, El-Kayal el-SA, Tawfik TA. Spinal versus general anesthesia for day-case laparoscopic cholecystectomy: a prospective randomized study. J Laparoendosc Adv Surg Tech A. 2012 Jul-Aug;22(6):550-5. doi: 10.1089/lap.2012.0110.</citation>
     <PMID>22686181</PMID>
   </reference>
   <verification_date>February 2016</verification_date>
@@ -226,9 +224,9 @@
   <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
-    <mesh_term>Gallstones</mesh_term>
     <mesh_term>Cholelithiasis</mesh_term>
     <mesh_term>Cholecystolithiasis</mesh_term>
+    <mesh_term>Gallstones</mesh_term>
   </condition_browse>
   <intervention_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
@@ -305,73 +303,86 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
           <description>Total of all reporting groups</description>
         </group>
       </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="25"/>
+            <count group_id="B2" value="24"/>
+            <count group_id="B3" value="49"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
       <measure_list>
-        <measure>
-          <title>Number of Participants</title>
-          <units>participants</units>
-          <param>Number</param>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="25"/>
-                <measurement group_id="B2" value="24"/>
-                <measurement group_id="B3" value="49"/>
-              </measurement_list>
-            </category>
-          </category_list>
-        </measure>
         <measure>
           <title>Age</title>
           <units>years</units>
           <param>Median</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="46" spread="13.38"/>
-                <measurement group_id="B2" value="45.5" spread="13.60"/>
-                <measurement group_id="B3" value="46" spread="13.35"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="46" spread="13.38"/>
+                    <measurement group_id="B2" value="45.5" spread="13.60"/>
+                    <measurement group_id="B3" value="46" spread="13.35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Gender</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Female</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="7"/>
-                <measurement group_id="B2" value="6"/>
-                <measurement group_id="B3" value="13"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Male</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="18"/>
-                <measurement group_id="B2" value="18"/>
-                <measurement group_id="B3" value="36"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="7"/>
+                    <measurement group_id="B2" value="6"/>
+                    <measurement group_id="B3" value="13"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="18"/>
+                    <measurement group_id="B2" value="18"/>
+                    <measurement group_id="B3" value="36"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Region of Enrollment</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Turkey</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="25"/>
-                <measurement group_id="B2" value="24"/>
-                <measurement group_id="B3" value="49"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Turkey</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="25"/>
+                    <measurement group_id="B2" value="24"/>
+                    <measurement group_id="B3" value="49"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>BMI</title>
@@ -379,15 +390,19 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
           <units>kg/m^2</units>
           <param>Median</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="28.66" spread="4.49"/>
-                <measurement group_id="B2" value="30.68" spread="3.59"/>
-                <measurement group_id="B3" value="29.55" spread="4.14"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="28.66" spread="4.49"/>
+                    <measurement group_id="B2" value="30.68" spread="3.59"/>
+                    <measurement group_id="B3" value="29.55" spread="4.14"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>ASA (American Society of Anesthesiologists scores)</title>
@@ -396,15 +411,19 @@ I- Patient is a completely healthy fit patient. II- Patient has mild systemic di
           <units>units on a scale</units>
           <param>Median</param>
           <dispersion>Full Range</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="1" lower_limit="1" upper_limit="2"/>
-                <measurement group_id="B2" value="1" lower_limit="1" upper_limit="3"/>
-                <measurement group_id="B3" value="1" lower_limit="1" upper_limit="3"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1" lower_limit="1" upper_limit="2"/>
+                    <measurement group_id="B2" value="1" lower_limit="1" upper_limit="3"/>
+                    <measurement group_id="B3" value="1" lower_limit="1" upper_limit="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
       </measure_list>
     </baseline>
@@ -429,36 +448,36 @@ combined anesthesia: Combined Spinal Epidural Anesthesia for laparoscopic cholec
 general anesthesia: General anesthesia for laparoscopic cholecystectomy</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Duration of Operation</title>
-            <description>group 1:surgical operation time is 20 minutes minimum and maximum 55 minutes. Mean operation time 36.56 minutes group 2:surgical operation time is 24 minutes minimum and maximum 53 minutes. Mean operation time 30.75 minutes</description>
-            <units>minutes</units>
-            <param>Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="36.56" spread="10.627"/>
-                  <measurement group_id="O2" value="30.75" spread="7.502"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Duration of Operation</title>
+          <description>group 1:surgical operation time is 20 minutes minimum and maximum 55 minutes. Mean operation time 36.56 minutes group 2:surgical operation time is 24 minutes minimum and maximum 53 minutes. Mean operation time 30.75 minutes</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old.</population>
+          <units>minutes</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="36.56" spread="10.627"/>
+                    <measurement group_id="O2" value="30.75" spread="7.502"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -477,36 +496,36 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined anesthesia (Spinal epidural).</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Duration of Anaesthesia</title>
-            <description>Group 1 minimum 42 minutes and maximum 83 minutes.mean duration of anaesthesia 60.17 and Group 2 minimum 45 minutes and maximum 82 minutes mean duration of anaesthesia 60.23</description>
-            <units>minutes</units>
-            <param>Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="60.17" spread="10.73"/>
-                  <measurement group_id="O2" value="60.23" spread="7.87"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Duration of Anaesthesia</title>
+          <description>Group 1 minimum 42 minutes and maximum 83 minutes.mean duration of anaesthesia 60.17 and Group 2 minimum 45 minutes and maximum 82 minutes mean duration of anaesthesia 60.23</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old.</population>
+          <units>minutes</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="60.17" spread="10.73"/>
+                    <measurement group_id="O2" value="60.23" spread="7.87"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -525,36 +544,36 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined anesthesia (Spinal epidural).</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Post-operative Abdominal Pain 2nd Hour</title>
-            <description>VAS score ;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
-            <units>units on a scale</units>
-            <param>Least Squares Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="7" spread="0.71"/>
-                  <measurement group_id="O2" value="1" spread="0.51"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Post-operative Abdominal Pain 2nd Hour</title>
+          <description>VAS score ;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old.</population>
+          <units>units on a scale</units>
+          <param>Least Squares Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="7" spread="0.71"/>
+                    <measurement group_id="O2" value="1" spread="0.51"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -573,36 +592,36 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined anesthesia (Spinal epidural).</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Post-operative Abdominal Pain 4th Hour</title>
-            <description>VAS score ;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
-            <units>units on a scale</units>
-            <param>Least Squares Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="6" spread="0.71"/>
-                  <measurement group_id="O2" value="2" spread="0.57"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Post-operative Abdominal Pain 4th Hour</title>
+          <description>VAS score ;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old.</population>
+          <units>units on a scale</units>
+          <param>Least Squares Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="6" spread="0.71"/>
+                    <measurement group_id="O2" value="2" spread="0.57"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -621,36 +640,36 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined anesthesia (Spinal epidural).</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Post-operative Abdominal Pain 6th Hour</title>
-            <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
-            <units>units on a scale</units>
-            <param>Least Squares Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="4" spread="0.45"/>
-                  <measurement group_id="O2" value="4" spread="0.6"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Post-operative Abdominal Pain 6th Hour</title>
+          <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old.</population>
+          <units>units on a scale</units>
+          <param>Least Squares Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4" spread="0.45"/>
+                    <measurement group_id="O2" value="4" spread="0.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -669,36 +688,36 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined anesthesia (Spinal epidural).</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Post-operative Abdominal Pain 12th Hour</title>
-            <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
-            <units>units on a scale</units>
-            <param>Least Squares Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="3" spread="0.72"/>
-                  <measurement group_id="O2" value="1" spread="0.46"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Post-operative Abdominal Pain 12th Hour</title>
+          <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old.</population>
+          <units>units on a scale</units>
+          <param>Least Squares Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3" spread="0.72"/>
+                    <measurement group_id="O2" value="1" spread="0.46"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -717,36 +736,36 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined anesthesia (Spinal epidural).</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Post-operative Abdominal Pain 24th Hour</title>
-            <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
-            <units>units on a scale</units>
-            <param>Least Squares Mean</param>
-            <dispersion>Standard Deviation</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="2" spread="0.52"/>
-                  <measurement group_id="O2" value="1" spread="0.50"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Post-operative Abdominal Pain 24th Hour</title>
+          <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old.</population>
+          <units>units on a scale</units>
+          <param>Least Squares Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2" spread="0.52"/>
+                    <measurement group_id="O2" value="1" spread="0.50"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Primary</type>
@@ -765,43 +784,47 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined spinal epidural anaesthesia</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Post-operative Shoulder Pain</title>
-            <description>Group 1 and Group 2 Post-operative shoulder pain</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <sub_title>shoulder pain yes</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="15"/>
-                  <measurement group_id="O2" value="6"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>shoulder pain no</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="10"/>
-                  <measurement group_id="O2" value="18"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Post-operative Shoulder Pain</title>
+          <description>Group 1 and Group 2 Post-operative shoulder pain</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>shoulder pain yes</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="15"/>
+                    <measurement group_id="O2" value="6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>shoulder pain no</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="10"/>
+                    <measurement group_id="O2" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -820,43 +843,47 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined spinal epidural anaesthesia</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Intra-operative Shoulder Pain</title>
-            <description>Group 1 and Group 2 Intra-operative shoulder pain</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <sub_title>shoulder pain yes</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="0"/>
-                  <measurement group_id="O2" value="3"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>shoulder pain no</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="21"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Intra-operative Shoulder Pain</title>
+          <description>Group 1 and Group 2 Intra-operative shoulder pain</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>shoulder pain yes</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>shoulder pain no</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="25"/>
+                    <measurement group_id="O2" value="21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -875,43 +902,47 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined spinal epidural anaesthesia</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Urinary Retention</title>
-            <description>Group 1 and Group 2 Urinary retention</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <sub_title>urinary retention yes</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="0"/>
-                  <measurement group_id="O2" value="3"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>urinary retention no</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="21"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Urinary Retention</title>
+          <description>Group 1 and Group 2 Urinary retention</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>urinary retention yes</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>urinary retention no</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="25"/>
+                    <measurement group_id="O2" value="21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -930,43 +961,47 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined spinal epidural anaesthesia</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Nausea/Vomiting</title>
-            <description>Group 1 and group 2 nausea/vomiting</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <sub_title>nausea/vomiting yes</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="5"/>
-                  <measurement group_id="O2" value="1"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>nausea/vomiting no</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="20"/>
-                  <measurement group_id="O2" value="23"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Nausea/Vomiting</title>
+          <description>Group 1 and group 2 nausea/vomiting</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>nausea/vomiting yes</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5"/>
+                    <measurement group_id="O2" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>nausea/vomiting no</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="20"/>
+                    <measurement group_id="O2" value="23"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
@@ -985,43 +1020,47 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <description>Laparoscopic cholecystectomy in combined spinal epidural anaesthesia</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="24"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Headache</title>
-            <description>Group 1 and Group 2 Headache</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <sub_title>headache yes</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="0"/>
-                  <measurement group_id="O2" value="2"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>headache no</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="22"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Headache</title>
+          <description>Group 1 and Group 2 Headache</description>
+          <population>All patients have gall bladder disease who are between 18-90 years old.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="25"/>
+                <count group_id="O2" value="24"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>headache yes</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>headache no</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="25"/>
+                    <measurement group_id="O2" value="22"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
     </outcome_list>
 
@@ -1045,7 +1084,7 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <title>Total</title>
             <event_list>
               <event>
-                <sub_title></sub_title>
+                <sub_title>Total, serious adverse events</sub_title>
                 <counts group_id="E1" subjects_affected="0" subjects_at_risk="25"/>
                 <counts group_id="E2" subjects_affected="0" subjects_at_risk="24"/>
               </event>
@@ -1055,6 +1094,7 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
             <title>Blood and lymphatic system disorders</title>
             <event_list>
               <event>
+                <sub_title vocab="embolism">embolism</sub_title>
                 <description>embolism did not occur in both groups</description>
                 <counts group_id="E1" events="0" subjects_affected="0" subjects_at_risk="25"/>
                 <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="24"/>
