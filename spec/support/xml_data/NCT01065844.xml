@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on December 30, 2016</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01065844</url>
+  </required_header>
+  <id_info>
+    <org_study_id>200905704</org_study_id>
+    <nct_id>NCT01065844</nct_id>
+  </id_info>
+  <brief_title>Nelfinavir in Recurrent Adenoid Cystic Cancer of the Head and Neck</brief_title>
+  <official_title>A Phase II Trial of the HIV Protease Inhibitor Nelfinavir in Patients With Recurrent Symptomatic Adenoid Cystic Cancers of the Head and Neck</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>University of Iowa</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Holden Comprehensive Cancer Center</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>University of Iowa</source>
+  <oversight_info>
+    <authority>United States: Institutional Review Board</authority>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to evaluate the FDA-approved drug nelfinavir (NFV) as an
+      oncologic agent for adenoid cystic cancers of the head and neck.
+
+      Specifically, subjects will be asked to take 1250 mg twice daily and follow-up with their
+      medical oncologist as clinically indicated while taking this medication.
+
+      Subjects would be evaluated for quality of life issues utilizing the EORTC QLQ-C30 2-page
+      questionnaire.
+
+      Subjects would also be evaluated clinically by the oncologist to determine if the NFV was
+      having an anti-neoplastic effect.
+
+      The study remains unfunded. Therefore, potential subjects must be willing to provide
+      self-travel to study site. This study requires a screening visit, initial study visit, and
+      monthly follow-up. Subjects are not reimbursed for time, travel, or physician costs.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      The hypothesis of this study is that nelfinavir, by inhibiting the Akt and MAPK pathways,
+      can inhibit adenoid cystic carcinoid growth. These cancers are heavily dependent on these
+      signalling pathways.
+
+      Adenoid cystic carcinomas (ACC) are rare and account for about 1% of all head and neck
+      cancers. They stem from salivary glands and are known for their tendency to spread along
+      nerve sheaths (perineural spread). ACC is known for its prolonged clinical course, multiple
+      recurrence and the delayed onset of distant metastases. The median/mean age at presentation
+      is 47-56. Although 5 year disease free survivals (DFS) are 65-70%, the 15 year DFS drops to
+      30-40%. If followed long enough, 35% of patients will eventually develop metastatic disease.
+
+      The most common treatment of ACC is surgery followed by post-operative radiotherapy. When
+      ACC recurs, management options are often limited both by the morbidity and low efficacy of
+      re-irradiation and repeated surgical resection. Reported response rates to chemotherapy are
+      low and when it occurs, the duration of the response is short lived.
+
+      In an effort to explore possible targeted therapies for patients with recurrent ACC, Dr.
+      Gupta's lab examined the activation of 3 signaling proteins (EGFR, Akt, and MAPK) in 9
+      different paraffinized tissue blocks. Initial indications from in vitro studies demonstrates
+      NFV is tumoricidal at clinically achievable concentrations. To explore the clinical benefit
+      of this FDA-approved medication, we seek to implement its off label use in patients who have
+      failed all other therapies and have no other therapeutic options left.
+    </textblock>
+  </detailed_description>
+  <overall_status>Active, not recruiting</overall_status>
+  <start_date>October 2009</start_date>
+  <completion_date type="Anticipated">December 2018</completion_date>
+  <primary_completion_date type="Actual">May 2015</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Endpoint Classification: Efficacy Study, Intervention Model: Single Group Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Tumor Progression</measure>
+    <time_frame>Every 1 to 3 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Tumor progression as defined by RECIST version v1.1 criteria with ordinal measurements of complete response (CR), partial response (PR), stable disease (SD), and progressive disease (PD).</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Quality of Life</measure>
+    <time_frame>every 1 to 3 months</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Quality of life as measured by the EORTC QLQ-C30 survey</description>
+  </secondary_outcome>
+  <number_of_arms>1</number_of_arms>
+  <enrollment type="Actual">15</enrollment>
+  <condition>Carcinoma, Adenoid Cystic</condition>
+  <condition>Head and Neck Neoplasms</condition>
+  <arm_group>
+    <arm_group_label>Nelfinavir</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>1250 mg Nelfinavir twice daily Monday-Sunday</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Nelfinavir</intervention_name>
+    <description>1250 mg Nelfinavir twice daily Monday - Sunday</description>
+    <arm_group_label>Nelfinavir</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Histological diagnosis of adenoid cystic carcinoma.
+
+          -  Cancer should be staged recurrent or end-stage with/without metastases who have
+             failed all other therapy.
+
+          -  Age ≥ 18 years
+
+          -  ECOG performance status 0-2 (Karnofsky ≥ 50%, see Appendix A).
+
+          -  Patients must have normal organ and marrow function as defined below:
+
+               -  leukocytes ≥ 3,000/mm3
+
+               -  absolute neutrophil count ≥ 1,500/mm3
+
+               -  platelets ≥ 100,000/mm3
+
+               -  total bilirubin &lt; 1.5 mg/dl OR a stable or a decreasing bilirubin in patients
+                  who have undergone placement of an intrabiliary stent
+
+               -  AST(SGOT) ≤ 2.5 X institutional upper limit of normal
+
+               -  ALT(SGPT) ≤ 2.5 X institutional upper limit of normal
+
+               -  creatinine &lt; 1.5 X institutional upper limit of normal OR creatinine clearance ≥
+                  60 mL/min/1.73 m2 for patients with creatinine levels above institutional
+                  normal.
+
+          -  No known HIV infection. Since NFV is used in HIV patients, we do not want to
+             interfere with the therapy the patient may already be on.
+
+          -  Not pregnant. The effects of NFV on the developing human fetus have been studied in
+             HIV positive women (21). We do not, however, know the risks along with radiation.
+             Women of child-bearing potential and men must agree to use adequate contraception
+             (hormonal or barrier method of birth control; abstinence) prior to study entry and
+             for the duration of study participation. Should a woman become pregnant or suspect
+             she is pregnant while participating in this study, she should inform her treating
+             physician immediately.
+
+          -  Ability to understand and the willingness to sign a written informed consent
+             document.
+
+        Exclusion Criteria:
+
+          -  History of allergic reactions attributed to compounds of similar chemical or biologic
+             composition to NFV.
+
+          -  Uncontrolled diabetes.
+
+          -  Hemophilia A &amp; B as increased bleeding during protease inhibitor therapy has been
+             reported (22).
+
+          -  Patients may not be receiving any other investigational agents. concomitant
+             medications counterindicated for use with nelfinavir
+
+          -  Pregnant or lactating women: The effects of NFV on the developing human fetus have
+             been studied in HIV positive women (21). In addition, the chemotherapy will be
+             deleterious to the fetus.
+
+          -  HIV-positive patients on combination antiretroviral therapy are ineligible because of
+             the potential for pharmacokinetic interactions with NFV.
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>John M. Buatti, M.D.</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>The University of Iowa</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>The Holden Comprehensive Cancer Center</name>
+      <address>
+        <city>Iowa City</city>
+        <state>Iowa</state>
+        <zip>52242</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <reference>
+    <citation>Gupta AK, Wilke WW, Taylor EN, Bodeker KL, Hoffman HT, Milhem MM, Buatti JM, Robinson RA. Signaling pathways in adenoid cystic cancers: implications for treatment. Cancer Biol Ther. 2009 Oct;8(20):1947-51.</citation>
+    <PMID>19729990</PMID>
+  </reference>
+  <results_reference>
+    <citation>Hoover AC, Milhem MM, Anderson CM, Sun W, Smith BJ, Hoffman HT, Buatti JM. Efficacy of nelfinavir as monotherapy in refractory adenoid cystic carcinoma: Results of a phase II clinical trial. Head Neck. 2015 May;37(5):722-6. doi: 10.1002/hed.23664.</citation>
+    <PMID>24596143</PMID>
+  </results_reference>
+  <verification_date>October 2016</verification_date>
+  <lastchanged_date>October 25, 2016</lastchanged_date>
+  <firstreceived_date>February 8, 2010</firstreceived_date>
+  <firstreceived_results_date>October 25, 2016</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>University of Iowa</investigator_affiliation>
+    <investigator_full_name>John M. Buatti</investigator_full_name>
+    <investigator_title>Professor &amp; Chair of Radiation Oncology</investigator_title>
+  </responsible_party>
+  <keyword>Nelfinavir</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Head and Neck Neoplasms</mesh_term>
+    <mesh_term>Carcinoma, Adenoid Cystic</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>HIV Protease Inhibitors</mesh_term>
+    <mesh_term>Nelfinavir</mesh_term>
+  </intervention_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <group_list>
+        <group group_id="P1">
+          <title>Nelfinavir</title>
+          <description>1250 mg Nelfinavir twice daily Monday-Sunday
+Nelfinavir: 1250 mg Nelfinavir twice daily Monday - Sunday</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="15"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="10"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="5"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Adverse Event</title>
+              <participants_list>
+                <participants group_id="P1" count="5"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <group_list>
+        <group group_id="B1">
+          <title>Nelfinavir</title>
+          <description>1250 mg Nelfinavir twice daily Monday-Sunday
+Nelfinavir: 1250 mg Nelfinavir twice daily Monday - Sunday</description>
+        </group>
+      </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="15"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
+      <measure_list>
+        <measure>
+          <title>Age, Customized</title>
+          <description>Age, in years, of study participants at consent</description>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <title>&lt;=18 years</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Between 18 and 65 years</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="12"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>&gt;=65 years</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Gender, Customized</title>
+          <description>Self-reported gender at time of study enrollment</description>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <title>Female</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="9"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Male</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Region of Enrollment</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>United States</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="15"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Tumor Progression</title>
+        <description>Tumor progression as defined by RECIST version v1.1 criteria with ordinal measurements of complete response (CR), partial response (PR), stable disease (SD), and progressive disease (PD).</description>
+        <time_frame>Every 1 to 3 months</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>Those with adverse events necessitating interruption of intervention and removal from study were not assessed for outcome measures</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Nelfinavir</title>
+            <description>1250 mg Nelfinavir twice daily Monday-Sunday
+Nelfinavir: 1250 mg Nelfinavir twice daily Monday - Sunday</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Tumor Progression</title>
+          <description>Tumor progression as defined by RECIST version v1.1 criteria with ordinal measurements of complete response (CR), partial response (PR), stable disease (SD), and progressive disease (PD).</description>
+          <population>Those with adverse events necessitating interruption of intervention and removal from study were not assessed for outcome measures</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="11"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <title>Complete reponse (CR)</title>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Partial response (PR)</title>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Stable disease (SD)</title>
+                  <measurement_list>
+                    <measurement group_id="O1" value="7"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Progressive disease (PD)</title>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Quality of Life</title>
+        <description>Quality of life as measured by the EORTC QLQ-C30 survey</description>
+        <time_frame>every 1 to 3 months</time_frame>
+        <safety_issue>No</safety_issue>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>Adverse event data collected from day 1 of nelfinavir therapy through 30 days after final nelfinavir dose.</time_frame>
+      <group_list>
+        <group group_id="E1">
+          <title>Nelfinavir</title>
+          <description>1250 mg Nelfinavir twice daily Monday-Sunday
+Nelfinavir: 1250 mg Nelfinavir twice daily Monday - Sunday</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="15"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <default_vocab>CTCAE (3.0)</default_vocab>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="15"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Blood and lymphatic system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>platelet count decreased</sub_title>
+                <description>grade 3</description>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="15"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>Investigations - Other, liver enzymes increased, grade 3</sub_title>
+                <description>Marked elevations across liver function tests considered severe (grade 3)</description>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="15"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Metabolism and nutrition disorders</title>
+            <event_list>
+              <event>
+                <sub_title>hyponatremia, grade 4</sub_title>
+                <description>A disorder characterized by laboratory test results that indicate a low concentration of sodium in the blood.</description>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="15"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>dizziness, grade 3</sub_title>
+                <description>A disorder characterized by a disturbing sensation of lightheadedness, unsteadiness, giddiness, spinning or rocking.
+Grade: Severe - limiting activities of daily life</description>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="15"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>All Principal Investigators ARE employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <limitations_and_caveats>Favorable selection criteria were used in study design. RECIST assessed at a median interval of 12 weeks - this difference in methods may have artificially prolonged the progression free survival observed in this study.</limitations_and_caveats>
+    <point_of_contact>
+      <name_or_title>John M. Buatti, M.D., Chair, Department of Radiation Oncology</name_or_title>
+      <organization>The University of Iowa</organization>
+      <phone>319-356-2699</phone>
+      <email>john-buatti@uiowa.edu</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
