@@ -1088,6 +1088,7 @@ CREATE TABLE outcome_measurements (
     classification character varying,
     category character varying,
     ctgov_group_code character varying,
+    param_type character varying,
     param_value character varying,
     param_value_num numeric,
     dispersion_type character varying,
@@ -1131,7 +1132,7 @@ CREATE TABLE outcome_measures (
     population character varying,
     units character varying,
     units_analyzed character varying,
-    dispersion character varying,
+    dispersion_type character varying,
     param_type character varying
 );
 
