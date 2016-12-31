@@ -137,7 +137,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "population"
       t.string  "units"
       t.string  "units_analyzed"
-      t.string  "dispersion"
+      t.string  "dispersion_type"
       t.string  "param_type"
     end
 

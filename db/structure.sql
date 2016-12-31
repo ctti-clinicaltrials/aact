@@ -1131,7 +1131,7 @@ CREATE TABLE outcome_measures (
     population character varying,
     units character varying,
     units_analyzed character varying,
-    dispersion character varying,
+    dispersion_type character varying,
     param_type character varying
 );
 

@@ -11,7 +11,7 @@ describe OutcomeAnalysis do
     o=study.outcomes.select{|x|x.outcome_type=='Other Pre-specified'}.first
     expect(o.outcome_groups.size).to eq(2)
     expect(o.measures.first.measurements.size).to eq(2)
-    expect(o.measures.first.dispersion).to eq('95% Confidence Interval')
+    expect(o.measures.first.dispersion_type).to eq('95% Confidence Interval')
     expect(o.measures.first.param_type).to eq('Median')
     expect(o.analyses.first.groups.size).to eq(2)
     expect(o.title).to eq('Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up')
