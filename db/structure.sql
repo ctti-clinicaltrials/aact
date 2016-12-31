@@ -1053,8 +1053,7 @@ CREATE TABLE outcome_groups (
     nct_id character varying,
     outcome_id integer,
     result_group_id integer,
-    ctgov_group_code character varying,
-    participant_count integer
+    ctgov_group_code character varying
 );
 
 
@@ -1169,7 +1168,6 @@ CREATE TABLE outcomes (
     time_frame text,
     safety_issue character varying,
     population text,
-    participant_count integer,
     anticipated_posting_month_year character varying
 );
 
