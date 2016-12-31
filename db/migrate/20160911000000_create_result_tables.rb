@@ -117,7 +117,6 @@ class CreateResultTables < ActiveRecord::Migration
       t.text    "time_frame"
       t.string  "safety_issue"
       t.text    "population"
-      t.integer "participant_count"
       t.string  "anticipated_posting_month_year"
     end
 
@@ -126,7 +125,6 @@ class CreateResultTables < ActiveRecord::Migration
       t.integer "outcome_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
-      t.integer "participant_count"
     end
 
     create_table "outcome_measures", force: :cascade do |t|
