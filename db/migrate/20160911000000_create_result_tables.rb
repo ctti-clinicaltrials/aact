@@ -51,6 +51,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.text   "recruitment_details"
       t.text   "pre_assignment_details"
     end
+
     create_table "drop_withdrawals", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
