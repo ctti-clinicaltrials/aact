@@ -227,7 +227,7 @@ module ClinicalTrials
 
     def run_sanity_checks
       log("sanity check...")
-      SanityCheck.save_row_counts
+      SanityCheck.run
     end
 
     def take_snapshot

@@ -22,6 +22,14 @@ describe SanityCheck do
     }
   end
 
+  it "correctly detects duplicates in tables with one-to-one relationship to study" do
+    nct_id='NCT00023673'
+    BriefSummary.new({:nct_id=>nct_id,:description=>"duplicate for #{nct_id}"}).save!
+    SanityCheck.check_for_duplicates
+    sc=SanityCheck.where('nct_id=? and table_name=?',nct_id,'brief_summaries duplicate')
+    expect(sc.size).to eq(1)
+  end
+
   it "correctly detects orphans" do
     nct_id='NCT01065844'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -32,8 +40,7 @@ describe SanityCheck do
     expect(outcomes.size).to eq(0)
     SanityCheck.check_for_orphans
     sc=SanityCheck.where('nct_id=?',nct_id)
-    sc.each{|x| puts x.inspect}
-    expect(sc.size).to eq(3)
+    expect(sc.size).to eq(2)
   end
 
 end
