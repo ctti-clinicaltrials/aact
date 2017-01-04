@@ -42,12 +42,11 @@ describe Outcome do
     nct_id='NCT01207388'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-
-    expect(study.outcomes.select{|x|x.title=='Hematological Relapse-free Survival Rate'}.size).to eq(1)
-    o=study.outcomes.select{|x|x.title=='Hematological Relapse-free Survival Rate'}.first
-    expect(o.anticipated_posting_month_year).to eq('08/2017')
-    o=study.outcomes.select{|x|x.title=='MRD Level'}.first
-    expect(o.anticipated_posting_month_year).to eq('08/2017')
+    expect(study.outcomes.size).to eq(11)
+    expect(study.outcomes.select{|x|x.title=='Resource Utilization'}.size).to eq(1)
+    o=study.outcomes.select{|x|x.title=='Resource Utilization'}.first
+    expect(o.anticipated_posting_month_year).to eq('01/2020')
+    expect(o.time_frame).to eq('5 years')
   end
 
 end
