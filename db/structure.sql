@@ -1469,7 +1469,7 @@ CREATE TABLE sanity_checks (
     table_name character varying,
     nct_id character varying,
     row_count integer,
-    report text,
+    description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

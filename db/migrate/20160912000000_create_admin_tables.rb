@@ -18,7 +18,7 @@ class CreateAdminTables < ActiveRecord::Migration
       t.string   'table_name'
       t.string   'nct_id'
       t.integer  'row_count'
-      t.text     'report'
+      t.text     'description'
       t.timestamps null: false
     end
 
