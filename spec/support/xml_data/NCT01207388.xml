@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 16, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on December 30, 2016</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01207388</url>
   </required_header>
@@ -55,7 +53,7 @@
 
       Participants will receive up to four 4-week cycles of intravenous blinatumomab treatment
       followed by an infusion-free period of 14 days. A safety follow-up will be performed 30 days
-      after the end of the last infusion and efficacy follow-ups will occurr until 24 months after
+      after the end of the last infusion and efficacy follow-ups will occur until 24 months after
       treatment start. Participants will be followed for up to 5 years after the start of
       treatment for survival.
     </textblock>
@@ -75,51 +73,70 @@
 Complete MRD response is defined as no polymerase chain reaction (PCR) amplification of individual rearrangements of immunoglobulin (Ig)- or T-cell receptor (TCR)-genes detected after completion of the first cycle.</description>
   </primary_outcome>
   <secondary_outcome>
-    <measure>Hematological Relapse-free Survival Rate</measure>
+    <measure>Hematological Relapse-free Survival (RFS)</measure>
     <time_frame>18 months</time_frame>
     <safety_issue>No</safety_issue>
+    <description>Hematological RFS was measured from first dose of blinatumomab until the first assessment of documented relapse (either hematological or extramedullary), secondary leukemia, or death due to any cause. Participants without a documented relapse, or death due to any cause were censored at the time of their last hematological assessment. Participants who received chemotherapy for relapsed or persistent MRD or for any other reason after treatment with blinatumomab, or HSCT after treatment with blinatumomab, before hematological or extramedullary relapse, or death occurred were censored at the start of chemotherapy or HSCT, respectively.
+Hematological relapse was defined as unequivocal detection of &gt; 5% leukemia cells in bone marrow as measured by cytological, microscopic assessment, presence of circulating leukemia blasts, or extramedullary leukemia (whichever occurred first).
+The 18-month Kaplan-Meier estimate of hematological RFS is reported.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Overall Survival</measure>
-    <time_frame>5 years</time_frame>
+    <time_frame>Until the data cut-off date of 05 August 2015; median time on study was 18.3 months.</time_frame>
     <safety_issue>No</safety_issue>
+    <description>Overall survival was measured from the first treatment with blinatumomab until death due to any cause. Participants who did not die were censored at their last contact date.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>100-Day Mortality After Allogeneic Hematopoietic Stem Cell Transplant</measure>
-    <time_frame>100 days after HSCT</time_frame>
+    <time_frame>100 days after HSCT, as of the data cut-off date of 05 August 2015</time_frame>
     <safety_issue>No</safety_issue>
+    <description>The mortality rate within 100 days after allogeneic HSCT was defined as the Kaplan-Meier estimate of the percentage of participants dying within 100 days after the day of the first allogeneic HSCT.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Time to Hematological Relapse</measure>
-    <time_frame>Up to 2 years</time_frame>
+    <time_frame>Until the data cut-off date of 05 August 2015; median time on study was 18.3 months.</time_frame>
     <safety_issue>No</safety_issue>
+    <description>Time to hematological relapse was measured from the start of treatment with blinatumomab until hematological or extramedullary relapse. Participants who died or received HSCT or post-blinatumomab chemotherapy after treatment with blinatumomab were censored at their last hematological assessment prior to death or HSCT or post-blinatumomab chemotherapy (whichever occurred first).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Duration of Complete MRD Response</measure>
-    <time_frame>2 years</time_frame>
+    <time_frame>Until the data cut-off date of 05 August 2015; median time on study was 18.3 months.</time_frame>
     <safety_issue>No</safety_issue>
+    <description>The duration of MRD response was analyzed as the time from onset of MRD negativity until MRD or hematological relapse or date of last confirmation of negative MRD status. Participants who received chemotherapy or HSCT after treatment with blinatumomab, before hematological or extramedullary relapse were censored at the start of chemotherapy or HSCT, respectively.
+MRD relapse is defined as the reappearance of individual rearrangements of Ig- or TCR-genes ≥ lower limit of quantification (LLOQ) for at least 1 individual marker measured by an assay with a sensitivity of minimum 10^-4. Hematological relapse is defined as the unequivocal detection of &gt; 5% leukemia cells in bone marrow as measured by cytological or microscopic assessment, presence of circulating leukemia blasts, or extramedullary leukemia.</description>
   </secondary_outcome>
   <secondary_outcome>
-    <measure>MRD Level</measure>
-    <time_frame>Up to 2 years</time_frame>
+    <measure>Change in MRD Level From Baseline to End of Cycle 1 in Non-MRD Responders</measure>
+    <time_frame>Baseline and end of cycle 1 (6 weeks)</time_frame>
     <safety_issue>No</safety_issue>
+    <description>MRD level was measured by polymerase chain reaction (PCR) performed on bone marrow and assessed by the central laboratory. An MRD level of 10^-n corresponds to residual leukemia cells at a frequency of 1 per 10ⁿ bone marrow cells.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Number of Participants With Adverse Events</measure>
-    <time_frame>Adverse events are reported until the data cut-off date of 21 February 2014; the median treatment duration was 52 days.</time_frame>
-    <safety_issue>Yes</safety_issue>
-    <description>Adverse events (AEs) were evaluated for severity according to the the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE), version 4, as follows: Grade 1 - Mild AE; Grade 2 - Moderate AE; Grade 3 - Severe AE; Grade 4 - Life-threatening or disabling AE; Grade 5 - Death.
+    <time_frame>From the first dose of blinatumomab until 30 days after last dose. Adverse events are reported up to the data cut-off date of 05 August 2015; the median treatment duration was 55 days.</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Adverse events (AEs) were evaluated for severity according to the the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE), version 4, as follows:
+Grade 1 - Mild AE; Grade 2 - Moderate AE; Grade 3 - Severe AE; Grade 4 - Life-threatening or disabling AE; Grade 5 - Death.
 The investigator used medical judgment to determine if there was a causal relationship (ie, related, unrelated) between an adverse event and blinatumomab.
 An AE was considered &quot;serious&quot; if it resulted in death, was life-threatening, required or prolonged inpatient hospitalization, resulted in persistent or significant incapacity or substantial disruption to conduct normal life functions, was a congenital anomaly or birth defect or was a medically important condition.</description>
   </secondary_outcome>
   <secondary_outcome>
-    <measure>Quality of Life</measure>
-    <time_frame>Up to 2 years</time_frame>
+    <measure>Change From Baseline in EORTC-QLQ-C30 Scales</measure>
+    <time_frame>Baseline and the end of each treatment cycle (Day 29 of each cycle) and 30 days after last treatment (end of core study)</time_frame>
     <safety_issue>No</safety_issue>
+    <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Insomnia, Appetite Loss, Constipation, Diarrhea, Financial Impact).
+For each of these scales, scores range from 0 to 100. For the GHS and 5 functional scales a high score indicates better global health status/functioning and a positive change from baseline indicates improvement. For the 9 symptom scales, a high score indicates a higher level of symptoms, and a negative change from Baseline indicates an improvement in symptoms.
+The maximum changes from baseline to cycles 1 through 4 and to the end of the core study are reported.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change From Baseline in EuroQoL 5-Dimension (EQ-5D) Scales</measure>
+    <time_frame>Baseline and the end of each treatment cycle (Day 29 of each cycle) and 30 days after last treatment (end of core study)</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>The EQ-5D is a self-administered questionnaire which captures 3 basic types of information: a descriptive profile (health state index) and the overall health rating using a visual analog scale. The health state index measures mobility, self-care, usual activities, pain/discomfort and anxiety/depression on scales from no problems (score = 1), some problems (score = 2), to extreme problems (score = 3). For each dimension the mean change from baseline was calculated at the end of each treatment cycle and at the end of study. The maximum observed change from baseline during cycles 1 to 4 and the change from baseline at the end of study are reported for each dimension.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Resource Utilization</measure>
-    <time_frame>2 years</time_frame>
+    <time_frame>5 years</time_frame>
     <safety_issue>No</safety_issue>
   </secondary_outcome>
   <number_of_arms>1</number_of_arms>
@@ -880,8 +897,8 @@ An AE was considered &quot;serious&quot; if it resulted in death, was life-threa
     <country>Spain</country>
     <country>United Kingdom</country>
   </location_countries>
-  <verification_date>September 2015</verification_date>
-  <lastchanged_date>September 16, 2015</lastchanged_date>
+  <verification_date>August 2016</verification_date>
+  <lastchanged_date>August 22, 2016</lastchanged_date>
   <firstreceived_date>September 21, 2010</firstreceived_date>
   <firstreceived_results_date>January 28, 2015</firstreceived_results_date>
   <responsible_party>
@@ -906,8 +923,8 @@ An AE was considered &quot;serious&quot; if it resulted in death, was life-threa
     <mesh_term>Leukemia</mesh_term>
     <mesh_term>Precursor Cell Lymphoblastic Leukemia-Lymphoma</mesh_term>
     <mesh_term>Leukemia, Lymphoid</mesh_term>
-    <mesh_term>Neoplasm, Residual</mesh_term>
     <mesh_term>Burkitt Lymphoma</mesh_term>
+    <mesh_term>Neoplasm, Residual</mesh_term>
   </condition_browse>
   <intervention_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
@@ -919,7 +936,7 @@ An AE was considered &quot;serious&quot; if it resulted in death, was life-threa
 
     <participant_flow>
       <recruitment_details>This study was open to adults with a diagnosis of minimal residual disease (MRD; ≥ 10^-3 leukemic cells) -positive B-precursor acute lymphoblastic leukemia (ALL) who were in complete hematologic remission.</recruitment_details>
-      <pre_assignment_details>Results are reported for the primary analysis (conducted when all participants had been evaluated for the primary efficacy endpoint; data cutoff date of 21 February 2014). The core study was defined as completing 4 cycles for participants not proceeding to HSCT and completion of at least Day 29 of Cycle 1 for those proceeding to HSCT.</pre_assignment_details>
+      <pre_assignment_details>Results are reported for the key secondary analysis (conducted when all participants had completed 18 months of follow-up; data cutoff date of 05 August 2015). The core study was defined as completing 4 cycles for participants not proceeding to HSCT and completion of at least Day 29 of Cycle 1 for those proceeding to HSCT.</pre_assignment_details>
       <group_list>
         <group group_id="P1">
           <title>Blinatumomab</title>
@@ -940,13 +957,13 @@ Participants suitable for allogeneic hematopoietic stem cell transplant (HSCT) a
             <milestone>
               <title>COMPLETED</title>
               <participants_list>
-                <participants group_id="P1" count="74">Completed the core study</participants>
+                <participants group_id="P1" count="83">Completed the core study</participants>
               </participants_list>
             </milestone>
             <milestone>
               <title>NOT COMPLETED</title>
               <participants_list>
-                <participants group_id="P1" count="42"/>
+                <participants group_id="P1" count="33"/>
               </participants_list>
             </milestone>
           </milestone_list>
@@ -960,19 +977,19 @@ Participants suitable for allogeneic hematopoietic stem cell transplant (HSCT) a
             <drop_withdraw_reason>
               <title>Disease Relapse</title>
               <participants_list>
-                <participants group_id="P1" count="11"/>
+                <participants group_id="P1" count="10"/>
               </participants_list>
             </drop_withdraw_reason>
             <drop_withdraw_reason>
               <title>Physician Decision</title>
               <participants_list>
-                <participants group_id="P1" count="1"/>
+                <participants group_id="P1" count="2"/>
               </participants_list>
             </drop_withdraw_reason>
             <drop_withdraw_reason>
-              <title>Treatment Ongoing</title>
+              <title>Other</title>
               <participants_list>
-                <participants group_id="P1" count="10"/>
+                <participants group_id="P1" count="1"/>
               </participants_list>
             </drop_withdraw_reason>
           </drop_withdraw_reason_list>
@@ -981,220 +998,310 @@ Participants suitable for allogeneic hematopoietic stem cell transplant (HSCT) a
     </participant_flow>
 
     <baseline>
+      <population>Full analysis set (all participants who received any infusion of blinatumomab)</population>
       <group_list>
         <group group_id="B1">
           <title>Blinatumomab</title>
           <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
         </group>
       </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="116"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
       <measure_list>
-        <measure>
-          <title>Number of Participants</title>
-          <units>participants</units>
-          <param>Number</param>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="116"/>
-              </measurement_list>
-            </category>
-          </category_list>
-        </measure>
         <measure>
           <title>Age</title>
           <units>years</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="44.6" spread="16.4"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="44.6" spread="16.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Age, Customized</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>≥ 18 and &lt;35 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="36"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>≥ 35 and &lt; 55 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="41"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>≥ 55 and &lt; 65 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="24"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>≥ 65 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="15"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>≥ 18 and &lt;35 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="36"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>≥ 35 and &lt; 55 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="41"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>≥ 55 and &lt; 65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="24"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>≥ 65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="15"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Gender</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Female</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="48"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Male</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="68"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="48"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="68"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Race/Ethnicity, Customized</title>
           <description>Race was not permitted to be collected in France.</description>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>White</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="102"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Asian</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Mixed</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Unknown</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="12"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>White</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="102"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Asian</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Mixed</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Unknown</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Philadelphia Chromosome Disease Status</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Positive</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="5"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Negative</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="111"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Positive</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Negative</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="111"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Confirmed t(4;11) Translocation / MLL-AF4+ ALL</title>
           <description>t(4;11)(q21;q23) translocation, resulting in the fusion of the mixed lineage leukemia (MLL) gene on chromosome 11 and the AF4 gene on chromosome 4</description>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="5"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>MRD Level at Baseline by Central Laboratory</title>
-          <description>Measured by polymerase chain reaction (PCR) performed on bone marrow and assessed by the central laboratory; Lower limit of quantification = 10^-4 leukemic cells.</description>
+          <description>Measured by polymerase chain reaction (PCR) performed on bone marrow and assessed by the central laboratory; Lower limit of quantification was at least 10^-4 leukemic cells.</description>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>≥ 10^-1 and &lt; 1</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="9"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>≥ 10^-2 and &lt; 10^-1</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="45"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>≥ 10^-3 and &lt; 10^-2</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="52"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>&lt; 10^-3</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="3"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Below Lower Limit of Quantification</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="5"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Unknown</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="2"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>≥ 10^-1 and &lt; 1</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>≥ 10^-2 and &lt; 10^-1</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="45"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>≥ 10^-3 and &lt; 10^-2</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="52"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&lt; 10^-3</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Below Lower Limit of Quantification</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Unknown</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>White Blood Cells at First Diagnosis</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>≤ 30,000/mL</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="78"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>&gt; 30,000/mL</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="18"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Unknown</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="20"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>≤ 30,000/mL</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="78"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&gt; 30,000/mL</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Unknown</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="20"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
       </measure_list>
     </baseline>
@@ -1214,86 +1321,402 @@ Complete MRD response is defined as no polymerase chain reaction (PCR) amplifica
             <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="113"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Percentage of Participants With a Minimal Residual Disease (MRD) Response Within the First Treatment Cycle</title>
-            <description>At the end of the first treatment cycle (Day 29) a bone marrow aspiration/biopsy was performed and evaluated by the central MRD laboratory.
+        <measure>
+          <title>Percentage of Participants With a Minimal Residual Disease (MRD) Response Within the First Treatment Cycle</title>
+          <description>At the end of the first treatment cycle (Day 29) a bone marrow aspiration/biopsy was performed and evaluated by the central MRD laboratory.
 Complete MRD response is defined as no polymerase chain reaction (PCR) amplification of individual rearrangements of immunoglobulin (Ig)- or T-cell receptor (TCR)-genes detected after completion of the first cycle.</description>
-            <units>percentage of participants</units>
-            <param>Number</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="77.9" lower_limit="69.1" upper_limit="85.1"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+          <population>Primary endpoint full analysis set (Prim EP FAS) included all participants with an Ig TCR PCR MRD assay with the minimum required sensitivity of 1 x 10^-4 at central lab established at Baseline.</population>
+          <units>percentage of participants</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="113"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="77.9" lower_limit="69.1" upper_limit="85.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
-        <title>Hematological Relapse-free Survival Rate</title>
+        <title>Hematological Relapse-free Survival (RFS)</title>
+        <description>Hematological RFS was measured from first dose of blinatumomab until the first assessment of documented relapse (either hematological or extramedullary), secondary leukemia, or death due to any cause. Participants without a documented relapse, or death due to any cause were censored at the time of their last hematological assessment. Participants who received chemotherapy for relapsed or persistent MRD or for any other reason after treatment with blinatumomab, or HSCT after treatment with blinatumomab, before hematological or extramedullary relapse, or death occurred were censored at the start of chemotherapy or HSCT, respectively.
+Hematological relapse was defined as unequivocal detection of &gt; 5% leukemia cells in bone marrow as measured by cytological, microscopic assessment, presence of circulating leukemia blasts, or extramedullary leukemia (whichever occurred first).
+The 18-month Kaplan-Meier estimate of hematological RFS is reported.</description>
         <time_frame>18 months</time_frame>
         <safety_issue>No</safety_issue>
-        <posting_date>08/2017</posting_date>
+        <population>Full analysis set participants who were in hematological complete remission at treatment start, excluding Philadelphia-positive participants.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Blinatumomab</title>
+            <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Hematological Relapse-free Survival (RFS)</title>
+          <description>Hematological RFS was measured from first dose of blinatumomab until the first assessment of documented relapse (either hematological or extramedullary), secondary leukemia, or death due to any cause. Participants without a documented relapse, or death due to any cause were censored at the time of their last hematological assessment. Participants who received chemotherapy for relapsed or persistent MRD or for any other reason after treatment with blinatumomab, or HSCT after treatment with blinatumomab, before hematological or extramedullary relapse, or death occurred were censored at the start of chemotherapy or HSCT, respectively.
+Hematological relapse was defined as unequivocal detection of &gt; 5% leukemia cells in bone marrow as measured by cytological, microscopic assessment, presence of circulating leukemia blasts, or extramedullary leukemia (whichever occurred first).
+The 18-month Kaplan-Meier estimate of hematological RFS is reported.</description>
+          <population>Full analysis set participants who were in hematological complete remission at treatment start, excluding Philadelphia-positive participants.</population>
+          <units>percentage of participants</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="110"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="54" lower_limit="33" upper_limit="70"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Overall Survival</title>
-        <time_frame>5 years</time_frame>
+        <description>Overall survival was measured from the first treatment with blinatumomab until death due to any cause. Participants who did not die were censored at their last contact date.</description>
+        <time_frame>Until the data cut-off date of 05 August 2015; median time on study was 18.3 months.</time_frame>
         <safety_issue>No</safety_issue>
-        <posting_date>08/2017</posting_date>
+        <population>Full analysis set</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Blinatumomab</title>
+            <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Overall Survival</title>
+          <description>Overall survival was measured from the first treatment with blinatumomab until death due to any cause. Participants who did not die were censored at their last contact date.</description>
+          <population>Full analysis set</population>
+          <units>months</units>
+          <param>Median</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="116"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="36.5" lower_limit="19.2">Not estimable at the time of analysis due to the low number of events</measurement>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>100-Day Mortality After Allogeneic Hematopoietic Stem Cell Transplant</title>
-        <time_frame>100 days after HSCT</time_frame>
+        <description>The mortality rate within 100 days after allogeneic HSCT was defined as the Kaplan-Meier estimate of the percentage of participants dying within 100 days after the day of the first allogeneic HSCT.</description>
+        <time_frame>100 days after HSCT, as of the data cut-off date of 05 August 2015</time_frame>
         <safety_issue>No</safety_issue>
-        <posting_date>08/2017</posting_date>
+        <population>Full analysis set participants who underwent HSCT prior to relapse (hematological or extramedullary) excluding Philadelphia-positive participants</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Blinatumomab</title>
+            <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>100-Day Mortality After Allogeneic Hematopoietic Stem Cell Transplant</title>
+          <description>The mortality rate within 100 days after allogeneic HSCT was defined as the Kaplan-Meier estimate of the percentage of participants dying within 100 days after the day of the first allogeneic HSCT.</description>
+          <population>Full analysis set participants who underwent HSCT prior to relapse (hematological or extramedullary) excluding Philadelphia-positive participants</population>
+          <units>percentage of participants</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="74"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="7" lower_limit="3" upper_limit="15"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Time to Hematological Relapse</title>
-        <time_frame>Up to 2 years</time_frame>
+        <description>Time to hematological relapse was measured from the start of treatment with blinatumomab until hematological or extramedullary relapse. Participants who died or received HSCT or post-blinatumomab chemotherapy after treatment with blinatumomab were censored at their last hematological assessment prior to death or HSCT or post-blinatumomab chemotherapy (whichever occurred first).</description>
+        <time_frame>Until the data cut-off date of 05 August 2015; median time on study was 18.3 months.</time_frame>
         <safety_issue>No</safety_issue>
-        <posting_date>08/2017</posting_date>
+        <population>Full analysis set participants who were in hematological complete remission at treatment start, excluding Philadelphia-positive participants.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Blinatumomab</title>
+            <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Time to Hematological Relapse</title>
+          <description>Time to hematological relapse was measured from the start of treatment with blinatumomab until hematological or extramedullary relapse. Participants who died or received HSCT or post-blinatumomab chemotherapy after treatment with blinatumomab were censored at their last hematological assessment prior to death or HSCT or post-blinatumomab chemotherapy (whichever occurred first).</description>
+          <population>Full analysis set participants who were in hematological complete remission at treatment start, excluding Philadelphia-positive participants.</population>
+          <units>months</units>
+          <param>Median</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="110"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="NA" lower_limit="7.1">Data not estimable due to the low number of events</measurement>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Duration of Complete MRD Response</title>
-        <time_frame>2 years</time_frame>
+        <description>The duration of MRD response was analyzed as the time from onset of MRD negativity until MRD or hematological relapse or date of last confirmation of negative MRD status. Participants who received chemotherapy or HSCT after treatment with blinatumomab, before hematological or extramedullary relapse were censored at the start of chemotherapy or HSCT, respectively.
+MRD relapse is defined as the reappearance of individual rearrangements of Ig- or TCR-genes ≥ lower limit of quantification (LLOQ) for at least 1 individual marker measured by an assay with a sensitivity of minimum 10^-4. Hematological relapse is defined as the unequivocal detection of &gt; 5% leukemia cells in bone marrow as measured by cytological or microscopic assessment, presence of circulating leukemia blasts, or extramedullary leukemia.</description>
+        <time_frame>Until the data cut-off date of 05 August 2015; median time on study was 18.3 months.</time_frame>
         <safety_issue>No</safety_issue>
-        <posting_date>08/2017</posting_date>
+        <population>Full analysis set participants who were in hematological complete remission at treatment start, excluding Philadelphia-positive participants, who had an MRD complete response at cycle 1</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Blinatumomab</title>
+            <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Duration of Complete MRD Response</title>
+          <description>The duration of MRD response was analyzed as the time from onset of MRD negativity until MRD or hematological relapse or date of last confirmation of negative MRD status. Participants who received chemotherapy or HSCT after treatment with blinatumomab, before hematological or extramedullary relapse were censored at the start of chemotherapy or HSCT, respectively.
+MRD relapse is defined as the reappearance of individual rearrangements of Ig- or TCR-genes ≥ lower limit of quantification (LLOQ) for at least 1 individual marker measured by an assay with a sensitivity of minimum 10^-4. Hematological relapse is defined as the unequivocal detection of &gt; 5% leukemia cells in bone marrow as measured by cytological or microscopic assessment, presence of circulating leukemia blasts, or extramedullary leukemia.</description>
+          <population>Full analysis set participants who were in hematological complete remission at treatment start, excluding Philadelphia-positive participants, who had an MRD complete response at cycle 1</population>
+          <units>months</units>
+          <param>Median</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="85"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="45.0" lower_limit="6.5" upper_limit="45.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
-        <title>MRD Level</title>
-        <time_frame>Up to 2 years</time_frame>
+        <title>Change in MRD Level From Baseline to End of Cycle 1 in Non-MRD Responders</title>
+        <description>MRD level was measured by polymerase chain reaction (PCR) performed on bone marrow and assessed by the central laboratory. An MRD level of 10^-n corresponds to residual leukemia cells at a frequency of 1 per 10ⁿ bone marrow cells.</description>
+        <time_frame>Baseline and end of cycle 1 (6 weeks)</time_frame>
         <safety_issue>No</safety_issue>
-        <posting_date>08/2017</posting_date>
+        <population>Full analysis set participants who were in hematological complete remission at treatment start, with no MRD Response in the first treatment cycle, excluding Philadelphia-positive participants.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Cycle 1 MRD 10^-5</title>
+            <description>Participants with an MRD level 10^-5 at the end of cycle 1.</description>
+          </group>
+          <group group_id="O2">
+            <title>Cycle 1 MRD 10^-4</title>
+            <description>Participants with an MRD level 10^-4 at the end of cycle 1.</description>
+          </group>
+          <group group_id="O3">
+            <title>Cycle 1 MRD 10^-3</title>
+            <description>Participants with an MRD level 10^-3 at the end of cycle 1.</description>
+          </group>
+          <group group_id="O4">
+            <title>Cycle 1 MRD 10^-2</title>
+            <description>Participants with an MRD level 10^-2 at the end of cycle 1.</description>
+          </group>
+          <group group_id="O5">
+            <title>Cycle 1 MRD 10^-1</title>
+            <description>Participants with an MRD level 10^-1 at the end of cycle 1.</description>
+          </group>
+          <group group_id="O6">
+            <title>Cycle 1 MRD Unknown</title>
+            <description>Participants with an unknown MRD level at the end of cycle 1.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Change in MRD Level From Baseline to End of Cycle 1 in Non-MRD Responders</title>
+          <description>MRD level was measured by polymerase chain reaction (PCR) performed on bone marrow and assessed by the central laboratory. An MRD level of 10^-n corresponds to residual leukemia cells at a frequency of 1 per 10ⁿ bone marrow cells.</description>
+          <population>Full analysis set participants who were in hematological complete remission at treatment start, with no MRD Response in the first treatment cycle, excluding Philadelphia-positive participants.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="2"/>
+                <count group_id="O2" value="12"/>
+                <count group_id="O3" value="4"/>
+                <count group_id="O4" value="0"/>
+                <count group_id="O5" value="2"/>
+                <count group_id="O6" value="2"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Baseline MRD Unknown</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="1"/>
+                    <measurement group_id="O3" value="0"/>
+                    <measurement group_id="O5" value="0"/>
+                    <measurement group_id="O6" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Baseline MRD 10^-5</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="0"/>
+                    <measurement group_id="O3" value="0"/>
+                    <measurement group_id="O5" value="0"/>
+                    <measurement group_id="O6" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Baseline MRD 10^-4</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="1"/>
+                    <measurement group_id="O3" value="0"/>
+                    <measurement group_id="O5" value="0"/>
+                    <measurement group_id="O6" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Baseline MRD 10^-3</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                    <measurement group_id="O2" value="6"/>
+                    <measurement group_id="O3" value="2"/>
+                    <measurement group_id="O5" value="1"/>
+                    <measurement group_id="O6" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Baseline MRD 10^-2</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                    <measurement group_id="O2" value="4"/>
+                    <measurement group_id="O3" value="2"/>
+                    <measurement group_id="O5" value="1"/>
+                    <measurement group_id="O6" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Baseline MRD 10^-1</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                    <measurement group_id="O2" value="0"/>
+                    <measurement group_id="O3" value="0"/>
+                    <measurement group_id="O5" value="0"/>
+                    <measurement group_id="O6" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Number of Participants With Adverse Events</title>
-        <description>Adverse events (AEs) were evaluated for severity according to the the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE), version 4, as follows: Grade 1 – Mild AE; Grade 2 – Moderate AE; Grade 3 - Severe AE; Grade 4 - Life-threatening or disabling AE; Grade 5 - Death.
+        <description>Adverse events (AEs) were evaluated for severity according to the the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE), version 4, as follows:
+Grade 1 – Mild AE; Grade 2 – Moderate AE; Grade 3 - Severe AE; Grade 4 - Life-threatening or disabling AE; Grade 5 - Death.
 The investigator used medical judgment to determine if there was a causal relationship (ie, related, unrelated) between an adverse event and blinatumomab.
 An AE was considered “serious” if it resulted in death, was life-threatening, required or prolonged inpatient hospitalization, resulted in persistent or significant incapacity or substantial disruption to conduct normal life functions, was a congenital anomaly or birth defect or was a medically important condition.</description>
-        <time_frame>Adverse events are reported until the data cut-off date of 21 February 2014; the median treatment duration was 52 days.</time_frame>
-        <safety_issue>Yes</safety_issue>
+        <time_frame>From the first dose of blinatumomab until 30 days after last dose. Adverse events are reported up to the data cut-off date of 05 August 2015; the median treatment duration was 55 days.</time_frame>
+        <safety_issue>No</safety_issue>
         <population>All participants who received any infusion of blinatumomab.</population>
         <group_list>
           <group group_id="O1">
@@ -1301,131 +1724,465 @@ An AE was considered “serious” if it resulted in death, was life-threatening
             <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="116"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Number of Participants With Adverse Events</title>
-            <description>Adverse events (AEs) were evaluated for severity according to the the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE), version 4, as follows: Grade 1 – Mild AE; Grade 2 – Moderate AE; Grade 3 - Severe AE; Grade 4 - Life-threatening or disabling AE; Grade 5 - Death.
+        <measure>
+          <title>Number of Participants With Adverse Events</title>
+          <description>Adverse events (AEs) were evaluated for severity according to the the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE), version 4, as follows:
+Grade 1 – Mild AE; Grade 2 – Moderate AE; Grade 3 - Severe AE; Grade 4 - Life-threatening or disabling AE; Grade 5 - Death.
 The investigator used medical judgment to determine if there was a causal relationship (ie, related, unrelated) between an adverse event and blinatumomab.
 An AE was considered “serious” if it resulted in death, was life-threatening, required or prolonged inpatient hospitalization, resulted in persistent or significant incapacity or substantial disruption to conduct normal life functions, was a congenital anomaly or birth defect or was a medically important condition.</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <sub_title>Any adverse event</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="116"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>Serious adverse events</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="69"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>Adverse events of at least CTC grade 3</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="68"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>Adverse events of at least CTC grade 4</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="31"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>Fatal adverse events</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="3"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>AEs leading to discontinuation of blinatumomab</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="20"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>AEs leading to interruption of blinatumomab</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="35"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>Treatment-related adverse events</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="112"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>Treatment-related serious adverse events</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="59"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>Related adverse events of at least CTC grade 3</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="58"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>Related adverse events of at least CTC grade 4</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="26"/>
-                </measurement_list>
-              </category>
-              <category>
-                <sub_title>Treatment-related fatal adverse events</sub_title>
-                <measurement_list>
-                  <measurement group_id="O1" value="1"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+          <population>All participants who received any infusion of blinatumomab.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="116"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Any adverse event</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="116"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Serious adverse events</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="73"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Adverse events of at least CTC grade 3</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="71"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Adverse events of at least CTC grade 4</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="33"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Fatal adverse events</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>AEs leading to discontinuation of blinatumomab</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="20"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>AEs leading to interruption of blinatumomab</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="36"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Treatment-related adverse events</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="112"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Treatment-related serious adverse events</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="60"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Related adverse events of at least CTC grade 3</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="60"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Related adverse events of at least CTC grade 4</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="26"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Treatment-related fatal adverse events</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
-        <title>Quality of Life</title>
-        <time_frame>Up to 2 years</time_frame>
+        <title>Change From Baseline in EORTC-QLQ-C30 Scales</title>
+        <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Insomnia, Appetite Loss, Constipation, Diarrhea, Financial Impact).
+For each of these scales, scores range from 0 to 100. For the GHS and 5 functional scales a high score indicates better global health status/functioning and a positive change from baseline indicates improvement. For the 9 symptom scales, a high score indicates a higher level of symptoms, and a negative change from Baseline indicates an improvement in symptoms.
+The maximum changes from baseline to cycles 1 through 4 and to the end of the core study are reported.</description>
+        <time_frame>Baseline and the end of each treatment cycle (Day 29 of each cycle) and 30 days after last treatment (end of core study)</time_frame>
         <safety_issue>No</safety_issue>
-        <posting_date>08/2017</posting_date>
+        <population>Full analysis set</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Maximum Change From Baseline in Cycles 1 - 4</title>
+          </group>
+          <group group_id="O2">
+            <title>Change From Baseline at End of Core Study</title>
+          </group>
+        </group_list>
+        <measure>
+          <title>Change From Baseline in EORTC-QLQ-C30 Scales</title>
+          <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Insomnia, Appetite Loss, Constipation, Diarrhea, Financial Impact).
+For each of these scales, scores range from 0 to 100. For the GHS and 5 functional scales a high score indicates better global health status/functioning and a positive change from baseline indicates improvement. For the 9 symptom scales, a high score indicates a higher level of symptoms, and a negative change from Baseline indicates an improvement in symptoms.
+The maximum changes from baseline to cycles 1 through 4 and to the end of the core study are reported.</description>
+          <population>Full analysis set</population>
+          <units>units on a scale</units>
+          <param>Mean</param>
+          <dispersion>Standard Error</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="116"/>
+                <count group_id="O2" value="116"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Global Health Status</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="9.0" spread="4.2"/>
+                    <measurement group_id="O2" value="3.9" spread="2.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Physical Functioning</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2.6" spread="2.3"/>
+                    <measurement group_id="O2" value="2.2" spread="1.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Role Functioning</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12.2" spread="8.5"/>
+                    <measurement group_id="O2" value="1.4" spread="3.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Emotional Functioning</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="6.5" spread="4.9"/>
+                    <measurement group_id="O2" value="5.3" spread="2.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Cognitive Functioning</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-3.3" spread="5.2"/>
+                    <measurement group_id="O2" value="-2.3" spread="2.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Social Functioning</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12.2" spread="8.5"/>
+                    <measurement group_id="O2" value="14.9" spread="3.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Fatigue Symptom</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-5.9" spread="5.5"/>
+                    <measurement group_id="O2" value="-5.4" spread="2.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Nausea and Vomiting Symptom</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-4.5" spread="4.7"/>
+                    <measurement group_id="O2" value="-2.3" spread="2.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pain Symptom</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3.8" spread="3.6"/>
+                    <measurement group_id="O2" value="-1.4" spread="2.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Dyspnea Symptom</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-9.0" spread="4.7"/>
+                    <measurement group_id="O2" value="-0.9" spread="2.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Insomnia Symptom</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-2.6" spread="3.2"/>
+                    <measurement group_id="O2" value="3.7" spread="3.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Appetite Loss Symptom</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-17.8" spread="6.4"/>
+                    <measurement group_id="O2" value="-9.1" spread="3.4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Constipation Symptom</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-5.1" spread="3.6"/>
+                    <measurement group_id="O2" value="0.0" spread="2.2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Diarrhea Symptom</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5.1" spread="5.5"/>
+                    <measurement group_id="O2" value="0.0" spread="2.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Financial Difficulties Symptom</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-5.1" spread="4.8"/>
+                    <measurement group_id="O2" value="-0.9" spread="2.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Change From Baseline in EuroQoL 5-Dimension (EQ-5D) Scales</title>
+        <description>The EQ-5D is a self-administered questionnaire which captures 3 basic types of information: a descriptive profile (health state index) and the overall health rating using a visual analog scale. The health state index measures mobility, self-care, usual activities, pain/discomfort and anxiety/depression on scales from no problems (score = 1), some problems (score = 2), to extreme problems (score = 3). For each dimension the mean change from baseline was calculated at the end of each treatment cycle and at the end of study. The maximum observed change from baseline during cycles 1 to 4 and the change from baseline at the end of study are reported for each dimension.</description>
+        <time_frame>Baseline and the end of each treatment cycle (Day 29 of each cycle) and 30 days after last treatment (end of core study)</time_frame>
+        <safety_issue>No</safety_issue>
+        <population>Full analysis set</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Maximum Change From Baseline in Cycles 1 - 4</title>
+          </group>
+          <group group_id="O2">
+            <title>Change From Baseline at End of Core Study</title>
+          </group>
+        </group_list>
+        <measure>
+          <title>Change From Baseline in EuroQoL 5-Dimension (EQ-5D) Scales</title>
+          <description>The EQ-5D is a self-administered questionnaire which captures 3 basic types of information: a descriptive profile (health state index) and the overall health rating using a visual analog scale. The health state index measures mobility, self-care, usual activities, pain/discomfort and anxiety/depression on scales from no problems (score = 1), some problems (score = 2), to extreme problems (score = 3). For each dimension the mean change from baseline was calculated at the end of each treatment cycle and at the end of study. The maximum observed change from baseline during cycles 1 to 4 and the change from baseline at the end of study are reported for each dimension.</description>
+          <population>Full analysis set</population>
+          <units>units on a scale</units>
+          <param>Mean</param>
+          <dispersion>Standard Error</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="116"/>
+                <count group_id="O2" value="116"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Mobility</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-0.2" spread="0.1"/>
+                    <measurement group_id="O2" value="0.0" spread="0.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Self-care</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-0.1" spread="0.1"/>
+                    <measurement group_id="O2" value="0.0" spread="0.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Usual Activities</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-0.1" spread="0.1"/>
+                    <measurement group_id="O2" value="-0.1" spread="0.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pain/Discomfort</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-0.2" spread="0.2"/>
+                    <measurement group_id="O2" value="-0.1" spread="0.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Anxiety/Depression</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-0.2" spread="0.1"/>
+                    <measurement group_id="O2" value="-0.1" spread="0.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Resource Utilization</title>
-        <time_frame>2 years</time_frame>
+        <time_frame>5 years</time_frame>
         <safety_issue>No</safety_issue>
-        <posting_date>08/2017</posting_date>
+        <posting_date>01/2020</posting_date>
       </outcome>
     </outcome_list>
 
     <reported_events>
-      <time_frame>Adverse events are reported until the data cut-off date of 21 February 2014; the median treatment duration was 52 days.</time_frame>
+      <time_frame>From the first dose of blinatumomab until 30 days after last dose. Adverse events are reported up to the data cut-off date of 05 August 2015; the median treatment duration was 55 days.</time_frame>
       <desc>Other Adverse Events summarizes the non-serious occurrences of adverse events that exceed the indicated frequency threshold.
-Summary of Adverse Events includes only those participants who received at least one dose of investigational product.</desc>
+Summary of Adverse Events includes only those subjects who received at least one dose of investigational product.</desc>
       <group_list>
         <group group_id="E1">
-          <title>Blinatumomab</title>
+          <title>Blinatumomab 15 µg/m2/d</title>
           <description>Participants received blinatumomab as a continuous intravenous infusion at a constant flow rate of 15 μg/m²/day over 28 days followed by an infusion-free period of 14 days for up to 4 cycles of treatment.</description>
         </group>
       </group_list>
       <serious_events>
-        <default_vocab>MedDRA 17.0</default_vocab>
+        <default_vocab>MedDRA 18.0</default_vocab>
         <default_assessment>Systematic Assessment</default_assessment>
         <category_list>
           <category>
@@ -1433,7 +2190,7 @@ Summary of Adverse Events includes only those participants who received at least
             <event_list>
               <event>
                 <sub_title>Total, serious adverse events</sub_title>
-                <counts group_id="E1" subjects_affected="69" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="73" subjects_at_risk="116"/>
               </event>
             </event_list>
           </category>
@@ -1484,6 +2241,10 @@ Summary of Adverse Events includes only those participants who received at least
             <event_list>
               <event>
                 <sub_title>Abdominal pain</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Diarrhoea</sub_title>
                 <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
               </event>
               <event>
@@ -1547,7 +2308,7 @@ Summary of Adverse Events includes only those participants who received at least
             <event_list>
               <event>
                 <sub_title>Cytokine release syndrome</sub_title>
-                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
               </event>
               <event>
                 <sub_title>Hypersensitivity</sub_title>
@@ -1564,6 +2325,10 @@ Summary of Adverse Events includes only those participants who received at least
               </event>
               <event>
                 <sub_title>Atypical pneumonia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Bacterial infection</sub_title>
                 <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
               </event>
               <event>
@@ -1592,7 +2357,7 @@ Summary of Adverse Events includes only those participants who received at least
               </event>
               <event>
                 <sub_title>Sepsis</sub_title>
-                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
               </event>
               <event>
                 <sub_title>Sinusitis</sub_title>
@@ -1600,7 +2365,7 @@ Summary of Adverse Events includes only those participants who received at least
               </event>
               <event>
                 <sub_title>Staphylococcal infection</sub_title>
-                <counts group_id="E1" subjects_affected="2" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="116"/>
               </event>
               <event>
                 <sub_title>Upper respiratory tract infection</sub_title>
@@ -1616,6 +2381,10 @@ Summary of Adverse Events includes only those participants who received at least
             <title>Injury, poisoning and procedural complications</title>
             <event_list>
               <event>
+                <sub_title>Accidental overdose</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
                 <sub_title>Incision site haemorrhage</sub_title>
                 <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
               </event>
@@ -1625,7 +2394,7 @@ Summary of Adverse Events includes only those participants who received at least
               </event>
               <event>
                 <sub_title>Overdose</sub_title>
-                <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="116"/>
               </event>
               <event>
                 <sub_title>Post lumbar puncture syndrome</sub_title>
@@ -1637,6 +2406,10 @@ Summary of Adverse Events includes only those participants who received at least
               </event>
               <event>
                 <sub_title>Subdural haemorrhage</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Thermal burn</sub_title>
                 <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
               </event>
             </event_list>
@@ -1654,6 +2427,10 @@ Summary of Adverse Events includes only those participants who received at least
               </event>
               <event>
                 <sub_title>Blood bilirubin increased</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Body temperature increased</sub_title>
                 <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
               </event>
               <event>
@@ -1681,6 +2458,10 @@ Summary of Adverse Events includes only those participants who received at least
                 <sub_title>Kaposi's sarcoma</sub_title>
                 <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
               </event>
+              <event>
+                <sub_title>Leukaemia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
             </event_list>
           </category>
           <category>
@@ -1699,10 +2480,6 @@ Summary of Adverse Events includes only those participants who received at least
                 <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
               </event>
               <event>
-                <sub_title>Convulsion</sub_title>
-                <counts group_id="E1" subjects_affected="3" subjects_at_risk="116"/>
-              </event>
-              <event>
                 <sub_title>Dysarthria</sub_title>
                 <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
               </event>
@@ -1711,7 +2488,7 @@ Summary of Adverse Events includes only those participants who received at least
                 <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
               </event>
               <event>
-                <sub_title>Grand mal convulsion</sub_title>
+                <sub_title>Generalised tonic-clonic seizure</sub_title>
                 <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
               </event>
               <event>
@@ -1733,6 +2510,10 @@ Summary of Adverse Events includes only those participants who received at least
               <event>
                 <sub_title>Paraesthesia</sub_title>
                 <counts group_id="E1" subjects_affected="1" subjects_at_risk="116"/>
+              </event>
+              <event>
+                <sub_title>Seizure</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="116"/>
               </event>
               <event>
                 <sub_title>Tremor</sub_title>
@@ -1791,7 +2572,7 @@ Summary of Adverse Events includes only those participants who received at least
       </serious_events>
       <other_events>
         <frequency_threshold>5</frequency_threshold>
-        <default_vocab>MedDRA 17.0</default_vocab>
+        <default_vocab>MedDRA 18.0</default_vocab>
         <default_assessment>Systematic Assessment</default_assessment>
         <category_list>
           <category>
@@ -1799,7 +2580,7 @@ Summary of Adverse Events includes only those participants who received at least
             <event_list>
               <event>
                 <sub_title>Total, other adverse events</sub_title>
-                <counts group_id="E1" subjects_affected="110" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="111" subjects_at_risk="116"/>
               </event>
             </event_list>
           </category>
@@ -1808,7 +2589,7 @@ Summary of Adverse Events includes only those participants who received at least
             <event_list>
               <event>
                 <sub_title>Anaemia</sub_title>
-                <counts group_id="E1" subjects_affected="7" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
               </event>
               <event>
                 <sub_title>Leukopenia</sub_title>
@@ -1816,7 +2597,7 @@ Summary of Adverse Events includes only those participants who received at least
               </event>
               <event>
                 <sub_title>Neutropenia</sub_title>
-                <counts group_id="E1" subjects_affected="13" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="14" subjects_at_risk="116"/>
               </event>
             </event_list>
           </category>
@@ -1833,7 +2614,7 @@ Summary of Adverse Events includes only those participants who received at least
               </event>
               <event>
                 <sub_title>Nausea</sub_title>
-                <counts group_id="E1" subjects_affected="26" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="27" subjects_at_risk="116"/>
               </event>
               <event>
                 <sub_title>Vomiting</sub_title>
@@ -1846,7 +2627,7 @@ Summary of Adverse Events includes only those participants who received at least
             <event_list>
               <event>
                 <sub_title>Chills</sub_title>
-                <counts group_id="E1" subjects_affected="29" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="30" subjects_at_risk="116"/>
               </event>
               <event>
                 <sub_title>Fatigue</sub_title>
@@ -1854,7 +2635,7 @@ Summary of Adverse Events includes only those participants who received at least
               </event>
               <event>
                 <sub_title>Pyrexia</sub_title>
-                <counts group_id="E1" subjects_affected="97" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="99" subjects_at_risk="116"/>
               </event>
             </event_list>
           </category>
@@ -1874,6 +2655,10 @@ Summary of Adverse Events includes only those participants who received at least
           <category>
             <title>Investigations</title>
             <event_list>
+              <event>
+                <sub_title>Blood immunoglobulin G decreased</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
+              </event>
               <event>
                 <sub_title>C-reactive protein increased</sub_title>
                 <counts group_id="E1" subjects_affected="6" subjects_at_risk="116"/>
@@ -1902,11 +2687,11 @@ Summary of Adverse Events includes only those participants who received at least
             <event_list>
               <event>
                 <sub_title>Arthralgia</sub_title>
-                <counts group_id="E1" subjects_affected="14" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="15" subjects_at_risk="116"/>
               </event>
               <event>
                 <sub_title>Back pain</sub_title>
-                <counts group_id="E1" subjects_affected="9" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="10" subjects_at_risk="116"/>
               </event>
               <event>
                 <sub_title>Pain in extremity</sub_title>
@@ -1935,7 +2720,7 @@ Summary of Adverse Events includes only those participants who received at least
               </event>
               <event>
                 <sub_title>Tremor</sub_title>
-                <counts group_id="E1" subjects_affected="27" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="28" subjects_at_risk="116"/>
               </event>
             </event_list>
           </category>
@@ -1953,7 +2738,7 @@ Summary of Adverse Events includes only those participants who received at least
             <event_list>
               <event>
                 <sub_title>Cough</sub_title>
-                <counts group_id="E1" subjects_affected="14" subjects_at_risk="116"/>
+                <counts group_id="E1" subjects_affected="15" subjects_at_risk="116"/>
               </event>
             </event_list>
           </category>

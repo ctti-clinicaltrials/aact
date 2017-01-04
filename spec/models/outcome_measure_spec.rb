@@ -28,6 +28,15 @@ describe OutcomeMeasure do
     expect(measures.first.ctgov_group_code).to eq('O1')
   end
 
+  it "should handle outcomes that have no measures" do
+    nct_id='NCT00023673'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    o=study.outcomes.select{|x|x.title=='Partial Organ Tolerance Doses for Lung and Esophagus'}
+    expect(o.size).to eq(1)
+    expect(o.first.outcome_measures.size).to eq(0)
+  end
+
   it "saves dispersion type in both measures and measurements" do
     nct_id='NCT01174550'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))

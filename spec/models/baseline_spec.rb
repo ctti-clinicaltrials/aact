@@ -76,6 +76,24 @@ describe BaselineMeasure do
     expect(baseline_array.first.param_value).to eq('26')
     expect(baseline_array.first.dispersion_value).to eq('1.2')
     expect(baseline_array.first.dispersion_type).to eq('Standard Deviation')
+    baseline_array=study.baseline_measures.select{|x| x.title=='Gender' and x.ctgov_group_code=='B1'}
+    expect(baseline_array.size).to eq(2)
+    female_baseline=baseline_array.select{|x|x.classification=='Female'}.first
+    male_baseline=baseline_array.select{|x|x.classification=='Male'}.first
+    expect(female_baseline.units).to eq('participants')
+    expect(female_baseline.param_type).to eq('Number')
+    expect(female_baseline.param_value).to eq('9')
+    expect(female_baseline.result_group.description).to eq('9 PCOS women')
+
+    # This is an example of why we might want to dispense with the attempt
+    # to link all result-type rows to result_group
+    # There's only 1 gtoup defined for baseline (B1: 9 PCOS women), but both
+    # Male and Female measures are associated with group code B1.
+
+    expect(male_baseline.units).to eq('participants')
+    expect(male_baseline.param_type).to eq('Number')
+    expect(male_baseline.param_value).to eq('0')
+    expect(male_baseline.result_group.description).to eq('9 PCOS women')
   end
 
 end
