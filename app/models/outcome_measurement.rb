@@ -18,7 +18,7 @@ class OutcomeMeasurement < StudyRelationship
         col << new.create_from(opts)
       else
         while category
-          opts[:category]=category.xpath('sub_title').text
+          opts[:category]=category.xpath('title').text
           measurements=category.xpath("measurement_list").xpath('measurement')
           gr=measurements.pop
           if gr.blank?
@@ -61,6 +61,7 @@ class OutcomeMeasurement < StudyRelationship
       :classification         => get_opt('classification'),
       :category               => get_opt('category'),
       :ctgov_group_code       => get_opt('ctgov_group_code'),
+      :param_type             => get_opt('param_type'),
       :param_value            => get_opt('param_value'),
       :param_value_num        => get_opt('param_value_num'),
       :dispersion_type        => get_opt('dispersion_type'),

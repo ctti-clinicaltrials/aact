@@ -18,7 +18,7 @@ class CreateAdminTables < ActiveRecord::Migration
       t.string   'table_name'
       t.string   'nct_id'
       t.integer  'row_count'
-      t.text     'report'
+      t.text     'description'
       t.timestamps null: false
     end
 
@@ -35,6 +35,27 @@ class CreateAdminTables < ActiveRecord::Migration
       t.string   "nct_id"
       t.xml      "content"
       t.datetime "created_study_at"
+      t.timestamps null: false
+    end
+
+    create_table :use_cases do |t|
+      t.string 'status'
+      t.string 'title'
+      t.string 'brief_summary'
+      t.text   'detailed_description'
+      t.string 'url'
+      t.string 'submitter_name'
+      t.string 'contact_info'
+      t.string 'email'
+      t.binary 'image'
+      t.string 'remote_image_url'
+      t.timestamps null: false
+    end
+
+    create_table :use_case_attachments do |t|
+      t.integer 'use_case_id'
+      t.string 'file_name'
+      t.binary 'payload'
       t.timestamps null: false
     end
 

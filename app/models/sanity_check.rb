@@ -8,27 +8,57 @@ class SanityCheck < ActiveRecord::Base
     }
   end
 
-  def self.report_duplication
+  def self.check_for_orphans
+    parent_children_relationships.each{|r|
+      parent = r.first
+      child = r.last
+      query=self.orphan_check_sql(parent,child)
+      cntr=0
+      ActiveRecord::Base.connection.execute(query).each{|orphan|
+        cntr=cntr+1
+        new({:nct_id=>orphan['nct_id'],:table_name=>child,:description=>"Orphaned from #{parent}"}).save
+        return if cntr > 100  # if a widespread problem, we just need to see some examples
+      }
+    }
+  end
+
+  def self.orphan_check_sql(parent,child)
+    "SELECT  distinct l.nct_id
+       FROM    #{child} l
+     LEFT JOIN #{parent} r
+         ON  r.nct_id = l.nct_id
+      WHERE  r.nct_id IS NULL "
+  end
+
+  def self.parent_children_relationships
+    [
+      ['studies','outcomes'],
+      ['studies','reported_events'],
+      ['outcomes','outcome_measures'],
+      ['outcomes','outcome_analyses'],
+      ['outcomes','outcome_groups'],
+      ['outcome_measures','outcome_measurements'],
+      ['outcome_analyses','outcome_analysis_groups'],
+    ]
+  end
+
+  def self.check_for_duplicates
     ClinicalTrials::Updater.single_study_tables.each{|table_name|
       results=ActiveRecord::Base.connection.execute("
          SELECT nct_id, count(*)
            FROM #{table_name}
            GROUP BY nct_id
-           HAVING COUNT(*) = 1")
+           HAVING COUNT(*) > 1")
       results.values.each{|row|
-        new({:table_name=>"#{table_name} duplicate",:nct_id=>row.first,:row_count=>row.last}).save!
+        new({:table_name=>"#{table_name} duplicate",:nct_id=>row.first,:row_count=>row.last,:description=>'duplicate'}).save!
       }
     }
   end
 
   def self.run
-    sanity_check = new
-    sanity_check.report = sanity_check.generate_report
-    sanity_check.save
-  end
-
-  def report
-    JSON.parse(read_attribute(:report)).with_indifferent_access
+    self.save_row_counts
+    self.check_for_orphans
+    self.check_for_duplicates
   end
 
   def generate_report

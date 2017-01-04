@@ -248,6 +248,18 @@ class Study < ActiveRecord::Base
     Date.parse(str) if !str.blank?
   end
 
+  def outcome_measures
+    OutcomeMeasure.where('nct_id=?',nct_id)
+  end
+
+  def outcome_measurements
+    OutcomeMeasurement.where('nct_id=?',nct_id)
+  end
+
+  def outcome_counts
+    OutcomeCount.where('nct_id=?',nct_id)
+  end
+
   def intervention_names
     interventions.collect{|x|x.name}.join(', ')
   end

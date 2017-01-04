@@ -51,6 +51,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.text   "recruitment_details"
       t.text   "pre_assignment_details"
     end
+
     create_table "drop_withdrawals", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
@@ -117,7 +118,6 @@ class CreateResultTables < ActiveRecord::Migration
       t.text    "time_frame"
       t.string  "safety_issue"
       t.text    "population"
-      t.integer "participant_count"
       t.string  "anticipated_posting_month_year"
     end
 
@@ -126,7 +126,6 @@ class CreateResultTables < ActiveRecord::Migration
       t.integer "outcome_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
-      t.integer "participant_count"
     end
 
     create_table "outcome_measures", force: :cascade do |t|
@@ -137,7 +136,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "population"
       t.string  "units"
       t.string  "units_analyzed"
-      t.string  "dispersion"
+      t.string  "dispersion_type"
       t.string  "param_type"
     end
 
@@ -156,6 +155,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "classification"
       t.string  "category"
       t.string  "ctgov_group_code"
+      t.string  "param_type"
       t.string  "param_value"
       t.decimal "param_value_num"
       t.string  "dispersion_type"

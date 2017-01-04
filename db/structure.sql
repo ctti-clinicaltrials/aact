@@ -239,14 +239,14 @@ CREATE TABLE calculated_values (
     completion_date date,
     nlm_download_date date,
     actual_duration integer,
-    were_results_reported boolean,
+    were_results_reported boolean DEFAULT false,
     months_to_report_results integer,
+    has_us_facility boolean DEFAULT false,
+    has_single_facility boolean DEFAULT false,
     minimum_age_num integer,
     maximum_age_num integer,
     minimum_age_unit character varying,
-    maximum_age_unit character varying,
-    has_us_facility boolean DEFAULT false,
-    has_single_facility boolean DEFAULT false
+    maximum_age_unit character varying
 );
 
 
@@ -1053,8 +1053,7 @@ CREATE TABLE outcome_groups (
     nct_id character varying,
     outcome_id integer,
     result_group_id integer,
-    ctgov_group_code character varying,
-    participant_count integer
+    ctgov_group_code character varying
 );
 
 
@@ -1088,6 +1087,7 @@ CREATE TABLE outcome_measurements (
     classification character varying,
     category character varying,
     ctgov_group_code character varying,
+    param_type character varying,
     param_value character varying,
     param_value_num numeric,
     dispersion_type character varying,
@@ -1131,7 +1131,7 @@ CREATE TABLE outcome_measures (
     population character varying,
     units character varying,
     units_analyzed character varying,
-    dispersion character varying,
+    dispersion_type character varying,
     param_type character varying
 );
 
@@ -1168,7 +1168,6 @@ CREATE TABLE outcomes (
     time_frame text,
     safety_issue character varying,
     population text,
-    participant_count integer,
     anticipated_posting_month_year character varying
 );
 
@@ -1470,7 +1469,7 @@ CREATE TABLE sanity_checks (
     table_name character varying,
     nct_id character varying,
     row_count integer,
-    report text,
+    description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -2825,8 +2824,4 @@ INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20161103150339');
-
-INSERT INTO schema_migrations (version) VALUES ('20161129151700');
 
