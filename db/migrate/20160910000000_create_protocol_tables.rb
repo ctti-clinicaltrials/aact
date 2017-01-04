@@ -30,10 +30,10 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.date    "completion_date"
       t.date    "nlm_download_date"
       t.integer "actual_duration"
-      t.boolean "were_results_reported"
+      t.boolean "were_results_reported", default: false
       t.integer "months_to_report_results"
-      t.boolean "has_minimum_age"
-      t.boolean "has_maximum_age"
+      t.boolean "has_us_facility", default: false
+      t.boolean "has_single_facility", default: false
       t.integer "minimum_age_num"
       t.integer "maximum_age_num"
       t.string  "minimum_age_unit"

@@ -7,43 +7,208 @@ end
 class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
+  def self.refresh_table
+    ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
+    ActiveRecord::Base.connection.execute('TRUNCATE table calculated_values')
+    ActiveRecord::Base.connection.execute("INSERT INTO calculated_values (
+                 nct_id,
+                 start_date,
+                 verification_date,
+                 completion_date,
+                 primary_completion_date,
+                 nlm_download_date
+          )
+          SELECT nct_id,
+                 to_date(start_month_year, 'Month YYYY'),
+                 to_date(verification_month_year, 'Month YYYY'),
+                 to_date(completion_month_year, 'Month YYYY'),
+                 to_date(primary_completion_month_year, 'Month YYYY'),
+                 to_date(substring(nlm_download_date_description,43), 'Month DD,YYYY')
+            FROM studies")
+
+    self.sql_methods.each{|method|
+      cmd='UPDATE calculated_values '+ CalculatedValue.send(method)
+      ActiveRecord::Base.connection.execute(cmd)
+    }
+    ActiveRecord::Base.connection.execute("GRANT SELECT ON TABLE calculated_values TO aact")
+  end
+
+  def self.refresh_table_for_studies(id_array)
+    ids=id_array.map { |i| "'" + i.to_s + "'" }.join(",")
+    ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
+    ActiveRecord::Base.connection.execute("DELETE FROM calculated_values WHERE NCT_ID IN (#{ids})")
+    ActiveRecord::Base.connection.execute("INSERT INTO calculated_values (
+                 nct_id,
+                 start_date,
+                 verification_date,
+                 completion_date,
+                 primary_completion_date,
+                 nlm_download_date
+          )
+          SELECT nct_id,
+                 to_date(start_month_year, 'Month YYYY'),
+                 to_date(verification_month_year, 'Month YYYY'),
+                 to_date(completion_month_year, 'Month YYYY'),
+                 to_date(primary_completion_month_year, 'Month YYYY'),
+                 to_date(substring(nlm_download_date_description,43), 'Month DD,YYYY')
+            FROM studies
+          WHERE NCT_ID IN (#{ids})")
+    self.sql_methods.each{|method|
+      cmd='UPDATE calculated_values '+ CalculatedValue.send(method) + " AND calculated_values.nct_id IN (#{ids})"
+      ActiveRecord::Base.connection.execute(cmd)
+    }
+    ActiveRecord::Base.connection.execute("GRANT SELECT ON TABLE calculated_values TO aact")
+  end
+
+  def self.sql_methods
+    [
+      :sql_for_registered_in_calendar_year,
+      :sql_for_were_results_reported,
+      :sql_for_has_single_facility,
+      :sql_for_has_us_facility,
+      :sql_for_number_of_facilities,
+      :sql_for_months_to_report_results,
+      :sql_for_actual_duration,
+      :sql_for_number_of_sae_subjects,
+      :sql_for_number_of_nsae_subjects,
+      :sql_for_minimum_age_num,
+      :sql_for_minimum_age_unit,
+      :sql_for_maximum_age_num,
+      :sql_for_maximum_age_unit,
+      :sql_for_sponsor_type1,
+      :sql_for_sponsor_type2,
+      :sql_for_sponsor_type3,
+      :sql_for_sponsor_type4
+    ]
+
+  end
+
+  def self.sql_for_dates
+    "INSERT INTO calculated_values (
+                 nct_id,
+                 start_date,
+                 verification_date,
+                 completion_date,
+                 primary_completion_date,
+                 nlm_download_date
+          )
+          SELECT nct_id,
+                 to_date(start_month_year, 'Month YYYY'),
+                 to_date(verification_month_year, 'Month YYYY'),
+                 to_date(completion_month_year, 'Month YYYY'),
+                 to_date(primary_completion_month_year, 'Month YYYY'),
+                 to_date(substring(nlm_download_date_description,43), 'Month DD,YYYY')
+            FROM studies"
+  end
+
+  def self.sql_for_registered_in_calendar_year
+    "SET registered_in_calendar_year = x.res FROM ( SELECT nct_id, date_part('year', start_date) as res FROM calculated_values c) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.start_date IS NOT NULL"
+  end
+
+  def self.sql_for_were_results_reported
+    "SET were_results_reported=true WHERE nct_id in (SELECT distinct nct_id FROM outcomes)"
+  end
+
+  def self.sql_for_has_single_facility
+    "SET has_single_facility=true WHERE nct_id in (SELECT nct_id FROM facilities GROUP BY nct_id HAVING count(*)=1)"
+  end
+
+  def self.sql_for_has_us_facility
+    "SET has_us_facility=true WHERE nct_id in (SELECT distinct nct_id FROM facilities WHERE country='United States')"
+  end
+
+  def self.sql_for_number_of_facilities
+    "SET number_of_facilities = x.res FROM ( SELECT  nct_id, count(*) as res FROM facilities f GROUP BY nct_id) x WHERE x.nct_id = calculated_values.nct_id AND number_of_facilities is null"
+  end
+
+  def self.sql_for_months_to_report_results
+    "SET months_to_report_results = x.res FROM ( SELECT  s.nct_id, (s.first_received_results_date - c.primary_completion_date)/30 as res FROM studies s, calculated_values c WHERE s.nct_id=c.nct_id) x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_actual_duration
+    "SET actual_duration = x.res FROM ( SELECT  nct_id, (primary_completion_date -  start_date)/30 as res FROM calculated_values c) x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_number_of_sae_subjects
+    "SET number_of_sae_subjects = x.res FROM ( SELECT re.nct_id, sum(re.subjects_affected) as res FROM reported_events re WHERE re.event_type='serious' GROUP BY re.nct_id) x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_number_of_nsae_subjects
+    "SET number_of_nsae_subjects = x.res FROM ( SELECT re.nct_id, sum(re.subjects_affected) as res FROM reported_events re WHERE re.event_type='other' GROUP BY re.nct_id) x WHERE x.nct_id = calculated_values.nct_id "
+  end
+
+  def self.sql_for_minimum_age_num
+    "SET minimum_age_num = x.res FROM ( SELECT nct_id, substring(minimum_age from 1 for position(' ' in minimum_age))::integer as res FROM eligibilities WHERE minimum_age != 'N/A' AND minimum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_maximum_age_num
+    "SET maximum_age_num = x.res FROM ( SELECT nct_id, substring(maximum_age from 1 for position(' ' in maximum_age))::integer as res FROM eligibilities WHERE maximum_age != 'N/A' AND maximum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_maximum_age_unit
+    "SET maximum_age_unit = x.res FROM ( SELECT nct_id, substring(maximum_age from position(' ' in maximum_age)) as res FROM eligibilities WHERE maximum_age != 'N/A' AND maximum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_minimum_age_unit
+    "SET minimum_age_unit = x.res FROM ( SELECT nct_id, substring(minimum_age from position(' ' in minimum_age)) as res FROM eligibilities WHERE minimum_age != 'N/A' AND minimum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_sponsor_type1
+    #  FIRST: Set sponsor_type using lead sponsor if there's one (Should only be one lead?)
+    "SET sponsor_type= x.agency_class FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='lead' GROUP BY nct_id, agency_class HAVING count(*)=1) x WHERE x.nct_id = calculated_values.nct_id"
+  end
+
+  def self.sql_for_sponsor_type2
+    #  SECOND: Set sponsor_type to NIH if no lead sponsor and one of the collaborators is NIH
+    "SET sponsor_type= 'NIH' FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='collaborator' AND agency_class='NIH' GROUP BY nct_id, agency_class) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.sponsor_type IS NULL"
+  end
+
+  def self.sql_for_sponsor_type3
+    #  THIRD: Set sponsor_type to Industry if no lead sponsor and no NIH collaborators
+    "SET sponsor_type= 'Industry' FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='collaborator' AND agency_class='Industry' GROUP BY nct_id, agency_class) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.sponsor_type IS NULL"
+  end
+
+  def self.sql_for_sponsor_type4
+    #  FOURTH: If not yet set, set sponsor_type to 'Other'
+    "SET sponsor_type= 'Other' WHERE sponsor_type IS NULL"
+  end
+
   def create_from(new_study)
+    stime=Time.now
     self.study=new_study
-    assign_attributes(attribs) if !attribs.blank?
-    self.actual_duration = calc_actual_duration
+    self.start_date                = study.start_month_year.try(:to_date)
+    self.verification_date         = study.verification_month_year.try(:to_date)
+    self.completion_date           = study.completion_month_year.try(:to_date)
+    self.primary_completion_date   = study.primary_completion_month_year.try(:to_date)
+    self.has_us_facility           = calc_has_us_facility
+    self.has_single_facility       = calc_has_single_facility
+    self.number_of_facilities      = calc_number_of_facilities
+    self.actual_duration           = calc_actual_duration
+    self.sponsor_type              = calc_sponsor_type
+    self.were_results_reported     = calc_were_results_reported
+    self.registered_in_calendar_year = calc_registered_in_calendar_year
+
+    re=study.reported_events.where('subjects_affected is not null')
+    if re.size > 0
+      self.number_of_sae_subjects    = calc_number_of_subjects(re,'serious')
+      self.number_of_nsae_subjects   = calc_number_of_subjects(re,'other')
+    end
+
+    min_stuff=calc_age('min')
+    self.minimum_age_num           = min_stuff.first
+    self.minimum_age_unit          = min_stuff.last
+
+    max_stuff=calc_age('max')
+    self.maximum_age_num           = max_stuff.first
+    self.maximum_age_unit          = max_stuff.first
+
     self.months_to_report_results = calc_months_to_report_results
+    tm=Time.now - stime
     self
   end
 
-  def attribs
-    {
-      :start_date                  => study.start_month_year.try(:to_date),
-      :verification_date           => study.verification_month_year.try(:to_date),
-      :completion_date             => study.completion_month_year.try(:to_date),
-      :primary_completion_date     => study.primary_completion_month_year.try(:to_date),
-      :nlm_download_date           => get_download_date,
-      :sponsor_type                => calc_sponsor_type,
-      :were_results_reported       => calc_results_reported,
-      :registered_in_calendar_year => calc_registered_in_calendar_year,
-      :number_of_facilities        => calc_number_of_facilities,
-      :number_of_sae_subjects      => calc_number_of_sae_subjects,
-      :number_of_nsae_subjects     => calc_number_of_nsae_subjects,
-      :has_us_facility             => calc_has_us_facility,
-      :has_single_facility         => calc_has_single_facility,
-      :has_minimum_age             => calc_has_age_limit('min'),
-      :has_maximum_age             => calc_has_age_limit('max'),
-      :minimum_age_num             => calc_age('min'),
-      :maximum_age_num             => calc_age('max'),
-      :minimum_age_unit            => calc_age_unit('min'),
-      :maximum_age_unit            => calc_age_unit('max'),
-    }
-  end
-
-  def get_age(type)
-    type=='min' ?  study.eligibility.minimum_age : study.eligibility.maximum_age
-  end
-
   def calc_has_us_facility
+    ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
     !study.facilities.detect{|f|f.country=='United States'}.nil?
   end
 
@@ -56,13 +221,22 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_has_age_limit(type)
-    !calc_age(type).nil?
+    xtime=Time.now
+    result=!calc_age(type).nil?
+    tm=Time.now - xtime
+    return result
   end
 
   def calc_age(type)
     age=get_age(type)
-    first_part=age.split(' ').first
-    first_part.to_i if first_part and first_part.is_i?
+    age_first=age.split(' ').first
+    age_number=age_first.to_i if age_first and age_first.is_i?
+    age_unit=age.split(' ').last
+    [age_number,age_unit]
+  end
+
+  def get_age(type)
+    type == 'min' ?  study.eligibility.minimum_age : study.eligibility.maximum_age
   end
 
   def get_download_date
@@ -79,16 +253,13 @@ class CalculatedValue < ActiveRecord::Base
     return 'Other'
   end
 
-  def calc_number_of_sae_subjects
-    if study.reported_events.size > 0
-      study.reported_events.where('event_type = \'serious\' and subjects_affected is not null').sum(:subjects_affected)
-    end
-  end
-
-  def calc_number_of_nsae_subjects
-    if study.reported_events.size > 0
-      study.reported_events.where('event_type != \'serious\' and subjects_affected is not null').sum(:subjects_affected)
-    end
+  def calc_number_of_subjects(reported_events,type)
+    xtime=Time.now
+    all=reported_events.select{|re| re.event_type == type}.map(&:subjects_affected)
+    result=all.reduce(0, :+)
+    tm=Time.now - xtime
+    puts "time to load #{result}  #{type} subjects #{tm}    #{self.nct_id}" if tm > 1
+    return result
   end
 
   def calc_registered_in_calendar_year
@@ -100,19 +271,20 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_actual_duration
-    return if !primary_completion_date or !start_date
+    return if !self.primary_completion_date or !self.start_date
     return if study.primary_completion_date_type != 'Actual'
-    ((primary_completion_date.to_time -  start_date.to_time)/1.month.second).to_i
+    ((self.primary_completion_date.to_time -  self.start_date.to_time)/1.month.second).to_i
   end
 
-  def calc_results_reported
-    study.outcomes.size > 0
+  def calc_were_results_reported
+    self.study.outcomes.size > 0
   end
 
   def calc_months_to_report_results
-    return if !study.primary_completion_month_year or !study.first_received_results_date
-    return if study.primary_completion_date_type != 'Actual'
-    return if study.first_received_results_date.nil?
-    ((study.first_received_results_date.to_time -  primary_completion_date.to_time)/1.month.second).to_i
+    return if !self.study.primary_completion_month_year or !study.first_received_results_date
+    return if self.study.primary_completion_date_type != 'Actual'
+    return if self.study.first_received_results_date.nil?
+    ((self.study.first_received_results_date.to_time - self.primary_completion_date.to_time)/1.month.second).to_i
   end
+
 end

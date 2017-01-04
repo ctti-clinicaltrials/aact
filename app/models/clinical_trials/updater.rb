@@ -53,20 +53,20 @@ module ClinicalTrials
         @client.populate_studies
         finalize_full_load
         @load_event.complete({:new_studies=> Study.count})
-      rescue
+      rescue e
+        puts "Full load failed:  #{e}"
         grant_db_privs
-        @load_event.complete({:status=>'failed',:new_studies=> Study.count})
+        @load_event.complete({:status=>'failed', :problems=> e.to_s, :new_studies=> Study.count})
       end
     end
 
     def finalize_full_load
-      remove_indexes  # Index significantly slow the load process.
-      @client.populate_studies
       add_indexes
-      create_calculated_values
       grant_db_privs
+      create_calculated_values
       run_sanity_checks
       take_snapshot
+      create_flat_files
       send_notification
       @load_event.complete({:new_studies=> Study.count})
     end
@@ -137,7 +137,7 @@ module ClinicalTrials
     end
 
     def create_calculated_values
-      Study.each{|study| CalculatedValue.new.create_from(study).save! if study.calculated_value.nil?}
+      CalculatedValue.refresh_table
     end
 
     def add_indexes
@@ -155,8 +155,10 @@ module ClinicalTrials
       ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
       update_studies(ids)
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
+      CalculatedValue.refresh_table_for_studies(ids)
       run_sanity_checks
-      take_snapshot
+      #take_snapshot
+      #create_flat_files
       log_actual_counts
       @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       send_notification
@@ -203,11 +205,12 @@ module ClinicalTrials
     end
 
     def log(msg)
-      @load_event.log(msg)
+      puts msg
+      #@load_event.log(msg)
     end
 
     def show_progress(nct_id,action)
-      @load_event.log("#{action}: #{@study_counts[:count_down]} (#{nct_id})")
+      log("#{action}: #{@study_counts[:count_down]} (#{nct_id})")
     end
 
     def decrement_count_down
@@ -234,6 +237,10 @@ module ClinicalTrials
       TableExporter.new.run
     end
 
+    def create_flat_files
+      TableExporter.new.run(delimiter: '|', should_upload_to_s3: true)
+    end
+
     def truncate_tables
       ClinicalTrials::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
     end
@@ -251,7 +258,6 @@ module ClinicalTrials
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
       s=Study.new({ xml: new_xml, nct_id: nct_id }).create
-      CalculatedValue.new.create_from(s).save
     end
 
     def send_notification

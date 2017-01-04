@@ -57,23 +57,25 @@ module ClinicalTrials
       contents=doc.search('Contents')
       contents.each {|c|
         full_name=c.children.select{|c|c.name=='Key'}.first.children.text
-        last_modified=(c.children.select{|c|c.name=='LastModified'}.first.children.text).to_date.strftime('%Y-%m-%d')
+       last_modified=(c.children.select{|c|c.name=='LastModified'}.first.children.text).to_date.strftime('%Y-%m-%d')
         size=c.children.select{|c|c.name=='Size'}.first.children.text
 
         dir_and_file=full_name.split('/')
         if dir_and_file.first == dir
           file_name=dir_and_file.last
+          date_string=file_name.split('_').first
+          date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : date_string)
           file_url="#{server}/#{full_name}"
-          entries << {:name=>dir_and_file.last,:last_modified=>last_modified,:size=>number_to_human_size(size), :url=>file_url}
+          entries << {:name=>dir_and_file.last,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
         end
       }
-      entries.sort_by {|entry| entry[:last_modified]}.reverse!
+      entries.sort_by {|entry| entry[:name]}.reverse!
     end
 
     def dump_database
       dump_file_name='/app/tmp/postgres.dmp'
       File.delete(dump_file_name) if File.exist?(dump_file_name)
-      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump -h aact-dev.cr4nrslb1lw7.us-east-1.rds.amazonaws.com -p 5432 -U dbadmin --no-password --clean --exclude-table study_xml_records --exclude-table schema_migrations --exclude-table load_events --exclude-table statistics --exclude-table sanity_checks --exclude-table use_cases --exclude-table use_case_attachments -c -C -Fc -f /app/tmp/postgres.dmp aact`
+      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump -h $RDS_DB_HOSTNAME -p 5432 -U $RDS_DB_SUPER_USERNAME --no-password --clean --exclude-table study_xml_records --exclude-table schema_migrations --exclude-table load_events --exclude-table statistics --exclude-table sanity_checks --exclude-table use_cases --exclude-table use_case_attachments -c -C -Fc -f /app/tmp/postgres.dmp aact`
       return dump_file_name
     end
 

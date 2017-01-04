@@ -37,7 +37,7 @@ class BaselineMeasure < StudyRelationship
     col=[]
     cat=all.pop
     while cat
-      opts[:category]=cat.xpath('sub_title').text
+      opts[:category]=cat.xpath('title').text
       opts[:xml]=cat
       measurements=cat.xpath("measurement_list").xpath('measurement')
       measurement=measurements.pop
