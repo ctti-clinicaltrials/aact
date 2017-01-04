@@ -42,15 +42,15 @@ class SanityCheck < ActiveRecord::Base
     ]
   end
 
-  def self.report_duplication
+  def self.check_for_duplicates
     ClinicalTrials::Updater.single_study_tables.each{|table_name|
       results=ActiveRecord::Base.connection.execute("
          SELECT nct_id, count(*)
            FROM #{table_name}
            GROUP BY nct_id
-           HAVING COUNT(*) = 1")
+           HAVING COUNT(*) > 1")
       results.values.each{|row|
-        new({:table_name=>"#{table_name} duplicate",:nct_id=>row.first,:row_count=>row.last}).save!
+        new({:table_name=>"#{table_name} duplicate",:nct_id=>row.first,:row_count=>row.last,:description=>'duplicate'}).save!
       }
     }
   end
@@ -58,6 +58,7 @@ class SanityCheck < ActiveRecord::Base
   def self.run
     self.save_row_counts
     self.check_for_orphans
+    self.check_for_duplicates
   end
 
   def generate_report
