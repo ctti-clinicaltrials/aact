@@ -198,7 +198,12 @@ module ClinicalTrials
 
     def update_studies(nct_ids)
       log('update_studies...')
+      ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       set_count_down(nct_ids.size)
+      ClinicalTrials::Updater.loadable_tables.each { |table|
+        ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
+      }
+      ActiveRecord::Base.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
       nct_ids.each {|nct_id|
         refresh_study(nct_id)
         decrement_count_down
@@ -253,14 +258,12 @@ module ClinicalTrials
 
     def refresh_study(nct_id)
       stime=Time.now
-      old_xml_record = StudyXmlRecord.where(nct_id: nct_id) #should only be one
-      old_study=Study.where(nct_id: nct_id)    #should only be one
-      increment_study_counts(old_study.size)
-      log("delete existing data for #{nct_id}")
-      old_xml_record.each{|old| old.destroy }  # but remove all... just in case
-      old_study.each{|old| old.destroy }
-      log("deleted existing data for #{nct_id}:  #{Time.now - stime}")
-      stime=Time.now
+#      old_xml_record = StudyXmlRecord.where(nct_id: nct_id) #should only be one
+#      old_study=Study.where(nct_id: nct_id)    #should only be one
+#      increment_study_counts(old_study.size)
+#      old_xml_record.each{|old| old.destroy }  # but remove all... just in case
+#      old_study.each{|old| old.destroy }
+#      log("deleted existing data for #{nct_id}:  #{Time.now - stime}")
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
       log("retrieved xml for #{nct_id}:  #{Time.now - stime}")
