@@ -151,7 +151,17 @@ module ClinicalTrials
       log("finding studies changed in past #{days_back} days...")
       ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
       log("found #{ids.size} studies that have been changed or added")
-      return if ids.size == 0
+      case ids.size
+      when 0
+        @load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
+        send_notification
+        return
+      when 10000..(1.0/0.0)
+        log("Incremental load size is suspiciously large. Aborting load.")
+        @load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
+        send_notification
+        return
+      end
       set_expected_counts(ids)
       ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
       remove_indexes  # Index significantly slow the load process.
@@ -160,8 +170,6 @@ module ClinicalTrials
       CalculatedValue.refresh_table_for_studies(ids)
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
-      #take_snapshot
-      #create_flat_files
       log_actual_counts
       @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
       send_notification
@@ -200,8 +208,11 @@ module ClinicalTrials
       log('update_studies...')
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       set_count_down(nct_ids.size)
+
       ClinicalTrials::Updater.loadable_tables.each { |table|
+        stime=Time.now
         ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
+        log("deleted studies from #{table}   #{Time.now - stime}")
       }
       ActiveRecord::Base.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
       nct_ids.each {|nct_id|
@@ -258,12 +269,6 @@ module ClinicalTrials
 
     def refresh_study(nct_id)
       stime=Time.now
-#      old_xml_record = StudyXmlRecord.where(nct_id: nct_id) #should only be one
-#      old_study=Study.where(nct_id: nct_id)    #should only be one
-#      increment_study_counts(old_study.size)
-#      old_xml_record.each{|old| old.destroy }  # but remove all... just in case
-#      old_study.each{|old| old.destroy }
-#      log("deleted existing data for #{nct_id}:  #{Time.now - stime}")
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
       log("retrieved xml for #{nct_id}:  #{Time.now - stime}")
