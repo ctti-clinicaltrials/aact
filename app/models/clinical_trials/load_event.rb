@@ -40,7 +40,7 @@ module ClinicalTrials
     end
 
     def log(msg)
-      stamped_message="\n#{Time.now.to_formatted_s(:db)} #{msg}"
+      stamped_message="\n#{Time.now} #{msg}"
       self.description << stamped_message
       self.save!
       $stdout.puts stamped_message
