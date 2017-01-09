@@ -57,7 +57,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "ctgov_group_code"
       t.string  "period"
       t.string  "reason"
-      t.integer "participant_count"
+      t.integer "count"
     end
 
     create_table "milestones", force: :cascade do |t|
@@ -67,7 +67,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "title"
       t.string  "period"
       t.text    "description"
-      t.integer "participant_count"
+      t.integer "count"
     end
 
     # ----  Baseline Data ----------------------------
@@ -125,6 +125,8 @@ class CreateResultTables < ActiveRecord::Migration
       t.integer "outcome_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
+      t.text    "title"
+      t.text    "description"
     end
 
     create_table "outcome_measures", force: :cascade do |t|

@@ -36,21 +36,21 @@ class DropWithdrawal < StudyRelationship
     {
       :result_group => get_group(opts[:groups]),
       :ctgov_group_code => gid,
-      :participant_count => get_attribute('count').to_i,
+      :count => get_attribute('count').to_i,
       :reason => get_opt(:reason),
       :period => get_opt(:period),
     }
   end
 
   def self.extract_summary
-    column_headers= ['nct_id','period','group','participant_count','reason']
+    column_headers= ['nct_id','period','group','count','reason']
 
     CSV.open("#{self.name}_Summary.csv", "wb", :write_headers=> true, :headers => column_headers) {|csv|
       all.each{|x|
         csv << [x.nct_id,
                 x.period,
                 x.result_group.title,
-                x.participant_count,
+                x.count,
                 x.reason]
       }
     }
