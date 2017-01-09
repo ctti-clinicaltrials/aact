@@ -42,6 +42,7 @@ describe OutcomeAnalysis do
     o=study.outcomes.select{|x|x.title=='Percentage of Patients Who Survive at Least 12 Months'}.first
     expect(o.groups.size).to eq(1)
     expect(o.groups.first.ctgov_group_code).to eq('O1')
+    expect(o.groups.first.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
     expect(o.groups.first.result_group.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
     expect(o.groups.first.result_group.result_type).to eq('Outcome')
     expect(o.outcome_analyses.size).to eq(0)
