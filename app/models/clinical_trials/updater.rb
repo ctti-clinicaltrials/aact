@@ -147,15 +147,17 @@ module ClinicalTrials
 
     def incremental
       log("begin incremental load...")
-      days_back=(@params[:days_back] ? @params[:days_back] : 4)
+      days_back=(@params[:days_back] ? @params[:days_back] : 2)
       log("finding studies changed in past #{days_back} days...")
       ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
       log("found #{ids.size} studies that have been changed or added")
       set_expected_counts(ids)
       ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
+      remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
-      ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
+      add_indexes
       CalculatedValue.refresh_table_for_studies(ids)
+      ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
       #take_snapshot
       #create_flat_files
