@@ -1018,7 +1018,7 @@ ALTER SEQUENCE outcome_analysis_groups_id_seq OWNED BY outcome_analysis_groups.i
 CREATE TABLE outcome_counts (
     id integer NOT NULL,
     nct_id character varying,
-    outcome_measure_id integer,
+    outcome_id integer,
     ctgov_group_code character varying,
     scope character varying,
     units character varying,
@@ -1053,7 +1053,6 @@ CREATE TABLE outcome_groups (
     id integer NOT NULL,
     nct_id character varying,
     outcome_id integer,
-    result_group_id integer,
     ctgov_group_code character varying,
     title text,
     description text
@@ -1086,7 +1085,7 @@ ALTER SEQUENCE outcome_groups_id_seq OWNED BY outcome_groups.id;
 CREATE TABLE outcome_measurements (
     id integer NOT NULL,
     nct_id character varying,
-    outcome_measure_id integer,
+    outcome_id integer,
     classification character varying,
     category character varying,
     ctgov_group_code character varying,
@@ -1171,7 +1170,11 @@ CREATE TABLE outcomes (
     time_frame text,
     safety_issue character varying,
     population text,
-    anticipated_posting_month_year character varying
+    anticipated_posting_month_year character varying,
+    units character varying,
+    units_analyzed character varying,
+    dispersion_type character varying,
+    param_type character varying
 );
 
 
