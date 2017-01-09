@@ -10,9 +10,9 @@ describe OutcomeAnalysis do
     expect(study.outcomes.select{|x|x.outcome_type=='Other Pre-specified'}.size).to eq(1)
     o=study.outcomes.select{|x|x.outcome_type=='Other Pre-specified'}.first
     expect(o.outcome_groups.size).to eq(2)
-    expect(o.measures.first.measurements.size).to eq(2)
-    expect(o.measures.first.dispersion_type).to eq('95% Confidence Interval')
-    expect(o.measures.first.param_type).to eq('Median')
+    expect(o.outcome_measurements.size).to eq(2)
+    expect(o.dispersion_type).to eq('95% Confidence Interval')
+    expect(o.param_type).to eq('Median')
     expect(o.analyses.first.groups.size).to eq(2)
     expect(o.title).to eq('Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up')
     expect(o.time_frame).to eq('Randomization until July 2015, approximately 33 months')
@@ -43,13 +43,8 @@ describe OutcomeAnalysis do
     expect(o.groups.size).to eq(1)
     expect(o.groups.first.ctgov_group_code).to eq('O1')
     expect(o.groups.first.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
-    expect(o.groups.first.result_group.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
-    expect(o.groups.first.result_group.result_type).to eq('Outcome')
     expect(o.outcome_analyses.size).to eq(0)
-    expect(o.outcome_measures.size).to eq(1)
-    expect(o.measures.size).to eq(1)
-    expect(o.measures.first.measurements.size).to eq(1)
-    m=o.measures.first.measurements.first
+    m=o.outcome_measurements.first
     expect(m.dispersion_lower_limit).to eq(61.5)
     expect(m.dispersion_upper_limit).to eq(85.0)
     expect(m.param_value_num).to eq(75.5)

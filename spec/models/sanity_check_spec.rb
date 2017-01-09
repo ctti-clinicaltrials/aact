@@ -10,7 +10,7 @@ describe SanityCheck do
   end
 
   it 'should have one row for each study-related table' do
-    expect(SanityCheck.count).to eq(43)
+    expect(SanityCheck.count).to eq(42)
   end
 
   it 'should have row count 1 for each table that has 1-to-1 relationship with studies table' do
