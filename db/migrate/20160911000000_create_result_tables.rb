@@ -22,7 +22,6 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "result_type"
       t.string  "title"
       t.text    "description"
-      t.integer "participant_count"
     end
 
     create_table "reported_events", force: :cascade do |t|
