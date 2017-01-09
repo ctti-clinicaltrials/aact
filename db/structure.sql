@@ -543,7 +543,7 @@ CREATE TABLE drop_withdrawals (
     ctgov_group_code character varying,
     period character varying,
     reason character varying,
-    participant_count integer
+    count integer
 );
 
 
@@ -909,7 +909,7 @@ CREATE TABLE milestones (
     title character varying,
     period character varying,
     description text,
-    participant_count integer
+    count integer
 );
 
 
