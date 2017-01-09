@@ -47,6 +47,8 @@ describe Study do
     it { should have_many(:milestones).dependent(:delete_all) }
     it { should have_many(:outcomes).dependent(:delete_all) }
     it { should have_many(:outcome_analyses).dependent(:delete_all) }
+    it { should have_many(:outcome_groups).dependent(:delete_all) }
+    it { should have_many(:outcome_measurements).dependent(:delete_all) }
     it { should have_many(:overall_officials).dependent(:delete_all) }
     it { should have_many(:oversight_authorities).dependent(:delete_all) }
     it { should have_many(:responsible_parties).dependent(:delete_all) }

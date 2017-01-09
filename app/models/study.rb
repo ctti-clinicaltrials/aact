@@ -44,7 +44,6 @@ class Study < ActiveRecord::Base
   has_many :outcome_analyses,      :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :outcome_groups,        :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :outcome_measurements,  :foreign_key => 'nct_id', :dependent => :delete_all
-  has_many :outcome_measures,      :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :oversight_authorities, :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :references,            :foreign_key => 'nct_id', :dependent => :delete_all
@@ -253,8 +252,12 @@ class Study < ActiveRecord::Base
     Date.parse(str) if !str.blank?
   end
 
-  def outcome_measures
-    OutcomeMeasure.where('nct_id=?',nct_id)
+  def outcome_analyses
+    OutcomeAnalysis.where('nct_id=?',nct_id)
+  end
+
+  def outcome_groups
+    OutcomeGroup.where('nct_id=?',nct_id)
   end
 
   def outcome_measurements
