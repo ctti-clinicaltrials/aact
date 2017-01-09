@@ -8,7 +8,7 @@ class LoadMailer < ApplicationMailer
   end
 
   def send_notification(email, load_event)
-    subject_line="AACT #{ENV['RAILS_ENV']} load status: #{load_event.status}. To add: #{load_event.should_add} To update: #{load_event.should_change} Total processed:  #{load_event.processed}"
+    subject_line="AACT #{ENV['RAILS_ENV']} #{load_event.event_type} Status: #{load_event.status}. To add: #{load_event.should_add} To update: #{load_event.should_change} Total processed:  #{load_event.processed}"
     mail(from: '<ctti.dcri@gmail.com>', to: email, subject: subject_line, body: load_event.description)
   end
 end
