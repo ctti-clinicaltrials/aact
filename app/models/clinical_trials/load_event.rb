@@ -10,7 +10,7 @@ module ClinicalTrials
       self.load_time = calculate_load_time
       if sc
         self.should_add = sc[:should_add]
-        self.should_changed = sc[:should_change]
+        self.should_change = sc[:should_change]
         self.processed = sc[:processed]
       end
       self.save!
