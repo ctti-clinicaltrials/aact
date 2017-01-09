@@ -151,6 +151,7 @@ module ClinicalTrials
       log("finding studies changed in past #{days_back} days...")
       ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
       log("found #{ids.size} studies that have been changed or added")
+      return if ids.size == 0
       set_expected_counts(ids)
       ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
       remove_indexes  # Index significantly slow the load process.
