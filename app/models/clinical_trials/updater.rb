@@ -253,11 +253,13 @@ module ClinicalTrials
       old_xml_record = StudyXmlRecord.where(nct_id: nct_id) #should only be one
       old_study=Study.where(nct_id: nct_id)    #should only be one
       increment_study_counts(old_study.size)
+      log("delete existing data for #{nct_id}")
       old_xml_record.each{|old| old.destroy }  # but remove all... just in case
       old_study.each{|old| old.destroy }
+      log("add new data for #{nct_id}")
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-      s=Study.new({ xml: new_xml, nct_id: nct_id }).create
+      Study.new({ xml: new_xml, nct_id: nct_id }).create
     end
 
     def send_notification
