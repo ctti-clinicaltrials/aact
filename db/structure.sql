@@ -1436,8 +1436,7 @@ CREATE TABLE result_groups (
     ctgov_group_code character varying,
     result_type character varying,
     title character varying,
-    description text,
-    participant_count integer
+    description text
 );
 
 
