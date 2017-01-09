@@ -257,7 +257,7 @@ module ClinicalTrials
       old_study.each{|old| old.destroy }
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-      s=Study.new({ xml: new_xml, nct_id: nct_id }).create
+      Study.new({ xml: new_xml, nct_id: nct_id }).create
     end
 
     def send_notification
