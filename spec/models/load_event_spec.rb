@@ -7,7 +7,6 @@ describe ClinicalTrials::LoadEvent do
 
     xit 'should not allow being completed twice' do
       load_event.complete
-
       expect(Proc.new {load_event.complete}).to raise_error(ClinicalTrials::LoadEvent::AlreadyCompletedError)
     end
   end
@@ -31,8 +30,8 @@ describe ClinicalTrials::LoadEvent do
       it 'should update the new and changed columns' do
         load_event.generate_report(new: 5, changed: 12)
 
-        expect(load_event.new_studies).to eq(5)
-        expect(load_event.changed_studies).to eq(12)
+        expect(load_event.should_add).to eq(5)
+        expect(load_event.should_change).to eq(12)
       end
     end
 

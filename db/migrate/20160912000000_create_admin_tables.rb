@@ -7,8 +7,9 @@ class CreateAdminTables < ActiveRecord::Migration
       t.string   "status"
       t.text     "description"
       t.text     "problems"
-      t.integer  "new_studies"
-      t.integer  "changed_studies"
+      t.integer  "should_add"
+      t.integer  "should_change"
+      t.integer  "processed"
       t.string   "load_time"
       t.datetime "completed_at"
       t.timestamps null: false
