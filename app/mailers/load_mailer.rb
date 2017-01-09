@@ -8,9 +8,12 @@ class LoadMailer < ApplicationMailer
   end
 
   def send_notification(email, load_event)
+    puts "==============================="
+    puts @load_event.inspect
+    puts "==============================="
     @load_event = load_event
 
     subject_line="AACT #{ENV['RAILS_ENV']} load completed with #{@load_event.errors.size} errors"
-    mail(from: 'Daily Load <daily_load@aact2.org>', to: email, subject: subject_line, body: @load_event.description)
+    mail(from: '<ctti.dcri@gmail.com>', to: email, subject: subject_line, body: @load_event.description)
   end
 end
