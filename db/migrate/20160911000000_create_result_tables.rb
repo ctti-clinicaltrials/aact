@@ -125,6 +125,8 @@ class CreateResultTables < ActiveRecord::Migration
       t.integer "outcome_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
+      t.text    "title"
+      t.text    "description"
     end
 
     create_table "outcome_measures", force: :cascade do |t|

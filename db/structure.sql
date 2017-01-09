@@ -1054,7 +1054,9 @@ CREATE TABLE outcome_groups (
     nct_id character varying,
     outcome_id integer,
     result_group_id integer,
-    ctgov_group_code character varying
+    ctgov_group_code character varying,
+    title text,
+    description text
 );
 
 

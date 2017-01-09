@@ -8,7 +8,7 @@ class LoadMailer < ApplicationMailer
   end
 
   def send_notification(email, load_event)
-    subject_line="AACT #{ENV['S3_BUCKET_NAME']} #{load_event.event_type} Status: #{load_event.status}. To add: #{load_event.should_add} To update: #{load_event.should_change} Total processed:  #{load_event.processed}"
+    subject_line="#{ENV['S3_BUCKET_NAME'].upcase} #{load_event.event_type.capitalize} Load: Status: #{load_event.status}. Add: #{load_event.should_add} Update: #{load_event.should_change} Studies processed:  #{load_event.processed}"
     mail(from: '<ctti.dcri@gmail.com>', to: email, subject: subject_line, body: load_event.description)
   end
 end
