@@ -206,7 +206,7 @@ module ClinicalTrials
 
     def log(msg)
       puts msg
-      #@load_event.log(msg)
+      @load_event.log(msg)
     end
 
     def show_progress(nct_id,action)
