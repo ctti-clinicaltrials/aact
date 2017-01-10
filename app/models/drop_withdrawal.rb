@@ -2,10 +2,6 @@ class DropWithdrawal < StudyRelationship
   belongs_to :result_group
 
   def self.create_all_from(opts)
-    opts[:xml]=opts[:xml].xpath('//participant_flow')
-    opts[:result_type]='Drop/Withdrawal'
-    opts[:groups]=create_group_set(opts)
-
     import(self.nested_pop_create(opts.merge(:name=>'drop_withdraw_reason')))
   end
 

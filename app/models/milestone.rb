@@ -3,9 +3,10 @@ class Milestone < StudyRelationship
 
   def self.create_all_from(opts)
     opts[:xml]=opts[:xml].xpath('//participant_flow')
-    opts[:result_type]='Milestone'
+    opts[:result_type]='Participant Flow'
     opts[:groups]=create_group_set(opts)
 
+    DropWithdrawal.create_all_from(opts)
     import(self.nested_pop_create(opts.merge(:name=>'milestone')))
   end
 
