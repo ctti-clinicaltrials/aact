@@ -103,9 +103,8 @@ class CreateResultTables < ActiveRecord::Migration
     #  study
     #     outcomes
     #        outcome_groups
-    #        outcome_measures
-    #           outcome_counts
-    #           outcome_measurements
+    #        outcome_counts
+    #        outcome_measurements
     #        outcome_analyses
     #           outcome_anaysis_groups
 
@@ -130,18 +129,6 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "ctgov_group_code"
       t.text    "title"
       t.text    "description"
-    end
-
-    create_table "outcome_measures", force: :cascade do |t|
-      t.string  "nct_id"
-      t.integer "outcome_id"
-      t.string  "title"
-      t.text    "description"
-      t.string  "population"
-      t.string  "units"
-      t.string  "units_analyzed"
-      t.string  "dispersion_type"
-      t.string  "param_type"
     end
 
     create_table "outcome_counts", force: :cascade do |t|

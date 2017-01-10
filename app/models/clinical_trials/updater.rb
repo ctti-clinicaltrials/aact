@@ -196,7 +196,6 @@ module ClinicalTrials
         sanity_checks
         statistics
         study_xml_records
-        outcome_measures
         use_cases
         use_case_attachments
       )
