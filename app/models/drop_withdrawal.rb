@@ -24,10 +24,6 @@ class DropWithdrawal < StudyRelationship
     col.flatten
   end
 
-  def gid
-    get_attribute('group_id')
-  end
-
   def attribs
     {
       :result_group => get_group(opts[:groups]),
@@ -35,20 +31,6 @@ class DropWithdrawal < StudyRelationship
       :count => get_attribute('count').to_i,
       :reason => get_opt(:reason),
       :period => get_opt(:period),
-    }
-  end
-
-  def self.extract_summary
-    column_headers= ['nct_id','period','group','count','reason']
-
-    CSV.open("#{self.name}_Summary.csv", "wb", :write_headers=> true, :headers => column_headers) {|csv|
-      all.each{|x|
-        csv << [x.nct_id,
-                x.period,
-                x.result_group.title,
-                x.count,
-                x.reason]
-      }
     }
   end
 
