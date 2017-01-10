@@ -47,7 +47,7 @@ describe ClinicalTrials::Updater do
     expect(study.responsible_parties.size).to eq(1)
     expect(study.result_agreements.size).to eq(1)
     expect(study.result_contacts.size).to eq(1)
-    expect(study.result_groups.size).to eq(199)
+    expect(study.result_groups.size).to eq(190)
     expect(study.sponsors.size).to eq(4)
 
     incoming=File.read("spec/support/xml_data/#{nct_id}_modified.xml")
@@ -89,7 +89,7 @@ describe ClinicalTrials::Updater do
     expect(study.responsible_parties.size).to eq(1)
     expect(study.result_agreements.size).to eq(1)
     expect(study.result_contacts.size).to eq(1)
-    expect(study.result_groups.size).to eq(199)
+    expect(study.result_groups.size).to eq(190)
     expect(study.sponsors.size).to eq(1)
   end
 

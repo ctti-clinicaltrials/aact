@@ -13,6 +13,7 @@ describe DropWithdrawal do
     p1=(study.drop_withdrawals.select{|m|m.ctgov_group_code=='P1'})
     expect(p1.size).to eq(2)
     expect(p1.first.result_group.title).to eq('Phase I: 75.25 Gy/36 fx + Chemotherapy')
+    expect(p1.first.result_group.result_type).to eq('Participant Flow')
     expect(p1.last.result_group.description).to eq('Phase I: Three-dimensional conformal radiation therapy (3DRT) of 75.25 Gy given in 36 fractions (2.15 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.')
 
     reason=p1.select{|x|x.reason=='Ineligible / no protocol treatment'}.first

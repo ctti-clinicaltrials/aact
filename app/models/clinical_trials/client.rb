@@ -70,7 +70,7 @@ module ClinicalTrials
       studies_to_load=StudyXmlRecord.not_yet_loaded(study_filter)
       cntr=studies_to_load.size
       start_time=Time.now
-      puts "Load #{cntr} studies ================================================ Start Time.....#{start_time}"
+      puts "Load #{cntr} studies Start Time.....#{start_time}"
       studies_to_load.each do |xml_record|
         stime=Time.now
         import_xml_file(xml_record.content)
@@ -80,7 +80,7 @@ module ClinicalTrials
         cntr=cntr-1
       end
       load_event.complete
-      puts "================================================ Total Load Time:.....#{Time.now - start_time}"
+      puts "Total Load Time:.....#{Time.now - start_time}"
     end
 
     def import_xml_file(study_xml, benchmark: false)
