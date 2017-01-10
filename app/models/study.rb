@@ -95,9 +95,8 @@ class Study < ActiveRecord::Base
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     Milestone.create_all_from(opts)
-    DropWithdrawal.create_all_from(opts)
+    #DropWithdrawal.create_all_from(opts)
     Outcome.create_all_from(opts)
-    #  ResultGroups get created in the process of creating the 4 above
     OversightAuthority.create_all_from(opts)
     OverallOfficial.create_all_from(opts)
     DesignOutcome.create_all_from(opts)
