@@ -73,6 +73,8 @@ class Study < ActiveRecord::Base
   end
 
   def create
+    s=Study.where('nct_id=?',nct_id).first
+    s.try(:destroy)
     update(attribs)
     groups=DesignGroup.create_all_from(opts)
     Intervention.create_all_from(opts.merge(:design_groups=>groups))
