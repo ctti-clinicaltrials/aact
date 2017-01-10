@@ -24,6 +24,8 @@ describe BaselineMeasure do
     b10=BaselineCount.where('ctgov_group_code=?','B10').first
     expect(b10.nct_id).to eq(nct_id)
     expect(b10.count).to eq(3839)
+    expect(b10.result_group.title).to eq('Total')
+    expect(b10.result_group.description).to eq('Total of all reporting groups')
     expect(b10.scope).to eq('Overall')
     expect(b10.units).to eq('Participants')
     b3=BaselineCount.where('ctgov_group_code=?','B3').first
@@ -31,6 +33,7 @@ describe BaselineMeasure do
     expect(b3.count).to eq(397)
     expect(b3.scope).to eq('Overall')
     expect(b3.units).to eq('Participants')
+    expect(b3.result_group.title).to eq('Arm A: Abacavir (ABC)+Lamivudine (3TC)+NNRTI')
 
     expect(study.baseline_population).to eq('All participants who were randomized were included except those who were randomised in error (main enrollment: 1 child HIV-uninfected, 2 on main phase of tuberculosis treatment; cotrimoxazole secondary randomization: 2 children receiving dapsone prophylaxis not cotrimoxazole).')
     expect(study.baseline_measures.size).to eq(380);
