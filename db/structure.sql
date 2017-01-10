@@ -2696,7 +2696,7 @@ CREATE INDEX index_studies_on_last_known_status ON studies USING btree (last_kno
 -- Name: index_studies_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
+CREATE UNIQUE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
 
 
 --
