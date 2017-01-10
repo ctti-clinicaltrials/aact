@@ -29,6 +29,7 @@ class BaselineMeasure < StudyRelationship
       measure=all.pop
     end
     opts[:xml]=original_xml
+    BaselineCount.create_all_from(opts)
     col.flatten.each{|x|x.save!}
   end
 
