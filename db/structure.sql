@@ -62,6 +62,7 @@ SET default_with_oids = false;
 CREATE TABLE baseline_counts (
     id integer NOT NULL,
     nct_id character varying,
+    result_group_id integer,
     ctgov_group_code character varying,
     units character varying,
     scope character varying,

@@ -85,7 +85,6 @@ class Study < ActiveRecord::Base
     ParticipantFlow.new.create_from(opts).try(:save)
 
     BaselineMeasure.create_all_from(opts)
-    BaselineCount.create_all_from(opts)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     CentralContact.create_all_from(opts)
