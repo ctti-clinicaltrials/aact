@@ -44,6 +44,9 @@ describe OutcomeMeasurement do
     expect(o1_baseline.dispersion_upper_limit).to eq(38.2)
     expect(o1_baseline.param_value).to eq('21.5')
     expect(o1_baseline.param_value_num).to eq(21.5)
+    expect(o1_baseline.result_group.ctgov_group_code).to eq(o1_baseline.ctgov_group_code)
+    expect(o1_baseline.result_group.title).to eq('Anatomic Diagnostic Test')
+    expect(o1_baseline.result_group.description.gsub(/\n/,' ')).to eq('Coronary Angiography Coronary Angiography: Use of standard equipment for usual-care testing')
   end
 
   it "should belong to study as expected" do

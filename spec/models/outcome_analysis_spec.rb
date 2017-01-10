@@ -9,7 +9,6 @@ describe OutcomeAnalysis do
 
     expect(study.outcomes.select{|x|x.outcome_type=='Other Pre-specified'}.size).to eq(1)
     o=study.outcomes.select{|x|x.outcome_type=='Other Pre-specified'}.first
-    expect(o.outcome_groups.size).to eq(2)
     expect(o.outcome_measurements.size).to eq(2)
     expect(o.dispersion_type).to eq('95% Confidence Interval')
     expect(o.param_type).to eq('Median')
@@ -40,9 +39,9 @@ describe OutcomeAnalysis do
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     o=study.outcomes.select{|x|x.title=='Percentage of Patients Who Survive at Least 12 Months'}.first
-    expect(o.groups.size).to eq(1)
-    expect(o.groups.first.ctgov_group_code).to eq('O1')
-    expect(o.groups.first.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
+    #expect(o.groups.size).to eq(1)
+    #expect(o.groups.first.ctgov_group_code).to eq('O1')
+    #expect(o.groups.first.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
     expect(o.outcome_analyses.size).to eq(0)
     m=o.outcome_measurements.first
     expect(m.dispersion_lower_limit).to eq(61.5)

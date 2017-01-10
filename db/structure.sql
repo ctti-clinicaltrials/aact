@@ -989,6 +989,7 @@ CREATE TABLE outcome_analysis_groups (
     id integer NOT NULL,
     nct_id character varying,
     outcome_analysis_id integer,
+    result_group_id integer,
     ctgov_group_code character varying
 );
 
@@ -1020,6 +1021,7 @@ CREATE TABLE outcome_counts (
     id integer NOT NULL,
     nct_id character varying,
     outcome_id integer,
+    result_group_id integer,
     ctgov_group_code character varying,
     scope character varying,
     units character varying,
@@ -1047,39 +1049,6 @@ ALTER SEQUENCE outcome_counts_id_seq OWNED BY outcome_counts.id;
 
 
 --
--- Name: outcome_groups; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE outcome_groups (
-    id integer NOT NULL,
-    nct_id character varying,
-    outcome_id integer,
-    ctgov_group_code character varying,
-    title text,
-    description text
-);
-
-
---
--- Name: outcome_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE outcome_groups_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: outcome_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE outcome_groups_id_seq OWNED BY outcome_groups.id;
-
-
---
 -- Name: outcome_measurements; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1087,6 +1056,7 @@ CREATE TABLE outcome_measurements (
     id integer NOT NULL,
     nct_id character varying,
     outcome_id integer,
+    result_group_id integer,
     classification character varying,
     category character varying,
     ctgov_group_code character varying,
@@ -1926,13 +1896,6 @@ ALTER TABLE ONLY outcome_counts ALTER COLUMN id SET DEFAULT nextval('outcome_cou
 
 
 --
--- Name: outcome_groups id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY outcome_groups ALTER COLUMN id SET DEFAULT nextval('outcome_groups_id_seq'::regclass);
-
-
---
 -- Name: outcome_measurements id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2281,14 +2244,6 @@ ALTER TABLE ONLY outcome_analysis_groups
 
 ALTER TABLE ONLY outcome_counts
     ADD CONSTRAINT outcome_counts_pkey PRIMARY KEY (id);
-
-
---
--- Name: outcome_groups outcome_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY outcome_groups
-    ADD CONSTRAINT outcome_groups_pkey PRIMARY KEY (id);
 
 
 --
