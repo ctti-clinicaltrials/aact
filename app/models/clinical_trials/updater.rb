@@ -17,14 +17,14 @@ module ClinicalTrials
       end
       @client = ClinicalTrials::Client.new
       @load_event = ClinicalTrials::LoadEvent.create({:event_type=>record_type,:status=>'running',:description=>'',:problems=>''})
-      @study_counts={:should_add=>0,:should_change=>0,:add=>0,:change=>0,:count_down=>0}
+      @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
       self
     end
 
     def run
       if study_filter
         @client.populate_studies(study_filter)
-        @load_event.complete({:new_studies=> Study.count})
+        load_event.complete({:new_studies=> Study.count})
       else
         case params[:event_type]
         when 'full'
@@ -50,13 +50,14 @@ module ClinicalTrials
           truncate_tables
         end
         remove_indexes  # Index significantly slow the load process.
+        study_counts[:should_add]=StudyXmlRecord.count
+        study_counts[:should_change]=0
         @client.populate_studies
         finalize_full_load
-        @load_event.complete({:new_studies=> Study.count})
       rescue e
         puts "Full load failed:  #{e}"
         grant_db_privs
-        @load_event.complete({:status=>'failed', :problems=> e.to_s, :new_studies=> Study.count})
+        load_event.complete({:status=>'failed', :problems=> e.to_s, :study_counts=> study_counts})
       end
     end
 
@@ -67,8 +68,9 @@ module ClinicalTrials
       run_sanity_checks
       take_snapshot
       create_flat_files
+      study_counts[:processed]=Study.count
+      load_event.complete({:study_counts=>study_counts})
       send_notification
-      @load_event.complete({:new_studies=> Study.count})
     end
 
     def indexes
@@ -147,20 +149,31 @@ module ClinicalTrials
 
     def incremental
       log("begin incremental load...")
-      days_back=(@params[:days_back] ? @params[:days_back] : 4)
+      days_back=(@params[:days_back] ? @params[:days_back] : 2)
       log("finding studies changed in past #{days_back} days...")
       ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
       log("found #{ids.size} studies that have been changed or added")
+      case ids.size
+      when 0
+        load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
+        send_notification
+        return
+      when 10000..(1.0/0.0)
+        log("Incremental load size is suspiciously large. Aborting load.")
+        load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
+        send_notification
+        return
+      end
       set_expected_counts(ids)
       ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
+      remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
-      ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
+      add_indexes
       CalculatedValue.refresh_table_for_studies(ids)
+      ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
-      #take_snapshot
-      #create_flat_files
       log_actual_counts
-      @load_event.complete({:new_studies=> @study_counts[:add], :changed_studies => @study_counts[:change]})
+      load_event.complete({:study_counts=> study_counts})
       send_notification
     end
 
@@ -189,13 +202,17 @@ module ClinicalTrials
       ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
     end
 
-    def set_count_down(sum)
-      @study_counts[:count_down]=sum
-    end
-
     def update_studies(nct_ids)
       log('update_studies...')
-      set_count_down(nct_ids.size)
+      ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
+      study_counts[:count_down]=nct_ids.size
+
+      ClinicalTrials::Updater.loadable_tables.each { |table|
+        stime=Time.now
+        ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
+        log("deleted studies from #{table}   #{Time.now - stime}")
+      }
+      ActiveRecord::Base.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
       nct_ids.each {|nct_id|
         refresh_study(nct_id)
         decrement_count_down
@@ -205,24 +222,15 @@ module ClinicalTrials
     end
 
     def log(msg)
-      puts msg
-      #@load_event.log(msg)
+      load_event.log(msg)
     end
 
     def show_progress(nct_id,action)
-      log("#{action}: #{@study_counts[:count_down]} (#{nct_id})")
+      log("#{action}: #{study_counts[:count_down]} (#{nct_id})")
     end
 
     def decrement_count_down
-      @study_counts[:count_down]-=1
-    end
-
-    def increment_study_counts(study_exists)
-      if study_exists > 0
-        @study_counts[:change]+=1
-      else
-        @study_counts[:add]+=1
-      end
+      study_counts[:count_down]-=1
     end
 
     def run_sanity_checks
@@ -250,29 +258,29 @@ module ClinicalTrials
     end
 
     def refresh_study(nct_id)
-      old_xml_record = StudyXmlRecord.where(nct_id: nct_id) #should only be one
-      old_study=Study.where(nct_id: nct_id)    #should only be one
-      increment_study_counts(old_study.size)
-      old_xml_record.each{|old| old.destroy }  # but remove all... just in case
-      old_study.each{|old| old.destroy }
+      stime=Time.now
       new_xml=@client.get_xml_for(nct_id)
       StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-      s=Study.new({ xml: new_xml, nct_id: nct_id }).create
+      log("retrieved xml for #{nct_id}:  #{Time.now - stime}")
+      stime=Time.now
+      Study.new({ xml: new_xml, nct_id: nct_id }).create
+      study_counts[:processed]+=1
+      log("saved new data for #{nct_id}:  #{Time.now - stime}")
     end
 
     def send_notification
       log("send email notification...")
-      LoadMailer.send_notifications(@load_event)
+      LoadMailer.send_notifications(load_event)
     end
 
     def set_expected_counts(ids)
-      @study_counts[:should_change] = (Study.pluck(:nct_id) & ids).count
-      @study_counts[:should_add]    = (ids.count - @study_counts[:should_change])
-      log("should change: #{@study_counts[:should_change]};  should add: #{@study_counts[:should_add]}\n")
+      study_counts[:should_change] = (Study.pluck(:nct_id) & ids).count
+      study_counts[:should_add]    = (ids.count - study_counts[:should_change])
+      log("should change: #{study_counts[:should_change]};  should add: #{study_counts[:should_add]}\n")
     end
 
     def log_actual_counts
-      log("should change: #{@study_counts[:change]};  should add: #{@study_counts[:add]}\n")
+      log("studies added/changed: #{study_counts[:processed]}\n")
     end
 
     private

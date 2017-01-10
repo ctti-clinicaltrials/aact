@@ -34,10 +34,9 @@ class SanityCheck < ActiveRecord::Base
     [
       ['studies','outcomes'],
       ['studies','reported_events'],
-      ['outcomes','outcome_measures'],
       ['outcomes','outcome_analyses'],
       ['outcomes','outcome_groups'],
-      ['outcome_measures','outcome_measurements'],
+      ['outcomes','outcome_measurements'],
       ['outcome_analyses','outcome_analysis_groups'],
     ]
   end

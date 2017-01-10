@@ -1,4 +1,5 @@
 require 'action_view'
+require 'open-uri'
 include ActionView::Helpers::NumberHelper
 module ClinicalTrials
   class FileManager
@@ -90,11 +91,23 @@ module ClinicalTrials
       File.open(out_file_name)
     end
 
+    def make_file_from_website(fname,url)
+      open(url) {|site|
+        open("/app/tmp/#{fname}", "wb"){|out_file|
+            d=site.read
+            out_file.write(d)
+        }
+      }
+      return File.open("/app/tmp/#{fname}")
+    end
+
     def take_snapshot
       dump_database
       postgres_dump_file=File.open('/app/tmp/postgres.dmp')
       schema_diagram_file=get_reg_file({:directory_name=>'documentation',:file_name=>'aact_schema.png'})
       data_dictionary_file=get_reg_file({:directory_name=>'documentation',:file_name=>'aact_data_definitions.xlsx'})
+      nlm_protocol_file=make_file_from_website('nlm_protocol_definitions.html','https://prsinfo.clinicaltrials.gov/definitions.html')
+      nlm_result_file=make_file_from_website('nlm_result_definitions.html','https://prsinfo.clinicaltrials.gov/results_definitions.html')
 
       zip_file_name="#{Time.now.strftime('%Y%m%d')}_clinical_trials.zip"
       File.delete(zip_file_name) if File.exist?(zip_file_name)
@@ -102,6 +115,8 @@ module ClinicalTrials
         zipfile.add('data_dictionary.xlsx',data_dictionary_file)
         zipfile.add('schema_diagram.png',schema_diagram_file)
         zipfile.add('postgres_data.dmp',postgres_dump_file)
+        zipfile.add('nlm_protocol_definitions.html',nlm_protocol_file)
+        zipfile.add('nlm_result_definitions.html',nlm_result_file)
       }
       upload_to_s3({:directory_name=>'snapshots',:file_name=>zip_file_name})
     end

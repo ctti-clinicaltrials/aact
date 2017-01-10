@@ -19,7 +19,7 @@ describe Milestone do
 		expect(p1_milestone_period.size).to eq(3)
     p1_milestone=p1_milestones.select{|x|x.title=='STARTED' and x.period=='Initial Enrolment: CDM vs LCM'}.first
     expect(p1_milestone.description).to eq('Factorial randomization at enrolment: Number of eligible children randomized to this group in ARROW')
-    expect(p1_milestone.participant_count).to eq(606)
+    expect(p1_milestone.count).to eq(606)
   end
 
 end

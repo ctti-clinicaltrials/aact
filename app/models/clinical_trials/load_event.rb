@@ -4,11 +4,15 @@ module ClinicalTrials
 
     def complete(params={})
       return if self.completed_at.present?
+      sc=params[:study_counts]
       self.status  = (params[:status] ?  params[:status] : 'complete')
       self.completed_at = Time.now
       self.load_time = calculate_load_time
-      self.new_studies = params[:new_studies]
-      self.changed_studies = params[:changed_studies]
+      if sc
+        self.should_add = sc[:should_add]
+        self.should_change = sc[:should_change]
+        self.processed = sc[:processed]
+      end
       self.save!
     end
 
@@ -34,13 +38,13 @@ module ClinicalTrials
         raise IncorrectEventTypeError
       end
       update(
-        new_studies:     new,
-        changed_studies: changed
+        should_add:     new,
+        should_change: changed
       )
     end
 
     def log(msg)
-      stamped_message="\n#{Time.now.to_formatted_s(:db)} #{msg}"
+      stamped_message="\n#{Time.now} #{msg}"
       self.description << stamped_message
       self.save!
       $stdout.puts stamped_message

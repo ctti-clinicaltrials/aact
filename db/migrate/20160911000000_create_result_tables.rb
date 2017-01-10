@@ -22,7 +22,6 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "result_type"
       t.string  "title"
       t.text    "description"
-      t.integer "participant_count"
     end
 
     create_table "reported_events", force: :cascade do |t|
@@ -58,7 +57,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "ctgov_group_code"
       t.string  "period"
       t.string  "reason"
-      t.integer "participant_count"
+      t.integer "count"
     end
 
     create_table "milestones", force: :cascade do |t|
@@ -68,7 +67,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "title"
       t.string  "period"
       t.text    "description"
-      t.integer "participant_count"
+      t.integer "count"
     end
 
     # ----  Baseline Data ----------------------------
@@ -104,9 +103,8 @@ class CreateResultTables < ActiveRecord::Migration
     #  study
     #     outcomes
     #        outcome_groups
-    #        outcome_measures
-    #           outcome_counts
-    #           outcome_measurements
+    #        outcome_counts
+    #        outcome_measurements
     #        outcome_analyses
     #           outcome_anaysis_groups
 
@@ -119,30 +117,23 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "safety_issue"
       t.text    "population"
       t.string  "anticipated_posting_month_year"
-    end
-
-    create_table "outcome_groups", force: :cascade do |t|
-      t.string  "nct_id"
-      t.integer "outcome_id"
-      t.integer "result_group_id"
-      t.string  "ctgov_group_code"
-    end
-
-    create_table "outcome_measures", force: :cascade do |t|
-      t.string  "nct_id"
-      t.integer "outcome_id"
-      t.string  "title"
-      t.text    "description"
-      t.string  "population"
       t.string  "units"
       t.string  "units_analyzed"
       t.string  "dispersion_type"
       t.string  "param_type"
     end
 
+    create_table "outcome_groups", force: :cascade do |t|
+      t.string  "nct_id"
+      t.integer "outcome_id"
+      t.string  "ctgov_group_code"
+      t.text    "title"
+      t.text    "description"
+    end
+
     create_table "outcome_counts", force: :cascade do |t|
       t.string  "nct_id"
-      t.integer "outcome_measure_id"
+      t.integer "outcome_id"
       t.string  "ctgov_group_code"
       t.string  "scope"
       t.string  "units"
@@ -151,7 +142,7 @@ class CreateResultTables < ActiveRecord::Migration
 
     create_table "outcome_measurements", force: :cascade do |t|
       t.string  "nct_id"
-      t.integer "outcome_measure_id"
+      t.integer "outcome_id"
       t.string  "classification"
       t.string  "category"
       t.string  "ctgov_group_code"

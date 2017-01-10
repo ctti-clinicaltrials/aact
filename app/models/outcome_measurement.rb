@@ -1,5 +1,5 @@
 class OutcomeMeasurement < StudyRelationship
-  belongs_to :outcome_measure, autosave: true
+  belongs_to :outcome, autosave: true
 
   def self.create_all_from(opts)
     original_xml=opts[:xml]
@@ -57,7 +57,7 @@ class OutcomeMeasurement < StudyRelationship
 
   def attribs
     {
-      :outcome_measure        => get_opt(:outcome_measure),
+      :outcome                => get_opt(:outcome),
       :classification         => get_opt('classification'),
       :category               => get_opt('category'),
       :ctgov_group_code       => get_opt('ctgov_group_code'),

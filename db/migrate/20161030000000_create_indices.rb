@@ -9,7 +9,7 @@ class CreateIndices < ActiveRecord::Migration
     add_index :browse_interventions, :nct_id
     add_index :overall_officials, :nct_id
     add_index :responsible_parties, :nct_id
-    add_index :studies, :nct_id
+    add_index :studies, :nct_id, :unique => true
     add_index :study_xml_records, :nct_id
 
     add_index :baseline_measures, :category

@@ -28,7 +28,7 @@ class Milestone < StudyRelationship
     {
       :result_group => get_group(opts[:groups]),
       :ctgov_group_code => get_attribute('group_id'),
-      :participant_count => get_attribute('count').to_i,
+      :count => get_attribute('count').to_i,
       :description => xml.text,
       :title => get_opt('title'),
       :period => get_opt('period')
