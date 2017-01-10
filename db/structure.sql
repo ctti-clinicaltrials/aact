@@ -1121,43 +1121,6 @@ ALTER SEQUENCE outcome_measurements_id_seq OWNED BY outcome_measurements.id;
 
 
 --
--- Name: outcome_measures; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE outcome_measures (
-    id integer NOT NULL,
-    nct_id character varying,
-    outcome_id integer,
-    title character varying,
-    description text,
-    population character varying,
-    units character varying,
-    units_analyzed character varying,
-    dispersion_type character varying,
-    param_type character varying
-);
-
-
---
--- Name: outcome_measures_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE outcome_measures_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: outcome_measures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE outcome_measures_id_seq OWNED BY outcome_measures.id;
-
-
---
 -- Name: outcomes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1976,13 +1939,6 @@ ALTER TABLE ONLY outcome_measurements ALTER COLUMN id SET DEFAULT nextval('outco
 
 
 --
--- Name: outcome_measures id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY outcome_measures ALTER COLUMN id SET DEFAULT nextval('outcome_measures_id_seq'::regclass);
-
-
---
 -- Name: outcomes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2340,14 +2296,6 @@ ALTER TABLE ONLY outcome_groups
 
 ALTER TABLE ONLY outcome_measurements
     ADD CONSTRAINT outcome_measurements_pkey PRIMARY KEY (id);
-
-
---
--- Name: outcome_measures outcome_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY outcome_measures
-    ADD CONSTRAINT outcome_measures_pkey PRIMARY KEY (id);
 
 
 --
@@ -2748,7 +2696,7 @@ CREATE INDEX index_studies_on_last_known_status ON studies USING btree (last_kno
 -- Name: index_studies_on_nct_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
+CREATE UNIQUE INDEX index_studies_on_nct_id ON studies USING btree (nct_id);
 
 
 --
