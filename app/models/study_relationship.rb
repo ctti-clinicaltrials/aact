@@ -3,7 +3,7 @@ require 'active_support/all'
 
 class StudyRelationship < ActiveRecord::Base
   self.abstract_class = true;
-  attr_accessor :xml, :opts, :wrapper1_xml
+  attr_accessor :xml, :opts
   belongs_to :study, :foreign_key=> 'nct_id'
 
   def self.create_all_from(opts)
@@ -57,10 +57,6 @@ class StudyRelationship < ActiveRecord::Base
     existing.each{|x|x.destroy!}
   end
 
-  def wrapper1_xml
-    @wrapper1_xml ||= Nokogiri::XML('')
-  end
-
   def conditionally_create_from(opts)
     # this is a hook that any model can override to decide whether or not to proceed
     create_from(opts)
@@ -77,10 +73,6 @@ class StudyRelationship < ActiveRecord::Base
       assign_attributes(a)
     end
     self
-  end
-
-  def get_from_wrapper1(label)
-    wrapper1_xml.xpath("#{label}").text
   end
 
   def get(label)
