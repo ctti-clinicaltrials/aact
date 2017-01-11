@@ -69,23 +69,22 @@ class BaselineMeasurement < StudyRelationship
 
   def attribs
     {
-      :result_group => get_group(opts[:groups]),
-      :classification => get_opt('classification'),
-      :category => get_opt(:category),
-      :ctgov_group_code => gid,
-      :param_type => get_opt(:param),
-      :param_value => get_opt('param_value'),
-      :param_value_num => get_opt('param_value_num'),
-      :dispersion_type => get_opt(:dispersion),
+      :result_group           => get_group(opts[:groups]),
+      :classification         => get_opt('classification'),
+      :category               => get_opt(:category),
+      :ctgov_group_code       => gid,
+      :title                  => get_opt(:title),
+      :description            => get_opt(:description),
+      :units                  => get_opt(:units),
+      :param_type             => get_opt(:param),
+      :param_value            => get_opt('param_value'),
+      :param_value_num        => get_opt('param_value_num'),
+      :dispersion_type        => get_opt(:dispersion),
       :dispersion_value       => get_opt('dispersion_value'),
       :dispersion_value_num   => get_opt('dispersion_value_num'),
       :dispersion_lower_limit => get_opt('lower_limit'),
       :dispersion_upper_limit => get_opt('upper_limit'),
-      :explanation_of_na => xml.text,
-
-      :title => get_opt(:title),
-      :description => get_opt(:description),
-      :units => get_opt(:units),
+      :explanation_of_na      => xml.text,
     }
   end
 

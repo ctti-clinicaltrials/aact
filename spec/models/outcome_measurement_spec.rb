@@ -40,6 +40,9 @@ describe OutcomeMeasurement do
     expect(baseline_measurements.size).to eq(2)
     expect(baseline_measurements.first.dispersion_type).to eq('Inter-Quartile Range')
     o1_baseline=baseline_measurements.select{|x|x.ctgov_group_code=='O1'}.first
+    expect(o1_baseline.title).to eq(o1_baseline.outcome.title)
+    expect(o1_baseline.description).to eq(o1_baseline.outcome.description)
+    expect(o1_baseline.units).to eq(o1_baseline.outcome.units)
     expect(o1_baseline.dispersion_lower_limit).to eq(10.7)
     expect(o1_baseline.dispersion_upper_limit).to eq(38.2)
     expect(o1_baseline.param_value).to eq('21.5')
@@ -65,6 +68,9 @@ describe OutcomeMeasurement do
     o1=fsh.select{|x|x.ctgov_group_code=='O10'}.first
     expect(o1.explanation_of_na).to eq('Stimulated value not measured.')
     expect(o1.param_value).to eq('NA')
+    expect(o1.title).to eq(o1.outcome.title)
+    expect(o1.description).to eq(o1.outcome.description)
+    expect(o1.units).to eq(o1.outcome.units)
 
     outcome2=(study.outcomes.select{|o|o.outcome_type=='Primary' and o.title=='Estradiol During Phase I and Phase II'}).first
     expect(outcome2.description).to eq('Estradiol (pmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.')

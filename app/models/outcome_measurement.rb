@@ -66,6 +66,9 @@ class OutcomeMeasurement < StudyRelationship
       :outcome                => get_opt(:outcome),
       :classification         => get_opt('classification'),
       :category               => get_opt('category'),
+      :title                  => get_opt(:title),
+      :description            => get_opt(:description),
+      :units                  => get_opt(:units),
       :ctgov_group_code       => get_opt('group_id'),
       :param_type             => get_opt('param_type'),
       :param_value            => get_opt('param_value'),
@@ -76,6 +79,7 @@ class OutcomeMeasurement < StudyRelationship
       :dispersion_lower_limit => get_opt('lower_limit'),
       :dispersion_upper_limit => get_opt('upper_limit'),
       :explanation_of_na      => get_opt('explanation_of_na'),
+
     }
   end
 
