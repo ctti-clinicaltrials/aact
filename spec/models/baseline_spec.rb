@@ -10,6 +10,34 @@ describe BaselineMeasurement do
     expect(study.baseline_counts).to eq([])
   end
 
+  it "saves dispersion (spread) values as string & decimal" do
+    nct_id='NCT02958956'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    measurements=study.baseline_measurements.select{|x|
+      x.title=='Age' && x.units=='Years' && x.dispersion_type=='Standard Deviation' && x.ctgov_group_code=='B2'}
+    expect(measurements.size).to eq(1)
+    bm=measurements.first
+    expect(bm.param_value).to eq('59.7')
+    expect(bm.param_value_num).to eq(59.7)
+    expect(bm.dispersion_value).to eq('12.2')
+    expect(bm.dispersion_value_num).to eq(12.2)
+  end
+
+  it "saves dispersion lower/upper values as decimal" do
+    nct_id='NCT02708238'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    measurements=study.baseline_measurements.select{|x|
+      x.title=='Age' && x.units=='Days' && x.dispersion_type=='Full Range' && x.ctgov_group_code=='B1'}
+    expect(measurements.size).to eq(1)
+    bm=measurements.first
+    expect(bm.param_value).to eq('38')
+    expect(bm.param_value_num).to eq(38)
+    expect(bm.dispersion_lower_limit).to eq(14)
+    expect(bm.dispersion_upper_limit).to eq(86)
+  end
+
   it "study should have expected baseline relationships" do
     nct_id='NCT02028676'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -42,9 +70,11 @@ describe BaselineMeasurement do
     expect(bm.category).to eq('');
     expect(bm.units).to eq('participants');
     expect(bm.param_value).to eq('308');
+    expect(bm.param_value_num).to eq(308);
     bm3=study.baseline_measurements.select{|x|x.title=='Gender'  && x.classification=='Female' && x.ctgov_group_code=='B3'}.first
     expect(bm3.param_type).to eq('Number');
     expect(bm3.param_value).to eq('NA');
+    expect(bm3.param_value_num).to eq(nil);
     expect(bm3.explanation_of_na).to eq('Different randomized comparison');
     expect(bm3.dispersion_upper_limit).to eq(nil);
 
@@ -77,7 +107,9 @@ describe BaselineMeasurement do
     expect(baseline_array.first.units).to eq('years')
     expect(baseline_array.first.param_type).to eq('Mean')
     expect(baseline_array.first.param_value).to eq('26')
+    expect(baseline_array.first.param_value_num).to eq(26)
     expect(baseline_array.first.dispersion_value).to eq('1.2')
+    expect(baseline_array.first.dispersion_value_num).to eq(1.2)
     expect(baseline_array.first.dispersion_type).to eq('Standard Deviation')
     baseline_array=study.baseline_measurements.select{|x| x.title=='Gender' and x.ctgov_group_code=='B1'}
     expect(baseline_array.size).to eq(2)
@@ -86,6 +118,7 @@ describe BaselineMeasurement do
     expect(female_baseline.units).to eq('participants')
     expect(female_baseline.param_type).to eq('Number')
     expect(female_baseline.param_value).to eq('9')
+    expect(female_baseline.param_value_num).to eq(9)
     expect(female_baseline.result_group.description).to eq('9 PCOS women')
 
     # This is an example of why we might want to dispense with the attempt
@@ -96,6 +129,7 @@ describe BaselineMeasurement do
     expect(male_baseline.units).to eq('participants')
     expect(male_baseline.param_type).to eq('Number')
     expect(male_baseline.param_value).to eq('0')
+    expect(male_baseline.param_value_num).to eq(0)
     expect(male_baseline.result_group.description).to eq('9 PCOS women')
   end
 

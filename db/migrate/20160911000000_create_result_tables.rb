@@ -83,10 +83,12 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "units"
       t.string  "param_type"
       t.string  "param_value"
+      t.decimal "param_value_num"
       t.string  "dispersion_type"
       t.string  "dispersion_value"
-      t.string  "dispersion_lower_limit"
-      t.string  "dispersion_upper_limit"
+      t.decimal "dispersion_value_num"
+      t.decimal "dispersion_lower_limit"
+      t.decimal "dispersion_upper_limit"
       t.string  "explanation_of_na"
     end
 

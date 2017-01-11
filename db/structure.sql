@@ -108,8 +108,9 @@ CREATE TABLE baseline_measurements (
     param_value_num numeric,
     dispersion_type character varying,
     dispersion_value character varying,
-    dispersion_lower_limit character varying,
-    dispersion_upper_limit character varying,
+    dispersion_value_num numeric,
+    dispersion_lower_limit numeric,
+    dispersion_upper_limit numeric,
     explanation_of_na character varying
 );
 
@@ -1058,12 +1059,9 @@ CREATE TABLE outcome_measurements (
     nct_id character varying,
     outcome_id integer,
     result_group_id integer,
-    ctgov_group_code character varying,
     classification character varying,
     category character varying,
-    title character varying,
-    description text,
-    units character varying,
+    ctgov_group_code character varying,
     param_type character varying,
     param_value character varying,
     param_value_num numeric,

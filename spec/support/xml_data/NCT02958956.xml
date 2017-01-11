@@ -1,0 +1,4207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on January 11, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02958956</url>
+  </required_header>
+  <id_info>
+    <org_study_id>AD-4833_403A</org_study_id>
+    <secondary_id>EUPAS10335</secondary_id>
+    <nct_id>NCT02958956</nct_id>
+  </id_info>
+  <brief_title>Cohort Study of Pioglitazone and Cancer Incidence in Participants With Diabetes Mellitus.</brief_title>
+  <official_title>Cohort Study of Pioglitazone and Cancer Incidence in Patients With Diabetes Mellitus</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Takeda</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Takeda</source>
+  <oversight_info>
+    <authority>United States: Food and Drug Administration</authority>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study was to evaluate whether treatment with pioglitazone is associated
+      with risk of incident cancer at the 10 most common sites in a cohort of participants with
+      recognized diabetes.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      The study enroll a large population of approximately 252467 participants. The study would
+      analyze association of cancer and pioglitazone in 2 cohorts based on the usage of
+      pioglitazone. Participants in were originally planned to be followed-up from January 1, 1997
+      to December 31, 2005. Based on the discussion with advisory board, it was recommended to
+      increase the study population and duration of follow-up. The follow-up period was extended
+      to June 30, 2012 for the study.
+
+      This multi-center trial was conducted in the United States of America. The overall time to
+      participate in this study was approximately 15.5 years. Participants were followed-up from
+      January 1, 1997 up to June 30, 2012 for the assessment of cancer risk associated with
+      pioglitazone use.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>January 1997</start_date>
+  <completion_date type="Actual">May 2015</completion_date>
+  <primary_completion_date type="Actual">May 2015</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Observational</study_type>
+  <study_design>Observational Model: Cohort, Time Perspective: Prospective</study_design>
+  <primary_outcome>
+    <measure>Hazard Ratio of the 10 Most Common Cancers Associated With Ever Use of Pioglitazone</measure>
+    <time_frame>15 years 5 months</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with ever use of pioglitazone. Cox proportional hazards regression modeling was used to provide point and interval estimates of the relative hazard of the 10 most common cancers associated with ever use of pioglitazone. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Number of 10 Most Common Cancers Associated Cases</measure>
+    <time_frame>15 years 5 months</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>Number of 10 most common cancer cases are reported in this measure: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Hazard Ratio of the 10 Most Common Cancers Associated With Time Since First Use of Pioglitazone</measure>
+    <time_frame>15 years 5 months</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with time since first use of pioglitazone. The various times since initiation include &lt;12 months ago, 12-23 months ago, 24-35 months ago, 36-47 months ago, 48-83 months ago and 84+ months ago. Cox proportional hazards regression modeling was used to provide point and interval estimates of the time since first use. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of 10 Most Common Cancers Cases by Time Since First Use of Pioglitazone</measure>
+    <time_frame>15 years 5 months</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>Number of 10 most common cancer cases: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with time since first use of pioglitazone. Time since initiation of pioglitazone was categorized as &lt;12 months ago, 12-23 months ago, 24-35 months ago, 36-47 months ago, 48-83 months ago and 84+ months ago.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Hazard Ratio of the 10 Most Common Cancers Associated With Duration of Pioglitazone</measure>
+    <time_frame>15 years 5 months</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with duration of pioglitazone. The duration of pioglitazone was categorized as &lt;12 months, 12-23 months, 24-35 months, 36-59 months, 60+ months. Cox proportional hazards regression modeling was used to provide point and interval estimates of the cumulative duration. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of 10 Most Common Cancer Cases by Duration of Pioglitazone</measure>
+    <time_frame>15 years 5 months</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with duration of pioglitazone. The duration of pioglitazone was categorized as &lt;12 months, 12-23 months, 24-35 months, 36-59 months, 60+ months.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Hazard Ratio of the 10 Most Common Cancers Associated With Cumulative Dose of Pioglitazone</measure>
+    <time_frame>15 years 5 months</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 milligram (mg) and greater than or equal to (&gt;=) 50001 mg. Cox proportional hazards regression modeling was used to provide point and interval estimates of the dose. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of 10 Most Common Cancer Cases By Dose of Pioglitazone</measure>
+    <time_frame>15 years 5 months</time_frame>
+    <safety_issue>Yes</safety_issue>
+    <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 mg and &gt;=50001 mg.</description>
+  </secondary_outcome>
+  <number_of_groups>2</number_of_groups>
+  <enrollment type="Actual">252467</enrollment>
+  <condition>Diabetes Mellitus, Type 2, Cancer</condition>
+  <arm_group>
+    <arm_group_label>Ever User of Pioglitazone</arm_group_label>
+    <description>Ever user of pioglitazone was defined as having filled 2 prescriptions for the drug within a 6-month period.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Never User of Pioglitazone</arm_group_label>
+    <description>Never user of pioglitazone, which included participants receiving no diabetes medications, with fewer than 2 pioglitazone prescription fills in a 6-month period, and with use of diabetes medications other than pioglitazone.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Pioglitazone</intervention_name>
+    <description>Participants with diabetes who were members of the KPNC registry, and had received at least 2 prescriptions for pioglitazone within a 6-month period were followed up to 15.5 years (1997-2012) in this observational study 1.</description>
+    <arm_group_label>Ever User of Pioglitazone</arm_group_label>
+  </intervention>
+  <eligibility>
+    <study_pop>
+      <textblock>
+        Participants with a historical diagnosis of Type 2 diabetes mellitus (T2DM) with
+        pioglitazone exposure identified from the Kaiser Permanente of Northern California(KPNC)
+        Diabetes Registry (with or without diabetes) and had completed Member Health Survey (MHS)
+        were enrolled in the epidemiology study.
+      </textblock>
+    </study_pop>
+    <sampling_method>Probability Sample</sampling_method>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          1. has been in the KPNC diabetes registry Diabetes Mellitus (DM) registry, aged 40 years
+             or older and are members of KPNC as of January 1, 1997, or
+
+          2. has been in the DM registry, reached aged 40 years between January 1, 1997 and June
+             30, 2005 and are KPNC members on their 40th birthday, or
+
+          3. has joined KPNC after January 1, 1997, aged 40 years or older when they are
+             identified by the DM registry between January 1, 1997 and June 30, 2005.
+
+        Exclusion Criteria: 1. Age less than (&lt;) 40 years during study period. 2. No KPNC
+        medication benefits at the time of entry into the cohort (baseline) or gap in medication
+        benefit greater than equal to (&gt;=) 4 months that started in the first 4 months after
+        entering in the cohort.
+
+        3. Gap in KPNC membership &gt;= 4 months that started in the first 4 months after entering in
+        the cohort.
+
+        4. Participant with a diagnosis of Human immunodeficiency virus (HIV). 5. Participants
+        with evidence of selected surgeries for some cancer sites. 6. All prevalent cancers at
+        baseline, that is, all participants ever diagnosed with cancer other than non-melanoma
+        skin cancer.
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>40 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Medical Director</last_name>
+    <role>Study Director</role>
+    <affiliation>Takeda</affiliation>
+  </overall_official>
+  <verification_date>November 2016</verification_date>
+  <lastchanged_date>November 12, 2016</lastchanged_date>
+  <firstreceived_date>November 4, 2016</firstreceived_date>
+  <firstreceived_results_date>November 12, 2016</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>Drug Therapy</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>No</is_section_801>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Diabetes Mellitus</mesh_term>
+    <mesh_term>Diabetes Mellitus, Type 2</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Pioglitazone</mesh_term>
+  </intervention_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <recruitment_details>Participants took part in the study at 2 investigative sites in the United States from 01 July 1997 to 30 June 2012.</recruitment_details>
+      <pre_assignment_details>Participants with a historical diagnosis of T2DM with pioglitazone exposure identified from the Kaiser Permanente of Northern California(KPNC) Diabetes Registry were enrolled in this observational study.</pre_assignment_details>
+      <group_list>
+        <group group_id="P1">
+          <title>Ever User of Pioglitazone</title>
+          <description>Ever user of pioglitazone was defined as having filled 2 prescriptions for the drug within a 6-month period.</description>
+        </group>
+        <group group_id="P2">
+          <title>Never User of Pioglitazone</title>
+          <description>Never user of pioglitazone, which included participants receiving no diabetes medications, with fewer than 2 pioglitazone prescription fills in a 6-month period, and with use of diabetes medications other than pioglitazone.</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="38190"/>
+                <participants group_id="P2" count="198317"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="38190"/>
+                <participants group_id="P2" count="198317"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <population>Population consisted of Type 2 diabetes mellitus (T2DM) participants who were identified from the Kaiser Diabetes Registry, were included in the membership database, medication benefit database, hospitalization and surgery procedures databases, cancer registry database merged along with data in the diabetes registry were evaluable for analysis.</population>
+      <group_list>
+        <group group_id="B1">
+          <title>Ever User of Pioglitazone</title>
+          <description>Ever user of pioglitazone was defined as having filled 2 prescriptions for the drug within a 6-month period.</description>
+        </group>
+        <group group_id="B2">
+          <title>Never User of Pioglitazone</title>
+          <description>Never user of pioglitazone, which included participants receiving no diabetes medications, with fewer than 2 pioglitazone prescription fills in a 6-month period, and with use of diabetes medications other than pioglitazone.</description>
+        </group>
+        <group group_id="B3">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="38190"/>
+            <count group_id="B2" value="198317"/>
+            <count group_id="B3" value="236507"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
+      <measure_list>
+        <measure>
+          <title>Age</title>
+          <units>Years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="55.6" spread="10.4"/>
+                    <measurement group_id="B2" value="59.7" spread="12.2"/>
+                    <measurement group_id="B3" value="59.0" spread="12.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <title>Female</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="17632"/>
+                    <measurement group_id="B2" value="92552"/>
+                    <measurement group_id="B3" value="110184"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Male</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="20558"/>
+                    <measurement group_id="B2" value="105765"/>
+                    <measurement group_id="B3" value="126323"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Race/Ethnicity, Customized</title>
+          <units>Participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Non-Hispanic white</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="18717"/>
+                    <measurement group_id="B2" value="99641"/>
+                    <measurement group_id="B3" value="118358"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>African American</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="3667"/>
+                    <measurement group_id="B2" value="19931"/>
+                    <measurement group_id="B3" value="23598"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Asian or Pacific Islander</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5695"/>
+                    <measurement group_id="B2" value="26637"/>
+                    <measurement group_id="B3" value="32332"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Hispanic</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5144"/>
+                    <measurement group_id="B2" value="21554"/>
+                    <measurement group_id="B3" value="26698"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Other</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2129"/>
+                    <measurement group_id="B2" value="10549"/>
+                    <measurement group_id="B3" value="12678"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Missing</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2838"/>
+                    <measurement group_id="B2" value="20005"/>
+                    <measurement group_id="B3" value="22843"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Smoking</title>
+          <units>Participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Current smoking</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="7929"/>
+                    <measurement group_id="B2" value="37401"/>
+                    <measurement group_id="B3" value="45330"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Missing</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="30261"/>
+                    <measurement group_id="B2" value="160916"/>
+                    <measurement group_id="B3" value="191177"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Income</title>
+          <description>Income was categorized as high and low based on whether the annual household income lied above or below the average census block median income for the cohort (59,000 US Dollars).</description>
+          <units>Participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Low</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="20379"/>
+                    <measurement group_id="B2" value="107007"/>
+                    <measurement group_id="B3" value="127386"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>High</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="17125"/>
+                    <measurement group_id="B2" value="86384"/>
+                    <measurement group_id="B3" value="103509"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Missing</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="686"/>
+                    <measurement group_id="B2" value="4926"/>
+                    <measurement group_id="B3" value="5612"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Renal function</title>
+          <description>Renal function was measured based on the levels of creatinine: normal creatinine (less than [&lt;] 1.5 milligram per deciliter [mg/dL] for males and &lt;1.4 mg/dL for females) and elevated creatinine (greater than or equal to [&gt;=] 1.5 mg/dL for males and &gt;=1.4 mg/dL for females).</description>
+          <units>Participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Normal creatinine</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="29476"/>
+                    <measurement group_id="B2" value="156510"/>
+                    <measurement group_id="B3" value="185986"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Elevated creatinine</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1495"/>
+                    <measurement group_id="B2" value="16234"/>
+                    <measurement group_id="B3" value="17729"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Missing</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="7219"/>
+                    <measurement group_id="B2" value="25573"/>
+                    <measurement group_id="B3" value="32792"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Congestive Heart Failure</title>
+          <units>Participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Congestive Heart Failure</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1070"/>
+                    <measurement group_id="B2" value="12602"/>
+                    <measurement group_id="B3" value="13672"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Missing</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="37120"/>
+                    <measurement group_id="B2" value="185715"/>
+                    <measurement group_id="B3" value="222835"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Baseline Glycosylated Hemoglobin (HbA1c)</title>
+          <units>Participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>&lt;7.0 percent (%)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="6832"/>
+                    <measurement group_id="B2" value="63867"/>
+                    <measurement group_id="B3" value="70699"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>7.0-7.9%</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="6594"/>
+                    <measurement group_id="B2" value="34579"/>
+                    <measurement group_id="B3" value="41173"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>8.0-8.9%</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="4514"/>
+                    <measurement group_id="B2" value="17971"/>
+                    <measurement group_id="B3" value="22485"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>9.0-9.9%</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="3451"/>
+                    <measurement group_id="B2" value="12342"/>
+                    <measurement group_id="B3" value="15793"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&gt;=10.0%</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="8390"/>
+                    <measurement group_id="B2" value="29836"/>
+                    <measurement group_id="B3" value="38226"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Missing</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="8409"/>
+                    <measurement group_id="B2" value="39722"/>
+                    <measurement group_id="B3" value="48131"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Time since diabetes diagnosis</title>
+          <units>Participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>0-4 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="22835"/>
+                    <measurement group_id="B2" value="134209"/>
+                    <measurement group_id="B3" value="157044"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>5-9 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="3148"/>
+                    <measurement group_id="B2" value="9554"/>
+                    <measurement group_id="B3" value="12702"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&gt;= 10 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2993"/>
+                    <measurement group_id="B2" value="17300"/>
+                    <measurement group_id="B3" value="20293"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Missing</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="9214"/>
+                    <measurement group_id="B2" value="37254"/>
+                    <measurement group_id="B3" value="46468"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Hazard Ratio of the 10 Most Common Cancers Associated With Ever Use of Pioglitazone</title>
+        <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with ever use of pioglitazone. Cox proportional hazards regression modeling was used to provide point and interval estimates of the relative hazard of the 10 most common cancers associated with ever use of pioglitazone. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+        <time_frame>15 years 5 months</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Full Cohort</title>
+            <description>Participants with diabetes who were members of the KPNC registry, who received (ever use) at least 2 prescriptions for pioglitazone within a 6-month period or who did not receive pioglitazone were followed up to 15.5 years (1997-2012) in this observational study.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Hazard Ratio of the 10 Most Common Cancers Associated With Ever Use of Pioglitazone</title>
+          <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with ever use of pioglitazone. Cox proportional hazards regression modeling was used to provide point and interval estimates of the relative hazard of the 10 most common cancers associated with ever use of pioglitazone. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+          <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
+          <units>Ratio</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="236507"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Prostate</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.13" lower_limit="1.02" upper_limit="1.26"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.00" lower_limit="0.88" upper_limit="1.13"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.00" lower_limit="0.87" upper_limit="1.15"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.91" lower_limit="0.78" upper_limit="1.05"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.00" lower_limit="0.81" upper_limit="1.23"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.88" lower_limit="0.71" upper_limit="1.09"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.41" lower_limit="1.16" upper_limit="1.71"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.95" lower_limit="0.76" upper_limit="1.18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.81" lower_limit="0.60" upper_limit="1.08"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.15" lower_limit="0.91" upper_limit="1.46"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of 10 Most Common Cancers Associated Cases</title>
+        <description>Number of 10 most common cancer cases are reported in this measure: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma.</description>
+        <time_frame>15 years 5 months</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Ever User of Pioglitazone</title>
+            <description>Ever user of pioglitazone was defined as having filled 2 prescriptions for the drug within a 6-month period.</description>
+          </group>
+          <group group_id="O2">
+            <title>Never User of Pioglitazone</title>
+            <description>Never user of pioglitazone, which included participants receiving no diabetes medications, with fewer than 2 pioglitazone prescription fills in a 6-month period, and with use of diabetes medications other than pioglitazone.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of 10 Most Common Cancers Associated Cases</title>
+          <description>Number of 10 most common cancer cases are reported in this measure: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma.</description>
+          <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
+          <units>Cases</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="38190"/>
+                <count group_id="O2" value="198317"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Prostate</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="476"/>
+                    <measurement group_id="O2" value="3307"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="320"/>
+                    <measurement group_id="O2" value="2478"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="282"/>
+                    <measurement group_id="O2" value="2300"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="233"/>
+                    <measurement group_id="O2" value="1844"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="120"/>
+                    <measurement group_id="O2" value="839"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="118"/>
+                    <measurement group_id="O2" value="799"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="164"/>
+                    <measurement group_id="O2" value="648"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="110"/>
+                    <measurement group_id="O2" value="690"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="59"/>
+                    <measurement group_id="O2" value="570"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="102"/>
+                    <measurement group_id="O2" value="594"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Hazard Ratio of the 10 Most Common Cancers Associated With Time Since First Use of Pioglitazone</title>
+        <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with time since first use of pioglitazone. The various times since initiation include &lt;12 months ago, 12-23 months ago, 24-35 months ago, 36-47 months ago, 48-83 months ago and 84+ months ago. Cox proportional hazards regression modeling was used to provide point and interval estimates of the time since first use. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+        <time_frame>15 years 5 months</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Full Cohort</title>
+            <description>Participants with diabetes who were members of the KPNC registry, who received (ever use) at least 2 prescriptions for pioglitazone within a 6-month period or who did not receive pioglitazone were followed up to 15.5 years (1997-2012) in this observational study.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Hazard Ratio of the 10 Most Common Cancers Associated With Time Since First Use of Pioglitazone</title>
+          <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with time since first use of pioglitazone. The various times since initiation include &lt;12 months ago, 12-23 months ago, 24-35 months ago, 36-47 months ago, 48-83 months ago and 84+ months ago. Cox proportional hazards regression modeling was used to provide point and interval estimates of the time since first use. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+          <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
+          <units>Ratio</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="236507"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Prostate: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.92" lower_limit="0.73" upper_limit="1.17"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.18" lower_limit="0.94" upper_limit="1.47"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.21" lower_limit="0.96" upper_limit="1.52"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.36" lower_limit="1.07" upper_limit="1.71"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.04" lower_limit="0.86" upper_limit="1.26"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.23" lower_limit="0.95" upper_limit="1.59"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.00" lower_limit="0.76" upper_limit="1.31"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.84" lower_limit="0.62" upper_limit="1.14"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.04" lower_limit="0.77" upper_limit="1.39"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.77" lower_limit="0.54" upper_limit="1.10"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.03" lower_limit="0.83" upper_limit="1.28"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.38" lower_limit="1.06" upper_limit="1.80"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.82" lower_limit="0.59" upper_limit="1.14"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.12" lower_limit="0.84" upper_limit="1.50"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.13" lower_limit="0.84" upper_limit="1.53"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.04" lower_limit="0.75" upper_limit="1.45"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.95" lower_limit="0.74" upper_limit="1.20"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.96" lower_limit="0.70" upper_limit="1.31"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.62" lower_limit="0.41" upper_limit="0.92"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.79" lower_limit="0.55" upper_limit="1.14"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.35" lower_limit="1.00" upper_limit="1.81"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.81" lower_limit="0.55" upper_limit="1.19"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.97" lower_limit="0.76" upper_limit="1.24"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.79" lower_limit="0.56" upper_limit="1.12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.15" lower_limit="0.75" upper_limit="1.76"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.44" lower_limit="0.97" upper_limit="2.14"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.92" lower_limit="0.56" upper_limit="1.53"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.79" lower_limit="0.44" upper_limit="1.40"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.70" lower_limit="0.46" upper_limit="1.06"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.98" lower_limit="0.61" upper_limit="1.56"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.91" lower_limit="0.58" upper_limit="1.43"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.97" lower_limit="0.62" upper_limit="1.53"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.65" lower_limit="0.37" upper_limit="1.16"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.90" lower_limit="0.54" upper_limit="1.52"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.99" lower_limit="0.70" upper_limit="1.41"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.94" lower_limit="0.59" upper_limit="1.51"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2.27" lower_limit="1.61" upper_limit="3.20"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.31" lower_limit="0.85" upper_limit="2.01"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.13" lower_limit="0.71" upper_limit="1.82"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.28" lower_limit="0.80" upper_limit="2.04"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.14" lower_limit="0.82" upper_limit="1.60"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.39" lower_limit="0.93" upper_limit="2.07"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.75" lower_limit="0.43" upper_limit="1.30"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.59" lower_limit="0.32" upper_limit="1.11"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.14" lower_limit="0.71" upper_limit="1.83"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.16" lower_limit="0.71" upper_limit="1.90"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.01" lower_limit="0.71" upper_limit="1.44"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.90" lower_limit="0.55" upper_limit="1.50"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.67" lower_limit="0.34" upper_limit="1.29"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.65" lower_limit="0.32" upper_limit="1.31"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.02" lower_limit="0.56" upper_limit="1.86"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.27" lower_limit="0.71" upper_limit="2.27"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.60" lower_limit="0.33" upper_limit="1.08"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.87" lower_limit="0.42" upper_limit="1.81"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.03" lower_limit="0.60" upper_limit="1.76"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.37" lower_limit="0.85" upper_limit="2.21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.02" lower_limit="0.57" upper_limit="1.83"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.45" lower_limit="0.87" upper_limit="2.40"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.96" lower_limit="0.62" upper_limit="1.47"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.47" lower_limit="0.91" upper_limit="2.36"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Number of 10 Most Common Cancers Cases by Time Since First Use of Pioglitazone</title>
+        <description>Number of 10 most common cancer cases: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with time since first use of pioglitazone. Time since initiation of pioglitazone was categorized as &lt;12 months ago, 12-23 months ago, 24-35 months ago, 36-47 months ago, 48-83 months ago and 84+ months ago.</description>
+        <time_frame>15 years 5 months</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1. The unexposed arm was not planned to be analyzed for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Ever User of Pioglitazone</title>
+            <description>Ever user of pioglitazone was defined as having filled 2 prescriptions for the drug within a 6-month period.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of 10 Most Common Cancers Cases by Time Since First Use of Pioglitazone</title>
+          <description>Number of 10 most common cancer cases: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with time since first use of pioglitazone. Time since initiation of pioglitazone was categorized as &lt;12 months ago, 12-23 months ago, 24-35 months ago, 36-47 months ago, 48-83 months ago and 84+ months ago.</description>
+          <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1. The unexposed arm was not planned to be analyzed for this outcome measure.</population>
+          <units>Cases</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="38190"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Prostate: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="55"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="82"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="76"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="75"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="119"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="69"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="42"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="42"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="47"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="31"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="91"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="67"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="32"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="48"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="45"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="37"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="75"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="45"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="22"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="30"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="47"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="26"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="71"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="37"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="26"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="16"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="24"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="14"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="20"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="15"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="36"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="33"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="22"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="19"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="41"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="31"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="10"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="17"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="11"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: &lt;12 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="10"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 12-23 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 24-35 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 36-47 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="16"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 48-83 months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="24"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 84+ months ago</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="22"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Hazard Ratio of the 10 Most Common Cancers Associated With Duration of Pioglitazone</title>
+        <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with duration of pioglitazone. The duration of pioglitazone was categorized as &lt;12 months, 12-23 months, 24-35 months, 36-59 months, 60+ months. Cox proportional hazards regression modeling was used to provide point and interval estimates of the cumulative duration. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+        <time_frame>15 years 5 months</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Full Cohort</title>
+            <description>Participants with diabetes who were members of the KPNC registry, who received (ever use) at least 2 prescriptions for pioglitazone within a 6-month period or who did not receive pioglitazone were followed up to 15.5 years (1997-2012) in this observational study.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Hazard Ratio of the 10 Most Common Cancers Associated With Duration of Pioglitazone</title>
+          <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with duration of pioglitazone. The duration of pioglitazone was categorized as &lt;12 months, 12-23 months, 24-35 months, 36-59 months, 60+ months. Cox proportional hazards regression modeling was used to provide point and interval estimates of the cumulative duration. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+          <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
+          <units>Ratio</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="236507"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Prostate: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.00" lower_limit="0.84" upper_limit="1.19"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.30" lower_limit="1.08" upper_limit="1.57"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.07" lower_limit="0.84" upper_limit="1.35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.18" lower_limit="0.96" upper_limit="1.45"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.16" lower_limit="0.90" upper_limit="1.50"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.84" lower_limit="0.69" upper_limit="1.03"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.07" lower_limit="0.84" upper_limit="1.35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.01" lower_limit="0.75" upper_limit="1.35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.06" lower_limit="0.82" upper_limit="1.38"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.25" lower_limit="0.93" upper_limit="1.68"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.90" lower_limit="0.73" upper_limit="1.12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.98" lower_limit="0.75" upper_limit="1.27"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.96" lower_limit="0.70" upper_limit="1.31"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.06" lower_limit="0.81" upper_limit="1.40"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.12" lower_limit="0.81" upper_limit="1.54"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.86" lower_limit="0.68" upper_limit="1.08"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.88" lower_limit="0.66" upper_limit="1.18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.03" lower_limit="0.75" upper_limit="1.42"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.66" lower_limit="0.46" upper_limit="0.94"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.05" lower_limit="0.76" upper_limit="1.46"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.93" lower_limit="0.66" upper_limit="1.29"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.25" lower_limit="0.87" upper_limit="1.80"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.08" lower_limit="0.69" upper_limit="1.70"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.72" lower_limit="0.44" upper_limit="1.18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.89" lower_limit="0.53" upper_limit="1.49"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.01" lower_limit="0.75" upper_limit="1.35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.83" lower_limit="0.55" upper_limit="1.25"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.97" lower_limit="0.61" upper_limit="1.55"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.78" lower_limit="0.49" upper_limit="1.24"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.73" lower_limit="0.42" upper_limit="1.29"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.48" lower_limit="1.12" upper_limit="1.95"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.19" lower_limit="0.82" upper_limit="1.73"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.03" lower_limit="0.64" upper_limit="1.66"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.63" lower_limit="1.15" upper_limit="2.31"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.53" lower_limit="1.00" upper_limit="2.33"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.92" lower_limit="0.65" upper_limit="1.30"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.81" lower_limit="0.52" upper_limit="1.27"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.96" lower_limit="0.59" upper_limit="1.57"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.99" lower_limit="0.64" upper_limit="1.52"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.03" lower_limit="0.63" upper_limit="1.68"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.87" lower_limit="0.57" upper_limit="1.33"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.78" lower_limit="0.45" upper_limit="1.37"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.80" lower_limit="0.41" upper_limit="1.56"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.58" lower_limit="0.29" upper_limit="1.18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.89" lower_limit="0.43" upper_limit="1.82"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.06" lower_limit="0.73" upper_limit="1.54"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.59" lower_limit="1.08" upper_limit="2.33"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.06" lower_limit="0.62" upper_limit="1.81"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.80" lower_limit="0.46" upper_limit="1.37"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.46" lower_limit="0.91" upper_limit="2.35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Number of 10 Most Common Cancer Cases by Duration of Pioglitazone</title>
+        <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with duration of pioglitazone. The duration of pioglitazone was categorized as &lt;12 months, 12-23 months, 24-35 months, 36-59 months, 60+ months.</description>
+        <time_frame>15 years 5 months</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1. The unexposed arm was not planned to be analyzed for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Ever User of Pioglitazone</title>
+            <description>Ever user of pioglitazone was defined as having filled 2 prescriptions for the drug within a 6-month period.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of 10 Most Common Cancer Cases by Duration of Pioglitazone</title>
+          <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with duration of pioglitazone. The duration of pioglitazone was categorized as &lt;12 months, 12-23 months, 24-35 months, 36-59 months, 60+ months.</description>
+          <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1. The unexposed arm was not planned to be analyzed for this outcome measure.</population>
+          <units>Cases</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="38190"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Prostate: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="118"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="121"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="72"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="99"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="66"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="88"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="75"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="47"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="61"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="49"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="83"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="60"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="41"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="56"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="42"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="72"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="48"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="40"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="33"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="40"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="32"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="20"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="17"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="16"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="43"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="24"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="19"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="19"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="13"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="54"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="28"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="36"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="25"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="32"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="20"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="17"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="23"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="13"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: &lt;12 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="25"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 12-23 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="29"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 24-35 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="14"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 36-59 months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="14"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 60+ months</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="20"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Hazard Ratio of the 10 Most Common Cancers Associated With Cumulative Dose of Pioglitazone</title>
+        <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 milligram (mg) and greater than or equal to (&gt;=) 50001 mg. Cox proportional hazards regression modeling was used to provide point and interval estimates of the dose. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+        <time_frame>15 years 5 months</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Full Cohort</title>
+            <description>Participants with diabetes who were members of the KPNC registry, who received (ever use) at least 2 prescriptions for pioglitazone within a 6-month period or who did not receive pioglitazone were followed up to 15.5 years (1997-2012) in this observational study.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Hazard Ratio of the 10 Most Common Cancers Associated With Cumulative Dose of Pioglitazone</title>
+          <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 milligram (mg) and greater than or equal to (&gt;=) 50001 mg. Cox proportional hazards regression modeling was used to provide point and interval estimates of the dose. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
+          <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
+          <units>Ratio</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="236507"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Prostate: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.08" lower_limit="0.91" upper_limit="1.27"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.24" lower_limit="1.06" upper_limit="1.46"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.12" lower_limit="0.92" upper_limit="1.37"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.00" lower_limit="0.78" upper_limit="1.28"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.89" lower_limit="0.73" upper_limit="1.08"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.95" lower_limit="0.77" upper_limit="1.17"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.15" lower_limit="0.91" upper_limit="1.46"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.19" lower_limit="0.89" upper_limit="1.57"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.98" lower_limit="0.80" upper_limit="1.21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.91" lower_limit="0.73" upper_limit="1.15"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.97" lower_limit="0.75" upper_limit="1.26"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.12" lower_limit="0.84" upper_limit="1.50"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.87" lower_limit="0.69" upper_limit="1.10"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.86" lower_limit="0.68" upper_limit="1.10"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.97" lower_limit="0.74" upper_limit="1.27"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.79" lower_limit="0.56" upper_limit="1.12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.92" lower_limit="0.66" upper_limit="1.29"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.16" lower_limit="0.85" upper_limit="1.59"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.02" lower_limit="0.69" upper_limit="1.51"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.66" lower_limit="0.38" upper_limit="1.13"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.02" lower_limit="0.76" upper_limit="1.37"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.90" lower_limit="0.64" upper_limit="1.25"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.67" lower_limit="0.42" upper_limit="1.06"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.87" lower_limit="0.54" upper_limit="1.42"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.50" lower_limit="1.14" upper_limit="1.98"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.10" lower_limit="0.79" upper_limit="1.53"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.46" lower_limit="1.04" upper_limit="2.06"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.61" lower_limit="1.10" upper_limit="2.35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.83" lower_limit="0.57" upper_limit="1.19"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.03" lower_limit="0.73" upper_limit="1.44"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.86" lower_limit="0.56" upper_limit="1.32"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.05" lower_limit="0.67" upper_limit="1.64"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.84" lower_limit="0.54" upper_limit="1.30"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.76" lower_limit="0.47" upper_limit="1.23"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.75" lower_limit="0.42" upper_limit="1.34"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.82" lower_limit="0.41" upper_limit="1.61"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.20" lower_limit="0.84" upper_limit="1.72"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.26" lower_limit="0.88" upper_limit="1.81"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.03" lower_limit="0.66" upper_limit="1.62"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1.14" lower_limit="0.70" upper_limit="1.85"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Number of 10 Most Common Cancer Cases By Dose of Pioglitazone</title>
+        <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 mg and &gt;=50001 mg.</description>
+        <time_frame>15 years 5 months</time_frame>
+        <safety_issue>Yes</safety_issue>
+        <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.The unexposed arm was not planned to be analyzed for this outcome measure.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Ever User of Pioglitazone</title>
+            <description>Ever user of pioglitazone was defined as having filled 2 prescriptions for the drug within a 6-month period.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of 10 Most Common Cancer Cases By Dose of Pioglitazone</title>
+          <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 mg and &gt;=50001 mg.</description>
+          <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.The unexposed arm was not planned to be analyzed for this outcome measure.</population>
+          <units>Cases</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="38190"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Prostate: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="129"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="167"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="109"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Prostate: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="71"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="92"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="98"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="77"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Breast: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="53"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="90"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="81"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="61"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lung/Bronchus: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="50"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="72"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="70"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="56"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Colon: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="35"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="34"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="44"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="28"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Non-Hodgkin Lymphoma: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="14"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="43"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="38"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="19"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Corpus Uteri: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="52"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="39"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="38"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Pancreatic: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="32"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="28"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="37"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="23"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kidney/Renal Pelvis: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="22"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="20"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="18"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Rectum: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 1-9000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="28"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 9001-25000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="34"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: 25001-50000 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Melanoma: &gt;=50001 mg</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="19"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <desc>Due to the observational nature of study individual adverse events (AEs) were not planned to be collected and reported.</desc>
+      <group_list>
+        <group group_id="E1">
+          <title>Ever User of Pioglitazone</title>
+          <description>Ever user of pioglitazone was defined as having filled 2 prescriptions for the drug within a 6-month period.</description>
+        </group>
+        <group group_id="E2">
+          <title>Never User of Pioglitazone</title>
+          <description>Never user of pioglitazone, which included participants receiving no diabetes medications, with fewer than 2 pioglitazone prescription fills in a 6-month period, and with use of diabetes medications other than pioglitazone.</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="0"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="0"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="0"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="0"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>No publication related to study results will be published prior to publication of a multi-center report submitted for publication within 18 months after conclusion or termination of a study at all study sites. Results publications will be submitted to sponsor for review 60 days in advance of publication. Sponsor can require removal of confidential information unrelated to study results. Sponsor can embargo a proposed publication for another 60 days to preserve intellectual property.</restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Medical Director</name_or_title>
+      <organization>Takeda</organization>
+      <phone>+1-877-825-3327</phone>
+      <email>clinicaltrialregistry@tpna.com</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
