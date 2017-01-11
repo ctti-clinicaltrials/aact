@@ -72,7 +72,7 @@ class CreateResultTables < ActiveRecord::Migration
 
     # ----  Baseline Data ----------------------------
 
-    create_table "baseline_measures", force: :cascade do |t|
+    create_table "baseline_measurements", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
@@ -83,10 +83,12 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "units"
       t.string  "param_type"
       t.string  "param_value"
+      t.decimal "param_value_num"
       t.string  "dispersion_type"
       t.string  "dispersion_value"
-      t.string  "dispersion_lower_limit"
-      t.string  "dispersion_upper_limit"
+      t.decimal "dispersion_value_num"
+      t.decimal "dispersion_lower_limit"
+      t.decimal "dispersion_upper_limit"
       t.string  "explanation_of_na"
     end
 
@@ -138,9 +140,12 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "nct_id"
       t.integer "outcome_id"
       t.integer "result_group_id"
+      t.string  "ctgov_group_code"
       t.string  "classification"
       t.string  "category"
-      t.string  "ctgov_group_code"
+      t.string  "title"
+      t.text    "description"
+      t.string  "units"
       t.string  "param_type"
       t.string  "param_value"
       t.decimal "param_value_num"

@@ -1,4 +1,4 @@
-class BaselineMeasure < StudyRelationship
+class BaselineMeasurement < StudyRelationship
 
   belongs_to :result_group
 
@@ -44,6 +44,21 @@ class BaselineMeasure < StudyRelationship
       measurement=measurements.pop
       while measurement
         opts[:xml]=measurement
+        opts[:param_value]=measurement.attribute('value').try(:value)
+        if opts[:param_value] == 'NA'
+          opts[:param_value_num]=nil
+        else
+          opts[:param_value_num]=opts[:param_value]
+        end
+        opts[:dispersion_value]=measurement.attribute('spread').try(:value)
+        if opts[:dispersion_value] == 'NA'
+          opts[:dispersion_value_num]=''
+        else
+          opts[:dispersion_value_num]=opts[:dispersion_value]
+        end
+        opts[:lower_limit]=measurement.attribute('lower_limit').try(:value)
+        opts[:upper_limit]=measurement.attribute('upper_limit').try(:value)
+
         col << create_from(opts)
         measurement=measurements.pop
       end
@@ -54,20 +69,22 @@ class BaselineMeasure < StudyRelationship
 
   def attribs
     {
-      :result_group => get_group(opts[:groups]),
-      :ctgov_group_code => gid,
-      :param_type => get_opt(:param),
-      :param_value => get_attribute('value'),
-      :dispersion_type => get_opt(:dispersion),
-      :dispersion_value => get_attribute('spread'),
-      :dispersion_lower_limit => get_attribute('lower_limit'),
-      :dispersion_upper_limit => get_attribute('upper_limit'),
-      :explanation_of_na => xml.text,
-      :classification => get_opt('classification'),
-      :category => get_opt(:category),
-      :title => get_opt(:title),
-      :description => get_opt(:description),
-      :units => get_opt(:units),
+      :result_group           => get_group(opts[:groups]),
+      :classification         => get_opt('classification'),
+      :category               => get_opt(:category),
+      :ctgov_group_code       => gid,
+      :title                  => get_opt(:title),
+      :description            => get_opt(:description),
+      :units                  => get_opt(:units),
+      :param_type             => get_opt(:param),
+      :param_value            => get_opt('param_value'),
+      :param_value_num        => get_opt('param_value_num'),
+      :dispersion_type        => get_opt(:dispersion),
+      :dispersion_value       => get_opt('dispersion_value'),
+      :dispersion_value_num   => get_opt('dispersion_value_num'),
+      :dispersion_lower_limit => get_opt('lower_limit'),
+      :dispersion_upper_limit => get_opt('upper_limit'),
+      :explanation_of_na      => xml.text,
     }
   end
 

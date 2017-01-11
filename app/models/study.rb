@@ -18,7 +18,7 @@ class Study < ActiveRecord::Base
   has_one  :calculated_value,      :foreign_key => 'nct_id', :dependent => :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
-  has_many :baseline_measures,     :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :baseline_measurements, :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :baseline_counts,       :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :browse_conditions,     :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :browse_interventions,  :foreign_key => 'nct_id', :dependent => :delete_all
@@ -83,7 +83,7 @@ class Study < ActiveRecord::Base
     Eligibility.new.create_from(opts).save
     ParticipantFlow.new.create_from(opts).try(:save)
 
-    BaselineMeasure.create_all_from(opts)
+    BaselineMeasurement.create_all_from(opts)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     CentralContact.create_all_from(opts)
@@ -94,7 +94,6 @@ class Study < ActiveRecord::Base
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     Milestone.create_all_from(opts)
-    #DropWithdrawal.create_all_from(opts)
     Outcome.create_all_from(opts)
     OversightAuthority.create_all_from(opts)
     OverallOfficial.create_all_from(opts)

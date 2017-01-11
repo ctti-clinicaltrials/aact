@@ -90,10 +90,10 @@ ALTER SEQUENCE baseline_counts_id_seq OWNED BY baseline_counts.id;
 
 
 --
--- Name: baseline_measures; Type: TABLE; Schema: public; Owner: -
+-- Name: baseline_measurements; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE baseline_measures (
+CREATE TABLE baseline_measurements (
     id integer NOT NULL,
     nct_id character varying,
     result_group_id integer,
@@ -105,19 +105,21 @@ CREATE TABLE baseline_measures (
     units character varying,
     param_type character varying,
     param_value character varying,
+    param_value_num numeric,
     dispersion_type character varying,
     dispersion_value character varying,
-    dispersion_lower_limit character varying,
-    dispersion_upper_limit character varying,
+    dispersion_value_num numeric,
+    dispersion_lower_limit numeric,
+    dispersion_upper_limit numeric,
     explanation_of_na character varying
 );
 
 
 --
--- Name: baseline_measures_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: baseline_measurements_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE baseline_measures_id_seq
+CREATE SEQUENCE baseline_measurements_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -126,10 +128,10 @@ CREATE SEQUENCE baseline_measures_id_seq
 
 
 --
--- Name: baseline_measures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: baseline_measurements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE baseline_measures_id_seq OWNED BY baseline_measures.id;
+ALTER SEQUENCE baseline_measurements_id_seq OWNED BY baseline_measurements.id;
 
 
 --
@@ -1057,9 +1059,12 @@ CREATE TABLE outcome_measurements (
     nct_id character varying,
     outcome_id integer,
     result_group_id integer,
+    ctgov_group_code character varying,
     classification character varying,
     category character varying,
-    ctgov_group_code character varying,
+    title character varying,
+    description text,
+    units character varying,
     param_type character varying,
     param_value character varying,
     param_value_num numeric,
@@ -1700,10 +1705,10 @@ ALTER TABLE ONLY baseline_counts ALTER COLUMN id SET DEFAULT nextval('baseline_c
 
 
 --
--- Name: baseline_measures id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: baseline_measurements id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY baseline_measures ALTER COLUMN id SET DEFAULT nextval('baseline_measures_id_seq'::regclass);
+ALTER TABLE ONLY baseline_measurements ALTER COLUMN id SET DEFAULT nextval('baseline_measurements_id_seq'::regclass);
 
 
 --
@@ -2023,11 +2028,11 @@ ALTER TABLE ONLY baseline_counts
 
 
 --
--- Name: baseline_measures baseline_measures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: baseline_measurements baseline_measurements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY baseline_measures
-    ADD CONSTRAINT baseline_measures_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY baseline_measurements
+    ADD CONSTRAINT baseline_measurements_pkey PRIMARY KEY (id);
 
 
 --
@@ -2383,17 +2388,17 @@ ALTER TABLE ONLY use_cases
 
 
 --
--- Name: index_baseline_measures_on_category; Type: INDEX; Schema: public; Owner: -
+-- Name: index_baseline_measurements_on_category; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_baseline_measures_on_category ON baseline_measures USING btree (category);
+CREATE INDEX index_baseline_measurements_on_category ON baseline_measurements USING btree (category);
 
 
 --
--- Name: index_baseline_measures_on_classification; Type: INDEX; Schema: public; Owner: -
+-- Name: index_baseline_measurements_on_classification; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_baseline_measures_on_classification ON baseline_measures USING btree (classification);
+CREATE INDEX index_baseline_measurements_on_classification ON baseline_measurements USING btree (classification);
 
 
 --

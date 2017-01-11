@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on January 11, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02708238</url>
+  </required_header>
+  <id_info>
+    <org_study_id>04032016</org_study_id>
+    <nct_id>NCT02708238</nct_id>
+  </id_info>
+  <brief_title>Efficacy of Matricariae Chamomilla L., Melissa Officinalis L. and Tyndallized Lactobacillus Acidophilus (H122) for Infantile Colics</brief_title>
+  <official_title>Efficacy of a Standardized Extract of Matricariae Chamomilla L., Melissa Officinalis L. and Tyndallized Lactobacillus Acidophilus (H122) Compared With Lactobacillus Reuteri (DSM 17938) and With Simethicone for the Treatment of Infantile Colic</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Federico II University</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Federico II University</source>
+  <oversight_info>
+    <authority>Italy: Ethics Committee</authority>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      A multicenter prospective, randomized comparative study will be conducted in infants with
+      colic, according to Rome III criteria. Enrolled infants will be assigned at random to
+      receive Chamomilla L., Melissa Officinalis L. and tyndallized L. Acidophilus (H122), L
+      reuteri DSM 17938 (108 CFU) or simethicone. Treatment will be given to subjects for 28 days
+      and they will be followed for 4 weeks. Treatment success will be assessed at the end of
+      study period. Daily crying and fussing times will be recorded in a structured diary, and
+      maternal questionnaires will be completed to monitor changes in infant colic symptoms and
+      adverse events.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      This will be a prospective, multicentre, open label, randomized, controlled trial. All
+      consecutive infants diagnosed with IC, according to Rome III criteria, will be prospectively
+      enrolled in a 12 months period by 3 different Pediatric Gastroenterology units: Department
+      of Translational Medical Science, Section of Pediatrics, University of Naples &quot;Federico II&quot;;
+      Institute of Pediatrics of the University of Foggia; Endoscopy and Gastroenterology Unit,
+      Department of Pediatrics, University of Messina.
+
+      After the enrollment, all children will be randomly assigned to receive Chamomilla L.,
+      Melissa Officinalis L. and tyndallized L. Acidophilus (H122) (Group A), L reuteri DSM 17938
+      (108 CFU) (Group B) or Simethicone (Group C). Treatment will be given to subjects for 28
+      days. The study's primary outcome is defined as a reduction in the duration of average
+      crying times, from baseline (day 0) to end of treatment (day 28). The secondary outcome
+      measure is the number of participants who respond to treatment on days 28. Infants who
+      experience a decrease in the daily average crying time of 50% from baseline will be
+      considered as responders to the treatment. Parents will be instructed to complete a
+      structured 28-day maternal diary, modified from Barr et al. in order to record the frequency
+      of colic episodes and the daily crying and fussing time (in minutes), feeding schedule,
+      stool frequency and characteristics, and any adverse events experienced (14). Follow-up
+      visits will be conducted on study days 7, 14, 21 and 28 by the same study investigator. At
+      that visit, diaries and unused study products will be returned.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>April 2014</start_date>
+  <completion_date type="Actual">July 2015</completion_date>
+  <primary_completion_date type="Actual">July 2015</primary_completion_date>
+  <phase>Phase 4</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Endpoint Classification: Safety/Efficacy Study, Intervention Model: Parallel Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <primary_outcome>
+    <measure>Median Daily Crying Time at the End of the Treatment</measure>
+    <time_frame>28 days of treatment</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Median daily crying at the end of treatment (day 28).</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Number of Responders</measure>
+    <time_frame>28 days of treatment</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Number of responders defined as the number of patients who experienced a decrease in the daily average crying time of 50% from baseline</description>
+  </secondary_outcome>
+  <number_of_arms>3</number_of_arms>
+  <enrollment type="Actual">180</enrollment>
+  <condition>Infantile Colics</condition>
+  <arm_group>
+    <arm_group_label>Group A</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>All enrolled infants randomized to Group A will receive a standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized Lactobacillus Acidophilus (H122), administered at the dose of 1 ml twice a day of a commercially available solution</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Group B</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>All enrolled infants randomized to Group B will receive Lactobacillus reuteri DSM 17938 administered at the dose of 108 colony-forming units (CFU)/day in 5 drops of a commercially available oil suspension</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Group C</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>All enrolled infants randomized to Group C will receive simethicone, given at a dose of 60 mg in 15 drops two times per day of a commercially available solution</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Dietary Supplement</intervention_type>
+    <intervention_name>Standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized L. Acidophilus (H122)</intervention_name>
+    <arm_group_label>Group A</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Dietary Supplement</intervention_type>
+    <intervention_name>Lactobacillus reuteri DSM 17938 (108 CFU)</intervention_name>
+    <arm_group_label>Group B</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Simethicone</intervention_name>
+    <arm_group_label>Group C</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          1. diagnosis of IC according to Rome III criteria (2);
+
+          2. age ≥2 weeks to 4 months;
+
+          3. breast-fed or fomula-fed infants;
+
+          4. term delivery (≥37 weeks gestation at birth);
+
+          5. 5-minute Apgar score ≥7; and 6) birth weight ≥2500 g
+
+        Exclusion Criteria:
+
+          1. a major medical problem or acute illness;
+
+          2. family history of atopy;
+
+          3. history of antibiotic treatment before or during the study;
+
+          4. history of probiotic supplementation.
+      </textblock>
+    </criteria>
+    <gender>Both</gender>
+    <minimum_age>N/A</minimum_age>
+    <maximum_age>4 Months</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Annamaria Staiano, Prof.</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Federico II University</affiliation>
+  </overall_official>
+  <verification_date>June 2016</verification_date>
+  <lastchanged_date>June 20, 2016</lastchanged_date>
+  <firstreceived_date>March 4, 2016</firstreceived_date>
+  <firstreceived_results_date>April 15, 2016</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>Federico II University</investigator_affiliation>
+    <investigator_full_name>Erasmo Miele</investigator_full_name>
+    <investigator_title>Researcher</investigator_title>
+  </responsible_party>
+  <keyword>Infantile colics</keyword>
+  <is_fda_regulated>No</is_fda_regulated>
+  <has_expanded_access>No</has_expanded_access>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Colic</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Simethicone</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>Yes</sharing_ipd>
+    <ipd_description>Publication</ipd_description>
+  </patient_data>
+
+  <clinical_results>
+
+    <participant_flow>
+      <group_list>
+        <group group_id="P1">
+          <title>Group A</title>
+          <description>All enrolled infants randomized to Group A will receive a standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized Lactobacillus Acidophilus (H122), administered at the dose of 1 ml twice a day of a commercially available solution
+Standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized L. Acidophilus (H122)</description>
+        </group>
+        <group group_id="P2">
+          <title>Group B</title>
+          <description>All enrolled infants randomized to Group B will receive Lactobacillus reuteri DSM 17938 administered at the dose of 108 colony-forming units (CFU)/day in 5 drops of a commercially available oil suspension
+Lactobacillus reuteri DSM 17938 (108 CFU)</description>
+        </group>
+        <group group_id="P3">
+          <title>Group C</title>
+          <description>All enrolled infants randomized to Group C will receive simethicone, given at a dose of 60 mg in 20 drops four times per day of a commercially available solution
+Simethicone</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="60"/>
+                <participants group_id="P2" count="60"/>
+                <participants group_id="P3" count="60"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="60"/>
+                <participants group_id="P2" count="59"/>
+                <participants group_id="P3" count="57"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="1"/>
+                <participants group_id="P3" count="3"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <group_list>
+        <group group_id="B1">
+          <title>Group A</title>
+          <description>All enrolled infants randomized to Group A will receive a standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized Lactobacillus Acidophilus (H122), administered at the dose of 1 ml twice a day of a commercially available solution
+Standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized L. Acidophilus (H122)</description>
+        </group>
+        <group group_id="B2">
+          <title>Group B</title>
+          <description>All enrolled infants randomized to Group B will receive Lactobacillus reuteri DSM 17938 administered at the dose of 108 colony-forming units (CFU)/day in 5 drops of a commercially available oil suspension
+Lactobacillus reuteri DSM 17938 (108 CFU)</description>
+        </group>
+        <group group_id="B3">
+          <title>Group C</title>
+          <description>All enrolled infants randomized to Group C will receive simethicone, given at a dose of 60 mg in 20 drops four times per day of a commercially available solution
+Simethicone</description>
+        </group>
+        <group group_id="B4">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="60"/>
+            <count group_id="B2" value="59"/>
+            <count group_id="B3" value="57"/>
+            <count group_id="B4" value="176"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
+      <measure_list>
+        <measure>
+          <title>Age</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>&lt;=18 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="60"/>
+                    <measurement group_id="B2" value="59"/>
+                    <measurement group_id="B3" value="57"/>
+                    <measurement group_id="B4" value="176"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Between 18 and 65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="0"/>
+                    <measurement group_id="B4" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&gt;=65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="0"/>
+                    <measurement group_id="B4" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>Days</units>
+          <param>Median</param>
+          <dispersion>Full Range</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="38" lower_limit="14" upper_limit="86"/>
+                    <measurement group_id="B2" value="35" lower_limit="14" upper_limit="85"/>
+                    <measurement group_id="B3" value="30" lower_limit="14" upper_limit="62"/>
+                    <measurement group_id="B4" value="35" lower_limit="14" upper_limit="86"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="31"/>
+                    <measurement group_id="B2" value="21"/>
+                    <measurement group_id="B3" value="39"/>
+                    <measurement group_id="B4" value="91"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="29"/>
+                    <measurement group_id="B2" value="38"/>
+                    <measurement group_id="B3" value="18"/>
+                    <measurement group_id="B4" value="85"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Region of Enrollment</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Italy</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="60"/>
+                    <measurement group_id="B2" value="59"/>
+                    <measurement group_id="B3" value="57"/>
+                    <measurement group_id="B4" value="176"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Median Daily Crying Time at the End of the Treatment</title>
+        <description>Median daily crying at the end of treatment (day 28).</description>
+        <time_frame>28 days of treatment</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Group A</title>
+            <description>All enrolled infants randomized to Group A will receive a standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized Lactobacillus Acidophilus (H122), administered at the dose of 1 ml twice a day of a commercially available solution
+Standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized L. Acidophilus (H122)</description>
+          </group>
+          <group group_id="O2">
+            <title>Group B</title>
+            <description>All enrolled infants randomized to Group B will receive Lactobacillus reuteri DSM 17938 administered at the dose of 108 colony-forming units (CFU)/day in 5 drops of a commercially available oil suspension
+Lactobacillus reuteri DSM 17938 (108 CFU)</description>
+          </group>
+          <group group_id="O3">
+            <title>Group C</title>
+            <description>All enrolled infants randomized to Group C will receive simethicone, given at a dose of 60 mg in 20 drops four times per day of a commercially available solution
+Simethicone</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Median Daily Crying Time at the End of the Treatment</title>
+          <description>Median daily crying at the end of treatment (day 28).</description>
+          <units>minutes</units>
+          <param>Median</param>
+          <dispersion>Full Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="60"/>
+                <count group_id="O2" value="59"/>
+                <count group_id="O3" value="57"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="50" lower_limit="30" upper_limit="180"/>
+                    <measurement group_id="O2" value="55" lower_limit="30" upper_limit="180"/>
+                    <measurement group_id="O3" value="80" lower_limit="30" upper_limit="270"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Number of Responders</title>
+        <description>Number of responders defined as the number of patients who experienced a decrease in the daily average crying time of 50% from baseline</description>
+        <time_frame>28 days of treatment</time_frame>
+        <safety_issue>No</safety_issue>
+        <group_list>
+          <group group_id="O1">
+            <title>Group A</title>
+            <description>All enrolled infants randomized to Group A will receive a standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized Lactobacillus Acidophilus (H122), administered at the dose of 1 ml twice a day of a commercially available solution
+Standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized L. Acidophilus (H122)</description>
+          </group>
+          <group group_id="O2">
+            <title>Group B</title>
+            <description>All enrolled infants randomized to Group B will receive Lactobacillus reuteri DSM 17938 administered at the dose of 108 colony-forming units (CFU)/day in 5 drops of a commercially available oil suspension
+Lactobacillus reuteri DSM 17938 (108 CFU)</description>
+          </group>
+          <group group_id="O3">
+            <title>Group C</title>
+            <description>All enrolled infants randomized to Group C will receive simethicone, given at a dose of 60 mg in 20 drops four times per day of a commercially available solution
+Simethicone</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of Responders</title>
+          <description>Number of responders defined as the number of patients who experienced a decrease in the daily average crying time of 50% from baseline</description>
+          <units>number of responders</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="60"/>
+                <count group_id="O2" value="59"/>
+                <count group_id="O3" value="57"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="57"/>
+                    <measurement group_id="O2" value="47"/>
+                    <measurement group_id="O3" value="38"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <group_list>
+        <group group_id="E1">
+          <title>Group A</title>
+          <description>All enrolled infants randomized to Group A will receive a standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized Lactobacillus Acidophilus (H122), administered at the dose of 1 ml twice a day of a commercially available solution
+Standardized extract of Chamomilla L., Melissa Officinalis L. and tyndallized L. Acidophilus (H122)</description>
+        </group>
+        <group group_id="E2">
+          <title>Group B</title>
+          <description>All enrolled infants randomized to Group B will receive Lactobacillus reuteri DSM 17938 administered at the dose of 108 colony-forming units (CFU)/day in 5 drops of a commercially available oil suspension
+Lactobacillus reuteri DSM 17938 (108 CFU)</description>
+        </group>
+        <group group_id="E3">
+          <title>Group C</title>
+          <description>All enrolled infants randomized to Group C will receive simethicone, given at a dose of 60 mg in 20 drops four times per day of a commercially available solution
+Simethicone</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="60"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="59"/>
+                <counts group_id="E3" subjects_affected="0" subjects_at_risk="57"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="60"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="59"/>
+                <counts group_id="E3" subjects_affected="0" subjects_at_risk="57"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <limitations_and_caveats>The absence of a placebo group and the open label design represent the main limitations of this study</limitations_and_caveats>
+    <point_of_contact>
+      <name_or_title>Annamaria Staiano</name_or_title>
+      <organization>Department of Translational Medical Sciences, Section of Pediatrics, University of Naples &quot;Federico II&quot;</organization>
+      <phone>00390817462679</phone>
+      <email>staiano@unina.it</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
