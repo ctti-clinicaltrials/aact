@@ -72,7 +72,7 @@ class CreateResultTables < ActiveRecord::Migration
 
     # ----  Baseline Data ----------------------------
 
-    create_table "baseline_measures", force: :cascade do |t|
+    create_table "baseline_measurements", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"

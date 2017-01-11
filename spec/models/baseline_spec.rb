@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe BaselineMeasure do
+describe BaselineMeasurement do
   it "doesn't create baseline rows for studies that don't have <baseline> tag" do
     nct_id='NCT00513591'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.baseline_population).to eq('')
-    expect(study.baseline_measures).to eq([])
+    expect(study.baseline_measurements).to eq([])
     expect(study.baseline_counts).to eq([])
   end
 
@@ -16,10 +16,10 @@ describe BaselineMeasure do
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     expect(ResultGroup.where('result_type=?','Baseline').size).to eq(10)
-    expect(BaselineMeasure.count).to eq(380)
-    expect(BaselineMeasure.first.nct_id).to eq(nct_id)
-    expect(BaselineMeasure.first.result_group.result_type).to eq('Baseline')
-    expect(BaselineMeasure.first.result_group.nct_id).to eq(nct_id)
+    expect(BaselineMeasurement.count).to eq(380)
+    expect(BaselineMeasurement.first.nct_id).to eq(nct_id)
+    expect(BaselineMeasurement.first.result_group.result_type).to eq('Baseline')
+    expect(BaselineMeasurement.first.result_group.nct_id).to eq(nct_id)
     expect(BaselineCount.count).to eq(10)
     b10=BaselineCount.where('ctgov_group_code=?','B10').first
     expect(b10.nct_id).to eq(nct_id)
@@ -36,13 +36,13 @@ describe BaselineMeasure do
     expect(b3.result_group.title).to eq('Arm A: Abacavir (ABC)+Lamivudine (3TC)+NNRTI')
 
     expect(study.baseline_population).to eq('All participants who were randomized were included except those who were randomised in error (main enrollment: 1 child HIV-uninfected, 2 on main phase of tuberculosis treatment; cotrimoxazole secondary randomization: 2 children receiving dapsone prophylaxis not cotrimoxazole).')
-    expect(study.baseline_measures.size).to eq(380);
-    bm=study.baseline_measures.select{|x|x.title=='Gender' && x.classification=='Female' && x.ctgov_group_code=='B1'}.first
+    expect(study.baseline_measurements.size).to eq(380);
+    bm=study.baseline_measurements.select{|x|x.title=='Gender' && x.classification=='Female' && x.ctgov_group_code=='B1'}.first
     expect(bm.param_type).to eq('Number');
     expect(bm.category).to eq('');
     expect(bm.units).to eq('participants');
     expect(bm.param_value).to eq('308');
-    bm3=study.baseline_measures.select{|x|x.title=='Gender'  && x.classification=='Female' && x.ctgov_group_code=='B3'}.first
+    bm3=study.baseline_measurements.select{|x|x.title=='Gender'  && x.classification=='Female' && x.ctgov_group_code=='B3'}.first
     expect(bm3.param_type).to eq('Number');
     expect(bm3.param_value).to eq('NA');
     expect(bm3.explanation_of_na).to eq('Different randomized comparison');
@@ -72,14 +72,14 @@ describe BaselineMeasure do
     xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02389088.xml'))
     nct_id='NCT02389088'
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    baseline_array=study.baseline_measures.select{|x| x.title=='Age' and x.ctgov_group_code=='B1'}
+    baseline_array=study.baseline_measurements.select{|x| x.title=='Age' and x.ctgov_group_code=='B1'}
     expect(baseline_array.size).to eq(1)
     expect(baseline_array.first.units).to eq('years')
     expect(baseline_array.first.param_type).to eq('Mean')
     expect(baseline_array.first.param_value).to eq('26')
     expect(baseline_array.first.dispersion_value).to eq('1.2')
     expect(baseline_array.first.dispersion_type).to eq('Standard Deviation')
-    baseline_array=study.baseline_measures.select{|x| x.title=='Gender' and x.ctgov_group_code=='B1'}
+    baseline_array=study.baseline_measurements.select{|x| x.title=='Gender' and x.ctgov_group_code=='B1'}
     expect(baseline_array.size).to eq(2)
     female_baseline=baseline_array.select{|x|x.classification=='Female'}.first
     male_baseline=baseline_array.select{|x|x.classification=='Male'}.first
@@ -91,7 +91,7 @@ describe BaselineMeasure do
     # This is an example of why we might want to dispense with the attempt
     # to link all result-type rows to result_group
     # There's only 1 gtoup defined for baseline (B1: 9 PCOS women), but both
-    # Male and Female measures are associated with group code B1.
+    # Male and Female measurements are associated with group code B1.
 
     expect(male_baseline.units).to eq('participants')
     expect(male_baseline.param_type).to eq('Number')

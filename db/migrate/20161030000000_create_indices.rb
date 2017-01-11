@@ -12,8 +12,8 @@ class CreateIndices < ActiveRecord::Migration
     add_index :studies, :nct_id, :unique => true
     add_index :study_xml_records, :nct_id
 
-    add_index :baseline_measures, :category
-    add_index :baseline_measures, :classification
+    add_index :baseline_measurements, :category
+    add_index :baseline_measurements, :classification
     add_index :browse_conditions, :mesh_term
     add_index :browse_interventions, :mesh_term
     add_index :calculated_values, :actual_duration

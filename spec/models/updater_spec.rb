@@ -14,7 +14,7 @@ describe ClinicalTrials::Updater do
     nct_id='NCT02028676'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.baseline_measures.size).to eq(380)
+    expect(study.baseline_measurements.size).to eq(380)
     expect(study.baseline_counts.size).to eq(10)
     expect(study.browse_conditions.size).to eq(3)
     expect(study.browse_interventions.size).to eq(10)
@@ -55,7 +55,7 @@ describe ClinicalTrials::Updater do
          to_return(:status => 200, :body => incoming, :headers => {})
     ClinicalTrials::Updater.new.update_studies([nct_id])
 
-    expect(study.baseline_measures.size).to eq(380)
+    expect(study.baseline_measurements.size).to eq(380)
     expect(study.baseline_counts.size).to eq(10)
     expect(study.browse_conditions.size).to eq(3)
     expect(study.browse_interventions.size).to eq(10)
