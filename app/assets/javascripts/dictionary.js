@@ -29,13 +29,9 @@ $(function() {
             { name: 'table',              type: "text", width: 180 },
             { name: 'column',             type: "text", width: 180 },
             { name: 'data type',          type: "text", width: 70 },
-            { name: 'xml source',         type: "text", width: 260 },
-            { name: 'AACT contribution',  type: "text", width: 160 },
-            { name: 'CTTI Note',          type: "textarea", width: 260 },
-            { name: 'AACT1 Variable',     type: "text" },
-            { name: 'PRS Label',          type: "text" },
-            { name: 'nlm required',       type: "checkbox" },
-            { name: 'fdaaa required',     type: "checkbox" }
+            { name: 'source',             type: "text", width: 260 },
+            { name: 'CTTI Note',          type: "text", width: 160 },
+            { name: 'anchor tag',         type: "text", width: 360 },
         ]
     });
 });
