@@ -30,8 +30,7 @@ $(function() {
             { name: 'column',             type: "text", width: 180 },
             { name: 'data type',          type: "text", width: 70 },
             { name: 'source',             type: "text", width: 260 },
-            { name: 'CTTI Note',          type: "text", width: 160 },
-            { name: 'anchor tag',         type: "text", width: 360 },
+            { name: 'CTTI Note',          type: "text", width: 360 },
         ]
     });
 });
