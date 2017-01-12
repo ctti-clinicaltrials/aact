@@ -47,20 +47,24 @@ class DefinitionsController < ApplicationController
   end
 
   def fix_attribs(hash)
-    if hash['xml source']
-      fixed_content=hash['xml source'].gsub(/\u003c/, "&lt;").gsub(/>/, "&gt;")
-      hash['xml source']=fixed_content
+    if hash['source']
+      fixed_content=hash['source'].gsub(/\u003c/, "&lt;").gsub(/>/, "&gt;")
+      hash['source']=fixed_content
     end
 
-    if hash["nlm doc"].present?
+#    if hash["nlm doc"].present? && hash['nlm doc'].upcase != 'N/A'
+#      hash["nlm doc"] = "<a href=#{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
+#    end
+
+    if hash['nlm doc'].present?
       url=hash["db section"].downcase == "results" ? @@results_url : @@protocol_url
-      hash["nlm doc"] = "<a href=#{url}##{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
+      hash['nlm doc'] = "<a href=#{url}##{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
     end
     hash
   end
 
   def searchable_attribs
-    ['db section', 'table', 'column', 'data type', 'xml source', 'AACT contribution', 'CTTI Note', 'AACT1 Variable', 'PRS Label']
+    ['db section', 'table', 'column', 'data type', 'xml source', 'source', 'CTTI Note']
   end
 
 end
