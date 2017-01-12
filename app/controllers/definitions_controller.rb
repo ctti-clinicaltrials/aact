@@ -52,7 +52,7 @@ class DefinitionsController < ApplicationController
       hash['source']=fixed_content
     end
 
-    if hash["nlm doc"].present?
+    if hash["nlm doc"].present? && hash['nlm doc'].upcase != 'N/A'
       hash["nlm doc"] = "<a href=#{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
     end
 
