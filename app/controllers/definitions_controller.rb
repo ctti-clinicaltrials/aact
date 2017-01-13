@@ -52,9 +52,17 @@ class DefinitionsController < ApplicationController
       hash['source']=fixed_content
     end
 
-#    if hash["nlm doc"].present? && hash['nlm doc'].upcase != 'N/A'
-#      hash["nlm doc"] = "<a href=#{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
-#    end
+    if hash['enumerations']
+      results=ActiveRecord::Base.connection.execute("SELECT DISTINCT #{hash['column']} FROM #{hash['table']} ORDER BY #{hash['column']}")
+      str=''
+      cntr=results.ntuples - 1
+      while cntr >= 0 do
+        val=results.getvalue(cntr,0).to_s
+        str=str+'<br>'+val
+        cntr=cntr-1
+      end
+      hash['enumerations'] = str
+    end
 
     if hash['nlm doc'].present?
       url=hash["db section"].downcase == "results" ? @@results_url : @@protocol_url

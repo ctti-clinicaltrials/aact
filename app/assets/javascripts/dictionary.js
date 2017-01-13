@@ -31,6 +31,7 @@ $(function() {
             { name: 'data type',          type: "text", width: 70 },
             { name: 'source',             type: "text", width: 260 },
             { name: 'CTTI Note',          type: "text", width: 360 },
+            { name: 'enumerations',       type: "text", width: 200 },
         ]
     });
 });
