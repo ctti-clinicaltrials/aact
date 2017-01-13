@@ -84,15 +84,6 @@ class DefinitionsController < ApplicationController
       hash['table'] = "<span class='primary-key' id='#{tab}'>#{tab}</span>"
     end
 
-    if hash['table'].downcase == 'studies' and hash['column'].downcase == 'nct_id'
-      # If this is Study table primary key (nct_id), display row count for the table.
-      tab=hash['table'].downcase
-      results=ActiveRecord::Base.connection.execute("SELECT row_count FROM sanity_checks WHERE table_name='#{tab}' AND most_current=true")
-      row_count=results.getvalue(0,0).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
-      hash['row count']=row_count
-      hash['table'] = "<span class='primary-key' id='#{tab}'>#{tab})</span>"
-    end
-
     return hash
   end
 
