@@ -42,6 +42,9 @@ class CreateIndices < ActiveRecord::Migration
     add_index :reported_events, :event_type
     add_index :reported_events, :subjects_affected
     add_index :result_contacts, :organization
+    add_index :sanity_checks, :created_at
+    add_index :sanity_checks, :most_current
+    add_index :sanity_checks, :table_name
     add_index :sponsors, :agency_class
     add_index :sponsors, :name
     add_index :studies, :last_known_status
