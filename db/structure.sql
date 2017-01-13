@@ -1414,6 +1414,7 @@ CREATE TABLE sanity_checks (
     nct_id character varying,
     row_count integer,
     description text,
+    most_current boolean,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -2623,6 +2624,27 @@ CREATE INDEX index_responsible_parties_on_nct_id ON responsible_parties USING bt
 --
 
 CREATE INDEX index_result_contacts_on_organization ON result_contacts USING btree (organization);
+
+
+--
+-- Name: index_sanity_checks_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sanity_checks_on_created_at ON sanity_checks USING btree (created_at);
+
+
+--
+-- Name: index_sanity_checks_on_most_current; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sanity_checks_on_most_current ON sanity_checks USING btree (most_current);
+
+
+--
+-- Name: index_sanity_checks_on_table_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sanity_checks_on_table_name ON sanity_checks USING btree (table_name);
 
 
 --
