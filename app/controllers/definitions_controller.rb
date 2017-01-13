@@ -55,6 +55,8 @@ class DefinitionsController < ApplicationController
     end
 
     if hash['enumerations']
+      puts "============================================="
+      stime=Time.now
       results=ActiveRecord::Base.connection.execute("SELECT DISTINCT #{hash['column']} FROM #{hash['table']} ORDER BY #{hash['column']}")
       str=''
       cntr=results.ntuples - 1
@@ -63,6 +65,8 @@ class DefinitionsController < ApplicationController
         str=str+'<br>'+val
         cntr=cntr-1
       end
+      puts "enums for #{hash['table']}.#{hash['column']}:  #{Time.now - stime}"
+      puts "============================================="
       hash['enumerations'] = str
     end
 
@@ -82,15 +86,6 @@ class DefinitionsController < ApplicationController
         hash['row count']=0
       end
       hash['table'] = "<span class='primary-key' id='#{tab}'>#{tab}</span>"
-    end
-
-    if hash['table'].downcase == 'studies' and hash['column'].downcase == 'nct_id'
-      # If this is Study table primary key (nct_id), display row count for the table.
-      tab=hash['table'].downcase
-      results=ActiveRecord::Base.connection.execute("SELECT row_count FROM sanity_checks WHERE table_name='#{tab}' AND most_current=true")
-      row_count=results.getvalue(0,0).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
-      hash['row count']=row_count
-      hash['table'] = "<span class='primary-key' id='#{tab}'>#{tab})</span>"
     end
 
     return hash

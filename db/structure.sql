@@ -2403,6 +2403,20 @@ CREATE INDEX index_baseline_measurements_on_classification ON baseline_measureme
 
 
 --
+-- Name: index_baseline_measurements_on_dispersion_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_baseline_measurements_on_dispersion_type ON baseline_measurements USING btree (dispersion_type);
+
+
+--
+-- Name: index_baseline_measurements_on_param_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_baseline_measurements_on_param_type ON baseline_measurements USING btree (param_type);
+
+
+--
 -- Name: index_browse_conditions_on_mesh_term; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2473,6 +2487,27 @@ CREATE INDEX index_calculated_values_on_start_date ON calculated_values USING bt
 
 
 --
+-- Name: index_central_contacts_on_contact_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_central_contacts_on_contact_type ON central_contacts USING btree (contact_type);
+
+
+--
+-- Name: index_design_groups_on_group_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_design_groups_on_group_type ON design_groups USING btree (group_type);
+
+
+--
+-- Name: index_design_outcomes_on_outcome_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_design_outcomes_on_outcome_type ON design_outcomes USING btree (outcome_type);
+
+
+--
 -- Name: index_designs_on_caregiver_masked; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2505,6 +2540,13 @@ CREATE INDEX index_designs_on_outcomes_assessor_masked ON designs USING btree (o
 --
 
 CREATE INDEX index_designs_on_subject_masked ON designs USING btree (subject_masked);
+
+
+--
+-- Name: index_drop_withdrawals_on_period; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_drop_withdrawals_on_period ON drop_withdrawals USING btree (period);
 
 
 --
@@ -2564,6 +2606,55 @@ CREATE INDEX index_facilities_on_state ON facilities USING btree (state);
 
 
 --
+-- Name: index_facilities_on_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_facilities_on_status ON facilities USING btree (status);
+
+
+--
+-- Name: index_facility_contacts_on_contact_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_facility_contacts_on_contact_type ON facility_contacts USING btree (contact_type);
+
+
+--
+-- Name: index_id_information_on_id_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_id_information_on_id_type ON id_information USING btree (id_type);
+
+
+--
+-- Name: index_interventions_on_intervention_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_interventions_on_intervention_type ON interventions USING btree (intervention_type);
+
+
+--
+-- Name: index_milestones_on_period; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_milestones_on_period ON milestones USING btree (period);
+
+
+--
+-- Name: index_outcome_analyses_on_dispersion_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_analyses_on_dispersion_type ON outcome_analyses USING btree (dispersion_type);
+
+
+--
+-- Name: index_outcome_analyses_on_param_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_analyses_on_param_type ON outcome_analyses USING btree (param_type);
+
+
+--
 -- Name: index_outcome_measurements_on_category; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2575,6 +2666,27 @@ CREATE INDEX index_outcome_measurements_on_category ON outcome_measurements USIN
 --
 
 CREATE INDEX index_outcome_measurements_on_classification ON outcome_measurements USING btree (classification);
+
+
+--
+-- Name: index_outcome_measurements_on_dispersion_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_measurements_on_dispersion_type ON outcome_measurements USING btree (dispersion_type);
+
+
+--
+-- Name: index_outcomes_on_dispersion_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcomes_on_dispersion_type ON outcomes USING btree (dispersion_type);
+
+
+--
+-- Name: index_outcomes_on_param_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcomes_on_param_type ON outcomes USING btree (param_type);
 
 
 --
@@ -2620,10 +2732,31 @@ CREATE INDEX index_responsible_parties_on_nct_id ON responsible_parties USING bt
 
 
 --
+-- Name: index_responsible_parties_on_organization; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_responsible_parties_on_organization ON responsible_parties USING btree (organization);
+
+
+--
+-- Name: index_responsible_parties_on_responsible_party_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_responsible_parties_on_responsible_party_type ON responsible_parties USING btree (responsible_party_type);
+
+
+--
 -- Name: index_result_contacts_on_organization; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_result_contacts_on_organization ON result_contacts USING btree (organization);
+
+
+--
+-- Name: index_result_groups_on_result_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_result_groups_on_result_type ON result_groups USING btree (result_type);
 
 
 --
@@ -2659,6 +2792,13 @@ CREATE INDEX index_sponsors_on_agency_class ON sponsors USING btree (agency_clas
 --
 
 CREATE INDEX index_sponsors_on_name ON sponsors USING btree (name);
+
+
+--
+-- Name: index_studies_on_enrollment_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_enrollment_type ON studies USING btree (enrollment_type);
 
 
 --
@@ -2722,6 +2862,13 @@ CREATE INDEX index_studies_on_source ON studies USING btree (source);
 --
 
 CREATE INDEX index_studies_on_study_type ON studies USING btree (study_type);
+
+
+--
+-- Name: index_study_references_on_reference_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_study_references_on_reference_type ON study_references USING btree (reference_type);
 
 
 --

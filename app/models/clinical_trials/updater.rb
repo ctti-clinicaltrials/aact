@@ -75,6 +75,9 @@ module ClinicalTrials
 
     def indexes
       [
+       [:baseline_measurements, :dispersion_type],
+       [:baseline_measurements, :param_type],
+       [:browse_conditions, :nct_id],
        [:browse_interventions, :nct_id],
        [:overall_officials, :nct_id],
        [:responsible_parties, :nct_id],
@@ -88,19 +91,33 @@ module ClinicalTrials
        [:calculated_values, :primary_completion_date],
        [:calculated_values, :sponsor_type],
        [:calculated_values, :start_date],
+       [:central_contacts, :contact_type],
+       [:design_groups, :group_type],
+       [:design_outcomes, :outcome_type],
        [:designs, :masking],
        [:designs, :subject_masked],
        [:designs, :caregiver_masked],
        [:designs, :investigator_masked],
        [:designs, :outcomes_assessor_masked],
+       [:drop_withdrawals, :period],
        [:eligibilities, :gender],
        [:eligibilities, :healthy_volunteers],
        [:eligibilities, :minimum_age],
        [:eligibilities, :maximum_age],
+       [:facilities, :status],
+       [:facility_contacts, :contact_type],
        [:facilities, :name],
        [:facilities, :city],
        [:facilities, :state],
        [:facilities, :country],
+       [:id_information, :id_type],
+       [:interventions, :intervention_type],
+       [:milestones, :period],
+       [:outcomes, :param_type],
+       [:outcome_analyses, :dispersion_type],
+       [:outcome_analyses, :param_type],
+       [:outcome_measurements, :dispersion_type],
+       [:outcomes, :dispersion_type],
        [:overall_officials, :affiliation],
        [:oversight_authorities, :name],
        [:outcome_measurements, :category],
@@ -108,9 +125,12 @@ module ClinicalTrials
        [:reported_events, :event_type],
        [:reported_events, :subjects_affected],
        [:responsible_parties, :organization],
+       [:responsible_parties, :responsible_party_type],
        [:result_contacts, :organization],
+       [:result_groups, :result_type],
        [:sponsors, :agency_class],
        [:sponsors, :name],
+       [:studies, :enrollment_type],
        [:studies, :overall_status],
        [:studies, :phase],
        [:studies, :last_known_status],
@@ -118,7 +138,8 @@ module ClinicalTrials
        [:studies, :source],
        [:studies, :study_type],
        [:studies, :first_received_results_date],
-       [:studies, :received_results_disposit_date]
+       [:studies, :received_results_disposit_date],
+       [:study_references, :reference_type],
       ]
     end
 
@@ -126,6 +147,7 @@ module ClinicalTrials
       return true if index.table=='studies' and index.columns==['nct_id']
       return true if index.table=='study_xml_records' and index.columns==['nct_id']
       return true if index.table=='study_xml_records' and index.columns==['created_study_at']
+      return true if index.table=='sanity_checks'
       false
     end
 
