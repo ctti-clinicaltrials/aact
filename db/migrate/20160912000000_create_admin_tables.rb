@@ -20,6 +20,7 @@ class CreateAdminTables < ActiveRecord::Migration
       t.string   'nct_id'
       t.integer  'row_count'
       t.text     'description'
+      t.boolean  'most_current'
       t.timestamps null: false
     end
 
