@@ -1,7 +1,7 @@
 <main>
   <section>
     <p>
-      The table below provides detailed information about each data element in the AACT database. Every table and column in the AACT relational database is represented as a row in this table.
+      The table below provides detailed information about each data element in the AACT database. Every study-related table/column in the AACT relational database is represented as a row in this table. (AACT includes a few administrative tables that contain data not directly related to studies.  Information about these tables is not included in the data dictionary.)
     </p>
   </section>
 
@@ -32,6 +32,13 @@
          </li>
          <li>
            <p><b><i>XML Source: </i></b> This column identifies the tag path used to obtain values for the data element from XML source documents.  Click <a href='https://clinicaltrials.gov/ct2/html/images/info/public.xsd' target='_blank'>here</a> for the XML format specifications (xsd) and <a href='https://clinicaltrials.gov/show/NCT00006409?resultsxml=true' target='_blank'>here</a> to see an example of a study as provided by NLM via their API; this represents the source information used to populate the AACT database.</p>
+         </li>
+         <li>
+           <p><b><i>Row Count: </i></b> Each table's primary key definition includes the table's current row count.</p>
+         </li>
+         <li>
+           <p><b><i>Enumerations: </i></b> Some AACT table columns are used to store a discrete set of predefined terms (enumerations). For example, <b>Study.enrollment_type</b> can only contain values: <i>'Anticipated',</i> <i>'Actual'</i> or <i>null</i>. If the table/column is for a set of enumerations, the data dictionary presents each of the enumeration values along with the corresponding number of rows with that value.</p>
+
          </li>
        </ul>
      </section>
