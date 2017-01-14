@@ -11,8 +11,10 @@ class DefinitionsController < ApplicationController
     data = Roo::Spreadsheet.open(ClinicalTrials::FileManager.data_dictionary)
     header = data.first
     dataOut = []
+    puts "about to populate data dictionary view..."
     (2..data.last_row).each do |i|
       row = Hash[[header, data.row(i)].transpose]
+      puts row
       if !row['table'].nil? and !row['column'].nil?
         if !filtered?(params) or passes_filter?(row,params)
           dataOut << fix_attribs(row)
