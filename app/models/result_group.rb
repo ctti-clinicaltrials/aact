@@ -4,10 +4,10 @@ class ResultGroup < StudyRelationship
   has_many :milestones, autosave: true
   has_many :drop_withdrawals, autosave: true
   has_many :baseline_measures, autosave: true
-  has_many :outcome_measures, autosave: true
-  has_many :outcome_groups, inverse_of: :result_group, autosave: true
+  has_many :outcome_counts, autosave: true
+  has_many :outcome_measurements, autosave: true
   has_many :outcome_analysis_groups, inverse_of: :result_group, autosave: true
-  has_many :outcomes, :through => :outcome_groups
+  has_many :outcome_analyses, :through => :outcome_analysis_groups
 
   def self.create_group_set(opts)
     group_xmls=opts[:xml].xpath("group_list").xpath('group')

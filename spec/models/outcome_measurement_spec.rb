@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe OutcomeMeasure do
+describe OutcomeMeasurement do
   xit "should verify that ct.gov returns data as expected" do
     BASE_URL = 'https://clinicaltrials.gov'
     nct_id='NCT02389088'
@@ -9,23 +9,13 @@ describe OutcomeMeasure do
     study=Study.new({xml: xml, nct_id: nct_id}).create
   end
 
-  it "handles studies where outcomes have one measure - no <measure_list> tag" do
-    # and saves units_analyzed"
-    nct_id='NCT00277524'
-    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-    study=Study.new({xml: xml, nct_id: nct_id}).create
-    o=study.outcomes.select{|x|x.title=='ICD/CRT-D Device Baseline Programming Frequencies'}.first
-    m=o.outcome_measures.select{|x|x.title=='ICD/CRT-D Device Baseline Programming Frequencies'}.first
-    expect(m.units_analyzed).to eq('Participants')
-  end
-
   it "saves category in measurements" do
     nct_id='NCT01065844'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    measures=study.outcome_measurements.select{|x|x.category=='Complete reponse (CR)'}
-    expect(measures.size).to eq(1)
-    expect(measures.first.ctgov_group_code).to eq('O1')
+    m=study.outcome_measurements.select{|x|x.category=='Complete reponse (CR)'}
+    expect(m.size).to eq(1)
+    expect(m.first.ctgov_group_code).to eq('O1')
   end
 
   it "should handle outcomes that have no measures" do
@@ -34,27 +24,32 @@ describe OutcomeMeasure do
     study=Study.new({xml: xml, nct_id: nct_id}).create
     o=study.outcomes.select{|x|x.title=='Partial Organ Tolerance Doses for Lung and Esophagus'}
     expect(o.size).to eq(1)
-    expect(o.first.outcome_measures.size).to eq(0)
   end
 
-  it "saves dispersion type in both measures and measurements" do
+  it "saves dispersion type in both outcome and measurements" do
     nct_id='NCT01174550'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    measures=study.outcome_measures.select{|x|x.title=='Quality of Life (QOL) as Measured by Duke Activity Status Index'}
-    expect(measures.size).to eq(1)
-    m=measures.first
-    expect(m.param_type).to eq('Median')
-    expect(m.dispersion_type).to eq('Inter-Quartile Range')
-    expect(m.outcome_measurements.first.dispersion_type).to eq('Inter-Quartile Range')
-    baseline_measurements=m.outcome_measurements.select{|x|x.classification=='Baseline'}
+    outcomes=study.outcomes.select{|x|x.title=='Quality of Life (QOL) as Measured by Duke Activity Status Index'}
+    expect(outcomes.size).to eq(1)
+    o=outcomes.first
+    expect(o.param_type).to eq('Median')
+    expect(o.dispersion_type).to eq('Inter-Quartile Range')
+    expect(o.outcome_measurements.first.dispersion_type).to eq('Inter-Quartile Range')
+    baseline_measurements=o.outcome_measurements.select{|x|x.classification=='Baseline'}
     expect(baseline_measurements.size).to eq(2)
     expect(baseline_measurements.first.dispersion_type).to eq('Inter-Quartile Range')
     o1_baseline=baseline_measurements.select{|x|x.ctgov_group_code=='O1'}.first
+    expect(o1_baseline.title).to eq(o1_baseline.outcome.title)
+    expect(o1_baseline.description).to eq(o1_baseline.outcome.description)
+    expect(o1_baseline.units).to eq(o1_baseline.outcome.units)
     expect(o1_baseline.dispersion_lower_limit).to eq(10.7)
     expect(o1_baseline.dispersion_upper_limit).to eq(38.2)
     expect(o1_baseline.param_value).to eq('21.5')
     expect(o1_baseline.param_value_num).to eq(21.5)
+    expect(o1_baseline.result_group.ctgov_group_code).to eq(o1_baseline.ctgov_group_code)
+    expect(o1_baseline.result_group.title).to eq('Anatomic Diagnostic Test')
+    expect(o1_baseline.result_group.description.gsub(/\n/,' ')).to eq('Coronary Angiography Coronary Angiography: Use of standard equipment for usual-care testing')
   end
 
   it "should belong to study as expected" do
@@ -63,19 +58,22 @@ describe OutcomeMeasure do
     study=Study.new({xml: xml, nct_id: nct_id}).create
     outcome=(study.outcomes.select{|o|o.outcome_type=='Primary' and o.title=='LH and FSH During Phase I and Phase II'}).first
     expect(outcome.description).to eq('LH and FSH (IU/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.')
-    expect(outcome.outcome_measures.first.outcome_measurements.size).to eq(20)
-    lh_class_measures=outcome.outcome_measures.first.outcome_measurements.select{|x| x.classification=='LH'}
+    expect(outcome.units).to eq('IU/L')
+    expect(outcome.param_type).to eq('Mean')
+    expect(outcome.outcome_measurements.size).to eq(20)
+    lh_class_measures=outcome.outcome_measurements.select{|x| x.classification=='LH'}
     expect(lh_class_measures.size).to eq(10)
-#    fsh=outcome.outcome_measures.first.outcome_measurements.select{|x|x.category=='FSH'}
-#    expect(fsh.size).to eq(10)
-#    o1=fsh.select{|x|x.ctgov_group_code=='O10'}.first
-#    expect(o1.result_group.ctgov_group_code).to eq(o1.ctgov_group_code)
+    fsh=outcome.outcome_measurements.select{|x|x.classification=='FSH'}
+    expect(fsh.size).to eq(10)
+    o1=fsh.select{|x|x.ctgov_group_code=='O10'}.first
+    expect(o1.explanation_of_na).to eq('Stimulated value not measured.')
+    expect(o1.param_value).to eq('NA')
+    expect(o1.title).to eq(o1.outcome.title)
+    expect(o1.description).to eq(o1.outcome.description)
+    expect(o1.units).to eq(o1.outcome.units)
 
-#    outcome2=(study.outcomes.select{|o|o.outcome_type=='Primary' and o.title=='Estradiol During Phase I and Phase II'}).first
-#    expect(outcome2.description).to eq('Estradiol (pmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.')
-
-#    outcome3=(study.outcomes.select{|o|o.outcome_type=='Primary' and o.title=='Inhibin B During Phase I and Phase II'}).first
-#    expect(outcome3.outcome_measures.size).to eq(10)
+    outcome2=(study.outcomes.select{|o|o.outcome_type=='Primary' and o.title=='Estradiol During Phase I and Phase II'}).first
+    expect(outcome2.description).to eq('Estradiol (pmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.')
   end
 
   it "should belong to study as expected" do
@@ -85,11 +83,10 @@ describe OutcomeMeasure do
     expect(study.outcomes.size).to eq(5)
     outcome=(study.outcomes.select{|o|o.outcome_type=='Primary' and o.title=='Percentage of Patients Who Survive at Least 12 Months'}).first
     expect(outcome.population).to eq('Eligible patients at the MTD dose level who started protocol treatment.')
-    expect(outcome.outcome_measures.size).to eq(1)
-    expect(outcome.outcome_measures.first.units).to eq('percentage of participants')
-    expect(outcome.outcome_measures.first.outcome_measurements.size).to eq(1)
-    m=outcome.outcome_measures.first.outcome_measurements.first
-    counts=outcome.outcome_measures.first.outcome_counts
+    expect(outcome.units).to eq('percentage of participants')
+    expect(outcome.outcome_measurements.size).to eq(1)
+    m=outcome.outcome_measurements.first
+    counts=outcome.outcome_counts
     expect(counts.size).to eq(1)
     c=counts.first
     expect(c.ctgov_group_code).to eq('O1')
@@ -103,10 +100,9 @@ describe OutcomeMeasure do
     expect(m.dispersion_lower_limit).to eq(61.5)
     expect(m.dispersion_upper_limit).to eq(85.0)
 
-    measure=outcome.outcome_measures.select{|m|m.title=='Percentage of Patients Who Survive at Least 12 Months'}.first
-    expect(measure.description).to eq('Null hypothesis: p<= 62.3% (the best arm of RTOG 94-10); alternative hypothesis: p>= 77.9%. Where p is the percentage of patients alive at at 12 months. Using a one-group chi-square test with alpha = 0.10, a sample size of 50 patients provides at least 87% power to detect a 25% or greater relative increase in the 12-month survival rate, or equivalently, an absolute increase of at least 15.6 percentage points (62.3 versus 77.9). If the point estimate is greater than 71.1% (upper bound), then the conclusion is that the 12-month survival rate from the new treatment significantly improved from 62.3%.')
-    expect(measure.dispersion_type).to eq('95% Confidence Interval')
-    measurement=measure.outcome_measurements.first
+    expect(outcome.description).to eq('Null hypothesis: p<= 62.3% (the best arm of RTOG 94-10); alternative hypothesis: p>= 77.9%. Where p is the percentage of patients alive at at 12 months. Using a one-group chi-square test with alpha = 0.10, a sample size of 50 patients provides at least 87% power to detect a 25% or greater relative increase in the 12-month survival rate, or equivalently, an absolute increase of at least 15.6 percentage points (62.3 versus 77.9). If the point estimate is greater than 71.1% (upper bound), then the conclusion is that the 12-month survival rate from the new treatment significantly improved from 62.3%.')
+    expect(outcome.dispersion_type).to eq('95% Confidence Interval')
+    measurement=outcome.outcome_measurements.first
     expect(measurement.category).to eq('')
     expect(measurement.param_type).to eq('Number')
     expect(measurement.param_value_num).to eq(75.5)
@@ -124,22 +120,12 @@ describe OutcomeMeasure do
     o=study.outcomes.select{|x|x.title=='LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death'}.first
     expect(o.description).to eq('Number of participants with disease progression to a new WHO stage 4 event or death, to be analysed using time-to-event methods')
     expect(o.time_frame).to eq('Median 4 years (from randomization to 16 March 2012; maximum 5 years)')
-    measured_values=o.outcome_measures.select{|x|x.title=='Number of Participants'}
-    expect(o.outcome_measures.size).to eq(1)
+    expect(o.units).to eq('participants')
+    expect(o.param_type).to eq('Number')
+    expect(o.outcome_measurements.size).to eq(2)
+    expect(o.outcome_measurements.select{|x|x.ctgov_group_code=='O1'}.first.param_value).to eq('47')
+    expect(o.outcome_measurements.select{|x|x.ctgov_group_code=='O2'}.first.param_value).to eq('39')
 
-
-
-    o1_measure=o.outcome_measures.first
-    expect(o1_measure.title).to eq('LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death')
-    expect(o1_measure.description).to eq('Number of participants with disease progression to a new WHO stage 4 event or death, to be analysed using time-to-event methods')
-    expect(o1_measure.units).to eq('participants')
-    expect(o1_measure.param_type).to eq('Number')
-    expect(o1_measure.outcome_measurements.size).to eq(2)
-
-
-
-#    expect(o1.param_value).to eq('47')
-#    expect(o1.outcome_counts.size).to eq(2)
 #    expect(o1.outcome_counts.select{|x|x.ctgov_group_code=='O1'}.first.count).to eq(606)
 #    expect(o1.outcome_counts.select{|x|x.ctgov_group_code=='O2'}.first.count).to eq(600)
 #    expect(o1.outcome_counts.select{|x|x.units=='Participants'}.size).to eq(2)
@@ -149,24 +135,22 @@ describe OutcomeMeasure do
 #    expect(o2_measured_values.first.param_value).to eq('39')
   end
 
-  it "study should have expected outcome_measures" do
+  it "study should have expected outcome_measurements" do
 
-    nct_id='NCT02567188'  # a study with outcome measure categories
+    nct_id='NCT02567188'  # a study with outcome measurement categories
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.outcomes.size).to eq(26)
-    outcome=(study.outcomes.select{|o|o.outcome_type=='Secondary' and o.title=='Percentage of Participants With Change in MIRCERA Treatment'}).first
-    expect(outcome.outcome_measures.size).to eq(1)
-    om1=outcome.outcome_measures.first
-    expect(om1.units).to eq('percentage of participants')
-    expect(om1.outcome_measurements.size).to eq(4)
-    m=om1.outcome_measurements.select{|x|x.classification=='Month 9 (n= 110)'}.first
+    o=(study.outcomes.select{|x|x.outcome_type=='Secondary' and x.title=='Percentage of Participants With Change in MIRCERA Treatment'}).first
+    expect(o.units).to eq('percentage of participants')
+    expect(o.outcome_measurements.size).to eq(4)
+    m=o.outcome_measurements.select{|x|x.classification=='Month 9 (n= 110)'}.first
     expect(m.ctgov_group_code).to eq('O1')
     expect(m.param_value).to eq('22.7')
     expect(m.param_value_num).to eq(22.7)
   end
 
-  it "study should have expected outcome_measures with explanation_of_na" do
+  it "study should have expected outcome_measurements with explanation_of_na" do
     nct_id='NCT02389088'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
@@ -187,21 +171,20 @@ describe OutcomeMeasure do
     expect(o.outcome_type).to eq('Primary')
     expect(o.description).to eq("LH and FSH (IU/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.")
     expect(o.time_frame).to eq('At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II')
-    om=o.outcome_measures.select{|x|x.title=='LH and FSH During Phase I and Phase II'}.first
-    expect(om.outcome_measurements.size).to eq(20)
-    expect(om.outcome_measurements.select{|x|x.classification=='LH'}.size).to eq(10)
-    expect(om.outcome_measurements.select{|x|x.classification=='FSH'}.size).to eq(10)
-    o9_measurements=om.outcome_measurements.select{|x|x.ctgov_group_code=='O9'}
+    expect(o.outcome_measurements.size).to eq(20)
+    expect(o.outcome_measurements.select{|x|x.classification=='LH'}.size).to eq(10)
+    expect(o.outcome_measurements.select{|x|x.classification=='FSH'}.size).to eq(10)
+    o9_measurements=o.outcome_measurements.select{|x|x.ctgov_group_code=='O9'}
     expect(o9_measurements.size).to eq(2)
     o9_m=o9_measurements.select{|x|x.classification=='FSH'}.first
     expect(o9_m.param_value).to eq('9.3')
     expect(o9_m.dispersion_value_num).to eq(3.1)
 
-    #om=study.outcome_measures.select{|x|x.title=='Estradiol During Phase I and Phase II'}
-    #expect(om.size).to eq(10)
-    #om1=om.select{|x|x.ctgov_group_code=='O1'}.first
-    #expect(om1.dispersion_value).to eq('131')
-    #expect(om1.param_value).to eq('451.7')
+    om=study.outcomes.select{|x|x.title=='Estradiol During Phase I and Phase II'}.first.outcome_measurements
+    expect(om.size).to eq(10)
+    om1=om.select{|x|x.ctgov_group_code=='O1'}.first
+    expect(om1.dispersion_value).to eq('131')
+    expect(om1.param_value).to eq('451.7')
   end
 
 end
