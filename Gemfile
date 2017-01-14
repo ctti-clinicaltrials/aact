@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby "2.2.3"
 
 gem "rails", "~> 4.2.6"
+gem "rack-timeout"
 gem "faraday"
 gem "autoprefixer-rails"
 gem "flutie"
