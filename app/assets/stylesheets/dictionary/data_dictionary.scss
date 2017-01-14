@@ -1,15 +1,19 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 table.enumerations {
-   border-collapse:collapse;
+  border-collapse:collapse;
  }
 
 .enum-count td {
+  font-size: 12px;
+  font-family: "Roboto";
   padding: 0;
   text-align: right;
 }
 
 td {
+  font-size: 12px;
+  font-family: "Roboto";
   padding: 0;
 }
 
@@ -29,7 +33,7 @@ main {
 }
 
 #toggle:checked ~ #expand {
-  height: 550px;
+  height: 620px;
 }
 #toggle:checked ~ label::before {
   content: "Hide Hints";
@@ -95,8 +99,8 @@ section.dataDictionaryShow {
   }
 
   div.gridContainer {
-    @include columnify(12, true);
-    display: block;
+//    @include columnify(12, true);
+//    display: block;
     margin: 0 auto;
     padding: 2px 2px 2px 0px;
     background-color: $white;
