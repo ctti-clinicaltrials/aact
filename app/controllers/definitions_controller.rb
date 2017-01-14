@@ -88,14 +88,14 @@ class DefinitionsController < ApplicationController
       else
         hash['row count']=0
       end
-      hash['table'] = "<span class='primary-key' id='#{tab}'>#{tab}</span>"
+      hash['table'] = "<span class='primary-key' id='#{tab}'>#{hash['table']}</span>"
     end
 
     return hash
   end
 
   def searchable_attribs
-    ['db section', 'table', 'column', 'data type', 'xml source', 'source', 'CTTI note', 'row count']
+    ['db section', 'table', 'column', 'data type', 'xml source', 'source', 'CTTI note']
   end
 
 end

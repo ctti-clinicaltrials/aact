@@ -45,7 +45,7 @@
 }
 
 .jsgrid-cell {
-    padding: 0.5em 0.5em;
+    padding: 0.3em 0.3em;
 }
 
 .jsgrid-сell,
@@ -72,7 +72,7 @@
 }
 
 .jsgrid-header-cell {
-    padding: .5em .5em;
+    padding: .3em .3em;
 }
 
 .jsgrid-filter-row input,
@@ -122,5 +122,5 @@
 }
 
 .jsgrid-pager-page {
-    padding: .2em .6em;
+    padding: .1em .3em;
 }
