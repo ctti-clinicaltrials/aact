@@ -32,7 +32,7 @@ $(function() {
             { name: 'source',             type: "text", width: 260 },
             { name: 'CTTI note',          type: "text", width: 360 },
             { name: 'row count',          type: 'text', width: 100, align: 'center' },
-            { name: 'enumerations',       type: "text", width: 200 },
+            { name: 'enumerations',       type: "text", width: 280 },
         ]
     });
 });

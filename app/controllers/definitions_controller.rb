@@ -56,14 +56,19 @@ class DefinitionsController < ApplicationController
 
     if hash['enumerations']
       stime=Time.now
-      results=ActiveRecord::Base.connection.execute("SELECT DISTINCT #{hash['column']} FROM #{hash['table']} ORDER BY #{hash['column']}")
-      str=''
+      results=ActiveRecord::Base.connection.execute("SELECT DISTINCT #{hash['column']}, COUNT(*) AS cnt FROM #{hash['table']} GROUP BY #{hash['column']} ORDER BY cnt ASC")
+      str="<table class='enumerations' >"
       cntr=results.ntuples - 1
       while cntr >= 0 do
+        str=str+'<tr>'
         val=results.getvalue(cntr,0).to_s
-        str=str+'<br>'+val
+        val='-null-' if val.size==0
+        row_count=results.getvalue(cntr,1).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+        str=str+"<td class='enum-val'>" + val + " </td><td align='right'>"+row_count+"</td>"
+        str=str+'</tr>'
         cntr=cntr-1
       end
+      str=str+'</table>'
       puts "enums for #{hash['table']}.#{hash['column']}:  #{Time.now - stime}"
       hash['enumerations'] = str
     end

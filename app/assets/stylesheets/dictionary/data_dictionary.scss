@@ -1,5 +1,18 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
+table.enumerations {
+   border-collapse:collapse;
+ }
+
+.enum-count td {
+  padding: 0;
+  text-align: right;
+}
+
+td {
+  padding: 0;
+}
+
 body {
   font-family: Roboto;
 }
