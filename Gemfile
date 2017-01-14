@@ -12,6 +12,7 @@ gem "appsignal"
 gem "sidekiq"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
+gem 'rails_12factor'
 gem "puma"
 gem "coderay"
 gem "recipient_interceptor"
