@@ -55,7 +55,6 @@ class DefinitionsController < ApplicationController
     end
 
     if hash['enumerations']
-      puts "============================================="
       stime=Time.now
       results=ActiveRecord::Base.connection.execute("SELECT DISTINCT #{hash['column']} FROM #{hash['table']} ORDER BY #{hash['column']}")
       str=''
@@ -66,7 +65,6 @@ class DefinitionsController < ApplicationController
         cntr=cntr-1
       end
       puts "enums for #{hash['table']}.#{hash['column']}:  #{Time.now - stime}"
-      puts "============================================="
       hash['enumerations'] = str
     end
 
