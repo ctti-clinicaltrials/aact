@@ -1,5 +1,6 @@
 class OutcomeMeasurement < StudyRelationship
-  belongs_to :outcome_measure, autosave: true
+  belongs_to :outcome, autosave: true
+  belongs_to :result_group, autosave: true
 
   def self.create_all_from(opts)
     original_xml=opts[:xml]
@@ -40,7 +41,7 @@ class OutcomeMeasurement < StudyRelationship
 
               opts[:lower_limit]=gr.attribute('lower_limit').try(:value)
               opts[:upper_limit]=gr.attribute('upper_limit').try(:value)
-              opts[:ctgov_group_code]=gr.attribute('group_id').try(:value)
+              opts[:group_id]=gr.attribute('group_id').try(:value)
               opts[:explanation_of_na]=gr.text
               om = new.create_from(opts)
               col << om
@@ -55,12 +56,20 @@ class OutcomeMeasurement < StudyRelationship
     col
   end
 
+  def gid
+    opts[:group_id]
+  end
+
   def attribs
     {
-      :outcome_measure        => get_opt(:outcome_measure),
+      :result_group           => get_group(opts[:groups]),
+      :outcome                => get_opt(:outcome),
       :classification         => get_opt('classification'),
       :category               => get_opt('category'),
-      :ctgov_group_code       => get_opt('ctgov_group_code'),
+      :title                  => get_opt(:title),
+      :description            => get_opt(:description),
+      :units                  => get_opt(:units),
+      :ctgov_group_code       => get_opt('group_id'),
       :param_type             => get_opt('param_type'),
       :param_value            => get_opt('param_value'),
       :param_value_num        => get_opt('param_value_num'),
@@ -70,6 +79,7 @@ class OutcomeMeasurement < StudyRelationship
       :dispersion_lower_limit => get_opt('lower_limit'),
       :dispersion_upper_limit => get_opt('upper_limit'),
       :explanation_of_na      => get_opt('explanation_of_na'),
+
     }
   end
 

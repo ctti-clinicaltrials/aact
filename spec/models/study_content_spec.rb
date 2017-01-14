@@ -56,8 +56,9 @@ describe Study do
   end
 
   context 'when patient data section exists' do
-    xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02830269.xml'))
-    study=Study.new({xml: xml, nct_id: 'NCT02830269'}).create
+    nct_id='NCT02830269'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
 
     it 'should have expected sharing ipd value' do
       expect(study.plan_to_share_ipd).to eq('Undecided')
@@ -80,8 +81,9 @@ describe Study do
   end
 
   context 'when patient data section does not exist' do
+    nct_id='NCT02260193'
     xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
-    study=Study.new({xml: xml, nct_id: 'NCT02260193'}).create
+    study=Study.new({xml: xml, nct_id: nct_id}).create
 
     it 'should return empty string for sharing ipd value' do
       expect(study.plan_to_share_ipd).to eq(nil)

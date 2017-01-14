@@ -1,10 +1,11 @@
 class SanityCheck < ActiveRecord::Base
 
   def self.save_row_counts
+    ActiveRecord::Base.connection.execute('UPDATE sanity_checks SET most_current=false')
     ClinicalTrials::Updater.loadable_tables.each{|table_name|
       table_name='references' if table_name=='study_references'
       cnt=table_name.singularize.camelize.constantize.count
-      new({:table_name=>table_name,:row_count=>cnt}).save!
+      new({:table_name=>table_name,:row_count=>cnt,:most_current=>true}).save!
     }
   end
 
@@ -34,10 +35,8 @@ class SanityCheck < ActiveRecord::Base
     [
       ['studies','outcomes'],
       ['studies','reported_events'],
-      ['outcomes','outcome_measures'],
       ['outcomes','outcome_analyses'],
-      ['outcomes','outcome_groups'],
-      ['outcome_measures','outcome_measurements'],
+      ['outcomes','outcome_measurements'],
       ['outcome_analyses','outcome_analysis_groups'],
     ]
   end

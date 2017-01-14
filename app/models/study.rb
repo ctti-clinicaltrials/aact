@@ -10,45 +10,48 @@ class Study < ActiveRecord::Base
   scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :oversight_authorities, :responsible_parties) }
   self.primary_key = 'nct_id'
 
-  has_one  :brief_summary,         :foreign_key => 'nct_id', dependent: :delete
-  has_one  :design,                :foreign_key => 'nct_id', dependent: :delete
-  has_one  :detailed_description,  :foreign_key => 'nct_id', dependent: :delete
-  has_one  :eligibility,           :foreign_key => 'nct_id', dependent: :delete
-  has_one  :participant_flow,      :foreign_key => 'nct_id', dependent: :delete
-  has_one  :calculated_value,      :foreign_key => 'nct_id', dependent: :delete
+  has_one  :brief_summary,         :foreign_key => 'nct_id', :dependent => :delete
+  has_one  :design,                :foreign_key => 'nct_id', :dependent => :delete
+  has_one  :detailed_description,  :foreign_key => 'nct_id', :dependent => :delete
+  has_one  :eligibility,           :foreign_key => 'nct_id', :dependent => :delete
+  has_one  :participant_flow,      :foreign_key => 'nct_id', :dependent => :delete
+  has_one  :calculated_value,      :foreign_key => 'nct_id', :dependent => :delete
   has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
-  has_many :baseline_measures,     :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :baseline_counts,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :design_outcomes,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :design_groups,         :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :design_group_interventions, :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :id_information,        :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :drop_withdrawals,      :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :result_groups,         :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :reported_events,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :browse_conditions,     :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :browse_interventions,  :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :central_contacts,      :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :conditions,            :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :countries,             :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :facilities,            :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :facility_contacts,     :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :facility_investigators,:foreign_key => 'nct_id', dependent: :delete_all
-  has_many :interventions,         :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :intervention_other_names, :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :keywords,              :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :links,                 :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :milestones,            :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcomes,              :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :outcome_analyses,      :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :overall_officials,     :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :oversight_authorities, :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :responsible_parties,   :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :result_agreements,     :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :result_contacts,       :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :sponsors,              :foreign_key => 'nct_id', dependent: :delete_all
-  has_many :references,            :foreign_key => 'nct_id', dependent: :delete_all
+  has_many :baseline_measurements, :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :baseline_counts,       :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :browse_conditions,     :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :browse_interventions,  :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :central_contacts,      :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :conditions,            :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :countries,             :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :design_outcomes,       :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :design_groups,         :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :design_group_interventions, :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :drop_withdrawals,      :foreign_key => 'nct_id', :dependent => :delete_all
+
+  has_many :facilities,            :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :facility_contacts,     :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :facility_investigators,:foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :id_information,        :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :interventions,         :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :intervention_other_names, :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :keywords,              :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :links,                 :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :milestones,            :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :outcomes,              :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :outcome_analysis_groups, :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :outcome_analyses,      :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :outcome_measurements,  :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :overall_officials,     :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :oversight_authorities, :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :references,            :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :reported_events,       :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :responsible_parties,   :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :result_agreements,     :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :result_contacts,       :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :result_groups,         :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :sponsors,              :foreign_key => 'nct_id', :dependent => :delete_all
   accepts_nested_attributes_for :outcomes
 
   def initialize(hash)
@@ -69,6 +72,8 @@ class Study < ActiveRecord::Base
   end
 
   def create
+    s=Study.where('nct_id=?',nct_id).first
+    s.try(:destroy)
     update(attribs)
     groups=DesignGroup.create_all_from(opts)
     Intervention.create_all_from(opts.merge(:design_groups=>groups))
@@ -78,8 +83,7 @@ class Study < ActiveRecord::Base
     Eligibility.new.create_from(opts).save
     ParticipantFlow.new.create_from(opts).try(:save)
 
-    BaselineMeasure.create_all_from(opts)
-    BaselineCount.create_all_from(opts)
+    BaselineMeasurement.create_all_from(opts)
     BrowseCondition.create_all_from(opts)
     BrowseIntervention.create_all_from(opts)
     CentralContact.create_all_from(opts)
@@ -90,9 +94,7 @@ class Study < ActiveRecord::Base
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     Milestone.create_all_from(opts)
-    DropWithdrawal.create_all_from(opts)
     Outcome.create_all_from(opts)
-    #  ResultGroups get created in the process of creating the 4 above
     OversightAuthority.create_all_from(opts)
     OverallOfficial.create_all_from(opts)
     DesignOutcome.create_all_from(opts)
@@ -248,8 +250,8 @@ class Study < ActiveRecord::Base
     Date.parse(str) if !str.blank?
   end
 
-  def outcome_measures
-    OutcomeMeasure.where('nct_id=?',nct_id)
+  def outcome_analyses
+    OutcomeAnalysis.where('nct_id=?',nct_id)
   end
 
   def outcome_measurements

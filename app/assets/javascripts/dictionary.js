@@ -2,7 +2,7 @@ $(function() {
 
   $("#jsGrid").jsGrid({
         height: "160vh",
-        width: "100%",
+        width: "90%",
         filtering: true,
         inserting: false,
         editing: false,
@@ -26,16 +26,13 @@ $(function() {
             { type: 'control', deleteButton: false, editButton: false },
             { name: 'nlm doc',            width: 38, align: 'center' },
             { name: 'db section',         type: "text", width: 75 },
-            { name: 'table',              type: "text", width: 180 },
+            { name: 'table',              type: "text", width: 150 },
             { name: 'column',             type: "text", width: 180 },
             { name: 'data type',          type: "text", width: 70 },
-            { name: 'xml source',         type: "text", width: 260 },
-            { name: 'AACT contribution',  type: "text", width: 160 },
-            { name: 'CTTI Note',          type: "textarea", width: 260 },
-            { name: 'AACT1 Variable',     type: "text" },
-            { name: 'PRS Label',          type: "text" },
-            { name: 'nlm required',       type: "checkbox" },
-            { name: 'fdaaa required',     type: "checkbox" }
+            { name: 'source',             type: "text", width: 260 },
+            { name: 'CTTI note',          type: "text", width: 360 },
+            { name: 'row count',          type: 'text', width: 100, align: 'center' },
+            { name: 'enumerations',       type: "text", width: 280 },
         ]
     });
 });

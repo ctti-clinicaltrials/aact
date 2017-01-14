@@ -10,7 +10,7 @@ describe SanityCheck do
   end
 
   it 'should have one row for each study-related table' do
-    expect(SanityCheck.count).to eq(43)
+    expect(SanityCheck.count).to eq(41)
   end
 
   it 'should have row count 1 for each table that has 1-to-1 relationship with studies table' do
@@ -40,7 +40,9 @@ describe SanityCheck do
     expect(outcomes.size).to eq(0)
     SanityCheck.check_for_orphans
     sc=SanityCheck.where('nct_id=?',nct_id)
-    expect(sc.size).to eq(2)
+    expect(sc.size).to eq(1)
+    expect(sc.first.table_name).to eq('outcome_measurements')
+    expect(sc.first.description).to eq('Orphaned from outcomes')
   end
 
 end
