@@ -11,10 +11,8 @@ class DefinitionsController < ApplicationController
     data = Roo::Spreadsheet.open(ClinicalTrials::FileManager.data_dictionary)
     header = data.first
     dataOut = []
-    puts "about to populate data dictionary view..."
     (2..data.last_row).each do |i|
       row = Hash[[header, data.row(i)].transpose]
-      puts row
       if !row['table'].nil? and !row['column'].nil?
         if !filtered?(params) or passes_filter?(row,params)
           dataOut << fix_attribs(row)
@@ -51,27 +49,26 @@ class DefinitionsController < ApplicationController
   end
 
   def fix_attribs(hash)
+    enums=DataDefinition.enums
+    enum_tabs=enums.map {|row| row[0]}
+    enum_cols=enums.map {|row| row[1]}
+    tab=hash['table'].downcase
+    col=hash['column'].downcase
+
     if hash['source']
       fixed_content=hash['source'].gsub(/\u003c/, "&lt;").gsub(/>/, "&gt;")
       hash['source']=fixed_content
     end
 
-    if hash['enumerations']
-      stime=Time.now
-      results=ActiveRecord::Base.connection.execute("SELECT DISTINCT #{hash['column']}, COUNT(*) AS cnt FROM #{hash['table']} GROUP BY #{hash['column']} ORDER BY cnt ASC")
-      str="<table class='enumerations' >"
-      cntr=results.ntuples - 1
-      while cntr >= 0 do
+    if enum_tabs.include? tab and enum_cols.include? col
+      str="<table class='enumerations'>"
+      dd=DataDefinition.where('table_name=? and column_name=?',tab,col).first
+      dd.enumerations.each{|e|
         str=str+'<tr>'
-        val=results.getvalue(cntr,0).to_s
-        val='-null-' if val.size==0
-        row_count=results.getvalue(cntr,1).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
-        str=str+"<td class='enum-val'>" + val + " </td><td align='right'>"+row_count+"</td>"
+        str=str+"<td class='enum-val'>"+e.first+" </td><td align='right'>"+e.last+"</td>"
         str=str+'</tr>'
-        cntr=cntr-1
-      end
+      }
       str=str+'</table>'
-      puts "enums for #{hash['table']}.#{hash['column']}:  #{Time.now - stime}"
       hash['enumerations'] = str
     end
 
@@ -80,10 +77,9 @@ class DefinitionsController < ApplicationController
       hash['nlm doc'] = "<a href=#{url}##{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
     end
 
-    if (hash['column'].downcase == 'id') or (hash['table'].downcase == 'studies' and hash['column'].downcase == 'nct_id')
-      # If this is the table's primary key, display row count for the table.
-      tab=hash['table'].downcase
-      results=ActiveRecord::Base.connection.execute("SELECT row_count FROM sanity_checks WHERE table_name='#{tab}' AND most_current=true")
+    if (col == 'id') or (tab.downcase == 'studies' and col == 'nct_id')
+      # If this is the table's primary key, display row count.
+      results=ActiveRecord::Base.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}'")
       if results.ntuples > 0
         row_count=results.getvalue(0,0).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
         hash['row count']=row_count
