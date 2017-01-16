@@ -62,6 +62,7 @@ module ClinicalTrials
     end
 
     def finalize_full_load
+      remove_indexes  # Make sure indexes are gone before trying to add them.
       add_indexes
       grant_db_privs
       create_calculated_values
