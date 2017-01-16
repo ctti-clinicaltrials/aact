@@ -171,7 +171,7 @@ module ClinicalTrials
 
     def incremental
       log("begin incremental load...")
-      days_back=(@params[:days_back] ? @params[:days_back] : 2)
+      days_back=(@params[:days_back] ? @params[:days_back] : 4)
       log("finding studies changed in past #{days_back} days...")
       ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
       log("found #{ids.size} studies that have been changed or added")
