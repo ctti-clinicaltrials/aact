@@ -2,7 +2,7 @@ $(function() {
 
   $("#jsGrid").jsGrid({
         height: "160vh",
-        width: "90%",
+        width: "100%",
         filtering: true,
         inserting: false,
         editing: false,
@@ -29,10 +29,10 @@ $(function() {
             { name: 'table',              type: "text", width: 150 },
             { name: 'column',             type: "text", width: 180 },
             { name: 'data type',          type: "text", width: 70 },
-            { name: 'source',             type: "text", width: 260 },
-            { name: 'CTTI note',          type: "text", width: 360 },
+            { name: 'CTTI note',          type: "text", width: 350 },
             { name: 'row count',          type: 'text', width: 100, align: 'center' },
-            { name: 'enumerations',       type: "text", width: 280 },
+            { name: 'enumerations',       type: "text", width: 250 },
+            { name: 'source',             type: "text", width: 250 },
         ]
     });
 });
