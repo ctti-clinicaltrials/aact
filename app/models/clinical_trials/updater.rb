@@ -54,7 +54,7 @@ module ClinicalTrials
         study_counts[:should_change]=0
         @client.populate_studies
         finalize_full_load
-      rescue e
+      rescue  Exception => e
         puts "Full load failed:  #{e}"
         grant_db_privs
         load_event.complete({:status=>'failed', :problems=> e.to_s, :study_counts=> study_counts})
