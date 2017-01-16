@@ -214,6 +214,7 @@ module ClinicalTrials
     def self.loadable_tables
       blacklist = %w(
         schema_migrations
+        data_definitions
         load_events
         sanity_checks
         statistics
@@ -258,6 +259,8 @@ module ClinicalTrials
     def run_sanity_checks
       log("sanity check...")
       SanityCheck.run
+      DataDefinition.populate_row_counts
+      DataDefinition.populate_enumerations
     end
 
     def take_snapshot
