@@ -206,6 +206,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.date     "first_received_results_date"
       t.date     "received_results_disposit_date"
       t.string   "start_month_year"
+      t.string   "start_date_type"
       t.string   "verification_month_year"
       t.string   "completion_month_year"
       t.string   "completion_date_type"

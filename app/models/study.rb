@@ -220,6 +220,7 @@ class Study < ActiveRecord::Base
       :target_duration => get('target_duration'),
       :enrollment => get('enrollment'),
       :biospec_description =>get_text('biospec_descr'),
+      :start_date_type => get_type('start_date'),
       :primary_completion_date_type => get_type('primary_completion_date'),
       :completion_date_type => get_type('completion_date'),
       :enrollment_type => get_type('enrollment'),
