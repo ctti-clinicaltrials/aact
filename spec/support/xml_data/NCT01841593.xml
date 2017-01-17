@@ -23,6 +23,11 @@
   </sponsors>
   <source>St Stephens Aids Trust</source>
   <oversight_info>
+    <is_fda_regulated_drug>Yes</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+    <is_unapproved_device>No</is_unapproved_device>
+    <is_ppsd>No</is_ppsd>
+    <is_us_export>true</is_us_export>
     <authority>United Kingdom: Medicines and Healthcare Products Regulatory Agency</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
@@ -68,7 +73,7 @@
     </textblock>
   </detailed_description>
   <overall_status>Completed</overall_status>
-  <start_date>April 2013</start_date>
+  <start_date type="Actual">April 2013</start_date>
   <completion_date type="Actual">September 2013</completion_date>
   <primary_completion_date type="Actual">September 2013</primary_completion_date>
   <phase>Phase 1</phase>
@@ -240,7 +245,6 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
-  <is_fda_regulated>No</is_fda_regulated>
   <has_expanded_access>No</has_expanded_access>
   <intervention_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
