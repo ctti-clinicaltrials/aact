@@ -1,7 +1,7 @@
 require 'csv'
 class Study < ActiveRecord::Base
   include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+#  include Elasticsearch::Model::Callbacks
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
 
