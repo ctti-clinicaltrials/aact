@@ -1565,6 +1565,7 @@ CREATE TABLE studies (
     first_received_results_date date,
     received_results_disposit_date date,
     start_month_year character varying,
+    start_date_type character varying,
     verification_month_year character varying,
     completion_month_year character varying,
     completion_date_type character varying,

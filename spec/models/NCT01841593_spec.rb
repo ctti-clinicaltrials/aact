@@ -16,6 +16,7 @@ describe Study do
     expect(study.official_title).to eq('A Two Way Cross Over Pharmacokinetic (PK) Interaction Study Between Raltegravir and Amlodipine in Healthy Volunteers')
     expect(study.overall_status).to eq('Completed')
     expect(study.start_month_year).to eq('April 2013')
+    expect(study.start_date_type).to eq('Actual')
     expect(study.completion_month_year).to eq('September 2013')
     expect(study.completion_date_type).to eq('Actual')
     expect(study.phase).to eq('Phase 1')
