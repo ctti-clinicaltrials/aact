@@ -209,14 +209,18 @@ class Study < ActiveRecord::Base
       :study_type => get('study_type'),
       :biospec_retention =>get('biospec_retention'),
       :limitations_and_caveats  =>xml.xpath('//limitations_and_caveats').text,
-      :is_section_801 => get_boolean('is_section_801'),
-      :is_fda_regulated => get_boolean('is_fda_regulated'),
+      :is_section_801 => get_boolean('//is_section_801'),
+      :is_fda_regulated => get_boolean('//is_fda_regulated'),
+      :is_fda_regulated_drug =>get_boolean('//is_fda_regulated_drug'),
+      :is_fda_regulated_device =>get_boolean('//is_fda_regulated_device'),
+      :is_unapproved_device =>get_boolean('//is_unapproved_device'),
+      :is_ppsd =>get_boolean('//is_ppsd'),
+      :is_us_export  =>get_boolean('//is_us_export'),
       :plan_to_share_ipd => get('patient_data/sharing_ipd'),
       :plan_to_share_ipd_description => get('patient_data/ipd_description'),
-      :has_expanded_access => get_boolean('has_expanded_access'),
-      :has_dmc => get_boolean('has_dmc'),
+      :has_expanded_access => get_boolean('//has_expanded_access'),
+      :has_dmc => get_boolean('//has_dmc'),
       :why_stopped =>get('why_stopped')
-
     }
   end
 
@@ -242,8 +246,10 @@ class Study < ActiveRecord::Base
   end
 
   def get_boolean(label)
-    val=xml.xpath("//#{label}").try(:text)
-    val.downcase=='yes'||val.downcase=='y'||val.downcase=='true' if !val.blank?
+    val=xml.xpath("#{label}").try(:text)
+    return nil if val.blank?
+    return true if val.downcase=='yes'||val.downcase=='y'||val.downcase=='true'
+    return false if val.downcase=='no'||val.downcase=='n'||val.downcase=='false'
   end
 
   def get_date(str)
