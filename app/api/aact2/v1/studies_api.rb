@@ -100,14 +100,14 @@ module AACT2
       end
       params do
         optional :organization, type: String, desc: 'Organization'
-        optional :mesh_term, type: String, desc: 'MeSH Term'
+        optional :term, type: String, desc: 'Search Term'
       end
       paginate page: 1
       paginate per_page: 100
       get '/studies', root: false do
         study_params = declared(params, include_missing: false)
-        if !study_params[:mesh_term].nil?
-          paginate Study.with_mesh_term(study_params[:mesh_term])
+        if !study_params[:term].nil?
+          paginate Study.with_term(study_params[:term])
         else
           if !study_params[:organization].nil?
             paginate Study.with_organization(study_params[:organization])

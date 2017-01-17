@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/elasticsearch/elasticsearch-rails.git
+  revision: b6d485748c71a07d064ea2a46a6da82d64a04cd7
+  specs:
+    elasticsearch-model (0.1.9)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -33,8 +43,8 @@ GEM
       activemodel (= 4.2.7.1)
       activesupport (= 4.2.7.1)
       arel (~> 6.0)
-    activerecord-import (0.13.0)
-      activerecord (>= 3.0)
+    activerecord-import (0.15.0)
+      activerecord (>= 3.2)
     activesupport (4.2.7.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -105,6 +115,14 @@ GEM
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
+    elasticsearch (5.0.0)
+      elasticsearch-api (= 5.0.0)
+      elasticsearch-transport (= 5.0.0)
+    elasticsearch-api (5.0.0)
+      multi_json
+    elasticsearch-transport (5.0.0)
+      faraday
+      multi_json
     enumerable-lazy (0.0.1)
     enumerize (1.0.0)
       activesupport (>= 3.2)
@@ -498,6 +516,8 @@ DEPENDENCIES
   coderay
   database_cleaner
   dotenv-rails
+  elasticsearch-model!
+  elasticsearch-rails!
   enumerize
   factory_girl_rails
   faraday

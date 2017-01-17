@@ -1,6 +1,23 @@
 require 'csv'
 class Study < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   attr_accessor :xml, :with_related_records, :with_related_organizations
+
+  def as_indexed_json(options = {})
+    self.as_json({
+      only: [:nct_id, :acronym, :baseline_population, :brief_title, :official_title, :overall_status, :phase, :limitations_and_caveats],
+      include: {
+        detailed_description: { only: :description },
+        brief_summary: { only: :description },
+        keywords: { only: :name },
+        browse_conditions: { only: :mesh_term },
+        browse_interventions: { only: :mesh_term },
+        sponsors: { only: :name },
+      }
+    })
+  end
 
   def self.current_interventional
     self.interventional and self.current
@@ -306,17 +323,8 @@ class Study < ActiveRecord::Base
     where(nct_id: ids).includes(:sponsors).includes(:facilities).includes(:brief_summary).includes(:detailed_description).includes(:design).includes(:eligibility).includes(:overall_officials).includes(:responsible_parties)
   end
 
-  def self.with_mesh_term(user_provided_term)
-    term=make_queriable(user_provided_term)
-    ids=(BrowseCondition.where('mesh_term=?',term).pluck(:nct_id) \
-         +  BrowseIntervention.where('mesh_term=?',term).pluck(:nct_id)).flatten.uniq
-    where(nct_id: ids).includes(:sponsors).includes(:facilities).includes(:brief_summary).includes(:detailed_description).includes(:design).includes(:eligibility).includes(:overall_officials).includes(:responsible_parties)
-  end
-
-  def self.make_queriable(value)
-    downcase_words = ['of', 'the', 'and', 'to']
-    words=value.gsub("+", " ")
-    words.split(' ').each{ |word| (downcase_words.include? word.downcase) ? word.downcase! : word.capitalize! }.join(' ')
+  def self.with_term(term)
+    Study.__elasticsearch__.search(term)
   end
 
 end
