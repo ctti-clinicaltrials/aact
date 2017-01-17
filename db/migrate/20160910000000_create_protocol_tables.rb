@@ -180,7 +180,7 @@ class CreateProtocolTables < ActiveRecord::Migration
     create_table "oversight_authorities", force: :cascade do |t|
       t.string "nct_id"
       t.string "name"
-    end
+   end
 
     create_table "responsible_parties", force: :cascade do |t|
       t.string "nct_id"
@@ -232,6 +232,11 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.boolean  "has_dmc"
       t.boolean  "is_section_801"
       t.boolean  "is_fda_regulated"
+      t.boolean  "is_fda_regulated_drug"
+      t.boolean  "is_fda_regulated_device"
+      t.boolean  "is_unapproved_device"
+      t.boolean  "is_ppsd"
+      t.boolean  "is_us_export"
       t.string   "biospec_retention"
       t.text     "biospec_description"
       t.string   "plan_to_share_ipd"

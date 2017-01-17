@@ -118,7 +118,9 @@ class StudyRelationship < ActiveRecord::Base
 
   def get_boolean(label)
     val=xml.xpath("//#{label}").try(:text)
-    val.downcase=='yes'||val.downcase=='y'||val.downcase=='true' if !val.blank?
+    return nil if val.blank?
+    return true  if val.downcase=='yes' || val.downcase=='y' || val.downcase=='true'
+    return false if val.downcase=='no' || val.downcase=='n' || val.downcase=='false'
   end
 
   def get_phone
