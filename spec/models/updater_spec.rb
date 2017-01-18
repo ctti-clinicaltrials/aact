@@ -48,12 +48,15 @@ describe ClinicalTrials::Updater do
     expect(study.result_contacts.size).to eq(1)
     expect(study.result_groups.size).to eq(190)
     expect(study.sponsors.size).to eq(4)
+    expect(study.eligibility.gender).to eq('Both')
 
     incoming=File.read("spec/support/xml_data/#{nct_id}_modified.xml")
     stub_request(:get, "https://clinicaltrials.gov/show/#{nct_id}?resultsxml=true").
          with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v0.9.2'}).
          to_return(:status => 200, :body => incoming, :headers => {})
+
     ClinicalTrials::Updater.new.update_studies([nct_id])
+    study=Study.where('nct_id=?',nct_id).first
 
     expect(study.baseline_measurements.size).to eq(380)
     expect(study.baseline_counts.size).to eq(10)
@@ -89,6 +92,7 @@ describe ClinicalTrials::Updater do
     expect(study.result_contacts.size).to eq(1)
     expect(study.result_groups.size).to eq(190)
     expect(study.sponsors.size).to eq(1)
+    expect(study.eligibility.gender).to eq('All')
   end
 
   it "should have correct date attribs" do
