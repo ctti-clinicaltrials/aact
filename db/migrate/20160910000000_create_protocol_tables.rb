@@ -108,6 +108,8 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.text   "population"
       t.string "sampling_method"
       t.string "gender"
+      t.boolean "gender_based"
+      t.string "gender_description"
       t.string "minimum_age"
       t.string "maximum_age"
       t.string "healthy_volunteers"

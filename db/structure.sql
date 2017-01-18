@@ -618,6 +618,8 @@ CREATE TABLE eligibilities (
     population text,
     sampling_method character varying,
     gender character varying,
+    gender_based boolean,
+    gender_description character varying,
     minimum_age character varying,
     maximum_age character varying,
     healthy_volunteers character varying,
