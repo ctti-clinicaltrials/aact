@@ -54,7 +54,7 @@ module ClinicalTrials
         study_counts[:should_change]=0
         @client.populate_studies
         finalize_full_load
-      rescue e
+      rescue  Exception => e
         puts "Full load failed:  #{e}"
         grant_db_privs
         load_event.complete({:status=>'failed', :problems=> e.to_s, :study_counts=> study_counts})
@@ -62,6 +62,7 @@ module ClinicalTrials
     end
 
     def finalize_full_load
+      remove_indexes  # Make sure indexes are gone before trying to add them.
       add_indexes
       grant_db_privs
       create_calculated_values
@@ -171,7 +172,7 @@ module ClinicalTrials
 
     def incremental
       log("begin incremental load...")
-      days_back=(@params[:days_back] ? @params[:days_back] : 2)
+      days_back=(@params[:days_back] ? @params[:days_back] : 4)
       log("finding studies changed in past #{days_back} days...")
       ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
       log("found #{ids.size} studies that have been changed or added")
@@ -214,6 +215,7 @@ module ClinicalTrials
     def self.loadable_tables
       blacklist = %w(
         schema_migrations
+        data_definitions
         load_events
         sanity_checks
         statistics
@@ -258,6 +260,8 @@ module ClinicalTrials
     def run_sanity_checks
       log("sanity check...")
       SanityCheck.run
+      DataDefinition.populate_row_counts
+      DataDefinition.populate_enumerations
     end
 
     def take_snapshot

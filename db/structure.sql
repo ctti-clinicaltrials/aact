@@ -367,6 +367,45 @@ ALTER SEQUENCE countries_id_seq OWNED BY countries.id;
 
 
 --
+-- Name: data_definitions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE data_definitions (
+    id integer NOT NULL,
+    db_section character varying,
+    table_name character varying,
+    column_name character varying,
+    data_type character varying,
+    source character varying,
+    ctti_note text,
+    nlm_link character varying,
+    row_count integer,
+    enumerations json,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: data_definitions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE data_definitions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: data_definitions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
+
+
+--
 -- Name: design_group_interventions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1762,6 +1801,13 @@ ALTER TABLE ONLY countries ALTER COLUMN id SET DEFAULT nextval('countries_id_seq
 
 
 --
+-- Name: data_definitions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY data_definitions ALTER COLUMN id SET DEFAULT nextval('data_definitions_id_seq'::regclass);
+
+
+--
 -- Name: design_group_interventions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2090,6 +2136,14 @@ ALTER TABLE ONLY conditions
 
 ALTER TABLE ONLY countries
     ADD CONSTRAINT countries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: data_definitions data_definitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY data_definitions
+    ADD CONSTRAINT data_definitions_pkey PRIMARY KEY (id);
 
 
 --
