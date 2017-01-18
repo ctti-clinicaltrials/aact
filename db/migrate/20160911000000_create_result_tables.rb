@@ -159,7 +159,7 @@ class CreateResultTables < ActiveRecord::Migration
     create_table "outcome_analyses", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "outcome_id"
-      t.string  "non_inferiority"
+      t.string  "non_inferiority_type"
       t.text    "non_inferiority_description"
       t.string  "param_type"
       t.decimal "param_value"

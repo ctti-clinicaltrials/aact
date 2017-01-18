@@ -982,7 +982,7 @@ CREATE TABLE outcome_analyses (
     id integer NOT NULL,
     nct_id character varying,
     outcome_id integer,
-    non_inferiority character varying,
+    non_inferiority_type character varying,
     non_inferiority_description text,
     param_type character varying,
     param_value numeric,

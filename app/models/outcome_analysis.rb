@@ -14,7 +14,7 @@ class OutcomeAnalysis < StudyRelationship
     return col if xml.blank?
     while xml
       opts[:xml]=xml
-      opts[:non_inferiority]=xml.xpath('non_inferiority').text
+      opts[:non_inferiority_type]=xml.xpath('non_inferiority_type').text
       opts[:non_inferiority_description]=xml.xpath('non_inferiority_desc').text
       opts[:p_value]=xml.xpath('p_value').text
       opts[:p_value_desc]=xml.xpath('p_value_desc').text
@@ -55,7 +55,7 @@ class OutcomeAnalysis < StudyRelationship
 
   def attribs
     {
-      :non_inferiority => get_opt(:non_inferiority),
+      :non_inferiority_type => get_opt(:non_inferiority_type),
       :non_inferiority_description => get_opt(:non_inferiority_description),
       :p_value => get_opt(:p_value),
       :p_value_description => get_opt(:p_value_desc),

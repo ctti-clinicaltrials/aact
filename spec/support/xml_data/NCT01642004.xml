@@ -1815,7 +1815,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <p_value>0.0004</p_value>
             <p_value_desc>Stratified by region (US/Canada, Rest Of World (ROW), Europe) and prior treatment regimen (Paclitaxel, Another agent) as entered in the Interactive Voice Response System (IVRS).</p_value_desc>
             <method>Log Rank</method>
@@ -1884,7 +1884,7 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <p_value>0.0083</p_value>
             <method>Cochran-Mantel-Haenszel</method>
             <method_desc>Stratified by region (US/Canada vs Europe vs ROW) and prior treatment regimen (Paclitaxel vs Another Agent) as entered into the IVRS.</method_desc>
@@ -1951,7 +1951,7 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <p_value>0.0002</p_value>
             <p_value_desc>Stratified by region (US/Canada, Rest Of World (ROW), Europe) and prior treatment regimen (Paclitaxel, Another agent) as entered in the Interactive Voice Response System (IVRS).</p_value_desc>
             <method>Log Rank</method>
@@ -2249,7 +2249,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <p_value>0.0004</p_value>
             <method>Log Rank</method>
             <method_desc>Stratified by region (US/Canada vs Europe vs ROW) and prior treatment regimen (Paclitaxel vs Another Agent) as entered into the IVRS.</method_desc>
@@ -2388,7 +2388,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression &gt;= 5%</groups_desc>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.53</param_value>
             <ci_percent>95</ci_percent>
@@ -2403,7 +2403,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression &lt; 5%</groups_desc>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.70</param_value>
             <ci_percent>95</ci_percent>
@@ -2418,7 +2418,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression not quantifiable at baseline</groups_desc>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.39</param_value>
             <ci_percent>95</ci_percent>
@@ -2506,7 +2506,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression &gt;= 5%</groups_desc>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <param_type>Odds Ratio (OR)</param_type>
             <param_value>3.3</param_value>
             <ci_percent>95</ci_percent>
@@ -2521,7 +2521,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 &lt; 5%</groups_desc>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <param_type>Odds Ratio (OR)</param_type>
             <param_value>1.3</param_value>
             <ci_percent>95</ci_percent>
@@ -2536,7 +2536,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression not quantifiable at baseline</groups_desc>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <param_type>Odds Ratio (OR)</param_type>
             <param_value>17.8</param_value>
             <ci_percent>95</ci_percent>
@@ -2624,7 +2624,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression &gt;= 5%</groups_desc>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.54</param_value>
             <ci_percent>95</ci_percent>
@@ -2639,7 +2639,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression &lt; 5%</groups_desc>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.75</param_value>
             <ci_percent>95</ci_percent>
@@ -2654,7 +2654,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression not quantifiable at baseline</groups_desc>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>No</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.45</param_value>
             <ci_percent>95</ci_percent>
