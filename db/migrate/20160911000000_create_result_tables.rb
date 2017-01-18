@@ -177,6 +177,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.text    "description"
       t.text    "estimate_description"
       t.string  "groups_description"
+      t.text    "other_analysis_description"
     end
 
     create_table "outcome_analysis_groups", force: :cascade do |t|

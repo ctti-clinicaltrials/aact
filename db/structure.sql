@@ -1001,7 +1001,8 @@ CREATE TABLE outcome_analyses (
     method_description text,
     description text,
     estimate_description text,
-    groups_description character varying
+    groups_description character varying,
+    other_analysis_description text
 );
 
 

@@ -2175,6 +2175,7 @@ cumulative loss to follow-up is 10% at 5 years. See below for rest of sample siz
             <p_value>0.43</p_value>
             <method>Comparison of poisson rates</method>
             <method_desc>Statistical analysis plan specified that p-value was to be calculated from the log-rank test, so not provided for the risk difference</method_desc>
+            <other_analysis_desc>testing other analysis desc tag</other_analysis_desc>
             <param_type>Risk Difference (RD)</param_type>
             <param_value>0.32</param_value>
             <ci_percent>95</ci_percent>

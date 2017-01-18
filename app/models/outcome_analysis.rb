@@ -31,6 +31,7 @@ class OutcomeAnalysis < StudyRelationship
       opts[:method_description]=xml.xpath('method_desc').text
       opts[:estimate_description]=xml.xpath('estimate_desc').text
       opts[:groups_description]=xml.xpath('groups_desc').text
+      opts[:other_analysis_description]=xml.xpath('other_analysis_desc').text
       group_ids=create_group_list(xml)
       a=new.create_from(opts)
       a.outcome_analysis_groups = OutcomeAnalysisGroup.create_all_from({:outcome_analysis=>a,:group_ids=>group_ids,:groups=>opts[:groups],:nct_id=>opts[:nct_id]})
@@ -73,6 +74,7 @@ class OutcomeAnalysis < StudyRelationship
       :estimate_description => get_opt(:estimate_description),
       :outcome => get_opt(:outcome),
       :groups_description => get_opt(:groups_description),
+      :other_analysis_description => get_opt(:other_analysis_description),
     }
   end
 
