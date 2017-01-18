@@ -11,6 +11,16 @@ describe Study do
     expect(study.last_known_status).to eq('Recruiting')
   end
 
+  it "saves expanded access information correctly" do
+    nct_id='NCT02970669'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.has_expanded_access).to be(true)
+    expect(study.expanded_access_type_individual).to be(true)
+    expect(study.expanded_access_type_intermediate).to be(true)
+    expect(study.expanded_access_type_treatment).to be(true)
+  end
+
   it "should have correct date attribs" do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))

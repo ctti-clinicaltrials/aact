@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02970669</url>
+  </required_header>
+  <id_info>
+    <org_study_id>CLCZ696BUS14</org_study_id>
+    <nct_id>NCT02970669</nct_id>
+  </id_info>
+  <brief_title>Study on the Effects of Sacubitril/Valsartan on Physical Activity and Sleep in Heart Failure With Reduced Ejection Fraction Patients.</brief_title>
+  <acronym>AWAKE-HF</acronym>
+  <official_title>Multicenter, Randomized, Double-blind, Double Dummy, Parallel Group, Active-controlled 8-week Study and 8-week Open Label Extension to Evaluate the Effect of Initiation of Sacubitril/Valsartan on Objective Measures of Waking Activity and Sleep, as Health-related Quality of Life Functions in Subjects With Heart Failure and Reduced Ejection Fraction (AWAKE-HF).</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Novartis Pharmaceuticals</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Novartis</source>
+  <oversight_info>
+    <authority>United States: Food and Drug Administration</authority>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to investigate the effects of initiation of
+      sacubitril/valsartan vs enalapril treatment on objective measures of both waking activity
+      and sleep in subjects with heart failure with reduced ejection fraction.
+    </textblock>
+  </brief_summary>
+  <overall_status>Not yet recruiting</overall_status>
+  <start_date>December 2016</start_date>
+  <completion_date type="Anticipated">October 2018</completion_date>
+  <primary_completion_date type="Anticipated">October 2018</primary_completion_date>
+  <phase>Phase 4</phase>
+  <study_type>Interventional</study_type>
+  <study_design>Allocation: Randomized, Intervention Model: Parallel Assignment, Masking: Double Blind (Subject, Investigator)</study_design>
+  <primary_outcome>
+    <measure>Change in mean activity counts collected during the most active 30 minutes of the subject's day between baseline and week 8</measure>
+    <time_frame>Baseline, week 8</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>The primary endpoint is the change in mean activity counts collected during the most active 30 minutes of the subject's day between baseline phase (mean of endpoint data collected each day during week -1) and the final randomized treatment phase measurement (mean of endpoint data collected each day during week 8), as measured by wrist-worn accelerometer collected actigraphy (total counts per 30 min period collected during the most active 30 minutes of each day).</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Change in mean activity (counts per minute) during sleep between baseline and week 8 as an objective measure of physical function</measure>
+    <time_frame>Baseline, Week 8</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>Change in mean activity (counts per minute) during sleep between baseline phase (mean of data collected during week -1) and the final randomized treatment phase measurement (mean of data collected during week 8), as measured by actigraphy (activity counts per minute during daily sleep period, wrist-worn accelerometer).</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change in mean activity during sleep between baseline and different time points as an objective measure of physical function</measure>
+    <time_frame>Baseline, Week 1, 9 and 16</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>The change in mean activity during sleep between baseline (mean of data collected during the nights of week -1) and each randomized treatment and open label phase, as measured by actigraphy (Week
+1, 9, and 16) (activity counts per minute during daily sleep period, wrist-worn accelerometer).</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change in mean activity counts collected during the most active 30 minutes of the subject's day between baseline and different time points as an objective measure of physical function.</measure>
+    <time_frame>Baseline, week 1, 9 and 16</time_frame>
+    <safety_issue>No</safety_issue>
+    <description>The change in mean activity counts collected during the most active 30 minutes of the subject's day between baseline phase (mean of data collected each day during week -1) and each randomized treatment and open label phase (Week 1, 9, and 16), as measured by wrist worn accelerometer collected actigraphy.</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Anticipated">136</enrollment>
+  <condition>Heart Failure, Reduced Ejection Fraction</condition>
+  <arm_group>
+    <arm_group_label>sacubitril/valsartan (LCZ696)</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Double blind treatment epoch: Patients randomized to this arm will receive 1 tablet of sacubitril/valsartan and 1 tablet of matching placebo enalapril twice daily for 8 weeks. All Patients will begin the study on Dose Level 1 (i.e. 24/26 mg sacubitril/valsartan BID). Patients may sequentially up-titrate to achieve desired dose of Dose Level 3 (i.e. 97/103 mg sacubitril/valsartan BID). Patients not tolerating dose escalation can be titrated down to next lower dose level.
+Open-label treatment epoch: All patients entering this epoch (8 weeks) will be given sacubitril/valsartan 49/51 mg BID (Dose Level 2) unless they completed the double-blind treatment epoch on Dose Level 1. Instead, these patients will enter open-label epoch on Dose Level 1. Patients may sequentially up-titrate to achieve desired dose of Dose Level 3. Patients not tolerating dose escalation can be titrated down to next lower dose level.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>enalapril</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Double blind treatment epoch: Patients randomized to this arm will receive 1 tablet of enalapril and 1 tablet of matching placebo sacubitril/valsartan twice daily for 8 weeks. All Patients will begin the study on Dose Level 1 (i.e. 2.5 mg enalapril BID). Patients may sequentially up-titrate to achieve desired dose of Dose Level 3 (i.e. 10 mg enalapril BID). Patients not tolerating dose escalation can be titrated down to next lower dose level.
+Open-label treatment epoch: All patients entering this epoch (8 weeks) will be given sacubitril/valsartan 49/51 mg BID (Dose Level 2) unless they completed the double-blind treatment epoch on enalapril Dose Level 1. Instead, these patients will enter open-label epoch on Dose Level 1 of sacubitril/valsartan. Patients may sequentially up-titrate to achieve desired dose of Dose Level 3 of sacubitril/valsartan. Patients not tolerating dose escalation can be titrated down to next lower dose level.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>sacubitril/valsartan (LCZ696)</intervention_name>
+    <description>sacubitril/valsartan tablet taken orally.</description>
+    <arm_group_label>sacubitril/valsartan (LCZ696)</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>enalapril</intervention_name>
+    <description>Enalapril tablet taken orally.</description>
+    <arm_group_label>enalapril</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>matching placebo sacubitril/valsartan (LCZ696)</intervention_name>
+    <description>matching placebo sacubitril/valsartan tablet taken orally</description>
+    <arm_group_label>enalapril</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>matching placebo enalapril</intervention_name>
+    <description>matching placebo enalapril tablet taken orally</description>
+    <arm_group_label>sacubitril/valsartan (LCZ696)</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Key Inclusion Criteria:
+
+          -  Written informed consent must be obtained before any assessment is performed.
+
+          -  Men and women between 18 and 80 years of age
+
+          -  Subjects diagnosed with NYHA class II or III heart failure and with reduced ejection
+             (HFrEF).
+
+          -  Subjects must be a candidate for treatment with sacubitril/valsartan as per USPI.
+
+          -  Subjects must be living in a traditional residence, apartment, or non-communal adult
+             home where they can move about freely and frequently and are primarily responsible
+             for scheduling their sleep and daily activities.
+
+        Key Exclusion Criteria:
+
+          -  Subjects with a history of hypersensitivity to any of the study drugs, including
+             history of hypersensitivity to drugs of similar chemical classes, or allergy to
+             ACEIs, ARBs, or NEP inhibitors as well as known or suspected contraindications to the
+             study drugs.
+
+          -  Subjects with a history of angioedema drug related or otherwise
+
+          -  Subjects with symptomatic hypotension or systolic blood pressure &lt;100 mmHg at
+             screening or &lt;95 mmHg at randomization
+
+          -  Subjects with any conditions in skin or upper extremities which would limit the
+             ability to tolerate a wrist-worn actigraphy device on the non-dominant arm for 24
+             hours/day for the duration of the study.
+
+          -  Subjects who are non-ambulatory or use mobility assistive devices such as motorized
+             devices, wheelchairs, or walkers. The use of canes for stability while ambulating is
+             acceptable.
+
+          -  Subjects with physical activity impairment primarily due to conditions other than
+             heart failure such as:
+
+          -  Exertional angina inflammatory or degenerative joint disease -gout
+
+          -  peripheral vascular disease
+
+          -  neurologic disease affecting activity or mobility
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>80 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Novartis Pharmaceuticals</last_name>
+    <role>Study Director</role>
+    <affiliation>Novartis Pharmaceuticals</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Novartis Pharmaceuticals</last_name>
+    <phone>1-888-669-6682</phone>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>Novartis Pharmaceuticals</last_name>
+  </overall_contact_backup>
+  <verification_date>November 2016</verification_date>
+  <lastchanged_date>November 17, 2016</lastchanged_date>
+  <firstreceived_date>November 17, 2016</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>Heart failure with reduced left ventricular ejection fraction (LVEF)</keyword>
+  <keyword>Cardiac dysfunction</keyword>
+  <keyword>Heart muscle dysfunction</keyword>
+  <keyword>Left ventricular (LV) dilation</keyword>
+  <keyword>Left ventricular hypertrophy</keyword>
+  <keyword>HF</keyword>
+  <keyword>AHF</keyword>
+  <keyword>CHF</keyword>
+  <keyword>acute heart failure</keyword>
+  <keyword>chronic heart failure</keyword>
+  <keyword>congestive heart failure</keyword>
+  <keyword>congestive cardiac failure</keyword>
+  <keyword>Heart failure</keyword>
+  <keyword>HReEF</keyword>
+  <keyword>Physical Activity</keyword>
+  <keyword>Actigraphy</keyword>
+  <keyword>Home sleep test</keyword>
+  <keyword>wake</keyword>
+  <is_fda_regulated>Yes</is_fda_regulated>
+  <is_section_801>Yes</is_section_801>
+  <has_expanded_access>Yes</has_expanded_access>
+  <expanded_access_info>
+    <exp_acc_type_individual>Yes</exp_acc_type_individual>
+    <exp_acc_type_intermediate>Yes</exp_acc_type_intermediate>
+    <exp_acc_type_treatment>Yes</exp_acc_type_treatment>
+  </expanded_access_info>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Heart Failure</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Valsartan</mesh_term>
+    <mesh_term>Enalapril</mesh_term>
+    <mesh_term>Enalaprilat</mesh_term>
+    <mesh_term>LCZ 696</mesh_term>
+  </intervention_browse>
+  <!-- Results have not yet been posted for this study                                -->
+</clinical_study>
