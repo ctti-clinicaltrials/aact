@@ -78,7 +78,12 @@
   <primary_completion_date type="Actual">September 2013</primary_completion_date>
   <phase>Phase 1</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Intervention Model: Crossover Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Crossover Assignment</intervention_model>
+    <masking>Open Label</masking>
+    <primary_purpose>Treatment</primary_purpose>
+  </study_design_info>
   <primary_outcome>
     <measure>Maximum Observed Concentration (Cmax) of Raltegravir and Amlodipine Without and With Co-administration of the Other Studied Drug.</measure>
     <time_frame>Day 7 of each intervention (0 (pre-dose), 2, 4, 8 and 12 hours post dose (both drugs) and 24 hours post dose (amlodipine only))</time_frame>

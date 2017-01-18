@@ -60,7 +60,13 @@
   <primary_completion_date type="Anticipated">November 2017</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Endpoint Classification: Safety/Efficacy Study, Intervention Model: Parallel Assignment, Masking: Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor), Primary Purpose: Treatment</study_design>
+  <study_design_info>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <intervention_model_description>Endpoint Classification: Safety/Efficacy Study</intervention_model_description>
+    <allocation>Randomized</allocation>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor)</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Hamilton Depression Rating Scale-24(HAMD24) total score change from baseline value.</measure>
     <time_frame>6 weeks</time_frame>

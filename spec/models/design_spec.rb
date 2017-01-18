@@ -5,27 +5,27 @@ describe Design do
     nct_id='NCT02586688'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.design.allocation).to eq('Randomized')
-    expect(study.design.endpoint_classification).to eq('Safety/Efficacy Study')
-    expect(study.design.intervention_model).to eq('Parallel Assignment')
-    expect(study.design.primary_purpose).to eq('Treatment')
-    expect(study.design.masking).to eq('Double Blind')
-    expect(study.design.subject_masked).to eq(true)
-    expect(study.design.caregiver_masked).to eq(true)
-    expect(study.design.investigator_masked).to eq(true)
-    expect(study.design.outcomes_assessor_masked).to eq(true)
+    d=study.design
+    expect(d.allocation).to eq('Randomized')
+    expect(d.intervention_model).to eq('Parallel Assignment')
+    expect(d.primary_purpose).to eq('Treatment')
+    expect(d.masking).to eq('Double Blind')
+    expect(d.subject_masked).to eq(true)
+    expect(d.caregiver_masked).to eq(true)
+    expect(d.investigator_masked).to eq(true)
+    expect(d.outcomes_assessor_masked).to eq(true)
   end
 
   it "should handle incomplete set of design attribs" do
     nct_id='NCT02830269'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.design.time_perspective).to eq('Prospective')
-    expect(study.design.endpoint_classification).to eq(nil)
-    expect(study.design.intervention_model).to eq(nil)
-    expect(study.design.masking).to eq(nil)
-    expect(study.design.primary_purpose).to eq(nil)
-    expect(study.design.subject_masked).to eq(nil)
+    d=study.design
+    expect(d.time_perspective).to eq('Prospective')
+    expect(d.intervention_model).to eq(nil)
+    expect(d.masking).to eq(nil)
+    expect(d.primary_purpose).to eq(nil)
+    expect(d.subject_masked).to eq(nil)
   end
 
 end

@@ -84,14 +84,18 @@ class CreateProtocolTables < ActiveRecord::Migration
 
     create_table "designs", force: :cascade do |t|
       t.string  "nct_id"
-      t.text    "description"
-      t.string  "primary_purpose"
-      t.string  "intervention_model"
-      t.string  "endpoint_classification"
       t.string  "allocation"
+      t.string  "intervention_model"
+      t.string  "intervention_model_description"
+      t.string  "primary_purpose"
       t.string  "time_perspective"
-      t.string  "observational_model"
       t.string  "masking"
+      t.string  "masking_description"
+
+      t.text    "description"
+      t.string  "endpoint_classification"
+
+      t.string  "observational_model"
       t.boolean "subject_masked"
       t.boolean "caregiver_masked"
       t.boolean "investigator_masked"
