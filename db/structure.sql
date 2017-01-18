@@ -510,6 +510,7 @@ ALTER SEQUENCE design_outcomes_id_seq OWNED BY design_outcomes.id;
 CREATE TABLE designs (
     id integer NOT NULL,
     nct_id character varying,
+    allocation character varying,
     intervention_model character varying,
     intervention_model_description character varying,
     primary_purpose character varying,
@@ -517,8 +518,6 @@ CREATE TABLE designs (
     masking character varying,
     masking_description character varying,
     description text,
-    endpoint_classification character varying,
-    allocation character varying,
     observational_model character varying,
     subject_masked boolean,
     caregiver_masked boolean,

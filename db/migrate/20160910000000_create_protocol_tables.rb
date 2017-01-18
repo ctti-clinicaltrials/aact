@@ -91,10 +91,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string  "time_perspective"
       t.string  "masking"
       t.string  "masking_description"
-
       t.text    "description"
-      t.string  "endpoint_classification"
-
       t.string  "observational_model"
       t.boolean "subject_masked"
       t.boolean "caregiver_masked"

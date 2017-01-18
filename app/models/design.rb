@@ -16,7 +16,6 @@ class Design < StudyRelationship
       :masking_description => get('masking_description'),
 
       :observational_model => get_value_for('Observational Model:'),
-      :endpoint_classification => get_value_for('Endpoint Classification:'),
       :allocation => get('allocation'),
       :subject_masked => is_masked?('Subject'),
       :caregiver_masked => is_masked?('Caregiver'),
@@ -35,7 +34,7 @@ class Design < StudyRelationship
   end
 
   def labels
-    ['Endpoint Classification:','Observational Model:']
+    ['Observational Model:']
   end
 
   def is_masked?(role)
