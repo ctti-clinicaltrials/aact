@@ -25,19 +25,24 @@ class DataDefinition < ActiveRecord::Base
 
   def self.populate_row_counts
     # save count for each table where the primary key is id
-    where("column_name='id'").each{|row|
+    rows=where("column_name='id'")
+    populate_from_file if rows.size==0
+    rows.each{|row|
       results=ActiveRecord::Base.connection.execute("select count(*) from #{row.table_name}")
       row.row_count=results.getvalue(0,0) if results.ntuples == 1
       row.save
     }
     # Studies table is an exception - primary key is nct_id
     row=where("table_name='studies' and column_name='nct_id'").first
+    return if row.nil?
     results=ActiveRecord::Base.connection.execute("select count(*) from #{row.table_name}")
     row.row_count=results.getvalue(0,0) if results.ntuples == 1
     row.save
   end
 
   def self.populate_enumerations
+    rows=where("column_name='id'")
+    populate_from_file if rows.size==0
     enums.each{|array|
       results=ActiveRecord::Base.connection.execute("
                     SELECT DISTINCT #{array.last}, COUNT(*) AS cnt
