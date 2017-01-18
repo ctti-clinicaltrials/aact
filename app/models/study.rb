@@ -209,8 +209,6 @@ class Study < ActiveRecord::Base
       :study_type => get('study_type'),
       :biospec_retention =>get('biospec_retention'),
       :limitations_and_caveats  =>xml.xpath('//limitations_and_caveats').text,
-      :is_section_801 => get_boolean('//is_section_801'),
-      :is_fda_regulated => get_boolean('//is_fda_regulated'),
       :is_fda_regulated_drug =>get_boolean('//is_fda_regulated_drug'),
       :is_fda_regulated_device =>get_boolean('//is_fda_regulated_device'),
       :is_unapproved_device =>get_boolean('//is_unapproved_device'),

@@ -229,8 +229,6 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string   "why_stopped"
       t.boolean  "has_expanded_access"
       t.boolean  "has_dmc"
-      t.boolean  "is_section_801"
-      t.boolean  "is_fda_regulated"
       t.boolean  "is_fda_regulated_drug"
       t.boolean  "is_fda_regulated_device"
       t.boolean  "is_unapproved_device"

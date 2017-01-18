@@ -1588,8 +1588,6 @@ CREATE TABLE studies (
     why_stopped character varying,
     has_expanded_access boolean,
     has_dmc boolean,
-    is_section_801 boolean,
-    is_fda_regulated boolean,
     is_fda_regulated_drug boolean,
     is_fda_regulated_device boolean,
     is_unapproved_device boolean,

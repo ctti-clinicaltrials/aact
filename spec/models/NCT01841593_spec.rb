@@ -9,7 +9,6 @@ describe Study do
     expect(study.id_information.select{|x| x.id_type=='org_study_id'}.size).to eq(1)
     expect(study.id_information.size).to eq(1)
     expect(study.pick('id_information','org_study_id').id_value).to eq('SSAT 051')
-    expect(study.is_fda_regulated).to be(nil)
     expect(study.is_fda_regulated_drug).to be(true)
     expect(study.is_fda_regulated_device).to be(false)
     expect(study.is_unapproved_device).to be(false)

@@ -40,8 +40,11 @@ shared_examples 'a serialized study' do
       why_stopped
       has_expanded_access
       has_dmc
-      is_section_801
-      is_fda_regulated
+      is_fda_regulated_drug
+      is_fda_regulated_device
+      is_unapproved_device
+      is_ppsd
+      is_us_export
       brief_title
       official_title
       biospec_description
@@ -86,8 +89,11 @@ shared_examples 'a serialized study' do
     expect(serialized_study['why_stopped']).to eq(resource.why_stopped)
     expect(serialized_study['has_expanded_access']).to eq(resource.has_expanded_access)
     expect(serialized_study['has_dmc']).to eq(resource.has_dmc)
-    expect(serialized_study['is_section_801']).to eq(resource.is_section_801)
-    expect(serialized_study['is_fda_regulated']).to eq(resource.is_fda_regulated)
+    expect(serialized_study['is_fda_regulated_drug']).to eq(resource.is_fda_regulated_drug)
+    expect(serialized_study['is_fda_regulated_device']).to eq(resource.is_fda_regulated_device)
+    expect(serialized_study['is_unapproved_device']).to eq(resource.is_unapproved_device)
+    expect(serialized_study['is_ppsd']).to eq(resource.is_ppsd)
+    expect(serialized_study['is_us_export']).to eq(resource.is_us_export)
     expect(serialized_study['brief_title']).to eq(resource.brief_title)
     expect(serialized_study['official_title']).to eq(resource.official_title)
     expect(serialized_study['biospec_description']).to eq(resource.biospec_description)
