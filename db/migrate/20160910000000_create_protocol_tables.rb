@@ -77,7 +77,6 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string "outcome_type"
       t.text   "measure"
       t.text   "time_frame"
-      t.string "safety_issue"
       t.string "population"
       t.text   "description"
     end

@@ -15,7 +15,6 @@ describe OutcomeAnalysis do
     expect(o.analyses.first.groups.size).to eq(2)
     expect(o.title).to eq('Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up')
     expect(o.time_frame).to eq('Randomization until July 2015, approximately 33 months')
-    expect(o.safety_issue).to eq('No')
     expect(o.population).to eq('All randomized participants')
 
     oa_col=o.analyses.select{|x|x.p_value_description=='Stratified by region (US/Canada, Rest Of World (ROW), Europe) and prior treatment regimen (Paclitaxel, Another agent) as entered in the Interactive Voice Response System (IVRS).'}

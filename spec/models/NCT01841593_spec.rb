@@ -35,7 +35,6 @@ describe Study do
     other_outcome=other_outcomes.first
     expect(other_outcome.measure).to eq('Hospital costs')
     expect(other_outcome.time_frame).to eq('Hospital stay')
-    expect(other_outcome.safety_issue).to eq('No')
     expect(other_outcome.description).to eq('$US')
     expect(study.number_of_arms).to eq(2)
     expect(study.enrollment).to eq(19)

@@ -478,7 +478,6 @@ CREATE TABLE design_outcomes (
     outcome_type character varying,
     measure text,
     time_frame text,
-    safety_issue character varying,
     population character varying,
     description text
 );
@@ -1147,7 +1146,6 @@ CREATE TABLE outcomes (
     title text,
     description text,
     time_frame text,
-    safety_issue character varying,
     population text,
     anticipated_posting_month_year character varying,
     units character varying,

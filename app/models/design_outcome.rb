@@ -18,7 +18,6 @@ class DesignOutcome < StudyRelationship
     {
       :measure => get('measure'),
       :time_frame => get('time_frame'),
-      :safety_issue => get('safety_issue'),
       :description => get('description'),
       :population => get('population'),
       :outcome_type => get_opt(:type)
