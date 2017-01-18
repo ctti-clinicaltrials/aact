@@ -159,7 +159,6 @@ describe OutcomeMeasurement do
     o=study.outcomes.select{|x|x.title=='LH and FSH During Phase I and Phase II'}.first
     expect(o.description).to eq("LH and FSH (IU/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.")
     expect(o.time_frame).to eq("At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II")
-    expect(o.safety_issue).to eq("No")
     expect(o.population).to eq("Phase I and Phase II - PCOS patients.")
     # TODO - NLM has switched this data to be in <alayzed_list><analyzed>
     #oa=o.outcome_counts.select{|x|x.title=='Participants'}

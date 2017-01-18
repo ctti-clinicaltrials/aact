@@ -58,7 +58,9 @@
   <primary_completion_date type="Anticipated">December 2017</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Observational</study_type>
-  <study_design>Time Perspective: Prospective</study_design>
+  <study_design_info>
+    <time_perspective>Prospective</time_perspective>
+  </study_design_info>
   <primary_outcome>
     <measure>Third ventricle diameter (average +/- standard deviation)</measure>
     <time_frame>Through study completion (30 months)</time_frame>

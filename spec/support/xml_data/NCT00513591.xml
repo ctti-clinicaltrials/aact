@@ -138,6 +138,8 @@
       </textblock>
     </criteria>
     <gender>Female</gender>
+    <gender_based>false</gender_based>
+    <gender_description>test</gender_description>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>

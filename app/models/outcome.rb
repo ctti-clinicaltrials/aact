@@ -21,7 +21,6 @@ class Outcome < StudyRelationship
       opts[:title]=xml.xpath('title').text
       opts[:description]=xml.xpath('description').text
       opts[:time_frame]=xml.xpath('time_frame').text
-      opts[:safety_issue]=xml.xpath('safety_issue').text
       opts[:population]=xml.xpath('population').text
       opts[:posting_date]=xml.xpath('posting_date').text
 
@@ -47,7 +46,6 @@ class Outcome < StudyRelationship
       :title           => get_opt('title'),
       :description     => get_opt('description'),
       :time_frame      => get_opt('time_frame'),
-      :safety_issue    => get_opt('safety_issue'),
       :population      => get_opt('population'),
       :units           => get_opt('units'),
       :units_analyzed  => get_opt('units_analyzed'),

@@ -9,7 +9,6 @@ describe Study do
     expect(study.id_information.select{|x| x.id_type=='org_study_id'}.size).to eq(1)
     expect(study.id_information.size).to eq(1)
     expect(study.pick('id_information','org_study_id').id_value).to eq('SSAT 051')
-    expect(study.is_fda_regulated).to be(nil)
     expect(study.is_fda_regulated_drug).to be(true)
     expect(study.is_fda_regulated_device).to be(false)
     expect(study.is_unapproved_device).to be(false)
@@ -37,7 +36,6 @@ describe Study do
     other_outcome=other_outcomes.first
     expect(other_outcome.measure).to eq('Hospital costs')
     expect(other_outcome.time_frame).to eq('Hospital stay')
-    expect(other_outcome.safety_issue).to eq('No')
     expect(other_outcome.description).to eq('$US')
     expect(study.number_of_arms).to eq(2)
     expect(study.enrollment).to eq(19)
