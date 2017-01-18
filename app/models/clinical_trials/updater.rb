@@ -23,7 +23,7 @@ module ClinicalTrials
 
     def run
       old_logger = ActiveRecord::Base.logger
-      ActiveRecord::Base.logger.level = 1
+      ActiveRecord::Base.logger.level = nil
       if study_filter
         @client.populate_studies(study_filter)
         load_event.complete({:new_studies=> Study.count})
