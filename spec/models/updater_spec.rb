@@ -109,10 +109,10 @@ describe ClinicalTrials::Updater do
     expect(study.first_received_results_date).to eq('February 12, 2014'.to_date)
     expect(study.last_changed_date).to eq('November 14, 2015'.to_date)
 
-    expect(study.calculated_value.start_date).to eq(study.start_month_year.to_date)
-    expect(study.calculated_value.verification_date).to eq(study.verification_month_year.to_date)
-    expect(study.calculated_value.completion_date).to eq(study.completion_month_year.to_date)
-    expect(study.calculated_value.primary_completion_date).to eq(study.primary_completion_month_year.to_date)
+    expect(study.start_date).to eq(study.start_month_year.to_date)
+    expect(study.verification_date).to eq(study.verification_month_year.to_date)
+    expect(study.completion_date).to eq(study.completion_month_year.to_date)
+    expect(study.primary_completion_date).to eq(study.primary_completion_month_year.to_date)
 
     expect(study.result_contacts.first.name).to eq('Wendy Seiferheld')
     expect(study.result_contacts.first.organization).to eq('Radiation Therapy Oncology Group')

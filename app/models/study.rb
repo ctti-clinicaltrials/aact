@@ -200,6 +200,11 @@ class Study < ActiveRecord::Base
       :completion_month_year => get('completion_date'),
       :primary_completion_month_year => get('primary_completion_date'),
 
+      :start_date                  =>  get('start_date').try(:to_date),
+      :verification_date           =>  get('verification_date').try(:to_date),
+      :completion_date             =>  get('completion_date').try(:to_date),
+      :primary_completion_date     =>  get('primary_completion_date').try(:to_date),
+
       :first_received_date => get_date(get('firstreceived_date')),
       :first_received_results_date => get_date(get('firstreceived_results_date')),
       :last_changed_date => get_date(get('lastchanged_date')),

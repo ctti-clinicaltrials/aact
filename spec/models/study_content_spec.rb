@@ -27,18 +27,22 @@ describe Study do
     study=Study.new({xml: xml, nct_id: nct_id}).create
     CalculatedValue.new.create_from(study).save!
     expect(study.start_month_year).to eq('July 2001')
+    expect(study.start_date.strftime('%m/%d/%Y')).to eq('07/01/2001')
     expect(study.completion_month_year).to eq('November 2013')
+    expect(study.completion_date.strftime('%m/%d/%Y')).to eq('11/01/2013')
     expect(study.primary_completion_month_year).to eq('January 2009')
+    expect(study.primary_completion_date.strftime('%m/%d/%Y')).to eq('01/01/2009')
     expect(study.verification_month_year).to eq('November 2015')
+    expect(study.verification_date.strftime('%m/%d/%Y')).to eq('11/01/2015')
 
     expect(study.first_received_date).to eq('September 13, 2001'.to_date)
     expect(study.first_received_results_date).to eq('February 12, 2014'.to_date)
     expect(study.last_changed_date).to eq('November 14, 2015'.to_date)
 
-    expect(study.calculated_value.start_date).to eq(study.start_month_year.to_date)
-    expect(study.calculated_value.verification_date).to eq(study.verification_month_year.to_date)
-    expect(study.calculated_value.completion_date).to eq(study.completion_month_year.to_date)
-    expect(study.calculated_value.primary_completion_date).to eq(study.primary_completion_month_year.to_date)
+    expect(study.start_date).to eq(study.start_month_year.to_date)
+    expect(study.verification_date).to eq(study.verification_month_year.to_date)
+    expect(study.completion_date).to eq(study.completion_month_year.to_date)
+    expect(study.primary_completion_date).to eq(study.primary_completion_month_year.to_date)
 
     expect(study.result_contacts.first.name).to eq('Wendy Seiferheld')
     expect(study.result_contacts.first.organization).to eq('Radiation Therapy Oncology Group')

@@ -236,10 +236,6 @@ CREATE TABLE calculated_values (
     number_of_nsae_subjects integer,
     number_of_sae_subjects integer,
     registered_in_calendar_year integer,
-    start_date date,
-    verification_date date,
-    primary_completion_date date,
-    completion_date date,
     nlm_download_date date,
     actual_duration integer,
     were_results_reported boolean DEFAULT false,
@@ -1568,11 +1564,15 @@ CREATE TABLE studies (
     received_results_disposit_date date,
     start_month_year character varying,
     start_date_type character varying,
+    start_date date,
     verification_month_year character varying,
+    verification_date date,
     completion_month_year character varying,
     completion_date_type character varying,
+    completion_date date,
     primary_completion_month_year character varying,
     primary_completion_date_type character varying,
+    primary_completion_date date,
     target_duration character varying,
     study_type character varying,
     acronym character varying,
@@ -2529,24 +2529,10 @@ CREATE INDEX index_calculated_values_on_number_of_facilities ON calculated_value
 
 
 --
--- Name: index_calculated_values_on_primary_completion_date; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_calculated_values_on_primary_completion_date ON calculated_values USING btree (primary_completion_date);
-
-
---
 -- Name: index_calculated_values_on_sponsor_type; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_calculated_values_on_sponsor_type ON calculated_values USING btree (sponsor_type);
-
-
---
--- Name: index_calculated_values_on_start_date; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_calculated_values_on_start_date ON calculated_values USING btree (start_date);
 
 
 --
@@ -2858,6 +2844,13 @@ CREATE INDEX index_sponsors_on_name ON sponsors USING btree (name);
 
 
 --
+-- Name: index_studies_on_completion_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_completion_date ON studies USING btree (completion_date);
+
+
+--
 -- Name: index_studies_on_enrollment_type; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2900,6 +2893,13 @@ CREATE INDEX index_studies_on_phase ON studies USING btree (phase);
 
 
 --
+-- Name: index_studies_on_primary_completion_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_primary_completion_date ON studies USING btree (primary_completion_date);
+
+
+--
 -- Name: index_studies_on_primary_completion_date_type; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2918,6 +2918,20 @@ CREATE INDEX index_studies_on_received_results_disposit_date ON studies USING bt
 --
 
 CREATE INDEX index_studies_on_source ON studies USING btree (source);
+
+
+--
+-- Name: index_studies_on_start_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_start_date ON studies USING btree (start_date);
+
+
+--
+-- Name: index_studies_on_start_date_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_start_date_type ON studies USING btree (start_date_type);
 
 
 --
