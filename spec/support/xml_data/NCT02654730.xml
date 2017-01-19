@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on December 07, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02654730</url>
   </required_header>
@@ -26,7 +26,6 @@
   </sponsors>
   <source>London School of Hygiene and Tropical Medicine</source>
   <oversight_info>
-    <authority>United Kingdom: London School of Hygiene &amp; Tropical Medicine</authority>
     <has_dmc>Yes</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -84,6 +83,7 @@
     </textblock>
   </detailed_description>
   <overall_status>Terminated</overall_status>
+  <aact_change>doctoring up the last_known_status to have sample data</aact_change>
   <last_known_status>Recruiting</last_known_status>
   <why_stopped>
     Enrollment took longer than anticipated; it was financially and logistically impossible to
@@ -94,57 +94,54 @@
   <primary_completion_date type="Actual">September 2016</primary_completion_date>
   <phase>Phase 2/Phase 3</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Endpoint Classification: Safety Study, Intervention Model: Parallel Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <aact_change>doctoring up the expanded access to have sample data</aact_change>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Open Label</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Haemoglobin concentration relative to baseline value as measured by HemoCue</measure>
     <time_frame>28 days</time_frame>
-    <safety_issue>Yes</safety_issue>
   </primary_outcome>
   <secondary_outcome>
     <measure>Haematology abnormalities during follow-up: haptoglobin concentration measured in venous blood samples by full blood count analysis</measure>
     <time_frame>28 days</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Biochemistry abnormalities during follow-up: bilirubin concentration</measure>
     <time_frame>28 days</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Biochemistry abnormalities during follow-up: lactate dehydrogenase</measure>
     <time_frame>28 days</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Biochemistry abnormalities during follow-up: creatinine</measure>
     <time_frame>28 days</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Biochemistry abnormalities during follow-up: potassium</measure>
     <time_frame>28 days</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Number of participants with treatment-related adverse events graded and evaluated in terms of relatedness</measure>
     <time_frame>28 days</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>grading and assessing relatedness will be done following according to criteria of the NIH/NIAID division of microbiology and infectious diseases (DMID)https://www.niaid.nih.gov/LabsAndResources/resources/DMIDClinRsrch/Documents/dmidadulttox.pdf</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Haematology abnormalities during follow-up: mean corpuscular volume (MCV) measured in venous blood samples by full blood count analysis</measure>
     <time_frame>28 days</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Haematology abnormalities during follow-up: red cell distribution width (RDW) measured in venous blood samples by full blood count analysis</measure>
     <time_frame>28 days</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Haematology abnormalities during follow-up: leukocyte count measured in venous blood samples by full blood count analysis</measure>
     <time_frame>28 days</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <number_of_arms>5</number_of_arms>
   <enrollment type="Actual">61</enrollment>
@@ -263,14 +260,12 @@
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <intervention_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
-    <mesh_term>Primaquine</mesh_term>
-    <mesh_term>Piperaquine</mesh_term>
     <mesh_term>Dihydroartemisinin</mesh_term>
     <mesh_term>Artemisinins</mesh_term>
+    <mesh_term>Primaquine</mesh_term>
+    <mesh_term>Piperaquine</mesh_term>
   </intervention_browse>
   <patient_data>
     <sharing_ipd>Yes</sharing_ipd>

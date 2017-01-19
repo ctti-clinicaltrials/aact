@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<clinical_study rank="10475">
+<clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on July 17, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02699827</url>
   </required_header>
@@ -23,7 +21,6 @@
   </sponsors>
   <source>Mansoura University</source>
   <oversight_info>
-    <authority>Egypt: Ministry of Higher Education</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -45,15 +42,20 @@
   </detailed_description>
   <overall_status>Recruiting</overall_status>
   <start_date>March 2016</start_date>
-  <completion_date type="Anticipated">August 2016</completion_date>
-  <primary_completion_date type="Anticipated">August 2016</primary_completion_date>
+  <completion_date type="Anticipated">January 2017</completion_date>
+  <primary_completion_date type="Anticipated">January 2017</primary_completion_date>
   <phase>Phase 4</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Endpoint Classification: Safety/Efficacy Study, Intervention Model: Parallel Assignment, Masking: Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor), Primary Purpose: Supportive Care</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Supportive Care</primary_purpose>
+    <masking>Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor)</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Pain-free period</measure>
     <time_frame>24 hours after the epidural anesthesia</time_frame>
-    <safety_issue>No</safety_issue>
     <description>The time from reaching sensory block to onset of pain</description>
   </primary_outcome>
   <number_of_arms>2</number_of_arms>
@@ -154,6 +156,21 @@
     <role>Study Director</role>
     <affiliation>Mansoura University</affiliation>
   </overall_official>
+  <overall_official>
+    <last_name>Reem A Elsharkawy, Dr</last_name>
+    <role>Study Director</role>
+    <affiliation>Mansoura University</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Alaa Wageeh, Dr</last_name>
+    <role>Study Director</role>
+    <affiliation>Mansoura University</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Salwa S Hays, Prof</last_name>
+    <role>Study Chair</role>
+    <affiliation>Mansoura University</affiliation>
+  </overall_official>
   <overall_contact>
     <last_name>Mohamed S Abdelhafez, Dr</last_name>
     <email>msabdelhafez@gmail.com</email>
@@ -173,8 +190,8 @@
   <location_countries>
     <country>Egypt</country>
   </location_countries>
-  <verification_date>March 2016</verification_date>
-  <lastchanged_date>March 15, 2016</lastchanged_date>
+  <verification_date>January 2017</verification_date>
+  <lastchanged_date>January 12, 2017</lastchanged_date>
   <firstreceived_date>March 1, 2016</firstreceived_date>
   <responsible_party>
     <responsible_party_type>Sponsor-Investigator</responsible_party_type>
@@ -186,8 +203,6 @@
   <keyword>Magnesium</keyword>
   <keyword>Preeclampsia</keyword>
   <keyword>Epidural</keyword>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Pre-Eclampsia</mesh_term>

@@ -22,7 +22,7 @@ describe OutcomeAnalysis do
     oa=oa_col.first
     expect(oa.param_value).to eq(0.62)
     expect(oa.ci_n_sides).to eq('2-Sided')
-    expect(oa.non_inferiority_type).to eq('No')
+    expect(oa.non_inferiority_type).to eq('Superiority or Other')
     expect(oa.p_value).to eq(BigDecimal.new('0.0004'))
     expect(oa.ci_percent).to eq(BigDecimal.new("95"))
     expect(oa.ci_lower_limit).to eq(BigDecimal.new("0.47"))
@@ -59,8 +59,8 @@ describe OutcomeAnalysis do
 
     expect(o.outcome_analyses.size).to eq(2)
     a=o.outcome_analyses.select{|x|x.method=='Comparison of poisson rates'}.first
-    expect(a.other_analysis_description).to eq('testing other analysis desc tag')
-    expect(a.non_inferiority_type).to eq('Yes')
+    expect(a.other_analysis_description).to eq('testing this anticipated tag')
+    expect(a.non_inferiority_type).to eq('Non-Inferiority or Equivalence')
     expect(a.non_inferiority_description).to eq('With assumptions detailed above, >90% power and one-sided alpha=0.05, 1160 children would be required to exclude an increase in progression rate of 1.6% from 2.5% to 4.1% per year in the CDM arm (upper 95% confidence limit of LCM: CDM hazard ratio 1.64).')
     expect(a.method_description).to eq('Statistical analysis plan specified that p-value was to be calculated from the log-rank test, so not provided for the risk difference')
     expect(a.p_value).to eq(0.43)

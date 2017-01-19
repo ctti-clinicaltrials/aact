@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on December 06, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01642004</url>
   </required_header>
@@ -22,31 +22,6 @@
   </sponsors>
   <source>Bristol-Myers Squibb</source>
   <oversight_info>
-    <authority>Argentina: Administracion Nacional de Medicamentos, Alimentos y Tecnologia Medica</authority>
-    <authority>Australia: Department of Health and Ageing Therapeutic Goods Administration</authority>
-    <authority>Austria: Federal Office for Safety in Health Care</authority>
-    <authority>Canada: Health Canada</authority>
-    <authority>Chile: Instituto de Salud Pública de Chile</authority>
-    <authority>Czech Republic: State Institute for Drug Control</authority>
-    <authority>France: Afssaps - Agence française de sécurité sanitaire des produits de santé (Saint-Denis)</authority>
-    <authority>Germany: Federal Institute for Drugs and Medical Devices</authority>
-    <authority>Hungary: National Institute of Pharmacy</authority>
-    <authority>Ireland: Irish Medicines Board</authority>
-    <authority>Italy: Ministry of Health</authority>
-    <authority>Mexico: Federal Commission for Sanitary Risks Protection</authority>
-    <authority>Netherlands: The Central Committee on Research Involving Human Subjects (CCMO)</authority>
-    <authority>Norway: Data Protection Authority</authority>
-    <authority>Norway: Directorate of Health</authority>
-    <authority>Peru: Instituto Nacional de Salud</authority>
-    <authority>Poland: National Institute of Medicines</authority>
-    <authority>Romania: National Medicines Agency</authority>
-    <authority>Russia: Ethics Committee</authority>
-    <authority>Russia: Ministry of Health of the Russian Federation</authority>
-    <authority>South Africa: Medicines Control Council</authority>
-    <authority>Spain: Spanish Agency of Medicines</authority>
-    <authority>Turkey: Ministry of Health</authority>
-    <authority>United States: Food and Drug Administration</authority>
-    <authority>United Kingdom: Medicines and Healthcare Products Regulatory Agency</authority>
     <has_dmc>Yes</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -62,42 +37,42 @@
   <primary_completion_date type="Actual">November 2014</primary_completion_date>
   <phase>Phase 3</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Endpoint Classification: Efficacy Study, Intervention Model: Parallel Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Open Label</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Overall Survival (OS) Time in Months for All Randomized Participants at Primary Endpoint</measure>
     <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Overall Survival (OS) Rate in All Randomized Participants</measure>
     <time_frame>Randomization to 18 months post-randomization, up to June 2015</time_frame>
-    <safety_issue>No</safety_issue>
     <description>The overall survival rate is the probability that a participant will be alive at 6, 12, and 18 months following randomization. Overall survival was defined as the time between the date of randomization and the date of death as a result of any cause. Survival rates were determined via Kaplan-Meier estimates.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Number of Deaths From Any Cause in All Randomized Participants at Primary Endpoint</measure>
     <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>The number of participants who died from any cause was reported for each arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Objective Response Rate (ORR) in All Randomized Participants at Primary Endpoint</measure>
     <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). BOR was defined as the best investigator-assessed response designation, recorded between the date of randomization and the date of objectively documented progression per Response Evaluation Criteria in Solid Tumors version 1.1 (RECIST v1.1) or the date of subsequent anti-cancer therapy (excluding on-treatment palliative radiotherapy of non-target bone lesions or Central Nervous System (CNS) lesions), whichever occurred first.
 CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Time To Response (TTR) in Months for All Confirmed Responders at Primary Endpoint</measure>
     <time_frame>Randomization until confirmed response, up to November 2014, approximately 25 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Time to Response (TTR) for participants demonstrating a response (either CR or PR) was defined as the time from the date of randomization to the date of the first confirmed response. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Duration of Objective Response (DOR) in Months for All Confirmed Responders at Primary Endpoint</measure>
     <time_frame>Date of confirmed response to date of documented tumor progression, up to November 2014, approximately 25 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>DOR was defined as the time from the date of first confirmed response to the date of the first documented tumor progression (per RECIST v1.1), as determined by the investigator, or death due to any cause, whichever occurred first. DOR was evaluated only for confirmed responders (i.e. participants with confirmed CR or PR).
 CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.
 Participants who neither progressed nor died were censored on the date of their last evaluable tumor assessment.</description>
@@ -105,43 +80,36 @@ Participants who neither progressed nor died were censored on the date of their 
   <secondary_outcome>
     <measure>Progression-Free Survival (PFS) at Primary Endpoint</measure>
     <time_frame>Randomization to 12 months post-randomization, up to November 2014</time_frame>
-    <safety_issue>No</safety_issue>
     <description>PFS rate was defined as the probability that participants will experience no disease progression or death from any cause at a given time point following randomization. Progression was assessed by investigators according to RECIST v1.1. 95% CIs were estimated using the Kaplan-Meier method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative radiation therapy (RT) of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Progression-Free Survival (PFS) Time in Months for All Randomized Participants at Primary Endpoint</measure>
     <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. Participants underwent radiographic tumor assessments every 6 weeks (+/- 5 days) from week 9 (+/- 5 days) for the first year on treatment, then every 12 weeks after the first year on treatment until documented disease progression. The PFS curves were estimated using KM method. Two-sided 95% CI for median PFS were computed by Brookmeyer and Crowley method (using log-log transformation). Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative RT of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Percentage of Participants Experiencing Disease-related Symptom Improvement by Week 12</measure>
     <time_frame>Randomization to Week 12</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Disease-related symptom improvement rate by Week 12 was defined as the percentage of randomized participants who had a 10 point or greater decrease from baseline in average symptom burden index score at any time between randomization and Week 12. The participant portion of the Lung Cancer Symptom Scale (LCSS) consisted of 6 symptom-specific questions that addressed cough, dyspnea, fatigue, pain, hemoptysis, and anorexia, plus 3 summary items on symptom distress, interference with activity level, and global health-related Quality of Life (QoL). The scores range from 0 to 100, with 0 representing the best possible score and 100 being the worst possible score. The average symptom burden index score at each assessment was defined as the mean of the 6 symptom-specific questions of the LCSS. 95% CIs were computed using Clopper-Pearson Method.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Overall Survival (OS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</measure>
     <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>OS was measured in months for all randomized participants grouped by their baseline PD-L1 expression level. PD-L1 expression was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Objective Response Rate (ORR) by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</measure>
     <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>ORR was reported for all randomized participants grouped by their baseline PD-L1 expression level. ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). PD-L1 expression in participants was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Progression Free Survival (PFS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</measure>
     <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>PFS time was measured for all randomized participants grouped by their baseline PD-L1 expression levels. PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. The PFS curves were estimated using KM method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started subsequent anti-cancer therapy (including on-treatment palliative radiotherapy of non-target bone lesions or CNS lesions) without a prior reported progression were censored at the last evaluable tumor assessment prior to subsequent anti-cancer therapy. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
   </secondary_outcome>
   <other_outcome>
     <measure>Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up</measure>
     <time_frame>Randomization until July 2015, approximately 33 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Survival follow-up analysis occurred 7.4 months after Primary Endpoint was reached, representing a minimum OS follow-up time of 18.0 months.</description>
   </other_outcome>
   <number_of_arms>2</number_of_arms>
@@ -233,7 +201,7 @@ Participants who neither progressed nor died were censored on the date of their 
              study treatment
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -1390,9 +1358,6 @@ Participants who neither progressed nor died were censored on the date of their 
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>Yes</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Lung Neoplasms</mesh_term>
@@ -1767,7 +1732,6 @@ Participants who neither progressed nor died were censored on the date of their 
         <title>Overall Survival (OS) Time in Months for All Randomized Participants at Updated Survival Follow-up</title>
         <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Survival follow-up analysis occurred 7.4 months after Primary Endpoint was reached, representing a minimum OS follow-up time of 18.0 months.</description>
         <time_frame>Randomization until July 2015, approximately 33 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants</population>
         <group_list>
           <group group_id="O1">
@@ -1815,7 +1779,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.0004</p_value>
             <p_value_desc>Stratified by region (US/Canada, Rest Of World (ROW), Europe) and prior treatment regimen (Paclitaxel, Another agent) as entered in the Interactive Voice Response System (IVRS).</p_value_desc>
             <method>Log Rank</method>
@@ -1835,7 +1799,6 @@ Participants who neither progressed nor died were censored on the date of their 
         <description>ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). BOR was defined as the best investigator-assessed response designation, recorded between the date of randomization and the date of objectively documented progression per Response Evaluation Criteria in Solid Tumors version 1.1 (RECIST v1.1) or the date of subsequent anti-cancer therapy (excluding on-treatment palliative radiotherapy of non-target bone lesions or Central Nervous System (CNS) lesions), whichever occurred first.
 CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
         <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants</population>
         <group_list>
           <group group_id="O1">
@@ -1884,7 +1847,7 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.0083</p_value>
             <method>Cochran-Mantel-Haenszel</method>
             <method_desc>Stratified by region (US/Canada vs Europe vs ROW) and prior treatment regimen (Paclitaxel vs Another Agent) as entered into the IVRS.</method_desc>
@@ -1903,7 +1866,6 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
         <title>Overall Survival (OS) Time in Months for All Randomized Participants at Primary Endpoint</title>
         <description>OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Hazard ratio (HR) and the corresponding Confidence Interval (CI) were estimated in a stratified Cox proportional hazards model for distribution of OS in each randomized arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
         <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants</population>
         <group_list>
           <group group_id="O1">
@@ -1951,7 +1913,7 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.0002</p_value>
             <p_value_desc>Stratified by region (US/Canada, Rest Of World (ROW), Europe) and prior treatment regimen (Paclitaxel, Another agent) as entered in the Interactive Voice Response System (IVRS).</p_value_desc>
             <method>Log Rank</method>
@@ -1970,7 +1932,6 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
         <title>Overall Survival (OS) Rate in All Randomized Participants</title>
         <description>The overall survival rate is the probability that a participant will be alive at 6, 12, and 18 months following randomization. Overall survival was defined as the time between the date of randomization and the date of death as a result of any cause. Survival rates were determined via Kaplan-Meier estimates.</description>
         <time_frame>Randomization to 18 months post-randomization, up to June 2015</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants</population>
         <group_list>
           <group group_id="O1">
@@ -2041,7 +2002,6 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
         <title>Time To Response (TTR) in Months for All Confirmed Responders at Primary Endpoint</title>
         <description>Time to Response (TTR) for participants demonstrating a response (either CR or PR) was defined as the time from the date of randomization to the date of the first confirmed response. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.</description>
         <time_frame>Randomization until confirmed response, up to November 2014, approximately 25 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All confirmed responders (participants demonstrating CR or PR)</population>
         <group_list>
           <group group_id="O1">
@@ -2091,7 +2051,6 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
 CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters.
 Participants who neither progressed nor died were censored on the date of their last evaluable tumor assessment.</description>
         <time_frame>Date of confirmed response to date of documented tumor progression, up to November 2014, approximately 25 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All confirmed responders (participants demonstrating CR or PR)</population>
         <group_list>
           <group group_id="O1">
@@ -2141,7 +2100,6 @@ Participants who neither progressed nor died were censored on the date of their 
         <title>Progression-Free Survival (PFS) at Primary Endpoint</title>
         <description>PFS rate was defined as the probability that participants will experience no disease progression or death from any cause at a given time point following randomization. Progression was assessed by investigators according to RECIST v1.1. 95% CIs were estimated using the Kaplan-Meier method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative radiation therapy (RT) of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy</description>
         <time_frame>Randomization to 12 months post-randomization, up to November 2014</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants (105 PFS events in Nivolumab arm; 122 PFS events in Docetaxel arm)</population>
         <group_list>
           <group group_id="O1">
@@ -2201,7 +2159,6 @@ Participants who neither progressed nor died were censored on the date of their 
         <title>Progression-Free Survival (PFS) Time in Months for All Randomized Participants at Primary Endpoint</title>
         <description>PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. Participants underwent radiographic tumor assessments every 6 weeks (+/- 5 days) from week 9 (+/- 5 days) for the first year on treatment, then every 12 weeks after the first year on treatment until documented disease progression. The PFS curves were estimated using KM method. Two-sided 95% CI for median PFS were computed by Brookmeyer and Crowley method (using log-log transformation). Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started any subsequent anti-cancer therapy (including on-treatment palliative RT of non-target bone lesions or CNS lesions) without a prior reported progression were to be censored at the last evaluable tumor assessment prior to or on initiation of the subsequent anti-cancer therapy.</description>
         <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants (105 PFS events in Nivolumab arm; 122 PFS events in Docetaxel arm)</population>
         <group_list>
           <group group_id="O1">
@@ -2249,7 +2206,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.0004</p_value>
             <method>Log Rank</method>
             <method_desc>Stratified by region (US/Canada vs Europe vs ROW) and prior treatment regimen (Paclitaxel vs Another Agent) as entered into the IVRS.</method_desc>
@@ -2268,7 +2225,6 @@ Participants who neither progressed nor died were censored on the date of their 
         <title>Percentage of Participants Experiencing Disease-related Symptom Improvement by Week 12</title>
         <description>Disease-related symptom improvement rate by Week 12 was defined as the percentage of randomized participants who had a 10 point or greater decrease from baseline in average symptom burden index score at any time between randomization and Week 12. The participant portion of the Lung Cancer Symptom Scale (LCSS) consisted of 6 symptom-specific questions that addressed cough, dyspnea, fatigue, pain, hemoptysis, and anorexia, plus 3 summary items on symptom distress, interference with activity level, and global health-related Quality of Life (QoL). The scores range from 0 to 100, with 0 representing the best possible score and 100 being the worst possible score. The average symptom burden index score at each assessment was defined as the mean of the 6 symptom-specific questions of the LCSS. 95% CIs were computed using Clopper-Pearson Method.</description>
         <time_frame>Randomization to Week 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants</population>
         <group_list>
           <group group_id="O1">
@@ -2316,7 +2272,6 @@ Participants who neither progressed nor died were censored on the date of their 
         <title>Overall Survival (OS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
         <description>OS was measured in months for all randomized participants grouped by their baseline PD-L1 expression level. PD-L1 expression was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. OS was defined as the time between the date of randomization and the date of death from any cause. Participants were censored at the date they were last known to be alive. Median OS time was calculated using Kaplan-Meier (KM) method. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
         <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants</population>
         <group_list>
           <group group_id="O1">
@@ -2388,7 +2343,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression &gt;= 5%</groups_desc>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.53</param_value>
             <ci_percent>95</ci_percent>
@@ -2403,7 +2358,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression &lt; 5%</groups_desc>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.70</param_value>
             <ci_percent>95</ci_percent>
@@ -2418,7 +2373,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression not quantifiable at baseline</groups_desc>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.39</param_value>
             <ci_percent>95</ci_percent>
@@ -2434,7 +2389,6 @@ Participants who neither progressed nor died were censored on the date of their 
         <title>Objective Response Rate (ORR) by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
         <description>ORR was reported for all randomized participants grouped by their baseline PD-L1 expression level. ORR was defined as the percentage of all randomized participants whose Best Overall Response (BOR) was a confirmed Complete Response (CR) or Partial Response (PR). PD-L1 expression in participants was defined as the percent of disease tumor cells demonstrating plasma membrane PD-L1 staining of any intensity using an immunohistochemistry (IHC) assay. CR = Disappearance of all target lesions. Any pathological lymph nodes (whether target or non-target) must have reduction in short axis to &lt; 10 mm.; PR = At least a 30% decrease in the sum of diameters of target lesions, taking, as reference, the baseline sum diameters. CIs were computed using the Clopper and Pearson method.</description>
         <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants</population>
         <group_list>
           <group group_id="O1">
@@ -2506,7 +2460,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression &gt;= 5%</groups_desc>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <param_type>Odds Ratio (OR)</param_type>
             <param_value>3.3</param_value>
             <ci_percent>95</ci_percent>
@@ -2521,7 +2475,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 &lt; 5%</groups_desc>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <param_type>Odds Ratio (OR)</param_type>
             <param_value>1.3</param_value>
             <ci_percent>95</ci_percent>
@@ -2536,7 +2490,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression not quantifiable at baseline</groups_desc>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <param_type>Odds Ratio (OR)</param_type>
             <param_value>17.8</param_value>
             <ci_percent>95</ci_percent>
@@ -2552,7 +2506,6 @@ Participants who neither progressed nor died were censored on the date of their 
         <title>Progression Free Survival (PFS) Time in Months by Baseline PD-L1 Expression for All Randomized Participants at Primary Endpoint</title>
         <description>PFS time was measured for all randomized participants grouped by their baseline PD-L1 expression levels. PFS was defined as the time from the date of randomization to the date of the first documented tumor progression as determined by the investigator per RECIST v1.1 criteria, or death due to any cause. The PFS curves were estimated using KM method. Participants who did not progress or die were censored on the date of their last evaluable tumor assessment. Participants who started subsequent anti-cancer therapy (including on-treatment palliative radiotherapy of non-target bone lesions or CNS lesions) without a prior reported progression were censored at the last evaluable tumor assessment prior to subsequent anti-cancer therapy. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
         <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants</population>
         <group_list>
           <group group_id="O1">
@@ -2624,7 +2577,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression &gt;= 5%</groups_desc>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.54</param_value>
             <ci_percent>95</ci_percent>
@@ -2639,7 +2592,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression &lt; 5%</groups_desc>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.75</param_value>
             <ci_percent>95</ci_percent>
@@ -2654,7 +2607,7 @@ Participants who neither progressed nor died were censored on the date of their 
               <group_id>O2</group_id>
             </group_id_list>
             <groups_desc>PD-L1 expression not quantifiable at baseline</groups_desc>
-            <non_inferiority_type>No</non_inferiority_type>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <param_type>Hazard Ratio (HR)</param_type>
             <param_value>0.45</param_value>
             <ci_percent>95</ci_percent>
@@ -2670,7 +2623,6 @@ Participants who neither progressed nor died were censored on the date of their 
         <title>Number of Deaths From Any Cause in All Randomized Participants at Primary Endpoint</title>
         <description>The number of participants who died from any cause was reported for each arm. Interim analysis (Primary Endpoint) was planned to occur after at least 196 deaths, with the actual analysis occurring at 199 deaths.</description>
         <time_frame>Randomization until 199 deaths, up to November 2014, approximately 25 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants</population>
         <group_list>
           <group group_id="O1">

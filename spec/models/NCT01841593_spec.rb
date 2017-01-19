@@ -30,13 +30,13 @@ describe Study do
     expect(study.design.intervention_model).to eq('Crossover Assignment')
     expect(study.design.masking).to eq('Open Label')
     expect(study.design.primary_purpose).to eq('Treatment')
-    expect(study.design_outcomes.size).to eq(6)
-    other_outcomes=study.design_outcomes.select{|o|o.outcome_type=='other'}
-    expect(other_outcomes.size).to eq(1)
-    other_outcome=other_outcomes.first
-    expect(other_outcome.measure).to eq('Hospital costs')
-    expect(other_outcome.time_frame).to eq('Hospital stay')
-    expect(other_outcome.description).to eq('$US')
+    expect(study.design_outcomes.size).to eq(5)
+    outcomes=study.design_outcomes.select{|o|o.measure=='Raltegravir C12h'}
+    expect(outcomes.size).to eq(1)
+    an_outcome=outcomes.first
+    expect(an_outcome.outcome_type).to eq('primary')
+    expect(an_outcome.time_frame).to eq('12 hours post-dose on day 7 of daily dosing.')
+    expect(an_outcome.description).to eq('measured concentration 12 hours after dose in the absence, and presence, of amlodipine.')
     expect(study.number_of_arms).to eq(2)
     expect(study.enrollment).to eq(19)
     expect(study.enrollment_type).to eq('Actual')
@@ -56,6 +56,10 @@ describe Study do
     expect(i.description).to eq('generic amlodipine 5mg tablets (Accord healthcare Limited, UK)')
     expect(i.intervention_other_names.size).to eq(1)
     expect(i.intervention_other_names.first.name).to eq('Amlodipine 5mg tablets')
+    expect(study.baseline_measurements.size).to eq(15)
+    bm=study.baseline_measurements.select{|x|x.ctgov_group_code=='B1' and x.classification=='Between 18 and 65 years'}.first
+    expect(bm.param_value).to eq('11')
+    expect(bm.param_value_num).to eq(11)
   end
 
 end

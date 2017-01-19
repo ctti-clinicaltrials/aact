@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<clinical_study rank="114579">
+<clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on July 17, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01339988</url>
   </required_header>
@@ -23,7 +21,6 @@
   </sponsors>
   <source>Tel-Aviv Sourasky Medical Center</source>
   <oversight_info>
-    <authority>Israel: Ethics Commission</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -42,16 +39,19 @@
   <primary_completion_date type="Anticipated">June 2014</primary_completion_date>
   <phase>Phase 4</phase>
   <study_type>Interventional</study_type>
-  <study_design>Intervention Model: Single Group Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <intervention_model>Single Group Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Open Label</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Overall survival</measure>
     <time_frame>Five years</time_frame>
-    <safety_issue>Yes</safety_issue>
   </primary_outcome>
   <secondary_outcome>
     <measure>Disease free survival</measure>
     <time_frame>Five years</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <number_of_arms>1</number_of_arms>
   <enrollment type="Anticipated">10</enrollment>
@@ -133,13 +133,11 @@ Cyclophosphamide 50mg/kg/day for 4 days + Busulfan 0.8-1.0mg/kg/day for 4 days.<
   <keyword>Busulfex</keyword>
   <keyword>Cyclophosphamide</keyword>
   <keyword>Total-Body-Ittadiation</keyword>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Leukemia</mesh_term>
     <mesh_term>Myelodysplastic Syndromes</mesh_term>
     <mesh_term>Preleukemia</mesh_term>
-    <mesh_term>Leukemia</mesh_term>
     <mesh_term>Leukemia, Myelomonocytic, Juvenile</mesh_term>
   </condition_browse>
   <intervention_browse>

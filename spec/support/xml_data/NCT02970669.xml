@@ -21,9 +21,6 @@
     </lead_sponsor>
   </sponsors>
   <source>Novartis</source>
-  <oversight_info>
-    <authority>United States: Food and Drug Administration</authority>
-  </oversight_info>
   <brief_summary>
     <textblock>
       The purpose of this study is to investigate the effects of initiation of
@@ -37,30 +34,36 @@
   <primary_completion_date type="Anticipated">October 2018</primary_completion_date>
   <phase>Phase 4</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Intervention Model: Parallel Assignment, Masking: Double Blind (Subject, Investigator)</study_design>
+  <has_expanded_access>Yes</has_expanded_access>
+  <expanded_access_info>
+    <exp_acc_type_individual>true</exp_acc_type_individual>
+    <exp_acc_type_intermediate>true</exp_acc_type_intermediate>
+    <exp_acc_type_treatment>true</exp_acc_type_treatment>
+  </expanded_access_info>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <masking>Double Blind (Subject, Investigator)</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Change in mean activity counts collected during the most active 30 minutes of the subject's day between baseline and week 8</measure>
     <time_frame>Baseline, week 8</time_frame>
-    <safety_issue>No</safety_issue>
     <description>The primary endpoint is the change in mean activity counts collected during the most active 30 minutes of the subject's day between baseline phase (mean of endpoint data collected each day during week -1) and the final randomized treatment phase measurement (mean of endpoint data collected each day during week 8), as measured by wrist-worn accelerometer collected actigraphy (total counts per 30 min period collected during the most active 30 minutes of each day).</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Change in mean activity (counts per minute) during sleep between baseline and week 8 as an objective measure of physical function</measure>
     <time_frame>Baseline, Week 8</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Change in mean activity (counts per minute) during sleep between baseline phase (mean of data collected during week -1) and the final randomized treatment phase measurement (mean of data collected during week 8), as measured by actigraphy (activity counts per minute during daily sleep period, wrist-worn accelerometer).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Change in mean activity during sleep between baseline and different time points as an objective measure of physical function</measure>
     <time_frame>Baseline, Week 1, 9 and 16</time_frame>
-    <safety_issue>No</safety_issue>
     <description>The change in mean activity during sleep between baseline (mean of data collected during the nights of week -1) and each randomized treatment and open label phase, as measured by actigraphy (Week
 1, 9, and 16) (activity counts per minute during daily sleep period, wrist-worn accelerometer).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Change in mean activity counts collected during the most active 30 minutes of the subject's day between baseline and different time points as an objective measure of physical function.</measure>
     <time_frame>Baseline, week 1, 9 and 16</time_frame>
-    <safety_issue>No</safety_issue>
     <description>The change in mean activity counts collected during the most active 30 minutes of the subject's day between baseline phase (mean of data collected each day during week -1) and each randomized treatment and open label phase (Week 1, 9, and 16), as measured by wrist worn accelerometer collected actigraphy.</description>
   </secondary_outcome>
   <number_of_arms>2</number_of_arms>
@@ -191,14 +194,6 @@ Open-label treatment epoch: All patients entering this epoch (8 weeks) will be g
   <keyword>Actigraphy</keyword>
   <keyword>Home sleep test</keyword>
   <keyword>wake</keyword>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>Yes</is_section_801>
-  <has_expanded_access>Yes</has_expanded_access>
-  <expanded_access_info>
-    <exp_acc_type_individual>Yes</exp_acc_type_individual>
-    <exp_acc_type_intermediate>Yes</exp_acc_type_intermediate>
-    <exp_acc_type_treatment>Yes</exp_acc_type_treatment>
-  </expanded_access_info>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Heart Failure</mesh_term>

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 25, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01076361</url>
   </required_header>
@@ -24,19 +22,6 @@
   </sponsors>
   <source>Medtronic</source>
   <oversight_info>
-    <authority>United States: Institutional Review Board</authority>
-    <authority>Canada: Ethics Review Committee</authority>
-    <authority>France: Conseil National de l'Ordre des Médecins</authority>
-    <authority>Germany: Federal Institute for Drugs and Medical Devices</authority>
-    <authority>Serbia and Montenegro: Agency for Drugs and Medicinal Devices</authority>
-    <authority>Serbia: Ethics Committee</authority>
-    <authority>Austria: Ethikkommission</authority>
-    <authority>Denmark: Ethics Committee</authority>
-    <authority>Switzerland: Swissmedic</authority>
-    <authority>Switzerland: Ethikkommission</authority>
-    <authority>Sweden: Regional Ethical Review Board</authority>
-    <authority>Italy: Ethics Committee</authority>
-    <authority>Australia: Human Research Ethics Committee</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -59,12 +44,15 @@
   <primary_completion_date type="Actual">September 2010</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Observational [Patient Registry]</study_type>
-  <study_design>Observational Model: Cohort, Time Perspective: Prospective</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <observational_model>Cohort</observational_model>
+    <time_perspective>Prospective</time_perspective>
+  </study_design_info>
   <target_duration>5 Years</target_duration>
   <primary_outcome>
     <measure>Survival Probability of the Model 4968 Lead Based on Lead-related Complications</measure>
     <time_frame>The requirement to satisfy the PMA condition of Approval of model 4968 was to have 100 participants followed for a minimum of 5 years to assess the long-term safety.</time_frame>
-    <safety_issue>No</safety_issue>
     <description>The survival analysis takes into account: Enrolled participants, lead follow-up time, and adjudicated lead related complications. The life-table method was used to analyze lead survival probability.</description>
   </primary_outcome>
   <number_of_groups>1</number_of_groups>
@@ -105,7 +93,7 @@
           -  Subjects with exclusion criteria required by local law
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>N/A</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -1080,9 +1068,6 @@
   </responsible_party>
   <keyword>Epicardial</keyword>
   <keyword>Pacing Lead</keyword>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>No</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Heart Failure</mesh_term>
@@ -1141,111 +1126,156 @@
           <description>All patients who were enrolled and implanted with a Model 4968 Lead</description>
         </group>
       </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="370"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
       <measure_list>
-        <measure>
-          <title>Number of Participants</title>
-          <units>participants</units>
-          <param>Number</param>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="370"/>
-              </measurement_list>
-            </category>
-          </category_list>
-        </measure>
         <measure>
           <title>Age, Customized</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Unknown</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="21"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>0 - 12 Years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="155"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>13 - 19 Years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="49"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>20 + Years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="145"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Unknown</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>0 - 12 Years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="155"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>13 - 19 Years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="49"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>20 + Years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="145"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Gender</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Female</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="138"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Male</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="232"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="138"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="232"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Race/Ethnicity, Customized</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Black or African American</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="5"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Hispanic or Latino</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>White</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="16"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Race/Ethnicity not collected</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="345"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Other</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Not Reportable per Local Laws/Regulations</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="2"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Black or African American</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Hispanic or Latino</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>White</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="16"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Race/Ethnicity not collected</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="345"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Other</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Not Reportable per Local Laws/Regulations</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
       </measure_list>
     </baseline>
@@ -1256,7 +1286,6 @@
         <title>Survival Probability of the Model 4968 Lead Based on Lead-related Complications</title>
         <description>The survival analysis takes into account: Enrolled participants, lead follow-up time, and adjudicated lead related complications. The life-table method was used to analyze lead survival probability.</description>
         <time_frame>The requirement to satisfy the PMA condition of Approval of model 4968 was to have 100 participants followed for a minimum of 5 years to assess the long-term safety.</time_frame>
-        <safety_issue>No</safety_issue>
         <population>22 Model 4968s (in 21 participants) was not available for analysis</population>
         <group_list>
           <group group_id="O1">
@@ -1264,46 +1293,42 @@
             <description>Model 4968 is steroid-eluting bipolar epicardial pacing lead. Participants implanted with Model 4968 lead their data will be obtained for long-term safety and lead events, includes the survival probability for the Model 4968.</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="349"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Number of leads analyzed</title>
-            <units>leads</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="609"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Survival Probability of the Model 4968 Lead Based on Lead-related Complications</title>
-            <description>The survival analysis takes into account: Enrolled participants, lead follow-up time, and adjudicated lead related complications. The life-table method was used to analyze lead survival probability.</description>
-            <units>percentage of Model 4968 Leads</units>
-            <param>Number</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="92.3" lower_limit="88.3" upper_limit="95.04"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Survival Probability of the Model 4968 Lead Based on Lead-related Complications</title>
+          <description>The survival analysis takes into account: Enrolled participants, lead follow-up time, and adjudicated lead related complications. The life-table method was used to analyze lead survival probability.</description>
+          <population>22 Model 4968s (in 21 participants) was not available for analysis</population>
+          <units>percentage of Model 4968 Leads</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <units_analyzed>Participants</units_analyzed>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="349"/>
+              </count_list>
+            </analyzed>
+            <analyzed>
+              <units>leads</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="609"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="92.3" lower_limit="88.3" upper_limit="95.04"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
     </outcome_list>
 
