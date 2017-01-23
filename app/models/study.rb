@@ -2,7 +2,7 @@ require 'csv'
 class Study < ActiveRecord::Base
   include Elasticsearch::Model
   # index_name([Rails.env,base_class.to_s.pluralize.underscore].join('_'))
-  include Elasticsearch::Model::Callbacks
+  #include Elasticsearch::Model::Callbacks
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
 
