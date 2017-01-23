@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on December 06, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02567188</url>
   </required_header>
@@ -19,9 +19,6 @@
     </lead_sponsor>
   </sponsors>
   <source>Hoffmann-La Roche</source>
-  <oversight_info>
-    <authority>Sweden:Swedish Medical Products Agency</authority>
-  </oversight_info>
   <brief_summary>
     <textblock>
       An observational, longitudinal, multi-center, non-interventional study in participants with
@@ -36,143 +33,121 @@
   <primary_completion_date type="Actual">April 2011</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Observational</study_type>
-  <study_design>Observational Model: Case Control, Time Perspective: Cross-Sectional</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <observational_model>Case Control</observational_model>
+    <time_perspective>Cross-Sectional</time_perspective>
+  </study_design_info>
   <primary_outcome>
     <measure>Percentage of Participants Reaching a Hemoglobin (Hb) Value of Greater Than (&gt;) 100 and Less Than (&lt;) 120 Grams Per Liter (gm/L) at Month 6 Before Inclusion</measure>
     <time_frame>Pre-baseline (Month -6)</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Percentage of Participants Reaching a Hb Value of &gt;100 and &lt; 120 gm/L at Month 3 Before Inclusion</measure>
     <time_frame>Pre-baseline (Month -3)</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Percentage of Participants Reaching a Hb Value of &gt;100 and &lt; 120 gm/L at Baseline</measure>
     <time_frame>Baseline</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 3 After Inclusion</measure>
     <time_frame>Month 3</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 6 After Inclusion</measure>
     <time_frame>Month 6</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 9 After Inclusion</measure>
     <time_frame>Month 9</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 12 After Inclusion</measure>
     <time_frame>Month 12</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Mean Hb Value at Month 6 Before Inclusion</measure>
     <time_frame>Pre-baseline (Month -6)</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Mean Hb Value at Month 3 Before Inclusion</measure>
     <time_frame>Pre-baseline (Month -3)</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Mean Hb Value at Baseline</measure>
     <time_frame>Baseline</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Mean Hb Value at Month 3 After Inclusion</measure>
     <time_frame>Month 3</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Mean Hb Value at Month 6 After Inclusion</measure>
     <time_frame>Month 6</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Mean Hb Value at Month 9 After Inclusion</measure>
     <time_frame>Month 9</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Mean Hb Value at Month 12 After Inclusion</measure>
     <time_frame>Month 12</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Percentage of Participants With Hb Fluctuation From Pre-Baseline (Month -6) to Baseline</measure>
     <time_frame>Pre-baseline (Month -6) to Baseline</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Hb fluctuation was defined as change in Hb value &gt;15 gm/L between 2 visits.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Percentage of Participants With Hb Fluctuation From Baseline to Month 12</measure>
     <time_frame>Baseline to Month 12</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Hb fluctuation was defined as change in Hb value &gt;15 gm/L between 2 visits.</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Percentage of Participants With Change in MIRCERA Treatment</measure>
     <time_frame>Months 3, 6, 9, and 12</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Change in MIRCERA treatment included changes in dose, frequency, and route of administration.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Percentage of Participants With Number of MIRCERA Dose Changes</measure>
     <time_frame>Baseline to Month 12</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Correlation of Hb Levels With Underlying Disease</measure>
     <time_frame>Baseline to 12 months</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Correlation of Hb Levels With Levels of Inflammation</measure>
     <time_frame>Baseline to 12 months</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Percentage of Participants With Changes in Iron Supplement</measure>
     <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Percentage of participants who had any change in their iron supplement medication at a specified visit were reported.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Percentage of Participants With Changes in Immunosuppressive Treatment</measure>
     <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Percentage of participants who had any change in their immunosuppressive medication at a specified visit were reported.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Percentage of Participants With Changes in AntihypertensiveTreatment</measure>
     <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Percentage of participants who had any change in their antihypertensive medication at a specified visit were reported.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Number of Participants With Different Medication Treatment</measure>
     <time_frame>Pre-baseline (Month -6) to Month 12</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants who were receiving different treatments (antihypertensive, immunosuppressive, iron supplements, and others) before and/or after baseline were reported. Same participant could be reported in more than one category.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Percentage of Participants Who Required Blood Transfusion</measure>
     <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Percentage of Participants Who Required Renal Replacement Therapy</measure>
     <time_frame>Months 3, 6, 9, and 12</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Renal replacement therapy was defined as hemodialysis and peritoneal dialysis.</description>
   </secondary_outcome>
   <number_of_groups>1</number_of_groups>
@@ -217,7 +192,7 @@
           -  Planned living kidney transplant within 6 months.
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -417,9 +392,6 @@
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>No</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
 
   <clinical_results>
 
@@ -583,7 +555,6 @@
         <type>Primary</type>
         <title>Percentage of Participants Reaching a Hemoglobin (Hb) Value of Greater Than (&gt;) 100 and Less Than (&lt;) 120 Grams Per Liter (gm/L) at Month 6 Before Inclusion</title>
         <time_frame>Pre-baseline (Month -6)</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -622,7 +593,6 @@
         <type>Primary</type>
         <title>Percentage of Participants Reaching a Hb Value of &gt;100 and &lt; 120 gm/L at Month 3 Before Inclusion</title>
         <time_frame>Pre-baseline (Month -3)</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -661,7 +631,6 @@
         <type>Primary</type>
         <title>Percentage of Participants Reaching a Hb Value of &gt;100 and &lt; 120 gm/L at Baseline</title>
         <time_frame>Baseline</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -700,7 +669,6 @@
         <type>Primary</type>
         <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 3 After Inclusion</title>
         <time_frame>Month 3</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -739,7 +707,6 @@
         <type>Primary</type>
         <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 6 After Inclusion</title>
         <time_frame>Month 6</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -778,7 +745,6 @@
         <type>Primary</type>
         <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 9 After Inclusion</title>
         <time_frame>Month 9</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -817,7 +783,6 @@
         <type>Primary</type>
         <title>Percentage of Participants Reaching a Hb Value of &gt; 100 and &lt; 120 gm/L at Month 12 After Inclusion</title>
         <time_frame>Month 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -856,7 +821,6 @@
         <type>Primary</type>
         <title>Mean Hb Value at Month 6 Before Inclusion</title>
         <time_frame>Pre-baseline (Month -6)</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -897,7 +861,6 @@
         <title>Percentage of Participants With Change in MIRCERA Treatment</title>
         <description>Change in MIRCERA treatment included changes in dose, frequency, and route of administration.</description>
         <time_frame>Months 3, 6, 9, and 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants evaluable for this outcome measure. n = number of participants evaluable at the specified time frame.</population>
         <group_list>
           <group group_id="O1">
@@ -968,7 +931,6 @@
         <type>Secondary</type>
         <title>Percentage of Participants With Number of MIRCERA Dose Changes</title>
         <time_frame>Baseline to Month 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with available data for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -1048,7 +1010,6 @@
         <type>Secondary</type>
         <title>Correlation of Hb Levels With Underlying Disease</title>
         <time_frame>Baseline to 12 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>The units usage at and between study centres did change during the study and therefore no descriptive statistics could be performed on the laboratory variables.</population>
         <group_list>
           <group group_id="O1">
@@ -1074,7 +1035,6 @@
         <type>Secondary</type>
         <title>Correlation of Hb Levels With Levels of Inflammation</title>
         <time_frame>Baseline to 12 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>The units usage at and between study centres did change during the study and therefore no descriptive statistics could be performed on the laboratory variables.</population>
         <group_list>
           <group group_id="O1">
@@ -1101,7 +1061,6 @@
         <title>Percentage of Participants With Changes in Iron Supplement</title>
         <description>Percentage of participants who had any change in their iron supplement medication at a specified visit were reported.</description>
         <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants evaluable for this outcome measure and n= participants evaluable for specified time points.</population>
         <group_list>
           <group group_id="O1">
@@ -1202,7 +1161,6 @@
         <type>Primary</type>
         <title>Mean Hb Value at Month 3 Before Inclusion</title>
         <time_frame>Pre-baseline (Month -3)</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -1242,7 +1200,6 @@
         <type>Primary</type>
         <title>Mean Hb Value at Baseline</title>
         <time_frame>Baseline</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -1282,7 +1239,6 @@
         <type>Primary</type>
         <title>Mean Hb Value at Month 3 After Inclusion</title>
         <time_frame>Month 3</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -1322,7 +1278,6 @@
         <type>Primary</type>
         <title>Mean Hb Value at Month 6 After Inclusion</title>
         <time_frame>Month 6</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -1362,7 +1317,6 @@
         <type>Primary</type>
         <title>Mean Hb Value at Month 9 After Inclusion</title>
         <time_frame>Month 9</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -1402,7 +1356,6 @@
         <type>Primary</type>
         <title>Mean Hb Value at Month 12 After Inclusion</title>
         <time_frame>Month 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with non-missing Hb assessment at specified time frame for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -1443,7 +1396,6 @@
         <title>Percentage of Participants With Hb Fluctuation From Pre-Baseline (Month -6) to Baseline</title>
         <description>Hb fluctuation was defined as change in Hb value &gt;15 gm/L between 2 visits.</description>
         <time_frame>Pre-baseline (Month -6) to Baseline</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with at least 2 non-missing Hb assessments between pre-baseline (Month -6) and baseline.</population>
         <group_list>
           <group group_id="O1">
@@ -1484,7 +1436,6 @@
         <title>Percentage of Participants With Hb Fluctuation From Baseline to Month 12</title>
         <description>Hb fluctuation was defined as change in Hb value &gt;15 gm/L between 2 visits.</description>
         <time_frame>Baseline to Month 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants with at least 2 non-missing Hb assessments between baseline and Month 12.</population>
         <group_list>
           <group group_id="O1">
@@ -1525,7 +1476,6 @@
         <title>Percentage of Participants With Changes in Immunosuppressive Treatment</title>
         <description>Percentage of participants who had any change in their immunosuppressive medication at a specified visit were reported.</description>
         <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed = participants evaluable for this outcome measure and n= participants evaluable for specified time points.</population>
         <group_list>
           <group group_id="O1">
@@ -1627,7 +1577,6 @@
         <title>Percentage of Participants With Changes in AntihypertensiveTreatment</title>
         <description>Percentage of participants who had any change in their antihypertensive medication at a specified visit were reported.</description>
         <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed = participants evaluable for this outcome measure and n= participants evaluable for specified time points.</population>
         <group_list>
           <group group_id="O1">
@@ -1729,7 +1678,6 @@
         <title>Number of Participants With Different Medication Treatment</title>
         <description>Number of participants who were receiving different treatments (antihypertensive, immunosuppressive, iron supplements, and others) before and/or after baseline were reported. Same participant could be reported in more than one category.</description>
         <time_frame>Pre-baseline (Month -6) to Month 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants evaluable for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -1800,7 +1748,6 @@
         <type>Secondary</type>
         <title>Percentage of Participants Who Required Blood Transfusion</title>
         <time_frame>Pre-baseline (Months -6 and -3), baseline, Months 3, 6, 9 and 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants evaluable for this outcome measure and n= participants evaluable for specified time points.</population>
         <group_list>
           <group group_id="O1">
@@ -1901,7 +1848,6 @@
         <title>Percentage of Participants Who Required Renal Replacement Therapy</title>
         <description>Renal replacement therapy was defined as hemodialysis and peritoneal dialysis.</description>
         <time_frame>Months 3, 6, 9, and 12</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All enrolled participants. Here, number of participants analyzed= participants evaluable for this outcome measure and n= participants evaluable for specified time points.</population>
         <group_list>
           <group group_id="O1">
