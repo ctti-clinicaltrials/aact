@@ -175,11 +175,6 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string "affiliation"
     end
 
-    create_table "oversight_authorities", force: :cascade do |t|
-      t.string "nct_id"
-      t.string "name"
-   end
-
     create_table "responsible_parties", force: :cascade do |t|
       t.string "nct_id"
       t.string "responsible_party_type"
@@ -205,15 +200,15 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.date     "received_results_disposit_date"
       t.string   "start_month_year"
       t.string   "start_date_type"
-      t.date             "start_date"
+      t.date     "start_date"
       t.string   "verification_month_year"
-      t.date             "verification_date"
+      t.date     "verification_date"
       t.string   "completion_month_year"
       t.string   "completion_date_type"
-      t.date            "completion_date"
+      t.date     "completion_date"
       t.string   "primary_completion_month_year"
       t.string   "primary_completion_date_type"
-      t.date            "primary_completion_date"
+      t.date     "primary_completion_date"
       t.string   "target_duration"
       t.string   "study_type"
       t.string   "acronym"
