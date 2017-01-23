@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on December 06, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02389088</url>
   </required_header>
@@ -21,7 +21,6 @@
   </sponsors>
   <source>University of California, San Diego</source>
   <oversight_info>
-    <authority>United States: Institutional Review Board</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -75,35 +74,36 @@
     </textblock>
   </detailed_description>
   <overall_status>Completed</overall_status>
-  <last_known_status>Completed</last_known_status>
   <start_date>April 2006</start_date>
   <completion_date type="Actual">January 2013</completion_date>
   <primary_completion_date type="Actual">January 2013</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Non-Randomized, Intervention Model: Single Group Assignment, Masking: Open Label, Primary Purpose: Health Services Research</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Non-Randomized</allocation>
+    <intervention_model>Single Group Assignment</intervention_model>
+    <primary_purpose>Health Services Research</primary_purpose>
+    <masking>Open Label</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Estradiol During Phase I and Phase II</measure>
     <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Estradiol (pmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Inhibin B During Phase I and Phase II</measure>
     <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Inhibin B (ng/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>LH and FSH During Phase I and Phase II</measure>
     <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
-    <safety_issue>No</safety_issue>
     <description>LH and FSH (IU/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Testosterone, Androstenedione and 17-OH Progesterone During Phase I and Phase II</measure>
     <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Testosterone, Androstenedione and 17-OH Progesterone (nmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
   </primary_outcome>
   <number_of_arms>2</number_of_arms>
@@ -176,9 +176,6 @@ After the FSH stimulation test, each subject will receive an I.M. injection of L
   <keyword>Androgens</keyword>
   <keyword>FSH</keyword>
   <keyword>Ovary</keyword>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>No</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Polycystic Ovary Syndrome</mesh_term>
@@ -584,7 +581,6 @@ The FSH stimulation test will be repeated, as described above, at 5 weeks (early
         <title>Estradiol During Phase I and Phase II</title>
         <description>Estradiol (pmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
         <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Phase I and Phase II - PCOS patients.</population>
         <group_list>
           <group group_id="O1">
@@ -670,7 +666,6 @@ The FSH stimulation test will be repeated, as described above, at 5 weeks (early
         <title>Inhibin B During Phase I and Phase II</title>
         <description>Inhibin B (ng/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
         <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Phase I and Phase II - PCOS patients.</population>
         <group_list>
           <group group_id="O1">
@@ -756,7 +751,6 @@ The FSH stimulation test will be repeated, as described above, at 5 weeks (early
         <title>LH and FSH During Phase I and Phase II</title>
         <description>LH and FSH (IU/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
         <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Phase I and Phase II - PCOS patients.</population>
         <group_list>
           <group group_id="O1">
@@ -862,7 +856,6 @@ The FSH stimulation test will be repeated, as described above, at 5 weeks (early
         <title>Testosterone, Androstenedione and 17-OH Progesterone During Phase I and Phase II</title>
         <description>Testosterone, Androstenedione and 17-OH Progesterone (nmol/L) measured during Phase I (without Letrozole) and during Phase II (with Letrozole) at time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation.</description>
         <time_frame>At time 24 hours during Week 0 and times 0 and 24 hours during Weeks 5 and 6 after FSH stimulation for both Phase I and Phase II</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Phase I and Phase II - PCOS patients.</population>
         <group_list>
           <group group_id="O1">

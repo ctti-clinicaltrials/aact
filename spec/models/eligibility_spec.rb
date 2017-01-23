@@ -5,7 +5,7 @@ describe Eligibility do
     nct_id='NCT02028676'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.eligibility.gender).to eq('Both')
+    expect(study.eligibility.gender).to eq('All')
     expect(study.eligibility.minimum_age).to eq('3 Months')
     expect(study.eligibility.maximum_age).to eq('17 Years')
     expect(study.eligibility.healthy_volunteers).to eq('No')
@@ -15,13 +15,16 @@ describe Eligibility do
     nct_id='NCT00513591'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.eligibility.population).to eq('Pregnant women with autoimmune disease.')
-    expect(study.eligibility.sampling_method).to eq('Non-Probability Sample')
-    expect(study.eligibility.gender).to eq('Female')
-    expect(study.eligibility.minimum_age).to eq('18 Years')
-    expect(study.eligibility.maximum_age).to eq('N/A')
-    expect(study.eligibility.healthy_volunteers).to eq('Accepts Healthy Volunteers')
-    expect(study.eligibility.criteria.gsub!(/\s+/, "")).to eq(nct00513591_criteria.gsub!(/\s+/, ""))
+    e=study.eligibility
+    expect(e.population).to eq('Pregnant women with autoimmune disease.')
+    expect(e.sampling_method).to eq('Non-Probability Sample')
+    expect(e.gender).to eq('Female')
+    expect(e.gender_based).to eq(false)
+    expect(e.gender_description).to eq('test')
+    expect(e.minimum_age).to eq('18 Years')
+    expect(e.maximum_age).to eq('N/A')
+    expect(e.healthy_volunteers).to eq('Accepts Healthy Volunteers')
+    expect(e.criteria.gsub!(/\s+/, "")).to eq(nct00513591_criteria.gsub!(/\s+/, ""))
   end
 
   def nct00513591_criteria

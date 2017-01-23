@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<clinical_study rank="11998">
+<clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on July 17, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02679963</url>
   </required_header>
@@ -25,7 +23,6 @@
   </sponsors>
   <source>Gustave Roussy, Cancer Campus, Grand Paris</source>
   <oversight_info>
-    <authority>France: Agence Nationale de Sécurité du Médicament et des produits de santé</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -76,17 +73,21 @@
   <primary_completion_date type="Anticipated">January 2020</primary_completion_date>
   <phase>Phase 2</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Endpoint Classification: Safety/Efficacy Study, Intervention Model: Parallel Assignment, Masking: Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor), Primary Purpose: Treatment</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor)</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Progression Free Survival</measure>
     <time_frame>Assessed every 56 days up to 15 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>By CT scan, MRI or TEP-scan according to RECIST 1.1 criteria</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Overall Survival</measure>
     <time_frame>Measured from patient randomization to death or last follow-up for patient alive or consent withdrawal up to 15 months</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <number_of_arms>2</number_of_arms>
   <enrollment type="Anticipated">500</enrollment>
@@ -251,7 +252,7 @@
          17. Enrolment in another clinical trial (except observational study).
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -294,8 +295,6 @@
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Lung Neoplasms</mesh_term>

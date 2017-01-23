@@ -88,6 +88,7 @@ class ReportedEvent < StudyRelationship
                 opts[:adverse_event_term]=sub_title.text
                 opts[:vocab]=sub_title.attribute('vocab').try(:value)
               end
+              opts[:assessment]=e_xml.xpath('assessment').text
               count_xmls=e_xml.xpath("counts")
               o_xml=count_xmls.pop
               if o_xml.nil?
@@ -127,7 +128,7 @@ class ReportedEvent < StudyRelationship
       :event_count => get_opt(:event_count),
       :subjects_affected => get_opt(:subjects_affected),
       :subjects_at_risk => get_opt(:subjects_at_risk),
-      :assessment => xml.xpath('assessment'),
+      :assessment => get_opt('assessment'),
       :vocab => get_opt(:vocab),
     }
   end

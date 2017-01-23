@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on December 07, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00277524</url>
   </required_header>
@@ -26,7 +26,6 @@
   </sponsors>
   <source>Medtronic Cardiac Rhythm and Heart Failure</source>
   <oversight_info>
-    <authority>United States: Institutional Review Board</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -66,54 +65,49 @@
   <primary_completion_date type="Actual">November 2010</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Observational</study_type>
-  <study_design>Time Perspective: Prospective</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <time_perspective>Prospective</time_perspective>
+  </study_design_info>
   <primary_outcome>
     <measure>Implanted Systems Frequencies</measure>
     <time_frame>Baseline</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Frequencies of implanted systems were measured among patients who were implanted with a device (IPT, ICD or CRT-D).</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Implantable Pulse Generator (IPG) Device Baseline Programming Frequencies.</measure>
     <time_frame>Baseline</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Pacing mode is based on the NASPE/BPEG Generic (NBG) Pacemake coding which includes: I, the chambers paced (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); II, the chambers sensed (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); III, the mode of response (T=Triggered, I=Inhibited, D=Dual Triggered/Inhibited, O=None); IV, the programmable functions(R=Rate Modulated, C=Communicating, M=Multiprogrammable, P=Simple Programmable, O=None); V, the antitachycardia functions (O=None, P=Paced, S=Shocks, D=Dual (P&amp;S)). In addition, MVP (managed ventricular pacing) is a mode that promotes AV conduction by reducing or eliminating unnecessary RV pacing but maintains dual chamber ventricular support in the event that AV conduction is lost.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>ICD/CRT-D Device Baseline Programming Frequencies</measure>
     <time_frame>Baseline</time_frame>
-    <safety_issue>No</safety_issue>
     <description>ICD/CRT-D baseline programming, pacing mode and detection. Pacing mode is based on the NASPE/BPEG Generic (NBG) Pacemake coding which includes: I, the chambers paced (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); II, the chambers sensed (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); III, the mode of response (T=Triggered, I=Inhibited, D=Dual Triggered/Inhibited, O=None); IV, the programmable functions(R=Rate Modulated, C=Communicating, M=Multiprogrammable, P=Simple Programmable, O=None); V, the antitachycardia functions (O=None, P=Paced, S=Shocks, D=Dual (P&amp;S)). In addition, MVP (managed ventricular pacing) is a mode that promotes AV conduction by reducing or eliminating unnecessary RV pacing but maintains dual chamber ventricular support in the event that AV conduction is lost.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>ICD/CRT-D Device Baseline Programming Measurements</measure>
     <time_frame>Baseline</time_frame>
-    <safety_issue>No</safety_issue>
     <description>ICD/CRT-D baseline programming measurements, detection interval. Implanted Cardioverter/Defibrillator paces a patient's heart in a tachyarrhythmia prevention-pacing mode.
 Detection intervals are used to detect atrial tachyarrhythmia. Detection Intervals are programmable heart rate thresholds. R-R intervals that are less than the VT or VF detection intervals (in ms) are considered evidence of VT or VF, respectively. R-R intervals that are between the FVT and the VF detection intervals are considered evidence of FVT. Thus, these detection interval thresholds demarcate rate zones of detection. The rate zones are used to determine the type of therapy applied once detection occurs.</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>AV Block Status by Device Type at 6 and 12 Months.</measure>
     <time_frame>12 months post enrollment</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Frequencies of subject with AV block over time between ICD and Implantable Pulse Generator(IPG) study participants.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>AV Block Status by Severity of Historical AV Block</measure>
     <time_frame>4 years post implant</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Frequencies of Subjects with AV Block Over Time by Severity of Historical AV Block</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Summary of ATP Episodes Within All Treated Episodes</measure>
     <time_frame>4 years post enrollment</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Evaluate the utility of the Antitachycardia Pacing (ATP) During Charging feature of the device.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Compare First Shock Rate Between Medtronic &quot;PainFREE&quot; Programming and &quot;SCD-HeFT&quot; Programming in Primary Prevention Study Participants.</measure>
     <time_frame>4 years post implant</time_frame>
-    <safety_issue>No</safety_issue>
     <description>First shock rate for VF and FVT zones was estimated using Kaplan-Meier method.
 OMNI &quot;PainFREE&quot; definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
 OMNI &quot;SCD-HeFT&quot; definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
@@ -121,7 +115,6 @@ OMNI &quot;SCD-HeFT&quot; definition: programming combinations that result in sh
   <secondary_outcome>
     <measure>Frequencies of Subjects With OptiVol Trends and Disease Progression.</measure>
     <time_frame>4 years post implant</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Estimate the correlation between OptiVol trends and disease progression.
 A subject's disease status was said to have progressed if:
 The NYHA classification number increases (example: I to II), or
@@ -167,7 +160,7 @@ A subject who crossed OptiVol threshold since last visit was regarded as 'crosse
           -  Study participants unwilling and unable to comply with follow-up schedule.
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -1457,9 +1450,6 @@ A subject who crossed OptiVol threshold since last visit was regarded as 'crosse
   <keyword>Arrhythmia</keyword>
   <keyword>Tachycardia</keyword>
   <keyword>Bradycardia</keyword>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>Yes</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Heart Failure</mesh_term>
@@ -1957,7 +1947,6 @@ Stage A - At high risk for HF but without structural heart disease or symptoms o
         <title>Implanted Systems Frequencies</title>
         <description>Frequencies of implanted systems were measured among patients who were implanted with a device (IPT, ICD or CRT-D).</description>
         <time_frame>Baseline</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Implanted Subjects</title>
@@ -2047,7 +2036,6 @@ Stage A - At high risk for HF but without structural heart disease or symptoms o
         <title>Implantable Pulse Generator (IPG) Device Baseline Programming Frequencies.</title>
         <description>Pacing mode is based on the NASPE/BPEG Generic (NBG) Pacemake coding which includes: I, the chambers paced (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); II, the chambers sensed (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); III, the mode of response (T=Triggered, I=Inhibited, D=Dual Triggered/Inhibited, O=None); IV, the programmable functions(R=Rate Modulated, C=Communicating, M=Multiprogrammable, P=Simple Programmable, O=None); V, the antitachycardia functions (O=None, P=Paced, S=Shocks, D=Dual (P&amp;S)). In addition, MVP (managed ventricular pacing) is a mode that promotes AV conduction by reducing or eliminating unnecessary RV pacing but maintains dual chamber ventricular support in the event that AV conduction is lost.</description>
         <time_frame>Baseline</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>IPG Group</title>
@@ -2127,7 +2115,6 @@ Stage A - At high risk for HF but without structural heart disease or symptoms o
         <title>ICD/CRT-D Device Baseline Programming Frequencies</title>
         <description>ICD/CRT-D baseline programming, pacing mode and detection. Pacing mode is based on the NASPE/BPEG Generic (NBG) Pacemake coding which includes: I, the chambers paced (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); II, the chambers sensed (V= Ventricle, A=Atrium, D=Dual (A&amp;V), O=None); III, the mode of response (T=Triggered, I=Inhibited, D=Dual Triggered/Inhibited, O=None); IV, the programmable functions(R=Rate Modulated, C=Communicating, M=Multiprogrammable, P=Simple Programmable, O=None); V, the antitachycardia functions (O=None, P=Paced, S=Shocks, D=Dual (P&amp;S)). In addition, MVP (managed ventricular pacing) is a mode that promotes AV conduction by reducing or eliminating unnecessary RV pacing but maintains dual chamber ventricular support in the event that AV conduction is lost.</description>
         <time_frame>Baseline</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>ICD/CRT-D Group</title>
@@ -2325,7 +2312,6 @@ Stage A - At high risk for HF but without structural heart disease or symptoms o
         <title>AV Block Status by Device Type at 6 and 12 Months.</title>
         <description>Frequencies of subject with AV block over time between ICD and Implantable Pulse Generator(IPG) study participants.</description>
         <time_frame>12 months post enrollment</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>IPG (N=610)</title>
@@ -2514,7 +2500,6 @@ Stage A - At high risk for HF but without structural heart disease or symptoms o
         <title>AV Block Status by Severity of Historical AV Block</title>
         <description>Frequencies of Subjects with AV Block Over Time by Severity of Historical AV Block</description>
         <time_frame>4 years post implant</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Patients Without History of AV Block</title>
@@ -2934,7 +2919,6 @@ Stage A - At high risk for HF but without structural heart disease or symptoms o
         <title>Summary of ATP Episodes Within All Treated Episodes</title>
         <description>Evaluate the utility of the Antitachycardia Pacing (ATP) During Charging feature of the device.</description>
         <time_frame>4 years post enrollment</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>ATP During Charging</title>
@@ -2996,7 +2980,6 @@ Stage A - At high risk for HF but without structural heart disease or symptoms o
 OMNI “PainFREE” definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
 OMNI “SCD-HeFT” definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
         <time_frame>4 years post implant</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>&quot;PainFREE&quot; Programming</title>
@@ -3094,7 +3077,6 @@ The LVEF decreases by at least 20% (relative difference) and by at least a 5% ab
 The subject expires
 A subject who crossed OptiVol threshold since last visit was regarded as 'crossed threshold'.</description>
         <time_frame>4 years post implant</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>12-month Follow-up</title>
@@ -3171,7 +3153,6 @@ A subject who crossed OptiVol threshold since last visit was regarded as 'crosse
         <description>ICD/CRT-D baseline programming measurements, detection interval. Implanted Cardioverter/Defibrillator paces a patient's heart in a tachyarrhythmia prevention-pacing mode.
 Detection intervals are used to detect atrial tachyarrhythmia. Detection Intervals are programmable heart rate thresholds. R-R intervals that are less than the VT or VF detection intervals (in ms) are considered evidence of VT or VF, respectively. R-R intervals that are between the FVT and the VF detection intervals are considered evidence of FVT. Thus, these detection interval thresholds demarcate rate zones of detection. The rate zones are used to determine the type of therapy applied once detection occurs.</description>
         <time_frame>Baseline</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>ICD/CRT-D Group</title>

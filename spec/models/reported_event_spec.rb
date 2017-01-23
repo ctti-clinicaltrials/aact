@@ -35,9 +35,10 @@ describe ReportedEvent do
     expect(e1_serious_cardiac.subjects_at_risk).to eq(8)
 
     events_with_assessment=study.reported_events.select{|x| x.assessment=='Systematic Assessment'}
-    events_with_assessment=study.reported_events.select{|x| x.adverse_event_term=='Late RT Toxicity: Bone'}
+    expect(events_with_assessment.size).to eq(24)
+    bone_events=study.reported_events.select{|x| x.adverse_event_term=='Late RT Toxicity: Bone'}
 
-    event=events_with_assessment.select{|x| x.adverse_event_term=='Late RT Toxicity: Bone' and x.ctgov_group_code=='E2'}.first
+    event=bone_events.select{|x| x.adverse_event_term=='Late RT Toxicity: Bone' and x.ctgov_group_code=='E2'}.first
     expect(event.subjects_affected).to eq(1)
     expect(event.subjects_at_risk).to eq(53)
     expect(event.vocab).to eq('RTOG/EORTC Late Tox.')

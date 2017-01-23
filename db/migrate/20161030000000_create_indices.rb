@@ -21,9 +21,7 @@ class CreateIndices < ActiveRecord::Migration
     add_index :calculated_values, :actual_duration
     add_index :calculated_values, :months_to_report_results
     add_index :calculated_values, :number_of_facilities
-    add_index :calculated_values, :primary_completion_date
     add_index :calculated_values, :sponsor_type
-    add_index :calculated_values, :start_date
     add_index :central_contacts, :contact_type
     add_index :design_groups, :group_type
     add_index :design_outcomes, :outcome_type
@@ -66,12 +64,16 @@ class CreateIndices < ActiveRecord::Migration
     add_index :sanity_checks, :table_name
     add_index :sponsors, :agency_class
     add_index :sponsors, :name
+    add_index :studies, :completion_date
     add_index :studies, :enrollment_type
     add_index :studies, :last_known_status
     add_index :studies, :overall_status
     add_index :studies, :phase
+    add_index :studies, :primary_completion_date
     add_index :studies, :primary_completion_date_type
     add_index :studies, :source
+    add_index :studies, :start_date
+    add_index :studies, :start_date_type
     add_index :studies, :study_type
     add_index :studies, :first_received_results_date
     add_index :studies, :received_results_disposit_date

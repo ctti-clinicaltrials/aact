@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on December 29, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01174550</url>
   </required_header>
@@ -27,8 +27,6 @@
   </sponsors>
   <source>Duke University</source>
   <oversight_info>
-    <authority>United States: Federal Government</authority>
-    <authority>United States: Institutional Review Board</authority>
     <has_dmc>Yes</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -64,77 +62,71 @@
   <primary_completion_date type="Actual">October 2014</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Intervention Model: Parallel Assignment, Masking: Open Label, Primary Purpose: Diagnostic</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Diagnostic</primary_purpose>
+    <masking>Open Label</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Time to Primary Endpoint</measure>
     <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Time to primary endpoint as defined as a composite of death, myocardial infarction (MI), major complications from cardiovascular (CV) procedures or testing, and unstable angina hospitalization. The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Time to Death, Myocardial Infarction (MI), Unstable Angina Hospitalization</measure>
     <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Time to this secondary endpoint as defined as a composite of death, myocardial infarction (MI), and unstable angina hospitalization. The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Time to Death or Myocardial Infarction (MI)</measure>
     <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Time to this secondary endpoint as defined as a composite of death and myocardial infarction (MI). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Time to Major Complications From Cardiovascular (CV) Procedures</measure>
     <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Time to this secondary endpoint as defined as a composite of major complications from cardiovascular procedures and testing (stroke, bleeding, anaphylaxis, renal failure). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Time to Death, Myocardial Infarction (MI), Unstable Angina (UA), Complications, No Coronary Artery Disease (CAD)</measure>
     <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Time to primary endpoint as defined as a composite of death, myocardial infarction (MI), major complications from cardiovascular (CV) procedures or testing, unstable angina hospitalization, and no coronary artery disease (CAD). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Percentage of Invasive Cardiac Catheterization Events Without Obstructive Coronary Artery Disease Within 90 Days Following Participant Randomization</measure>
     <time_frame>Up to 90 days following participant randomization</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Percentage of Invasive Cardiac Catheterization Events Without Obstructive Coronary Artery Disease (CAD)Within 90 Days Following Participant Randomization</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Medical Cost</measure>
     <time_frame>90 days and 3 years cumulative</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Assess and compare total medical cost for the two diagnostic testing arms by intention to treat at both 90 days and 3 years cumulative.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Quality of Life (QOL) as Measured by Duke Activity Status Index</measure>
     <time_frame>Baseline, 6 months, 12 months 24 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Participant score in Quality of Life as measured by Duke Activity Status Index (DASI). DASI measures a person's functional capacity based on a 12-item questionnaire that correlates with peak O2 uptake during exercise testing. The DASI is a self-administered questionnaire that measures a patient's functional capacity. It can be used to get a rough estimate of a patient's peak oxygen uptake. The maximum score for the DASI is 58.2 (better functional ability/capacity) and the minimum score is 0 (worse functional ability/capacity).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Quality of Life (QOL) as Measured by Seattle Angina Scale Anginal Frequency Subscale</measure>
     <time_frame>Baseline, 6 month, 12 month, 24 month</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Participant score Quality of Life measured by Seattle Angina Scale Anginal Frequency Subscale utilizing the Seattle Angina Questionnaire (SAQ). SAQ: 19-item, 5-6-point Likert, questionnaire measuring 5 dimensions of coronary artery disease: Anginal Stability: whether symptoms are changing. Anginal Frequency: how often patient having symptoms Physical Limitation: how much condition hampers ability to do what he wants.Treatment Satisfaction: how well patient understands care. Disease Perception: impact of condition on interpersonal relationships. Each dimension assigns response an value, beginning with 1 for response at the lowest level of functioning &amp; summing across items within each of the 5 scales. Scale scores transformed to 0-100 range by subtracting the lowest scale. Higher score suggest symptoms more stable &amp; less frequent, condition has less impact on activities, increased satisfaction with treatment, &amp; perception of disease has less impact on interpersonal relationships.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Quality of Life (QOL) as Measured by Seattle Anginal Quality of Life Subscale</measure>
     <time_frame>Baseline, 6 months, 12 months, 24 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Participant score Quality of Life measured by Seattle Angina Scale Anginal Frequency Subscale utilizing the Seattle Angina Questionnaire (SAQ). SAQ: 19-item, 5-6-point Likert, questionnaire measuring 5 dimensions of coronary artery disease: Anginal Stability: whether symptoms are changing. Anginal Frequency: how often patient having symptoms Physical Limitation: how much condition hampers ability to do what he wants.Treatment Satisfaction: how well patient understands care. Disease Perception: impact of condition on interpersonal relationships. Each dimension assigns response an value, beginning with 1 for response at the lowest level of functioning &amp; summing across items within each of the 5 scales. Scale scores transformed to 0-100 range by subtracting the lowest scale. Higher score suggest symptoms more stable &amp; less frequent, condition has less impact on activities, increased satisfaction with treatment, &amp; perception of disease has less impact on interpersonal relationships.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Quality of Life (QOL) as Measured by Complete Resolution of Symptoms That Led to the Initial Testing</measure>
     <time_frame>6 month, 12 month 24 month</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Percentage of participants with improvement in Quality of Life as measured by complete resolution of the symptoms that led to initial testing</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cumulative Radiation Exposure Within 90 Days</measure>
     <time_frame>90 days</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Cumulative radiation exposure from all cardiovascular diagnostic tests and procedures performed within 90 days after randomization.</description>
   </secondary_outcome>
   <number_of_arms>2</number_of_arms>
@@ -243,7 +235,7 @@
           -  Unable to provide written informed consent or participate in long-term follow-up
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>45 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -281,9 +273,6 @@
   <keyword>chest pain</keyword>
   <keyword>coronary artery disease</keyword>
   <keyword>CAD</keyword>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>Yes</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Chest Pain</mesh_term>
@@ -453,7 +442,6 @@ Coronary Angiography: Use of standard equipment for usual-care testing</descript
         <title>Time to Primary Endpoint</title>
         <description>Time to primary endpoint as defined as a composite of death, myocardial infarction (MI), major complications from cardiovascular (CV) procedures or testing, and unstable angina hospitalization. The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
         <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Anatomic Diagnostic Test</title>
@@ -580,7 +568,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Time to Death, Myocardial Infarction (MI), Unstable Angina Hospitalization</title>
         <description>Time to this secondary endpoint as defined as a composite of death, myocardial infarction (MI), and unstable angina hospitalization. The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
         <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Anatomic Diagnostic Test</title>
@@ -707,7 +694,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Time to Death or Myocardial Infarction (MI)</title>
         <description>Time to this secondary endpoint as defined as a composite of death and myocardial infarction (MI). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
         <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Anatomic Diagnostic Test</title>
@@ -834,7 +820,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Time to Major Complications From Cardiovascular (CV) Procedures</title>
         <description>Time to this secondary endpoint as defined as a composite of major complications from cardiovascular procedures and testing (stroke, bleeding, anaphylaxis, renal failure). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
         <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Anatomic Diagnostic Test</title>
@@ -961,7 +946,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Time to Death, Myocardial Infarction (MI), Unstable Angina (UA), Complications, No Coronary Artery Disease (CAD)</title>
         <description>Time to primary endpoint as defined as a composite of death, myocardial infarction (MI), major complications from cardiovascular (CV) procedures or testing, unstable angina hospitalization, and no coronary artery disease (CAD). The Kaplan-Meier events rates (cumulative percentage of participants with an event) were estimated for the anatomic and functional diagnostic test groups.</description>
         <time_frame>90 days, 6 months, 12 months, 18 months, 24 months, 30 months, 36 months, 42 months</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Anatomic Diagnostic Test</title>
@@ -1088,7 +1072,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Percentage of Invasive Cardiac Catheterization Events Without Obstructive Coronary Artery Disease Within 90 Days Following Participant Randomization</title>
         <description>Percentage of Invasive Cardiac Catheterization Events Without Obstructive Coronary Artery Disease (CAD)Within 90 Days Following Participant Randomization</description>
         <time_frame>Up to 90 days following participant randomization</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Anatomic Diagnostic Test</title>
@@ -1138,7 +1121,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Medical Cost</title>
         <description>Assess and compare total medical cost for the two diagnostic testing arms by intention to treat at both 90 days and 3 years cumulative.</description>
         <time_frame>90 days and 3 years cumulative</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Patients enrolled in PROMISE and cared for in the fee-for-service sector of the US health care system were included in the economic study. Because the costing methods being used were not applicable to other health systems, patients enrolled in the Military/VA system , an Health maintenance Organization (HMO) , or in Canada were excluded.</population>
         <group_list>
           <group group_id="O1">
@@ -1202,7 +1184,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Quality of Life (QOL) as Measured by Duke Activity Status Index</title>
         <description>Participant score in Quality of Life as measured by Duke Activity Status Index (DASI). DASI measures a person's functional capacity based on a 12-item questionnaire that correlates with peak O2 uptake during exercise testing. The DASI is a self-administered questionnaire that measures a patient's functional capacity. It can be used to get a rough estimate of a patient's peak oxygen uptake. The maximum score for the DASI is 58.2 (better functional ability/capacity) and the minimum score is 0 (worse functional ability/capacity).</description>
         <time_frame>Baseline, 6 months, 12 months 24 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>The number of participants were limited due to budget constraints.</population>
         <group_list>
           <group group_id="O1">
@@ -1288,7 +1269,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Quality of Life (QOL) as Measured by Seattle Angina Scale Anginal Frequency Subscale</title>
         <description>Participant score Quality of Life measured by Seattle Angina Scale Anginal Frequency Subscale utilizing the Seattle Angina Questionnaire (SAQ). SAQ: 19-item, 5-6-point Likert, questionnaire measuring 5 dimensions of coronary artery disease: Anginal Stability: whether symptoms are changing. Anginal Frequency: how often patient having symptoms Physical Limitation: how much condition hampers ability to do what he wants.Treatment Satisfaction: how well patient understands care. Disease Perception: impact of condition on interpersonal relationships. Each dimension assigns response an value, beginning with 1 for response at the lowest level of functioning &amp; summing across items within each of the 5 scales. Scale scores transformed to 0-100 range by subtracting the lowest scale. Higher score suggest symptoms more stable &amp; less frequent, condition has less impact on activities, increased satisfaction with treatment, &amp; perception of disease has less impact on interpersonal relationships.</description>
         <time_frame>Baseline, 6 month, 12 month, 24 month</time_frame>
-        <safety_issue>No</safety_issue>
         <population>The number of participants were limited due to budget constraints.</population>
         <group_list>
           <group group_id="O1">
@@ -1374,7 +1354,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Quality of Life (QOL) as Measured by Seattle Anginal Quality of Life Subscale</title>
         <description>Participant score Quality of Life measured by Seattle Angina Scale Anginal Frequency Subscale utilizing the Seattle Angina Questionnaire (SAQ). SAQ: 19-item, 5-6-point Likert, questionnaire measuring 5 dimensions of coronary artery disease: Anginal Stability: whether symptoms are changing. Anginal Frequency: how often patient having symptoms Physical Limitation: how much condition hampers ability to do what he wants.Treatment Satisfaction: how well patient understands care. Disease Perception: impact of condition on interpersonal relationships. Each dimension assigns response an value, beginning with 1 for response at the lowest level of functioning &amp; summing across items within each of the 5 scales. Scale scores transformed to 0-100 range by subtracting the lowest scale. Higher score suggest symptoms more stable &amp; less frequent, condition has less impact on activities, increased satisfaction with treatment, &amp; perception of disease has less impact on interpersonal relationships.</description>
         <time_frame>Baseline, 6 months, 12 months, 24 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>The number of participants were limited due to budget constraints.</population>
         <group_list>
           <group group_id="O1">
@@ -1460,7 +1439,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Quality of Life (QOL) as Measured by Complete Resolution of Symptoms That Led to the Initial Testing</title>
         <description>Percentage of participants with improvement in Quality of Life as measured by complete resolution of the symptoms that led to initial testing</description>
         <time_frame>6 month, 12 month 24 month</time_frame>
-        <safety_issue>No</safety_issue>
         <population>The number of participants were limited due to budget constraints.</population>
         <group_list>
           <group group_id="O1">
@@ -1534,7 +1512,6 @@ Exercise Electrocardiogram: Use of standard equipment for usual-care testing</de
         <title>Cumulative Radiation Exposure Within 90 Days</title>
         <description>Cumulative radiation exposure from all cardiovascular diagnostic tests and procedures performed within 90 days after randomization.</description>
         <time_frame>90 days</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Anatomic Diagnostic Test</title>

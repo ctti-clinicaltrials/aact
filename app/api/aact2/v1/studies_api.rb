@@ -40,8 +40,8 @@ module AACT2
             why_stopped: "",
             has_expanded_access: false,
             has_dmc: true,
-            is_section_801: true,
-            is_fda_regulated: true,
+            is_fda_regulated_drug: true,
+            is_fda_regulated_device: true,
             brief_title: "Ipilimumab +/- Vaccine Therapy in Treating Patients With Locally Advanced, Unresectable or Metastatic Pancreatic Cancer",
             official_title: "A Phase Ib Trial Evaluating the Safety and Feasibility of Ipilimumab (BMS-734016) Alone or in Combination With Allogeneic Pancreatic Tumor Cells Transfected With a GM-CSF Gene for the Treatment of Locally Advanced, Unresectable or Metastatic Pancreatic Adenocarcinoma",
             biospec_description: "",
@@ -82,8 +82,7 @@ module AACT2
             why_stopped: "",
             has_expanded_access: false,
             has_dmc: false,
-            is_section_801: null,
-            is_fda_regulated: false,
+            is_fda_regulated_drug: false,
             brief_title: "Studying Biomarkers in Patients With Pancreatic Cancer",
             official_title: "Developing Biomarkers in Pancreatic Cancer",
             biospec_description: "",
@@ -103,7 +102,7 @@ module AACT2
         optional :term, type: String, desc: 'Search Term'
       end
       paginate page: 1
-      paginate per_page: 100
+      paginate per_page: 500
       get '/studies', root: false do
         study_params = declared(params, include_missing: false)
         if !study_params[:term].nil?
@@ -157,8 +156,7 @@ module AACT2
               why_stopped: "",
               has_expanded_access: false,
               has_dmc: true,
-              is_section_801: true,
-              is_fda_regulated: true,
+              is_fda_regulated_drug: true,
               brief_title: "Ipilimumab +/- Vaccine Therapy in Treating Patients With Locally Advanced, Unresectable or Metastatic Pancreatic Cancer",
               official_title: "A Phase Ib Trial Evaluating the Safety and Feasibility of Ipilimumab (BMS-734016) Alone or in Combination With Allogeneic Pancreatic Tumor Cells Transfected With a GM-CSF Gene for the Treatment of Locally Advanced, Unresectable or Metastatic Pancreatic Adenocarcinoma",
               biospec_description: "",
@@ -236,7 +234,7 @@ module AACT2
         ]
       end
       get '/studies/counts/by_year', root: false do
-        CalculatedValue.all.group('extract(year from start_date) :: integer').count
+        Study.all.group('extract(year from start_date) :: integer').count
       end
     end
   end

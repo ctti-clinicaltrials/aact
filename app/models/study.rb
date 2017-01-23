@@ -200,6 +200,11 @@ class Study < ActiveRecord::Base
       :completion_month_year => get('completion_date'),
       :primary_completion_month_year => get('primary_completion_date'),
 
+      :start_date                  =>  get('start_date').try(:to_date),
+      :verification_date           =>  get('verification_date').try(:to_date),
+      :completion_date             =>  get('completion_date').try(:to_date),
+      :primary_completion_date     =>  get('primary_completion_date').try(:to_date),
+
       :first_received_date => get_date(get('firstreceived_date')),
       :first_received_results_date => get_date(get('firstreceived_results_date')),
       :last_changed_date => get_date(get('lastchanged_date')),
@@ -227,8 +232,6 @@ class Study < ActiveRecord::Base
       :study_type => get('study_type'),
       :biospec_retention =>get('biospec_retention'),
       :limitations_and_caveats  =>xml.xpath('//limitations_and_caveats').text,
-      :is_section_801 => get_boolean('//is_section_801'),
-      :is_fda_regulated => get_boolean('//is_fda_regulated'),
       :is_fda_regulated_drug =>get_boolean('//is_fda_regulated_drug'),
       :is_fda_regulated_device =>get_boolean('//is_fda_regulated_device'),
       :is_unapproved_device =>get_boolean('//is_unapproved_device'),
@@ -237,6 +240,9 @@ class Study < ActiveRecord::Base
       :plan_to_share_ipd => get('patient_data/sharing_ipd'),
       :plan_to_share_ipd_description => get('patient_data/ipd_description'),
       :has_expanded_access => get_boolean('//has_expanded_access'),
+      :expanded_access_type_individual => get_boolean('//expanded_access_info/exp_acc_type_individual'),
+      :expanded_access_type_intermediate => get_boolean('//expanded_access_info/exp_acc_type_intermediate'),
+      :expanded_access_type_treatment => get_boolean('//expanded_access_info/exp_acc_type_treatment'),
       :has_dmc => get_boolean('//has_dmc'),
       :why_stopped =>get('why_stopped')
     }

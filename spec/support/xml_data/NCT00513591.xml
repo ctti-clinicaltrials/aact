@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<clinical_study rank="1">
+<clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on June 27, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00513591</url>
   </required_header>
@@ -24,7 +22,6 @@
   </sponsors>
   <source>Duke University</source>
   <oversight_info>
-    <authority>United States: Institutional Review Board</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -63,7 +60,11 @@
   <primary_completion_date type="Anticipated">December 2017</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Observational</study_type>
-  <study_design>Observational Model: Cohort, Time Perspective: Prospective</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <observational_model>Cohort</observational_model>
+    <time_perspective>Prospective</time_perspective>
+  </study_design_info>
   <number_of_groups>3</number_of_groups>
   <enrollment type="Anticipated">500</enrollment>
   <condition>Pregnancy</condition>
@@ -137,6 +138,9 @@
           -  Unable to travel to Duke University for follow-up visits
       </textblock>
     </criteria>
+    <aact_changed>added anticipated tags for testing: gender_based, gender_description</aact_changed>
+    <gender_based>No</gender_based>
+    <gender_description>test</gender_description>
     <gender>Female</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
@@ -187,16 +191,15 @@
   <keyword>Rheumatoid Arthritis</keyword>
   <keyword>Sjogren's Syndrome</keyword>
   <keyword>Scleroderma</keyword>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Arthritis</mesh_term>
     <mesh_term>Arthritis, Rheumatoid</mesh_term>
-    <mesh_term>Autoimmune Diseases</mesh_term>
     <mesh_term>Lupus Erythematosus, Systemic</mesh_term>
-    <mesh_term>Scleroderma, Diffuse</mesh_term>
     <mesh_term>Scleroderma, Systemic</mesh_term>
+    <mesh_term>Scleroderma, Diffuse</mesh_term>
     <mesh_term>Sjogren's Syndrome</mesh_term>
+    <mesh_term>Autoimmune Diseases</mesh_term>
   </condition_browse>
   <!-- Results have not yet been posted for this study                                -->
 </clinical_study>

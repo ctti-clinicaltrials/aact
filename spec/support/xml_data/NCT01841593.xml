@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 29, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01841593</url>
   </required_header>
@@ -23,6 +21,7 @@
   </sponsors>
   <source>St Stephens Aids Trust</source>
   <oversight_info>
+    <aact_change>doctor up oversight info so we have test data</aact_change>
     <is_fda_regulated_drug>Yes</is_fda_regulated_drug>
     <is_fda_regulated_device>No</is_fda_regulated_device>
     <is_unapproved_device>No</is_unapproved_device>
@@ -78,44 +77,39 @@
   <primary_completion_date type="Actual">September 2013</primary_completion_date>
   <phase>Phase 1</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Intervention Model: Crossover Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Crossover Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Open Label</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Maximum Observed Concentration (Cmax) of Raltegravir and Amlodipine Without and With Co-administration of the Other Studied Drug.</measure>
     <time_frame>Day 7 of each intervention (0 (pre-dose), 2, 4, 8 and 12 hours post dose (both drugs) and 24 hours post dose (amlodipine only))</time_frame>
-    <safety_issue>No</safety_issue>
     <description>To investigate the pharmacokinetics of raltegravir and amlodipine co-administration. The pharmacokinetic parameters calculated for raltegravir and amlodipine will be trough concentration (Ctrough), defined as the concentration at 24 hours after the observed drug dose, the maximum observed plasma concentration (Cmax), elimination half-life (t1/2), time point at Cmax (Tmax), and total drug exposure, expressed as the area under the plasma concentration-time curve from 0-24 hours after dosing (AUC0-24h).
 All pharmacokinetic parameters will be calculated using non-compartmental modeling techniques (WinNonlin®) and all statistical calculations performed and analyzed using SAS version 9.1 or SPSS V17.0.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Raltegravir C12h</measure>
     <time_frame>12 hours post-dose on day 7 of daily dosing.</time_frame>
-    <safety_issue>No</safety_issue>
     <description>measured concentration 12 hours after dose in the absence, and presence, of amlodipine.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Amlodipine C24h</measure>
     <time_frame>12 hours post-dose on day 7 of daily dosing.</time_frame>
-    <safety_issue>No</safety_issue>
     <description>measured concentration 24 hours after dose in the absence, and presence, of raltegravir</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Raltegravir AUC(0-12h )</measure>
     <time_frame>Post dose after day 7 of daily dosing</time_frame>
-    <safety_issue>No</safety_issue>
     <description>AUC0-12h: Area under the concentration time curve over 12 hours in the absence, and presence, of amlodipine.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Amlodipine AUC(0-24h)</measure>
     <time_frame>Post-dose on day 7 of daily dosing</time_frame>
-    <safety_issue>No</safety_issue>
     <description>AUC0-24h: Area under the concentration time curve 24 hours in the absence, and presence, of raltegravir</description>
   </primary_outcome>
-  <other_outcome>
-    <measure>Hospital costs</measure>
-    <time_frame>Hospital stay</time_frame>
-    <safety_issue>No</safety_issue>
-    <description>$US</description>
-  </other_outcome>
   <number_of_arms>2</number_of_arms>
   <enrollment type="Actual">19</enrollment>
   <condition>HIV</condition>
@@ -215,7 +209,7 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
           -  Lactose intolerance
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>65 Years</maximum_age>
     <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
@@ -245,7 +239,6 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
-  <has_expanded_access>No</has_expanded_access>
   <intervention_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Amlodipine</mesh_term>
@@ -381,74 +374,91 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
           <description>Total of all reporting groups</description>
         </group>
       </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="11"/>
+            <count group_id="B2" value="6"/>
+            <count group_id="B3" value="17"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
       <measure_list>
-        <measure>
-          <title>Number of Participants</title>
-          <units>participants</units>
-          <param>Number</param>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="11"/>
-                <measurement group_id="B2" value="6"/>
-                <measurement group_id="B3" value="17"/>
-              </measurement_list>
-            </category>
-          </category_list>
-        </measure>
         <measure>
           <title>Age</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>&lt;=18 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-                <measurement group_id="B2" value="0"/>
-                <measurement group_id="B3" value="0"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Between 18 and 65 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="11"/>
-                <measurement group_id="B2" value="6"/>
-                <measurement group_id="B3" value="17"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>&gt;=65 years</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-                <measurement group_id="B2" value="0"/>
-                <measurement group_id="B3" value="0"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>&lt;=18 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Between 18 and 65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="11"/>
+                    <measurement group_id="B2" value="6"/>
+                    <measurement group_id="B3" value="17"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&gt;=65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Gender</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Female</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="10"/>
-                <measurement group_id="B2" value="3"/>
-                <measurement group_id="B3" value="13"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Male</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="1"/>
-                <measurement group_id="B2" value="3"/>
-                <measurement group_id="B3" value="4"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="10"/>
+                    <measurement group_id="B2" value="3"/>
+                    <measurement group_id="B3" value="13"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="1"/>
+                    <measurement group_id="B2" value="3"/>
+                    <measurement group_id="B3" value="4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
       </measure_list>
     </baseline>
@@ -460,7 +470,6 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
         <description>To investigate the pharmacokinetics of raltegravir and amlodipine co-administration. The pharmacokinetic parameters calculated for raltegravir and amlodipine will be trough concentration (Ctrough), defined as the concentration at 24 hours after the observed drug dose, the maximum observed plasma concentration (Cmax), elimination half-life (t1/2), time point at Cmax (Tmax), and total drug exposure, expressed as the area under the plasma concentration–time curve from 0–24 hours after dosing (AUC0–24h).
 All pharmacokinetic parameters will be calculated using non-compartmental modeling techniques (WinNonlin®) and all statistical calculations performed and analyzed using SAS version 9.1 or SPSS V17.0.</description>
         <time_frame>Day 7 of each intervention (0 (pre-dose), 2, 4, 8 and 12 hours post dose (both drugs) and 24 hours post dose (amlodipine only))</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Data from all enrolled participants who participated in at least two of the three PK assessments were included in the analysis.</population>
         <group_list>
           <group group_id="O1">
@@ -480,48 +489,47 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
             <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="17"/>
-                  <measurement group_id="O2" value="17"/>
-                  <measurement group_id="O3" value="17"/>
-                  <measurement group_id="O4" value="17"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Maximum Observed Concentration (Cmax) of Raltegravir and Amlodipine Without and With Co-administration of the Other Studied Drug.</title>
-            <description>To investigate the pharmacokinetics of raltegravir and amlodipine co-administration. The pharmacokinetic parameters calculated for raltegravir and amlodipine will be trough concentration (Ctrough), defined as the concentration at 24 hours after the observed drug dose, the maximum observed plasma concentration (Cmax), elimination half-life (t1/2), time point at Cmax (Tmax), and total drug exposure, expressed as the area under the plasma concentration–time curve from 0–24 hours after dosing (AUC0–24h).
+        <measure>
+          <title>Maximum Observed Concentration (Cmax) of Raltegravir and Amlodipine Without and With Co-administration of the Other Studied Drug.</title>
+          <description>To investigate the pharmacokinetics of raltegravir and amlodipine co-administration. The pharmacokinetic parameters calculated for raltegravir and amlodipine will be trough concentration (Ctrough), defined as the concentration at 24 hours after the observed drug dose, the maximum observed plasma concentration (Cmax), elimination half-life (t1/2), time point at Cmax (Tmax), and total drug exposure, expressed as the area under the plasma concentration–time curve from 0–24 hours after dosing (AUC0–24h).
 All pharmacokinetic parameters will be calculated using non-compartmental modeling techniques (WinNonlin®) and all statistical calculations performed and analyzed using SAS version 9.1 or SPSS V17.0.</description>
-            <units>ng/mL</units>
-            <param>Geometric Mean</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="1178" lower_limit="966" upper_limit="2318"/>
-                  <measurement group_id="O2" value="1866" lower_limit="1779" upper_limit="4511"/>
-                  <measurement group_id="O3" value="8.47" lower_limit="7.58" upper_limit="10.0"/>
-                  <measurement group_id="O4" value="8.49" lower_limit="7.65" upper_limit="9.94"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+          <population>Data from all enrolled participants who participated in at least two of the three PK assessments were included in the analysis.</population>
+          <units>ng/mL</units>
+          <param>Geometric Mean</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="17"/>
+                <count group_id="O2" value="17"/>
+                <count group_id="O3" value="17"/>
+                <count group_id="O4" value="17"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1178" lower_limit="966" upper_limit="2318"/>
+                    <measurement group_id="O2" value="1866" lower_limit="1779" upper_limit="4511"/>
+                    <measurement group_id="O3" value="8.47" lower_limit="7.58" upper_limit="10.0"/>
+                    <measurement group_id="O4" value="8.49" lower_limit="7.65" upper_limit="9.94"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Primary</type>
         <title>Raltegravir C12h</title>
         <description>measured concentration 12 hours after dose in the absence, and presence, of amlodipine.</description>
         <time_frame>12 hours post-dose on day 7 of daily dosing.</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Raltegravir PK (Alone)</title>
@@ -532,43 +540,41 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
             <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="17"/>
-                  <measurement group_id="O2" value="17"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Raltegravir C12h</title>
-            <description>measured concentration 12 hours after dose in the absence, and presence, of amlodipine.</description>
-            <units>ng/mL</units>
-            <param>Geometric Mean</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="48" lower_limit="35" upper_limit="95"/>
-                  <measurement group_id="O2" value="37" lower_limit="30" upper_limit="67"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Raltegravir C12h</title>
+          <description>measured concentration 12 hours after dose in the absence, and presence, of amlodipine.</description>
+          <units>ng/mL</units>
+          <param>Geometric Mean</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="17"/>
+                <count group_id="O2" value="17"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="48" lower_limit="35" upper_limit="95"/>
+                    <measurement group_id="O2" value="37" lower_limit="30" upper_limit="67"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Primary</type>
         <title>Amlodipine C24h</title>
         <description>measured concentration 24 hours after dose in the absence, and presence, of raltegravir</description>
         <time_frame>12 hours post-dose on day 7 of daily dosing.</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Amlodipine PK (Alone)</title>
@@ -579,43 +585,41 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
             <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="17"/>
-                  <measurement group_id="O2" value="17"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Amlodipine C24h</title>
-            <description>measured concentration 24 hours after dose in the absence, and presence, of raltegravir</description>
-            <units>ng/mL</units>
-            <param>Geometric Mean</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="4.91" lower_limit="4.23" upper_limit="6.36"/>
-                  <measurement group_id="O2" value="4.55" lower_limit="4.11" upper_limit="5.34"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Amlodipine C24h</title>
+          <description>measured concentration 24 hours after dose in the absence, and presence, of raltegravir</description>
+          <units>ng/mL</units>
+          <param>Geometric Mean</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="17"/>
+                <count group_id="O2" value="17"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4.91" lower_limit="4.23" upper_limit="6.36"/>
+                    <measurement group_id="O2" value="4.55" lower_limit="4.11" upper_limit="5.34"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Primary</type>
         <title>Raltegravir AUC(0-12h )</title>
         <description>AUC0-12h: Area under the concentration time curve over 12 hours in the absence, and presence, of amlodipine.</description>
         <time_frame>Post dose after day 7 of daily dosing</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Raltegravir PK (Alone)</title>
@@ -626,43 +630,41 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
             <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="17"/>
-                  <measurement group_id="O2" value="17"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Raltegravir AUC(0-12h )</title>
-            <description>AUC0-12h: Area under the concentration time curve over 12 hours in the absence, and presence, of amlodipine.</description>
-            <units>ng*h/mL</units>
-            <param>Geometric Mean</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="4600" lower_limit="3888" upper_limit="7652"/>
-                  <measurement group_id="O2" value="6410" lower_limit="5649" upper_limit="12138"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Raltegravir AUC(0-12h )</title>
+          <description>AUC0-12h: Area under the concentration time curve over 12 hours in the absence, and presence, of amlodipine.</description>
+          <units>ng*h/mL</units>
+          <param>Geometric Mean</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="17"/>
+                <count group_id="O2" value="17"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4600" lower_limit="3888" upper_limit="7652"/>
+                    <measurement group_id="O2" value="6410" lower_limit="5649" upper_limit="12138"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Primary</type>
         <title>Amlodipine AUC(0-24h)</title>
         <description>AUC0-24h: Area under the concentration time curve 24 hours in the absence, and presence, of raltegravir</description>
         <time_frame>Post-dose on day 7 of daily dosing</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Amlodipine PK (Alone)</title>
@@ -673,36 +675,35 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
             <description>Combined analysis - groups A &amp; B. No period effect due to order of study treatment periods found.</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="17"/>
-                  <measurement group_id="O2" value="17"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Amlodipine AUC(0-24h)</title>
-            <description>AUC0-24h: Area under the concentration time curve 24 hours in the absence, and presence, of raltegravir</description>
-            <units>ng*h/mL</units>
-            <param>Geometric Mean</param>
-            <dispersion>95% Confidence Interval</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="166.0" lower_limit="146.3" upper_limit="202.9"/>
-                  <measurement group_id="O2" value="165.9" lower_limit="148.7" upper_limit="195.8"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Amlodipine AUC(0-24h)</title>
+          <description>AUC0-24h: Area under the concentration time curve 24 hours in the absence, and presence, of raltegravir</description>
+          <units>ng*h/mL</units>
+          <param>Geometric Mean</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="17"/>
+                <count group_id="O2" value="17"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="166.0" lower_limit="146.3" upper_limit="202.9"/>
+                    <measurement group_id="O2" value="165.9" lower_limit="148.7" upper_limit="195.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
     </outcome_list>
 

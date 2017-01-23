@@ -60,8 +60,9 @@ RSpec.describe Country, type: :model do
   end
 
   context 'when country does not exist' do
-    let!(:xml) {Nokogiri::XML(File.read('spec/support/xml_data/NCT02830269.xml'))}
-    let!(:opts) {{xml: xml, nct_id: 'NCT02830269'}}
+    nct_id='NCT02389088'
+    let!(:xml) {Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))}
+    let!(:opts) {{xml: xml, nct_id: nct_id}}
     let!(:country) {Country.create_all_from(opts)}
 
     it 'should have nil value' do

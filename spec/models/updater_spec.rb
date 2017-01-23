@@ -40,7 +40,7 @@ describe ClinicalTrials::Updater do
     expect(study.outcome_measurements.size).to eq(162)
     expect(study.outcomes.size).to eq(58)
     expect(study.overall_officials.size).to eq(10)
-    expect(study.oversight_authorities.size).to eq(3)
+    #expect(study.oversight_authorities.size).to eq(3)
     expect(study.references.size).to eq(2)
     expect(study.reported_events.size).to eq(351)
     expect(study.responsible_parties.size).to eq(1)
@@ -48,12 +48,15 @@ describe ClinicalTrials::Updater do
     expect(study.result_contacts.size).to eq(1)
     expect(study.result_groups.size).to eq(190)
     expect(study.sponsors.size).to eq(4)
+    expect(study.eligibility.gender).to eq('All')
 
     incoming=File.read("spec/support/xml_data/#{nct_id}_modified.xml")
     stub_request(:get, "https://clinicaltrials.gov/show/#{nct_id}?resultsxml=true").
          with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v0.9.2'}).
          to_return(:status => 200, :body => incoming, :headers => {})
+
     ClinicalTrials::Updater.new.update_studies([nct_id])
+    study=Study.where('nct_id=?',nct_id).first
 
     expect(study.baseline_measurements.size).to eq(380)
     expect(study.baseline_counts.size).to eq(10)
@@ -89,6 +92,7 @@ describe ClinicalTrials::Updater do
     expect(study.result_contacts.size).to eq(1)
     expect(study.result_groups.size).to eq(190)
     expect(study.sponsors.size).to eq(1)
+    expect(study.eligibility.gender).to eq('All')
   end
 
   it "should have correct date attribs" do
@@ -105,10 +109,10 @@ describe ClinicalTrials::Updater do
     expect(study.first_received_results_date).to eq('February 12, 2014'.to_date)
     expect(study.last_changed_date).to eq('November 14, 2015'.to_date)
 
-    expect(study.calculated_value.start_date).to eq(study.start_month_year.to_date)
-    expect(study.calculated_value.verification_date).to eq(study.verification_month_year.to_date)
-    expect(study.calculated_value.completion_date).to eq(study.completion_month_year.to_date)
-    expect(study.calculated_value.primary_completion_date).to eq(study.primary_completion_month_year.to_date)
+    expect(study.start_date).to eq(study.start_month_year.to_date)
+    expect(study.verification_date).to eq(study.verification_month_year.to_date)
+    expect(study.completion_date).to eq(study.completion_month_year.to_date)
+    expect(study.primary_completion_date).to eq(study.primary_completion_month_year.to_date)
 
     expect(study.result_contacts.first.name).to eq('Wendy Seiferheld')
     expect(study.result_contacts.first.organization).to eq('Radiation Therapy Oncology Group')

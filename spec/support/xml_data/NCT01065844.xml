@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on December 30, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01065844</url>
   </required_header>
@@ -25,7 +25,6 @@
   </sponsors>
   <source>University of Iowa</source>
   <oversight_info>
-    <authority>United States: Institutional Review Board</authority>
     <has_dmc>Yes</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -79,17 +78,20 @@
   <primary_completion_date type="Actual">May 2015</primary_completion_date>
   <phase>Phase 2</phase>
   <study_type>Interventional</study_type>
-  <study_design>Endpoint Classification: Efficacy Study, Intervention Model: Single Group Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <intervention_model>Single Group Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Open Label</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Tumor Progression</measure>
     <time_frame>Every 1 to 3 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Tumor progression as defined by RECIST version v1.1 criteria with ordinal measurements of complete response (CR), partial response (PR), stable disease (SD), and progressive disease (PD).</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Quality of Life</measure>
     <time_frame>every 1 to 3 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Quality of life as measured by the EORTC QLQ-C30 survey</description>
   </secondary_outcome>
   <number_of_arms>1</number_of_arms>
@@ -175,7 +177,7 @@
              the potential for pharmacokinetic interactions with NFV.
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -218,9 +220,6 @@
     <investigator_title>Professor &amp; Chair of Radiation Oncology</investigator_title>
   </responsible_party>
   <keyword>Nelfinavir</keyword>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>Yes</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Head and Neck Neoplasms</mesh_term>
@@ -228,8 +227,8 @@
   </condition_browse>
   <intervention_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
-    <mesh_term>HIV Protease Inhibitors</mesh_term>
     <mesh_term>Nelfinavir</mesh_term>
+    <mesh_term>HIV Protease Inhibitors</mesh_term>
   </intervention_browse>
 
   <clinical_results>
@@ -375,7 +374,6 @@ Nelfinavir: 1250 mg Nelfinavir twice daily Monday - Sunday</description>
         <title>Tumor Progression</title>
         <description>Tumor progression as defined by RECIST version v1.1 criteria with ordinal measurements of complete response (CR), partial response (PR), stable disease (SD), and progressive disease (PD).</description>
         <time_frame>Every 1 to 3 months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Those with adverse events necessitating interruption of intervention and removal from study were not assessed for outcome measures</population>
         <group_list>
           <group group_id="O1">
@@ -436,7 +434,6 @@ Nelfinavir: 1250 mg Nelfinavir twice daily Monday - Sunday</description>
         <title>Quality of Life</title>
         <description>Quality of life as measured by the EORTC QLQ-C30 survey</description>
         <time_frame>every 1 to 3 months</time_frame>
-        <safety_issue>No</safety_issue>
       </outcome>
     </outcome_list>
 
