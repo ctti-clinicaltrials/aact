@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<clinical_study rank="2">
+<clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on June 27, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00482794</url>
   </required_header>
@@ -24,7 +22,6 @@
   </sponsors>
   <source>Duke University</source>
   <oversight_info>
-    <authority>United States: Federal Government</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -75,15 +72,17 @@
   </detailed_description>
   <overall_status>Recruiting</overall_status>
   <start_date>June 2006</start_date>
-  <completion_date type="Anticipated">July 2016</completion_date>
-  <primary_completion_date type="Anticipated">July 2016</primary_completion_date>
+  <completion_date type="Anticipated">December 2017</completion_date>
+  <primary_completion_date type="Anticipated">July 2017</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Observational</study_type>
-  <study_design>Observational Model: Cohort</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <observational_model>Cohort</observational_model>
+  </study_design_info>
   <primary_outcome>
     <measure>characterize genetic risk factors associated with the development of familial antiphospholipid antibody syndrome.</measure>
     <time_frame>duration of the study</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <number_of_groups>3</number_of_groups>
   <enrollment type="Anticipated">2800</enrollment>
@@ -152,7 +151,7 @@
           -  No documented presence of antiphospholipid antibody
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>N/A</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -174,7 +173,7 @@
         <city>Durham</city>
         <state>North Carolina</state>
         <zip>27710</zip>
-        <country>China</country>
+        <country>United States</country>
       </address>
     </facility>
     <status>Recruiting</status>
@@ -188,46 +187,48 @@
     </investigator>
   </location>
   <location_countries>
-    <country>China</country>
+    <country>United States</country>
   </location_countries>
   <reference>
     <citation>Levine JS, Branch DW, Rauch J. The antiphospholipid syndrome. N Engl J Med. 2002 Mar 7;346(10):752-63. Review.</citation>
     <PMID>11882732</PMID>
   </reference>
   <reference>
-    <citation>Cervera R, Piette JC, Font J, Khamashta MA, Shoenfeld Y, Camps MT, Jacobsen S, Lakos G, Tincani A, Kontopoulou-Griva I, Galeazzi M, Meroni PL, Derksen RH, de Groot PG, Gromnica-Ihle E, Baleva M, Mosca M, Bombardieri S, Houssiau F, Gris JC, Quéré I, Hachulla E, Vasconcelos C, Roch B, Fernández-Nebro A, Boffa MC, Hughes GR, Ingelmo M; Euro-Phospholipid Project Group. Antiphospholipid syndrome: clinical and immunologic manifestations and patterns of disease expression in a cohort of 1,000 patients. Arthritis Rheum. 2002 Apr;46(4):1019-27.</citation>
+    <citation>Cervera R, Piette JC, Font J, Khamashta MA, Shoenfeld Y, Camps MT, Jacobsen S, Lakos G, Tincani A, Kontopoulou-Griva I, Galeazzi M, Meroni PL, Derksen RH, de Groot PG, Gromnica-Ihle E, Baleva M, Mosca M, Bombardieri S, Houssiau F, Gris JC, Quéré I, Hachulla E, Vasconcelos C, Roch B, Fernández-Nebro A, Boffa MC, Hughes GR, Ingelmo M; Euro-Phospholipid Project Group.. Antiphospholipid syndrome: clinical and immunologic manifestations and patterns of disease expression in a cohort of 1,000 patients. Arthritis Rheum. 2002 Apr;46(4):1019-27.</citation>
     <PMID>11953980</PMID>
   </reference>
   <reference>
-    <citation>Scofield RH, Bruner GR, Kelly JA, Kilpatrick J, Bacino D, Nath SK, Harley JB. Thrombocytopenia identifies a severe familial phenotype of systemic lupus erythematosus and reveals genetic linkages at 1q22 and 11p13. Blood. 2003 Feb 1;101(3):992-7. Epub 2002 Sep 12.</citation>
+    <citation>Scofield RH, Bruner GR, Kelly JA, Kilpatrick J, Bacino D, Nath SK, Harley JB. Thrombocytopenia identifies a severe familial phenotype of systemic lupus erythematosus and reveals genetic linkages at 1q22 and 11p13. Blood. 2003 Feb 1;101(3):992-7.</citation>
     <PMID>12393658</PMID>
   </reference>
   <reference>
-    <citation>Kelly JA, Thompson K, Kilpatrick J, Lam T, Nath SK, Gray-McGuire C, Reid J, Namjou B, Aston CE, Bruner GR, Scofield RH, Harley JB. Evidence for a susceptibility gene (SLEH1) on chromosome 11q14 for systemic lupus erythematosus (SLE) families with hemolytic anemia. Proc Natl Acad Sci U S A. 2002 Sep 3;99(18):11766-71. Epub 2002 Aug 21.</citation>
+    <citation>Kelly JA, Thompson K, Kilpatrick J, Lam T, Nath SK, Gray-McGuire C, Reid J, Namjou B, Aston CE, Bruner GR, Scofield RH, Harley JB. Evidence for a susceptibility gene (SLEH1) on chromosome 11q14 for systemic lupus erythematosus (SLE) families with hemolytic anemia. Proc Natl Acad Sci U S A. 2002 Sep 3;99(18):11766-71.</citation>
     <PMID>12192084</PMID>
   </reference>
   <reference>
     <citation>Ortel TL. The antiphospholipid syndrome: what are we really measuring? How do we measure it? And how do we treat it? J Thromb Thrombolysis. 2006 Feb;21(1):79-83. Review.</citation>
     <PMID>16475047</PMID>
   </reference>
-  <verification_date>October 2015</verification_date>
-  <lastchanged_date>October 23, 2015</lastchanged_date>
+  <verification_date>July 2016</verification_date>
+  <lastchanged_date>November 30, 2016</lastchanged_date>
   <firstreceived_date>June 1, 2007</firstreceived_date>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
   <keyword>Antiphospholipid Antibody Syndrome</keyword>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
-    <mesh_term>Antiphospholipid Syndrome</mesh_term>
     <mesh_term>Syndrome</mesh_term>
+    <mesh_term>Antiphospholipid Syndrome</mesh_term>
   </condition_browse>
   <intervention_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Antibodies</mesh_term>
+    <mesh_term>Immunoglobulins</mesh_term>
     <mesh_term>Antibodies, Antiphospholipid</mesh_term>
   </intervention_browse>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
   <!-- Results have not yet been posted for this study                                -->
 </clinical_study>

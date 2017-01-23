@@ -12,17 +12,9 @@ class CalculatedValue < ActiveRecord::Base
     ActiveRecord::Base.connection.execute('TRUNCATE table calculated_values')
     ActiveRecord::Base.connection.execute("INSERT INTO calculated_values (
                  nct_id,
-                 start_date,
-                 verification_date,
-                 completion_date,
-                 primary_completion_date,
                  nlm_download_date
           )
           SELECT nct_id,
-                 to_date(start_month_year, 'Month YYYY'),
-                 to_date(verification_month_year, 'Month YYYY'),
-                 to_date(completion_month_year, 'Month YYYY'),
-                 to_date(primary_completion_month_year, 'Month YYYY'),
                  to_date(substring(nlm_download_date_description,43), 'Month DD,YYYY')
             FROM studies")
 
@@ -39,17 +31,9 @@ class CalculatedValue < ActiveRecord::Base
     ActiveRecord::Base.connection.execute("DELETE FROM calculated_values WHERE NCT_ID IN (#{ids})")
     ActiveRecord::Base.connection.execute("INSERT INTO calculated_values (
                  nct_id,
-                 start_date,
-                 verification_date,
-                 completion_date,
-                 primary_completion_date,
                  nlm_download_date
           )
           SELECT nct_id,
-                 to_date(start_month_year, 'Month YYYY'),
-                 to_date(verification_month_year, 'Month YYYY'),
-                 to_date(completion_month_year, 'Month YYYY'),
-                 to_date(primary_completion_month_year, 'Month YYYY'),
                  to_date(substring(nlm_download_date_description,43), 'Month DD,YYYY')
             FROM studies
           WHERE NCT_ID IN (#{ids})")
@@ -86,23 +70,17 @@ class CalculatedValue < ActiveRecord::Base
   def self.sql_for_dates
     "INSERT INTO calculated_values (
                  nct_id,
-                 start_date,
-                 verification_date,
-                 completion_date,
-                 primary_completion_date,
                  nlm_download_date
           )
           SELECT nct_id,
-                 to_date(start_month_year, 'Month YYYY'),
-                 to_date(verification_month_year, 'Month YYYY'),
-                 to_date(completion_month_year, 'Month YYYY'),
-                 to_date(primary_completion_month_year, 'Month YYYY'),
                  to_date(substring(nlm_download_date_description,43), 'Month DD,YYYY')
             FROM studies"
   end
 
   def self.sql_for_registered_in_calendar_year
-    "SET registered_in_calendar_year = x.res FROM ( SELECT nct_id, date_part('year', start_date) as res FROM calculated_values c) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.start_date IS NOT NULL"
+    "SET registered_in_calendar_year = x.res
+       FROM ( SELECT nct_id, date_part('year', start_date) as res FROM studies ) x
+      WHERE x.nct_id = calculated_values.nct_id"
   end
 
   def self.sql_for_were_results_reported
@@ -122,11 +100,11 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def self.sql_for_months_to_report_results
-    "SET months_to_report_results = x.res FROM ( SELECT  s.nct_id, (s.first_received_results_date - c.primary_completion_date)/30 as res FROM studies s, calculated_values c WHERE s.nct_id=c.nct_id) x WHERE x.nct_id = calculated_values.nct_id"
+    "SET months_to_report_results = x.res FROM ( SELECT  s.nct_id, (s.first_received_results_date - s.primary_completion_date)/30 as res FROM studies s, calculated_values c WHERE s.nct_id=c.nct_id) x WHERE x.nct_id = calculated_values.nct_id"
   end
 
   def self.sql_for_actual_duration
-    "SET actual_duration = x.res FROM ( SELECT  nct_id, (primary_completion_date -  start_date)/30 as res FROM calculated_values c) x WHERE x.nct_id = calculated_values.nct_id"
+    "SET actual_duration = x.res FROM ( SELECT  nct_id, (primary_completion_date -  start_date)/30 as res FROM studies c) x WHERE x.nct_id = calculated_values.nct_id"
   end
 
   def self.sql_for_number_of_sae_subjects
@@ -176,10 +154,6 @@ class CalculatedValue < ActiveRecord::Base
   def create_from(new_study)
     stime=Time.now
     self.study=new_study
-    self.start_date                = study.start_month_year.try(:to_date)
-    self.verification_date         = study.verification_month_year.try(:to_date)
-    self.completion_date           = study.completion_month_year.try(:to_date)
-    self.primary_completion_date   = study.primary_completion_month_year.try(:to_date)
     self.has_us_facility           = calc_has_us_facility
     self.has_single_facility       = calc_has_single_facility
     self.number_of_facilities      = calc_number_of_facilities
@@ -271,9 +245,9 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_actual_duration
-    return if !self.primary_completion_date or !self.start_date
+    return if !self.study.primary_completion_date or !self.study.start_date
     return if study.primary_completion_date_type != 'Actual'
-    ((self.primary_completion_date.to_time -  self.start_date.to_time)/1.month.second).to_i
+    ((self.study.primary_completion_date.to_time -  self.study.start_date.to_time)/1.month.second).to_i
   end
 
   def calc_were_results_reported
@@ -284,7 +258,7 @@ class CalculatedValue < ActiveRecord::Base
     return if !self.study.primary_completion_month_year or !study.first_received_results_date
     return if self.study.primary_completion_date_type != 'Actual'
     return if self.study.first_received_results_date.nil?
-    ((self.study.first_received_results_date.to_time - self.primary_completion_date.to_time)/1.month.second).to_i
+    ((self.study.first_received_results_date.to_time - self.study.primary_completion_date.to_time)/1.month.second).to_i
   end
 
 end

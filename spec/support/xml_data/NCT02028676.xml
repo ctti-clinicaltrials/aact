@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on December 06, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02028676</url>
   </required_header>
@@ -92,345 +92,293 @@
   <primary_completion_date type="Actual">March 2012</primary_completion_date>
   <phase>Phase 4</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Endpoint Classification: Safety/Efficacy Study, Intervention Model: Factorial Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Factorial Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Open Label</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with disease progression to a new WHO stage 4 event or death, to be analysed using time-to-event methods</description>
   </primary_outcome>
   <primary_outcome>
     <measure>LCM vs CDM: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of participants with a new Grade 3 or 4 adverse event (AE), not solely related to HIV, to be analysed using time-to-event methods</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Induction ART: Change From Baseline in CD4% 72 Weeks After ART Initiation</measure>
     <time_frame>Baseline, 72 weeks</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Induction ART: Change From Baseline in CD4% to 144 Weeks From ART Initiation</measure>
     <time_frame>Baseline, 144 weeks</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Induction ART: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of participants with a new grade 3 or 4 adverse event (AE), not solely related to HIV, to be analysed using time-to-event methods</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Suppressed HIV RNA Viral Load 48 Weeks After Randomisation</measure>
     <time_frame>48 weeks</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with HIV RNA viral load &lt;80 copies/ml at 48 weeks. Measured retrospectively on stored plasma specimens: due to low stored volumes from some children, samples had to be diluted and therefore a threshold of &lt;80 copies/ml was used to indicate suppression.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV, Judged Definitely/Probably or Uncertain Whether Related to Lamivudine or Abacavir</measure>
     <time_frame>Median 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of participants with a new grade 3 or 4 adverse event (AE), not solely related to HIV, judged definitely/probably or uncertain whether related to lamivudine or abacavir, to be analysed using time-to-event methods</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Cotrimoxazole: New Hospitalisation or Death</measure>
     <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new hospitalisation or death, to be analysed using time-to-event methods</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Cotrimoxazole: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV</measure>
     <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of participants with a new grade 3 or 4 adverse event (AE), not solely related to HIV, to be analysed using time-to-event methods</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: All-cause Mortality</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants who died from any cause, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Induction ART: New WHO Stage 4 Event or Death</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new WHO stage 4 event or death, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: New WHO Stage 3 or 4 Event or Death</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new WHO stage 3 or 4 event or death, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: New or Recurrent WHO Stage 3 or 4 Event or Death</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new or recurrent WHO stage 3 or 4 event or death, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: Weight-for-age Z-score</measure>
     <time_frame>Baseline and a median of 4 years (maximum 5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Age-adjusted change in weight-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: Height-for-age Z-score</measure>
     <time_frame>Baseline and a median of 4 years (maximum 5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Age-adjusted change in weight-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: Body Mass Index-for-age Z-score</measure>
     <time_frame>Baseline and a median of 4 years (maximum 5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Age-adjusted change in body mass index-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM: Change From Baseline in CD4% to Week 72</measure>
     <time_frame>Baseline, week 72</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM: Change From Baseline in CD4% to Week 144</measure>
     <time_frame>Baseline, week 144</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: Change From Baseline in Absolute CD4 to Week 72</measure>
     <time_frame>Baseline, week 72</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Estimated in those &gt;5 years at enrolment, in whom absolute CD4 is meaningful. (In uninfected children, CD4 decreases with age during early childhood.)</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: Change From Baseline in Absolute CD4 to Week 144</measure>
     <time_frame>Baseline, week 144</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Estimated in those &gt;5 years at enrolment, in whom absolute CD4 is meaningful. (In uninfected children, CD4 decreases with age during early childhood.)</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>CDM vs LCM, Induction ART: Suppression of HIV RNA Viral Load 72 Weeks After Baseline</measure>
     <time_frame>72 weeks</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with HIV RNA viral load &lt;80 copies/ml 72 weeks after baseline. Threshold for suppression &lt;80 copies/ml as samples had to be diluted due to low volumes.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>CDM vs LCM, Induction ART: Suppression of HIV RNA Viral Load 144 Weeks After Baseline</measure>
     <time_frame>144 weeks</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with HIV RNA viral load &lt;80 copies/ml 144 weeks after baseline. Threshold for suppression &lt;80 copies/ml as samples had to be diluted due to low volumes.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: Cessation of First-line Regimen for Clinical/Immunological Failure</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants stopping their first-line regimen for clinical/immunological failure, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: New Grade 3 or 4 Adverse Event Definitely/Probably or Uncertainly Related to ART</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of participants with a new grade 3 or 4 adverse event definitely/probably or uncertainly related to ART, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: New Serious Adverse Events Not Solely Related to HIV</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of participants with a new serious adverse events not solely related to HIV, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: New ART-modifying Adverse Event</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of participants with a new ART-modifying adverse event, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>LCM vs CDM, Induction ART: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks)</measure>
     <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Binary outcome measure: missed any doses of ART in the last 4 weeks by self-report. Mean calculated across all 12-weekly visits attended over the whole follow-up (no specific timepoint prespecified), giving the percentage of visits attended where the carer/participant reported missing any pills in the last 4 weeks.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Suppression of HIV RNA Viral Load 96 Weeks After Randomisation</measure>
     <time_frame>96 weeks</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with HIV RNA viral load &lt;80 copies/ml at 96 weeks. Threshold for suppression &lt;80 copies/ml as samples had to be diluted due to low volumes.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in CD4% to Week 48</measure>
     <time_frame>Randomisation to once vs twice daily, week 48</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in CD4% to Week 72</measure>
     <time_frame>Baseline, week 72</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in CD4% to Week 96</measure>
     <time_frame>Randomisation to once vs twice daily, week 96</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in Absolute CD4 to Week 48</measure>
     <time_frame>Randomisation to once vs twice daily, week 48</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Estimated in those &gt;5 years at enrolment, in whom absolute CD4 is meaningful. (In uninfected children, CD4 decreases with age during early childhood.)</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in Absolute CD4 to Week 72</measure>
     <time_frame>Baseline, week 72</time_frame>
-    <safety_issue>No</safety_issue>
     <description>All participants aged &gt;5 years at randomization to once versus twice daily alive in follow-up with CD4 measured</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in Absolute CD4 to Week 96</measure>
     <time_frame>Randomisation to once vs twice daily, week 96</time_frame>
-    <safety_issue>No</safety_issue>
     <description>All participants aged &gt;5 years at randomization to once versus twice daily alive in follow-up with CD4 measured</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: All-cause Mortality</measure>
     <time_frame>Median 2 years (from randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants who died, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: New WHO Stage 4 Event or Death</measure>
     <time_frame>Median 2 years (from randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new WHO stage 4 event or death, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: New WHO Stage 3 or 4 Event or Death</measure>
     <time_frame>Median 2 years (from randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new WHO stage 3 or 4 event or death, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Height-for-age Z-score</measure>
     <time_frame>Baseline and a median of 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Age-adjusted change in height-for-age Z-score over all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Weight-for-age Z-score</measure>
     <time_frame>Baseline and a median of 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Age-adjusted change in weight-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Body Mass Index-for-age Z-score</measure>
     <time_frame>Baseline and a median of 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Age-adjusted change in body mass index-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV</measure>
     <time_frame>Median 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of participants with a new grade 3 or 4 adverse event (AE), not solely related to HIV, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: New Serious Adverse Events Not Solely Related to HIV</measure>
     <time_frame>Median 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of participants with a new serious adverse event not solely related to HIV, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks) at 48 Weeks</measure>
     <time_frame>48 weeks after randomization to once- versus twice-daily</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants reporting missing any doses of ART in the last 4 weeks by self-report at 48 weeks.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks) at 96 Weeks</measure>
     <time_frame>96 weeks after randomization to once- versus twice-daily</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants reporting missing any doses of ART in the last 4 weeks by self-report at 96 weeks.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Once Versus Twice Daily Abacavir+Lamivudine: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks)</measure>
     <time_frame>Mean over median 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Binary outcome measure: missed any doses of ART in the last 4 weeks by self-report. Mean calculated across all 12-weekly visits attended over the whole follow-up (no specific timepoint prespecified), giving the percentage of visits attended where the carer/participant reported missing any pills in the last 4 weeks.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: New Clinical and Diagnostic Positive Malaria</measure>
     <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new clinical and diagnostic positive malaria, to be analysed using time-to-event methods. Diagnostic positive by either microscopy (thick film) or rapid diagnostic test (RDT)</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: New Severe Pneumonia</measure>
     <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new severe pneumonia, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: New WHO Stage 3 or 4 Event or Death</measure>
     <time_frame>Median 2 years (from randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new WHO stage 3 or 4 event or death, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: New WHO Stage 3 Severe Recurrent Pneumonia or Diarrhoea</measure>
     <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new WHO stage 3 severe recurrent pneumonia or diarrhoea, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: New WHO Stage 4 Event or Death</measure>
     <time_frame>Median 2 years (from randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants with a new WHO stage 4 event or death, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: All-cause Mortality</measure>
     <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of participants who died, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: Weight-for-age Z-score</measure>
     <time_frame>Baseline and a median of 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Age-adjusted change in weight-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: Height-for-age Z-score</measure>
     <time_frame>Baseline and a median of 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Age-adjusted change in height-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: Body Mass Index-for-age Z-score</measure>
     <time_frame>Baseline and a median of 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Age-adjusted change in body mass index-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: Change From Baseline in CD4% to Week 72</measure>
     <time_frame>Baseline, week 72</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: Change From Baseline in Absolute CD4 to Week 72</measure>
     <time_frame>Baseline, week 72</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Estimated in those &gt;5 years at randomization to stop vs continue, in whom absolute CD4 is meaningful. (In uninfected children, CD4 decreases with age during early childhood.)</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: New Serious Adverse Events Not Solely Related to HIV</measure>
     <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of participants with a new serious adverse event not solely related to HIV, to be analysed using time-to-event methods</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cotrimoxazole: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks)</measure>
     <time_frame>Mean over median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Binary outcome measure: missed any doses of ART in the last 4 weeks by self-report. Mean calculated across all 12-weekly visits attended over the whole follow-up (no specific timepoint prespecified), giving the percentage of visits attended where the carer/participant reported missing any pills in the last 4 weeks.</description>
   </secondary_outcome>
   <number_of_arms>9</number_of_arms>
@@ -703,7 +651,7 @@
              prophylaxis and should not be discontinued)
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>3 Months</minimum_age>
     <maximum_age>17 Years</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -833,9 +781,6 @@
   <keyword>abacavir</keyword>
   <keyword>lamivudine</keyword>
   <keyword>once daily</keyword>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>Yes</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Immunologic Deficiency Syndromes</mesh_term>
@@ -846,13 +791,13 @@
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Lamivudine</mesh_term>
     <mesh_term>Zidovudine</mesh_term>
-    <mesh_term>Abacavir</mesh_term>
     <mesh_term>Efavirenz</mesh_term>
     <mesh_term>Lamivudine, zidovudine drug combination</mesh_term>
     <mesh_term>Nevirapine</mesh_term>
+    <mesh_term>Abacavir</mesh_term>
     <mesh_term>Dideoxynucleosides</mesh_term>
-    <mesh_term>Trimethoprim</mesh_term>
     <mesh_term>Sulfamethoxazole</mesh_term>
+    <mesh_term>Trimethoprim</mesh_term>
     <mesh_term>Trimethoprim, Sulfamethoxazole Drug Combination</mesh_term>
   </intervention_browse>
 
@@ -2097,7 +2042,6 @@ Stopped cotrimoxazole prophylaxis</description>
         <title>LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death</title>
         <description>Number of participants with disease progression to a new WHO stage 4 event or death, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants (time-to-event)</population>
         <group_list>
           <group group_id="O1">
@@ -2144,7 +2088,7 @@ Stopped cotrimoxazole prophylaxis</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>Yes</non_inferiority>
+            <non_inferiority_type>Non-Inferiority or Equivalence</non_inferiority_type>
             <non_inferiority_desc>Upper 95% confidence interval for the hazard ratio was 1.64, see other analysis for this endpoint for details</non_inferiority_desc>
             <p_value>0.59</p_value>
             <method>Log Rank</method>
@@ -2167,7 +2111,7 @@ control group (LCM) event rate 3% per year
 rates are reduced to 2% per year in the best of the induction-maintenance arms leading to an overall rate of progression to new WHO stage 4 or death of 2.5%
 recruitment is over 1.5 years and follow-up for a minimum further 3.5 years.
 cumulative loss to follow-up is 10% at 5 years. See below for rest of sample size as this box is not big enough.</groups_desc>
-            <non_inferiority>Yes</non_inferiority>
+            <non_inferiority_type>Non-Inferiority or Equivalence</non_inferiority_type>
             <non_inferiority_desc>With assumptions detailed above, &gt;90% power and one-sided alpha=0.05, 1160 children would be required to exclude an increase in progression rate of 1.6% from 2.5% to 4.1% per year in the CDM arm (upper 95% confidence limit of LCM: CDM hazard ratio 1.64).</non_inferiority_desc>
             <p_value>0.43</p_value>
             <method>Comparison of poisson rates</method>
@@ -2180,6 +2124,8 @@ cumulative loss to follow-up is 10% at 5 years. See below for rest of sample siz
             <ci_upper_limit>1.12</ci_upper_limit>
             <ci_upper_limit_na_comment>this is a ci upper limit comment</ci_upper_limit_na_comment>
             <estimate_desc>Difference is CDM minus LCM</estimate_desc>
+            <aact_change> adding this new tag to test. </aact_change>
+            <other_analysis_desc>testing this anticipated tag</other_analysis_desc>
           </analysis>
         </analysis_list>
       </outcome>
@@ -2188,7 +2134,6 @@ cumulative loss to follow-up is 10% at 5 years. See below for rest of sample siz
         <title>LCM vs CDM: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV</title>
         <description>Number of participants with a new Grade 3 or 4 adverse event (AE), not solely related to HIV, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>Yes</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -2233,7 +2178,7 @@ cumulative loss to follow-up is 10% at 5 years. See below for rest of sample siz
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.83</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -2251,7 +2196,6 @@ cumulative loss to follow-up is 10% at 5 years. See below for rest of sample siz
         <type>Primary</type>
         <title>Induction ART: Change From Baseline in CD4% 72 Weeks After ART Initiation</title>
         <time_frame>Baseline, 72 weeks</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants alive at 72 weeks with CD4 measured (completeness in those in follow-up was 96.6%).</population>
         <group_list>
           <group group_id="O1">
@@ -2309,7 +2253,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
             </group_id_list>
             <groups_desc>Assuming a standard deviation for the change in CD4 percentage from baseline to 72 weeks of 10% (slightly higher than that observed in the PENTA 5 trial) 1200 children would provide at least 80% power to detect a difference in change in CD4% from baseline of more than 2.5% across the 3 groups (F-test with 2-sided alpha=0.05) assuming 20% missing data (loss to follow-up during the first year plus failure to attend the week 72 visit/missing sample).</groups_desc>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.33</p_value>
             <method>Regression, Linear</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -2320,7 +2264,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <type>Primary</type>
         <title>Induction ART: Change From Baseline in CD4% to 144 Weeks From ART Initiation</title>
         <time_frame>Baseline, 144 weeks</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants alive in follow-up with CD4% (95% completeness)</population>
         <group_list>
           <group group_id="O1">
@@ -2377,7 +2320,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O2</group_id>
               <group_id>O3</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.69</p_value>
             <method>Regression, Linear</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -2389,7 +2332,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>Induction ART: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV</title>
         <description>Number of participants with a new grade 3 or 4 adverse event (AE), not solely related to HIV, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>Yes</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Arm A: ABC+3TC+NNRTI</title>
@@ -2444,7 +2386,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O2</group_id>
               <group_id>O3</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.0001</p_value>
             <method>Log Rank</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -2454,7 +2396,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.01</p_value>
             <method>Regression, Cox</method>
             <param_type>Hazard Ratio (HR)</param_type>
@@ -2470,7 +2412,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O3</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>&lt;0.001</p_value>
             <method>Regression, Cox</method>
             <param_type>Hazard Ratio (HR)</param_type>
@@ -2487,7 +2429,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Suppressed HIV RNA Viral Load 48 Weeks After Randomisation</title>
         <description>Number of participants with HIV RNA viral load &lt;80 copies/ml at 48 weeks. Measured retrospectively on stored plasma specimens: due to low stored volumes from some children, samples had to be diluted and therefore a threshold of &lt;80 copies/ml was used to indicate suppression.</description>
         <time_frame>48 weeks</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All randomized participants with VL result from stored plasma specimen (available for 661/669, 99%, randomized participants)</population>
         <group_list>
           <group group_id="O1">
@@ -2536,7 +2477,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>Yes</non_inferiority>
+            <non_inferiority_type>Non-Inferiority or Equivalence</non_inferiority_type>
             <non_inferiority_desc>631 children would be required to exclude a 12% lower suppression rate in the once daily group with at least 90% power and two-sided alpha=0.05 (lower 95% confidence limit of difference between once and twice daily -12%, the non-inferiority margin). 630 children retains at least 80% (rather than 90%) power to exclude a 10% (rather than 12%) lower suppression rate in the once daily group with one-sided alpha=0.05 (lower 90% confidence limit of difference between once and twice daily -10%).</non_inferiority_desc>
             <p_value>0.65</p_value>
             <method>Chi-squared</method>
@@ -2555,7 +2496,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV, Judged Definitely/Probably or Uncertain Whether Related to Lamivudine or Abacavir</title>
         <description>Number of participants with a new grade 3 or 4 adverse event (AE), not solely related to HIV, judged definitely/probably or uncertain whether related to lamivudine or abacavir, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-        <safety_issue>Yes</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Once-daily ABC+3TC</title>
@@ -2602,7 +2542,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Cotrimoxazole: New Hospitalisation or Death</title>
         <description>Number of participants with a new hospitalisation or death, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -2651,7 +2590,7 @@ trimethoprim+sulfamethoxazole</description>
 5% of children receiving daily cotrimoxazole prophylaxis have a new hospitalisation or death per year
 recruitment starts 1 July 2009 with 10% children (those already on ART for &gt;96 weeks) entering immediately, and then the remaining children recruited over the following 15 months as they reach 96 weeks on ART. Follow-up is until March 2012.
 cumulative loss to follow-up at March 2012 is 10%. See below for further details as box is not big enough</groups_desc>
-            <non_inferiority>Yes</non_inferiority>
+            <non_inferiority_type>Non-Inferiority or Equivalence</non_inferiority_type>
             <non_inferiority_desc>With assumptions above, at least 80% power and one-sided alpha=0.05, 947 children would be required in the stop/continue cotrimoxazole prophylaxis comparison to exclude an increase in hospitalisation/death rate of 3% from 5% to 8% per year in the stop cotrimoxazole arm (upper 95% confidence limit of stop:continue hazard ratio 1.6).</non_inferiority_desc>
             <p_value>0.007</p_value>
             <method>Log Rank</method>
@@ -2672,7 +2611,7 @@ cumulative loss to follow-up at March 2012 is 10%. See below for further details
 5% of children receiving daily cotrimoxazole prophylaxis have a new hospitalisation or death per year
 recruitment starts 1 July 2009 with 10% children (those already on ART for &gt;96 weeks) entering immediately, and then the remaining children recruited over the following 15 months as they reach 96 weeks on ART. Follow-up is until March 2012.
 cumulative loss to follow-up at March 2012 is 10%. See below for further details as box is not big enough.</groups_desc>
-            <non_inferiority>Yes</non_inferiority>
+            <non_inferiority_type>Non-Inferiority or Equivalence</non_inferiority_type>
             <non_inferiority_desc>With assumptions above, at least 80% power and one-sided alpha=0.05, 947 children would be required in the stop/continue cotrimoxazole prophylaxis comparison to exclude an increase in hospitalisation/death rate of 3% from 5% to 8% per year in the stop cotrimoxazole arm (upper 95% confidence limit of stop:continue hazard ratio 1.6).</non_inferiority_desc>
             <p_value>0.006</p_value>
             <method>Poisson regression for risk difference</method>
@@ -2691,7 +2630,6 @@ cumulative loss to follow-up at March 2012 is 10%. See below for further details
         <title>Cotrimoxazole: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV</title>
         <description>Number of participants with a new grade 3 or 4 adverse event (AE), not solely related to HIV, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>Yes</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -2736,7 +2674,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.33</p_value>
             <method>Log Rank</method>
             <param_type>Hazard Ratio (HR)</param_type>
@@ -2754,7 +2692,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>LCM vs CDM, Induction ART: All-cause Mortality</title>
         <description>Number of participants who died from any cause, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -2820,7 +2757,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.45</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -2838,7 +2775,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.43</p_value>
             <method>Log Rank</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -2848,7 +2785,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O4</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.23</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -2865,7 +2802,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.93</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -2884,7 +2821,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>Induction ART: New WHO Stage 4 Event or Death</title>
         <description>Number of participants with a new WHO stage 4 event or death, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Arm A: ABC+3TC+NNRTI</title>
@@ -2939,7 +2875,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O2</group_id>
               <group_id>O3</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.89</p_value>
             <method>Log Rank</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -2949,7 +2885,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.64</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -2966,7 +2902,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O3</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.71</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -2985,7 +2921,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: New WHO Stage 3 or 4 Event or Death</title>
         <description>Number of participants with a new WHO stage 3 or 4 event or death, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -3051,7 +2986,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.98</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -3069,7 +3004,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.44</p_value>
             <method>Log Rank</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -3079,7 +3014,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O4</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.30</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -3096,7 +3031,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.24</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -3115,7 +3050,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: New or Recurrent WHO Stage 3 or 4 Event or Death</title>
         <description>Number of participants with a new or recurrent WHO stage 3 or 4 event or death, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -3181,7 +3115,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.52</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -3199,7 +3133,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.34</p_value>
             <p_value_desc>Global test with 2df, adjusted for randomization stratification factors</p_value_desc>
             <method>Log Rank</method>
@@ -3209,7 +3143,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O4</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.19</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -3226,7 +3160,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.25</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -3245,7 +3179,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: Weight-for-age Z-score</title>
         <description>Age-adjusted change in weight-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
         <time_frame>Baseline and a median of 4 years (maximum 5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -3312,7 +3245,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.71</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -3323,7 +3256,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.58</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -3335,7 +3268,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: Height-for-age Z-score</title>
         <description>Age-adjusted change in weight-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
         <time_frame>Baseline and a median of 4 years (maximum 5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -3402,7 +3334,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.07</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -3413,7 +3345,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.90</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -3425,7 +3357,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: Body Mass Index-for-age Z-score</title>
         <description>Age-adjusted change in body mass index-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
         <time_frame>Baseline and a median of 4 years (maximum 5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -3492,7 +3423,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.64</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -3503,7 +3434,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.30</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -3514,7 +3445,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <type>Secondary</type>
         <title>LCM vs CDM: Change From Baseline in CD4% to Week 72</title>
         <time_frame>Baseline, week 72</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants alive in follow-up with CD4% (97% completeness)</population>
         <group_list>
           <group group_id="O1">
@@ -3561,7 +3491,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.45</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -3572,7 +3502,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <type>Secondary</type>
         <title>LCM vs CDM: Change From Baseline in CD4% to Week 144</title>
         <time_frame>Baseline, week 144</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants alive in follow-up with CD4% (95% completeness)</population>
         <group_list>
           <group group_id="O1">
@@ -3619,7 +3548,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.70</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -3631,7 +3560,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: Change From Baseline in Absolute CD4 to Week 72</title>
         <description>Estimated in those &gt;5 years at enrolment, in whom absolute CD4 is meaningful. (In uninfected children, CD4 decreases with age during early childhood.)</description>
         <time_frame>Baseline, week 72</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants alive in follow-up with CD4</population>
         <group_list>
           <group group_id="O1">
@@ -3700,7 +3628,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.59</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -3711,7 +3639,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.01</p_value>
             <method>Regression, Linear</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -3723,7 +3651,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: Change From Baseline in Absolute CD4 to Week 144</title>
         <description>Estimated in those &gt;5 years at enrolment, in whom absolute CD4 is meaningful. (In uninfected children, CD4 decreases with age during early childhood.)</description>
         <time_frame>Baseline, week 144</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants alive in follow-up with CD4</population>
         <group_list>
           <group group_id="O1">
@@ -3792,7 +3719,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.81</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -3803,7 +3730,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.03</p_value>
             <method>Regression, Linear</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -3815,7 +3742,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>CDM vs LCM, Induction ART: Suppression of HIV RNA Viral Load 72 Weeks After Baseline</title>
         <description>Number of participants with HIV RNA viral load &lt;80 copies/ml 72 weeks after baseline. Threshold for suppression &lt;80 copies/ml as samples had to be diluted due to low volumes.</description>
         <time_frame>72 weeks</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Viral loads were assayed retrospectively in a random subset of children</population>
         <group_list>
           <group group_id="O1">
@@ -3883,7 +3809,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.86</p_value>
             <method>Chi-squared</method>
           </analysis>
@@ -3893,7 +3819,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.02</p_value>
             <method>Chi-squared</method>
           </analysis>
@@ -3904,7 +3830,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>CDM vs LCM, Induction ART: Suppression of HIV RNA Viral Load 144 Weeks After Baseline</title>
         <description>Number of participants with HIV RNA viral load &lt;80 copies/ml 144 weeks after baseline. Threshold for suppression &lt;80 copies/ml as samples had to be diluted due to low volumes.</description>
         <time_frame>144 weeks</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Viral load was assayed retrospectively at week 144 on a random subset of participants, plus all those aged &lt;5 years at enrolment</population>
         <group_list>
           <group group_id="O1">
@@ -3972,7 +3897,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.20</p_value>
             <method>Chi-squared</method>
           </analysis>
@@ -3982,7 +3907,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.002</p_value>
             <method>Chi-squared</method>
           </analysis>
@@ -3993,7 +3918,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: Cessation of First-line Regimen for Clinical/Immunological Failure</title>
         <description>Number of participants stopping their first-line regimen for clinical/immunological failure, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -4038,7 +3962,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.22</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4057,7 +3981,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: New Grade 3 or 4 Adverse Event Definitely/Probably or Uncertainly Related to ART</title>
         <description>Number of participants with a new grade 3 or 4 adverse event definitely/probably or uncertainly related to ART, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>Yes</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -4123,7 +4046,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.09</p_value>
             <method>Log Rank</method>
             <param_type>Hazard Ratio (HR)</param_type>
@@ -4140,7 +4063,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.04</p_value>
             <method>Log Rank</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -4150,7 +4073,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O4</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.017</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4167,7 +4090,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.034</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4186,7 +4109,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: New Serious Adverse Events Not Solely Related to HIV</title>
         <description>Number of participants with a new serious adverse events not solely related to HIV, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>Yes</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -4252,7 +4174,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.04</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4270,7 +4192,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.53</p_value>
             <method>Log Rank</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -4280,7 +4202,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O4</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.60</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4297,7 +4219,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.56</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4316,7 +4238,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: New ART-modifying Adverse Event</title>
         <description>Number of participants with a new ART-modifying adverse event, to be analysed using time-to-event methods</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>Yes</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -4382,7 +4303,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.84</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4400,7 +4321,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.002</p_value>
             <method>Log Rank</method>
             <method_desc>Global test with 2df, adjusted for randomization stratification factors</method_desc>
@@ -4410,7 +4331,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O4</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.001</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4427,7 +4348,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O3</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.006</p_value>
             <method>Regression, Cox</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4446,7 +4367,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>LCM vs CDM, Induction ART: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks)</title>
         <description>Binary outcome measure: missed any doses of ART in the last 4 weeks by self-report. Mean calculated across all 12-weekly visits attended over the whole follow-up (no specific timepoint prespecified), giving the percentage of visits attended where the carer/participant reported missing any pills in the last 4 weeks.</description>
         <time_frame>Median 4 years (from randomization to 16 March 2012; maximum 5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Clinically Driven Monitoring (CDM)</title>
@@ -4513,7 +4433,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.53</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -4524,7 +4444,7 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
               <group_id>O4</group_id>
               <group_id>O5</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.46</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -4536,7 +4456,6 @@ ZDV: zidovudine, azidothymidine, Retrovir ABC: abacavir: Ziagen 3TC: lamivudine:
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Suppression of HIV RNA Viral Load 96 Weeks After Randomisation</title>
         <description>Number of participants with HIV RNA viral load &lt;80 copies/ml at 96 weeks. Threshold for suppression &lt;80 copies/ml as samples had to be diluted due to low volumes.</description>
         <time_frame>96 weeks</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants with viral load assayed in stored specimens (98% of those randomized)</population>
         <group_list>
           <group group_id="O1">
@@ -4585,7 +4504,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.52</p_value>
             <method>Chi-squared</method>
             <param_type>Risk Difference (RD)</param_type>
@@ -4601,7 +4520,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <type>Secondary</type>
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in CD4% to Week 48</title>
         <time_frame>Randomisation to once vs twice daily, week 48</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants alive in follow-up with CD4%</population>
         <group_list>
           <group group_id="O1">
@@ -4650,7 +4568,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.39</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4668,7 +4586,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <type>Secondary</type>
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in CD4% to Week 72</title>
         <time_frame>Baseline, week 72</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants alive in follow-up with CD4%</population>
         <group_list>
           <group group_id="O1">
@@ -4717,7 +4634,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.98</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4735,7 +4652,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <type>Secondary</type>
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in CD4% to Week 96</title>
         <time_frame>Randomisation to once vs twice daily, week 96</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants alive in follow-up with CD4%</population>
         <group_list>
           <group group_id="O1">
@@ -4784,7 +4700,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.12</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4803,7 +4719,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in Absolute CD4 to Week 48</title>
         <description>Estimated in those &gt;5 years at enrolment, in whom absolute CD4 is meaningful. (In uninfected children, CD4 decreases with age during early childhood.)</description>
         <time_frame>Randomisation to once vs twice daily, week 48</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants aged &gt;5 years at randomization to once versus twice daily alive in follow-up with CD4 measured</population>
         <group_list>
           <group group_id="O1">
@@ -4853,7 +4768,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.82</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4872,7 +4787,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in Absolute CD4 to Week 72</title>
         <description>All participants aged &gt;5 years at randomization to once versus twice daily alive in follow-up with CD4 measured</description>
         <time_frame>Baseline, week 72</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants aged &gt;5 years at randomization to once versus twice daily alive in follow-up with CD4 measured</population>
         <group_list>
           <group group_id="O1">
@@ -4922,7 +4836,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.36</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -4941,7 +4855,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Change From Baseline in Absolute CD4 to Week 96</title>
         <description>All participants aged &gt;5 years at randomization to once versus twice daily alive in follow-up with CD4 measured</description>
         <time_frame>Randomisation to once vs twice daily, week 96</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants aged &gt;5 years at randomization to once versus twice daily alive in follow-up with CD4 measured</population>
         <group_list>
           <group group_id="O1">
@@ -4991,7 +4904,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.20</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -5010,7 +4923,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: All-cause Mortality</title>
         <description>Number of participants who died, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Once-daily ABC+3TC</title>
@@ -5057,7 +4969,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: New WHO Stage 4 Event or Death</title>
         <description>Number of participants with a new WHO stage 4 event or death, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Once-daily ABC+3TC</title>
@@ -5104,7 +5015,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.20</p_value>
             <method>Log Rank</method>
             <param_type>Hazard Ratio (HR)</param_type>
@@ -5122,7 +5033,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: New WHO Stage 3 or 4 Event or Death</title>
         <description>Number of participants with a new WHO stage 3 or 4 event or death, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Once-daily ABC+3TC</title>
@@ -5169,7 +5079,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.51</p_value>
             <method>Log Rank</method>
             <param_type>Hazard Ratio (HR)</param_type>
@@ -5187,7 +5097,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Height-for-age Z-score</title>
         <description>Age-adjusted change in height-for-age Z-score over all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
         <time_frame>Baseline and a median of 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Once-daily ABC+3TC</title>
@@ -5235,7 +5144,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.16</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -5247,7 +5156,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Weight-for-age Z-score</title>
         <description>Age-adjusted change in weight-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
         <time_frame>Baseline and a median of 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Once-daily ABC+3TC</title>
@@ -5295,7 +5203,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.54</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -5307,7 +5215,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Body Mass Index-for-age Z-score</title>
         <description>Age-adjusted change in body mass index-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
         <time_frame>Baseline and a median of 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Once-daily ABC+3TC</title>
@@ -5355,7 +5262,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.08</p_value>
             <method>Generalised estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -5367,7 +5274,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV</title>
         <description>Number of participants with a new grade 3 or 4 adverse event (AE), not solely related to HIV, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-        <safety_issue>Yes</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Once-daily ABC+3TC</title>
@@ -5414,7 +5320,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.82</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -5433,7 +5339,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: New Serious Adverse Events Not Solely Related to HIV</title>
         <description>Number of participants with a new serious adverse event not solely related to HIV, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-        <safety_issue>Yes</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Once-daily ABC+3TC</title>
@@ -5480,7 +5385,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.31</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -5499,7 +5404,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks) at 48 Weeks</title>
         <description>Number of participants reporting missing any doses of ART in the last 4 weeks by self-report at 48 weeks.</description>
         <time_frame>48 weeks after randomization to once- versus twice-daily</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants completing the questionnaire</population>
         <group_list>
           <group group_id="O1">
@@ -5548,7 +5452,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.74</p_value>
             <method>Chi-squared</method>
           </analysis>
@@ -5559,7 +5463,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks) at 96 Weeks</title>
         <description>Number of participants reporting missing any doses of ART in the last 4 weeks by self-report at 96 weeks.</description>
         <time_frame>96 weeks after randomization to once- versus twice-daily</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants completing the questionnaire</population>
         <group_list>
           <group group_id="O1">
@@ -5608,7 +5511,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.90</p_value>
             <method>Chi-squared</method>
           </analysis>
@@ -5619,7 +5522,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Once Versus Twice Daily Abacavir+Lamivudine: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks)</title>
         <description>Binary outcome measure: missed any doses of ART in the last 4 weeks by self-report. Mean calculated across all 12-weekly visits attended over the whole follow-up (no specific timepoint prespecified), giving the percentage of visits attended where the carer/participant reported missing any pills in the last 4 weeks.</description>
         <time_frame>Mean over median 2 years (from once vs twice daily randomization to 16 March 2012; maximum 2.6 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Once-daily ABC+3TC</title>
@@ -5667,7 +5569,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.93</p_value>
             <method>Generalized estimating equations</method>
             <method_desc>Generalised estimating equation with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -5679,7 +5581,6 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
         <title>Cotrimoxazole: New Clinical and Diagnostic Positive Malaria</title>
         <description>Number of participants with a new clinical and diagnostic positive malaria, to be analysed using time-to-event methods. Diagnostic positive by either microscopy (thick film) or rapid diagnostic test (RDT)</description>
         <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -5724,7 +5625,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>&lt;0.001</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -5743,7 +5644,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: New Severe Pneumonia</title>
         <description>Number of participants with a new severe pneumonia, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -5788,7 +5688,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.44</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -5807,7 +5707,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: New WHO Stage 3 or 4 Event or Death</title>
         <description>Number of participants with a new WHO stage 3 or 4 event or death, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -5852,7 +5751,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.03</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -5871,7 +5770,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: New WHO Stage 3 Severe Recurrent Pneumonia or Diarrhoea</title>
         <description>Number of participants with a new WHO stage 3 severe recurrent pneumonia or diarrhoea, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -5916,7 +5814,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.18</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -5935,7 +5833,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: New WHO Stage 4 Event or Death</title>
         <description>Number of participants with a new WHO stage 4 event or death, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -5980,7 +5877,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.34</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -5999,7 +5896,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: All-cause Mortality</title>
         <description>Number of participants who died, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -6044,7 +5940,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.68</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -6063,7 +5959,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: Weight-for-age Z-score</title>
         <description>Age-adjusted change in weight-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
         <time_frame>Baseline and a median of 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -6109,7 +6004,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.07</p_value>
             <method>Generalised estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -6121,7 +6016,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: Height-for-age Z-score</title>
         <description>Age-adjusted change in height-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
         <time_frame>Baseline and a median of 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -6167,7 +6061,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.19</p_value>
             <method>Generalised estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -6179,7 +6073,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: Body Mass Index-for-age Z-score</title>
         <description>Age-adjusted change in body mass index-for-age Z-score at all 12-weekly visits attended over the whole follow-up, no specific timepoint prespecified. Mean and SD are time-averaged area under the change curve calculated using the trapezoidal rule. Z-scores calculated using UK norms which cover the full age range of children (Cole, T. J., J. V. Freeman, and M. A. Preece. 1998. British 1990 growth reference centiles for weight, height, body mass index and head circumference fitted by maximum penalized likelihood. Statistics in Medicine 17(4): 407-29).</description>
         <time_frame>Baseline and a median of 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -6225,7 +6118,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.34</p_value>
             <method>Generalised estimating equations</method>
             <method_desc>Generalised estimating equations with independent correlation structure and robust standard errors, calculated over all post-randomization visit weeks</method_desc>
@@ -6236,7 +6129,6 @@ trimethoprim+sulfamethoxazole</description>
         <type>Secondary</type>
         <title>Cotrimoxazole: Change From Baseline in CD4% to Week 72</title>
         <time_frame>Baseline, week 72</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants alive in follow-up with CD4%</population>
         <group_list>
           <group group_id="O1">
@@ -6283,7 +6175,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.13</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -6302,7 +6194,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: Change From Baseline in Absolute CD4 to Week 72</title>
         <description>Estimated in those &gt;5 years at randomization to stop vs continue, in whom absolute CD4 is meaningful. (In uninfected children, CD4 decreases with age during early childhood.)</description>
         <time_frame>Baseline, week 72</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All participants aged &gt;5 years at randomization to stop versus continue alive in follow-up with CD4 measured</population>
         <group_list>
           <group group_id="O1">
@@ -6350,7 +6241,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.68</p_value>
             <method>Regression, Linear</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -6369,7 +6260,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: New Serious Adverse Events Not Solely Related to HIV</title>
         <description>Number of participants with a new serious adverse event not solely related to HIV, to be analysed using time-to-event methods</description>
         <time_frame>Median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>Yes</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -6414,7 +6304,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.04</p_value>
             <method>Log Rank</method>
             <method_desc>Adjusted for randomization stratification factors</method_desc>
@@ -6433,7 +6323,6 @@ trimethoprim+sulfamethoxazole</description>
         <title>Cotrimoxazole: Adherence to ART as Measured by Self-reported Questionnaire (Missing Any Pills in the Last 4 Weeks)</title>
         <description>Binary outcome measure: missed any doses of ART in the last 4 weeks by self-report. Mean calculated across all 12-weekly visits attended over the whole follow-up (no specific timepoint prespecified), giving the percentage of visits attended where the carer/participant reported missing any pills in the last 4 weeks.</description>
         <time_frame>Mean over median 2 years (from cotrimoxazole randomization to 16 March 2012; maximum 2.5 years)</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Continued Cotrimoxazole Prophylaxis</title>
@@ -6479,7 +6368,7 @@ trimethoprim+sulfamethoxazole</description>
               <group_id>O1</group_id>
               <group_id>O2</group_id>
             </group_id_list>
-            <non_inferiority>No</non_inferiority>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
             <p_value>0.21</p_value>
             <p_value_desc>Adjusted for randomization stratification factors</p_value_desc>
             <method>Generalised estimating equation</method>

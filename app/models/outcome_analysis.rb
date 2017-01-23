@@ -14,7 +14,7 @@ class OutcomeAnalysis < StudyRelationship
     return col if xml.blank?
     while xml
       opts[:xml]=xml
-      opts[:non_inferiority]=xml.xpath('non_inferiority').text
+      opts[:non_inferiority_type]=xml.xpath('non_inferiority_type').text
       opts[:non_inferiority_description]=xml.xpath('non_inferiority_desc').text
       opts[:p_value]=xml.xpath('p_value').text
       opts[:p_value_desc]=xml.xpath('p_value_desc').text
@@ -31,6 +31,7 @@ class OutcomeAnalysis < StudyRelationship
       opts[:method_description]=xml.xpath('method_desc').text
       opts[:estimate_description]=xml.xpath('estimate_desc').text
       opts[:groups_description]=xml.xpath('groups_desc').text
+      opts[:other_analysis_description]=xml.xpath('other_analysis_desc').text
       group_ids=create_group_list(xml)
       a=new.create_from(opts)
       a.outcome_analysis_groups = OutcomeAnalysisGroup.create_all_from({:outcome_analysis=>a,:group_ids=>group_ids,:groups=>opts[:groups],:nct_id=>opts[:nct_id]})
@@ -55,7 +56,7 @@ class OutcomeAnalysis < StudyRelationship
 
   def attribs
     {
-      :non_inferiority => get_opt(:non_inferiority),
+      :non_inferiority_type => get_opt(:non_inferiority_type),
       :non_inferiority_description => get_opt(:non_inferiority_description),
       :p_value => get_opt(:p_value),
       :p_value_description => get_opt(:p_value_desc),
@@ -73,6 +74,7 @@ class OutcomeAnalysis < StudyRelationship
       :estimate_description => get_opt(:estimate_description),
       :outcome => get_opt(:outcome),
       :groups_description => get_opt(:groups_description),
+      :other_analysis_description => get_opt(:other_analysis_description),
     }
   end
 

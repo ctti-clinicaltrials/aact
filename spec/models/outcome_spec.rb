@@ -62,7 +62,6 @@ describe Outcome do
 
     o=study.outcomes.select{|x|x.title=='Cotrimoxazole: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV'}.last
     expect(o.outcome_type).to eq('Primary')
-    expect(o.safety_issue).to eq("Yes")
 
   end
 

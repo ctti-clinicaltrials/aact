@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on September 22, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02903849</url>
   </required_header>
@@ -26,9 +24,6 @@
     </collaborator>
   </sponsors>
   <source>Washington University School of Medicine</source>
-  <oversight_info>
-    <authority>United States: Institutional Review Board</authority>
-  </oversight_info>
   <brief_summary>
     <textblock>
       The investigators are interested in using personalized, self-motivating messages to motivate
@@ -68,35 +63,36 @@
   <primary_completion_date type="Anticipated">December 2016</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Intervention Model: Parallel Assignment, Masking: Single Blind (Subject), Primary Purpose: Supportive Care</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Supportive Care</primary_purpose>
+    <masking>Single Blind (Subject)</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Activity Level</measure>
     <time_frame>Through study completion, 100 days</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of steps taken each day, as recorded in participants' online portal.</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Body Mass Index (BMI)</measure>
     <time_frame>After the 100-day challenge ends</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Most recent BMI in pounds (weight) and inches (height) as entered by participant, an expected average of 2 months after study start. Obtaining the data is dependent on the ability to obtain the data from the online portal.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Cholesterol</measure>
     <time_frame>After the 100-day challenge ends</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Most recent total, low, and high cholesterol levels in mg/dl as entered by participant, an expected average of 2 months after study start. Obtaining the data is dependent on the ability to obtain the data from the online portal.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Blood Pressure</measure>
     <time_frame>After the 100-day challenge ends</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Most recent systolic and diastolic levels in mmHg as entered by participant, an expected average of 2 months after study start. Obtaining the data is dependent on the ability to obtain the data from the online portal.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Stress</measure>
     <time_frame>After the 100-day challenge ends</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Most recent self-reported stress level on a 1-5 scale (with 1 indicating &quot;Relaxed&quot; and 5 indicating &quot;Highly Stressed&quot;) as entered by participant, an expected average of 2 months after study start. Obtaining the data is dependent on the ability to obtain the data from the online portal.</description>
   </secondary_outcome>
   <number_of_arms>2</number_of_arms>
@@ -140,7 +136,7 @@
              assigned to either the treatment or control condition
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
@@ -178,7 +174,5 @@
     <investigator_full_name>Hengchen Dai</investigator_full_name>
     <investigator_title>Assistant Professor of Organizational Behavior</investigator_title>
   </responsible_party>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <!-- Results have not yet been posted for this study                                -->
 </clinical_study>

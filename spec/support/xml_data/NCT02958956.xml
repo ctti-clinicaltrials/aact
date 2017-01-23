@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 11, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02958956</url>
   </required_header>
@@ -22,7 +22,6 @@
   </sponsors>
   <source>Takeda</source>
   <oversight_info>
-    <authority>United States: Food and Drug Administration</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -53,53 +52,49 @@
   <primary_completion_date type="Actual">May 2015</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Observational</study_type>
-  <study_design>Observational Model: Cohort, Time Perspective: Prospective</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <observational_model>Cohort</observational_model>
+    <time_perspective>Prospective</time_perspective>
+  </study_design_info>
   <primary_outcome>
     <measure>Hazard Ratio of the 10 Most Common Cancers Associated With Ever Use of Pioglitazone</measure>
     <time_frame>15 years 5 months</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with ever use of pioglitazone. Cox proportional hazards regression modeling was used to provide point and interval estimates of the relative hazard of the 10 most common cancers associated with ever use of pioglitazone. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Number of 10 Most Common Cancers Associated Cases</measure>
     <time_frame>15 years 5 months</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of 10 most common cancer cases are reported in this measure: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma.</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Hazard Ratio of the 10 Most Common Cancers Associated With Time Since First Use of Pioglitazone</measure>
     <time_frame>15 years 5 months</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with time since first use of pioglitazone. The various times since initiation include &lt;12 months ago, 12-23 months ago, 24-35 months ago, 36-47 months ago, 48-83 months ago and 84+ months ago. Cox proportional hazards regression modeling was used to provide point and interval estimates of the time since first use. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Number of 10 Most Common Cancers Cases by Time Since First Use of Pioglitazone</measure>
     <time_frame>15 years 5 months</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Number of 10 most common cancer cases: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with time since first use of pioglitazone. Time since initiation of pioglitazone was categorized as &lt;12 months ago, 12-23 months ago, 24-35 months ago, 36-47 months ago, 48-83 months ago and 84+ months ago.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Hazard Ratio of the 10 Most Common Cancers Associated With Duration of Pioglitazone</measure>
     <time_frame>15 years 5 months</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with duration of pioglitazone. The duration of pioglitazone was categorized as &lt;12 months, 12-23 months, 24-35 months, 36-59 months, 60+ months. Cox proportional hazards regression modeling was used to provide point and interval estimates of the cumulative duration. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Number of 10 Most Common Cancer Cases by Duration of Pioglitazone</measure>
     <time_frame>15 years 5 months</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with duration of pioglitazone. The duration of pioglitazone was categorized as &lt;12 months, 12-23 months, 24-35 months, 36-59 months, 60+ months.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Hazard Ratio of the 10 Most Common Cancers Associated With Cumulative Dose of Pioglitazone</measure>
     <time_frame>15 years 5 months</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 milligram (mg) and greater than or equal to (&gt;=) 50001 mg. Cox proportional hazards regression modeling was used to provide point and interval estimates of the dose. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Number of 10 Most Common Cancer Cases By Dose of Pioglitazone</measure>
     <time_frame>15 years 5 months</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 mg and &gt;=50001 mg.</description>
   </secondary_outcome>
   <number_of_groups>2</number_of_groups>
@@ -156,7 +151,7 @@
         skin cancer.
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>40 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -174,9 +169,6 @@
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
   <keyword>Drug Therapy</keyword>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>No</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Diabetes Mellitus</mesh_term>
@@ -678,7 +670,6 @@
         <title>Hazard Ratio of the 10 Most Common Cancers Associated With Ever Use of Pioglitazone</title>
         <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with ever use of pioglitazone. Cox proportional hazards regression modeling was used to provide point and interval estimates of the relative hazard of the 10 most common cancers associated with ever use of pioglitazone. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
         <time_frame>15 years 5 months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
         <group_list>
           <group group_id="O1">
@@ -811,7 +802,6 @@
         <title>Number of 10 Most Common Cancers Associated Cases</title>
         <description>Number of 10 most common cancer cases are reported in this measure: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma.</description>
         <time_frame>15 years 5 months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
         <group_list>
           <group group_id="O1">
@@ -958,7 +948,6 @@
         <title>Hazard Ratio of the 10 Most Common Cancers Associated With Time Since First Use of Pioglitazone</title>
         <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with time since first use of pioglitazone. The various times since initiation include &lt;12 months ago, 12-23 months ago, 24-35 months ago, 36-47 months ago, 48-83 months ago and 84+ months ago. Cox proportional hazards regression modeling was used to provide point and interval estimates of the time since first use. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
         <time_frame>15 years 5 months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
         <group_list>
           <group group_id="O1">
@@ -1591,7 +1580,6 @@
         <title>Number of 10 Most Common Cancers Cases by Time Since First Use of Pioglitazone</title>
         <description>Number of 10 most common cancer cases: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with time since first use of pioglitazone. Time since initiation of pioglitazone was categorized as &lt;12 months ago, 12-23 months ago, 24-35 months ago, 36-47 months ago, 48-83 months ago and 84+ months ago.</description>
         <time_frame>15 years 5 months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1. The unexposed arm was not planned to be analyzed for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -2223,7 +2211,6 @@
         <title>Hazard Ratio of the 10 Most Common Cancers Associated With Duration of Pioglitazone</title>
         <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with duration of pioglitazone. The duration of pioglitazone was categorized as &lt;12 months, 12-23 months, 24-35 months, 36-59 months, 60+ months. Cox proportional hazards regression modeling was used to provide point and interval estimates of the cumulative duration. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
         <time_frame>15 years 5 months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
         <group_list>
           <group group_id="O1">
@@ -2756,7 +2743,6 @@
         <title>Number of 10 Most Common Cancer Cases by Duration of Pioglitazone</title>
         <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with duration of pioglitazone. The duration of pioglitazone was categorized as &lt;12 months, 12-23 months, 24-35 months, 36-59 months, 60+ months.</description>
         <time_frame>15 years 5 months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1. The unexposed arm was not planned to be analyzed for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
@@ -3288,7 +3274,6 @@
         <title>Hazard Ratio of the 10 Most Common Cancers Associated With Cumulative Dose of Pioglitazone</title>
         <description>The hazard ratio of the 10 most common cancers: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 milligram (mg) and greater than or equal to (&gt;=) 50001 mg. Cox proportional hazards regression modeling was used to provide point and interval estimates of the dose. In all regression analyses, these measures of exposure to pioglitazone were treated as time-dependent covariates and time since entry into the cohort was the time scale.</description>
         <time_frame>15 years 5 months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.</population>
         <group_list>
           <group group_id="O1">
@@ -3721,7 +3706,6 @@
         <title>Number of 10 Most Common Cancer Cases By Dose of Pioglitazone</title>
         <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 mg and &gt;=50001 mg.</description>
         <time_frame>15 years 5 months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Analysis population included T2DM participants who were identified from the KPNC Diabetes Registry in the study 1.The unexposed arm was not planned to be analyzed for this outcome measure.</population>
         <group_list>
           <group group_id="O1">
