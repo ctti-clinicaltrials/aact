@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<clinical_study rank="41">
+<clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on May 11, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00002475</url>
   </required_header>
@@ -24,9 +22,6 @@
     </lead_sponsor>
   </sponsors>
   <source>National Cancer Institute (NCI)</source>
-  <oversight_info>
-    <authority>United States: Federal Government</authority>
-  </oversight_info>
   <brief_summary>
     <textblock>
       RATIONALE: Drugs used in chemotherapy work in different ways to stop tumor cells from
@@ -73,26 +68,24 @@
   <primary_completion_date type="Actual">December 2007</primary_completion_date>
   <phase>Phase 2</phase>
   <study_type>Interventional</study_type>
-  <study_design>Primary Purpose: Treatment</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <primary_purpose>Treatment</primary_purpose>
+  </study_design_info>
   <primary_outcome>
     <measure>Clinical response (patients with evaluable disease)</measure>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Duration of response (patients with evaluable disease)</measure>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Survival (patients with evaluable disease)</measure>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Time to recurrence (patients without evaluable disease)</measure>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Survival (patients without evaluable disease)</measure>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <number_of_arms>1</number_of_arms>
   <enrollment type="Anticipated">40</enrollment>
@@ -240,7 +233,7 @@
           -  See Disease Characteristics
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -296,22 +289,23 @@
   <keyword>pulmonary carcinoid tumor</keyword>
   <keyword>recurrent malignant mesothelioma</keyword>
   <keyword>stage IV pancreatic cancer</keyword>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>Yes</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Breast Neoplasms</mesh_term>
     <mesh_term>Lung Neoplasms</mesh_term>
-    <mesh_term>Mesothelioma</mesh_term>
+    <mesh_term>Colorectal Neoplasms</mesh_term>
     <mesh_term>Pancreatic Neoplasms</mesh_term>
+    <mesh_term>Mesothelioma</mesh_term>
+    <mesh_term>Kidney Neoplasms</mesh_term>
+    <mesh_term>Carcinoma, Renal Cell</mesh_term>
   </condition_browse>
   <intervention_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Vaccines</mesh_term>
     <mesh_term>Cyclophosphamide</mesh_term>
     <mesh_term>Interferon-alpha</mesh_term>
-    <mesh_term>Interferon-gamma</mesh_term>
     <mesh_term>Interferons</mesh_term>
-    <mesh_term>Vaccines</mesh_term>
+    <mesh_term>Interferon-gamma</mesh_term>
   </intervention_browse>
   <!-- Results have not yet been posted for this study                                -->
 </clinical_study>

@@ -9,7 +9,7 @@ describe CalculatedValue do
     CalculatedValue.new.create_from(study).save!
     expect(study.completion_date_type).to eq('Anticipated')
     cv=study.calculated_value
-    expect(cv.has_us_facility).to eq(false)
+    expect(cv.has_us_facility).to eq(true)
     expect(cv.has_single_facility).to eq(true)
     expect(cv.actual_duration).to eq(nil)
     expect(cv.months_to_report_results).to eq(nil)
@@ -24,7 +24,7 @@ describe CalculatedValue do
 
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.eligibility.gender).to eq('Both')
+    expect(study.eligibility.gender).to eq('All')
 
     CalculatedValue.refresh_table_for_studies([nct_id])
     expect(study.start_month_year).to eq('July 2001')
@@ -69,8 +69,6 @@ describe CalculatedValue do
     expect(study2.start_month_year).to eq('March 2007')
     expect(study2.primary_completion_month_year).to eq('March 2012')
     expect(study2.first_received_results_date.strftime('%m/%d/%Y')).to eq('01/15/2014')
-    expect(cv.start_date.strftime('%m/%d/%Y')).to eq('03/01/2007')
-    expect(cv.primary_completion_date.strftime('%m/%d/%Y')).to eq('03/01/2012')
     expect(cv.were_results_reported).to eq(true)
 
     expect(cv.has_us_facility).to eq(false)

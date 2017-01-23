@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on December 30, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02317510</url>
   </required_header>
@@ -25,8 +25,6 @@
   </sponsors>
   <source>Lütfiye Nuri Burat Government Hospital</source>
   <oversight_info>
-    <authority>Turkey: Ethics Committee</authority>
-    <authority>Turkey: Ministry of Health</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -69,77 +67,70 @@
   <primary_completion_date type="Actual">February 2015</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Intervention Model: Parallel Assignment, Masking: Open Label</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <masking>Open Label</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Duration of Operation</measure>
     <time_frame>up to 2 hours</time_frame>
-    <safety_issue>No</safety_issue>
     <description>group 1:surgical operation time is 20 minutes minimum and maximum 55 minutes. Mean operation time 36.56 minutes group 2:surgical operation time is 24 minutes minimum and maximum 53 minutes. Mean operation time 30.75 minutes</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Post-operative Shoulder Pain</measure>
     <time_frame>from end of the operation to postoperative 3 days</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Group 1 and Group 2 Post-operative shoulder pain</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Duration of Anaesthesia</measure>
     <time_frame>up to 2 hours</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Group 1 minimum 42 minutes and maximum 83 minutes.mean duration of anaesthesia 60.17 and Group 2 minimum 45 minutes and maximum 82 minutes mean duration of anaesthesia 60.23</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Post-operative Abdominal Pain 2nd Hour</measure>
     <time_frame>pain at postoperative 2nd hour</time_frame>
-    <safety_issue>No</safety_issue>
     <description>VAS score ;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Post-operative Abdominal Pain 4th Hour</measure>
     <time_frame>pain at postoperative 4th hour</time_frame>
-    <safety_issue>No</safety_issue>
     <description>VAS score ;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Post-operative Abdominal Pain 6th Hour</measure>
     <time_frame>pain at postoperative 6th hour</time_frame>
-    <safety_issue>No</safety_issue>
     <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Post-operative Abdominal Pain 12th Hour</measure>
     <time_frame>pain at postoperative 12th hour</time_frame>
-    <safety_issue>No</safety_issue>
     <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Post-operative Abdominal Pain 24th Hour</measure>
     <time_frame>pain at postoperative 24th hour</time_frame>
-    <safety_issue>No</safety_issue>
     <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Intra-operative Shoulder Pain</measure>
     <time_frame>during operation time, up to 2 hours</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Group 1 and Group 2 Intra-operative shoulder pain</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Urinary Retention</measure>
     <time_frame>from end of the operation to postoperative 1 day</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Group 1 and Group 2 Urinary retention</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Nausea/Vomiting</measure>
     <time_frame>from end of the operation to postoperative 1 day</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Group 1 and group 2 nausea/vomiting</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Headache</measure>
     <time_frame>from end of the operation to postoperative 3 days</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Group 1 and Group 2 Headache</description>
   </secondary_outcome>
   <number_of_arms>2</number_of_arms>
@@ -180,7 +171,7 @@
           -  Gall bladder cancer
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>90 Years</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -220,13 +211,11 @@
   <keyword>Combined anesthesia</keyword>
   <keyword>General anesthesia</keyword>
   <keyword>Laparoscopic cholecystectomy</keyword>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Gallstones</mesh_term>
     <mesh_term>Cholelithiasis</mesh_term>
     <mesh_term>Cholecystolithiasis</mesh_term>
-    <mesh_term>Gallstones</mesh_term>
   </condition_browse>
   <intervention_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
@@ -434,7 +423,6 @@ I- Patient is a completely healthy fit patient. II- Patient has mild systemic di
         <title>Duration of Operation</title>
         <description>group 1:surgical operation time is 20 minutes minimum and maximum 55 minutes. Mean operation time 36.56 minutes group 2:surgical operation time is 24 minutes minimum and maximum 53 minutes. Mean operation time 30.75 minutes</description>
         <time_frame>up to 2 hours</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old.</population>
         <group_list>
           <group group_id="O1">
@@ -484,7 +472,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Duration of Anaesthesia</title>
         <description>Group 1 minimum 42 minutes and maximum 83 minutes.mean duration of anaesthesia 60.17 and Group 2 minimum 45 minutes and maximum 82 minutes mean duration of anaesthesia 60.23</description>
         <time_frame>up to 2 hours</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old.</population>
         <group_list>
           <group group_id="O1">
@@ -532,7 +519,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Post-operative Abdominal Pain 2nd Hour</title>
         <description>VAS score ;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
         <time_frame>pain at postoperative 2nd hour</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old.</population>
         <group_list>
           <group group_id="O1">
@@ -580,7 +566,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Post-operative Abdominal Pain 4th Hour</title>
         <description>VAS score ;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
         <time_frame>pain at postoperative 4th hour</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old.</population>
         <group_list>
           <group group_id="O1">
@@ -628,7 +613,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Post-operative Abdominal Pain 6th Hour</title>
         <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
         <time_frame>pain at postoperative 6th hour</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old.</population>
         <group_list>
           <group group_id="O1">
@@ -676,7 +660,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Post-operative Abdominal Pain 12th Hour</title>
         <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
         <time_frame>pain at postoperative 12th hour</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old.</population>
         <group_list>
           <group group_id="O1">
@@ -724,7 +707,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Post-operative Abdominal Pain 24th Hour</title>
         <description>VAS score;Explain to the person that each number describe the intensity of his pain. Number 0 describe very happy and no pain and no hurt at all. Number 1 hurts just a little bit. And as te numbers gradually increase pain will increase. Number 10 describes the worst pain in his life. Ask the patient to choose the number that best describes how he is feeling and his pain.</description>
         <time_frame>pain at postoperative 24th hour</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old.</population>
         <group_list>
           <group group_id="O1">
@@ -772,7 +754,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Post-operative Shoulder Pain</title>
         <description>Group 1 and Group 2 Post-operative shoulder pain</description>
         <time_frame>from end of the operation to postoperative 3 days</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old</population>
         <group_list>
           <group group_id="O1">
@@ -831,7 +812,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Intra-operative Shoulder Pain</title>
         <description>Group 1 and Group 2 Intra-operative shoulder pain</description>
         <time_frame>during operation time, up to 2 hours</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old.</population>
         <group_list>
           <group group_id="O1">
@@ -890,7 +870,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Urinary Retention</title>
         <description>Group 1 and Group 2 Urinary retention</description>
         <time_frame>from end of the operation to postoperative 1 day</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old</population>
         <group_list>
           <group group_id="O1">
@@ -949,7 +928,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Nausea/Vomiting</title>
         <description>Group 1 and group 2 nausea/vomiting</description>
         <time_frame>from end of the operation to postoperative 1 day</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old.</population>
         <group_list>
           <group group_id="O1">
@@ -1008,7 +986,6 @@ general anesthesia: General anesthesia for laparoscopic cholecystectomy</descrip
         <title>Headache</title>
         <description>Group 1 and Group 2 Headache</description>
         <time_frame>from end of the operation to postoperative 3 days</time_frame>
-        <safety_issue>No</safety_issue>
         <population>All patients have gall bladder disease who are between 18-90 years old.</population>
         <group_list>
           <group group_id="O1">

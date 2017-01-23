@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 29, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00734539</url>
   </required_header>
@@ -37,8 +35,6 @@
   </sponsors>
   <source>Duke University</source>
   <oversight_info>
-    <authority>United States: Food and Drug Administration</authority>
-    <authority>United States: Institutional Review Board</authority>
     <has_dmc>Yes</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -85,11 +81,16 @@
   <primary_completion_date type="Actual">December 2011</primary_completion_date>
   <phase>Phase 3</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Endpoint Classification: Efficacy Study, Intervention Model: Parallel Assignment, Masking: Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor), Primary Purpose: Prevention</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Prevention</primary_purpose>
+    <masking>Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor)</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Death or Candidiasis</measure>
     <time_frame>study day 49</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>The primary endpoint for the study is death or candidiasis.
 Death prior to study day 49.
 Candidiasis prior to study day 49
@@ -102,59 +103,48 @@ ii. Thrombocytopenia &lt;150,000/mm3 iii. Positive Candida culture from nonsteri
   <secondary_outcome>
     <measure>Neurodevelopmental Impairment</measure>
     <time_frame>18-22 months corrected gestational age</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Bayley-III cognition composite score of less than 70, blindness, deafness, or cerebral palsy</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Candidiasis</measure>
     <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Definite or probable</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Stage II or Higher Necrotizing Enterocolitis</measure>
     <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Focal Intestinal Perforation</measure>
     <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Chronic Lung Disease</measure>
     <time_frame>36 weeks corrected gestational age</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Patent Ductus Arterious Requiring Surgical Ligation</measure>
     <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Periventricular Leukomalacia</measure>
     <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Retinopathy of Prematurity Requiring Laser Surgery</measure>
     <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Length of Hospitalization</measure>
     <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-    <safety_issue>No</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Positive Bacterial Infection From a Sterile Site</measure>
     <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Intraventricular Hemorrhage</measure>
     <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Grade 3 or 4</description>
   </secondary_outcome>
   <number_of_arms>2</number_of_arms>
@@ -216,7 +206,7 @@ ii. Thrombocytopenia &lt;150,000/mm3 iii. Positive Candida culture from nonsteri
           -  triplet or higher multiple gestations
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>N/A</minimum_age>
     <maximum_age>5 Days</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -608,9 +598,6 @@ ii. Thrombocytopenia &lt;150,000/mm3 iii. Positive Candida culture from nonsteri
   <keyword>Prophylaxis</keyword>
   <keyword>Colonization</keyword>
   <keyword>Resistance</keyword>
-  <is_fda_regulated>Yes</is_fda_regulated>
-  <is_section_801>Yes</is_section_801>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Candidiasis</mesh_term>
@@ -739,184 +726,241 @@ placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle
           <description>Total of all reporting groups</description>
         </group>
       </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="188"/>
+            <count group_id="B2" value="173"/>
+            <count group_id="B3" value="361"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
       <measure_list>
-        <measure>
-          <title>Number of Participants</title>
-          <units>participants</units>
-          <param>Number</param>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="188"/>
-                <measurement group_id="B2" value="173"/>
-                <measurement group_id="B3" value="361"/>
-              </measurement_list>
-            </category>
-          </category_list>
-        </measure>
         <measure>
           <title>Age</title>
           <description>Postnatal age at randomization</description>
           <units>days</units>
           <param>Median</param>
           <dispersion>Inter-Quartile Range</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="3" lower_limit="3" upper_limit="4"/>
-                <measurement group_id="B2" value="3" lower_limit="2" upper_limit="4"/>
-                <measurement group_id="B3" value="3" lower_limit="2" upper_limit="4"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="3" lower_limit="3" upper_limit="4"/>
+                    <measurement group_id="B2" value="3" lower_limit="2" upper_limit="4"/>
+                    <measurement group_id="B3" value="3" lower_limit="2" upper_limit="4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Gender</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Female</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="109"/>
-                <measurement group_id="B2" value="98"/>
-                <measurement group_id="B3" value="207"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Male</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="79"/>
-                <measurement group_id="B2" value="75"/>
-                <measurement group_id="B3" value="154"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="109"/>
+                    <measurement group_id="B2" value="98"/>
+                    <measurement group_id="B3" value="207"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="79"/>
+                    <measurement group_id="B2" value="75"/>
+                    <measurement group_id="B3" value="154"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Ethnicity (NIH/OMB)</title>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>Hispanic or Latino</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="21"/>
-                <measurement group_id="B2" value="25"/>
-                <measurement group_id="B3" value="46"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Not Hispanic or Latino</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="167"/>
-                <measurement group_id="B2" value="148"/>
-                <measurement group_id="B3" value="315"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Unknown or Not Reported</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-                <measurement group_id="B2" value="0"/>
-                <measurement group_id="B3" value="0"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>Hispanic or Latino</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="21"/>
+                    <measurement group_id="B2" value="25"/>
+                    <measurement group_id="B3" value="46"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Not Hispanic or Latino</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="167"/>
+                    <measurement group_id="B2" value="148"/>
+                    <measurement group_id="B3" value="315"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Unknown or Not Reported</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Race (NIH/OMB)</title>
           <description>2 participants specified a race as &quot;other&quot; which is not pre-specified in this list of races.</description>
           <units>participants</units>
           <param>Number</param>
-          <category_list>
-            <category>
-              <sub_title>American Indian or Alaska Native</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="10"/>
-                <measurement group_id="B2" value="7"/>
-                <measurement group_id="B3" value="17"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Asian</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="3"/>
-                <measurement group_id="B2" value="0"/>
-                <measurement group_id="B3" value="3"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Native Hawaiian or Other Pacific Islander</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-                <measurement group_id="B2" value="0"/>
-                <measurement group_id="B3" value="0"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Black or African American</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="102"/>
-                <measurement group_id="B2" value="94"/>
-                <measurement group_id="B3" value="196"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>White</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="73"/>
-                <measurement group_id="B2" value="70"/>
-                <measurement group_id="B3" value="143"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>More than one race</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-                <measurement group_id="B2" value="0"/>
-                <measurement group_id="B3" value="0"/>
-              </measurement_list>
-            </category>
-            <category>
-              <sub_title>Unknown or Not Reported</sub_title>
-              <measurement_list>
-                <measurement group_id="B1" value="0"/>
-                <measurement group_id="B2" value="2"/>
-                <measurement group_id="B3" value="2"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <title>American Indian or Alaska Native</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="10"/>
+                    <measurement group_id="B2" value="7"/>
+                    <measurement group_id="B3" value="17"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Asian</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="3"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Native Hawaiian or Other Pacific Islander</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Black or African American</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="102"/>
+                    <measurement group_id="B2" value="94"/>
+                    <measurement group_id="B3" value="196"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>White</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="73"/>
+                    <measurement group_id="B2" value="70"/>
+                    <measurement group_id="B3" value="143"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>More than one race</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Unknown or Not Reported</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="2"/>
+                    <measurement group_id="B3" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>birth weight</title>
           <units>grams</units>
           <param>Median</param>
           <dispersion>Inter-Quartile Range</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="653" lower_limit="570" upper_limit="700"/>
-                <measurement group_id="B2" value="640" lower_limit="573" upper_limit="700"/>
-                <measurement group_id="B3" value="650" lower_limit="570" upper_limit="700"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="653" lower_limit="570" upper_limit="700"/>
+                    <measurement group_id="B2" value="640" lower_limit="573" upper_limit="700"/>
+                    <measurement group_id="B3" value="650" lower_limit="570" upper_limit="700"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
         <measure>
           <title>Gestational Age at Birth</title>
           <units>weeks</units>
           <param>Median</param>
           <dispersion>Inter-Quartile Range</dispersion>
-          <category_list>
-            <category>
-              <measurement_list>
-                <measurement group_id="B1" value="25" lower_limit="24" upper_limit="26"/>
-                <measurement group_id="B2" value="25" lower_limit="24" upper_limit="26"/>
-                <measurement group_id="B3" value="25" lower_limit="24" upper_limit="26"/>
-              </measurement_list>
-            </category>
-          </category_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="25" lower_limit="24" upper_limit="26"/>
+                    <measurement group_id="B2" value="25" lower_limit="24" upper_limit="26"/>
+                    <measurement group_id="B3" value="25" lower_limit="24" upper_limit="26"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
         </measure>
       </measure_list>
     </baseline>
@@ -934,7 +978,6 @@ i. &gt; 5 days of consecutive antifungal therapy
 AND both:
 ii. Thrombocytopenia &lt;150,000/mm3 iii. Positive Candida culture from nonsterile site (ETS, bag urine)</description>
         <time_frame>study day 49</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -948,23 +991,9 @@ fluconazole: 6 mg/kg PO/IV twice weekly x 14 doses</description>
 placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for 14 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Death or Candidiasis</title>
-            <description>The primary endpoint for the study is death or candidiasis.
+        <measure>
+          <title>Death or Candidiasis</title>
+          <description>The primary endpoint for the study is death or candidiasis.
 Death prior to study day 49.
 Candidiasis prior to study day 49
 Definite: isolation of Candida from normally sterile body fluid (blood, CSF, urine [obtained via sterile catheterization or suprapubic tap], peritoneal fluid).
@@ -972,25 +1001,38 @@ Probable:
 i. &gt; 5 days of consecutive antifungal therapy
 AND both:
 ii. Thrombocytopenia &lt;150,000/mm3 iii. Positive Candida culture from nonsterile site (ETS, bag urine)</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="31"/>
-                  <measurement group_id="O2" value="37"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="31"/>
+                    <measurement group_id="O2" value="37"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Neurodevelopmental Impairment</title>
         <description>Bayley-III cognition composite score of less than 70, blindness, deafness, or cerebral palsy</description>
         <time_frame>18-22 months corrected gestational age</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Attended the follow-up visit and had complete data on composite endpoint</population>
         <group_list>
           <group group_id="O1">
@@ -1004,42 +1046,41 @@ fluconazole: 6 mg/kg PO/IV twice weekly x 14 doses</description>
 placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for 14 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="87"/>
-                  <measurement group_id="O2" value="84"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Neurodevelopmental Impairment</title>
-            <description>Bayley-III cognition composite score of less than 70, blindness, deafness, or cerebral palsy</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="27"/>
-                  <measurement group_id="O2" value="23"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Neurodevelopmental Impairment</title>
+          <description>Bayley-III cognition composite score of less than 70, blindness, deafness, or cerebral palsy</description>
+          <population>Attended the follow-up visit and had complete data on composite endpoint</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="87"/>
+                <count group_id="O2" value="84"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="27"/>
+                    <measurement group_id="O2" value="23"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Candidiasis</title>
         <description>Definite or probable</description>
         <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -1053,41 +1094,40 @@ fluconazole: 6 mg/kg PO/IV twice weekly x 14 doses</description>
 placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for 14 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Candidiasis</title>
-            <description>Definite or probable</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="8"/>
-                  <measurement group_id="O2" value="19"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Candidiasis</title>
+          <description>Definite or probable</description>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="8"/>
+                    <measurement group_id="O2" value="19"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Stage II or Higher Necrotizing Enterocolitis</title>
         <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -1101,40 +1141,39 @@ fluconazole: 6 mg/kg PO/IV twice weekly x 14 doses</description>
 placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for 14 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Stage II or Higher Necrotizing Enterocolitis</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="25"/>
-                  <measurement group_id="O2" value="23"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Stage II or Higher Necrotizing Enterocolitis</title>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="25"/>
+                    <measurement group_id="O2" value="23"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Focal Intestinal Perforation</title>
         <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -1148,40 +1187,39 @@ fluconazole: 6 mg/kg PO/IV twice weekly x 14 doses</description>
 placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for 14 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Focal Intestinal Perforation</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="16"/>
-                  <measurement group_id="O2" value="9"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Focal Intestinal Perforation</title>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="16"/>
+                    <measurement group_id="O2" value="9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Chronic Lung Disease</title>
         <time_frame>36 weeks corrected gestational age</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -1195,40 +1233,39 @@ fluconazole: 6 mg/kg PO/IV twice weekly x 14 doses</description>
 placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for 14 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Chronic Lung Disease</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="114"/>
-                  <measurement group_id="O2" value="93"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Chronic Lung Disease</title>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="114"/>
+                    <measurement group_id="O2" value="93"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Patent Ductus Arterious Requiring Surgical Ligation</title>
         <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -1242,40 +1279,39 @@ fluconazole: 6 mg/kg PO/IV twice weekly x 14 doses</description>
 placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for 14 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Patent Ductus Arterious Requiring Surgical Ligation</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="46"/>
-                  <measurement group_id="O2" value="43"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Patent Ductus Arterious Requiring Surgical Ligation</title>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="46"/>
+                    <measurement group_id="O2" value="43"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Periventricular Leukomalacia</title>
         <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -1289,40 +1325,39 @@ fluconazole: 6 mg/kg PO/IV twice weekly x 14 doses</description>
 placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for 14 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Periventricular Leukomalacia</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="10"/>
-                  <measurement group_id="O2" value="6"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Periventricular Leukomalacia</title>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="10"/>
+                    <measurement group_id="O2" value="6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Retinopathy of Prematurity Requiring Laser Surgery</title>
         <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -1336,40 +1371,39 @@ fluconazole: 6 mg/kg PO/IV twice weekly x 14 doses</description>
 placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for 14 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Retinopathy of Prematurity Requiring Laser Surgery</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="29"/>
-                  <measurement group_id="O2" value="25"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Retinopathy of Prematurity Requiring Laser Surgery</title>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="29"/>
+                    <measurement group_id="O2" value="25"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Length of Hospitalization</title>
         <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-        <safety_issue>No</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -1383,41 +1417,40 @@ fluconazole: 6 mg/kg PO/IV twice weekly x 14 doses</description>
 placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for 14 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Length of Hospitalization</title>
-            <units>days</units>
-            <param>Median</param>
-            <dispersion>Inter-Quartile Range</dispersion>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="113" lower_limit="90" upper_limit="148"/>
-                  <measurement group_id="O2" value="107" lower_limit="88" upper_limit="128"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Length of Hospitalization</title>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>days</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="113" lower_limit="90" upper_limit="148"/>
+                    <measurement group_id="O2" value="107" lower_limit="88" upper_limit="128"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Positive Bacterial Infection From a Sterile Site</title>
         <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -1431,41 +1464,40 @@ fluconazole: 6mg/kg IV/PO twice weekly for a total of up to 12-13 doses</descrip
 placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly for a total of up to 12-13 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Positive Bacterial Infection From a Sterile Site</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="109"/>
-                  <measurement group_id="O2" value="100"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Positive Bacterial Infection From a Sterile Site</title>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="109"/>
+                    <measurement group_id="O2" value="100"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
         <title>Intraventricular Hemorrhage</title>
         <description>Grade 3 or 4</description>
         <time_frame>prior to hospital discharge, up to 15 ½ months</time_frame>
-        <safety_issue>Yes</safety_issue>
         <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
         <group_list>
           <group group_id="O1">
@@ -1479,35 +1511,35 @@ fluconazole: 6mg/kg IV/PO twice weekly for a total of up to 12-13 doses</descrip
 placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle and 1 part simethicone suspension (PO): will be given twice weekly PO/IV for a total of up to 12-13 doses</description>
           </group>
         </group_list>
-        <measure_list>
-          <measure>
-            <title>Number of Participants</title>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="188"/>
-                  <measurement group_id="O2" value="173"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-          <measure>
-            <title>Intraventricular Hemorrhage</title>
-            <description>Grade 3 or 4</description>
-            <units>participants</units>
-            <param>Number</param>
-            <category_list>
-              <category>
-                <measurement_list>
-                  <measurement group_id="O1" value="33"/>
-                  <measurement group_id="O2" value="31"/>
-                </measurement_list>
-              </category>
-            </category_list>
-          </measure>
-        </measure_list>
+        <measure>
+          <title>Intraventricular Hemorrhage</title>
+          <description>Grade 3 or 4</description>
+          <population>Modified intent-to-treat; only subjects who received at least one dose of study drug.</population>
+          <units>participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="188"/>
+                <count group_id="O2" value="173"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="33"/>
+                    <measurement group_id="O2" value="31"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
     </outcome_list>
 

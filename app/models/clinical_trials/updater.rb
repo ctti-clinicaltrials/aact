@@ -22,6 +22,8 @@ module ClinicalTrials
     end
 
     def run
+      old_level = ActiveRecord::Base.logger.level
+      ActiveRecord::Base.logger.level = 0
       if study_filter
         @client.populate_studies(study_filter)
         load_event.complete({:new_studies=> Study.count})
@@ -35,6 +37,7 @@ module ClinicalTrials
           incremental
         end
       end
+      ActiveRecord::Base.logger.level = old_level
     end
 
     def full
@@ -120,7 +123,6 @@ module ClinicalTrials
        [:outcome_measurements, :dispersion_type],
        [:outcomes, :dispersion_type],
        [:overall_officials, :affiliation],
-       [:oversight_authorities, :name],
        [:outcome_measurements, :category],
        [:outcome_measurements, :classification],
        [:reported_events, :event_type],

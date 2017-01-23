@@ -236,10 +236,6 @@ CREATE TABLE calculated_values (
     number_of_nsae_subjects integer,
     number_of_sae_subjects integer,
     registered_in_calendar_year integer,
-    start_date date,
-    verification_date date,
-    primary_completion_date date,
-    completion_date date,
     nlm_download_date date,
     actual_duration integer,
     were_results_reported boolean DEFAULT false,
@@ -478,7 +474,6 @@ CREATE TABLE design_outcomes (
     outcome_type character varying,
     measure text,
     time_frame text,
-    safety_issue character varying,
     population character varying,
     description text
 );
@@ -510,14 +505,15 @@ ALTER SEQUENCE design_outcomes_id_seq OWNED BY design_outcomes.id;
 CREATE TABLE designs (
     id integer NOT NULL,
     nct_id character varying,
-    description text,
-    primary_purpose character varying,
-    intervention_model character varying,
-    endpoint_classification character varying,
     allocation character varying,
+    intervention_model character varying,
+    intervention_model_description character varying,
+    primary_purpose character varying,
     time_perspective character varying,
-    observational_model character varying,
     masking character varying,
+    masking_description character varying,
+    description text,
+    observational_model character varying,
     subject_masked boolean,
     caregiver_masked boolean,
     investigator_masked boolean,
@@ -618,6 +614,8 @@ CREATE TABLE eligibilities (
     population text,
     sampling_method character varying,
     gender character varying,
+    gender_based boolean,
+    gender_description character varying,
     minimum_age character varying,
     maximum_age character varying,
     healthy_volunteers character varying,
@@ -982,7 +980,7 @@ CREATE TABLE outcome_analyses (
     id integer NOT NULL,
     nct_id character varying,
     outcome_id integer,
-    non_inferiority character varying,
+    non_inferiority_type character varying,
     non_inferiority_description text,
     param_type character varying,
     param_value numeric,
@@ -999,7 +997,8 @@ CREATE TABLE outcome_analyses (
     method_description text,
     description text,
     estimate_description text,
-    groups_description character varying
+    groups_description character varying,
+    other_analysis_description text
 );
 
 
@@ -1146,7 +1145,6 @@ CREATE TABLE outcomes (
     title text,
     description text,
     time_frame text,
-    safety_issue character varying,
     population text,
     anticipated_posting_month_year character varying,
     units character varying,
@@ -1205,36 +1203,6 @@ CREATE SEQUENCE overall_officials_id_seq
 --
 
 ALTER SEQUENCE overall_officials_id_seq OWNED BY overall_officials.id;
-
-
---
--- Name: oversight_authorities; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE oversight_authorities (
-    id integer NOT NULL,
-    nct_id character varying,
-    name character varying
-);
-
-
---
--- Name: oversight_authorities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE oversight_authorities_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: oversight_authorities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE oversight_authorities_id_seq OWNED BY oversight_authorities.id;
 
 
 --
@@ -1565,11 +1533,16 @@ CREATE TABLE studies (
     first_received_results_date date,
     received_results_disposit_date date,
     start_month_year character varying,
+    start_date_type character varying,
+    start_date date,
     verification_month_year character varying,
+    verification_date date,
     completion_month_year character varying,
     completion_date_type character varying,
+    completion_date date,
     primary_completion_month_year character varying,
     primary_completion_date_type character varying,
+    primary_completion_date date,
     target_duration character varying,
     study_type character varying,
     acronym character varying,
@@ -1587,9 +1560,15 @@ CREATE TABLE studies (
     number_of_groups integer,
     why_stopped character varying,
     has_expanded_access boolean,
+    expanded_access_type_individual boolean,
+    expanded_access_type_intermediate boolean,
+    expanded_access_type_treatment boolean,
     has_dmc boolean,
-    is_section_801 boolean,
-    is_fda_regulated boolean,
+    is_fda_regulated_drug boolean,
+    is_fda_regulated_device boolean,
+    is_unapproved_device boolean,
+    is_ppsd boolean,
+    is_us_export boolean,
     biospec_retention character varying,
     biospec_description text,
     plan_to_share_ipd character varying,
@@ -1969,13 +1948,6 @@ ALTER TABLE ONLY overall_officials ALTER COLUMN id SET DEFAULT nextval('overall_
 
 
 --
--- Name: oversight_authorities id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY oversight_authorities ALTER COLUMN id SET DEFAULT nextval('oversight_authorities_id_seq'::regclass);
-
-
---
 -- Name: participant_flows id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2331,14 +2303,6 @@ ALTER TABLE ONLY overall_officials
 
 
 --
--- Name: oversight_authorities oversight_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY oversight_authorities
-    ADD CONSTRAINT oversight_authorities_pkey PRIMARY KEY (id);
-
-
---
 -- Name: participant_flows participant_flows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2520,24 +2484,10 @@ CREATE INDEX index_calculated_values_on_number_of_facilities ON calculated_value
 
 
 --
--- Name: index_calculated_values_on_primary_completion_date; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_calculated_values_on_primary_completion_date ON calculated_values USING btree (primary_completion_date);
-
-
---
 -- Name: index_calculated_values_on_sponsor_type; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_calculated_values_on_sponsor_type ON calculated_values USING btree (sponsor_type);
-
-
---
--- Name: index_calculated_values_on_start_date; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_calculated_values_on_start_date ON calculated_values USING btree (start_date);
 
 
 --
@@ -2758,13 +2708,6 @@ CREATE INDEX index_overall_officials_on_nct_id ON overall_officials USING btree 
 
 
 --
--- Name: index_oversight_authorities_on_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_oversight_authorities_on_name ON oversight_authorities USING btree (name);
-
-
---
 -- Name: index_reported_events_on_event_type; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2849,6 +2792,13 @@ CREATE INDEX index_sponsors_on_name ON sponsors USING btree (name);
 
 
 --
+-- Name: index_studies_on_completion_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_completion_date ON studies USING btree (completion_date);
+
+
+--
 -- Name: index_studies_on_enrollment_type; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2891,6 +2841,13 @@ CREATE INDEX index_studies_on_phase ON studies USING btree (phase);
 
 
 --
+-- Name: index_studies_on_primary_completion_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_primary_completion_date ON studies USING btree (primary_completion_date);
+
+
+--
 -- Name: index_studies_on_primary_completion_date_type; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2909,6 +2866,20 @@ CREATE INDEX index_studies_on_received_results_disposit_date ON studies USING bt
 --
 
 CREATE INDEX index_studies_on_source ON studies USING btree (source);
+
+
+--
+-- Name: index_studies_on_start_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_start_date ON studies USING btree (start_date);
+
+
+--
+-- Name: index_studies_on_start_date_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_studies_on_start_date_type ON studies USING btree (start_date_type);
 
 
 --

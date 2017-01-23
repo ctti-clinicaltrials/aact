@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 11, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02708238</url>
   </required_header>
@@ -21,7 +21,6 @@
   </sponsors>
   <source>Federico II University</source>
   <oversight_info>
-    <authority>Italy: Ethics Committee</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -66,17 +65,21 @@
   <primary_completion_date type="Actual">July 2015</primary_completion_date>
   <phase>Phase 4</phase>
   <study_type>Interventional</study_type>
-  <study_design>Allocation: Randomized, Endpoint Classification: Safety/Efficacy Study, Intervention Model: Parallel Assignment, Masking: Open Label, Primary Purpose: Treatment</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Open Label</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Median Daily Crying Time at the End of the Treatment</measure>
     <time_frame>28 days of treatment</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Median daily crying at the end of treatment (day 28).</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Number of Responders</measure>
     <time_frame>28 days of treatment</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Number of responders defined as the number of patients who experienced a decrease in the daily average crying time of 50% from baseline</description>
   </secondary_outcome>
   <number_of_arms>3</number_of_arms>
@@ -138,7 +141,7 @@
           4. history of probiotic supplementation.
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>N/A</minimum_age>
     <maximum_age>4 Months</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -159,8 +162,6 @@
     <investigator_title>Researcher</investigator_title>
   </responsible_party>
   <keyword>Infantile colics</keyword>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Colic</mesh_term>
@@ -390,7 +391,6 @@ Simethicone</description>
         <title>Median Daily Crying Time at the End of the Treatment</title>
         <description>Median daily crying at the end of treatment (day 28).</description>
         <time_frame>28 days of treatment</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Group A</title>
@@ -445,7 +445,6 @@ Simethicone</description>
         <title>Number of Responders</title>
         <description>Number of responders defined as the number of patients who experienced a decrease in the daily average crying time of 50% from baseline</description>
         <time_frame>28 days of treatment</time_frame>
-        <safety_issue>No</safety_issue>
         <group_list>
           <group group_id="O1">
             <title>Group A</title>

@@ -1,8 +1,8 @@
 require 'csv'
 class Study < ActiveRecord::Base
   include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
- # index_name([Rails.env,base_class.to_s.pluralize.underscore].join('_'))
+  # index_name([Rails.env,base_class.to_s.pluralize.underscore].join('_'))
+  #  include Elasticsearch::Model::Callbacks
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
 
@@ -25,7 +25,7 @@ class Study < ActiveRecord::Base
   end
 
   scope :with_one_to_ones,   -> { joins(:eligibility, :brief_summary, :design, :detailed_description) }
-  scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :oversight_authorities, :responsible_parties) }
+  scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :responsible_parties) }
   self.primary_key = 'nct_id'
 
   has_one  :brief_summary,         :foreign_key => 'nct_id', :dependent => :delete
@@ -62,7 +62,6 @@ class Study < ActiveRecord::Base
   has_many :outcome_analyses,      :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :outcome_measurements,  :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', :dependent => :delete_all
-  has_many :oversight_authorities, :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :references,            :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :reported_events,       :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :responsible_parties,   :foreign_key => 'nct_id', :dependent => :delete_all
@@ -113,7 +112,6 @@ class Study < ActiveRecord::Base
     Link.create_all_from(opts)
     Milestone.create_all_from(opts)
     Outcome.create_all_from(opts)
-    OversightAuthority.create_all_from(opts)
     OverallOfficial.create_all_from(opts)
     DesignOutcome.create_all_from(opts)
     ReportedEvent.create_all_from(opts)
@@ -201,6 +199,11 @@ class Study < ActiveRecord::Base
       :completion_month_year => get('completion_date'),
       :primary_completion_month_year => get('primary_completion_date'),
 
+      :start_date                  =>  get('start_date').try(:to_date),
+      :verification_date           =>  get('verification_date').try(:to_date),
+      :completion_date             =>  get('completion_date').try(:to_date),
+      :primary_completion_date     =>  get('primary_completion_date').try(:to_date),
+
       :first_received_date => get_date(get('firstreceived_date')),
       :first_received_results_date => get_date(get('firstreceived_results_date')),
       :last_changed_date => get_date(get('lastchanged_date')),
@@ -221,20 +224,26 @@ class Study < ActiveRecord::Base
       :target_duration => get('target_duration'),
       :enrollment => get('enrollment'),
       :biospec_description =>get_text('biospec_descr'),
+      :start_date_type => get_type('start_date'),
       :primary_completion_date_type => get_type('primary_completion_date'),
       :completion_date_type => get_type('completion_date'),
       :enrollment_type => get_type('enrollment'),
       :study_type => get('study_type'),
       :biospec_retention =>get('biospec_retention'),
       :limitations_and_caveats  =>xml.xpath('//limitations_and_caveats').text,
-      :is_section_801 => get_boolean('is_section_801'),
-      :is_fda_regulated => get_boolean('is_fda_regulated'),
+      :is_fda_regulated_drug =>get_boolean('//is_fda_regulated_drug'),
+      :is_fda_regulated_device =>get_boolean('//is_fda_regulated_device'),
+      :is_unapproved_device =>get_boolean('//is_unapproved_device'),
+      :is_ppsd =>get_boolean('//is_ppsd'),
+      :is_us_export  =>get_boolean('//is_us_export'),
       :plan_to_share_ipd => get('patient_data/sharing_ipd'),
       :plan_to_share_ipd_description => get('patient_data/ipd_description'),
-      :has_expanded_access => get_boolean('has_expanded_access'),
-      :has_dmc => get_boolean('has_dmc'),
+      :has_expanded_access => get_boolean('//has_expanded_access'),
+      :expanded_access_type_individual => get_boolean('//expanded_access_info/exp_acc_type_individual'),
+      :expanded_access_type_intermediate => get_boolean('//expanded_access_info/exp_acc_type_intermediate'),
+      :expanded_access_type_treatment => get_boolean('//expanded_access_info/exp_acc_type_treatment'),
+      :has_dmc => get_boolean('//has_dmc'),
       :why_stopped =>get('why_stopped')
-
     }
   end
 
@@ -260,8 +269,10 @@ class Study < ActiveRecord::Base
   end
 
   def get_boolean(label)
-    val=xml.xpath("//#{label}").try(:text)
-    val.downcase=='yes'||val.downcase=='y'||val.downcase=='true' if !val.blank?
+    val=xml.xpath("#{label}").try(:text)
+    return nil if val.blank?
+    return true if val.downcase=='yes'||val.downcase=='y'||val.downcase=='true'
+    return false if val.downcase=='no'||val.downcase=='n'||val.downcase=='false'
   end
 
   def get_date(str)

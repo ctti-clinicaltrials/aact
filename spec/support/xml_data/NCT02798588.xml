@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 16, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02798588</url>
   </required_header>
@@ -24,7 +22,6 @@
   </sponsors>
   <source>Hospices Civils de Lyon</source>
   <oversight_info>
-    <authority>France: Agence Nationale de Sécurité du Médicament et des produits de santé</authority>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -75,42 +72,40 @@
     </textblock>
   </brief_summary>
   <overall_status>Not yet recruiting</overall_status>
-  <start_date>June 2016</start_date>
+  <start_date>February 2017</start_date>
   <completion_date type="Anticipated">June 2018</completion_date>
   <primary_completion_date type="Anticipated">June 2018</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Interventional</study_type>
-  <study_design>Endpoint Classification: Safety/Efficacy Study, Intervention Model: Single Group Assignment, Masking: Double Blind (Caregiver, Investigator, Outcomes Assessor)</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <intervention_model>Single Group Assignment</intervention_model>
+    <masking>Double Blind (Caregiver, Investigator, Outcomes Assessor)</masking>
+  </study_design_info>
   <primary_outcome>
     <measure>Analysis of feasibility (pilot study) with Number of patients included during a 12-months period</measure>
     <time_frame>at 12 months</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Analysis of feasibility (pilot study) with ratio of patient included vs patient admissible according to the screening</measure>
     <time_frame>at 12 months</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Analysis of feasibility (pilot study) with respect of deadline for completion of PET MRI</measure>
     <time_frame>at 12 months</time_frame>
-    <safety_issue>No</safety_issue>
   </primary_outcome>
   <primary_outcome>
     <measure>Analysis of security (pilot study) with tolerance of the PET-MRI</measure>
     <time_frame>at 12 months</time_frame>
-    <safety_issue>Yes</safety_issue>
   </primary_outcome>
   <secondary_outcome>
     <measure>Unfavorable clinical evolution towards awareness (dichotomic criteria : absence of awareness with functional communication)</measure>
     <time_frame>at 12 month</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Building a prognostic tool including miscellaneous parameters (clinical, biological, electrophysiological, metabolic PET and multimodal MRI) for the prediction of an unfavourable outcome (death, vegetative state, minimally conscious state) at 1 year after a non-anoxic brain injury (focal or multifocal; either traumatic or vascular causes)</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Unfavorable clinical evolution in absence of awareness (ordinal criteria within unfavorable outcome) with Coma Recovery Scale-Revised</measure>
     <time_frame>at 12 month</time_frame>
-    <safety_issue>Yes</safety_issue>
     <description>Defining an association of criteria, which are available in the 1st month after coma, that are able to predict at 1 year with a high positive predictive value the level of disorder of consciousness in the subgroup with unfavourable outcome in analyzing (according to Coma Recovery Scale-Revised) the evolution of :
 vegetative state patients
 minimally-conscious patients
@@ -119,7 +114,6 @@ dead patients</description>
   <secondary_outcome>
     <measure>Functional clinical evolution in presence of awareness (ordinal criteria within favorable outcome) according to Glasgow Outcome Scale (GOS)</measure>
     <time_frame>at 12 month</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Defining an association of criteria which are available in the 1st month after coma, that are able to predict at 1 year with a high positive predictive value the quality of functional outcome in the subgroup with favourable outcome in analyzing the level of autonomy according to Glasgow Outcome Scale (GOS)</description>
   </secondary_outcome>
   <number_of_arms>1</number_of_arms>
@@ -177,7 +171,7 @@ dead patients</description>
          10. Absence of relatives to give written consent
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>75 Years</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -237,8 +231,8 @@ dead patients</description>
   <location_countries>
     <country>France</country>
   </location_countries>
-  <verification_date>May 2016</verification_date>
-  <lastchanged_date>June 8, 2016</lastchanged_date>
+  <verification_date>December 2016</verification_date>
+  <lastchanged_date>December 23, 2016</lastchanged_date>
   <firstreceived_date>May 27, 2016</firstreceived_date>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
@@ -249,8 +243,6 @@ dead patients</description>
   <keyword>functional imaging</keyword>
   <keyword>PET-MRI</keyword>
   <keyword>electrophysiology</keyword>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Coma</mesh_term>

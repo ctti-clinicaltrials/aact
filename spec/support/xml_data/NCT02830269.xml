@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clinical_study>
   <!-- This xml conforms to an XML Schema at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.xsd
- and an XML DTD at:
-    https://clinicaltrials.gov/ct2/html/images/info/public.dtd -->
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on July 17, 2016</download_date>
+    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02830269</url>
   </required_header>
@@ -24,7 +22,6 @@
   </sponsors>
   <source>University Hospital, Montpellier</source>
   <oversight_info>
-    <authority>France: Agence Nationale de Sécurité du Médicament et des produits de santé</authority>
     <has_dmc>Yes</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -52,23 +49,24 @@
       the third ventricle diameter measurements by transcranial Doppler
     </textblock>
   </detailed_description>
-  <overall_status>Not yet recruiting</overall_status>
-  <start_date>July 2016</start_date>
-  <completion_date type="Anticipated">June 2018</completion_date>
-  <primary_completion_date type="Anticipated">December 2017</primary_completion_date>
+  <overall_status>Recruiting</overall_status>
+  <start_date>August 2016</start_date>
+  <completion_date type="Anticipated">August 2018</completion_date>
+  <primary_completion_date type="Anticipated">February 2018</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Observational</study_type>
-  <study_design>Time Perspective: Prospective</study_design>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <time_perspective>Prospective</time_perspective>
+  </study_design_info>
   <primary_outcome>
     <measure>Third ventricle diameter (average +/- standard deviation)</measure>
     <time_frame>Through study completion (30 months)</time_frame>
-    <safety_issue>No</safety_issue>
     <description>Spearman's test measuring the correlation coefficient between the third ventricle diameter measured by the expert using the ultrasonography and the third ventricle diameter measured by CT scan.</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Residents' learning curve</measure>
     <time_frame>24 months</time_frame>
-    <safety_issue>No</safety_issue>
     <description>The learning curve will be determined by the change in the third ventricle diameter's difference obtained by the expert and the resident, divided by the diameter obtained by the expert reported on the Y-axis and the number of measures done by the resident reported on the X-axis. Number of measures to be done will be determined when the curve reached the zero.</description>
   </secondary_outcome>
   <number_of_groups>1</number_of_groups>
@@ -104,7 +102,7 @@
           -  Opposition to participate by the patient or a next of kin
       </textblock>
     </criteria>
-    <gender>Both</gender>
+    <gender>All</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>100 Years</maximum_age>
     <healthy_volunteers>No</healthy_volunteers>
@@ -134,8 +132,27 @@
     <phone>+33467337271</phone>
     <email>pf-perrigault@chu-montpellier.fr</email>
   </overall_contact_backup>
-  <verification_date>May 2016</verification_date>
-  <lastchanged_date>July 8, 2016</lastchanged_date>
+  <location>
+    <facility>
+      <name>UHMontpellier</name>
+      <address>
+        <city>Montpellier</city>
+        <zip>34295</zip>
+        <country>France</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>GERALD CHANQUES, MD PHD</last_name>
+      <phone>+33467337271</phone>
+      <email>g-chanques@chu-montpellier.fr</email>
+    </contact>
+  </location>
+  <location_countries>
+    <country>France</country>
+  </location_countries>
+  <verification_date>November 2016</verification_date>
+  <lastchanged_date>November 17, 2016</lastchanged_date>
   <firstreceived_date>June 10, 2016</firstreceived_date>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
@@ -144,8 +161,6 @@
   <keyword>Third ventricle</keyword>
   <keyword>Computer Tomography</keyword>
   <keyword>Transcranial Doppler ultasonography</keyword>
-  <is_fda_regulated>No</is_fda_regulated>
-  <has_expanded_access>No</has_expanded_access>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
     <mesh_term>Cerebrovascular Disorders</mesh_term>

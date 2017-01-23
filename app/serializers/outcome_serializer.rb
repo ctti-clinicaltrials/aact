@@ -4,7 +4,6 @@ class OutcomeSerializer < ActiveModel::Serializer
       :description,
       :measure,
       :time_frame,
-      :safety_issue,
       :population,
       :participant_count,
       :anticipated_posting_month_year
