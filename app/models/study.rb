@@ -8,7 +8,7 @@ class Study < ActiveRecord::Base
 
   def as_indexed_json(options = {})
     self.as_json({
-      only: [:nct_id, :acronym, :brief_title, :overall_status, :phase],
+      only: [:nct_id, :acronym, :brief_title, :overall_status, :phase, :start_date, :primary_completion_date],
       include: {
         browse_conditions: { only: :mesh_term },
         browse_interventions: { only: :mesh_term },
