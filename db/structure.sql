@@ -1206,36 +1206,6 @@ ALTER SEQUENCE overall_officials_id_seq OWNED BY overall_officials.id;
 
 
 --
--- Name: oversight_authorities; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE oversight_authorities (
-    id integer NOT NULL,
-    nct_id character varying,
-    name character varying
-);
-
-
---
--- Name: oversight_authorities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE oversight_authorities_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: oversight_authorities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE oversight_authorities_id_seq OWNED BY oversight_authorities.id;
-
-
---
 -- Name: participant_flows; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1978,13 +1948,6 @@ ALTER TABLE ONLY overall_officials ALTER COLUMN id SET DEFAULT nextval('overall_
 
 
 --
--- Name: oversight_authorities id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY oversight_authorities ALTER COLUMN id SET DEFAULT nextval('oversight_authorities_id_seq'::regclass);
-
-
---
 -- Name: participant_flows id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2337,14 +2300,6 @@ ALTER TABLE ONLY outcomes
 
 ALTER TABLE ONLY overall_officials
     ADD CONSTRAINT overall_officials_pkey PRIMARY KEY (id);
-
-
---
--- Name: oversight_authorities oversight_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY oversight_authorities
-    ADD CONSTRAINT oversight_authorities_pkey PRIMARY KEY (id);
 
 
 --
@@ -2750,13 +2705,6 @@ CREATE INDEX index_overall_officials_on_affiliation ON overall_officials USING b
 --
 
 CREATE INDEX index_overall_officials_on_nct_id ON overall_officials USING btree (nct_id);
-
-
---
--- Name: index_oversight_authorities_on_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_oversight_authorities_on_name ON oversight_authorities USING btree (name);
 
 
 --

@@ -45,7 +45,6 @@ class CreateIndices < ActiveRecord::Migration
     add_index :interventions, :intervention_type
     add_index :milestones, :period
     add_index :overall_officials, :affiliation
-    add_index :oversight_authorities, :name
     add_index :outcome_analyses, :dispersion_type
     add_index :outcome_analyses, :param_type
     add_index :outcome_measurements, :dispersion_type
