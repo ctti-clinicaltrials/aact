@@ -102,7 +102,7 @@ module AACT2
         optional :term, type: String, desc: 'Search Term'
       end
       paginate page: 1
-      paginate per_page: 100
+      paginate per_page: 500
       get '/studies', root: false do
         study_params = declared(params, include_missing: false)
         if !study_params[:term].nil?
