@@ -7,7 +7,7 @@ class Study < ActiveRecord::Base
   end
 
   scope :with_one_to_ones,   -> { joins(:eligibility, :brief_summary, :design, :detailed_description) }
-  scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :oversight_authorities, :responsible_parties) }
+  scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :responsible_parties) }
   self.primary_key = 'nct_id'
 
   has_one  :brief_summary,         :foreign_key => 'nct_id', :dependent => :delete
@@ -44,7 +44,6 @@ class Study < ActiveRecord::Base
   has_many :outcome_analyses,      :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :outcome_measurements,  :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', :dependent => :delete_all
-  has_many :oversight_authorities, :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :references,            :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :reported_events,       :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :responsible_parties,   :foreign_key => 'nct_id', :dependent => :delete_all
@@ -95,7 +94,6 @@ class Study < ActiveRecord::Base
     Link.create_all_from(opts)
     Milestone.create_all_from(opts)
     Outcome.create_all_from(opts)
-    OversightAuthority.create_all_from(opts)
     OverallOfficial.create_all_from(opts)
     DesignOutcome.create_all_from(opts)
     ReportedEvent.create_all_from(opts)

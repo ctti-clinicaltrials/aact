@@ -120,7 +120,6 @@ module ClinicalTrials
        [:outcome_measurements, :dispersion_type],
        [:outcomes, :dispersion_type],
        [:overall_officials, :affiliation],
-       [:oversight_authorities, :name],
        [:outcome_measurements, :category],
        [:outcome_measurements, :classification],
        [:reported_events, :event_type],

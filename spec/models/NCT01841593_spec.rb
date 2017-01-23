@@ -15,7 +15,6 @@ describe Study do
     expect(study.is_unapproved_device).to be(false)
     expect(study.is_ppsd).to be(false)
     expect(study.is_us_export).to be(true)
-    expect(study.has('oversight_authorities','United Kingdom: Medicines and Healthcare Products Regulatory Agency')).to eq(true)
     expect(study.sponsors.size).to eq(1)
     expect(study.pick('sponsors','St Stephens Aids Trust').agency_class).to eq('Other')
     expect(study.pick('sponsors','St Stephens Aids Trust').lead_or_collaborator).to eq('lead')

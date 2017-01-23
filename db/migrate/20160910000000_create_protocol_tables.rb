@@ -177,11 +177,6 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string "affiliation"
     end
 
-    create_table "oversight_authorities", force: :cascade do |t|
-      t.string "nct_id"
-      t.string "name"
-   end
-
     create_table "responsible_parties", force: :cascade do |t|
       t.string "nct_id"
       t.string "responsible_party_type"
