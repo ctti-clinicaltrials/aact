@@ -4,10 +4,10 @@ class StudySerializer < ActiveModel::Serializer
             :last_changed_date,
             :first_received_results_date,
             :received_results_disposit_date,
-            :start_month_year,
-            :verification_month_year,
-            :primary_completion_month_year,
-            :completion_month_year,
+            :start_date,
+            :verification_date,
+            :primary_completion_date,
+            :completion_date,
             :nlm_download_date_description,
             :completion_date_type,
             :primary_completion_date_type,
@@ -35,9 +35,7 @@ class StudySerializer < ActiveModel::Serializer
             :biospec_retention,
             :brief_title,
             :official_title,
-            :biospec_description,
-            :created_at,
-            :updated_at
+            :biospec_description
 
   def attributes
     super.merge(one_to_one_relationships).merge(organization_relationships)

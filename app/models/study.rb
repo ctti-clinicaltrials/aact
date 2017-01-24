@@ -2,19 +2,17 @@ require 'csv'
 class Study < ActiveRecord::Base
   include Elasticsearch::Model
   # index_name([Rails.env,base_class.to_s.pluralize.underscore].join('_'))
-  #  include Elasticsearch::Model::Callbacks
+  #include Elasticsearch::Model::Callbacks
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
 
   def as_indexed_json(options = {})
     self.as_json({
-      only: [:nct_id, :acronym, :baseline_population, :brief_title, :official_title, :overall_status, :phase, :limitations_and_caveats],
+      only: [:nct_id, :acronym, :brief_title, :overall_status, :phase, :start_date, :primary_completion_date],
       include: {
-        detailed_description: { only: :description },
-        brief_summary: { only: :description },
-        keywords: { only: :name },
         browse_conditions: { only: :mesh_term },
         browse_interventions: { only: :mesh_term },
+        keywords: { only: :name },
         sponsors: { only: :name },
       }
     })

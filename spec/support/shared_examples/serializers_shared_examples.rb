@@ -17,12 +17,11 @@ shared_examples 'a serialized study' do
       first_received_results_date
       received_results_disposit_date
 
-      start_month_year
-      verification_month_year
-      primary_completion_month_year
-      completion_month_year
+      start_date
+      verification_date
+      primary_completion_date
+      completion_date
       nlm_download_date_description
-      completion_month_year
       completion_date_type
       primary_completion_date_type
       study_type
@@ -48,8 +47,6 @@ shared_examples 'a serialized study' do
       brief_title
       official_title
       biospec_description
-      created_at
-      updated_at
     ).each do |expected_key|
       expect(serialized_study).to have_key(expected_key)
     end
@@ -67,10 +64,10 @@ shared_examples 'a serialized study' do
       end
     end
 
-    expect(serialized_study['start_month_year']).to eq(resource.start_month_year)
-    expect(serialized_study['verification_month_year']).to eq(resource.verification_month_year)
-    expect(serialized_study['primary_completion_month_year']).to eq(resource.primary_completion_month_year)
-    expect(serialized_study['completion_month_year']).to eq(resource.completion_month_year)
+    expect(serialized_study['start_date']).to eq(resource.start_date.strftime('%Y-%m-%d'))
+    expect(serialized_study['verification_date']).to eq(resource.verification_date.strftime('%Y-%m-%d'))
+    expect(serialized_study['primary_completion_date']).to eq(resource.primary_completion_date.strftime('%Y-%m-%d'))
+    expect(serialized_study['completion_date']).to eq(resource.completion_date.strftime('%Y-%m-%d'))
     expect(serialized_study['nlm_download_date_description']).to eq(resource.nlm_download_date_description)
     expect(serialized_study['completion_date_type']).to eq(resource.completion_date_type)
     expect(serialized_study['primary_completion_date_type']).to eq(resource.primary_completion_date_type)
@@ -97,7 +94,5 @@ shared_examples 'a serialized study' do
     expect(serialized_study['brief_title']).to eq(resource.brief_title)
     expect(serialized_study['official_title']).to eq(resource.official_title)
     expect(serialized_study['biospec_description']).to eq(resource.biospec_description)
-    expect(DateTime.parse(serialized_study['created_at']).to_i).to eq(resource.created_at.to_i)
-    expect(DateTime.parse(serialized_study['updated_at']).to_i).to eq(resource.updated_at.to_i)
   end
 end

@@ -58,9 +58,11 @@ module ClinicalTrials
         @client.populate_studies
         finalize_full_load
       rescue  Exception => e
-        puts "Full load failed:  #{e}"
+        study_counts[:processed]=Study.count
+        puts ">>>>>>>>>>> Full load failed:  #{e}"
         grant_db_privs
         load_event.complete({:status=>'failed', :problems=> e.to_s, :study_counts=> study_counts})
+        send_notification
       end
     end
 
@@ -92,9 +94,7 @@ module ClinicalTrials
        [:calculated_values, :actual_duration],
        [:calculated_values, :months_to_report_results],
        [:calculated_values, :number_of_facilities],
-       [:calculated_values, :primary_completion_date],
        [:calculated_values, :sponsor_type],
-       [:calculated_values, :start_date],
        [:central_contacts, :contact_type],
        [:design_groups, :group_type],
        [:design_outcomes, :outcome_type],
