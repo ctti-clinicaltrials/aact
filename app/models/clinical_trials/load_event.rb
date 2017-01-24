@@ -6,6 +6,7 @@ module ClinicalTrials
       return if self.completed_at.present?
       sc=params[:study_counts]
       self.status  = (params[:status] ?  params[:status] : 'complete')
+      self.problems = params[:problems]
       self.completed_at = Time.now
       self.load_time = calculate_load_time
       if sc
