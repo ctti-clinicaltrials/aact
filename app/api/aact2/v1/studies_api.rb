@@ -10,13 +10,13 @@ module AACT2
           {
             nct_id: "NCT00836407",
             first_received_date: "2009-02-03",
+            start_date: "2/1/2009",
             verification_date: "2013-10-01",
             last_changed_date: "2013-10-16",
             primary_completion_date: "2012-07-01",
             completion_date: "2012-07-01",
             first_received_results_date: "2013-10-16",
             received_results_disposit_date: null,
-            start_date: "2/1/2009",
             verification_date: "10/1/2013",
             primary_completion_month_day: "July 2012",
             completion_month_day: "July 2012",
@@ -131,10 +131,9 @@ module AACT2
               completion_date: "2012-07-01",
               first_received_results_date: "2013-10-16",
               download_date: null,
-              start_month_year: "February 2009",
-              verification_month_year: "October 2013",
-              primary_completion_month_year: "July 2012",
-              completion_month_year: "July 2012",
+              verification_date: "2013-10-01",
+              primary_completion_date: "2012-07-01",
+              completion_date: "2012-07-01",
               nlm_download_date_description: "ClinicalTrials.gov processed this data on June 19, 2016",
               completion_date_type: "Actual",
               primary_completion_date_type: "Actual",
@@ -158,9 +157,7 @@ module AACT2
               is_fda_regulated_drug: true,
               brief_title: "Ipilimumab +/- Vaccine Therapy in Treating Patients With Locally Advanced, Unresectable or Metastatic Pancreatic Cancer",
               official_title: "A Phase Ib Trial Evaluating the Safety and Feasibility of Ipilimumab (BMS-734016) Alone or in Combination With Allogeneic Pancreatic Tumor Cells Transfected With a GM-CSF Gene for the Treatment of Locally Advanced, Unresectable or Metastatic Pancreatic Adenocarcinoma",
-              biospec_description: "",
-              created_at: "2016-06-20T21:32:48Z",
-              updated_at: "2016-06-20T21:32:48Z"
+              biospec_description: ""
             }
           }
           </code>
