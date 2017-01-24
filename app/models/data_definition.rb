@@ -27,9 +27,13 @@ class DataDefinition < ActiveRecord::Base
     rows=where("column_name='id'")
     populate_from_file if rows.size==0
     rows.each{|row|
-      results=ActiveRecord::Base.connection.execute("select count(*) from #{row.table_name}")
-      row.row_count=results.getvalue(0,0) if results.ntuples == 1
-      row.save
+      begin
+        results=ActiveRecord::Base.connection.execute("select count(*) from #{row.table_name}")
+        row.row_count=results.getvalue(0,0) if results.ntuples == 1
+        row.save
+      rescue
+        puts ">>>>  could not get row count for #{row.table_name}"
+      end
     }
     # Studies table is an exception - primary key is nct_id
     row=where("table_name='studies' and column_name='nct_id'").first
@@ -43,23 +47,27 @@ class DataDefinition < ActiveRecord::Base
     rows=where("column_name='id'")
     populate_from_file if rows.size==0
     enums.each{|array|
-      results=ActiveRecord::Base.connection.execute("
+      begin
+        results=ActiveRecord::Base.connection.execute("
                     SELECT DISTINCT #{array.last}, COUNT(*) AS cnt
                       FROM #{array.first}
                      GROUP BY #{array.last}
                      ORDER BY cnt ASC")
-      hash={}
-      cntr=results.ntuples - 1
-      while cntr >= 0 do
-        val=results.getvalue(cntr,0).to_s
-        val='-null-' if val.size==0
-        val_count=results.getvalue(cntr,1).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
-        hash[val]=val_count
-        cntr=cntr-1
+        hash={}
+        cntr=results.ntuples - 1
+        while cntr >= 0 do
+          val=results.getvalue(cntr,0).to_s
+          val='-null-' if val.size==0
+          val_count=results.getvalue(cntr,1).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+          hash[val]=val_count
+          cntr=cntr-1
+        end
+        row=where("table_name=? and column_name=?",array.first,array.last).first
+        row.enumerations=hash.to_json
+        row.save
+      rescue
+        puts ">>>>  could not determine enumerations for #{array.first}  #{array.last}"
       end
-      row=where("table_name=? and column_name=?",array.first,array.last).first
-      row.enumerations=hash.to_json
-      row.save
     }
   end
 
