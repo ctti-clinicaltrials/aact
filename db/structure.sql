@@ -513,7 +513,6 @@ CREATE TABLE designs (
     masking character varying,
     masking_description text,
     intervention_model_description text,
-    description text,
     subject_masked boolean,
     caregiver_masked boolean,
     investigator_masked boolean,
@@ -611,15 +610,15 @@ ALTER SEQUENCE drop_withdrawals_id_seq OWNED BY drop_withdrawals.id;
 CREATE TABLE eligibilities (
     id integer NOT NULL,
     nct_id character varying,
-    population text,
     sampling_method character varying,
     gender character varying,
-    gender_based boolean,
-    gender_description character varying,
     minimum_age character varying,
     maximum_age character varying,
     healthy_volunteers character varying,
-    criteria text
+    population text,
+    criteria text,
+    gender_description text,
+    gender_based boolean
 );
 
 
@@ -995,9 +994,8 @@ CREATE TABLE outcome_analyses (
     p_value_description character varying,
     method character varying,
     method_description text,
-    description text,
     estimate_description text,
-    groups_description character varying,
+    groups_description text,
     other_analysis_description text
 );
 
