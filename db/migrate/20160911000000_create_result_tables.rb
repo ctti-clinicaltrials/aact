@@ -174,9 +174,8 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "p_value_description"
       t.string  "method"
       t.text    "method_description"
-      t.text    "description"
       t.text    "estimate_description"
-      t.string  "groups_description"
+      t.text    "groups_description"
       t.text    "other_analysis_description"
     end
 
