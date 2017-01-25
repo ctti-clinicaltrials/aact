@@ -81,13 +81,12 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string  "nct_id"
       t.string  "allocation"
       t.string  "intervention_model"
-      t.string  "intervention_model_description"
+      t.string  "observational_model"
       t.string  "primary_purpose"
       t.string  "time_perspective"
       t.string  "masking"
-      t.string  "masking_description"
-      t.text    "description"
-      t.string  "observational_model"
+      t.text    "masking_description"
+      t.text    "intervention_model_description"
       t.boolean "subject_masked"
       t.boolean "caregiver_masked"
       t.boolean "investigator_masked"
@@ -101,15 +100,15 @@ class CreateProtocolTables < ActiveRecord::Migration
 
     create_table "eligibilities", force: :cascade do |t|
       t.string "nct_id"
-      t.text   "population"
       t.string "sampling_method"
       t.string "gender"
-      t.boolean "gender_based"
-      t.string "gender_description"
       t.string "minimum_age"
       t.string "maximum_age"
       t.string "healthy_volunteers"
+      t.text   "population"
       t.text   "criteria"
+      t.text   "gender_description"
+      t.boolean "gender_based"
     end
 
     create_table "facilities", force: :cascade do |t|

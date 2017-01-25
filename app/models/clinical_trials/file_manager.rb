@@ -40,6 +40,10 @@ module ClinicalTrials
       "#{server}/documentation/aact_data_definitions.xlsx"
     end
 
+    def self.default_data_definitions
+      Roo::Spreadsheet.open(self.data_dictionary)
+    end
+
     def self.get_file(params)
       file_name=params[:file_name]
       directory_name=params[:directory_name] ||= 'xml_downloads'
