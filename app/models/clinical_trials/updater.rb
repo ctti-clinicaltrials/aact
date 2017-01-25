@@ -58,9 +58,11 @@ module ClinicalTrials
         @client.populate_studies
         finalize_full_load
       rescue  Exception => e
-        puts "Full load failed:  #{e}"
+        study_counts[:processed]=Study.count
+        puts ">>>>>>>>>>> Full load failed:  #{e}"
         grant_db_privs
         load_event.complete({:status=>'failed', :problems=> e.to_s, :study_counts=> study_counts})
+        send_notification
       end
     end
 
@@ -92,9 +94,7 @@ module ClinicalTrials
        [:calculated_values, :actual_duration],
        [:calculated_values, :months_to_report_results],
        [:calculated_values, :number_of_facilities],
-       [:calculated_values, :primary_completion_date],
        [:calculated_values, :sponsor_type],
-       [:calculated_values, :start_date],
        [:central_contacts, :contact_type],
        [:design_groups, :group_type],
        [:design_outcomes, :outcome_type],
@@ -269,11 +269,10 @@ module ClinicalTrials
     def take_snapshot
       puts "snapshot the database..."
       ClinicalTrials::FileManager.new.take_snapshot
-      log("exporting tables as flat files...")
-      TableExporter.new.run
     end
 
     def create_flat_files
+      log("exporting tables as flat files...")
       TableExporter.new.run(delimiter: '|', should_upload_to_s3: true)
     end
 
