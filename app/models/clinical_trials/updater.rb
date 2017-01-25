@@ -72,6 +72,7 @@ module ClinicalTrials
       grant_db_privs
       create_calculated_values
       run_sanity_checks
+      refresh_data_definitions
       take_snapshot
       create_flat_files
       study_counts[:processed]=Study.count
@@ -197,6 +198,7 @@ module ClinicalTrials
       CalculatedValue.refresh_table_for_studies(ids)
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
+      refresh_data_definitions
       log_actual_counts
       load_event.complete({:study_counts=> study_counts})
       send_notification
@@ -262,18 +264,20 @@ module ClinicalTrials
     def run_sanity_checks
       log("sanity check...")
       SanityCheck.run
-      DataDefinition.populate_row_counts
-      DataDefinition.populate_enumerations
+    end
+
+    def refresh_data_definitions(data=ClinicalTrials::FileManager.default_data_definitions)
+      log("refreshing data definitions...")
+      DataDefinition.refresh(data)
     end
 
     def take_snapshot
       puts "snapshot the database..."
       ClinicalTrials::FileManager.new.take_snapshot
-      log("exporting tables as flat files...")
-      TableExporter.new.run
     end
 
     def create_flat_files
+      log("exporting tables as flat files...")
       TableExporter.new.run(delimiter: '|', should_upload_to_s3: true)
     end
 
