@@ -10,11 +10,11 @@ class DataDefinition < ActiveRecord::Base
     (2..data.last_row).each do |i|
       row = Hash[[header, data.row(i)].transpose]
       if !row['table'].nil? and !row['column'].nil?
-        new(:db_section=>row['db section'].downcase,
-            :table_name=>row['table'].downcase,
-            :column_name=>row['column'].downcase,
-            :data_type=>row['data type'].downcase,
-            :source=>row['source'].downcase,
+        new(:db_section=>row['db section'].try(:downcase),
+            :table_name=>row['table'].try(:downcase),
+            :column_name=>row['column'].try(:downcase),
+            :data_type=>row['data type'].try(:downcase),
+            :source=>row['source'].try(:downcase),
             :ctti_note=>row['CTTI note'],
             :nlm_link=>row['nlm doc'],
            ).save!
