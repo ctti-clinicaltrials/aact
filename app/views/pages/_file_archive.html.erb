@@ -1,13 +1,13 @@
   <div class="wrap">
-    <table>
-      <th>Created</>
-      <th>File</>
+    <table class='file-archive'>
+      <th>Downloadable File</>
+      <th>Date Created</>
       <th>Size</>
       <%= @files.each do |file| %>
         <tr>
-          <td><a href="<%= file[:url] %>" onClick="ga('send','event','download','download database')"><%= file[:date_created] %></a></td>
-          <td><a href="<%= file[:url] %>" onClick="ga('send','event','download','download database')"><%= file[:name] %></a></td>
-          <td><%= file[:size] %></td>
+          <td class='file-name'><a href="<%= file[:url] %>" onClick="ga('send','event','download','download database')"><%= file[:name] %></a></td>
+          <td class='file-created'><%= file[:date_created] %></td>
+          <td class='file-size'><%= file[:size] %></td>
         </tr>
       <% end %>
     </table>
