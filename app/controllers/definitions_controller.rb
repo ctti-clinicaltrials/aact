@@ -63,6 +63,7 @@ class DefinitionsController < ApplicationController
     if enum_tabs.include? tab and enum_cols.include? col
       str="<table class='enumerations'>"
       dd=DataDefinition.where('table_name=? and column_name=?',tab,col).first
+      return if dd.enumerations.nil?
       dd.enumerations.each{|e|
         str=str+'<tr>'
         str=str+"<td class='enum-val'>"+e.first+" </td><td align='right'>"+e.last+"</td>"
