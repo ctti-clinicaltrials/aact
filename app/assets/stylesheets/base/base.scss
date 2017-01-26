@@ -32,6 +32,30 @@ table.regularDisplay, ul.regularDisplay, ol.regularDisplay {
     margin: 0 0 1rem;
 }
 
+#pointsToConsider {
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+  font-size: 1.0rem;
+}
+
+th.pointsToConsiderHeader {
+  background-color: $primary;
+  color: white;
+  font-weight: normal;
+  font-size: 1.4rem;
+}
+
+tr.even td {
+  background-color: $white;
+  color: black;
+}
+
+tr.odd td {
+  background-color: rgb(240,240,240);
+  color: black;
+}
+
 table.gridDisplay, th.gridDisplay, tr.gridDisplay, td.gridDisplay {
   border-style: solid;
   border-color: $primary;
