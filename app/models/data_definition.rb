@@ -63,7 +63,9 @@ class DataDefinition < ActiveRecord::Base
         cntr=results.ntuples - 1
         while cntr >= 0 do
           val=results.getvalue(cntr,0).to_s
-          val='-null-' if val.size==0
+          val='null' if val.size==0
+          val='true' if val=='t'
+          val='false' if val=='f'
           val_count=results.getvalue(cntr,1).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
           hash[val]=val_count
           cntr=cntr-1
