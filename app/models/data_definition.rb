@@ -91,7 +91,7 @@ class DataDefinition < ActiveRecord::Base
       ['designs','observational_model'],
       ['designs','caregiver_masked'],
       ['designs','investigator_masked'],
-      ['designs','outcomes_accessor_masked'],
+      ['designs','outcomes_assessor_masked'],
       ['designs','subject_masked'],
       ['eligibilities','gender'],
       ['eligibilities','gender_based'],
