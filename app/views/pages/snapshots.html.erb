@@ -5,7 +5,7 @@
       <h1>Create Local Database from AACT Snapshots</h1>
     </div>
 
-    <p>If you would like to work with the full clinical trials dataset on your own machine, install PostgreSQL locally, download an AACT database snapshot, and populate a local PostgreSQL database instance with it. This page provides basic instructions on how to do this.</p>
+    <p>If you would like to work with the complete set of clinical trials on your own computer... install PostgreSQL locally, download an AACT database snapshot, and populate a local PostgreSQL AACT database instance with the data. This page provides the instructions.</p>
 
     <%= render 'install_postgres' %>
 
@@ -14,7 +14,7 @@
       <h3 class="stepName">Download AACT Database Snapshot Package</h3>
     </div>
 
-    <p>Download a zip file that contains the postgres dump file (defines database structure & contains the clinical trials data) and documentation about the database structure and data element definitions.</p>
+    <p>Download a zip file that contains the AACT database file. With a single command (see below), this file can be used to automatically configure the database & populate it with the clinical trials dataset. The zip file also contains documentation that describes the database at the time the snapshot was taken. (The download typically takes 3-7 minutes, depending on your network speed.)</p>
     <p><%= render 'file_archive' %></p>
 
     <div class="step">
@@ -35,7 +35,7 @@
 
     <h5>Initialize empty postgres database: aact</h5>
 
-    <p>After postgres is installed on your local machine, enter the following command to initialize the aact database. (You might get the error message 'already exists' if the database was already created; no harm done.)
+    <p>After postgres is installed on your local machine, enter the following command to initialize the AACT database. (You might get the error message 'already exists' if the database was already created; no harm done.)
     <p class='CodeRay'>
       <pre>
         <p class='code'>
@@ -58,17 +58,19 @@
         </p>
       </pre>
     </p>
-    <p>This will unpack the 3 files contained in the zip package and save them to the directory where the zip file exists. This directory will contain 3 files:</p>
+    <p>This will unpack the files contained in the zip package and save them to the directory where the zip file exists. These files include:</p>
   </ul>
     <ul class='regularDisplay'>
       <li><i>schema_diagram.png</i> Database schema diagram that illustrates the relationships between tables.</li>
       <li><i>postgres_data.dmp</i> Postgres dump file containing all the instructions and data required to create a local copy of the AACT database.</li>
       <li><i>data_dictionary.xlsx</i> Spreadsheet that describes all tables and columns in the AACT database.</li>
+      <li><i>nlm_protocol_definitions.html</i>Copy of the National Library of Medicine: ClinicalTrials.gov protocol-related documentation</li>
+      <li><i>nlm_result_definitions.html</i>Copy of the National Library of Medicine: ClinicalTrials.gov results-related documentation</li>
     </ul>
 
     <h5>Create and populate your local database instance</h5>
     <p>Enter the following command to create all database tables in <i>aact</i> and then populate them with clinical trials data.</p>
-    <p class="note">Note: this can take a while, depending on the speed of your machine.</p>
+    <p class="note">This typically takes 10-20 minutes, depending on the speed of your machine.</p>
 
     <p class='CodeRay'>
       <pre>
