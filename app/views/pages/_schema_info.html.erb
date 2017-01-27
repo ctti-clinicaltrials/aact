@@ -21,7 +21,7 @@
      <li>Information entered during registration that's related to the study design is stored in tables prefixed with <i>Design_</i> to distinguish this info from the results. For example, <i>Design_Groups</i> contains registry information about anticipated participant groups, whereas the <i>Result_Groups</i> table contains information entered when the study completed about the actual participant groups. <i>Design_Outcomes</i> contains information about the outcomes to be measured and <i>Outcomes</i> contains info about the actual outcomes reported when the study completed.</li>
        <li>Columns that end with <i>_id</i> are foreign keys to the table identified in front of <i>_id</i>. Each foreign key links to the <i>id</i> column of the parent table. (Child_Table.&lt;parent_table&gt;_id = Parent_Table.id) For example, a row in <i>Facility_Contacts</i> links to it’s Facility through the <i>facility_id</i> column. <i>Facility_Contacts.facility_id = Facility.id</i>).</li>
        <li>Wherever possible, tables & columns are given fully qualified names; abbreviations are avoided. (ie. <i>description</i> rather than <i>desc</i>, <i>category</i> rather than <i>ctgry</i>)</li>
-     <li>Unnecssary and duplicate verbiage is avoided. For example: <i>Study.source</i> instead of <i>Study.study_source</i></li>
+     <li>Unnecssary and duplicate verbiage is avoided. For example: <i>Studies.source</i> instead of <i>Studies.study_source</i></li>
   </ul>
    <h4>Structure Conventions</h4>
    <ul class='regularDisplay'>
@@ -44,9 +44,9 @@
    <p>In short, observational studies use the term ‘groups’; interventional studies use ‘arms’, though for the purpose of analysis, they both refer to the same thing. Because 'group' is more intuitive to the general public, we only use the term 'groups' throughout the database.</p>
 
    <h4>Groups: Registry vs Results</h4>
-   <p>When a study is registered in ClinicalTrials.gov, information about planned grouping of participants is entered. In AACT, this information is stored in the <i>Design_Groups</i> table, while info about actual groups entered after the study has completed is stored in the <i>Result_Groups</i> table. (AACT has not attempted to link data between these 2 tables.)</p>
+   <p>When a study is registered in ClinicalTrials.gov, information about how the study design defines partipant groups. In AACT, this information is stored in the <i>Design_Groups</i> table, while info about actual groups entered after the study has completed is stored in the <i>Result_Groups</i> table. (AACT has not attempted to link data between these 2 tables.)</p>
 
-   <p>Result information, for the most part, is entered into ClinicalTrials.gov by participant group. <i>Result_Contacts</i> & <i>Result_Agreements</i> are the only result tables not associated with groups. This section describes how AACT has structured group-related results data.</p>
+   <p>Result information, for the most part, is organized in ClinicalTrials.gov by participant group. <i>Result_Contacts</i> & <i>Result_Agreements</i> are the only result tables not associated with groups. This section describes how AACT has structured group-related results data.</p>
 
    <p>AACT provides four general categories of result information:</p>
 
