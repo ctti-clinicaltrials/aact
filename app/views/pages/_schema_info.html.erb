@@ -1,31 +1,35 @@
 <section class="namingConventions">
-   <h2>Design Considerations</h2>
+   <h2>Database Design Considerations & Conventions</h2>
 
    <p>When designing the database, we tried to balance the following objectives:</p>
    <ul class='regularDisplay indent'>
-     <li>Make the information as easy to interpret & query as possible.</li>
+     <li>Make the information as easy to understand & analyze as possible.</li>
      <li>Present data exactly as it exists in ClinicalTrials.gov.</li>
-     <li>Use standard naming conventions. (ie. table names are pluralized; column names are singular.)
      <li>Provide value-added attributes, identify them as such, and keep them separate from the raw ClinicalTrials.gov content. (The <i>Calculated_Values</i> table contains data elements that were derived from existing data.)</li>
-     <li>If a short, simple name is as clear as a longer name, use the shorter name.</li>
-     <li>Avoid unnecssary, duplicate verbiage. For example: <i>Study.source</i> instead of <i>Study.study_source</i></li>
-     <li>Be consistent.  For example, several tables include a ‘description’ value. Name them all <i>description</i> as opposed to some <i>descr</i> and others <i>description</i>.</li>
+     <li>Use consistent names and database structures throughout the database. Make it predictable; minimize surprises.</li>
    </ul>
-   <p>It wasn't possible to strictly address every objective; in some cases, compromises were made. For example, the study start date has historically been provided by ClinicalTrials.gov as a month/year. (NLM reported that as of January 19, 2017, some studies will include full dates: mm/dd/yy.) To honor the rule that we display exactly what ClinicalTrials.gov provides, we need to store dates as strings since the day value is missing (without it, the value cannot convert to a proper date). However, string-formatted dates are of limited utility in an analytic database; they can't be used to calculate study duration, identify studies registered within specific time periods, etc. We had long discussions and considered various alternatives to handle these conflicting objectves. When ClinicalTrials.gov reported that going forward, some studies will include full dates, we decided the best compromise would be to provide 2 columns in the Studies table for every date: 1) a string-type that displays exactly what was received & 2) a date-type that can be easily used for date calculations. If the date received has only month/year, it is assigned the first day of the month so it can be converted to a date. For example, a study with start date June, 2014 will have <i>June, 2014</i> in the start_date_month_year column and <i>06/01/14</i> in the start_date column.</li>
+   <p>It wasn't possible to strictly honor every objective; in some cases, compromises had to be made. For example, the study start date has historically been provided by ClinicalTrials.gov as a month/year. (NLM reported that as of January 19, 2017, some studies will include full dates: mm/dd/yy.) To honor the rule that we display exactly what ClinicalTrials.gov provides, we need to store dates as strings since the day value is missing (without it, the value cannot convert to a proper date). However, string-formatted dates are of limited utility in an analytic database; they can't be used to calculate study duration, identify studies registered within specific time periods, etc. We had long discussions and considered various alternatives to handle these conflicting objectves. When ClinicalTrials.gov reported that going forward, some studies will include full dates, we decided the best compromise would be to provide 2 columns in the Studies table for every date: 1) a string-type that displays exactly what was received & 2) a date-type that can be easily used for date calculations. If the date received has only month/year, it is assigned the first day of the month so it can be converted to a date. For example, a study with start date June, 2014 will have <i>June, 2014</i> in the <b>start_month_year</b> column and <i>06/01/14</i> in the <b>start_date</b> column.</li>
 
+   <p>Below is a list of rules/conventions we used when designing the AACT database. By employing these conventions, we hope to provide a consistent structure that will make the database easier to understand and use.</p>
 
-   <h2>Conventions</h2>
+   <h4>Naming</h4>
    <ul class='regularDisplay indent'>
-     <li>Table names are plural.</li>
-     <li>Column names are singular.</li>
-     <li>All names are underscore-delimited words.</li>
-     <li>Every table has an <i>nct_id</i> to link rows to their related study. All study-related data can be linked to the Studies table via the nct_id. To avoid appearing complex and confusing, the schema diagram does not display all relationships to Studies; these relationships can be assumed.</li>
-     <li>Every table has a primary key: <i>id</i> with one exception: the Studies table’s primary key is <i>nct_id</i>.</li>
+     <li>Table names are all plural. (ie. <i>studies, facilities, interventions,</i> etc.)</li>
+     <li>Column names are all singular. (ie. <i>description, phase, name</i>, etc.)</li>
+     <li>Table/column names derived from multiple words are delimited with underscores. (ie. <i>mesh_term, first_received_date, number_of_groups</i>, etc.)</li>
+     <li>Case (upper vs lower) is not relevant since PostgreSQL ignores case. <i>Studies</i>, <i>STUDIES</i> and <i>studies</i> all represent the same table and can be used interchangably.</li>
+     <li>Some protocol-related tables (data entered when the study was registered) have the prefix <i>Design_</i> to distinguish them from the corresponding result-related tables. (ie. <i>Design_Groups</i>  vs. <i>Result_Groups</i> and <i>Design_Outcomes</i> vs. <i>Outcomes</i>) Tables that begin with <i>Design_</i> contain data that was entered when the study was registered.</li>
      <li>Columns that end with <i>_id</i> are foreign keys that relate to the table identified by the prefix that appears in front of <i>_id</i>. Each foreign key links to the <i>id</i> column of the parent table. (For example, a row in <i>Facility_Contacts</i> is linked to it’s Facility through the <i>facility_id</i> column. <i>Facility_Contacts.facility_id = Facility.id</i>).</li>
+     <li>Tables and columns are given fully-spelled names; where possible, abbreviations are avoided. (ie. <i>description</i> rather than <i>desc</i>, <i>category</i> rather than <i>ctgry</i>)  Note: some exceptions exist such as <i>Reported_Events.vocab</i> which reflects the label assigned by ClinicalTrials.gov.
+     <li>Avoid unnecssary, duplicate verbiage. For example: <i>Study.source</i> instead of <i>Study.study_source</i></li>
+  </ul>
+   <h4>Structure</h4>
+   <ul class='regularDisplay indent'>
+     <li>Every table has an <i>nct_id</i> column to link rows to its related row in the <i>Studies</i> table. All study-related data can be linked directly to the <i>Studies</i> table via the <i>nct_id.</i> (Note: The schema diagram does not display all relationships to <i>Studies</i> to avoid appearing complex and confusing.  Relationships to the <i>Studies</i> table can be assumed.)</li>
+     <li>Every table has a primary key: <i>id</i> with one exception: the Studies table’s primary key is <i>nct_id</i>.</li>
      <li>Columns that end with <i>_date</i> contain date-type values.</li>
      <li>Columns that contain month/year dates are saved as strings in a column with a <i>_month_year</i> suffix. A date-type estimate of the value (using the 1st of the month as the 'day') is stored in an adjacent column with the <i>_date</i> suffix. (This applies to date values in the <i>Studies</i> table.)</li>
      <li>Any column that contains a derived/calculated value is stored in the <i>Calculated_Values</i> table. One exception is that just defined: the date-type columns in <i>Studies</i> where a day-value of '1' might have been assigned.  The format of dates received from ClinicalTrials.gov are not consistent.  Some studies have actual dates, whereas others have just month/year. We are attempting to avoid confusion that would likely result from storing dates for some studies in <i>Studies</i> table and others in the <i>Calculated_Values</i> table, depending on how the value was received from the ClinicalTrials.gov API.</li>
-     <li>Some protocol-related tables have the prefix <i>Design_</i> to distinguish them from the corresponding result-related tables. (ie. <i>Design_Groups</i>  vs. <i>Result_Groups</i> and <i>Design_Outcomes</i> vs. <i>Outcomes</i>) Tables that begin with <i>Design_</i> contain data that was entered when the study was registered.</li>
    </ul>
 
    <h2>Arms/Groups</h2>
