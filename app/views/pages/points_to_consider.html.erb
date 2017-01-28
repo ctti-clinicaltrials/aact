@@ -1,96 +1,120 @@
-<div class="wrap">
-
-  <div class="basicHero">
-    <h1>Guide to Using Aggregate Analysis of ClinicalTrials.gov (AACT) for Statistical and Aggregate Analysis</h1>
-  </div>
-
+<div class="basicHero">
+  <h1>Researcher's Guide to Using Aggregate Analysis of ClinicalTrials.gov (AACT) Database</h1>
 </div>
 
 <section class="pointsToConsider">
-  <div class="wrap">
 
     <h2>What is AACT?</h2>
 
-    <p>AACT is the database for Aggregate Analysis of <a target='_blank' href="https://clinicaltrials.gov"  onClick="ga('send','event','external link','guide page: clinicaltrials.gov')">ClinicalTrials.gov</a>. Version 2 of AACT is a postgreSQL relational database containing information about clinical studies that have been been registered at ClinicalTrials.gov. AACT includes all of the protocol and results data elements for studies that are publicly available at ClinicalTrials.gov. Content is downloaded daily from ClinicalTrials.gov and loaded into AACT.</p>
+    <p>AACT is the database for Aggregate Analysis of <a target='_blank' href="https://clinicaltrials.gov"  onClick="ga('send','event','external link','guide page: clinicaltrials.gov')">ClinicalTrials.gov</a>. This version of AACT is a PostgreSQL relational database containing information about clinical studies that have been been registered at ClinicalTrials.gov. AACT includes all of the protocol and results data elements for studies that are publicly available at ClinicalTrials.gov. Content is downloaded daily from ClinicalTrials.gov and loaded into AACT.</p>
 
     <h2>What population of studies is represented in AACT?</h2>
 
-    <p>All studies registered and publicly available at ClinicalTrials.gov are included in AACT. The ClinicalTrials.gov was released for the registration of studies on <b>February 29, 2000</b>. The registry accepts interventional studies in which participants are assigned according to a research protocol to receive specific interventions, as well as observational studies. It also includes Expanded Access records which describe the procedure for obtaining an experimental drug or device for patients who are not adequately treated by existing therapy and who are unable to participate in a controlled clinical study.</p>
+    <p>All studies registered and publicly available in ClinicalTrials.gov are included in AACT. The ClinicalTrials.gov was released for the registration of studies on <b>February 29, 2000</b>. The registry accepts interventional studies in which participants are assigned according to a research protocol to receive specific interventions, as well as observational studies. It also includes Expanded Access records which describe the procedure for obtaining an experimental drug or device for patients who are not adequately treated by existing therapy and who are unable to participate in a controlled clinical study.</p>
 
-    <p>The registration of studies and reporting of results and adverse events has been mandated to a large extent by requirements (both legal and institutional) implemented as part of the Food and Drug Administration Amendments Act (FDAAA), as well as by requirements introduced by the International Committee of Medical Journal Editors (<a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'  onClick="ga('send','event','external link','guide page: ICMJE')">ICMJE</a>) and the European Medicines Agency (EMA) regarding registration of clinical studies. Table 1 describes the scope of these requirements.</p>
+    <p>The registration of studies and reporting of results and adverse events has been mandated to a large extent by requirements (both legal and institutional) implemented as part of the Food and Drug Administration Amendments Act (FDAAA), as well as by requirements introduced by the International Committee of Medical Journal Editors (<a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'  onClick="ga('send','event','external link','guide page: ICMJE')">ICMJE</a>), the European Medicines Agency (EMA) and the National Institutes of Health (NIH) regarding registration and reporting of results of clinical studies. Table 1 describes the scope of these requirements.</p>
 
     <h4>Table 1: Scope of Interventional Studies Covered by Major Reporting Policies*</h4>
 
-  <table id='table1' class='regularDisplay'>
+  <table id='pointsToConsider' class='regularDisplay'>
     <tr>
-      <th>Policy Requirements</th>
-      <th>Registration & Results Reporting Requirements</th>
-      <th>Effective Date</th>
+      <th class='odd pointsToConsiderHeader'>Policy</th>
+      <th class='odd pointsToConsiderHeader'>Registration & Results Reporting Requirements</th>
+      <th class='odd pointsToConsiderHeader'>Effective Date(s)</th>
     </tr>
 
-    <tr>
-      <td><p><a target='_blank' href='https://grants.nih.gov/grants/guide/notice-files/NOT-CA-15-011.html' onClick="ga('send','event','external link','guide page: NCI Access Policy')">NCI Access Policy</a></p></td>
-      <td><p>The NCI, NIH, issued its Policy Ensuring Public Availability of Results from NCI-supported Clinical Trials. Generally, for "all initiated or commenced NCI-Supported Interventional Clinical Trials whether extramural or intramural" (Covered Trials), "Final Trial Results are expected to be reported in a publicly accessible manner within 12 months of the Trial's Primary Completion Date regardless of whether the clinical trial was completed as planned or terminated earlier." This policy "will be incorporated as a Term and Condition of the award."</p></td>
-      <td><p><b>January, 2015</b></p></td>
+    <tr class='even'>
+      <td style='padding:8px'><p><a target='_blank' href='https://www.federalregister.gov/documents/2016/09/21/2016-22379/nih-policy-on-the-dissemination-of-nih-funded-clinical-trial-information' onClick="ga('send','event','external link','guide page: NIH Policy')">NIH Policy</a></p></td>
+      <td style='padding:8px' valgn='top'><p>Every clinical trial funded in whole or in part by NIH is expected to be registered on ClinicalTrials.gov and have summary results information submitted and posted in a timely manner, whether subject to FDAAA 801 or not.</p></td>
+January 18, 2017. The policy is effective for applications for funding, including grants, other transactions, and contracts submitted on or after January 18, 2017. For the NIH intramural program, the policy applies to clinical trials initiated on or after January 18, 2017.
+<br>
+Timelines for registration and results/adverse event reporting are the same as for trials subject to FDAAA 801.
+<td  style='padding:8px' valgn='top'><p><b></b></p></td>
   </tr>
 
-  <tr>
-    <td><a target='_blank' href='http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm' onClick="ga('send','event','external link','guide page: FDAAA')">FDAAA</a></td>
-    <td>The following must be registered in ClinicalTrials.gov:
+    <tr class='odd'>
+      <td   style='padding:8px'><a target='_blank' href='https://grants.nih.gov/grants/guide/notice-files/NOT-CA-15-011.html' onClick="ga('send','event','external link','guide page: NCI Access Policy')">NCI Access Policy</a></p></td>
+      <td  style='padding:8px' valgn='top'><p>The NCI issued its <i>Policy Ensuring Public Availability of Results from NCI-supported Clinical Trials</i>. Generally, for "all initiated or commenced NCI-Supported Interventional Clinical Trials whether extramural or intramural" (Covered Trials), "Final Trial Results are expected to be reported in a publicly accessible manner within 12 months of the Trial's Primary Completion Date regardless of whether the clinical trial was completed as planned or terminated earlier." This policy "will be incorporated as a Term and Condition of the award."</p></td>
+      <td style='padding:8px' valign='top'><p><b>January, 2015</b></p></td>
+  </tr>
+
+  <tr class='even'>
+    <td  style='padding:8px'><a target='_blank' href='http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm' onClick="ga('send','event','external link','guide page: FDAAA')">FDAAA and Final Rule</a></td>
+    <td style='padding:8px' valign='top'>
+      <p>The following must be registered in ClinicalTrials.gov ('Applicable Clinical Trials (ACTs)':
       <ul class='regularDisplay'>
         <li>Interventional studies of drugs, biologics, or devices (whether or not approved for marketing)</li>
         <li>Studies phases 2 through 4</li>
         <li>Studies with at least 1 US site or conducted under IND/IDE</li>
       </ul>
+      </p>
 
-      <p>Results and adverse event reporting is required for studies that meet the above registration requirements if they study drugs, biologics, or devices that are approved, licensed, or cleared by the FDA.</p>
+      <p>
+      Results and adverse event reporting is required for studies that meet the above registration requirements if they study drugs, biologics, or devices that are approved, licensed, or cleared by the FDA.
+      </p>
+      <p>
+      The <a target='_blank' href='http://www.nejm.org/doi/full/10.1056/NEJMsr1611785' onClick="ga('send','event','external link','guide page: Final Rules')">Final Rule</a> clarified the definition of an ACT, and expanded results and adverse events reporting requirements to include ACTs of unapproved products.
+      </p>
     </td>
 
-    <td>
-      <b>September 27, 2007.</b> Studies initiated after this date, or with a completion date later than December 25, 2007 are subject to FDAAA requirements. Registration is required no later than 21 days after first patient is enrolled. Results and adverse events must be reported for these studies (if required) within 1 year of completing data collection for the pre-specified primary outcome.
+    <td style='padding:8px' valgn='top'>
+      <p><b>September 27, 2007.</b> Studies initiated after this date, or with a completion date later than December 25, 2007 are subject to FDAAA requirements. Registration is required no later than 21 days after first patient is enrolled. Results and adverse events must be reported for these studies (if required) within 1 year of completing data collection for the pre-specified primary outcome.
+      <br><br>
+      For ACTs of devices not previously approved or cleared by FDA, public posting of registration information is delayed until after FDA approval/clearance.
       <br><br>
       <b>September, 2008.</b> Results reporting launched with optional adverse event reporting.
       <br><br>
       <b>September, 2009.</b>  Adverse event information became required.
+      <p><b>January 18, 2017.</b> Final Rule for FDAAA 801 effective, with compliance expected as of April 18, 2017. </p>
+      <ul class='regularDisplay'>
+        <li>Responsible parties of ACTs of devices not previously cleared or approved by FDA may authorize NIH to post registration information prior to FDA approval/ clearance.</li>
+        <li>For ACTs of unapproved products, results reporting may be delayed for up to 2 additional years (i.e., up to 3 years total after the primary completion date).</li>
+      </ul>
+       </p>
     </td>
   </tr>
 
-  <tr>
-    <td><a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/' onClick="ga('send','event','external link','guide page: ICMJE')">ICMJE</a></td>
-    <td>
+  <tr class='odd'>
+    <td style='padding:8px'><a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/' onClick="ga('send','event','external link','guide page: ICMJE')">ICMJE</a></td>
+    <td style='padding:8px'><p>
       Interventional studies of any intervention type, phase, or geographical location must be registered in ClinicalTrials.gov or other approved registry.
       <br>No results reporting requirements.
+      </p>
     </td>
-    <td>
-      <b>July 1, 2005</b>.  Studies initiated after this date must be registered before first patient enrolled; studies initiated before this date must be retrospectively registered to be considered for publication.
+    <td style='padding:8px'valign="top"><p><b>July 1, 2005</b>. Studies initiated after this date must be registered before first patient enrolled; studies initiated before this date must be retrospectively registered to be considered for publication.
+      </p>
     </td>
   </tr>
 
-  <tr>
-    <td><a target='_blank' href='https://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df' onClick="ga('send','event','external link','guide page: EMA')">EMA</a></td>
-    <td><p>The following must be registered in ClinicalTrials.gov or other approved registry:
+  <tr class='even'>
+    <td style='padding:8px'><a target='_blank' href='https://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df' onClick="ga('send','event','external link','guide page: EMA')">EMA</a></td>
+    <td style='padding:8px' valgn='top'>
+      <p>The following must be registered in ClinicalTrials.gov or other approved registry:
       <ul class='regularDisplay'>
         <li>Interventional studies of drugs or biologics (whether or not approved for marketing)</li>
         <li>Pediatric phase 1 studies;</li>
         <li>Studies in phases 2 through 4</li>
         <li>Studies taking place in at least 1 EU site</li>
       </ul>
+      </p>
       <p>Results reporting required for all studies that meet registration requirements.</p>
     </td>
-    <td>
+    <td style='padding:8px' valgn='top'>
         <p>
           <b>May 1, 2004</b>. <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'  onClick="ga('send','event','external link','guide page: EMA')">EMA</a> launched <a target='_blank' href='https://eudract.ema.europa.eu/'  onClick="ga('send','event','external link','guide page: EudraCT')">EudraCT</a>
           <br><br>
           <b>March 22, 2011</b>. <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df' onClick="ga('send','event','external link','guide page: EMA')">EMA</a> launched the <a target='_blank' href='https://www.clinicaltrialsregister.eu/' onClick="ga('send','event','external link','guide page: EU Clinical Trials Register')">EU Clinical Trials Register</a>
+          <br><br>
+          <b>October 11, 2013</b>. EMA expanded EudraCT to include summary results.
        </p>
     </td>
   </tr>
 
 </table>
 
-<p>* Adapted from <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article">The ClinicalTrials.gov results database – update and key issues</a>. For complete descriptions of policy requirements, see the references cited. <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'>EMA</a> denotes European Medicines Agency; EU, European Union; FDAAA, Food and Drug Administration Amendments Act; <a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'>ICMJE</a>, International Committee of Medical Journal Editors; IDE, investigational device exemption; IND, investigational new drug application, NCI, National Cancer Institute; NIH, National Institutes of Health; US, United States.</p>
+<p>* Adapted from <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article">The ClinicalTrials.gov results database – update and key issues</a> and <a target='_blank' href='https://clinicaltrials.gov/ct2/about-site/history'>ClinicalTrials.gov summary of selected events, policies, and laws related to the development and expansion of ClinicalTrials.gov</a>. For complete descriptions of policy requirements, see the references cited. <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'>EMA</a> denotes European Medicines Agency; EU, European Union; FDAAA, Food and Drug Administration Amendments Act; <a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'>ICMJE</a>, International Committee of Medical Journal Editors; IDE, investigational device exemption; IND, investigational new drug application, NCI, National Cancer Institute; NIH, National Institutes of Health; US, United States.</p>
 
-    <p>Based on these requirements, the following are examples of characteristics that may influence the likelihood that a study is included in the ClinicalTrials.gov registry:</p>
+    <p>Based on these policies, the following are examples of characteristics that may influence the likelihood that a study is included in the ClinicalTrials.gov registry:</p>
 
     <ul class='regularDisplay'>
       <li>Interventional studies are more likely to be registered than observational studies.</li>
@@ -101,11 +125,21 @@
       <li>Studies subject to an IND or IDE are more likely to be registered (i.e., if the study is intended to support approval for marketing in the United States).</li>
       <li>Phase 1 adult drug studies or small feasibility studies of devices are less likely to be registered.</li>
       <li>Studies in pediatric populations may be more likely to be registered.</li>
+      <li>Studies with NIH funding are likely to be registered, regardless of intervention and phase.</li>
+      <li>Although studies of FDA regulated devices are likely to be registered, the registration records for studies of devices not yet approved or cleared may not be publicly posted until after the device is cleared or approved.</li>
     </ul>
+
+     <h2>Is the information in AACT up-to-date?</h2>
+
+     <p>New content is downloaded from ClinicalTrials.gov and loaded into AACT every evening. These daily updates use the ClinicalTrials.gov RSS feed to identify studies that have recently been added or changed in ClinicalTrials.gov. New & modified studies are downloaded via the ClinicalTrials.gov API & loaded into AACT. Daily updates take anywhere from 20 minutes to several hours depending on how many studies have been added/changed. A full refresh of the AACT database will be run quarterly. The full-load takes approximately one day, during which time, the cloud-based version of AACT is not available. On the first of each month, a snapshot of AACT is frozen and made available in 2 formats: 1) a PostgreSQL dump file and 2) a set of delimited text file. <a target='_blank' href='/snapshots'>Current and previous snapshots are available on the AACT website</a>, and may be useful for researchers seeking to run analyses off a static version of the database.</p>
 
      <h2>How are unique studies identified in AACT?</h2>
 
      <p>Studies registered at ClinicalTrials.gov are identified by a unique identifier, the NCT_ID.  Because of the quality assurance measures applied by ClinicalTrials.gov staff on registration entries, we can be reasonably certain that each study (i.e., NCT_ID) entered in ClinialTrials.gov refers to a unique clinical study, however a small number of <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pubmed/17507347'>duplicate records may exist in the database.</a></p>
+
+    <h2>How does content in AACT compare to what is in ClinicalTrials.gov?</h2>
+
+     <p>AACT includes all of the protocol and results data elements for studies that are publicly available at ClinicalTrials.gov. All publicly available content from the current record for a study is included in AACT "as-is". In general, the content that is contained in the AACT database preserves the content in the source XML files that are downloaded from ClinicalTrials.gov and content is not cleaned or manipulated in any way. However, to help facilitate queries using AACT, several additional variables derived from the raw content are included in AACT. Derived variables are indicated as such in the data dictionary. The history of changes to a study record that are available at the ClinicalTrials.gov archive site is not included in the current version of AACT.</p>
 
     <h2>What types of questions can be investigated using ClinicalTrials.gov data?</h2>
 
@@ -124,7 +158,7 @@
     <p>When interpreting this information, you’re encouraged to refer to the authoritative definitions provided by the National Library of Medicine (NLM). The most recent data element definitions are available on the NLM site for <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html'>studies</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html'>results</a> data. Data interpretation may depend on:</p>
     <ul class='regularDisplay'>
       <li><b>How the question was phrased.</b> For example, the definition of “Sponsor” does not necessarily imply that the sponsor is the agency paying for the clinical study, as might be expected from the common use of the term.</li>
-      <li><b>Whether the respondent can enter a free-text answer to a specific question, or is restricted to a fixed set of possible responses.</b> Note that the definition of a data element and the available responses may have changed over time. The most recent data element definitions are available at the ClinicalTrials.gov site for <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html'>study</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html'>results</a> data. A history of changes through September 2011 for the study definitions can be viewed in the <a href="http://ctti-clinicaltrials.org/files/documents/AACTcomprehensiveDataDictionaryV3_2011.xlsx" download>AACT 2011 Data Dictionary</a>.</li>
+      <li><b>Whether the respondent can enter a free-text answer to a specific question, or is restricted to a fixed set of possible responses.</b> Note that the definition of a data element and the available responses may have changed over time. The most recent data element definitions are available at the ClinicalTrials.gov site for <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html'>study</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html'>results</a> data. A history of changes through September 2011 for the study definitions can be viewed in the <a href="http://ctti-clinicaltrials.org/files/documents/AACTcomprehensiveDataDictionaryV3_2011.xlsx" download>AACT 2011 Data Dictionary</a>. Monthly AACT database snapshots are bundled with the data element definitions, AACT schema, and AACT data dictionary that were current at the time the snapshot was created.</li>
       <li><b>Whether there is dependence between fields.</b> Certain data elements need to be interpreted together with other data elements. For example, data elements such as enrollment date and completion date have a companion data element that indicates whether the value in the first field is an anticipated or actual value.</li>
     </ul>
 
@@ -132,7 +166,7 @@
 
     <h2>How complete and accurate are the data?</h2>
 
-    <p>The presence of a record in a dataset indicates that information was submitted to ClinicalTrials.gov for at least one element in that data set before the data were downloaded from ClinicalTrials.gov. Some data elements are more/less likely than others to have missing information, depending on several known factors. For example:</p>
+    <p>The presence of a record in a table indicates that information was submitted to ClinicalTrials.gov for at least one element in that table before the data were downloaded from ClinicalTrials.gov. Some data elements are more/less likely than others to have missing information, depending on several known factors. For example:</p>
 
     <ul class='regularDisplay'>
       <li><b>The data element being required by the FDAAA and/or the ClinicalTrials.gov website.</b> Refer to NLM's <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html' onClick="ga('send','event','external link','guide page: NLM Protocols')">study</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html' onClick="ga('send','event','external link','guide page: NLM Results')">results</a> data element definitions for specifics regarding these requirements. Requirements may have changed over the history of the ClincalTrials.gov database.</li>
@@ -148,10 +182,6 @@
 		<p>Even when the data elements for a particular study are complete, users are cautioned to have modest expectations about their accuracy. In particular, results data posted at ClinicalTrials.gov may not be subject to the same level of critical scrutiny as results published in a peer-reviewed journal. As described by <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article" onClick="ga('send','event','external link','guide page: Zarin ref')">Zarin and colleagues in <i>'The ClinicalTrials.gov results database – update and key issues'</i></a>, ClinicalTrials.gov has implemented several measures to ensure data quality. For example, NLM staff apply automated business rules that alert data-providers when required elements are missing or inconsistent. In addition, some manual review is performed by NLM, and a record may be returned to the data-provider if revision is required.  However, ClinicalTrials.gov staff cannot always validate the accuracy of submitted data (e.g., against an independent source).  As Zarin et al. note, “… individual record review has inherent limitations, and posting does not guarantee that the record is fully compliant with either ClinialTrials.gov or legal requirements” <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article" onClick="ga('send','event','external link','guide page: Zarin ref')"><sup>[1]</sup></a></p>
 
     <p>During our own analysis of the ClinicalTrials.gov database, several extreme values for numeric data elements were encountered, such as an anticipated enrollment of several million subjects. Before proceeding with aggregate analysis, users are encouraged to review data distributions in order to select appropriate analysis methods, and to run their own consistency checks (e.g., to compare whether the number of arm descriptions provided for the study matches the data element that quantifies the number of arms in the study design) as needed.</p>
-
-    <h2>Downloaded AACT is a snapshot at one point in time</h2>
-
-    <p>The data downloaded from ClinicalTrials.gov and stored in AACT is a snapshot of the information that was publicly available at ClinicalTrials.gov on the download date.  Data submitters may update their ClinicalTrials.gov study record at any time but a particular instance of AACT only captures the information present at one point in time.  Although changes to a study are stored in an archive history at ClinicalTrials.gov, these changes are not currently captured in a particular version of AACT. </p>
 
     <h2>Use of appropriate statistical inference</h2>
 
@@ -172,7 +202,7 @@
 
     <p>a) Prior to examining the data, specify comparisons of major interest, or quantities to be estimated. </p>
 
-    <p>b) Determine the magnitude of differences that would have practical significance.  (e.g., a 25% difference in source of funding between studies of 2 pediatric conditions, or a difference in enrollment of 100 participants).  </p>
+    <p>b) Determine the magnitude of differences that would have practical significance.  (e.g., a 25% difference in source of funding between studies of 2 pediatric <i>Conditions</i>, or a difference in enrollment of 100 participants).  </p>
 
     <p>c) Determine appropriate formulas for quantifying differences between groups or summarizing population variability.  This quantification could take into account of the observed difference, variability in the data, and the number of observations.  Examples are provided:</p>
 
@@ -184,41 +214,17 @@
     <h2>Specific tips for working with the AACT database</h2>
 
     <ul class='regularDisplay'>
-      <li>Users are encouraged to use the <a href=<%= @schema_diagram %> target="_blank"  onClick="ga('send','event','download','guide page: download schema')">Schema Diagram</a> to determine relationships between different AACT tables/datasets (referred to as ‘datasets’ on this page). These relationships determine how datasets may be linked or merged together in software such as SAS & SQL.</li>
-      <li>The NCT_ID uniquely identifies each study; it serves as the primary key in the STUDIES dataset. In other words, each record in the STUDIES dataset has a unique NCT_ID value. NCT_ID also appears in every dataset related to STUDIES so that every record in every dataset can link back to the study to which it refers.</li>
-      <li>Every dataset other than STUDIES has a primary key named ‘id’, which provides an integer that uniquely identifies each row in that dataset. (The STUDIES dataset uses ‘NCT_ID’ instead of ‘id’  as the unique identifier for each row.)</li>
-      <li>To link dataset information to the study to which it refers, you simply match on NCT_ID. For example, every record in the CONDITIONS dataset with an NCT_ID of ‘NCT0000001’ refers to the study with the NCT_ID: ‘NCT0000001’ (saved in STUDIES.nct_id). The CONDITIONS dataset may contain multiple records with an NCT_ID of ‘NCT0000001’ which means this study was defined in ClinicalTrials.gov as being associated with the conditions listed in CONDITIONS with that NCT_ID.</li>
-      <li>Information in several datasets are also related to information in other datasets. In this case, the dataset that belongs to another dataset will include a foreign key that identifies the record to which it belongs. Foreign keys are always named according to a simple rule: the singular name of the related dataset followed by: ‘_id’.  For example, FACILITY_CONTACTS includes a data element: facility_id which is the foreign key to FACILITY.id</li>
-      <li> Each record’s foreign_key (ie. facility_id) contains the value of the unique identifier (id) of the record in the other dataset to which it belongs. For example, a facility may have multiple contacts. To find the contacts for a particular facility, look for the records in FACILITY_CONTACTS where the value in facility_id is same as the value in id for that facility in FACILITIES. In short, datasets are related to each other with this pattern: dataset1.<dataset2_name>_id = dataset2.id </li>
-    </ul>
-    <h2>Information about trial sites (FACILITIES and COUNTRIES) </h2>
-     <p> Information about organizations (trial sites) where the study is/was conducted is stored in the FACILITIES dataset.  This is a snapshot of the facility information that was included in the study record on the date that information was downloaded from ClinicalTrials.gov.  Naturally, study sites initiated after ClinicalTrials.gov data were downloaded to AACT are not included in AACT.</p>
-		<p>AACT also includes a COUNTRIES dataset, which contains one record per unique country per study. Rows in the COUNTRIES dataset come from two sources:</p>
-    <ul class='regularDisplay'>
-			<li>Countries where study facilities are located as determined by an NLM algorithm that identifies the set of unique countries associated with a study; these are stored in the COUNTRIES dataset with the flag removed=false. </li>
-			<li>In some cases, ClinicalTrials.gov data submitters remove sites from the study record.  Removed sites do not appear in the FACILITIES dataset. If all of a country’s sites have been removed from a study record, the NLM algorithm creates a ‘Removed Country’ record. In AACT, this record is stored in the COUNTRIES dataset with removed=true. </li>
-		</ul>
-
-    <p>The reasons sites are removed from the FACILITIES dataset are varied but unknown.  A site may have been removed because it was never initiated or because it was entered with incorrect information.  The recommended action for sites that have completed or have terminated enrollment is to change the enrollment status to “Completed” or “Terminated”; however, such sites are sometimes deleted from the study record by the responsible party.  Data analysts may consider using Countries where  removed=TRUE to supplement the information about trial locations that is contained in FACILITIES, particularly for studies that have completed enrollment and have no records in FACILITIES.</p>
-
-    <p>Users who are interested in identifying countries where participants are being/were enrolled may use either the FACILITIES or COUNTRIES dataset (where COUNTRIES.removed=false) with equivalent results.</p>
-
-
-    <h2>MeSH terms in BROWSE_CONDITIONS and BROWSE_INTERVENTIONS</h2>
-    <p>When data submitters provide information to ClinicalTrials.gov about a study, they’re encouraged to use Medical Subject Heading (MeSH) terminology for interventions, conditions, and keywords.  The BROWSE_CONDITIONS and BROWSE_INTERVENTIONS datasets contain MeSH terms generated by an algorithm run by NLM. The NLM algorithm is re-run nightly on all studies in the ClinicalTrials.gov database, and sources the most up-to-date information in the study record, the latest version of the algorithm, and the version of the MeSH thesaurus in use at that time.</p>
-
-    <h2>“Delayed Results” data elements available in AACT</h2>
-
-    <p>A responsible party may delay the deadline for submitting results information to ClinicalTrials.gov if one of the following two certification conditions applies to the trial:</p>
-
-    <ul class='regularDisplay'>
-      <li>Initial approval: trial completed before a drug, biologic or device studied in the trial is initially approved, licensed or cleared by the FDA for any use.</li>
-      <li>New use: the manufacturer of a drug, biologic or device is the sponsor of the trial and has filed or will file within one year, an application seeking FDA approval, licensure, or clearance of the new use studied in the trial. A responsible party may also request, for good cause, an extension of the deadline for the submission of results.</li>
+      <li>Users are encouraged to use the <a href='/schema' target="_blank" onClick="ga('send','event','download','guide page: download schema')">Schema Diagram</a> to determine relationships between different AACT tables. These relationships determine how tables may be linked using tools such as SAS, R & SQL.</li>
+      <li>The <i>nct_id</i> uniquely identifies each study; it serves as the primary key in the <i>Studies</i> table. Each record in the <i>Studies</i> table has a unique <i>nct_id</i> value. <i>nct_id</i> also appears in every table related to <i>Studies</i> so that every record in every table can link back to the study to which it refers.</li>
+      <li>Every table other than <i>Studies</i> has a primary key named <i>id</i>, which provides an integer that uniquely identifies each row in that table. (The <i>Studies</i> table uses <i>nct_id</i> instead of <i>id</i> as the unique identifier for each row.)</li>
+      <li>To link table information to the study to which it refers, you simply match on <i>nct_id</i>. For example, every record in the <i><i>Conditions</i></i> table with an NCT_ID of ‘NCT0000001’ refers to the study with the NCT_ID: ‘NCT0000001’ (saved in <i>Studies.nct_id</i>). The <i>Conditions</i> table may contain multiple records with an NCT_ID of ‘NCT0000001’ which means this study was defined in ClinicalTrials.gov as being associated with the <i>Conditions</i> listed in <i>Conditions</i> with that NCT_ID.</li>
+      <li>Information in several tables are also related to information in other tables. In this case, the table that belongs to another table will include a foreign key that identifies the record to which it belongs. Foreign keys are always named according to a simple rule: the singular name of the related table followed by: ‘_id’.  For example, <i>Facility_Contacts</i> includes a data element: <i>facility_id</i> which is the foreign key to <i>Facilities.id</i></li>
+      <li>Each record’s foreign_key (ie. <i>facility_id</i>) contains the value of the unique identifier (id) of the record in the other table to which it belongs. For example, a facility may have multiple contacts. To find the contacts for a particular facility, look for the records in <i>Facility_Contacts</i> where the value in <i>facility_id</i> is same as the value in id for that facility in <i>Facilities</i>. In short, tables are related to each other with this pattern: <i>child.&lt;parent_name&gt;_id = parent.id</i> </li>
+      <li>Note that the ID assigned to a particular record (e.g., to a record in the <i>Facilities</i> table) is merely the method used to identify unique records in the database table, and to facilitate linking of records between database tables. The ID does not identify unique facilities in the real world. For example, if studies A and B are both enrolling patients at Duke University Medical Center, there will be one instance of Duke University Medical Center for each study, and these records will have different ID values, even though they may be the same physical research site.</li>
     </ul>
 
-    <p>Studies for which a certification or extension request have been submitted include the date of the first certification or extension request in the data element: FIRST_RECEIVED_DISPOSITION_DATE.</p>
+    <p><%= render partial: 'schema_info' %></p>
 
-    <p>In general, the content that is contained in the AACT database preserves the content in the source XML files that are downloaded from ClinicalTrials.gov.</p>
 
     <h2>References</h2>
 
@@ -233,5 +239,4 @@
       <li>Tse, T., Williams, R. J., Zarin, D. A. (2009). <a target='_blank' href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2821287/"  onClick="ga('send','event','external link','guide page: Tse ref')">Reporting “basic results” in ClinicalTrials.gov</a>. CHEST 136: 295—303.</li>
     </ol>
 
-  </div>
 </section>
