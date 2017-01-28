@@ -1,16 +1,26 @@
 <section class="learnMore">
 
-  <p></p>
-  <p>You are welcome to download a copy of database design specifications:</p>
-  <div class="wrap">
-      <ul>
-        <li><a href=<%= @schema_diagram %> target="_blank" onClick="ga('send','event','download','schema page: download schema')"  >Schema Diagram</a></li>
+    <ul class='regularDisplay'>
+        <li><a href=<%= @schema_diagram %> target="_blank" onClick="ga('send','event','download','schema page: download schema')"  >downloadable schema diagram with enhanced viewing</a> (right click on the resulting page to download)</li>
 
-        <li><a href=<%= @data_dictionary %> target="_blank" onClick="ga('send','event','download','schema page: download data dictionary')">Excel Version of the Data Dictionary</a></li>
-      </ul>
-  </div>
+        <% if @show_dictionary_link %>
+          <li><a href=<%= @data_dictionary %> target="_blank" onClick="ga('send','event','download','schema page: download data dictionary')">excel version of the data dictionary</a> (online searchable version also available <a href='/data_dictionary' target='_blank'>here</a>)</li>
+        <% else %>
+          <li><a href=<%= @data_dictionary %> target="_blank" onClick="ga('send','event','download','schema page: download data dictionary')">excel version of the data dictionary</a></li>
+        <% end %>
 
-  <p>Please refer to the National Library of Medicine's documentation for authoritative definitions of all <a href="https://prsinfo.clinicaltrials.gov/definitions.html" target="_blank" onClick="ga('send','event','external link','schema page: NLM Protocols')">study/protocol</a> and <a href="https://prsinfo.clinicaltrials.gov/results_definitions.html" target="_blank" onClick="ga('send','event','external link','schema page: NLM Results')">results</a> data elements.</p>
+    </ul>
+
+    <p>Please refer to the National Library of Medicine's (NLM) documentation for authoritative definitions of the data elements:</p>
+    <ul class='regularDisplay'>
+      <li><a href="https://prsinfo.clinicaltrials.gov/definitions.html" target="_blank" onClick="ga('send','event','external link','schema page: NLM Protocols')">registered protocol</a></li>
+      <li><a href="https://prsinfo.clinicaltrials.gov/results_definitions.html" target="_blank" onClick="ga('send','event','external link','schema page: NLM Results')">study results</a></li>
+    </ul>
+    <% if @show_dictionary_link %>
+      <p>The <a href='/data_dictionary' target='_blank'>online data dictionary</a> includes links to sections of this NLM documentation to provide documentation about specific data element.</p>
+    <% else %>
+      <p>Click on the <i class='fa fa-book'></i> icon that appears at the beginning of the data element row to view the section of the NLM documentation that defines that particular data element. (The icon doesn't appear for data element that aren't defined by NLM.)</p>
+    <% end %>
 
 </section>
 

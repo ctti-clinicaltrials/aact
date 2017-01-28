@@ -3,12 +3,23 @@
   <div class="basicHero">
     <h1>AACT Database Schema</h1>
   </div>
+
+  <p>The diagrams below illustrate how the AACT database is structured and identify all tables/columns. The first diagram presents the study-related tables and shows table relationships. The second diagram identifies tables that exist for administrative purposes and are not directly related to studies.  It's unlikely users will find value in the administrative tables; we identify them here to be complete.</p>
+
+  <p>All study-related tables include the ClinicalTrials.gov-assigned unique study identifier: <i>nct_id</i>. This id provides a way to a) find all data for a particular study and b) facilitate query development that joins multiple tables.</p>
+  <p>You are welcome to download a copy of database design specifications:</p>
+
   <%= render 'download_database_specs' %>
 
+  <h2>Study-related Tables</h2>
   <section class="schema">
-    <div class="wrap">
-      <%= image_tag(@schema_diagram) %>
-    </div>
+     <%= image_tag(@schema_diagram) %>
+  </section>
+
+  <h2>Administrative Tables</h2>
+  <p>These tables exist to help manage/monitor data loads and administer the AACT database. It's unlikely users will need to reference these.</p>
+  <section class="schema">
+     <%= image_tag(@admin_schema_diagram) %>
   </section>
 
   <%= render 'schema_info' %>
