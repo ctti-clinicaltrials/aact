@@ -5,12 +5,9 @@
    <ul class='regularDisplay'>
      <li>Present data exactly as it exists in ClinicalTrials.gov.</li>
      <li>Make the information as easy to understand & analyze as possible.</li>
-     <li>Use consistent names and database structures throughout the database. Make it predictable; minimize uncertainty.</li>
+     <li>Use consistent names and structures throughout the database. Make it predictable; minimize uncertainty.</li>
      <li>Provide value-added attributes, identify them as such, and keep them separate from the raw ClinicalTrials.gov content. (The <i>Calculated_Values</i> table contains data elements that were derived from existing data.)</li>
    </ul>
-   <p>It was impossible to strictly adhere to every objective for each design decision; often compromises were required. For example, the study start date has historically been provided by ClinicalTrials.gov as a month/year. (NLM reported that as of January 19, 2017, some studies will include full dates: mm/dd/yy.) To honor the rule that we display exactly what ClinicalTrials.gov provides, we need to store dates as strings since the day value is missing (without it, the value cannot convert to a proper date). However, string-formatted dates are of limited utility in an analytic database; they can't be used to calculate study duration, identify studies registered within specific time periods, etc. We had long discussions and considered various alternatives to handle these conflicting objectves. When ClinicalTrials.gov reported that going forward, some studies will include full dates, we decided the best compromise would be to provide 2 columns in the Studies table for every date: 1) a string-type that displays exactly what was received & 2) a date-type that can be easily used for date calculations. If the date received has only month/year, it is assigned the first day of the month so it can be converted to a date. For example, a study with start date June, 2014 will have <i>June, 2014</i> in the <b>start_month_year</b> column and <i>06/01/14</i> in the <b>start_date</b> column.</li>
-
-   <p>Below are the fundamental rules/conventions used to design the database.</p>
 
    <h4>Naming Conventions</h4>
    <ul class='regularDisplay'>
@@ -18,33 +15,38 @@
      <li>Column names are all singular. (ie. <i>description, phase, name</i>, etc.)</li>
      <li>Table/column names derived from multiple words are delimited with underscores. (ie. <i>mesh_term, first_received_date, number_of_groups</i>, etc.)</li>
      <li>Case (upper vs lower) is not relevant since PostgreSQL ignores case. <i>Studies</i>, <i>STUDIES</i> and <i>studies</i> all represent the same table and can be used interchangably.</li>
-     <li>Information entered during registration that's related to the study design is stored in tables prefixed with <i>Design_</i> to distinguish this info from the results. For example, <i>Design_Groups</i> contains registry information about anticipated participant groups, whereas the <i>Result_Groups</i> table contains information entered when the study completed about the actual participant groups. <i>Design_Outcomes</i> contains information about the outcomes to be measured and <i>Outcomes</i> contains info about the actual outcomes reported when the study completed.</li>
-       <li>Columns that end with <i>_id</i> are foreign keys to the table identified in front of <i>_id</i>. Each foreign key links to the <i>id</i> column of the parent table. (Child_Table.&lt;parent_table&gt;_id = Parent_Table.id) For example, a row in <i>Facility_Contacts</i> links to it’s Facility through the <i>facility_id</i> column. <i>Facility_Contacts.facility_id = Facility.id</i>).</li>
-       <li>Wherever possible, tables & columns are given fully qualified names; abbreviations are avoided. (ie. <i>description</i> rather than <i>desc</i>, <i>category</i> rather than <i>ctgry</i>)</li>
+     <li>Information about study design entered into ClinicalTrials.gov during registration is stored in AACT tables prefixed with <i>Design_</i> to distinguish it from the results data. For example, the <i>Design_Groups</i> table contains registry information about anticipated participant groups, whereas the <i>Result_Groups</i> table contains information that was entered after the study has completed to describe actual participant groups. <i>Design_Outcomes</i> contains information about the outcomes to be measured and <i>Outcomes</i> contains info about the actual outcomes reported when the study completed.</li>
+     <li>Where possible, tables & columns are given fully qualified names; abbreviations are avoided. (ie. <i>description</i> rather than <i>desc</i>; <i>category</i> rather than <i>ctgry</i>)</li>
      <li>Unnecssary and duplicate verbiage is avoided. For example: <i>Studies.source</i> instead of <i>Studies.study_source</i></li>
+     <li>Columns that end with <i>_id</i> represent foreign keys. The prefix to the <i>_id</i> suffix is always the singular name of the parent table to which the child table is related. These foreign keys always link to the <i>id</i> column of the parent table.</p>
+       <p><i>Child_Table.parent_table_id = Parent_Tables.id</i>)</p>
+       <p>For example, a row in <i>Facility_Contacts</i> links to it’s facility through the <i>facility_id</i> column.</p>
+       <p><i>Facility_Contacts.facility_id = Facilities.id</i>
+     </li>
   </ul>
    <h4>Structure Conventions</h4>
    <ul class='regularDisplay'>
-     <li>Every table has an <i>nct_id</i> column to link rows to its related row in the <i>Studies</i> table. All study-related data can be linked directly to the <i>Studies</i> table via the <i>nct_id.</i> (Note: The schema diagram does not display all relationships to <i>Studies</i> to avoid appearing complex and confusing.  Relationships to the <i>Studies</i> table can be assumed.)</li>
+     <li>Every table has an <i>nct_id</i> column to link rows to its related study in the <i>Studies</i> table. All study-related data can be linked directly to the <i>Studies</i> table via the <i>nct_id.</i> (Note: The schema diagram does not display all relationships to <i>Studies</i> to avoid appearing complex and confusing.  Relationships to the <i>Studies</i> table can be assumed.)</li>
+        <p><i>Studies.nct_id = Outcomes.nct_id</i> will link outcomes to their related study.
      <li>Every table has the primary key: <i>id</i>. (<i>Studies</i> is the one exception since it's primary key is the unique study identifier assigned by ClinicalTrials.gov: <i>nct_id</i>.)</li>
      <li>Columns that end with <i>_date</i> contain date-type values.</li>
-     <li>Columns that contain month/year dates are saved as strings in a column with a <i>_month_year</i> suffix. A date-type estimate of the value (using the 1st of the month as the 'day') is stored in an adjacent column with the <i>_date</i> suffix. (This applies to date values in the <i>Studies</i> table.)</li>
+     <li>Columns that contain month/year dates are saved as character strings in a column with a <i>_month_year</i> suffix. A date-type estimate of the value (using the 1st of the month as the 'day') is stored in an adjacent column with the <i>_date</i> suffix. (This applies to date values in the <i>Studies</i> table.)</li>
      <li>Derived/calculated value are stored in the <i>Calculated_Values</i> table.</i>
    </ul>
 
    <h2>How are arms/groups identified?</h2>
    <p>Considerable thought went into how to present arm and group information to facilitate analysis by simplifying naming and data structures while retaining data fidelity.
 
-   NLM defines them as:</p>
+   NLM defines groups/arms this way:</p>
    <ul class='regularDisplay'>
      <li><i>Arm:</i> A pre-specified group or subgroup of participant(s) in a clinical trial assigned to receive specific intervention(s) (or no intervention) according to a protocol.</li>
      <li><i>Group:</i> The predefined participant groups (cohorts) to be studied, corresponding to Number of Groups specified under Study Design (for single-group studies.</li>
    </ul>
 
-   <p>In short, observational studies use the term ‘groups’; interventional studies use ‘arms’, though for the purpose of analysis, they both refer to the same thing. Because 'group' is more intuitive to the general public, we only use the term 'groups' throughout the database.</p>
+   <p>In short, observational studies use the term ‘groups’; interventional studies use ‘arms’, though for the purpose of analysis, they both refer to the same thing. Because 'group' is more intuitive to the general public, AACT standardized on the term 'group(s)' and does not use the term 'arms'.</p>
 
    <h4>Participant Groups: Registry vs Results</h4>
-   <p>When a study is registered in ClinicalTrials.gov, information about how the study design defines partipant groups. In AACT, this information is stored in the <i>Design_Groups</i> table, while info about actual groups entered after the study has completed is stored in the <i>Result_Groups</i> table. (AACT has not attempted to link data between these 2 tables.)</p>
+   <p>When a study is registered in ClinicalTrials.gov, information is entered about how the study defines partipant groups. In AACT, this information is stored in the <i>Design_Groups</i> table, while info about actual groups that is entered after the study has completed is stored in the <i>Result_Groups</i> table. (AACT has not attempted to link data between these 2 tables.)</p>
 
    <p>Result information, for the most part, is organized in ClinicalTrials.gov by participant group. <i>Result_Contacts</i> & <i>Result_Agreements</i> are the only result tables not associated with groups. This section describes how AACT has structured group-related results data.</p>
 
@@ -60,7 +62,7 @@
     <p>The <i>Result_Groups</i> table represents an aggregate list of all groups associated with these result types. All result tables (<i>Outcomes, Outcome_Counts, Baseline_Measures, Reported_Events</i>, etc.) relate to <i>Result_Groups</i> via the foreign key <i>result_group_id</i>.</p>
     <p>For example, <i>Outcomes.result_group_id = Result_Groups.id</i>.</p>
 
-    <p>ClinicalTrials.gov assigns an identifier to each group/result that is unique within the study. The identifier includes a leading character that represents the type of result (B for Baseline, O for Outcomes, R for Reported Event, and P for Participant Flow (Milestones & Drop/Withdrawals) followed by a number that uniquely identifies the group in that context. To illustrate... Study NCT001 had 2 groups: experimental & control, and reported multiple baseline measures, outcome measures, reported events and milestone/drop-withdrawals for each group. The following table illustrates how the <i>Result_Groups</i> table organizes the group information received from ClinicalTrials.gov in this case:</p>
+    <p>ClinicalTrials.gov assigns an identifier to each group/result that is unique within the study. The identifier includes a leading character that represents the type of result (B for Baseline, O for Outcomes, R for Reported Event, and P for Participant Flow) followed by a number that uniquely identifies the group in that context. To illustrate... Study NCT001 had 2 groups: experimental & control, and reported multiple baseline measures, outcome measures, reported events and milestone/drop-withdrawals for each group. The following table illustrates how the <i>Result_Groups</i> table organizes the group information received from ClinicalTrials.gov in this case:</p>
      <table id='resultGroup' class='regularDisplay'>
        <tr>
          <th class='resultGroup'>id</th>
@@ -136,14 +138,12 @@
        </tr>
      </table>
 
-     <p>Notice that the integer in the code provided by ClinicalTrials.gov often represents the same group across the different result types, but this is not always the case. In the example above, B1, E1 & P1 all represent the 'experimental group', however for Outcomes - O1 represents the control group. (We'd hoped to use a single row in <i>Result_Groups</i> to uniquely represent a participant group in the study and link all related results data (from the various tables) to that one row, however this was not possible. One group will typically be represented multiple times in the <i>Result_Groups</i> table: once for each type of result data.</p>
+     <p>Notice that the integer in the code provided by ClinicalTrials.gov (ctgov_group_code) is often the same for one group across the different result types, but this is not always the case. In the example above, B1, E1 & P1 all represent the 'experimental group', so you're tempted to think that '1' equates to to the 'experimental group' for this study, however for Outcomes, O1 represents the control group. In short, the number in the ctgov_group_code often links the same group across all result types in a study, but for about 25% of studies, this is not the case, so it can't be counted on to indicate this relationship.  (We had hoped to use a single row in <i>Result_Groups</i> to uniquely represent a participant group in the study and link all related results data (from the various tables) to that one row, however this was not possible. Therefore, one group will typically be represented multiple times in the <i>Result_Groups</i> table: once for each type of result data.</p>
 
    <h2>Information about dates</h2>
-   <p>ClinicalTrials.gov has historically provided the month/year (without day) for several date values including start date, completion date, primary completion date and verification date. Because the 'day' was not provided, AACT stored these dates in the <i>Studies</i> table as character-type rather than date-type. Character-type dates are of limited utility in an analytic database because they can't be used to perform standard date calculations such as determining study duration or identifying studies registered before/after a certain date.
+	 <p>ClinicalTrials.gov has historically provided the month/year (without day) for several date values including start date, completion date, primary completion date and verification date. Because the 'day' was not provided, AACT stored these dates in the <i>Studies</i> table as character-type rather than date-type values. Character-type dates are of limited utility in an analytic database because they can't be used to perform standard date calculations such as determining study duration or the average number of months for someone to report results or identifying studies registered before/after a certain date.</p>
 
-NLM recently reported that studies will start providing full date values (mm/dd/yy) for these date elements, however this only applies to new studies; pre-existing studies will continue to have only month/year date values.
-
-We had long discussions and considered various alternatives to handle dates given this issue. We decided to provide 2 columns in the <i>Studies</i> table for each date element: 1) a character-type column that displays the value exactly as it was received from ClinicalTrials.gov & 2) a date-type column that can be used for date calculations. If the date received from ClinicalTrials.gov has only month/year, it is assigned the first day of the month so that it can be converted to a date. For example, a study with start date June, 2014 will have <i>June, 2014</i> in the <b>start_month_year</b> column and <i>06/01/14</i> in the <b>start_date</b> column.
+   <p>NLM recently reported that ClinicalTrials.gov will start providing full date values (mm/dd/yy) for these date elements, however this only applies to new studies; pre-existing studies will continue to have only month/year date values. We considered various alternatives to handle dates given this issue. We decided to provide 2 columns in the <i>Studies</i> table for each date element: 1) a character-type column that displays the value exactly as it was received from ClinicalTrials.gov & 2) a date-type column that can be used for date calculations. If the date received from ClinicalTrials.gov has only month/year, in order to convert the string to a date, it is assigned the first day of the month. For example, a study with start date June, 2014 will have <i>June, 2014</i> in the <b>start_month_year</b> column and <i>06/01/14</i> in the <b>start_date</b> column.
     <p>
 
     <h2>Information about trial sites (Facilities and Countries)</h2>
