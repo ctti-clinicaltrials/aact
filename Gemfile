@@ -87,7 +87,3 @@ group :test, :docker_test do
   gem "webmock"
   gem "vcr"
 end
-
-group :staging, :production do
-  gem "rack-timeout"
-end

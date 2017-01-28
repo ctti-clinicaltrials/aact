@@ -63,7 +63,9 @@ class DataDefinition < ActiveRecord::Base
         cntr=results.ntuples - 1
         while cntr >= 0 do
           val=results.getvalue(cntr,0).to_s
-          val='-null-' if val.size==0
+          val='null' if val.size==0
+          val='true' if val=='t'
+          val='false' if val=='f'
           val_count=results.getvalue(cntr,1).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
           hash[val]=val_count
           cntr=cntr-1
@@ -85,8 +87,12 @@ class DataDefinition < ActiveRecord::Base
       ['central_contacts','contact_type'],
       ['design_groups','group_type'],
       ['design_outcomes','outcome_type'],
-      ['designs','observational_model'],
       ['designs','masking'],
+      ['designs','observational_model'],
+      ['designs','caregiver_masked'],
+      ['designs','investigator_masked'],
+      ['designs','outcomes_assessor_masked'],
+      ['designs','subject_masked'],
       ['eligibilities','gender'],
       ['eligibilities','gender_based'],
       ['eligibilities','sampling_method'],
@@ -122,6 +128,7 @@ class DataDefinition < ActiveRecord::Base
       ['studies','last_known_status'],
       ['studies','overall_status'],
       ['studies','phase'],
+      ['studies','primary_completion_date_type'],
       ['studies','start_date_type'],
       ['studies','study_type'],
       ['study_references','reference_type'],

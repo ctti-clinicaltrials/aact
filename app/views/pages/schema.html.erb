@@ -3,13 +3,18 @@
   <div class="basicHero">
     <h1>AACT Database Schema</h1>
   </div>
+  <%= render 'download_database_specs' %>
 
+  <h2>Study-related Tables</h2>
+  <section class="schema">
+     <%= image_tag(@schema_diagram) %>
+  </section>
+
+  <h2>Administrative Tables</h2>
+  <p>These tables exist to help manage/monitor data loads and administer the AACT database. It's unlikely users will need to reference these.</p>
+  <section class="schema">
+     <%= image_tag(@admin_schema_diagram) %>
+  </section>
+
+  <%= render 'schema_info' %>
 </div>
-
-<section class="schema">
-  <div class="wrap">
-    <%= image_tag(@schema_diagram) %>
-  </div>
-</section>
-<%= render 'download_database_specs' %>
-<%= render 'schema_info' %>
