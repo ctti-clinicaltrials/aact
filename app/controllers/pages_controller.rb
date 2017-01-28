@@ -33,6 +33,7 @@ class PagesController < ApplicationController
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
+    @show_dictionary_link = true
   end
 
   def sanity_check
