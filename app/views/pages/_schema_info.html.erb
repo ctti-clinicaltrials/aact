@@ -24,7 +24,7 @@
        <p><i>Facility_Contacts.facility_id = Facilities.id</i>
      </li>
   </ul>
-   <h4>Structure Conventions</h4>
+   <h4>Structural Conventions</h4>
    <ul class='regularDisplay'>
      <li>Every table has an <i>nct_id</i> column to link rows to its related study in the <i>Studies</i> table. All study-related data can be linked directly to the <i>Studies</i> table via the <i>nct_id.</i> (Note: The schema diagram does not display all relationships to <i>Studies</i> to avoid appearing complex and confusing.  Relationships to the <i>Studies</i> table can be assumed.)</li>
         <p><i>Studies.nct_id = Outcomes.nct_id</i> will link outcomes to their related study.
@@ -33,6 +33,8 @@
      <li>Columns that contain month/year dates are saved as character strings in a column with a <i>_month_year</i> suffix. A date-type estimate of the value (using the 1st of the month as the 'day') is stored in an adjacent column with the <i>_date</i> suffix. (This applies to date values in the <i>Studies</i> table.)</li>
      <li>Derived/calculated value are stored in the <i>Calculated_Values</i> table.</i>
    </ul>
+
+   <p>While we tried to rigorously adhere to these conventions, reality occassionally failed to cooperate, so compromises were made and exceptions to these rules exist. For example, to limit duplicate verbiage, we preferred the table name <i>References</i> over <i>Study_References</i>, however the word 'References' is a PostgreSQL reserved word and cannot be used as a table name, so <i>Study_References</i> it is.</p>
 
    <h2>How are arms/groups identified?</h2>
    <p>Considerable thought went into how to present arm and group information to facilitate analysis by simplifying naming and data structures while retaining data fidelity.
