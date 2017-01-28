@@ -114,7 +114,7 @@ Timelines for registration and results/adverse event reporting are the same as f
 
 <p>* Adapted from <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article">The ClinicalTrials.gov results database – update and key issues</a> and <a target='_blank' href='https://clinicaltrials.gov/ct2/about-site/history'>ClinicalTrials.gov summary of selected events, policies, and laws related to the development and expansion of ClinicalTrials.gov</a>. For complete descriptions of policy requirements, see the references cited. <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'>EMA</a> denotes European Medicines Agency; EU, European Union; FDAAA, Food and Drug Administration Amendments Act; <a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'>ICMJE</a>, International Committee of Medical Journal Editors; IDE, investigational device exemption; IND, investigational new drug application, NCI, National Cancer Institute; NIH, National Institutes of Health; US, United States.</p>
 
-    <p>Based on these requirements, the following are examples of characteristics that may influence the likelihood that a study is included in the ClinicalTrials.gov registry:</p>
+    <p>Based on these policies, the following are examples of characteristics that may influence the likelihood that a study is included in the ClinicalTrials.gov registry:</p>
 
     <ul class='regularDisplay'>
       <li>Interventional studies are more likely to be registered than observational studies.</li>
@@ -129,13 +129,13 @@ Timelines for registration and results/adverse event reporting are the same as f
       <li>Although studies of FDA regulated devices are likely to be registered, the registration records for studies of devices not yet approved or cleared may not be publicly posted until after the device is cleared or approved.</li>
     </ul>
 
+     <h2>Is the information in AACT up-to-date?</h2>
+
+     <p>New content is downloaded from ClinicalTrials.gov and loaded into AACT every evening. These daily updates use the ClinicalTrials.gov RSS feed to identify studies that have recently been added or changed in ClinicalTrials.gov. New & modified studies are downloaded via the ClinicalTrials.gov API & loaded into AACT. Daily updates take anywhere from 20 minutes to several hours depending on how many studies have been added/changed. A full refresh of the AACT database will be run quarterly. The full-load takes approximately one day, during which time, the cloud-based version of AACT is not available. On the first of each month, a snapshot of AACT is frozen and made available in 2 formats: 1) a PostgreSQL dump file and 2) a set of delimited text file. <a target='_blank' href='/snapshots'>Current and previous snapshots are available on the AACT website</a>, and may be useful for researchers seeking to run analyses off a static version of the database.</p>
+
      <h2>How are unique studies identified in AACT?</h2>
 
      <p>Studies registered at ClinicalTrials.gov are identified by a unique identifier, the NCT_ID.  Because of the quality assurance measures applied by ClinicalTrials.gov staff on registration entries, we can be reasonably certain that each study (i.e., NCT_ID) entered in ClinialTrials.gov refers to a unique clinical study, however a small number of <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pubmed/17507347'>duplicate records may exist in the database.</a></p>
-
-     <h2>What is the update cycle for AACT content?</h2>
-
-     <p>New content is downloaded from ClinicalTrials.gov and loaded into AACT every evening. The daily update relies on the ClinicalTrials.gov RSS feed to identify studies that have been added or changed in ClinicalTrials.gov within the past day. These studies are downloaded via the ClinicalTrials.gov API & used to update content in the AACT database; daily updates take anywhere from 20 minutes to a several hours depending on how many studies have been added/changed. A full refresh of the AACT database will be scheduled on or near the first day of the month. The full-load takes approximately one day, during which time, the cloud-based version of AACT will not be available. After each monthly full-refresh, a snapshot of AACT is frozen and made available in 2 formats: 1) a PostgreSQL dump file and 2) a set of delimited text file. <a target='_blank' href='/snapshots'>Current and previous snapshots are available on the AACT website</a>, and may be useful for researchers seeking to run analyses off a static version of the database.</p>
 
     <h2>How does content in AACT compare to what is in ClinicalTrials.gov?</h2>
 
@@ -166,7 +166,7 @@ Timelines for registration and results/adverse event reporting are the same as f
 
     <h2>How complete and accurate are the data?</h2>
 
-    <p>The presence of a record in a dataset indicates that information was submitted to ClinicalTrials.gov for at least one element in that data set before the data were downloaded from ClinicalTrials.gov. Some data elements are more/less likely than others to have missing information, depending on several known factors. For example:</p>
+    <p>The presence of a record in a table indicates that information was submitted to ClinicalTrials.gov for at least one element in that table before the data were downloaded from ClinicalTrials.gov. Some data elements are more/less likely than others to have missing information, depending on several known factors. For example:</p>
 
     <ul class='regularDisplay'>
       <li><b>The data element being required by the FDAAA and/or the ClinicalTrials.gov website.</b> Refer to NLM's <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html' onClick="ga('send','event','external link','guide page: NLM Protocols')">study</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html' onClick="ga('send','event','external link','guide page: NLM Results')">results</a> data element definitions for specifics regarding these requirements. Requirements may have changed over the history of the ClincalTrials.gov database.</li>
@@ -202,7 +202,7 @@ Timelines for registration and results/adverse event reporting are the same as f
 
     <p>a) Prior to examining the data, specify comparisons of major interest, or quantities to be estimated. </p>
 
-    <p>b) Determine the magnitude of differences that would have practical significance.  (e.g., a 25% difference in source of funding between studies of 2 pediatric conditions, or a difference in enrollment of 100 participants).  </p>
+    <p>b) Determine the magnitude of differences that would have practical significance.  (e.g., a 25% difference in source of funding between studies of 2 pediatric <i>Conditions</i>, or a difference in enrollment of 100 participants).  </p>
 
     <p>c) Determine appropriate formulas for quantifying differences between groups or summarizing population variability.  This quantification could take into account of the observed difference, variability in the data, and the number of observations.  Examples are provided:</p>
 
@@ -214,41 +214,17 @@ Timelines for registration and results/adverse event reporting are the same as f
     <h2>Specific tips for working with the AACT database</h2>
 
     <ul class='regularDisplay'>
-      <li>Users are encouraged to use the <a href=<%= @schema_diagram %> target="_blank"  onClick="ga('send','event','download','guide page: download schema')">Schema Diagram</a> to determine relationships between different AACT tables/tables (referred to as ‘tables’ on this page). These relationships determine how tables may be linked or merged together in software such as SAS & SQL.</li>
-      <li>The NCT_ID uniquely identifies each study; it serves as the primary key in the STUDIES dataset. In other words, each record in the STUDIES dataset has a unique NCT_ID value. NCT_ID also appears in every dataset related to STUDIES so that every record in every dataset can link back to the study to which it refers.</li>
-      <li>Every dataset other than STUDIES has a primary key named ‘id’, which provides an integer that uniquely identifies each row in that dataset. (The STUDIES dataset uses ‘NCT_ID’ instead of ‘id’  as the unique identifier for each row.)</li>
-      <li>To link dataset information to the study to which it refers, you simply match on NCT_ID. For example, every record in the CONDITIONS dataset with an NCT_ID of ‘NCT0000001’ refers to the study with the NCT_ID: ‘NCT0000001’ (saved in STUDIES.nct_id). The CONDITIONS dataset may contain multiple records with an NCT_ID of ‘NCT0000001’ which means this study was defined in ClinicalTrials.gov as being associated with the conditions listed in CONDITIONS with that NCT_ID.</li>
-      <li>Information in several tables are also related to information in other tables. In this case, the dataset that belongs to another dataset will include a foreign key that identifies the record to which it belongs. Foreign keys are always named according to a simple rule: the singular name of the related dataset followed by: ‘_id’.  For example, <i>Facility_Contacts</i> includes a data element: <i>facility_id</i> which is the foreign key to <i>Facilities.id</i></li>
-      <li>Each record’s foreign_key (ie. <i>facility_id</i>) contains the value of the unique identifier (id) of the record in the other dataset to which it belongs. For example, a facility may have multiple contacts. To find the contacts for a particular facility, look for the records in <i>Facility_Contacts</i> where the value in <i>facility_id</i> is same as the value in id for that facility in <i>Facilities</i>. In short, tables are related to each other with this pattern: <i>child.&lt;parent_name&gt;_id = parent.id</i> </li>
+      <li>Users are encouraged to use the <a href='/schema' target="_blank" onClick="ga('send','event','download','guide page: download schema')">Schema Diagram</a> to determine relationships between different AACT tables/tables (referred to as ‘tables’ on this page). These relationships determine how tables may be linked or merged together in software such as SAS & SQL.</li>
+      <li>The <i>nct_id</i> uniquely identifies each study; it serves as the primary key in the <i>Studies</i> table. In other words, each record in the <i>Studies</i> table has a unique <i>nct_id</i> value. <i>nct_id</i> also appears in every table related to <i>Studies</i> so that every record in every table can link back to the study to which it refers.</li>
+      <li>Every table other than <i>Studies</i> has a primary key named <i>id</i>, which provides an integer that uniquely identifies each row in that table. (The <i>Studies</i> table uses <i>nct_id</i> instead of <i>id</i> as the unique identifier for each row.)</li>
+      <li>To link table information to the study to which it refers, you simply match on <i>nct_id</i>. For example, every record in the <i><i>Conditions</i></i> table with an NCT_ID of ‘NCT0000001’ refers to the study with the NCT_ID: ‘NCT0000001’ (saved in <i>Studies.nct_id</i>). The <i>Conditions</i> table may contain multiple records with an NCT_ID of ‘NCT0000001’ which means this study was defined in ClinicalTrials.gov as being associated with the <i>Conditions</i> listed in <i>Conditions</i> with that NCT_ID.</li>
+      <li>Information in several tables are also related to information in other tables. In this case, the table that belongs to another table will include a foreign key that identifies the record to which it belongs. Foreign keys are always named according to a simple rule: the singular name of the related table followed by: ‘_id’.  For example, <i>Facility_Contacts</i> includes a data element: <i>facility_id</i> which is the foreign key to <i>Facilities.id</i></li>
+      <li>Each record’s foreign_key (ie. <i>facility_id</i>) contains the value of the unique identifier (id) of the record in the other table to which it belongs. For example, a facility may have multiple contacts. To find the contacts for a particular facility, look for the records in <i>Facility_Contacts</i> where the value in <i>facility_id</i> is same as the value in id for that facility in <i>Facilities</i>. In short, tables are related to each other with this pattern: <i>child.&lt;parent_name&gt;_id = parent.id</i> </li>
       <li>Note that the ID assigned to a particular record (e.g., to a record in the <i>Facilities</i> table) is merely the method used to identify unique records in the database table, and to facilitate linking of records between database tables. The ID does not identify unique facilities in the real world. For example, if studies A and B are both enrolling patients at Duke University Medical Center, there will be one instance of Duke University Medical Center for each study, and these records will have different ID values, even though they may be the same physical research site.</li>
     </ul>
 
     <p><%= render partial: 'schema_info' %></p>
 
-    <h2>Information about trial sites (Facilities and Countries) </h2>
-    <p> Information about organizations where the study is/was conducted (aka. facilities, trial sites) is stored in the <i>Facilities</i> table. This represents a snapshot of the facility information that was included in the study record on the date that information was downloaded from ClinicalTrials.gov.</p>
-    <p>AACT includes a <i>Countries</i> table, which contains one record per unique country per study. The <i>Countries</i> table includes countries currently & previously associated with the study. The <i>removed</i> column identifies those countries that are no longer associated with the study. NLM uses facilities information to create a list of unique countries associated with the study. In some cases, ClinicalTrials.gov data submitters subsequently remove facilities that were entered when the study was registered. Naturally these will not appear in AACT's <i>Facilities</i> table. If all of a country’s facilities have been removed from a study, NLM flags the country as ‘Removed’ which appears in AACT as <i>Countries.removed</i> = true.
-    </ul>
-
-    <p>The reasons facilities are removed are varied and unknown. A site may have been removed because it was never initiated or because it was entered with incorrect information. The recommended action for sites that have completed or have terminated enrollment is to change the enrollment status to “Completed” or “Terminated”; however, such sites are sometimes deleted from the study record by the responsible party. Data analysts may consider using Countries where <i>removed</i> is set to true to supplement the information about trial locations that is contained in <i>Facilities</i>, particularly for studies that have completed enrollment and have no records in <i>Facilities</i>.</p>
-
-    <p>Users who are interested in identifying countries where participants are being/were enrolled may use either the <i>Facilities</i> or <i>Countries</i> (where <i>Countries.removed</i> is not true) with equivalent results.</p>
-
-    <h2>MeSH terms in Browse_Conditions and Browse_Interventions</h2>
-    <p>When data submitters provide information to ClinicalTrials.gov about a study, they’re encouraged to use Medical Subject Heading (<a target='_blank' href='https://www.nlm.nih.gov/mesh/meshhome.html'>MeSH</a>) terminology for interventions, conditions, and keywords. The <i>Browse_Conditions</i> and <i>Browse_Interventions</i> tables contain MeSH terms generated by an algorithm run by NLM. The NLM algorithm is re-run nightly on all studies in the ClinicalTrials.gov database, and sources the most up-to-date information in the study record, the latest version of the algorithm, and the version of the MeSH thesaurus in use at that time.</p>
-
-    <h2>“Delayed Results” data elements are available in AACT</h2>
-
-    <p>A responsible party of an applicable clinical trial may delay the deadline for submitting results information to ClinicalTrials.gov for up to two additional years if one of the following two certification conditions applies to the trial:</p>
-
-    <ul class='regularDisplay'>
-      <li>Initial approval: trial completed before a drug, biologic or device studied in the trial is initially approved, licensed or cleared by the FDA for any use.</li>
-      <li>New use: the manufacturer of a drug, biologic or device is the sponsor of the trial and has filed or will file within one year, an application seeking FDA approval, licensure, or clearance of the new use studied in the trial. A responsible party may also request, for good cause, an extension of the deadline for the submission of results.</li>
-    </ul>
-
-    <p>Studies for which a certification or extension request have been submitted include the date of the first certification or extension request in the data element: <i>Studies.received_results_disposit_date</i>.</p>
-
-    <p>In general, the content that is contained in the AACT database preserves the content in the source XML files that are downloaded from ClinicalTrials.gov.</p>
 
     <h2>References</h2>
 
