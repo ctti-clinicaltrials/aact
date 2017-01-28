@@ -5,10 +5,15 @@
   </div>
   <%= render 'download_database_specs' %>
 
+  <h2>Study-related Tables</h2>
   <section class="schema">
-    <div class="wrap">
-      <%= image_tag(@schema_diagram) %>
-    </div>
+     <%= image_tag(@schema_diagram) %>
+  </section>
+
+  <h2>Administrative Tables</h2>
+  <p>These tables exist to help manage/monitor data loads and administer the AACT database. It's unlikely users will need to reference these.</p>
+  <section class="schema">
+     <%= image_tag(@admin_schema_diagram) %>
   </section>
 
   <%= render 'schema_info' %>
