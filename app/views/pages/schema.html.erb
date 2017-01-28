@@ -3,13 +3,13 @@
   <div class="basicHero">
     <h1>AACT Database Schema</h1>
   </div>
+  <%= render 'download_database_specs' %>
 
+  <section class="schema">
+    <div class="wrap">
+      <%= image_tag(@schema_diagram) %>
+    </div>
+  </section>
+
+  <%= render 'schema_info' %>
 </div>
-
-<section class="schema">
-  <div class="wrap">
-    <%= image_tag(@schema_diagram) %>
-  </div>
-</section>
-<%= render 'download_database_specs' %>
-<%= render 'schema_info' %>
