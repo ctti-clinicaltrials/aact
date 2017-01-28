@@ -87,6 +87,7 @@ class Study < ActiveRecord::Base
   end
 
   def create
+    ActiveRecord::Base.logger=nil
     s=Study.where('nct_id=?',nct_id).first
     s.try(:destroy)
     update(attribs)

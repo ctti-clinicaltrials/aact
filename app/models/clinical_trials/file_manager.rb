@@ -32,6 +32,10 @@ module ClinicalTrials
       "#{server}/documentation/analyst_guide.png"
     end
 
+    def self.admin_schema_diagram
+      "#{server}/documentation/aact_admin_schema.png"
+    end
+
     def self.schema_diagram
       "#{server}/documentation/aact_schema.png"
     end
