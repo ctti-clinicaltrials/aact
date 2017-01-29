@@ -27,7 +27,11 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.refresh_table_for_studies(id_array)
     ids=id_array.map { |i| "'" + i.to_s + "'" }.join(",")
-    ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
+    begin
+      ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
+    rescue
+      # if the revoke fails, don't let it stop us.
+    end
     ActiveRecord::Base.connection.execute("DELETE FROM calculated_values WHERE NCT_ID IN (#{ids})")
     ActiveRecord::Base.connection.execute("INSERT INTO calculated_values (
                  nct_id,
