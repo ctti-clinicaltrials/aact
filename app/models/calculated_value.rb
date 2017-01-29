@@ -182,7 +182,6 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_has_us_facility
-    ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
     !study.facilities.detect{|f|f.country=='United States'}.nil?
   end
 
