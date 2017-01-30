@@ -112,6 +112,7 @@ class DataDefinition < ActiveRecord::Base
       ['outcome_analyses','ci_n_sides'],
       ['outcome_analyses','dispersion_type'],
       ['outcome_analyses','non_inferiority_type'],
+      ['outcome_counts','scope'],
       ['outcome_measurements','param_type'],
       ['reported_events','assessment'],
       ['reported_events','default_assessment'],
