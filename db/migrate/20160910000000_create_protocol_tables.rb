@@ -19,7 +19,6 @@ class CreateProtocolTables < ActiveRecord::Migration
 
     create_table "calculated_values", force: :cascade do |t|
       t.string  "nct_id"
-      t.string  "sponsor_type"
       t.integer "number_of_facilities"
       t.integer "number_of_nsae_subjects"
       t.integer "number_of_sae_subjects"

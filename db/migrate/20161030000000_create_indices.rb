@@ -21,7 +21,6 @@ class CreateIndices < ActiveRecord::Migration
     add_index :calculated_values, :actual_duration
     add_index :calculated_values, :months_to_report_results
     add_index :calculated_values, :number_of_facilities
-    add_index :calculated_values, :sponsor_type
     add_index :central_contacts, :contact_type
     add_index :design_groups, :group_type
     add_index :design_outcomes, :outcome_type
