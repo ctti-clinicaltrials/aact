@@ -240,7 +240,7 @@ CREATE TABLE calculated_values (
     actual_duration integer,
     were_results_reported boolean DEFAULT false,
     months_to_report_results integer,
-    has_us_facility boolean DEFAULT false,
+    has_us_facility boolean,
     has_single_facility boolean DEFAULT false,
     minimum_age_num integer,
     maximum_age_num integer,
