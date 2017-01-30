@@ -71,8 +71,8 @@ describe CalculatedValue do
     expect(study2.primary_completion_month_year).to eq('March 2012')
     expect(study2.first_received_results_date.strftime('%m/%d/%Y')).to eq('01/15/2014')
     expect(cv.were_results_reported).to eq(true)
+    expect(cv.has_us_facility).to eq(nil)
 
-    expect(cv.has_us_facility).to eq(false)
     expect(cv.has_single_facility).to eq(false)
     expect(cv.actual_duration).to eq(60)
     expect(cv.months_to_report_results).to eq(22)
