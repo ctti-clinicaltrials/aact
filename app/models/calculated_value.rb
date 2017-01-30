@@ -53,7 +53,9 @@ class CalculatedValue < ActiveRecord::Base
       :sql_for_registered_in_calendar_year,
       :sql_for_were_results_reported,
       :sql_for_has_single_facility,
-      :sql_for_has_us_facility,
+      :sql_for_has_us_facility1,
+      :sql_for_has_us_facility2,
+      :sql_for_has_us_facility3,
       :sql_for_number_of_facilities,
       :sql_for_months_to_report_results,
       :sql_for_actual_duration,
@@ -83,7 +85,7 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.sql_for_registered_in_calendar_year
     "SET registered_in_calendar_year = x.res
-       FROM ( SELECT nct_id, date_part('year', start_date) as res FROM studies ) x
+       FROM ( SELECT nct_id, date_part('year', first_received_date) as res FROM studies ) x
       WHERE x.nct_id = calculated_values.nct_id"
   end
 
@@ -95,8 +97,25 @@ class CalculatedValue < ActiveRecord::Base
     "SET has_single_facility=true WHERE nct_id in (SELECT nct_id FROM facilities GROUP BY nct_id HAVING count(*)=1)"
   end
 
-  def self.sql_for_has_us_facility
-    "SET has_us_facility=true WHERE nct_id in (SELECT distinct nct_id FROM facilities WHERE country='United States')"
+  def self.sql_for_has_us_facility1
+    # FIRST:  defaut to false
+    "SET has_us_facility=false"
+  end
+
+  def self.sql_for_has_us_facility2
+    # SECOND: set to true if at least one facility is US
+    "SET has_us_facility=true WHERE nct_id in (SELECT distinct nct_id FROM countries WHERE name='United States' AND removed IS NOT true)"
+  end
+
+  def self.sql_for_has_us_facility3
+    # THIRD: studies that don't have countries defined, set to null
+     "  SET has_us_facility=null WHERE nct_id in (
+     SELECT distinct l.nct_id
+       FROM studies l
+  LEFT JOIN countries r
+         ON r.nct_id = l.nct_id
+      WHERE r.nct_id IS NULL
+        AND r.removed IS NOT true)"
   end
 
   def self.sql_for_number_of_facilities
@@ -136,22 +155,27 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def self.sql_for_sponsor_type1
-    #  FIRST: Set sponsor_type using lead sponsor if there's one (Should only be one lead?)
-    "SET sponsor_type= x.agency_class FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='lead' GROUP BY nct_id, agency_class HAVING count(*)=1) x WHERE x.nct_id = calculated_values.nct_id"
+    #  FIRST: Set sponsor_type to NULL
+    "  SET sponsor_type=NULL"
   end
 
   def self.sql_for_sponsor_type2
-    #  SECOND: Set sponsor_type to NIH if no lead sponsor and one of the collaborators is NIH
-    "SET sponsor_type= 'NIH' FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='collaborator' AND agency_class='NIH' GROUP BY nct_id, agency_class) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.sponsor_type IS NULL"
+    #  SECOND: Set sponsor_type to NIH if NIH is involved
+    "  SET sponsor_type='NIH'
+      FROM ( SELECT distinct nct_id FROM sponsors WHERE agency_class='NIH') x
+     WHERE x.nct_id = calculated_values.nct_id"
   end
 
   def self.sql_for_sponsor_type3
-    #  THIRD: Set sponsor_type to Industry if no lead sponsor and no NIH collaborators
-    "SET sponsor_type= 'Industry' FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='collaborator' AND agency_class='Industry' GROUP BY nct_id, agency_class) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.sponsor_type IS NULL"
+    #  THIRD: Set sponsor_type to Industry if Industry is involved and NIH is not
+     " SET sponsor_type='Industry'
+      FROM ( SELECT distinct nct_id FROM sponsors WHERE agency_class='Industry') x
+     WHERE x.nct_id = calculated_values.nct_id
+       AND sponsor_type <> 'NIH' "
   end
 
   def self.sql_for_sponsor_type4
-    #  FOURTH: If not yet set, set sponsor_type to 'Other'
+    #  FOURTH: Set all studies not set to NIH or Industry to Other
     "SET sponsor_type= 'Other' WHERE sponsor_type IS NULL"
   end
 

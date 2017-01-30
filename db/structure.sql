@@ -240,7 +240,7 @@ CREATE TABLE calculated_values (
     actual_duration integer,
     were_results_reported boolean DEFAULT false,
     months_to_report_results integer,
-    has_us_facility boolean DEFAULT false,
+    has_us_facility boolean,
     has_single_facility boolean DEFAULT false,
     minimum_age_num integer,
     maximum_age_num integer,
@@ -1486,40 +1486,6 @@ ALTER SEQUENCE sponsors_id_seq OWNED BY sponsors.id;
 
 
 --
--- Name: statistics; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE statistics (
-    id integer NOT NULL,
-    start_date date,
-    end_date date,
-    sponsor_type character varying,
-    stat_category character varying,
-    stat_value character varying,
-    number_of_studies integer
-);
-
-
---
--- Name: statistics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE statistics_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE statistics_id_seq OWNED BY statistics.id;
-
-
---
 -- Name: studies; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2002,13 +1968,6 @@ ALTER TABLE ONLY sponsors ALTER COLUMN id SET DEFAULT nextval('sponsors_id_seq':
 
 
 --
--- Name: statistics id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY statistics ALTER COLUMN id SET DEFAULT nextval('statistics_id_seq'::regclass);
-
-
---
 -- Name: study_references id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2362,14 +2321,6 @@ ALTER TABLE ONLY sanity_checks
 
 ALTER TABLE ONLY sponsors
     ADD CONSTRAINT sponsors_pkey PRIMARY KEY (id);
-
-
---
--- Name: statistics statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY statistics
-    ADD CONSTRAINT statistics_pkey PRIMARY KEY (id);
 
 
 --
