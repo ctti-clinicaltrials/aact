@@ -27,8 +27,12 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.refresh_table_for_studies(id_array)
     ids=id_array.map { |i| "'" + i.to_s + "'" }.join(",")
-    ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
-    ActiveRecord::Base.connection.execute("DELETE FROM calculated_values WHERE NCT_ID IN (#{ids})")
+    begin
+      ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
+      ActiveRecord::Base.connection.execute("DELETE FROM calculated_values WHERE NCT_ID IN (#{ids})")
+    rescue
+      # if the revoke fails, don't let it stop us.
+    end
     ActiveRecord::Base.connection.execute("INSERT INTO calculated_values (
                  nct_id,
                  nlm_download_date
@@ -182,7 +186,6 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_has_us_facility
-    ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
     !study.facilities.detect{|f|f.country=='United States'}.nil?
   end
 
