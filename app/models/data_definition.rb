@@ -85,7 +85,6 @@ class DataDefinition < ActiveRecord::Base
       ['baseline_counts','scope'],
       ['baseline_measurements','category'],
       ['baseline_measurements','param_type'],
-      ['calculated_values','sponsor_type'],
       ['central_contacts','contact_type'],
       ['design_groups','group_type'],
       ['design_outcomes','outcome_type'],
