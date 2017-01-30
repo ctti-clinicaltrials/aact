@@ -40,6 +40,14 @@ describe CalculatedValue do
     expect(cv.months_to_report_results).to eq(62)
   end
 
+  it "should set has_us_facility to nil if no facilities provided" do
+    nct_id='NCT02591810'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    CalculatedValue.refresh_table_for_studies([nct_id])
+    expect(study.calculated_value.has_us_facility).to eq(nil)
+  end
+
   it "should set correct calculated values for a set of studies" do
     nct_id1='NCT00023673'
     nct_id2='NCT02028676'
@@ -71,7 +79,7 @@ describe CalculatedValue do
     expect(study2.primary_completion_month_year).to eq('March 2012')
     expect(study2.first_received_results_date.strftime('%m/%d/%Y')).to eq('01/15/2014')
     expect(cv.were_results_reported).to eq(true)
-    expect(cv.has_us_facility).to eq(nil)
+    expect(cv.has_us_facility).to eq(false)
 
     expect(cv.has_single_facility).to eq(false)
     expect(cv.actual_duration).to eq(60)
