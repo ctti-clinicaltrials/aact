@@ -53,7 +53,9 @@ class CalculatedValue < ActiveRecord::Base
       :sql_for_registered_in_calendar_year,
       :sql_for_were_results_reported,
       :sql_for_has_single_facility,
-      :sql_for_has_us_facility,
+      :sql_for_has_us_facility1,
+      :sql_for_has_us_facility2,
+      :sql_for_has_us_facility3,
       :sql_for_number_of_facilities,
       :sql_for_months_to_report_results,
       :sql_for_actual_duration,
@@ -95,8 +97,25 @@ class CalculatedValue < ActiveRecord::Base
     "SET has_single_facility=true WHERE nct_id in (SELECT nct_id FROM facilities GROUP BY nct_id HAVING count(*)=1)"
   end
 
-  def self.sql_for_has_us_facility
-    "SET has_us_facility=true WHERE nct_id in (SELECT distinct nct_id FROM facilities WHERE country='United States')"
+  def self.sql_for_has_us_facility1
+    # FIRST:  defaut to false
+    "SET has_us_facility=false"
+  end
+
+  def self.sql_for_has_us_facility2
+    # SECOND: set to true if at least one facility is US
+    "SET has_us_facility=true WHERE nct_id in (SELECT distinct nct_id FROM countries WHERE name='United States' AND removed IS NOT true)"
+  end
+
+  def self.sql_for_has_us_facility3
+    # THIRD: studies that don't have countries defined, set to null
+     "  SET has_us_facility=null WHERE nct_id in (
+     SELECT distinct l.nct_id
+       FROM studies l
+  LEFT JOIN countries r
+         ON r.nct_id = l.nct_id
+      WHERE r.nct_id IS NULL
+        AND r.removed IS NOT true)"
   end
 
   def self.sql_for_number_of_facilities
