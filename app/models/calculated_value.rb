@@ -106,12 +106,11 @@ class CalculatedValue < ActiveRecord::Base
   def self.sql_for_has_us_facility3
     # THIRD: studies that don't have countries defined, set to null
      "  SET has_us_facility=null WHERE nct_id in (
-     SELECT distinct l.nct_id
-       FROM studies l
-  LEFT JOIN countries r
-         ON r.nct_id = l.nct_id
-      WHERE r.nct_id IS NULL
-        AND r.removed IS NOT true)"
+         SELECT distinct l.nct_id
+           FROM studies l
+      LEFT JOIN countries r
+             ON (r.nct_id = l.nct_id AND r.removed IS NOT true)
+          WHERE r.nct_id IS NULL)"
   end
 
   def self.sql_for_number_of_facilities
