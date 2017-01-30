@@ -83,7 +83,7 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.sql_for_registered_in_calendar_year
     "SET registered_in_calendar_year = x.res
-       FROM ( SELECT nct_id, date_part('year', start_date) as res FROM studies ) x
+       FROM ( SELECT nct_id, date_part('year', first_received_date) as res FROM studies ) x
       WHERE x.nct_id = calculated_values.nct_id"
   end
 

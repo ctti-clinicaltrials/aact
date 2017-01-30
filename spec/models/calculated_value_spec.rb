@@ -14,6 +14,7 @@ describe CalculatedValue do
     expect(cv.actual_duration).to eq(nil)
     expect(cv.months_to_report_results).to eq(nil)
     expect(cv.were_results_reported).to eq(false)
+    expect(cv.registered_in_calendar_year).to eq(2007)
   end
 
   it "should not have actual_duration if completion date is 'anticipated'" do
