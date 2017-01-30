@@ -73,7 +73,6 @@ describe CalculatedValue do
     expect(cv.were_results_reported).to eq(true)
     expect(cv.has_us_facility).to eq(nil)
 
-    expect(cv.has_us_facility).to eq(false)
     expect(cv.has_single_facility).to eq(false)
     expect(cv.actual_duration).to eq(60)
     expect(cv.months_to_report_results).to eq(22)
