@@ -31,6 +31,8 @@ describe OutcomeAnalysis do
     expect(oa.groups.size).to eq(2)
     expect(oa.groups.select{|x| x.ctgov_group_code=='O1'}.size).to eq(1)
     expect(oa.groups.select{|x| x.ctgov_group_code=='O2'}.size).to eq(1)
+    oag=oa.groups.select{|x| x.ctgov_group_code=='O1'}.first
+    expect(oag.ctgov_group_code).to eq(oag.result_group.ctgov_group_code)
   end
 
   it "study should be fine without any outcome analyses" do

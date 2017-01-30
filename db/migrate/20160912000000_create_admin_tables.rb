@@ -24,15 +24,6 @@ class CreateAdminTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table "statistics", force: :cascade do |t|
-      t.date    "start_date"
-      t.date    "end_date"
-      t.string  "sponsor_type"
-      t.string  "stat_category"
-      t.string  "stat_value"
-      t.integer "number_of_studies"
-    end
-
     create_table "study_xml_records", force: :cascade do |t|
       t.string   "nct_id"
       t.xml      "content"
