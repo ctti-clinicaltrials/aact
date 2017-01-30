@@ -136,22 +136,27 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def self.sql_for_sponsor_type1
-    #  FIRST: Set sponsor_type using lead sponsor if there's one (Should only be one lead?)
-    "SET sponsor_type= x.agency_class FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='lead' GROUP BY nct_id, agency_class HAVING count(*)=1) x WHERE x.nct_id = calculated_values.nct_id"
+    #  FIRST: Set sponsor_type to NULL
+    "  SET sponsor_type=NULL"
   end
 
   def self.sql_for_sponsor_type2
-    #  SECOND: Set sponsor_type to NIH if no lead sponsor and one of the collaborators is NIH
-    "SET sponsor_type= 'NIH' FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='collaborator' AND agency_class='NIH' GROUP BY nct_id, agency_class) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.sponsor_type IS NULL"
+    #  SECOND: Set sponsor_type to NIH if NIH is involved
+    "  SET sponsor_type='NIH'
+      FROM ( SELECT distinct nct_id FROM sponsors WHERE agency_class='NIH') x
+     WHERE x.nct_id = calculated_values.nct_id"
   end
 
   def self.sql_for_sponsor_type3
-    #  THIRD: Set sponsor_type to Industry if no lead sponsor and no NIH collaborators
-    "SET sponsor_type= 'Industry' FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='collaborator' AND agency_class='Industry' GROUP BY nct_id, agency_class) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.sponsor_type IS NULL"
+    #  THIRD: Set sponsor_type to Industry if Industry is involved and NIH is not
+     " SET sponsor_type='Industry'
+      FROM ( SELECT distinct nct_id FROM sponsors WHERE agency_class='Industry') x
+     WHERE x.nct_id = calculated_values.nct_id
+       AND sponsor_type <> 'NIH' "
   end
 
   def self.sql_for_sponsor_type4
-    #  FOURTH: If not yet set, set sponsor_type to 'Other'
+    #  FOURTH: Set all studies not set to NIH or Industry to Other
     "SET sponsor_type= 'Other' WHERE sponsor_type IS NULL"
   end
 
