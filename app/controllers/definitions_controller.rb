@@ -65,7 +65,9 @@ class DefinitionsController < ApplicationController
       return if dd.enumerations.nil?
       str="<select>"
       dd.enumerations.each{|e|
-        str=str+"<option><span class='enum'>"+e.last+" - </span>"+e.first+"</option>"
+        cnt=e.last.first
+        pct=e.last.last
+        str=str+"<option><span class='enum'>"+cnt+" ("+pct+")&nbsp&nbsp; - </span>"+e.first+"</option>"
       }
       str=str+'</select>'
       hash['enumerations'] = str
