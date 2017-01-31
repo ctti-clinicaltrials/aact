@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on January 30, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02591810</url>
+  </required_header>
+  <id_info>
+    <org_study_id>15.041.04</org_study_id>
+    <nct_id>NCT02591810</nct_id>
+  </id_info>
+  <brief_title>Treatment Options for Acute Distal Radioulnar Joint Instability</brief_title>
+  <acronym>DRUJ</acronym>
+  <official_title>Comparison of Treatment Options for Acute Distal Radioulnar Joint Instability: A Prospective Randomized Control Trial</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Orlando Health, Inc.</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Orlando Health, Inc.</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      This prospective randomized control trial (PRCT) aims to compare the outcome of three
+      treatments for acute distal radioulnar joint (DRUJ) injury with instability with or without
+      concomitant distal radius fractures: serial splinting/casting with the hand and wrist in the
+      most stable position for DRUJ reduction vs percutaneous DRUJ fixation with Kirschner wires
+      vs open anatomic foveal repair of Triangular fibrocartilage complex (TFCC ) ligaments.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      This is a prospective randomized control trial comparing three methods of treatment for
+      acute DRUJ instability with or without concomitant distal radius fracture. Upon
+      determination of residual DRUJ instability either preoperatively or intraoperatively after
+      distal radius fracture fixation, patients will be randomized into one of the three treatment
+      arms of the study: nonoperative treatment with immobilization, percutaneous DRUJ fixation
+      with Kirschner wires, and open anatomic foveal repair of Triangular fibrocartilage complex
+      TFCC ligaments with suture. Those patients undergoing Kirschner wire fixation will have
+      their pins pulled in the clinic setting six weeks postoperatively. Outcomes will be assessed
+      at follow up visits using the subjective and objective measures and clinical assistants will
+      be blinded as to the treatment type. Physician-based assessment of functional outcome with
+      be assessed using the Disability of the Arm, Shoulder and Hand (DASH) score and Mayo Wrist
+      scores, as well as independent assessment of DRUJ instability, ROM, and grip strength.
+      Patient-based assessment will include visual analog pain scores as well as satisfaction
+      questionnaires.
+    </textblock>
+  </detailed_description>
+  <overall_status>Not yet recruiting</overall_status>
+  <start_date>December 2015</start_date>
+  <completion_date type="Anticipated">December 2017</completion_date>
+  <primary_completion_date type="Anticipated">September 2017</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Single Blind (Subject)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Evaluation and assessment of DASH scores.</measure>
+    <time_frame>Up to 5 years.</time_frame>
+    <description>To compare the outcomes of the three treatment arms for acute DRUJ instability by assessment with the Disabilities of the Arm, Shoulder, and Hand (DASH) Score.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Visual Analog Pain scale</measure>
+    <time_frame>Up to 5 years.</time_frame>
+    <description>Patient will be asked to describe level on pain on a 10cm scale, in 1 cm increments, from 0 to 10. 0 equals no pain, 10 equals the worst pain.</description>
+  </secondary_outcome>
+  <other_outcome>
+    <measure>Mayo wrist assessment scores</measure>
+    <time_frame>Up to 5 years</time_frame>
+    <description>Patients will be asked to describe their pain intensity, range of motion, grip strength and functional status.</description>
+  </other_outcome>
+  <other_outcome>
+    <measure>Patient satisfaction</measure>
+    <time_frame>Up to 5 years</time_frame>
+    <description>Patients will be asked to describe on a scale from 1 to 10 how satisfied they are with their surgery.</description>
+  </other_outcome>
+  <number_of_arms>3</number_of_arms>
+  <enrollment type="Anticipated">100</enrollment>
+  <condition>Wrist Injuries</condition>
+  <arm_group>
+    <arm_group_label>Serial Casting</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Participants will receive the intervention of the placement of serial casting/splinting for the injured wrist. This is not a surgical intervention.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Kirschner wires</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Participants will receive the intervention of percutaneous fixation with Kirschner wires for the injured wrist. This will be performed surgically.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Foveal repair</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Participants will receive the intervention of open anatomic foveal repair of the ligaments of the injured wrist. This is a surgical intervention.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Serial casting/splinting</intervention_name>
+    <description>Serial Casting involves applying and removing a series of lightweight casts made of fiberglass. The wrist is monitored as healing occurs.</description>
+    <arm_group_label>Serial Casting</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Percutaneous fixation</intervention_name>
+    <description>Injury is treated by the percutaneous placement of Kirschner wires to promote healing. This is an invasive procedure, involving the placement of Kirschner wires to stabilize the wrist.</description>
+    <arm_group_label>Kirschner wires</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Foveal repair</intervention_name>
+    <description>Injury is treated by open anatomic foveal repair of the ligaments. This is a surgical procedure.</description>
+    <arm_group_label>Foveal repair</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          1. Patients treated at Orlando Regional Medical Center,
+
+          2. 18 years or older,
+
+          3. Have an acute (less than 4 week old) injury with instability of the DRUJ.
+
+        Exclusion Criteria:
+
+          1. Younger than 18 years old,
+
+          2. Patients with an injury over 4 weeks old,
+
+          3. Previous history of ipsilateral upper extremity trauma,
+
+          4. Functional deficit,
+
+          5. Those who are unable to complete postoperative assessments. -
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Tara Roberts, BS</last_name>
+    <role>Study Chair</role>
+    <affiliation>Orlando Health</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Paula J. Harriott, RN</last_name>
+    <phone>321-841-3867</phone>
+    <email>Paula.Harriott@orlandohealth.com</email>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>Brett Lewellyn, MD</last_name>
+    <phone>321-843-5172</phone>
+    <email>Brett.Lewellyn@Orlandohealth.com</email>
+  </overall_contact_backup>
+  <verification_date>December 2015</verification_date>
+  <lastchanged_date>December 10, 2015</lastchanged_date>
+  <firstreceived_date>July 22, 2015</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>Orlando Health, Inc.</investigator_affiliation>
+    <investigator_full_name>Brett Lewellyn</investigator_full_name>
+    <investigator_title>Orthopedic surgeon, Hand specialist</investigator_title>
+  </responsible_party>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <mesh_term>Joint Instability</mesh_term>
+    <mesh_term>Wrist Injuries</mesh_term>
+  </condition_browse>
+  <!-- Results have not yet been posted for this study                                -->
+</clinical_study>

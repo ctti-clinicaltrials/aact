@@ -65,10 +65,6 @@ class CalculatedValue < ActiveRecord::Base
       :sql_for_minimum_age_unit,
       :sql_for_maximum_age_num,
       :sql_for_maximum_age_unit,
-      :sql_for_sponsor_type1,
-      :sql_for_sponsor_type2,
-      :sql_for_sponsor_type3,
-      :sql_for_sponsor_type4
     ]
 
   end
@@ -110,12 +106,11 @@ class CalculatedValue < ActiveRecord::Base
   def self.sql_for_has_us_facility3
     # THIRD: studies that don't have countries defined, set to null
      "  SET has_us_facility=null WHERE nct_id in (
-     SELECT distinct l.nct_id
-       FROM studies l
-  LEFT JOIN countries r
-         ON r.nct_id = l.nct_id
-      WHERE r.nct_id IS NULL
-        AND r.removed IS NOT true)"
+         SELECT distinct l.nct_id
+           FROM studies l
+      LEFT JOIN countries r
+             ON (r.nct_id = l.nct_id AND r.removed IS NOT true)
+          WHERE r.nct_id IS NULL)"
   end
 
   def self.sql_for_number_of_facilities
@@ -154,31 +149,6 @@ class CalculatedValue < ActiveRecord::Base
     "SET minimum_age_unit = x.res FROM ( SELECT nct_id, substring(minimum_age from position(' ' in minimum_age)) as res FROM eligibilities WHERE minimum_age != 'N/A' AND minimum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
   end
 
-  def self.sql_for_sponsor_type1
-    #  FIRST: Set sponsor_type to NULL
-    "  SET sponsor_type=NULL"
-  end
-
-  def self.sql_for_sponsor_type2
-    #  SECOND: Set sponsor_type to NIH if NIH is involved
-    "  SET sponsor_type='NIH'
-      FROM ( SELECT distinct nct_id FROM sponsors WHERE agency_class='NIH') x
-     WHERE x.nct_id = calculated_values.nct_id"
-  end
-
-  def self.sql_for_sponsor_type3
-    #  THIRD: Set sponsor_type to Industry if Industry is involved and NIH is not
-     " SET sponsor_type='Industry'
-      FROM ( SELECT distinct nct_id FROM sponsors WHERE agency_class='Industry') x
-     WHERE x.nct_id = calculated_values.nct_id
-       AND sponsor_type <> 'NIH' "
-  end
-
-  def self.sql_for_sponsor_type4
-    #  FOURTH: Set all studies not set to NIH or Industry to Other
-    "SET sponsor_type= 'Other' WHERE sponsor_type IS NULL"
-  end
-
   def create_from(new_study)
     stime=Time.now
     self.study=new_study
@@ -186,7 +156,6 @@ class CalculatedValue < ActiveRecord::Base
     self.has_single_facility       = calc_has_single_facility
     self.number_of_facilities      = calc_number_of_facilities
     self.actual_duration           = calc_actual_duration
-    self.sponsor_type              = calc_sponsor_type
     self.were_results_reported     = calc_were_results_reported
     self.registered_in_calendar_year = calc_registered_in_calendar_year
 
@@ -210,10 +179,12 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_has_us_facility
+    return false if study.facilities.empty?
     !study.facilities.detect{|f|f.country=='United States'}.nil?
   end
 
   def calc_has_single_facility
+    return false if study.facilities.empty?
     study.facilities.size==1
   end
 
@@ -243,15 +214,6 @@ class CalculatedValue < ActiveRecord::Base
   def get_download_date
     dt=study.nlm_download_date_description.split('ClinicalTrials.gov processed this data on ').last
     dt.to_date if dt
-  end
-
-  def calc_sponsor_type
-    return nil if study.lead_sponsors.size > 1
-    val=study.lead_sponsors.first.try(:agency_class)
-    return val if val=='Industry' or val=='NIH'
-    study.collaborators.each{|c|return 'NIH' if c.agency_class=='NIH'}
-    study.collaborators.each{|c|return 'Industry' if c.agency_class=='Industry'}
-    return 'Other'
   end
 
   def calc_number_of_subjects(reported_events,type)
