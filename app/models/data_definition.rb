@@ -50,30 +50,37 @@ class DataDefinition < ActiveRecord::Base
   end
 
   def self.populate_enumerations
-    rows=where("column_name='id'")
-    populate_from_file if rows.size==0
+    dd_rows=where("column_name='id'").size
+    populate_from_file if dd_rows==0
     enums.each{|array|
       begin
+        full_count=ActiveRecord::Base.connection.execute("SELECT count(*) FROM #{array.first}")
+        rows=full_count.getvalue(0,0).to_i if full_count.ntuples == 1
+
         results=ActiveRecord::Base.connection.execute("
                     SELECT DISTINCT #{array.last}, COUNT(*) AS cnt
                       FROM #{array.first}
                      GROUP BY #{array.last}
                      ORDER BY cnt ASC")
         hash={}
-        cntr=results.ntuples - 1
-        while cntr >= 0 do
-          val=results.getvalue(cntr,0).to_s
+
+        entries=results.ntuples - 1
+        while entries >= 0 do
+          val=results.getvalue(entries,0).to_s
           val='null' if val.size==0
           val='true' if val=='t'
           val='false' if val=='f'
-          val_count=results.getvalue(cntr,1).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
-          hash[val]=val_count
-          cntr=cntr-1
+          cnt=results.getvalue(entries,1)
+          pct=(cnt.to_f/rows.to_f)*100
+          display_count=cnt.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+          display_percent="#{pct.round(2)}%"
+          hash[val]=[display_count,display_percent]
+          entries=entries-1
         end
         row=where("table_name=? and column_name=?",array.first,array.last).first
         row.enumerations=hash.to_json
         row.save
-      rescue
+      rescue e
         puts ">>>>  could not determine enumerations for #{array.first}  #{array.last}"
       end
     }
@@ -85,7 +92,6 @@ class DataDefinition < ActiveRecord::Base
       ['baseline_counts','scope'],
       ['baseline_measurements','category'],
       ['baseline_measurements','param_type'],
-      ['calculated_values','sponsor_type'],
       ['central_contacts','contact_type'],
       ['design_groups','group_type'],
       ['design_outcomes','outcome_type'],

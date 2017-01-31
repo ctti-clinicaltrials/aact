@@ -53,7 +53,9 @@ class CalculatedValue < ActiveRecord::Base
       :sql_for_registered_in_calendar_year,
       :sql_for_were_results_reported,
       :sql_for_has_single_facility,
-      :sql_for_has_us_facility,
+      :sql_for_has_us_facility1,
+      :sql_for_has_us_facility2,
+      :sql_for_has_us_facility3,
       :sql_for_number_of_facilities,
       :sql_for_months_to_report_results,
       :sql_for_actual_duration,
@@ -63,10 +65,6 @@ class CalculatedValue < ActiveRecord::Base
       :sql_for_minimum_age_unit,
       :sql_for_maximum_age_num,
       :sql_for_maximum_age_unit,
-      :sql_for_sponsor_type1,
-      :sql_for_sponsor_type2,
-      :sql_for_sponsor_type3,
-      :sql_for_sponsor_type4
     ]
 
   end
@@ -83,7 +81,7 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.sql_for_registered_in_calendar_year
     "SET registered_in_calendar_year = x.res
-       FROM ( SELECT nct_id, date_part('year', start_date) as res FROM studies ) x
+       FROM ( SELECT nct_id, date_part('year', first_received_date) as res FROM studies ) x
       WHERE x.nct_id = calculated_values.nct_id"
   end
 
@@ -95,8 +93,24 @@ class CalculatedValue < ActiveRecord::Base
     "SET has_single_facility=true WHERE nct_id in (SELECT nct_id FROM facilities GROUP BY nct_id HAVING count(*)=1)"
   end
 
-  def self.sql_for_has_us_facility
-    "SET has_us_facility=true WHERE nct_id in (SELECT distinct nct_id FROM facilities WHERE country='United States')"
+  def self.sql_for_has_us_facility1
+    # FIRST:  defaut to false
+    "SET has_us_facility=false"
+  end
+
+  def self.sql_for_has_us_facility2
+    # SECOND: set to true if at least one facility is US
+    "SET has_us_facility=true WHERE nct_id in (SELECT distinct nct_id FROM countries WHERE name='United States' AND removed IS NOT true)"
+  end
+
+  def self.sql_for_has_us_facility3
+    # THIRD: studies that don't have countries defined, set to null
+     "  SET has_us_facility=null WHERE nct_id in (
+         SELECT distinct l.nct_id
+           FROM studies l
+      LEFT JOIN countries r
+             ON (r.nct_id = l.nct_id AND r.removed IS NOT true)
+          WHERE r.nct_id IS NULL)"
   end
 
   def self.sql_for_number_of_facilities
@@ -135,26 +149,6 @@ class CalculatedValue < ActiveRecord::Base
     "SET minimum_age_unit = x.res FROM ( SELECT nct_id, substring(minimum_age from position(' ' in minimum_age)) as res FROM eligibilities WHERE minimum_age != 'N/A' AND minimum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
   end
 
-  def self.sql_for_sponsor_type1
-    #  FIRST: Set sponsor_type using lead sponsor if there's one (Should only be one lead?)
-    "SET sponsor_type= x.agency_class FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='lead' GROUP BY nct_id, agency_class HAVING count(*)=1) x WHERE x.nct_id = calculated_values.nct_id"
-  end
-
-  def self.sql_for_sponsor_type2
-    #  SECOND: Set sponsor_type to NIH if no lead sponsor and one of the collaborators is NIH
-    "SET sponsor_type= 'NIH' FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='collaborator' AND agency_class='NIH' GROUP BY nct_id, agency_class) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.sponsor_type IS NULL"
-  end
-
-  def self.sql_for_sponsor_type3
-    #  THIRD: Set sponsor_type to Industry if no lead sponsor and no NIH collaborators
-    "SET sponsor_type= 'Industry' FROM ( SELECT distinct nct_id, agency_class FROM sponsors WHERE lead_or_collaborator='collaborator' AND agency_class='Industry' GROUP BY nct_id, agency_class) x WHERE x.nct_id = calculated_values.nct_id AND calculated_values.sponsor_type IS NULL"
-  end
-
-  def self.sql_for_sponsor_type4
-    #  FOURTH: If not yet set, set sponsor_type to 'Other'
-    "SET sponsor_type= 'Other' WHERE sponsor_type IS NULL"
-  end
-
   def create_from(new_study)
     stime=Time.now
     self.study=new_study
@@ -162,7 +156,6 @@ class CalculatedValue < ActiveRecord::Base
     self.has_single_facility       = calc_has_single_facility
     self.number_of_facilities      = calc_number_of_facilities
     self.actual_duration           = calc_actual_duration
-    self.sponsor_type              = calc_sponsor_type
     self.were_results_reported     = calc_were_results_reported
     self.registered_in_calendar_year = calc_registered_in_calendar_year
 
@@ -186,10 +179,12 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_has_us_facility
+    return false if study.facilities.empty?
     !study.facilities.detect{|f|f.country=='United States'}.nil?
   end
 
   def calc_has_single_facility
+    return false if study.facilities.empty?
     study.facilities.size==1
   end
 
@@ -219,15 +214,6 @@ class CalculatedValue < ActiveRecord::Base
   def get_download_date
     dt=study.nlm_download_date_description.split('ClinicalTrials.gov processed this data on ').last
     dt.to_date if dt
-  end
-
-  def calc_sponsor_type
-    return nil if study.lead_sponsors.size > 1
-    val=study.lead_sponsors.first.try(:agency_class)
-    return val if val=='Industry' or val=='NIH'
-    study.collaborators.each{|c|return 'NIH' if c.agency_class=='NIH'}
-    study.collaborators.each{|c|return 'Industry' if c.agency_class=='Industry'}
-    return 'Other'
   end
 
   def calc_number_of_subjects(reported_events,type)

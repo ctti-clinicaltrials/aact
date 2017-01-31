@@ -231,7 +231,6 @@ ALTER SEQUENCE browse_interventions_id_seq OWNED BY browse_interventions.id;
 CREATE TABLE calculated_values (
     id integer NOT NULL,
     nct_id character varying,
-    sponsor_type character varying,
     number_of_facilities integer,
     number_of_nsae_subjects integer,
     number_of_sae_subjects integer,
@@ -240,7 +239,7 @@ CREATE TABLE calculated_values (
     actual_duration integer,
     were_results_reported boolean DEFAULT false,
     months_to_report_results integer,
-    has_us_facility boolean DEFAULT false,
+    has_us_facility boolean,
     has_single_facility boolean DEFAULT false,
     minimum_age_num integer,
     maximum_age_num integer,
@@ -2430,13 +2429,6 @@ CREATE INDEX index_calculated_values_on_months_to_report_results ON calculated_v
 --
 
 CREATE INDEX index_calculated_values_on_number_of_facilities ON calculated_values USING btree (number_of_facilities);
-
-
---
--- Name: index_calculated_values_on_sponsor_type; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_calculated_values_on_sponsor_type ON calculated_values USING btree (sponsor_type);
 
 
 --

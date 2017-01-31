@@ -93,7 +93,6 @@ module ClinicalTrials
        [:calculated_values, :actual_duration],
        [:calculated_values, :months_to_report_results],
        [:calculated_values, :number_of_facilities],
-       [:calculated_values, :sponsor_type],
        [:central_contacts, :contact_type],
        [:design_groups, :group_type],
        [:design_outcomes, :outcome_type],
