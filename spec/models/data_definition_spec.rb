@@ -26,12 +26,12 @@ RSpec.describe DataDefinition, type: :model do
 
     # random sample to verify enumerations got set
     enum=DataDefinition.where('table_name=? and column_name=?','eligibilities','gender').first.enumerations
-    expect(enum['All']).to eq('1')
+    expect(enum['All']).to eq(['1', '100.0%'])
     enum=DataDefinition.where('table_name=? and column_name=?','sponsors','agency_class').first.enumerations
-    expect(enum['Other']).to eq('2')
-    expect(enum['Industry']).to eq('2')
+    expect(enum['Other']).to eq(['2', '50.0%'])
+    expect(enum['Industry']).to eq(['2', '50.0%'])
     enum=DataDefinition.where('table_name=? and column_name=?','studies','phase').first.enumerations
-    expect(enum['Phase 4']).to eq('1')
+    expect(enum['Phase 4']).to eq(['1', '100.0%'])
   end
 
 end
