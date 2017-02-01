@@ -44,6 +44,10 @@ module ClinicalTrials
       "#{server}/documentation/aact_data_definitions.xlsx"
     end
 
+    def self.table_dictionary
+      "#{server}/documentation/aact_tables.xlsx"
+    end
+
     def self.default_data_definitions
       Roo::Spreadsheet.open(self.data_dictionary)
     end

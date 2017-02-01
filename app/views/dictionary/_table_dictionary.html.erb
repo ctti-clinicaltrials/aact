@@ -1,0 +1,30 @@
+<main>
+  <section>
+    <p>
+    Below is a list of the <%= @table_dictionary.size %> tables in AACT that provide information related to clinical trials. Every table is related by NCT ID to the Studies table. Detailed information about data elements included in these tables can be found <a href='#dataDictionary'>here.</a>
+    </p>
+  </section>
+
+  <table id='tableDictionary' class='regularDisplay'>
+    <tr>
+      <th class='tableDictionaryHeader'>section</th>
+      <th class='tableDictionaryHeader'>row count</th>
+      <th class='tableDictionaryHeader'>name</th>
+      <th class='tableDictionaryHeader'>description</th>
+      <th class='tableDictionaryHeader'>relationship</th>
+    </tr>
+    <tbody>
+        <% @table_dictionary.each do |table| %>
+            <tr>
+              <td><%= table['db section'] %></td>
+              <td><%= table['row count'] %></td>
+              <td><%= table['table_name'] %></td>
+              <td><%= table['description'] %></td>
+              <td><%= table['Study relationship'] %></td>
+            </tr>
+        <% end %>
+    </tbody>
+
+  </table>
+
+</main>
