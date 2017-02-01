@@ -7,7 +7,7 @@ class DictionaryController < ApplicationController
     header = tables.first
     (2..tables.last_row).each do |i|
       row = Hash[[header, tables.row(i)].transpose]
-      if !row['table_name'].nil?
+      if !row['table'].nil?
         @table_dictionary << fix_attribs(row)
       end
     end
@@ -15,7 +15,7 @@ class DictionaryController < ApplicationController
 
   def fix_attribs(hash)
     # get row count from the DataDefinition.row_count
-    tab=hash['table_name'].downcase
+    tab=hash['table'].downcase
     col=(tab=='studies' ? 'nct_id' : 'id')
     results=ActiveRecord::Base.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}' and column_name='#{col}'")
     if results.ntuples > 0
@@ -24,7 +24,7 @@ class DictionaryController < ApplicationController
     else
       hash['row count']=0
     end
-    hash['table'] = "<span id='#{tab}'>#{hash['table']}</span>"
+    hash['formatted_table'] = "<span id='#{tab}'>#{hash['table']}</span>"
     hash
   end
 

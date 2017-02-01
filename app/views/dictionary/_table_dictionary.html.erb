@@ -7,20 +7,20 @@
 
   <table id='tableDictionary' class='regularDisplay'>
     <tr>
-      <th class='tableDictionaryHeader'>section</th>
-      <th class='tableDictionaryHeader'>row count</th>
       <th class='tableDictionaryHeader'>name</th>
+      <th class='tableDictionaryHeader'>row count</th>
       <th class='tableDictionaryHeader'>description</th>
-      <th class='tableDictionaryHeader'>relationship</th>
+      <th class='tableDictionaryHeader'>db section</th>
+      <th class='tableDictionaryHeader'>rows per study</th>
     </tr>
     <tbody>
-        <% @table_dictionary.each do |table| %>
+        <% @table_dictionary.each do |hash| %>
             <tr>
-              <td><%= table['db section'] %></td>
-              <td><%= table['row count'] %></td>
-              <td><%= table['table_name'] %></td>
-              <td><%= table['description'] %></td>
-              <td><%= table['Study relationship'] %></td>
+              <td><%= hash['table'] %></td>
+              <td><%= hash['row count'] %></td>
+              <td><%= hash['description'] %></td>
+              <td><%= hash['db section'] %></td>
+              <td><%= hash['rows per study'] %></td>
             </tr>
         <% end %>
     </tbody>
