@@ -1,11 +1,10 @@
-<main>
-  <section>
-    <p>
-    Below is a list of the <%= @table_dictionary.size %> tables in AACT that provide information related to clinical trials. Every table is related by NCT ID to the Studies table. Detailed information about data elements included in these tables can be found <a href='#dataDictionary'>here.</a>
-    </p>
-  </section>
+<section id='tableDictionary' class='tableDictionary'>
+  <h2>AACT Tables</h2>
+  <main>
 
-  <table id='tableDictionary' class='regularDisplay'>
+  <p>The list below describes the <%= @table_dictionary.size %> study-related tables in the AACT database and provides current row counts for each.</p>
+
+  <table class='regularDisplay'>
     <tr>
       <th class='tableDictionaryHeader'>name</th>
       <th class='tableDictionaryHeader'>row count</th>
@@ -16,8 +15,8 @@
     <tbody>
         <% @table_dictionary.each do |hash| %>
             <tr>
-              <td><%= hash['table'] %></td>
-              <td><%= hash['row count'] %></td>
+              <td class='tableName'><%= hash['table'] %></td>
+              <td class='numberType'><%= hash['row count'] %></td>
               <td><%= hash['description'] %></td>
               <td><%= hash['db section'] %></td>
               <td><%= hash['rows per study'] %></td>
@@ -26,5 +25,5 @@
     </tbody>
 
   </table>
-
-</main>
+  </main>
+</section>
