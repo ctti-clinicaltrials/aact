@@ -2,13 +2,14 @@ class DictionaryController < ApplicationController
   def show
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
+    @table_dictionary=ClinicalTrials::FileManager.table_dictionary
     tables = Roo::Spreadsheet.open(ClinicalTrials::FileManager.table_dictionary)
-    @table_dictionary = []
+    @tables = []
     header = tables.first
     (2..tables.last_row).each do |i|
       row = Hash[[header, tables.row(i)].transpose]
       if !row['table'].nil?
-        @table_dictionary << fix_attribs(row)
+        @tables << fix_attribs(row)
       end
     end
   end
