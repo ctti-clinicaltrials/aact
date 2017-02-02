@@ -2,7 +2,7 @@
   <h2>AACT Tables</h2>
   <main>
 
-  <p>The list below describes the <%= @table_dictionary.size %> study-related tables in the AACT database and provides current row counts for each.</p>
+  <p>The list below describes the <%= @tables.size %> study-related tables in the AACT database and provides current row counts for each.</p>
 
   <table class='regularDisplay'>
     <tr>
@@ -13,7 +13,7 @@
       <th class='tableDictionaryHeader'>rows per study</th>
     </tr>
     <tbody>
-        <% @table_dictionary.each do |hash| %>
+        <% @tables.each do |hash| %>
             <tr>
               <td class='tableName'><%= hash['table'] %></td>
               <td class='numberType'><%= hash['row count'] %></td>
