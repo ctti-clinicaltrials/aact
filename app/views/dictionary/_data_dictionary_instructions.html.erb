@@ -1,11 +1,9 @@
 <main>
   <section>
-    <p>
-      The table below provides detailed information about each data element in the AACT database. Every study-related table/column in the AACT relational database is represented as a row in this table. (AACT includes a few administrative tables that contain data not directly related to studies.  Information about these tables is not included in the data dictionary.)
-    </p>
+    <p id='dataDictionary'>
+    The Data Dictionary (table below) provides detailed information about each data element in the AACT database. Every study-related table/column in the AACT relational database is represented as a row in this table. (AACT includes <a href='/schema#adminSchema'>a few administrative tables</a> that contain data not directly related to studies. Information about these tables is not included in the data dictionary. Information about these tables is available.)</p>
+    <p>Click on the <i class='fa fa-book'></i> icon that appears at the beginning of the data element row to view the section of the NLM documentation that defines that particular data element. (The icon appears only for data element defined by NLM.)</p>
   </section>
-
-  <%= render 'pages/download_database_specs' %>
 
   <input id="toggle" type="checkbox" style="display: none; visibility: hidden;" unchecked>
     <label for="toggle"></label>
