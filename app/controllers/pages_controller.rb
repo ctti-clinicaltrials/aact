@@ -21,18 +21,21 @@ class PagesController < ApplicationController
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
+    @table_dictionary=ClinicalTrials::FileManager.table_dictionary
   end
 
   def learn_more
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
+    @table_dictionary=ClinicalTrials::FileManager.table_dictionary
   end
 
   def schema
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
+    @table_dictionary=ClinicalTrials::FileManager.table_dictionary
     @show_dictionary_link = true
   end
 
