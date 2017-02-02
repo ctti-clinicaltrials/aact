@@ -12,7 +12,7 @@
     <h1>AACT Data Dictionary</h1>
     <section>
 
-      <p>AACT is composed of <%= @table_dictionary.size %> tables that provide information related to clinical trials. Every table is related by NCT ID to the Studies table. Click <a href='#tableDictionary'>here</a> to view a listing of all <%= @table_dictionary.size %> tables with description and row counts. Detailed information about all data elements included in these tables can be found in the data dictionary below.</p>
+      <p>AACT is composed of <%= @tables.size %> tables that provide information related to clinical trials. Every table is related by NCT ID to the Studies table. Click <a href='#tableDictionary'>here</a> to view a listing of all <%= @tables.size %> tables with description and row counts. Detailed information about all data elements included in these tables can be found in the data dictionary below.</p>
       <%= render 'pages/download_database_specs' %>
     </section>
 
