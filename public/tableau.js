@@ -13,7 +13,6 @@
         { id : "first_received_date", alias : "first_received_date", dataType : tableau.dataTypeEnum.date },
         { id : "received_results_disposit_date", alias : "received_results_disposit_date", dataType : tableau.dataTypeEnum.date },
         { id : "completion_date_type", alias : "completion_date_type", dataType : tableau.dataTypeEnum.string },
-        { id : "brief_title", alias : "brief_title", dataType : tableau.dataTypeEnum.string },
       ];
 
       var tableInfo = {
@@ -28,16 +27,8 @@
 
     myConnector.getData = function (table, doneCallback) {
       var criteria = JSON.parse(tableau.connectionData)
-      if (!criteria.meshTerm) {
-        if (!criteria.organization) {
-          var apiCall = "http://aact-dev.herokuapp.com/api/v1/studies";
-        } else {
-          var apiCall = "http://aact-dev.herokuapp.com/api/v1/studies?organizataion="+criteria.organization;
-          //var apiCall = "http://aact-dev.herokuapp.com/api/v1/studies?organization="+criteria.organization+"?with_related_records=true&with_related_organizations=true";
-        }
-      } else {
-        var apiCall = "http://aact-dev.herokuapp.com/api/v1/studies?meshTerm="+criteria.meshTerm;
-        //var apiCall = "http://aact-dev.herokuapp.com/api/v1/studies?meshTerm="+criteria.meshTerm+"?with_related_records=true&with_related_organizations=true";
+      if (criteria.term) {
+        var apiCall = "https://aact-dev.herokuapp.com/api/v1/studies?term="+criteria.term;
       }
 
       $.getJSON(apiCall, function(resp) {
@@ -68,8 +59,7 @@
 $(document).ready(function () {
     $("#submitButton").click(function () {
         var criteria = {
-            organization: $('#organization').val().trim(),
-            meshTerm: $('#meshTerm').val().trim(),
+            term: $('#term').val(),
         };
         tableau.connectionData =  JSON.stringify(criteria);
         tableau.connectionName = "Select Clinical Trials";
