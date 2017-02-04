@@ -1,6 +1,7 @@
 Rails.application.config.action_dispatch.cookies_serializer = :json
 config = {
-  host: "http://search-clinical-trials-ko346vpptimyxxulqjdiuqnl6i.us-east-1.es.amazonaws.com/"
+  host: "http://search-clinicaltrials-em5oakgu5hjoo4j4gvqqpprscq.us-east-1.es.amazonaws.com/"
+  #host: "https://debd374a8aad3b5bbad9639d3dcdedf6.us-east-1.aws.found.io:9243"
 }
 
 if File.exists?("config/elasticsearch.yml")
