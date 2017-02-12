@@ -89,7 +89,7 @@ describe ClinicalTrials::Client do
           expect {
             subject.download_xml_files
           }.not_to change{StudyXmlRecord.count}
-        }.not_to change{ClinicalTrials::LoadEvent.count}
+        }.not_to change{LoadEvent.count}
       end
     end
   end
@@ -157,7 +157,7 @@ describe ClinicalTrials::Client do
       it 'should return without running' do
         expect {
           subject.populate_studies
-        }.not_to change{ ClinicalTrials::LoadEvent.count }
+        }.not_to change{ LoadEvent.count }
       end
     end
   end
@@ -186,11 +186,11 @@ describe ClinicalTrials::Client do
 
       expect {
         subject.import_xml_file(study_xml_record_1.content)
-      }.to change{ClinicalTrials::LoadEvent.count}.by(0)
+      }.to change{LoadEvent.count}.by(0)
 
       expect {
         subject.import_xml_file(study_xml_record_1.content, benchmark: false)
-      }.to change{ClinicalTrials::LoadEvent.count}.by(0)
+      }.to change{LoadEvent.count}.by(0)
     end
   end
 end

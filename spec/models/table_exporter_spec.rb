@@ -19,8 +19,8 @@ describe TableExporter do
       end
 
       it 'should have logged event to LoadEvents' do
-        expect(ClinicalTrials::LoadEvent.count).to eq(1)
-        le=ClinicalTrials::LoadEvent.last
+        expect(LoadEvent.count).to eq(1)
+        le=LoadEvent.last
         expect(le.event_type).to eq('table_export')
         expect(le.load_time).to eq('0 minutes and 0 seconds')
       end
