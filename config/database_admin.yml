@@ -1,6 +1,6 @@
 development: &default
   adapter: postgresql
-  database: aact_admin_dev
+  database: aact_admin
   encoding: utf8
   min_messages: warning
   pool: <%= Integer(ENV.fetch("DB_POOL", 5)) %>
