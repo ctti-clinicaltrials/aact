@@ -3,7 +3,7 @@ class DailyImportWorker
   sidekiq_options queue: 'daily_import'
 
   def perform(days_back)
-    load_event = ClinicalTrials::LoadEvent.create(
+    load_event = LoadEvent.create(
       event_type: 'daily_import'
     )
 

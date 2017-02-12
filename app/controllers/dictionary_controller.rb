@@ -3,15 +3,19 @@ class DictionaryController < ApplicationController
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
     @table_dictionary=ClinicalTrials::FileManager.table_dictionary
-    tables = Roo::Spreadsheet.open(ClinicalTrials::FileManager.table_dictionary)
     @tables = []
-    header = tables.first
-    (2..tables.last_row).each do |i|
-      row = Hash[[header, tables.row(i)].transpose]
+    tabs=get_dictionary
+    header = tabs.first
+    (2..tabs.last_row).each do |i|
+      row = Hash[[header, tabs.row(i)].transpose]
       if !row['table'].nil?
         @tables << fix_attribs(row)
       end
     end
+  end
+
+  def get_dictionary
+    Roo::Spreadsheet.open(ClinicalTrials::FileManager.table_dictionary)
   end
 
   def fix_attribs(hash)

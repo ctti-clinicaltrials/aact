@@ -65,7 +65,7 @@ module ClinicalTrials
 
     def populate_studies(study_filter=nil)
       return if @dry_run
-      load_event = ClinicalTrials::LoadEvent.create( event_type: 'populate_studies')
+      load_event = LoadEvent.create( event_type: 'populate_studies')
 
       studies_to_load=StudyXmlRecord.not_yet_loaded(study_filter)
       cntr=studies_to_load.size
