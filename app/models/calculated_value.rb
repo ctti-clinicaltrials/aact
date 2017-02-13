@@ -25,29 +25,6 @@ class CalculatedValue < ActiveRecord::Base
     ActiveRecord::Base.connection.execute("GRANT SELECT ON TABLE calculated_values TO aact")
   end
 
-  def self.refresh_table_for_studies(id_array)
-    ids=id_array.map { |i| "'" + i.to_s + "'" }.join(",")
-    begin
-      ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
-      ActiveRecord::Base.connection.execute("DELETE FROM calculated_values WHERE NCT_ID IN (#{ids})")
-    rescue
-      # if the revoke fails, don't let it stop us.
-    end
-    ActiveRecord::Base.connection.execute("INSERT INTO calculated_values (
-                 nct_id,
-                 nlm_download_date
-          )
-          SELECT nct_id,
-                 to_date(substring(nlm_download_date_description,43), 'Month DD,YYYY')
-            FROM studies
-          WHERE NCT_ID IN (#{ids})")
-    self.sql_methods.each{|method|
-      cmd='UPDATE calculated_values '+ CalculatedValue.send(method) + " AND calculated_values.nct_id IN (#{ids})"
-      ActiveRecord::Base.connection.execute(cmd)
-    }
-    ActiveRecord::Base.connection.execute("GRANT SELECT ON TABLE calculated_values TO aact")
-  end
-
   def self.sql_methods
     [
       :sql_for_registered_in_calendar_year,
@@ -122,7 +99,12 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def self.sql_for_actual_duration
-    "SET actual_duration = x.res FROM ( SELECT  nct_id, (primary_completion_date -  start_date)/30 as res FROM studies c) x WHERE x.nct_id = calculated_values.nct_id"
+    "SET actual_duration = x.res FROM ( SELECT  nct_id, (primary_completion_date -  start_date)/30 as res
+           FROM studies s
+          WHERE s.primary_completion_date_type <> 'Anticipated'
+            AND (s.start_date_type IS NULL OR s.start_date_type = 'Actual')
+    ) x
+      WHERE x.nct_id = calculated_values.nct_id"
   end
 
   def self.sql_for_number_of_sae_subjects

@@ -192,7 +192,7 @@ module ClinicalTrials
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       add_indexes
-      CalculatedValue.refresh_table_for_studies(ids)
+      CalculatedValue.refresh_table
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
       refresh_data_definitions
