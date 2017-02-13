@@ -1,6 +1,6 @@
 require 'csv'
 require 'active_support/all'
-class DataDefinition < ActiveRecord::Base
+class DataDefinition < AdminBase
 
   def self.refresh(data=ClinicalTrials::FileManager.default_data_definitions)
     self.destroy_all

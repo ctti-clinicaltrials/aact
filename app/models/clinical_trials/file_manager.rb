@@ -87,10 +87,22 @@ module ClinicalTrials
       entries.sort_by {|entry| entry[:name]}.reverse!
     end
 
+    def self.db_log_file_content(params={:db_name=>'aact-prod'})
+       db_name=params[:db_name]
+       col=[]
+       client = Aws::RDS::Client.new(region: ENV['AWS_REGION'])
+       client.describe_db_log_files({:db_instance_identifier=>db_name}).data.describe_db_log_files.each{|file|
+         file_name=file.log_file_name
+         content=client.download_db_log_file_portion({:db_instance_identifier=>db_name, :log_file_name=>file_name})
+         col << {:file_name => file_name, :content => content.data.log_file_data}
+       }
+       col
+    end
+
     def dump_database
       dump_file_name='/app/tmp/postgres.dmp'
       File.delete(dump_file_name) if File.exist?(dump_file_name)
-      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump -h $RDS_DB_HOSTNAME -p 5432 -U $RDS_DB_SUPER_USERNAME --no-password --clean --exclude-table study_xml_records --exclude-table schema_migrations --exclude-table load_events --exclude-table statistics --exclude-table sanity_checks --exclude-table use_cases --exclude-table use_case_attachments -c -C -Fc -f /app/tmp/postgres.dmp aact`
+      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump -h $RDS_DB_HOSTNAME -p 5432 -U $RDS_DB_SUPER_USERNAME --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f /app/tmp/postgres.dmp aact`
       return dump_file_name
     end
 

@@ -1,5 +1,4 @@
-module ClinicalTrials
-  class LoadEvent < ActiveRecord::Base
+class LoadEvent < AdminBase
     extend Enumerize
 
     def complete(params={})
@@ -54,5 +53,4 @@ module ClinicalTrials
 
     class AlreadyCompletedError < StandardError; end
     class IncorrectEventTypeError < StandardError; end
-  end
 end

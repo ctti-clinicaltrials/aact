@@ -10,7 +10,6 @@ class CreateIndices < ActiveRecord::Migration
     add_index :overall_officials, :nct_id
     add_index :responsible_parties, :nct_id
     add_index :studies, :nct_id, :unique => true
-    add_index :study_xml_records, :nct_id
 
     add_index :baseline_measurements, :category
     add_index :baseline_measurements, :classification
@@ -57,9 +56,6 @@ class CreateIndices < ActiveRecord::Migration
     add_index :responsible_parties, :responsible_party_type
     add_index :result_contacts, :organization
     add_index :result_groups, :result_type
-    add_index :sanity_checks, :created_at
-    add_index :sanity_checks, :most_current
-    add_index :sanity_checks, :table_name
     add_index :sponsors, :agency_class
     add_index :sponsors, :name
     add_index :studies, :completion_date
@@ -76,7 +72,6 @@ class CreateIndices < ActiveRecord::Migration
     add_index :studies, :first_received_results_date
     add_index :studies, :received_results_disposit_date
     add_index :study_references, :reference_type
-    add_index :study_xml_records, :created_study_at
   end
 
 end
