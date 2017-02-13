@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.2.3"
 
+gem 'faraday_middleware-aws-signers-v4'
 gem "rails", "~> 4.2.6"
 gem "rack-timeout"
 gem "faraday"
@@ -51,6 +52,7 @@ gem "hashie-forbidden_attributes" #overrides strong_params in grape endpoints
 gem 'active_model_serializers', '~> 0.9.0'
 gem "grape-active_model_serializers"
 
+gem 'elasticsearch-ruby'
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 

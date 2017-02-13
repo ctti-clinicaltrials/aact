@@ -3,22 +3,26 @@ class DictionaryController < ApplicationController
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
     @table_dictionary=ClinicalTrials::FileManager.table_dictionary
-    tables = Roo::Spreadsheet.open(ClinicalTrials::FileManager.table_dictionary)
     @tables = []
-    header = tables.first
-    (2..tables.last_row).each do |i|
-      row = Hash[[header, tables.row(i)].transpose]
+    tabs=get_dictionary
+    header = tabs.first
+    (2..tabs.last_row).each do |i|
+      row = Hash[[header, tabs.row(i)].transpose]
       if !row['table'].nil?
         @tables << fix_attribs(row)
       end
     end
   end
 
+  def get_dictionary
+    Roo::Spreadsheet.open(ClinicalTrials::FileManager.table_dictionary)
+  end
+
   def fix_attribs(hash)
     # get row count from the DataDefinition.row_count
     tab=hash['table'].downcase
     col=(tab=='studies' ? 'nct_id' : 'id')
-    results=ActiveRecord::Base.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}' and column_name='#{col}'")
+    results=AdminBase.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}' and column_name='#{col}'")
     if results.ntuples > 0
       row_count=results.getvalue(0,0).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
       hash['row count']=row_count

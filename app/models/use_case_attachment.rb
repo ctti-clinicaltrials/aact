@@ -1,4 +1,4 @@
-class UseCaseAttachment < ActiveRecord::Base
+class UseCaseAttachment < AdminBase
 
   belongs_to :use_case
 

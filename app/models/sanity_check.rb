@@ -1,7 +1,7 @@
-class SanityCheck < ActiveRecord::Base
+class SanityCheck < AdminBase
 
   def self.save_row_counts
-    ActiveRecord::Base.connection.execute('UPDATE sanity_checks SET most_current=false')
+    AdminBase.connection.execute('UPDATE sanity_checks SET most_current=false')
     ClinicalTrials::Updater.loadable_tables.each{|table_name|
       table_name='references' if table_name=='study_references'
       cnt=table_name.singularize.camelize.constantize.count

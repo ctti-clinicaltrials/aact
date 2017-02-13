@@ -1,10 +1,13 @@
+require 'faraday_middleware/aws_signers_v4'
 Rails.application.config.action_dispatch.cookies_serializer = :json
-config = {
-  host: "http://search-clinical-trials-ko346vpptimyxxulqjdiuqnl6i.us-east-1.es.amazonaws.com/"
-}
 
-if File.exists?("config/elasticsearch.yml")
-  config.merge!(YAML.load_file("config/elasticsearch.yml")[Rails.env].symbolize_keys)
+credentials=Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
+Elasticsearch::Model.client = Elasticsearch::Client.new(host: ENV['ELASTICSEARCH_URL']) do |f|
+  f.request :aws_signers_v4,
+    credentials: credentials,
+    service_name: 'es',
+    host:  ENV['ELASTICSEARCH_URL'],
+    region: ENV['AWS_REGION']
+  f.response :logger
+  f.adapter  Faraday.default_adapter
 end
-
-Elasticsearch::Model.client = Elasticsearch::Client.new(config)

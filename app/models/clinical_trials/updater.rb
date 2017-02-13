@@ -16,7 +16,7 @@ module ClinicalTrials
         record_type=type
       end
       @client = ClinicalTrials::Client.new
-      @load_event = ClinicalTrials::LoadEvent.create({:event_type=>record_type,:status=>'running',:description=>'',:problems=>''})
+      @load_event = LoadEvent.create({:event_type=>record_type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
       self
     end
@@ -46,7 +46,7 @@ module ClinicalTrials
           log("restarting full load...")
         else
           log("initiating full load...")
-          ActiveRecord::Base.connection.truncate('study_xml_records')
+          AdminBase.connection.truncate('study_xml_records')
           @client.download_xml_files
           truncate_tables
         end
@@ -192,7 +192,7 @@ module ClinicalTrials
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       add_indexes
-      CalculatedValue.refresh_table_for_studies(ids)
+      CalculatedValue.refresh_table
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
       refresh_data_definitions
@@ -237,7 +237,7 @@ module ClinicalTrials
         ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
         log("deleted studies from #{table}   #{Time.now - stime}")
       }
-      ActiveRecord::Base.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
+      AdminBase.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
       nct_ids.each {|nct_id|
         refresh_study(nct_id)
         decrement_count_down

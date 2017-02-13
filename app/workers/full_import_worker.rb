@@ -3,7 +3,7 @@ class FullImportWorker
   sidekiq_options queue: 'full_import'
 
   def perform
-    load_event = ClinicalTrials::LoadEvent.create(
+    load_event = LoadEvent.create(
       event_type: 'full_import'
     )
 
