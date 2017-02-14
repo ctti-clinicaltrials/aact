@@ -1,0 +1,42 @@
+<%=  stylesheet_link_tag "database_activities/database_activities" %>
+<div class="wrap">
+
+  <div class="activity">
+    <h1 id='galleryHeading'>Database Activity</h1>
+    <section class="activity">
+
+      <table class='activityTable table dataTable data-table table-striped table-condensed table-hover'>
+        <tr>
+          <th>ID</th>
+          <th>Log File</th>
+          <th>Date/Time</th>
+          <th>IP Address</th>
+          <th>Description</th>
+        </tr>
+
+       <tbody>
+        <% @activities.each do |activity| %>
+          <tr class='useCaseExample'>
+            <td>
+               <%= activity.id %>
+            </td>
+            <td>
+               <%= activity.file_name %>
+            </td>
+            <td>
+               <%= activity.log_date.strftime("%Y-%m-%d %T") %>
+            </td>
+            <td>
+               <%= activity.ip_address %>
+            </td>
+            <td>
+               <%= activity.description %>
+            </td>
+          </tr>
+        <% end %>
+       </tbody>
+     </table>
+    </section>
+  </div>
+
+</div>
