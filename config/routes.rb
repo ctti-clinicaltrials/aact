@@ -39,5 +39,6 @@ Rails.application.routes.draw do
 
   resources :definitions
   resources :use_cases
+  resources :use_case_attachments
   resources :database_activity
 end

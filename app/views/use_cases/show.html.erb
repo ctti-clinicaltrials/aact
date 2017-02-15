@@ -2,6 +2,10 @@
 <div class="wrap">
   <section id='useCase'>
 
+    <% if @use_case.status != 'public' %>
+      <h3>This use case has not yet been published to the website. This will be reviewed by CTTI staff and the submitter will be contacted if there are questions or additional information is needed.</h3>
+    <% end %>
+    <h3>
     <% if !@use_case.url.blank? %>
       <a target='_blank' href='<%= @use_case.url %>'>
         <% if !@use_case.image.blank? %>
@@ -37,6 +41,13 @@
         <%= @use_case.detailed_description %>
       </p>
     </div>
+
+    <% if !@use_case.attachment.nil? %>
+       <a href='/use_case_attachments/<%= @use_case.attachment.id %>'>
+          <p>Attachment: <%= @use_case.attachment.file_name %></p>
+       </a>
+    <% end %>
+
   </section>
 
   <div style="margin:30px;">
