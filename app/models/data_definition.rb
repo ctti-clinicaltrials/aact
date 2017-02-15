@@ -2,7 +2,7 @@ require 'csv'
 require 'active_support/all'
 class DataDefinition < AdminBase
 
-  def self.refresh(data=ClinicalTrials::FileManager.default_data_definitions)
+  def self.populate(data=ClinicalTrials::FileManager.default_data_definitions)
     self.destroy_all
     self.populate_from_file(data)
     self.populate_row_counts

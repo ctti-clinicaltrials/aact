@@ -54,6 +54,10 @@ class SanityCheck < AdminBase
     }
   end
 
+  def self.populate
+    self.run
+  end
+
   def self.run
     self.save_row_counts
     self.check_for_orphans

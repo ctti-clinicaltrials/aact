@@ -7,7 +7,7 @@ end
 class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
-  def self.refresh_table
+  def self.populate
     ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
     ActiveRecord::Base.connection.execute('TRUNCATE table calculated_values')
     ActiveRecord::Base.connection.execute("INSERT INTO calculated_values (
