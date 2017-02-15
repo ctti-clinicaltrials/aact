@@ -1,7 +1,7 @@
 class DatabaseActivity < AdminBase
 
-  def self.populate_from_aws
-    ClinicalTrials::FileManager.db_log_file_content({:db_name=>'aact-prod'}).each {|log|
+  def self.populate
+    ClinicalTrials::FileManager.db_log_file_content({:db_name=>ENV['S3_BUCKET_NAME']}).each {|log|
      log_time=nil
      log_message=''
      ip_addr=nil
