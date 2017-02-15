@@ -47,13 +47,7 @@
   </div>
 
   <p>
-    Image
-    <%= f.file_field :image %>
-  </p>
-
-  <p>
-    Secret Word
-    <%= f.text_field :pwd unless @use_case.new_record? %>
+    Attachment: <%= f.file_field :file %>
   </p>
 
   <br>
@@ -61,4 +55,5 @@
   <div class="button actions">
     <%= f.submit %>
   </div>
+
 <% end %>

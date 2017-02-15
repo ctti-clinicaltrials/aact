@@ -61,7 +61,8 @@ class CreateAdminTables < ActiveRecord::Migration
     create_table :use_case_attachments do |t|
       t.integer 'use_case_id'
       t.string 'file_name'
-      t.binary 'payload'
+      t.string 'content_type'
+      t.binary 'file_contents'
       t.timestamps null: false
     end
 
