@@ -232,7 +232,8 @@ CREATE TABLE use_case_attachments (
     id integer NOT NULL,
     use_case_id integer,
     file_name character varying,
-    payload bytea,
+    content_type character varying,
+    file_contents bytea,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

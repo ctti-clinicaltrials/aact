@@ -17,21 +17,26 @@ section.useCases {
   padding-bottom: 10px;
 }
 
-#useCaseTable table, tr, td, th {
+#useCaseTable table, tr, th {
      border: 0;
 }
 
-tr.useCaseExample {
-    width: 96%;
+tbody.useCases {
+  width: 96%;
+}
+
+tr.useCases {
     display: block;
     font-weight: 100;
     background-color: rgb(249,249,249);
     color: $grey;
     @include box-shadow(3px 3px 11px $grey);
-    margin: 1rem;
-    position: relative;
+    margin: 2rem;
+    padding-left: 10px;
+    padding-right: 10px;
     bottom: 20px;
   }
+
 
 p, ul, li.useCaseInvitation {
   font-family: Roboto;

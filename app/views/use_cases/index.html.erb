@@ -2,7 +2,6 @@
 <div class="wrap">
 
   <div class="basicHero">
-    <a target='_blank' href='use_cases/new'>
 
       <p class='useCaseInvitation'>All are welcome to develop analytic tools, visualizations and websites that use AACT data. Examples of how AACT might be used:</p>
        <ul class='useCaseInvitation'>
@@ -15,10 +14,9 @@
       <br>
 
       <p class='useCaseInvitation'>
-        <%= button_to "Showcase your work in the AACT Gallery", new_use_case_path, :id => "addUseCaseButton",
+        <%= button_to "I'd like to showcase my work in the AACT Gallery", new_use_case_path, :id => "addUseCaseButton",
        :class => "inbox-sf-add-btn tip", :method => :get %>
       </p>
-    </a>
 
   </div>
 
@@ -26,11 +24,11 @@
     <h1 id='galleryHeading'>Gallery</h1>
     <section class="useCases">
 
-      <table class='useCaseTable table dataTable data-table table-striped table-condensed table-hover'>
+      <table id='useCaseTable' class='table dataTable data-table table-striped table-condensed table-hover'>
 
-       <tbody>
+       <tbody class='useCases'>
         <% @use_cases.each do |use_case| %>
-          <tr class='useCaseExample'>
+          <tr class='useCases'>
             <!-- <td>
               <a target='_blank' href='<%= use_case.id %>'>
                 <% if use_case.image? %>
@@ -38,10 +36,11 @@
                 <% end %>
               </a>
             </td>  -->
-            <td>
-              <a href='/use_cases/<%= use_case.id %>'>
-                <h4><%= use_case.title %></h4>
+            <td class='useCase'>
+              <a href='/use_cases/<%= use_case.id %>' class='useCase'>
+                <h4>Title: <%= use_case.title %></h4>
                 <p><%= use_case.brief_summary %></p>
+                <p><i>submitted by <%= use_case.submitter_name %></i></p>
               </a>
             </td>
           </tr>
