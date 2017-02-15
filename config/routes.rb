@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/learn_more"           => "pages#learn_more"
   get "/schema"               => "pages#schema"
   get "/data_dictionary"      => "dictionary#show"
+  get "/activities"           => "database_activity#show"
   get 'dictionary/show'
 
   get "/connect"              => "pages#connect"
