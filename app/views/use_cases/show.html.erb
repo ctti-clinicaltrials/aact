@@ -43,9 +43,11 @@
     </div>
 
     <% if !@use_case.attachment.nil? %>
-       <a href='/use_case_attachments/<%= @use_case.attachment.id %>'>
-          <p>Attachment: <%= @use_case.attachment.file_name %></p>
-       </a>
+      <p>Attachment:&nbsp;&nbsp;
+        <a href='/use_case_attachments/<%= @use_case.attachment.id %>'>
+          <%= @use_case.attachment.file_name %>
+        </a>
+      </p>
     <% end %>
 
   </section>
