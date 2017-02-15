@@ -26,7 +26,7 @@ $(function() {
             { name: 'id',                 width: 98, align: 'center' },
             { name: 'file_name',          type: "text", width: 180, align: 'center' },
             { name: 'log_date',           type: "text", width: 200 },
-            { name: 'ip address',         type: "text", width: 280 },
+            { name: 'ip_address',         type: "text", width: 280 },
             { name: 'description',        type: "text", width: 450 },
         ]
     });
