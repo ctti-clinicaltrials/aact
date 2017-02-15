@@ -19,3 +19,4 @@
 // };
 
 // var dataDefinitions = new List('dataDefinitions', options);
+// var activities = new List('activities', options);

@@ -65,7 +65,7 @@ class CreateAdminTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table "database_logs", force: :cascade do |t|
+    create_table "database_activities", force: :cascade do |t|
       t.string   "file_name"
       t.string   "log_type"
       t.datetime "log_date"

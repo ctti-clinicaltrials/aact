@@ -1,0 +1,54 @@
+<%= form_for(@activity) do |f| %>
+  <% if @activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+      <ul>
+      <% @activity.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="well form-group">
+    Title
+    <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: 'a few words to serve as a label for your project' %>
+  </div>
+
+  <div class="form-group">
+    Brief Summary
+    <%= f.text_field :brief_summary, placeholder: 'a few sentences that basically describes the work', class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    URL
+    <%= f.text_field :url, :size=>'100', placeholder: 'url link to a related website', class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Submitted by
+    <%= f.text_field :submitter_name, :size=>'20', placeholder: 'name of person responsible for this effort', class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Contact Info
+    <%= f.text_field :contact_info,  placeholder: "contact info (phone, address, etc)", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Email
+    <%= f.text_field :email, :size=>'20', placeholder: 'email address (we will send confirmation if/when your work is added to the gallery', :maxlength=>"254", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    Details
+    <%= f.text_area :description, cols: '40', rows: '10', placeholder: "all the details you consider worth sharing", class: 'form-control' %>
+  </div>
+
+  <br>
+  <p>By submitting, you agree that this information can be published for all to view in the AACT Gallery.</p>
+  <div class="button actions">
+    <%= f.submit %>
+  </div>
+<% end %>

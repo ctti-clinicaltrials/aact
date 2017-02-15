@@ -74,10 +74,10 @@ ALTER SEQUENCE data_definitions_id_seq OWNED BY data_definitions.id;
 
 
 --
--- Name: database_logs; Type: TABLE; Schema: public; Owner: -
+-- Name: database_activities; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE database_logs (
+CREATE TABLE database_activities (
     id integer NOT NULL,
     file_name character varying,
     log_type character varying,
@@ -90,10 +90,10 @@ CREATE TABLE database_logs (
 
 
 --
--- Name: database_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: database_activities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE database_logs_id_seq
+CREATE SEQUENCE database_activities_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -102,10 +102,10 @@ CREATE SEQUENCE database_logs_id_seq
 
 
 --
--- Name: database_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: database_activities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE database_logs_id_seq OWNED BY database_logs.id;
+ALTER SEQUENCE database_activities_id_seq OWNED BY database_activities.id;
 
 
 --
@@ -305,10 +305,10 @@ ALTER TABLE ONLY data_definitions ALTER COLUMN id SET DEFAULT nextval('data_defi
 
 
 --
--- Name: database_logs id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: database_activities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY database_logs ALTER COLUMN id SET DEFAULT nextval('database_logs_id_seq'::regclass);
+ALTER TABLE ONLY database_activities ALTER COLUMN id SET DEFAULT nextval('database_activities_id_seq'::regclass);
 
 
 --
@@ -355,11 +355,11 @@ ALTER TABLE ONLY data_definitions
 
 
 --
--- Name: database_logs database_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: database_activities database_activities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY database_logs
-    ADD CONSTRAINT database_logs_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY database_activities
+    ADD CONSTRAINT database_activities_pkey PRIMARY KEY (id);
 
 
 --

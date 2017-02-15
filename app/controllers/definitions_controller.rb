@@ -80,7 +80,7 @@ class DefinitionsController < ApplicationController
 
     if (col == 'id') or (tab.downcase == 'studies' and col == 'nct_id')
       # If this is the table's primary key, display row count.
-      results=ActiveRecord::Base.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}' and column_name='#{col}'")
+      results=AdminBase.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}' and column_name='#{col}'")
       if results.ntuples > 0
         row_count=results.getvalue(0,0).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
         hash['row count']=row_count
