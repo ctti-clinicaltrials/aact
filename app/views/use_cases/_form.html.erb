@@ -50,11 +50,6 @@
     Attachment: <%= f.file_field :file %>
   </p>
 
-  <p>
-    Secret Word
-    <%= f.text_field :pwd unless @use_case.new_record? %>
-  </p>
-
   <br>
   <p>By submitting, you agree that this information can be published for all to view in the AACT Gallery.</p>
   <div class="button actions">
