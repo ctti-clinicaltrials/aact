@@ -162,7 +162,7 @@ module ClinicalTrials
     end
 
     def create_calculated_values
-      CalculatedValue.refresh_table
+      CalculatedValue.populate
     end
 
     def add_indexes
@@ -192,7 +192,7 @@ module ClinicalTrials
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       add_indexes
-      CalculatedValue.refresh_table
+      CalculatedValue.populate
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
       run_sanity_checks
       refresh_data_definitions
@@ -260,12 +260,12 @@ module ClinicalTrials
 
     def run_sanity_checks
       log("sanity check...")
-      SanityCheck.run
+      SanityCheck.populate
     end
 
     def refresh_data_definitions(data=ClinicalTrials::FileManager.default_data_definitions)
       log("refreshing data definitions...")
-      DataDefinition.refresh(data)
+      DataDefinition.populate(data)
     end
 
     def take_snapshot
