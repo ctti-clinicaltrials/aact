@@ -1,10 +1,17 @@
 <%=  stylesheet_link_tag 'use_cases/use_cases' %>
 <div class="wrap">
-  <section id='useCase'>
 
-    <% if @use_case.status != 'public' %>
-      <h3>This use case has not yet been published to the website. This will be reviewed by CTTI staff and the submitter will be contacted if there are questions or additional information is needed.</h3>
-    <% end %>
+  <% if @use_case.status != 'public' %>
+    <section id='useCase'>
+      <div class='well'>
+        <h5>This will soon appear in the AACT Gallery, but first needs to be reviewed by CTTI staff who will contact the person identified to verify the content and confirm they want this information published.</h5>
+      </div>
+    </section>
+  <% end %>
+
+  <br>
+
+  <section id='useCase'>
     <h3>
     <% if !@use_case.url.blank? %>
       <a target='_blank' href='<%= @use_case.url %>'>
@@ -41,6 +48,12 @@
         <%= @use_case.detailed_description %>
       </p>
     </div>
+
+    <% if !@use_case.url.nil? %>
+        <a  target='_blank' href=<%= @use_case.url %>>
+          <%= @use_case.url %>
+        </a>
+    <% end %>
 
     <% if !@use_case.attachment.nil? %>
       <p>Attachment:&nbsp;&nbsp;
