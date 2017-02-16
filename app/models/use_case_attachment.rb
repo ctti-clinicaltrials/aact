@@ -1,6 +1,5 @@
 class UseCaseAttachment < AdminBase
   belongs_to :use_case, :dependent => :destroy
-  attr_accessor :file_data
 
   def self.create_from(file)
     new({:file_name=>sanitize_filename(file.original_filename),
