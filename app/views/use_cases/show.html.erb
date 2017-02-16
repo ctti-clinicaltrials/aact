@@ -4,7 +4,7 @@
   <% if @use_case.status != 'public' %>
     <section id='useCase'>
       <div class='well'>
-        <h5>This will soon appear in the AACT Gallery, but first needs to be reviewed by CTTI staff who will contact the person identified to verify the content and confirm they want this information published.</h5>
+        <h5>This use case will appear in the AACT Gallery once it has been reviewed by CTTI staff. The submitter will be contacted to verify the content and confirm the information can be published.</h5>
       </div>
     </section>
   <% end %>
@@ -12,47 +12,27 @@
   <br>
 
   <section id='useCase'>
-    <h3>
-    <% if !@use_case.url.blank? %>
-      <a target='_blank' href='<%= @use_case.url %>'>
-        <% if !@use_case.image.blank? %>
-          <div style="float:left; margin-right:30px;bottom-margin:10rem;border-style: solid;border-width:2px;">
-            <span style='padding:20px 20px 20px 20px;'><%= image_tag @use_case.image_url(:thumb) %></span>
-            <h4 style='text-align:center;'>Click for More Info</h4>
-          </div>
-        <% end %>
-      </a>
-    <% else %>
-        <% if !@use_case.image.blank? %>
-          <div style="float:left; margin-right:30px;bottom-margin:10rem;border-style: solid;border-width:2px;">
-            <span style='padding:20px 20px 20px 20px;'><%= image_tag @use_case.image_url(:thumb) %></span>
-          </div>
-        <% end %>
+    <p>
+      <h1 id='useCaseHeading'>
+        <%= image_tag @use_case.image_url(:small) if @use_case.image %>
+        <%= @use_case.title %>
+      </h1>
+    </p>
+
+    <% if !@use_case.brief_summary.blank? %>
+      <p>Summary: <%= @use_case.brief_summary %></p>
     <% end %>
 
-    <h1 id='useCaseHeading'>
-      <%= @use_case.title %>
-    </h1>
+    <% if !@use_case.submitter_name.blank? %>
+      <p>Contact: <%= @use_case.submitter_name %> <%= @use_case.email %></p>
+    <% end %>
 
-    <p>
-      <%= @use_case.brief_summary %>
-    </p>
-
-    <p>
-      Contact: <%= @use_case.submitter_name %> - <%= @use_case.email %>
-    </p>
-
-    <div>
-      <p>
-        Details:
-        <%= @use_case.detailed_description %>
-      </p>
-    </div>
+    <% if !@use_case.detailed_description.blank? %>
+      <p>Details: <%= @use_case.detailed_description %></p>
+    <% end %>
 
     <% if !@use_case.url.nil? %>
-        <a  target='_blank' href=<%= @use_case.url %>>
-          <%= @use_case.url %>
-        </a>
+      <p><%= link_to  @use_case.url, URI::HTTP.build({:host => @use_case.url}).to_s, :target => "_blank" %></p>
     <% end %>
 
     <% if !@use_case.attachment.nil? %>
