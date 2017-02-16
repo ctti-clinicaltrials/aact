@@ -54,7 +54,6 @@ class CreateAdminTables < ActiveRecord::Migration
       t.string 'contact_info'
       t.string 'email'
       t.binary 'image'
-      t.string 'remote_image_url'
       t.timestamps null: false
     end
 
