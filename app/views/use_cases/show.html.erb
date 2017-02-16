@@ -13,19 +13,18 @@
 
   <section id='useCase'>
     <p>
-      <h1 id='useCaseHeading'>
-        <%= image_tag @use_case.image_url(:small) if @use_case.image %>
-        <%= @use_case.title %>
-      </h1>
+      <div id='useCaseHeading'>
+        <% if @use_case.image %>
+          <a href='<%= @use_case.image %>' target='_blank'>
+            <%= image_tag @use_case.image_url(:small) %>
+          </a>
+        <% end %>
+        <span class='headingText'><%= @use_case.title %></span>
+      </div>
     </p>
 
     <% if !@use_case.brief_summary.blank? %>
       <p>Summary: <%= @use_case.brief_summary %></p>
-    <% end %>
-
-    <% if !@use_case.submitter_name.blank? %>
-      <p><%= @use_case.submitter_name %></p>
-      <p><%= @use_case.contact_info %></p>
     <% end %>
 
     <% if !@use_case.detailed_description.blank? %>
@@ -43,6 +42,10 @@
         </a>
       </p>
     <% end %>
+
+    <p><%= @use_case.submitter_name %></p>
+    <p><%= @use_case.contact_info %></p>
+    <p>Submitted: <%= @use_case.created_at.strftime('%Y-%m-%d %T') %></p>
 
   </section>
 
