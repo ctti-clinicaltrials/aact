@@ -4,6 +4,14 @@
 @import "base/buttons";
 @import "base/forms";
 
+.enter-label {
+  font-size: 1.2rem;
+}
+
+.enter-info {
+  font-size: 1.2rem;
+  color: #800000;}
+
 #addUseCaseButton {
   padding: 1rem;
   @include box-shadow(3px 3px 11px $grey);
@@ -36,7 +44,6 @@ tr.useCases {
     padding-right: 10px;
     bottom: 20px;
   }
-
 
 p, ul, li.useCaseInvitation {
   font-family: Roboto;
