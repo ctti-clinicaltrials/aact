@@ -1,3 +1,4 @@
+<%=  stylesheet_link_tag "use_cases/use_cases" %>
 <%= form_for(@use_case) do |f| %>
   <% if @use_case.errors.any? %>
     <div id="error_explanation">
@@ -12,52 +13,58 @@
   <% end %>
 
   <div class="well form-group">
-    Title
-    <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: 'a few words to serve as a label for your project' %>
+    <p>* Title
+    <%= f.text_field :title, autofocus: true, :minlength=> 4, class: "enter-info form-control", placeholder: 'a few words to serve as a title (label) for your work', :required => true %>
+    </p>
   </div>
 
   <div class="form-group">
-    Brief Summary
-    <%= f.text_field :brief_summary, placeholder: 'a few sentences that basically describes the work', class: "form-control" %>
+    <p>* Brief Summary
+      <%= f.text_field :brief_summary, placeholder: 'a few sentences that basically describes the work', class: "enter-info form-control", :required => true %>
+    </p>
   </div>
 
   <div class="form-group">
-    URL
-    <%= f.text_field :url, :size=>'100', placeholder: 'url link to a related website', class: "form-control" %>
+    <p>* Submitted by
+      <%= f.text_field :submitter_name, :size=>'20', :minlength=> 4, placeholder: 'name of person responsible for this submission', class: "enter-info form-control", :required => true %>
+    </p>
   </div>
 
   <div class="form-group">
-    Submitted by
-    <%= f.text_field :submitter_name, :size=>'20', placeholder: 'name of person responsible for this effort', class: "form-control" %>
+    <p>* Email
+      <%= f.text_field :email, :size=>'20', placeholder: 'email address we can use to contact you to confirm this information (this will not display in the gallery)', :maxlength=>"254", class: "enter-info form-control", :required => true %>
+    </p>
   </div>
 
   <div class="form-group">
-    Contact Info
-    <%= f.text_field :contact_info,  placeholder: "contact info (phone, address, etc)", class: "form-control" %>
+    <p>Public Contact Info
+      <%= f.text_field :contact_info, placeholder: "help others contact you (this will be display in the gallery with your use case)", class: "enter-info form-control" %>
+    </p>
   </div>
 
   <div class="form-group">
-    Email
-    <%= f.text_field :email, :size=>'20', placeholder: 'email address (we will send confirmation if/when your work is added to the gallery', :maxlength=>"254", class: "form-control" %>
+    <p>URL
+    <%= f.text_field :url, :size=>'100', placeholder: 'url link to a related website', class: "enter-info form-control" %></p>
   </div>
 
   <div class="form-group">
-    Details
-    <%= f.text_area :detailed_description, cols: '40', rows: '10', placeholder: "all the details you consider worth sharing", class: 'form-control' %>
+    <p>Details
+      <%= f.text_area :detailed_description, cols: '40', rows: '10', placeholder: "all the details you consider worth sharing", class: 'enter-info form-control' %>
+    </p>
   </div>
 
-  <p class='form-group'>
-    Attachment: <%= f.file_field :file %>
+  <p class='enter-label form-group'>Attachment:
+    <%= f.file_field :file, class: 'enter-info form-control' %>
   </p>
 
-  <p class='form-group'>
-    Image: <%= f.file_field :image_file %>
+  <p class='enter-label form-group'>Image:
+    <%= f.file_field :image_file, class: 'enter-info form-control' %>
   </p>
 
   <br>
-  <p>By submitting, you agree that this information can be published for all to view in the AACT Gallery.</p>
+  <p>By pressing this button, you agree to share this information with the research community; your information will be published to the AACT Gallery.</p>
   <div class="button actions">
-    <%= f.submit %>
+    <p><%= f.submit %></p>
   </div>
 
 <% end %>
