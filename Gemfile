@@ -38,6 +38,7 @@ gem 'string-similarity'
 gem 'fog'
 #gem 'rmagick'
 gem 'carrierwave'
+gem 'mini_magick', '~> 4.3'
 
 # Grape API
 gem 'rack'

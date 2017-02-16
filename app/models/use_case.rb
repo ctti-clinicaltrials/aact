@@ -1,10 +1,9 @@
 class UseCase < AdminBase
-  has_many :use_case_attachments
-  attr_accessor :pwd
-#  mount_uploader :image, ImageUploader
+  has_many :use_case_attachments, :dependent => :destroy
+  mount_uploader :image, ImageUploader
 
   def attachment
-    use_case_attachments.first
+    attachments.first
   end
 
   def attachments
@@ -13,8 +12,10 @@ class UseCase < AdminBase
 
   def initialize(params = {})
     file = params.delete(:file)
+    image_file = params.delete(:image_file)
     super
     self.attachments << UseCaseAttachment.create_from(file) if file
+    self.image = image_file if image_file
   end
 
 end

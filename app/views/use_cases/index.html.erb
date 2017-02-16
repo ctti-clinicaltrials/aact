@@ -38,9 +38,14 @@
             </td>  -->
             <td class='useCase'>
               <a href='/use_cases/<%= use_case.id %>' class='useCase'>
-                <h4>Title: <%= use_case.title %></h4>
+                <h4><%= use_case.title %></h4>
                 <p><%= use_case.brief_summary %></p>
-                <p><i>submitted by <%= use_case.submitter_name %></i></p>
+                <% if !use_case.url.blank? %>
+                  <p><%= link_to use_case.url, URI::HTTP.build({:host => use_case.url.split('//').last}).to_s, :target=>"_blank" %></p>
+                <% end %>
+                <% if !use_case.submitter_name.blank? %>
+                  <p><i>submitted by <%= use_case.submitter_name %></i></p>
+                <% end %>
               </a>
             </td>
           </tr>
