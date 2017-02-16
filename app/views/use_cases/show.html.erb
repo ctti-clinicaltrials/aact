@@ -31,8 +31,8 @@
       <p>Details: <%= @use_case.detailed_description %></p>
     <% end %>
 
-    <% if !@use_case.url.nil? %>
-      <p><%= link_to  @use_case.url, URI::HTTP.build({:host => @use_case.url}).to_s, :target => "_blank" %></p>
+    <% if @use_case.url %>
+      <p><%= link_to  @use_case.url, URI::HTTP.build({:host => @use_case.url.split('//').last}).to_s, :target => "_blank" %></p>
     <% end %>
 
     <% if !@use_case.attachment.nil? %>
