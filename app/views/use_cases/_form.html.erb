@@ -46,8 +46,12 @@
     <%= f.text_area :detailed_description, cols: '40', rows: '10', placeholder: "all the details you consider worth sharing", class: 'form-control' %>
   </div>
 
-  <p>
+  <p class='form-group'>
     Attachment: <%= f.file_field :file %>
+  </p>
+
+  <p class='form-group'>
+    Image: <%= f.file_field :image_file %>
   </p>
 
   <br>
