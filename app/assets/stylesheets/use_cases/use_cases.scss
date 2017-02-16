@@ -56,10 +56,16 @@ p, ul, li.useCaseInvitation {
 }
 
 #useCaseHeading {
-  color: black;
+  position: relative;
   font-weight: 300;
   font-size: 2rem;
   margin-bottom: 20px;
+  vertical-align: middle;
+}
+
+span.headingText {
+  padding-left: 20px;
+  vertical-align: top;
 }
 
 #useCase {
