@@ -24,7 +24,8 @@
     <% end %>
 
     <% if !@use_case.submitter_name.blank? %>
-      <p>Contact: <%= @use_case.submitter_name %> <%= @use_case.email %></p>
+      <p><%= @use_case.submitter_name %></p>
+      <p><%= @use_case.contact_info %></p>
     <% end %>
 
     <% if !@use_case.detailed_description.blank? %>
