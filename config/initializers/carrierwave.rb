@@ -13,3 +13,14 @@ unless ENV['AWS_ACCESS_KEY_ID'].blank?
   end
 end
 
+module Carrierwave
+  module MiniMagick
+    def quality(percentage)
+      manipulate! do |img|
+        img.quality(percentage.to_s)
+        img * yield(img) if block_given?
+        img
+      end
+    end
+  end
+end
