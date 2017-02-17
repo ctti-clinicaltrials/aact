@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 9.6.1
--- Dumped by pg_dump version 9.6.1
+-- Dumped by pg_dump version 9.6.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -145,6 +145,35 @@ CREATE SEQUENCE load_events_id_seq
 --
 
 ALTER SEQUENCE load_events_id_seq OWNED BY load_events.id;
+
+
+--
+-- Name: public_announcements; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public_announcements (
+    id integer NOT NULL,
+    description character varying
+);
+
+
+--
+-- Name: public_announcements_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public_announcements_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: public_announcements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public_announcements_id_seq OWNED BY public_announcements.id;
 
 
 --
@@ -319,6 +348,13 @@ ALTER TABLE ONLY load_events ALTER COLUMN id SET DEFAULT nextval('load_events_id
 
 
 --
+-- Name: public_announcements id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public_announcements ALTER COLUMN id SET DEFAULT nextval('public_announcements_id_seq'::regclass);
+
+
+--
 -- Name: sanity_checks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -368,6 +404,14 @@ ALTER TABLE ONLY database_activities
 
 ALTER TABLE ONLY load_events
     ADD CONSTRAINT load_events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: public_announcements public_announcements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public_announcements
+    ADD CONSTRAINT public_announcements_pkey PRIMARY KEY (id);
 
 
 --
