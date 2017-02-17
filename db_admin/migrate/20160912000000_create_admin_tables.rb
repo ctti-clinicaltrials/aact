@@ -2,6 +2,10 @@ class CreateAdminTables < ActiveRecord::Migration
 
   def change
 
+    create_table "public_announcements", force: :cascade do |t|
+      t.string   "description"
+    end
+
     create_table "load_events", force: :cascade do |t|
       t.string   "event_type"
       t.string   "status"
