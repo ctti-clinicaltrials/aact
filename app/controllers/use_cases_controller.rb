@@ -78,10 +78,10 @@ class UseCasesController < ApplicationController
       if !params[:pwd] and !params['use_case']
         render plain: "First  Only editable by authorized folks."
       end
-      if params[:pwd] and params[:pwd] != ENV["PASSWORD_TO_EDIT_USE_CASE"]
+      if params[:pwd] and params[:pwd] != ENV["AACT_VIEW_PASSWORD"]
         render plain: "Second   Only editable by authorized folks."
       end
-      if params['use_case'] and (!params['use_case']['pwd'] or params['use_case']['pwd'] != ENV["PASSWORD_TO_EDIT_USE_CASE"])
+      if params['use_case'] and (!params['use_case']['pwd'] or params['use_case']['pwd'] != ENV["AACT_VIEW_PASSWORD"])
         render plain: "Third   Only editable by authorized folks."
       end
     end

@@ -1,7 +1,7 @@
-class SanityCheck < ActiveRecord::Base
+class SanityCheck < AdminBase
 
   def self.save_row_counts
-    ActiveRecord::Base.connection.execute('UPDATE sanity_checks SET most_current=false')
+    AdminBase.connection.execute('UPDATE sanity_checks SET most_current=false')
     ClinicalTrials::Updater.loadable_tables.each{|table_name|
       table_name='references' if table_name=='study_references'
       cnt=table_name.singularize.camelize.constantize.count
@@ -52,6 +52,10 @@ class SanityCheck < ActiveRecord::Base
         new({:table_name=>"#{table_name} duplicate",:nct_id=>row.first,:row_count=>row.last,:description=>'duplicate'}).save!
       }
     }
+  end
+
+  def self.populate
+    self.run
   end
 
   def self.run

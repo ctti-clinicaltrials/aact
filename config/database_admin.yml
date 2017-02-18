@@ -1,6 +1,6 @@
 development: &default
   adapter: postgresql
-  database: aact_dev
+  database: aact_admin
   encoding: utf8
   min_messages: warning
   pool: <%= Integer(ENV.fetch("DB_POOL", 5)) %>
@@ -9,14 +9,14 @@ development: &default
 
 test:
   <<: *default
-  database: aact_test
+  database: aact_admin_test
 
 production: &deploy
   encoding: utf8
   min_messages: warning
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  url:  <%= ENV.fetch("DATABASE_URL", "") %>
+  url:  <%= ENV.fetch("ADMIN_DATABASE_URL", "") %>
 
 staging: *deploy
 
@@ -28,4 +28,4 @@ docker: &docker
 
 docker_test:
   <<: *docker
-  database: aact_test
+  database: aact_admin_test

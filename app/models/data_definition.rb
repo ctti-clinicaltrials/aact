@@ -1,8 +1,8 @@
 require 'csv'
 require 'active_support/all'
-class DataDefinition < ActiveRecord::Base
+class DataDefinition < AdminBase
 
-  def self.refresh(data=ClinicalTrials::FileManager.default_data_definitions)
+  def self.populate(data=ClinicalTrials::FileManager.default_data_definitions)
     self.destroy_all
     self.populate_from_file(data)
     self.populate_row_counts
@@ -92,6 +92,10 @@ class DataDefinition < ActiveRecord::Base
       ['baseline_counts','scope'],
       ['baseline_measurements','category'],
       ['baseline_measurements','param_type'],
+      ['calculated_values','has_single_facility'],
+      ['calculated_values','has_us_facility'],
+      ['calculated_values','registered_in_calendar_year'],
+      ['calculated_values','were_results_reported'],
       ['central_contacts','contact_type'],
       ['design_groups','group_type'],
       ['design_outcomes','outcome_type'],

@@ -2,6 +2,10 @@ class CreateAdminTables < ActiveRecord::Migration
 
   def change
 
+    create_table "public_announcements", force: :cascade do |t|
+      t.string   "description"
+    end
+
     create_table "load_events", force: :cascade do |t|
       t.string   "event_type"
       t.string   "status"
@@ -65,11 +69,19 @@ class CreateAdminTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    execute <<-SQL
-      DROP USER aact;
-      CREATE USER aact WITH PASSWORD 'aact';
-      GRANT SELECT ON ALL TABLES IN SCHEMA public TO aact;
-    SQL
+    create_table "database_activities", force: :cascade do |t|
+      t.string   "file_name"
+      t.string   "log_type"
+      t.datetime "log_date"
+      t.string   "ip_address"
+      t.string   "description"
+      t.timestamps null: false
+    end
+
+#    execute <<-SQL
+      #CREATE USER aact WITH PASSWORD 'aact';
+#      GRANT SELECT ON ALL TABLES IN SCHEMA public TO aact;
+#    SQL
   end
 
 end
