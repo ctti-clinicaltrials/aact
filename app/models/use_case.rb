@@ -17,6 +17,7 @@ class UseCase < AdminBase
     super
     self.attachments << UseCaseAttachment.create_from(file) if file
     self.image = image_file if image_file
+    self
   end
 
 end
