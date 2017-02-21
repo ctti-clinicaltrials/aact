@@ -32,7 +32,7 @@
     <% end %>
 
     <% if @use_case.url %>
-      <p><%= link_to  @use_case.url, URI::HTTP.build({:host => @use_case.url.split('//').last}).to_s, :target => "_blank" %></p>
+      <p><a href="<%= @use_case.linkable_url %>" target="_blank" ><%= @use_case.url %></a></p>
     <% end %>
 
     <% if !@use_case.attachment.nil? %>
