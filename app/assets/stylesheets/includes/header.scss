@@ -35,6 +35,33 @@ header {
     }
   }
 
+  h1.announcement {
+    color: black;
+    font-family: "Roboto";
+  }
+
+  div.announcement {
+    margin-bottom: 0rem;
+    text-align: center;
+    border: 1px solid #e9e9e9;
+    padding-top: 20px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 140px;
+    max-width: 70%;
+    font-family: "Roboto";
+    background-color: rgb(240,240,240);
+    @include box-shadow(3px 3px 11px $grey);
+  }
+
+  ul.announcement {
+    list-style-type: none;
+    font-family: "Roboto";
+    line-height: 1.4;
+    font-weight: 100;
+    color: #800000;
+  }
+
   a.navItem {
     font-weight: bold;
     text-transform: uppercase;

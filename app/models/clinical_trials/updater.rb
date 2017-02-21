@@ -78,6 +78,12 @@ module ClinicalTrials
       send_notification
     end
 
+    def self.populate_admin
+      SanityCheck.populate
+      DataDefinition.populate
+      DatabaseActivity.populate
+    end
+
     def indexes
       [
        [:baseline_measurements, :dispersion_type],
