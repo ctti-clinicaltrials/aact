@@ -41,7 +41,7 @@
                 <h4><%= use_case.title %></h4>
                 <p><%= use_case.brief_summary %></p>
                 <% if !use_case.url.blank? %>
-                  <p><%= link_to use_case.url, URI::HTTP.build({:host => use_case.url.split('//').last}).to_s, :target=>"_blank" %></p>
+                  <p><a href="<%= use_case.linkable_url %>" target="_blank" ><%= use_case.url %></a></p>
                 <% end %>
                 <% if !use_case.submitter_name.blank? %>
                   <p><i>submitted by <%= use_case.submitter_name %></i></p>
