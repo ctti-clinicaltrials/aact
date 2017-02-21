@@ -13,6 +13,7 @@ class UseCase < AdminBase
   end
 
   def update(params = {})
+    file = params.delete(:file)
     image_file = params.delete('image_file')
     self.use_case_attachments = []
     self.attachments << UseCaseAttachment.create_from(file) if file
