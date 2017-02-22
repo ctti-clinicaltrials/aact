@@ -2,7 +2,7 @@
 <div class="wrap">
 
   <% if @use_case.status != 'public' %>
-    <section id='useCase'>
+    <section class='useCase'>
       <div class='well'>
         <h5>This use case will appear in the AACT Gallery once it has been reviewed by CTTI staff. The submitter will be contacted to verify the content and confirm the information can be published.</h5>
       </div>
@@ -11,24 +11,26 @@
 
   <br>
 
-  <section id='useCase'>
+  <section class='useCase'>
     <p>
-      <div id='useCaseHeading'>
-        <% if @use_case.image %>
-          <a href='<%= @use_case.image %>' target='_blank'>
-            <%= image_tag @use_case.image_url(:small) %>
+    <div class='useCase'>
+      <% if @use_case.image %>
+        <p class='headingImage' align="middle">
+          <a href='<%= @use_case.image %>' target='_blank' >
+            <%= image_tag @use_case.image_url(:medium) %>
           </a>
-        <% end %>
-        <span class='headingText'><%= @use_case.title %></span>
-      </div>
+        </p>
+      <% end %>
+      <p class='headingText'><%= @use_case.title %></p>
+    </div>
     </p>
 
     <% if !@use_case.brief_summary.blank? %>
-      <p>Summary: <%= @use_case.brief_summary %></p>
+      <p><span class='useCaseLabel'>Summary:</span> <%= @use_case.brief_summary %></p>
     <% end %>
 
     <% if !@use_case.detailed_description.blank? %>
-      <p>Details: <%= @use_case.detailed_description %></p>
+      <p><span class='useCaseLabel'>Details:</span> <%= @use_case.detailed_description %></p>
     <% end %>
 
     <% if @use_case.url %>
@@ -36,7 +38,7 @@
     <% end %>
 
     <% if !@use_case.attachment.nil? %>
-      <p>Attachment:&nbsp;&nbsp;
+      <p><span class='useCaseLabel'>Attachment:</span>&nbsp;&nbsp;
         <a href='/use_case_attachments/<%= @use_case.attachment.id %>'>
           <%= @use_case.attachment.file_name %>
         </a>
@@ -45,7 +47,7 @@
 
     <p><%= @use_case.submitter_name %></p>
     <p><%= @use_case.contact_info %></p>
-    <p>Submitted: <%= @use_case.created_at.strftime('%Y-%m-%d %T') %></p>
+    <p><span class='useCaseLabel'>Submitted:</span> <%= @use_case.created_at.strftime('%Y-%m-%d %T') %></p>
 
   </section>
 
