@@ -23,6 +23,7 @@
 section.useCases {
   font-weight: 100;
   padding-bottom: 10px;
+  width: 100%;
 }
 
 #useCaseTable table, tr, th {
@@ -51,7 +52,6 @@ p, ul, li.useCaseInvitation {
   font-weight: 100;
   line-height: 1.2;
   color: black;
-  position: relative;
   bottom: 10px;
 }
 
@@ -63,14 +63,26 @@ p, ul, li.useCaseInvitation {
   vertical-align: middle;
 }
 
-span.headingText {
-  padding-left: 20px;
-  vertical-align: top;
+div.useCaseInfo {
+  bottom: 0;
+  color: blue;
 }
 
-#useCase {
-  background-color: $light-grey;
-  @include box-shadow(3px 3px 11px $grey);
+span.useCaseLabel {
+  color: #800000;
+}
+
+p.headingText {
+  font-weight: bold;
+  color: #007488;
+  bottom: 0px;
+}
+
+.useCase {
+  position: relative;
+  width: 100%;
+  //background-color: $light-grey;
+  //@include box-shadow(3px 3px 11px $grey);
   padding: 2rem;
 }
 
@@ -79,17 +91,17 @@ span.headingText {
   text-align: center;
   font-weight: 300;
   font-size: 2.5rem;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 div.useCase {
+  text-align: center;
   width: 96%;
   display: block;
   margin-bottom: 80px;
   background-color: $light-grey;
   padding: 2rem;
   @include box-shadow(3px 3px 11px $grey);
-  margin: 1rem;
   position: relative;
   }
 
