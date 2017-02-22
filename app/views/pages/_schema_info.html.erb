@@ -20,14 +20,14 @@
      <li>Where possible, tables & columns are given fully qualified names; abbreviations are avoided. (ie. <i>description</i> rather than <i>desc</i>; <i>category</i> rather than <i>ctgry</i>)</li>
      <li>Unnecssary and duplicate verbiage is avoided. For example: <i>Studies.source</i> instead of <i>Studies.study_source</i></li>
      <li>Columns that end with <i>_id</i> represent foreign keys. The prefix to the <i>_id</i> suffix is always the singular name of the parent table to which the child table is related. These foreign keys always link to the <i>id</i> column of the parent table.</p>
-       <p><i>Child_Table.parent_table_id = Parent_Tables.id</i>)</p>
+       <p><i>Child_Table.parent_table_id = Parent_Tables.id</i></p>
        <p>For example, a row in <i>Facility_Contacts</i> links to it’s facility through the <i>facility_id</i> column.</p>
        <p><i>Facility_Contacts.facility_id = Facilities.id</i>
      </li>
   </ul>
    <h4>Structural Conventions</h4>
    <ul class='regularDisplay'>
-     <li>Every table has an <i>nct_id</i> column to link rows to its related study in the <i>Studies</i> table. All study-related data can be linked directly to the <i>Studies</i> table via the <i>nct_id.</i> (Note: The schema diagram does not display all relationships to <i>Studies</i> to avoid appearing complex and confusing.  Relationships to the <i>Studies</i> table can be assumed.)</li>
+     <li>Every table has an <i>nct_id</i> column to link rows to its related study in the <i>Studies</i> table. All study-related data can be linked directly to the <i>Studies</i> table via the <i>nct_id.</i> (Note: The schema diagram omits several of the lines that represent relationships to <i>Studies</i>. This was done to avoid appearing complex and confusing. Relationships to the <i>Studies</i> table can be assumed since every table includes the NCT ID.)</li>
         <p><i>Studies.nct_id = Outcomes.nct_id</i> will link outcomes to their related study.
      <li>Every table has the primary key: <i>id</i>. (<i>Studies</i> is the one exception since it's primary key is the unique study identifier assigned by ClinicalTrials.gov: <i>nct_id</i>.)</li>
      <li>Columns that end with <i>_date</i> contain date-type values.</li>
