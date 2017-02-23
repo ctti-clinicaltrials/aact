@@ -34,6 +34,7 @@ gem 'aws-sdk', '~> 2'
 gem 'font-awesome-sass'
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
+gem 'gon'
 
 gem 'fog'
 #gem 'rmagick'
