@@ -1,31 +1,56 @@
 class DatabaseActivity < AdminBase
 
   def self.populate
-    ClinicalTrials::FileManager.db_log_file_content({:db_name=>ENV['S3_BUCKET_NAME']}).each {|log|
+    #ClinicalTrials::FileManager.db_log_file_content({:db_name=>ENV['S3_BUCKET_NAME']}).each {|log|
+    ClinicalTrials::FileManager.db_log_file_content({:db_name=>'aact-prod'}).each {|log|
      log_time=nil
      log_message=''
      ip_addr=nil
+     log_type=nil
      file_name=log[:file_name].split('error/postgresql.log.').last
      exists=(where('file_name=?',file_name).size > 0)
-     unless exists   # If data from log file already loaded, skip it.
+     unless exists  or file_name=='error/postgres.log'  # If data from log file already loaded, skip it.
        entries=log[:content].split(/\n/)
        entries.each{|entry|
          if entry.include?('UTC:')
-           if !log_time.nil? && !log_message.include?('checkpoint')
-             new({:file_name=>file_name, :log_date=>log_time, :description=>log_message, :ip_address=>ip_addr}).save!
+           log_type=log_type_from(entry)
+           if !log_type.nil? and !log_time.nil? #  save previous entry.  If there is no log type, this is a continuation of the previous entry
+             new({:file_name=>file_name.strip, :log_date=>log_time, :log_type=>log_type.strip, :description=>log_message.strip, :ip_address=>ip_addr.try(:strip)}).save!
            end
            log_time=entry.split(/UTC:/).first.strip.to_datetime
-           log_message=entry.split(/UTC:/).last.strip.split(/:LOG:/).last.strip
-           if log_message.include?('STATEMENT:')
-             ip_addr=entry.split(':aact@aact:').first.split('UTC:').last.split('(').first
-             log_message=entry.split('STATEMENT:').last
-           end
+           log_message=log_message_from(entry)
+           ip_addr=ip_addr_from(entry)
          else
            log_message=log_message+entry
          end
        }
      end
      }
+  end
+
+  def self.log_types
+    ['DETAIL','ERROR','FATAL','HINT','LOG','STATEMENT','WARNING']
+  end
+
+  def self.log_type_from(entry)
+    self.log_types.each{|type| return type if entry.include?(type) }
+    return 'UNKNOWN'
+  end
+
+  def self.log_message_from(entry)
+    self.log_types.each{|type|
+      return entry.split("#{type}:").last.strip if entry.include?(type)
+    }
+  end
+
+  def self.ip_addr_from(entry)
+    possible_ip_addr=entry.split(':aact@aact:').first.split('UTC:').last.split('(').first
+    possible_ip_addr=(entry.split('UTC::').last.split(']:').first) if possible_ip_addr.nil?
+    return nil if !(possible_ip_addr.match /^:@:/).nil?
+    self.log_types.each{|type|
+      return possible_ip_addr.split(":#{type}:").first.strip if possible_ip_addr.include?(type)
+    }
+    possible_ip_addr
   end
 
 end
