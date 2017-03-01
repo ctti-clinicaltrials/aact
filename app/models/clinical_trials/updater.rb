@@ -69,8 +69,7 @@ module ClinicalTrials
       add_indexes
       grant_db_privs
       create_calculated_values
-      run_sanity_checks
-      refresh_data_definitions
+      populate_admin_tables
       take_snapshot
       create_flat_files
       study_counts[:processed]=Study.count
@@ -78,10 +77,10 @@ module ClinicalTrials
       send_notification
     end
 
-    def self.populate_admin
-      SanityCheck.populate
-      DataDefinition.populate
-      DatabaseActivity.populate
+    def populate_admin_tables
+      run_sanity_checks
+      refresh_data_definitions
+      populate_database_activity
     end
 
     def indexes
@@ -200,8 +199,7 @@ module ClinicalTrials
       add_indexes
       CalculatedValue.populate
       ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
-      run_sanity_checks
-      refresh_data_definitions
+      populate_admin_tables
       log_actual_counts
       load_event.complete({:study_counts=> study_counts})
       send_notification
@@ -272,6 +270,10 @@ module ClinicalTrials
     def refresh_data_definitions(data=ClinicalTrials::FileManager.default_data_definitions)
       log("refreshing data definitions...")
       DataDefinition.populate(data)
+    end
+
+    def populate_database_activity
+      DatabaseActivity.populate
     end
 
     def take_snapshot
