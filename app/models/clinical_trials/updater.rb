@@ -42,6 +42,8 @@ module ClinicalTrials
       begin
         log('begin ...')
         revoke_db_privs
+        public_announcement=PublicAnnouncement.new(:description=>"The live AACT database is unavailable because full refresh is running. This may take several hours.  We apologize for the inconvenience.")
+        public_announcement.save!
         if should_restart?
           log("restarting full load...")
         else
@@ -55,6 +57,7 @@ module ClinicalTrials
         study_counts[:should_change]=0
         @client.populate_studies
         finalize_full_load
+        public_announcement.destroy
       rescue  Exception => e
         study_counts[:processed]=Study.count
         puts ">>>>>>>>>>> Full load failed:  #{e}"
@@ -193,12 +196,15 @@ module ClinicalTrials
         return
       end
       set_expected_counts(ids)
-      ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
+      public_announcement=PublicAnnouncement.new(:description=>"The live AACT database is temporarily unavailable because the daily update is running.")
+      public_announcement.save!
+      ActiveRecord::Base.connection.execute('revoke select on all tables in schema public from aact;')
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       add_indexes
       CalculatedValue.populate
-      ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
+      ActiveRecord::Base.connection.execute('grant select on all tables in schema public to aact;')
+      public_announcement.destroy
       populate_admin_tables
       log_actual_counts
       load_event.complete({:study_counts=> study_counts})
