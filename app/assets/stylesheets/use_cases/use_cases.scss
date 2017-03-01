@@ -4,6 +4,14 @@
 @import "base/buttons";
 @import "base/forms";
 
+.enter-label {
+  font-size: 1.2rem;
+}
+
+.enter-info {
+  font-size: 1.2rem;
+  color: #800000;}
+
 #addUseCaseButton {
   padding: 1rem;
   @include box-shadow(3px 3px 11px $grey);
@@ -15,21 +23,26 @@
 section.useCases {
   font-weight: 100;
   padding-bottom: 10px;
+  width: 100%;
 }
 
-#useCaseTable table, tr, td, th {
+#useCaseTable table, tr, th {
      border: 0;
 }
 
-tr.useCaseExample {
-    width: 96%;
+tbody.useCases {
+  width: 96%;
+}
+
+tr.useCases {
     display: block;
     font-weight: 100;
     background-color: rgb(249,249,249);
     color: $grey;
     @include box-shadow(3px 3px 11px $grey);
-    margin: 1rem;
-    position: relative;
+    margin: 2rem;
+    padding-left: 10px;
+    padding-right: 10px;
     bottom: 20px;
   }
 
@@ -39,20 +52,37 @@ p, ul, li.useCaseInvitation {
   font-weight: 100;
   line-height: 1.2;
   color: black;
-  position: relative;
   bottom: 10px;
 }
 
 #useCaseHeading {
-  color: black;
+  position: relative;
   font-weight: 300;
   font-size: 2rem;
   margin-bottom: 20px;
+  vertical-align: middle;
 }
 
-#useCase {
-  background-color: $light-grey;
-  @include box-shadow(3px 3px 11px $grey);
+div.useCaseInfo {
+  bottom: 0;
+  color: blue;
+}
+
+span.useCaseLabel {
+  color: #800000;
+}
+
+p.headingText {
+  font-weight: bold;
+  color: #007488;
+  bottom: 0px;
+}
+
+.useCase {
+  position: relative;
+  width: 100%;
+  //background-color: $light-grey;
+  //@include box-shadow(3px 3px 11px $grey);
   padding: 2rem;
 }
 
@@ -61,17 +91,17 @@ p, ul, li.useCaseInvitation {
   text-align: center;
   font-weight: 300;
   font-size: 2.5rem;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 div.useCase {
+  text-align: center;
   width: 96%;
   display: block;
   margin-bottom: 80px;
   background-color: $light-grey;
   padding: 2rem;
   @include box-shadow(3px 3px 11px $grey);
-  margin: 1rem;
   position: relative;
   }
 

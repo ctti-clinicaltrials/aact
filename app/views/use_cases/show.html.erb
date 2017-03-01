@@ -1,42 +1,54 @@
 <%=  stylesheet_link_tag 'use_cases/use_cases' %>
 <div class="wrap">
-  <section id='useCase'>
 
-    <% if !@use_case.url.blank? %>
-      <a target='_blank' href='<%= @use_case.url %>'>
-        <% if !@use_case.image.blank? %>
-          <div style="float:left; margin-right:30px;bottom-margin:10rem;border-style: solid;border-width:2px;">
-            <span style='padding:20px 20px 20px 20px;'><%= image_tag @use_case.image_url(:thumb) %></span>
-            <h4 style='text-align:center;'>Click for More Info</h4>
-          </div>
-        <% end %>
-      </a>
-    <% else %>
-        <% if !@use_case.image.blank? %>
-          <div style="float:left; margin-right:30px;bottom-margin:10rem;border-style: solid;border-width:2px;">
-            <span style='padding:20px 20px 20px 20px;'><%= image_tag @use_case.image_url(:thumb) %></span>
-          </div>
-        <% end %>
+  <% if @use_case.status != 'public' %>
+    <section class='useCase'>
+      <div class='well'>
+        <h5>This use case will appear in the AACT Gallery once it has been reviewed by CTTI staff. The submitter will be contacted to verify the content and confirm the information can be published.</h5>
+      </div>
+    </section>
+  <% end %>
+
+  <br>
+
+  <section class='useCase'>
+    <p>
+    <div class='useCase'>
+      <% if @use_case.image %>
+        <p class='headingImage' align="middle">
+          <a href='<%= @use_case.image %>' target='_blank' >
+            <%= image_tag @use_case.image_url(:medium) %>
+          </a>
+        </p>
+      <% end %>
+      <p class='headingText'><%= @use_case.title %></p>
+    </div>
+    </p>
+
+    <% if !@use_case.brief_summary.blank? %>
+      <p><span class='useCaseLabel'>Summary:</span> <%= @use_case.brief_summary %></p>
     <% end %>
 
-    <h1 id='useCaseHeading'>
-      <%= @use_case.title %>
-    </h1>
+    <% if !@use_case.detailed_description.blank? %>
+      <p><span class='useCaseLabel'>Details:</span> <%= @use_case.detailed_description %></p>
+    <% end %>
 
-    <p>
-      <%= @use_case.brief_summary %>
-    </p>
+    <% if @use_case.url %>
+      <p><a href="<%= @use_case.linkable_url %>" target="_blank" ><%= @use_case.url %></a></p>
+    <% end %>
 
-    <p>
-      Contact: <%= @use_case.submitter_name %> - <%= @use_case.email %>
-    </p>
-
-    <div>
-      <p>
-        Details:
-        <%= @use_case.detailed_description %>
+    <% if !@use_case.attachment.nil? %>
+      <p><span class='useCaseLabel'>Attachment:</span>&nbsp;&nbsp;
+        <a href='/use_case_attachments/<%= @use_case.attachment.id %>'>
+          <%= @use_case.attachment.file_name %>
+        </a>
       </p>
-    </div>
+    <% end %>
+
+    <p><%= @use_case.submitter_name %></p>
+    <p><%= @use_case.contact_info %></p>
+    <p><span class='useCaseLabel'>Submitted:</span> <%= @use_case.created_at.strftime('%Y-%m-%d %T') %></p>
+
   </section>
 
   <div style="margin:30px;">
