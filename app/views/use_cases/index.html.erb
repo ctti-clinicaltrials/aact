@@ -10,18 +10,13 @@
          <li class='useCaseInvitation'>Discover where clinical research is being conducted in a particular field.</li>
          <li class='useCaseInvitation'>Develop websites to better organize and/or enhance the dataset.</li>
        </ul>
-      <p class='useCaseInvitation'>We encourage you to share your work and discoveries with the community so that everyone can benefit.</p>
+      <p class='useCaseInvitation'>We encourage everyone to share their work and discoveries with the community so that everyone can benefit.</p>
       <br>
-
-      <p class='useCaseInvitation'>
-        <%= button_to "I'd like to showcase my work in the AACT Gallery", new_use_case_path, :id => "addUseCaseButton",
-       :class => "inbox-sf-add-btn tip", :method => :get %>
-      </p>
 
   </div>
 
   <div class="useCase">
-    <h1 id='galleryHeading'>Gallery</h1>
+    <h1 id='galleryHeading'>AACT Gallery</h1>
     <section class="useCases">
 
       <table id='useCaseTable' class='table dataTable data-table table-striped table-condensed table-hover'>
@@ -40,20 +35,29 @@
               <a href='/use_cases/<%= use_case.id %>' class='useCase'>
                 <h4><%= use_case.title %></h4>
                 <p><%= use_case.brief_summary %></p>
-                <% if !use_case.url.blank? %>
-                  <p><a href="<%= use_case.linkable_url %>" target="_blank" ><%= use_case.url %></a></p>
-                <% end %>
-                <% if !use_case.submitter_name.blank? %>
-                  <p><i>submitted by <%= use_case.submitter_name %></i></p>
+               <% if !use_case.submitter_name.blank? %>
+                  <p><i>Provided by <%= use_case.submitter_name %></i></p>
                   <p><%= use_case.contact_info %></i></p>
                 <% end %>
               </a>
+              <% if !use_case.url.blank? %>
+                <p><a href="<%= use_case.linkable_url %>" target="_blank" ><%= use_case.url %></a></p>
+              <% end %>
             </td>
           </tr>
         <% end %>
        </tbody>
      </table>
     </section>
+  </div>
+
+  <div class="basicHero">
+
+      <p class='useCaseInvitation'>
+        <%= button_to "I'd like to showcase my work in the AACT Gallery", new_use_case_path, :id => "addUseCaseButton",
+       :class => "inbox-sf-add-btn tip", :method => :get %>
+      </p>
+
   </div>
 
 </div>
