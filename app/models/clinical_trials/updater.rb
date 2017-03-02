@@ -68,10 +68,14 @@ module ClinicalTrials
     end
 
     def finalize_full_load
-      remove_indexes  # Make sure indexes are gone before trying to add them.
-      add_indexes
+      begin
+        remove_indexes  # Make sure indexes are gone before trying to add them.
+        add_indexes
+        create_calculated_values
+      rescue
+        grant_db_privs
+      end
       grant_db_privs
-      create_calculated_values
       populate_admin_tables
       take_snapshot
       create_flat_files
@@ -198,12 +202,12 @@ module ClinicalTrials
       set_expected_counts(ids)
       public_announcement=PublicAnnouncement.new(:description=>"The live AACT database is temporarily unavailable because the daily update is running.")
       public_announcement.save!
-      ActiveRecord::Base.connection.execute('revoke select on all tables in schema public from aact;')
+      revoke_db_privs
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       add_indexes
       CalculatedValue.populate
-      ActiveRecord::Base.connection.execute('grant select on all tables in schema public to aact;')
+      grant_db_privs
       public_announcement.destroy
       populate_admin_tables
       log_actual_counts
@@ -326,15 +330,27 @@ module ClinicalTrials
       log("studies added/changed: #{study_counts[:processed]}\n")
     end
 
-    private
+private
 
     def revoke_db_privs
-      ActiveRecord::Base.connection.execute("REVOKE ALL PRIVILEGES ON database #{db_name} FROM aact;")
+      con=ActiveRecord::Base.connection
+      con.execute("revoke connect on database #{db_name} from aact;")
+      con.execute("revoke select on all tables in schema public from aact;")
+      con.execute("revoke all on schema public from public;")
+      con.execute("revoke all on schema public from aact;")
     end
 
     def grant_db_privs
-      ActiveRecord::Base.connection.execute("GRANT CONNECT ON DATABASE #{db_name} TO aact;")
-      ActiveRecord::Base.connection.execute('GRANT SELECT ON ALL TABLES IN SCHEMA public TO aact;')
+      # some of this may seem redundant & better placed in revoke_db_privs, but the following works to allow aact user to
+      # select from tables, but not update the tables nor create new tables
+      con=ActiveRecord::Base.connection
+      con.execute("revoke all on all tables in schema public from aact;")
+      con.execute("revoke all on schema public from aact;")
+      con.execute("revoke all on schema public from public;")
+      con.execute("revoke usage on schema public from public;")
+      con.execute("grant connect on database #{db_name} to aact;")
+      con.execute("grant usage on schema public TO aact;")
+      con.execute('grant select on all tables in schema public to aact;')
     end
 
     def db_name
