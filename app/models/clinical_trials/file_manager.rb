@@ -92,9 +92,14 @@ module ClinicalTrials
        col=[]
        client = Aws::RDS::Client.new(region: ENV['AWS_REGION'])
        client.describe_db_log_files({:db_instance_identifier=>db_name}).data.describe_db_log_files.each{|file|
-         file_name=file.log_file_name
-         content=client.download_db_log_file_portion({:db_instance_identifier=>db_name, :log_file_name=>file_name})
-         col << {:file_name => file_name, :content => content.data.log_file_data}
+         begin
+           file_name=file.log_file_name
+           content=client.download_db_log_file_portion({:db_instance_identifier=>db_name, :log_file_name=>file_name})
+           col << {:file_name => file_name, :content => content.data.log_file_data}
+         rescue Exception => e
+           entry={:file_name=>file_name, :log_time=> 'unknown', :content=>"#{Time.now} UTC: ERROR: #{e}\n"}
+           col << entry
+         end
        }
        col
     end
