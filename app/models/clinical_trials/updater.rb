@@ -287,7 +287,7 @@ module ClinicalTrials
     end
 
     def take_snapshot
-      puts "snapshot the database..."
+      puts "creating static copy of the database..."
       ClinicalTrials::FileManager.new.take_snapshot
     end
 
