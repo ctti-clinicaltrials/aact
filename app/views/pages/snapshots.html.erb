@@ -2,27 +2,27 @@
 
   <div class="wrap">
     <div class="basicHero">
-      <h1>Create Local Database from AACT Snapshots</h1>
+      <h1>Create Local Database from Static Copy of AACT</h1>
     </div>
 
-    <p>If you would like to work with the complete set of clinical trials on your own computer... install PostgreSQL locally, download an AACT database snapshot, and populate a local PostgreSQL AACT database instance with the data. This page provides the instructions.</p>
+    <p>If you would like to work with the complete set of clinical trials on your own computer... install PostgreSQL locally, download a static copy of the AACT database, and populate a local PostgreSQL AACT database instance with the data. This page provides the instructions.</p>
 
     <%= render 'install_postgres' %>
 
     <div class="step">
       <span class="stepNumber">2</span>
-      <h3 class="stepName">Download AACT Database Snapshot Package</h3>
+      <h3 class="stepName">Download Package Containing Static Copy of AACT Database</h3>
     </div>
 
-    <p>Download a zip file that contains the AACT database file. With a single command (see below), this file can be used to automatically configure the database & populate it with the clinical trials dataset. The zip file also contains documentation that describes the database at the time the snapshot was taken. (The download typically takes 3-7 minutes, depending on your network speed.)</p>
+    <p>Download a zip file that contains the AACT database file. With a single command (see below), this file can be used to automatically configure the database & populate it with the clinical trials dataset. The zip file also contains documentation that describes the database at the time the static copy was created. (The download typically takes 3-7 minutes, depending on your network speed.)</p>
     <p><%= render 'file_archive' %></p>
 
     <div class="step">
       <span class="stepNumber">3</span>
-      <h3 class="stepName">Populate Local PostgreSQL Database from Snapshot</h3>
+      <h3 class="stepName">Populate Local PostgreSQL Database from the Static Copy</h3>
     </div>
 
-    <p>Once PostgreSQL is installed on your local machine and you have downloaded a snapshot of the AACT database, you can create and populate your own database. You have two alternatives for installing the snapshot: 1) via a terminal session using command lines or 2) via a graphical user interface (GUI) such as <i>pgAdmin</i>. The command line option is somewhat simpler, so we've highlighted instructions for this below and provided guidance for using the GUI <a href='/snapshots#createDbViaGui'>here</a>.</p>
+    <p>Once PostgreSQL is installed on your local machine and you have downloaded an AACT database package, you can create and populate your own database. You have two alternatives for installing it: 1) via a terminal session using command lines or 2) via a graphical user interface (GUI) such as <i>pgAdmin</i>. The command line option is somewhat simpler, so we've highlighted instructions for this below and provided guidance for using the GUI <a href='/snapshots#createDbViaGui'>here</a>.</p>
 
 
     <h4>Database Creation Via Command Line</h4>
@@ -45,10 +45,10 @@
       </pre>
     </p>
 
-    <h5>Locate and unzip the snapshot package</h5>
-    <p>Verify the location of the snapshot file you downloaded in step 2 - both the path and the file name. You'll need to unzip this package and use the data dump file it contains to create and populate your own, local instance of the database.</p>
+    <h5>Locate and unzip the database package/zipfile</h5>
+    <p>Verify the location of the database package you downloaded in step 2 - both the path and the file name. You'll need to unzip this package and use the data dump file it contains to create and populate your own, local instance of the database.</p>
     <ul class='regularDisplay'>
-      <li>On a Mac: The zip package is probably here: <i>~/Downloads/YYYYMMDD_clinical_trials.zip</i> (where YYYYMMDD is the snapshot date).</li>
+      <li>On a Mac: The zip package is probably here: <i>~/Downloads/YYYYMMDD_clinical_trials.zip</i> (where YYYYMMDD is the date the database was copied).</li>
     </ul>
 
     <p class='CodeRay'>
