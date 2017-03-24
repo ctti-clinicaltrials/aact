@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.1
--- Dumped by pg_dump version 9.6.1
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -51,9 +51,280 @@ CREATE FUNCTION count_estimate(query text) RETURNS integer
       $$;
 
 
+--
+-- Name: ctgov_summaries(character varying); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ctgov_summaries(character varying) RETURNS TABLE(nct_id character varying, title text, recruitment character varying, were_results_reported boolean, conditions text, interventions text, sponsors text, gender character varying, age text, phase character varying, enrollment integer, study_type character varying, other_ids text, first_received_date date, start_date date, completion_month_year character varying, last_changed_date date, verification_month_year character varying, first_received_results_date date, acronym character varying, primary_completion_month_year character varying, outcome_measures text, received_results_disposit_date date, allocation character varying, intervention_model character varying, observational_model character varying, primary_purpose character varying, time_perspective character varying, masking character varying, masking_description text, intervention_model_description text, subject_masked boolean, caregiver_masked boolean, investigator_masked boolean, outcomes_assessor_masked boolean, number_of_facilities integer)
+    LANGUAGE sql
+    AS $_$
+
+      SELECT DISTINCT s.nct_id,
+          s.brief_title,
+          s.overall_status,
+          cv.were_results_reported,
+          c.mesh_term,
+          i.intervention,
+          sp.name,
+          e.gender,
+          CASE
+            WHEN e.minimum_age = 'N/A' AND e.maximum_age = 'N/A' THEN 'No age restriction'
+            WHEN e.minimum_age != 'N/A' AND e.maximum_age = 'N/A' THEN concat(e.minimum_age, ' and older')
+            WHEN e.minimum_age = 'N/A' AND e.maximum_age != 'N/A' THEN concat('up to ', e.maximum_age)
+            ELSE concat(e.minimum_age, ' to ', e.maximum_age)
+          END,
+          CASE
+            WHEN s.phase='N/A' THEN NULL
+            ELSE s.phase
+          END,
+          s.enrollment, s.study_type,
+          id.id_value,
+          s.first_received_date, s.start_date,
+          s.completion_month_year, s.last_changed_date, s.verification_month_year,
+          s.first_received_results_date, s.acronym, s.primary_completion_month_year,
+          o.measure, s.received_results_disposit_date,
+          d.allocation, d.intervention_model, d.observational_model, d.primary_purpose, d.time_perspective, d.masking,
+          d.masking_description, d.intervention_model_description, d.subject_masked, d.caregiver_masked, d.investigator_masked,
+          d.outcomes_assessor_masked,
+          cv.number_of_facilities
+
+      FROM studies s
+        INNER JOIN browse_conditions bc ON s.nct_id = bc.nct_id and bc.mesh_term  like $1
+        LEFT OUTER JOIN calculated_values cv ON s.nct_id = cv.nct_id
+        LEFT OUTER JOIN all_conditions c ON s.nct_id = c.nct_id
+        LEFT OUTER JOIN all_interventions i ON s.nct_id = i.nct_id
+        LEFT OUTER JOIN all_sponsors sp ON s.nct_id = sp.nct_id
+        LEFT OUTER JOIN eligibilities e ON s.nct_id=e.nct_id
+        LEFT OUTER JOIN all_id_information id ON s.nct_id = id.nct_id
+        LEFT OUTER JOIN all_design_outcomes o ON s.nct_id=o.nct_id
+        LEFT OUTER JOIN designs d ON s.nct_id = d.nct_id
+
+
+     UNION
+
+      SELECT DISTINCT s.nct_id,
+          s.brief_title,
+          s.overall_status,
+          cv.were_results_reported,
+          c.mesh_term,
+          i.intervention,
+          sp.name,
+          e.gender,
+          CASE
+            WHEN e.minimum_age = 'N/A' AND e.maximum_age = 'N/A' THEN 'No age restriction'
+            WHEN e.minimum_age != 'N/A' AND e.maximum_age = 'N/A' THEN concat(e.minimum_age, ' and older')
+            WHEN e.minimum_age = 'N/A' AND e.maximum_age != 'N/A' THEN concat('up to ', e.maximum_age)
+            ELSE concat(e.minimum_age, ' to ', e.maximum_age)
+          END,
+          CASE
+            WHEN s.phase='N/A' THEN NULL
+            ELSE s.phase
+          END,
+          s.enrollment, s.study_type,
+          id.id_value,
+          s.first_received_date, s.start_date,
+          s.completion_month_year, s.last_changed_date, s.verification_month_year,
+          s.first_received_results_date, s.acronym, s.primary_completion_month_year,
+          o.measure, s.received_results_disposit_date,
+          d.allocation, d.intervention_model, d.observational_model, d.primary_purpose, d.time_perspective, d.masking,
+          d.masking_description, d.intervention_model_description, d.subject_masked, d.caregiver_masked, d.investigator_masked,
+          d.outcomes_assessor_masked,
+          cv.number_of_facilities
+
+      FROM studies s
+        INNER JOIN keywords k ON s.nct_id = k.nct_id and k.name like $1
+        LEFT OUTER JOIN calculated_values cv ON s.nct_id = cv.nct_id
+        LEFT OUTER JOIN all_conditions c ON s.nct_id = c.nct_id
+        LEFT OUTER JOIN all_interventions i ON s.nct_id = i.nct_id
+        LEFT OUTER JOIN all_sponsors sp ON s.nct_id = sp.nct_id
+        LEFT OUTER JOIN eligibilities e ON s.nct_id=e.nct_id
+        LEFT OUTER JOIN all_id_information id ON s.nct_id = id.nct_id
+        LEFT OUTER JOIN all_design_outcomes o ON s.nct_id=o.nct_id
+        LEFT OUTER JOIN designs d ON s.nct_id = d.nct_id
+
+        ;
+        $_$;
+
+
+--
+-- Name: ids_for(character varying); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ids_for(character varying) RETURNS TABLE(nct_id character varying)
+    LANGUAGE sql
+    AS $_$
+
+      SELECT DISTINCT nct_id FROM browse_conditions WHERE mesh_term like $1
+      UNION
+      SELECT DISTINCT nct_id FROM browse_interventions WHERE mesh_term like $1
+      UNION
+      SELECT DISTINCT nct_id FROM keywords WHERE name like $1
+      UNION
+      SELECT DISTINCT nct_id FROM facilities WHERE name like $1 or city like $1 or state like $1 or country like $1
+      UNION
+      SELECT DISTINCT nct_id FROM sponsors WHERE name like $1
+      ;
+      $_$;
+
+
+--
+-- Name: ids_for_org(character varying); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ids_for_org(character varying) RETURNS TABLE(nct_id character varying)
+    LANGUAGE sql
+    AS $_$
+      SELECT DISTINCT nct_id FROM responsible_parties WHERE affiliation like $1
+      UNION
+      SELECT DISTINCT nct_id FROM facilities WHERE name like $1 or city like $1 or state like $1 or country like $1
+      UNION
+      SELECT DISTINCT nct_id FROM sponsors WHERE name like $1
+      UNION
+      SELECT DISTINCT nct_id FROM result_contacts WHERE organization like $1
+      ;
+      $_$;
+
+
+--
+-- Name: ids_for_term(character varying); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ids_for_term(character varying) RETURNS TABLE(nct_id character varying)
+    LANGUAGE sql
+    AS $_$
+      SELECT DISTINCT nct_id FROM browse_conditions WHERE mesh_term like $1
+      UNION
+      SELECT DISTINCT nct_id FROM browse_interventions WHERE mesh_term like $1
+      UNION
+      SELECT DISTINCT nct_id FROM keywords WHERE name like $1
+      UNION
+      SELECT DISTINCT nct_id FROM studies WHERE brief_title like $1
+      ;
+      $_$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: browse_conditions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE browse_conditions (
+    id integer NOT NULL,
+    nct_id character varying,
+    mesh_term character varying
+);
+
+
+--
+-- Name: all_conditions; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW all_conditions AS
+ SELECT browse_conditions.nct_id,
+    array_to_string(array_agg(DISTINCT browse_conditions.mesh_term), '|'::text) AS mesh_term
+   FROM browse_conditions
+  GROUP BY browse_conditions.nct_id;
+
+
+--
+-- Name: design_outcomes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE design_outcomes (
+    id integer NOT NULL,
+    nct_id character varying,
+    outcome_type character varying,
+    measure text,
+    time_frame text,
+    population character varying,
+    description text
+);
+
+
+--
+-- Name: all_design_outcomes; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW all_design_outcomes AS
+ SELECT design_outcomes.nct_id,
+    array_to_string(array_agg(DISTINCT design_outcomes.measure), '|'::text) AS measure
+   FROM design_outcomes
+  GROUP BY design_outcomes.nct_id;
+
+
+--
+-- Name: id_information; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE id_information (
+    id integer NOT NULL,
+    nct_id character varying,
+    id_type character varying,
+    id_value character varying
+);
+
+
+--
+-- Name: all_id_information; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW all_id_information AS
+ SELECT id_information.nct_id,
+    array_to_string(array_agg(DISTINCT id_information.id_value), '|'::text) AS id_value
+   FROM id_information
+  GROUP BY id_information.nct_id;
+
+
+--
+-- Name: interventions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE interventions (
+    id integer NOT NULL,
+    nct_id character varying,
+    intervention_type character varying,
+    name character varying,
+    description text
+);
+
+
+--
+-- Name: all_interventions; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW all_interventions AS
+ SELECT interventions.nct_id,
+    array_to_string(array_agg((((interventions.intervention_type)::text || ': '::text) || (interventions.name)::text)), '|'::text) AS intervention
+   FROM interventions
+  GROUP BY interventions.nct_id;
+
+
+--
+-- Name: sponsors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sponsors (
+    id integer NOT NULL,
+    nct_id character varying,
+    agency_class character varying,
+    lead_or_collaborator character varying,
+    name character varying
+);
+
+
+--
+-- Name: all_sponsors; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW all_sponsors AS
+ SELECT sponsors.nct_id,
+    array_to_string(array_agg(DISTINCT sponsors.name), '|'::text) AS name
+   FROM sponsors
+  GROUP BY sponsors.nct_id;
+
 
 --
 -- Name: baseline_counts; Type: TABLE; Schema: public; Owner: -
@@ -162,17 +433,6 @@ CREATE SEQUENCE brief_summaries_id_seq
 --
 
 ALTER SEQUENCE brief_summaries_id_seq OWNED BY brief_summaries.id;
-
-
---
--- Name: browse_conditions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE browse_conditions (
-    id integer NOT NULL,
-    nct_id character varying,
-    mesh_term character varying
-);
 
 
 --
@@ -422,21 +682,6 @@ CREATE SEQUENCE design_groups_id_seq
 --
 
 ALTER SEQUENCE design_groups_id_seq OWNED BY design_groups.id;
-
-
---
--- Name: design_outcomes; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE design_outcomes (
-    id integer NOT NULL,
-    nct_id character varying,
-    outcome_type character varying,
-    measure text,
-    time_frame text,
-    population character varying,
-    description text
-);
 
 
 --
@@ -703,18 +948,6 @@ ALTER SEQUENCE facility_investigators_id_seq OWNED BY facility_investigators.id;
 
 
 --
--- Name: id_information; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE id_information (
-    id integer NOT NULL,
-    nct_id character varying,
-    id_type character varying,
-    id_value character varying
-);
-
-
---
 -- Name: id_information_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -762,19 +995,6 @@ CREATE SEQUENCE intervention_other_names_id_seq
 --
 
 ALTER SEQUENCE intervention_other_names_id_seq OWNED BY intervention_other_names.id;
-
-
---
--- Name: interventions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE interventions (
-    id integer NOT NULL,
-    nct_id character varying,
-    intervention_type character varying,
-    name character varying,
-    description text
-);
 
 
 --
@@ -1336,19 +1556,6 @@ ALTER SEQUENCE result_groups_id_seq OWNED BY result_groups.id;
 
 CREATE TABLE schema_migrations (
     version character varying NOT NULL
-);
-
-
---
--- Name: sponsors; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE sponsors (
-    id integer NOT NULL,
-    nct_id character varying,
-    agency_class character varying,
-    lead_or_collaborator character varying,
-    name character varying
 );
 
 
@@ -2527,4 +2734,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160910000000');
 INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20170307184859');
 
