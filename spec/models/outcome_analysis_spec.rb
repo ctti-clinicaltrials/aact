@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe OutcomeAnalysis do
+
   it "should have proper relationships and retain numbers after decimal in percent" do
     nct_id='NCT01642004'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -51,7 +52,7 @@ describe OutcomeAnalysis do
     expect(m.ctgov_group_code).to eq('O1')
   end
 
-  it "study should have expected outcomes" do
+  it "study should have expected outcomes and p_value with modifier if includes less-than, greater-than" do
     #  This Study is good for testing OutcomeAnalysis - contains several rare attributes
     nct_id='NCT02028676'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -81,6 +82,11 @@ describe OutcomeAnalysis do
 
     expect(o1_group.nct_id).to eq(nct_id)
     expect(o1_group.ctgov_group_code).to eq('O1')
-  end
 
+    o=study.outcomes.select{|x|x.title=='Induction ART: New Grade 3 or 4 Adverse Event (AE), Not Solely Related to HIV'}.first
+    # find the analysis we know to have a modifier in the p-value
+    oa=o.analyses.select{|x|x.param_value=1.58 and x.method='Regression, Cox'}.first
+    expect(oa.p_value).to eq(0.001)
+    expect(oa.p_value_modifier).to eq('<')
+  end
 end
