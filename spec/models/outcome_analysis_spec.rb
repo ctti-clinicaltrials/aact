@@ -88,5 +88,11 @@ describe OutcomeAnalysis do
     oa=o.analyses.select{|x|x.param_value=1.58 and x.method='Regression, Cox'}.first
     expect(oa.p_value).to eq(0.001)
     expect(oa.p_value_modifier).to eq('<')
+    #it should not think the negative sign in p_value is a modifier" do
+    o=study.outcomes.select{|x|x.title=='Once Versus Twice Daily Abacavir+Lamivudine: Suppressed HIV RNA Viral Load 48 Weeks After Randomisation'}.first
+    oa=o.analyses.select{|x|x.param_value=-1.6 and x.non_inferiority_type='Non-Inferiority or Equivalence'}.first
+    expect(oa.p_value).to eq(-0.65)
+    expect(oa.p_value_modifier).to eq(nil)
   end
+
 end
