@@ -154,17 +154,17 @@ CREATE FUNCTION ids_for(character varying) RETURNS TABLE(nct_id character varyin
     LANGUAGE sql
     AS $_$
 
-      SELECT DISTINCT nct_id FROM browse_conditions WHERE mesh_term like $1
-      UNION
-      SELECT DISTINCT nct_id FROM browse_interventions WHERE mesh_term like $1
-      UNION
-      SELECT DISTINCT nct_id FROM keywords WHERE name like $1
-      UNION
-      SELECT DISTINCT nct_id FROM facilities WHERE name like $1 or city like $1 or state like $1 or country like $1
-      UNION
-      SELECT DISTINCT nct_id FROM sponsors WHERE name like $1
-      ;
-      $_$;
+        SELECT DISTINCT nct_id FROM browse_conditions WHERE mesh_term like $1
+        UNION
+        SELECT DISTINCT nct_id FROM browse_interventions WHERE mesh_term like $1
+        UNION
+        SELECT DISTINCT nct_id FROM keywords WHERE name like $1
+        UNION
+        SELECT DISTINCT nct_id FROM facilities WHERE name like $1 or city like $1 or state like $1 or country like $1
+        UNION
+        SELECT DISTINCT nct_id FROM sponsors WHERE name like $1
+        ;
+        $_$;
 
 
 --
@@ -1126,7 +1126,8 @@ CREATE TABLE outcome_analyses (
     param_value numeric,
     dispersion_type character varying,
     dispersion_value numeric,
-    p_value numeric,
+    p_value_modifier character varying,
+    p_value double precision,
     ci_n_sides character varying,
     ci_percent numeric,
     ci_lower_limit numeric,
