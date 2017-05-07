@@ -33,6 +33,27 @@ class CreateCtgovViewsFunctions < ActiveRecord::Migration
       GRANT SELECT on all_design_outcomes to aact;
       GRANT SELECT on all_id_information to aact;
 
+      --
+-- Name: ids_for(character varying); Type: FUNCTION; Schema: public; Owner: -
+--
+
+      CREATE FUNCTION ids_for(character varying) RETURNS TABLE(nct_id character varying)
+        LANGUAGE sql
+        AS $_$
+
+        SELECT DISTINCT nct_id FROM browse_conditions WHERE mesh_term like $1
+        UNION
+        SELECT DISTINCT nct_id FROM browse_interventions WHERE mesh_term like $1
+        UNION
+        SELECT DISTINCT nct_id FROM keywords WHERE name like $1
+        UNION
+        SELECT DISTINCT nct_id FROM facilities WHERE name like $1 or city like $1 or state like $1 or country like $1
+        UNION
+        SELECT DISTINCT nct_id FROM sponsors WHERE name like $1
+        ;
+        $_$;
+      GRANT EXECUTE ON FUNCTION ids_for(VARCHAR) TO aact;
+
       CREATE OR REPLACE FUNCTION ids_for_term(varchar)
       RETURNS table (nct_id varchar)
       AS $$
