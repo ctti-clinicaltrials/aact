@@ -231,6 +231,8 @@ module ClinicalTrials
       blacklist = %w(
         schema_migrations
         data_definitions
+        mesh_headings
+        mesh_terms
         load_events
         sanity_checks
         statistics
