@@ -8,55 +8,76 @@ GIT
       hashie
     elasticsearch-rails (0.1.9)
 
-GEM
-  remote: https://rubygems.org/
+GIT
+  remote: git://github.com/rails/rails.git
+  revision: f626b47d56061fc414791217c7904a51df2de226
+  branch: 4-2-stable
   specs:
-    CFPropertyList (2.3.4)
-    actionmailer (4.2.7.1)
-      actionpack (= 4.2.7.1)
-      actionview (= 4.2.7.1)
-      activejob (= 4.2.7.1)
+    actionmailer (4.2.8)
+      actionpack (= 4.2.8)
+      actionview (= 4.2.8)
+      activejob (= 4.2.8)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-    actionpack (4.2.7.1)
-      actionview (= 4.2.7.1)
-      activesupport (= 4.2.7.1)
+    actionpack (4.2.8)
+      actionview (= 4.2.8)
+      activesupport (= 4.2.8)
       rack (~> 1.6)
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (4.2.7.1)
-      activesupport (= 4.2.7.1)
+    actionview (4.2.8)
+      activesupport (= 4.2.8)
       builder (~> 3.1)
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-      rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active_model_serializers (0.9.5)
-      activemodel (>= 3.2)
-    activejob (4.2.7.1)
-      activesupport (= 4.2.7.1)
+      rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    activejob (4.2.8)
+      activesupport (= 4.2.8)
       globalid (>= 0.3.0)
-    activemodel (4.2.7.1)
-      activesupport (= 4.2.7.1)
+    activemodel (4.2.8)
+      activesupport (= 4.2.8)
       builder (~> 3.1)
-    activerecord (4.2.7.1)
-      activemodel (= 4.2.7.1)
-      activesupport (= 4.2.7.1)
+    activerecord (4.2.8)
+      activemodel (= 4.2.8)
+      activesupport (= 4.2.8)
       arel (~> 6.0)
-    activerecord-import (0.15.0)
-      activerecord (>= 3.2)
-    activesupport (4.2.7.1)
+    activesupport (4.2.8)
       i18n (~> 0.7)
-      json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    rails (4.2.8)
+      actionmailer (= 4.2.8)
+      actionpack (= 4.2.8)
+      actionview (= 4.2.8)
+      activejob (= 4.2.8)
+      activemodel (= 4.2.8)
+      activerecord (= 4.2.8)
+      activesupport (= 4.2.8)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.2.8)
+      sprockets-rails
+    railties (4.2.8)
+      actionpack (= 4.2.8)
+      activesupport (= 4.2.8)
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    CFPropertyList (2.3.4)
+    active_model_serializers (0.9.5)
+      activemodel (>= 3.2)
+    activerecord-import (0.15.0)
+      activerecord (>= 3.2)
     addressable (2.4.0)
     api-pagination (4.3.0)
     appsignal (1.1.5)
       rack
       thread_safe
-    arel (6.0.3)
+    arel (6.0.4)
     autoprefixer-rails (6.4.0.2)
       execjs
     awesome_print (1.6.1)
@@ -274,8 +295,8 @@ GEM
       activesupport
       capybara
       i18n
-    globalid (0.3.7)
-      activesupport (>= 4.1.0)
+    globalid (0.4.0)
+      activesupport (>= 4.2.0)
     gon (6.1.0)
       actionpack (>= 3.0)
       json
@@ -318,7 +339,7 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.3)
+    json (1.8.6)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -326,6 +347,7 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.4.1)
       launchy (~> 2.2)
+    libv8 (3.16.14.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -335,7 +357,7 @@ GEM
     mimemagic (0.3.2)
     mini_magick (4.5.1)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.10.2)
     multi_json (1.12.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -371,17 +393,6 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.4.2)
-    rails (4.2.7.1)
-      actionmailer (= 4.2.7.1)
-      actionpack (= 4.2.7.1)
-      actionview (= 4.2.7.1)
-      activejob (= 4.2.7.1)
-      activemodel (= 4.2.7.1)
-      activerecord (= 4.2.7.1)
-      activesupport (= 4.2.7.1)
-      bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.7.1)
-      sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -400,12 +411,7 @@ GEM
       rails_stdout_logging
     rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.5)
-    railties (4.2.7.1)
-      actionpack (= 4.2.7.1)
-      activesupport (= 4.2.7.1)
-      rake (>= 0.8.7)
-      thor (>= 0.18.1, < 2.0)
-    rake (11.2.2)
+    rake (12.0.0)
     rbvmomi (1.9.4)
       builder (~> 3.2)
       json (>= 1.8)
@@ -460,7 +466,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    sinatra (1.4.7)
+    sinatra (1.4.8)
       rack (~> 1.5)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
@@ -485,7 +491,7 @@ GEM
       i18n
       rails (>= 3.1)
     trollop (2.1.2)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
@@ -548,8 +554,9 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
+  libv8 (= 3.16.14.3)
   mini_magick (~> 4.3)
-  normalize-rails (~> 3.0.0)
+  normalize-rails
   pg
   pry-byebug
   pry-rails
@@ -559,7 +566,7 @@ DEPENDENCIES
   rack-cors
   rack-mini-profiler
   rack-timeout
-  rails (~> 4.2.6)
+  rails!
   rails-erd
   rails_12factor
   recipient_interceptor
@@ -567,14 +574,14 @@ DEPENDENCIES
   roo (~> 2.4.0)
   rspec-rails (~> 3.4.0)
   rubyzip
-  sass-rails (~> 5.0)
+  sass-rails
   shoulda-matchers
   sidekiq
   simplecov
   sinatra
   spring
   spring-commands-rspec
-  sprockets (>= 3.0.0)
+  sprockets-rails (>= 2.0)
   string-similarity
   timecop
   title
@@ -583,7 +590,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 2.2.3p173
+   ruby 2.4.1p111
 
 BUNDLED WITH
    1.15.0
