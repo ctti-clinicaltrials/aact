@@ -2,6 +2,31 @@ require 'rails_helper'
 
 describe ClinicalTrials::Updater do
 
+  it "doesn't abort when it encouters a net timeout or doesn't retrieve xml from ct.gov" do
+
+    stub_request(:get, "https://clinicaltrials.gov/show/NCT02028676?resultsxml=true").
+      with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v0.9.2'}).
+      to_return(:status => 200, :body => File.read("spec/support/xml_data/NCT02028676.xml"), :headers => {})
+
+    stub_request(:get, "https://clinicaltrials.gov/show/NCT00023673?resultsxml=true").
+      with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v0.9.2'}).
+      to_return(:status => 200, :body => File.read("spec/support/xml_data/NCT00023673.xml"), :headers => {})
+
+    stub_request(:get, "https://clinicaltrials.gov/show/invalid-nct-id?resultsxml=true").
+      with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v0.9.2'}).
+      to_return(:status => 200, :body => File.read("spec/support/xml_data/invalid-nct-id.html"), :headers => {})
+
+    stub_request(:get, "https://clinicaltrials.gov/show/timeout?resultsxml=true").and_raise(Net::OpenTimeout)
+
+    updater=ClinicalTrials::Updater.new
+    ids=['NCT02028676','timeout','invalid-nct-id','NCT00023673']
+    updater.update_studies(ids)
+    expect(Study.count).to eq(2)
+    expect(Study.where('nct_id=?','NCT02028676').size).to eq(1)
+    expect(Study.where('nct_id=?','NCT00023673').size).to eq(1)
+    expect(Study.where('nct_id=?','invalid-nct-id').size).to eq(0)
+  end
+
   it "aborts incremental load when number of studies exceeds 10000" do
     allow_any_instance_of(ClinicalTrials::RssReader).to receive(:get_changed_nct_ids).and_return( [*1..10000] )
     updater=ClinicalTrials::Updater.new
