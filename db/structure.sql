@@ -1078,6 +1078,69 @@ ALTER SEQUENCE links_id_seq OWNED BY links.id;
 
 
 --
+-- Name: mesh_headings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE mesh_headings (
+    id integer NOT NULL,
+    qualifier character varying,
+    heading character varying,
+    subcategory character varying
+);
+
+
+--
+-- Name: mesh_headings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE mesh_headings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mesh_headings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE mesh_headings_id_seq OWNED BY mesh_headings.id;
+
+
+--
+-- Name: mesh_terms; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE mesh_terms (
+    id integer NOT NULL,
+    qualifier character varying,
+    tree_number character varying,
+    description character varying,
+    mesh_term character varying
+);
+
+
+--
+-- Name: mesh_terms_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE mesh_terms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mesh_terms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE mesh_terms_id_seq OWNED BY mesh_terms.id;
+
+
+--
 -- Name: milestones; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1837,6 +1900,20 @@ ALTER TABLE ONLY links ALTER COLUMN id SET DEFAULT nextval('links_id_seq'::regcl
 
 
 --
+-- Name: mesh_headings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mesh_headings ALTER COLUMN id SET DEFAULT nextval('mesh_headings_id_seq'::regclass);
+
+
+--
+-- Name: mesh_terms id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mesh_terms ALTER COLUMN id SET DEFAULT nextval('mesh_terms_id_seq'::regclass);
+
+
+--
 -- Name: milestones id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2131,6 +2208,22 @@ ALTER TABLE ONLY keywords
 
 ALTER TABLE ONLY links
     ADD CONSTRAINT links_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mesh_headings mesh_headings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mesh_headings
+    ADD CONSTRAINT mesh_headings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mesh_terms mesh_terms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mesh_terms
+    ADD CONSTRAINT mesh_terms_pkey PRIMARY KEY (id);
 
 
 --
@@ -2737,4 +2830,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20170307184859');
+
+INSERT INTO schema_migrations (version) VALUES ('20170411000122');
 

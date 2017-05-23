@@ -52,6 +52,14 @@ module ClinicalTrials
       Roo::Spreadsheet.open(self.data_dictionary)
     end
 
+    def self.default_mesh_terms
+      File.open('public/mesh_terms.txt')
+    end
+
+    def self.default_mesh_headings
+      File.open('public/mesh_headings.txt')
+    end
+
     def self.get_file(params)
       file_name=params[:file_name]
       directory_name=params[:directory_name] ||= 'xml_downloads'
