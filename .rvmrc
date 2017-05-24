@@ -1,1 +1,1 @@
-rvm use 2.2.6 > /dev/null
+rvm use 2.4.1 > /dev/null

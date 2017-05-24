@@ -59,7 +59,7 @@ describe ClinicalTrials::Client do
     end
   end
 
-  describe '#download_xml_files' do
+  xdescribe '#download_xml_files' do
     before do
       stub_request(:get, expected_url).
         with(:headers => stub_request_headers).
@@ -131,7 +131,7 @@ describe ClinicalTrials::Client do
     end
   end
 
-  describe '#populate_studies' do
+  xdescribe '#populate_studies' do
     before do
       stub_request(:get, expected_url).
         with(:headers => stub_request_headers).
@@ -162,7 +162,7 @@ describe ClinicalTrials::Client do
     end
   end
 
-  describe '#import_xml_file(study_xml, benchmark: false)' do
+  xdescribe '#import_xml_file(study_xml, benchmark: false)' do
     before do
       stub_request(:get, expected_url).
         with(:headers => stub_request_headers).
