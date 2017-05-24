@@ -20,7 +20,6 @@ module ClinicalTrials
       file = Tempfile.new('xml')
 
       begin
-        puts "downloading xml file from #{@url}..."
         download = RestClient::Request.execute({
           url:          @url,
           method:       :get,
