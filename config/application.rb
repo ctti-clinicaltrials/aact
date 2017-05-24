@@ -10,7 +10,7 @@ require "sprockets/railtie"
 require 'zip'
 
 Bundler.require(*Rails.groups)
-module Aact2
+module Aact
   class Application < Rails::Application
     config.time_zone = 'Eastern Time (US & Canada)'
     config.quiet_assets = true

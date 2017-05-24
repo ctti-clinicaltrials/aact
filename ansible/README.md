@@ -58,7 +58,7 @@ It also uses the environment variables set by ctti.credentials.src.
 aws.yml
 -------
 This playbook, located in the ansible directory, specifies the creation of all of the
-resources needed by the aact2 system, for both dev and prod environments. To run the playbook (assuming you have ansible and the required python modules installed):
+resources needed by the aact system, for both dev and prod environments. To run the playbook (assuming you have ansible and the required python modules installed):
 ```
 cd ansible
 ansible-playbook aws.yml

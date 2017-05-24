@@ -1,5 +1,5 @@
 {
-  "name": "aact2",
+  "name": "aact",
   "description": "AACT",
   "scripts": {
     "postdeploy": "bin/setup"
