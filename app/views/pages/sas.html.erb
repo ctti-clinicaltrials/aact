@@ -51,7 +51,7 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
         <span class='command-prompt'>libname</span>
         <span class='command-prompt'>   cloud            </span><span class='command-response'> /* my libref  */</span>
         <span class='command-prompt'>   postgres         </span><span class='command-response'> /* postgres engine  */</span>
-        <span class='command-prompt'>   user=</span><span>"<%= ENV["RDS_DB_READONLY_USERNAME"] %>"     </span><span class='command-response'> /* supply the AACT2 login credentials  */</span>
+        <span class='command-prompt'>   user=</span><span>"<%= ENV["RDS_DB_READONLY_USERNAME"] %>"     </span><span class='command-response'> /* supply the AACT login credentials  */</span>
         <span class='command-prompt'>   password=</span><span>"<%= ENV["RDS_DB_READONLY_PASSWORD"] %>"</span>
         <span class='command-prompt'>   database=</span><span>"<%= ENV["RDS_DB_READONLY_DBNAME"] %>"</span>
         <span class='command-prompt'>   server=</span><span>"<%= ENV["RDS_DB_HOSTNAME"] %>"</span>

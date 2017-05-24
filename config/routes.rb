@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   require 'sidekiq/web'
-  mount AACT2::Base, at: '/'
   mount Sidekiq::Web => '/sidekiq'
 
   root "pages#home"
