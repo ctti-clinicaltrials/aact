@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
   get "wdc"                   => "tableau#index"
   get '/old_tableau',         :to => redirect('/tableau.html')
-  get "api_docs"              => "swaggerui#index"
   get "/learn_more"           => "pages#learn_more"
   get "/schema"               => "pages#schema"
   get "/data_dictionary"      => "dictionary#show"
@@ -21,7 +20,6 @@ Rails.application.routes.draw do
   get "/r"                    => "pages#r"
   get "/sas"                  => "pages#sas"
   get "/psql"                 => "pages#psql"
-  get "/api_connect"          => "pages#api_connect"
   get "/frequently_asked_questions" => "pages#frequently_asked_questions"
   get "/background"           => "pages#background"
 

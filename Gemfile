@@ -46,14 +46,7 @@ gem 'mini_magick', '~> 4.3'
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
 
-gem 'grape','>= 0.10.0'
-gem 'grape-swagger'
-gem 'kaminari'
-gem 'grape-kaminari'
-gem 'api-pagination'
-gem "hashie-forbidden_attributes" #overrides strong_params in grape endpoints
 gem 'active_model_serializers', '~> 0.9.0'
-gem "grape-active_model_serializers"
 
 gem 'elasticsearch-ruby'
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
