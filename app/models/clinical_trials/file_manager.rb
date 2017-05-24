@@ -17,7 +17,7 @@ module ClinicalTrials
     end
 
     def self.server
-      ENV['FILESERVER_ENDPOINT']
+      '/home/aact'
     end
 
     def self.snapshot_files
@@ -72,7 +72,7 @@ module ClinicalTrials
 
     def self.files_in(dir)
       entries=[]
-      server=ENV['FILESERVER_ENDPOINT']
+      server='/home/aact'
       it=RestClient.get(server)
       doc=Nokogiri::XML(it)
       contents=doc.search('Contents')

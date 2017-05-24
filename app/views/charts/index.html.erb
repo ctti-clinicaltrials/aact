@@ -1,0 +1,70 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+      google.load('visualization', '1.0', {'packages':['corechart']});
+      google.setOnLoadCallback(drawTrendChart);
+      google.setOnLoadCallback(drawChart);
+      google.setOnLoadCallback(drawPhasePieChart);
+      google.setOnLoadCallback(drawPhaseBarChart);
+
+      function drawTrendChart() {
+        var data = google.visualization.arrayToDataTable([['Number of Studies','Year'],gon.completed_count_by_year]);
+
+        var options = {
+          title: 'Number of studies per year',
+          hAxis: {title: 'Year'},
+          vAxis: {title: 'Number of studies'},
+          legend: 'none',
+          trendlines: { 0: {} }
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('trend_chart_div'));
+        chart.draw(data, options);
+      }
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Study Type');
+        data.addColumn('number', 'Count');
+        data.addRows(gon.type_counts);
+        var options = {'title':'Study Distribution by Type - Studies Completed Since ' + gon.since_date,
+          'width':700,
+          'height':500};
+
+         var chart = new google.visualization.PieChart(document.getElementById('type_chart_div'));
+         chart.draw(data, options);
+       }
+
+      function drawPhasePieChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Phase');
+        data.addColumn('number', 'Count');
+        data.addRows(gon.phase_counts);
+        var options = {'title':'Study Distribution by Phase - Studies Completed Since ' + gon.since_date,
+          'width':700,
+          'height':500};
+
+         var chart = new google.visualization.PieChart(document.getElementById('phase_pie_chart_div'));
+         chart.draw(data, options);
+       }
+
+      function drawPhaseBarChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Phase');
+        data.addColumn('number', 'Count');
+        data.addRows(gon.phase_counts);
+        var options = {'title':'Study Distribution by Phase - Studies Completed Since ' + gon.since_date,
+          'width':700,
+          'height':500};
+
+         var chart = new google.visualization.BarChart(document.getElementById('phase_bar_chart_div'));
+         chart.draw(data, options);
+       }
+</script>
+
+<body>
+  <div id="phase_pie_chart_div" data-count="<%= @type_count %>"></div>
+  <div id="trend_chart_div" data-count="<%= @completed_count_by_year %>"></div>
+  <div id="type_chart_div" data-count="<%= @type_count %>"></div>
+  <div id="phase_bar_chart_div" data-count="<%= @phase_count %>"></div>
+</body>
+
