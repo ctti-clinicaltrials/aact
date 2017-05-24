@@ -1,9 +1,10 @@
 source "https://rubygems.org"
 
-ruby "2.2.3"
+ruby "2.4.1"
 
+gem 'libv8', '3.16.14.3'
 gem 'faraday_middleware-aws-signers-v4'
-gem "rails", "~> 4.2.6"
+gem 'rails', github: 'rails/rails', branch: '4-2-stable'
 gem "rack-timeout"
 gem "faraday"
 gem "autoprefixer-rails"
@@ -12,14 +13,14 @@ gem "high_voltage"
 gem "jquery-rails"
 gem "appsignal"
 gem "sidekiq"
-gem "normalize-rails", "~> 3.0.0"
+gem "normalize-rails"
 gem "pg"
 gem 'rails_12factor'
 gem "puma"
 gem "coderay"
 gem "recipient_interceptor"
-gem "sass-rails", "~> 5.0"
-gem "sprockets", ">= 3.0.0"
+gem "sass-rails"
+gem "sprockets-rails",'>= 2.0'
 gem "title"
 gem "uglifier"
 gem "jbuilder"
@@ -69,7 +70,6 @@ group :development, :test, :docker, :docker_test do
   gem "awesome_print"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
-  gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
@@ -81,7 +81,7 @@ group :development, :staging, :docker do
 end
 
 group :test, :docker_test do
-  gem "capybara-webkit"
+#  gem "capybara-webkit"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"

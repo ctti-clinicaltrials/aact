@@ -308,13 +308,24 @@ module ClinicalTrials
 
     def refresh_study(nct_id)
       stime=Time.now
-      new_xml=@client.get_xml_for(nct_id)
-      StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-      log("retrieved xml for #{nct_id}:  #{Time.now - stime}")
-      stime=Time.now
-      Study.new({ xml: new_xml, nct_id: nct_id }).create
-      study_counts[:processed]+=1
-      log("saved new data for #{nct_id}:  #{Time.now - stime}")
+      #  Call to ct.gov API has been known to timeout.  Catch it rather than abort the rest of the load
+      #  Also, if a study is not found for the NCT ID we have, don't save an empty study
+      begin
+        new_xml=@client.get_xml_for(nct_id)
+        StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
+        log("retrieved xml for #{nct_id}:  #{Time.now - stime}")
+        stime=Time.now
+        verify_xml=(new_xml.xpath('//clinical_study').xpath('source').text).strip
+        if verify_xml.size > 1
+          Study.new({ xml: new_xml, nct_id: nct_id }).create
+          study_counts[:processed]+=1
+          log("saved new data for #{nct_id}:  #{Time.now - stime}")
+        else
+          log("no data found for #{nct_id}")
+        end
+      rescue => error
+        log("unable to save new data for #{nct_id}:  #{error}")
+      end
     end
 
     def send_notification
