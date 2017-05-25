@@ -10,7 +10,7 @@ ask :branch, 'development'
 set :rails_env, 'staging'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/ctti/website'
+set :deploy_to, '/var/www/aact'
 
 # Default value for :format is :airbrussh.
 #set :format, :airbrussh
@@ -39,5 +39,4 @@ set :default_env, {
 
 # Default value for keep_releases is 5
  set :keep_releases, 5
-#
 #

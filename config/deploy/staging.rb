@@ -51,11 +51,10 @@
 # ------------------------------------
  server "162.243.100.209",
    user: "ctti",
-   roles: %w{web app},
+   roles: %w{web db app},
    ssh_options: {
      user: "ctti", # overrides user setting above
      keys: %w(/home/ctti/.ssh/id_rsa),
      forward_agent: false,
      auth_methods: %w(publickey)
-     # password: "please use keys"
    }
