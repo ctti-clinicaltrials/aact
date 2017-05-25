@@ -53,6 +53,9 @@ gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-ra
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 
 group :development, :docker do
+  gem 'capistrano', '~> 3.8'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-chruby'
   gem "quiet_assets"
   gem "spring"
   gem "spring-commands-rspec"
