@@ -17,7 +17,7 @@ module ClinicalTrials
     end
 
     def self.server
-      '/home/aact'
+      Rails.root.join('..', 'shared', 'public')
     end
 
     def self.snapshot_files
@@ -29,23 +29,23 @@ module ClinicalTrials
     end
 
     def self.analyst_guide
-      "#{server}/documentation/analyst_guide.png"
+      "/documentation/analyst_guide.png"
     end
 
     def self.admin_schema_diagram
-      "#{server}/documentation/aact_admin_schema.png"
+      "/documentation/aact_admin_schema.png"
     end
 
     def self.schema_diagram
-      "#{server}/documentation/aact_schema.png"
+      "/documentation/aact_schema.png"
     end
 
     def self.data_dictionary
-      "#{server}/documentation/aact_data_definitions.xlsx"
+      "/documentation/aact_data_definitions.xlsx"
     end
 
     def self.table_dictionary
-      "#{server}/documentation/aact_tables.xlsx"
+      "/documentation/aact_tables.xlsx"
     end
 
     def self.default_data_definitions
@@ -53,11 +53,11 @@ module ClinicalTrials
     end
 
     def self.default_mesh_terms
-      File.open('public/mesh_terms.txt')
+      File.open('/documentation/mesh/mesh_terms.txt')
     end
 
     def self.default_mesh_headings
-      File.open('public/mesh_headings.txt')
+      File.open('/documentation/mesh/mesh_headings.txt')
     end
 
     def self.get_file(params)
@@ -72,7 +72,6 @@ module ClinicalTrials
 
     def self.files_in(dir)
       entries=[]
-      server='/home/aact'
       it=RestClient.get(server)
       doc=Nokogiri::XML(it)
       contents=doc.search('Contents')

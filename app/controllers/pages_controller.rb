@@ -16,18 +16,21 @@ class PagesController < ApplicationController
 
   def points_to_consider
     @analyst_guide=ClinicalTrials::FileManager.analyst_guide
+    @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
     @table_dictionary=ClinicalTrials::FileManager.table_dictionary
   end
 
   def learn_more
+    @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
     @table_dictionary=ClinicalTrials::FileManager.table_dictionary
   end
 
   def schema
+    @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
     @table_dictionary=ClinicalTrials::FileManager.table_dictionary
