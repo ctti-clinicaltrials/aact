@@ -85,6 +85,8 @@ module ClinicalTrials
     end
 
     def populate_admin_tables
+      MeshTerm.populate_from_file
+      MeshHeading.populate_from_file
       run_sanity_checks
       refresh_data_definitions
       populate_database_activity
