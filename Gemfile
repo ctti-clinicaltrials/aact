@@ -69,7 +69,8 @@ group :development, :test, :docker, :docker_test do
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.4.0"
+  gem 'rspec-rails'
+  gem 'single_test'
 end
 
 group :development, :staging, :docker do
