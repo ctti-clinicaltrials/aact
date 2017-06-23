@@ -1,12 +1,12 @@
 class MeshTerm < ActiveRecord::Base
-  def self.populate_from_file(data=ClinicalTrials::FileManager.default_mesh_terms)
+  def self.populate_from_file(file_name=ClinicalTrials::FileManager.default_mesh_terms)
     puts "about to populate table of mesh terms..."
-    data.each_line{|line|
+    File.open(file_name).each_line{|line|
       line_array=line.split(' ')
       tree=line_array.first
       qualifier=tree.split('.').first
       desc=line_array[1]
-      term=line_array.last
+      term=line.split(/\t/).last
       if !qualifier.nil?
         new(:qualifier=>qualifier,
             :tree_number=>tree,
