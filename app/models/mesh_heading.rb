@@ -1,9 +1,9 @@
 class MeshHeading < ActiveRecord::Base
-  def self.populate_from_file(data=ClinicalTrials::FileManager.default_mesh_headings)
+  def self.populate_from_file(file_name=ClinicalTrials::FileManager.default_mesh_headings)
     puts "about to populate table of mesh headings..."
     qualifier=''
     heading=''
-    data.each_line{|line|
+    File.open(file_name).each_line{|line|
       if is_heading(line.split(' ').first)
         qualifier=line.split(' ').first
         heading=line[4..line.size]

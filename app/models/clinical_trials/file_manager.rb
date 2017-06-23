@@ -53,11 +53,11 @@ module ClinicalTrials
     end
 
     def self.default_mesh_terms
-      File.open('/documentation/mesh/mesh_terms.txt')
+      "#{Rails.public_path}/mesh/mesh_terms.txt"
     end
 
     def self.default_mesh_headings
-      File.open('/documentation/mesh/mesh_headings.txt')
+      "#{Rails.public_path}/mesh/mesh_headings.txt"
     end
 
     def self.get_file(params)
