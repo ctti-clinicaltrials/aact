@@ -6,7 +6,7 @@ class MeshTerm < ActiveRecord::Base
       tree=line_array.first
       qualifier=tree.split('.').first
       desc=line_array[1]
-      term=line.split(/\t/).last
+      term=line.split(/\t/).last.strip
       if !qualifier.nil?
         new(:qualifier=>qualifier,
             :tree_number=>tree,
