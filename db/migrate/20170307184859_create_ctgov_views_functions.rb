@@ -8,7 +8,7 @@ class CreateCtgovViewsFunctions < ActiveRecord::Migration
       GROUP BY nct_id;
 
       create or replace view all_conditions as
-      SELECT nct_id, array_to_string(array_agg(distinct mesh_term),'|') AS mesh_term
+      SELECT nct_id, array_to_string(array_agg(distinct mesh_term),'|') AS condition
         FROM browse_conditions
       GROUP BY nct_id;
 
@@ -106,7 +106,7 @@ class CreateCtgovViewsFunctions < ActiveRecord::Migration
           s.brief_title,
           s.overall_status,
           cv.were_results_reported,
-          c.mesh_term,
+          bc.mesh_term,
           i.intervention,
           sp.name,
           e.gender,
@@ -149,7 +149,7 @@ class CreateCtgovViewsFunctions < ActiveRecord::Migration
           s.brief_title,
           s.overall_status,
           cv.were_results_reported,
-          c.mesh_term,
+          k.name,
           i.intervention,
           sp.name,
           e.gender,

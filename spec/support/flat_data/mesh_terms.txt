@@ -1,7 +1,78 @@
 G05.365.073	D000940	Antigenic Variation
+E02.365.647.110	D016887	Cardiopulmonary Resuscitation
+E04.292.413	D002315	Cardiopulmonary Bypass
+C08.127.108	D001249	Asthma
+C08.381.495.108	D001249	Asthma
+C08.127.108.054	D055963	Asthma, Aspirin-Induced
+C08.127.108.110	D001250	Asthma, Exercise-Induced
+C08.127.108.495	D059366	Asthma, Occupational
+C08.127.108.880	D013224	Status Asthmaticus
+C08.730.407	D008169	Lung Abscess
+C08.730.435	D008172	Lung Diseases, Fungal
+C08.730.450	D008174	Lung Diseases, Parasitic
+C08.785.520	D008175	Lung Neoplasms
+C08.618.085.852	D012891	Sleep Apnea Syndromes
+C08.618.085.852.800	D020182	Sleep Apnea, Central
+C08.618.085.852.850	D020181	Sleep Apnea, Obstructive
+C10.886.425.800.750	D012891	Sleep Apnea Syndromes
+C10.886.425.800.750.800	D020182	Sleep Apnea, Central
+C10.886.425.800.750.850	D020181	Sleep Apnea, Obstructive
+C16.320.190	D003550	Cystic Fibrosis
+C16.614.213	D003550	Cystic Fibrosis
+D12.776.157.530.100.304.500	D019005	Cystic Fibrosis Transmembrane Conductance Regulator
+D12.776.157.530.400.175.125	D019005	Cystic Fibrosis Transmembrane Conductance Regulator
+D12.776.157.530.450.074.500.500.500.500	D019005	Cystic Fibrosis Transmembrane Conductance Regulator
+D12.776.543.550.450.175.125	D019005	Cystic Fibrosis Transmembrane Conductance Regulator
+D12.776.543.585.100.304.500	D019005	Cystic Fibrosis Transmembrane Conductance Regulator
+C08.785.520.100.220.500	D002289	Carcinoma, Non-Small-Cell Lung
+D12.776.930.618	D051264	Nuclear Respiratory Factors
+D12.776.930.618.500	D051266	Nuclear Respiratory Factor 1
+D20.215.894.899.730	D022261	Respiratory Syncytial Virus Vaccines
+D27.505.954.796	D019141	Respiratory System Agents
+E01.370.350.730	D055425	Respiratory-Gated Imaging Techniques
+E01.370.386	D003948	Diagnostic Techniques, Respiratory System
+E01.370.386.700	D012129	Respiratory Function Tests
+E01.370.386.700.550	D000072277	Maximal Respiratory Pressures
+C08.785.520.100.220.750	D055752	Small Cell Lung Carcinoma
+E02.760.190	D003422	Critical Care
+H02.478.676.175	D064648	Critical Care Nursing
+N02.421.533.149	D064648	Critical Care Nursing
+N02.421.585.190	D003422	Critical Care
+N04.761.559.590.399.250	D000066891	Critical Care Outcomes
+N05.715.360.575.575.200	D000066891	Critical Care Outcomes
+N05.715.360.575.575.399.250	D000066891	Critical Care Outcomes
+C16.131.740.290	D015615	Cystic Adenomatoid Malformation of Lung, Congenital
+E02.041.500	D007442	Intubation, Intratracheal
+E02.585.578	D007442	Intubation, Intratracheal
+E05.497.578	D007442	Intubation, Intratracheal
+E02.041	D058109	Airway Management
+C08.618.846.185	D000402	Airway Obstruction
+C14.907.355.590.700	D054556	Venous Thromboembolism
+C14.907.355.830	D013927	Thrombosis
+C14.907.355.830.220	D003328	Coronary Thrombosis
+C14.907.355.830.925	D020246	Venous Thrombosis
+C02.109	D001990	Bronchiolitis, Viral
+C08.127.446.135	D001988	Bronchiolitis
+C08.127.719	D055089	Tracheobronchomalacia
+C08.127.930	D014137	Tracheobronchomegaly
+C08.127.446.135.140	D001989	Bronchiolitis Obliterans
+C08.127.446.135.140.200	D018549	Cryptogenic Organizing Pneumonia
+C08.381.495.146.135.140.200	D018549	Cryptogenic Organizing Pneumonia
+C08.381.472.700	D011020	Pneumonia, Pneumocystis
+C08.381.483.487	D054988	Idiopathic Interstitial Pneumonias
+C08.381.483.487.500	D054990	Idiopathic Pulmonary Fibrosis
+C08.381.483.487.249	D018549	Cryptogenic Organizing Pneumonia
+C08.127.446.135.321	D001990	Bronchiolitis, Viral
 G05.365.331	D018740	Genetic Heterogeneity
+C08.618.248	D003371	Cough
+C08.381.483.725	D017565	Sarcoidosis, Pulmonary
+C08.528	D010995	Pleural Diseases
+C08.528.240	D016724	Empyema, Pleural
+C08.528.338	D006468	Hemopneumothorax
+C08.528.434	D006872	Hrdripneumothorax
 G05.365.590	D009154	Mutation
 G05.365.590.029	D022981	Allelic Imbalance
+E02.365.647.110	D016887	Cardiopulmonary Resuscitation
 G05.365.590.029.530	D019656	Loss of Heterozygosity
 G05.365.590.029.530.175	D002872	Chromosome Deletion
 G05.365.590.029.530.587	D057895	Haploinsufficiency
@@ -73,10 +144,9 @@ G05.380	D005838	Genotype
 G05.380.350	D018628	Gene Dosage
 G05.380.350.500	D057895	Haploinsufficiency
 G05.380.355	D020022	Genetic Predisposition to Disease
-G05.380.360	D006239	Haplotypes
 G05.380.371	D057898	Hemizygote
 G05.380.383	D006579	Heterozygote
 G05.380.554	D006720	Homozygote
 G05.390	D040941	Heredity
-G05.400	D006823	Hybrid Vigor
+G05.400	D006823	Depression
 G05.410	D000071422	Inbreeding Depression

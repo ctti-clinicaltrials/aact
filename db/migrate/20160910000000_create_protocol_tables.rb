@@ -10,11 +10,13 @@ class CreateProtocolTables < ActiveRecord::Migration
     create_table "browse_conditions", force: :cascade do |t|
       t.string "nct_id"
       t.string "mesh_term"
+      t.string "downcase_mesh_term"
     end
 
     create_table "browse_interventions", force: :cascade do |t|
       t.string "nct_id"
       t.string "mesh_term"
+      t.string "downcase_mesh_term"
     end
 
     create_table "calculated_values", force: :cascade do |t|
@@ -46,6 +48,7 @@ class CreateProtocolTables < ActiveRecord::Migration
     create_table "conditions", force: :cascade do |t|
       t.string "nct_id"
       t.string "name"
+      t.string "downcase_name"
     end
 
     create_table "countries", force: :cascade do |t|
@@ -158,6 +161,7 @@ class CreateProtocolTables < ActiveRecord::Migration
     create_table "keywords", force: :cascade do |t|
       t.string "nct_id"
       t.string "name"
+      t.string "downcase_name"
     end
 
     create_table "links", force: :cascade do |t|

@@ -11,20 +11,25 @@ class MeshTerm < ActiveRecord::Base
         new(:qualifier=>qualifier,
             :tree_number=>tree,
             :description=>desc,
+            :downcase_mesh_term=>term.downcase,
             :mesh_term=>term,
            ).save!
       end
     }
   end
 
-  def self.ids_possibly_related_to_condition(term)
+  def self.ids_related_to(incoming_terms=[])
     ids=[]
-    searchable_term="%#{term}%"
-    terms=MeshTerm.where('mesh_term like ?',searchable_term).pluck("mesh_term").uniq
-    terms.each{|t| puts t}
-    terms.each{|t|
-      ids << BrowseCondition.where('mesh_term = ?',t).pluck(:nct_id).uniq if BrowseCondition.where('mesh_term = ?',t).count != 0
+    incoming_terms.each {|term|
+      searchable_term="%#{term.downcase}%"
+      terms=MeshTerm.where('downcase_mesh_term like ?',searchable_term).pluck("mesh_term").uniq
+      terms.each{|term|
+        t=term.downcase
+        ids << BrowseCondition.where('downcase_mesh_term = ?',t).pluck(:nct_id).uniq
+        ids << BrowseIntervention.where('downcase_mesh_term = ?',t).pluck(:nct_id).uniq
+      }
     }
-    ids.flatten
+    ids.flatten.uniq
   end
+
 end

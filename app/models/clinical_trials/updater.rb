@@ -71,6 +71,8 @@ module ClinicalTrials
       begin
         remove_indexes  # Make sure indexes are gone before trying to add them.
         add_indexes
+        MeshTerm.populate_from_file
+        MeshHeading.populate_from_file
         create_calculated_values
       rescue
         grant_db_privs
@@ -85,8 +87,6 @@ module ClinicalTrials
     end
 
     def populate_admin_tables
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
       run_sanity_checks
       refresh_data_definitions
       populate_database_activity
@@ -102,12 +102,18 @@ module ClinicalTrials
        [:responsible_parties, :nct_id],
        [:baseline_measurements, :category],
        [:baseline_measurements, :classification],
+       [:browse_conditions, :nct_id],
        [:browse_conditions, :mesh_term],
+       [:browse_conditions, :downcase_mesh_term],
+       [:browse_interventions, :nct_id],
        [:browse_interventions, :mesh_term],
+       [:browse_interventions, :downcase_mesh_term],
        [:calculated_values, :actual_duration],
        [:calculated_values, :months_to_report_results],
        [:calculated_values, :number_of_facilities],
        [:central_contacts, :contact_type],
+       [:conditions, :name],
+       [:conditions, :downcase_name],
        [:design_groups, :group_type],
        [:design_outcomes, :outcome_type],
        [:designs, :masking],
@@ -128,6 +134,13 @@ module ClinicalTrials
        [:facilities, :country],
        [:id_information, :id_type],
        [:interventions, :intervention_type],
+       [:keywords, :name],
+       [:keywords, :downcase_name],
+       [:mesh_terms, :qualifier],
+       [:mesh_terms, :description],
+       [:mesh_terms, :mesh_term],
+       [:mesh_terms, :download_mesh_term],
+       [:mesh_headings, :qualifier],
        [:milestones, :period],
        [:outcomes, :param_type],
        [:outcome_analyses, :dispersion_type],
