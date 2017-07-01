@@ -1,0 +1,2 @@
+class AllIntervention < StudyRelationship
+end
