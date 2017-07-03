@@ -8,7 +8,7 @@ class TableExporter
     @table_names  = tables
   end
 
-  def run(delimiter: '|', should_upload_to_s3: true)
+  def run(delimiter: '|', should_archive: true)
     load_event = LoadEvent.create({:event_type=>'table_export',:status=>'running',:description=>'',:problems=>''})
     File.delete(@zipfile_name) if File.exist?(@zipfile_name)
 
@@ -21,8 +21,8 @@ class TableExporter
         system("zip -j -q #{Rails.root}/tmp/export.zip #{@temp_dir}/*.txt")
       end
 
-      if should_upload_to_s3
-        upload_to_s3(delimiter)
+      if should_archive
+        archive(delimiter)
       end
 
     ensure
@@ -74,7 +74,7 @@ class TableExporter
     end
   end
 
-  def upload_to_s3(delimiter)
+  def archive(delimiter)
     s3_file_name = if delimiter == ','
                      "csv-export"
                    elsif delimiter == '|'

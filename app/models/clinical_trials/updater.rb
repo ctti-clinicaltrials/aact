@@ -310,7 +310,7 @@ module ClinicalTrials
 
     def create_flat_files
       log("exporting tables as flat files...")
-      TableExporter.new.run(delimiter: '|', should_upload_to_s3: true)
+      TableExporter.new.run(delimiter: '|', should_archive: true)
     end
 
     def truncate_tables
