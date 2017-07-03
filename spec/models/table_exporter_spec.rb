@@ -11,7 +11,7 @@ describe TableExporter do
 
     context 'all tables' do
       before do
-        table_exporter.run(should_upload_to_s3: false)
+        table_exporter.run(should_archive: false)
       end
 
       it 'should write a zipfile' do
@@ -39,7 +39,7 @@ describe TableExporter do
     context 'with specific tables' do
       it 'should only contain the csv files for the specified tables' do
         exporter = TableExporter.new(['studies'])
-        exporter.run(should_upload_to_s3: false)
+        exporter.run(should_archive: false)
 
         entries = Zip::File.open(zipfile_name) do |zipfile|
           zipfile.entries

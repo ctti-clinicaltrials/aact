@@ -146,6 +146,7 @@ module ClinicalTrials
             d=site.read
             out_file.write(d)
         }
+        return_file.close
       }
       return File.open(return_file)
     end
@@ -168,6 +169,7 @@ module ClinicalTrials
         zipfile.add('nlm_protocol_definitions.html',nlm_protocol_file)
         zipfile.add('nlm_results_definitions.html',nlm_results_file)
       }
+      return zip_file_name
     end
 
   end
