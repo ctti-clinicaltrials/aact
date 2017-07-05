@@ -90,26 +90,16 @@ module ClinicalTrials
       Zip::File.open(file_name)
     end
 
-    def self.files_in(dir)
+    def self.files_in(sub_dir)
       entries=[]
-      it=RestClient.get(file_server)
-      doc=Nokogiri::XML(it)
-      contents=doc.search('Contents')
-      contents.each {|c|
-        full_name=c.children.select{|c|c.name=='Key'}.first.children.text
-        if !full_name.include?('archive')
-          dir_and_file=full_name.split('/')
-          last_modified=(c.children.select{|c|c.name=='LastModified'}.first.children.text).to_date.strftime('%Y-%m-%d')
-          size=c.children.select{|c|c.name=='Size'}.first.children.text
-
-          if dir_and_file.first == dir
-            file_name=dir_and_file.last
-            date_string=file_name.split('_').first
-            date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : date_string)
-            file_url="#{file_server}/#{full_name}"
-            entries << {:name=>dir_and_file.last,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
-          end
-        end
+      dir="#{self.file_server}/#{sub_dir}"
+      file_names=Dir.entries(dir) - ['.','..']
+      file_names.each {|file_name|
+        file_url="#{dir}/#{file_name}"
+        size=File.open(file_url).size
+        date_string=file_name.split('_').first
+        date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : date_string)
+        entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
       }
       entries.sort_by {|entry| entry[:name]}.reverse!
     end
