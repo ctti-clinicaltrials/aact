@@ -13,11 +13,11 @@ module ClinicalTrials
     end
 
     def self.file_server
-      '/var/local/share'
+      '/static'
     end
 
     def file_server
-      '/var/local/share'
+      '/static'
     end
 
     def self.dump_directory
@@ -49,7 +49,7 @@ module ClinicalTrials
     end
 
     def self.documentation_directory
-      Rails.root.join('public','documentation')
+      "#{file_server}/documentation"
     end
 
     def self.admin_schema_diagram
@@ -78,16 +78,6 @@ module ClinicalTrials
 
     def self.default_mesh_headings
       "#{Rails.public_path}/mesh/mesh_headings.txt"
-    end
-
-    def self.get_file(params)
-      file_name=params[:file_name]
-      directory_name=params[:directory_name] ||= 'xml_downloads'
-      File.open("#{file_name}", 'wb') { |out_file|
-        s3 = Aws::S3::Client.new(region: ENV['AWS_REGION'])
-        s3.get_object({ bucket: ENV['S3_BUCKET_NAME'], key: "#{directory_name}/#{file_name}"}, target: out_file)
-      }
-      Zip::File.open(file_name)
     end
 
     def self.files_in(sub_dir)
