@@ -68,6 +68,10 @@ module ClinicalTrials
       "#{self.documentation_directory}/aact_data_definitions.xlsx"
     end
 
+    def self.backend_data_dictionary
+      "#{static_root_dir}/documentation/aact_data_definitions.xlsx"
+    end
+
     def self.table_dictionary
       "#{self.documentation_directory}/aact_tables.xlsx"
     end
