@@ -1,5 +1,6 @@
 class DictionaryController < ApplicationController
   def show
+    @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
     @table_dictionary=ClinicalTrials::FileManager.table_dictionary
