@@ -3,10 +3,11 @@ module ClinicalTrials
     attr_reader :zipfile_name, :table_names
 
     def initialize(tables=[])
-      @temp_dir     = "#{Rails.root}/tmp"
-      @zipfile_name = "#{@temp_dir}/export.zip"
+      @temp_dir     = "#{ClinicalTrials::FileManager.dump_directory}/export"
+      @zipfile_name = "#{@temp_dir}/#{Time.now.strftime('%Y%m%d')}_export.zip"
       @connection   = ActiveRecord::Base.connection.raw_connection
       @table_names  = tables
+      create_temp_dir_if_none_exists!
     end
 
     def run(delimiter: '|', should_archive: true)
@@ -17,9 +18,9 @@ module ClinicalTrials
         tempfiles = create_tempfiles(delimiter)
 
         if delimiter == ','
-          system("zip -j -q #{Rails.root}/tmp/export.zip #{@temp_dir}/*.csv")
+          system("zip -j -q #{@zipfile_name} #{@temp_dir}/*.csv")
         else
-          system("zip -j -q #{Rails.root}/tmp/export.zip #{@temp_dir}/*.txt")
+          system("zip -j -q #{@zipfile_name} #{@temp_dir}/*.txt")
         end
 
         if should_archive
@@ -35,7 +36,6 @@ module ClinicalTrials
     private
 
     def create_tempfiles(delimiter)
-      create_temp_dir_if_none_exists!
       if !@table_names.empty?
         tables=@table_names
       else
@@ -76,15 +76,14 @@ module ClinicalTrials
     end
 
     def archive(delimiter)
-      s3_file_name = if delimiter == ','
+      file_type = if delimiter == ','
                        "csv-export"
                      elsif delimiter == '|'
                        "pipe-delimited-export"
                      end
 
-      s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
-      obj = s3.bucket(ENV['S3_BUCKET_NAME']).object("csv_pipe_exports/#{Time.now.strftime('%Y%m%d')}_#{s3_file_name}")
-      obj.upload_file(@zipfile_name)
+      archive_file_name="#{ClinicalTrials::FileManager.flat_files_directory}/#{Time.now.strftime('%Y%m%d')}_#{file_type}.zip"
+      FileUtils.mv(@zipfile_name, archive_file_name)
     end
   end
 end
