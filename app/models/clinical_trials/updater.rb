@@ -96,8 +96,6 @@ module ClinicalTrials
       [
        [:baseline_measurements, :dispersion_type],
        [:baseline_measurements, :param_type],
-       [:browse_conditions, :nct_id],
-       [:browse_interventions, :nct_id],
        [:overall_officials, :nct_id],
        [:responsible_parties, :nct_id],
        [:baseline_measurements, :category],
