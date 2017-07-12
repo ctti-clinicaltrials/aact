@@ -15,7 +15,7 @@ class DictionaryController < ApplicationController
   end
 
   def get_dictionary
-    Roo::Spreadsheet.open(ClinicalTrials::FileManager.table_dictionary)
+    Roo::Spreadsheet.open(ClinicalTrials::FileManager.backend_table_dictionary)
   end
 
   def fix_attribs(hash)

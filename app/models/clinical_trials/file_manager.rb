@@ -72,6 +72,10 @@ module ClinicalTrials
       "#{self.documentation_directory}/aact_tables.xlsx"
     end
 
+    def self.backend_table_dictionary
+      "#{static_root_dir}/documentation/aact_tables.xlsx"
+    end
+
     def self.default_data_definitions
       Roo::Spreadsheet.open(self.data_dictionary)
     end
