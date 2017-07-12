@@ -136,12 +136,12 @@ module ClinicalTrials
 
     def make_file_from_website(fname,url)
       return_file="#{static_root_dir}/tmp/#{fname}"
+      File.delete(return_file) if File.exist?(return_file)
       open(url) {|site|
         open(return_file, "wb"){|out_file|
             d=site.read
             out_file.write(d)
         }
-        #return_file.close
       }
       return File.open(return_file)
     end
