@@ -8,7 +8,7 @@ class DefinitionsController < ApplicationController
   @@protocol_url=ClinicalTrials::FileManager.nlm_protocol_data_url
 
   def index
-    data = Roo::Spreadsheet.open(ClinicalTrials::FileManager.data_dictionary)
+    data = Roo::Spreadsheet.open(ClinicalTrials::FileManager.backend_data_dictionary)
     header = data.first
     dataOut = []
     (2..data.last_row).each do |i|
