@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe TableExporter do
+describe ClinicalTrials::TableExporter do
   describe '#run' do
-    let(:table_exporter) { TableExporter.new }
+    let(:table_exporter) { ClinicalTrials::TableExporter.new }
     let(:zipfile_name)   { table_exporter.zipfile_name }
 
     after do
@@ -38,7 +38,7 @@ describe TableExporter do
 
     context 'with specific tables' do
       it 'should only contain the csv files for the specified tables' do
-        exporter = TableExporter.new(['studies'])
+        exporter = ClinicalTrials::TableExporter.new(['studies'])
         exporter.run(should_archive: false)
 
         entries = Zip::File.open(zipfile_name) do |zipfile|

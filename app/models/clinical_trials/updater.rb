@@ -308,7 +308,7 @@ module ClinicalTrials
 
     def create_flat_files
       log("exporting tables as flat files...")
-      TableExporter.new.run(delimiter: '|', should_archive: true)
+      ClinicalTrials::TableExporter.new.run(delimiter: '|', should_archive: true)
     end
 
     def truncate_tables
