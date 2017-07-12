@@ -12,36 +12,36 @@ module ClinicalTrials
       "https://prsinfo.clinicaltrials.gov/results_definitions.html"
     end
 
-    def self.static_url_base
+    def self.url_base
       '/static'
     end
 
-    def self.backend_file_server
+    def self.static_root_dir
       '/var/local/share'
     end
 
-    def backend_file_server
+    def static_root_dir
       '/var/local/share'
     end
 
     def self.dump_directory
-      "#{backend_file_server}/tmp"
+      "#{static_root_dir}/tmp"
     end
 
     def dump_directory
-      "#{backend_file_server}/tmp"
+      "#{static_root_dir}/tmp"
     end
 
     def self.pg_dump_file
-      "#{backend_file_server}/tmp/postgres.dmp"
+      "#{static_root_dir}/tmp/postgres.dmp"
     end
 
     def self.static_copies_directory
-      "#{backend_file_server}/static_db_copies"
+      "#{static_root_dir}/static_db_copies"
     end
 
     def self.flat_files_directory
-      "#{backend_file_server}/exported_files"
+      "#{static_root_dir}/exported_files"
     end
 
     def self.snapshot_files
@@ -53,7 +53,7 @@ module ClinicalTrials
     end
 
     def self.documentation_directory
-      "#{static_url_base}/documentation"
+      "#{url_base}/documentation"
     end
 
     def self.admin_schema_diagram
@@ -69,7 +69,7 @@ module ClinicalTrials
     end
 
     def self.table_dictionary
-      "/var/local/share/documentation/aact_tables.xlsx"
+      "#{self.documentation_directory}/aact_tables.xlsx"
     end
 
     def self.default_data_definitions
@@ -90,7 +90,7 @@ module ClinicalTrials
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
         file_location="#{dir}/#{file_name}"
-        file_url="#{static_url_base}/#{sub_dir}/#{file_name}"
+        file_url="#{url_base}/#{sub_dir}/#{file_name}"
         size=File.open(file_location).size
         date_string=file_name.split('_').first
         date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : date_string)
@@ -120,27 +120,29 @@ module ClinicalTrials
       dump_file_name=self.class.pg_dump_file
       File.delete(dump_file_name) if File.exist?(dump_file_name)
 
-      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump -h $RDS_DB_HOSTNAME -p 5432 -U $RDS_DB_SUPER_USERNAME --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  /var/local/share/tmp/postgres.dmp aact`
+      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump aact -h $RDS_DB_HOSTNAME -p 5432 -U $RDS_DB_SUPER_USERNAME --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  /var/local/share/tmp/postgres.dmp`
+
+      #`PGPASSWORD=ukmfp2d! pg_dump aact -h localhost -p 5432 -U tibbs001 --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  /var/local/share/tmp/postgres.dmp`
       return dump_file_name
     end
 
     def make_file_from_website(fname,url)
-      return_file="#{backend_file_server}/tmp/#{fname}"
+      return_file="#{static_root_dir}/tmp/#{fname}"
       open(url) {|site|
         open(return_file, "wb"){|out_file|
             d=site.read
             out_file.write(d)
         }
-        return_file.close
+        #return_file.close
       }
       return File.open(return_file)
     end
 
     def take_snapshot
       dump_database
-      schema_diagram_file=File.open("#{self.backend_file_server}/documentation/aact_schema.png")
-      admin_schema_diagram_file=File.open("#{self.backend_file_server}/documentation/aact_admin_schema.png")
-      data_dictionary_file=File.open("#{self.backend_file_server}/documentation/aact_data_definitions.xlsx")
+      schema_diagram_file=File.open("#{self.static_root_dir}/documentation/aact_schema.png")
+      admin_schema_diagram_file=File.open("#{self.static_root_dir}/documentation/aact_admin_schema.png")
+      data_dictionary_file=File.open("#{self.static_root_dir}/documentation/aact_data_definitions.xlsx")
       nlm_protocol_file=make_file_from_website('nlm_protocol_definitions.html',self.class.nlm_protocol_data_url)
       nlm_results_file=make_file_from_website('nlm_results_definitions.html',self.class.nlm_results_data_url)
 
