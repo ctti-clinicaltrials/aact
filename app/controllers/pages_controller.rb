@@ -15,7 +15,6 @@ class PagesController < ApplicationController
   end
 
   def points_to_consider
-    @analyst_guide=ClinicalTrials::FileManager.analyst_guide
     @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
     @schema_diagram=ClinicalTrials::FileManager.schema_diagram
     @data_dictionary=ClinicalTrials::FileManager.data_dictionary
