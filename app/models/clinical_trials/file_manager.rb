@@ -77,7 +77,7 @@ module ClinicalTrials
     end
 
     def self.default_data_definitions
-      Roo::Spreadsheet.open(self.data_dictionary)
+      Roo::Spreadsheet.open("#{self.static_root_dir}/documentation/aact_data_definitions.xlsx")
     end
 
     def self.default_mesh_terms
