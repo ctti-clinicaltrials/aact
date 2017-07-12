@@ -5,34 +5,34 @@ class PagesController < ApplicationController
   end
 
   def snapshots
-    @files=ClinicalTrials::FileManager.snapshot_files
+    @files=Util::FileManager.snapshot_files
     @most_recent=@files.last
   end
 
   def pipe_files
-    @files=ClinicalTrials::FileManager.pipe_delimited_files
+    @files=Util::FileManager.pipe_delimited_files
     @most_recent=@files.last
   end
 
   def points_to_consider
-    @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
-    @schema_diagram=ClinicalTrials::FileManager.schema_diagram
-    @data_dictionary=ClinicalTrials::FileManager.data_dictionary
-    @table_dictionary=ClinicalTrials::FileManager.table_dictionary
+    @admin_schema_diagram=Util::FileManager.admin_schema_diagram
+    @schema_diagram=Util::FileManager.schema_diagram
+    @data_dictionary=Util::FileManager.data_dictionary
+    @table_dictionary=Util::FileManager.table_dictionary
   end
 
   def learn_more
-    @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
-    @schema_diagram=ClinicalTrials::FileManager.schema_diagram
-    @data_dictionary=ClinicalTrials::FileManager.data_dictionary
-    @table_dictionary=ClinicalTrials::FileManager.table_dictionary
+    @admin_schema_diagram=Util::FileManager.admin_schema_diagram
+    @schema_diagram=Util::FileManager.schema_diagram
+    @data_dictionary=Util::FileManager.data_dictionary
+    @table_dictionary=Util::FileManager.table_dictionary
   end
 
   def schema
-    @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
-    @schema_diagram=ClinicalTrials::FileManager.schema_diagram
-    @data_dictionary=ClinicalTrials::FileManager.data_dictionary
-    @table_dictionary=ClinicalTrials::FileManager.table_dictionary
+    @admin_schema_diagram=Util::FileManager.admin_schema_diagram
+    @schema_diagram=Util::FileManager.schema_diagram
+    @data_dictionary=Util::FileManager.data_dictionary
+    @table_dictionary=Util::FileManager.table_dictionary
     @show_dictionary_link = true
   end
 

@@ -2,14 +2,14 @@ require 'csv'
 require 'active_support/all'
 class DataDefinition < AdminBase
 
-  def self.populate(data=ClinicalTrials::FileManager.default_data_definitions)
+  def self.populate(data=Util::FileManager.default_data_definitions)
     self.destroy_all
     self.populate_from_file(data)
     self.populate_row_counts
     self.populate_enumerations
   end
 
-  def self.populate_from_file(data=ClinicalTrials::FileManager.default_data_definitions)
+  def self.populate_from_file(data=Util::FileManager.default_data_definitions)
     header = data.first
     dataOut = []
     puts "about to populate data definitions table..."

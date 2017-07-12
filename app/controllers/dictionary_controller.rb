@@ -1,9 +1,9 @@
 class DictionaryController < ApplicationController
   def show
-    @admin_schema_diagram=ClinicalTrials::FileManager.admin_schema_diagram
-    @schema_diagram=ClinicalTrials::FileManager.schema_diagram
-    @data_dictionary=ClinicalTrials::FileManager.data_dictionary
-    @table_dictionary=ClinicalTrials::FileManager.table_dictionary
+    @admin_schema_diagram=Util::FileManager.admin_schema_diagram
+    @schema_diagram=Util::FileManager.schema_diagram
+    @data_dictionary=Util::FileManager.data_dictionary
+    @table_dictionary=Util::FileManager.table_dictionary
     @tables = []
     tabs=get_dictionary
     header = tabs.first
@@ -16,7 +16,7 @@ class DictionaryController < ApplicationController
   end
 
   def get_dictionary
-    Roo::Spreadsheet.open(ClinicalTrials::FileManager.backend_table_dictionary)
+    Roo::Spreadsheet.open(Util::FileManager.backend_table_dictionary)
   end
 
   def fix_attribs(hash)

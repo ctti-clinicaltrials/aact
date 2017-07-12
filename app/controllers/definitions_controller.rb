@@ -4,11 +4,11 @@ class DefinitionsController < ApplicationController
   # This code uses data dictionary spreadsheet on the AWS server
   # *******///********
 
-  @@results_url=ClinicalTrials::FileManager.nlm_results_data_url
-  @@protocol_url=ClinicalTrials::FileManager.nlm_protocol_data_url
+  @@results_url=Util::FileManager.nlm_results_data_url
+  @@protocol_url=Util::FileManager.nlm_protocol_data_url
 
   def index
-    data = Roo::Spreadsheet.open(ClinicalTrials::FileManager.backend_data_dictionary)
+    data = Roo::Spreadsheet.open(Util::FileManager.backend_data_dictionary)
     header = data.first
     dataOut = []
     (2..data.last_row).each do |i|

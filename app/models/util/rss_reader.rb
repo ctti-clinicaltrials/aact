@@ -1,7 +1,7 @@
 require 'rss'
 require 'uri'
 
-module ClinicalTrials
+module Util
   class RssReader
     BASE_URL = 'https://clinicaltrials.gov'
 

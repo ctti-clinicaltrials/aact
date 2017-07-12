@@ -1,7 +1,7 @@
 class CreateIndices < ActiveRecord::Migration
 
   #  DON'T FORGET.....
-  # If you add an index, add it to indexes method in ClinicalTrials::Updater.  (or find a better way)
+  # If you add an index, add it to indexes method in Util::Updater.  (or find a better way)
 
   def change
 

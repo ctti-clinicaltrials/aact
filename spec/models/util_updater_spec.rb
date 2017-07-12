@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ClinicalTrials::Updater do
+describe Util::Updater do
 
   it "doesn't abort when it encouters a net timeout or doesn't retrieve xml from ct.gov" do
 
@@ -18,7 +18,7 @@ describe ClinicalTrials::Updater do
 
     stub_request(:get, "https://clinicaltrials.gov/show/timeout?resultsxml=true").and_raise(Net::OpenTimeout)
 
-    updater=ClinicalTrials::Updater.new
+    updater=Util::Updater.new
     ids=['NCT02028676','timeout','invalid-nct-id','NCT00023673']
     updater.update_studies(ids)
     expect(Study.count).to eq(2)
@@ -28,8 +28,8 @@ describe ClinicalTrials::Updater do
   end
 
   it "aborts incremental load when number of studies exceeds 10000" do
-    allow_any_instance_of(ClinicalTrials::RssReader).to receive(:get_changed_nct_ids).and_return( [*1..10000] )
-    updater=ClinicalTrials::Updater.new
+    allow_any_instance_of(Util::RssReader).to receive(:get_changed_nct_ids).and_return( [*1..10000] )
+    updater=Util::Updater.new
     expect(updater).to receive(:send_notification).once
     expect(updater).to receive(:update_studies).never
     updater.run
@@ -79,7 +79,7 @@ describe ClinicalTrials::Updater do
          with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v0.9.2'}).
          to_return(:status => 200, :body => incoming, :headers => {})
 
-    ClinicalTrials::Updater.new.update_studies([nct_id])
+    Util::Updater.new.update_studies([nct_id])
     study=Study.where('nct_id=?',nct_id).first
 
     expect(study.baseline_measurements.size).to eq(380)

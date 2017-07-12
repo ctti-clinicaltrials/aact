@@ -1,4 +1,4 @@
-module ClinicalTrials
+module Util
   class Indexer
 
     def self.create_indexes

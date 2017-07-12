@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ClinicalTrials::Client do
+describe Util::Client do
   let(:search_term) { 'duke lupus rheumatoid arthritis' }
   let(:expected_url) { 'https://clinicaltrials.gov/search?term=duke+lupus+rheumatoid+arthritis&resultsxml=true' }
   let(:stub_request_headers) { {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'} }

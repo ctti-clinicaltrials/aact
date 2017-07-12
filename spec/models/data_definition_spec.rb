@@ -11,10 +11,10 @@ RSpec.describe DataDefinition, type: :model do
     CalculatedValue.new.create_from(study).save!
 
     data=Roo::Spreadsheet.open('spec/support/shared_examples/aact_data_definitions.xlsx')
-    ClinicalTrials::Updater.new.refresh_data_definitions(data)
+    Util::Updater.new.refresh_data_definitions(data)
     expect(DataDefinition.count).to eq(335)
     expect(DataDefinition.where('table_name=? and column_name=?','studies','nct_id').first.row_count).to eq(1)
-    ClinicalTrials::Updater.single_study_tables.each{|tab|
+    Util::Updater.single_study_tables.each{|tab|
       expect(DataDefinition.where('table_name=? and column_name=?',tab,'id').first.row_count).to eq(1) if tab != 'studies'
     }
     # random sample to verify row counts got set correctly for one-to-many related tables

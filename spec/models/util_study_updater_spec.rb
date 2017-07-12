@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'securerandom'
 
-describe StudyUpdater do
+describe Util::StudyUpdater do
 
   describe '#update_studies' do
     before do
@@ -14,7 +14,7 @@ describe StudyUpdater do
         nct_ids          = Study.pluck(:nct_id)
         created_at_dates = Study.pluck(:created_at)
 
-        allow_any_instance_of(ClinicalTrials::Client).to receive(:download_xml_files) do
+        allow_any_instance_of(Util::Client).to receive(:download_xml_files) do
           nct_ids.each do |id|
             StudyXmlRecord.where(nct_id: id).first_or_create(content: "<study><nct_id>#{id}</nct_id></study>")
           end

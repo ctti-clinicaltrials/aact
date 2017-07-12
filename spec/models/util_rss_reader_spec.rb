@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ClinicalTrials::RssReader do
+describe Util::RssReader do
   describe '#initialize' do
 
     context 'without a specified days_back arg' do

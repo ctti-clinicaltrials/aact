@@ -1,9 +1,9 @@
-module ClinicalTrials
+module Util
   class TableExporter
     attr_reader :zipfile_name, :table_names
 
     def initialize(tables=[])
-      @temp_dir     = "#{ClinicalTrials::FileManager.dump_directory}/export"
+      @temp_dir     = "#{Util::FileManager.dump_directory}/export"
       @zipfile_name = "#{@temp_dir}/#{Time.now.strftime('%Y%m%d')}_export.zip"
       @connection   = ActiveRecord::Base.connection.raw_connection
       @table_names  = tables
@@ -39,7 +39,7 @@ module ClinicalTrials
       if !@table_names.empty?
         tables=@table_names
       else
-        tables=ClinicalTrials::Updater.loadable_tables
+        tables=Util::Updater.loadable_tables
       end
       tempfiles = tables.map { |table_name| delimiter == ',' ? "#{table_name}.csv" : "#{table_name}.txt" }
                              .map do |file_name|
@@ -82,7 +82,7 @@ module ClinicalTrials
                        "pipe-delimited-export"
                      end
 
-      archive_file_name="#{ClinicalTrials::FileManager.flat_files_directory}/#{Time.now.strftime('%Y%m%d')}_#{file_type}.zip"
+      archive_file_name="#{Util::FileManager.flat_files_directory}/#{Time.now.strftime('%Y%m%d')}_#{file_type}.zip"
       FileUtils.mv(@zipfile_name, archive_file_name)
     end
   end

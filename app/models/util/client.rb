@@ -1,4 +1,4 @@
-module ClinicalTrials
+module Util
   class Client
     BASE_URL = 'https://clinicaltrials.gov'
 

@@ -1,4 +1,4 @@
-module ClinicalTrials
+module Util
   class Updater
     attr_reader :params, :load_event, :client, :study_counts, :study_filter
 
@@ -15,7 +15,7 @@ module ClinicalTrials
         puts("Starting the #{type} load...")
         record_type=type
       end
-      @client = ClinicalTrials::Client.new
+      @client = Util::Client.new
       @load_event = LoadEvent.create({:event_type=>record_type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
       self
@@ -179,7 +179,7 @@ module ClinicalTrials
 
     def remove_indexes
       m=ActiveRecord::Migration.new
-      ClinicalTrials::Updater.loadable_tables.each {|table_name|
+      Util::Updater.loadable_tables.each {|table_name|
         ActiveRecord::Base.connection.indexes(table_name).each{|index|
           m.remove_index(index.table, index.columns) unless should_keep_index?(index)
         }
@@ -199,7 +199,7 @@ module ClinicalTrials
       log("begin incremental load...")
       days_back=(@params[:days_back] ? @params[:days_back] : 4)
       log("finding studies changed in past #{days_back} days...")
-      ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
+      ids = Util::RssReader.new(days_back: days_back).get_changed_nct_ids
       log("found #{ids.size} studies that have been changed or added")
       case ids.size
       when 0
@@ -261,7 +261,7 @@ module ClinicalTrials
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       study_counts[:count_down]=nct_ids.size
 
-      ClinicalTrials::Updater.loadable_tables.each { |table|
+      Util::Updater.loadable_tables.each { |table|
         stime=Time.now
         ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
         log("deleted studies from #{table}   #{Time.now - stime}")
@@ -292,7 +292,7 @@ module ClinicalTrials
       SanityCheck.populate
     end
 
-    def refresh_data_definitions(data=ClinicalTrials::FileManager.default_data_definitions)
+    def refresh_data_definitions(data=Util::FileManager.default_data_definitions)
       log("refreshing data definitions...")
       DataDefinition.populate(data)
     end
@@ -303,16 +303,16 @@ module ClinicalTrials
 
     def take_snapshot
       puts "creating static copy of the database..."
-      ClinicalTrials::FileManager.new.take_snapshot
+      Util::FileManager.new.take_snapshot
     end
 
     def create_flat_files
       log("exporting tables as flat files...")
-      ClinicalTrials::TableExporter.new.run(delimiter: '|', should_archive: true)
+      Util::TableExporter.new.run(delimiter: '|', should_archive: true)
     end
 
     def truncate_tables
-      ClinicalTrials::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
+      Util::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
     end
 
     def should_restart?

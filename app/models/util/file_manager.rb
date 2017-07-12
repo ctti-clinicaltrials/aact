@@ -1,7 +1,7 @@
 require 'action_view'
 require 'open-uri'
 include ActionView::Helpers::NumberHelper
-module ClinicalTrials
+module Util
   class FileManager
 
     def self.nlm_protocol_data_url

@@ -1,5 +1,5 @@
 class MeshTerm < ActiveRecord::Base
-  def self.populate_from_file(file_name=ClinicalTrials::FileManager.default_mesh_terms)
+  def self.populate_from_file(file_name=Util::FileManager.default_mesh_terms)
     puts "about to populate table of mesh terms..."
     File.open(file_name).each_line{|line|
       line_array=line.split(' ')
