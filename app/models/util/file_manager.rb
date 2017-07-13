@@ -107,21 +107,15 @@ module Util
       entries.sort_by {|entry| entry[:name]}.reverse!
     end
 
-    def self.db_log_file_content(params={:db_name=>'aact-prod'})
-       db_name=params[:db_name]
-       col=[]
-       client = Aws::RDS::Client.new(region: ENV['AWS_REGION'])
-       client.describe_db_log_files({:db_instance_identifier=>db_name}).data.describe_db_log_files.each{|file|
-         begin
-           file_name=file.log_file_name
-           content=client.download_db_log_file_portion({:db_instance_identifier=>db_name, :log_file_name=>file_name})
-           col << {:file_name => file_name, :content => content.data.log_file_data}
-         rescue Exception => e
-           entry={:file_name=>file_name, :log_time=> 'unknown', :content=>"#{Time.now} UTC: ERROR: #{e}\n"}
-           col << entry
-         end
-       }
-       col
+    def self.db_log_file_content(params)
+      return [] if params.nil? or params[:day].nil?
+      day=params[:day].capitalize
+      file_name="/var/lib/pgsql/current/data/pg_log/postgresql-#{day}.log"
+      if File.exist?(file_name)
+        File.open(file_name)
+      else
+        []
+      end
     end
 
     def dump_database
