@@ -89,7 +89,6 @@ module Util
     def populate_admin_tables
       run_sanity_checks
       refresh_data_definitions
-      populate_database_activity
     end
 
     def indexes
@@ -307,10 +306,6 @@ module Util
     def refresh_data_definitions(data=Util::FileManager.default_data_definitions)
       log("refreshing data definitions...")
       DataDefinition.populate(data)
-    end
-
-    def populate_database_activity
-      DatabaseActivity.populate
     end
 
     def take_snapshot
