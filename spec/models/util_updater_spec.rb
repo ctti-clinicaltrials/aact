@@ -2,6 +2,23 @@ require 'rails_helper'
 
 describe Util::Updater do
 
+  it "doesn't abort when it fails to remove or add an index" do
+    # tell it to remove the same index twice - it should just skip the dupe and proceed to the next index
+    allow_any_instance_of(Util::Updater).to receive(:indexes).and_return(
+                  [[:baseline_measurements, :dispersion_type],[:baseline_measurements, :dispersion_type],[:overall_officials, :nct_id]])
+    updater=Util::Updater.new
+    expect(ActiveRecord::Migration.index_exists?(:baseline_measurements, :dispersion_type)).to eq(true)
+    expect(ActiveRecord::Migration.index_exists?(:overall_officials, :nct_id)).to eq(true)
+    updater.remove_indexes
+    expect(ActiveRecord::Migration.index_exists?(:baseline_measurements, :dispersion_type)).to eq(false)
+    expect(ActiveRecord::Migration.index_exists?(:overall_officials, :nct_id)).to eq(false)
+
+    # now tell it to add the same index twice - it should just skip the dupe and proceed to the next index
+    updater.add_indexes
+    expect(ActiveRecord::Migration.index_exists?(:baseline_measurements, :dispersion_type)).to eq(true)
+    expect(ActiveRecord::Migration.index_exists?(:overall_officials, :nct_id)).to eq(true)
+  end
+
   it "doesn't abort when it encouters a net timeout or doesn't retrieve xml from ct.gov" do
 
     stub_request(:get, "https://clinicaltrials.gov/show/NCT02028676?resultsxml=true").

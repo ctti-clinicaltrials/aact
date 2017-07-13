@@ -181,7 +181,12 @@ module Util
       m=ActiveRecord::Migration.new
       Util::Updater.loadable_tables.each {|table_name|
         ActiveRecord::Base.connection.indexes(table_name).each{|index|
-          m.remove_index(index.table, index.columns) unless should_keep_index?(index)
+          begin
+            m.remove_index(index.table, index.columns) unless should_keep_index?(index)
+          rescue
+            log("ERROR! Unable to remove index: #{index.table} #{index.columns}")
+            next
+          end
         }
       }
     end
@@ -192,7 +197,14 @@ module Util
 
     def add_indexes
       m=ActiveRecord::Migration.new
-      indexes.each{|index| m.add_index index.first, index.last}
+      indexes.each{|index|
+        begin
+          m.add_index index.first, index.last
+        rescue
+          log("ERROR! Unable to add index: #{index.first} #{index.last}")
+          next
+        end
+      }
     end
 
     def incremental
