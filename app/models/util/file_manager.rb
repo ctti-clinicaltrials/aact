@@ -110,7 +110,7 @@ module Util
     def self.db_log_file_content(params)
       return [] if params.nil? or params[:day].nil?
       day=params[:day].capitalize
-      file_name="/var/lib/pgsql/current/data/pg_log/postgresql-#{day}.log"
+      file_name="/var/local/share/logs/postgresql-#{day}.log"
       if File.exist?(file_name)
         File.open(file_name)
       else
