@@ -14,15 +14,6 @@ module Util
       @errors = []
     end
 
-    def send_simple_message
-      RestClient.post "https://api:key-96986f8b88cfae565d1be71ef6d13a89"\
-      "@api.mailgun.net/v3/mg.aact-mail.org/messages",
-      :from => "Excited User <mailgun@mg.aact-mail.org>",
-      :to => "sheri.tibbs@duke.edu, sheri.tibbs@mg.aact-mail.org",
-      :subject => "Hello",
-      :text => "Testing some Mailgun awesomness!"
-    end
-
     def download_xml_files
       tries ||= 5
 
