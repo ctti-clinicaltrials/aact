@@ -1,17 +1,11 @@
-unless ENV['AWS_ACCESS_KEY_ID'].blank?
-  CarrierWave.configure do |config|
-#    config.root = Rails.root.join('tmp')
-#    config.cache_dir = 'carrierwave'
-    # Need next line to work on heroku
+CarrierWave.configure do |config|
     config.cache_dir = "#{Rails.root}/tmp/uploads"
     config.fog_credentials = {
-      :provider               => 'AWS',
-      :region                 => ENV['AWS_REGION'],
-      :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],
-      :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY'],
-      :endpoint               => ENV['FILESERVER_ENDPOINT']
+      :provider               => 'DigitalOcean',
+      :region                 => 'NYC1',
+      :digitalocean_token     => ENV['FOG_TOKEN'],
     }
-    config.fog_directory  = ENV['S3_BUCKET_NAME']
+    config.fog_directory  = '/var/local/share/images'
     config.fog_public     = false                                   # optional, defaults to true
     config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
 
@@ -23,8 +17,6 @@ unless ENV['AWS_ACCESS_KEY_ID'].blank?
     else
       config.storage = :fog
     end
-  end
-
 end
 
 module Carrierwave

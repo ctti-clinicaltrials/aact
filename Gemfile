@@ -36,7 +36,7 @@ gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
 gem 'gon'
 
-gem 'fog'
+gem 'fog-digitalocean'
 #gem 'rmagick'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.3'
