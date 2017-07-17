@@ -1,7 +1,7 @@
 class DefinitionsController < ApplicationController
 
   # *******///********
-  # This code uses data dictionary spreadsheet on the AWS server
+  # This code uses data dictionary spreadsheet stored on the DO file server
   # *******///********
 
   @@results_url=Util::FileManager.nlm_results_data_url
