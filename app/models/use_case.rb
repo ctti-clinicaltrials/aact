@@ -1,14 +1,13 @@
 class UseCase < AdminBase
   has_many :use_case_attachments, :dependent => :destroy
-  mount_uploader :image, ImageUploader
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
   def initialize(params = {})
     file = params.delete(:file)
     image_file = params.delete(:image_file)
     super
-    self.attachments << UseCaseAttachment.create_from(file) if file
-    self.image = image_file if image_file
+    self.attachments << UseCaseAttachment.create_from(file) if file and attachment.nil?
+    self.attachments << UseCaseAttachment.create_from(image_file,'image') if image_file and image.nil?
     self
   end
 
@@ -17,9 +16,21 @@ class UseCase < AdminBase
     image_file = params.delete('image_file')
     self.use_case_attachments = []
     self.attachments << UseCaseAttachment.create_from(file) if file
-    self.image = image_file if image_file
+    self.attachments << UseCaseAttachment.create_from(image_file,'image') if image_file
     super
     self
+  end
+
+  def current_image_file_name
+    image.try(:file_name)
+  end
+
+  def current_attachment_file_name
+    attachment.try(:file_name)
+  end
+
+  def file
+    attachment.try(:file_name)
   end
 
   def linkable_url
@@ -31,13 +42,16 @@ class UseCase < AdminBase
     end
   end
 
-  def attachment
-    attachments.first
-  end
-
   def attachments
     use_case_attachments
   end
 
+  def attachment
+    attachments.select{|uca|!uca.is_image}.first
+  end
+
+  def image
+    attachments.select{|uca|uca.is_image}.first
+  end
 
 end

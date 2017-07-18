@@ -63,7 +63,7 @@ CREATE FUNCTION ctgov_summaries(character varying) RETURNS TABLE(nct_id characte
           s.brief_title,
           s.overall_status,
           cv.were_results_reported,
-          c.mesh_term,
+          bc.mesh_term,
           i.intervention,
           sp.name,
           e.gender,
@@ -106,7 +106,7 @@ CREATE FUNCTION ctgov_summaries(character varying) RETURNS TABLE(nct_id characte
           s.brief_title,
           s.overall_status,
           cv.were_results_reported,
-          c.mesh_term,
+          k.name,
           i.intervention,
           sp.name,
           e.gender,
@@ -214,7 +214,8 @@ SET default_with_oids = false;
 CREATE TABLE browse_conditions (
     id integer NOT NULL,
     nct_id character varying,
-    mesh_term character varying
+    mesh_term character varying,
+    downcase_mesh_term character varying
 );
 
 
@@ -224,7 +225,7 @@ CREATE TABLE browse_conditions (
 
 CREATE VIEW all_conditions AS
  SELECT browse_conditions.nct_id,
-    array_to_string(array_agg(DISTINCT browse_conditions.mesh_term), '|'::text) AS mesh_term
+    array_to_string(array_agg(DISTINCT browse_conditions.mesh_term), '|'::text) AS condition
    FROM browse_conditions
   GROUP BY browse_conditions.nct_id;
 
@@ -461,7 +462,8 @@ ALTER SEQUENCE browse_conditions_id_seq OWNED BY browse_conditions.id;
 CREATE TABLE browse_interventions (
     id integer NOT NULL,
     nct_id character varying,
-    mesh_term character varying
+    mesh_term character varying,
+    downcase_mesh_term character varying
 );
 
 
@@ -567,7 +569,8 @@ ALTER SEQUENCE central_contacts_id_seq OWNED BY central_contacts.id;
 CREATE TABLE conditions (
     id integer NOT NULL,
     nct_id character varying,
-    name character varying
+    name character varying,
+    downcase_name character varying
 );
 
 
@@ -1023,7 +1026,8 @@ ALTER SEQUENCE interventions_id_seq OWNED BY interventions.id;
 CREATE TABLE keywords (
     id integer NOT NULL,
     nct_id character varying,
-    name character varying
+    name character varying,
+    downcase_name character varying
 );
 
 
@@ -1075,6 +1079,70 @@ CREATE SEQUENCE links_id_seq
 --
 
 ALTER SEQUENCE links_id_seq OWNED BY links.id;
+
+
+--
+-- Name: mesh_headings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE mesh_headings (
+    id integer NOT NULL,
+    qualifier character varying,
+    heading character varying,
+    subcategory character varying
+);
+
+
+--
+-- Name: mesh_headings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE mesh_headings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mesh_headings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE mesh_headings_id_seq OWNED BY mesh_headings.id;
+
+
+--
+-- Name: mesh_terms; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE mesh_terms (
+    id integer NOT NULL,
+    qualifier character varying,
+    tree_number character varying,
+    description character varying,
+    mesh_term character varying,
+    downcase_mesh_term character varying
+);
+
+
+--
+-- Name: mesh_terms_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE mesh_terms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mesh_terms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE mesh_terms_id_seq OWNED BY mesh_terms.id;
 
 
 --
@@ -1837,6 +1905,20 @@ ALTER TABLE ONLY links ALTER COLUMN id SET DEFAULT nextval('links_id_seq'::regcl
 
 
 --
+-- Name: mesh_headings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mesh_headings ALTER COLUMN id SET DEFAULT nextval('mesh_headings_id_seq'::regclass);
+
+
+--
+-- Name: mesh_terms id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mesh_terms ALTER COLUMN id SET DEFAULT nextval('mesh_terms_id_seq'::regclass);
+
+
+--
 -- Name: milestones id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2134,6 +2216,22 @@ ALTER TABLE ONLY links
 
 
 --
+-- Name: mesh_headings mesh_headings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mesh_headings
+    ADD CONSTRAINT mesh_headings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mesh_terms mesh_terms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mesh_terms
+    ADD CONSTRAINT mesh_terms_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: milestones milestones_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2282,6 +2380,13 @@ CREATE INDEX index_baseline_measurements_on_param_type ON baseline_measurements 
 
 
 --
+-- Name: index_browse_conditions_on_downcase_mesh_term; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_browse_conditions_on_downcase_mesh_term ON browse_conditions USING btree (downcase_mesh_term);
+
+
+--
 -- Name: index_browse_conditions_on_mesh_term; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2293,6 +2398,13 @@ CREATE INDEX index_browse_conditions_on_mesh_term ON browse_conditions USING btr
 --
 
 CREATE INDEX index_browse_conditions_on_nct_id ON browse_conditions USING btree (nct_id);
+
+
+--
+-- Name: index_browse_interventions_on_downcase_mesh_term; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_browse_interventions_on_downcase_mesh_term ON browse_interventions USING btree (downcase_mesh_term);
 
 
 --
@@ -2335,6 +2447,20 @@ CREATE INDEX index_calculated_values_on_number_of_facilities ON calculated_value
 --
 
 CREATE INDEX index_central_contacts_on_contact_type ON central_contacts USING btree (contact_type);
+
+
+--
+-- Name: index_conditions_on_downcase_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_conditions_on_downcase_name ON conditions USING btree (downcase_name);
+
+
+--
+-- Name: index_conditions_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_conditions_on_name ON conditions USING btree (name);
 
 
 --
@@ -2475,6 +2601,55 @@ CREATE INDEX index_id_information_on_id_type ON id_information USING btree (id_t
 --
 
 CREATE INDEX index_interventions_on_intervention_type ON interventions USING btree (intervention_type);
+
+
+--
+-- Name: index_keywords_on_downcase_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_keywords_on_downcase_name ON keywords USING btree (downcase_name);
+
+
+--
+-- Name: index_keywords_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_keywords_on_name ON keywords USING btree (name);
+
+
+--
+-- Name: index_mesh_headings_on_qualifier; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mesh_headings_on_qualifier ON mesh_headings USING btree (qualifier);
+
+
+--
+-- Name: index_mesh_terms_on_description; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mesh_terms_on_description ON mesh_terms USING btree (description);
+
+
+--
+-- Name: index_mesh_terms_on_downcase_mesh_term; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mesh_terms_on_downcase_mesh_term ON mesh_terms USING btree (downcase_mesh_term);
+
+
+--
+-- Name: index_mesh_terms_on_mesh_term; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mesh_terms_on_mesh_term ON mesh_terms USING btree (mesh_term);
+
+
+--
+-- Name: index_mesh_terms_on_qualifier; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mesh_terms_on_qualifier ON mesh_terms USING btree (qualifier);
 
 
 --
@@ -2737,4 +2912,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20170307184859');
+
+INSERT INTO schema_migrations (version) VALUES ('20170411000122');
 

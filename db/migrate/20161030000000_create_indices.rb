@@ -1,12 +1,10 @@
 class CreateIndices < ActiveRecord::Migration
 
   #  DON'T FORGET.....
-  # If you add an index, add it to indexes method in ClinicalTrials::Updater.  (or find a better way)
+  # If you add an index, add it to indexes method in Util::Updater.  (or find a better way)
 
   def change
 
-    add_index :browse_conditions, :nct_id
-    add_index :browse_interventions, :nct_id
     add_index :overall_officials, :nct_id
     add_index :responsible_parties, :nct_id
     add_index :studies, :nct_id, :unique => true
@@ -15,12 +13,18 @@ class CreateIndices < ActiveRecord::Migration
     add_index :baseline_measurements, :classification
     add_index :baseline_measurements, :dispersion_type
     add_index :baseline_measurements, :param_type
+    add_index :browse_conditions, :downcase_mesh_term
     add_index :browse_conditions, :mesh_term
+    add_index :browse_conditions, :nct_id
+    add_index :browse_interventions, :downcase_mesh_term
     add_index :browse_interventions, :mesh_term
+    add_index :browse_interventions, :nct_id
     add_index :calculated_values, :actual_duration
     add_index :calculated_values, :months_to_report_results
     add_index :calculated_values, :number_of_facilities
     add_index :central_contacts, :contact_type
+    add_index :conditions, :name
+    add_index :conditions, :downcase_name
     add_index :design_groups, :group_type
     add_index :design_outcomes, :outcome_type
     add_index :designs, :masking
@@ -41,6 +45,8 @@ class CreateIndices < ActiveRecord::Migration
     add_index :facility_contacts, :contact_type
     add_index :id_information, :id_type
     add_index :interventions, :intervention_type
+    add_index :keywords, :name
+    add_index :keywords, :downcase_name
     add_index :milestones, :period
     add_index :overall_officials, :affiliation
     add_index :outcome_analyses, :dispersion_type
