@@ -263,6 +263,7 @@ CREATE TABLE use_case_attachments (
     file_name character varying,
     content_type character varying,
     file_contents bytea,
+    is_image boolean,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

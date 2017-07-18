@@ -1,5 +1,5 @@
 <%=  stylesheet_link_tag "use_cases/use_cases" %>
-<%= form_for(@use_case) do |f| %>
+<%= form_for @use_case, :html => { :multipart => true} do |f| %>
   <% if @use_case.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@use_case.errors.count, "error") %> prohibited this use_case from being saved:</h2>
@@ -53,11 +53,17 @@
     </p>
   </div>
 
-  <p class='enter-label form-group'>Attachment:  (100 MB size limit)
+  <p class='enter-label form-group'>Attachment  (100 MB limit):
+    <% if !@use_case.current_attachment_file_name.nil? %>
+      (Currently: <%= @use_case.current_attachment_file_name %>)
+    <% end %>
     <%= f.file_field :file, class: 'enter-info form-control' %>
   </p>
 
-  <p class='enter-label form-group'>Image:
+  <p class='enter-label form-group'>Image:  (100 MB limit)
+    <% if !@use_case.current_image_file_name.nil? %>
+      (Currently: <%= @use_case.current_image_file_name %>)
+    <% end %>
     <%= f.file_field :image_file, class: 'enter-info form-control' %>
   </p>
 

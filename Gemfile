@@ -36,11 +36,6 @@ gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
 gem 'gon'
 
-gem 'fog-digitalocean'
-#gem 'rmagick'
-gem 'carrierwave'
-gem 'mini_magick', '~> 4.3'
-
 # Grape API
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
