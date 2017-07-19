@@ -45,8 +45,6 @@ class LoadEvent < AdminBase
 
     def log(msg)
       stamped_message="\n#{Time.now} #{msg}"
-      self.description << stamped_message
-      self.save!
       $stdout.puts stamped_message
       $stdout.flush
     end
