@@ -5,10 +5,6 @@ set :chruby_ruby, 'ruby-2.4.1'
 set :application, "aact"
 set :repo_url, "git@github.com:ctti-clinicaltrials/aact.git"
 
-# Default branch is :master
-ask :branch, 'development'
-set :rails_env, 'staging'
-
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/aact'
 
