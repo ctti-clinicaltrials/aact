@@ -64,8 +64,6 @@ module Util
 
     def populate_studies(study_filter=nil)
       return if @dry_run
-      load_event = LoadEvent.create( event_type: 'populate_studies')
-
       cntr=StudyXmlRecord.number_not_yet_loaded(study_filter).count
       start_time=Time.now
       puts "Load #{cntr} studies Start Time.....#{start_time}"
@@ -77,7 +75,6 @@ module Util
         puts "#{cntr} saved #{xml_record.nct_id}:  #{Time.now - stime}"
         cntr=cntr-1
       end
-      load_event.complete
       puts "Total Load Time:.....#{Time.now - start_time}"
     end
 
