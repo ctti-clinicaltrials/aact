@@ -66,11 +66,10 @@ module Util
       return if @dry_run
       load_event = LoadEvent.create( event_type: 'populate_studies')
 
-      studies_to_load=StudyXmlRecord.not_yet_loaded(study_filter)
-      cntr=studies_to_load.size
+      cntr=StudyXmlRecord.number_not_yet_loaded(study_filter).count
       start_time=Time.now
       puts "Load #{cntr} studies Start Time.....#{start_time}"
-      studies_to_load.each do |xml_record|
+      StudyXmlRecord.not_yet_loaded(study_filter).each do |xml_record|
         stime=Time.now
         import_xml_file(xml_record.content)
         xml_record.created_study_at=Date.today
