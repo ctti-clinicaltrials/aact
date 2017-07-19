@@ -1,16 +1,12 @@
 module Util
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :study_filter
+    attr_reader :params, :load_event, :client, :study_counts
 
     def initialize(params={})
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
         puts("Restarting the load...")
-        # don't allow filtering by nct ID unless it's a restart because filtering is done so that multiple loads can run simultaneously
-        # if multiple jobs running for initial full load - they would step on each ther when study_xml_records table gets truncated
-        @study_filter=@params[:study_filter]
-        record_type="Restart #{@study_filter}"
       else
         puts("Starting the #{type} load...")
         record_type=type
@@ -22,19 +18,15 @@ module Util
     end
 
     def run
+      # Default:  incremental
       ActiveRecord::Base.logger=nil
-      if study_filter
-        @client.populate_studies(study_filter)
-        load_event.complete({:new_studies=> Study.count})
+      case params[:event_type]
+      when 'full'
+        full
+      when 'finalize'
+        finalize_full_load
       else
-        case params[:event_type]
-        when 'full'
-          full
-        when 'finalize'
-          finalize_full_load
-        else
-          incremental
-        end
+        incremental
       end
     end
 
@@ -52,7 +44,7 @@ module Util
           @client.download_xml_files
           truncate_tables
         end
-        remove_indexes  # Index significantly slow the load process.
+        remove_indexes  # Index significantly slow the load process.  Remove them before full load.  Will add back afterwards.
         study_counts[:should_add]=StudyXmlRecord.count
         study_counts[:should_change]=0
         @client.populate_studies
@@ -63,6 +55,7 @@ module Util
         puts ">>>>>>>>>>> Full load failed:  #{e}"
         grant_db_privs
         load_event.complete({:status=>'failed', :problems=> e.to_s, :study_counts=> study_counts})
+        public_announcement.destroy
         send_notification
       end
     end
