@@ -62,12 +62,12 @@ module Util
       StudyXmlRecord.where(nct_id: nct_id).first_or_create {|rec|rec.content = xml} unless @dry_run
     end
 
-    def populate_studies(study_filter=nil)
+    def populate_studies
       return if @dry_run
-      cntr=StudyXmlRecord.number_not_yet_loaded(study_filter).count
+      cntr=StudyXmlRecord.not_yet_loaded.count
       start_time=Time.now
       puts "Load #{cntr} studies Start Time.....#{start_time}"
-      StudyXmlRecord.not_yet_loaded(study_filter).each do |xml_record|
+      StudyXmlRecord.not_yet_loaded.each do |xml_record|
         stime=Time.now
         import_xml_file(xml_record.content)
         xml_record.created_study_at=Date.today
