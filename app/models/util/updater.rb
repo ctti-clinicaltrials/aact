@@ -36,16 +36,14 @@ module Util
         revoke_db_privs
         public_announcement=PublicAnnouncement.new(:description=>"The live AACT database is unavailable because full refresh is running. This may take several hours.  We apologize for the inconvenience.")
         public_announcement.save!
-        if should_restart?
-          log("restarting full load...")
-        else
+        if !should_restart?
           log("initiating full load...")
           AdminBase.connection.truncate('study_xml_records')
           @client.download_xml_files
           truncate_tables
         end
         remove_indexes  # Index significantly slow the load process.  Remove them before full load.  Will add back afterwards.
-        study_counts[:should_add]=StudyXmlRecord.count
+        study_counts[:should_add]=StudyXmlRecord.not_yet_loaded
         study_counts[:should_change]=0
         @client.populate_studies
         finalize_full_load
