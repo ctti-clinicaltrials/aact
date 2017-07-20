@@ -186,8 +186,9 @@ module ClinicalTrials
       log("begin incremental load...")
       days_back=(@params[:days_back] ? @params[:days_back] : 4)
       log("finding studies changed in past #{days_back} days...")
-      ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
-      log("found #{ids.size} studies that have been changed or added")
+      added_ids = ClinicalTrials::RssReader.new(days_back: days_back).get_added_nct_ids
+      changed_ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
+      log("found #{ids.size} studies that have been changed")
       case ids.size
       when 0
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
@@ -204,7 +205,8 @@ module ClinicalTrials
       public_announcement.save!
       revoke_db_privs
       remove_indexes  # Index significantly slow the load process.
-      update_studies(ids)
+      update_studies(added_ids)
+      update_studies(changed_ids)
       add_indexes
       CalculatedValue.populate
       grant_db_privs
