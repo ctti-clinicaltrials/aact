@@ -205,13 +205,13 @@ module ClinicalTrials
       PublicAnnouncement.destroy_all
       public_announcement=PublicAnnouncement.new(:description=>"The live AACT database is temporarily unavailable because the daily update is running.")
       public_announcement.save!
-      revoke_db_privs
-      remove_indexes  # Index significantly slow the load process.
-      update_studies(added_ids)
-      update_studies(changed_ids)
-      add_indexes
-      CalculatedValue.populate
-      grant_db_privs
+      ActiveRecord::Base.transaction do
+        remove_indexes  # Index significantly slow the load process.
+        update_studies(added_ids)
+        update_studies(changed_ids)
+        add_indexes
+        CalculatedValue.populate
+      end
       public_announcement.destroy
       populate_admin_tables
       log_actual_counts
