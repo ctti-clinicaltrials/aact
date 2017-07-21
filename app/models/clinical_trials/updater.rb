@@ -236,6 +236,8 @@ module ClinicalTrials
         schema_migrations
         data_definitions
         load_events
+        mesh_terms
+        mesh_headings
         sanity_checks
         statistics
         study_xml_records
