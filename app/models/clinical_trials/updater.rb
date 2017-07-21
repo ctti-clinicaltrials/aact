@@ -207,8 +207,7 @@ module ClinicalTrials
       public_announcement.save!
       ActiveRecord::Base.transaction do
         remove_indexes  # Index significantly slow the load process.
-        update_studies(added_ids)
-        update_studies(changed_ids)
+        update_studies(ids)
         add_indexes
         CalculatedValue.populate
       end
