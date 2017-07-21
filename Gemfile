@@ -10,7 +10,7 @@ gem "autoprefixer-rails"
 gem "flutie"
 gem "high_voltage"
 gem "jquery-rails"
-gem "appsignal"
+gem 'appsignal', '~> 2.3'
 gem "sidekiq"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"

@@ -1,0 +1,51 @@
+# config/appsignal.yml
+default: &defaults
+  # Your push api key, it is possible to set this dynamically using ERB:
+   push_api_key: "<%= ENV['APPSIGNAL_PUSH_API_KEY'] %>"
+
+  # Your app's name
+  name: "AACT"
+
+  # Your server's hostname
+  hostname: "aact.ctti-clinicaltrials.org"
+
+  # Add default instrumentation of net/http
+  instrument_net_http: true
+
+  # Skip session data, it contains private information.
+  skip_session_data: true
+
+  # Ignore these errors.
+  ignore_errors:
+    - SystemExit
+
+  # Ignore these actions, used by our Loadbalancer.
+  ignore_actions:
+    - IsUpController#index
+
+  # Enable allocation tracking for memory metrics:
+  enable_allocation_tracking: true
+
+  # Enable Garbage Collection instrumentation
+  enable_gc_instrumentation: true
+
+# Configuration per environment, leave out an environment or set active
+# to false to not push metrics for that environment.
+
+development:
+  <<: *defaults
+  active: <%= ENV['APPSIGNAL_ACTIVE'] == 'true' %>
+
+production:
+  <<: *defaults
+  active: <%= ENV['APPSIGNAL_ACTIVE'] == 'true' %>
+
+  # Set different path for the log file
+  #log_path: '/home/my_app/app/shared/log'
+
+  # Set AppSignal working dir
+  working_dir_path: '/tmp/appsignal'
+
+  # When it's not possible to connect to the outside world without a proxy
+  #http_proxy: 'proxy.mydomain.com:8080'
+
