@@ -188,6 +188,7 @@ module ClinicalTrials
       log("finding studies changed in past #{days_back} days...")
       added_ids = ClinicalTrials::RssReader.new(days_back: days_back).get_added_nct_ids
       changed_ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
+      ids=(changed_ids + added_ids).uniq
       log("found #{ids.size} studies that have been changed")
       case ids.size
       when 0
@@ -201,6 +202,7 @@ module ClinicalTrials
         return
       end
       set_expected_counts(ids)
+      PublicAnnouncement.destroy_all
       public_announcement=PublicAnnouncement.new(:description=>"The live AACT database is temporarily unavailable because the daily update is running.")
       public_announcement.save!
       revoke_db_privs
