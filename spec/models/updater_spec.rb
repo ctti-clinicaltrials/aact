@@ -3,6 +3,10 @@ require 'rails_helper'
 describe ClinicalTrials::Updater do
 
   it "aborts incremental load when number of studies exceeds 10000" do
+    stub_request(:get, "https://clinicaltrials.gov/ct2/results/rss.xml?count=10000&rcv_d=4&show_rss=Y").
+         with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+         to_return(:status => 200, :body => "", :headers => {})
+    allow_any_instance_of(ClinicalTrials::RssReader).to receive(:get_added_nct_ids).and_return( [*1..10000] )
     allow_any_instance_of(ClinicalTrials::RssReader).to receive(:get_changed_nct_ids).and_return( [*1..10000] )
     updater=ClinicalTrials::Updater.new
     expect(updater).to receive(:send_notification).once
