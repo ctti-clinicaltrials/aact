@@ -5,8 +5,8 @@ describe ClinicalTrials::RssReader do
 
     context 'without a specified days_back arg' do
       it 'should generate the correct url' do
-        changed_url = "https://clinicaltrials.gov/ct2/results/rss.xml?lup_d=1&recrs=a&count=10000"
-        added_url = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=1&show_rss=Y&count=10000"
+        changed_url = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=&lup_d=1&sel_rss=mod1&recrs=a&count=10000"
+        added_url = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=1&lup_d=&sel_rss=new1&recrs=a&count=10000"
 
         reader = described_class.new
 
@@ -17,8 +17,8 @@ describe ClinicalTrials::RssReader do
 
     context 'with a specified days_back arg' do
       it 'should generate the correct url' do
-        changed_url = "https://clinicaltrials.gov/ct2/results/rss.xml?lup_d=14&recrs=a&count=10000"
-        added_url = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=14&show_rss=Y&count=10000"
+        changed_url = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=&lup_d=14&sel_rss=mod14&recrs=a&count=10000"
+        added_url = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=14&lup_d=&sel_rss=new14&recrs=a&count=10000"
 
         reader = described_class.new(days_back: 14)
 
