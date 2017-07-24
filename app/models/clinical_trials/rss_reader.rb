@@ -4,7 +4,7 @@ require 'uri'
 module ClinicalTrials
   class RssReader
     BASE_URL = 'https://clinicaltrials.gov'
-    #https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=30&lup_d=30&show_rss=Y&sel_rss=mod30&count=10000
+    #https://clinicaltrials.gov/ct2/results/rss.xml?lup_d=4&count=10000
 
     attr_reader :changed_url, :added_url
 
