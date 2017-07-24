@@ -1,21 +1,17 @@
 module ClinicalTrials
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :study_filter
+    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader
 
     def initialize(params={})
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
-        puts("Restarting the load...")
-        # don't allow filtering by nct ID unless it's a restart because filtering is done so that multiple loads can run simultaneously
-        # if multiple jobs running for initial full load - they would step on each ther when study_xml_records table gets truncated
-        @study_filter=@params[:study_filter]
-        record_type="Restart #{@study_filter}"
-      else
         puts("Starting the #{type} load...")
         record_type=type
       end
       @client = ClinicalTrials::Client.new
+      @days_back=(@params[:days_back] ? @params[:days_back] : 4)
+      @rss_reader = ClinicalTrials::RssReader.new(days_back: @days_back)
       @load_event = LoadEvent.create({:event_type=>record_type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
       self
@@ -23,18 +19,13 @@ module ClinicalTrials
 
     def run
       ActiveRecord::Base.logger=nil
-      if study_filter
-        @client.populate_studies(study_filter)
-        load_event.complete({:new_studies=> Study.count})
-      else
-        case params[:event_type]
+      case params[:event_type]
         when 'full'
           full
         when 'finalize'
           finalize_full_load
         else
           incremental
-        end
       end
     end
 
@@ -184,10 +175,9 @@ module ClinicalTrials
 
     def incremental
       log("begin incremental load...")
-      days_back=(@params[:days_back] ? @params[:days_back] : 4)
-      log("finding studies changed in past #{days_back} days...")
-      added_ids = ClinicalTrials::RssReader.new(days_back: days_back).get_added_nct_ids
-      changed_ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
+      log("finding studies changed in past #{@days_back} days...")
+      added_ids = @rss_reader.get_added_nct_ids
+      changed_ids = @rss_reader.get_changed_nct_ids
       ids=(changed_ids + added_ids).uniq
       log("found #{ids.size} studies that have been changed")
       case ids.size
@@ -207,8 +197,7 @@ module ClinicalTrials
       public_announcement.save!
       ActiveRecord::Base.transaction do
         remove_indexes  # Index significantly slow the load process.
-        update_studies(added_ids)
-        update_studies(changed_ids)
+        update_studies(ids)
         add_indexes
         CalculatedValue.populate
       end
