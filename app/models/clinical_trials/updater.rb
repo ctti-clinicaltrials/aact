@@ -159,7 +159,7 @@ module ClinicalTrials
       m=ActiveRecord::Migration.new
       ClinicalTrials::Updater.loadable_tables.each {|table_name|
         ActiveRecord::Base.connection.indexes(table_name).each{|index|
-          m.remove_index(index.table, index.columns) unless should_keep_index?(index)
+          m.remove_index(index.table, index.columns) if !should_keep_index?(index) and m.index_exists?(index.table, index.columns)
         }
       }
     end
@@ -170,7 +170,7 @@ module ClinicalTrials
 
     def add_indexes
       m=ActiveRecord::Migration.new
-      indexes.each{|index| m.add_index index.first, index.last}
+      indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.table, index.columns)}
     end
 
     def incremental
