@@ -170,7 +170,7 @@ module ClinicalTrials
 
     def add_indexes
       m=ActiveRecord::Migration.new
-      indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.table, index.columns)}
+      indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
     end
 
     def incremental
