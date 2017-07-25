@@ -32,21 +32,25 @@ module ClinicalTrials
     def full
       begin
         log('begin ...')
-        @client.reboot_db
-        revoke_db_privs
-        public_announcement=PublicAnnouncement.new(:description=>"The AACT database is currently unavailable because it is undergoing a full refresh. It should be available again by #{(Time.now + 12.hours).strftime("%I:%M%p  %m/%d/%Y EST")} We apologize for the inconvenience.")
-        public_announcement.save!
         if should_restart?
           log("restarting full load...")
         else
           log("initiating full load...")
           AdminBase.connection.truncate('study_xml_records')
           @client.download_xml_files
-          truncate_tables
         end
+        log("rebooting database to disconnect users...")
+        @client.reboot_db
+        log("preventing user access...")
+        revoke_db_privs
+        truncate_tables if !should_restart?
+        public_announcement=PublicAnnouncement.new(:description=>"The AACT database is currently unavailable because it is undergoing a full refresh. It should be available again by #{(Time.now + 12.hours).strftime("%I:%M%p  %m/%d/%Y EST")} We apologize for the inconvenience.")
+        public_announcement.save!
+        log("dropping indexes...")
         remove_indexes  # Index significantly slow the load process.
         study_counts[:should_add]=StudyXmlRecord.count
         study_counts[:should_change]=0
+        log("re-populating database...")
         @client.populate_studies
         finalize_full_load
         public_announcement.destroy
