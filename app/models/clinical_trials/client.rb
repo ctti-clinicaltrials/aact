@@ -21,6 +21,13 @@ module ClinicalTrials
           db_instance_identifier: db_name,
           force_failover: false,
       })
+      sleep 2  # give it time to reboot before connecting
+      begin
+        ActiveRecord::Base.connection
+      rescue
+        sleep 4
+        retry
+      end
     end
 
     def download_xml_files
