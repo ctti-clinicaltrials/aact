@@ -14,6 +14,15 @@ module ClinicalTrials
       @errors = []
     end
 
+    def reboot_db
+      db_name=ENV['S3_BUCKET_NAME']
+      aws_client = Aws::RDS::Client.new(region: ENV['AWS_REGION'])
+      resp = aws_client.reboot_db_instance({
+          db_instance_identifier: db_name,
+          force_failover: false,
+      })
+    end
+
     def download_xml_files
       tries ||= 5
 
