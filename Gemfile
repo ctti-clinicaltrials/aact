@@ -1,9 +1,10 @@
 source "https://rubygems.org"
 
-ruby "2.2.3"
+ruby "2.4.1"
 
+gem 'libv8', '3.16.14.3'
 gem 'faraday_middleware-aws-signers-v4'
-gem "rails", "~> 4.2.6"
+gem 'rails', github: 'rails/rails', branch: '4-2-stable'
 gem "rack-timeout"
 gem "faraday"
 gem "autoprefixer-rails"
@@ -12,14 +13,14 @@ gem "high_voltage"
 gem "jquery-rails"
 gem 'appsignal', '~> 2.3'
 gem "sidekiq"
-gem "normalize-rails", "~> 3.0.0"
+gem "normalize-rails"
 gem "pg"
 gem 'rails_12factor'
 gem "puma"
 gem "coderay"
 gem "recipient_interceptor"
-gem "sass-rails", "~> 5.0"
-gem "sprockets", ">= 3.0.0"
+gem "sass-rails"
+gem "sprockets-rails",'>= 2.0'
 gem "title"
 gem "uglifier"
 gem "jbuilder"
@@ -30,34 +31,25 @@ gem 'enumerize'
 gem 'bulk_insert'
 gem 'activerecord-import'
 gem 'sinatra', :require => nil
-gem 'aws-sdk', '~> 2'
 gem 'font-awesome-sass'
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
-
-gem 'fog'
-#gem 'rmagick'
-gem 'carrierwave'
-gem 'mini_magick', '~> 4.3'
+gem 'gon'
 
 # Grape API
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
 
-gem 'grape','>= 0.10.0'
-gem 'grape-swagger'
-gem 'kaminari'
-gem 'grape-kaminari'
-gem 'api-pagination'
-gem "hashie-forbidden_attributes" #overrides strong_params in grape endpoints
 gem 'active_model_serializers', '~> 0.9.0'
-gem "grape-active_model_serializers"
 
 gem 'elasticsearch-ruby'
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 
 group :development, :docker do
+  gem 'capistrano', '~> 3.8'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-chruby'
   gem "quiet_assets"
   gem "spring"
   gem "spring-commands-rspec"
@@ -68,11 +60,11 @@ group :development, :test, :docker, :docker_test do
   gem "awesome_print"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
-  gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.4.0"
+  gem 'rspec-rails'
+  gem 'single_test'
 end
 
 group :development, :staging, :docker do

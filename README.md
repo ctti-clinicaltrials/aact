@@ -31,8 +31,6 @@ The full import will download the entire dataset from clinicaltrials.gov. This r
 
 The daily import will check the RSS feed at clinicaltrials.gov for studies that have been added or changed. You can specify how many days back to look in the dataset with the `days_back` argument above. To import changed/new studies from two days back: `bundle exec rake import:daily:run[2]`
 
-On Heroku, we use Heroku Scheduler to run these rake tasks on a recurring basis.
-
 
 ## Sanity checks
 

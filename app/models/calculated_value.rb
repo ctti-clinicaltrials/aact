@@ -22,7 +22,16 @@ class CalculatedValue < ActiveRecord::Base
       cmd='UPDATE calculated_values '+ CalculatedValue.send(method)
       ActiveRecord::Base.connection.execute(cmd)
     }
+    self.save_downcased_mesh_terms
     ActiveRecord::Base.connection.execute("GRANT SELECT ON TABLE calculated_values TO aact")
+  end
+
+  def self.save_downcased_mesh_terms
+    #  save a lowercase version of MeSH terms so they can be found without worrying about case
+    ActiveRecord::Base.connection.execute("UPDATE browse_conditions SET downcase_mesh_term=lower(mesh_term);")
+    ActiveRecord::Base.connection.execute("UPDATE browse_interventions SET downcase_mesh_term=lower(mesh_term);")
+    ActiveRecord::Base.connection.execute("UPDATE keywords SET downcase_name=lower(name);")
+    ActiveRecord::Base.connection.execute("UPDATE conditions SET downcase_name=lower(name);")
   end
 
   def self.sql_methods

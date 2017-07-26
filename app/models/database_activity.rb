@@ -1,62 +1,56 @@
 class DatabaseActivity < AdminBase
+  #  pg log files are created for each day of the week:  Mon-Sun.  So there are always 7 files.
+  #  we can either pull in data from one or all of these files.  If the day is not specified, iterate over all the files
 
-  def self.populate
-    #ClinicalTrials::FileManager.db_log_file_content({:db_name=>ENV['S3_BUCKET_NAME']}).each {|log|
-    ClinicalTrials::FileManager.db_log_file_content({:db_name=>'aact-prod'}).each {|log|
-     log_time=nil
-     log_message=''
-     ip_addr=nil
-     log_type=nil
-     file_name=log[:file_name].split('error/postgresql.log.').last
-     exists=(where('file_name=?',file_name).size > 0)
-     unless exists or file_name=='error/postgres.log'  # If data from log file already loaded, skip it.
-       entries=log[:content].split(/\n/)
-       entries.each{|entry|
-         if entry.include?('UTC:')
-           if !log_type.nil? and !log_time.nil? #  save previous entry.  If there is no log type, this is a continuation of the previous entry
-             new({:file_name=>file_name.strip, :log_date=>log_time, :log_type=>log_type.strip, :description=>log_message.strip, :ip_address=>ip_addr.try(:strip)}).save!
-           end
-           log_type=log_type_from(entry)
-           log_time=entry.split(/UTC:/).first.strip.to_datetime if log_time.nil?
-           log_message=log_message_from(entry)
-           ip_addr=ip_addr_from(entry)
-         else
-           log_message=log_message+entry
-         end
-         # save last entry in the log file
-         if !log_type.nil? and !log_time.nil?
-           new({:file_name=>file_name.strip, :log_date=>log_time, :log_type=>log_type.strip, :description=>log_message.strip, :ip_address=>ip_addr.try(:strip)}).save!
-         end
-       }
-     end
-     }
+  def self.populate(params={:day=>nil})
+
+    if params[:day].nil?  # Iterate thru all 7 log files if a day isn't specified.
+      ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].each{|day|
+        entries=Util::FileManager.db_log_file_content({:day=>day})
+        process_entries(entries)
+      }
+    else
+      entries=Util::FileManager.db_log_file_content({:day=>params[:day]})
+      process_entries(entries)
+    end
   end
 
-  def self.log_types
+  def self.process_entries(entries)
+    previous_entry=nil
+    file_name=entries.try(:path)
+    entries.each {|entry|
+      new_entry=new.create_entry(entry)
+      if new_entry.log_date.nil?  # if no date, assume this is a continuation of previous entry
+        previous_entry.description = previous_entry.description + new_entry.description
+      else
+        previous_entry=new_entry
+        previous_entry.file_name=file_name
+        previous_entry.save!
+      end
+    }
+  end
+
+  def create_entry(entry)
+    self.log_date=entry.split(/ EDT >/).first.split('< ').last.strip
+    self.log_type=log_type_from(entry)
+    self.description=log_message_from(entry)
+    self
+  end
+
+  def log_types
     ['DETAIL','ERROR','FATAL','HINT','LOG','STATEMENT','WARNING','CONTEXT']
   end
 
-  def self.log_type_from(entry)
+  def log_type_from(entry)
     self.log_types.each{|type| return type if entry.include?(type) }
     return 'UNKNOWN'
   end
 
-  def self.log_message_from(entry)
-    self.log_types.each{|type|
-      return entry.split("#{type}:").last.strip if entry.include?(type)
+  def log_message_from(entry)
+    log_types.each{|t|
+      return entry.split("#{t}:").last.strip if entry.include?(t)
     }
-    return "Unknown type in #{entry}?"
-  end
-
-  def self.ip_addr_from(entry)
-    possible_ip_addr=entry.split(':aact@aact:').first.split('UTC:').last.split('(').first
-    possible_ip_addr=(entry.split('UTC::').last.split(']:').first) if possible_ip_addr.nil?
-    return '[unknown]@[unknown]' if possible_ip_addr.include?("[unknown]@[unknown]")
-    return nil if !(possible_ip_addr.match /^:@:/).nil?
-    self.log_types.each{|type|
-      return possible_ip_addr.split(":#{type}:").first.strip if possible_ip_addr.include?(type)
-    }
-    possible_ip_addr
+    return entry
   end
 
 end

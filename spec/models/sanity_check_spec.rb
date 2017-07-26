@@ -14,7 +14,7 @@ describe SanityCheck do
   end
 
   it 'should have row count 1 for each table that has 1-to-1 relationship with studies table' do
-    ClinicalTrials::Updater.single_study_tables.each{|table_name|
+    Util::Updater.single_study_tables.each{|table_name|
        rows=SanityCheck.where('table_name=?',table_name)
        expect(rows.size).to eq(1)
        row=rows.first

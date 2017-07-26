@@ -22,6 +22,10 @@ class Study < ActiveRecord::Base
     self.interventional and self.current
   end
 
+  scope :started_between, lambda {|sdate, edate| where("start_date >= ? AND created_at <= ?", sdate, edate )}
+  scope :changed_since,   lambda {|cdate| where("last_changed_date >= ?", cdate )}
+  scope :completed_since, lambda {|cdate| where("completion_date >= ?", cdate )}
+  scope :sponsored_by,    lambda {|agency| joins(:sponsors).where("sponsors.agency LIKE ?", "#{agency}%")}
   scope :with_one_to_ones,   -> { joins(:eligibility, :brief_summary, :design, :detailed_description) }
   scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :responsible_parties) }
   self.primary_key = 'nct_id'
@@ -302,6 +306,9 @@ class Study < ActiveRecord::Base
     #  This isn't real.  Just proof of concept.
     return facilities.first.address if facilities.size > 0
     return lead_sponsor.agency
+  end
+
+  def completed_since(aDate)
   end
 
   def has(attrib,label)
