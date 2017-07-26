@@ -32,8 +32,9 @@ module ClinicalTrials
     def full
       begin
         log('begin ...')
+        @client.reboot_db
         revoke_db_privs
-        public_announcement=PublicAnnouncement.new(:description=>"The live AACT database is unavailable because full refresh is running. This may take several hours.  We apologize for the inconvenience.")
+        public_announcement=PublicAnnouncement.new(:description=>"The AACT database is currently unavailable because it is undergoing a full refresh. It should be available again by #{(Time.now + 12.hours).strftime("%I:%M%p  %m/%d/%Y EST")} We apologize for the inconvenience.")
         public_announcement.save!
         if should_restart?
           log("restarting full load...")
