@@ -6,7 +6,7 @@ set :application, "aact"
 set :repo_url, "git@github.com:ctti-clinicaltrials/aact.git"
 
 # Default branch is :master
-ask :branch, 'development'
+ask :branch, 'staging'
 set :rails_env, 'staging'
 
 # Default deploy_to directory is /var/www/my_app_name
