@@ -66,6 +66,7 @@ class CreateAdminTables < ActiveRecord::Migration
       t.string 'file_name'
       t.string 'content_type'
       t.binary 'file_contents'
+      t.boolean 'is_image'
       t.timestamps null: false
     end
 

@@ -7,7 +7,7 @@ class FullImportWorker
       event_type: 'full_import'
     )
 
-    client = ClinicalTrials::Client.new
+    client = Util::Client.new
     client.download_xml_files
     client.populate_studies
 

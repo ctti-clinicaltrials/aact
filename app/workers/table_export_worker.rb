@@ -3,6 +3,6 @@ class TableExportWorker
   sidekiq_options queue: 'table_export'
 
   def perform(delimiter)
-    TableExporter.new.run(delimiter: delimiter, should_upload_to_s3: true)
+    Util::TableExporter.new.run(delimiter: delimiter, should_archive: true)
   end
 end

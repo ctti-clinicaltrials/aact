@@ -1,0 +1,2 @@
+class AllCondition < StudyRelationship
+end

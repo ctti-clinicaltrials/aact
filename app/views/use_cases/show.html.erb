@@ -14,14 +14,15 @@
   <section class='useCase'>
     <p>
     <div class='useCase'>
-      <% if @use_case.image %>
-        <p class='headingImage' align="middle">
-          <a href='<%= @use_case.image %>' target='_blank' >
-            <%= image_tag @use_case.image_url(:medium) %>
-          </a>
-        </p>
-      <% end %>
       <p class='headingText'><%= @use_case.title %></p>
+      <% if @use_case.image %>
+        <a href='/use_case_attachments/<%= @use_case.image.id %>'>
+          <p class='headingImage' align="middle">
+          <%= image_tag url_for(:controller => "use_case_attachments", :action =>
+"show",:id => @use_case.image.id) %>
+          </p>
+        </a>
+      <% end %>
     </div>
     </p>
 

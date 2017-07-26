@@ -2,7 +2,7 @@ class SanityCheck < AdminBase
 
   def self.save_row_counts
     AdminBase.connection.execute('UPDATE sanity_checks SET most_current=false')
-    ClinicalTrials::Updater.loadable_tables.each{|table_name|
+    Util::Updater.loadable_tables.each{|table_name|
       table_name='references' if table_name=='study_references'
       cnt=table_name.singularize.camelize.constantize.count
       new({:table_name=>table_name,:row_count=>cnt,:most_current=>true}).save!
@@ -42,7 +42,7 @@ class SanityCheck < AdminBase
   end
 
   def self.check_for_duplicates
-    ClinicalTrials::Updater.single_study_tables.each{|table_name|
+    Util::Updater.single_study_tables.each{|table_name|
       results=ActiveRecord::Base.connection.execute("
          SELECT nct_id, count(*)
            FROM #{table_name}
@@ -65,7 +65,7 @@ class SanityCheck < AdminBase
   end
 
   def generate_report
-    ClinicalTrials::Updater.loadable_tables.inject({}) do |hash, table_name|
+    Util::Updater.loadable_tables.inject({}) do |hash, table_name|
       hash[table_name] = {
         row_count: @connection.execute("select count(*) from #{table_name}").values.flatten.first.to_i,
         column_stats: generate_column_width_stats(table_name)
