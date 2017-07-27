@@ -175,6 +175,7 @@ module ClinicalTrials
     end
 
     def incremental
+      load_event.event_type='incremental'
       log("begin incremental load...")
       log("finding studies changed in past #{@days_back} days...")
       added_ids = @rss_reader.get_added_nct_ids
