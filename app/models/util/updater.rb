@@ -31,19 +31,17 @@ module Util
 
     def full
       begin
-        log('begin ...')
-        revoke_db_privs
-        public_announcement=PublicAnnouncement.new(:description=>"The live AACT database is unavailable because full refresh is running. This may take several hours.  We apologize for the inconvenience.")
-        public_announcement.save!
         if should_restart?
           log("restarting full load...")
         else
-          log("initiating full load...")
-          AdminBase.connection.truncate('study_xml_records')
-          @client.download_xml_files
-          truncate_tables
+          log('begin full load ...')
+          retrieve_xml_from_ctgov
         end
-        remove_indexes  # Index significantly slow the load process.
+        eta=(Time.now + 12.hours).strftime("%I:%M%p  %m/%d/%Y")
+        submit_public_announcement("The AACT database is being refreshed and will be unavailable until approximately: #{eta} EST.  We apologize for the inconvenience.")
+        revoke_db_privs
+        truncate_tables if !should_restart?
+        remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
         study_counts[:should_add]=StudyXmlRecord.count
         study_counts[:should_change]=0
         @client.populate_studies
@@ -56,6 +54,12 @@ module Util
         load_event.complete({:status=>'failed', :problems=> e.to_s, :study_counts=> study_counts})
         send_notification
       end
+    end
+
+    def retrieve_xml_from_ctgov
+      log("retrieving xml from clinicaltrials.gov ...")
+      AdminBase.connection.truncate('study_xml_records')
+      @client.download_xml_files
     end
 
     def finalize_full_load
@@ -204,9 +208,7 @@ module Util
         return
       end
       set_expected_counts(ids)
-      PublicAnnouncement.destroy_all
-      public_announcement=PublicAnnouncement.new(:description=>"The live AACT database is temporarily unavailable because the daily update is running.")
-      public_announcement.save!
+      submit_announcement("The AACT database is temporarily unavailable because the daily update is running.")
       ActiveRecord::Base.transaction do
         remove_indexes  # Index significantly slow the load process.
         update_studies(ids)
@@ -371,6 +373,10 @@ private
 
     def db_name
       ActiveRecord::Base.connection.current_database
+    end
+
+    def submit_public_announcement(announcement)
+      PublicAnnouncement.populate(announcement)
     end
 
   end

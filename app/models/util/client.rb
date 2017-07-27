@@ -31,14 +31,12 @@ module Util
           retry
         end
       end
-
       file.binmode
       file.write(download)
       file.size
 
       Zip::File.open(file.path) do |zipfile|
         cnt=zipfile.size
-        puts "Populating StudyXmlRecords table with #{cnt} rows..."
         zipfile.each do |file|
           xml = file.get_input_stream.read
           nct_id = extract_nct_id_from_study(xml)
