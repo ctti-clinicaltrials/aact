@@ -209,12 +209,10 @@ module Util
       end
       set_expected_counts(ids)
       submit_announcement("The AACT database is temporarily unavailable because the daily update is running.")
-      ActiveRecord::Base.transaction do
-        remove_indexes  # Index significantly slow the load process.
-        update_studies(ids)
-        add_indexes
-        CalculatedValue.populate
-      end
+      remove_indexes  # Index significantly slow the load process.
+      update_studies(ids)
+      add_indexes
+      CalculatedValue.populate
       public_announcement.destroy
       populate_admin_tables
       log_actual_counts
@@ -257,22 +255,25 @@ module Util
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       study_counts[:count_down]=nct_ids.size
 
-      Util::Updater.loadable_tables.each { |table|
-        stime=Time.now
-        ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
-        log("deleted studies from #{table}   #{Time.now - stime}")
-      }
-      AdminBase.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
-      nct_ids.each {|nct_id|
-        refresh_study(nct_id)
-        decrement_count_down
-        show_progress(nct_id,'refreshing study')
-      }
+      ActiveRecord::Base.transaction do
+        Util::Updater.loadable_tables.each { |table|
+          stime=Time.now
+          ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
+          log("deleted studies from #{table}   #{Time.now - stime}")
+        }
+        AdminBase.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
+        nct_ids.each {|nct_id|
+          refresh_study(nct_id)
+          decrement_count_down
+          show_progress(nct_id,'refreshing study')
+        }
+      end
       self
     end
 
     def log(msg)
-      load_event.log(msg)
+      puts msg
+      #load_event.log(msg)
     end
 
     def show_progress(nct_id,action)
