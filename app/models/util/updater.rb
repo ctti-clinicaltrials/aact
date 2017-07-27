@@ -42,7 +42,7 @@ module Util
         revoke_db_privs
         truncate_tables if !should_restart?
         remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
-        study_counts[:should_add]=StudyXmlRecord.count
+        study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
         study_counts[:should_change]=0
         @client.populate_studies
         finalize_full_load
