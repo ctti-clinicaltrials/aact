@@ -1,7 +1,9 @@
 class PublicAnnouncement < AdminBase
 
   def self.populate(string)
-    new(:description=>string).save!
+    self.destroy_all
+    pa=new(:description=>string).save!
+    pa.save!
   end
 
 end
