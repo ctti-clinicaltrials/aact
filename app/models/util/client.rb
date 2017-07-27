@@ -71,21 +71,25 @@ module Util
       StudyXmlRecord.where(nct_id: nct_id).first_or_create {|rec|rec.content = xml} unless @dry_run
     end
 
-    def populate_studies(study_filter=nil)
+    def populate_studies
       return if @dry_run
       load_event = LoadEvent.create( event_type: 'populate_studies')
-
-      studies_to_load=StudyXmlRecord.not_yet_loaded(study_filter)
-      cntr=studies_to_load.size
+      total_count=StudyXmlRecord.not_yet_loaded.count
       start_time=Time.now
-      puts "Load #{cntr} studies Start Time.....#{start_time}"
-      studies_to_load.each do |xml_record|
-        stime=Time.now
-        import_xml_file(xml_record.content)
-        xml_record.created_study_at=Date.today
-        xml_record.save!
-        puts "#{cntr} saved #{xml_record.nct_id}:  #{Time.now - stime}"
-        cntr=cntr-1
+      puts "Load #{total_count} studies Start Time.....#{start_time}"
+
+      cntr=total_count
+      while cntr > 0
+        #  Memory limitation: process in chunks. Too slow if we go one-by-one tho.
+        StudyXmlRecord.not_yet_loaded[0..10000].each do |xml_record|
+          stime=Time.now
+          import_xml_file(xml_record.content)
+          xml_record.created_study_at=Date.today
+          xml_record.save!
+          puts "#{cntr} saved #{xml_record.nct_id}:  #{Time.now - stime}"
+          cntr=cntr-1
+        end
+        cntr=StudyXmlRecord.not_yet_loaded.count
       end
       load_event.complete
       puts "Total Load Time:.....#{Time.now - start_time}"
