@@ -34,7 +34,10 @@ module Util
       file.binmode
       file.write(download)
       file.size
+      file
+    end
 
+    def save_file_contents(file)
       Zip::File.open(file.path) do |zipfile|
         cnt=zipfile.size
         zipfile.each do |file|

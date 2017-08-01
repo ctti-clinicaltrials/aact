@@ -59,7 +59,7 @@ describe Util::Client do
     end
   end
 
-  xdescribe '#download_xml_files' do
+  describe '#download_xml_files' do
     before do
       stub_request(:get, expected_url).
         with(:headers => stub_request_headers).
@@ -67,31 +67,18 @@ describe Util::Client do
     end
 
     context 'default dry_run false' do
-      it 'should create a study xml record and load event' do
-        expect {
-          subject.download_xml_files
-        }.to change{StudyXmlRecord.count}.by(2)
-
-        study_xml_record_1 = StudyXmlRecord.find_by(nct_id:'NCT00513591')
-        expect(study_xml_record_1).to be
+      it 'should save data from the xml file to the StudyXmlRecords table' do
+        StudyXmlRecord.destroy_all
+        subject.save_file_contents(File.open(Rails.root.join('spec','support','xml_data','download_xml_files.zip')))
+        expect(StudyXmlRecord.count).to eq(2)
+        rec = StudyXmlRecord.find_by(nct_id:'NCT00513591')
 
         raw_xml_content = Nokogiri::XML(raw_study_xml_1).child.to_xml
-        existing_xml_content = Nokogiri::XML(study_xml_record_1.content).child.to_xml
-        #expect(existing_xml_content).to eq(raw_xml_content)
+        existing_xml_content = Nokogiri::XML(rec.content).child.to_xml
+        #expect(existing_xml_content).to eq(raw_xml_content)  #tags don't always appear in expected order
       end
     end
 
-    context 'dry_run true' do
-      subject { described_class.new(search_term: search_term, dry_run: true) }
-
-      it 'should not create a study xml records or load events' do
-        expect {
-          expect {
-            subject.download_xml_files
-          }.not_to change{StudyXmlRecord.count}
-        }.not_to change{LoadEvent.count}
-      end
-    end
   end
 
   describe '#create_study_xml_record(nct_id,xml)' do
