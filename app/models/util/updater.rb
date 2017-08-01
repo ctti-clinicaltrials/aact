@@ -59,7 +59,7 @@ module Util
     def retrieve_xml_from_ctgov
       log("retrieving xml from clinicaltrials.gov ...")
       AdminBase.connection.truncate('study_xml_records')
-      @client.download_xml_files
+      @client.save_file_contents(@client.download_xml_files)
     end
 
     def finalize_full_load
