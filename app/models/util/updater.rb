@@ -208,7 +208,7 @@ module Util
         return
       end
       set_expected_counts(ids)
-      submit_announcement("The AACT database is temporarily unavailable because the daily update is running.")
+      submit_public_announcement("The AACT database is temporarily unavailable because the daily update is running.")
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       add_indexes
