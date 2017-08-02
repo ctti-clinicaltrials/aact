@@ -64,7 +64,7 @@ module ClinicalTrials
       begin
         url="#{BASE_URL}/show/#{nct_id}?resultsxml=true"
         Nokogiri::XML(Faraday.get(url).body)
-      rescue  e
+      rescue => e
         #  have been encountering timeout errors.  If encountered, try again
         if (tries -=1) > 0
           puts "Error calling: #{url}"
