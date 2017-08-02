@@ -131,7 +131,7 @@ module Util
          [:mesh_terms, :qualifier],
          [:mesh_terms, :description],
          [:mesh_terms, :mesh_term],
-         [:mesh_terms, :download_mesh_term],
+         [:mesh_terms, :downcase_mesh_term],
          [:mesh_headings, :qualifier],
          [:milestones, :period],
          [:outcomes, :param_type],
