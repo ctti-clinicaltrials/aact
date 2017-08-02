@@ -46,12 +46,13 @@ module Util
         study_counts[:should_change]=0
         @client.populate_studies
         finalize_full_load
-        public_announcement.destroy
+        PublicAnnouncement.destroy_all
       rescue  Exception => e
         study_counts[:processed]=Study.count
         puts ">>>>>>>>>>> Full load failed:  #{e}"
         grant_db_privs
         load_event.complete({:status=>'failed', :problems=> e.to_s, :study_counts=> study_counts})
+        PublicAnnouncement.destroy_all
         send_notification
       end
     end
