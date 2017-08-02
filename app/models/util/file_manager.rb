@@ -32,6 +32,10 @@ module Util
       "#{static_root_dir}/tmp"
     end
 
+    def self.xml_file_directory
+      "#{static_root_dir}/xml_downloads"
+    end
+
     def self.pg_dump_file
       "#{static_root_dir}/tmp/postgres.dmp"
     end
