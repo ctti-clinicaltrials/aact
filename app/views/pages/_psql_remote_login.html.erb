@@ -1,6 +1,6 @@
 <pre>
   <p class='code'>
-    <span class='command-prompt'>-&gt; </span><span class='command-entry'> psql --host <%=  ENV["RDS_DB_HOSTNAME"] %> --port=5432 --username=<%= ENV["RDS_DB_READONLY_USERNAME"] %> --dbname=<%= ENV["RDS_DB_READONLY_DBNAME"] %></span>
+    <span class='command-prompt'>-&gt; </span><span class='command-entry'> psql --host <%=  ENV["DB_HOSTNAME"] %> --port=5432 --username=<%= ENV["DB_READONLY_USERNAME"] %> --dbname=<%= ENV["DB_READONLY_DBNAME"] %></span>
     <span class='command-response'> </span>
     <span class='command-response'>  psql (9.5.3, server 9.5.4)</span>
     <span class='command-response'>  SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)</span>
