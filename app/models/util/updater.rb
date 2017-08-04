@@ -216,9 +216,9 @@ module Util
       update_studies(ids)
       add_indexes
       CalculatedValue.populate
-      public_announcement.destroy
       populate_admin_tables
       log_actual_counts
+      PublicAnnouncement.destroy_all
       load_event.complete({:study_counts=> study_counts})
       send_notification
     end
