@@ -126,9 +126,8 @@ module Util
       dump_file_name=self.class.pg_dump_file
       File.delete(dump_file_name) if File.exist?(dump_file_name)
 
-      `PGPASSWORD=$RDS_DB_SUPER_PASSWORD pg_dump aact -h $RDS_DB_HOSTNAME -p 5432 -U $RDS_DB_SUPER_USERNAME --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  /var/local/share/tmp/postgres.dmp`
+      `PGPASSWORD=$DB_SUPER_PASSWORD pg_dump aact -h $DB_HOSTNAME -p 5432 -U $DB_SUPER_USERNAME --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  /var/local/share/tmp/postgres.dmp`
 
-      #`PGPASSWORD=ukmfp2d! pg_dump aact -h localhost -p 5432 -U tibbs001 --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  /var/local/share/tmp/postgres.dmp`
       return dump_file_name
     end
 
