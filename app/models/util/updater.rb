@@ -195,8 +195,10 @@ module Util
       log("finding studies changed in past #{@days_back} days...")
       added_ids = @rss_reader.get_added_nct_ids
       changed_ids = @rss_reader.get_changed_nct_ids
+      puts "#{changed_ids.size} changed studies: #{@rss_reader.changed_url}"
+      puts "#{added_ids.size} added studies: #{@rss_reader.added_url}"
       ids=(changed_ids + added_ids).uniq
-      log("found #{ids.size} studies that have been changed")
+      log("total #{ids.size} studies combined (having removed dups)")
       case ids.size
       when 0
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
@@ -214,9 +216,9 @@ module Util
       update_studies(ids)
       add_indexes
       CalculatedValue.populate
-      public_announcement.destroy
       populate_admin_tables
       log_actual_counts
+      PublicAnnouncement.destroy_all
       load_event.complete({:study_counts=> study_counts})
       send_notification
     end
