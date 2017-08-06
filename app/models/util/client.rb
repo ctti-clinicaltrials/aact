@@ -85,7 +85,7 @@ module Util
       cntr=total_count
       while cntr > 0
         #  Memory limitation: process in chunks. Too slow if we go one-by-one tho.
-        StudyXmlRecord.not_yet_loaded[0..10000].each do |xml_record|
+        StudyXmlRecord.not_yet_loaded[0..5000].each do |xml_record|
           stime=Time.now
           import_xml_file(xml_record.content)
           xml_record.created_study_at=Date.today
