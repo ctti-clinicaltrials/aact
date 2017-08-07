@@ -77,7 +77,6 @@ module Util
 
     def populate_studies
       return if @dry_run
-      load_event = LoadEvent.create( event_type: 'populate_studies')
       total_count=StudyXmlRecord.not_yet_loaded.count
       start_time=Time.now
       puts "Load #{total_count} studies Start Time.....#{start_time}"
@@ -95,7 +94,6 @@ module Util
         end
         cntr=StudyXmlRecord.not_yet_loaded.count
       end
-      load_event.complete
       puts "Total Load Time:.....#{Time.now - start_time}"
     end
 
