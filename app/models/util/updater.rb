@@ -7,12 +7,12 @@ module Util
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
         puts("Starting the #{type} load...")
-        record_type=type
+        type='restart'
       end
       @client = Util::Client.new
       @days_back=(@params[:days_back] ? @params[:days_back] : 4)
       @rss_reader = Util::RssReader.new(days_back: @days_back)
-      @load_event = LoadEvent.create({:event_type=>record_type,:status=>'running',:description=>'',:problems=>''})
+      @load_event = LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
       self
     end

@@ -5,9 +5,15 @@ describe LoadEvent do
   describe '#complete' do
     let!(:load_event) { create(:load_event) }
 
-    xit 'should not allow being completed twice' do
-      load_event.complete
-      expect(Proc.new {load_event.complete}).to raise_error(LoadEvent::AlreadyCompletedError)
+    it 'correctly saves the event_type' do
+      updater=Util::Updater.new({:event_type=>'incremental'})
+      expect(updater.load_event.event_type).to eq('incremental')
+      updater=Util::Updater.new({:event_type=>'full'})
+      expect(updater.load_event.event_type).to eq('full')
+      updater=Util::Updater.new({:event_type=>'restart'})
+      expect(updater.load_event.event_type).to eq('restart')
+      updater=Util::Updater.new
+      expect(updater.load_event.event_type).to eq('incremental')
     end
   end
 
