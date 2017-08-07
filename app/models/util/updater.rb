@@ -18,43 +18,44 @@ module Util
     end
 
     def run
-      ActiveRecord::Base.logger=nil
-      case params[:event_type]
-        when 'full'
-          full
-        when 'finalize'
-          finalize_full_load
-        else
-          incremental
+      begin
+        ActiveRecord::Base.logger=nil
+        case params[:event_type]
+          when 'full'
+            full
+          when 'finalize'
+            finalize_full_load
+          else
+            incremental
+        end
+      rescue  Exception => error
+        puts ">>>>>>>>>>> #{@load_event.event_type} load failed: #{error}"
+        msg="#{error.message} (#{error.class} #{error.backtrace}"
+        log(msg)
+        grant_db_privs
+        load_event.complete({:status=>'failed', :problems=> msg, :study_counts=> study_counts})
+        PublicAnnouncement.destroy_all
+        send_notification
       end
     end
 
     def full
-      begin
-        if should_restart?
-          log("restarting full load...")
-        else
-          log('begin full load ...')
-          retrieve_xml_from_ctgov
-        end
-        eta=(Time.now + 12.hours).strftime("%I:%M%p  %m/%d/%Y")
-        submit_public_announcement("The AACT database is being refreshed and will be unavailable until approximately: #{eta} EST.  We apologize for the inconvenience.")
-        revoke_db_privs
-        truncate_tables if !should_restart?
-        remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
-        study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
-        study_counts[:should_change]=0
-        @client.populate_studies
-        finalize_full_load
-        PublicAnnouncement.destroy_all
-      rescue  Exception => e
-        study_counts[:processed]=Study.count
-        puts ">>>>>>>>>>> Full load failed:  #{e}"
-        grant_db_privs
-        load_event.complete({:status=>'failed', :problems=> e.to_s, :study_counts=> study_counts})
-        PublicAnnouncement.destroy_all
-        send_notification
+      if should_restart?
+        log("restarting full load...")
+      else
+        log('begin full load ...')
+        retrieve_xml_from_ctgov
       end
+      eta=(Time.now + 12.hours).strftime("%I:%M%p  %m/%d/%Y")
+      submit_public_announcement("The AACT database is being refreshed and will be unavailable until approximately: #{eta} EST.  We apologize for the inconvenience.")
+      revoke_db_privs
+      truncate_tables if !should_restart?
+      remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
+      study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
+      study_counts[:should_change]=0
+      @client.populate_studies
+      finalize_full_load
+      PublicAnnouncement.destroy_all
     end
 
     def retrieve_xml_from_ctgov
@@ -64,15 +65,11 @@ module Util
     end
 
     def finalize_full_load
-      begin
-        remove_indexes  # Make sure indexes are gone before trying to add them.
-        add_indexes
-        MeshTerm.populate_from_file
-        MeshHeading.populate_from_file
-        create_calculated_values
-      rescue
-        grant_db_privs
-      end
+      remove_indexes  # Make sure indexes are gone before trying to add them.
+      add_indexes
+      MeshTerm.populate_from_file
+      MeshHeading.populate_from_file
+      create_calculated_values
       grant_db_privs
       populate_admin_tables
       take_snapshot
@@ -268,19 +265,17 @@ module Util
         nct_ids.each {|nct_id|
           refresh_study(nct_id)
           decrement_count_down
-          show_progress(nct_id,'refreshing study')
         }
       end
       self
     end
 
     def log(msg)
-      puts msg
-      #load_event.log(msg)
+      puts msg   # log to STDOUT
     end
 
     def show_progress(nct_id,action)
-      log("#{action}: #{study_counts[:count_down]} (#{nct_id})")
+      log("#{action}: #{nct_id} - #{study_counts[:count_down]}")
     end
 
     def decrement_count_down
@@ -322,18 +317,18 @@ module Util
       begin
         new_xml=@client.get_xml_for(nct_id)
         StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-        log("retrieved xml for #{nct_id}:  #{Time.now - stime}")
+        #log("retrieved xml for #{nct_id}:  #{Time.now - stime}")
         stime=Time.now
         verify_xml=(new_xml.xpath('//clinical_study').xpath('source').text).strip
         if verify_xml.size > 1
           Study.new({ xml: new_xml, nct_id: nct_id }).create
           study_counts[:processed]+=1
-          log("saved new data for #{nct_id}:  #{Time.now - stime}")
+          show_progress(nct_id, " refreshed #{Time.now - stime}")
         else
           log("no data found for #{nct_id}")
         end
       rescue => error
-        log("unable to save new data for #{nct_id}:  #{error}")
+        log("unable to refresh #{nct_id}: #{error.message} (#{error.class} #{error.backtrace}")
       end
     end
 
