@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00734539</url>
   </required_header>
@@ -44,22 +44,20 @@
       who develop invasive candidiasis will die or suffer severe, permanent neurologic impairment.
       Fluconazole has been commonly used off-label in the neonatal intensive care unit, but
       definitive recommendations for its use in the nursery have been hampered by the limited
-      number of well-designed trials. In neonates weighing &lt;750 g, appropriate dosing is not
-      known, definitive safety and long-term follow up trials have not been completed, and there
-      have not been well-powered trials conducted to establish the efficacy of the product using
-      mortality as part of the primary endpoint. Three recent proof-of-concept studies suggest
-      that fluconazole will be safe and effective, and a recently completed pharmacokinetic study
-      is providing data to give preliminary dosing guidance. The next logical step in drug
-      development is proposed by this research: to conduct a pivotal trial to determine the safety
-      and efficacy of fluconazole in premature neonates with 2-year neurodevelopmental follow-up
-      assessment.
+      number of well-designed trials. In neonates weighing &lt;750 g, appropriate dosing is not known,
+      definitive safety and long-term follow up trials have not been completed, and there have not
+      been well-powered trials conducted to establish the efficacy of the product using mortality
+      as part of the primary endpoint. Three recent proof-of-concept studies suggest that
+      fluconazole will be safe and effective, and a recently completed pharmacokinetic study is
+      providing data to give preliminary dosing guidance. The next logical step in drug development
+      is proposed by this research: to conduct a pivotal trial to determine the safety and efficacy
+      of fluconazole in premature neonates with 2-year neurodevelopmental follow-up assessment.
 
       362 neonates, with a birthweight &lt;750g, were randomized at 33 US centers, to twice weekly
-      fluconazole (6 mg/kg) or placebo for the first 6 weeks of life. The primary efficacy
-      endpoint will be Candida-free survival at study day 49. The research will establish
-      definitive dosing, safety, and efficacy of fluconazole; it will also provide critical
-      information on the effects of fluconazole on neurodevelopmental impairment and antifungal
-      resistance.
+      fluconazole (6 mg/kg) or placebo for the first 6 weeks of life. The primary efficacy endpoint
+      will be Candida-free survival at study day 49. The research will establish definitive dosing,
+      safety, and efficacy of fluconazole; it will also provide critical information on the effects
+      of fluconazole on neurodevelopmental impairment and antifungal resistance.
 
       Potential Impact:
 
@@ -86,7 +84,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
     <primary_purpose>Prevention</primary_purpose>
-    <masking>Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor)</masking>
+    <masking>Double Blind (Participant, Care Provider, Investigator, Outcomes Assessor)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Death or Candidiasis</measure>
@@ -586,6 +584,7 @@ ii. Thrombocytopenia &lt;150,000/mm3 iii. Positive Candida culture from nonsteri
   <lastchanged_date>July 27, 2014</lastchanged_date>
   <firstreceived_date>August 13, 2008</firstreceived_date>
   <firstreceived_results_date>June 17, 2014</firstreceived_results_date>
+  <firstreceived_results_disposition_date>March 25, 2013</firstreceived_results_disposition_date>
   <responsible_party>
     <responsible_party_type>Sponsor-Investigator</responsible_party_type>
     <investigator_affiliation>Duke University Medical Center</investigator_affiliation>
@@ -599,11 +598,11 @@ ii. Thrombocytopenia &lt;150,000/mm3 iii. Positive Candida culture from nonsteri
   <keyword>Colonization</keyword>
   <keyword>Resistance</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Candidiasis</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Fluconazole</mesh_term>
   </intervention_browse>
 
@@ -834,7 +833,7 @@ placebo: placebo: normal saline (IV) or 3 parts Ora Plus oral suspension vehicle
         </measure>
         <measure>
           <title>Race (NIH/OMB)</title>
-          <description>2 participants specified a race as &quot;other&quot; which is not pre-specified in this list of races.</description>
+          <description>2 participants specified a race as "other" which is not pre-specified in this list of races.</description>
           <units>participants</units>
           <param>Number</param>
           <class_list>

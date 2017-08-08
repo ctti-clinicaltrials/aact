@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02586688</url>
   </required_header>
@@ -32,8 +32,8 @@
   <detailed_description>
     <textblock>
       To evaluate the antidepressant effects of daily, active TMS (when compared with sham
-      treatment) in adolescents meeting criteria for Major Depressive Disorder, single or
-      recurrent episode (Phase I).
+      treatment) in adolescents meeting criteria for Major Depressive Disorder, single or recurrent
+      episode (Phase I).
 
       Secondary:
 
@@ -58,7 +58,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
     <primary_purpose>Treatment</primary_purpose>
-    <masking>Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor)</masking>
+    <masking>Participant, Care Provider, Investigator, Outcomes Assessor</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Hamilton Depression Rating Scale-24(HAMD24) total score change from baseline value.</measure>
@@ -117,8 +117,8 @@
       <textblock>
         Inclusion Criteria:
 
-          -  Primary diagnosis of unipolar major depressive disorder, in a current major
-             depressive episode, without psychotic features
+          -  Primary diagnosis of unipolar major depressive disorder, in a current major depressive
+             episode, without psychotic features
 
           -  Duration of current episode of depression ≥4 weeks and ≤3 years
 
@@ -158,17 +158,16 @@
 
                -  Depression secondary to a general medical condition, or substance induced:
 
-               -  Seasonal pattern of depression as defined by Diagnostic and Statistical Manual
-                  of Mental Disorders (DSM-5)
+               -  Seasonal pattern of depression as defined by Diagnostic and Statistical Manual of
+                  Mental Disorders (DSM-5)
 
                -  Any psychotic disorder (lifetime), including history of schizophrenia,
-                  schizoaffective disorder, other psychosis, psychotic features in this or
-                  previous episodes, amnestic disorder,
+                  schizoaffective disorder, other psychosis, psychotic features in this or previous
+                  episodes, amnestic disorder,
 
                -  Intellectually disabled,
 
-               -  Substance dependence or abuse within the past year (except nicotine or
-                  caffeine),
+               -  Substance dependence or abuse within the past year (except nicotine or caffeine),
 
                -  Bipolar disorder,
 
@@ -185,7 +184,7 @@
     <healthy_volunteers>No</healthy_volunteers>
   </eligibility>
   <overall_official>
-    <last_name>Mark Demitrack, MD</last_name>
+    <last_name>David Brock, MD</last_name>
     <role>Study Chair</role>
     <affiliation>Neuronetics</affiliation>
   </overall_official>
@@ -198,13 +197,13 @@
     <last_name>Melissa Reitenbaugh</last_name>
     <phone>610- 640-4202</phone>
     <phone_ext>1039</phone_ext>
-    <email>mreitenbaugh@neuronetics.com</email>
+    <email>mreitenbaugh@neurostar.com</email>
   </overall_contact>
   <overall_contact_backup>
-    <last_name>Denene Finnerty</last_name>
+    <last_name>Mei Hentrup</last_name>
     <phone>610 640-4202</phone>
-    <phone_ext>1020</phone_ext>
-    <email>dfinnerty@neuronetics.com</email>
+    <phone_ext>1017</phone_ext>
+    <email>mhentrup@neurostar.com</email>
   </overall_contact_backup>
   <location>
     <facility>
@@ -218,13 +217,55 @@
     </facility>
     <status>Recruiting</status>
     <contact>
-      <last_name>Melinda Vasbinder</last_name>
+      <last_name>Laura Hutto</last_name>
       <phone>334-702-7222</phone>
-      <phone_ext>233</phone_ext>
-      <email>mvasbinder@harmonex.us</email>
+      <phone_ext>231</phone_ext>
+      <email>lhutto@harmonex.us</email>
     </contact>
     <investigator>
       <last_name>Emmalynn McDowell, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>UCLA</name>
+      <address>
+        <city>Los Angeles</city>
+        <state>California</state>
+        <zip>90024</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Nikita Vince Cruz</last_name>
+      <phone>310-825-7471</phone>
+      <email>nvincecruz@mednet.ucla.edu</email>
+    </contact>
+    <investigator>
+      <last_name>Andrew Leuchter, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location>
+    <facility>
+      <name>Stanford University</name>
+      <address>
+        <city>Palo Alto</city>
+        <state>California</state>
+        <zip>94305</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Jessica Hawkins</last_name>
+      <phone>650-723-8323</phone>
+      <email>jhawk@stanford.edu</email>
+    </contact>
+    <investigator>
+      <last_name>H. Brent Solvason, MD</last_name>
       <role>Principal Investigator</role>
     </investigator>
   </location>
@@ -367,9 +408,9 @@
     </facility>
     <status>Recruiting</status>
     <contact>
-      <last_name>Tara Johnson</last_name>
-      <phone>507-255-0761</phone>
-      <email>Johnson.Tara@mayo.edu</email>
+      <last_name>Marge Gresbrink</last_name>
+      <phone>507-255-0624</phone>
+      <email>Gresbrink.marjorie@mayo.edu</email>
     </contact>
     <investigator>
       <last_name>Paul Croarkin, MD</last_name>
@@ -434,9 +475,9 @@
     </facility>
     <status>Recruiting</status>
     <contact>
-      <last_name>Annabel Franz</last_name>
+      <last_name>Morgan Maddox Darcy</last_name>
       <phone>843-876-5141</phone>
-      <email>franza@musc.edu</email>
+      <email>maddoxm@musc.edu</email>
     </contact>
     <investigator>
       <last_name>Mark George, MD</last_name>
@@ -450,19 +491,19 @@
     <country>Canada</country>
   </removed_countries>
   <results_reference>
-    <citation>O'Reardon JP, Solvason HB, Janicak PG, Sampson S, Isenberg KE, Nahas Z, McDonald WM, Avery D, Fitzgerald PB, Loo C, Demitrack MA, George MS, Sackeim HA. Efficacy and safety of transcranial magnetic stimulation in the acute treatment of major depression: a multisite randomized controlled trial. Biol Psychiatry. 2007 Dec 1;62(11):1208-16.</citation>
+    <citation>O'Reardon JP, Solvason HB, Janicak PG, Sampson S, Isenberg KE, Nahas Z, McDonald WM, Avery D, Fitzgerald PB, Loo C, Demitrack MA, George MS, Sackeim HA. Efficacy and safety of transcranial magnetic stimulation in the acute treatment of major depression: a multisite randomized controlled trial. Biol Psychiatry. 2007 Dec 1;62(11):1208-16. Epub 2007 Jun 14.</citation>
     <PMID>17573044</PMID>
   </results_reference>
   <results_reference>
-    <citation>Carpenter LL, Janicak PG, Aaronson ST, Boyadjis T, Brock DG, Cook IA, Dunner DL, Lanocha K, Solvason HB, Demitrack MA. Transcranial magnetic stimulation (TMS) for major depression: a multisite, naturalistic, observational study of acute treatment outcomes in clinical practice. Depress Anxiety. 2012 Jul;29(7):587-96. doi: 10.1002/da.21969.</citation>
+    <citation>Carpenter LL, Janicak PG, Aaronson ST, Boyadjis T, Brock DG, Cook IA, Dunner DL, Lanocha K, Solvason HB, Demitrack MA. Transcranial magnetic stimulation (TMS) for major depression: a multisite, naturalistic, observational study of acute treatment outcomes in clinical practice. Depress Anxiety. 2012 Jul;29(7):587-96. doi: 10.1002/da.21969. Epub 2012 Jun 11.</citation>
     <PMID>22689344</PMID>
   </results_reference>
   <results_reference>
     <citation>Wall CA, Croarkin PE, Sim LA, Husain MM, Janicak PG, Kozel FA, Emslie GJ, Dowd SM, Sampson SM. Adjunctive use of repetitive transcranial magnetic stimulation in depressed adolescents: a prospective, open pilot study. J Clin Psychiatry. 2011 Sep;72(9):1263-9. doi: 10.4088/JCP.11m07003.</citation>
     <PMID>21951987</PMID>
   </results_reference>
-  <verification_date>June 2016</verification_date>
-  <lastchanged_date>June 15, 2016</lastchanged_date>
+  <verification_date>June 2017</verification_date>
+  <lastchanged_date>June 6, 2017</lastchanged_date>
   <firstreceived_date>October 23, 2015</firstreceived_date>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
@@ -474,14 +515,13 @@
   <keyword>TMS</keyword>
   <keyword>adolescent depression</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Depressive Disorder</mesh_term>
     <mesh_term>Depression</mesh_term>
-    <mesh_term>Inbreeding Depression</mesh_term>
-    <mesh_term>Asthma</mesh_term>
+    <mesh_term>Depressive Disorder, Major</mesh_term>
   </condition_browse>
   <patient_data>
     <sharing_ipd>Undecided</sharing_ipd>
   </patient_data>
-  <!-- Results have not yet been posted for this study                                -->
+  <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

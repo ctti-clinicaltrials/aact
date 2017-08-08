@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02970669</url>
   </required_header>
@@ -23,27 +23,22 @@
   <source>Novartis</source>
   <brief_summary>
     <textblock>
-      The purpose of this study is to investigate the effects of initiation of
-      sacubitril/valsartan vs enalapril treatment on objective measures of both waking activity
-      and sleep in subjects with heart failure with reduced ejection fraction.
+      The purpose of this study is to investigate the effects of initiation of sacubitril/valsartan
+      vs enalapril treatment on objective measures of both waking activity and sleep in subjects
+      with heart failure with reduced ejection fraction.
     </textblock>
   </brief_summary>
-  <overall_status>Not yet recruiting</overall_status>
+  <overall_status>Recruiting</overall_status>
   <start_date>December 2016</start_date>
   <completion_date type="Anticipated">October 2018</completion_date>
   <primary_completion_date type="Anticipated">October 2018</primary_completion_date>
   <phase>Phase 4</phase>
   <study_type>Interventional</study_type>
   <has_expanded_access>Yes</has_expanded_access>
-  <expanded_access_info>
-    <exp_acc_type_individual>true</exp_acc_type_individual>
-    <exp_acc_type_intermediate>true</exp_acc_type_intermediate>
-    <exp_acc_type_treatment>true</exp_acc_type_treatment>
-  </expanded_access_info>
   <study_design_info>
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
-    <masking>Double Blind (Subject, Investigator)</masking>
+    <masking>Double Blind (Participant, Investigator)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Change in mean activity counts collected during the most active 30 minutes of the subject's day between baseline and week 8</measure>
@@ -120,15 +115,15 @@ Open-label treatment epoch: All patients entering this epoch (8 weeks) will be g
           -  Subjects must be a candidate for treatment with sacubitril/valsartan as per USPI.
 
           -  Subjects must be living in a traditional residence, apartment, or non-communal adult
-             home where they can move about freely and frequently and are primarily responsible
-             for scheduling their sleep and daily activities.
+             home where they can move about freely and frequently and are primarily responsible for
+             scheduling their sleep and daily activities.
 
         Key Exclusion Criteria:
 
           -  Subjects with a history of hypersensitivity to any of the study drugs, including
-             history of hypersensitivity to drugs of similar chemical classes, or allergy to
-             ACEIs, ARBs, or NEP inhibitors as well as known or suspected contraindications to the
-             study drugs.
+             history of hypersensitivity to drugs of similar chemical classes, or allergy to ACEIs,
+             ARBs, or NEP inhibitors as well as known or suspected contraindications to the study
+             drugs.
 
           -  Subjects with a history of angioedema drug related or otherwise
 
@@ -170,8 +165,23 @@ Open-label treatment epoch: All patients entering this epoch (8 weeks) will be g
   <overall_contact_backup>
     <last_name>Novartis Pharmaceuticals</last_name>
   </overall_contact_backup>
-  <verification_date>November 2016</verification_date>
-  <lastchanged_date>November 17, 2016</lastchanged_date>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Allen</city>
+        <state>Texas</state>
+        <zip>75002-3688</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <verification_date>January 2017</verification_date>
+  <lastchanged_date>January 17, 2017</lastchanged_date>
   <firstreceived_date>November 17, 2016</firstreceived_date>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
@@ -195,15 +205,15 @@ Open-label treatment epoch: All patients entering this epoch (8 weeks) will be g
   <keyword>Home sleep test</keyword>
   <keyword>wake</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Heart Failure</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Valsartan</mesh_term>
     <mesh_term>Enalapril</mesh_term>
     <mesh_term>Enalaprilat</mesh_term>
     <mesh_term>LCZ 696</mesh_term>
   </intervention_browse>
-  <!-- Results have not yet been posted for this study                                -->
+  <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

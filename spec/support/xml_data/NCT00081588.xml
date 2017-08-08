@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00081588</url>
   </required_header>
@@ -41,13 +41,13 @@
       For new patients, they must have been on prior antiretroviral therapy, including more than
       one nucleoside reverse transcriptase inhibitor (NRTI), one non-nucleoside reverse
       transcriptase inhibitor (NNRTI) and a protease inhibitor (PI). At least one primary PI
-      mutation must be present at screening. Many of the same centers that are participating in
-      the TMC114-C213 and TMC-114 -C202 studies are also participating in the TMC114-C215 study.
-      All sites have the chance to recruit rollover patients into the TMC114-C215 study and some
-      sites listed had approval to recruit new patients into the study. The recruitment of new
-      patients for the TMC114-C215 trial has been fully enrolled. The TMC114-C202 and TMC114-C213
-      have completed so no more patients are enrolled in this study. Two 300mg/100mg
-      Darunavir/Ritonavir tablets twice daily for 144 weeks.
+      mutation must be present at screening. Many of the same centers that are participating in the
+      TMC114-C213 and TMC-114 -C202 studies are also participating in the TMC114-C215 study. All
+      sites have the chance to recruit rollover patients into the TMC114-C215 study and some sites
+      listed had approval to recruit new patients into the study. The recruitment of new patients
+      for the TMC114-C215 trial has been fully enrolled. The TMC114-C202 and TMC114-C213 have
+      completed so no more patients are enrolled in this study. Two 300mg/100mg Darunavir/Ritonavir
+      tablets twice daily for 144 weeks.
     </textblock>
   </detailed_description>
   <overall_status>Completed</overall_status>
@@ -720,7 +720,7 @@
     <country>Puerto Rico</country>
   </removed_countries>
   <results_reference>
-    <citation>Molina JM, Cohen C, Katlama C, Grinsztejn B, Timerman A, Pedro Rde J, Vangeneugden T, Miralles D, Meyer SD, Parys W, Lefebvre E; TMC114-C208 Study Group.; TMC114-C215 Study Group.. Safety and efficacy of darunavir (TMC114) with low-dose ritonavir in treatment-experienced patients: 24-week results of POWER 3. J Acquir Immune Defic Syndr. 2007 Sep 1;46(1):24-31.</citation>
+    <citation>Molina JM, Cohen C, Katlama C, Grinsztejn B, Timerman A, Pedro Rde J, Vangeneugden T, Miralles D, Meyer SD, Parys W, Lefebvre E; TMC114-C208 Study Group; TMC114-C215 Study Group. Safety and efficacy of darunavir (TMC114) with low-dose ritonavir in treatment-experienced patients: 24-week results of POWER 3. J Acquir Immune Defic Syndr. 2007 Sep 1;46(1):24-31.</citation>
     <PMID>17621237</PMID>
   </results_reference>
   <verification_date>June 2014</verification_date>
@@ -735,12 +735,12 @@
   <keyword>TMC114-C202</keyword>
   <keyword>TMC114-C213</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>HIV Infections</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Darunavir</mesh_term>
   </intervention_browse>
-  <!-- Results have not yet been posted for this study                                -->
+  <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

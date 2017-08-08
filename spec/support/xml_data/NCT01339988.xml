@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01339988</url>
   </required_header>
@@ -26,11 +26,11 @@
   <brief_summary>
     <textblock>
       Long-term follow-up studies have demonstrated significant late toxicities of total body
-      irradiation (TBI), which are most marked in children radiated at a young age. Growth
-      failure, decline in cognitive function, and endocrine abnormalities have all been described.
-      Good outcomes can be achieved with alkylating agents only as a preparative regimen. This
-      plan will use a combination of busulfan and cyclophosphamide (Bu/Cy) with or without
-      antithymocyte globulin (ATG) to reduce the late toxicities of therapy that includes TBI.
+      irradiation (TBI), which are most marked in children radiated at a young age. Growth failure,
+      decline in cognitive function, and endocrine abnormalities have all been described. Good
+      outcomes can be achieved with alkylating agents only as a preparative regimen. This plan will
+      use a combination of busulfan and cyclophosphamide (Bu/Cy) with or without antithymocyte
+      globulin (ATG) to reduce the late toxicities of therapy that includes TBI.
     </textblock>
   </brief_summary>
   <overall_status>Not yet recruiting</overall_status>
@@ -95,9 +95,9 @@ Cyclophosphamide 50mg/kg/day for 4 days + Busulfan 0.8-1.0mg/kg/day for 4 days.<
 
           -  Hepatic transaminases &lt; 2.5x normal; Total bilirubin &lt; 2 mg/dl Patients who do not
              meet above organ function criteria (liver, cardiac, renal), due to the presence of a
-             tumor compromising these organs, may have exception made for these criteria and
-             remain eligible for treatment plan after consultation with Program Director of Blood
-             and Marrow Transplant
+             tumor compromising these organs, may have exception made for these criteria and remain
+             eligible for treatment plan after consultation with Program Director of Blood and
+             Marrow Transplant
 
         Exclusion Criteria:
 
@@ -134,16 +134,16 @@ Cyclophosphamide 50mg/kg/day for 4 days + Busulfan 0.8-1.0mg/kg/day for 4 days.<
   <keyword>Cyclophosphamide</keyword>
   <keyword>Total-Body-Ittadiation</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Leukemia</mesh_term>
     <mesh_term>Myelodysplastic Syndromes</mesh_term>
     <mesh_term>Preleukemia</mesh_term>
     <mesh_term>Leukemia, Myelomonocytic, Juvenile</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Cyclophosphamide</mesh_term>
     <mesh_term>Busulfan</mesh_term>
   </intervention_browse>
-  <!-- Results have not yet been posted for this study                                -->
+  <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

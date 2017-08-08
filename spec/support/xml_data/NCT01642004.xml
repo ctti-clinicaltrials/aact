@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01642004</url>
   </required_header>
@@ -27,14 +27,14 @@
   <brief_summary>
     <textblock>
       The purpose of the study is to compare the overall survival of BMS-936558 as compared with
-      Docetaxel in subjects with squamous cell non-small cell lung cancer (NSCLC), after failure
-      of prior platinum-based chemotherapy.
+      Docetaxel in subjects with squamous cell non-small cell lung cancer (NSCLC), after failure of
+      prior platinum-based chemotherapy.
     </textblock>
   </brief_summary>
   <overall_status>Active, not recruiting</overall_status>
-  <start_date>September 2012</start_date>
-  <completion_date type="Anticipated">January 2017</completion_date>
-  <primary_completion_date type="Actual">November 2014</primary_completion_date>
+  <start_date type="Actual">October 16, 2012</start_date>
+  <completion_date type="Anticipated">January 23, 2018</completion_date>
+  <primary_completion_date type="Actual">November 17, 2014</primary_completion_date>
   <phase>Phase 3</phase>
   <study_type>Interventional</study_type>
   <has_expanded_access>No</has_expanded_access>
@@ -42,7 +42,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
     <primary_purpose>Treatment</primary_purpose>
-    <masking>Open Label</masking>
+    <masking>No masking</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Overall Survival (OS) Time in Months for All Randomized Participants at Primary Endpoint</measure>
@@ -118,17 +118,18 @@ Participants who neither progressed nor died were censored on the date of their 
   <arm_group>
     <arm_group_label>Arm A: Nivolumab</arm_group_label>
     <arm_group_type>Experimental</arm_group_type>
-    <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+    <description>Nivolumab 3 mg/kg solution intravenously (IV) every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
   </arm_group>
   <arm_group>
     <arm_group_label>Arm B: Docetaxel</arm_group_label>
     <arm_group_type>Experimental</arm_group_type>
-    <description>Docetaxel 75 mg/m2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+    <description>Docetaxel 75 mg/m^2 concentrate for solution for intravenous infusion every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
   </arm_group>
   <intervention>
     <intervention_type>Biological</intervention_type>
     <intervention_name>Nivolumab</intervention_name>
     <arm_group_label>Arm A: Nivolumab</arm_group_label>
+    <arm_group_label>Arm B: Docetaxel</arm_group_label>
     <other_name>BMS-936558</other_name>
   </intervention>
   <intervention>
@@ -149,8 +150,8 @@ Participants who neither progressed nor died were censored on the date of their 
 
           -  Subjects with histologically or cytologically-documented squamous cell NSCLC who
              present with Stage IIIB/IV disease or with recurrent or progressive disease following
-             multimodal therapy (radiation therapy, surgical resection or definitive
-             chemoradiation therapy for locally advanced disease)
+             multimodal therapy (radiation therapy, surgical resection or definitive chemoradiation
+             therapy for locally advanced disease)
 
           -  Disease recurrence or progression during/after one prior platinum doublet-based
              chemotherapy regimen for advanced or metastatic disease
@@ -162,15 +163,15 @@ Participants who neither progressed nor died were censored on the date of their 
 
           -  A formalin fixed, paraffin-embedded (FFPE) tumor tissue block or unstained slides of
              tumor sample (archival or recent) must be available for biomarker evaluation.
-             Specimens must be received by the central lab prior to randomization. Biopsy should
-             be excisional, incisional or core needle. Fine needle aspiration is insufficient
+             Specimens must be received by the central lab prior to randomization. Biopsy should be
+             excisional, incisional or core needle. Fine needle aspiration is insufficient
 
         Exclusion Criteria:
 
-          -  Subjects with untreated central nervous system (CNS) metastases are excluded.
-             Subjects are eligible if CNS metastases are treated and subjects are neurologically
-             returned to baseline for at least 2 weeks prior to enrollment. In addition, subjects
-             must be either off corticosteroids, or on a stable or decreasing dose of ≤10 mg daily
+          -  Subjects with untreated central nervous system (CNS) metastases are excluded. Subjects
+             are eligible if CNS metastases are treated and subjects are neurologically returned to
+             baseline for at least 2 weeks prior to enrollment. In addition, subjects must be
+             either off corticosteroids, or on a stable or decreasing dose of ≤10 mg daily
              prednisone (or equivalent)
 
           -  Subjects with carcinomatous meningitis
@@ -184,11 +185,10 @@ Participants who neither progressed nor died were censored on the date of their 
           -  Subjects with a condition requiring systemic treatment with either corticosteroids or
              other immunosuppressive medications within 14 days of randomization
 
-          -  Prior therapy with anti-Programmed death-1 (PD-1), anti-Programmed cell death ligand
-             1 (PD-L1), anti-Programmed cell death ligand 2 (PD-L2), anti-CD137, or anti-Cytotoxic
-             T lymphocyte-associated antigen 4 (CTLA-4) antibody (including ipilimumab or any
-             other antibody or drug specifically targeting T-cell co-stimulation or checkpoint
-             pathways)
+          -  Prior therapy with anti-Programmed death-1 (PD-1), anti-Programmed cell death ligand 1
+             (PD-L1), anti-Programmed cell death ligand 2 (PD-L2), anti-CD137, or anti-Cytotoxic T
+             lymphocyte-associated antigen 4 (CTLA-4) antibody (including ipilimumab or any other
+             antibody or drug specifically targeting T-cell co-stimulation or checkpoint pathways)
 
           -  Prior treatment on the first line study CA184104 first line NSCLC study
 
@@ -734,7 +734,7 @@ Participants who neither progressed nor died were censored on the date of their 
       <address>
         <city>Praha 8</city>
         <zip>180 81</zip>
-        <country>Czech Republic</country>
+        <country>Czechia</country>
       </address>
     </facility>
   </location>
@@ -1312,7 +1312,7 @@ Participants who neither progressed nor died were censored on the date of their 
     <country>Austria</country>
     <country>Canada</country>
     <country>Chile</country>
-    <country>Czech Republic</country>
+    <country>Czechia</country>
     <country>France</country>
     <country>Germany</country>
     <country>Hungary</country>
@@ -1330,6 +1330,7 @@ Participants who neither progressed nor died were censored on the date of their 
   </location_countries>
   <removed_countries>
     <country>Brazil</country>
+    <country>Czech Republic</country>
     <country>Greece</country>
     <country>Norway</country>
     <country>South Africa</country>
@@ -1351,20 +1352,21 @@ Participants who neither progressed nor died were censored on the date of their 
     <url>http://www.fda.gov/MEDWATCH/safety.htm</url>
     <description>FDA Safety Alerts and Recalls</description>
   </link>
-  <verification_date>March 2016</verification_date>
-  <lastchanged_date>March 16, 2016</lastchanged_date>
+  <verification_date>June 2017</verification_date>
+  <lastchanged_date>June 12, 2017</lastchanged_date>
   <firstreceived_date>July 9, 2012</firstreceived_date>
   <firstreceived_results_date>February 19, 2016</firstreceived_results_date>
+  <firstreceived_results_disposition_date>November 17, 2015</firstreceived_results_disposition_date>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Lung Neoplasms</mesh_term>
     <mesh_term>Carcinoma, Non-Small-Cell Lung</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Docetaxel</mesh_term>
     <mesh_term>Nivolumab</mesh_term>
     <mesh_term>Antibodies, Monoclonal</mesh_term>
@@ -1377,11 +1379,11 @@ Participants who neither progressed nor died were censored on the date of their 
       <group_list>
         <group group_id="P1">
           <title>Nivolumab</title>
-          <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
         </group>
         <group group_id="P2">
           <title>Docetaxel</title>
-          <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
         </group>
       </group_list>
       <period_list>
@@ -1540,11 +1542,11 @@ Participants who neither progressed nor died were censored on the date of their 
       <group_list>
         <group group_id="B1">
           <title>Nivolumab</title>
-          <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
         </group>
         <group group_id="B2">
           <title>Docetaxel</title>
-          <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
         </group>
         <group group_id="B3">
           <title>Total</title>
@@ -1650,26 +1652,22 @@ Participants who neither progressed nor died were censored on the date of their 
           </class_list>
         </measure>
         <measure>
-          <title>Gender</title>
-          <units>participants</units>
-          <param>Number</param>
+          <title>Sex: Female, Male</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
           <class_list>
             <class>
-              <title>Female</title>
               <category_list>
                 <category>
+                  <title>Female</title>
                   <measurement_list>
                     <measurement group_id="B1" value="24"/>
                     <measurement group_id="B2" value="40"/>
                     <measurement group_id="B3" value="64"/>
                   </measurement_list>
                 </category>
-              </category_list>
-            </class>
-            <class>
-              <title>Male</title>
-              <category_list>
                 <category>
+                  <title>Male</title>
                   <measurement_list>
                     <measurement group_id="B1" value="111"/>
                     <measurement group_id="B2" value="97"/>
@@ -1736,11 +1734,11 @@ Participants who neither progressed nor died were censored on the date of their 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -1803,11 +1801,11 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -1870,11 +1868,11 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -1936,11 +1934,11 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -2006,11 +2004,11 @@ CR = Disappearance of all target lesions. Any pathological lymph nodes (whether 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -2055,11 +2053,11 @@ Participants who neither progressed nor died were censored on the date of their 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -2104,11 +2102,11 @@ Participants who neither progressed nor died were censored on the date of their 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -2163,11 +2161,11 @@ Participants who neither progressed nor died were censored on the date of their 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -2229,11 +2227,11 @@ Participants who neither progressed nor died were censored on the date of their 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -2276,11 +2274,11 @@ Participants who neither progressed nor died were censored on the date of their 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -2393,11 +2391,11 @@ Participants who neither progressed nor died were censored on the date of their 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -2510,11 +2508,11 @@ Participants who neither progressed nor died were censored on the date of their 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -2627,11 +2625,11 @@ Participants who neither progressed nor died were censored on the date of their 
         <group_list>
           <group group_id="O1">
             <title>Nivolumab</title>
-            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
           <group group_id="O2">
             <title>Docetaxel</title>
-            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+            <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
           </group>
         </group_list>
         <measure>
@@ -2672,11 +2670,11 @@ Participants who neither progressed nor died were censored on the date of their 
       <group_list>
         <group group_id="E1">
           <title>NIVOLUMAB</title>
-          <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          <description>Nivolumab 3 mg/kg solution intravenously every 2 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
         </group>
         <group group_id="E2">
           <title>DOCETAXEL</title>
-          <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends</description>
+          <description>Docetaxel 75 mg/m^2 solution intravenously every 3 weeks until documented disease progression, discontinuation due to toxicity, withdrawal of consent or the study ends. Eligible patients may receive nivolumab at 480mg every 4 weeks until documented disease progression, discontinuation, withdrawal of consent or the study ends.</description>
         </group>
       </group_list>
       <serious_events>

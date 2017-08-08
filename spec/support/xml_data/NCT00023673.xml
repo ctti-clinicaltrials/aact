@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00023673</url>
   </required_header>
@@ -61,9 +61,9 @@
       radiotherapy.
 
         -  Phase I (closed to accrual as of 01/13/04): Patients undergo 3-dimensional conformal
-           radiotherapy once daily five days a week for 7-8 weeks. Patients also receive
-           concurrent chemotherapy comprising paclitaxel IV over 1 hour followed by carboplatin IV
-           over 30 minutes on days 1, 8, 15, 22, 29, 36, and 43.
+           radiotherapy once daily five days a week for 7-8 weeks. Patients also receive concurrent
+           chemotherapy comprising paclitaxel IV over 1 hour followed by carboplatin IV over 30
+           minutes on days 1, 8, 15, 22, 29, 36, and 43.
 
       Cohorts of 7-9 patients receive de-escalating doses of 3-dimensional conformal radiotherapy
       until the maximum tolerated dose (MTD) is determined when given in combination with
@@ -743,7 +743,7 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
     <country>United States</country>
   </location_countries>
   <results_reference>
-    <citation>Bradley JD, Bae K, Graham MV, Byhardt R, Govindan R, Fowler J, Purdy JA, Michalski JM, Gore E, Choy H. Primary analysis of the phase II component of a phase I/II dose intensification study using three-dimensional conformal radiation therapy and concurrent chemotherapy for patients with inoperable non-small-cell lung cancer: RTOG 0117. J Clin Oncol. 2010 May 10;28(14):2475-80. doi: 10.1200/JCO.2009.27.1205.</citation>
+    <citation>Bradley JD, Bae K, Graham MV, Byhardt R, Govindan R, Fowler J, Purdy JA, Michalski JM, Gore E, Choy H. Primary analysis of the phase II component of a phase I/II dose intensification study using three-dimensional conformal radiation therapy and concurrent chemotherapy for patients with inoperable non-small-cell lung cancer: RTOG 0117. J Clin Oncol. 2010 May 10;28(14):2475-80. doi: 10.1200/JCO.2009.27.1205. Epub 2010 Apr 5.</citation>
     <PMID>20368547</PMID>
   </results_reference>
   <results_reference>
@@ -767,13 +767,12 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
   <keyword>adenocarcinoma of the lung</keyword>
   <keyword>adenosquamous cell lung cancer</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
-    <mesh_term>Depression</mesh_term>
-    <mesh_term>Lung Diseases</mesh_term>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Lung Neoplasms</mesh_term>
     <mesh_term>Carcinoma, Non-Small-Cell Lung</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Paclitaxel</mesh_term>
     <mesh_term>Albumin-Bound Paclitaxel</mesh_term>
     <mesh_term>Carboplatin</mesh_term>
