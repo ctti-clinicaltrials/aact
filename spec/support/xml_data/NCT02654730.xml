@@ -83,6 +83,7 @@
     </textblock>
   </detailed_description>
   <overall_status>Terminated</overall_status>
+  <last_known_status>Recruiting</overall_status>
   <why_stopped>
     Enrollment took longer than anticipated; it was financially and logistically impossible to
     recruit the final cohort (G6PDd 0.4mg/kg PQ).
@@ -102,14 +103,20 @@
   <primary_outcome>
     <measure>Haemoglobin concentration relative to baseline value as measured by HemoCue</measure>
     <time_frame>28 days</time_frame>
+    <aact_change>doctoring up the expanded access to have sample data</aact_change>
+    <safety_issue>Yes</safety_issue>
   </primary_outcome>
   <secondary_outcome>
     <measure>Haematology abnormalities during follow-up: haptoglobin concentration measured in venous blood samples by full blood count analysis</measure>
     <time_frame>28 days</time_frame>
+    <aact_change>doctoring up the expanded access to have sample data</aact_change>
+    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Biochemistry abnormalities during follow-up: bilirubin concentration</measure>
     <time_frame>28 days</time_frame>
+    <aact_change>doctoring up the expanded access to have sample data</aact_change>
+    <safety_issue>Yes</safety_issue>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Biochemistry abnormalities during follow-up: lactate dehydrogenase</measure>

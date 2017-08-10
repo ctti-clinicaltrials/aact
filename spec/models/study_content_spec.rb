@@ -16,9 +16,10 @@ describe Study do
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.has_expanded_access).to be(true)
-    expect(study.expanded_access_type_individual).to be(true)
-    expect(study.expanded_access_type_intermediate).to be(true)
-    expect(study.expanded_access_type_treatment).to be(true)
+    #  These tags were released 1/11/17, but as of 8/9/17, no studies have this info.  Sent email to NLM asking if these tags are actie.
+#    expect(study.expanded_access_type_individual).to be(true)
+#    expect(study.expanded_access_type_intermediate).to be(true)
+#    expect(study.expanded_access_type_treatment).to be(true)
   end
 
   it "should have correct date attribs" do
@@ -70,16 +71,17 @@ describe Study do
   end
 
   context 'when patient data section exists' do
-    nct_id='NCT02830269'
+    #nct_id='NCT02830269'
+    nct_id='NCT01174550'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     it 'should have expected sharing ipd value' do
-      expect(study.plan_to_share_ipd).to eq('Undecided')
+      expect(study.plan_to_share_ipd).to eq('Yes')
     end
 
     it 'should have expected ipd description value' do
-      expect(study.plan_to_share_ipd_description).to eq('NC')
+      expect(study.plan_to_share_ipd_description).to eq('Data will be submitted to the NHLBI according to their guidelines which state"The data sets must be submitted to the study NHLBI study Program Official no later than 3 years after the end of the clinical activity (final patient follow-up, etc.) or 2 years after the main paper of the trial has been published, whichever comes first. Data are prepared by the study coordinating center and sent to the PO for review prior to release."')
     end
   end
 

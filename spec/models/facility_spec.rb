@@ -6,9 +6,9 @@ describe Facility do
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
-    expect(study.facilities.size).to eq(11)
-    expect(study.facility_contacts.size).to eq(12)
-    expect(study.facility_investigators.size).to eq(11)
+    expect(study.facilities.size).to eq(13)
+    expect(study.facility_contacts.size).to eq(14)
+    expect(study.facility_investigators.size).to eq(13)
     f1=study.facilities.select{|x|x.name=='Dothan Behavioral Medicine'}.first
     f1_contact=f1.facility_contacts.first
     f1_investigator=f1.facility_investigators.first
@@ -23,9 +23,10 @@ describe Facility do
     expect(f1.country).to eq('United States')
     expect(f1.status).to eq('Recruiting')
     expect(f1.facility_contacts.size).to eq(1)
-    expect(f1_contact.name).to eq('Melinda Vasbinder')
-    expect(f1_contact.phone).to eq('334-702-7222 ext 233')
+    expect(f1_contact.name).to eq('Laura Hutto')
+    expect(f1_contact.phone).to eq('334-702-7222 ext 231')
     expect(f1_contact.contact_type).to eq('primary')
+    expect(f1_contact.email).to eq('lhutto@harmonex.us')
     expect(f1.facility_investigators.size).to eq(1)
     expect(f1_investigator.name).to eq('Emmalynn McDowell, MD')
     expect(f1_investigator.role).to eq('Principal Investigator')

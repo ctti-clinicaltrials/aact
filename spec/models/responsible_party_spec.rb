@@ -2,12 +2,11 @@ require 'rails_helper'
 
 describe ResponsibleParty do
   it "study should have expected responsible parties with old name attrib" do
-    nct_id='NCT01341288'
+    nct_id='NCT03182660'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.responsible_parties.size).to eq(1)
     rp=study.responsible_parties.first
-
     expect(rp.name).to eq('[Redacted]')
     expect(rp.organization).to eq('[Redacted]')
   end
