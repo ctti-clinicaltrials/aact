@@ -11,6 +11,15 @@ describe Study do
     expect(study.last_known_status).to eq('Recruiting')
   end
 
+  it "saves is_unapproved_device" do
+    nct_id='NCT02988895'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.is_unapproved_device).to be(false)
+    expect(study.is_ppsd).to be(false)
+    expect(study.is_us_export).to be(false)
+  end
+
   it "saves expanded access information correctly" do
     nct_id='NCT02970669'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -70,17 +79,24 @@ describe Study do
     expect(study.received_results_disposit_date).to eq('December 1, 1999'.to_date)
   end
 
-  context 'when patient data section exists' do
-    #nct_id='NCT02830269'
+  context 'when loading a study' do
+    nct_id='NCT02830269'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+
+    it 'should have expected start date values' do
+      expect(study.start_date.strftime('%m/%d/%Y')).to eq('08/18/2016')
+      expect(study.start_date_type).to eq('Actual')
+    end
+  end
+
+  context 'when loading a study' do
     nct_id='NCT01174550'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
-    it 'should have expected sharing ipd value' do
+    it 'should have expected sharing ipd values' do
       expect(study.plan_to_share_ipd).to eq('Yes')
-    end
-
-    it 'should have expected ipd description value' do
       expect(study.plan_to_share_ipd_description).to eq('Data will be submitted to the NHLBI according to their guidelines which state"The data sets must be submitted to the study NHLBI study Program Official no later than 3 years after the end of the clinical activity (final patient follow-up, etc.) or 2 years after the main paper of the trial has been published, whichever comes first. Data are prepared by the study coordinating center and sent to the PO for review prior to release."')
     end
   end

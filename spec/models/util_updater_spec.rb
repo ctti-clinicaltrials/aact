@@ -175,16 +175,20 @@ describe Util::Updater do
   end
 
   context 'when patient data section exists' do
-    xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02830269.xml'))
-    study=Study.new({xml: xml, nct_id: 'NCT02830269'}).create
+    nct_id='NCT03204344'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
 
-    it 'should have expected sharing ipd value' do
-      expect(study.plan_to_share_ipd).to eq('Undecided')
+    it 'should have expected sharing ipd values' do
+      expect(study.plan_to_share_ipd).to eq('Yes')
+      expect(study.plan_to_share_ipd_description).to eq('IPD will be available by contacting Dr. Xue Li (lixuepku@hotmail.com) after the trial is completed.')
     end
 
-    it 'should have expected ipd description value' do
-      expect(study.plan_to_share_ipd_description).to eq('NC')
+    it 'should have expected fed regulation values' do
+      expect(study.is_fda_regulated_drug).to eq(false)
+      expect(study.is_fda_regulated_device).to eq(false)
     end
+
   end
 
   context 'study has limitations and caveats' do

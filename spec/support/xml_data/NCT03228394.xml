@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 10, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT03228394</url>
+  </required_header>
+  <id_info>
+    <org_study_id>1042-PPD-2002</org_study_id>
+    <nct_id>NCT03228394</nct_id>
+  </id_info>
+  <brief_title>A Clinical Trial of Intravenous Ganaxolone in Women With Postpartum Depression</brief_title>
+  <official_title>A Phase 2A, Double-blind, Placebo-controlled, Multiple-dose Escalation Study to Evaluate Safety, Pharmacokinetics and Efficacy of Intravenously Administered Ganaxolone in Women With Postpartum Depression</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Marinus Pharmaceuticals</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Marinus Pharmaceuticals</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+    <is_fda_regulated_drug>Yes</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      This study will evaluate the Safety, Pharmacokinetics and Efficacy of IV Administration of
+      Ganaxolone in Women with Postpartum Depression
+    </textblock>
+  </brief_summary>
+  <overall_status>Recruiting</overall_status>
+  <start_date type="Actual">June 27, 2017</start_date>
+  <completion_date type="Anticipated">August 17, 2018</completion_date>
+  <primary_completion_date type="Anticipated">August 17, 2018</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Participant, Care Provider, Investigator, Outcomes Assessor</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Treatment-Emergent Adverse Events</measure>
+    <time_frame>34 days</time_frame>
+    <description>Safety and tolerability of IV administered ganaxolone as assessed by the incidence of Treatment-Emergent Adverse Events</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Clinical Laboratory Measures</measure>
+    <time_frame>11 days</time_frame>
+    <description>Safety and tolerability of IV administered ganaxolone as assessed by laboratory measures</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Vital Signs</measure>
+    <time_frame>34 days</time_frame>
+    <description>Safety and tolerability of IV administered ganaxolone as assessed by vital signs</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Columbia Suicide Severity Rating Scale (CSSRS)</measure>
+    <time_frame>34 days</time_frame>
+    <description>Safety and tolerability of IV administered ganaxolone as assessed by CSSRS</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Electrocardiogram (ECG)</measure>
+    <time_frame>4 days</time_frame>
+    <description>Safety and tolerability of IV administered ganaxolone as assessed by ECG measurements</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Stanford Sleepiness Scale (SSS)</measure>
+    <time_frame>4 days</time_frame>
+    <description>Safety and tolerability of IV administered ganaxolone as assessed by changes in SSS measurement</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Physical Examination</measure>
+    <time_frame>4 days</time_frame>
+    <description>Safety and tolerability of IV administered ganaxolone as assessed by changes in physical examination</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Maximal Plasma Concentration (Cmax) of Ganaxolone</measure>
+    <time_frame>34 days</time_frame>
+    <description>Analyze the Cmax of IV administered ganaxolone</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Concentration of Steady State (Css) of Ganaxolone</measure>
+    <time_frame>34 days</time_frame>
+    <description>Analyze the Css of IV administered ganaxolone</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Area Under the Plasma Concentration Curve (AUC) of Ganaxolone</measure>
+    <time_frame>34 days</time_frame>
+    <description>Analyze the AUC of IV administered ganaxolone</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Hamilton Depression Rating Scale (HAMD17)</measure>
+    <time_frame>34 days</time_frame>
+    <description>Efficacy as assessed by HAMD17</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Edinburgh Postnatal Depression Scale (EPDS)</measure>
+    <time_frame>34 days</time_frame>
+    <description>Efficacy as assessed by EPDS</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Spielberger State-Trait Anxiety Inventory six item version (STA6)</measure>
+    <time_frame>34 days</time_frame>
+    <description>Efficacy as assessed by STA6</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Clinical Global Impression</measure>
+    <time_frame>34 days</time_frame>
+    <description>Efficacy as assessed by CGI</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Anticipated">30</enrollment>
+  <condition>Depression</condition>
+  <condition>Depressive Disorder</condition>
+  <condition>Depression, Postpartum</condition>
+  <condition>Behavioral Symptoms</condition>
+  <condition>Mood Disorders</condition>
+  <condition>Mental Disorders</condition>
+  <condition>Puerperal Disorders</condition>
+  <condition>Pregnancy Complications</condition>
+  <condition>Postpartum</condition>
+  <condition>PPD</condition>
+  <arm_group>
+    <arm_group_label>Ganaxolone</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Intravenous</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Placebo</arm_group_label>
+    <arm_group_type>Placebo Comparator</arm_group_type>
+    <description>Intravenous</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Ganaxolone</intervention_name>
+    <description>Ganaxolone IV</description>
+    <arm_group_label>Ganaxolone</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Placebo</intervention_name>
+    <description>Placebo IV</description>
+    <arm_group_label>Placebo</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Subject experienced a Major Depressive Episode, which started between the start of the
+             third trimester and 4 weeks following delivery. The Major Depressive Episode must be
+             diagnosed according to MINI 7.0 interview
+
+          -  Subject gave birth in the last 6 months
+
+          -  Subject has a HAMD17 score of ≥ 26 at screening
+
+          -  Subject must agree to stop breastfeeding from start of study treatment to 7 days after
+             infusion
+
+        Exclusion Criteria:
+
+          -  Current or past history of any psychotic illness, including Major Depressive Episode
+             with psychotic features
+
+          -  History of suicide attempt within the past 3 years
+
+          -  Active suicidal ideation
+
+          -  History of bipolar I disorder
+
+          -  History of seizure disorder
+      </textblock>
+    </criteria>
+    <gender>Female</gender>
+    <gender_based>Yes</gender_based>
+    <gender_description>Women with postpartum depression</gender_description>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>45 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Jaakko Lappalainen, MD, PhD</last_name>
+    <role>Study Director</role>
+    <affiliation>Marinus Pharmaceuticals, Inc.</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Jaakko Lappalainen, MD, PhD</last_name>
+    <phone>484 801 4678</phone>
+    <email>jlappalainen@marinuspharma.com</email>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>William Amerine</last_name>
+    <phone>484-801-4676</phone>
+    <email>wamerine@marinuspharma.com</email>
+  </overall_contact_backup>
+  <location>
+    <facility>
+      <name>Marinus Research Site</name>
+      <address>
+        <city>Little Rock</city>
+        <state>Arkansas</state>
+        <zip>72211</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Marinus Research Site</name>
+      <address>
+        <city>Costa Mesa</city>
+        <state>California</state>
+        <zip>92626</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Marinus Research Site</name>
+      <address>
+        <city>National City</city>
+        <state>California</state>
+        <zip>91945</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Marinus Research Site</name>
+      <address>
+        <city>Jacksonville</city>
+        <state>Florida</state>
+        <zip>32216</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Marinus Research Site</name>
+      <address>
+        <city>Dayton</city>
+        <state>Ohio</state>
+        <zip>45417</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <verification_date>July 2017</verification_date>
+  <lastchanged_date>July 20, 2017</lastchanged_date>
+  <firstreceived_date>July 5, 2017</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>Postpartum Care</keyword>
+  <keyword>Postpartum Depression</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Disease</mesh_term>
+    <mesh_term>Depression</mesh_term>
+    <mesh_term>Depressive Disorder</mesh_term>
+    <mesh_term>Mood Disorders</mesh_term>
+    <mesh_term>Mental Disorders</mesh_term>
+    <mesh_term>Psychotic Disorders</mesh_term>
+    <mesh_term>Depression, Postpartum</mesh_term>
+    <mesh_term>Pregnancy Complications</mesh_term>
+    <mesh_term>Behavioral Symptoms</mesh_term>
+    <mesh_term>Puerperal Disorders</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Pregnanolone</mesh_term>
+  </intervention_browse>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
