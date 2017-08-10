@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02988895</url>
   </required_header>
@@ -11,24 +11,237 @@
     <org_study_id>SMD-201601</org_study_id>
     <nct_id>NCT02988895</nct_id>
   </id_info>
-  <brief_title>[Trial of device that is not approved or cleared by the U.S. FDA]</brief_title>
-  <official_title>[Trial of device that is not approved or cleared by the U.S. FDA]</official_title>
+  <brief_title>Episcleral Brachytherapy for the Treatment of Wet AMD</brief_title>
+  <acronym>NEAMES</acronym>
+  <official_title>A Prospective Study of Episcleral Brachytherapy for the Treatment of Neovascular Age-related Macular Degeneration</official_title>
   <sponsors>
     <lead_sponsor>
-      <agency>[Redacted]</agency>
+      <agency>Salutaris Medical Devices, Inc.</agency>
       <agency_class>Industry</agency_class>
     </lead_sponsor>
   </sponsors>
-  <source>[Redacted]</source>
-  <overall_status>Withheld</overall_status>
-  <start_date>January 2017</start_date>
-  <phase>N/A</phase>
-  <study_type>N/A</study_type>
-  <lastchanged_date>December 7, 2016</lastchanged_date>
+  <source>Salutaris Medical Devices, Inc.</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+    <is_fda_regulated_drug>No</is_fda_regulated_drug>
+    <is_fda_regulated_device>Yes</is_fda_regulated_device>
+    <is_unapproved_device>No</is_unapproved_device>
+    <is_ppsd>No</is_ppsd>
+    <is_us_export>No</is_us_export>
+  </oversight_info>
+  <detailed_description>
+    <textblock>
+      Subjects will receive a single brachytherapy treatment and 52-weeks of follow-up.
+    </textblock>
+  </detailed_description>
+  <overall_status>Recruiting</overall_status>
+  <start_date type="Actual">August 1, 2017</start_date>
+  <completion_date type="Anticipated">December 2018</completion_date>
+  <primary_completion_date type="Anticipated">March 2018</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <intervention_model>Single Group Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>No masking</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Safety of the study intervention</measure>
+    <time_frame>12 weeks</time_frame>
+    <description>Adverse Event assessment</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Feasibility of the study intervention</measure>
+    <time_frame>1 day</time_frame>
+    <description>Investigator ability to place the device and deliver a therapeutic dose</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline in area of leakage</measure>
+    <time_frame>12-weeks, 52-weeks</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline in sub-retinal fluid volume</measure>
+    <time_frame>12-weeks, 52-weeks</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline maximum choroidal neovascular (CNV) lesion size (thickness)</measure>
+    <time_frame>12 weeks, 52 weeks</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of PRN anti-VEGF administrations</measure>
+    <time_frame>52 weeks</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline Early Treatment Diabetic Retinopathy Study (ETDRS) Best Corrected Visual Acuity (BVCA)</measure>
+    <time_frame>12 weeks, 52 weeks</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Adverse Events</measure>
+    <time_frame>52 weeks</time_frame>
+  </secondary_outcome>
+  <number_of_arms>1</number_of_arms>
+  <enrollment type="Anticipated">20</enrollment>
+  <condition>Macular Degeneration, Choroidal Neovascularization</condition>
+  <arm_group>
+    <arm_group_label>episcleral brachytherapy</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>single fraction of 24 Gy Strontium90 episcleral brachytherapy</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Radiation</intervention_type>
+    <intervention_name>episcleral brachytherapy</intervention_name>
+    <description>The study intervention is an outpatient, ambulatory procedure performed under local anesthesia with anesthesia assist.</description>
+    <arm_group_label>episcleral brachytherapy</arm_group_label>
+    <other_name>Strontium 90</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Anti-VEGF</intervention_name>
+    <description>Administered PRN as Standard of Care</description>
+    <arm_group_label>episcleral brachytherapy</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Diagnosis of CNV due to nAMD
+
+          -  Male or female aged 50 years or older
+
+          -  Documented continued care for nAMD since diagnosis
+
+          -  Patients must have demonstrated clinical or OCT/angiographic evidence that, in the
+             investigator's opinion, requires treatment with anti-VEGF therapy.
+
+          -  BCVA 20/40 - 20/200 Snellen equivalent in study eye
+
+          -  Actively leaking CNV as determined by FA
+
+          -  Ability to understand nature/purpose of trial and to provide informed consent
+
+          -  Ability to undergo diagnostic tests and surgical interventions
+
+          -  Ability to follow instructions and complete the trial including all scheduled visits
+             and follow-up
+
+        Exclusion Criteria:
+
+          -  Females of child-bearing potential (defined as &lt; 2 years post-menopausal)
+
+          -  CNV other than due to nAMD
+
+          -  Sub-foveal lesion hemorrhage obscuring &gt;50% of lesion
+
+          -  CNV lesion with greatest linear dimension &gt;2mm as determined by Intravenous
+             Fluorescein angiography
+
+          -  Presence of subretinal fibrosis in the study eye
+
+          -  Existing Retinal Pigment Epithelial tear
+
+          -  Previous treatment (excluding vitamins) for nAMD in the study eye other than
+             aflibercept anti-VEGF therapy in the last 6 months
+
+          -  A change in anti-VEGF agent in the previous two administrations
+
+          -  Anticipate a change to the anti-VEGF agent during the conduct of the study
+
+          -  Previous intraocular surgery in study eye other than for uncomplicated
+             phacoemulsification cataract extraction
+
+          -  Other clinically significant ocular co-morbidity including, but not limited to, optic
+             glaucoma, optic neuropathy of any cause, maculopathy / retinopathy of any cause other
+             than nAMD, and scleritis
+
+          -  Refractive error of - 6D or greater (spherical equivalent) or demonstrated myopic
+             degeneration
+
+          -  Media opacity sufficient to preclude adequate fundoscopy, OCT or angiography
+
+          -  Uncontrolled systemic diseases (e.g. controlled hypertension is acceptable)
+
+          -  Type I or type II diabetes mellitus
+
+          -  Clinically significant previous radiation to the eye
+
+          -  Unable to discontinue anticoagulation or dual anti-platelet therapy for 7 days before
+             and after the study intervention.
+
+          -  Patient unsuitable for IV or local anesthesia
+
+          -  Any contraindication to anti-VEGF, fluorescein, topical and local anesthetics, topical
+             antiseptics, or topical antibiotics to be used during the study
+
+          -  Active ocular or periocular infection or intraocular inflammation
+
+          -  Only eligible eye is the best seeing eye
+
+          -  Any condition which, in the investigators' opinion, would conflict or otherwise
+             prevent the subject from complying with the required procedures, schedule or other
+             study conduct
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>50 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Reid F Schindler, M.D.</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Retina Specialists of Southern Arizona</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Maria Gallegos</last_name>
+    <phone>520-257-3881</phone>
+    <email>mgallegos@delsolresearch.com</email>
+  </overall_contact>
+  <location>
+    <facility>
+      <name>Retina Specialists of Southern Arizona</name>
+      <address>
+        <city>Tucson</city>
+        <state>Arizona</state>
+        <zip>85712</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Maria Gallegos</last_name>
+      <phone>520-257-3881</phone>
+      <email>mgallegos@delsolresearch.com</email>
+    </contact>
+    <contact_backup>
+      <phone>520-881-1400</phone>
+    </contact_backup>
+    <investigator>
+      <last_name>Reid F Schindler, M.D.</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+    <investigator>
+      <last_name>Leonard Joffe, M.D.</last_name>
+      <role>Sub-Investigator</role>
+    </investigator>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <verification_date>August 2017</verification_date>
+  <lastchanged_date>August 1, 2017</lastchanged_date>
   <firstreceived_date>December 6, 2016</firstreceived_date>
   <responsible_party>
-    <name_title>[Redacted]</name_title>
-    <organization>[Redacted]</organization>
+    <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
-  <!-- Results have not yet been posted for this study                                -->
+  <keyword>Brachytherapy</keyword>
+  <keyword>Wet AMD</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Macular Degeneration</mesh_term>
+    <mesh_term>Neovascularization, Pathologic</mesh_term>
+    <mesh_term>Choroidal Neovascularization</mesh_term>
+  </condition_browse>
+  <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00277524</url>
   </required_header>
@@ -42,17 +42,17 @@
       measurement of a patient's fluid status and provides the physician information on the
       patient's heart failure status.
 
-      The study will also assess the time to a patient's first defibrillation shock and will
-      verify that the shock was for a fast or life threatening ventricular rhythm.
+      The study will also assess the time to a patient's first defibrillation shock and will verify
+      that the shock was for a fast or life threatening ventricular rhythm.
     </textblock>
   </brief_summary>
   <detailed_description>
     <textblock>
       The OMNI results demonstrate the importance of Medtronic's ongoing efforts to increase
       adoption of evidence based shock-reduction programming strategies. Longer VF NID (number of
-      intervals to detect in the VF zone) should be utilized with the Anti-tachycardia Pacing
-      (ATP) During Charging Feature. ATP during Charging allows physicians to treat with ATP
-      without delay to shock. Therefore, VF NID may be extended to allow episodes the chance to
+      intervals to detect in the VF zone) should be utilized with the Anti-tachycardia Pacing (ATP)
+      During Charging Feature. ATP during Charging allows physicians to treat with ATP without
+      delay to shock. Therefore, VF NID may be extended to allow episodes the chance to
       self-terminate immediately to shock by use of the ATP during the charging feature.
     </textblock>
   </detailed_description>
@@ -106,11 +106,11 @@ Detection intervals are used to detect atrial tachyarrhythmia. Detection Interva
     <description>Evaluate the utility of the Antitachycardia Pacing (ATP) During Charging feature of the device.</description>
   </secondary_outcome>
   <secondary_outcome>
-    <measure>Compare First Shock Rate Between Medtronic &quot;PainFREE&quot; Programming and &quot;SCD-HeFT&quot; Programming in Primary Prevention Study Participants.</measure>
+    <measure>Compare First Shock Rate Between Medtronic "PainFREE" Programming and "SCD-HeFT" Programming in Primary Prevention Study Participants.</measure>
     <time_frame>4 years post implant</time_frame>
     <description>First shock rate for VF and FVT zones was estimated using Kaplan-Meier method.
-OMNI &quot;PainFREE&quot; definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
-OMNI &quot;SCD-HeFT&quot; definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
+OMNI "PainFREE" definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
+OMNI "SCD-HeFT" definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Frequencies of Subjects With OptiVol Trends and Disease Progression.</measure>
@@ -1417,7 +1417,7 @@ A subject who crossed OptiVol threshold since last visit was regarded as 'crosse
     <country>United States</country>
   </location_countries>
   <reference>
-    <citation>Wathen MS, DeGroot PJ, Sweeney MO, Stark AJ, Otterness MF, Adkisson WO, Canby RC, Khalighi K, Machado C, Rubenstein DS, Volosin KJ; PainFREE Rx II Investigators.. Prospective randomized multicenter trial of empirical antitachycardia pacing versus shocks for spontaneous rapid ventricular tachycardia in patients with implantable cardioverter-defibrillators: Pacing Fast Ventricular Tachycardia Reduces Shock Therapies (PainFREE Rx II) trial results. Circulation. 2004 Oct 26;110(17):2591-6.</citation>
+    <citation>Wathen MS, DeGroot PJ, Sweeney MO, Stark AJ, Otterness MF, Adkisson WO, Canby RC, Khalighi K, Machado C, Rubenstein DS, Volosin KJ; PainFREE Rx II Investigators. Prospective randomized multicenter trial of empirical antitachycardia pacing versus shocks for spontaneous rapid ventricular tachycardia in patients with implantable cardioverter-defibrillators: Pacing Fast Ventricular Tachycardia Reduces Shock Therapies (PainFREE Rx II) trial results. Circulation. 2004 Oct 26;110(17):2591-6. Epub 2004 Oct 18.</citation>
     <PMID>15492306</PMID>
   </reference>
   <reference>
@@ -1429,7 +1429,7 @@ A subject who crossed OptiVol threshold since last visit was regarded as 'crosse
     <PMID>12950512</PMID>
   </reference>
   <reference>
-    <citation>Bardy GH, Lee KL, Mark DB, Poole JE, Packer DL, Boineau R, Domanski M, Troutman C, Anderson J, Johnson G, McNulty SE, Clapp-Channing N, Davidson-Ray LD, Fraulo ES, Fishbein DP, Luceri RM, Ip JH; Sudden Cardiac Death in Heart Failure Trial (SCD-HeFT) Investigators.. Amiodarone or an implantable cardioverter-defibrillator for congestive heart failure. N Engl J Med. 2005 Jan 20;352(3):225-37. Erratum in: N Engl J Med. 2005 May 19;352(20):2146.</citation>
+    <citation>Bardy GH, Lee KL, Mark DB, Poole JE, Packer DL, Boineau R, Domanski M, Troutman C, Anderson J, Johnson G, McNulty SE, Clapp-Channing N, Davidson-Ray LD, Fraulo ES, Fishbein DP, Luceri RM, Ip JH; Sudden Cardiac Death in Heart Failure Trial (SCD-HeFT) Investigators. Amiodarone or an implantable cardioverter-defibrillator for congestive heart failure. N Engl J Med. 2005 Jan 20;352(3):225-37. Erratum in: N Engl J Med. 2005 May 19;352(20):2146.</citation>
     <PMID>15659722</PMID>
   </reference>
   <reference>
@@ -1451,11 +1451,11 @@ A subject who crossed OptiVol threshold since last visit was regarded as 'crosse
   <keyword>Tachycardia</keyword>
   <keyword>Bradycardia</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Heart Failure</mesh_term>
     <mesh_term>Tachycardia</mesh_term>
     <mesh_term>Ventricular Dysfunction</mesh_term>
-    <mesh_term>Critical Care</mesh_term>
+    <mesh_term>Bradycardia</mesh_term>
     <mesh_term>Ventricular Fibrillation</mesh_term>
     <mesh_term>Tachycardia, Ventricular</mesh_term>
   </condition_browse>
@@ -2975,23 +2975,23 @@ Stage A - At high risk for HF but without structural heart disease or symptoms o
       </outcome>
       <outcome>
         <type>Secondary</type>
-        <title>Compare First Shock Rate Between Medtronic &quot;PainFREE&quot; Programming and &quot;SCD-HeFT&quot; Programming in Primary Prevention Study Participants.</title>
+        <title>Compare First Shock Rate Between Medtronic "PainFREE" Programming and "SCD-HeFT" Programming in Primary Prevention Study Participants.</title>
         <description>First shock rate for VF and FVT zones was estimated using Kaplan-Meier method.
 OMNI “PainFREE” definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
 OMNI “SCD-HeFT” definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
         <time_frame>4 years post implant</time_frame>
         <group_list>
           <group group_id="O1">
-            <title>&quot;PainFREE&quot; Programming</title>
+            <title>"PainFREE" Programming</title>
             <description>OMNI “PainFREE” definition: programming combinations that result in ATP therapy for VT at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.</description>
           </group>
           <group group_id="O2">
-            <title>&quot;SCD-HeFT&quot; Programming</title>
+            <title>"SCD-HeFT" Programming</title>
             <description>OMNI “SCD-HeFT” definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
           </group>
         </group_list>
         <measure>
-          <title>Compare First Shock Rate Between Medtronic &quot;PainFREE&quot; Programming and &quot;SCD-HeFT&quot; Programming in Primary Prevention Study Participants.</title>
+          <title>Compare First Shock Rate Between Medtronic "PainFREE" Programming and "SCD-HeFT" Programming in Primary Prevention Study Participants.</title>
           <description>First shock rate for VF and FVT zones was estimated using Kaplan-Meier method.
 OMNI “PainFREE” definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
 OMNI “SCD-HeFT” definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>

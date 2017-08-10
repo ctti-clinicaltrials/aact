@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02798588</url>
   </required_header>
@@ -34,30 +34,29 @@
       terms of rehabilitation resources or to adapt intensive cares to a reasonable level. Tools
       currently available are not sufficient neither to predict bad awakening outcome nor to
       predict good functional outcome. In many countries, life's support cessation is a constant
-      call for robust evaluation as soon as possible in ICU but it is mandatory to reach a
-      positive predictive value of non-awaking close to 100%. Many clinical,
-      electro-physiological, biological, radiological and functional parameters have been
-      conducted with comatose patients assuming the purpose to predict outcome. Regarding
-      unfavourable outcome, the gold standard is the abolition of the N20 component of
-      somatosensory evoked potentials but the specificity is high enough only for patients with
-      anoxic coma. Several neurophysiological markers such as MMN, P300 are correlated to a
-      favourable outcome but the sensitivity and specificity remains low for patients who suffered
-      a severe traumatic brain injury. New Diffusion Tensor imaging sequences provide
-      complementary information to detect small structural lesions (diffuse axonal lesions).
-      Recently, functional MRI analyzing Resting State has also been proposed as a prognostic
-      marker during coma. PET using Fluoro-Desoxy-Glucose is able to assess the metabolism in key
-      regions of the awakening network in either anaesthesia or sleep. Recent studies have
-      reported interesting results at the chronic stage but to knowledge, these tools have only
-      been used to address pathophysiology's issues and never to improve coma prognosis at the
-      initial stage. The investigators hypothesize that the heterogeneity of the population
+      call for robust evaluation as soon as possible in ICU but it is mandatory to reach a positive
+      predictive value of non-awaking close to 100%. Many clinical, electro-physiological,
+      biological, radiological and functional parameters have been conducted with comatose patients
+      assuming the purpose to predict outcome. Regarding unfavourable outcome, the gold standard is
+      the abolition of the N20 component of somatosensory evoked potentials but the specificity is
+      high enough only for patients with anoxic coma. Several neurophysiological markers such as
+      MMN, P300 are correlated to a favourable outcome but the sensitivity and specificity remains
+      low for patients who suffered a severe traumatic brain injury. New Diffusion Tensor imaging
+      sequences provide complementary information to detect small structural lesions (diffuse
+      axonal lesions). Recently, functional MRI analyzing Resting State has also been proposed as a
+      prognostic marker during coma. PET using Fluoro-Desoxy-Glucose is able to assess the
+      metabolism in key regions of the awakening network in either anaesthesia or sleep. Recent
+      studies have reported interesting results at the chronic stage but to knowledge, these tools
+      have only been used to address pathophysiology's issues and never to improve coma prognosis
+      at the initial stage. The investigators hypothesize that the heterogeneity of the population
       requires a global and accurate assessment of the central nervous system, combining
       structural, metabolic and functional information in order to refine the prognosis.
 
       The protocol integrates in one-sequence most radiological markers of brain injury within a
       unique PET-MRI in Lyon. The most relevant originality of the study consists in confronting
       FDG-PET and MRI sequences to a large clinical, electrophysiological and biological battery.
-      The added clinical value would be to question the synergistic effect of each parameter and
-      to find out which ones are the most useful for awakening prediction, as they have not been
+      The added clinical value would be to question the synergistic effect of each parameter and to
+      find out which ones are the most useful for awakening prediction, as they have not been
       compared in a multi-parametric database.
 
       PET-MRI, as a new device combining physiological and prognostic questioning, allows us:
@@ -80,7 +79,7 @@
   <has_expanded_access>No</has_expanded_access>
   <study_design_info>
     <intervention_model>Single Group Assignment</intervention_model>
-    <masking>Double Blind (Caregiver, Investigator, Outcomes Assessor)</masking>
+    <masking>Double Blind (Care Provider, Investigator, Outcomes Assessor)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Analysis of feasibility (pilot study) with Number of patients included during a 12-months period</measure>
@@ -244,11 +243,11 @@ dead patients</description>
   <keyword>PET-MRI</keyword>
   <keyword>electrophysiology</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Coma</mesh_term>
   </condition_browse>
   <patient_data>
     <sharing_ipd>No</sharing_ipd>
   </patient_data>
-  <!-- Results have not yet been posted for this study                                -->
+  <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

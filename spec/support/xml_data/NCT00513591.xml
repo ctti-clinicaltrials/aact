@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00513591</url>
   </required_header>
@@ -30,10 +30,10 @@
       Some women will improve, others will worsen. Some pregnancies progress normally and others
       become very complicated.
 
-      The Duke Autoimmunity in Pregnancy (DAP) Registry will enroll women with autoimmune
-      diseases, such as lupus, rheumatoid arthritis, scleroderma, and Sjogren's syndrome who wish
-      to become, or already are, pregnant. We will follow these women throughout pregnancy to
-      better understand how their autoimmune disease affects their pregnancy, and vice versa.
+      The Duke Autoimmunity in Pregnancy (DAP) Registry will enroll women with autoimmune diseases,
+      such as lupus, rheumatoid arthritis, scleroderma, and Sjogren's syndrome who wish to become,
+      or already are, pregnant. We will follow these women throughout pregnancy to better
+      understand how their autoimmune disease affects their pregnancy, and vice versa.
     </textblock>
   </brief_summary>
   <detailed_description>
@@ -42,10 +42,10 @@
       included in this study.
 
       All women will be seen every 4-6 weeks throughout pregnancy. At each visit, women will
-      complete a questionnaire, the physician will determine the current level of disease
-      activity, and a blood sample will be taken. For women with lupus and healthy women, and
-      additional visit will occur at the start of the 3rd trimester for a closer evaluation of
-      predictors of preterm birth.
+      complete a questionnaire, the physician will determine the current level of disease activity,
+      and a blood sample will be taken. For women with lupus and healthy women, and additional
+      visit will occur at the start of the 3rd trimester for a closer evaluation of predictors of
+      preterm birth.
 
       This is not an intervention study. Women will not be given experimental medication. All
       recommendations for treatment and monitoring will be made based on the best available data
@@ -57,7 +57,8 @@
   </detailed_description>
   <overall_status>Recruiting</overall_status>
   <start_date>August 2007</start_date>
-  <primary_completion_date type="Anticipated">December 2017</primary_completion_date>
+  <completion_date type="Anticipated">June 2018</completion_date>
+  <primary_completion_date type="Anticipated">June 2018</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Observational</study_type>
   <has_expanded_access>No</has_expanded_access>
@@ -66,7 +67,7 @@
     <time_perspective>Prospective</time_perspective>
   </study_design_info>
   <number_of_groups>3</number_of_groups>
-  <enrollment type="Anticipated">500</enrollment>
+  <enrollment type="Anticipated">1000</enrollment>
   <condition>Pregnancy</condition>
   <condition>Systemic Lupus Erythematosus</condition>
   <condition>Cutaneous Lupus</condition>
@@ -118,8 +119,7 @@
 
                -  Sjogren's Syndrome
 
-               -  Inflammatory Arthritis (including Psoriatic Arthritis and Ankylosing
-                  Spondylitis)
+               -  Inflammatory Arthritis (including Psoriatic Arthritis and Ankylosing Spondylitis)
 
                -  Undifferentiated Connective Tissue Disease (UCTD)
 
@@ -138,9 +138,6 @@
           -  Unable to travel to Duke University for follow-up visits
       </textblock>
     </criteria>
-    <aact_changed>added anticipated tags for testing: gender_based, gender_description</aact_changed>
-    <gender_based>No</gender_based>
-    <gender_description>test</gender_description>
     <gender>Female</gender>
     <minimum_age>18 Years</minimum_age>
     <maximum_age>N/A</maximum_age>
@@ -180,8 +177,8 @@
     <url>http://www.dukehealth.org/locations/duke_lupus_clinic</url>
     <description>The Duke Lupus Clinic website</description>
   </link>
-  <verification_date>June 2016</verification_date>
-  <lastchanged_date>June 14, 2016</lastchanged_date>
+  <verification_date>June 2017</verification_date>
+  <lastchanged_date>June 15, 2017</lastchanged_date>
   <firstreceived_date>August 6, 2007</firstreceived_date>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
@@ -192,8 +189,8 @@
   <keyword>Sjogren's Syndrome</keyword>
   <keyword>Scleroderma</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
-    <mesh_term>Cardiopulmonary Resuscitation</mesh_term>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Arthritis</mesh_term>
     <mesh_term>Arthritis, Rheumatoid</mesh_term>
     <mesh_term>Lupus Erythematosus, Systemic</mesh_term>
     <mesh_term>Scleroderma, Systemic</mesh_term>
@@ -201,5 +198,5 @@
     <mesh_term>Sjogren's Syndrome</mesh_term>
     <mesh_term>Autoimmune Diseases</mesh_term>
   </condition_browse>
-  <!-- Results have not yet been posted for this study                                -->
+  <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

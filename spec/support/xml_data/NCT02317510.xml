@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02317510</url>
   </required_header>
@@ -48,17 +48,16 @@
       anesthesia may offer several advantages over general anesthesia.
 
       Material and methods : Fifty patients will be randomly assigned to either the CA LC (25
-      patients) or GA LC (25 patients). All patients has symptomatic gall stone disease or polyp
-      of gall bladder. Intraoperative events related to combined anesthesia : abdominal
+      patients) or GA LC (25 patients). All patients has symptomatic gall stone disease or polyp of
+      gall bladder. Intraoperative events related to combined anesthesia : abdominal
       discomfortable, shoulder pain, abdominal pain, nausea, anxiety, dermatomal level of sensory
       blockade, respiratory depression. We compare between two group; shoulder pain, postoperative
       complications, pain score, duration of operation time and length of hospital stay.
 
       Fifty patients will select prospectively for LC, under low pressure (10 mm Hg)
-      pneumoperitoneum and under combined anesthesia and general anesthesia. Spinal anaesthesia
-      was performed at L1-L2 interspace using 2 ml of 0.5% (10 mg) hyperbaric Bupivacaine mixed
-      with 0.5ml (25 micrograms) of Fentanyl. Epidural catheter was inserted at L1- L2 interspace
-      too.
+      pneumoperitoneum and under combined anesthesia and general anesthesia. Spinal anaesthesia was
+      performed at L1-L2 interspace using 2 ml of 0.5% (10 mg) hyperbaric Bupivacaine mixed with
+      0.5ml (25 micrograms) of Fentanyl. Epidural catheter was inserted at L1- L2 interspace too.
     </textblock>
   </detailed_description>
   <overall_status>Completed</overall_status>
@@ -195,7 +194,7 @@
     <country>Turkey</country>
   </location_countries>
   <reference>
-    <citation>Bessa SS, Katri KM, Abdel-Salam WN, El-Kayal el-SA, Tawfik TA. Spinal versus general anesthesia for day-case laparoscopic cholecystectomy: a prospective randomized study. J Laparoendosc Adv Surg Tech A. 2012 Jul-Aug;22(6):550-5. doi: 10.1089/lap.2012.0110.</citation>
+    <citation>Bessa SS, Katri KM, Abdel-Salam WN, El-Kayal el-SA, Tawfik TA. Spinal versus general anesthesia for day-case laparoscopic cholecystectomy: a prospective randomized study. J Laparoendosc Adv Surg Tech A. 2012 Jul-Aug;22(6):550-5. doi: 10.1089/lap.2012.0110. Epub 2012 Jun 11.</citation>
     <PMID>22686181</PMID>
   </reference>
   <verification_date>February 2016</verification_date>
@@ -212,13 +211,13 @@
   <keyword>General anesthesia</keyword>
   <keyword>Laparoscopic cholecystectomy</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Gallstones</mesh_term>
     <mesh_term>Cholelithiasis</mesh_term>
     <mesh_term>Cholecystolithiasis</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Anesthetics</mesh_term>
   </intervention_browse>
 

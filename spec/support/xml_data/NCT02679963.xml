@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02679963</url>
   </required_header>
@@ -27,22 +27,22 @@
   </oversight_info>
   <brief_summary>
     <textblock>
-      This is a multicentre randomised double-blind phase II trial, sponsored by Gustave Roussy
-      and involving one French center as well as the Spanish Lung Cancer Group (≈20 centers of the
+      This is a multicentre randomised double-blind phase II trial, sponsored by Gustave Roussy and
+      involving one French center as well as the Spanish Lung Cancer Group (≈20 centers of the
       SLCG).
 
-      Five hundred patients with diagnosis of stage IIIB/IV NSCLC will initially be registered
-      prior to receiving the first line platinum-based chemotherapy and provide consent for
-      retrieving archival tissue collection and providing translational blood samples and tumor
-      biopsies.
+      Six hundred patients with diagnosis of stage IIIB/IV NSCLC will initially be registered prior
+      to receiving the first line platinum-based chemotherapy or during or at the end of the first
+      6 cycles of inducation platinium based chemotherapy and provide consent for retrieving
+      archival tissue collection and providing translational blood samples and tumor biopsies.
 
         1. - Induction chemotherapy phase All patients will initially be treated with 6 cycles of
            platinum-based induction chemotherapy. Cycle duration will be 21 days. Doublets should
            either consist of a pemetrexed-platinum (cisplatin or carboplatin) doublet
            (preferentially for non-squamous NSCLC) or a gemcitabine - or vinorelbine - platinum
            doublet for squamous NSCLC. Taxanes-platinum doublets will not be accepted.
-           Translational blood samples will be taken at the beginning of induction chemotherapy
-           for all patients.
+           Translational blood samples will be taken at the beginning of induction chemotherapy for
+           all patients.
 
            Patients displaying progressive disease or stable disease after induction chemotherapy
            will be withdrawn and further optimally managed according to local practice. For them,
@@ -53,18 +53,18 @@
            patients must have been treated with 6 cycles of chemotherapy. However, patients who
            haven't received 6 cycles of the induction chemotherapy due to severe toxicity (grade 3
            or 4, NCI CTCAE v4.0) could be randomized only if they had received 4 chemotherapy
-           cycles at least and if all treatment related toxicities are resolved to a grade ≤ 1
-           (NCI CTCAE v4.0).
+           cycles at least and if all treatment related toxicities are resolved to a grade ≤ 1 (NCI
+           CTCAE v4.0).
 
-      Treatment will be administered at a dose of 600 mg daily (2 doses of 300 mg [2 tablets of
-      150 mg] taken approximately 12 hours apart) and cycle duration will be 28 days. Disease will
-      be assessed every 2 cycles by CTscan (MRI or PET-scan if the scan is not contributive) and
+      Treatment will be administered at a dose of 600 mg daily (2 doses of 300 mg [2 tablets of 150
+      mg] taken approximately 12 hours apart) and cycle duration will be 28 days. Disease will be
+      assessed every 2 cycles by CTscan (MRI or PET-scan if the scan is not contributive) and
       treatment will be administered until disease progression or unacceptable toxicity. Patients
       will then be optimally managed according to local practice. Follow-up will be for a minimum
       of 15 months from the time of randomization, and until last venue. All randomised patients
       will be asked to provide translational blood samples at randomization, on treatment and at
-      the end of the treatment. Optional tumour biopsies will be performed at randomization, at
-      the end of the treatment (or at disease progression if available).
+      the end of the treatment. Optional tumour biopsies will be performed at randomization, at the
+      end of the treatment (or at disease progression if available).
     </textblock>
   </brief_summary>
   <overall_status>Recruiting</overall_status>
@@ -78,7 +78,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
     <primary_purpose>Treatment</primary_purpose>
-    <masking>Double Blind (Subject, Caregiver, Investigator, Outcomes Assessor)</masking>
+    <masking>Participant, Care Provider, Investigator, Outcomes Assessor</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Progression Free Survival</measure>
@@ -90,7 +90,7 @@
     <time_frame>Measured from patient randomization to death or last follow-up for patient alive or consent withdrawal up to 15 months</time_frame>
   </secondary_outcome>
   <number_of_arms>2</number_of_arms>
-  <enrollment type="Anticipated">500</enrollment>
+  <enrollment type="Anticipated">600</enrollment>
   <condition>Non Small Cell Lung Cancer</condition>
   <arm_group>
     <arm_group_label>Maintenance Olaparib</arm_group_label>
@@ -117,8 +117,8 @@
       <textblock>
         For inclusion in the study subjects should fulfill the following criteria:
 
-          1. Provision of written informed consent to treatment and companion translational
-             studies prior to any study specific procedures
+          1. Provision of written informed consent to treatment and companion translational studies
+             prior to any study specific procedures
 
           2. Patients must be &gt; 18 years of age.
 
@@ -128,9 +128,13 @@
 
           5. Advanced or metastatic disease (stage IIIB/IV)
 
-          6. Access to the original tumor biopsy or planning of a fresh tumor biopsy
+          6. Access to the original tumor biopsy or planning of a fresh tumor biopsy before start
+             the platinium based chemotherapy
 
-          7. Chemonaive for NSCLC
+          7. Chemonaive for NSCLC or patient having received adjuvant chemotherapy at least 2 years
+             before trial enrolment or patient currently receiving his/her first platinum-based
+             chemotherapy for advanced NSCLC (first line or second line only if the first line was
+             an anti-PD-1 or anti-PD-L1 agent monotherapy)
 
           8. No other cancer in the previous 3 years, except cervical cancer or cutaneous cancer
 
@@ -138,16 +142,21 @@
 
          10. ECOG Performance Status of 0-1
 
-         11. Fit to receive 6 cycles of platinum-based induction chemotherapy
+         11. Fit to receive 6 cycles or currently receiving of platinum-based induction
+             chemotherapy
 
-         12. Measurable lesions by RECIST v1.1 criteria, i.e. at least one lesion, not previously
-             irradiated, that can be accurately measured at baseline as ≥ 10mm in the longest
-             diameter (except lymph nodes that must have short axis ≥ 15mm) with computed
-             tomography (CT), magnetic resonance imaging (MRI) or clinical examination and which
-             is suitable for accurate repeated measurements.
+         12. At the start of the platinium based induction chemotherapy measurable lesions by
+             RECIST v1.1 criteria, i.e. at least one lesion, not previously irradiated, that can be
+             accurately measured at baseline as ≥ 10mm in the longest diameter (except lymph nodes
+             that must have short axis ≥ 15mm) with computed tomography (CT), magnetic resonance
+             imaging (MRI) or clinical examination and which is suitable for accurate repeated
+             measurements.
 
-         13. Patients must have normal organ and bone marrow function measured within 14 days
-             prior to administration of the platinum based treatment
+             Inclusion criteria 13 is only for patients registered before starting the
+             platinum-based induction chemotherapy:
+
+         13. Patients must have normal organ and bone marrow function measured within 14 days prior
+             to administration of the platinum based treatment
 
                -  Haemoglobin ≥ 10.0 g/dL
 
@@ -161,7 +170,7 @@
                   metastases are present in which case it must be ≤ 5x ULN
 
                -  Creatinine clearance &gt; 60mL/min as calculated by Cockroft-Gault formula for
-                  cisplatin administration; creatinine clearance &gt; 50mL/min by Cockroft-Gault
+                  cisplatin administration; creatinine clearance &gt;/= 51mL/min by Cockroft-Gault
                   formula for carboplatin administration
 
          14. Evidence of non-childbearing status for women of childbearing potential: negative
@@ -187,23 +196,26 @@
              including undergoing treatment and scheduled visits and examinations including follow
              up.
 
+         17. Previous surgery (in the adjuvant setting) for NSCLC, radiotherapy (with a curative
+             intent for local or locally-advanced disease) or immunotherapy by anti- PD-1 or
+             anti-PD-L1 agent in the metastatic setting are allowed
+
         Non-inclusion criteria:
 
           1. Uncontrolled or symptomatic brain metastases. Controlled brain metastases are defined
              as stable for 1 month. A scan to confirm the absence of brain metastases is not
-             required. Corticosteroids therapy will be allowed if administered at a stable dose
-             for at least one month before entering the trial.
+             required. Corticosteroids therapy will be allowed if administered at a stable dose for
+             at least one month before entering the trial.
 
           2. Previous enrolment (or randomisation) in the present study Any previous systemic
              treatment for cancer in the previous 3 years.
 
-          3. Any previous treatment with a PARP inhibitor, including olaparib.
+          3. Any previous systemic treatment for cancer in the previous 3 years except for NSCLC.
 
-          4. Patients receiving any radiotherapy or considering to require radiotherapy to the
-             lung at the time of study entry or in the near future, except for palliative reasons.
-             The patient can receive a stable dose of bisphosphonates for bone metastases, before
-             and during the study as long as these were started at least 4 weeks prior to
-             inclusion.
+          4. Patients receiving any radiotherapy or considering to require radiotherapy to the lung
+             at the time of study entry or in the near future, except for palliative reasons. The
+             patient can receive a stable dose of bisphosphonates for bone metastases, before and
+             during the study as long as these were started at least 4 weeks prior to inclusion.
 
           5. Patients receiving the following classes of inhibitors of CYP3A4 (see Section 6.5 for
              guidelines and wash out periods).
@@ -214,17 +226,17 @@
 
                -  Protease inhibitors
 
-          6. Major surgery within 14 days of registration and patients who have not recovered from
-             any effects of any major surgery.
+          6. Major surgery within 14 days before to start the induction chemotherapy and patients
+             who have not recovered from any effects of any major surgery.
 
           7. Patients considered a poor medical risk due to a serious, uncontrolled medical
              disorder, non-malignant systemic disease or active, uncontrolled infection. Examples
              include, but are not limited to, uncontrolled ventricular arrhythmia, coronary artery
              disease, cardiomyopathy, uncontrolled hypertension, myocardial infarction in the last
              3 months, unstable spinal cord compression (untreated and unstable for at least 28
-             days prior to study entry), superior vena cava syndrome, extensive bilateral lung
-             disease on HRCT scan or any psychiatric disorder that prohibits obtaining informed
-             consent.
+             days prior to start the induction chemotherapy), superior vena cava syndrome,
+             extensive bilateral lung disease on HRCT scan or any psychiatric disorder that
+             prohibits obtaining informed consent.
 
           8. Pregnant and/or breast-feeding women.
 
@@ -235,8 +247,8 @@
          10. Patients with known active hepatic disease (i.e., Hepatitis B or C) Systematic
              serologies to confirm the absence of these diseases are not required.
 
-         11. Patients with a known hypersensitivity to olaparib/placebo, cisplatin, carboplatin,
-             or other platinum containing compounds, or any of the excipients of the product.
+         11. Patients with a known hypersensitivity to olaparib/placebo, cisplatin, carboplatin, or
+             other platinum containing compounds, or any of the excipients of the product.
 
          12. Concomitant yellow fever vaccine
 
@@ -289,23 +301,20 @@
   <location_countries>
     <country>France</country>
   </location_countries>
-  <verification_date>June 2016</verification_date>
-  <lastchanged_date>June 8, 2016</lastchanged_date>
+  <verification_date>July 2017</verification_date>
+  <lastchanged_date>July 31, 2017</lastchanged_date>
   <firstreceived_date>January 26, 2016</firstreceived_date>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Lung Neoplasms</mesh_term>
     <mesh_term>Carcinoma, Non-Small-Cell Lung</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Olaparib</mesh_term>
   </intervention_browse>
-  <patient_data>
-    <sharing_ipd>No</sharing_ipd>
-  </patient_data>
-  <!-- Results have not yet been posted for this study                                -->
+  <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

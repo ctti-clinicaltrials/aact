@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02389088</url>
   </required_header>
@@ -40,27 +40,27 @@
       suggests that granulosa cell hyperresponsiveness to FSH in polycystic ovary syndrome (PCOS)
       may be related to androgen excess. The investigators plan to address this possibility by
       performing a series of in vivo studies. In one of the investigator's prior studies androgen
-      blockade was done by administration of flutamide and E2 responses to FSH assessed. This
-      study has been completed and the manuscript is being prepared for publication. In the
-      present protocol, the investigators propose to further study the role of androgens with a 2
-      phase study. In the first phase the investigators plan to suppress endogenous steroid
-      hormone production by the ovaries via treatment with the GnRH analog Lupron for 4 weeks
-      beyond which a gradual resumption of ovarian activity will occur. Granulosa cell (inhibin B)
-      responses to FSH will be examined before and after ovarian suppression as well as during
-      early and moderate recovery of ovarian steroidogenesis. These results will provide control
-      data to which comparisons can be made from results of the next phase.
+      blockade was done by administration of flutamide and E2 responses to FSH assessed. This study
+      has been completed and the manuscript is being prepared for publication. In the present
+      protocol, the investigators propose to further study the role of androgens with a 2 phase
+      study. In the first phase the investigators plan to suppress endogenous steroid hormone
+      production by the ovaries via treatment with the GnRH analog Lupron for 4 weeks beyond which
+      a gradual resumption of ovarian activity will occur. Granulosa cell (inhibin B) responses to
+      FSH will be examined before and after ovarian suppression as well as during early and
+      moderate recovery of ovarian steroidogenesis. These results will provide control data to
+      which comparisons can be made from results of the next phase.
 
       In the second phase, after a 2 month washout interval, the same subjects will again receive
       Lupron to suppress endogenous steroid production. After 4 weeks, at the beginning of ovarian
       activity resumption, the investigators will administer Letrozole 5mg for 14 days and again
       examine granulosa cell responses to FSH during recovery. Letrozole is a 3rd generation
-      aromatase inhibitor which results in suppression of E2 production and increase in
-      circulating serum androgen levels to about 40% greater than pre-treatment values. It is now
-      also being used for ovulation induction. It has minimal side effects and is in general very
-      well tolerated. By using Letrozole for 2 weeks after GnRH suppression of the ovaries, the
-      investigators will more effectively increase the amount of circulating androgen while
-      keeping estrogen at low levels, thereby allowing the investigators to more completely study
-      the effects of isolated and elevated androgen levels on granulosa cell responses to FSH. By
+      aromatase inhibitor which results in suppression of E2 production and increase in circulating
+      serum androgen levels to about 40% greater than pre-treatment values. It is now also being
+      used for ovulation induction. It has minimal side effects and is in general very well
+      tolerated. By using Letrozole for 2 weeks after GnRH suppression of the ovaries, the
+      investigators will more effectively increase the amount of circulating androgen while keeping
+      estrogen at low levels, thereby allowing the investigators to more completely study the
+      effects of isolated and elevated androgen levels on granulosa cell responses to FSH. By
       comparing results obtained in phase 1, the investigators will be able to determine if there
       is an androgen mediated response by granulosa cells to FSH stimulation in the absence of
       other ovarian steroids. Also, the addition of a control group will allow investigators to
@@ -68,9 +68,9 @@
 
       It is hypothesized that there will be a significant rise in inhibin B production by the
       granulosa cells in PCOS women in response to FSH after treatment with Letrozole as compared
-      to both the control group and to responses observed in the control phase of study. This
-      would confirm that androgens are indeed responsible at least in part for the
-      hyperresponsiveness to FSH seen in women with PCOS.
+      to both the control group and to responses observed in the control phase of study. This would
+      confirm that androgens are indeed responsible at least in part for the hyperresponsiveness to
+      FSH seen in women with PCOS.
     </textblock>
   </detailed_description>
   <overall_status>Completed</overall_status>
@@ -133,8 +133,8 @@ After the FSH stimulation test, each subject will receive an I.M. injection of L
       <textblock>
         Inclusion Criteria:
 
-          -  Subjects will be determined to have PCOS based on clinical criteria such as history
-             of irregular menses and clinical or laboratory evidence of hyperandrogenism.
+          -  Subjects will be determined to have PCOS based on clinical criteria such as history of
+             irregular menses and clinical or laboratory evidence of hyperandrogenism.
 
           -  Subjects should not have been on any hormonal therapy or metformin for at least 2
              months prior to study start.
@@ -177,11 +177,11 @@ After the FSH stimulation test, each subject will receive an I.M. injection of L
   <keyword>FSH</keyword>
   <keyword>Ovary</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Polycystic Ovary Syndrome</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Letrozole</mesh_term>
     <mesh_term>Androgens</mesh_term>
   </intervention_browse>

@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01174550</url>
   </required_header>
@@ -35,9 +35,8 @@
       determine whether an initial non-invasive anatomic imaging strategy with coronary CT
       angiography (CTA) will improve clinical outcomes in subjects with symptoms concerning for
       coronary artery disease relative to an initial functional testing strategy (usual care).
-      Study hypothesis: initial anatomic testing strategy will provide information that will
-      result in superior long-term health outcomes as compared to an initial functional testing
-      strategy.
+      Study hypothesis: initial anatomic testing strategy will provide information that will result
+      in superior long-term health outcomes as compared to an initial functional testing strategy.
     </textblock>
   </brief_summary>
   <detailed_description>
@@ -46,14 +45,14 @@
       coronary artery disease (CAD), to be performed in outpatient settings including acute and
       primary care and cardiology offices. Qualifying patients presenting with new or worsening
       symptoms suspicious for clinically significant CAD who require diagnostic testing and have
-      not been previously evaluated will be randomized to an initial strategy of either anatomic
-      or functional testing. All subsequent decisions regarding additional testing, medications
-      and/or procedures will be at the discretion of the responsible clinical care team Within the
-      functional testing arm, the subject's care team will select the specific test to be
-      performed (exercise electrocardiogram (ECG), stress nuclear, or stress echocardiogram
-      (echo)) consistent with 'usual care' in that practice setting. The subject's care team will
-      be provided with 'Information sheets' summarizing current standards for test interpretation
-      and preventive care, but specific medical treatment will not be mandated by the trial.
+      not been previously evaluated will be randomized to an initial strategy of either anatomic or
+      functional testing. All subsequent decisions regarding additional testing, medications and/or
+      procedures will be at the discretion of the responsible clinical care team Within the
+      functional testing arm, the subject's care team will select the specific test to be performed
+      (exercise electrocardiogram (ECG), stress nuclear, or stress echocardiogram (echo))
+      consistent with 'usual care' in that practice setting. The subject's care team will be
+      provided with 'Information sheets' summarizing current standards for test interpretation and
+      preventive care, but specific medical treatment will not be mandated by the trial.
     </textblock>
   </detailed_description>
   <overall_status>Completed</overall_status>
@@ -190,11 +189,11 @@
 
           -  women age ≥65 years
 
-          -  women age ≥50 years with increased probability of coronary artery disease (CAD) due
-             to either (A. Diabetes Mellitus (DM) requiring medical treatment OR Peripheral
-             Arterial Disease (PAD) defined as documented &gt;50% peripheral arterial stenosis
-             treated medically or invasively OR cerebrovascular disease (stroke, documented &gt; 50%
-             carotid stenosis treated medically or invasively) OR B. At least one of the following
+          -  women age ≥50 years with increased probability of coronary artery disease (CAD) due to
+             either (A. Diabetes Mellitus (DM) requiring medical treatment OR Peripheral Arterial
+             Disease (PAD) defined as documented &gt;50% peripheral arterial stenosis treated
+             medically or invasively OR cerebrovascular disease (stroke, documented &gt; 50% carotid
+             stenosis treated medically or invasively) OR B. At least one of the following
              cardiovascular risk factors: 1-Ongoing tobacco use, 2-Hypertension, 3-Abnormal ankle
              brachial index (ABI) defined as less than &lt;0.9, 4-Dyslipidemia
 
@@ -226,8 +225,8 @@
              (hypertrophic cardiomyopathy or reduced systolic left ventricular function (LVEF) ≤
              40%)) which could explain cardiac symptoms
 
-          -  Contraindication to undergoing a coronary tomographic angiography (CTA), including
-             but not limited to: a. Allergy to iodinated contrast agent, b. Unable to receive beta
+          -  Contraindication to undergoing a coronary tomographic angiography (CTA), including but
+             not limited to: a. Allergy to iodinated contrast agent, b. Unable to receive beta
              blockers unless heart rate &lt; 65 beats per minute, c. Pregnancy
 
           -  Life expectancy &lt; 2 years
@@ -274,12 +273,12 @@
   <keyword>coronary artery disease</keyword>
   <keyword>CAD</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Chest Pain</mesh_term>
   </condition_browse>
   <patient_data>
     <sharing_ipd>Yes</sharing_ipd>
-    <ipd_description>Data will be submitted to the NHLBI according to their guidelines which state&quot;The data sets must be submitted to the study NHLBI study Program Official no later than 3 years after the end of the clinical activity (final patient follow-up, etc.) or 2 years after the main paper of the trial has been published, whichever comes first. Data are prepared by the study coordinating center and sent to the PO for review prior to release.&quot;</ipd_description>
+    <ipd_description>Data will be submitted to the NHLBI according to their guidelines which state"The data sets must be submitted to the study NHLBI study Program Official no later than 3 years after the end of the clinical activity (final patient follow-up, etc.) or 2 years after the main paper of the trial has been published, whichever comes first. Data are prepared by the study coordinating center and sent to the PO for review prior to release."</ipd_description>
   </patient_data>
 
   <clinical_results>

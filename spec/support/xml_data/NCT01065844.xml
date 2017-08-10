@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01065844</url>
   </required_header>
@@ -48,8 +48,8 @@
   </brief_summary>
   <detailed_description>
     <textblock>
-      The hypothesis of this study is that nelfinavir, by inhibiting the Akt and MAPK pathways,
-      can inhibit adenoid cystic carcinoid growth. These cancers are heavily dependent on these
+      The hypothesis of this study is that nelfinavir, by inhibiting the Akt and MAPK pathways, can
+      inhibit adenoid cystic carcinoid growth. These cancers are heavily dependent on these
       signalling pathways.
 
       Adenoid cystic carcinomas (ACC) are rare and account for about 1% of all head and neck
@@ -59,8 +59,8 @@
       is 47-56. Although 5 year disease free survivals (DFS) are 65-70%, the 15 year DFS drops to
       30-40%. If followed long enough, 35% of patients will eventually develop metastatic disease.
 
-      The most common treatment of ACC is surgery followed by post-operative radiotherapy. When
-      ACC recurs, management options are often limited both by the morbidity and low efficacy of
+      The most common treatment of ACC is surgery followed by post-operative radiotherapy. When ACC
+      recurs, management options are often limited both by the morbidity and low efficacy of
       re-irradiation and repeated surgical resection. Reported response rates to chemotherapy are
       low and when it occurs, the duration of the response is short lived.
 
@@ -116,8 +116,8 @@
 
           -  Histological diagnosis of adenoid cystic carcinoma.
 
-          -  Cancer should be staged recurrent or end-stage with/without metastases who have
-             failed all other therapy.
+          -  Cancer should be staged recurrent or end-stage with/without metastases who have failed
+             all other therapy.
 
           -  Age ≥ 18 years
 
@@ -131,30 +131,28 @@
 
                -  platelets ≥ 100,000/mm3
 
-               -  total bilirubin &lt; 1.5 mg/dl OR a stable or a decreasing bilirubin in patients
-                  who have undergone placement of an intrabiliary stent
+               -  total bilirubin &lt; 1.5 mg/dl OR a stable or a decreasing bilirubin in patients who
+                  have undergone placement of an intrabiliary stent
 
                -  AST(SGOT) ≤ 2.5 X institutional upper limit of normal
 
                -  ALT(SGPT) ≤ 2.5 X institutional upper limit of normal
 
                -  creatinine &lt; 1.5 X institutional upper limit of normal OR creatinine clearance ≥
-                  60 mL/min/1.73 m2 for patients with creatinine levels above institutional
-                  normal.
+                  60 mL/min/1.73 m2 for patients with creatinine levels above institutional normal.
 
-          -  No known HIV infection. Since NFV is used in HIV patients, we do not want to
-             interfere with the therapy the patient may already be on.
+          -  No known HIV infection. Since NFV is used in HIV patients, we do not want to interfere
+             with the therapy the patient may already be on.
 
           -  Not pregnant. The effects of NFV on the developing human fetus have been studied in
              HIV positive women (21). We do not, however, know the risks along with radiation.
              Women of child-bearing potential and men must agree to use adequate contraception
-             (hormonal or barrier method of birth control; abstinence) prior to study entry and
-             for the duration of study participation. Should a woman become pregnant or suspect
-             she is pregnant while participating in this study, she should inform her treating
-             physician immediately.
+             (hormonal or barrier method of birth control; abstinence) prior to study entry and for
+             the duration of study participation. Should a woman become pregnant or suspect she is
+             pregnant while participating in this study, she should inform her treating physician
+             immediately.
 
-          -  Ability to understand and the willingness to sign a written informed consent
-             document.
+          -  Ability to understand and the willingness to sign a written informed consent document.
 
         Exclusion Criteria:
 
@@ -202,11 +200,11 @@
     <country>United States</country>
   </location_countries>
   <reference>
-    <citation>Gupta AK, Wilke WW, Taylor EN, Bodeker KL, Hoffman HT, Milhem MM, Buatti JM, Robinson RA. Signaling pathways in adenoid cystic cancers: implications for treatment. Cancer Biol Ther. 2009 Oct;8(20):1947-51.</citation>
+    <citation>Gupta AK, Wilke WW, Taylor EN, Bodeker KL, Hoffman HT, Milhem MM, Buatti JM, Robinson RA. Signaling pathways in adenoid cystic cancers: implications for treatment. Cancer Biol Ther. 2009 Oct;8(20):1947-51. Epub 2009 Oct 22.</citation>
     <PMID>19729990</PMID>
   </reference>
   <results_reference>
-    <citation>Hoover AC, Milhem MM, Anderson CM, Sun W, Smith BJ, Hoffman HT, Buatti JM. Efficacy of nelfinavir as monotherapy in refractory adenoid cystic carcinoma: Results of a phase II clinical trial. Head Neck. 2015 May;37(5):722-6. doi: 10.1002/hed.23664.</citation>
+    <citation>Hoover AC, Milhem MM, Anderson CM, Sun W, Smith BJ, Hoffman HT, Buatti JM. Efficacy of nelfinavir as monotherapy in refractory adenoid cystic carcinoma: Results of a phase II clinical trial. Head Neck. 2015 May;37(5):722-6. doi: 10.1002/hed.23664. Epub 2014 Jun 18.</citation>
     <PMID>24596143</PMID>
   </results_reference>
   <verification_date>October 2016</verification_date>
@@ -221,12 +219,12 @@
   </responsible_party>
   <keyword>Nelfinavir</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Head and Neck Neoplasms</mesh_term>
     <mesh_term>Carcinoma, Adenoid Cystic</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Nelfinavir</mesh_term>
     <mesh_term>HIV Protease Inhibitors</mesh_term>
   </intervention_browse>

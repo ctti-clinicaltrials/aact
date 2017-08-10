@@ -2,6 +2,17 @@ require 'rails_helper'
 
 describe OutcomeAnalysis do
 
+
+  it "should correctly map rare attrib: ci_upper_limit_na_comment " do
+    nct_id='NCT01029262'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    p_value_desc="P-value is from Fisher's exact test to compare the lenalidomide arm to the placebo arm."
+    a=OutcomeAnalysis.where('nct_id=? and p_value_description = ?',nct_id,p_value_desc)
+    expect(a.size).to eq(1)
+    expect(a.first.ci_upper_limit_na_comment).to eq('NA for risk ratio is due to 0 responder in placebo group.')
+  end
+
   it "should have proper relationships and retain numbers after decimal in percent" do
     nct_id='NCT01642004'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -52,6 +63,18 @@ describe OutcomeAnalysis do
     expect(m.ctgov_group_code).to eq('O1')
   end
 
+  it "has expected value in new attribute:  other_analysis_description" do
+    nct_id='NCT02438137'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+
+    a=OutcomeAnalysis.where('nct_id=?',nct_id)
+    expect(a.size).to eq(1)
+    expect(a.first.non_inferiority_type).to eq('Superiority')
+    expect(a.first.non_inferiority_description).to eq('In multiple linear regression models, the effect of DMF treatment on mean RDI change (beta-coefficient) was -11.3 respiratory events per hour (p=0.0124).')
+    expect(a.first.other_analysis_description).to eq('A mixed effects model, which treated RDI as a repeated measure and used individual ID as random effect, adjusted for age, gender, BMI, time spent in supine sleep, was also conducted. In this model, the effect of DMF compared to placebo, controlling for all other covariates, is a 28% decrease in Month 4 RDI (p=0.033).')
+  end
+
   it "study should have expected outcomes and p_value with modifier if includes less-than, greater-than" do
     #  This Study is good for testing OutcomeAnalysis - contains several rare attributes
     nct_id='NCT02028676'
@@ -62,7 +85,6 @@ describe OutcomeAnalysis do
 
     expect(o.outcome_analyses.size).to eq(2)
     a=o.outcome_analyses.select{|x|x.method=='Comparison of poisson rates'}.first
-    expect(a.other_analysis_description).to eq('testing this anticipated tag')
     expect(a.non_inferiority_type).to eq('Non-Inferiority or Equivalence')
     expect(a.non_inferiority_description).to eq('With assumptions detailed above, >90% power and one-sided alpha=0.05, 1160 children would be required to exclude an increase in progression rate of 1.6% from 2.5% to 4.1% per year in the CDM arm (upper 95% confidence limit of LCM: CDM hazard ratio 1.64).')
     expect(a.method_description).to eq('Statistical analysis plan specified that p-value was to be calculated from the log-rank test, so not provided for the risk difference')
@@ -73,7 +95,6 @@ describe OutcomeAnalysis do
     expect(a.ci_n_sides).to eq('2-Sided')
     expect(a.ci_lower_limit).to eq(-0.47)
     expect(a.ci_upper_limit).to eq(1.12)
-    expect(a.ci_upper_limit_na_comment).to eq('this is a ci upper limit comment')
     expect(a.estimate_description).to eq('Difference is CDM minus LCM')
     expect(a.groups_description.gsub(/\n/,' ')).to eq('Assumptions: control group (LCM) event rate 3% per year rates are reduced to 2% per year in the best of the induction-maintenance arms leading to an overall rate of progression to new WHO stage 4 or death of 2.5% recruitment is over 1.5 years and follow-up for a minimum further 3.5 years. cumulative loss to follow-up is 10% at 5 years. See below for rest of sample size as this box is not big enough.')
     expect(a.outcome_analysis_groups.size).to eq(2)
@@ -91,7 +112,8 @@ describe OutcomeAnalysis do
     #it should not think the negative sign in p_value is a modifier" do
     o=study.outcomes.select{|x|x.title=='Once Versus Twice Daily Abacavir+Lamivudine: Suppressed HIV RNA Viral Load 48 Weeks After Randomisation'}.first
     oa=o.analyses.select{|x|x.param_value=-1.6 and x.non_inferiority_type='Non-Inferiority or Equivalence'}.first
-    expect(oa.p_value).to eq(-0.65)
+    expect(oa.ci_lower_limit).to eq(-8.4)
+    expect(oa.p_value).to eq(0.65)
     expect(oa.p_value_modifier).to eq(nil)
   end
 

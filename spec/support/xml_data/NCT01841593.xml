@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01841593</url>
   </required_header>
@@ -21,12 +21,6 @@
   </sponsors>
   <source>St Stephens Aids Trust</source>
   <oversight_info>
-    <aact_change>doctor up oversight info so we have test data</aact_change>
-    <is_fda_regulated_drug>Yes</is_fda_regulated_drug>
-    <is_fda_regulated_device>No</is_fda_regulated_device>
-    <is_unapproved_device>No</is_unapproved_device>
-    <is_ppsd>No</is_ppsd>
-    <is_us_export>true</is_us_export>
     <has_dmc>No</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -71,7 +65,7 @@
     </textblock>
   </detailed_description>
   <overall_status>Completed</overall_status>
-  <start_date type="Actual">April 2013</start_date>
+  <start_date>April 2013</start_date>
   <completion_date type="Actual">September 2013</completion_date>
   <primary_completion_date type="Actual">September 2013</primary_completion_date>
   <phase>Phase 1</phase>
@@ -147,8 +141,8 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
         baseline visit:
 
           -  The ability to understand and sign a written informed consent form, prior to
-             participation in any screening procedures and must be willing to comply with all
-             study requirements
+             participation in any screening procedures and must be willing to comply with all study
+             requirements
 
           -  Male or non-pregnant, non-lactating females
 
@@ -187,11 +181,10 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
           -  Clinically relevant alcohol or drug use (positive urine drug screen) or history of
              alcohol or drug use considered by the Investigator to be sufficient to hinder
              compliance with treatment, follow-up procedures or evaluation of adverse events.
-             Smoking is permitted, but tobacco intake should remain consistent throughout the
-             study
+             Smoking is permitted, but tobacco intake should remain consistent throughout the study
 
-          -  Exposure to any investigational drug or placebo within 3 months of first dose of
-             study drug
+          -  Exposure to any investigational drug or placebo within 3 months of first dose of study
+             drug
 
           -  Use of any other drugs (unless approved by the Investigator), including
              over-the-counter medications and herbal preparations, within two weeks prior to first
@@ -199,8 +192,8 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
              not to interact with study drugs.
 
           -  Females of childbearing potential without the use of effective non-hormonal birth
-             control methods, or not willing to continue practising these birth control methods
-             for at least 12 weeks after the end of the treatment period
+             control methods, or not willing to continue practising these birth control methods for
+             at least 12 weeks after the end of the treatment period
 
           -  Previous allergy to any of the constituents of the pharmaceuticals administered in
              this trial
@@ -239,7 +232,7 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Amlodipine</mesh_term>
     <mesh_term>Raltegravir Potassium</mesh_term>
   </intervention_browse>

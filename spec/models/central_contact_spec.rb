@@ -11,7 +11,7 @@ RSpec.describe CentralContact, type: :model do
       contact_type_primary = CentralContact.where(contact_type: 'primary').first
 
       expect(contact_type_primary.contact_type).to eq('primary')
-      expect(contact_type_primary.name).to eq('GERALD GERALD, MD, Ph D')
+      expect(contact_type_primary.name).to eq('GERALD CHANQUES, MD, Ph D')
       expect(contact_type_primary.phone).to eq('+33467337271')
       expect(contact_type_primary.email).to eq('g-chanques@chu-montpellier.fr')
       expect(contact_type_primary.nct_id).to eq('NCT02830269')

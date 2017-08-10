@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 10, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT03204344</url>
+  </required_header>
+  <id_info>
+    <org_study_id>2017[1362]</org_study_id>
+    <nct_id>NCT03204344</nct_id>
+  </id_info>
+  <brief_title>Preoperative Oral Carbohydrate and Postoperative Recovery in Diabetic Patients</brief_title>
+  <official_title>Impact of Preoperative Oral Carbohydrate on Recovery in Diabetic Patients After Gastrointestinal Surgery: a Pilot Randomized Controlled Trial</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Dong-Xin Wang</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Peking University First Hospital</source>
+  <oversight_info>
+    <has_dmc>Yes</has_dmc>
+    <is_fda_regulated_drug>No</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+    <is_us_export>No</is_us_export>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      For non-diabetic patients undergoing gastrointestinal surgery, preoperative oral carbohydrate
+      improves postoperative recovery. The purpose of this pilot study is to investigate the impact
+      of preoperative oral carbohydrate (outfast®) on the recovery in diabetic patients after
+      gastrointestinal surgery.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Studies show that avoiding long-time fasting by oral carbohydrates 2 hours before surgery
+      attenuates discomfort and anxiety; it also reduces stress, insulin resistance and catabolism
+      in patients undergoing gastrointestinal surgery, resulting in earlier recovery of
+      gastrointestinal function and short length of hospital stay after surgery. However, for
+      diabetic patients scheduled to undergo gastrointestinal surgery, the risks and benefits of
+      preopertive oral carbohydrate remain unclear. The purpose of this pilot study is to
+      investigate the impact of preoperative oral carbohydrate (outfast®) on the recovery in
+      diabetic patients after gastrointestinal surgery.
+    </textblock>
+  </detailed_description>
+  <overall_status>Not yet recruiting</overall_status>
+  <start_date type="Anticipated">August 2017</start_date>
+  <completion_date type="Anticipated">September 2018</completion_date>
+  <primary_completion_date type="Anticipated">August 2018</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <intervention_model_description>This is a outcomes assessor-blinded, randomized controlled trial with two parallel arms.</intervention_model_description>
+    <primary_purpose>Prevention</primary_purpose>
+    <masking>Outcomes Assessor</masking>
+    <masking_description>Outcomes assessor who perform postoperative follow-up is masked to group assignment.</masking_description>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Recovery of gastrointestinal function</measure>
+    <time_frame>From end of surgery until the time of first flatus and defecation, assessed up to 7 days after surgery.</time_frame>
+    <description>Time to first flatus and defecation after surgery.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Subjective feelings</measure>
+    <time_frame>Before anesthesia induction and at 4-6 hours after surgery.</time_frame>
+    <description>Four subjective feelings, including the degree of being thirsty, hungry, tired and anxious, are assessed with Numeric Rating Scale (NRS, an 11-point scale where 0 = no feeling at all and 10 = the worst feeling).</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Blood glucose variation</measure>
+    <time_frame>From 22:00 on the day before surgery until 24 hours after surgery.</time_frame>
+    <description>Difference between the highest and the lowest blood glucose levels.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Insulin resistance</measure>
+    <time_frame>Assessed at 24 hours after surgery.</time_frame>
+    <description>Insulin resistance is calculated with the Homeostatic model assessment-insulin resistance (HOMA-IR) equation.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Length of stay in hospital after surgery.</measure>
+    <time_frame>From end of surgery until hospital discharge, up to 30 days after surgery.</time_frame>
+    <description>Length of stay in hospital after surgery.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Incidence of postoperative complications</measure>
+    <time_frame>From end of surgery until 30 days after surgery</time_frame>
+    <description>Postoperative complications are defined as newly occurred medical conditions that have harmful effects on patients' recovery and require therapeutic intervention.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Time to first walking in the ground and distance of walking after surgery.</measure>
+    <time_frame>During the first 5 days after surgery</time_frame>
+    <description>Time to first walking in the ground and distance of walking after surgery.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>All cause 30-day mortality</measure>
+    <time_frame>At 30 days after surgery</time_frame>
+    <description>All cause 30-day mortality</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Anticipated">60</enrollment>
+  <condition>Gastrointestinal Surgery</condition>
+  <arm_group>
+    <arm_group_label>Intervention group</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>For all patients, 2 bottles of oral carbohydrate (Outfast, 710 ml) is provided between 22:00-24:00 on the day before surgery. Subcutaneous insulin is administered before drinking.
+For patients who entered operating room before 12:00, 1 bottle of oral carbohydrate (Outfast) is provided at 6:00 on the day of surgery. For patients who enter the operating room after 12:00, another bottle of oral carbohydrate (Outfast) is provided at least 2 hours (6:00) before entering the operating room. Subcutaneous insulin is administered before drinking.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Control group</arm_group_label>
+    <arm_group_type>Sham Comparator</arm_group_type>
+    <description>For all patients, routine fasting begin from 22:00 on the day before surgery until entering the operating room on the day of surgery.
+For patients who enter the operating room before 12:00, no oral or intravenoous fluid is provided. For patients who enter the operating room after 12:00, 5% glucose (500-1000 ml) is provided by intravenous infusion from 6:00 on the day of surgery. Intravenous insulin is added in the 5% glucose.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Dietary Supplement</intervention_type>
+    <intervention_name>Oral carbohydrate (Outfast)</intervention_name>
+    <description>For all patients, 2 bottles of oral carbohydrate (Outfast, 710 ml) is provided between 22:00-24:00 on the day before surgery. Subcutaneous insulin is administered before drinking. The dose of insulin is calculated by an endocrinologist according to patients' daily glucose controlling plan.
+For patients who entered operating room before 12:00, 1 bottle of oral carbohydrate (Outfast) is provided at 6:00 on the day of surgery. For patients who enter the operating room after 12:00, another bottle of oral carbohydrate (Outfast) is provided at least 2 hours (6:00) before entering the operating room. Subcutaneous insulin is administered before drinking. The dose of insulin is calculated is the same way as described above.</description>
+    <arm_group_label>Intervention group</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Other</intervention_type>
+    <intervention_name>Routine fasting</intervention_name>
+    <description>For all patients, fasting begin from 22:00 on the day before surgery until entering the operating room on the day of surgery.
+For patients who enter the operating room before 12:00, no oral or intravenoous fluid is provided. For patients who enter the operating room after 12:00, 5% glucose (500-1000 ml) is provided by intravenous infusion from 6:00 on the day of surgery. Intravenous insulin is added in the 5% glucose. The dose of insulin is calculated by an endocrinologist according to patients' daily glucose controlling plan.</description>
+    <arm_group_label>Control group</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          1. Age of 18 years and beyond;
+
+          2. Diagnosed with type 2 diabetes before surgery;
+
+          3. Scheduled to undergo elective gastrointestinal surgery with anticipated duration of 2
+             hours or more;
+
+          4. Provide signed writen informed consents.
+
+        Exclusion Criteria:
+
+          1. Refuse to participate in the study;
+
+          2. Diagnosed with diaphragmatic hernia, gastric esophageal reflux disease or pregnancy;
+
+          3. Previous history of total or partial gastrectomy;
+
+          4. Preoperative New York Heart Assocition (NYHA) class IV, renal failure (requirement of
+             renal replacement therapy), severe hepatic disease (Child-Pugh class C), or American
+             Society of Anesthesiologists (ASA) class IV or higher.
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Dong-Xin Wang, MD, PhD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Peking University First Hospital</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Dong-Xin Wang, MD, PhD</last_name>
+    <phone>8610 83572784</phone>
+    <email>wangdongxin@hotmail.com</email>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>Xue Li, MD</last_name>
+    <phone>8610 83572460</phone>
+    <email>3999165@163.com</email>
+  </overall_contact_backup>
+  <location>
+    <facility>
+      <name>Peking University First Hospital</name>
+      <address>
+        <city>Beijing</city>
+        <state>Beijing</state>
+        <zip>100034</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>China</country>
+  </location_countries>
+  <reference>
+    <citation>Wang ZG, Wang Q, Wang WJ, Qin HL. Randomized clinical trial to compare the effects of preoperative oral carbohydrate versus placebo on insulin resistance after colorectal surgery. Br J Surg. 2010 Mar;97(3):317-27. doi: 10.1002/bjs.6963.</citation>
+    <PMID>20101593</PMID>
+  </reference>
+  <reference>
+    <citation>Hausel J, Nygren J, Thorell A, Lagerkranser M, Ljungqvist O. Randomized clinical trial of the effects of oral preoperative carbohydrates on postoperative nausea and vomiting after laparoscopic cholecystectomy. Br J Surg. 2005 Apr;92(4):415-21.</citation>
+    <PMID>15739210</PMID>
+  </reference>
+  <reference>
+    <citation>Singh BN, Dahiya D, Bagaria D, Saini V, Kaman L, Kaje V, Vagadiya A, Sarin S, Edwards R, Attri V, Jain K. Effects of preoperative carbohydrates drinks on immediate postoperative outcome after day care laparoscopic cholecystectomy. Surg Endosc. 2015 Nov;29(11):3267-72. doi: 10.1007/s00464-015-4071-7. Epub 2015 Jan 22.</citation>
+    <PMID>25609319</PMID>
+  </reference>
+  <reference>
+    <citation>Sada F, Krasniqi A, Hamza A, Gecaj-Gashi A, Bicaj B, Kavaja F. A randomized trial of preoperative oral carbohydrates in abdominal surgery. BMC Anesthesiol. 2014 Oct 17;14:93. doi: 10.1186/1471-2253-14-93. eCollection 2014.</citation>
+    <PMID>25364300</PMID>
+  </reference>
+  <reference>
+    <citation>Helminen H, Viitanen H, Sajanti J. Effect of preoperative intravenous carbohydrate loading on preoperative discomfort in elective surgery patients. Eur J Anaesthesiol. 2009 Feb;26(2):123-7. doi: 10.1097/EJA.0b013e328319be16.</citation>
+    <PMID>19142085</PMID>
+  </reference>
+  <reference>
+    <citation>Zelić M, Stimac D, Mendrila D, Tokmadžić VS, Fišić E, Uravić M, Sustić A. Influence of preoperative oral feeding on stress response after resection for colon cancer. Hepatogastroenterology. 2012 Jul-Aug;59(117):1385-9. doi: 10.5754/hge10556.</citation>
+    <PMID>22683955</PMID>
+  </reference>
+  <reference>
+    <citation>Zelić M, Štimac D, Mendrila D, Tokmadžić VS, Fišić E, Uravić M, Šustić A. Preoperative oral feeding reduces stress response after laparoscopic cholecystectomy. Hepatogastroenterology. 2013 Oct;60(127):1602-6.</citation>
+    <PMID>24634929</PMID>
+  </reference>
+  <reference>
+    <citation>Viganò J, Cereda E, Caccialanza R, Carini R, Cameletti B, Spampinato M, Dionigi P. Effects of preoperative oral carbohydrate supplementation on postoperative metabolic stress response of patients undergoing elective abdominal surgery. World J Surg. 2012 Aug;36(8):1738-43. doi: 10.1007/s00268-012-1590-4.</citation>
+    <PMID>22484570</PMID>
+  </reference>
+  <reference>
+    <citation>Lidder P, Thomas S, Fleming S, Hosie K, Shaw S, Lewis S. A randomized placebo controlled trial of preoperative carbohydrate drinks and early postoperative nutritional supplement drinks in colorectal surgery. Colorectal Dis. 2013 Jun;15(6):737-45. doi: 10.1111/codi.12130.</citation>
+    <PMID>23406311</PMID>
+  </reference>
+  <reference>
+    <citation>Perrone F, da-Silva-Filho AC, Adôrno IF, Anabuki NT, Leal FS, Colombo T, da Silva BD, Dock-Nascimento DB, Damião A, de Aguilar-Nascimento JE. Effects of preoperative feeding with a whey protein plus carbohydrate drink on the acute phase response and insulin resistance. A randomized trial. Nutr J. 2011 Jun 13;10:66. doi: 10.1186/1475-2891-10-66.</citation>
+    <PMID>21668975</PMID>
+  </reference>
+  <reference>
+    <citation>Faria MS, de Aguilar-Nascimento JE, Pimenta OS, Alvarenga LC Jr, Dock-Nascimento DB, Slhessarenko N. Preoperative fasting of 2 hours minimizes insulin resistance and organic response to trauma after video-cholecystectomy: a randomized, controlled, clinical trial. World J Surg. 2009 Jun;33(6):1158-64. doi: 10.1007/s00268-009-0010-x.</citation>
+    <PMID>19363695</PMID>
+  </reference>
+  <reference>
+    <citation>Makuuchi R, Sugisawa N, Kaji S, Hikage M, Tokunaga M, Tanizawa Y, Bando E, Kawamura T, Terashima M. Enhanced recovery after surgery for gastric cancer and an assessment of preoperative carbohydrate loading. Eur J Surg Oncol. 2017 Jan;43(1):210-217. doi: 10.1016/j.ejso.2016.07.140. Epub 2016 Aug 10.</citation>
+    <PMID>27554250</PMID>
+  </reference>
+  <reference>
+    <citation>Smith MD, McCall J, Plank L, Herbison GP, Soop M, Nygren J. Preoperative carbohydrate treatment for enhancing recovery after elective surgery. Cochrane Database Syst Rev. 2014 Aug 14;(8):CD009161. doi: 10.1002/14651858.CD009161.pub2. Review.</citation>
+    <PMID>25121931</PMID>
+  </reference>
+  <reference>
+    <citation>Awad S, Varadhan KK, Ljungqvist O, Lobo DN. A meta-analysis of randomised controlled trials on preoperative oral carbohydrate treatment in elective surgery. Clin Nutr. 2013 Feb;32(1):34-44. doi: 10.1016/j.clnu.2012.10.011. Epub 2012 Nov 7.</citation>
+    <PMID>23200124</PMID>
+  </reference>
+  <reference>
+    <citation>Noblett SE, Watson DS, Huong H, Davison B, Hainsworth PJ, Horgan AF. Pre-operative oral carbohydrate loading in colorectal surgery: a randomized controlled trial. Colorectal Dis. 2006 Sep;8(7):563-9.</citation>
+    <PMID>16919107</PMID>
+  </reference>
+  <reference>
+    <citation>An GQ, Zhao XL, Gao YC, Wang GY, Yu YM. [Effects of preoperative carbohydrate loading on the changes in serum tumor necrosis factor receptors 1 and 2 and insulin resistance in patients of colon carcinoma]. Zhonghua Yi Xue Za Zhi. 2008 Jul 29;88(29):2041-4. Chinese.</citation>
+    <PMID>19080431</PMID>
+  </reference>
+  <reference>
+    <citation>Feldheiser A, Aziz O, Baldini G, Cox BP, Fearon KC, Feldman LS, Gan TJ, Kennedy RH, Ljungqvist O, Lobo DN, Miller T, Radtke FF, Ruiz Garces T, Schricker T, Scott MJ, Thacker JK, Ytrebø LM, Carli F. Enhanced Recovery After Surgery (ERAS) for gastrointestinal surgery, part 2: consensus statement for anaesthesia practice. Acta Anaesthesiol Scand. 2016 Mar;60(3):289-334. doi: 10.1111/aas.12651. Epub 2015 Oct 30. Review.</citation>
+    <PMID>26514824</PMID>
+  </reference>
+  <reference>
+    <citation>Alfonsi P, Slim K, Chauvin M, Mariani P, Faucheron JL, Fletcher D; Working Group of Société française d’anesthésie et réanimation (SFAR); Société française de chirurgie digestive (SFCD). French guidelines for enhanced recovery after elective colorectal surgery. J Visc Surg. 2014 Feb;151(1):65-79. doi: 10.1016/j.jviscsurg.2013.10.006. Epub 2013 Dec 27.</citation>
+    <PMID>24378143</PMID>
+  </reference>
+  <reference>
+    <citation>Horowitz M, O'Donovan D, Jones KL, Feinle C, Rayner CK, Samsom M. Gastric emptying in diabetes: clinical significance and treatment. Diabet Med. 2002 Mar;19(3):177-94. Review.</citation>
+    <PMID>11918620</PMID>
+  </reference>
+  <reference>
+    <citation>Gustafsson UO, Nygren J, Thorell A, Soop M, Hellström PM, Ljungqvist O, Hagström-Toft E. Pre-operative carbohydrate loading may be used in type 2 diabetes patients. Acta Anaesthesiol Scand. 2008 Aug;52(7):946-51. doi: 10.1111/j.1399-6576.2008.01599.x. Epub 2008 Mar 7.</citation>
+    <PMID>18331374</PMID>
+  </reference>
+  <verification_date>June 2017</verification_date>
+  <lastchanged_date>June 28, 2017</lastchanged_date>
+  <firstreceived_date>June 26, 2017</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor-Investigator</responsible_party_type>
+    <investigator_affiliation>Peking University First Hospital</investigator_affiliation>
+    <investigator_full_name>Dong-Xin Wang</investigator_full_name>
+    <investigator_title>Professor and Chairman, Department of Anesthesiology and Critical Care Medicine</investigator_title>
+  </responsible_party>
+  <keyword>Gastrointestinal surgery</keyword>
+  <keyword>Preoperative oral carbohydrate</keyword>
+  <keyword>Diabetic patients</keyword>
+  <keyword>Postoperative recovery</keyword>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Insulin, Globin Zinc</mesh_term>
+    <mesh_term>Insulin</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>Yes</sharing_ipd>
+    <ipd_description>IPD will be available by contacting Dr. Xue Li (lixuepku@hotmail.com) after the trial is completed.</ipd_description>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>

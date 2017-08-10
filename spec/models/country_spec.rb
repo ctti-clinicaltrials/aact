@@ -20,8 +20,8 @@ RSpec.describe Country, type: :model do
     nct_id='NCT01642004'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.countries.size).to eq(25)
-    expect(study.countries.select{|x|x.removed==true}.size).to eq(5)
+    expect(study.countries.size).to eq(26)
+    expect(study.countries.select{|x|x.removed==true}.size).to eq(6)
     expect(study.countries.select{|x|x.name=='Peru' and x.removed==nil}.size).to eq(1)
     expect(study.countries.select{|x|x.name=='Peru' and x.removed==true}.size).to eq(0)
     expect(study.countries.select{|x|x.name=='Norway' and x.removed==true}.size).to eq(1)

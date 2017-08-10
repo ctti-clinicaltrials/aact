@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01207388</url>
   </required_header>
@@ -22,15 +22,6 @@
   </sponsors>
   <source>Amgen Research (Munich) GmbH</source>
   <oversight_info>
-    <authority>Germany: Paul-Ehrlich-Institut</authority>
-    <authority>Austria: Agency for Health and Food Safety</authority>
-    <authority>Belgium: Federal Agency for Medicinal Products and Health Products</authority>
-    <authority>France: Afssaps - Agence française de sécurité sanitaire des produits de santé (Saint-Denis)</authority>
-    <authority>Spain: Agencia Española de Medicamentos y Productos Sanitarios</authority>
-    <authority>United Kingdom: Medicines and Healthcare Products Regulatory Agency</authority>
-    <authority>Russia: Ministry of Health of the Russian Federation</authority>
-    <authority>Romania: National Medicines Agency</authority>
-    <authority>Netherlands: The Central Committee on Research Involving Human Subjects (CCMO)</authority>
     <has_dmc>Yes</has_dmc>
   </oversight_info>
   <brief_summary>
@@ -44,18 +35,18 @@
     <textblock>
       The detection of minimal residual disease (MRD) after induction therapy and/or consolidation
       therapy is an independent prognostic factor for poor outcome of adult ALL. No standard
-      treatments are available for patients with MRD-positive B-precursor ALL. Blinatumomab
-      (MT103) is a bispecific single-chain antibody construct designed to link B cells and T cells
-      resulting in T-cell activation and a cytotoxic T-cell response against CD19 expressing
-      cells. The purpose of this study is to confirm whether the bispecific T-cell engager
-      blinatumomab (MT103) is effective, safe and tolerable in the treatment of ALL patients with
-      minimal residual disease.
+      treatments are available for patients with MRD-positive B-precursor ALL. Blinatumomab (MT103)
+      is a bispecific single-chain antibody construct designed to link B cells and T cells
+      resulting in T-cell activation and a cytotoxic T-cell response against CD19 expressing cells.
+      The purpose of this study is to confirm whether the bispecific T-cell engager blinatumomab
+      (MT103) is effective, safe and tolerable in the treatment of ALL patients with minimal
+      residual disease.
 
       Participants will receive up to four 4-week cycles of intravenous blinatumomab treatment
       followed by an infusion-free period of 14 days. A safety follow-up will be performed 30 days
       after the end of the last infusion and efficacy follow-ups will occur until 24 months after
-      treatment start. Participants will be followed for up to 5 years after the start of
-      treatment for survival.
+      treatment start. Participants will be followed for up to 5 years after the start of treatment
+      for survival.
     </textblock>
   </detailed_description>
   <overall_status>Active, not recruiting</overall_status>
@@ -68,7 +59,7 @@
   <study_design_info>
     <intervention_model>Single Group Assignment</intervention_model>
     <primary_purpose>Treatment</primary_purpose>
-    <masking>Open Label</masking>
+    <masking>No masking</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Percentage of Participants With a Minimal Residual Disease (MRD) Response Within the First Treatment Cycle</measure>
@@ -115,18 +106,18 @@ MRD relapse is defined as the reappearance of individual rearrangements of Ig- o
     <description>Adverse events (AEs) were evaluated for severity according to the the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE), version 4, as follows:
 Grade 1 - Mild AE; Grade 2 - Moderate AE; Grade 3 - Severe AE; Grade 4 - Life-threatening or disabling AE; Grade 5 - Death.
 The investigator used medical judgment to determine if there was a causal relationship (ie, related, unrelated) between an adverse event and blinatumomab.
-An AE was considered &quot;serious&quot; if it resulted in death, was life-threatening, required or prolonged inpatient hospitalization, resulted in persistent or significant incapacity or substantial disruption to conduct normal life functions, was a congenital anomaly or birth defect or was a medically important condition.</description>
+An AE was considered "serious" if it resulted in death, was life-threatening, required or prolonged inpatient hospitalization, resulted in persistent or significant incapacity or substantial disruption to conduct normal life functions, was a congenital anomaly or birth defect or was a medically important condition.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Change From Baseline in EORTC-QLQ-C30 Scales</measure>
-    <time_frame>Baseline and the end of each treatment cycle (Day 29 of each cycle) and 30 days after last treatment (end of core study)</time_frame>
+    <time_frame>Subjects are assessed at Screening Visit (Baseline), at day 29 of each treatment cycle, at Day 30 Safety Follow-Up Visit and during mandated Efficacy Follow-Up Visits occurring at month 3, 6, 9, 12, 18 and 24 after treatment start.</time_frame>
     <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Insomnia, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 For each of these scales, scores range from 0 to 100. For the GHS and 5 functional scales a high score indicates better global health status/functioning and a positive change from baseline indicates improvement. For the 9 symptom scales, a high score indicates a higher level of symptoms, and a negative change from Baseline indicates an improvement in symptoms.
 The maximum changes from baseline to cycles 1 through 4 and to the end of the core study are reported.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Change From Baseline in EuroQoL 5-Dimension (EQ-5D) Scales</measure>
-    <time_frame>Baseline and the end of each treatment cycle (Day 29 of each cycle) and 30 days after last treatment (end of core study)</time_frame>
+    <time_frame>Subjects are assessed at Screening Visit (Baseline), at day 29 of each treatment cycle, at Day 30 Safety Follow-Up Visit and during mandated Efficacy Follow-Up Visits occurring at month 3, 6, 9, 12, 18 and 24 after treatment start.</time_frame>
     <description>The EQ-5D is a self-administered questionnaire which captures 3 basic types of information: a descriptive profile (health state index) and the overall health rating using a visual analog scale. The health state index measures mobility, self-care, usual activities, pain/discomfort and anxiety/depression on scales from no problems (score = 1), some problems (score = 2), to extreme problems (score = 3). For each dimension the mean change from baseline was calculated at the end of each treatment cycle and at the end of study. The maximum observed change from baseline during cycles 1 to 4 and the change from baseline at the end of study are reported for each dimension.</description>
   </secondary_outcome>
   <secondary_outcome>
@@ -538,7 +529,7 @@ The maximum changes from baseline to cycles 1 through 4 and to the end of the co
   </location>
   <location>
     <facility>
-      <name>1303 - Istituto di Ematologia &quot;L.&amp; A.Seràgnoli&quot; Azienda</name>
+      <name>1303 - Istituto di Ematologia "L.&amp; A.Seràgnoli" Azienda</name>
       <address>
         <city>Bologna</city>
         <country>Italy</country>
@@ -592,7 +583,7 @@ The maximum changes from baseline to cycles 1 through 4 and to the end of the co
   </location>
   <location>
     <facility>
-      <name>1308 - Ospedali Riuniti &quot;Villa Sofia-Cervello&quot;</name>
+      <name>1308 - Ospedali Riuniti "Villa Sofia-Cervello"</name>
       <address>
         <city>Palermo</city>
         <country>Italy</country>
@@ -736,7 +727,7 @@ The maximum changes from baseline to cycles 1 through 4 and to the end of the co
   </location>
   <location>
     <facility>
-      <name>2106 - Institutul Oncologic &quot;Prof. Dr. I. Chiricuta&quot;</name>
+      <name>2106 - Institutul Oncologic "Prof. Dr. I. Chiricuta"</name>
       <address>
         <city>Cluj-Napoca</city>
         <country>Romania</country>
@@ -891,8 +882,8 @@ The maximum changes from baseline to cycles 1 through 4 and to the end of the co
     <country>Spain</country>
     <country>United Kingdom</country>
   </location_countries>
-  <verification_date>August 2016</verification_date>
-  <lastchanged_date>August 22, 2016</lastchanged_date>
+  <verification_date>March 2017</verification_date>
+  <lastchanged_date>March 30, 2017</lastchanged_date>
   <firstreceived_date>September 21, 2010</firstreceived_date>
   <firstreceived_results_date>January 28, 2015</firstreceived_results_date>
   <responsible_party>
@@ -911,7 +902,7 @@ The maximum changes from baseline to cycles 1 through 4 and to the end of the co
   <keyword>anti-CD19</keyword>
   <keyword>Immunotherapeutic treatment</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Leukemia</mesh_term>
     <mesh_term>Precursor Cell Lymphoblastic Leukemia-Lymphoma</mesh_term>
     <mesh_term>Leukemia, Lymphoid</mesh_term>
@@ -919,7 +910,7 @@ The maximum changes from baseline to cycles 1 through 4 and to the end of the co
     <mesh_term>Burkitt Lymphoma</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Blinatumomab</mesh_term>
     <mesh_term>Antibodies, Bispecific</mesh_term>
   </intervention_browse>
@@ -1072,24 +1063,20 @@ Participants suitable for allogeneic hematopoietic stem cell transplant (HSCT) a
           </class_list>
         </measure>
         <measure>
-          <title>Gender</title>
-          <units>participants</units>
-          <param>Number</param>
+          <title>Sex: Female, Male</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
           <class_list>
             <class>
-              <title>Female</title>
               <category_list>
                 <category>
+                  <title>Female</title>
                   <measurement_list>
                     <measurement group_id="B1" value="48"/>
                   </measurement_list>
                 </category>
-              </category_list>
-            </class>
-            <class>
-              <title>Male</title>
-              <category_list>
                 <category>
+                  <title>Male</title>
                   <measurement_list>
                     <measurement group_id="B1" value="68"/>
                   </measurement_list>
@@ -1856,7 +1843,7 @@ An AE was considered “serious” if it resulted in death, was life-threatening
         <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Insomnia, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 For each of these scales, scores range from 0 to 100. For the GHS and 5 functional scales a high score indicates better global health status/functioning and a positive change from baseline indicates improvement. For the 9 symptom scales, a high score indicates a higher level of symptoms, and a negative change from Baseline indicates an improvement in symptoms.
 The maximum changes from baseline to cycles 1 through 4 and to the end of the core study are reported.</description>
-        <time_frame>Baseline and the end of each treatment cycle (Day 29 of each cycle) and 30 days after last treatment (end of core study)</time_frame>
+        <time_frame>Subjects are assessed at Screening Visit (Baseline), at day 29 of each treatment cycle, at Day 30 Safety Follow-Up Visit and during mandated Efficacy Follow-Up Visits occurring at month 3, 6, 9, 12, 18 and 24 after treatment start.</time_frame>
         <population>Full analysis set</population>
         <group_list>
           <group group_id="O1">
@@ -2058,7 +2045,7 @@ The maximum changes from baseline to cycles 1 through 4 and to the end of the co
         <type>Secondary</type>
         <title>Change From Baseline in EuroQoL 5-Dimension (EQ-5D) Scales</title>
         <description>The EQ-5D is a self-administered questionnaire which captures 3 basic types of information: a descriptive profile (health state index) and the overall health rating using a visual analog scale. The health state index measures mobility, self-care, usual activities, pain/discomfort and anxiety/depression on scales from no problems (score = 1), some problems (score = 2), to extreme problems (score = 3). For each dimension the mean change from baseline was calculated at the end of each treatment cycle and at the end of study. The maximum observed change from baseline during cycles 1 to 4 and the change from baseline at the end of study are reported for each dimension.</description>
-        <time_frame>Baseline and the end of each treatment cycle (Day 29 of each cycle) and 30 days after last treatment (end of core study)</time_frame>
+        <time_frame>Subjects are assessed at Screening Visit (Baseline), at day 29 of each treatment cycle, at Day 30 Safety Follow-Up Visit and during mandated Efficacy Follow-Up Visits occurring at month 3, 6, 9, 12, 18 and 24 after treatment start.</time_frame>
         <population>Full analysis set</population>
         <group_list>
           <group group_id="O1">

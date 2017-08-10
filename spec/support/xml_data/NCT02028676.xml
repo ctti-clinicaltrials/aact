@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on January 18, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02028676</url>
   </required_header>
@@ -59,8 +59,8 @@
            and will result in improvements in adherence to ART?
 
         4. Whether stopping daily cotrimoxazole prophylaxis in children over 3 years of age who
-           have been on ART for at least 96 weeks has a similar outcome in terms of
-           hospitalisation or death as continuing daily cotrimoxazole?
+           have been on ART for at least 96 weeks has a similar outcome in terms of hospitalisation
+           or death as continuing daily cotrimoxazole?
     </textblock>
   </brief_summary>
   <detailed_description>
@@ -70,20 +70,19 @@
       (ART) in 1200 symptomatic HIV-infected infants and children initiating ART following WHO
       guidelines in Uganda and Zimbabwe. The first strategy compares clinically driven monitoring
       (CDM) with laboratory plus clinical monitoring (LCM). In both groups, tests for toxicity
-      (standard haematology and biochemistry panels) and efficacy (lymphocyte subsets including
-      CD4 count) will be done every 12 weeks. In LCM, all results will be returned for patient
+      (standard haematology and biochemistry panels) and efficacy (lymphocyte subsets including CD4
+      count) will be done every 12 weeks. In LCM, all results will be returned for patient
       management. In CDM, physicians may request results from routine haematology/biochemistry
       panels if needed for clinical management, but results will not be returned routinely, and
-      lymphocyte subsets will never be returned. Extra laboratory tests may be requested outside
-      of the scheduled visits at any time in either group (except for lymphocyte subsets in CDM).
-      The second strategy compares a continuous WHO-recommended first-line ART three-drug
-      two-class regimen, comprising two Nucleoside Reverse Transcriptase Inhibitors (NRTIs) plus
-      one Non-Nucleoside Reverse Transcriptase Inhibitor (NNRTI), with induction with four drugs
-      (two classes) for 36 weeks followed by maintenance with three drugs. After at least 36 and
-      96 weeks on ART respectively, two further randomisations will assess simplification
-      strategies which could improve long-term ART adherence (i) once versus twice daily
-      lamivudine+abacavir NRTI drugs (ii) stopping versus continuing daily cotrimoxazole
-      prophylaxis.
+      lymphocyte subsets will never be returned. Extra laboratory tests may be requested outside of
+      the scheduled visits at any time in either group (except for lymphocyte subsets in CDM). The
+      second strategy compares a continuous WHO-recommended first-line ART three-drug two-class
+      regimen, comprising two Nucleoside Reverse Transcriptase Inhibitors (NRTIs) plus one
+      Non-Nucleoside Reverse Transcriptase Inhibitor (NNRTI), with induction with four drugs (two
+      classes) for 36 weeks followed by maintenance with three drugs. After at least 36 and 96
+      weeks on ART respectively, two further randomisations will assess simplification strategies
+      which could improve long-term ART adherence (i) once versus twice daily lamivudine+abacavir
+      NRTI drugs (ii) stopping versus continuing daily cotrimoxazole prophylaxis.
     </textblock>
   </detailed_description>
   <overall_status>Completed</overall_status>
@@ -524,9 +523,9 @@
                -  HIV negative. Children of DART participants should have first priority on any
                   available remaining slots to enter ARROW.
 
-          2. Parents or guardians, and children where appropriate according to age and knowledge
-             of HIV status, must be willing and able to give informed consent for randomisation to
-             CDM or LCM and to first-line ART strategy.
+          2. Parents or guardians, and children where appropriate according to age and knowledge of
+             HIV status, must be willing and able to give informed consent for randomisation to CDM
+             or LCM and to first-line ART strategy.
 
           3. Participants must have a confirmed documented diagnosis of HIV-1 infection:
 
@@ -599,9 +598,9 @@
              alanine transaminase (ALT) &gt;5 x the upper limit of normal (ULN); grade 3 renal
              dysfunction - creatinine &gt;1.9 x ULN).
 
-             N.B. causes of anaemia, such as concurrent bacterial infection, malaria,
-             helminthiasis and/or malnutrition should be investigated, and treatment for anaemia
-             and its causes commenced prior to re-screening for eligibility.
+             N.B. causes of anaemia, such as concurrent bacterial infection, malaria, helminthiasis
+             and/or malnutrition should be investigated, and treatment for anaemia and its causes
+             commenced prior to re-screening for eligibility.
 
           6. Being pregnant or breast-feeding an infant
 
@@ -618,8 +617,8 @@
           3. Currently taking lamivudine+abacavir twice daily as part of their ART regimen and
              expected to stay on these two drugs for at least the next 12 weeks
 
-          4. Parents or guardians, and children where appropriate according to age and knowledge
-             of HIV status, must be willing and able to give informed consent for randomisation to
+          4. Parents or guardians, and children where appropriate according to age and knowledge of
+             HIV status, must be willing and able to give informed consent for randomisation to
              once or twice daily lamivudine+abacavir
 
              Exclusion criteria
@@ -638,12 +637,12 @@
 
           4. Currently prescribed daily cotrimoxazole as primary prophylaxis
 
-          5. Parents or guardians, and children where appropriate according to age and knowledge
-             of HIV status, must be willing and able to give informed consent for randomisation to
+          5. Parents or guardians, and children where appropriate according to age and knowledge of
+             HIV status, must be willing and able to give informed consent for randomisation to
              stop or continue daily cotrimoxazole prophylaxis
 
-          6. If living in a malaria endemic area, has an insecticide treated bednet and prepared
-             to use this for the child.
+          6. If living in a malaria endemic area, has an insecticide treated bednet and prepared to
+             use this for the child.
 
              Exclusion criteria
 
@@ -751,11 +750,11 @@
     <description>main ARROW trial webpage</description>
   </link>
   <results_reference>
-    <citation>ARROW Trial team., Kekitiinwa A, Cook A, Nathoo K, Mugyenyi P, Nahirya-Ntege P, Bakeera-Kitaka S, Thomason M, Bwakura-Dangarembizi M, Musiime V, Munderi P, Naidoo-James B, Vhembo T, Tumusiime C, Katuramu R, Crawley J, Prendergast AJ, Musoke P, Walker AS, Gibb DM. Routine versus clinically driven laboratory monitoring and first-line antiretroviral therapy strategies in African children with HIV (ARROW): a 5-year open-label randomised factorial trial. Lancet. 2013 Apr 20;381(9875):1391-403. doi: 10.1016/S0140-6736(12)62198-9.</citation>
+    <citation>ARROW Trial team, Kekitiinwa A, Cook A, Nathoo K, Mugyenyi P, Nahirya-Ntege P, Bakeera-Kitaka S, Thomason M, Bwakura-Dangarembizi M, Musiime V, Munderi P, Naidoo-James B, Vhembo T, Tumusiime C, Katuramu R, Crawley J, Prendergast AJ, Musoke P, Walker AS, Gibb DM. Routine versus clinically driven laboratory monitoring and first-line antiretroviral therapy strategies in African children with HIV (ARROW): a 5-year open-label randomised factorial trial. Lancet. 2013 Apr 20;381(9875):1391-403. doi: 10.1016/S0140-6736(12)62198-9. Epub 2013 Mar 7.</citation>
     <PMID>23473847</PMID>
   </results_reference>
   <results_reference>
-    <citation>Bwakura-Dangarembizi M, Kendall L, Bakeera-Kitaka S, Nahirya-Ntege P, Keishanyu R, Nathoo K, Spyer MJ, Kekitiinwa A, Lutaakome J, Mhute T, Kasirye P, Munderi P, Musiime V, Gibb DM, Walker AS, Prendergast AJ; Antiretroviral Research for Watoto (ARROW) Trial Team.. A randomized trial of prolonged co-trimoxazole in HIV-infected children in Africa. N Engl J Med. 2014 Jan 2;370(1):41-53. doi: 10.1056/NEJMoa1214901. Erratum in: N Engl J Med. 2014 Jan 30;370(5):488. Dosage error in article text.</citation>
+    <citation>Bwakura-Dangarembizi M, Kendall L, Bakeera-Kitaka S, Nahirya-Ntege P, Keishanyu R, Nathoo K, Spyer MJ, Kekitiinwa A, Lutaakome J, Mhute T, Kasirye P, Munderi P, Musiime V, Gibb DM, Walker AS, Prendergast AJ. A randomized trial of prolonged co-trimoxazole in HIV-infected children in Africa. N Engl J Med. 2014 Jan 2;370(1):41-53. doi: 10.1056/NEJMoa1214901. Erratum in: N Engl J Med. 2014 Jan 30;370(5):488. Dosage error in article text.</citation>
     <PMID>24382064</PMID>
   </results_reference>
   <verification_date>June 2014</verification_date>
@@ -782,22 +781,22 @@
   <keyword>lamivudine</keyword>
   <keyword>once daily</keyword>
   <condition_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Immunologic Deficiency Syndromes</mesh_term>
     <mesh_term>Acquired Immunodeficiency Syndrome</mesh_term>
     <mesh_term>HIV Infections</mesh_term>
   </condition_browse>
   <intervention_browse>
-    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm  -->
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Lamivudine</mesh_term>
     <mesh_term>Zidovudine</mesh_term>
     <mesh_term>Efavirenz</mesh_term>
-    <mesh_term>Lamivudine, zidovudine drug combination</mesh_term>
     <mesh_term>Nevirapine</mesh_term>
     <mesh_term>Abacavir</mesh_term>
     <mesh_term>Dideoxynucleosides</mesh_term>
-    <mesh_term>Sulfamethoxazole</mesh_term>
+    <mesh_term>Lamivudine, zidovudine drug combination</mesh_term>
     <mesh_term>Trimethoprim</mesh_term>
+    <mesh_term>Sulfamethoxazole</mesh_term>
     <mesh_term>Trimethoprim, Sulfamethoxazole Drug Combination</mesh_term>
   </intervention_browse>
 
@@ -2122,10 +2121,7 @@ cumulative loss to follow-up is 10% at 5 years. See below for rest of sample siz
             <ci_n_sides>2-Sided</ci_n_sides>
             <ci_lower_limit>-0.47</ci_lower_limit>
             <ci_upper_limit>1.12</ci_upper_limit>
-            <ci_upper_limit_na_comment>this is a ci upper limit comment</ci_upper_limit_na_comment>
             <estimate_desc>Difference is CDM minus LCM</estimate_desc>
-            <aact_change> adding this new tag to test. </aact_change>
-            <other_analysis_desc>testing this anticipated tag</other_analysis_desc>
           </analysis>
         </analysis_list>
       </outcome>
@@ -2479,7 +2475,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
             </group_id_list>
             <non_inferiority_type>Non-Inferiority or Equivalence</non_inferiority_type>
             <non_inferiority_desc>631 children would be required to exclude a 12% lower suppression rate in the once daily group with at least 90% power and two-sided alpha=0.05 (lower 95% confidence limit of difference between once and twice daily -12%, the non-inferiority margin). 630 children retains at least 80% (rather than 90%) power to exclude a 10% (rather than 12%) lower suppression rate in the once daily group with one-sided alpha=0.05 (lower 90% confidence limit of difference between once and twice daily -10%).</non_inferiority_desc>
-            <p_value>-0.65</p_value>
+            <p_value>0.65</p_value>
             <method>Chi-squared</method>
             <param_type>Risk Difference (RD)</param_type>
             <param_value>-1.6</param_value>
