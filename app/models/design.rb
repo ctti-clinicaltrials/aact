@@ -15,11 +15,10 @@ class Design < StudyRelationship
       :time_perspective => get('time_perspective'),
       :masking => get_masking,
       :masking_description => get('masking_description'),
-
-      :subject_masked => is_masked?('Subject'),
-      :caregiver_masked => is_masked?('Caregiver'),
-      :investigator_masked => is_masked?('Investigator'),
-      :outcomes_assessor_masked => is_masked?('Outcomes Assessor'),
+      :subject_masked => is_masked?(['Subject','Participant']),
+      :caregiver_masked => is_masked?(['Caregiver','Care Provider']),
+      :investigator_masked => is_masked?(['Investigator']),
+      :outcomes_assessor_masked => is_masked?(['Outcomes Assessor']),
     }
   end
 
@@ -28,8 +27,11 @@ class Design < StudyRelationship
     val.split('(').first.strip if val
   end
 
-  def is_masked?(role)
-    get_masked_roles.try(:include?,role)
+  def is_masked?(roles)
+    roles.each{|role|
+      return true if get_masked_roles.try(:include?,role)
+    }
+    nil
   end
 
   def get_masked_roles
