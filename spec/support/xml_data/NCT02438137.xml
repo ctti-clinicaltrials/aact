@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 10, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02438137</url>
+  </required_header>
+  <id_info>
+    <org_study_id>HUM00080121</org_study_id>
+    <nct_id>NCT02438137</nct_id>
+  </id_info>
+  <brief_title>Dimethyl Fumarate for Obstructive Sleep Apnea</brief_title>
+  <official_title>A Randomized Clinical Trial of Dimethyl Fumarate as a Novel Therapeutic Agent for Obstructive Sleep Apnea</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>University of Michigan</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>University of Michigan</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+    <is_fda_regulated_drug>Yes</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The overall purpose of this study is to determine whether the oral medication dimethyl
+      fumarate is an effective treatment for obstructive sleep apnea in patients who are unable,
+      unwilling, or uneager to use positive airway pressure therapy.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Obstructive sleep apnea (OSA) is a common disorder that involves collapse of the upper airway
+      during sleep, leading to low blood oxygen levels and sleep disruption. Untreated OSA
+      increases the risk of many health consequences, including high blood pressure, heart disease,
+      stroke, diabetes, memory problems, fatigue, sleepiness, and impaired memory. Despite its
+      profound public health and societal impact, there are no known medications that can
+      effectively treat OSA, and up to 50% of patients cannot tolerate current treatments. The
+      primary treatment for OSA, known as Continuous Positive Airway Pressure (CPAP), is delivered
+      by a mechanical device and mask that blows air into the airway to keep it open during sleep.
+      Although CPAP controls OSA, many patients can't tolerate the discomfort of the mask, and up
+      to 50% of patients cannot use CPAP appropriately.
+
+      Several recent studies of OSA patients suggest that inflammation in the airway and the
+      bloodstream may worsen OSA, and that medications that control inflammation may improve OSA.
+      In particular, a previous study from the researchers suggests that multiple sclerosis (MS)
+      patients who are on MS therapies that control inflammation may have less severe OSA than
+      those who are not. MS is an autoimmune disease that is associated with inflammation of the
+      nervous system. As OSA may also be caused or worsened by inflammation, this clinical trial
+      aims to study the effects of a specific MS medication known as dimethyl fumarate (brand name
+      - Tecfidera®) to see if it may also be useful to treat OSA. Tecfidera® is already approved by
+      the Food and Drug Administration (FDA) to treat patients with MS. However, it is not approved
+      by the FDA for the treatment of OSA and is thus considered an investigational drug in this
+      study.
+
+      Study-related activities will last for 5 months. Consenting participants will receive a
+      baseline overnight sleep study to assess their current sleep apnea severity. Participants
+      will then be given either oral dimethyl fumarate or placebo for a period of 4 months, and
+      will be followed on a monthly basis during the course of the study. At the end of the study,
+      participants will undergo a repeat overnight sleep study to monitor for changes in their
+      sleep apnea severity. Treatments will be assigned at random (like flipping a coin), and
+      participants will not be aware of which treatment they receive. There is a 2/3 chance that
+      participants will receive dimethyl fumarate. Participants will also undergo blood draws and
+      complete several surveys during their monthly study visits. Participants will be compensated
+      for their travel and time throughout the course of the study.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>May 2015</start_date>
+  <completion_date type="Actual">May 2016</completion_date>
+  <primary_completion_date type="Actual">April 2016</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Participant, Outcomes Assessor</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Mean Change in Apnea Severity as Measured by the Respiratory Disturbance Index (RDI)</measure>
+    <time_frame>Month 0 to Month 4</time_frame>
+    <description>For the 50 participants who had interpretable month 4 polysomnography (PSG) data available, mean change in sleep apnea severity, as measured by the mean change in respiratory disturbance index (RDI) between baseline (Month 0) PSG and Month 4 PSG, was calculated. The RDI represents the total number of apneas, hypopneas and respiratory-related arousals per hour of sleep.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Mean Change in Serum Cytokine Levels (Mean Difference of Log-transformed Values)</measure>
+    <time_frame>Month 0 to Month 4</time_frame>
+    <description>Levels of markers in the blood known as cytokines (measured in picograms per milliliter) were measured on a monthly basis from Month 0 (baseline) to Month 4. The outcome is the mean difference in cytokine level from baseline to month 4 (mean level at Month 4 - mean level at Baseline). Values were log-transformed for normality, prior to analysis.</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">65</enrollment>
+  <condition>Obstructive Sleep Apnea</condition>
+  <condition>OSA</condition>
+  <condition>Sleep Apnea</condition>
+  <arm_group>
+    <arm_group_label>Dimethyl Fumarate (Tecfidera®) capsules</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>The starting dose for dimethyl fumarate (Tecfidera®, http://www.tecfidera.com/pdfs/full-prescribing-information.pdf) is 120 mg twice a day orally. After 7 days, the dose should be increased to the maintenance dose of 240 mg twice a day, though slower dose escalations are possible to increase tolerability, if necessary. Participants randomized to dimethyl fumarate will be instructed to take this medication twice a day with breakfast and dinner for a period of 4 months.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Placebo</arm_group_label>
+    <arm_group_type>Placebo Comparator</arm_group_type>
+    <description>The placebo is an inert product that looks like a pill and is identical to dimethyl fumarate capsules, but it contains no medicine. Participants randomized to placebo will be instructed to take placebo twice a day with breakfast and dinner for a period of 4 months.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Dimethyl fumarate</intervention_name>
+    <description>Dimethyl fumarate capsules will be dispensed during routine study appointments. 120 mg tablets will be dispensed to facilitate dose titrations. Drug will be dispensed in 1 month supply, so that compliance can be reconciled at monthly follow-up visits, and recorded in accountability logs. Participants will be instructed to take the medication with food, in the morning and at dinnertime. If participants miss a dose, they will be instructed to resume their normal dose at the next scheduled time, and be instructed not to take an extra dose at their next dosing interval if they previously miss a dose.</description>
+    <arm_group_label>Dimethyl Fumarate (Tecfidera®) capsules</arm_group_label>
+    <other_name>Tecfidera</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Placebo</intervention_name>
+    <description>Placebo capsules will be dispensed during routine study appointments. Placebo will be dispensed in 1 month supply, so that compliance can be reconciled at monthly follow-up visits, and recorded in accountability logs. Participants will be instructed to take the placebo with food, in the morning and at dinnertime. If participants miss a dose, they will be instructed to resume their normal dose at the next scheduled time, and be instructed not to take an extra dose at their next dosing interval if they previously miss a dose.</description>
+    <arm_group_label>Placebo</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          1. Age of 18-65 years at screening;
+
+          2. Diagnosis of OSA as confirmed by previous clinical sleep study (polysomnography, PSG);
+
+          3. Refusal, inability, or high reluctance to use CPAP regularly for treatment of OSA,
+             despite medical advice;
+
+          4. Willingness to undergo repeat sleep study (PSG) and blood studies;
+
+          5. Normal immune cell counts, as evidenced by complete blood count (CBC) done at
+             screening
+
+        Exclusion Criteria:
+
+          1. Regular use of CPAP within the last 2 months
+
+          2. Physical, psychiatric or cognitive impairment that prevents informed consent, PSG, or
+             reliable follow-up;
+
+          3. Cardiac conditions that may increase sleep apnea severity (e.g., congestive heart
+             failure or recent heart attack);
+
+          4. Current successful treatment for obstructive or central sleep apnea, for example by
+             CPAP, and patient agreement to continue with that treatment;
+
+          5. History of surgical treatment for OSA within past 6 months, or subsequent to last PSG
+             confirmation that OSA is present;
+
+          6. Active nervous system diseases that may predispose subjects to OSA;
+
+          7. Systemic autoimmune disease that could increase inflammation and influence apnea
+             severity (such as rheumatoid arthritis or lupus);
+
+          8. Pregnancy or breastfeeding;
+
+          9. Use of immunotherapies or immunosuppressants, currently or within past 6 months;
+
+         10. Anticipated initiation or dose change in tricyclic antidepressants, selective
+             serotonin uptake inhibitors, or related compounds;
+
+         11. Participants with a history of active, serious or persistent infections.
+
+         12. Participants with recent surgery (within 3 months prior to screening), or anticipated
+             surgery during the length of the study.
+
+         13. Systemic steroid use within the last 2 months (does not include local steroid
+             injections or intranasal steroid spray);
+
+         14. Current diagnosis of cancer that is not considered to be cured or in remission by the
+             treating physician, cancer treatment of any kind within the last 6 months prior to
+             screening (chemo, radiation, surgery), or anticipated cancer treatment during the
+             length of the study;
+
+         15. History of a lymphoproliferative disorder (such as leukemia);
+
+         16. History of Multiple Myeloma
+
+         17. History of decreased immune cell counts per a blood test known as a CBC, specifically
+             lymphocyte counts less than 1.2 K/μL at screening.
+
+         18. Refusal to use at least one reliable method of birth control (for women of
+             childbearing age)
+
+         19. Newly diagnosed (within 2 months) OSA subjects who have an AHI &gt; 30 and history of
+             serious, recent, or unstable cardiovascular disease (including but not limited to
+             recent MI, recent stroke/TIA, or unstable angina)
+
+         20. Participants who report previous motor vehicle accidents or near-misses presumed to be
+             due to excessive sleepiness while driving.
+
+         21. Any other condition or treatment that in the opinion of the investigator could affect
+             subject safety or study eligibility.
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>65 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Tiffany J. Braley, MD, MS</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>University of Michigan</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>University of Michigan</name>
+      <address>
+        <city>Ann Arbor</city>
+        <state>Michigan</state>
+        <zip>48109</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <reference>
+    <citation>Aloia MS, Stanchina M, Arnedt JT, Malhotra A, Millman RP. Treatment adherence and outcomes in flexible vs standard continuous positive airway pressure therapy. Chest. 2005 Jun;127(6):2085-93.</citation>
+    <PMID>15947324</PMID>
+  </reference>
+  <reference>
+    <citation>Vgontzas AN, Bixler EO, Tan TL, Kantner D, Martin LF, Kales A. Obesity without sleep apnea is associated with daytime sleepiness. Arch Intern Med. 1998 Jun 22;158(12):1333-7.</citation>
+    <PMID>9645828</PMID>
+  </reference>
+  <reference>
+    <citation>Vgontzas AN, Zoumakis E, Lin HM, Bixler EO, Trakada G, Chrousos GP. Marked decrease in sleepiness in patients with sleep apnea by etanercept, a tumor necrosis factor-alpha antagonist. J Clin Endocrinol Metab. 2004 Sep;89(9):4409-13.</citation>
+    <PMID>15356039</PMID>
+  </reference>
+  <reference>
+    <citation>Thomas KS, Motivala S, Olmstead R, Irwin MR. Sleep depth and fatigue: role of cellular inflammatory activation. Brain Behav Immun. 2011 Jan;25(1):53-8. doi: 10.1016/j.bbi.2010.07.245. Epub 2010 Jul 23.</citation>
+    <PMID>20656013</PMID>
+  </reference>
+  <reference>
+    <citation>Aihara K, Oga T, Chihara Y, Harada Y, Tanizawa K, Handa T, Hitomi T, Uno K, Mishima M, Chin K. Analysis of systemic and airway inflammation in obstructive sleep apnea. Sleep Breath. 2013 May;17(2):597-604. doi: 10.1007/s11325-012-0726-y. Epub 2012 Jun 7.</citation>
+    <PMID>22674397</PMID>
+  </reference>
+  <reference>
+    <citation>Tam CS, Wong M, McBain R, Bailey S, Waters KA. Inflammatory measures in children with obstructive sleep apnoea. J Paediatr Child Health. 2006 May;42(5):277-82.</citation>
+    <PMID>16712558</PMID>
+  </reference>
+  <reference>
+    <citation>Ursavaş A, Karadağ M, Rodoplu E, Yilmaztepe A, Oral HB, Gözü RO. Circulating ICAM-1 and VCAM-1 levels in patients with obstructive sleep apnea syndrome. Respiration. 2007;74(5):525-32. Epub 2006 Dec 4.</citation>
+    <PMID>17148932</PMID>
+  </reference>
+  <reference>
+    <citation>Cofta S, Wysocka E, Dziegielewska-Gesiak S, Michalak S, Piorunek T, Batura-Gabryel H, Torlinski L. Plasma selectins in patients with obstructive sleep apnea. Adv Exp Med Biol. 2013;756:113-9. doi: 10.1007/978-94-007-4549-0_15.</citation>
+    <PMID>22836626</PMID>
+  </reference>
+  <reference>
+    <citation>Htoo AK, Greenberg H, Tongia S, Chen G, Henderson T, Wilson D, Liu SF. Activation of nuclear factor kappaB in obstructive sleep apnea: a pathway leading to systemic inflammation. Sleep Breath. 2006 Mar;10(1):43-50.</citation>
+    <PMID>16491391</PMID>
+  </reference>
+  <reference>
+    <citation>Walsh JA, Duffin KC, Crim J, Clegg DO. Lower frequency of obstructive sleep apnea in spondyloarthritis patients taking TNF-inhibitors. J Clin Sleep Med. 2012 Dec 15;8(6):643-8. doi: 10.5664/jcsm.2254.</citation>
+    <PMID>23243397</PMID>
+  </reference>
+  <reference>
+    <citation>Braley TJ, Segal BM, Chervin RD. Sleep-disordered breathing in multiple sclerosis. Neurology. 2012 Aug 28;79(9):929-36. doi: 10.1212/WNL.0b013e318266fa9d. Epub 2012 Aug 15.</citation>
+    <PMID>22895593</PMID>
+  </reference>
+  <reference>
+    <citation>Gerdes S, Shakery K, Mrowietz U. Dimethylfumarate inhibits nuclear binding of nuclear factor kappaB but not of nuclear factor of activated T cells and CCAAT/enhancer binding protein beta in activated human T cells. Br J Dermatol. 2007 May;156(5):838-42. Epub 2007 Mar 23.</citation>
+    <PMID>17381463</PMID>
+  </reference>
+  <reference>
+    <citation>Stoof TJ, Flier J, Sampat S, Nieboer C, Tensen CP, Boorsma DM. The antipsoriatic drug dimethylfumarate strongly suppresses chemokine production in human keratinocytes and peripheral blood mononuclear cells. Br J Dermatol. 2001 Jun;144(6):1114-20.</citation>
+    <PMID>11422029</PMID>
+  </reference>
+  <reference>
+    <citation>Wierinckx A, Brevé J, Mercier D, Schultzberg M, Drukarch B, Van Dam AM. Detoxication enzyme inducers modify cytokine production in rat mixed glial cells. J Neuroimmunol. 2005 Sep;166(1-2):132-43.</citation>
+    <PMID>15993952</PMID>
+  </reference>
+  <reference>
+    <citation>Vandermeeren M, Janssens S, Borgers M, Geysen J. Dimethylfumarate is an inhibitor of cytokine-induced E-selectin, VCAM-1, and ICAM-1 expression in human endothelial cells. Biochem Biophys Res Commun. 1997 May 8;234(1):19-23.</citation>
+    <PMID>9168952</PMID>
+  </reference>
+  <reference>
+    <citation>Wallbrecht K, Drick N, Hund AC, Schön MP. Downregulation of endothelial adhesion molecules by dimethylfumarate, but not monomethylfumarate, and impairment of dynamic lymphocyte-endothelial cell interactions. Exp Dermatol. 2011 Dec;20(12):980-5. doi: 10.1111/j.1600-0625.2011.01376.x. Epub 2011 Oct 13.</citation>
+    <PMID>21995308</PMID>
+  </reference>
+  <reference>
+    <citation>Meissner M, Valesky EM, Kippenberger S, Kaufmann R. Dimethyl fumarate - only an anti-psoriatic medication? J Dtsch Dermatol Ges. 2012 Nov;10(11):793-801. doi: 10.1111/j.1610-0387.2012.07996.x. Epub 2012 Aug 17. Review. English, German.</citation>
+    <PMID>22897153</PMID>
+  </reference>
+  <reference>
+    <citation>Scannevin RH, Chollate S, Jung MY, Shackett M, Patel H, Bista P, Zeng W, Ryan S, Yamamoto M, Lukashev M, Rhodes KJ. Fumarates promote cytoprotection of central nervous system cells against oxidative stress via the nuclear factor (erythroid-derived 2)-like 2 pathway. J Pharmacol Exp Ther. 2012 Apr;341(1):274-84. doi: 10.1124/jpet.111.190132. Epub 2012 Jan 20.</citation>
+    <PMID>22267202</PMID>
+  </reference>
+  <verification_date>April 2017</verification_date>
+  <lastchanged_date>April 28, 2017</lastchanged_date>
+  <firstreceived_date>April 18, 2015</firstreceived_date>
+  <firstreceived_results_date>April 28, 2017</firstreceived_results_date>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>University of Michigan</investigator_affiliation>
+    <investigator_full_name>Tiffany J. Braley, MD, MS</investigator_full_name>
+    <investigator_title>Assistant Professor, Department of Neurology</investigator_title>
+  </responsible_party>
+  <keyword>Obstructive Sleep Apnea</keyword>
+  <keyword>OSA</keyword>
+  <keyword>sleep apnea</keyword>
+  <keyword>snoring</keyword>
+  <keyword>dimethyl fumarate</keyword>
+  <keyword>CPAP</keyword>
+  <keyword>continuous positive airway pressure</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Apnea</mesh_term>
+    <mesh_term>Sleep Apnea Syndromes</mesh_term>
+    <mesh_term>Sleep Apnea, Obstructive</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Dimethyl Fumarate</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
+
+  <clinical_results>
+
+    <participant_flow>
+      <group_list>
+        <group group_id="P1">
+          <title>Dimethyl Fumarate (Tecfidera®) Capsules</title>
+          <description>The starting dose for dimethyl fumarate was 120 mg twice a day orally. After 7 days, the dose was increased to the maintenance dose of 240 mg twice a day. Slower dose escalations were allowed to increase tolerability, if necessary. Participants randomized to dimethyl fumarate were instructed to take this medication twice a day with breakfast and dinner for a period of 4 months.
+Dimethyl fumarate: Dimethyl fumarate capsules were dispensed at routine study appointments. 120 mg tablets were dispensed to facilitate dose titrations. Drug was dispensed in 1 month supply, so that compliance could be reconciled at follow-up visits, and recorded in accountability logs. Participants were instructed to take medication with food, (morning and at dinnertime). If participants missed a dose, they were instructed to resume their normal dose at the next scheduled time, and not to take an extra dose at their next dosing interval if they previously miss a dose.</description>
+        </group>
+        <group group_id="P2">
+          <title>Placebo</title>
+          <description>The placebo is an inert product that looks like a pill and is identical to dimethyl fumarate capsules, but it contains no medicine. Participants randomized to placebo were instructed to take placebo twice a day with breakfast and dinner for a period of 4 months.
+Placebo: Placebo capsules were dispensed during routine study appointments. Placebo were dispensed in 1 month supply, so that compliance could be reconciled at monthly follow-up visits, and recorded in accountability logs. Participants were instructed to take the placebo with food, in the morning and at dinnertime. If participants missed a dose, they were instructed to resume their normal dose at the next scheduled time, and not to take an extra dose at their next dosing interval if they previously missed a dose.</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="44"/>
+                <participants group_id="P2" count="21"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="36"/>
+                <participants group_id="P2" count="15"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="8"/>
+                <participants group_id="P2" count="6"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Lost to Follow-up</title>
+              <participants_list>
+                <participants group_id="P1" count="3"/>
+                <participants group_id="P2" count="2"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Adverse Event</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Withdrawal by Subject</title>
+              <participants_list>
+                <participants group_id="P1" count="4"/>
+                <participants group_id="P2" count="3"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Physician Decision</title>
+              <participants_list>
+                <participants group_id="P1" count="0"/>
+                <participants group_id="P2" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <population>65 participants were randomized and included in baseline analyses. 14 participants withdrew from the study or were lost to followup. 51 participants completed study activities. 50 participants (35 DMF and 15 placebo) who both completed the study and had an interpretable Month 4 PSG were included in the final analyses.</population>
+      <group_list>
+        <group group_id="B1">
+          <title>Dimethyl Fumarate (Tecfidera®) Capsules</title>
+          <description>The starting dose for dimethyl fumarate was 120 mg twice a day orally. After 7 days, the dose was increased to the maintenance dose of 240 mg twice a day. Slower dose escalations were allowed to increase tolerability, if necessary. Participants randomized to dimethyl fumarate were instructed to take this medication twice a day with breakfast and dinner for a period of 4 months.
+Dimethyl fumarate: Dimethyl fumarate capsules were dispensed at routine study appointments. 120 mg tablets were dispensed to facilitate dose titrations. Drug was dispensed in 1 month supply, so that compliance could be reconciled at follow-up visits, and recorded in accountability logs. Participants were instructed to take medication with food, (morning and at dinnertime). If participants missed a dose, they were instructed to resume their normal dose at the next scheduled time, and not to take an extra dose at their next dosing interval if they previously miss a dose.</description>
+        </group>
+        <group group_id="B2">
+          <title>Placebo</title>
+          <description>The placebo is an inert product that looks like a pill and is identical to dimethyl fumarate capsules, but it contains no medicine. Participants randomized to placebo were instructed to take placebo twice a day with breakfast and dinner for a period of 4 months.
+Placebo: Placebo capsules were dispensed during routine study appointments. Placebo were dispensed in 1 month supply, so that compliance could be reconciled at monthly follow-up visits, and recorded in accountability logs. Participants were instructed to take the placebo with food, in the morning and at dinnertime. If participants missed a dose, they were instructed to resume their normal dose at the next scheduled time, and not to take an extra dose at their next dosing interval if they previously missed a dose.</description>
+        </group>
+        <group group_id="B3">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="44"/>
+            <count group_id="B2" value="21"/>
+            <count group_id="B3" value="65"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
+      <measure_list>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="49.1" spread="11.7"/>
+                    <measurement group_id="B2" value="52.5" spread="12.4"/>
+                    <measurement group_id="B3" value="50.2" spread="12"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Sex: Female, Male</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <title>Female</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="24"/>
+                    <measurement group_id="B2" value="9"/>
+                    <measurement group_id="B3" value="33"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Male</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="20"/>
+                    <measurement group_id="B2" value="12"/>
+                    <measurement group_id="B3" value="32"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Region of Enrollment</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>United States</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="44"/>
+                    <measurement group_id="B2" value="21"/>
+                    <measurement group_id="B3" value="65"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Respiratory Disturbance Index (RDI)</title>
+          <description>The RDI represents the total number of apneas, hypopneas and respiratory-related arousals per hour of sleep.</description>
+          <units>respiratory events/hour</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="36.4" spread="28"/>
+                    <measurement group_id="B2" value="29.0" spread="16.9"/>
+                    <measurement group_id="B3" value="34" spread="25.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Baseline cytokine levels (log-transformed values)</title>
+          <units>pg/ml</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <title>Interleukin-6</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0.406" spread="0.354"/>
+                    <measurement group_id="B2" value="0.300" spread="0.249"/>
+                    <measurement group_id="B3" value="0.372" spread="0.325"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Tissue Necrosis Factor-alpha</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0.933" spread="0.195"/>
+                    <measurement group_id="B2" value="1.009" spread="0.354"/>
+                    <measurement group_id="B3" value="0.957" spread="0.257"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Interleukin-10</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0.596" spread="0.558"/>
+                    <measurement group_id="B2" value="0.392" spread="0.294"/>
+                    <measurement group_id="B3" value="0.530" spread="0.496"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Monocyte Chemoattractant Protein-1</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2.632" spread="0.118"/>
+                    <measurement group_id="B2" value="2.593" spread="0.210"/>
+                    <measurement group_id="B3" value="2.619" spread="0.153"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Mean Change in Apnea Severity as Measured by the Respiratory Disturbance Index (RDI)</title>
+        <description>For the 50 participants who had interpretable month 4 polysomnography (PSG) data available, mean change in sleep apnea severity, as measured by the mean change in respiratory disturbance index (RDI) between baseline (Month 0) PSG and Month 4 PSG, was calculated. The RDI represents the total number of apneas, hypopneas and respiratory-related arousals per hour of sleep.</description>
+        <time_frame>Month 0 to Month 4</time_frame>
+        <population>65 participants were randomized. 14 participants withdrew from the study or were lost to followup. 51 completed study activities. 50 (35 DMF and 15 placebo) both completed the study and had an interpretable Month 4 PSG. One participant's Month 4 PSG was uninterpretable, thus the RDI from this participant could not be included in the final analysis.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Dimethyl Fumarate (Tecfidera®) Capsules</title>
+            <description>The starting dose for dimethyl fumarate was 120 mg twice a day orally. After 7 days, the dose was increased to the maintenance dose of 240 mg twice a day. Slower dose escalations were allowed to increase tolerability, if necessary. Participants randomized to dimethyl fumarate were instructed to take this medication twice a day with breakfast and dinner for a period of 4 months.
+Dimethyl fumarate: Dimethyl fumarate capsules were dispensed at routine study appointments. 120 mg tablets were dispensed to facilitate dose titrations. Drug was dispensed in 1 month supply, so that compliance could be reconciled at follow-up visits, and recorded in accountability logs. Participants were instructed to take medication with food, (morning and at dinnertime). If participants missed a dose, they were instructed to resume their normal dose at the next scheduled time, and not to take an extra dose at their next dosing interval if they previously miss a dose.</description>
+          </group>
+          <group group_id="O2">
+            <title>Placebo</title>
+            <description>The placebo is an inert product that looks like a pill and is identical to dimethyl fumarate capsules, but it contains no medicine. Participants randomized to placebo will be instructed to take placebo twice a day with breakfast and dinner for a period of 4 months.
+Placebo: Placebo capsules were dispensed during routine study appointments. Placebo were dispensed in 1 month supply, so that compliance can be reconciled at monthly follow-up visits, and recorded in accountability logs. Participants were instructed to take the placebo with food, in the morning and at dinnertime. If participants missed a dose, they were instructed to resume their normal dose at the next scheduled time, and not to take an extra dose at their next dosing interval if they previously missed a dose.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Mean Change in Apnea Severity as Measured by the Respiratory Disturbance Index (RDI)</title>
+          <description>For the 50 participants who had interpretable month 4 polysomnography (PSG) data available, mean change in sleep apnea severity, as measured by the mean change in respiratory disturbance index (RDI) between baseline (Month 0) PSG and Month 4 PSG, was calculated. The RDI represents the total number of apneas, hypopneas and respiratory-related arousals per hour of sleep.</description>
+          <population>65 participants were randomized. 14 participants withdrew from the study or were lost to followup. 51 completed study activities. 50 (35 DMF and 15 placebo) both completed the study and had an interpretable Month 4 PSG. One participant's Month 4 PSG was uninterpretable, thus the RDI from this participant could not be included in the final analysis.</population>
+          <units>respiratory events/hour</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="35"/>
+                <count group_id="O2" value="15"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-3.11" spread="12.9"/>
+                    <measurement group_id="O2" value="10.2" spread="13.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>Multiple linear regression models were used to calculate treatment effect (DMF or placebo) on mean RDI change, controlling for change in age, gender, BMI, time spent in supine sleep, and time spent in REM sleep.</groups_desc>
+            <non_inferiority_type>Superiority</non_inferiority_type>
+            <non_inferiority_desc>In multiple linear regression models, the effect of DMF treatment on mean RDI change (beta-coefficient) was -11.3 respiratory events per hour (p=0.0124).</non_inferiority_desc>
+            <p_value>0.0124</p_value>
+            <method>Regression, Linear</method>
+            <param_type>beta-coefficient for treatment effect</param_type>
+            <param_value>-11.3</param_value>
+            <dispersion_type>Standard Error of the Mean</dispersion_type>
+            <dispersion_value>4.3</dispersion_value>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <other_analysis_desc>A mixed effects model, which treated RDI as a repeated measure and used individual ID as random effect, adjusted for age, gender, BMI, time spent in supine sleep, was also conducted. In this model, the effect of DMF compared to placebo, controlling for all other covariates, is a 28% decrease in Month 4 RDI (p=0.033).</other_analysis_desc>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Mean Change in Serum Cytokine Levels (Mean Difference of Log-transformed Values)</title>
+        <description>Levels of markers in the blood known as cytokines (measured in picograms per milliliter) were measured on a monthly basis from Month 0 (baseline) to Month 4. The outcome is the mean difference in cytokine level from baseline to month 4 (mean level at Month 4 - mean level at Baseline). Values were log-transformed for normality, prior to analysis.</description>
+        <time_frame>Month 0 to Month 4</time_frame>
+        <population>Cytokine analyses were conducted for those participants who completed the study and had interpretable Month 4 PSG results. Among this group, 3 participants did not have usable Month 4 blood specimens for this analysis. Thus, the mean difference in cytokine levels was calculated for 47 participants.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Dimethyl Fumarate (Tecfidera®) Capsules</title>
+            <description>The starting dose for dimethyl fumarate was 120 mg twice a day orally. After 7 days, the dose was increased to the maintenance dose of 240 mg twice a day, though slower dose escalations were possible to increase tolerability, if necessary. Subjects randomized to dimethyl fumarate were instructed to take this medication twice a day with breakfast and dinner for a period of 4 months.
+Dimethyl fumarate: Dimethyl fumarate capsules were dispensed at routine study appointments. 120 mg tablets were dispensed to facilitate dose titrations. Drug was dispensed in 1 month supply, so that compliance was reconciled at follow-up visits, and recorded in accountability logs. Subjects were instructed to take medication with food, (morning and at dinnertime). If subjects missed a dose, they were instructed to resume their normal dose at the next scheduled time, and not to take an extra dose at their next dosing interval if they previously miss a dose.</description>
+          </group>
+          <group group_id="O2">
+            <title>Placebo</title>
+            <description>The placebo is an inert product that looks like a pill and is identical to dimethyl fumarate capsules, but it contains no medicine. Subjects randomized to placebo will be instructed to take placebo twice a day with breakfast and dinner for a period of 4 months.
+Placebo: Placebo capsules were dispensed during routine study appointments. Placebo were dispensed in 1 month supply, so that compliance can be reconciled at monthly follow-up visits, and recorded in accountability logs. Subjects were instructed to take the placebo with food, in the morning and at dinnertime. If subjects missed a dose, they were instructed to resume their normal dose at the next scheduled time, and not to take an extra dose at their next dosing interval if they previously missed a dose.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Mean Change in Serum Cytokine Levels (Mean Difference of Log-transformed Values)</title>
+          <description>Levels of markers in the blood known as cytokines (measured in picograms per milliliter) were measured on a monthly basis from Month 0 (baseline) to Month 4. The outcome is the mean difference in cytokine level from baseline to month 4 (mean level at Month 4 - mean level at Baseline). Values were log-transformed for normality, prior to analysis.</description>
+          <population>Cytokine analyses were conducted for those participants who completed the study and had interpretable Month 4 PSG results. Among this group, 3 participants did not have usable Month 4 blood specimens for this analysis. Thus, the mean difference in cytokine levels was calculated for 47 participants.</population>
+          <units>picograms/milliliter (log-transformed)</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="34"/>
+                <count group_id="O2" value="13"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Interleukin-6</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.038" spread="0.249"/>
+                    <measurement group_id="O2" value="-0.015" spread="0.096"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Tissue necrosis factor-alpha</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="-0.002" spread="0.171"/>
+                    <measurement group_id="O2" value="0.003" spread="0.257"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Interleukin-10</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.084" spread="0.253"/>
+                    <measurement group_id="O2" value="-0.036" spread="0.170"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Monocyte chemoattractant protein-1</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.005" spread="0.136"/>
+                    <measurement group_id="O2" value="0.057" spread="0.157"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>For each participant, adverse events were captured at each visit beginning with Month 1 visit and ending with the Month 5 follow-up visit.</time_frame>
+      <group_list>
+        <group group_id="E1">
+          <title>Dimethyl Fumarate (Tecfidera®) Capsules</title>
+          <description>The starting dose for dimethyl fumarate was 120 mg twice a day orally. After 7 days, the dose was increased to the maintenance dose of 240 mg twice a day. Slower dose escalations were allowed to increase tolerability, if necessary. Participants randomized to dimethyl fumarate were instructed to take this medication twice a day with breakfast and dinner for a period of 4 months.
+Dimethyl fumarate: Dimethyl fumarate capsules were dispensed at routine study appointments. 120 mg tablets were dispensed to facilitate dose titrations. Drug was dispensed in 1 month supply, so that compliance could be reconciled at follow-up visits, and recorded in accountability logs. Participants were instructed to take medication with food, (morning and at dinnertime). If participants missed a dose, they were instructed to resume their normal dose at the next scheduled time, and not to take an extra dose at their next dosing interval if they previously miss a dose.</description>
+        </group>
+        <group group_id="E2">
+          <title>Placebo</title>
+          <description>The placebo is an inert product that looks like a pill and is identical to dimethyl fumarate capsules, but it contains no medicine. Participants randomized to placebo were instructed to take placebo twice a day with breakfast and dinner for a period of 4 months.
+Placebo: Placebo capsules were dispensed during routine study appointments. Placebo were dispensed in 1 month supply, so that compliance could be reconciled at monthly follow-up visits, and recorded in accountability logs. Participants were instructed to take the placebo with food, in the morning and at dinnertime. If participants missed a dose, they were instructed to resume their normal dose at the next scheduled time, and not to take an extra dose at their next dosing interval if they previously missed a dose.</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <default_vocab>CTCAE (4.0)</default_vocab>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, all-cause mortality</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="44"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="21"/>
+              </event>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="44"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="21"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Myocardial Infarction</sub_title>
+                <counts group_id="E1" events="0" subjects_affected="0" subjects_at_risk="44"/>
+                <counts group_id="E2" events="1" subjects_affected="1" subjects_at_risk="21"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Pneumonia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="44"/>
+                <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="21"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>5</frequency_threshold>
+        <default_vocab>CTCAE (4.0)</default_vocab>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="27" subjects_at_risk="44"/>
+                <counts group_id="E2" subjects_affected="7" subjects_at_risk="21"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Indigestion</sub_title>
+                <counts group_id="E1" events="3" subjects_affected="2" subjects_at_risk="44"/>
+                <counts group_id="E2" events="3" subjects_affected="3" subjects_at_risk="21"/>
+              </event>
+              <event>
+                <sub_title>Nausea</sub_title>
+                <counts group_id="E1" events="5" subjects_affected="4" subjects_at_risk="44"/>
+                <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="21"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Cold</sub_title>
+                <counts group_id="E1" events="4" subjects_affected="3" subjects_at_risk="44"/>
+                <counts group_id="E2" events="3" subjects_affected="3" subjects_at_risk="21"/>
+              </event>
+              <event>
+                <sub_title>Sinus Infection</sub_title>
+                <counts group_id="E1" events="0" subjects_affected="0" subjects_at_risk="44"/>
+                <counts group_id="E2" events="2" subjects_affected="2" subjects_at_risk="21"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Flushing</sub_title>
+                <counts group_id="E1" events="27" subjects_affected="23" subjects_at_risk="44"/>
+                <counts group_id="E2" events="0" subjects_affected="0" subjects_at_risk="21"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>All Principal Investigators ARE employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Tiffany Braley, M.D., M.S.</name_or_title>
+      <organization>UMichigan</organization>
+      <phone>734-232-1147</phone>
+      <email>tbraley@med.umich.edu</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
