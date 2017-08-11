@@ -10,7 +10,7 @@ module Util
         type='restart'
       end
       @client = Util::Client.new
-      @days_back=(@params[:days_back] ? @params[:days_back] : 4)
+      @days_back=(@params[:days_back] ? @params[:days_back] : 2)
       @rss_reader = Util::RssReader.new(days_back: @days_back)
       @load_event = LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
@@ -24,7 +24,7 @@ module Util
           when 'full'
             full
           when 'finalize'
-            finalize_full_load
+            finalize_load
           else
             incremental
         end
@@ -46,16 +46,40 @@ module Util
         log('begin full load ...')
         retrieve_xml_from_ctgov
       end
-      eta=(Time.now + 12.hours).strftime("%I:%M%p  %m/%d/%Y")
-      submit_public_announcement("The AACT database is being refreshed and will be unavailable until approximately: #{eta} EST.  We apologize for the inconvenience.")
-      revoke_db_privs
       truncate_tables if !should_restart?
       remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
       study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
       study_counts[:should_change]=0
       @client.populate_studies
-      finalize_full_load
-      PublicAnnouncement.destroy_all
+      MeshTerm.populate_from_file
+      MeshHeading.populate_from_file
+      finalize_load
+    end
+
+    def incremental
+      log("begin incremental load...")
+      log("finding studies changed in past #{@days_back} days...")
+      added_ids = @rss_reader.get_added_nct_ids
+      changed_ids = @rss_reader.get_changed_nct_ids
+      puts "#{added_ids.size} added studies: #{@rss_reader.added_url}"
+      puts "#{changed_ids.size} changed studies: #{@rss_reader.changed_url}"
+      ids=(changed_ids + added_ids).uniq
+      log("total #{ids.size} studies combined (having removed dups)")
+      case ids.size
+      when 0
+        load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
+        send_notification
+        return
+      when 10000..(1.0/0.0)
+        log("Incremental load size is suspiciously large. Aborting load.")
+        load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
+        send_notification
+        return
+      end
+      set_expected_counts(ids)
+      remove_indexes  # Index significantly slow the load process.
+      update_studies(ids)
+      finalize_load
     end
 
     def retrieve_xml_from_ctgov
@@ -64,24 +88,29 @@ module Util
       @client.save_file_contents(@client.download_xml_files)
     end
 
-    def finalize_full_load
-      remove_indexes  # Make sure indexes are gone before trying to add them.
+    def finalize_load
       add_indexes
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
       create_calculated_values
-      grant_db_privs
       populate_admin_tables
-      take_snapshot
+      snapshot_file=take_snapshot
       create_flat_files
       study_counts[:processed]=Study.count
       load_event.complete({:study_counts=>study_counts})
+      refresh_status=refresh_public_db(snapshot_file)
+      load_event.problems="DID NOT UPDATE PUBLIC DATABASE.  #{load_event.problems}" if refresh_status == false
       send_notification
     end
 
-    def populate_admin_tables
-      run_sanity_checks
-      refresh_data_definitions
+    def refresh_public_db(snapshot_file)
+      # recreate public db (aact) from back-end db (back_aact)
+      # restore from most recent snapshot
+      return false if !sanity_checks_ok?
+      announcement=submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
+      revoke_db_privs
+      Util::FileManager.new.restore_public_db(snapshot_file)
+      grant_db_privs
+      announcement.destroy
+      return true
     end
 
     def indexes
@@ -187,39 +216,6 @@ module Util
       indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
     end
 
-    def incremental
-      log("begin incremental load...")
-      log("finding studies changed in past #{@days_back} days...")
-      added_ids = @rss_reader.get_added_nct_ids
-      changed_ids = @rss_reader.get_changed_nct_ids
-      puts "#{changed_ids.size} changed studies: #{@rss_reader.changed_url}"
-      puts "#{added_ids.size} added studies: #{@rss_reader.added_url}"
-      ids=(changed_ids + added_ids).uniq
-      log("total #{ids.size} studies combined (having removed dups)")
-      case ids.size
-      when 0
-        load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
-        send_notification
-        return
-      when 10000..(1.0/0.0)
-        log("Incremental load size is suspiciously large. Aborting load.")
-        load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
-        send_notification
-        return
-      end
-      set_expected_counts(ids)
-      submit_public_announcement("The AACT database is temporarily unavailable because the daily update is running.")
-      remove_indexes  # Index significantly slow the load process.
-      update_studies(ids)
-      add_indexes
-      CalculatedValue.populate
-      populate_admin_tables
-      log_actual_counts
-      PublicAnnouncement.destroy_all
-      load_event.complete({:study_counts=> study_counts})
-      send_notification
-    end
-
     def self.single_study_tables
       [
         'brief_summaries',
@@ -282,9 +278,26 @@ module Util
       study_counts[:count_down]-=1
     end
 
+    def populate_admin_tables
+      run_sanity_checks
+      refresh_data_definitions
+    end
+
     def run_sanity_checks
-      log("sanity check...")
+      log("running sanity checks...")
       SanityCheck.populate
+    end
+
+    def sanity_checks_ok?
+      sanity_set=SanityCheck.where('most_current is true')
+      sanity_set.each{|s|
+        load_event.problems="Duplicate data detected. : #{s.table_name}.  #{load_event.problems}" if s.table_name.include? 'duplicate'
+      }
+      load_event.problems="Fewer sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size < 40
+      load_event.problems="More sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size > 40
+      load_event.problems="Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.  #{load_event.problems}" if sanity_set.max_by(&:created_at) < Time.now - 30.minutes
+      return false if !load_event.problems.nil?
+      true
     end
 
     def refresh_data_definitions(data=Util::FileManager.default_data_definitions)
@@ -361,17 +374,21 @@ private
       # some of this may seem redundant & better placed in revoke_db_privs, but the following works to allow aact user to
       # select from tables, but not update the tables nor create new tables
       con=ActiveRecord::Base.connection
-      con.execute("revoke all on all tables in schema public from aact;")
-      con.execute("revoke all on schema public from aact;")
+      con.execute("revoke all on all tables in schema public from #{public_db_name};")
+      con.execute("revoke all on schema public from #{public_db_name};")
       con.execute("revoke all on schema public from public;")
       con.execute("revoke usage on schema public from public;")
-      con.execute("grant connect on database #{db_name} to aact;")
+      con.execute("grant connect on database #{db_name} to #{public_db_name};")
       con.execute("grant usage on schema public TO aact;")
       con.execute('grant select on all tables in schema public to aact;')
     end
 
     def db_name
       ActiveRecord::Base.connection.current_database
+    end
+
+    def public_db_name
+      'aact'
     end
 
     def submit_public_announcement(announcement)

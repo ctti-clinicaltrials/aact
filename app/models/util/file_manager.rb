@@ -123,11 +123,12 @@ module Util
     end
 
     def dump_database
+      db_name=ActiveRecord::Base.connection.current_database
       dump_file_name=self.class.pg_dump_file
       File.delete(dump_file_name) if File.exist?(dump_file_name)
-
-      `PGPASSWORD=$DB_SUPER_PASSWORD pg_dump aact -h $DB_HOSTNAME -p 5432 -U $DB_SUPER_USERNAME --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  /var/local/share/tmp/postgres.dmp`
-
+      cmd="pg_dump #{db_name} -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{dump_file_name}"
+      puts cmd
+      system cmd
       return dump_file_name
     end
 
@@ -141,6 +142,12 @@ module Util
         }
       }
       return File.open(return_file)
+    end
+
+    def restore_public_db(static_file)
+      cmd="pg_restore -c -j 5 -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact #{static_file}"
+      puts cmd
+      system cmd
     end
 
     def take_snapshot
