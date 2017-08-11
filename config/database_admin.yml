@@ -3,8 +3,6 @@ development: &default
   database: aact_admin
   encoding: utf8
   min_messages: warning
-  pool: <%= Integer(ENV.fetch("DB_POOL", 5)) %>
-  reaping_frequency: <%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
   timeout: 5000
 
 test:
@@ -14,18 +12,7 @@ test:
 production: &deploy
   encoding: utf8
   min_messages: warning
-  pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  url:  <%= ENV.fetch("ADMIN_DATABASE_URL", "") %>
 
 staging: *deploy
 
-docker: &docker
-  <<: *default
-  username: aact
-  password: abc123
-  host: postgres.db.host
-
-docker_test:
-  <<: *docker
-  database: aact_admin_test
