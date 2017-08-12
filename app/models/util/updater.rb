@@ -92,22 +92,22 @@ module Util
       add_indexes
       create_calculated_values
       populate_admin_tables
-      snapshot_file=take_snapshot
+      take_snapshot
       create_flat_files
       study_counts[:processed]=Study.count
       load_event.complete({:study_counts=>study_counts})
-      refresh_status=refresh_public_db(snapshot_file)
+      refresh_status=refresh_public_db
       load_event.problems="DID NOT UPDATE PUBLIC DATABASE.  #{load_event.problems}" if refresh_status == false
       send_notification
     end
 
-    def refresh_public_db(snapshot_file)
+    def refresh_public_db(dump_file=Util::FileManager.pg_dump_file)
       # recreate public db (aact) from back-end db (back_aact)
       # restore from most recent snapshot
       return false if !sanity_checks_ok?
       announcement=submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
       revoke_db_privs
-      Util::FileManager.new.restore_public_db(snapshot_file)
+      Util::FileManager.new.restore_public_db(dump_file)
       grant_db_privs
       announcement.destroy
       return true
@@ -295,9 +295,13 @@ module Util
       }
       load_event.problems="Fewer sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size < 40
       load_event.problems="More sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size > 40
-      load_event.problems="Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.  #{load_event.problems}" if sanity_set.max_by(&:created_at) < Time.now - 30.minutes
+      load_event.problems="Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.  #{load_event.problems}" if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
       return false if !load_event.problems.nil?
       true
+    end
+
+    def load_event
+      @load_event ||= LoadEvent.new
     end
 
     def refresh_data_definitions(data=Util::FileManager.default_data_definitions)
