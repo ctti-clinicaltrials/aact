@@ -92,22 +92,22 @@ module Util
       add_indexes
       create_calculated_values
       populate_admin_tables
-      snapshot_file=take_snapshot
+      take_snapshot
       create_flat_files
       study_counts[:processed]=Study.count
       load_event.complete({:study_counts=>study_counts})
-      refresh_status=refresh_public_db(snapshot_file)
+      refresh_status=refresh_public_db
       load_event.problems="DID NOT UPDATE PUBLIC DATABASE.  #{load_event.problems}" if refresh_status == false
       send_notification
     end
 
-    def refresh_public_db(snapshot_file)
+    def refresh_public_db(dump_file=Util::FileManager.pg_dump_file)
       # recreate public db (aact) from back-end db (back_aact)
       # restore from most recent snapshot
       return false if !sanity_checks_ok?
       announcement=submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
       revoke_db_privs
-      Util::FileManager.new.restore_public_db(snapshot_file)
+      Util::FileManager.new.restore_public_db(dump_file)
       grant_db_privs
       announcement.destroy
       return true
