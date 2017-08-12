@@ -295,9 +295,13 @@ module Util
       }
       load_event.problems="Fewer sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size < 40
       load_event.problems="More sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size > 40
-      load_event.problems="Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.  #{load_event.problems}" if sanity_set.max_by(&:created_at) < Time.now - 30.minutes
+      load_event.problems="Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.  #{load_event.problems}" if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
       return false if !load_event.problems.nil?
       true
+    end
+
+    def load_event
+      @load_event ||= LoadEvent.new
     end
 
     def refresh_data_definitions(data=Util::FileManager.default_data_definitions)
