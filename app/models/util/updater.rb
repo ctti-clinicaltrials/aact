@@ -107,7 +107,7 @@ module Util
       return false if !sanity_checks_ok?
       announcement=submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
       revoke_db_privs
-      Util::FileManager.new.restore_public_db(dump_file)
+      Util::FileManager.new.refresh_public_db(dump_file)
       grant_db_privs
       announcement.destroy
       return true
