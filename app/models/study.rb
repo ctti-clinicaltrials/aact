@@ -242,9 +242,9 @@ class Study < ActiveRecord::Base
       :plan_to_share_ipd => get('patient_data/sharing_ipd'),
       :plan_to_share_ipd_description => get('patient_data/ipd_description'),
       :has_expanded_access => get_boolean('//has_expanded_access'),
-      :expanded_access_type_individual => get_boolean('//expanded_access_info/exp_acc_type_individual'),
-      :expanded_access_type_intermediate => get_boolean('//expanded_access_info/exp_acc_type_intermediate'),
-      :expanded_access_type_treatment => get_boolean('//expanded_access_info/exp_acc_type_treatment'),
+      :expanded_access_type_individual => get_boolean('//expanded_access_info/expanded_access_type_individual'),
+      :expanded_access_type_intermediate => get_boolean('//expanded_access_info/expanded_access_type_intermediate'),
+      :expanded_access_type_treatment => get_boolean('//expanded_access_info/expanded_access_type_treatment'),
       :has_dmc => get_boolean('//has_dmc'),
       :why_stopped =>get('why_stopped')
     }

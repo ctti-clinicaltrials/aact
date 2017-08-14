@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 14, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01220531</url>
+  </required_header>
+  <id_info>
+    <org_study_id>Pro00025966</org_study_id>
+    <secondary_id>2R01AI047040-11A2</secondary_id>
+    <secondary_id>5K12HD043494-09</secondary_id>
+    <nct_id>NCT01220531</nct_id>
+  </id_info>
+  <brief_title>Thymus Transplantation Safety-Efficacy</brief_title>
+  <official_title>Safety and Efficacy of Thymus Transplantation in Complete DiGeorge Anomaly, IND#9836</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>M. Louise Markert</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>National Institutes of Health (NIH)</agency>
+      <agency_class>NIH</agency_class>
+    </collaborator>
+    <collaborator>
+      <agency>National Institute of Allergy and Infectious Diseases (NIAID)</agency>
+      <agency_class>NIH</agency_class>
+    </collaborator>
+    <collaborator>
+      <agency>Eunice Kennedy Shriver National Institute of Child Health and Human Development (NICHD)</agency>
+      <agency_class>NIH</agency_class>
+    </collaborator>
+    <collaborator>
+      <agency>Enzyvant Therapeutics GmbH</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Duke University</source>
+  <brief_summary>
+    <textblock>
+      Complete DiGeorge anomaly (cDGA) is a disorder in which there is no thymus function. With no
+      thymus function, bone marrow stem cells do not develop into T cells, which fight infection.
+      Complete DiGeorge anomaly patients cannot fight infection and are immunodeficient. Without
+      successful treatment, cDGA patients usually die by age 2 years.
+
+      Thymus transplantation with and without immunosuppression (drugs given before and after
+      transplantation) has resulted in the development good T cell function in complete DiGeorge
+      anomaly subjects.
+
+      This Phase I/II study continues thymus transplantation safety and efficacy research for the
+      treatment of complete DiGeorge anomaly. Eligible participants undergo thymus transplantation
+      and biopsy. Immune function testing is continued for one year post-transplantation.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Complete DiGeorge anomaly (cDGA) is a congenital disorder characterized by athymia. Without
+      successful treatment, children remain immunodeficient and usually die by age 2 years. In
+      complete DiGeorge subjects, thymus transplantation with and without immunosuppression has
+      resulted in diverse T cell development and good T cell function. The purpose of this Phase
+      I/II study is to continue thymus transplantation safety and efficacy research for the
+      treatment of complete DiGeorge anomaly. Until thymus transplantation is FDA approved as
+      standard care for DiGeorge anomaly, research study participation is the only means by which a
+      patient may have access to this potentially life-saving procedure.
+
+      This protocol includes 4 groups: one for subjects who do not require immunosuppression; and 3
+      immunosuppression groups for subjects with different T cell function levels to be suppressed
+      adequately.
+
+      Eligible subjects undergo thymus transplantation and an allograft biopsy. Protocol specified
+      studies continue until approximately one year post-transplantation.
+
+      Study participation lasts two years.
+    </textblock>
+  </detailed_description>
+  <overall_status>Available</overall_status>
+  <start_date>December 2010</start_date>
+  <completion_date type="Anticipated">December 2023</completion_date>
+  <primary_completion_date type="Anticipated">December 2021</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Expanded Access</study_type>
+  <expanded_access_info>
+    <expanded_access_type_intermediate>Yes</expanded_access_type_intermediate>
+    <expanded_access_type_treatment>Yes</expanded_access_type_treatment>
+  </expanded_access_info>
+  <condition>Complete DiGeorge Anomaly</condition>
+  <condition>DiGeorge Syndrome</condition>
+  <condition>DiGeorge Anomaly</condition>
+  <condition>Complete DiGeorge Syndrome</condition>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>Thymus Tissue for Transplantation</intervention_name>
+    <description>Potential thymus recipient subjects are screened for eligibility. Thymus tissue (unrelated donor), donor, &amp; donor's mother screened for safety. Thymus transplantation is done under general anesthesia in the operating room. Thymus tissue is transplanted into the subject's quadriceps. Two to three months post-transplantation, if medically stable, the subject undergoes allograft biopsy. At the time of transplantation and biopsy, skin biopsy conducted. Subjects undergo laboratory testing for approximately one year post-transplantation. At year 2 post-transplantation, subjects are contacted for data collection.</description>
+    <other_name>Thymus Tissue Transplant</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Blood Draw</intervention_name>
+    <description>Biological Mothers of Thymus Recipients are asked to participate in the study and undergo phlebotomy to allow for testing of T cell identity in the complete DiGeorge subjects. If blood is not obtainable, then a buccal swab may be done.</description>
+    <other_name>Venipuncture</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Rabbit anti-thymocyte globulin</intervention_name>
+    <description>Three doses of 2 mg/kg IV prior to thymus transplantation. Each dose is given over 12 hours. RATGAM is usually given on days -5, -4, and -3 prior to thymus transplantation.</description>
+    <other_name>RATGAM</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Cyclosporine</intervention_name>
+    <description>Csa may be given every 8 to 12 hours orally or IV before and after thymus transplantation. The Csa dose is dependent on T cell numbers and the target CSA trough levels. Csa is weaned as per protocol.</description>
+    <other_name>Csa</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Tacrolimus</intervention_name>
+    <description>If unable to tolerate cyclosporine, then FK506 is given. FK506 may be given every 8 to 12 hours orally or IV before and after thymus transplantation. FK506 dose is dependent on T cell numbers and the target FK506 trough levels. FK506 is weaned as per protocol.</description>
+    <other_name>FK506</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Methylprednisolone or Prednisolone</intervention_name>
+    <description>Steroids IV or orally may be given before and/or after thymus transplantation. Administration and dosage depends on T cell numbers. Steroids are weaned as per protocol.</description>
+    <other_name>Steroids</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Basiliximab</intervention_name>
+    <description>A single dose of Basiliximab 5 mg/kg IV may be given. Administration of Basiliximab depends on T cell numbers and T cell activation. A single dose of Basiliximab may be given after the administration of rabbit anti-thymocyte globulin and before thymus transplantation. If Basiliximab is not given before thymus transplantation, and, depending on the T cell numbers and T cell activation, a single dose of Basiliximab may be given 3 to 5 days after thymus transplantation.</description>
+    <other_name>Simulect</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Mycophenolate mofetil</intervention_name>
+    <description>Mycophenolate mofetil may be given if the T cell count remains elevated 5 days after thymus transplantation. If MMF is given, the dose is 15 mg/kg/dose every 8 hours IV or orally. MMF may be stopped at 35 days or continued for up to six months after thymus transplantation.</description>
+    <other_name>MMF</other_name>
+    <other_name>CellCept</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Transplant Inclusion:
+
+          -  Must have 1 of following: 22q11 or 10p13 hemizygosity; hypocalcemia requiring
+             replacement; congenital heart disease; CHARGE association or CHD7 mutation
+
+          -  Complete DiGeorge: &lt;50 CD3+ T cells/cumm or &lt;50 CD3+ T cells/cumm that are CD62L+
+             CD45RA+, or &lt;5% of CD3+ cells are CD62L+ CD45RA+
+
+          -  Atypical DiGeorge must have, or have had, a rash.
+
+        Group 1
+
+        •Typical cDGA whose T cells have a PHA response &lt; 5,000 cpm and &lt; 20 fold PHA response.
+
+        Group 2
+
+        •Typical cDGA whose T cells have a PHA response &gt;5,000 cpm and &lt;50,000 cpm and &gt;20 fold PHA
+        response
+
+        Group 3
+
+          -  Typical cDGA whose T cells have PHA response &gt;50,000 cpm
+
+          -  Typical cDGA with maternal engraftment
+
+          -  Atypical cDGA whose T cells have PHA response &lt;40,000 cpm when on immunosuppression or
+             &lt;75,000 cpm to PHA when not on immunosuppression
+
+          -  Atypical cDGA with group 3 PHA response &amp; maternal engraftment
+
+        Group 4
+
+          -  Atypical cDGA with PHA responses &gt;75,000cpm while on no immunosuppression or PHA
+             responses &gt;40,000cpm while on immunosuppression
+
+          -  Atypical cDGA with maternal engraftment and group 4 PHA response
+
+        Transplant Exclusion:
+
+          -  Heart surgery &lt;4 wks pre-transplantation
+
+          -  Heart surgery anticipated w/in 3 months after proposed transplantation
+
+          -  Rejection by surgeon or anesthesiologist as surgical candidate
+
+          -  Lack of sufficient muscle tissue to accept transplant of 4 grams/m2 body surface area
+
+          -  HIV infection
+
+          -  Prior attempts at immune reconstitution, such as bone marrow transplant or previous
+             thymus transplant
+
+          -  CMV on 2 tests for Groups 2, 3, and 4
+
+        Biological Mother Inclusion/Exclusion:
+
+        • Must be biological mother of thymus recipient
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>N/A</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>M. Louise Markert, M.D., Ph.D</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Duke University Medical Center, Pediatrics, Allergy &amp; Immunology</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>M. Louise Markert, M.D., Ph.D</last_name>
+    <phone>919-684-6263</phone>
+    <email>marke001@mc.duke.edu</email>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>Stephanie Gupton, RN, CPNP</last_name>
+    <phone>919-684-4704</phone>
+    <email>stephanie.gupton@dm.duke.edu</email>
+  </overall_contact_backup>
+  <location>
+    <facility>
+      <name>Duke University Medical Center</name>
+      <address>
+        <city>Durham</city>
+        <state>North Carolina</state>
+        <zip>27701</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <contact>
+      <last_name>M. Louise Markert, M.D., Ph.D</last_name>
+      <phone>919-684-6263</phone>
+      <email>marke001@mc.duke.edu</email>
+    </contact>
+    <contact_backup>
+      <last_name>Stephanie Gupton, RN, CPNP</last_name>
+      <phone>919-684-4704</phone>
+      <email>stephanie.gupton@dm.duke.edu</email>
+    </contact_backup>
+    <investigator>
+      <last_name>M. Louise Markert, M.D., Ph.D</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <reference>
+    <citation>Markert ML, Devlin BH, Alexieff MJ, Li J, McCarthy EA, Gupton SE, Chinn IK, Hale LP, Kepler TB, He M, Sarzotti M, Skinner MA, Rice HE, Hoehner JC. Review of 54 patients with complete DiGeorge anomaly enrolled in protocols for thymus transplantation: outcome of 44 consecutive transplants. Blood. 2007 May 15;109(10):4539-47. Epub 2007 Feb 6.</citation>
+    <PMID>17284531</PMID>
+  </reference>
+  <reference>
+    <citation>Markert ML, Devlin BH, McCarthy EA. Thymus transplantation. Clin Immunol. 2010 May;135(2):236-46. doi: 10.1016/j.clim.2010.02.007. Epub 2010 Mar 16. Review.</citation>
+    <PMID>20236866</PMID>
+  </reference>
+  <reference>
+    <citation>Markert ML, Alexieff MJ, Li J, Sarzotti M, Ozaki DA, Devlin BH, Sedlak DA, Sempowski GD, Hale LP, Rice HE, Mahaffey SM, Skinner MA. Postnatal thymus transplantation with immunosuppression as treatment for DiGeorge syndrome. Blood. 2004 Oct 15;104(8):2574-81. Epub 2004 Apr 20.</citation>
+    <PMID>15100156</PMID>
+  </reference>
+  <reference>
+    <citation>Selim MA, Markert ML, Burchette JL, Herman CM, Turner JW. The cutaneous manifestations of atypical complete DiGeorge syndrome: a histopathologic and immunohistochemical study. J Cutan Pathol. 2008 Apr;35(4):380-5. doi: 10.1111/j.1600-0560.2007.00816.x.</citation>
+    <PMID>18333898</PMID>
+  </reference>
+  <reference>
+    <citation>Chinn IK, Devlin BH, Li YJ, Markert ML. Long-term tolerance to allogeneic thymus transplants in complete DiGeorge anomaly. Clin Immunol. 2008 Mar;126(3):277-81. Epub 2007 Dec 26.</citation>
+    <PMID>18155964</PMID>
+  </reference>
+  <reference>
+    <citation>Markert ML, Li J, Devlin BH, Hoehner JC, Rice HE, Skinner MA, Li YJ, Hale LP. Use of allograft biopsies to assess thymopoiesis after thymus transplantation. J Immunol. 2008 May 1;180(9):6354-64.</citation>
+    <PMID>18424759</PMID>
+  </reference>
+  <reference>
+    <citation>Hudson LL, Louise Markert M, Devlin BH, Haynes BF, Sempowski GD. Human T cell reconstitution in DiGeorge syndrome and HIV-1 infection. Semin Immunol. 2007 Oct;19(5):297-309. Epub 2007 Nov 26. Review.</citation>
+    <PMID>18035553</PMID>
+  </reference>
+  <reference>
+    <citation>Markert ML, Devlin BH, Chinn IK, McCarthy EA. Thymus transplantation in complete DiGeorge anomaly. Immunol Res. 2009;44(1-3):61-70. doi: 10.1007/s12026-008-8082-5.</citation>
+    <PMID>19066739</PMID>
+  </reference>
+  <reference>
+    <citation>Markert ML, Alexieff MJ, Li J, Sarzotti M, Ozaki DA, Devlin BH, Sempowski GD, Rhein ME, Szabolcs P, Hale LP, Buckley RH, Coyne KE, Rice HE, Mahaffey SM, Skinner MA. Complete DiGeorge syndrome: development of rash, lymphadenopathy, and oligoclonal T cells in 5 cases. J Allergy Clin Immunol. 2004 Apr;113(4):734-41.</citation>
+    <PMID>15100681</PMID>
+  </reference>
+  <reference>
+    <citation>Markert ML, Devlin BH, McCarthy EA, Chinn IK, Hale LP. Thymus Transplantation in Thymus Gland Pathology: Clinical, Diagnostic, and Therapeutic Features. Eds Lavinin C, Moran CA, Morandi U, Schoenhuber R. Springer-Verlag Italia, Milan, 2008, pp 255-267.</citation>
+  </reference>
+  <reference>
+    <citation>Markert ML and Devlin BH. Thymic reconstitution (in Rich RR, Shearer WT, Fleischer T, Schroeder HW, Weyand CM, Frew A, eds., Clinical Immunology 3rd edn., Elsevier, Edinburgh) p 1253-1262, 2008.</citation>
+  </reference>
+  <reference>
+    <citation>Markert ML, Sarzotti M, Ozaki DA, Sempowski GD, Rhein ME, Hale LP, Le Deist F, Alexieff MJ, Li J, Hauser ER, Haynes BF, Rice HE, Skinner MA, Mahaffey SM, Jaggers J, Stein LD, Mill MR. Thymus transplantation in complete DiGeorge syndrome: immunologic and safety evaluations in 12 patients. Blood. 2003 Aug 1;102(3):1121-30. Epub 2003 Apr 17.</citation>
+    <PMID>12702512</PMID>
+  </reference>
+  <reference>
+    <citation>Ciupe SM, Devlin BH, Markert ML, Kepler TB. The dynamics of T-cell receptor repertoire diversity following thymus transplantation for DiGeorge anomaly. PLoS Comput Biol. 2009 Jun;5(6):e1000396. doi: 10.1371/journal.pcbi.1000396. Epub 2009 Jun 12.</citation>
+    <PMID>19521511</PMID>
+  </reference>
+  <reference>
+    <citation>Chinn IK, Olson JA, Skinner MA, McCarthy EA, Gupton SE, Chen DF, Bonilla FA, Roberts RL, Kanariou MG, Devlin BH, Markert ML. Mechanisms of tolerance to parental parathyroid tissue when combined with human allogeneic thymus transplantation. J Allergy Clin Immunol. 2010 Oct;126(4):814-820.e8. doi: 10.1016/j.jaci.2010.07.016. Epub 2010 Sep 15.</citation>
+    <PMID>20832849</PMID>
+  </reference>
+  <reference>
+    <citation>Markert ML, Marques JG, Neven B, Devlin BH, McCarthy EA, Chinn IK, Albuquerque AS, Silva SL, Pignata C, de Saint Basile G, Victorino RM, Picard C, Debre M, Mahlaoui N, Fischer A, Sousa AE. First use of thymus transplantation therapy for FOXN1 deficiency (nude/SCID): a report of 2 cases. Blood. 2011 Jan 13;117(2):688-96. doi: 10.1182/blood-2010-06-292490. Epub 2010 Oct 26.</citation>
+    <PMID>20978268</PMID>
+  </reference>
+  <reference>
+    <citation>Li B, Li J, Devlin BH, Markert ML. Thymic microenvironment reconstitution after postnatal human thymus transplantation. Clin Immunol. 2011 Sep;140(3):244-59. doi: 10.1016/j.clim.2011.04.004. Epub 2011 Apr 16.</citation>
+    <PMID>21565561</PMID>
+  </reference>
+  <reference>
+    <citation>Albuquerque AS, Marques JG, Silva SL, Ligeiro D, Devlin BH, Dutrieux J, Cheynier R, Pignata C, Victorino RM, Markert ML, Sousa AE. Human FOXN1-deficiency is associated with αβ double-negative and FoxP3+ T-cell expansions that are distinctly modulated upon thymic transplantation. PLoS One. 2012;7(5):e37042. doi: 10.1371/journal.pone.0037042. Epub 2012 May 10.</citation>
+    <PMID>22590644</PMID>
+  </reference>
+  <reference>
+    <citation>Markert ML, Devlin BH, Chinn IK, McCarthy EA, Li YJ. Factors affecting success of thymus transplantation for complete DiGeorge anomaly. Am J Transplant. 2008 Aug;8(8):1729-36. doi: 10.1111/j.1600-6143.2008.02301.x. Epub 2008 Jun 28.</citation>
+    <PMID>18557726</PMID>
+  </reference>
+  <reference>
+    <citation>Heimall J, Keller M, Saltzman R, Bunin N, McDonald-McGinn D, Zakai E, de Villartay JP, Moshous D, Ariue B, McCarthy EA, Devlin BH, Parikh S, Buckley RH, Markert ML. Diagnosis of 22q11.2 deletion syndrome and artemis deficiency in two children with T-B-NK+ immunodeficiency. J Clin Immunol. 2012 Oct;32(5):1141-4. doi: 10.1007/s10875-012-9741-9. Epub 2012 Aug 3.</citation>
+    <PMID>22864628</PMID>
+  </reference>
+  <reference>
+    <citation>Chinn IK, Milner JD, Scheinberg P, Douek DC, Markert ML. Thymus transplantation restores the repertoires of forkhead box protein 3 (FoxP3)+ and FoxP3- T cells in complete DiGeorge anomaly. Clin Exp Immunol. 2013 Jul;173(1):140-9. doi: 10.1111/cei.12088.</citation>
+    <PMID>23607606</PMID>
+  </reference>
+  <reference>
+    <citation>Ciupe SM, Devlin BH, Markert ML, Kepler TB. Quantification of total T-cell receptor diversity by flow cytometry and spectratyping. BMC Immunol. 2013 Aug 6;14:35. doi: 10.1186/1471-2172-14-35.</citation>
+    <PMID>23914737</PMID>
+  </reference>
+  <reference>
+    <citation>Li B, Li J, Hsieh CS, Hale LP, Li YJ, Devlin BH, Markert ML. Characterization of cultured thymus tissue used for transplantation with emphasis on promiscuous expression of thyroid tissue-specific genes. Immunol Res. 2009;44(1-3):71-83. doi: 10.1007/s12026-008-8083-4.</citation>
+    <PMID>19066738</PMID>
+  </reference>
+  <verification_date>May 2017</verification_date>
+  <lastchanged_date>May 9, 2017</lastchanged_date>
+  <firstreceived_date>September 22, 2010</firstreceived_date>
+  <responsible_party>
+    <responsible_party_type>Sponsor-Investigator</responsible_party_type>
+    <investigator_affiliation>Duke University Medical Center</investigator_affiliation>
+    <investigator_full_name>M. Louise Markert</investigator_full_name>
+    <investigator_title>Professor of Pediatrics</investigator_title>
+  </responsible_party>
+  <keyword>DiGeorge Anomaly</keyword>
+  <keyword>Thymus Transplantation</keyword>
+  <keyword>DiGeorge Syndrome</keyword>
+  <keyword>Athymia</keyword>
+  <keyword>Low T cell numbers</keyword>
+  <keyword>Immunoreconstitution</keyword>
+  <keyword>Immunodeficiency</keyword>
+  <keyword>Complete DiGeorge</keyword>
+  <keyword>Typical DiGeorge</keyword>
+  <keyword>Atypical DiGeorge</keyword>
+  <keyword>Complete DiGeorge Anomaly</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Syndrome</mesh_term>
+    <mesh_term>Congenital Abnormalities</mesh_term>
+    <mesh_term>DiGeorge Syndrome</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Tacrolimus</mesh_term>
+    <mesh_term>Cyclosporins</mesh_term>
+    <mesh_term>Cyclosporine</mesh_term>
+    <mesh_term>Mycophenolate mofetil</mesh_term>
+    <mesh_term>Antilymphocyte Serum</mesh_term>
+    <mesh_term>Basiliximab</mesh_term>
+    <mesh_term>Mycophenolic Acid</mesh_term>
+    <mesh_term>Prednisolone</mesh_term>
+    <mesh_term>Methylprednisolone Hemisuccinate</mesh_term>
+    <mesh_term>Prednisolone acetate</mesh_term>
+    <mesh_term>Methylprednisolone acetate</mesh_term>
+    <mesh_term>Methylprednisolone</mesh_term>
+    <mesh_term>Prednisolone hemisuccinate</mesh_term>
+    <mesh_term>Prednisolone phosphate</mesh_term>
+  </intervention_browse>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
