@@ -2,6 +2,16 @@ require 'rails_helper'
 
 
 describe Study do
+  it "saves expanded access info correctly"  do
+    nct_id='NCT01220531'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.study_type).to eq('Expanded Access')
+    expect(study.expanded_access_type_intermediate).to eq(true)
+    expect(study.expanded_access_type_treatment).to eq(true)
+    expect(study.expanded_access_type_individual).to eq(nil)
+  end
+
   it "our validation study should have correct attribs" do
     nct_id='NCT02654730'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
