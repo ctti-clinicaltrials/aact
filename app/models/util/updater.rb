@@ -34,7 +34,7 @@ module Util
         log(msg)
         grant_db_privs
         load_event.complete({:status=>'failed', :problems=> msg, :study_counts=> study_counts})
-        PublicAnnouncement.destroy_all
+        PublicAnnouncement.clear_load_message
         send_notification
       end
     end

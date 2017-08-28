@@ -153,7 +153,8 @@ ALTER SEQUENCE load_events_id_seq OWNED BY load_events.id;
 
 CREATE TABLE public_announcements (
     id integer NOT NULL,
-    description character varying
+    description character varying,
+    is_sticky boolean
 );
 
 
@@ -263,7 +264,6 @@ CREATE TABLE use_case_attachments (
     file_name character varying,
     content_type character varying,
     file_contents bytea,
-    is_image boolean,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -498,4 +498,6 @@ SET search_path TO "$user", public;
 INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20170828142046');
 
