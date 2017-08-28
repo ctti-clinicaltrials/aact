@@ -194,16 +194,14 @@ module ClinicalTrials
         return
       end
       set_expected_counts(ids)
-      PublicAnnouncement.destroy_all
-      public_announcement=PublicAnnouncement.new(:description=>"The live AACT database is temporarily unavailable because the daily update is running.")
-      public_announcement.save!
       ActiveRecord::Base.transaction do
+        PublicAnnouncement.populate(:description=>"The live AACT database is temporarily unavailable because the daily update is running.")
         remove_indexes  # Index significantly slow the load process.
         update_studies(ids)
         add_indexes
         CalculatedValue.populate
+        PublicAnnouncement.clear_load_message
       end
-      public_announcement.destroy
       populate_admin_tables
       log_actual_counts
       load_event.complete({:study_counts=> study_counts})
