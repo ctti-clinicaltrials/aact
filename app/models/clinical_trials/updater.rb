@@ -34,8 +34,7 @@ module ClinicalTrials
         log('begin ...')
         @client.reboot_db
         revoke_db_privs
-        public_announcement=PublicAnnouncement.new("The AACT database is currently unavailable because it is undergoing a full refresh. It should be available again by #{(Time.now + 12.hours).strftime("%I:%M%p  %m/%d/%Y EST")} We apologize for the inconvenience.")
-        public_announcement.save!
+        PublicAnnouncement.populate("The AACT database is currently unavailable because it is undergoing a full refresh. It should be available again by #{(Time.now + 12.hours).strftime("%I:%M%p  %m/%d/%Y EST")} We apologize for the inconvenience.")
         if should_restart?
           log("restarting full load...")
         else
@@ -49,8 +48,9 @@ module ClinicalTrials
         study_counts[:should_change]=0
         @client.populate_studies
         finalize_full_load
-        public_announcement.destroy
+        PublicAnnouncement.clear_load_message
       rescue  Exception => e
+        PublicAnnouncement.clear_load_message
         study_counts[:processed]=Study.count
         puts ">>>>>>>>>>> Full load failed:  #{e}"
         grant_db_privs
