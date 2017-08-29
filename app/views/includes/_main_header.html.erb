@@ -1,24 +1,20 @@
-<div class="navContainer">
-<% if user_signed_in? %>
-  <div class="nav navbar-nav navbar-right">
-    <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Logged in as <%= current_user.first_name %>
-        <span class="caret"></span>
-      </button>
-      <ul style="list-style: none;" class="dropdown-menu" aria-labelledby="userMenu">
-        <% if user_signed_in? %>
-          <li><%= link_to "Edit Profile", edit_user_registration_path, class: 'link-action' %></li>
-          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'link-action' %></li>
-        <% else %>
-          <li><%= link_to "Sign up", new_user_registration_path %></li>
-          <li><%= link_to "Sign in", new_user_session_path %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-<% end %>
-</div>
+     <div class="navContainer">
+          <% if user_signed_in? %>
+            <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Logged in as <%= current_user.full_name %>
+              <span class="caret"></span>
+            </button>
+            <ul style="list-style: none;" class="dropdown-menu" aria-labelledby="userMenu" id='userMenu'>
+              <li><%= link_to "Edit Profile", edit_user_registration_path, class: 'user-info link-action' %></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'user-info link-action' %></li>
+            </ul>
+          <% else %>
+            <ul style="list-style: none;" class="dropdown-menu" aria-labelledby="userMenu" id='userMenu'>
+              <li><%= link_to "Sign up", new_user_registration_path %></li>
+              <li><%= link_to "Sign in", new_user_session_path %></li>
+            </ul>
+          <% end %>
+     </div>
 
 <div class="wrap">
   <%= link_to("https://www.ctti-clinicaltrials.org/") do %>
