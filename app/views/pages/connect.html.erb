@@ -4,8 +4,6 @@
     <h1>Connect to AACT</h1>
      <p>As a cloud-hosted PostgreSQL database, AACT can be directly accessed via standard query & analytic tools. Several popular tools, such as pgAdmin and RStudio, are free and relatively easy to install and configure. Other proprietary tools are popular and provide powerful analytic and/or relational database utility; these tools include SAS, Toad, and Tableau. In many cases, access is a matter of installing the software package, configuring it to use PostgreSQL, and providing AACT connection credentials.
      </p>
-     <p>Connecting directly is recommended for users who want to run analyses or queries using the most current, live data.</p>
-     <p>Note: Starting September 2017, direct access to the cloud database requires registration.  Please click <a href='/credentials'>here</a> to register and obtain your login credentials.</p>
   </div>
 
   <section class="connect">
@@ -59,13 +57,22 @@
     <%= render 'credentials/credentials' %>
   <% else %>
     <div class="connectionTypes">
-      <a href="/credentials" class="connectionCard">
-        <h4>Register/Login to Obtain Access Credentials</h4>
+      <a href="/users/sign_up" class="connectionCard">
+
+        <h4>Create an Account to Access Cloud Database</h4>
         <p>
-        Starting September, 2017, access to the cloud-based AACT database requires registration.  Please click here to register and obtain your login credentials.
+        As of September 2017, you need an AACT account to access the cloud-based database. Creating an account is easy: just click here and enter your name, an email address, and a password. Once you create an account and login, the credentials you need to access the database will be displayed here.
         </p>
+        <%= icon("plug") %>
+      </a>
+    </div>
+
+    <div class="connectionTypes">
+      <a href="/users/sign_in" class="connectionCard">
+
+        <h4>Already Have an Account?</h4>
         <p>
-          If you've already registered and have forgotten your access credentials, click here to login and receive them again.
+          If you already have an AACT account and need a reminder of the access credentials, login and the info you need will appear here.
         </p>
         <%= icon("plug") %>
       </a>

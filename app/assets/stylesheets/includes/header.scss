@@ -4,6 +4,23 @@ header {
   padding: 10px 0px;
   width: 100%;
 
+.user-logged-in {
+    border-bottom: thick solid black;
+    border-width: 1px;
+    margin: 0px 0px;
+    padding: 0rem .2rem 0rem 1rem;
+    font-size: 1rem;
+    color: black;
+    text-align: right;
+}
+.user-info {
+    margin: 0px 0px;
+    padding: 0rem .2rem 0rem 1rem;
+    font-size: 1rem;
+    position: right;
+    text-align: right;
+}
+
   div.wrap {
     @include display-flex;
     @include justify-content(space-between);

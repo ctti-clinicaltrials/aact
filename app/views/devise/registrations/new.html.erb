@@ -4,33 +4,28 @@
   <%= devise_error_messages! %>
 
   <div class="form-group">
-    <p>* First name
+    <%= f.label :first_name %>
     <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
-    </p>
   </div>
 
   <div class="form-group">
-    <p>* Last name
+    <%= f.label :last_name %>
     <%= f.text_field :last_name, class: "form-control" %>
-    </p>
   </div>
 
   <div class="form-group">
-    <p>* Email
+    <%= f.label :email %>
     <%= f.email_field :email, class: "form-control" %>
-    </p>
   </div>
 
   <div class="form-group">
-    <p>* Password
+    <%= f.label :password %>
     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-    </p>
   </div>
 
   <div class="form-group">
-    <p>* Confirm password
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-    </p>
   </div>
 
   <div class="form-group">
