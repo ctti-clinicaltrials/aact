@@ -1,17 +1,17 @@
 development: &default
   adapter: postgresql
-  database: back_aact
+  database: aact_back
   encoding: utf8
   min_messages: warning
   timeout: 5000
 
 test:
   <<: *default
-  database: back_aact_test
+  database: aact_back_test
 
 production: &deploy
   adapter: postgresql
-  database: back_aact
+  database: aact_back
   encoding: utf8
   min_messages: warning
   timeout: 5000

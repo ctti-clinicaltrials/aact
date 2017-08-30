@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-
   require 'sidekiq/web'
+
+#  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+#  devise_for :users do
+#    get '/users/sign_out' => 'devise/sessions#destroy'
+#  end
+
   mount Sidekiq::Web => '/sidekiq'
 
   root "pages#home"
@@ -11,6 +17,7 @@ Rails.application.routes.draw do
   get "/learn_more"           => "pages#learn_more"
   get "/schema"               => "pages#schema"
   get "/data_dictionary"      => "dictionary#show"
+  get "/credentials"          => "credentials#show"
   get "/activities"           => "database_activity#show"
   get 'dictionary/show'
 
