@@ -105,11 +105,11 @@ module Util
       # recreate public db (aact) from back-end db (back_aact)
       # restore from most recent snapshot
       return false if !sanity_checks_ok?
-      announcement=submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
+      submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
       revoke_db_privs
       Util::FileManager.new.refresh_public_db(dump_file)
       grant_db_privs
-      announcement.destroy
+      PublicAnnouncement.clear_load_message
       return true
     end
 
