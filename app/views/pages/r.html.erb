@@ -19,7 +19,6 @@
     </div>
 
     <p>Once R is installed, launch R (or RStudio) and enter the following commands at the prompts.</p>
-    <p class='CodeRay'>
     <pre>
       <p class='code'>
         <span class='command-prompt'>> </span><span class='command-entry'> install.packages("RPostgreSQL")</span>
@@ -30,7 +29,11 @@
         <span class='command-prompt'>> </span><span class='command-entry'> library(RPostgreSQL)</span>
         <span class='command-response'>Loading required package: DBI</span>
         <span class='command-prompt'>> </span><span class='command-entry'> drv &lt;- dbDriver('PostgreSQL')</span>
-        <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%= ENV['DB_READONLY_DBNAME'] %>",host="<%= ENV['DB_HOSTNAME'] %>", port=5432, user="<%= ENV['DB_READONLY_USERNAME'] %>", password="<%= ENV['DB_READONLY_PASSWORD'] %>")</span>
+        <% if user_signed_in? %>
+        <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%= ENV['DB_READONLY_DBNAME'] %>",host="<%= ENV['DB_HOSTNAME'] %>", port=5432, user="<%= current_user.db_username %>", password="<%= ENV['DB_READONLY_PASSWORD'] %>")</span>
+        <% else %>
+ <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%= ENV['DB_READONLY_DBNAME'] %>",host="<%= ENV['DB_HOSTNAME'] %>", port=5432, user=<span class='command-note'>(sign up/in to get a username)<span>, password="<%= ENV['DB_READONLY_PASSWORD'] %>")</span>
+        <% end %>
         <span class='command-prompt'>> </span><span class='command-entry'> aact_sample <- dbGetQuery(con, "select distinct study_type from studies")</span>
         <span class='command-prompt'>> </span><span class='command-entry'> write.csv(aact_sample, file='aact_sample.csv')</span>
         <span class='command-prompt'>> </span><span class='command-entry'> print(aact_sample)</span>

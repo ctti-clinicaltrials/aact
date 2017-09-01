@@ -13,9 +13,9 @@
 
     <h3>Note:</h3>
     <ul>
-      <li>This method can also be used to create a local SAS copy of a particular instance of the database, for example by using PROC COPY as illustrated below in Example 3.e. However this is not recommended if a user has limited internet bandwidth or computational power (e.g., working on PC SAS). Two alternative methods for SAS users wanting to work with a static copy of the database are available and are recommended. </li>
-      <li>For SAS users with SAS/ACCESS interface to PostgreSQL and PostgreSQL software installed on their machine, a copy of the database can be downloaded and used to populate a local version of the database. SAS can then be used to connect to, and query, the local database.  See instructions:  “SAS – downloading and connecting to a local copy of the PostgreSQL AACT database”.</li>
-      <li>For SAS users without SAS/ACCESS interface to PostgreSQL, the AACT database tables can be downloaded in delimited text file format.  See instructions: “SAS – downloading and working with the delimited text file version of a static copy of the AACT database”.</li>
+      <li><p>This method can also be used to create a local SAS copy of a particular instance of the database, for example by using PROC COPY as illustrated below in Example 3.e. However this is not recommended if a user has limited internet bandwidth or computational power (e.g., working on PC SAS). Two alternative methods for SAS users wanting to work with a static copy of the database are available and are recommended. </p></li>
+      <li><p>For SAS users with SAS/ACCESS interface to PostgreSQL and PostgreSQL software installed on their machine, a copy of the database can be downloaded and used to populate a local version of the database. SAS can then be used to connect to, and query, the local database.  See instructions:  “SAS – downloading and connecting to a local copy of the PostgreSQL AACT database”.</p></li>
+      <li><p>For SAS users without SAS/ACCESS interface to PostgreSQL, the AACT database tables can be downloaded in delimited text file format.  See instructions: “SAS – downloading and working with the delimited text file version of a static copy of the AACT database”.</p></li>
     </ul>
 
     <div class="step">
@@ -51,8 +51,11 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
         <span class='command-prompt'>libname</span>
         <span class='command-prompt'>   cloud            </span><span class='command-response'> /* my libref  */</span>
         <span class='command-prompt'>   postgres         </span><span class='command-response'> /* postgres engine  */</span>
-        <span class='command-prompt'>   user=</span><span>"<%= ENV["DB_READONLY_USERNAME"] %>"     </span><span class='command-response'> /* supply the AACT login credentials  */</span>
-        <span class='command-prompt'>   password=</span><span>"<%= ENV["DB_READONLY_PASSWORD"] %>"</span>
+        <% if user_signed_in? %>
+        <span class='command-prompt'>   user=</span><span>"<%= current_user.db_username %>"     </span><span class='command-response'> /* supply your login credentials  */</span>
+        <% else %>
+        <span class='command-prompt'>   user=</span><span class='command-note'> (sign up/in to get a username) </span><span class='command-response'> /* supply your login credentials  */</span>
+        <% end %>
         <span class='command-prompt'>   database=</span><span>"<%= ENV["DB_READONLY_DBNAME"] %>"</span>
         <span class='command-prompt'>   server=</span><span>"<%= ENV["DB_HOSTNAME"] %>"</span>
         <span class='command-prompt'>   port=</span><span>5432</span>
@@ -195,8 +198,11 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
         <p class='code'>
           <span>proc sql;</span>
           <span class='command-prompt'>   connect to postgres as aact (</span>
-          <span class='command-prompt'>      user=</span><span>"<%= ENV["DB_READONLY_USERNAME"] %>"</span>
-          <span class='command-prompt'>      password=</span><span>"<%= ENV["DB_READONLY_PASSWORD"] %>"</span>
+          <% if user_signed_in? %>
+          <span class='command-prompt'>      user=</span><span>"<%= current_user.db_username %>"</span>
+          <% else %>
+          <span class='command-prompt'>      user=</span><span class='command-note'>(sign up/in to get a username)</span>
+          <% end %>
           <span class='command-prompt'>      database=</span><span>"<%= ENV["DB_READONLY_DBNAME"] %>"</span>
           <span class='command-prompt'>      server=</span><span>"<%= ENV["DB_HOSTNAME"] %>"</span>
           <span class='command-prompt'>      port=</span><span>5432</span>
