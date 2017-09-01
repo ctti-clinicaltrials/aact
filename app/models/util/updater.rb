@@ -382,7 +382,7 @@ private
       con.execute("revoke all on schema public from #{public_db_name};")
       con.execute("revoke all on schema public from public;")
       con.execute("revoke usage on schema public from public;")
-      con.execute("grant connect on database #{db_name} to #{public_db_name};")
+      con.execute("grant connect on database #{public_db_name} to aact;")
       con.execute("grant usage on schema public TO aact;")
       con.execute('grant select on all tables in schema public to aact;')
     end
