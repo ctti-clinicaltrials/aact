@@ -16,5 +16,12 @@ production: &deploy
   min_messages: warning
   timeout: 5000
 
+public: &deploy
+  adapter: postgresql
+  database: aact
+  encoding: utf8
+  min_messages: warning
+  timeout: 5000
+
 staging: *deploy
 

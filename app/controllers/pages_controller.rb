@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @lastUpdate = LoadEvent.last.try(:updated_at)
     @snapshot_exports="#{ENV['FILESERVER_ENDPOINT']}/snapshots"
   end
 

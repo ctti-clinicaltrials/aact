@@ -11,4 +11,8 @@ class User < AdminBase
   def full_name
     first_name + ' ' + last_name
   end
+
+  def db_username
+    email.gsub(/[^a-z0-9 ]/i, '')
+  end
 end
