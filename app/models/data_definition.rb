@@ -80,7 +80,7 @@ class DataDefinition < AdminBase
         row=where("table_name=? and column_name=?",array.first,array.last).first
         row.enumerations=hash.to_json
         row.save
-      rescue e
+      rescue => e
         puts ">>>>  could not determine enumerations for #{array.first}  #{array.last}"
       end
     }
