@@ -32,7 +32,7 @@ module Util
         puts ">>>>>>>>>>> #{@load_event.event_type} load failed: #{error}"
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         log(msg)
-        grant_db_privs
+        give_users_db_access
         load_event.complete({:status=>'failed', :problems=> msg, :study_counts=> study_counts})
         PublicAnnouncement.clear_load_message
         send_notification
@@ -106,9 +106,9 @@ module Util
       # restore from most recent snapshot
       return false if !sanity_checks_ok?
       announcement=submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
-      revoke_db_privs
+      revoke_users_db_access
       Util::FileManager.new.refresh_public_db(dump_file)
-      grant_db_privs
+      give_users_db_access
       announcement.destroy
       return true
     end
@@ -334,7 +334,6 @@ module Util
       begin
         new_xml=@client.get_xml_for(nct_id)
         StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-        #log("retrieved xml for #{nct_id}:  #{Time.now - stime}")
         stime=Time.now
         verify_xml=(new_xml.xpath('//clinical_study').xpath('source').text).strip
         if verify_xml.size > 1
@@ -351,7 +350,7 @@ module Util
 
     def send_notification
       log("send email notification...")
-      LoadMailer.send_notifications(load_event)
+      Notifier.report_event(load_event)
     end
 
     def set_expected_counts(ids)
@@ -366,25 +365,12 @@ module Util
 
 private
 
-    def revoke_db_privs
-      con=ActiveRecord::Base.connection
-      con.execute("revoke connect on database #{db_name} from aact;")
-      con.execute("revoke select on all tables in schema public from aact;")
-      con.execute("revoke all on schema public from public;")
-      con.execute("revoke all on schema public from aact;")
+    def revoke_users_db_access
+      Util::DbManager.revoke_db_privs
     end
 
-    def grant_db_privs
-      # some of this may seem redundant & better placed in revoke_db_privs, but the following works to allow aact user to
-      # select from tables, but not update the tables nor create new tables
-      con=ActiveRecord::Base.connection
-      con.execute("revoke all on all tables in schema public from #{public_db_name};")
-      con.execute("revoke all on schema public from #{public_db_name};")
-      con.execute("revoke all on schema public from public;")
-      con.execute("revoke usage on schema public from public;")
-      con.execute("grant connect on database #{public_db_name} to aact;")
-      con.execute("grant usage on schema public TO aact;")
-      con.execute('grant select on all tables in schema public to aact;')
+    def give_users_db_access
+      Util::DbManager.grant_db_privs
     end
 
     def db_name

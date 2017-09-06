@@ -9,19 +9,11 @@ class User < AdminBase
   end
 
   def add
-    con=ActiveRecord::Base.establish_connection(:public).connection
-    con.execute("create user #{db_username}")
-    con.execute("grant connect on database aact to #{db_username}")
-    con.execute("grant usage on schema public TO #{db_username}")
-    con.execute("grant select on all tables in schema public to #{db_username};")
+    Util::DbManager.add_user(self)
   end
 
   def remove
-    con=ActiveRecord::Base.establish_connection(:public).connection
-    con.execute("drop owned by #{db_username};")
-    con.execute("revoke all on schema public from #{db_username};")
-    con.execute("drop user #{db_username};")
-    destroy
+    Util::DbManager.remove_user(self)
   end
 
   def self.remove(email)

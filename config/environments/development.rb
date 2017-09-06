@@ -12,7 +12,7 @@ Rails.application.configure do
  #   Bullet.rails_logger = true
  # end
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = SMTP_SETTINGS
+  config.action_mailer.smtp_settings = {:address => 'localhost', :port => 1025}
   config.active_support.deprecation = :log
   config.active_record.migration_error = :page_load
   config.assets.debug = true
