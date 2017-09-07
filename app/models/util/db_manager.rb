@@ -9,7 +9,6 @@ module Util
         con.execute("grant usage on schema public TO #{user.db_username}")
         con.execute("grant select on all tables in schema public to #{user.db_username};")
       rescue => e
-        puts ">>>>>>>>>>>> DbManager.add_user  #{e.inspect}"
         user.errors.add(:base, e.message)
       end
     end
@@ -17,9 +16,8 @@ module Util
     def self.remove_user(user)
       con=ActiveRecord::Base.establish_connection(:public).connection
       con.execute("drop owned by #{user.db_username};")
-      con.execute("revoke all on schema pcblic from #{user.db_username};")
+      con.execute("revoke all on schema public from #{user.db_username};")
       con.execute("drop user #{user.db_username};")
-      user.destroy
     end
 
     def self.revoke_db_privs

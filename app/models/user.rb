@@ -14,6 +14,7 @@ class User < AdminBase
 
   def remove
     Util::DbManager.remove_user(self)
+    destroy
   end
 
   def self.remove(email)
