@@ -109,6 +109,7 @@ module Util
       revoke_users_db_access
       Util::FileManager.new.refresh_public_db(dump_file)
       give_users_db_access
+      PublicAnnouncement.clear_load_message
       return true
     end
 
