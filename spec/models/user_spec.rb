@@ -32,5 +32,8 @@ describe User do
     rescue => e
       expect(e.class).to eq(ActiveRecord::NoDatabaseError)
     end
+    # Subsequent spec tests use this public db connection. Force reset back to test db.
+    @dbconfig = YAML.load(File.read('config/database.yml'))
+    ActiveRecord::Base.establish_connection @dbconfig[:test]
   end
 end
