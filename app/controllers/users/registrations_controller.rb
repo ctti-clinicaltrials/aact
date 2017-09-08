@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def update_resource(resource, params)
-    resource.update(params)
+    resource.update(params) if !params[:current_password].blank?
   end
 
   def configure_devise_permitted_parameters
