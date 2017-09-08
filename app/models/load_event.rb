@@ -43,6 +43,16 @@ class LoadEvent < AdminBase
       )
     end
 
+    def email_message
+      val = ''
+      val += description if description
+      if problems
+        val += " Problems encountered: "
+        val += problems
+      end
+      val
+    end
+
     def log(msg)
       stamped_message="\n#{Time.now} #{msg}"
       self.description << stamped_message
