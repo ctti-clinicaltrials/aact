@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
 
-#  devise_for :users
   devise_for :users, controllers: { registrations: 'users/registrations' }
 #  devise_for :users do
 #    get '/users/sign_out' => 'devise/sessions#destroy'
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
+  get "/users/edit"           => "users/edit"
   get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
   get "wdc"                   => "tableau#index"
   get '/old_tableau',         :to => redirect('/tableau.html')
