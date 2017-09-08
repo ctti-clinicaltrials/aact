@@ -5,6 +5,10 @@ class User < AdminBase
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :current_password, presence: true, on: :update
+  validates :first_name, presence: true, on: :update
+  validates :last_name, presence: true, on: :update
+
   def admin?
     false
   end
