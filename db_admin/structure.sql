@@ -345,7 +345,10 @@ CREATE TABLE users (
     current_sign_in_ip character varying,
     last_sign_in_ip character varying,
     first_name character varying,
-    last_name character varying
+    last_name character varying,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone
 );
 
 
@@ -539,6 +542,13 @@ CREATE INDEX index_study_xml_records_on_nct_id ON study_xml_records USING btree 
 
 
 --
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_confirmation_token ON users USING btree (confirmation_token);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -572,4 +582,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20170828142046');
+
+INSERT INTO schema_migrations (version) VALUES ('20170908151410');
 
