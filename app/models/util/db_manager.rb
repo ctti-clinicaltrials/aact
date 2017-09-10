@@ -1,6 +1,10 @@
 module Util
   class DbManager
 
+    def self.public_db_name
+      'aact'
+    end
+
     def self.add_user(user)
       begin
         con=ActiveRecord::Base.establish_connection(:public).connection
@@ -22,9 +26,8 @@ module Util
 
     def self.revoke_db_privs
       con=ActiveRecord::Base.connection
-      con.execute("revoke connect on database #{db_name} from aact;")
+      con.execute("revoke connect on database #{public_db_name} from aact;")
       con.execute("revoke select on all tables in schema public from aact;")
-      con.execute("revoke all on schema public from public;")
       con.execute("revoke all on schema public from aact;")
     end
 
