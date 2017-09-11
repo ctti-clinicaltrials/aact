@@ -25,13 +25,14 @@ module Util
     end
 
     def self.revoke_db_privs
-      con=ActiveRecord::Base.connection
+      con=ActiveRecord::Base.establish_connection(:public).connection
       con.execute("revoke connect on database #{public_db_name} from aact;")
       con.execute("revoke select on all tables in schema public from aact;")
       con.execute("revoke all on schema public from aact;")
     end
 
     def self.grant_db_privs
+      con=ActiveRecord::Base.establish_connection(:public).connection
       # some of this may seem redundant & better placed in revoke_db_privs, but the following works to allow aact user to
       # select from tables, but not update the tables nor create new tables
       self.revoke_db_privs
