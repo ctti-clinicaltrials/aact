@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_devise_permitted_parameters
-    registration_params = [:first_name, :last_name, :email, :db_username, :password, :password_confirmation, :current_password, :unencrypted_password]
+    registration_params = [:first_name, :last_name, :email, :username, :password, :password_confirmation, :current_password, :unencrypted_password]
 
     case params[:action]
     when 'update'
@@ -33,8 +33,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_permitted_parameters
-    params.permit user: [:first_name, :last_name, :email, :db_username, :password, :password_confirmation, :unencrypted_password]
-    devise_parameter_sanitizer.for(:sign_up).push(:first_name, :last_name, :email, :db_username, :password, :password_confirmation)
+    params.permit user: [:first_name, :last_name, :email, :username, :password, :password_confirmation, :unencrypted_password]
+    devise_parameter_sanitizer.for(:sign_up).push(:first_name, :last_name, :email, :username, :password, :password_confirmation)
   end
 end
 

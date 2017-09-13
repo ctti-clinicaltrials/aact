@@ -52,7 +52,7 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
         <span class='command-prompt'>   cloud            </span><span class='command-response'> /* my libref  */</span>
         <span class='command-prompt'>   postgres         </span><span class='command-response'> /* postgres engine  */</span>
         <% if user_signed_in? %>
-        <span class='command-prompt'>   user=</span><span>"<%= current_user.db_username %>"     </span><span class='command-response'> /* supply your login credentials  */</span>
+        <span class='command-prompt'>   user=</span><span>"<%= current_user.username %>"     </span><span class='command-response'> /* supply your login credentials  */</span>
         <% else %>
         <span class='command-prompt'>   user=</span><span class='command-note'> (sign up/in to get a username) </span><span class='command-response'> /* supply your login credentials  */</span>
         <% end %>
@@ -199,7 +199,7 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
           <span>proc sql;</span>
           <span class='command-prompt'>   connect to postgres as aact (</span>
           <% if user_signed_in? %>
-          <span class='command-prompt'>      user=</span><span>"<%= current_user.db_username %>"</span>
+          <span class='command-prompt'>      user=</span><span>"<%= current_user.username %>"</span>
           <% else %>
           <span class='command-prompt'>      user=</span><span class='command-note'>(sign up/in to get a username)</span>
           <% end %>

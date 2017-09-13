@@ -347,7 +347,7 @@ CREATE TABLE users (
     last_sign_in_ip character varying,
     first_name character varying,
     last_name character varying,
-    db_username character varying,
+    username character varying,
     confirmation_token character varying,
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone

@@ -1,7 +1,7 @@
 <pre>
   <p class='code'>
     <% if user_signed_in? %>
-      <span class='command-prompt'>-&gt; </span><span class='command-entry'> psql --host <%=  ENV["DB_HOSTNAME"] %> --port=5432 --username=<%= current_user.db_username %> --dbname=<%= ENV["DB_READONLY_DBNAME"] %></span>
+ <span class='command-prompt'>-&gt; </span><span class='command-entry'> PGPASSWORD=<span class='command-note'>(your AACT password)</span> psql --host <%=  ENV["DB_HOSTNAME"] %> --port=5432 --username=<%= current_user.username %> --dbname=<%= ENV["DB_READONLY_DBNAME"] %></span>
     <% else %>
  <span class='command-prompt'>-&gt; </span><span class='command-entry'> psql --host <%=  ENV["DB_HOSTNAME"] %> --port=5432 --username=<span class='command-note'>(sign up/in to get a username)</span> --dbname=<%= ENV["DB_READONLY_DBNAME"] %></span>
     <% end %>
