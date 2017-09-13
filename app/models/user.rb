@@ -8,12 +8,15 @@ class User < AdminBase
   validates :current_password, presence: true, on: :update, unless: :skip_password_validation
   validates :first_name, presence: true, on: :update
   validates :last_name, presence: true, on: :update
+  validates :db_username, presence: true
+  validates_uniqueness_of :db_username
 
   def admin?
     false
   end
 
-  def create_db_account
+  def confirm
+    super
     self.skip_password_validation=true
     Util::DbManager.add_user(self)
     self.unencrypted_password=nil # after using this to create db account, get rid of it
@@ -40,7 +43,4 @@ class User < AdminBase
     first_name + ' ' + last_name
   end
 
-  def db_username
-    email.gsub(/[^a-z0-9 ]/i, '')
-  end
 end
