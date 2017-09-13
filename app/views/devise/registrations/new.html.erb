@@ -19,6 +19,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :db_username %> <i>(name you will use to login to the AACT database)</i>
+    <%= f.text_field :db_username, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :password %>
     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
   </div>
