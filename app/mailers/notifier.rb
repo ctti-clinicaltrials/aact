@@ -23,7 +23,7 @@ class Notifier < ApplicationMailer
   def instructions(user)
     @name = user.full_name
     @confirmation_url = confirmation_url(user)
-    mail to: user.email, subject: 'AACT Instructions'
+    mail to: user.email, subject: 'Subscribe for Access to AACT (Aggregated Content of ClinicalTrials.gov)'
   end
 
 end
