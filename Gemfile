@@ -38,6 +38,7 @@ gem 'gon'
 
 # user registration
 gem 'devise'
+gem 'devise-encryptable'
 
 # Grape API
 gem 'rack'

@@ -336,6 +336,7 @@ CREATE TABLE users (
     id integer NOT NULL,
     email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    unencrypted_password character varying,
     reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
     remember_created_at timestamp without time zone,
@@ -582,6 +583,4 @@ INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20170828142046');
-
-INSERT INTO schema_migrations (version) VALUES ('20170908151410');
 
