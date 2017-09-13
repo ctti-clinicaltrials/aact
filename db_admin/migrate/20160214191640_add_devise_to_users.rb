@@ -21,7 +21,7 @@ class AddDeviseToUsers < ActiveRecord::Migration
       t.string   :last_sign_in_ip
       t.string   :first_name
       t.string   :last_name
-      t.string   :db_username
+      t.string   :username
 
       ## Confirmable
       t.string   :confirmation_token

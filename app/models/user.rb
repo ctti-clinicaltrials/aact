@@ -1,15 +1,21 @@
 class User < AdminBase
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  include ActiveModel::Validations
   attr_accessor :current_password, :skip_password_validation
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :current_password, presence: true, on: :update, unless: :skip_password_validation
-  validates :first_name, presence: true, on: :update
-  validates :last_name, presence: true, on: :update
-  validates :db_username, presence: true
-  validates_uniqueness_of :db_username
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates_length_of :first_name, :maximum=>100
+  validates_length_of :last_name, :maximum=>100
+  validates :username, presence: true
+  validates_uniqueness_of :username
+  validates_length_of :username, :maximum=>64
+  validates_format_of :username, :with => /\A[-_a-zA-Z0-9]+\z/, :message => "No special chars allowed"
+  validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with alpha character"
 
   def admin?
     false
