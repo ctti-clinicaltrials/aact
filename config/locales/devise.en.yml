@@ -18,15 +18,15 @@ en:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "AACT Clinical Trials Database - Confirmation Instructions"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "AACT Clinical Trials Database - Reset password instructions"
       unlock_instructions:
-        subject: "Unlock instructions"
+        subject: "AACT Clinical Trials Database - Unlock instructions"
       email_changed:
-        subject: "Email Changed"
+        subject: "AACT Clinical Trials Database - Email Changed"
       password_change:
-        subject: "Password Changed"
+        subject: "AACT Clinical Trials Database - Password Changed"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
