@@ -52,7 +52,6 @@ module Util
     end
 
     def self.revoke_db_privs
-      self.terminate_active_sessions
       con=ActiveRecord::Base.establish_connection(:public).connection
       con.execute("revoke connect on database #{public_db_name} from public;")
       con.execute("revoke select on all tables in schema public from public;")
