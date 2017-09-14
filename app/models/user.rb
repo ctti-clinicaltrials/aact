@@ -29,10 +29,21 @@ class User < AdminBase
     self.save!
   end
 
+  def self.reset_password_by_token(params)
+    original_token       = params[:reset_password_token]
+    reset_password_token = Devise.token_generator.digest(self, :reset_password_token, original_token)
+    resource=where('reset_password_token=?',reset_password_token).first
+    if !resource.nil?
+      resource.skip_password_validation=true
+      resource.update_attributes({:password=>params[:password], :password_confirmation=>params[:password_confirmation]})
+      Util::DbManager.change_password(resource,params[:password]) if resource.errors.empty?
+    end
+  end
+
   def update(params)
     params.delete(:password) if params[:password].blank?
     params.delete(:password_confirmation) if params[:password_confirmation].blank?
-    update_attributes(params) if valid_password?(params['current_password'])
+    update_attributes(params) if !skip_password_validation and valid_password?(params['current_password'])
     Util::DbManager.change_password(self,params[:password]) if params[:password]
   end
 
