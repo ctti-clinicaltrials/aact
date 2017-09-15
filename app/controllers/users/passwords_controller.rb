@@ -12,8 +12,8 @@ class Users::PasswordsController < Devise::PasswordsController
       yield resource if block_given?
       sign_out(:user)
       sign_in(:user, resource)
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 
   protected
