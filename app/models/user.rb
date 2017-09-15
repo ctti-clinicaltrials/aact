@@ -38,6 +38,7 @@ class User < AdminBase
       resource.update_attributes({:password=>params[:password], :password_confirmation=>params[:password_confirmation]})
       Util::DbManager.change_password(resource,params[:password]) if resource.errors.empty?
     end
+    resource
   end
 
   def update(params)
