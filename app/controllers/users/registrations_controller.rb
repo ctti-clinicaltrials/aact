@@ -4,7 +4,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def destroy
     current_user.remove
-    render 'pages/home'
   end
 
   protected
@@ -32,9 +31,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def configure_permitted_parameters
-    params.permit user: [:first_name, :last_name, :email, :username, :password, :password_confirmation, :unencrypted_password]
-    devise_parameter_sanitizer.for(:sign_up).push(:first_name, :last_name, :email, :username, :password, :password_confirmation)
-  end
 end
 

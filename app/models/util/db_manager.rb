@@ -1,81 +1,105 @@
 module Util
   class DbManager
+    attr_accessor :con
 
-    def self.public_db_name
-      'aact'
+    def self.add_user(user)
+      new.add_user(user)
+    end
+
+    def self.remove_user(user)
+      new.remove_user(user)
     end
 
     def self.change_password(user,pwd)
-      begin
-        con=ActiveRecord::Base.establish_connection(:public).connection
-        con.execute("alter user #{user.username} password '#{pwd}'")
-        con.disconnect!
-      rescue => e
-        user.errors.add(:base, e.message)
-      end
+      new.change_password(user,pwd)
     end
 
-    def self.add_user(user)
+    def self.grant_db_privs
+      new.grant_db_privs
+    end
+
+    def self.revoke_db_privs
+      new.revoke_db_privs
+    end
+
+    # =============== instance methods
+
+    def add_user(user)
       begin
-        con=ActiveRecord::Base.establish_connection(:public).connection
         con.execute("create user #{user.username} password '#{user.unencrypted_password}'")
         con.execute("grant connect on database aact to #{user.username}")
         con.execute("grant usage on schema public TO #{user.username}")
         con.execute("grant select on all tables in schema public to #{user.username};")
-        con.disconnect!
       rescue => e
         user.errors.add(:base, e.message)
       end
+      clean_up
     end
 
-    def self.remove_user(user)
-      self.terminate_sessions_for(user)
-      con=ActiveRecord::Base.establish_connection(:public).connection
+    def remove_user(user)
       begin
-      con.execute("drop owned by #{user.username};")
-      con.execute("revoke all on schema public from #{user.username};")
-      con.execute("drop user #{user.username};")
+        con.execute("drop owned by #{user.username};")
+        con.execute("revoke all on schema public from #{user.username};")
+        con.execute("drop user #{user.username};")
       rescue => e
-        con.disconnect!
+        clean_up
         raise e unless e.message == "role \"#{user.username}\" does not exist"
       end
-      con.disconnect!
     end
 
-    def self.grant_db_privs
-      self.revoke_db_privs # to avoid errors, ensure privs revoked first
-      con=ActiveRecord::Base.establish_connection(:public).connection
+    def change_password(user,pwd)
+      begin
+        con.execute("alter user #{user.username} password '#{pwd}'")
+      rescue => e
+        user.errors.add(:base, e.message)
+      end
+      clean_up
+    end
+
+    def grant_db_privs
+      revoke_db_privs # to avoid errors, ensure privs revoked first
       con.execute("grant connect on database #{public_db_name} to public;")
       con.execute("grant usage on schema public TO public;")
       con.execute('grant select on all tables in schema public to public;')
-      con.disconnect!
+      clean_up
     end
 
-    def self.revoke_db_privs
-      con=ActiveRecord::Base.establish_connection(:public).connection
+    def revoke_db_privs
       con.execute("revoke connect on database #{public_db_name} from public;")
       con.execute("revoke select on all tables in schema public from public;")
       con.execute("revoke all on schema public from public;")
-      con.disconnect!
+      clean_up
     end
 
-    def self.terminate_sessions_for(user)
-      con=ActiveRecord::Base.establish_connection(:public).connection
+    def terminate_sessions_for(user)
       con.select_all("select * from pg_stat_activity order by pid;").each { |session|
         if session['usename']=="#{user.username}"
           con.execute("select pg_terminate_backend(#{session['pid']})")
         end
       }
+      clean_up
     end
 
-    def self.terminate_active_sessions
-      con=ActiveRecord::Base.establish_connection(:public).connection
+    def terminate_active_sessions
       con.select_all("select * from pg_stat_activity order by pid;").each { |session|
         if session['datname']=="#{public_db_name}"
           con.execute("select pg_terminate_backend(#{session['pid']})")
         end
       }
+      clean_up
+    end
+
+    def clean_up
       con.disconnect!
+      ActiveRecord::Base.establish_connection(Rails.env).connection
+    end
+
+    def con
+      @con ||= ActiveRecord::Base.establish_connection(:public).connection
+    end
+
+    def public_db_name
+      'aact'
     end
 
   end
