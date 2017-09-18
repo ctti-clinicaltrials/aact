@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    notify_user_of_email_confirmation if !resource.errors.any?
+    flash[:notice] = 'You will soon receive an email from AACT. Once you verify your information by responding to this email, a database account will be created for you.' if !resource.errors.any?
   end
 
   def destroy
