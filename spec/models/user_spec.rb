@@ -53,7 +53,7 @@ describe User do
   it "Doesn't accept users with invalid char in username" do
     User.destroy_all
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec!_test',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username No special chars allowed')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
     expect(User.count).to eq(0)
     begin
       ActiveRecord::Base.establish_connection(
@@ -74,7 +74,7 @@ describe User do
 
   it "Doesn't accept user unless first char of username is alpha" do
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'1rspec_test',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username must start with alpha character')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username must start with an alpha character')
     expect(User.count).to eq(0)
   end
 
