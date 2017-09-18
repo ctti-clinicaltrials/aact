@@ -3,7 +3,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
   def destroy
-    current_user.remove
+      current_user.remove
+      redirect_to root_path
   end
 
   protected
@@ -13,7 +14,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update_resource(resource, params)
-    resource.update(params) if !params[:current_password].blank?
+    if params[:current_password].blank?
+      resource.errors.add(:current_password, "must be provided to update account.")
+    else
+      resource.update(params)
+    end
   end
 
   def configure_devise_permitted_parameters
@@ -26,6 +31,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }
     when 'create'
       devise_parameter_sanitizer.permit(:sign_up) {
+        |u| u.permit(registration_params)
+      }
+    when 'delete'
+      devise_parameter_sanitizer.permit(:delete) {
         |u| u.permit(registration_params)
       }
     end

@@ -1,5 +1,12 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
   <%= devise_error_messages! %>
+
+  <div class="userInfoReadOnly">
+    <span class='alignLeft'>Email: <i><%= resource.email %></i></span>
+    <span class='alignRight'>Username: <i><%= resource.username %></i></span>
+  </div>
+  <div style="clear: both;"></div>
 
   <div class="form-group">
     <%= f.label :first_name %>
@@ -9,16 +16,6 @@
   <div class="form-group">
     <%= f.label :last_name %>
     <%= f.text_field :last_name, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :username %> <i>(name you will use to login to the AACT database)</i>
-    <%= f.text_field :username, class: "form-control" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -43,12 +40,10 @@
   </div>
 
   <div class="form-group">
-    <%= f.submit "Update", class: "btn btn-primary" %>
+    <span class='alignLeft'><%= f.submit "Update", class: "btn btn-primary" %></span>
   </div>
+
 <% end %>
+<span class='alignRight'><%= button_to "Remove my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></span>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
-
-<%= link_to "Back", :back %>
+<h4>  </h4>

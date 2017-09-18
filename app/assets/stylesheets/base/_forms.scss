@@ -19,6 +19,17 @@ form {
     padding: .5rem;
   }
 
+  div.userInfoReadOnly {
+    background: $white;
+    padding: 20px 30px 40px 10px;
+    width: 100%;
+    font-size: 1.6rem;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: $border-radius/2;
+    cursor: not-allowed;
+  }
+
   label {
     display: block;
     margin-bottom: .4rem;

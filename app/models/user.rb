@@ -44,7 +44,7 @@ class User < AdminBase
   def update(params)
     params.delete(:password) if params[:password].blank?
     params.delete(:password_confirmation) if params[:password_confirmation].blank?
-    update_attributes(params) if !skip_password_validation and valid_password?(params['current_password'])
+    update_attributes(params) if valid_password?(params['current_password'])
     Util::DbManager.change_password(self,params[:password]) if params[:password]
     self
   end
