@@ -91,7 +91,7 @@ module Util
 
     def clean_up
       con.disconnect!
-      ActiveRecord::Base.establish_connection(Rails.env).connection
+      ActiveRecord::Base.establish_connection(Rails.env.to_sym).connection
     end
 
     def con
