@@ -2,9 +2,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :save_password, :only => [ :new, :create ]
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
+  def create
+    super
+    notify_user_of_email_confirmation if !resource.errors.any?
+  end
+
   def destroy
-      current_user.remove
-      redirect_to root_path
+    current_user.remove
+    redirect_to root_path
   end
 
   protected
@@ -40,5 +45,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-end
+  def notify_user_of_email_confirmation
+    respond_to do |format|
+      format.html { redirect_to new_user_registration_path, notice: 'You will soon receive an email from AACT. Once you verify your information by responding to this email, a database account will be created for you.' }
+    end
+  end
 
+end
