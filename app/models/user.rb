@@ -20,18 +20,28 @@ class User < AdminBase
 
   def can_create_db_account?
     error_msg="Database account cannot be created for username '#{self.username}'"
-    errors.add(:Username, error_msg) unless Util::DbManager.can_add_user?(self)
+    if Util::DbManager.can_add_user?(self)
+      true
+    else
+      errors.add(:Username, error_msg) unless Util::DbManager.can_add_user?(self)
+      false
+    end
   end
 
   def admin?
     false
   end
 
+  def create_unconfirmed
+    self.save!
+    Util::DbManager.add_unconfirmed_user(self) if self.errors.size == 0
+  end
+
   def confirm
     super
-    self.skip_password_validation=true
-    Util::DbManager.add_user(self)
+    Util::DbManager.change_password(self,self.unencrypted_password)
     self.unencrypted_password=nil # after using this to create db account, get rid of it
+    self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
     self.save!
   end
 
@@ -56,7 +66,11 @@ class User < AdminBase
   end
 
   def remove
-    Util::DbManager.remove_user(self)
+    begin
+      Util::DbManager.remove_user(self)
+    rescue => e
+      puts e.message
+    end
     destroy
   end
 
