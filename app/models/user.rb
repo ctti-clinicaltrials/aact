@@ -16,6 +16,12 @@ class User < AdminBase
   validates_length_of :username, :maximum=>64
   validates_format_of :username, :with => /\A[-_a-zA-Z0-9]+\z/, :message => "cannot contain special chars"
   validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with an alpha character"
+  validate :can_create_db_account?, on: :create
+
+  def can_create_db_account?
+    error_msg="Database account cannot be created for username '#{self.username}'"
+    errors.add(:Username, error_msg) unless Util::DbManager.can_add_user?(self)
+  end
 
   def admin?
     false

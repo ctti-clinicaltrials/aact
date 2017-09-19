@@ -2,8 +2,16 @@ require 'rails_helper'
 
 describe User do
 
+  it "doesn't add users with db admin account names" do
+    username='postgres'
+    user=User.new(:first_name=>'Illegal', :last_name=>'User',:email=>'illegal_user@duke.edu',:username=>username,:password=>'aact',:password_confirmation=>'aact')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username Database account cannot be created for username '#{username}'")
+    expect(User.count).to eq(0)
+  end
+
   it "adds user by creating row in Users table & creating a db account for the user" do
-    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec_test',:password=>'aact')
+    username='rspec_test'
+    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>'aact')
     user.save!
     expect(User.count).to eq(1)
     expect(user.sign_in_count).to eq(0)
@@ -20,7 +28,7 @@ describe User do
       expect(e.message).to eq("FATAL:  role \"rspec_test\" does not exist\n")
       expect(con).to be(nil)
     end
-    user.confirm
+    user.confirm  #simulates user email response
     # user db account created when email confirmed
     con=ActiveRecord::Base.establish_connection(
       adapter: 'postgresql',
@@ -31,7 +39,6 @@ describe User do
     expect(con.active?).to eq(true)
     con.disconnect!
     expect(con.active?).to eq(false)
-
     user.remove
     expect(User.count).to eq(0)
     # user can no longer access the public database

@@ -22,7 +22,18 @@ module Util
       new.revoke_db_privs
     end
 
+    def self.can_add_user?(user)
+      new.can_add_user?(user)
+    end
+
     # =============== instance methods
+
+    def can_add_user?(user)
+      username=ActiveRecord::Base::sanitize(user.username.try(:downcase))
+      res=con.execute("SELECT * FROM pg_catalog.pg_user where lower(usename) = #{username}").count == 0
+      clean_up
+      res
+    end
 
     def add_user(user)
       begin
