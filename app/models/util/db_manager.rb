@@ -6,6 +6,10 @@ module Util
       new.add_user(user)
     end
 
+    def self.add_unconfirmed_user(user)
+      new.add_unconfirmed_user(user)
+    end
+
     def self.remove_user(user)
       new.remove_user(user)
     end
@@ -22,7 +26,38 @@ module Util
       new.revoke_db_privs
     end
 
+    def self.can_add_user?(user)
+      new.can_add_user?(user)
+    end
+
     # =============== instance methods
+
+    def add_unconfirmed_user(user)
+      # We add the unconfirmed user to the db to reserve the username - prevent others from
+      # subsequently trying to create user with same name before user confirms the account
+      # When user eventually confirms the account, we will set their password to what they defined
+      begin
+        dummy_pwd=ENV['UNCONFIRMED_USER_PASSWORD']
+        con.execute("create user #{user.username} password '#{dummy_pwd}';")
+        con.execute("grant connect on database aact to #{user.username};")
+        con.execute("grant usage on schema public TO #{user.username};")
+        con.execute("grant select on all tables in schema public to #{user.username};")
+      rescue => e
+        user.errors.add(:base, e.message)
+      end
+      clean_up
+    end
+
+    def can_add_user?(user)
+      !user_account_exists?(user)
+    end
+
+    def user_account_exists?(user)
+      username=ActiveRecord::Base::sanitize(user.username.try(:downcase))
+      res=con.execute("SELECT * FROM pg_catalog.pg_user where lower(usename) = #{username}").count > 0
+      clean_up
+      res
+    end
 
     def add_user(user)
       begin
@@ -91,6 +126,7 @@ module Util
 
     def clean_up
       con.disconnect!
+      con=nil
       ActiveRecord::Base.establish_connection(Rails.env.to_sym).connection
     end
 
