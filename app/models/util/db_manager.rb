@@ -1,5 +1,6 @@
 module Util
   class DbManager
+
     attr_accessor :con
 
     def self.add_user(user)
@@ -45,7 +46,6 @@ module Util
       rescue => e
         user.errors.add(:base, e.message)
       end
-      clean_up
     end
 
     def can_add_user?(user)
@@ -53,7 +53,7 @@ module Util
     end
 
     def user_account_exists?(user)
-      res=con.execute("SELECT * FROM pg_catalog.pg_user where usename = \"#{username}\"").count > 0
+      res=con.execute("SELECT * FROM pg_catalog.pg_user where usename = '#{user.username}'").count > 0
     end
 
     def add_user(user)
@@ -65,7 +65,6 @@ module Util
       rescue => e
         user.errors.add(:base, e.message)
       end
-      clean_up
     end
 
     def remove_user(user)
@@ -74,7 +73,6 @@ module Util
         con.execute("revoke all on schema public from \"#{user.username}\";")
         con.execute("drop user \"#{user.username}\";")
       rescue => e
-        clean_up
         raise e unless e.message == "role \"#{user.username}\" does not exist"
       end
     end
@@ -85,23 +83,19 @@ module Util
       rescue => e
         user.errors.add(:base, e.message)
       end
-      clean_up
     end
 
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
-      @con = ActiveRecord::Base.establish_connection(:public).connection
       con.execute("grant connect on database #{public_db_name} to public;")
       con.execute("grant usage on schema public TO public;")
       con.execute('grant select on all tables in schema public to public;')
-      clean_up
     end
 
     def revoke_db_privs
       con.execute("revoke connect on database #{public_db_name} from public;")
       con.execute("revoke select on all tables in schema public from public;")
       con.execute("revoke all on schema public from public;")
-      clean_up
     end
 
     def terminate_sessions_for(user)
@@ -110,7 +104,6 @@ module Util
           con.execute("select pg_terminate_backend(#{session['pid']})")
         end
       }
-      clean_up
     end
 
     def terminate_active_sessions
@@ -119,17 +112,10 @@ module Util
           con.execute("select pg_terminate_backend(#{session['pid']})")
         end
       }
-      clean_up
-    end
-
-    def clean_up
-      con.disconnect!
-      con=nil
-      ActiveRecord::Base.establish_connection(Rails.env.to_sym).connection
     end
 
     def con
-      @con ||= ActiveRecord::Base.establish_connection(:public).connection
+      @con ||= PublicBase.establish_connection(ENV["PUBLIC_DATABASE_URL"]).connection
     end
 
     def public_db_name
