@@ -1,12 +1,10 @@
 <p><%= @resource.full_name %>,
 
-Welcome to AACT,the database for Aggregated Analysis of Clinical Trials</p>
-
-<p>Please confirm your email address and create your database account by clicking this link:</p>
+<p>Welcome to AACT,the database for Aggregated Analysis of Clinical Trials! Please confirm your email address and create your database account by clicking this link:</p>
 
 <p><%= link_to 'Confirm my request for an AACT database account', confirmation_url(@resource, confirmation_token: @token) %></p>
 
-<p>Once you've confirmed, you will have immediately access to AACT - a cloud-hosted postgres database containing all the information in ClinicalTrials.gov.</p>
+<p>Once you've confirmed, you will have immediate access to AACT - a cloud-hosted postgres database containing all the information in ClinicalTrials.gov.</p>
 
 <p>Because this database is in the cloud; you can access it directly from your computer using any of several SQL query tools - many of which are free. Making sense of the information requires basic understanding of SAS, R or SQL and relational database concepts. This is raw data - graphical user interfaces are not included.</p>
 
@@ -16,4 +14,6 @@ Welcome to AACT,the database for Aggregated Analysis of Clinical Trials</p>
 PGPASSWORD=<i>(your AACT password)</i> psql --host aact-staging.ctti-clinicaltrials.org --port=5432 --username=<%= @resource.username %> --dbname=aact
 
 
-From there, it's a matter of familiarizing yourself with the information and how it's structured, and developing queries to make sense of it. The schema diagram, data dictionary and other help is available on the <%= link_to 'AACT website', 'aact.ctti-clinicaltrials.org' %>. You can accomplish a lot with a few basic SQL commands.
+<p>From there, it's a matter of familiarizing yourself with the information and how it's structured, and developing queries to make sense of it. The schema diagram, data dictionary and other help is available on the <%= link_to 'AACT website', 'aact.ctti-clinicaltrials.org' %>. You can accomplish a lot with a few basic SQL commands.</p>
+
+<p>Please contact the <%= link_to 'Clinical Trials Transformation Initiative', 'https://www.ctti-clinicaltrials.org/' %> <%= mail_to @sample.email, "ctti@mc.duke.edu" %> if you have questions, suggestions or would like more information.</p>

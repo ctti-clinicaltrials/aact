@@ -19,7 +19,7 @@ class User < AdminBase
   validate :can_create_db_account?, on: :create
 
   def can_create_db_account?
-    error_msg="Database account cannot be created for username '#{self.username}'"
+    error_msg=" '#{self.username}' cannot be used to create a database account. (Either restricted or is alreay taken)'"
     if Util::DbManager.can_add_user?(self)
       true
     else
