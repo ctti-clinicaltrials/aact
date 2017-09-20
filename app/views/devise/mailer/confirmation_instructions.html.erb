@@ -1,30 +1,19 @@
-<p><%= @resource.full_name %>, welcome to AACT - Aggregated Analysis of Clinical Trials Relational Database</p>
+<p><%= @resource.full_name %>,
+
+Welcome to AACT,the database for Aggregated Analysis of Clinical Trials</p>
 
 <p>Please confirm your email address and create your database account by clicking this link:</p>
 
 <p><%= link_to 'Confirm my request for an AACT database account', confirmation_url(@resource, confirmation_token: @token) %></p>
 
-<p>Once you confirm your email address, you will have immediately access to AACT - a postgres database containing all the information in ClinicalTrials.gov</p>
+<p>Once you've confirmed, you will have immediately access to AACT - a cloud-hosted postgres database containing all the information in ClinicalTrials.gov.</p>
 
-  <p>The AACT database is hosted in the cloud; you can access it directly from any laptop using any of several SQL query tools (many of which are free). Making sense of the information requires basic understanding of SAS, R or SQL and relational database concepts. This is raw data - graphical user interfaces are not included - AACT is more easily understood by people with some degree of technical competency (or those willing to develop these skills).</p>
+<p>Because this database is in the cloud; you can access it directly from your computer using any of several SQL query tools - many of which are free. Making sense of the information requires basic understanding of SAS, R or SQL and relational database concepts. This is raw data - graphical user interfaces are not included.</p>
 
-  <p>If you have installed the free postgreSQL command line tool, <%= link_to 'psql', 'https://www.postgresql.org/download/' %>) on your own machine, you can get started imediately by entering the following connection command from a terminal session: </p>
+<p>If you have installed the free postgreSQL command line tool (<%= link_to 'psql', 'https://www.postgresql.org/download/' %>) on your machine, you can get started imediately by entering the following connection command from a terminal session:</p>
 
 
-PGPASSWORD=(your AACT password) psql --host aact-staging.ctti-clinicaltrials.org --port=5432 --username=<%= @resource.username %> --dbname=aact
+PGPASSWORD=<i>(your AACT password)</i> psql --host aact-staging.ctti-clinicaltrials.org --port=5432 --username=<%= @resource.username %> --dbname=aact
 
-<span class='command-prompt'>aact=&gt; </span><span class='command-entry'> \q</span>
 
-<pre>
-  <p class='code'>
- <span class='command-prompt'>-&gt; </span><span class='command-entry'> PGPASSWORD=<span class='command-note'>('your AACT password')</span> psql --host <%=  ENV["DB_HOSTNAME"] %> --port=5432 --username='<%= @resource.username %>' --dbname=<%= ENV["DB_READONLY_DBNAME"] %></span>
-    <span class='command-response'> </span>
-    <span class='command-response'>  psql (9.5.3, server <%= ENV['DB_VERSION'] %>)</span>
-    <span class='command-response'>  SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)</span>
-    <span class='command-response'>  Type "help" for help.</span>
-    <span class='command-response'> </span>
-    <span class='command-prompt'>aact=&gt; _</span>
-  </p>
-</pre>
-
-From here, it's a matter of familiarizing yourself with the information, how it's structured and developing queries to make sense of it.  You can accomplish a lot with a few basic SQL commands.
+From there, it's a matter of familiarizing yourself with the information and how it's structured, and developing queries to make sense of it. The schema diagram, data dictionary and other help is available on the <%= link_to 'AACT website', 'aact.ctti-clinicaltrials.org' %>. You can accomplish a lot with a few basic SQL commands.
