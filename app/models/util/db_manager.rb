@@ -38,10 +38,10 @@ module Util
       # When user eventually confirms the account, we will set their password to what they defined
       begin
         dummy_pwd=ENV['UNCONFIRMED_USER_PASSWORD']
-        con.execute("create user #{user.username} password '#{dummy_pwd}';")
-        con.execute("grant connect on database aact to #{user.username};")
-        con.execute("grant usage on schema public TO #{user.username};")
-        con.execute("grant select on all tables in schema public to #{user.username};")
+        con.execute("create user \"#{user.username}\" password '#{dummy_pwd}';")
+        con.execute("grant connect on database aact to \"#{user.username}\";")
+        con.execute("grant usage on schema public TO \"#{user.username}\";")
+        con.execute("grant select on all tables in schema public to \"#{user.username}\";")
       rescue => e
         user.errors.add(:base, e.message)
       end
@@ -53,18 +53,15 @@ module Util
     end
 
     def user_account_exists?(user)
-      username=ActiveRecord::Base::sanitize(user.username.try(:downcase))
-      res=con.execute("SELECT * FROM pg_catalog.pg_user where lower(usename) = #{username}").count > 0
-      clean_up
-      res
+      res=con.execute("SELECT * FROM pg_catalog.pg_user where usename = \"#{username}\"").count > 0
     end
 
     def add_user(user)
       begin
-        con.execute("create user #{user.username} password '#{user.unencrypted_password}'")
-        con.execute("grant connect on database aact to #{user.username}")
-        con.execute("grant usage on schema public TO #{user.username}")
-        con.execute("grant select on all tables in schema public to #{user.username};")
+        con.execute("create user \"#{user.username}\" password '#{user.unencrypted_password}'")
+        con.execute("grant connect on database aact to \"#{user.username}\"")
+        con.execute("grant usage on schema public TO \"#{user.username}\"")
+        con.execute("grant select on all tables in schema public to \"#{user.username}\";")
       rescue => e
         user.errors.add(:base, e.message)
       end
@@ -73,9 +70,9 @@ module Util
 
     def remove_user(user)
       begin
-        con.execute("drop owned by #{user.username};")
-        con.execute("revoke all on schema public from #{user.username};")
-        con.execute("drop user #{user.username};")
+        con.execute("drop owned by \"#{user.username}\";")
+        con.execute("revoke all on schema public from \"#{user.username}\";")
+        con.execute("drop user \"#{user.username}\";")
       rescue => e
         clean_up
         raise e unless e.message == "role \"#{user.username}\" does not exist"
@@ -84,7 +81,7 @@ module Util
 
     def change_password(user,pwd)
       begin
-        con.execute("alter user #{user.username} password '#{pwd}'")
+        con.execute("alter user \"#{user.username}\" password \"#{pwd}\"")
       rescue => e
         user.errors.add(:base, e.message)
       end
@@ -93,6 +90,7 @@ module Util
 
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
+      @con = ActiveRecord::Base.establish_connection(:public).connection
       con.execute("grant connect on database #{public_db_name} to public;")
       con.execute("grant usage on schema public TO public;")
       con.execute('grant select on all tables in schema public to public;')
