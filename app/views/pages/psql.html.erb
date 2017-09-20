@@ -9,7 +9,7 @@
 <section class="psqlAccess">
   <div class="wrap">
     <p>
-    The most fundamental way to access AACT data is by using the standard postgreSQL command line query tool: <a href="#">pSQL</a>. This tool is part of the <a href="#">PostgreSQL</a> client software.
+    The most straight forward way to access the content of ClinicalTrials.gov is by using the free postgreSQL command line query tool, <a target='_blank' href="http://postgresguide.com/utilities/psql.html">pSQL</a>, to connect to and query the AACT database. This tool is part of the PostgreSQL software package that can be downloaded for free from this <a target='_blank' href="https://www.postgresql.org/download/">site</a>. (Note: AACT is an open source project, based entirely on open source tools; the goal is to make this information as freely accessible as possible to everyone who can make use of it.)
 
     <%= render 'install_postgres' %>
 
@@ -19,7 +19,7 @@
     </div>
 
     <p>
-    Once PostgreSQL is installed on your local machine, you can access pSQL from a terminal session by entering the command: <i>psql</i>. To access the AACT cloud-hosted database, open a terminal window and enter the <i>psql</i> command with the following syntax.
+    Once PostgreSQL is installed on your local machine, you can launch the query tool by entering the command: <i>psql</i> from a terminal session. To access the AACT cloud-hosted database, open a terminal window and enter the <i>psql</i> command with the following connection credentials.
     </p>
 
     <p><%= render 'psql_remote_login' %></p>
