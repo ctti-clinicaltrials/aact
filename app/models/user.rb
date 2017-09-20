@@ -40,6 +40,8 @@ class User < AdminBase
   def confirm
     super
     Util::DbManager.change_password(self,self.unencrypted_password)
+    self.password =self.unencrypted_password
+    self.password_confirmation = self.unencrypted_password
     self.unencrypted_password=nil # after using this to create db account, get rid of it
     self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
     self.save!
