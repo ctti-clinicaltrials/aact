@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
   get "/users/edit"           => "users/edit"
   get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
-  get "wdc"                   => "tableau#index"
-  get '/old_tableau',         :to => redirect('/tableau.html')
   get "/learn_more"           => "pages#learn_more"
   get "/schema"               => "pages#schema"
   get "/data_dictionary"      => "dictionary#show"
