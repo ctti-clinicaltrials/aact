@@ -1,8 +1,6 @@
 require 'csv'
 class Study < ActiveRecord::Base
-  include Elasticsearch::Model
   # index_name([Rails.env,base_class.to_s.pluralize.underscore].join('_'))
-  #include Elasticsearch::Model::Callbacks
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
 
@@ -339,10 +337,6 @@ class Study < ActiveRecord::Base
       + Facility.where('name like ?',"%#{org}%").pluck(:nct_id) \
       + where('source like ?',"%#{org}%").pluck(:nct_id)).flatten.uniq
     where(nct_id: ids).includes(:sponsors).includes(:facilities).includes(:brief_summary).includes(:detailed_description).includes(:design).includes(:eligibility).includes(:overall_officials).includes(:responsible_parties)
-  end
-
-  def self.with_term(term)
-    Study.__elasticsearch__.search(term)
   end
 
 end

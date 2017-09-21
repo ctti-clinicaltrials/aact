@@ -46,11 +46,7 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem 'active_model_serializers', '~> 0.9.0'
 
-gem 'elasticsearch-ruby'
-gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-
-group :development, :docker do
+group :development do
   gem 'capistrano', '~> 3.8'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-chruby'
@@ -60,7 +56,7 @@ group :development, :docker do
   gem 'letter_opener'
 end
 
-group :development, :test, :docker, :docker_test do
+group :development, :test do
   gem "awesome_print"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
@@ -71,11 +67,11 @@ group :development, :test, :docker, :docker_test do
   gem 'single_test'
 end
 
-group :development, :staging, :docker do
+group :development, :staging do
   gem "rack-mini-profiler", require: false
 end
 
-group :test, :docker_test do
+group :test do
   gem "capybara-webkit"
   gem "database_cleaner"
   gem "formulaic"

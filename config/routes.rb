@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
   get "/users/edit"           => "users/edit"
   get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
-  get "wdc"                   => "tableau#index"
-  get '/old_tableau',         :to => redirect('/tableau.html')
   get "/learn_more"           => "pages#learn_more"
   get "/schema"               => "pages#schema"
   get "/data_dictionary"      => "dictionary#show"
@@ -40,9 +38,7 @@ Rails.application.routes.draw do
 
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
 
-  resources :charts
   resources :definitions
   resources :use_cases
   resources :use_case_attachments
-  resources :database_activity
 end
