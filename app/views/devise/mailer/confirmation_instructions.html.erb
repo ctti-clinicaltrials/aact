@@ -13,7 +13,7 @@ Making sense of the information requires basic understanding of SAS, R or SQL & 
 
 <p>If you have installed the free postgreSQL command line tool (<%= link_to 'psql', 'http://postgresguide.com/utilities/psql.html' %>) on your machine, you can get started by entering the following connection command from a terminal session:</p>
 
-PGPASSWORD=<i>(your AACT password)</i> psql --host=aact.ctti-clinicaltrials.org --port=5432 --username=<%= @resource.username %> --dbname=aact
+PGPASSWORD=<i>'your AACT password'</i> psql --host=aact.ctti-clinicaltrials.org --port=5432 --username='<%= @resource.username %>' --dbname=aact
 
 <p>From there, it's a matter of familiarizing yourself with the information and how it's structured, and developing queries to retrieve what interests you. The schema diagram, data dictionary and other help is available on the <%= link_to 'AACT website', 'http://aact.ctti-clinicaltrials.org/learn_more' %>. You can accomplish a lot with a few basic SQL commands.</p>
 
