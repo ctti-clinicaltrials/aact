@@ -20,10 +20,10 @@ class User < AdminBase
 
   def can_create_db_account?
     error_msg="Database account cannot be created for username '#{self.username}'"
-    if Util::DbManager.can_add_user?(self)
+    if Util::DbManager.can_create_user?(self)
       true
     else
-      errors.add(:Username, error_msg) unless Util::DbManager.can_add_user?(self)
+      errors.add(:Username, error_msg) unless Util::DbManager.can_create_user?(self)
       false
     end
   end
@@ -33,8 +33,9 @@ class User < AdminBase
   end
 
   def create_unconfirmed
+    self.unencrypted_password=self.password
     self.save!
-    Util::DbManager.add_unconfirmed_user(self) if self.errors.size == 0
+    Util::DbManager.create_unconfirmed_user(self) if self.errors.size == 0
   end
 
   def confirm

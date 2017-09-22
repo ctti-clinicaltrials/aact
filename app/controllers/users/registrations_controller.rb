@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     if resource.errors.size == 0
-      Util::DbManager.add_unconfirmed_user(resource)
+      Util::DbManager.create_unconfirmed_user(resource)
       flash[:notice] = 'You will soon receive an email from AACT. Once you verify your information by responding to this email, a database account will be created for you.' if !resource.errors.any?
     end
   end
