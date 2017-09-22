@@ -39,7 +39,7 @@ module Util
       # When user eventually confirms the account, we will set their password to what they defined
       begin
         dummy_pwd=ENV['UNCONFIRMED_USER_PASSWORD']
-        con.execute("create user \"#{user.username}\" password \"#{dummy_pwd}\";")
+        con.execute("create user \"#{user.username}\" password '#{dummy_pwd}';")
         con.execute("grant connect on database aact to \"#{user.username}\";")
         con.execute("grant usage on schema public TO \"#{user.username}\";")
         con.execute("grant select on all tables in schema public to \"#{user.username}\";")
@@ -79,7 +79,7 @@ module Util
 
     def change_password(user,pwd)
       begin
-        con.execute("alter user \"#{user.username}\" password \"#{pwd}\";")
+        con.execute("alter user \"#{user.username}\" password '#{pwd}';")
       rescue => e
         user.errors.add(:base, e.message)
       end
