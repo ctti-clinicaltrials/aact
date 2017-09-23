@@ -2,7 +2,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   def show
     user=User.where('confirmation_token=?',params[:confirmation_token]).first
-    user.try(:confirm)
+    user.confirm
     render 'pages/home'
   end
 

@@ -35,17 +35,16 @@ class User < AdminBase
   def create_unconfirmed
     self.unencrypted_password=self.password
     self.save!
-    Util::DbManager.create_unconfirmed_user(self) if self.errors.size == 0
+    Util::DbManager.create_unconfirmed_user(self)
   end
 
   def confirm
-    super
-    Util::DbManager.change_password(self,self.unencrypted_password)
     self.password =self.unencrypted_password
     self.password_confirmation = self.unencrypted_password
     self.unencrypted_password=nil # after using this to create db account, get rid of it
     self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
-    self.save!
+    super
+    Util::DbManager.change_password(self,self.password)
   end
 
   def self.reset_password_by_token(params)
