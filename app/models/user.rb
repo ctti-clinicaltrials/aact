@@ -33,6 +33,7 @@ class User < AdminBase
   end
 
   def create_unconfirmed
+    self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
     self.unencrypted_password=self.password
     self.save!
     Util::DbManager.create_unconfirmed_user(self)

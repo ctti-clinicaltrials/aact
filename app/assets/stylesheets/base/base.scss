@@ -8,10 +8,10 @@
   @include border-box;
 }
 
-.command-prompt { color: #aeaeae; }
-.command-entry { color: #f8f8f8; }
-.command-response { color: #adc6ee; }
-.command-note { color: #F0B5BF; font-weight: lighter}
+.command-prompt { color: #aeaeae; font-size: .9rem;}
+.command-entry { color: #f8f8f8; font-size: .9rem;}
+.command-response { color: #adc6ee; font-size: .9rem;}
+.command-note { color: #F0B5BF; font-weight: lighter; font-size: .9rem;}
 
 .standardLayout {
    padding-left: 100px;
