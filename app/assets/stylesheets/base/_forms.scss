@@ -23,7 +23,7 @@ form {
     background: $white;
     padding: 20px 30px 40px 10px;
     width: 100%;
-    font-size: 1.3rem;
+    font-size: 1rem;
     border-style: solid;
     border-width: 2px;
     border-radius: $border-radius/2;
@@ -32,10 +32,13 @@ form {
 
   label {
     display: block;
-    margin-bottom: .4rem;
-    font-size: 18px;
-    font-family: $font-sans-secondary;
-    color: $secondary
+    padding-bottom: .1rem;
+    font-family: $font-sans;
+    font-size: 1.2rem;
+    font-weight: normal;
+    outline: none;
+    color: black;
+    border-bottom: none;
   }
 
   span {
@@ -45,10 +48,11 @@ form {
   }
   input, textarea, select {
     display: block;
-    border: 1px solid $grey;
     width: 100%;
     padding: .8rem;
-    font-family: $font-sans-secondary;
+    font-family: $font-sans;
+    font-size: 1.2rem;
+    font-weight: lighter;
     color: $secondary;
     outline: none;
     border-radius: $border-radius/2;
