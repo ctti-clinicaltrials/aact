@@ -10,7 +10,7 @@
 
 .enter-info {
   font-size: 1.2rem;
-  color: #800000;}
+  color: $secondary;}
 
 #addUseCaseButton {
   padding: 1rem;
@@ -65,11 +65,11 @@ p, ul, li.useCaseInvitation {
 
 div.useCaseInfo {
   bottom: 0;
-  color: blue;
+  color: $accent;
 }
 
 span.useCaseLabel {
-  color: #800000;
+  color: $secondary;
 }
 
 p.headingText {
