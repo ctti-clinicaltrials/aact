@@ -144,14 +144,6 @@ module Util
       return File.open(return_file)
     end
 
-    def refresh_public_db(static_file)
-      dump_file=get_dump_file_from(static_file)
-      return nil if dump_file.nil?
-      cmd="pg_restore -c -j 5 -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact #{dump_file}"
-      puts cmd
-      system cmd
-    end
-
     def get_dump_file_from(static_file)
       return static_file if `file --brief --mime-type "#{static_file}"` == "application/octet-stream\n"
       if `file --brief --mime-type "#{static_file}"` == "application/zip\n"
