@@ -7,8 +7,8 @@ describe Facility do
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     expect(study.facilities.size).to eq(13)
-    expect(study.facility_contacts.size).to eq(14)
-    expect(study.facility_investigators.size).to eq(13)
+    expect(study.facility_contacts.size).to eq(12)
+    expect(study.facility_investigators.size).to eq(11)
     f1=study.facilities.select{|x|x.name=='Dothan Behavioral Medicine'}.first
     f1_contact=f1.facility_contacts.first
     f1_investigator=f1.facility_investigators.first

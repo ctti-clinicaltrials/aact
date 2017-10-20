@@ -18,7 +18,6 @@ describe Study do
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.source).to eq('London School of Hygiene and Tropical Medicine')
     expect(study.overall_status).to eq('Terminated')
-    expect(study.last_known_status).to eq('Recruiting')
   end
 
   it "saves is_unapproved_device" do
@@ -55,9 +54,9 @@ describe Study do
     expect(study.verification_month_year).to eq('November 2015')
     expect(study.verification_date.strftime('%m/%d/%Y')).to eq('11/01/2015')
 
-    expect(study.first_received_date).to eq('September 13, 2001'.to_date)
-    expect(study.first_received_results_date).to eq('February 12, 2014'.to_date)
-    expect(study.last_changed_date).to eq('November 14, 2015'.to_date)
+    expect(study.study_first_submitted).to eq('September 13, 2001'.to_date)
+    expect(study.results_first_submitted).to eq('February 12, 2014'.to_date)
+    expect(study.last_update_submitted).to eq('November 14, 2015'.to_date)
 
     expect(study.start_date).to eq(study.start_month_year.to_date)
     expect(study.verification_date).to eq(study.verification_month_year.to_date)
@@ -84,9 +83,10 @@ describe Study do
   end
 
   it "should have expected date values" do
-    xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
-    study=Study.new({xml: xml, nct_id: 'NCT02260193'}).create
-    expect(study.received_results_disposit_date).to eq('December 1, 1999'.to_date)
+    nct_id='NCT02260193'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.disposition_first_submitted).to eq('October 23, 2015'.to_date)
   end
 
   context 'when loading a study' do

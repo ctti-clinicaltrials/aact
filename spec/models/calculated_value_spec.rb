@@ -31,7 +31,7 @@ describe CalculatedValue do
     expect(study.start_month_year).to eq('July 2001')
     expect(study.primary_completion_month_year).to eq('January 2009')
     expect(study.primary_completion_date_type).to eq('Actual')
-    expect(study.first_received_results_date.strftime('%m/%d/%Y')).to eq('02/12/2014')
+    expect(study.results_first_submitted.strftime('%m/%d/%Y')).to eq('02/12/2014')
     cv=study.calculated_value
     expect(cv.were_results_reported).to eq(true)
     expect(cv.has_us_facility).to eq(true)
@@ -65,7 +65,7 @@ describe CalculatedValue do
     expect(study1.start_month_year).to eq('July 2001')
     expect(study1.primary_completion_month_year).to eq('January 2009')
     expect(study1.primary_completion_date_type).to eq('Actual')
-    expect(study1.first_received_results_date.strftime('%m/%d/%Y')).to eq('02/12/2014')
+    expect(study1.results_first_submitted.strftime('%m/%d/%Y')).to eq('02/12/2014')
 
     cv=study1.calculated_value
     expect(cv.were_results_reported).to eq(true)
@@ -77,7 +77,7 @@ describe CalculatedValue do
     cv=study2.calculated_value
     expect(study2.start_month_year).to eq('March 2007')
     expect(study2.primary_completion_month_year).to eq('March 2012')
-    expect(study2.first_received_results_date.strftime('%m/%d/%Y')).to eq('01/15/2014')
+    expect(study2.results_first_submitted.strftime('%m/%d/%Y')).to eq('01/15/2014')
     expect(cv.were_results_reported).to eq(true)
     expect(cv.has_us_facility).to eq(false)
 

@@ -140,9 +140,9 @@ describe Util::Updater do
     expect(study.primary_completion_month_year).to eq('January 2009')
     expect(study.verification_month_year).to eq('November 2015')
 
-    expect(study.first_received_date).to eq('September 13, 2001'.to_date)
-    expect(study.first_received_results_date).to eq('February 12, 2014'.to_date)
-    expect(study.last_changed_date).to eq('November 14, 2015'.to_date)
+    expect(study.study_first_submitted).to eq('September 13, 2001'.to_date)
+    expect(study.results_first_submitted).to eq('February 12, 2014'.to_date)
+    expect(study.last_update_submitted).to eq('November 14, 2015'.to_date)
 
     expect(study.start_date).to eq(study.start_month_year.to_date)
     expect(study.verification_date).to eq(study.verification_month_year.to_date)
@@ -169,26 +169,33 @@ describe Util::Updater do
   end
 
   it "should have expected date values" do
-    xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
-    study=Study.new({xml: xml, nct_id: 'NCT02260193'}).create
-    expect(study.received_results_disposit_date).to eq('December 1, 1999'.to_date)
+    nct_id='NCT02260193'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.disposition_first_submitted).to eq('October 23, 2015'.to_date)
   end
 
   context 'when patient data section exists' do
-    nct_id='NCT03204344'
+    nct_id='NCT02708238'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     it 'should have expected sharing ipd values' do
       expect(study.plan_to_share_ipd).to eq('Yes')
-      expect(study.plan_to_share_ipd_description).to eq('IPD will be available by contacting Dr. Xue Li (lixuepku@hotmail.com) after the trial is completed.')
+      expect(study.plan_to_share_ipd_description).to eq('Publication')
     end
+
+  end
+
+  context 'study has fda regulated drug/device info' do
+    nct_id='NCT03204344'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
 
     it 'should have expected fed regulation values' do
       expect(study.is_fda_regulated_drug).to eq(false)
       expect(study.is_fda_regulated_device).to eq(false)
     end
-
   end
 
   context 'study has limitations and caveats' do
