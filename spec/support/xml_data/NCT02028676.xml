@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02028676</url>
   </required_header>
@@ -96,7 +96,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Factorial Assignment</intervention_model>
     <primary_purpose>Treatment</primary_purpose>
-    <masking>Open Label</masking>
+    <masking>None (Open Label)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>LCM vs CDM: Disease Progression to a New WHO Stage 4 Event or Death</measure>
@@ -758,9 +758,21 @@
     <PMID>24382064</PMID>
   </results_reference>
   <verification_date>June 2014</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
   <lastchanged_date>June 4, 2014</lastchanged_date>
   <firstreceived_date>December 31, 2013</firstreceived_date>
   <firstreceived_results_date>January 15, 2014</firstreceived_results_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>December 31, 2013</study_first_submitted>
+  <study_first_submitted_qc>January 4, 2014</study_first_submitted_qc>
+  <study_first_posted type="Estimate">January 7, 2014</study_first_posted>
+  <results_first_submitted>January 15, 2014</results_first_submitted>
+  <results_first_submitted_qc>June 4, 2014</results_first_submitted_qc>
+  <results_first_posted type="Estimate">June 6, 2014</results_first_posted>
+  <last_update_submitted>June 4, 2014</last_update_submitted>
+  <last_update_submitted_qc>June 4, 2014</last_update_submitted_qc>
+  <last_update_posted type="Estimate">June 6, 2014</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Principal Investigator</responsible_party_type>
     <investigator_affiliation>Medical Research Council</investigator_affiliation>

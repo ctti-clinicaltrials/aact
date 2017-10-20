@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00734539</url>
   </required_header>
@@ -84,7 +84,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
     <primary_purpose>Prevention</primary_purpose>
-    <masking>Double Blind (Participant, Care Provider, Investigator, Outcomes Assessor)</masking>
+    <masking>Quadruple (Participant, Care Provider, Investigator, Outcomes Assessor)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Death or Candidiasis</measure>
@@ -581,10 +581,25 @@ ii. Thrombocytopenia &lt;150,000/mm3 iii. Positive Candida culture from nonsteri
     <country>United States</country>
   </location_countries>
   <verification_date>July 2014</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
   <lastchanged_date>July 27, 2014</lastchanged_date>
   <firstreceived_date>August 13, 2008</firstreceived_date>
   <firstreceived_results_date>June 17, 2014</firstreceived_results_date>
   <firstreceived_results_disposition_date>March 25, 2013</firstreceived_results_disposition_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>August 13, 2008</study_first_submitted>
+  <study_first_submitted_qc>August 13, 2008</study_first_submitted_qc>
+  <study_first_posted type="Estimate">August 14, 2008</study_first_posted>
+  <results_first_submitted>June 17, 2014</results_first_submitted>
+  <results_first_submitted_qc>June 17, 2014</results_first_submitted_qc>
+  <results_first_posted type="Estimate">July 17, 2014</results_first_posted>
+  <disposition_first_submitted>March 25, 2013</disposition_first_submitted>
+  <disposition_first_submitted_qc>March 25, 2013</disposition_first_submitted_qc>
+  <disposition_first_posted type="Estimate">April 1, 2013</disposition_first_posted>
+  <last_update_submitted>July 27, 2014</last_update_submitted>
+  <last_update_submitted_qc>July 27, 2014</last_update_submitted_qc>
+  <last_update_posted type="Actual">October 12, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor-Investigator</responsible_party_type>
     <investigator_affiliation>Duke University Medical Center</investigator_affiliation>

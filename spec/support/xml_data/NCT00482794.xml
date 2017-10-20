@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00482794</url>
   </required_header>
@@ -210,8 +210,17 @@
     <PMID>16475047</PMID>
   </reference>
   <verification_date>May 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
   <lastchanged_date>May 18, 2017</lastchanged_date>
   <firstreceived_date>June 1, 2007</firstreceived_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>June 1, 2007</study_first_submitted>
+  <study_first_submitted_qc>June 1, 2007</study_first_submitted_qc>
+  <study_first_posted type="Estimate">June 5, 2007</study_first_posted>
+  <last_update_submitted>May 18, 2017</last_update_submitted>
+  <last_update_submitted_qc>May 18, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">May 19, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>

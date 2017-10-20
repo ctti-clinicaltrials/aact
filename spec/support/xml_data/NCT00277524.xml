@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00277524</url>
   </required_header>
@@ -1436,9 +1436,21 @@ A subject who crossed OptiVol threshold since last visit was regarded as 'crosse
     <citation>Liang KY, Zeger S. Longitudinal data analysis using generalized linear models. Biometrika, 1986, 73:13-22.</citation>
   </reference>
   <verification_date>May 2013</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
   <lastchanged_date>May 21, 2013</lastchanged_date>
   <firstreceived_date>January 12, 2006</firstreceived_date>
   <firstreceived_results_date>July 13, 2012</firstreceived_results_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>January 12, 2006</study_first_submitted>
+  <study_first_submitted_qc>January 12, 2006</study_first_submitted_qc>
+  <study_first_posted type="Estimate">January 16, 2006</study_first_posted>
+  <results_first_submitted>July 13, 2012</results_first_submitted>
+  <results_first_submitted_qc>May 21, 2013</results_first_submitted_qc>
+  <results_first_posted type="Estimate">August 28, 2013</results_first_posted>
+  <last_update_submitted>May 21, 2013</last_update_submitted>
+  <last_update_submitted_qc>May 21, 2013</last_update_submitted_qc>
+  <last_update_posted type="Estimate">August 28, 2013</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>

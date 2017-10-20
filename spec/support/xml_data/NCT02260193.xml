@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02260193</url>
+  </required_header>
+  <id_info>
+    <org_study_id>AKB-6548-CI-0011</org_study_id>
+    <nct_id>NCT02260193</nct_id>
+  </id_info>
+  <brief_title>16-Week Repeat Oral Dose Study of AKB-6548 for Anemia in Subjects With End Stage Renal Disease (ESRD) Requiring Chronic Hemodialysis</brief_title>
+  <official_title>Phase 2 Open-Label Study to Assess the Efficacy, Safety, and Tolerability of AKB-6548 in Subjects With Anemia Secondary to End Stage Renal Disease (ESRD), Undergoing Chronic Hemodialysis.</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Akebia Therapeutics</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Akebia Therapeutics</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to evaluate the hemoglobin response (efficacy), safety, and
+      tolerability of orally administered AKB-6548 in subjects with end stage renal disease
+      undergoing chronic hemodialysis.
+    </textblock>
+  </brief_summary>
+  <overall_status>Completed</overall_status>
+  <start_date>September 2014</start_date>
+  <completion_date type="Actual">August 2015</completion_date>
+  <primary_completion_date type="Actual">July 2015</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Non-Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>None (Open Label)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Change in Baseline Hemoglobin</measure>
+    <time_frame>8 Weeks</time_frame>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Change in Baseline Hemoglobin</measure>
+    <time_frame>16 Weeks</time_frame>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Change in Week 8 Hemoglobin</measure>
+    <time_frame>16 Weeks</time_frame>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Pharmacodynamic response as measured by actual values and change from baseline in hemoglobin, hematocrit, red blood cell count, and reticulocyte count.</measure>
+    <time_frame>16 weeks</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of subjects that require transfusion and/or ESA (erythropoiesis stimulating agent) rescue.</measure>
+    <time_frame>16 weeks</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Safety and tolerability measures to include assessments of adverse events, vital signs, electrocardiograms, and laboratory assay results.</measure>
+    <time_frame>16 weeks of therapy and 4 weeks of follow-up</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Concentration measurements of investigational product and its metabolites pre- and post-dialysis.</measure>
+    <time_frame>2 and16 weeks</time_frame>
+  </secondary_outcome>
+  <other_outcome>
+    <measure>Iron metabolism to include actual values and change from baseline in iron indices.</measure>
+    <time_frame>16 weeks</time_frame>
+  </other_outcome>
+  <other_outcome>
+    <measure>Intravenous iron utilization.</measure>
+    <time_frame>16 weeks</time_frame>
+  </other_outcome>
+  <number_of_arms>3</number_of_arms>
+  <enrollment type="Actual">94</enrollment>
+  <condition>Anemia</condition>
+  <condition>End Stage Renal Disease</condition>
+  <arm_group>
+    <arm_group_label>AKB-6548, starting dose 1</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>AKB-6548, starting dose 2</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>AKB-6548, starting dose 3</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>AKB-6548</intervention_name>
+    <description>Starting dose 1. Oral dose administered once daily for 16 weeks. Dose adjustment based on hemoglobin level as defined in the protocol.</description>
+    <arm_group_label>AKB-6548, starting dose 1</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>AKB-6548</intervention_name>
+    <description>Starting dose 2. Oral dose administered once daily for 16 weeks. Dose adjustment based on hemoglobin level as defined in the protocol.</description>
+    <arm_group_label>AKB-6548, starting dose 2</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>AKB-6548</intervention_name>
+    <description>Starting dose 3. Oral dose administered three times weekly for 16 weeks. Dose adjustment based on hemoglobin levels as defined in the protocol.</description>
+    <arm_group_label>AKB-6548, starting dose 3</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Key Inclusion Criteria:
+
+          -  18 to 79 years inclusive
+
+          -  Chronic Kidney Disease (CKD) Stage 5 on chronic hemodialysis for at least 3 months
+
+          -  Anemia secondary to CKD treated with erythropoiesis stimulating agent and intravenous
+             iron
+
+        Key Exclusion Criteria:
+
+          -  BMI &gt;44.0 kg/m2
+
+          -  Transfusion within 8 weeks prior to Screening
+
+          -  ALT or total bilirubin &gt;1.25x ULN
+
+          -  Uncontrolled hypertension
+
+          -  Class III or IV congestive heart failure
+
+          -  Myocardial infarction, acute coronary syndrome, stroke or transient ischemic attack
+             within 6 months prior to Screening
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>79 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Charlotte S. Hartman, Pharm.D.</last_name>
+    <role>Study Chair</role>
+    <affiliation>Akebia Therapeutics</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <address>
+        <city>Granada</city>
+        <state>California</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Long Beach</city>
+        <state>California</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Sandinas</city>
+        <state>California</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Santa Clarita</city>
+        <state>California</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Whittier</city>
+        <state>California</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Arvada</city>
+        <state>Colorado</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Westminster</city>
+        <state>Colorado</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Naples</city>
+        <state>Florida</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>North Miami Beach</city>
+        <state>Florida</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Augusta</city>
+        <state>Georgia</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Astoria</city>
+        <state>New York</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Arlington</city>
+        <state>Texas</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Grand Prairie</city>
+        <state>Texas</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Greenville</city>
+        <state>Texas</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Houston</city>
+        <state>Texas</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <address>
+        <city>Mechanicsville</city>
+        <state>Virginia</state>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <verification_date>November 2015</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>November 17, 2015</lastchanged_date>
+  <firstreceived_date>September 25, 2014</firstreceived_date>
+  <firstreceived_results_disposition_date>October 23, 2015</firstreceived_results_disposition_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>September 25, 2014</study_first_submitted>
+  <study_first_submitted_qc>October 6, 2014</study_first_submitted_qc>
+  <study_first_posted type="Estimate">October 9, 2014</study_first_posted>
+  <disposition_first_submitted>October 23, 2015</disposition_first_submitted>
+  <disposition_first_submitted_qc>October 23, 2015</disposition_first_submitted_qc>
+  <disposition_first_posted type="Estimate">November 17, 2015</disposition_first_posted>
+  <last_update_submitted>November 17, 2015</last_update_submitted>
+  <last_update_submitted_qc>November 17, 2015</last_update_submitted_qc>
+  <last_update_posted type="Estimate">December 16, 2015</last_update_posted>
+  <!-- End of dates                                                                             -->
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>anemia</keyword>
+  <keyword>end stage renal disease</keyword>
+  <keyword>chronic kidney disease</keyword>
+  <keyword>CKD</keyword>
+  <keyword>dialysis</keyword>
+  <keyword>chronic renal insufficiency</keyword>
+  <keyword>renal impairment</keyword>
+  <keyword>erythropoietin</keyword>
+  <keyword>kidney</keyword>
+  <keyword>oral anemia treatment</keyword>
+  <keyword>hemoglobin</keyword>
+  <keyword>hypoxia-inducible factor</keyword>
+  <keyword>HIF</keyword>
+  <keyword>hypoxia-inducible factor propyl-hydroxylase inhibitor</keyword>
+  <keyword>HIF-PHI</keyword>
+  <keyword>pharmacokinetics</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Anemia</mesh_term>
+    <mesh_term>Kidney Diseases</mesh_term>
+    <mesh_term>Kidney Failure, Chronic</mesh_term>
+  </condition_browse>
+  <!-- Results have not yet been posted, but a results disposition has been submitted           -->
+</clinical_study>

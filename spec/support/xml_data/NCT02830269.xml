@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02830269</url>
   </required_header>
@@ -28,12 +28,12 @@
   <brief_summary>
     <textblock>
       Transcranial Doppler ultrasonography is usually used in the evaluation and management of
-      patients with cerebrovascular disease. This noninvasive method measures local blood flow
-      velocity and direction in the proximal portions of large intracranial arteries. The operator
-      requires a short training and experience to perform. The third ventricle diameter measurement
-      by transcranial duplex flow sonography was performed in healthy volunteers . This studies
-      show similar results in those obtained with the MRI or Computer Tomography (CT). Currently
-      the third ventricle diameter measurements by transcranial Doppler ultrasonography was not
+      patients with brain injury. This noninvasive method measures local blood flow velocity and
+      direction in the proximal portions of large intracranial arteries. The operator requires a
+      short training and experience to perform. The third ventricle diameter measurement by
+      transcranial duplex flow sonography was performed in healthy volunteers . This studies show
+      similar results in those obtained with the MRI or Computer Tomography (CT). Currently the
+      third ventricle diameter measurements by transcranial Doppler ultrasonography was not
       validated for neuro-intensive care unit patients. The investigators propose to used recent
       ultrasound system to validate the third ventricle diameter measurements in comparison with
       the standard method (CT).
@@ -42,12 +42,12 @@
   <detailed_description>
     <textblock>
       Transcranial Doppler ultrasonography is usually used in the evaluation and management of
-      patients with cerebrovascular disease. This noninvasive method measures local blood flow
-      velocity and direction in the proximal portions of large intracranial arteries. The operator
-      requires a short training and experience to perform. The third ventricle diameter measurement
-      by transcranial duplex flow sonography was performed in healthy volunteers . This studies
-      show similar results in those obtained with the MRI or Computer Tomography (CT). Currently
-      the third ventricle diameter measurements by transcranial Doppler
+      patients with brain injury. This noninvasive method measures local blood flow velocity and
+      direction in the proximal portions of large intracranial arteries. The operator requires a
+      short training and experience to perform. The third ventricle diameter measurement by
+      transcranial duplex flow sonography was performed in healthy volunteers . This studies show
+      similar results in those obtained with the MRI or Computer Tomography (CT). Currently the
+      third ventricle diameter measurements by transcranial Doppler
     </textblock>
   </detailed_description>
   <overall_status>Recruiting</overall_status>
@@ -74,7 +74,7 @@
   <number_of_groups>1</number_of_groups>
   <enrollment type="Anticipated">100</enrollment>
   <condition>Neuro-intensive Care Unit Patients</condition>
-  <condition>Cerebrovascular Disease</condition>
+  <condition>Brain Injuries</condition>
   <intervention>
     <intervention_type>Device</intervention_type>
     <intervention_name>Transcranial Doppler ultrasonography measurements</intervention_name>
@@ -93,7 +93,7 @@
 
           -  Adult, &gt; or equal to 18-yr
 
-          -  Admission to neuro-intensive care unit with cerebrovascular disease
+          -  Admission to neuro-intensive care unit with brain injury
 
           -  Evaluation by Computer Tomography
 
@@ -154,8 +154,17 @@
     <country>France</country>
   </location_countries>
   <verification_date>April 2017</verification_date>
-  <lastchanged_date>April 20, 2017</lastchanged_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>October 17, 2017</lastchanged_date>
   <firstreceived_date>June 10, 2016</firstreceived_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>June 10, 2016</study_first_submitted>
+  <study_first_submitted_qc>July 8, 2016</study_first_submitted_qc>
+  <study_first_posted type="Estimate">July 12, 2016</study_first_posted>
+  <last_update_submitted>October 17, 2017</last_update_submitted>
+  <last_update_submitted_qc>October 17, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">October 18, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
@@ -165,7 +174,7 @@
   <keyword>Transcranial Doppler ultrasonography</keyword>
   <condition_browse>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
-    <mesh_term>Cerebrovascular Disorders</mesh_term>
+    <mesh_term>Brain Injuries</mesh_term>
   </condition_browse>
   <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

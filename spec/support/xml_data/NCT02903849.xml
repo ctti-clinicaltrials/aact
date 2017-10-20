@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02903849</url>
   </required_header>
@@ -67,7 +67,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
     <primary_purpose>Supportive Care</primary_purpose>
-    <masking>Participant</masking>
+    <masking>Single (Participant)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Activity Level</measure>
@@ -160,8 +160,17 @@
     <country>United States</country>
   </location_countries>
   <verification_date>May 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
   <lastchanged_date>May 8, 2017</lastchanged_date>
   <firstreceived_date>September 13, 2016</firstreceived_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>September 13, 2016</study_first_submitted>
+  <study_first_submitted_qc>September 15, 2016</study_first_submitted_qc>
+  <study_first_posted type="Estimate">September 16, 2016</study_first_posted>
+  <last_update_submitted>May 8, 2017</last_update_submitted>
+  <last_update_submitted_qc>May 8, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">May 9, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Principal Investigator</responsible_party_type>
     <investigator_affiliation>Washington University School of Medicine</investigator_affiliation>
