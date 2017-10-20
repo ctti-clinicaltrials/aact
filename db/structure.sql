@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.2
--- Dumped by pg_dump version 9.6.2
+-- Dumped from database version 9.6.5
+-- Dumped by pg_dump version 9.6.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1658,6 +1658,10 @@ CREATE TABLE studies (
     last_changed_date date,
     first_received_results_date date,
     received_results_disposit_date date,
+    study_first_submitted date,
+    results_first_submitted date,
+    disposition_first_submitted date,
+    last_update_submitted date,
     start_month_year character varying,
     start_date_type character varying,
     start_date date,

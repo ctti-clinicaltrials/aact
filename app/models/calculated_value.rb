@@ -67,7 +67,7 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.sql_for_registered_in_calendar_year
     "SET registered_in_calendar_year = x.res
-       FROM ( SELECT nct_id, date_part('year', first_received_date) as res FROM studies ) x
+       FROM ( SELECT nct_id, date_part('year', study_first_submitted) as res FROM studies ) x
       WHERE x.nct_id = calculated_values.nct_id"
   end
 
@@ -104,7 +104,7 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def self.sql_for_months_to_report_results
-    "SET months_to_report_results = x.res FROM ( SELECT  s.nct_id, (s.first_received_results_date - s.primary_completion_date)/30 as res FROM studies s, calculated_values c WHERE s.nct_id=c.nct_id) x WHERE x.nct_id = calculated_values.nct_id"
+    "SET months_to_report_results = x.res FROM ( SELECT  s.nct_id, (s.results_first_submitted - s.primary_completion_date)/30 as res FROM studies s, calculated_values c WHERE s.nct_id=c.nct_id) x WHERE x.nct_id = calculated_values.nct_id"
   end
 
   def self.sql_for_actual_duration
@@ -217,7 +217,7 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_registered_in_calendar_year
-    study.first_received_date.year if study.first_received_date
+    study.study_first_submitted.year if study.study_first_submitted
   end
 
   def calc_number_of_facilities
@@ -235,10 +235,10 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_months_to_report_results
-    return if !self.study.primary_completion_month_year or !study.first_received_results_date
+    return if !self.study.primary_completion_month_year or !study.results_first_submitted
     return if self.study.primary_completion_date_type != 'Actual'
-    return if self.study.first_received_results_date.nil?
-    ((self.study.first_received_results_date.to_time - self.study.primary_completion_date.to_time)/1.month.second).to_i
+    return if self.study.results_first_submitted.nil?
+    ((self.study.results_first_submitted.to_time - self.study.primary_completion_date.to_time)/1.month.second).to_i
   end
 
 end
