@@ -2,6 +2,36 @@ require 'rails_helper'
 
 
 describe Study do
+  it "handles last known status" do
+    nct_id='NCT02591940'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.last_known_status).to eq('Enrolling by invitation')
+  end
+
+  it "handles expanded access fields" do
+    nct_id='NCT03133988'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.expanded_access_type_individual).to be true
+    expect(study.expanded_access_type_intermediate).to be nil
+    expect(study.expanded_access_type_treatment).to be nil
+
+    nct_id='NCT03147742'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.expanded_access_type_individual).to be nil
+    expect(study.expanded_access_type_intermediate).to be true
+    expect(study.expanded_access_type_treatment).to be nil
+
+    nct_id='NCT03245528'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.expanded_access_type_individual).to be nil
+    expect(study.expanded_access_type_intermediate).to be nil
+    expect(study.expanded_access_type_treatment).to be true
+  end
+
   it "saves expanded access info correctly"  do
     nct_id='NCT01220531'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))

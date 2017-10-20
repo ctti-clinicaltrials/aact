@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT03245528</url>
+  </required_header>
+  <id_info>
+    <org_study_id>LJ501-EAP01</org_study_id>
+    <nct_id>NCT03245528</nct_id>
+  </id_info>
+  <brief_title>Expanded Access for LJPC-501</brief_title>
+  <official_title>Expanded Access for LJPC-501</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>La Jolla Pharmaceutical Company</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>La Jolla Pharmaceutical Company</source>
+  <brief_summary>
+    <textblock>
+      The primary objective of the study is to provide access to LJPC-501 for distributive shock
+      patients who remain hypotensive despite receiving fluid and vasopressor therapy.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Primary Objective
+
+      The primary objective of the study is to provide access to LJPC-501 for distributive shock
+      patients who remain hypotensive despite receiving fluid and vasopressor therapy.
+
+      Secondary Objective
+
+      The secondary objective of the study is to assess the safety of LJPC-501.
+    </textblock>
+  </detailed_description>
+  <overall_status>Available</overall_status>
+  <phase>N/A</phase>
+  <study_type>Expanded Access</study_type>
+  <expanded_access_info>
+    <expanded_access_type_treatment>Yes</expanded_access_type_treatment>
+  </expanded_access_info>
+  <condition>Catecholamine Resistant Hypotension (CRH)</condition>
+  <condition>Distributive Shock</condition>
+  <condition>High Output Shock</condition>
+  <condition>Sepsis</condition>
+  <condition>Vasodilatory Shock</condition>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>LJPC-501</intervention_name>
+    <description>angiotensin II</description>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Patients must be adults ≥ 18 years of age who remain hypotensive despite fluid therapy
+             and vasopressor therapy and who received or are receiving a total sum norepinephrine
+             (NE) equivalent unit dose of &gt; 0.2 µg/kg/min for at least 2 hours prior to LJPC-501
+             infusion.
+
+          -  Patients must have central venous access and an arterial line present, which is
+             expected to remain for the duration of the LJPC-501 infusion.
+
+          -  Patients must be adequately volume resuscitated in the opinion of the treating
+             investigator.
+
+          -  Patients must have clinical features of distributive shock documented by either
+             estimated or measured CI &gt; 2.3 L/min/m^2 determined by echocardiogram or another
+             cardiac output monitoring modality OR a concurrent CVP &gt; 8 mmHg and ScvO2 &gt; 70%.
+
+          -  Patient or legal surrogate is willing and able to provide informed consent per local
+             guidance and patient/legal surrogate is willing to comply with all protocol
+             requirements.
+
+        Exclusion Criteria:
+
+          -  Patients with a MAP &gt; 80 mmHg.
+
+          -  Patients diagnosed with acute occlusive coronary syndrome requiring intervention.
+
+          -  Patients who have been on ECMO &lt; 6 hours.
+
+          -  Patients in liver failure with a MELD score ≥ 30.
+
+          -  Patients not mechanically ventilated with a history of asthma or who are currently
+             experiencing bronchospasm requiring the use of inhaled bronchodilators.
+
+          -  Patients with acute mesenteric ischemic or history of mesenteric ischemia.
+
+          -  Patients with Raynaud's phenomenon, systemic sclerosis, or vasospastic disease.
+
+          -  Patients with an expected lifespan of &lt; 24 hours.
+
+          -  Patients with active bleeding AND an anticipated need for transfusion of &gt; 4 units
+             PRBCs within 48 hours of the initiation of LJPC-501.
+
+          -  Patients with active bleeding AND hemoglobin &lt; 7 g/dL.
+
+          -  Patients with an ANC &lt; 500 cells/mm^3.
+
+          -  Patients with a known allergy to mannitol.
+
+          -  Patients who are currently participating in an investigational interventional trial.
+
+          -  Women who are known to be pregnant at the time of Screening or have a positive serum
+             or urine β-hCG, if of childbearing potential.
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+  </eligibility>
+  <overall_contact>
+    <last_name>Tammy G Boyce</last_name>
+    <phone>619-933-7176</phone>
+    <email>tboyce@ljpc.com</email>
+  </overall_contact>
+  <verification_date>August 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>August 7, 2017</lastchanged_date>
+  <firstreceived_date>August 7, 2017</firstreceived_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>August 7, 2017</study_first_submitted>
+  <study_first_submitted_qc>August 7, 2017</study_first_submitted_qc>
+  <study_first_posted type="Actual">August 10, 2017</study_first_posted>
+  <last_update_submitted>August 7, 2017</last_update_submitted>
+  <last_update_submitted_qc>August 7, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">August 10, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Shock</mesh_term>
+    <mesh_term>Hypotension</mesh_term>
+  </condition_browse>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
