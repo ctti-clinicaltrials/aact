@@ -212,10 +212,10 @@ class Study < ActiveRecord::Base
       :last_changed_date => get_date(get('last_update_submitted')),
 
       # the previous have been replaced with:
-      :study_first_submitted => get_date(get('study_first_submitted')),
-      :results_first_submitted => get_date(get('results_first_submitted')),
-      :disposition_first_submitted => get_date(get('disposition_first_submitted')),
-      :last_update_submitted => get_date(get('last_update_submitted')),
+      :study_first_submitted_date => get_date(get('study_first_submitted')),
+      :results_first_submitted_date => get_date(get('results_first_submitted')),
+      :disposition_first_submitted_date => get_date(get('disposition_first_submitted')),
+      :last_update_submitted_date => get_date(get('last_update_submitted')),
 
       :nlm_download_date_description => xml.xpath('//download_date').text,
       :acronym =>get('acronym'),

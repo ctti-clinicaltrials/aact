@@ -84,9 +84,9 @@ describe Study do
     expect(study.verification_month_year).to eq('November 2015')
     expect(study.verification_date.strftime('%m/%d/%Y')).to eq('11/01/2015')
 
-    expect(study.study_first_submitted).to eq('September 13, 2001'.to_date)
-    expect(study.results_first_submitted).to eq('February 12, 2014'.to_date)
-    expect(study.last_update_submitted).to eq('November 14, 2015'.to_date)
+    expect(study.study_first_submitted_date).to eq('September 13, 2001'.to_date)
+    expect(study.results_first_submitted_date).to eq('February 12, 2014'.to_date)
+    expect(study.last_update_submitted_date).to eq('November 14, 2015'.to_date)
 
     expect(study.start_date).to eq(study.start_month_year.to_date)
     expect(study.verification_date).to eq(study.verification_month_year.to_date)
@@ -116,7 +116,7 @@ describe Study do
     nct_id='NCT02260193'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.disposition_first_submitted).to eq('October 23, 2015'.to_date)
+    expect(study.disposition_first_submitted_date).to eq('October 23, 2015'.to_date)
   end
 
   context 'when loading a study' do

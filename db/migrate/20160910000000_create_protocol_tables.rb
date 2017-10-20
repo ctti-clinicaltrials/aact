@@ -201,10 +201,10 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.date     "first_received_results_date"  # deprecated
       t.date     "received_results_disposit_date"  # deprecated
 
-      t.date     "study_first_submitted"
-      t.date     "results_first_submitted"
-      t.date     "disposition_first_submitted"
-      t.date     "last_update_submitted"
+      t.date     "study_first_submitted_date"
+      t.date     "results_first_submitted_date"
+      t.date     "disposition_first_submitted_date"
+      t.date     "last_update_submitted_date"
 
       t.string   "start_month_year"
       t.string   "start_date_type"
