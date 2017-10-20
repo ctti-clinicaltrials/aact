@@ -97,6 +97,11 @@ describe Study do
     expect(study.last_update_submitted_qc_date).to eq('November 14, 2015'.to_date)
     expect(study.last_update_posted_date).to eq('November 17, 2015'.to_date)
 
+    expect(study.study_first_posted_date_type).to eq('Estimate')
+    expect(study.results_first_posted_date_type).to eq('Estimate')
+    expect(study.disposition_first_posted_date_type).to be nil
+    expect(study.last_update_posted_date_type).to eq('Estimate')
+
     expect(study.start_date).to eq(study.start_month_year.to_date)
     expect(study.verification_date).to eq(study.verification_month_year.to_date)
     expect(study.completion_date).to eq(study.completion_month_year.to_date)
