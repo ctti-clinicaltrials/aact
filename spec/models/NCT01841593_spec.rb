@@ -24,7 +24,7 @@ describe Study do
     expect(study.study_type).to eq('Interventional')
     expect(study.design.allocation).to eq('Randomized')
     expect(study.design.intervention_model).to eq('Crossover Assignment')
-    expect(study.design.masking).to eq('Open Label')
+    expect(study.design.masking).to eq('None (Open Label)')
     expect(study.design.primary_purpose).to eq('Treatment')
     expect(study.design_outcomes.size).to eq(5)
     outcomes=study.design_outcomes.select{|o|o.measure=='Raltegravir C12h'}
