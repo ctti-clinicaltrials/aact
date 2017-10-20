@@ -206,6 +206,15 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.date     "disposition_first_submitted_date"
       t.date     "last_update_submitted_date"
 
+      t.date     "study_first_submitted_qc_date"
+      t.date     "study_first_posted_date"
+      t.date     "results_first_submitted_qc_date"
+      t.date     "results_first_posted_date"
+      t.date     "disposition_first_submitted_qc_date"
+      t.date     "disposition_first_posted_date"
+      t.date     "last_update_submitted_qc_date"
+      t.date     "last_update_posted_date"
+
       t.string   "start_month_year"
       t.string   "start_date_type"
       t.date     "start_date"

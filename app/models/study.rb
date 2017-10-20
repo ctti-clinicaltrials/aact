@@ -200,6 +200,15 @@ class Study < ActiveRecord::Base
       :completion_month_year => get('completion_date'),
       :primary_completion_month_year => get('primary_completion_date'),
 
+      :study_first_submitted_qc_date        =>  get('study_first_submitted_qc').try(:to_date),
+      :study_first_posted_date              =>  get('study_first_posted').try(:to_date),
+      :results_first_submitted_qc_date      =>  get('results_first_submitted_qc').try(:to_date),
+      :results_first_posted_date            =>  get('results_first_posted').try(:to_date),
+      :disposition_first_submitted_qc_date  =>  get('disposition_first_submitted_qc').try(:to_date),
+      :disposition_first_posted_date        =>  get('disposition_first_posted').try(:to_date),
+      :last_update_submitted_qc_date        =>  get('last_update_submitted_qc').try(:to_date),
+      :last_update_posted_date              =>  get('last_update_posted').try(:to_date),
+
       :start_date                  =>  get('start_date').try(:to_date),
       :verification_date           =>  get('verification_date').try(:to_date),
       :completion_date             =>  get('completion_date').try(:to_date),

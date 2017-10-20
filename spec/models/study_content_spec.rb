@@ -88,6 +88,15 @@ describe Study do
     expect(study.results_first_submitted_date).to eq('February 12, 2014'.to_date)
     expect(study.last_update_submitted_date).to eq('November 14, 2015'.to_date)
 
+    expect(study.study_first_submitted_qc_date).to eq('April 8, 2003'.to_date)
+    expect(study.study_first_posted_date).to eq('April 9, 2003'.to_date)
+    expect(study.results_first_submitted_qc_date).to eq('February 12, 2014'.to_date)
+    expect(study.results_first_posted_date).to eq('March 27, 2014'.to_date)
+    expect(study.disposition_first_submitted_qc_date).to eq(''.to_date)
+    expect(study.disposition_first_posted_date).to eq(''.to_date)
+    expect(study.last_update_submitted_qc_date).to eq('November 14, 2015'.to_date)
+    expect(study.last_update_posted_date).to eq('November 17, 2015'.to_date)
+
     expect(study.start_date).to eq(study.start_month_year.to_date)
     expect(study.verification_date).to eq(study.verification_month_year.to_date)
     expect(study.completion_date).to eq(study.completion_month_year.to_date)
@@ -100,16 +109,23 @@ describe Study do
     expect(study.design_groups.size).to eq(4)
     g=study.design_groups.select{|x|x.title=='Phase I: 75.25 Gy/36 fx + chemotherapy'}.first
     expect(g.description).to eq('Phase I: Three-dimensional conformal radiation therapy (3DRT) of 75.25 Gy given in 36 fractions (2.15 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.')
-   expect(g.group_type).to eq('Experimental')
+    expect(g.group_type).to eq('Experimental')
 
-   # verify sponsor info
-   expect(study.sponsors.size).to eq(2)
-   lead=study.sponsors.select{|x|x.lead_or_collaborator=='lead'}.first
-   collaborator=study.sponsors.select{|x|x.lead_or_collaborator=='collaborator'}.first
-   expect(lead.name).to eq('Radiation Therapy Oncology Group')
-   expect(lead.agency_class).to eq('Other')
-   expect(collaborator.name).to eq('National Cancer Institute (NCI)')
-   expect(collaborator.agency_class).to eq('NIH')
+    # verify sponsor info
+    expect(study.sponsors.size).to eq(2)
+    lead=study.sponsors.select{|x|x.lead_or_collaborator=='lead'}.first
+    collaborator=study.sponsors.select{|x|x.lead_or_collaborator=='collaborator'}.first
+    expect(lead.name).to eq('Radiation Therapy Oncology Group')
+    expect(lead.agency_class).to eq('Other')
+    expect(collaborator.name).to eq('National Cancer Institute (NCI)')
+    expect(collaborator.agency_class).to eq('NIH')
+
+    nct_id='NCT01642004'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.disposition_first_submitted_qc_date).to eq('November 17, 2015'.to_date)
+    expect(study.disposition_first_posted_date).to eq('December 16, 2015'.to_date)
+
   end
 
   it "should have expected date values" do
