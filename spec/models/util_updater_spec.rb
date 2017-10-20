@@ -168,13 +168,6 @@ describe Util::Updater do
    expect(collaborator.agency_class).to eq('NIH')
   end
 
-  it "should have expected date values" do
-    nct_id='NCT02260193'
-    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-    study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.disposition_first_submitted).to eq('October 23, 2015'.to_date)
-  end
-
   context 'when patient data section exists' do
     nct_id='NCT02708238'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
