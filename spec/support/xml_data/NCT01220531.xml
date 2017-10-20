@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 14, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01220531</url>
   </required_header>
@@ -335,8 +335,17 @@
     <PMID>19066738</PMID>
   </reference>
   <verification_date>May 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
   <lastchanged_date>May 9, 2017</lastchanged_date>
   <firstreceived_date>September 22, 2010</firstreceived_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>September 22, 2010</study_first_submitted>
+  <study_first_submitted_qc>October 12, 2010</study_first_submitted_qc>
+  <study_first_posted type="Estimate">October 14, 2010</study_first_posted>
+  <last_update_submitted>May 9, 2017</last_update_submitted>
+  <last_update_submitted_qc>May 9, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">May 11, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor-Investigator</responsible_party_type>
     <investigator_affiliation>Duke University Medical Center</investigator_affiliation>
@@ -365,9 +374,9 @@
     <mesh_term>Tacrolimus</mesh_term>
     <mesh_term>Cyclosporins</mesh_term>
     <mesh_term>Cyclosporine</mesh_term>
-    <mesh_term>Mycophenolate mofetil</mesh_term>
     <mesh_term>Antilymphocyte Serum</mesh_term>
     <mesh_term>Basiliximab</mesh_term>
+    <mesh_term>Thymoglobulin</mesh_term>
     <mesh_term>Mycophenolic Acid</mesh_term>
     <mesh_term>Prednisolone</mesh_term>
     <mesh_term>Methylprednisolone Hemisuccinate</mesh_term>

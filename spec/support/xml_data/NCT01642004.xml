@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01642004</url>
   </required_header>
@@ -42,7 +42,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
     <primary_purpose>Treatment</primary_purpose>
-    <masking>No masking</masking>
+    <masking>None (Open Label)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Overall Survival (OS) Time in Months for All Randomized Participants at Primary Endpoint</measure>
@@ -1353,10 +1353,25 @@ Participants who neither progressed nor died were censored on the date of their 
     <description>FDA Safety Alerts and Recalls</description>
   </link>
   <verification_date>June 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
   <lastchanged_date>June 12, 2017</lastchanged_date>
   <firstreceived_date>July 9, 2012</firstreceived_date>
   <firstreceived_results_date>February 19, 2016</firstreceived_results_date>
   <firstreceived_results_disposition_date>November 17, 2015</firstreceived_results_disposition_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>July 9, 2012</study_first_submitted>
+  <study_first_submitted_qc>July 16, 2012</study_first_submitted_qc>
+  <study_first_posted type="Estimate">July 17, 2012</study_first_posted>
+  <results_first_submitted>February 19, 2016</results_first_submitted>
+  <results_first_submitted_qc>February 19, 2016</results_first_submitted_qc>
+  <results_first_posted type="Estimate">March 17, 2016</results_first_posted>
+  <disposition_first_submitted>November 17, 2015</disposition_first_submitted>
+  <disposition_first_submitted_qc>November 17, 2015</disposition_first_submitted_qc>
+  <disposition_first_posted type="Estimate">December 16, 2015</disposition_first_posted>
+  <last_update_submitted>June 12, 2017</last_update_submitted>
+  <last_update_submitted_qc>June 12, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">July 11, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
@@ -1519,7 +1534,7 @@ Participants who neither progressed nor died were censored on the date of their 
               </participants_list>
             </drop_withdraw_reason>
             <drop_withdraw_reason>
-              <title>Unspecified</title>
+              <title>Other</title>
               <participants_list>
                 <participants group_id="P1" count="1"/>
                 <participants group_id="P2" count="2"/>

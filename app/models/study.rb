@@ -200,18 +200,33 @@ class Study < ActiveRecord::Base
       :completion_month_year => get('completion_date'),
       :primary_completion_month_year => get('primary_completion_date'),
 
+      :study_first_submitted_qc_date        =>  get('study_first_submitted_qc').try(:to_date),
+      :study_first_posted_date              =>  get('study_first_posted').try(:to_date),
+      :results_first_submitted_qc_date      =>  get('results_first_submitted_qc').try(:to_date),
+      :results_first_posted_date            =>  get('results_first_posted').try(:to_date),
+      :disposition_first_submitted_qc_date  =>  get('disposition_first_submitted_qc').try(:to_date),
+      :disposition_first_posted_date        =>  get('disposition_first_posted').try(:to_date),
+      :last_update_submitted_qc_date        =>  get('last_update_submitted_qc').try(:to_date),
+      :last_update_posted_date              =>  get('last_update_posted').try(:to_date),
+
       :start_date                  =>  get('start_date').try(:to_date),
       :verification_date           =>  get('verification_date').try(:to_date),
       :completion_date             =>  get('completion_date').try(:to_date),
       :primary_completion_date     =>  get('primary_completion_date').try(:to_date),
 
-      :first_received_date => get_date(get('firstreceived_date')),
-      :first_received_results_date => get_date(get('firstreceived_results_date')),
-      :last_changed_date => get_date(get('lastchanged_date')),
+      # deprecate (delete) these at some point in 2018
+      :first_received_date => get_date(get('study_first_submitted')),
+      :first_received_results_date => get_date(get('results_first_submitted')),
+      :received_results_disposit_date => get_date(get('disposition_first_submitted')),
+      :last_changed_date => get_date(get('last_update_submitted')),
+
+      # the previous have been replaced with:
+      :study_first_submitted_date => get_date(get('study_first_submitted')),
+      :results_first_submitted_date => get_date(get('results_first_submitted')),
+      :disposition_first_submitted_date => get_date(get('disposition_first_submitted')),
+      :last_update_submitted_date => get_date(get('last_update_submitted')),
 
       :nlm_download_date_description => xml.xpath('//download_date').text,
-      :received_results_disposit_date => get_date(get('firstreceived_results_disposition_date')),
-
       :acronym =>get('acronym'),
       :baseline_population  =>xml.xpath('//baseline/population').try(:text),
       :number_of_arms => get('number_of_arms'),
@@ -225,11 +240,17 @@ class Study < ActiveRecord::Base
       :target_duration => get('target_duration'),
       :enrollment => get('enrollment'),
       :biospec_description =>get_text('biospec_descr'),
-      :start_date_type => get_type('start_date'),
-      :primary_completion_date_type => get_type('primary_completion_date'),
-      :completion_date_type => get_type('completion_date'),
-      :enrollment_type => get_type('enrollment'),
-      :study_type => get('study_type'),
+
+      :start_date_type                           => get_type('start_date'),
+      :primary_completion_date_type              => get_type('primary_completion_date'),
+      :completion_date_type                      => get_type('completion_date'),
+      :study_first_posted_date_type              => get_type('study_first_posted'),
+      :results_first_posted_date_type            => get_type('results_first_posted'),
+      :disposition_first_posted_date_type        => get_type('disposition_first_posted'),
+      :last_update_posted_date_type              => get_type('last_update_posted'),
+      :enrollment_type                           => get_type('enrollment'),
+
+      :study_type                                => get('study_type'),
       :biospec_retention =>get('biospec_retention'),
       :limitations_and_caveats  =>xml.xpath('//limitations_and_caveats').text,
       :is_fda_regulated_drug =>get_boolean('//is_fda_regulated_drug'),
@@ -254,6 +275,7 @@ class Study < ActiveRecord::Base
 
   def get(label)
     value=(xml.xpath('//clinical_study').xpath("#{label}").text).strip
+    value2=(xml.xpath('//clinical_study').xpath("#{label}"))
     value=='' ? nil : value
   end
 

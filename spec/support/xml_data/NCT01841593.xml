@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01841593</url>
   </required_header>
@@ -75,7 +75,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Crossover Assignment</intervention_model>
     <primary_purpose>Treatment</primary_purpose>
-    <masking>Open Label</masking>
+    <masking>None (Open Label)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Maximum Observed Concentration (Cmax) of Raltegravir and Amlodipine Without and With Co-administration of the Other Studied Drug.</measure>
@@ -225,9 +225,21 @@ All pharmacokinetic parameters will be calculated using non-compartmental modeli
     <country>United Kingdom</country>
   </location_countries>
   <verification_date>September 2014</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
   <lastchanged_date>September 23, 2014</lastchanged_date>
   <firstreceived_date>April 16, 2013</firstreceived_date>
   <firstreceived_results_date>July 14, 2014</firstreceived_results_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>April 16, 2013</study_first_submitted>
+  <study_first_submitted_qc>April 23, 2013</study_first_submitted_qc>
+  <study_first_posted type="Estimate">April 26, 2013</study_first_posted>
+  <results_first_submitted>July 14, 2014</results_first_submitted>
+  <results_first_submitted_qc>September 23, 2014</results_first_submitted_qc>
+  <results_first_posted type="Estimate">September 29, 2014</results_first_posted>
+  <last_update_submitted>September 23, 2014</last_update_submitted>
+  <last_update_submitted_qc>September 23, 2014</last_update_submitted_qc>
+  <last_update_posted type="Estimate">September 29, 2014</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>

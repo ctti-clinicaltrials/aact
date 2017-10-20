@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02591940</url>
+  </required_header>
+  <id_info>
+    <org_study_id>Cardioproof</org_study_id>
+    <nct_id>NCT02591940</nct_id>
+  </id_info>
+  <brief_title>Proof of Concept of Model Based Cardiovascular Prediction</brief_title>
+  <official_title>Proof of Concept of Model Based Cardiovascular Prediction</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>German Heart Institute</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Bambino Gesù Hospital and Research Institute</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+    <collaborator>
+      <agency>University College, London</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>German Heart Institute</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      CARDIOPROOF is a proof-of-concept project that consolidates the outcomes of previous virtual
+      physiological human (VPH) projects and checks the applicability and effectiveness of
+      available predictive modelling and simulation tools, validating them in interrelated clinical
+      trials conducted in three European centres of excellence in cardiac treatment (from Germany,
+      Italy and the UK). CARDIOPROOF focuses on patients with aortic valve disease and aortic
+      coarctation, which, if left untreated, can ensue irreversible heart failure. As a result
+      treatment becomes mandatory, but optimum timing and the best type of treatment still remain
+      difficult to determine. With more than 50.000 interventions per year within the EU, the
+      diseases addressed by CARDIOPROOF have a significant socio-economic impact. Present clinical
+      guidelines are highly complex and rely mostly on imaging diagnostics and clinical parameters,
+      without benefiting, as yet, from patient-specific disease modelling based prediction.
+      CARDIOPROOF goes beyond the current state of the art by conducting validation trials aimed at
+      covering and comparing the complete spectrum of cardiovascular treatment, predicting the
+      evolution of the disease and the immediate and mid-term outcome of treatment. Operational
+      clustering is going to provide a seamless clinical solution that applies different modeling
+      methods to realize the potential of personalised medicine taking into account
+      user-friendliness as a key component of clinical usability. CARDIOPROOF's goal is to provide
+      first-hand data on comparative cost-effectiveness and clinical efficacy of the most advanced
+      VPH approaches compared to conventional diagnostics and treatment algorithms, thus
+      accelerating the deployment of VPH methods in clinical environments, and bring to maturity
+      holistic patient-specific computer-based predictive models and simulations.
+    </textblock>
+  </brief_summary>
+  <overall_status>Unknown status</overall_status>
+  <last_known_status>Enrolling by invitation</last_known_status>
+  <start_date>November 2013</start_date>
+  <completion_date type="Anticipated">December 2016</completion_date>
+  <primary_completion_date type="Anticipated">December 2015</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Observational</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <time_perspective>Prospective</time_perspective>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Comparative Cost effectiveness between regular treatment vs. simulated alternative treatment</measure>
+    <time_frame>1 week up to 1 year</time_frame>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Predicted (simulated) vs. real haemodynamic 4D flow profile (treatment outcome)</measure>
+    <time_frame>1 week up to 1 year</time_frame>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Calculated Vessle comliance</measure>
+    <time_frame>1 week up to 1 year</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Calculated External and Internal Heart Power</measure>
+    <time_frame>1 week up to 1 year</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of Participants with Aortic Coarctation with Arterial Hypertension</measure>
+    <time_frame>1 week up to 1 year</time_frame>
+  </secondary_outcome>
+  <number_of_groups>2</number_of_groups>
+  <enrollment type="Anticipated">140</enrollment>
+  <condition>Cardiovascular Modeling</condition>
+  <condition>Aortic Coarctation</condition>
+  <condition>Aortic Valve Disease</condition>
+  <condition>Cardiovascular MRI</condition>
+  <arm_group>
+    <arm_group_label>Aortic Coarctation</arm_group_label>
+    <description>interventional treatment in heart catheter (stenting/angioplasty) surgical repair of coarctation</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Aortic Valve Disease</arm_group_label>
+    <description>surgical repair in aortic valve disease (reconstruction/valve replacement)</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Surgery or Treatment by Heart Catheter</intervention_name>
+    <arm_group_label>Aortic Coarctation</arm_group_label>
+    <arm_group_label>Aortic Valve Disease</arm_group_label>
+  </intervention>
+  <eligibility>
+    <study_pop>
+      <textblock>
+        Patients with the need for surgical or interventional treatment with Aortic Coarctation, as
+        well as patients with the need for aortic valve disease surgery, both according to current
+        treatment guidelines.
+      </textblock>
+    </study_pop>
+    <sampling_method>Probability Sample</sampling_method>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  patients with the need for surgical or interventional treatment with Aortic
+             Coarctation
+
+          -  patients with the need for aortic valve disease surgery
+
+               -  both according to current treatment guidelines
+
+        Exclusion Criteria:
+
+          -  contraindications for MRI
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>N/A</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <verification_date>October 2015</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>October 29, 2015</lastchanged_date>
+  <firstreceived_date>October 27, 2015</firstreceived_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>October 27, 2015</study_first_submitted>
+  <study_first_submitted_qc>October 29, 2015</study_first_submitted_qc>
+  <study_first_posted type="Estimate">October 30, 2015</study_first_posted>
+  <last_update_submitted>October 29, 2015</last_update_submitted>
+  <last_update_submitted_qc>October 29, 2015</last_update_submitted_qc>
+  <last_update_posted type="Estimate">October 30, 2015</last_update_posted>
+  <!-- End of dates                                                                             -->
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>cardiovascular modeling</keyword>
+  <keyword>aortic coarctation</keyword>
+  <keyword>aortic valve disease</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Heart Defects, Congenital</mesh_term>
+    <mesh_term>Heart Valve Diseases</mesh_term>
+    <mesh_term>Aortic Coarctation</mesh_term>
+  </condition_browse>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>

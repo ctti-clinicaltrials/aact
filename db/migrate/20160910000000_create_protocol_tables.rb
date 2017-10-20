@@ -196,10 +196,29 @@ class CreateProtocolTables < ActiveRecord::Migration
     create_table "studies", id: false, force: :cascade do |t|
       t.string   "nct_id"
       t.string   "nlm_download_date_description"
-      t.date     "first_received_date"
-      t.date     "last_changed_date"
-      t.date     "first_received_results_date"
-      t.date     "received_results_disposit_date"
+      t.date     "first_received_date"  # deprecated
+      t.date     "last_changed_date"  # deprecated
+      t.date     "first_received_results_date"  # deprecated
+      t.date     "received_results_disposit_date"  # deprecated
+
+      t.date     "study_first_submitted_date"
+      t.date     "results_first_submitted_date"
+      t.date     "disposition_first_submitted_date"
+      t.date     "last_update_submitted_date"
+
+      t.date     "study_first_submitted_qc_date"
+      t.date     "study_first_posted_date"
+      t.string   "study_first_posted_date_type"
+      t.date     "results_first_submitted_qc_date"
+      t.date     "results_first_posted_date"
+      t.string   "results_first_posted_date_type"
+      t.date     "disposition_first_submitted_qc_date"
+      t.date     "disposition_first_posted_date"
+      t.string   "disposition_first_posted_date_type"
+      t.date     "last_update_submitted_qc_date"
+      t.date     "last_update_posted_date"
+      t.string   "last_update_posted_date_type"
+
       t.string   "start_month_year"
       t.string   "start_date_type"
       t.date     "start_date"

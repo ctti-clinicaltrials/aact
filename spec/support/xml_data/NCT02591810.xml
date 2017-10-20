@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02591810</url>
   </required_header>
@@ -50,10 +50,10 @@
       will include visual analog pain scores as well as satisfaction questionnaires.
     </textblock>
   </detailed_description>
-  <overall_status>Not yet recruiting</overall_status>
-  <start_date>December 2015</start_date>
-  <completion_date type="Anticipated">December 2017</completion_date>
-  <primary_completion_date type="Anticipated">September 2017</primary_completion_date>
+  <overall_status>Withdrawn</overall_status>
+  <start_date type="Actual">November 5, 2015</start_date>
+  <completion_date type="Actual">November 9, 2016</completion_date>
+  <primary_completion_date type="Actual">November 5, 2016</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Interventional</study_type>
   <has_expanded_access>No</has_expanded_access>
@@ -61,7 +61,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
     <primary_purpose>Treatment</primary_purpose>
-    <masking>Single Blind (Participant)</masking>
+    <masking>Single (Participant)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Evaluation and assessment of DASH scores.</measure>
@@ -84,7 +84,7 @@
     <description>Patients will be asked to describe on a scale from 1 to 10 how satisfied they are with their surgery.</description>
   </other_outcome>
   <number_of_arms>3</number_of_arms>
-  <enrollment type="Anticipated">100</enrollment>
+  <enrollment type="Actual">0</enrollment>
   <condition>Wrist Injuries</condition>
   <arm_group>
     <arm_group_label>Serial Casting</arm_group_label>
@@ -153,19 +153,18 @@
     <role>Study Chair</role>
     <affiliation>Orlando Health</affiliation>
   </overall_official>
-  <overall_contact>
-    <last_name>Paula J. Harriott, RN</last_name>
-    <phone>321-841-3867</phone>
-    <email>Paula.Harriott@orlandohealth.com</email>
-  </overall_contact>
-  <overall_contact_backup>
-    <last_name>Brett Lewellyn, MD</last_name>
-    <phone>321-843-5172</phone>
-    <email>Brett.Lewellyn@Orlandohealth.com</email>
-  </overall_contact_backup>
-  <verification_date>December 2015</verification_date>
-  <lastchanged_date>December 10, 2015</lastchanged_date>
+  <verification_date>September 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>September 29, 2017</lastchanged_date>
   <firstreceived_date>July 22, 2015</firstreceived_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>July 22, 2015</study_first_submitted>
+  <study_first_submitted_qc>October 28, 2015</study_first_submitted_qc>
+  <study_first_posted type="Estimate">October 30, 2015</study_first_posted>
+  <last_update_submitted>September 29, 2017</last_update_submitted>
+  <last_update_submitted_qc>September 29, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">October 2, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Principal Investigator</responsible_party_type>
     <investigator_affiliation>Orlando Health, Inc.</investigator_affiliation>

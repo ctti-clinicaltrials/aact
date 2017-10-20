@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00023673</url>
   </required_header>
@@ -93,7 +93,7 @@
     <allocation>Non-Randomized</allocation>
     <intervention_model>Single Group Assignment</intervention_model>
     <primary_purpose>Treatment</primary_purpose>
-    <masking>Open Label</masking>
+    <masking>None (Open Label)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Maximum Tolerated Dose (MTD) of Three-dimensional Conformal Radiation Therapy (3DRT), in Terms of Gy Per Fraction, Combined With Concurrent Chemotherapy</measure>
@@ -754,9 +754,21 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
     <citation>Bradley JD, Graham M, Suzanne S, et al.: Phase I results of RTOG L-0117: a phase I/II dose intensification study using 3DCRT and concurrent chemotherapy for patients with inoperable NSCLC. [Abstract] J Clin Oncol 23 (Suppl 16): A-7063, 636s, 2005.</citation>
   </results_reference>
   <verification_date>November 2015</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
   <lastchanged_date>November 14, 2015</lastchanged_date>
   <firstreceived_date>September 13, 2001</firstreceived_date>
   <firstreceived_results_date>February 12, 2014</firstreceived_results_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>September 13, 2001</study_first_submitted>
+  <study_first_submitted_qc>April 8, 2003</study_first_submitted_qc>
+  <study_first_posted type="Estimate">April 9, 2003</study_first_posted>
+  <results_first_submitted>February 12, 2014</results_first_submitted>
+  <results_first_submitted_qc>February 12, 2014</results_first_submitted_qc>
+  <results_first_posted type="Estimate">March 27, 2014</results_first_posted>
+  <last_update_submitted>November 14, 2015</last_update_submitted>
+  <last_update_submitted_qc>November 14, 2015</last_update_submitted_qc>
+  <last_update_posted type="Estimate">November 17, 2015</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>

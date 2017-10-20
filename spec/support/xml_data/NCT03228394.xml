@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 10, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT03228394</url>
   </required_header>
@@ -42,7 +42,7 @@
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
     <primary_purpose>Treatment</primary_purpose>
-    <masking>Participant, Care Provider, Investigator, Outcomes Assessor</masking>
+    <masking>Quadruple (Participant, Care Provider, Investigator, Outcomes Assessor)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Treatment-Emergent Adverse Events</measure>
@@ -252,6 +252,30 @@
     <facility>
       <name>Marinus Research Site</name>
       <address>
+        <city>Decatur</city>
+        <state>Georgia</state>
+        <zip>30030</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Marinus Research Site</name>
+      <address>
+        <city>Leawood</city>
+        <state>Kansas</state>
+        <zip>66206</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Marinus Research Site</name>
+      <address>
         <city>Dayton</city>
         <state>Ohio</state>
         <zip>45417</zip>
@@ -260,12 +284,57 @@
     </facility>
     <status>Recruiting</status>
   </location>
+  <location>
+    <facility>
+      <name>Marinus Research Site</name>
+      <address>
+        <city>Media</city>
+        <state>Pennsylvania</state>
+        <zip>19063</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Marinus Research Site</name>
+      <address>
+        <city>Houston</city>
+        <state>Texas</state>
+        <zip>77058</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Marinus Research Site</name>
+      <address>
+        <city>Irving</city>
+        <state>Texas</state>
+        <zip>75062</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
   <location_countries>
     <country>United States</country>
   </location_countries>
-  <verification_date>July 2017</verification_date>
-  <lastchanged_date>July 20, 2017</lastchanged_date>
+  <verification_date>August 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>August 21, 2017</lastchanged_date>
   <firstreceived_date>July 5, 2017</firstreceived_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>July 5, 2017</study_first_submitted>
+  <study_first_submitted_qc>July 20, 2017</study_first_submitted_qc>
+  <study_first_posted type="Actual">July 24, 2017</study_first_posted>
+  <last_update_submitted>August 21, 2017</last_update_submitted>
+  <last_update_submitted_qc>August 21, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">August 22, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>

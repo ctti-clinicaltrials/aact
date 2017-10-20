@@ -2,6 +2,36 @@ require 'rails_helper'
 
 
 describe Study do
+  it "handles last known status" do
+    nct_id='NCT02591940'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.last_known_status).to eq('Enrolling by invitation')
+  end
+
+  it "handles expanded access fields" do
+    nct_id='NCT03133988'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.expanded_access_type_individual).to be true
+    expect(study.expanded_access_type_intermediate).to be nil
+    expect(study.expanded_access_type_treatment).to be nil
+
+    nct_id='NCT03147742'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.expanded_access_type_individual).to be nil
+    expect(study.expanded_access_type_intermediate).to be true
+    expect(study.expanded_access_type_treatment).to be nil
+
+    nct_id='NCT03245528'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.expanded_access_type_individual).to be nil
+    expect(study.expanded_access_type_intermediate).to be nil
+    expect(study.expanded_access_type_treatment).to be true
+  end
+
   it "saves expanded access info correctly"  do
     nct_id='NCT01220531'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -18,7 +48,6 @@ describe Study do
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.source).to eq('London School of Hygiene and Tropical Medicine')
     expect(study.overall_status).to eq('Terminated')
-    expect(study.last_known_status).to eq('Recruiting')
   end
 
   it "saves is_unapproved_device" do
@@ -55,9 +84,23 @@ describe Study do
     expect(study.verification_month_year).to eq('November 2015')
     expect(study.verification_date.strftime('%m/%d/%Y')).to eq('11/01/2015')
 
-    expect(study.first_received_date).to eq('September 13, 2001'.to_date)
-    expect(study.first_received_results_date).to eq('February 12, 2014'.to_date)
-    expect(study.last_changed_date).to eq('November 14, 2015'.to_date)
+    expect(study.study_first_submitted_date).to eq('September 13, 2001'.to_date)
+    expect(study.results_first_submitted_date).to eq('February 12, 2014'.to_date)
+    expect(study.last_update_submitted_date).to eq('November 14, 2015'.to_date)
+
+    expect(study.study_first_submitted_qc_date).to eq('April 8, 2003'.to_date)
+    expect(study.study_first_posted_date).to eq('April 9, 2003'.to_date)
+    expect(study.results_first_submitted_qc_date).to eq('February 12, 2014'.to_date)
+    expect(study.results_first_posted_date).to eq('March 27, 2014'.to_date)
+    expect(study.disposition_first_submitted_qc_date).to eq(''.to_date)
+    expect(study.disposition_first_posted_date).to eq(''.to_date)
+    expect(study.last_update_submitted_qc_date).to eq('November 14, 2015'.to_date)
+    expect(study.last_update_posted_date).to eq('November 17, 2015'.to_date)
+
+    expect(study.study_first_posted_date_type).to eq('Estimate')
+    expect(study.results_first_posted_date_type).to eq('Estimate')
+    expect(study.disposition_first_posted_date_type).to be nil
+    expect(study.last_update_posted_date_type).to eq('Estimate')
 
     expect(study.start_date).to eq(study.start_month_year.to_date)
     expect(study.verification_date).to eq(study.verification_month_year.to_date)
@@ -71,22 +114,30 @@ describe Study do
     expect(study.design_groups.size).to eq(4)
     g=study.design_groups.select{|x|x.title=='Phase I: 75.25 Gy/36 fx + chemotherapy'}.first
     expect(g.description).to eq('Phase I: Three-dimensional conformal radiation therapy (3DRT) of 75.25 Gy given in 36 fractions (2.15 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.')
-   expect(g.group_type).to eq('Experimental')
+    expect(g.group_type).to eq('Experimental')
 
-   # verify sponsor info
-   expect(study.sponsors.size).to eq(2)
-   lead=study.sponsors.select{|x|x.lead_or_collaborator=='lead'}.first
-   collaborator=study.sponsors.select{|x|x.lead_or_collaborator=='collaborator'}.first
-   expect(lead.name).to eq('Radiation Therapy Oncology Group')
-   expect(lead.agency_class).to eq('Other')
-   expect(collaborator.name).to eq('National Cancer Institute (NCI)')
-   expect(collaborator.agency_class).to eq('NIH')
+    # verify sponsor info
+    expect(study.sponsors.size).to eq(2)
+    lead=study.sponsors.select{|x|x.lead_or_collaborator=='lead'}.first
+    collaborator=study.sponsors.select{|x|x.lead_or_collaborator=='collaborator'}.first
+    expect(lead.name).to eq('Radiation Therapy Oncology Group')
+    expect(lead.agency_class).to eq('Other')
+    expect(collaborator.name).to eq('National Cancer Institute (NCI)')
+    expect(collaborator.agency_class).to eq('NIH')
+
+    nct_id='NCT01642004'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.disposition_first_submitted_qc_date).to eq('November 17, 2015'.to_date)
+    expect(study.disposition_first_posted_date).to eq('December 16, 2015'.to_date)
+
   end
 
   it "should have expected date values" do
-    xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
-    study=Study.new({xml: xml, nct_id: 'NCT02260193'}).create
-    expect(study.received_results_disposit_date).to eq('December 1, 1999'.to_date)
+    nct_id='NCT02260193'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    expect(study.disposition_first_submitted_date).to eq('October 23, 2015'.to_date)
   end
 
   context 'when loading a study' do

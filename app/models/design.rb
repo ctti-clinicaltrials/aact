@@ -24,7 +24,10 @@ class Design < StudyRelationship
 
   def get_masking
     val = get('masking')
-    val.split('(').first.strip if val
+    if val
+      res=val.split('(').first.strip
+      (res.include? 'None') ? val.strip : res
+    end
   end
 
   def is_masked?(roles)

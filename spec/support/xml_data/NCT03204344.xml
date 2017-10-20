@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 10, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT03204344</url>
   </required_header>
@@ -46,8 +46,8 @@
       diabetic patients after gastrointestinal surgery.
     </textblock>
   </detailed_description>
-  <overall_status>Not yet recruiting</overall_status>
-  <start_date type="Anticipated">August 2017</start_date>
+  <overall_status>Recruiting</overall_status>
+  <start_date type="Actual">August 1, 2017</start_date>
   <completion_date type="Anticipated">September 2018</completion_date>
   <primary_completion_date type="Anticipated">August 2018</primary_completion_date>
   <phase>N/A</phase>
@@ -58,7 +58,7 @@
     <intervention_model>Parallel Assignment</intervention_model>
     <intervention_model_description>This is a outcomes assessor-blinded, randomized controlled trial with two parallel arms.</intervention_model_description>
     <primary_purpose>Prevention</primary_purpose>
-    <masking>Outcomes Assessor</masking>
+    <masking>Single (Outcomes Assessor)</masking>
     <masking_description>Outcomes assessor who perform postoperative follow-up is masked to group assignment.</masking_description>
   </study_design_info>
   <primary_outcome>
@@ -108,26 +108,26 @@
     <arm_group_label>Intervention group</arm_group_label>
     <arm_group_type>Experimental</arm_group_type>
     <description>For all patients, 2 bottles of oral carbohydrate (Outfast, 710 ml) is provided between 22:00-24:00 on the day before surgery. Subcutaneous insulin is administered before drinking.
-For patients who entered operating room before 12:00, 1 bottle of oral carbohydrate (Outfast) is provided at 6:00 on the day of surgery. For patients who enter the operating room after 12:00, another bottle of oral carbohydrate (Outfast) is provided at least 2 hours (6:00) before entering the operating room. Subcutaneous insulin is administered before drinking.</description>
+For patients who entered operating room before 12:00, 1 bottle of oral carbohydrate (Outfast) is provided at 6:00 on the day of surgery. For patients who enter the operating room after 12:00, another bottle of oral carbohydrate (Outfast) is provided at least 2 hours before entering the operating room. Subcutaneous insulin is administered before drinking.</description>
   </arm_group>
   <arm_group>
     <arm_group_label>Control group</arm_group_label>
     <arm_group_type>Sham Comparator</arm_group_type>
-    <description>For all patients, routine fasting begin from 22:00 on the day before surgery until entering the operating room on the day of surgery.
-For patients who enter the operating room before 12:00, no oral or intravenoous fluid is provided. For patients who enter the operating room after 12:00, 5% glucose (500-1000 ml) is provided by intravenous infusion from 6:00 on the day of surgery. Intravenous insulin is added in the 5% glucose.</description>
+    <description>For all patients, routine fasting (drinking water allowed) begins from 22:00 on the day before surgery， water fasting begins from 6:00 on the day of surgery.
+For patients who enter the operating room before 12:00, no oral or intravenoous fluid is provided from 6:00. For patients who enter the operating room after 12:00, 5% glucose (500-1000 ml) is provided by intravenous infusion from 6:00 on the day of surgery. Intravenous insulin is added (glucose:insulin=4-6:1). Electrolytes (such as sodium chloride, potasium chloride, magnesium sulfate) are added when becessary.</description>
   </arm_group>
   <intervention>
     <intervention_type>Dietary Supplement</intervention_type>
     <intervention_name>Oral carbohydrate (Outfast)</intervention_name>
     <description>For all patients, 2 bottles of oral carbohydrate (Outfast, 710 ml) is provided between 22:00-24:00 on the day before surgery. Subcutaneous insulin is administered before drinking. The dose of insulin is calculated by an endocrinologist according to patients' daily glucose controlling plan.
-For patients who entered operating room before 12:00, 1 bottle of oral carbohydrate (Outfast) is provided at 6:00 on the day of surgery. For patients who enter the operating room after 12:00, another bottle of oral carbohydrate (Outfast) is provided at least 2 hours (6:00) before entering the operating room. Subcutaneous insulin is administered before drinking. The dose of insulin is calculated is the same way as described above.</description>
+For patients who entered operating room before 12:00, 1 bottle of oral carbohydrate (Outfast) is provided at 6:00 on the day of surgery. For patients who enter the operating room after 12:00, another bottle of oral carbohydrate (Outfast) is provided at least 2 hours before entering the operating room. Subcutaneous insulin is administered before drinking. The dose of insulin is calculated is the same way as described above.</description>
     <arm_group_label>Intervention group</arm_group_label>
   </intervention>
   <intervention>
     <intervention_type>Other</intervention_type>
     <intervention_name>Routine fasting</intervention_name>
-    <description>For all patients, fasting begin from 22:00 on the day before surgery until entering the operating room on the day of surgery.
-For patients who enter the operating room before 12:00, no oral or intravenoous fluid is provided. For patients who enter the operating room after 12:00, 5% glucose (500-1000 ml) is provided by intravenous infusion from 6:00 on the day of surgery. Intravenous insulin is added in the 5% glucose. The dose of insulin is calculated by an endocrinologist according to patients' daily glucose controlling plan.</description>
+    <description>For all patients, routine fasting (water drinking allowed) begin from 22:00 on the day before surgery until entering the operating room on the day of surgery.
+For patients who enter the operating room before 12:00, no oral or intravenoous fluid is provided. For patients who enter the operating room after 12:00, 5% glucose (500-1000 ml) is provided by intravenous infusion from 6:00 on the day of surgery. Intravenous insulin is added in the 5% glucose (glucose:insulin=4-6:1). Electrolytes (such as sodium chloride, potasium chloride, and magnesium sulfate) are added when considered necessary.</description>
     <arm_group_label>Control group</arm_group_label>
   </intervention>
   <eligibility>
@@ -154,7 +154,11 @@ For patients who enter the operating room before 12:00, no oral or intravenoous 
 
           4. Preoperative New York Heart Assocition (NYHA) class IV, renal failure (requirement of
              renal replacement therapy), severe hepatic disease (Child-Pugh class C), or American
-             Society of Anesthesiologists (ASA) class IV or higher.
+             Society of Anesthesiologists (ASA) class IV or higher;
+
+          5. Preoperative pyloric and/or intestinal obstruction;
+
+          6. Combined surgery on other intra-abdominal organs or other parts of the body.
       </textblock>
     </criteria>
     <gender>All</gender>
@@ -187,6 +191,21 @@ For patients who enter the operating room before 12:00, no oral or intravenoous 
         <country>China</country>
       </address>
     </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Dong-Xin Wang, MD, PhD</last_name>
+      <phone>8610 83572784</phone>
+      <email>wangdongxin@hotmail.com</email>
+    </contact>
+    <contact_backup>
+      <last_name>Xue Li, MD</last_name>
+      <phone>8610 83572460</phone>
+      <email>3999165@163.com</email>
+    </contact_backup>
+    <investigator>
+      <last_name>Xue Li, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
   </location>
   <location_countries>
     <country>China</country>
@@ -271,9 +290,18 @@ For patients who enter the operating room before 12:00, no oral or intravenoous 
     <citation>Gustafsson UO, Nygren J, Thorell A, Soop M, Hellström PM, Ljungqvist O, Hagström-Toft E. Pre-operative carbohydrate loading may be used in type 2 diabetes patients. Acta Anaesthesiol Scand. 2008 Aug;52(7):946-51. doi: 10.1111/j.1399-6576.2008.01599.x. Epub 2008 Mar 7.</citation>
     <PMID>18331374</PMID>
   </reference>
-  <verification_date>June 2017</verification_date>
-  <lastchanged_date>June 28, 2017</lastchanged_date>
+  <verification_date>September 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>September 18, 2017</lastchanged_date>
   <firstreceived_date>June 26, 2017</firstreceived_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>June 26, 2017</study_first_submitted>
+  <study_first_submitted_qc>June 28, 2017</study_first_submitted_qc>
+  <study_first_posted type="Actual">July 2, 2017</study_first_posted>
+  <last_update_submitted>September 18, 2017</last_update_submitted>
+  <last_update_submitted_qc>September 18, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">September 19, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor-Investigator</responsible_party_type>
     <investigator_affiliation>Peking University First Hospital</investigator_affiliation>
@@ -288,10 +316,7 @@ For patients who enter the operating room before 12:00, no oral or intravenoous 
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Insulin, Globin Zinc</mesh_term>
     <mesh_term>Insulin</mesh_term>
+    <mesh_term>Magnesium Sulfate</mesh_term>
   </intervention_browse>
-  <patient_data>
-    <sharing_ipd>Yes</sharing_ipd>
-    <ipd_description>IPD will be available by contacting Dr. Xue Li (lixuepku@hotmail.com) after the trial is completed.</ipd_description>
-  </patient_data>
   <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

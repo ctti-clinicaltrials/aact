@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on August 08, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02798588</url>
   </required_header>
@@ -23,6 +23,8 @@
   <source>Hospices Civils de Lyon</source>
   <oversight_info>
     <has_dmc>No</has_dmc>
+    <is_fda_regulated_drug>No</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
   </oversight_info>
   <brief_summary>
     <textblock>
@@ -70,16 +72,17 @@
       related to neuronal activity (glucose metabolism) and brain perfusion.
     </textblock>
   </brief_summary>
-  <overall_status>Not yet recruiting</overall_status>
-  <start_date>February 2017</start_date>
-  <completion_date type="Anticipated">June 2018</completion_date>
-  <primary_completion_date type="Anticipated">June 2018</primary_completion_date>
+  <overall_status>Recruiting</overall_status>
+  <start_date type="Actual">February 16, 2017</start_date>
+  <completion_date type="Anticipated">June 16, 2019</completion_date>
+  <primary_completion_date type="Anticipated">June 16, 2019</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Interventional</study_type>
   <has_expanded_access>No</has_expanded_access>
   <study_design_info>
     <intervention_model>Single Group Assignment</intervention_model>
-    <masking>Double Blind (Care Provider, Investigator, Outcomes Assessor)</masking>
+    <primary_purpose>Other</primary_purpose>
+    <masking>None (Open Label)</masking>
   </study_design_info>
   <primary_outcome>
     <measure>Analysis of feasibility (pilot study) with Number of patients included during a 12-months period</measure>
@@ -201,7 +204,7 @@ dead patients</description>
         <country>France</country>
       </address>
     </facility>
-    <status>Not yet recruiting</status>
+    <status>Recruiting</status>
     <contact>
       <last_name>Frédéric DAILLER, MD</last_name>
       <phone>472 35 75 76</phone>
@@ -230,9 +233,18 @@ dead patients</description>
   <location_countries>
     <country>France</country>
   </location_countries>
-  <verification_date>December 2016</verification_date>
-  <lastchanged_date>December 23, 2016</lastchanged_date>
+  <verification_date>August 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>August 8, 2017</lastchanged_date>
   <firstreceived_date>May 27, 2016</firstreceived_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>May 27, 2016</study_first_submitted>
+  <study_first_submitted_qc>June 8, 2016</study_first_submitted_qc>
+  <study_first_posted type="Estimate">June 14, 2016</study_first_posted>
+  <last_update_submitted>August 8, 2017</last_update_submitted>
+  <last_update_submitted_qc>August 8, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">August 9, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
@@ -246,8 +258,5 @@ dead patients</description>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Coma</mesh_term>
   </condition_browse>
-  <patient_data>
-    <sharing_ipd>No</sharing_ipd>
-  </patient_data>
   <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>
