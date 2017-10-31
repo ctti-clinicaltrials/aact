@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.5
--- Dumped by pg_dump version 9.6.5
+-- Dumped from database version 10.0
+-- Dumped by pg_dump version 10.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -347,6 +347,7 @@ CREATE TABLE baseline_counts (
 --
 
 CREATE SEQUENCE baseline_counts_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -392,6 +393,7 @@ CREATE TABLE baseline_measurements (
 --
 
 CREATE SEQUENCE baseline_measurements_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -422,6 +424,7 @@ CREATE TABLE brief_summaries (
 --
 
 CREATE SEQUENCE brief_summaries_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -441,6 +444,7 @@ ALTER SEQUENCE brief_summaries_id_seq OWNED BY brief_summaries.id;
 --
 
 CREATE SEQUENCE browse_conditions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -472,6 +476,7 @@ CREATE TABLE browse_interventions (
 --
 
 CREATE SEQUENCE browse_interventions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -515,6 +520,7 @@ CREATE TABLE calculated_values (
 --
 
 CREATE SEQUENCE calculated_values_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -548,6 +554,7 @@ CREATE TABLE central_contacts (
 --
 
 CREATE SEQUENCE central_contacts_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -579,6 +586,7 @@ CREATE TABLE conditions (
 --
 
 CREATE SEQUENCE conditions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -610,6 +618,7 @@ CREATE TABLE countries (
 --
 
 CREATE SEQUENCE countries_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -641,6 +650,7 @@ CREATE TABLE design_group_interventions (
 --
 
 CREATE SEQUENCE design_group_interventions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -673,6 +683,7 @@ CREATE TABLE design_groups (
 --
 
 CREATE SEQUENCE design_groups_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -692,6 +703,7 @@ ALTER SEQUENCE design_groups_id_seq OWNED BY design_groups.id;
 --
 
 CREATE SEQUENCE design_outcomes_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -733,6 +745,7 @@ CREATE TABLE designs (
 --
 
 CREATE SEQUENCE designs_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -763,6 +776,7 @@ CREATE TABLE detailed_descriptions (
 --
 
 CREATE SEQUENCE detailed_descriptions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -797,6 +811,7 @@ CREATE TABLE drop_withdrawals (
 --
 
 CREATE SEQUENCE drop_withdrawals_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -835,6 +850,7 @@ CREATE TABLE eligibilities (
 --
 
 CREATE SEQUENCE eligibilities_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -870,6 +886,7 @@ CREATE TABLE facilities (
 --
 
 CREATE SEQUENCE facilities_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -904,6 +921,7 @@ CREATE TABLE facility_contacts (
 --
 
 CREATE SEQUENCE facility_contacts_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -936,6 +954,7 @@ CREATE TABLE facility_investigators (
 --
 
 CREATE SEQUENCE facility_investigators_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -955,6 +974,7 @@ ALTER SEQUENCE facility_investigators_id_seq OWNED BY facility_investigators.id;
 --
 
 CREATE SEQUENCE id_information_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -986,6 +1006,7 @@ CREATE TABLE intervention_other_names (
 --
 
 CREATE SEQUENCE intervention_other_names_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1005,6 +1026,7 @@ ALTER SEQUENCE intervention_other_names_id_seq OWNED BY intervention_other_names
 --
 
 CREATE SEQUENCE interventions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1036,6 +1058,7 @@ CREATE TABLE keywords (
 --
 
 CREATE SEQUENCE keywords_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1067,6 +1090,7 @@ CREATE TABLE links (
 --
 
 CREATE SEQUENCE links_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1098,6 +1122,7 @@ CREATE TABLE mesh_headings (
 --
 
 CREATE SEQUENCE mesh_headings_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1131,6 +1156,7 @@ CREATE TABLE mesh_terms (
 --
 
 CREATE SEQUENCE mesh_terms_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1166,6 +1192,7 @@ CREATE TABLE milestones (
 --
 
 CREATE SEQUENCE milestones_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1215,6 +1242,7 @@ CREATE TABLE outcome_analyses (
 --
 
 CREATE SEQUENCE outcome_analyses_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1247,6 +1275,7 @@ CREATE TABLE outcome_analysis_groups (
 --
 
 CREATE SEQUENCE outcome_analysis_groups_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1282,6 +1311,7 @@ CREATE TABLE outcome_counts (
 --
 
 CREATE SEQUENCE outcome_counts_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1328,6 +1358,7 @@ CREATE TABLE outcome_measurements (
 --
 
 CREATE SEQUENCE outcome_measurements_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1367,6 +1398,7 @@ CREATE TABLE outcomes (
 --
 
 CREATE SEQUENCE outcomes_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1399,6 +1431,7 @@ CREATE TABLE overall_officials (
 --
 
 CREATE SEQUENCE overall_officials_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1430,6 +1463,7 @@ CREATE TABLE participant_flows (
 --
 
 CREATE SEQUENCE participant_flows_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1474,6 +1508,7 @@ CREATE TABLE reported_events (
 --
 
 CREATE SEQUENCE reported_events_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1508,6 +1543,7 @@ CREATE TABLE responsible_parties (
 --
 
 CREATE SEQUENCE responsible_parties_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1539,6 +1575,7 @@ CREATE TABLE result_agreements (
 --
 
 CREATE SEQUENCE result_agreements_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1572,6 +1609,7 @@ CREATE TABLE result_contacts (
 --
 
 CREATE SEQUENCE result_contacts_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1605,6 +1643,7 @@ CREATE TABLE result_groups (
 --
 
 CREATE SEQUENCE result_groups_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1633,6 +1672,7 @@ CREATE TABLE schema_migrations (
 --
 
 CREATE SEQUENCE sponsors_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1738,6 +1778,7 @@ CREATE TABLE study_references (
 --
 
 CREATE SEQUENCE study_references_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
