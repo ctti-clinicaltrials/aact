@@ -32,7 +32,7 @@ module Util
         puts ">>>>>>>>>>> #{@load_event.event_type} load failed: #{error}"
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         log(msg)
-        give_users_db_access
+        Util::DbManager.new.grant_db_privs
         load_event.complete({:status=>'failed', :problems=> msg, :study_counts=> study_counts})
         PublicAnnouncement.clear_load_message
         send_notification
@@ -92,25 +92,13 @@ module Util
       add_indexes
       create_calculated_values
       populate_admin_tables
-      take_snapshot
-      create_flat_files
       study_counts[:processed]=Study.count
       load_event.complete({:study_counts=>study_counts})
-      refresh_status=refresh_public_db
+      create_flat_files
+      dump_file=take_snapshot
+      refresh_status=refresh_public_db(dump_file)
       load_event.problems="DID NOT UPDATE PUBLIC DATABASE.  #{load_event.problems}" if refresh_status == false
       send_notification
-    end
-
-    def refresh_public_db(dump_file=Util::FileManager.pg_dump_file)
-      # recreate public db (aact) from back-end db (back_aact)
-      # restore from most recent snapshot
-      return false if !sanity_checks_ok?
-      submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
-      revoke_users_db_access
-      Util::DbManager.new.refresh_public_db(dump_file)
-      give_users_db_access
-      PublicAnnouncement.clear_load_message
-      return true
     end
 
     def indexes
@@ -365,20 +353,21 @@ module Util
 
 private
 
-    def revoke_users_db_access
-      Util::DbManager.revoke_db_privs
-    end
-
-    def give_users_db_access
-      Util::DbManager.grant_db_privs
+    def refresh_public_db(dump_file=Util::FileManager.pg_dump_file)
+      # recreate public db from back-end db
+      # if dump file not provided, restore from most recent snapshot
+      return false if !sanity_checks_ok?
+      submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
+      db_mgr=Util::DbManager.new
+      db_mgr.revoke_db_privs
+      db_mgr.refresh_public_db(dump_file)
+      db_mgr.grant_db_privs
+      PublicAnnouncement.clear_load_message
+      return true
     end
 
     def db_name
       ActiveRecord::Base.connection.current_database
-    end
-
-    def public_db_name
-      'aact'
     end
 
     def submit_public_announcement(announcement)

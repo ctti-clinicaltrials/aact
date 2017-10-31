@@ -19,14 +19,6 @@ module Util
       new.change_password(user,pwd)
     end
 
-    def self.grant_db_privs
-      new.grant_db_privs
-    end
-
-    def self.revoke_db_privs
-      new.revoke_db_privs
-    end
-
     def self.can_create_user?(user)
       new.can_create_user?(user)
     end
