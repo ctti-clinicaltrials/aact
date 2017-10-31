@@ -14,6 +14,11 @@ describe Util::FileManager do
       # Manager returns the dmp file from zip file content
       dump_file=manager.get_dump_file_from(zip_file)
       expect(dump_file.name).to eq('postgres_data.dmp')
+      # The dump file contains commands to create the database"
+      content=dump_file.get_input_stream.read
+      expect(content).to include("CREATE DATABASE aact_back")
+      expect(content.scan('DROP TABLE').size).to eq(42)
+      expect(content.scan('CREATE TABLE').size).to eq(42)
       # If manager asked to get dmp file from the dmp file itself, it should simply return it
       dump_file2=manager.get_dump_file_from(dump_file)
       expect(dump_file.name).to eq('postgres_data.dmp')
