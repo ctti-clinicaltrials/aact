@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.4.1"
+ruby "2.4.0"
 
 gem 'libv8', '3.16.14.3'
 gem 'faraday_middleware-aws-signers-v4'
