@@ -10,7 +10,7 @@ ask :branch, 'staging'
 set :rails_env, 'staging'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/aact'
+set :deploy_to, '/srv/ctti/www/aact'
 
 # Default value for :format is :airbrussh.
 #set :format, :airbrussh
