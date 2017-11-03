@@ -383,6 +383,7 @@ DEPENDENCIES
   launchy
   letter_opener
   libv8 (= 3.16.14.3)
+  nokogiri
   normalize-rails
   pg
   pry-byebug
