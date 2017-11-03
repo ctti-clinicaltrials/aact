@@ -1,19 +1,25 @@
 <p><%= @resource.full_name.split.map(&:capitalize)*' ' %>,
 
-<p>Welcome to AACT, the database for Aggregated Analysis of Clinical Trials. Please click this link to create your database account:</p>
+<p>Welcome to AACT, the database for Aggregated Analysis of ClinicalTrials.gov. Please click this link to create your database account:</p>
 
 <p><%= link_to 'Confirm my request for an AACT database account', confirmation_url(@resource, confirmation_token: @token) %></p>
 
 <p>Once confirmed, you will have immediate access to AACT - a cloud-based postgreSQL database containing all the information in ClinicalTrials.gov.</p>
 
-<p>Because this database is in the cloud, you can access it directly from your computer using any one of a number of available SQL query tools - many of which are free. Login to the AACT website and go to the '<%= link_to 'connect page', 'http://aact.ctti-clinicaltrials.org/connect' %>' to get instructions about how to connect using several popular tools.</p>
+<p>Because this database is in the cloud, you can access it directly from your computer while connected to the internet, using any one of a number of available SQL query tools - many of which are free. Login to the AACT website and go to the '<%= link_to 'connect page', 'http://aact.ctti-clinicaltrials.org/connect' %>' to get instructions about how to connect using several popular tools.</p>
 
 Making sense of the information requires basic understanding of SAS, R or SQL & relational database concepts. AACT provides the raw, aggregated data from ClinicalTrials.gov; the <%= link_to 'AACT website', 'http://aact.ctti-clinicaltrials.org/learn_more' %> describes the database and how it's structured. AACT does not provide a simple graphical interface for end users; that functionality can be layered on top of AACT with tools such as Tableau and Cognos. In short, AACT provides the raw data so that you can find creative ways to make use of them.</p>
 
 <p>If you have installed the free postgreSQL command line tool (<%= link_to 'psql', 'http://postgresguide.com/utilities/psql.html' %>) on your machine, you can get started by entering the following connection command from a terminal session:</p>
 
-PGPASSWORD=<i>'your AACT password'</i> psql --host=aact.ctti-clinicaltrials.org --port=5432 --username='<%= @resource.username %>' --dbname=aact
+<p>Here are your database login credentials:</p>
 
-<p>From there, it's a matter of familiarizing yourself with the information and how it's structured, and developing queries to retrieve what interests you. The schema diagram, data dictionary and other help is available on the <%= link_to 'AACT website', 'http://aact.ctti-clinicaltrials.org/learn_more' %>. You can accomplish a lot with a few basic SQL commands.</p>
+<p>Hostname: aact.ctti-clinicaltrials.org</p>
+<p>Port: 5432</p>
+<p>Database name: aact</p>
+<p>User name: '<%= @resource.username %>'</p>
+<p>Password: 'your AACT password'</p>
+
+<p>Once you are connected to the database, it's a matter of familiarizing yourself with the information and how it's structured, and developing queries to retrieve what interests you. The schema diagram, data dictionary and other help is available on the <%= link_to 'AACT website', 'http://aact.ctti-clinicaltrials.org/learn_more' %>. You can accomplish a lot with a few basic SQL commands.</p>
 
 <p>Please contact the <%= mail_to 'ctti@mc.duke.edu', 'Clinical Trials Transformation Initiative (CTTI)' %> if you have questions, suggestions or would like more information.</p>
