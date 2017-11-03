@@ -8,11 +8,12 @@
     </p>
 <% else %>
     <p class='user-info'>
-      <%= link_to "Sign up", new_user_registration_path, class: 'btn dropdown-toggle user-info' %>
-      <%= link_to "Sign in", new_user_session_path, class: 'user-info' %>
+    <span>For AACT database account: </span>
+    <%= link_to "Sign up", new_user_registration_path,
+      class: 'user-button' %>/<%= link_to "Sign in", new_user_session_path,
+      class: 'user-button' %>
     </p>
 <% end %>
-
 
 <div class="wrap">
   <%= link_to("https://www.ctti-clinicaltrials.org/") do %>

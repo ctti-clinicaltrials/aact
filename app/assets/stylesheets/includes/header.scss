@@ -21,6 +21,10 @@ header {
     text-align: right;
 }
 
+.user-button {
+    font-size: 1rem;
+    padding: .4em;
+}
   div.wrap {
     @include display-flex;
     @include justify-content(space-between);
