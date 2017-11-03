@@ -63,7 +63,8 @@ module Util
       begin
         con.execute("drop owned by \"#{user.username}\";")
         con.execute("revoke all on schema public from \"#{user.username}\";")
-        con.execute("drop user \"#{user.username}\";")
+        con.execute("revoke connect on database #{public_db_name} from \"#{user.username}\";")
+        con.execute("drop user \"#{user.username}\ if exists";")
       rescue => e
         raise e unless e.message.include? "role \"#{user.username}\" does not exist"
       end
