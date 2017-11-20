@@ -370,6 +370,7 @@ DEPENDENCIES
   devise
   devise-encryptable
   enumerize
+  execjs
   factory_girl_rails
   faraday
   faraday_middleware-aws-signers-v4
