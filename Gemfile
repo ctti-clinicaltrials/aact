@@ -27,7 +27,6 @@ gem "uglifier"
 gem "jbuilder"
 gem "rails-erd"
 gem 'rest-client'
-gem 'rubyzip'
 gem 'enumerize'
 gem 'bulk_insert'
 gem 'activerecord-import'
