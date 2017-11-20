@@ -248,6 +248,7 @@ GEM
     recipient_interceptor (0.1.2)
       mail
     redis (3.3.3)
+    ref (2.0.0)
     request_store (1.3.2)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
@@ -324,6 +325,9 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     string-similarity (2.0.0)
+    therubyracer (0.12.2)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -412,6 +416,7 @@ DEPENDENCIES
   spring-commands-rspec
   sprockets-rails (>= 2.0)
   string-similarity
+  therubyracer
   timecop
   title
   uglifier
