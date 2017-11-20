@@ -33,8 +33,8 @@ set :format_options, command_output: true, log_file: "log/capistrano.log", color
 set :default_env, {
 #  'PATH' => "/path/to/.rvm/ree-1.8.7-2009.10/bin:/path/to/.rvm/gems/ree/1.8.7/bin:/path/to/.rvm/bin:$PATH",
   'RUBY_VERSION' => 'ruby 2.4.0',
-  'GEM_HOME' => '/home/tibbs001/.gem/ruby',
-  'GEM_PATH' => '/home/tibbs001/.gem/ruby:/opt/rh/rh-ruby24/root/usr/share/gems:/opt/rh/rh-ruby24/root/usr/local/share/gems'
+  'GEM_HOME' => '/home/ctti-aact/.gem/ruby',
+  'GEM_PATH' => '/home/ctti-aact/.gem/ruby:/opt/rh/rh-ruby24/root/usr/share/gems:/opt/rh/rh-ruby24/root/usr/local/share/gems'
 }
 
 # Default value for keep_releases is 5
