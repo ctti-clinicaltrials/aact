@@ -1,9 +1,10 @@
 development: &default
-  adapter: postgresql
-  database: aact_admin
   encoding: utf8
+  adapter: postgresql
   min_messages: warning
+  pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
+  url:  <%= ENV.fetch("AACT_ADMIN_DATABASE_URL", "") %>
 
 test:
   <<: *default
@@ -11,8 +12,9 @@ test:
 
 production: &deploy
   encoding: utf8
+  adapter: postgresql
   min_messages: warning
+  pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-
-staging: *deploy
+  url:  <%= ENV.fetch("AACT_ADMIN_DATABASE_URL", "") %>
 
