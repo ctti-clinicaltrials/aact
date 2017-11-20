@@ -401,7 +401,6 @@ DEPENDENCIES
   rest-client
   roo (~> 2.4.0)
   rspec-rails
-  rubyzip
   sass-rails
   shoulda-matchers
   sidekiq
