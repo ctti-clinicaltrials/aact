@@ -17,7 +17,7 @@ class Notifier < ApplicationMailer
   end
 
   def self.admin_addresses
-    ['sheri.tibbs@duke.edu','ctti@duke.edu']
+    ['sheri.tibbs@duke.edu','ctti-aact@duke.edu']
   end
 
   def instructions(user)

@@ -34,7 +34,7 @@ describe Util::Updater do
     # Should try 5 times for both changed and added rss calls.
     expect(RSS::Parser).to receive(:parse).exactly(10).times
     # Should proceed and finish up by sending a notification
-    expect { updater.send_notification }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    expect { updater.send_notification }.to change { ActionMailer::Base.deliveries.count }.by(2)
     updater.incremental
   end
 
