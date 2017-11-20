@@ -35,6 +35,8 @@ gem 'font-awesome-sass'
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
 gem 'gon'
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
 
 # user registration
 gem 'devise'
