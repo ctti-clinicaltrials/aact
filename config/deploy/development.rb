@@ -37,7 +37,7 @@
 # Global options
 # --------------
   set :ssh_options, {
-    keys: %w(/srv/ctti/.ssh/id_rsa),
+    keys: %w(/home/ctti-aact/.ssh/id_rsa),
     forward_agent: false,
     auth_methods: %w(publickey)
   }
@@ -45,11 +45,10 @@
 # The server-based syntax can be used to override options:
 # ------------------------------------
  server "ctti-web-dev-01.oit.duke.edu",
-   user: "ctti-aact",
    roles: %w{web db app},
    ssh_options: {
      user: "ctti-aact", # overrides user setting above
-     keys: %w(/srv/ctti/.ssh/id_rsa),
+     keys: %w(/home/ctti-aact/.ssh/id_rsa),
      forward_agent: false,
      auth_methods: %w(publickey)
    }
