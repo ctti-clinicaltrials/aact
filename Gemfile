@@ -2,7 +2,6 @@ source "https://rubygems.org"
 
 ruby "2.4.0"
 
-gem 'libv8', '3.16.14.3'
 gem 'nokogiri'
 gem 'faraday_middleware-aws-signers-v4'
 gem 'rails', github: 'rails/rails', branch: '4-2-stable'
@@ -36,22 +35,21 @@ gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
 gem 'gon'
 gem 'execjs'
-gem 'therubyracer', :platforms => :ruby
+gem 'therubyracer', '~> 0.12.3'
+gem 'libv8', '~> 3.16.14.15'
+gem 'rack'
+gem 'rack-cors', :require => 'rack/cors'
 
 # user registration
 gem 'devise'
 gem 'devise-encryptable'
 
-# Grape API
-gem 'rack'
-gem 'rack-cors', :require => 'rack/cors'
-
-gem 'active_model_serializers', '~> 0.9.0'
+# deployment to server
+gem 'capistrano', '~> 3.8'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-chruby'
 
 group :development do
-  gem 'capistrano', '~> 3.8'
-  gem 'capistrano-rails', '~> 1.2'
-  gem 'capistrano-chruby'
   gem "quiet_assets"
   gem "spring"
   gem "spring-commands-rspec"
@@ -74,8 +72,8 @@ group :development, :staging do
 end
 
 group :test do
-  gem "capybara-webkit"
   gem "database_cleaner"
+  gem "capybara-webkit"
   gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers"
