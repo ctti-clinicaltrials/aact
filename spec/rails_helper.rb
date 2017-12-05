@@ -1,7 +1,9 @@
 ENV["RACK_ENV"] = "test"
 
 require File.expand_path("../../config/environment", __FILE__)
-abort("DATABASE_URL environment variable is set") if ENV["DATABASE_URL"]
+abort("AACT_PUBLIC_DATABASE_URL environment variable is not set") if !ENV["AACT_PUBLIC_DATABASE_URL"]
+abort("AACT_ADMIN_DATABASE_URL environment variable is not set") if !ENV["AACT_ADMIN_DATABASE_URL"]
+abort("AACT_BACK_DATABASE_URL environment variable is not set") if !ENV["AACT_BACK_DATABASE_URL"]
 
 require "rspec/rails"
 

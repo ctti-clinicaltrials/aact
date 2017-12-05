@@ -1,4 +1,4 @@
 class AdminBase < ActiveRecord::Base
-  establish_connection(ENV["ADMIN_DATABASE_URL"])
+  establish_connection(ENV["AACT_ADMIN_DATABASE_URL"])
   self.abstract_class = true
 end
