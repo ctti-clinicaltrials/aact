@@ -17,11 +17,11 @@ module Util
     end
 
     def self.static_root_dir
-      '/var/local/share'
+      '/aact-files'
     end
 
     def static_root_dir
-      '/var/local/share'
+      '/aact-files'
     end
 
     def self.dump_directory
@@ -98,7 +98,7 @@ module Util
 
     def self.files_in(sub_dir)
       entries=[]
-      dir="/var/local/share/#{sub_dir}"
+      dir="#{static_root_dir}/#{sub_dir}"
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
         file_location="#{dir}/#{file_name}"
@@ -114,7 +114,7 @@ module Util
     def self.db_log_file_content(params)
       return [] if params.nil? or params[:day].nil?
       day=params[:day].capitalize
-      file_name="/var/local/share/logs/postgresql-#{day}.log"
+      file_name="#{static_root_dir}/logs/postgresql-#{day}.log"
       if File.exist?(file_name)
         File.open(file_name)
       else

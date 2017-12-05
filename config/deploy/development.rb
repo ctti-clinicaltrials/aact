@@ -3,12 +3,9 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
- server "192.241.161.127", user: "ctti", roles: %w{app db web}
-# server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
+ server "ctti-web-dev-01.oit.duke.edu", user: "tibbs001", roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-
-
 
 # role-based syntax
 # ==================
@@ -23,7 +20,6 @@
 # role :db,  %w{deploy@example.com}
 
 
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -31,8 +27,6 @@
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
-
 
 # Custom SSH Options
 # ==================
@@ -43,19 +37,19 @@
 # Global options
 # --------------
   set :ssh_options, {
-    keys: %w(/home/ctti/.ssh/id_rsa),
+    keys: %w(/srv/ctti/.ssh/id_rsa),
     forward_agent: false,
     auth_methods: %w(publickey)
-   }
-
+  }
+#
 # The server-based syntax can be used to override options:
- server "192.241.161.127",
-   user: "ctti",
+# ------------------------------------
+ server "ctti-web-dev-01.oit.duke.edu",
+   user: "tibbs001",
    roles: %w{web db app},
    ssh_options: {
-     user: "ctti", # overrides user setting above
-     keys: %w(/home/ctti/.ssh/id_rsa),
+     user: "tibbs001", # overrides user setting above
+     keys: %w(/srv/ctti/.ssh/id_rsa),
      forward_agent: false,
      auth_methods: %w(publickey)
    }
-
