@@ -127,7 +127,6 @@ module Util
       dump_file_name=self.class.pg_dump_file
       File.delete(dump_file_name) if File.exist?(dump_file_name)
       cmd="pg_dump #{db_name} -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{dump_file_name}"
-      puts cmd
       system cmd
       return dump_file_name
     end
@@ -144,13 +143,11 @@ module Util
       return File.open(return_file)
     end
 
-    def get_dump_file_from(static_file)
-      return static_file if `file --brief --mime-type "#{static_file}"` == "application/octet-stream\n"
-      if `file --brief --mime-type "#{static_file}"` == "application/zip\n"
-         Zip::File.open(static_file) { |zipfile|
-           zipfile.each { |file|
-             return file if file.name=='postgres_data.dmp'
-           }
+    def get_dump_file_from(file)
+      return file if `file --brief --mime-type "#{file}"` == "application/octet-stream\n"
+      if `file --brief --mime-type "#{file}"` == "application/zip\n"
+         Zip::File.open(file) { |zipfile|
+           zipfile.each { |f| return f if f.name=='postgres_data.dmp' }
         }
       end
     end
