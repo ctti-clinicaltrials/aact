@@ -95,8 +95,8 @@ module Util
       study_counts[:processed]=Study.count
       load_event.complete({:study_counts=>study_counts})
       create_flat_files
-      dump_file=take_snapshot
-      refresh_status=refresh_public_db(dump_file)
+      take_snapshot
+      refresh_status=refresh_public_db
       load_event.problems="DID NOT UPDATE PUBLIC DATABASE.  #{load_event.problems}" if refresh_status == false
       send_notification
     end
@@ -353,14 +353,14 @@ module Util
 
 private
 
-    def refresh_public_db(dump_file=Util::FileManager.pg_dump_file)
+    def refresh_public_db
       # recreate public db from back-end db
       # if dump file not provided, restore from most recent snapshot
       return false if !sanity_checks_ok?
       submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
       db_mgr=Util::DbManager.new
       db_mgr.revoke_db_privs
-      db_mgr.refresh_public_db(dump_file)
+      db_mgr.refresh_public_db(Util::FileManager.pg_dump_file)
       db_mgr.grant_db_privs
       PublicAnnouncement.clear_load_message
       return true

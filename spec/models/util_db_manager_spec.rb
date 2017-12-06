@@ -36,8 +36,7 @@ describe Util::DbManager do
            with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
            to_return(status: 200, body: "", headers: {})
 
-      fm=Util::FileManager.new
-      dump_file=fm.get_dump_file_from(fm.take_snapshot)
+      dump_file=Util::FileManager.pg_dump_file
       dm=Util::DbManager.new
       dm.refresh_public_db(dump_file)
       back_db=ActiveRecord::Base.connection
