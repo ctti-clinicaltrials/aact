@@ -363,7 +363,7 @@ private
       submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
       db_mgr=Util::DbManager.new
       db_mgr.revoke_db_privs
-      db_mgr.refresh_public_db(Util::FileManager.pg_dump_file)
+      db_mgr.refresh_public_db
       db_mgr.grant_db_privs
       PublicAnnouncement.clear_load_message
       return true
