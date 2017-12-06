@@ -78,13 +78,15 @@ module Util
       end
     end
 
-    def refresh_public_db(static_file)
-      dump_file=Util::FileManager.new.get_dump_file_from(static_file)
+    def refresh_public_db
+      revoke_db_privs
+      dump_file=Util::FileManager.pg_dump_file
       return nil if dump_file.nil?
       cmd="pg_restore -c -j 5 -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file}"
       system cmd
       cmd="pg_restore -c -j 5 -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file}"
       system cmd
+      grant_db_privs
     end
 
     def grant_db_privs
