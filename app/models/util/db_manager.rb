@@ -117,7 +117,7 @@ module Util
     end
 
     def con
-      @con ||= PublicBase.establish_connection(ENV["PUBLIC_DATABASE_URL"]).connection
+      @con ||= PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
     end
 
     def public_db_name
