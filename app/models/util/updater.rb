@@ -284,8 +284,12 @@ module Util
       load_event.problems="Fewer sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size < 40
       load_event.problems="More sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size > 40
       load_event.problems="Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.  #{load_event.problems}" if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
-      return false if !load_event.problems.nil?
-      true
+      if !load_event.problems.blank?
+        load_event.save!
+        return false
+      else
+        return true
+      end
     end
 
     def load_event
@@ -355,7 +359,6 @@ private
 
     def refresh_public_db
       # recreate public db from back-end db
-      # if dump file not provided, restore from most recent snapshot
       return false if !sanity_checks_ok?
       submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
       db_mgr=Util::DbManager.new
