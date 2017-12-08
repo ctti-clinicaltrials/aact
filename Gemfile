@@ -57,6 +57,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "rack-mini-profiler", require: false
   gem "awesome_print"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
@@ -65,10 +66,6 @@ group :development, :test do
   gem "pry-rails"
   gem 'rspec-rails'
   gem 'single_test'
-end
-
-group :development, :staging do
-  gem "rack-mini-profiler", require: false
 end
 
 group :test do
