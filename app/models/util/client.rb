@@ -77,9 +77,9 @@ module Util
 
     def populate_studies
       return if @dry_run
-      total_count=StudyXmlRecord.not_yet_loaded.count
+      cntr=StudyXmlRecord.not_yet_loaded.count
       start_time=Time.now
-      puts "Load #{total_count} studies Start Time.....#{start_time}"
+      puts "Load #{cntr} studies Start Time.....#{start_time}"
 
       StudyXmlRecord.find_each do |xml_record|
         stime=Time.now
