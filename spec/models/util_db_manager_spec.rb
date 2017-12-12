@@ -36,8 +36,8 @@ describe Util::DbManager do
            with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
            to_return(status: 200, body: "", headers: {})
 
-      Util::FileManager.new.take_snapshot
       dm=Util::DbManager.new
+      dm.take_snapshot
       dm.refresh_public_db
       back_db=ActiveRecord::Base.connection
       back_table_count=back_db.execute('select count(*) from information_schema.tables;').first['count'].to_i

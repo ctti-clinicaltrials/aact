@@ -4,11 +4,11 @@ include ActionView::Helpers::NumberHelper
 module Util
   class FileManager
 
-    def self.nlm_protocol_data_url
+    def nlm_protocol_data_url
       "https://prsinfo.clinicaltrials.gov/definitions.html"
     end
 
-    def self.nlm_results_data_url
+    def nlm_results_data_url
       "https://prsinfo.clinicaltrials.gov/results_definitions.html"
     end
 
@@ -36,7 +36,7 @@ module Util
       "#{static_root_dir}/xml_downloads"
     end
 
-    def self.pg_dump_file
+    def pg_dump_file
       "#{static_root_dir}/tmp/postgres.dmp"
     end
 
@@ -122,16 +122,6 @@ module Util
       end
     end
 
-    def dump_database
-      db_name=ActiveRecord::Base.connection.current_database
-      dump_file_name=self.class.pg_dump_file
-      File.delete(dump_file_name) if File.exist?(dump_file_name)
-      cmd="pg_dump #{db_name} -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{dump_file_name}"
-      puts cmd
-      system cmd
-      return dump_file_name
-    end
-
     def make_file_from_website(fname,url)
       return_file="#{static_root_dir}/tmp/#{fname}"
       File.delete(return_file) if File.exist?(return_file)
@@ -153,27 +143,6 @@ module Util
            }
         }
       end
-    end
-
-    def take_snapshot
-      dump_database
-      schema_diagram_file=File.open("#{self.static_root_dir}/documentation/aact_schema.png")
-      admin_schema_diagram_file=File.open("#{self.static_root_dir}/documentation/aact_admin_schema.png")
-      data_dictionary_file=File.open("#{self.static_root_dir}/documentation/aact_data_definitions.xlsx")
-      nlm_protocol_file=make_file_from_website('nlm_protocol_definitions.html',self.class.nlm_protocol_data_url)
-      nlm_results_file=make_file_from_website('nlm_results_definitions.html',self.class.nlm_results_data_url)
-
-      zip_file_name="#{self.class.static_copies_directory}/#{Time.now.strftime('%Y%m%d')}_clinical_trials.zip"
-      File.delete(zip_file_name) if File.exist?(zip_file_name)
-      Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
-        zipfile.add('schema_diagram.png',schema_diagram_file)
-        zipfile.add('admin_schema_diagram.png',admin_schema_diagram_file)
-        zipfile.add('data_dictionary.xlsx',data_dictionary_file)
-        zipfile.add('postgres_data.dmp',self.class.pg_dump_file)
-        zipfile.add('nlm_protocol_definitions.html',nlm_protocol_file)
-        zipfile.add('nlm_results_definitions.html',nlm_results_file)
-      }
-      return zip_file_name
     end
 
   end
