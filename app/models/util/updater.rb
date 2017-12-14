@@ -305,7 +305,7 @@ module Util
 
     def take_snapshot
       puts "creating static copy of the database..."
-      Util::FileManager.new.take_snapshot
+      Util::DbManager.new.take_snapshot
     end
 
     def create_flat_files

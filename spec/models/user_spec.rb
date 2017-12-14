@@ -16,8 +16,29 @@ describe User do
     expect(User.count).to eq(0)
   end
 
-  it "creates unconfirmed accounts by inserting a row in Users table and creating an unconfirmed account in public db" do
-    username='rspec_test'
+  it "Doesn't accept user unless first char of username is alpha" do
+    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'1rspec_test',:password=>'aact')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars, Username must start with an alpha character')
+    expect(User.count).to eq(0)
+  end
+
+  it "Doesn't accept username with hyphen" do
+    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1-ectest',:password=>'aact')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
+    expect(User.count).to eq(0)
+  end
+
+  it "Accepts user with valid username" do
+    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1ectest',:password=>'aact')
+    user.save!
+    expect(User.count).to eq(1)
+    expect(User.first.username).to eq('r1ectest')
+    user.remove
+    expect(User.count).to eq(0)
+  end
+
+  xit "creates unconfirmed accounts by inserting a row in Users table and creating an unconfirmed account in public db" do
+    username='rspec'
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>'aact_pwd')
     unencrypted_password=user.password  # save this to use later
     user.unencrypted_password=unencrypted_password  #the original password saved by controller - so we can update db acct with it when user confirms
@@ -29,36 +50,46 @@ describe User do
     expect(Util::DbManager.new.user_account_exists?(user)).to be(true)
     # user cannot login with the password they provided until they confirm their account
     begin
-      con=ActiveRecord::Base.establish_connection(
+      con=PublicBase.establish_connection(
         adapter: 'postgresql',
         encoding: 'utf8',
-        database: 'aact',
-        username: user.username,
-        password: user.unencrypted_password,
+        hostname: ENV['AACT_PUBLIC_HOSTNAME'],
+        database: ENV['AACT_PUBLIC_DATABASE_NAME'],
+#        username: user.username,
+#        password: user.unencrypted_password,
       ).connection
     rescue => e
       e.inspect
-      expect(e.message).to eq("FATAL:  role \"rspec_test\" does not exist\n")
+      expect(e.message).to eq("ActiveRecord::NoDatabaseError: FATAL:  role \"rspec\" does not exist\n")
+      #expect(e.message).to eq("FATAL:  role \"rspec\" does not exist\n")
       expect(con).to be(nil)
     end
     user.confirm  #simulate user email response confirming their account
     # once confirmed via email, user should be able to login to their account
-    con=ActiveRecord::Base.establish_connection(
+    con=PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
-      database: 'aact',
-      username: user.username,
-      password: user.unencrypted_password,
+      hostname: ENV['AACT_PUBLIC_HOSTNAME'],
+      database: ENV['AACT_PUBLIC_DATABASE_NAME'],
+#      username: user.username,
+#      password: user.unencrypted_password,
     ).connection
     expect(con.active?).to eq(true)
     expect(con.execute('select count(*) from studies').count).to eq(1)
     con.disconnect!
     expect(con.active?).to eq(false)
 
-    user.remove
+    Util::DbManager.new.remove_user(user)
     expect(User.count).to eq(0)
     # user can no longer access the public database
-    expect { ActiveRecord::Base.establish_connection(adapter:'postgresql',encoding:'utf8',database:'aact',username: user.username,password: unencrypted_password).connection}.to raise_error(ActiveRecord::NoDatabaseError)
+    expect { PublicBase.establish_connection(
+      adapter:'postgresql',
+      encoding:'utf8',
+      hostname: ENV['AACT_PUBLIC_HOSTNAME'],
+      database: ENV['AACT_PUBLIC_DATABASE_NAME'],
+#      username: user.username,
+#      password: user.unencrypted_password
+    ).connection}.to raise_error(ActiveRecord::NoDatabaseError)
     # Subsequent spec tests use this public db connection. Force reset back to test db.
     @dbconfig = YAML.load(File.read('config/database.yml'))
     ActiveRecord::Base.establish_connection @dbconfig[:test]
@@ -70,11 +101,12 @@ describe User do
     expect { user.create_unconfirmed }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
     expect(User.count).to eq(0)
     begin
-      ActiveRecord::Base.establish_connection(
+      PublicBase.establish_connection(
         adapter: 'postgresql',
         encoding: 'utf8',
-        database: 'aact',
-        username: user.username
+        hostname: ENV['AACT_PUBLIC_HOSTNAME'],
+        database: ENV['AACT_PUBLIC_DATABASE_NAME'],
+#        username: user.username
       ).connection
     rescue => e
       expect(e.class).to eq(ActiveRecord::NoDatabaseError)
@@ -84,18 +116,6 @@ describe User do
     # Subsequent spec tests use this public db connection. Force reset back to test db.
     @dbconfig = YAML.load(File.read('config/database.yml'))
     ActiveRecord::Base.establish_connection @dbconfig[:test]
-  end
-
-  it "Doesn't accept user unless first char of username is alpha" do
-    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'1rspec_test',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username must start with an alpha character')
-    expect(User.count).to eq(0)
-  end
-
-  it "Accepts usernames with numbers" do
-    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1-ec_test',:password=>'aact').save!
-    expect(User.count).to eq(1)
-    expect(User.first.username).to eq('r1-ec_test')
   end
 
   it { should validate_length_of(:first_name).is_at_most(100) }

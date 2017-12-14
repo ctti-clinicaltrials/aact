@@ -4,8 +4,8 @@ class DefinitionsController < ApplicationController
   # This code uses data dictionary spreadsheet stored on the DO file server
   # *******///********
 
-  @@results_url=Util::FileManager.nlm_results_data_url
-  @@protocol_url=Util::FileManager.nlm_protocol_data_url
+  @@results_url=Util::FileManager.new.nlm_results_data_url
+  @@protocol_url=Util::FileManager.new.nlm_protocol_data_url
 
   def index
     data = Roo::Spreadsheet.open(Util::FileManager.backend_data_dictionary)
