@@ -53,7 +53,31 @@
     </a> -->
   </div>
 
-  <%= render 'credentials/credentials' %>
+  <% if user_signed_in? %>
+    <%= render 'credentials/credentials' %>
+  <% else %>
+    <div class="connectionTypes">
+      <a href="/users/sign_up" class="connectionCard">
+
+        <h4>Create an Account to Access Cloud Database</h4>
+        <p>
+        As of September 2017, you need an AACT account to access the cloud-based database. Creating an account is easy: just click here and enter your name, an email address, and a password. Once you create an account and login, the credentials you need to access the database will be displayed here.
+        </p>
+        <%= icon("plug") %>
+      </a>
+    </div>
+
+    <div class="connectionTypes">
+      <a href="/users/sign_in" class="connectionCard">
+
+        <h4>Already Have an Account?</h4>
+        <p>
+          If you already have an AACT account and need a reminder of the access credentials, login and the info you need will appear here.
+        </p>
+        <%= icon("plug") %>
+      </a>
+    </div>
+  <% end %>
 
   </div>
 </section>
