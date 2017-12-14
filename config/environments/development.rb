@@ -6,11 +6,6 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
   config.action_mailer.raise_delivery_errors = false
- # config.after_initialize do
- #   Bullet.enable = true
- #   Bullet.bullet_logger = true
- #   Bullet.rails_logger = true
- # end
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {:address => 'localhost', :port => 25}
   config.active_support.deprecation = :log
@@ -19,5 +14,5 @@ Rails.application.configure do
   config.assets.digest = true
   config.assets.raise_runtime_errors = true
   config.action_view.raise_on_missing_translations = true
-  config.action_mailer.default_url_options = { host: "aact-staging.ctti-clinicaltrials.org" }
+  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
 end

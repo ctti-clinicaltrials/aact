@@ -1,6 +1,6 @@
 # config valid only for current version of Capistrano
 lock "3.8.2"
-#set :chruby_ruby, 'ruby-2.4.0'
+set :chruby_ruby, 'ruby-2.4.0'
 
 set :application, "aact"
 set :repo_url, "git@github.com:ctti-clinicaltrials/aact.git"
@@ -10,7 +10,7 @@ ask :branch, 'development'
 set :rails_env, 'development'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/srv/ctti/www/aact'
+set :deploy_to, '/srv/web/aact-dev.oit.duke.edu'
 
 # Default value for :format is :airbrussh.
 #set :format, :airbrussh

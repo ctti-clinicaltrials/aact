@@ -29,7 +29,11 @@
         <span class='command-prompt'>> </span><span class='command-entry'> library(RPostgreSQL)</span>
         <span class='command-response'>Loading required package: DBI</span>
         <span class='command-prompt'>> </span><span class='command-entry'> drv &lt;- dbDriver('PostgreSQL')</span>
-        <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="aact",host="<%= ENV['AACT_PUBLIC_HOSTNAME'] %>", port=5432, user="aact", password="<span class='command-entry'>aact</span>"&nbsp;&nbsp;&nbsp;</span>
+        <% if user_signed_in? %>
+  <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%= ENV['DB_READONLY_DBNAME'] %>",host="<%= ENV['DB_HOSTNAME'] %>", port=5432, user="<%= current_user.username %>", password="<span class='command-note'>your AACT password</span>")</span>
+        <% else %>
+<span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%= ENV['DB_READONLY_DBNAME'] %>",host="<%= ENV['DB_HOSTNAME'] %>", port=5432, user=<span class='command-note'>(sign up/in to get a username)<span>, password="</span><span class='command-note'>your AACT password</span><span class=command-entry'>")</span>
+        <% end %>
         <span class='command-prompt'>> </span><span class='command-entry'> aact_sample <- dbGetQuery(con, "select distinct study_type from studies")</span>
         <span class='command-prompt'>> </span><span class='command-entry'> write.csv(aact_sample, file='aact_sample.csv')</span>
         <span class='command-prompt'>> </span><span class='command-entry'> print(aact_sample)</span>

@@ -14,9 +14,8 @@ describe MeshTerm do
 
   it "should have accurately loaded mesh terms from a file." do
     expect(MeshTerm.count).to eq(152)
-    term=MeshTerm.where('description = ?','D000071422').first
+    term=MeshTerm.where('tree_number = ?','G05.410').first
     expect(term.qualifier).to eq('G05')
-    expect(term.tree_number).to eq('G05.410')
     expect(term.mesh_term).to eq('Inbreeding Depression')
     expect(term.downcase_mesh_term).to eq('inbreeding depression')
   end

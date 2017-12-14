@@ -5,6 +5,8 @@ development: &default
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
   url:  <%= ENV.fetch("AACT_BACK_DATABASE_URL", "") %>
+  username: <%= ENV.fetch("DB_SUPER_USERNAME", "") %>
+  password: <%= ENV.fetch("DB_SUPER_PASSWORD", "") %>
 
 test:
   <<: *default
@@ -17,6 +19,8 @@ production: &deploy
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
   url:  <%= ENV.fetch("AACT_BACK_DATABASE_URL", "") %>
+  username: <%= ENV.fetch("DB_SUPER_USERNAME", "") %>
+  password: <%= ENV.fetch("DB_SUPER_PASSWORD", "") %>
 
 public: &deploy
   encoding: utf8
@@ -25,5 +29,7 @@ public: &deploy
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
   url:  <%= ENV.fetch("AACT_PUBLIC_DATABASE_URL", "") %>
+  username: <%= ENV.fetch("DB_SUPER_USERNAME", "") %>
+  password: <%= ENV.fetch("DB_SUPER_PASSWORD", "") %>
 
 
