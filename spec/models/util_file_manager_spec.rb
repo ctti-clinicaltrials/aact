@@ -17,7 +17,7 @@ describe Util::FileManager do
       expect(dump_file.name).to eq('postgres_data.dmp')
       # The dump file contains commands to create the database"
       content=dump_file.get_input_stream.read
-      expect(content).to include("CREATE DATABASE aact_back")
+      expect(content).to include("CREATE DATABASE aact")
       expect(content.scan('DROP TABLE').size).to eq(42)
       expect(content.scan('CREATE TABLE').size).to eq(42)
       # If manager asked to get dmp file from the dmp file itself, it should simply return it
