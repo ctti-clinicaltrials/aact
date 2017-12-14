@@ -33,7 +33,7 @@ module Util
       system cmd
 
       # clear out previous content of staging db
-      stage_con.execute('DROP SCHEMA public CASCADE')
+      stage_con.execute('DROP SCHEMA IF EXISTS public CASCADE')
       stage_con.execute('CREATE SCHEMA public')
 
       # refresh staging db
