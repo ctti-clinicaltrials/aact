@@ -70,15 +70,11 @@ class User < AdminBase
 
   def remove
     begin
-      Util::DbManager.remove_user(self)
+      Util::DbManager.new.remove_user(self)
+      destroy
     rescue => e
       puts e.message
     end
-    destroy
-  end
-
-  def self.remove(email)
-    where('email=?',email).first.try(:remove)
   end
 
   def full_name
