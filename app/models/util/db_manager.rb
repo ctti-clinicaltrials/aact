@@ -95,8 +95,10 @@ module Util
     end
 
     def dump_database
-      # First create db named 'aact' so the dump file will be setup to restore db with that name
-      cmd="pg_dump --no-owner --no-acl aact_back > aact.psql"
+      # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
+      psql_file="#{Util::FileManager.dump_directory}/aact.psql"
+      File.delete(psql_file) if File.exist?(psql_file)
+      cmd="pg_dump --no-owner --no-acl aact_back > #{psql_file}"
       system cmd
 
       # clear out previous content of staging db
@@ -104,7 +106,7 @@ module Util
       stage_con.execute('CREATE SCHEMA public')
 
       # refresh staging db
-      cmd="psql aact < aact.psql > /dev/null"
+      cmd="psql aact < #{psql_file} > /dev/null"
       system cmd
 
       fm=Util::FileManager.new
