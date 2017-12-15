@@ -4,7 +4,7 @@ describe User do
   before(:all) do
     # In case tests failed in previous pass, remove db account in public database
     begin
-      Util::DbManager.remove_user(User.new(:username=>'spec_test'))
+      Util::UserManager.remove_user(User.new(:username=>'spec_test'))
     rescue
     end
   end
@@ -47,7 +47,7 @@ describe User do
     expect(user.sign_in_count).to eq(0)
     expect(user.unencrypted_password).to eq('aact_pwd')
     # user added to db as un-confirmed
-    expect(Util::DbManager.new.user_account_exists?(user)).to be(true)
+    expect(Util::UserManager.new.user_account_exists?(user)).to be(true)
     # user cannot login with the password they provided until they confirm their account
     begin
       con=PublicBase.establish_connection(
@@ -79,7 +79,7 @@ describe User do
     con.disconnect!
     expect(con.active?).to eq(false)
 
-    Util::DbManager.new.remove_user(user)
+    Util::UserManager.new.remove_user(user)
     expect(User.count).to eq(0)
     # user can no longer access the public database
     expect { PublicBase.establish_connection(
