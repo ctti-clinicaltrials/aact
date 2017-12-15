@@ -54,9 +54,9 @@ module Util
       revoke_db_privs
       dump_file_name=Util::FileManager.new.pg_dump_file
       return nil if dump_file_name.nil?
-      cmd="#{ENV['DB_SUPER_PASSWORD']} pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
+      cmd="PGPASSWORD=#{ENV['DB_SUPER_PASSWORD']} pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
       system cmd
-      cmd="#{ENV['DB_SUPER_PASSWORD']} pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
+      cmd="PGPASSWORD=#{ENV['DB_SUPER_PASSWORD']} pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
       system cmd
       grant_db_privs
     end
