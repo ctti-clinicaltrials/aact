@@ -29,7 +29,7 @@ module Util
       # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
       psql_file="#{Util::FileManager.dump_directory}/aact.psql"
       File.delete(psql_file) if File.exist?(psql_file)
-      cmd="pg_dump --no-owner --no-acl aact_back > #{psql_file}"
+      cmd="pg_dump --no-owner --no-acl -h localhost aact_back > #{psql_file}"
       system cmd
 
       # clear out previous content of staging db
@@ -37,7 +37,7 @@ module Util
       stage_con.execute('CREATE SCHEMA public')
 
       # refresh staging db
-      cmd="psql aact < #{psql_file} > /dev/null"
+      cmd="psql -h localhost aact < #{psql_file} > /dev/null"
       system cmd
 
       fm=Util::FileManager.new
@@ -54,9 +54,9 @@ module Util
       revoke_db_privs
       dump_file_name=Util::FileManager.new.pg_dump_file
       return nil if dump_file_name.nil?
-      cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
+      cmd="#{ENV['DB_SUPER_PASSWORD']} pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
       system cmd
-      cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
+      cmd="#{ENV['DB_SUPER_PASSWORD']} pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
       system cmd
       grant_db_privs
     end
