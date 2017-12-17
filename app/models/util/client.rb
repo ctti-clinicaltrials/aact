@@ -77,22 +77,21 @@ module Util
 
     def populate_studies
       return if @dry_run
-      total_count=StudyXmlRecord.not_yet_loaded.count
+      cntr=StudyXmlRecord.not_yet_loaded.count
       start_time=Time.now
-      puts "Load #{total_count} studies Start Time.....#{start_time}"
+      puts "Load #{cntr} studies Start Time.....#{start_time}"
 
-      cntr=total_count
       while cntr > 0
-        #  Memory limitation: process in chunks. Too slow if we go one-by-one tho.
-        StudyXmlRecord.not_yet_loaded[0..10000].each do |xml_record|
+        StudyXmlRecord.find_each do |xml_record|
           stime=Time.now
-          import_xml_file(xml_record.content)
-          xml_record.created_study_at=Date.today
-          xml_record.save!
-          puts "#{cntr} saved #{xml_record.nct_id}:  #{Time.now - stime}"
+          if xml_record.created_study_at.blank?
+            import_xml_file(xml_record.content)
+            xml_record.created_study_at=Date.today
+            xml_record.save!
+            puts "#{cntr} saved #{xml_record.nct_id}:  #{Time.now - stime}"
+          end
           cntr=cntr-1
         end
-        cntr=StudyXmlRecord.not_yet_loaded.count
       end
       puts "Total Load Time:.....#{Time.now - start_time}"
     end
