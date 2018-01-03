@@ -105,8 +105,12 @@ module Util
         file_url="#{url_base}/#{sub_dir}/#{file_name}"
         size=File.open(file_location).size
         date_string=file_name.split('_').first
-        date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : date_string)
-        entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+        # don't fail if unexpected file encountered
+        begin
+          date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
+          entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url} if date_created
+        rescue
+        end
       }
       entries.sort_by {|entry| entry[:name]}.reverse!
     end
