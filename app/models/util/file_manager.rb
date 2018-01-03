@@ -13,7 +13,7 @@ module Util
     end
 
     def self.url_base
-      '/static'
+      'static'
     end
 
     def self.static_root_dir
