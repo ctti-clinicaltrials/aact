@@ -6,11 +6,11 @@ module Util
     def take_snapshot
       dump_database
       fm=Util::FileManager.new
-      schema_diagram_file=File.open("#{fm.static_root_dir}/documentation/aact_schema.png")
-      admin_schema_diagram_file=File.open("#{fm.static_root_dir}/documentation/aact_admin_schema.png")
-      data_dictionary_file=File.open("#{fm.static_root_dir}/documentation/aact_data_definitions.xlsx")
-      nlm_protocol_file=fm.make_file_from_website('nlm_protocol_definitions.html',fm.nlm_protocol_data_url)
-      nlm_results_file=fm.make_file_from_website('nlm_results_definitions.html',fm.nlm_results_data_url)
+      schema_diagram_file=File.open("#{fm.backend_schema_diagram}")
+      admin_schema_diagram_file=File.open("#{fm.backend_admin_schema_diagram}")
+      data_dictionary_file=File.open("#{fm.backend_data_dictionary}")
+      nlm_protocol_file=fm.make_file_from_website("nlm_protocol_definitions.html",fm.nlm_protocol_data_url)
+      nlm_results_file=fm.make_file_from_website("nlm_results_definitions.html",fm.nlm_results_data_url)
 
       zip_file_name="#{fm.class.static_copies_directory}/#{Time.now.strftime('%Y%m%d')}_clinical_trials.zip"
       File.delete(zip_file_name) if File.exist?(zip_file_name)

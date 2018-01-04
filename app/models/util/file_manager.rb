@@ -13,7 +13,7 @@ module Util
     end
 
     def self.url_base
-      '/static'
+      "#{Rails.public_path}/static"
     end
 
     def self.static_root_dir
@@ -56,36 +56,22 @@ module Util
       files_in("exported_files")
     end
 
-    def self.documentation_directory
-      "#{url_base}/documentation"
+    #  ----  get files via linux op sys ------------------
+
+    def backend_admin_schema_diagram
+      "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
     end
 
-    def self.admin_schema_diagram
-      "#{self.documentation_directory}/aact_admin_schema.png"
+    def backend_schema_diagram
+      "#{Rails.public_path}/static/documentation/aact_schema.png"
     end
 
-    def self.schema_diagram
-      "#{self.documentation_directory}/aact_schema.png"
+    def backend_data_dictionary
+      "#{Rails.public_path}/static/documentation/aact_data_definitions.xlsx"
     end
 
-    def self.data_dictionary
-      "#{self.documentation_directory}/aact_data_definitions.xlsx"
-    end
-
-    def self.backend_data_dictionary
-      "#{static_root_dir}/documentation/aact_data_definitions.xlsx"
-    end
-
-    def self.table_dictionary
-      "#{self.documentation_directory}/aact_tables.xlsx"
-    end
-
-    def self.backend_table_dictionary
-      "#{static_root_dir}/documentation/aact_tables.xlsx"
-    end
-
-    def self.default_data_definitions
-      Roo::Spreadsheet.open("#{self.static_root_dir}/documentation/aact_data_definitions.xlsx")
+    def backend_table_dictionary
+      "#{Rails.public_path}/static/documentation/aact_tables.xlsx"
     end
 
     def self.default_mesh_terms
@@ -96,6 +82,30 @@ module Util
       "#{Rails.public_path}/mesh/mesh_headings.txt"
     end
 
+    def self.default_data_definitions
+      Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
+    end
+
+    #  ----  get files via url ------------------
+
+    def self.admin_schema_diagram
+      "/static/documentation/aact_admin_schema.png"
+    end
+
+    def self.schema_diagram
+      "/static/documentation/aact_schema.png"
+    end
+
+    def self.data_dictionary
+      "/static/documentation/aact_data_definitions.xlsx"
+    end
+
+    def self.table_dictionary
+      "/static/documentation/aact_tables.xlsx"
+    end
+
+    #  ----  other utility methods  -------------
+
     def self.files_in(sub_dir)
       entries=[]
       dir="#{static_root_dir}/#{sub_dir}"
@@ -105,8 +115,12 @@ module Util
         file_url="#{url_base}/#{sub_dir}/#{file_name}"
         size=File.open(file_location).size
         date_string=file_name.split('_').first
-        date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : date_string)
-        entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+        # don't fail if unexpected file encountered
+        begin
+          date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
+          entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url} if date_created
+        rescue
+        end
       }
       entries.sort_by {|entry| entry[:name]}.reverse!
     end
