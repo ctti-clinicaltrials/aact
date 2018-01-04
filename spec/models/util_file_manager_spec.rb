@@ -3,10 +3,6 @@ require 'rails_helper'
 describe Util::FileManager do
   describe 'create static db copy' do
     it "should save db static copy to the appropriate directory" do
-      stub_request(:get, "https://prsinfo.clinicaltrials.gov/definitions.html").
-           with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
-           to_return(status: 200, body: "", headers: {})
-
       allow_any_instance_of(Util::FileManager).to receive(:make_file_from_website).and_return(Util::FileManager.schema_diagram)
       fm=Util::FileManager.new
       dm=Util::DbManager.new
