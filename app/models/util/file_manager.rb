@@ -13,7 +13,7 @@ module Util
     end
 
     def self.url_base
-      'static'
+      "#{Rails.public_path}/static"
     end
 
     def self.static_root_dir
@@ -56,36 +56,22 @@ module Util
       files_in("exported_files")
     end
 
-    def self.documentation_directory
-      "#{url_base}/documentation"
+    #  ----  get files via linux op sys ------------------
+
+    def backend_admin_schema_diagram
+      "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
     end
 
-    def self.admin_schema_diagram
-      "#{self.documentation_directory}/aact_admin_schema.png"
+    def backend_schema_diagram
+      "#{Rails.public_path}/static/documentation/aact_schema.png"
     end
 
-    def self.schema_diagram
-      "#{self.documentation_directory}/aact_schema.png"
+    def backend_data_dictionary
+      "#{Rails.public_path}/static/documentation/aact_data_definitions.xlsx"
     end
 
-    def self.data_dictionary
-      "#{self.documentation_directory}/aact_data_definitions.xlsx"
-    end
-
-    def self.backend_data_dictionary
-      "#{static_root_dir}/documentation/aact_data_definitions.xlsx"
-    end
-
-    def self.table_dictionary
-      "#{self.documentation_directory}/aact_tables.xlsx"
-    end
-
-    def self.backend_table_dictionary
-      "#{static_root_dir}/documentation/aact_tables.xlsx"
-    end
-
-    def self.default_data_definitions
-      Roo::Spreadsheet.open("#{self.static_root_dir}/documentation/aact_data_definitions.xlsx")
+    def backend_table_dictionary
+      "#{Rails.public_path}/static/documentation/aact_tables.xlsx"
     end
 
     def self.default_mesh_terms
@@ -95,6 +81,30 @@ module Util
     def self.default_mesh_headings
       "#{Rails.public_path}/mesh/mesh_headings.txt"
     end
+
+    def self.default_data_definitions
+      Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
+    end
+
+    #  ----  get files via url ------------------
+
+    def self.admin_schema_diagram
+      "/static/documentation/aact_admin_schema.png"
+    end
+
+    def self.schema_diagram
+      "/static/documentation/aact_schema.png"
+    end
+
+    def self.data_dictionary
+      "/static/documentation/aact_data_definitions.xlsx"
+    end
+
+    def self.table_dictionary
+      "/static/documentation/aact_tables.xlsx"
+    end
+
+    #  ----  other utility methods  -------------
 
     def self.files_in(sub_dir)
       entries=[]
