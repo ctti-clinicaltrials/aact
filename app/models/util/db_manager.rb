@@ -63,19 +63,19 @@ module Util
 
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
-      con.execute("grant connect on database #{public_db_name} to public;")
-      con.execute("grant usage on schema public TO public;")
-      con.execute('grant select on all tables in schema public to public;')
+      pub_con.execute("grant connect on database #{public_db_name} to public;")
+      pub_con.execute("grant usage on schema public TO public;")
+      pub_con.execute('grant select on all tables in schema public to public;')
     end
 
     def revoke_db_privs
-      con.execute("revoke connect on database #{public_db_name} from public;")
-      con.execute("revoke select on all tables in schema public from public;")
-      con.execute("revoke all on schema public from public;")
+      pub_con.execute("revoke connect on database #{public_db_name} from public;")
+      pub_con.execute("revoke select on all tables in schema public from public;")
+      pub_con.execute("revoke all on schema public from public;")
     end
 
     def terminate_active_sessions
-      con.select_all("select * from pg_stat_activity order by pid;").each { |session|
+      pub_con.select_all("select * from pg_stat_activity order by pid;").each { |session|
         if session['datname']=="#{public_db_name}"
           con.execute("select pg_terminate_backend(#{session['pid']})")
         end
