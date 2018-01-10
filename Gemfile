@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.4.0"
+ruby "2.4.2"
 
 gem 'nokogiri'
 gem 'faraday_middleware-aws-signers-v4'
