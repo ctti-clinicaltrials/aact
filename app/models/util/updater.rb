@@ -94,7 +94,7 @@ module Util
       populate_admin_tables
       study_counts[:processed]=Study.count
       load_event.complete({:study_counts=>study_counts})
-      create_flat_files
+      create_flat_files if params[:event_type] =='full'
       take_snapshot
       if refresh_public_db == false
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE."
@@ -305,7 +305,8 @@ module Util
 
     def take_snapshot
       puts "creating static copy of the database..."
-      Util::DbManager.new.take_snapshot
+      Util::DbManager.new.dump_database
+      Util::DbManager.new.save_static_copy if params[:event_type]=='full'
     end
 
     def create_flat_files
