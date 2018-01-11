@@ -1,4 +1,4 @@
-class UseCase < AdminBase
+class UseCase < Admin::AdminBase
   has_many :use_case_attachments, :dependent => :destroy
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 

@@ -1,4 +1,4 @@
-class DatabaseActivity < AdminBase
+class DatabaseActivity < Admin::AdminBase
   #  pg log files are created for each day of the week:  Mon-Sun.  So there are always 7 files.
   #  we can either pull in data from one or all of these files.  If the day is not specified, iterate over all the files
 

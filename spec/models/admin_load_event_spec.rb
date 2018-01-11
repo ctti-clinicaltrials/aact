@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe LoadEvent do
+describe Admin::LoadEvent do
 
   describe '#complete' do
     let!(:load_event) { create(:load_event) }
@@ -19,7 +19,7 @@ describe LoadEvent do
 
   describe '#calculate_load_time' do
     it 'should return the difference in minutes and seconds' do
-      load_event = LoadEvent.create
+      load_event = Admin::LoadEvent.create
 
       Timecop.travel(5.minutes.from_now)
 
@@ -46,7 +46,7 @@ describe LoadEvent do
         let!(:load_event) { create(:load_event, event_type: 'get_studies') }
 
         it 'should raise an error' do
-          expect(Proc.new {load_event.generate_report(new: 1, changed: 3)}).to raise_error(LoadEvent::IncorrectEventTypeError)
+          expect(Proc.new {load_event.generate_report(new: 1, changed: 3)}).to raise_error(Admin::LoadEvent::IncorrectEventTypeError)
         end
       end
     end

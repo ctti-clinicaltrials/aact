@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Notifier, type: :mailer do
   describe 'instructions' do
-    let!(:event) {LoadEvent.new(:description=>'desc', :problems=>'probs')}
+    let!(:event) {Admin::LoadEvent.new(:description=>'desc', :problems=>'probs')}
     let(:msg) { described_class.send_msg('test@gmail.com',event) }
 
     it 'renders the subject' do

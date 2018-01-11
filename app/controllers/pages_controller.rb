@@ -36,7 +36,7 @@ class PagesController < ApplicationController
   end
 
   def sanity_check
-    @sanity_check_report = SanityCheck.last.report
+    @sanity_check_report = Admin::SanityCheck.last.report
   end
 
   def letsencrypt

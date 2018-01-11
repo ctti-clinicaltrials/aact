@@ -1,4 +1,4 @@
-class UseCaseAttachment < AdminBase
+class UseCaseAttachment < Admin::AdminBase
   belongs_to :use_case
 
   def self.create_from(file,image_type=nil)
