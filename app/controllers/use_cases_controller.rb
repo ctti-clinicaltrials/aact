@@ -5,7 +5,7 @@ class UseCasesController < ApplicationController
   # GET /use_cases
   # GET /use_cases.json
   def index
-    @use_cases = UseCase.where(status: 'public')
+    @use_cases = Admin::UseCase.where(status: 'public')
   end
 
   # GET /use_cases/1
@@ -15,7 +15,7 @@ class UseCasesController < ApplicationController
 
   # GET /use_cases/new
   def new
-    @use_case = UseCase.new
+    @use_case = Admin::UseCase.new
   end
 
   # GET /use_cases/1/edit
@@ -25,7 +25,7 @@ class UseCasesController < ApplicationController
   # POST /use_cases
   # POST /use_cases.json
   def create
-    @use_case = UseCase.new(use_case_params)
+    @use_case = Admin::UseCase.new(use_case_params)
 
     respond_to do |format|
       if @use_case.save
@@ -65,7 +65,7 @@ class UseCasesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_use_case
-      @use_case = UseCase.find(params[:id])
+      @use_case = Admin::UseCase.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
