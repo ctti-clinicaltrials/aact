@@ -6,7 +6,8 @@ describe Util::FileManager do
       allow_any_instance_of(Util::FileManager).to receive(:make_file_from_website).and_return(Util::FileManager.schema_diagram)
       fm=Util::FileManager.new
       dm=Util::DbManager.new
-      zip_file=dm.take_snapshot
+      dm.dump_database
+      zip_file=dm.save_static_copy
       expect(File).to exist(zip_file)
       # Manager returns the dmp file from zip file content
       dump_file=fm.get_dump_file_from(zip_file)

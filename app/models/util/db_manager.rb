@@ -3,8 +3,7 @@ module Util
 
     attr_accessor :con, :stage_con, :pub_con
 
-    def take_snapshot
-      dump_database
+    def save_static_copy
       fm=Util::FileManager.new
       schema_diagram_file=File.open("#{fm.backend_schema_diagram}")
       admin_schema_diagram_file=File.open("#{fm.backend_admin_schema_diagram}")
