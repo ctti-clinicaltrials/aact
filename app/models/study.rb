@@ -1,6 +1,5 @@
 require 'csv'
 class Study < ActiveRecord::Base
-  # index_name([Rails.env,base_class.to_s.pluralize.underscore].join('_'))
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
 
