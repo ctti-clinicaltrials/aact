@@ -34,7 +34,7 @@ module Util
         log(msg)
         Util::DbManager.new.grant_db_privs
         load_event.complete({:status=>'failed', :problems=> msg, :study_counts=> study_counts})
-        PublicAnnouncement.clear_load_message
+        Admin::PublicAnnouncement.clear_load_message
         send_notification
       end
     end
@@ -361,7 +361,7 @@ private
       if sanity_checks_ok?
         submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
         Util::DbManager.new.refresh_public_db
-        PublicAnnouncement.clear_load_message
+        Admin::PublicAnnouncement.clear_load_message
         return true
       else
         puts load_event.problems
@@ -375,7 +375,7 @@ private
     end
 
     def submit_public_announcement(announcement)
-      PublicAnnouncement.populate(announcement)
+      Admin::PublicAnnouncement.populate(announcement)
     end
 
   end
