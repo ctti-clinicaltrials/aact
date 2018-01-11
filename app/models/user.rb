@@ -1,4 +1,4 @@
-class User < AdminBase
+class User < Admin::AdminBase
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Validations

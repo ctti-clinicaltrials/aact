@@ -20,10 +20,10 @@ class DictionaryController < ApplicationController
   end
 
   def fix_attribs(hash)
-    # get row count from the DataDefinition.row_count
+    # get row count from the Admin::DataDefinition.row_count
     tab=hash['table'].downcase
     col=(tab=='studies' ? 'nct_id' : 'id')
-    results=AdminBase.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}' and column_name='#{col}'")
+    results=Admin::AdminBase.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}' and column_name='#{col}'")
     if results.ntuples > 0
       row_count=results.getvalue(0,0).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
       hash['row count']=row_count

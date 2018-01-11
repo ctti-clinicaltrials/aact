@@ -12,7 +12,7 @@ module Util
       @client = Util::Client.new
       @days_back=(@params[:days_back] ? @params[:days_back] : 2)
       @rss_reader = Util::RssReader.new(days_back: @days_back)
-      @load_event = LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
+      @load_event = Admin::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
       self
     end
@@ -34,7 +34,7 @@ module Util
         log(msg)
         Util::DbManager.new.grant_db_privs
         load_event.complete({:status=>'failed', :problems=> msg, :study_counts=> study_counts})
-        PublicAnnouncement.clear_load_message
+        Admin::PublicAnnouncement.clear_load_message
         send_notification
       end
     end
@@ -247,7 +247,7 @@ module Util
           ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
           log("deleted studies from #{table}   #{Time.now - stime}")
         }
-        AdminBase.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
+        Admin::AdminBase.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
         nct_ids.each {|nct_id|
           refresh_study(nct_id)
           decrement_count_down
@@ -275,32 +275,27 @@ module Util
 
     def run_sanity_checks
       log("running sanity checks...")
-      SanityCheck.populate
+      Admin::SanityCheck.populate
     end
 
     def sanity_checks_ok?
-      sanity_set=SanityCheck.where('most_current is true')
+      sanity_set=Admin::SanityCheck.where('most_current is true')
       sanity_set.each{|s|
         load_event.problems="Duplicate data detected. : #{s.table_name}.  #{load_event.problems}" if s.table_name.include? 'duplicate'
       }
       load_event.problems="Fewer sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size < 40
       load_event.problems="More sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size > 40
       load_event.problems="Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.  #{load_event.problems}" if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
-      if !load_event.problems.blank?
-        load_event.save!
-        return false
-      else
-        return true
-      end
+      return load_event.problems.blank?
     end
 
     def load_event
-      @load_event ||= LoadEvent.new
+      @load_event ||= Admin::LoadEvent.new
     end
 
     def refresh_data_definitions(data=Util::FileManager.default_data_definitions)
       log("refreshing data definitions...")
-      DataDefinition.populate(data)
+      Admin::DataDefinition.populate(data)
     end
 
     def take_snapshot
@@ -363,11 +358,16 @@ private
     def refresh_public_db
       # recreate public db from back-end db
       # if dump file not provided, restore from most recent snapshot
-      return false if !sanity_checks_ok?
-      submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
-      Util::DbManager.new.refresh_public_db
-      PublicAnnouncement.clear_load_message
-      return true
+      if sanity_checks_ok?
+        submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
+        Util::DbManager.new.refresh_public_db
+        Admin::PublicAnnouncement.clear_load_message
+        return true
+      else
+        puts load_event.problems
+        load_event.save!
+        return false
+      end
     end
 
     def db_name
@@ -375,7 +375,7 @@ private
     end
 
     def submit_public_announcement(announcement)
-      PublicAnnouncement.populate(announcement)
+      Admin::PublicAnnouncement.populate(announcement)
     end
 
   end

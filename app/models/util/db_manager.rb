@@ -28,7 +28,7 @@ module Util
       # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
       psql_file="#{Util::FileManager.dump_directory}/aact.psql"
       File.delete(psql_file) if File.exist?(psql_file)
-      cmd="pg_dump --no-owner --no-acl -h localhost aact_back > #{psql_file}"
+      cmd="PGPASSWORD=#{ENV['DB_SUPER_PASSWORD']} pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} aact_back > #{psql_file}"
       system cmd
 
       # clear out previous content of staging db
@@ -43,7 +43,7 @@ module Util
       dump_file_name=fm.pg_dump_file
       db_name=ActiveRecord::Base.connection.current_database
       File.delete(dump_file_name) if File.exist?(dump_file_name)
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{dump_file_name}"
+      cmd="PGPASSWORD=#{ENV['DB_SUPER_PASSWORD']} pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{dump_file_name}"
       puts cmd
       system cmd
       return dump_file_name

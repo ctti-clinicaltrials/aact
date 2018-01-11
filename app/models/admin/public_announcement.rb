@@ -1,4 +1,4 @@
-class PublicAnnouncement < AdminBase
+class Admin::PublicAnnouncement < Admin::AdminBase
 
   def self.populate(string)
     clear_load_message

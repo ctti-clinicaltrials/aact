@@ -49,7 +49,7 @@ class DefinitionsController < ApplicationController
   end
 
   def fix_attribs(hash)
-    enums=DataDefinition.enums
+    enums=Admin::DataDefinition.enums
     enum_tabs=enums.map {|row| row[0]}
     enum_cols=enums.map {|row| row[1]}
     tab=hash['table'].downcase
@@ -61,7 +61,7 @@ class DefinitionsController < ApplicationController
     end
 
     if enum_tabs.include? tab and enum_cols.include? col
-      dd=DataDefinition.where('table_name=? and column_name=?',tab,col).first
+      dd=Admin::DataDefinition.where('table_name=? and column_name=?',tab,col).first
       return if dd.enumerations.nil?
       str="<select>"
       dd.enumerations.each{|e|

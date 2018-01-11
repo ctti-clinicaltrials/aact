@@ -214,4 +214,15 @@ describe Util::Updater do
       expect(study.plan_to_share_ipd_description).to eq(nil)
     end
   end
+
+  context 'when something went wrong with the loads ' do
+    it 'should not refresh the public db' do
+    end
+
+    it 'should record the problem(s) to the LoadEvent record' do
+     #allow_any_instance_of(Util::SanityCheck).to receive(:get_added_nct_ids).and_return( [*1..10000] )
+    end
+
+  end
+
 end
