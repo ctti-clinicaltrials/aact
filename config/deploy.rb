@@ -1,6 +1,5 @@
 # config valid only for current version of Capistrano
 lock "3.8.2"
-set :chruby_ruby, 'ruby-2.4.0'
 
 set :application, "aact"
 set :repo_url, "git@github.com:ctti-clinicaltrials/aact.git"
@@ -10,7 +9,6 @@ ask :branch, 'development'
 set :rails_env, 'development'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/srv/web/aact-dev.oit.duke.edu'
 
 # Default value for :format is :airbrussh.
 #set :format, :airbrussh
@@ -31,10 +29,12 @@ set :format_options, command_output: true, log_file: "log/capistrano.log", color
 # Default value for default_env is {}
 
 set :default_env, {
-#  'PATH' => "/path/to/.rvm/ree-1.8.7-2009.10/bin:/path/to/.rvm/gems/ree/1.8.7/bin:/path/to/.rvm/bin:$PATH",
+  'PATH' => "/home/ctti-aact/bin/:/srv/web/aact.ctti-clinicaltrials.org/shared/bundle/ruby/2.4.0/bin:/opt/rh/rh-ruby24/root/usr/lib64:$PATH",
+  'LD_LIBRARY_PATH' => "/opt/rh/rh-ruby24/root/usr/lib64",
+  'APPLICATION_HOST' => ENV['APPLICATION_HOST'],
   'RUBY_VERSION' => 'ruby 2.4.0',
   'GEM_HOME' => '/home/ctti-aact/.gem/ruby',
-  'GEM_PATH' => '/home/ctti-aact/.gem/ruby:/opt/rh/rh-ruby24/root/usr/share/gems:/opt/rh/rh-ruby24/root/usr/local/share/gems'
+  'GEM_PATH' => '/home/ctti-aact/.gem/ruby/gems:/opt/rh/rh-ruby24/root/usr/share/gems:/opt/rh/rh-ruby24/root/usr/local/share/gems:/opt/rh/rh-ruby24/root/usr/lib64'
 }
 
 # Default value for keep_releases is 5

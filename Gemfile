@@ -46,7 +46,6 @@ gem 'devise-encryptable'
 # deployment to server
 gem 'capistrano', '~> 3.8'
 gem 'capistrano-rails', '~> 1.2'
-gem 'capistrano-chruby'
 
 group :development do
   gem "quiet_assets"

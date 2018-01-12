@@ -35,6 +35,7 @@
 #
 # Global options
 # --------------
+  set :deploy_to, '/srv/web/aact-dev.oit.duke.edu'
   set :ssh_options, {
     keys: %w(/home/ctti-aact/.ssh/id_rsa),
     forward_agent: false,
@@ -44,7 +45,7 @@
 # The server-based syntax can be used to override options:
 # ------------------------------------
  server "ctti-web-dev-01.oit.duke.edu",
-   roles: %w{web db app},
+   roles: %w{web app},
    ssh_options: {
      user: "ctti-aact", # overrides user setting above
      keys: %w(/home/ctti-aact/.ssh/id_rsa),
