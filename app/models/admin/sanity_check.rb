@@ -2,7 +2,7 @@ module Admin
   class SanityCheck < Admin::AdminBase
 
     def save_row_counts
-      AdminBase.connection.execute('UPDATE sanity_checks SET most_current=false')
+      Admin::AdminBase.connection.execute('UPDATE sanity_checks SET most_current=false')
       Util::Updater.loadable_tables.each{|table_name|
         table_name='references' if table_name=='study_references'
         cnt=table_name.singularize.camelize.constantize.count
