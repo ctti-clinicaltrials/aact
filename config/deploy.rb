@@ -8,6 +8,22 @@ set :repo_url, "git@github.com:ctti-clinicaltrials/aact.git"
 ask :branch, 'development'
 set :rails_env, 'development'
 
+namespace :deploy do
+  after :deploy, 'finish_up'
+end
+
+desc 'Finalize the deployment'
+task :finish_up do
+  on roles(:app) do
+    # create symlink to /aact-files
+    target = release_path.join('public/static')
+    source = '/aact-files'
+    execute :ln, '-s', source, target
+    # restart the website
+    execute :touch, release_path.join('tmp/restart.txt')
+  end
+end
+
 # Default deploy_to directory is /var/www/my_app_name
 
 # Default value for :format is :airbrussh.
