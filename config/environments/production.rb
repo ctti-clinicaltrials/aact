@@ -7,10 +7,11 @@ Rails.application.configure do
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.middleware.use Rack::Deflater
   config.assets.js_compressor = :uglifier
-  config.assets.compile = false
+  #config.assets.compile = false
   config.assets.digest = true
   config.log_level = :debug
-  config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
+  #config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
+  config.assets.precompile =  ['*.js', '*.css', '*.scss']
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings =  {
     :address => '127.0.0.1',
