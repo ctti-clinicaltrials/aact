@@ -1,3 +1,5 @@
+@import "variables";
+@import "library";
 .error {
   color: #800000;
   font-weight: bold;
@@ -39,7 +41,6 @@ section.homeHero {
   }
 
   div.copy {
-    @include columnify(8, true);
     display: block;
     margin: 0 auto;
     padding: 4rem 3rem;

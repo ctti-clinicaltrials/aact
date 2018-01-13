@@ -27,7 +27,6 @@ div.grid {
   top: 0;
   left: 0;
   right: 0;
-  @include center(x);
   font-size: 0px;
 
   div.column {

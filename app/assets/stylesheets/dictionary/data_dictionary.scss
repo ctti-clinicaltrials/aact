@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import "variables";
+@import "library";
 
 span.enum {
   color: red;
@@ -75,8 +77,6 @@ label::before {
   width: 86px;
   height: 26px;
   margin-right: 3px;
-  @include box-shadow(4px 4px 12px $light-grey);
-#  background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
   background: #008aa1;
 }
 
@@ -98,7 +98,6 @@ section.dataDictionaryShow {
   }
 
   div.wrap {
-    @include columnify(10, true);
     display: block;
     margin: 0 auto;
   }
