@@ -1,7 +1,6 @@
-
-
+@import "variables";
+@import "library";
 button, input[type="submit"], a.button {
-  @include transition(all 150ms ease-in-out);
   background-color: $button-color;
   color: $button-text-color;
   font-size: 1rem;

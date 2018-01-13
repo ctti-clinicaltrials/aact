@@ -1,3 +1,6 @@
+@import "variables";
+@import "library";
+
 div.basicHero {
   padding: 40px 0px;
 }
@@ -16,10 +19,6 @@ div.quickLinks {
   @include display-flex;
   @include flex-wrap(wrap);
   width: 100%;
-
-  div.wrap {
-    @include columnify(11, true);
-  }
 
   div.quickLink {
     width: 50%;

@@ -140,8 +140,8 @@ GEM
       faraday (~> 0.9)
     ffi (1.9.18)
     flutie (2.0.0)
-    font-awesome-sass (4.7.0)
-      sass (>= 3.2)
+    font-awesome-rails (4.7.0.3)
+      railties (>= 3.2, < 5.2)
     formulaic (0.4.0)
       activesupport
       capybara
@@ -203,7 +203,6 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (2.0.5)
-    puma (3.9.1)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.8)
@@ -368,7 +367,7 @@ DEPENDENCIES
   faraday
   faraday_middleware-aws-signers-v4
   flutie
-  font-awesome-sass
+  font-awesome-rails
   formulaic
   gon
   high_voltage
@@ -382,7 +381,6 @@ DEPENDENCIES
   pg
   pry-byebug
   pry-rails
-  puma
   quiet_assets
   rack
   rack-cors
