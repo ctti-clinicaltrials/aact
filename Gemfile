@@ -15,7 +15,6 @@ gem "sidekiq"
 gem "normalize-rails"
 gem "pg"
 gem 'rails_12factor'
-gem "puma"
 gem "coderay"
 gem "recipient_interceptor"
 gem "sass-rails"
@@ -29,7 +28,7 @@ gem 'enumerize'
 gem 'bulk_insert'
 gem 'activerecord-import'
 gem 'sinatra', :require => nil
-gem 'font-awesome-sass'
+gem 'font-awesome-rails'
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
 gem 'gon'
