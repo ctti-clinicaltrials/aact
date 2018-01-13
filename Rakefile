@@ -8,9 +8,12 @@ task(:default).clear
 task default: [:spec]
 
 if Rails.env != 'production'
-  task(:spec).clear
-  RSpec::Core::RakeTask.new(:spec) do |t|
-    t.verbose = false
+  begin
+    task(:spec).clear
+    RSpec::Core::RakeTask.new(:spec) do |t|
+      t.verbose = false
+    end
+  rescue
   end
 end
 
