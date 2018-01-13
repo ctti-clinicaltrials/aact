@@ -203,7 +203,6 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (2.0.5)
-    puma (3.9.1)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.8)
@@ -382,7 +381,6 @@ DEPENDENCIES
   pg
   pry-byebug
   pry-rails
-  puma
   quiet_assets
   rack
   rack-cors
