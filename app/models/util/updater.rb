@@ -94,12 +94,12 @@ module Util
       populate_admin_tables
       study_counts[:processed]=Study.count
       load_event.complete({:study_counts=>study_counts})
-      create_flat_files if params[:event_type] =='full'
       take_snapshot
       if refresh_public_db == false
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE."
         load_event.save!
       end
+      #create_flat_files if params[:event_type] =='full'
       send_notification
     end
 
