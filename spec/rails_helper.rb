@@ -1,4 +1,5 @@
 ENV["RACK_ENV"] = "test"
+ENV["RAILS_ENV"] = "test"
 
 require File.expand_path("../../config/environment", __FILE__)
 abort("AACT_ADMIN_DATABASE_URL environment variable is set")   if !ENV["AACT_ADMIN_DATABASE_URL"]
