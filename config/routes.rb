@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   get "/sas"                  => "pages#sas"
   get "/psql"                 => "pages#psql"
   get "/frequently_asked_questions" => "pages#frequently_asked_questions"
+  get "/other_info"           => "pages#other_info"
   get "/background"           => "pages#background"
+  get "/release_notes"        => "pages#release_notes"
 
   get "/points_to_consider"   => "pages#points_to_consider"
   get "/news"                 => "pages#news"
