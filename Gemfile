@@ -48,8 +48,8 @@ gem 'capistrano-rails', '~> 1.2'
 
 group :development do
   gem "quiet_assets"
-  gem "spring"
-  gem "spring-commands-rspec"
+#  gem "spring"
+#  gem "spring-commands-rspec"
   gem 'letter_opener'
 end
 
