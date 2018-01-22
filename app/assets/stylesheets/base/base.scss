@@ -45,6 +45,10 @@ table.gridDisplay, th.gridDisplay, tr.gridDisplay, td.gridDisplay {
   border-color: $primary;
 }
 
+ul.noBullets {
+  list-style-type: none;
+}
+
 ul.indent {
     margin: 20px 60px 20px;
 }
@@ -218,7 +222,6 @@ h4 {
   }
 }
 
-
 td, th {
   padding:10px;
   border:solid 1px #eee;
@@ -232,9 +235,6 @@ input {
   margin-bottom:10px;
   font-size: 12px;
 }
-
-
-
 
 div.step {
   @include display-flex;
@@ -255,4 +255,8 @@ div.step {
     margin-right: .5rem;
     font-family: $font-sans;
   }
+}
+
+section.dictionaryOverview, section.dataDefinitions, section.namingConventions, section.releaseNotes {
+  background-color: $white;
 }

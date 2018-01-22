@@ -1,0 +1,93 @@
+    <h3>AACT 3.0 <i>(January 22, 2018)</i></h3>
+    <p>
+    The primary objective for this release is to move the website, database and related code to servers hosted by Duke University and DigitalOcean in order to provide users with a static IP address for the database and to reduce monthly costs for hosting platforms. Below is a more detailed list of changes.
+    </p>
+
+    <h5>New Server Platforms</h5>
+    <p>The previous version of the AACT database was hosted on the Amazon Web Services (AWS) Relational Database Service (RDS); the AACT website and data processes were hosted on a Heroku server. As of January 22, 2018, the AACT public database will now be hosted on a DigitalOcean server and the website, supporting databases and all system software will reside on virtual Linux servers maintained by Duke University's Office of Information Technology.</p>
+    <p><b>Website and Data Processing Server:</b></p>
+    <ul class='regularDisplay noBullets'>
+      <li>
+        152.3.101.93  (aact.ctti-clinicaltrials.org)
+      </li>
+      <li>
+        Red Hat Enterprise Linux Server 7.4
+      </li>
+      <li>
+        Linux 3.10.0-693.11.6.el7.x86_64
+      </li>
+      <li>
+        Virtualization: vmware
+      </li>
+    </ul>
+
+    <p><b>Database Server:</b></p>
+    <ul class='regularDisplay noBullets'>
+      <li>
+        174.138.61.222 (aact-db.ctti-clinicaltrials.org)
+      </li>
+      <li>
+        CentOS Linux 7 (Core)
+      </li>
+      <li>
+        Linux 3.10.0-693.5.2.el7.x86_64
+      </li>
+      <li>
+        Virtualization: kvm
+      </li>
+    </ul>
+
+    <p>Advantages of this configuration:</p>
+    <ul class='regularDisplay'>
+        <li>
+            <p><b>Static IP Address:</b> The AACT database will have a static IP address which is needed by organizations that employ whitelists to secure their local area networks. (Some firewalls are configured to only allow data-traffic to/from certain IP-addresses.)  While AWS users can setup static IP addresses for their virtual private networks, AWS does not provide a way to define a static IP address for a specific database instance.  The lack of a static IP address was a significant problem for several users.</p>
+          </li>
+          <li>
+            <p><b>Support:</b> The Duke University Office of Information Technology (OIT) has a team of highly qualified server administrator who use established practices and tested procedures to ensure upgrades and patches are applied and servers remain up-to-date and secure.  A service agreement is in place to guarantee on-going support.</p>
+          </li>
+          <li>
+            <p><b>Positioned for Growth:</b> We need to address performance issues as more people discover and query AACT. By using a third-party service like DigitalOcean, we can easily replicate the database server to distribute the load across machines. If organizations or individuals want a dedicated instance of the database because they need reliably fast response times or would like to enhance the database with custom views, triggers, procedures, etc., we can help stand up 'private' servers and have processes refresh them nightly so they remain updated along with the 'public' database.</p>
+          </li>
+          <li>
+            <p><b>Reduced Cost:</b> We expect the new configuration to significantly reduce monthly overhead costs.</p>
+          </li>
+        </li>
+      </ul>
+   <h5>Updates Performed as Background Process</h5>
+   <p>In the previous version of AACT, the public database was taken down each evening for about one hour to apply all the changes that had been made in ClinicalTrials.gov that day. Periodically, a full refresh of the database was conducted; this process took approximately 15 hours during which time the database was inaccessible. To minimize such downtime, the load process has been reconfigured so that a background database is updated while the publicly accessible AACT database remains available. When the process completes, the publicly accessible version of the database is restored (via pg_restore) which takes less than 5 minutes. This model also allows us to verify that the load process was successful before the public database is updated.</p>
+
+   <h5>New Data Elements</h5>
+   <p>On August 30, 2017, the National Library of Medicine (NLM) began providing a new set of dates for each clinical trial via the ClinicalTrials.gov API. The Studies table in AACT has been adapted to include these new date-type data elements:</p>
+   <ul class='regularDisplay'>
+     <li><i>study_first_submitted_date</i></li>
+     <li><i>results_first_submitted_date</i></li>
+     <li><i>disposition_first_submitted_date</i></li>
+     <li><i>last_update_submitted_date</i></li>
+     <li><i>study_first_submitted_qc_date</i></li>
+     <li><i>study_first_posted_date</i></li>
+     <li><i>results_first_submitted_qc_date</i></li>
+     <li><i>results_first_posted_date</i></li>
+     <li><i>disposition_first_submitted_qc_date</i></li>
+     <li><i>disposition_first_posted_date</i></li>
+     <li><i>last_update_submitted_qc_date</i></li>
+     <li><i>last_update_posted_date</i></li>
+   </ul>
+
+   <p>String-type data elements added:</p>
+   <ul class='regularDisplay'>
+     <li><i>study_first_posted_date_type</i></li>
+     <li><i>results_first_posted_date_type</i></li>
+     <li><i>disposition_first_posted_date_type</i></li>
+     <li><i>last_update_posted_date_type</i></li>
+   </ul>
+   <p class='regularDisplay'>NLM deprecated <a href='https://clinicaltrials.gov/ct2/html/images/info/public.xsd' target='_blank'>four date elements </a> (displayed in the left column of the table below) and recommended that users start using the alternative date element (on the right). NLM wrote: "<i>Some existing dates are now redundant.  They will be kept for some time to provide an opportunity for users of the XML to update their systems before being removed at a later date, probably in 2018.</i>"</p>
+   <table class='regularDisplay'>
+     <tr><td><i>first_received_date</i></td>                  <td><i>study_first_submitted_date</i></tr>
+     <tr><td><i>first_received_results_date</i></td>          <td><i>results_first_submitted_date</i></tr>
+     <tr><td><i>first_received_results_disposit_date</i></td> <td><i>disposition_first_submitted_date</i></tr>
+     <tr><td><i>last_changed_date</i></td>                    <td><i>last_update_submitted_date</i></tr>
+   </table>
+
+   <p>AACT continues to provide the deprecated data elements.  They will continue to be available in AACT until NLM removes them from their API.</p>
+   <h5>Software Upgrade</h5>
+   <p>AACT has been upgraded to Ruby 2.4.0 & Rails 4.2.9 (Previously: Ruby 2.2.3 & Rails 4.2.7.1)</p>
