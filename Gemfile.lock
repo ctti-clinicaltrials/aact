@@ -53,9 +53,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     api-pagination (4.3.0)
-    appsignal (1.1.5)
+    appsignal (2.3.0)
       rack
-      thread_safe
     arel (6.0.3)
     autoprefixer-rails (6.4.0.2)
       execjs
@@ -512,7 +511,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.9.0)
   activerecord-import
   api-pagination
-  appsignal
+  appsignal (~> 2.3)
   autoprefixer-rails
   awesome_print
   aws-sdk (~> 2)
@@ -584,4 +583,4 @@ RUBY VERSION
    ruby 2.2.3p173
 
 BUNDLED WITH
-   1.12.5
+   1.15.1

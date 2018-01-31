@@ -1,8 +1,20 @@
 require 'rails_helper'
+require 'rss'
 
 describe ClinicalTrials::Updater do
 
+  it "continues on if there's a timeout error when attempting to retrieve data from clinicaltrials.gov for one of the studies"do
+    allow(RSS::Parser).to receive(:parse).and_raise(Net::ReadTimeout)
+    updater=ClinicalTrials::Updater.new
+    # Should try 5 times for both changed and added rss calls.
+    expect(RSS::Parser).to receive(:parse).exactly(10).times
+    # Should proceed and finish up by sending a notification
+    expect(updater).to receive(:send_notification).once
+    updater.incremental
+  end
+
   it "aborts incremental load when number of studies exceeds 10000" do
+    allow_any_instance_of(ClinicalTrials::RssReader).to receive(:get_added_nct_ids).and_return( [*1..10000] )
     allow_any_instance_of(ClinicalTrials::RssReader).to receive(:get_changed_nct_ids).and_return( [*1..10000] )
     updater=ClinicalTrials::Updater.new
     expect(updater).to receive(:send_notification).once

@@ -16,7 +16,9 @@ class OutcomeAnalysis < StudyRelationship
       opts[:xml]=xml
       opts[:non_inferiority_type]=xml.xpath('non_inferiority_type').text
       opts[:non_inferiority_description]=xml.xpath('non_inferiority_desc').text
-      opts[:p_value]=xml.xpath('p_value').text
+      opts[:p_value]=xml.xpath('p_value').text.gsub(/</, '').gsub(/>/, '').gsub(/ /, '').strip
+      val=xml.xpath('p_value').text.gsub(/\d+/, "").gsub('.','').gsub('-','').strip
+      opts[:p_value_modifier]=val if val.size > 0
       opts[:p_value_desc]=xml.xpath('p_value_desc').text
       opts[:param_type]=xml.xpath('param_type').text
       opts[:param_value]=xml.xpath('param_value').text
@@ -59,6 +61,7 @@ class OutcomeAnalysis < StudyRelationship
       :non_inferiority_type => get_opt(:non_inferiority_type),
       :non_inferiority_description => get_opt(:non_inferiority_description),
       :p_value => get_opt(:p_value),
+      :p_value_modifier => get_opt(:p_value_modifier),
       :p_value_description => get_opt(:p_value_desc),
       :param_type => get_opt(:param_type),
       :param_value => get_opt(:param_value),

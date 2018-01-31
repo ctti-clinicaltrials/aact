@@ -1,21 +1,17 @@
 module ClinicalTrials
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :study_filter
+    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader
 
     def initialize(params={})
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
-        puts("Restarting the load...")
-        # don't allow filtering by nct ID unless it's a restart because filtering is done so that multiple loads can run simultaneously
-        # if multiple jobs running for initial full load - they would step on each ther when study_xml_records table gets truncated
-        @study_filter=@params[:study_filter]
-        record_type="Restart #{@study_filter}"
-      else
         puts("Starting the #{type} load...")
         record_type=type
       end
       @client = ClinicalTrials::Client.new
+      @days_back=(@params[:days_back] ? @params[:days_back] : 4)
+      @rss_reader = ClinicalTrials::RssReader.new(days_back: @days_back)
       @load_event = LoadEvent.create({:event_type=>record_type,:status=>'running',:description=>'',:problems=>''})
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
       self
@@ -23,25 +19,22 @@ module ClinicalTrials
 
     def run
       ActiveRecord::Base.logger=nil
-      if study_filter
-        @client.populate_studies(study_filter)
-        load_event.complete({:new_studies=> Study.count})
-      else
-        case params[:event_type]
+      case params[:event_type]
         when 'full'
           full
         when 'finalize'
           finalize_full_load
         else
           incremental
-        end
       end
     end
 
     def full
       begin
         log('begin ...')
+        @client.reboot_db
         revoke_db_privs
+        PublicAnnouncement.populate("The AACT database is currently unavailable because it is undergoing a full refresh. It should be available again by #{(Time.now + 12.hours).strftime("%I:%M%p  %m/%d/%Y EST")} We apologize for the inconvenience.")
         if should_restart?
           log("restarting full load...")
         else
@@ -55,7 +48,9 @@ module ClinicalTrials
         study_counts[:should_change]=0
         @client.populate_studies
         finalize_full_load
+        PublicAnnouncement.clear_load_message
       rescue  Exception => e
+        PublicAnnouncement.clear_load_message
         study_counts[:processed]=Study.count
         puts ">>>>>>>>>>> Full load failed:  #{e}"
         grant_db_privs
@@ -65,10 +60,14 @@ module ClinicalTrials
     end
 
     def finalize_full_load
-      remove_indexes  # Make sure indexes are gone before trying to add them.
-      add_indexes
+      begin
+        remove_indexes  # Make sure indexes are gone before trying to add them.
+        add_indexes
+        create_calculated_values
+      rescue
+        grant_db_privs
+      end
       grant_db_privs
-      create_calculated_values
       populate_admin_tables
       take_snapshot
       create_flat_files
@@ -161,7 +160,7 @@ module ClinicalTrials
       m=ActiveRecord::Migration.new
       ClinicalTrials::Updater.loadable_tables.each {|table_name|
         ActiveRecord::Base.connection.indexes(table_name).each{|index|
-          m.remove_index(index.table, index.columns) unless should_keep_index?(index)
+          m.remove_index(index.table, index.columns) if !should_keep_index?(index) and m.index_exists?(index.table, index.columns)
         }
       }
     end
@@ -172,15 +171,17 @@ module ClinicalTrials
 
     def add_indexes
       m=ActiveRecord::Migration.new
-      indexes.each{|index| m.add_index index.first, index.last}
+      indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
     end
 
     def incremental
+      load_event.event_type='incremental'
       log("begin incremental load...")
-      days_back=(@params[:days_back] ? @params[:days_back] : 4)
-      log("finding studies changed in past #{days_back} days...")
-      ids = ClinicalTrials::RssReader.new(days_back: days_back).get_changed_nct_ids
-      log("found #{ids.size} studies that have been changed or added")
+      log("finding studies changed in past #{@days_back} days...")
+      added_ids = @rss_reader.get_added_nct_ids
+      changed_ids = @rss_reader.get_changed_nct_ids
+      ids=(changed_ids + added_ids).uniq
+      log("found #{ids.size} studies that have been changed")
       case ids.size
       when 0
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
@@ -193,12 +194,14 @@ module ClinicalTrials
         return
       end
       set_expected_counts(ids)
-      ActiveRecord::Base.connection.execute('REVOKE CONNECT ON DATABASE aact FROM aact;')
-      remove_indexes  # Index significantly slow the load process.
-      update_studies(ids)
-      add_indexes
-      CalculatedValue.populate
-      ActiveRecord::Base.connection.execute('GRANT CONNECT ON DATABASE aact TO aact;')
+      ActiveRecord::Base.transaction do
+        PublicAnnouncement.populate("The live AACT database is temporarily unavailable because the daily update is running.")
+        remove_indexes  # Index significantly slow the load process.
+        update_studies(ids)
+        add_indexes
+        CalculatedValue.populate
+        PublicAnnouncement.clear_load_message
+      end
       populate_admin_tables
       log_actual_counts
       load_event.complete({:study_counts=> study_counts})
@@ -222,6 +225,8 @@ module ClinicalTrials
         schema_migrations
         data_definitions
         load_events
+        mesh_terms
+        mesh_headings
         sanity_checks
         statistics
         study_xml_records
@@ -277,7 +282,7 @@ module ClinicalTrials
     end
 
     def take_snapshot
-      puts "snapshot the database..."
+      puts "creating static copy of the database..."
       ClinicalTrials::FileManager.new.take_snapshot
     end
 
@@ -320,15 +325,27 @@ module ClinicalTrials
       log("studies added/changed: #{study_counts[:processed]}\n")
     end
 
-    private
+private
 
     def revoke_db_privs
-      ActiveRecord::Base.connection.execute("REVOKE ALL PRIVILEGES ON database #{db_name} FROM aact;")
+      con=ActiveRecord::Base.connection
+      con.execute("revoke connect on database #{db_name} from aact;")
+      con.execute("revoke select on all tables in schema public from aact;")
+      con.execute("revoke all on schema public from public;")
+      con.execute("revoke all on schema public from aact;")
     end
 
     def grant_db_privs
-      ActiveRecord::Base.connection.execute("GRANT CONNECT ON DATABASE #{db_name} TO aact;")
-      ActiveRecord::Base.connection.execute('GRANT SELECT ON ALL TABLES IN SCHEMA public TO aact;')
+      # some of this may seem redundant & better placed in revoke_db_privs, but the following works to allow aact user to
+      # select from tables, but not update the tables nor create new tables
+      con=ActiveRecord::Base.connection
+      con.execute("revoke all on all tables in schema public from aact;")
+      con.execute("revoke all on schema public from aact;")
+      con.execute("revoke all on schema public from public;")
+      con.execute("revoke usage on schema public from public;")
+      con.execute("grant connect on database #{db_name} to aact;")
+      con.execute("grant usage on schema public TO aact;")
+      con.execute('grant select on all tables in schema public to aact;')
     end
 
     def db_name

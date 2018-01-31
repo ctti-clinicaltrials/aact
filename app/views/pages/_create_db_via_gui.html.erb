@@ -13,12 +13,12 @@
     <ul class='regularDisplay'>
       <li>Connect to the local Postgres server.</li>
       <li>Using pgAdmin, select a Server, right-click and select Connect, and enter the password to connect to the Postgres server. (The PostgresSQL selection no longer contains a red X.)</li>
-      <li>Create an empty Postgres database and restore the AACT snapshot.</li>
+      <li>Create an empty Postgres database and create/populate it from the static copy of AACT.</li>
       <li>Using pgAdmin, select Databases, right-click and select New Database.</li>
       <ul class='regularDisplay'>
         <li>Under the Properties tab, enter a name for the Database and click OK</li>
         <li>Select the new Database, right-click and select Restore</li>
-        <li>In the File Options section, select the unzipped AACT snapshot file as the Filename and select postgres as the Rolename</li>
+        <li>In the File Options section, select the name of the AACT database package as the Filename and select postgres as the Rolename</li>
         <li>In the Restore Options #1 section, under the Don’t save header, select Owner and Privilege and click Restore. </li>
       </ul>
     </ul>

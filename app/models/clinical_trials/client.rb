@@ -14,6 +14,15 @@ module ClinicalTrials
       @errors = []
     end
 
+    def reboot_db
+      db_name=ENV['S3_BUCKET_NAME']
+      aws_client = Aws::RDS::Client.new(region: ENV['AWS_REGION'])
+      resp = aws_client.reboot_db_instance({
+          db_instance_identifier: db_name,
+          force_failover: false,
+      })
+    end
+
     def download_xml_files
       tries ||= 5
 
@@ -51,8 +60,19 @@ module ClinicalTrials
     end
 
     def get_xml_for(nct_id)
-      url="#{BASE_URL}/show/#{nct_id}?resultsxml=true"
-      Nokogiri::XML(Faraday.get(url).body)
+      tries ||= 5
+      begin
+        url="#{BASE_URL}/show/#{nct_id}?resultsxml=true"
+        Nokogiri::XML(Faraday.get(url).body)
+      rescue => e
+        #  have been encountering timeout errors.  If encountered, try again
+        if (tries -=1) > 0
+          puts "Error calling: #{url}"
+          puts e.inspect
+          retry
+        end
+        puts "Giving up on #{nct_id}.  Move on to next study"
+      end
     end
 
     def create_study_xml_record(nct_id,xml)

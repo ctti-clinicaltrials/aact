@@ -165,7 +165,8 @@ class CreateResultTables < ActiveRecord::Migration
       t.decimal "param_value"
       t.string  "dispersion_type"
       t.decimal "dispersion_value"
-      t.decimal "p_value"
+      t.string  "p_value_modifier"
+      t.float   "p_value",  :precision => 7, :scale => 6
       t.string  "ci_n_sides"
       t.decimal "ci_percent"
       t.decimal "ci_lower_limit"

@@ -12,6 +12,16 @@ class UseCase < AdminBase
     self
   end
 
+  def update(params = {})
+    file = params.delete(:file)
+    image_file = params.delete('image_file')
+    self.use_case_attachments = []
+    self.attachments << UseCaseAttachment.create_from(file) if file
+    self.image = image_file if image_file
+    super
+    self
+  end
+
   def linkable_url
     return nil if self.url.blank?
     if self.url.match(/^http:\/\//) or self.url.match(/^https:\/\//)

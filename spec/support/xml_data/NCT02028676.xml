@@ -2479,7 +2479,7 @@ ABC: abacavir: Ziagen 3TC: lamivudine: Epivir ABC+3TC co-formulated: Kivexa</des
             </group_id_list>
             <non_inferiority_type>Non-Inferiority or Equivalence</non_inferiority_type>
             <non_inferiority_desc>631 children would be required to exclude a 12% lower suppression rate in the once daily group with at least 90% power and two-sided alpha=0.05 (lower 95% confidence limit of difference between once and twice daily -12%, the non-inferiority margin). 630 children retains at least 80% (rather than 90%) power to exclude a 10% (rather than 12%) lower suppression rate in the once daily group with one-sided alpha=0.05 (lower 90% confidence limit of difference between once and twice daily -10%).</non_inferiority_desc>
-            <p_value>0.65</p_value>
+            <p_value>-0.65</p_value>
             <method>Chi-squared</method>
             <param_type>Risk Difference (RD)</param_type>
             <param_value>-1.6</param_value>
