@@ -1,0 +1,422 @@
+@import "variables";
+
+// Layout
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+
+@mixin bg-size($size: 100% auto) {
+    -webkit-background-size: $size;
+    -moz-background-size: $size;
+    background-size: $size;
+}
+
+@mixin center($xy:xy) {
+  @if $xy == xy {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    @include transform(translateX(-50%) translateY(-50%));
+  }
+  @else if $xy == x {
+    left: 50%;
+    right: auto;
+    @include transform(translateX(-50%));
+  }
+  @else if $xy == y {
+    top: 50%;
+    bottom: auto;
+    @include transform(translateY(-50%));
+  }
+}
+
+
+// Effects
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+
+@mixin animate($args...) {
+  -webkit-animation: $args;
+     -moz-animation: $args;
+      -ms-animation: $args;
+       -o-animation: $args;
+          animation: $args;
+}
+
+@mixin backface-visibility {
+  -webkit-backface-visibility: hidden;
+     -moz-backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+@mixin border-box {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@mixin border-radius($amount) {
+  -webkit-border-radius: $amount;
+     -moz-border-radius: $amount;
+       -o-border-radius: $amount;
+          border-radius: $amount;
+}
+
+@mixin box-shadow($attrs) {
+  -webkit-box-shadow: $attrs;
+     -moz-box-shadow: $attrs;
+       -o-box-shadow: $attrs;
+          box-shadow: $attrs;
+}
+
+@mixin opacity($amount) {
+  -webkit-opacity: $amount;
+     -moz-opacity: $amount;
+       -o-opacity: $amount;
+          opacity: $amount;
+}
+
+@mixin filter($attrs) {
+  -webkit-filter: $attrs;
+     -moz-filter: $attrs;
+       -o-filter: $attrs;
+          filter: $attrs;
+}
+
+@mixin transform($attrs) {
+  -webkit-transform: $attrs;
+     -moz-transform: $attrs;
+      -ms-transform: $attrs;
+          transform: $attrs;
+}
+
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+@mixin scale($scale) {
+   @include transform(scale($scale));
+}
+
+@mixin translate ($x, $y) {
+   @include transform(translate($x, $y));
+}
+
+@mixin skew ($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+@mixin transition($attrs) {
+  -webkit-transition: $attrs;
+     -moz-transition: $attrs;
+      -ms-transition: $attrs;
+          transition: $attrs;
+}
+
+@mixin transition-delay($delay) {
+  -webkit-transition-delay: $delay;
+     -moz-transition-delay: $delay;
+      -ms-transition-delay: $delay;
+          transition-delay: $delay;
+}
+
+@mixin transform-origin($args) {
+  -webkit-transform-origin: $args;
+     -moz-transform-origin: $args;
+      -ms-transform-origin: $args;
+       -o-transform-origin: $args;
+          transform-origin: $args;
+}
+
+@mixin animateCss($duration: 3s, $delay: 2s, $iteration: 1) {
+  -webkit-animation-duration: $duration;
+  -webkit-animation-delay: $delay;
+  -webkit-animation-iteration-count: $iteration;
+  -moz-animation-duration: $duration;
+  -moz-animation-delay: $delay;
+  -moz-animation-iteration-count: $iteration;
+  -ms-animation-duration: $duration;
+  -ms-animation-delay: $delay;
+  -ms-animation-iteration-count: $iteration;
+  -o-animation-duration: $duration;
+  -o-animation-delay: $delay;
+  -o-animation-iteration-count: $iteration;
+  animation-duration: $duration;
+  animation-delay: $delay;
+  animation-iteration-count: $iteration;
+}
+
+@mixin mobile-scroll {
+  -webkit-overflow-scrolling: touch;
+                  overflow-y: scroll;
+}
+
+// Development
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+
+@mixin debug { background: #FFFFEE; outline: 1px solid red !important; }
+@mixin hide { display: none; }
+@mixin unsized { img:not([width]):not([height]) { outline: 2px solid red !important; } }
+
+// Hacks
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+
+@mixin clearfix {
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  zoom: 1;
+}
+
+
+// Responsive ———————————————————————————————— •
+// ——————————————————————————————————————————— •
+
+$S:     480px;
+$M:     768px;
+$ML:    910px;
+$L:     1180px;
+
+@mixin MQ($canvas) {
+  @if $canvas == S {
+   @media only screen and (min-width: $S) { @content; }
+  }
+  @else if $canvas == M {
+   @media only screen and (min-width: $M) { @content; }
+  }
+  @else if $canvas == ML {
+   @media only screen and (min-width: $ML) { @content; }
+  }
+  @else if $canvas == L {
+   @media only screen and (min-width: $L) { @content; }
+  }
+}
+
+
+// Retina
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+
+@mixin retinafy($image, $width, $height) {
+  @media (min--moz-device-pixel-ratio: 1.3),
+         (-o-min-device-pixel-ratio: 2.6/2),
+         (-webkit-min-device-pixel-ratio: 1.3),
+         (min-device-pixel-ratio: 1.3),
+         (min-resolution: 1.3dppx) {
+    background-image: url($image);
+    background-size: $width $height;
+  }
+}
+
+
+// Flexbox Mixins
+// --------------------------------------------------
+// http://philipwalton.github.io/solved-by-flexbox/
+// https://github.com/philipwalton/solved-by-flexbox
+
+@mixin display-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin display-inline-flex {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin flex-direction($value: row) {
+  @if $value == row-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: horizontal;
+  } @else if $value == column {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+  } @else if $value == column-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: vertical;
+  } @else {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+  }
+  -webkit-flex-direction: $value;
+  -moz-flex-direction: $value;
+  -ms-flex-direction: $value;
+  flex-direction: $value;
+}
+
+@mixin flex-wrap($value: nowrap) {
+  // No Webkit Box fallback.
+  -webkit-flex-wrap: $value;
+  -moz-flex-wrap: $value;
+  @if $value == nowrap {
+      -ms-flex-wrap: none;
+  } @else {
+      -ms-flex-wrap: $value;
+  }
+  flex-wrap: $value;
+}
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+  -webkit-box-flex: $fg;
+  @if $fs == null and $fb == null {
+    -webkit-flex: $fg;
+    -moz-flex: $fg;
+    -ms-flex: $fg;
+    flex: $fg;
+  } @else {
+    -webkit-flex: $fg $fs $fb;
+    -moz-flex: $fg $fs $fb;
+    -ms-flex: $fg $fs $fb;
+    flex: $fg $fs $fb;
+  }
+}
+
+@mixin flex-flow($values: (row nowrap)) {
+  // No Webkit Box fallback.
+  -webkit-flex-flow: $values;
+  -moz-flex-flow: $values;
+  -ms-flex-flow: $values;
+  flex-flow: $values;
+}
+
+@mixin align-items($value: stretch) {
+  @if $value == flex-start {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+  } @else if $value == flex-end {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+  } @else {
+    -webkit-box-align: $value;
+    -ms-flex-align: $value;
+  }
+  -webkit-align-items: $value;
+  -moz-align-items: $value;
+  align-items: $value;
+}
+
+@mixin align-self($value: auto) {
+  -webkit-align-self: $value;
+  -moz-align-self: $value;
+  @if $value == flex-start {
+    -ms-flex-item-align: start;
+  } @else if $value == flex-end {
+    -ms-flex-item-align: end;
+  } @else {
+    -ms-flex-item-align: $value;
+  }
+  align-self: $value;
+}
+
+@mixin align-content($value: stretch) {
+  -webkit-align-content: $value;
+  -moz-align-content: $value;
+  @if $value == flex-start {
+    -ms-flex-line-pack: start;
+  } @else if $value == flex-end {
+    -ms-flex-line-pack: end;
+  } @else {
+    -ms-flex-line-pack: $value;
+  }
+  align-content: $value;
+}
+
+@mixin justify-content($value: stretch) {
+  @if $value == flex-start {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+  } @else if $value == flex-end {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+  } @else if $value == space-between {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+  } @else {
+    -webkit-box-pack: $value;
+    -ms-flex-pack: $value;
+  }
+  -webkit-justify-content: $value;
+  -moz-justify-content: $value;
+  justify-content: $value;
+}
+
+@mixin column-size($size) {
+  @include flex(0, 0, $size);
+  width: $size !important;
+}
+
+
+// Gradients
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+@mixin fadeToBlack {
+ background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 48%, rgba(0,0,0,0.91) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(48%,rgba(0,0,0,0.7)), color-stop(100%,rgba(0,0,0,0.91))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 48%,rgba(0,0,0,0.91) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 48%,rgba(0,0,0,0.91) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 48%,rgba(0,0,0,0.91) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 48%,rgba(0,0,0,0.91) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#e8000000',GradientType=0 ); /* IE6-9 */
+}
+
+// Shapes
+// ••••••••••••••••••••••••••••••••••••••••••••••••••
+
+@mixin arrow-up($color:black, $thickness:6px) {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-color: transparent transparent $color transparent;
+    border-style: solid;
+    border-width: $thickness;
+}
+
+@mixin arrow-down($color:black, $thickness:6px) {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-color: $color transparent transparent transparent;
+    border-style: solid;
+    border-width: $thickness;
+}
+
+
+
+div.newsletter {
+  width: 66.66%;
+  position: relative;
+  display: block;
+
+  input {
+    margin: 0px;
+    position: absolute;
+    @include center(y);
+    border-radius: 0px;
+    border-color: transparent;
+    outline: none;
+    font-family: $font-sans;
+    color: $grey;
+    font-size: 1rem;
+  }
+
+  input[type="button"] {
+    right: 0px;
+    background-color: $primary;
+    color: $white;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    left: 0px;
+  }
+}

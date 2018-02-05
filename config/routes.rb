@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/credentials"          => "credentials#show"
   get "/activities"           => "database_activity#show"
   get 'dictionary/show'
+  get "/category/show"
 
   get "/connect"              => "pages#connect"
   get "/pgadmin"              => "pages#pgadmin"
@@ -38,6 +39,9 @@ Rails.application.routes.draw do
   get "/snapshot_archive"     => "pages#snapshot_archive"
 
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
+  get "/category/get_terms/:id"    => "category#get_terms"
+  get "/category/get_studies/:id"  => "category#get_studies"
+
 
   resources :definitions
   resources :use_cases
