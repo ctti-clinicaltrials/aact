@@ -1,0 +1,40 @@
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+<script>
+jQuery(document).ready(function($){
+    var $collapsables = $('.collapsable-section');
+    $collapsables.each(function(i){
+        var $label = $(this).find('.label').filter(':first');
+        var $fields = $(this).find('.fields').filter(':first');
+        $label.click(function(e){
+            $fields.slideToggle(200);
+        });
+    });
+});
+</script>
+
+<section class="categoryShow">
+  <%= form_for(@category, url: support_categories_path(@category)) do |f| %>
+    <main>
+
+      <div class="well form-group">
+        <p><%= f.select :category, @categories, {:include_blank => 'Select Clinical Category'}, :id => 'select-category' %></p>
+      </div>
+
+      <div class="collapsable-section">
+        <div>
+          <div class='label'>Associated Terms</div>
+          <div class='fields'><%= render 'categorized_terms' %></div>
+        </div>
+      </div>
+
+      <div class="collapsable-section">
+        <div>
+          <div class='label'>Associated Studies</div>
+          <div class='fields'><%= render 'categorized_studies' %></div>
+        </div>
+      </div>
+    </main>
+
+  <% end %>
+</section>
