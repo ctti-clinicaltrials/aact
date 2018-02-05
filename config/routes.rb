@@ -38,12 +38,18 @@ Rails.application.routes.draw do
   get "/pipe_files_with_sas"  => "pages#pipe_files_with_sas"
   get "/snapshot_archive"     => "pages#snapshot_archive"
 
-  get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
   get "/category/get_terms/:id"    => "category#get_terms"
   get "/category/get_studies/:id"  => "category#get_studies"
 
+  get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
 
   resources :definitions
+  resources :studies
   resources :use_cases
   resources :use_case_attachments
+
+  namespace :support do
+    resources :categories
+  end
+
 end
