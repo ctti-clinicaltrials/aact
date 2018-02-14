@@ -361,7 +361,6 @@ private
 
     def refresh_public_db
       # recreate public db from back-end db
-      # if dump file not provided, restore from most recent snapshot
       if sanity_checks_ok?
         submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
         Util::DbManager.new.refresh_public_db
@@ -370,6 +369,7 @@ private
       else
         puts load_event.problems
         load_event.save!
+        Admin::PublicAnnouncement.clear_load_message
         return false
       end
     end
