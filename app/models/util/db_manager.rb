@@ -50,14 +50,22 @@ module Util
     end
 
     def refresh_public_db
-      revoke_db_privs
-      dump_file_name=Util::FileManager.new.pg_dump_file
-      return nil if dump_file_name.nil?
-      cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
-      system cmd
-      cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
-      system cmd
-      grant_db_privs
+      begin
+        revoke_db_privs
+        dump_file_name=Util::FileManager.new.pg_dump_file
+        return nil if dump_file_name.nil?
+        terminate_active_sessions
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
+        system cmd
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
+        system cmd
+        grant_db_privs
+        return true
+      rescue
+        grant_db_privs
+        return false
+      end
+
     end
 
     def grant_db_privs

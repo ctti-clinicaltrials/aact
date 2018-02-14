@@ -95,7 +95,7 @@ module Util
       study_counts[:processed]=Study.count
       load_event.complete({:study_counts=>study_counts})
       take_snapshot
-      if refresh_public_db == false
+      if refresh_public_db != true
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE."
         load_event.save!
       end
