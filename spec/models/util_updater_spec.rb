@@ -47,6 +47,15 @@ describe Util::Updater do
     updater.run
   end
 
+  it "aborts incremental load when number of studies in refreshed (background) db is less than number of studies in public db" do
+    allow_any_instance_of(Util::DbManager).to receive(:public_study_count).and_return(5)
+    allow_any_instance_of(Util::DbManager).to receive(:background_study_count).and_return(1)
+    updater=Util::Updater.new
+    expect(updater).to receive(:send_notification).once
+    expect(updater).to receive(:refresh_public_db).never
+    updater.run
+  end
+
   it "correctly updates study relationships with incremental update" do
     nct_id='NCT02028676'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
