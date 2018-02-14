@@ -95,7 +95,7 @@ module Util
       study_counts[:processed]=Study.count
       load_event.complete({:study_counts=>study_counts})
       take_snapshot
-      if refresh_public_db == false
+      if refresh_public_db != true
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE."
         load_event.save!
       end
@@ -286,6 +286,10 @@ module Util
       load_event.problems="Fewer sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size < 40
       load_event.problems="More sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size > 40
       load_event.problems="Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.  #{load_event.problems}" if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
+      db_mgr=Util::DbManager.new
+      old_count=db_mgr.public_study_count
+      new_count=db_mgr.background_study_count
+      load_event.problems="New db has fewer studies (#{new_count}) than current public db (#{old_count})" if old_count < new_count
       return load_event.problems.blank?
     end
 
@@ -357,7 +361,6 @@ private
 
     def refresh_public_db
       # recreate public db from back-end db
-      # if dump file not provided, restore from most recent snapshot
       if sanity_checks_ok?
         submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
         Util::DbManager.new.refresh_public_db
@@ -366,6 +369,7 @@ private
       else
         puts load_event.problems
         load_event.save!
+        Admin::PublicAnnouncement.clear_load_message
         return false
       end
     end

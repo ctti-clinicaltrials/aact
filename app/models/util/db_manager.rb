@@ -28,7 +28,7 @@ module Util
       # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
       psql_file="#{Util::FileManager.dump_directory}/aact.psql"
       File.delete(psql_file) if File.exist?(psql_file)
-      cmd="PGPASSWORD=#{ENV['DB_SUPER_PASSWORD']} pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} aact_back > #{psql_file}"
+      cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} aact_back > #{psql_file}"
       system cmd
 
       # clear out previous content of staging db
@@ -43,21 +43,29 @@ module Util
       dump_file_name=fm.pg_dump_file
       db_name=ActiveRecord::Base.connection.current_database
       File.delete(dump_file_name) if File.exist?(dump_file_name)
-      cmd="PGPASSWORD=#{ENV['DB_SUPER_PASSWORD']} pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{dump_file_name}"
+      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{dump_file_name}"
       puts cmd
       system cmd
       return dump_file_name
     end
 
     def refresh_public_db
-      revoke_db_privs
-      dump_file_name=Util::FileManager.new.pg_dump_file
-      return nil if dump_file_name.nil?
-      cmd="PGPASSWORD=#{ENV['DB_SUPER_PASSWORD']} pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
-      system cmd
-      cmd="PGPASSWORD=#{ENV['DB_SUPER_PASSWORD']} pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
-      system cmd
-      grant_db_privs
+      begin
+        revoke_db_privs
+        dump_file_name=Util::FileManager.new.pg_dump_file
+        return nil if dump_file_name.nil?
+        terminate_active_sessions
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
+        system cmd
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
+        system cmd
+        grant_db_privs
+        return true
+      rescue
+        grant_db_privs
+        return false
+      end
+
     end
 
     def grant_db_privs
@@ -79,6 +87,14 @@ module Util
           con.execute("select pg_terminate_backend(#{session['pid']})")
         end
       }
+    end
+
+    def public_study_count
+      pub_con.execute("select count(*) from studies").values.flatten.first.to_i
+    end
+
+    def background_study_count
+      con.execute("select count(*) from studies").values.flatten.first.to_i
     end
 
     def con
