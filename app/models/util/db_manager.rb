@@ -89,6 +89,14 @@ module Util
       }
     end
 
+    def public_study_count
+      pub_con.execute("select count(*) from studies").values.flatten.first.to_i
+    end
+
+    def background_study_count
+      con.execute("select count(*) from studies").values.flatten.first.to_i
+    end
+
     def con
       @con ||= ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
     end
