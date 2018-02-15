@@ -1,0 +1,22 @@
+ <h3>AACT 3.0.1 <i>(February 20, 2018)</i></h3>
+
+  <h5>Database Updater Enhanced</h5>
+  <p>A number of small changes were made to the process that updates the AACT database.</p>
+  <ul class='regularDisplay'>
+    <li>
+      <p><i>pg_restore</i> is used to refresh the public database from an updated copy. This process failed when people were logged into the public database. Now all database sessions are terminated before running the <i>pg_restore</i> command. This typically occurs around 2am EST.</p>
+    </li>
+    <li>
+      <p>The updater revokes all access to the public database while <i>pg_restore</i> is running. When it terminiated unexpectedly, the database remained inaccessible. This has been fixed. Now the updater detects when this process aborts, grants user access back to the public database, and sends an email notification to AACT administrators to report the failure.</p>
+    </li>
+    <li>
+      <p>A validation test now prevents the public database from being refreshed if the number of studies in the updated database appears to have decreased.</p>
+    </li>
+  </ul>
+
+ <h5>Release Notes Page</h5>
+ <p>This page has been added to display all release notes.</p>
+
+ <h5>Previous Version of AACT Was Removed</h5>
+ <p>On February 9th, we decommissioned the AACT database hosted on Amazon Web Service and the AACT website hosted on Heroku.</p>
+

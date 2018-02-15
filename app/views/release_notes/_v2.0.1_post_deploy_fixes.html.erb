@@ -1,4 +1,0 @@
-    <h3>AACT 2.0.1 post deploy fixes <i>(February 7, 2017)</i></h3>
-    <p>We now reboot the database before launching the full load to disconnect user connections. Previously, the full load would hang if active sessions were running, waiting for a quiet database before it would start.  </p>
-
-    <p> The nightly incremental load was not finding all the added & changed trials from the ClinicalTrials.gov RSS feed. We now send 2 RSS calls to ct.gov to get them all. Also, if a call to the ClinicalTrials.gov API times out, it tries 5 times before giving up.  </p>
