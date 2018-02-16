@@ -1,3 +1,10 @@
+class String
+  def is_missing_the_day?
+    # use this method on string representations of dates.  If only one space in the string, then the day is not provided.
+    (count ' ') == 1
+  end
+end
+
 require 'csv'
 class Study < ActiveRecord::Base
 
@@ -194,10 +201,15 @@ class Study < ActiveRecord::Base
 
   def attribs
     {
-      :start_month_year => get('start_date'),
-      :verification_month_year => get('verification_date'),
-      :completion_month_year => get('completion_date'),
+      :start_month_year              => get('start_date'),
+      :verification_month_year       => get('verification_date'),
+      :completion_month_year         => get('completion_date'),
       :primary_completion_month_year => get('primary_completion_date'),
+
+      :start_date                    =>  convert_date('start_date'),
+      :verification_date             =>  convert_date('verification_date'),
+      :completion_date               =>  convert_date('completion_date'),
+      :primary_completion_date       =>  convert_date('primary_completion_date'),
 
       :study_first_submitted_qc_date        =>  get('study_first_submitted_qc').try(:to_date),
       :study_first_posted_date              =>  get('study_first_posted').try(:to_date),
@@ -207,11 +219,6 @@ class Study < ActiveRecord::Base
       :disposition_first_posted_date        =>  get('disposition_first_posted').try(:to_date),
       :last_update_submitted_qc_date        =>  get('last_update_submitted_qc').try(:to_date),
       :last_update_posted_date              =>  get('last_update_posted').try(:to_date),
-
-      :start_date                  =>  get('start_date').try(:to_date),
-      :verification_date           =>  get('verification_date').try(:to_date),
-      :completion_date             =>  get('completion_date').try(:to_date),
-      :primary_completion_date     =>  get('primary_completion_date').try(:to_date),
 
       # deprecate (delete) these at some point in 2018
       :first_received_date => get_date(get('study_first_submitted')),
@@ -299,6 +306,13 @@ class Study < ActiveRecord::Base
 
   def get_date(str)
     Date.parse(str) if !str.blank?
+  end
+
+  def convert_date(label)
+    dt=get(label)
+    return nil if dt.nil?
+    return dt.to_date.end_of_month if dt.is_missing_the_day?
+    return dt.to_date
   end
 
   def outcome_analyses

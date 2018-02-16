@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.0
--- Dumped by pg_dump version 10.0
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1389,7 +1389,8 @@ CREATE TABLE outcomes (
     units character varying,
     units_analyzed character varying,
     dispersion_type character varying,
-    param_type character varying
+    param_type character varying,
+    anticipated_posting_date date
 );
 
 
@@ -2843,13 +2844,6 @@ CREATE INDEX index_sponsors_on_name ON sponsors USING btree (name);
 
 
 --
--- Name: index_studies_on_completion_date; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_studies_on_completion_date ON studies USING btree (completion_date);
-
-
---
 -- Name: index_studies_on_enrollment_type; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2892,13 +2886,6 @@ CREATE INDEX index_studies_on_phase ON studies USING btree (phase);
 
 
 --
--- Name: index_studies_on_primary_completion_date; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_studies_on_primary_completion_date ON studies USING btree (primary_completion_date);
-
-
---
 -- Name: index_studies_on_primary_completion_date_type; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2917,20 +2904,6 @@ CREATE INDEX index_studies_on_received_results_disposit_date ON studies USING bt
 --
 
 CREATE INDEX index_studies_on_source ON studies USING btree (source);
-
-
---
--- Name: index_studies_on_start_date; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_studies_on_start_date ON studies USING btree (start_date);
-
-
---
--- Name: index_studies_on_start_date_type; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_studies_on_start_date_type ON studies USING btree (start_date_type);
 
 
 --
@@ -2971,4 +2944,6 @@ INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 INSERT INTO schema_migrations (version) VALUES ('20170307184859');
 
 INSERT INTO schema_migrations (version) VALUES ('20170411000122');
+
+INSERT INTO schema_migrations (version) VALUES ('20180215000122');
 
