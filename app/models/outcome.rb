@@ -52,7 +52,7 @@ class Outcome < StudyRelationship
       :param_type      => get_opt('param_type'),
       :dispersion_type => get_opt('dispersion_type'),
       :anticipated_posting_month_year  => get_opt('posting_date'),
-      #:outcome_groups   => OutcomeGroup.create_all_from({:nct_id=>opts[:nct_id],:outcome=>self,:groups=>opts[:groups]}),
+      :anticipated_posting_date  => get('posting_date').try(:to_date).try(:end_of_month),
     }
   end
 
