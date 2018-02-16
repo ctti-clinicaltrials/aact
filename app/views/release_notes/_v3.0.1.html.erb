@@ -1,0 +1,28 @@
+ <h3>AACT 3.0.1 <i>(February 20, 2018)</i></h3>
+
+  <h5>Database Updater Enhanced</h5>
+  <p>A number of small changes were made to the process that updates the AACT database.</p>
+  <ul class='regularDisplay'>
+    <li>
+      <p><i>pg_restore</i> is used to refresh the public database from an updated copy. This process failed when people were logged into the public database. Now all database sessions are terminated before running the <i>pg_restore</i> command. This typically occurs around 2am EST.</p>
+    </li>
+    <li>
+      <p>The updater revokes all access to the public database while <i>pg_restore</i> is running. When it terminiated unexpectedly, the database remained inaccessible. This has been fixed. Now the updater detects when this process aborts, grants user access back to the public database, and sends an email notification to AACT administrators to report the failure.</p>
+    </li>
+    <li>
+      <p>A validation test now prevents the public database from being refreshed if the number of studies in the updated database appears to have decreased.</p>
+    </li>
+  </ul>
+
+ <h5>Release Notes Page</h5>
+ <p>This page has been added to display all release notes.</p>
+
+ <h5>Month/Year Date Conversion Uses Last Day of Month</h5>
+ <p>If a date value doesn’t provide the day (it only provides month & year), we save that value as a string in a column with a month_year suffix.  We also convert the value to a date-type value and save that in a column with a _date suffix.  (Example: Studies.start_month_year & Studies.start_date) We have been setting the day to the first day of the month in these date-type conversions. A user noted that the last day of the month is a perferred value.  They noted: <i>“these dates (start, completion, primary_completion) define when registration & results are due. A missing day value that defaults to the 1st of the month is the most restrictive and the last of the month is the most generous – for the purposes of compliance assessments”</i>  To be consistent we made this change for all data elements that can provide just month/day.</p>
+
+ <h5>Add anticipated_posting_date to Outcomes Table</h5>
+ <p> While changing the data value for month_year data elements, we noticed that the date-type value for Outcomes.anticipated_posting_date was not being provided. We have added this column to the Outcomes table.</p>
+
+ <h5>Previous Version of AACT Was Removed</h5>
+ <p>On February 9th, we decommissioned the AACT database hosted on Amazon Web Service and the AACT website hosted on Heroku.</p>
+

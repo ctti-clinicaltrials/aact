@@ -1,0 +1,19 @@
+<h3>AACT 2.0.2 <i>(February 17, 2017)</i></h3>
+
+<p>A Public Announcement feature has been added to provide AACT administrators with the ability to dynamically publish temporary information on the AACT website. For example, when the database is temporarily down because it's being refreshed, we now notify users by posting a public announcement for the duration of the downtime.</p>
+
+<p>A feature to interrogate AWS database log files has been added which saves information about database activity to an administrative table in AACT. We are now better able to monitor database use.</p>
+
+<p>All administrative tables have been moved out of the public AACT database and into a separate database (aact_admin) which is accessible to AACT administrators only. Admin tables are:</p>
+
+<ul class='regularDisplay'>
+  <li>data_definitions</li>
+  <li>database_activities</li>
+  <li>load_events</li>
+  <li>public_annoucements</li>
+  <li>sanity_checks</li>
+  <li>study_xml_records</li>
+</ul>
+
+<p>CalculatedValue.has_us_facility was incorrectly set to false during incremental/nightly loads. This has been fixed.</p>
+
