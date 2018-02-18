@@ -1,71 +1,92 @@
+require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :stage_con, :pub_con
+    attr_accessor :con, :stage_con, :pub_con, :load_event
+
+    def initialize(params={})
+      @load_event = params[:load_event]
+    end
 
     def save_static_copy
-      fm=Util::FileManager.new
-      schema_diagram_file=File.open("#{fm.backend_schema_diagram}")
-      admin_schema_diagram_file=File.open("#{fm.backend_admin_schema_diagram}")
-      data_dictionary_file=File.open("#{fm.backend_data_dictionary}")
-      nlm_protocol_file=fm.make_file_from_website("nlm_protocol_definitions.html",fm.nlm_protocol_data_url)
-      nlm_results_file=fm.make_file_from_website("nlm_results_definitions.html",fm.nlm_results_data_url)
+      begin
+        fm=Util::FileManager.new
+        schema_diagram_file=File.open("#{fm.backend_schema_diagram}")
+        admin_schema_diagram_file=File.open("#{fm.backend_admin_schema_diagram}")
+        data_dictionary_file=File.open("#{fm.backend_data_dictionary}")
+        nlm_protocol_file=fm.make_file_from_website("nlm_protocol_definitions.html",fm.nlm_protocol_data_url)
+        nlm_results_file=fm.make_file_from_website("nlm_results_definitions.html",fm.nlm_results_data_url)
 
-      zip_file_name="#{fm.class.static_copies_directory}/#{Time.now.strftime('%Y%m%d')}_clinical_trials.zip"
-      File.delete(zip_file_name) if File.exist?(zip_file_name)
-      Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
-        zipfile.add('schema_diagram.png',schema_diagram_file)
-        zipfile.add('admin_schema_diagram.png',admin_schema_diagram_file)
-        zipfile.add('data_dictionary.xlsx',data_dictionary_file)
-        zipfile.add('postgres_data.dmp',fm.pg_dump_file)
-        zipfile.add('nlm_protocol_definitions.html',nlm_protocol_file)
-        zipfile.add('nlm_results_definitions.html',nlm_results_file)
-      }
+        zip_file_name="#{fm.class.static_copies_directory}/#{Time.now.strftime('%Y%m%d')}_clinical_trials.zip"
+        File.delete(zip_file_name) if File.exist?(zip_file_name)
+        Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
+          zipfile.add('schema_diagram.png',schema_diagram_file)
+          zipfile.add('admin_schema_diagram.png',admin_schema_diagram_file)
+          zipfile.add('data_dictionary.xlsx',data_dictionary_file)
+          zipfile.add('postgres_data.dmp',fm.pg_dump_file)
+          zipfile.add('nlm_protocol_definitions.html',nlm_protocol_file)
+          zipfile.add('nlm_results_definitions.html',nlm_results_file)
+        }
+      rescue => error
+        load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
+      end
       return zip_file_name
     end
 
     def dump_database
-      # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
-      psql_file="#{Util::FileManager.dump_directory}/aact.psql"
-      File.delete(psql_file) if File.exist?(psql_file)
-      cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} aact_back > #{psql_file}"
-      system cmd
+      begin
+        # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
+        psql_file="#{Util::FileManager.dump_directory}/aact.psql"
+        File.delete(psql_file) if File.exist?(psql_file)
+        cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} aact_back > #{psql_file}"
+        system cmd
 
-      # clear out previous content of staging db
-      stage_con.execute('DROP SCHEMA IF EXISTS public CASCADE')
-      stage_con.execute('CREATE SCHEMA public')
+        # clear out previous content of staging db
+        stage_con.execute('DROP SCHEMA IF EXISTS public CASCADE')
+        stage_con.execute('CREATE SCHEMA public')
 
-      # refresh staging db
-      cmd="psql -h localhost aact < #{psql_file} > /dev/null"
-      system cmd
+        # refresh staging db
+        cmd="psql -h localhost aact < #{psql_file} > /dev/null"
+        system cmd
 
-      fm=Util::FileManager.new
-      dump_file_name=fm.pg_dump_file
-      db_name=ActiveRecord::Base.connection.current_database
-      File.delete(dump_file_name) if File.exist?(dump_file_name)
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{dump_file_name}"
-      puts cmd
-      system cmd
-      return dump_file_name
+        fm=Util::FileManager.new
+        dump_file_name=fm.pg_dump_file
+        db_name=ActiveRecord::Base.connection.current_database
+        File.delete(dump_file_name) if File.exist?(dump_file_name)
+        cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{dump_file_name}"
+        system cmd
+      rescue => error
+        load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
+      end
     end
 
     def refresh_public_db
       begin
+        success_code=true
         revoke_db_privs
         dump_file_name=Util::FileManager.new.pg_dump_file
         return nil if dump_file_name.nil?
         terminate_active_sessions
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
-        system cmd
+        stdout, stderr, status = Open3.capture3(cmd)
+        if status.exitstatus != 0
+          load_event.add_problem("#{stderr}")
+          success_code=false
+        end
+
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
-        system cmd
+        stdout, stderr, status = Open3.capture3(cmd)
+        if status.exitstatus != 0
+          load_event.add_problem(stderr)
+          success_code=false
+        end
         grant_db_privs
-        return true
-      rescue
+        return success_code
+      rescue => error
+        load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
         grant_db_privs
         return false
       end
-
     end
 
     def grant_db_privs
