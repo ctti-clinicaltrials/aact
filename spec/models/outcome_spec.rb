@@ -73,6 +73,7 @@ describe Outcome do
     expect(study.outcomes.select{|x|x.title=='Resource Utilization'}.size).to eq(1)
     o=study.outcomes.select{|x|x.title=='Resource Utilization'}.first
     expect(o.anticipated_posting_month_year).to eq('01/2020')
+    expect(o.anticipated_posting_date).to eq(o.anticipated_posting_month_year.to_date.end_of_month)
     expect(o.time_frame).to eq('5 years')
   end
 

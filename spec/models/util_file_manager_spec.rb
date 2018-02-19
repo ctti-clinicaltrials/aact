@@ -5,7 +5,7 @@ describe Util::FileManager do
     it "should save db static copy to the appropriate directory" do
       allow_any_instance_of(Util::FileManager).to receive(:make_file_from_website).and_return(Util::FileManager.new.backend_schema_diagram)
       fm=Util::FileManager.new
-      dm=Util::DbManager.new
+      dm=Util::DbManager.new(:load_event=>Admin::LoadEvent.create({:event_type=>'incremental',:status=>'running',:description=>'',:problems=>''}))
       dm.dump_database
       zip_file=dm.save_static_copy
       expect(File).to exist(zip_file)
