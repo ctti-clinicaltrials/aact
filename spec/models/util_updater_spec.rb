@@ -52,7 +52,7 @@ describe Util::Updater do
     allow_any_instance_of(Util::DbManager).to receive(:background_study_count).and_return(1)
     updater=Util::Updater.new
     expect(updater).to receive(:send_notification).once
-    expect(updater).to receive(:refresh_public_db).never
+    expect(updater.db_mgr).to receive(:refresh_public_db).never
     updater.run
   end
 

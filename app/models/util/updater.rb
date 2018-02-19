@@ -6,7 +6,7 @@ module Util
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
-        puts("Starting the #{type} load...")
+        log("Starting the #{type} load...")
         type='restart'
       end
       @client = Util::Client.new
@@ -23,20 +23,20 @@ module Util
         case params[:event_type]
           when 'full'
             full
-          when 'finalize'
-            finalize_load
           else
             incremental
         end
-      rescue  Exception => error
-        puts ">>>>>>>>>>> #{@load_event.event_type} load failed: #{error}"
+      rescue error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
-        log(msg)
-        Util::DbManager.new.grant_db_privs
-        load_event.complete({:status=>'failed', :problems=> msg, :study_counts=> study_counts})
-        Admin::PublicAnnouncement.clear_load_message
-        send_notification
+        log("#{@load_event.event_type} load failed: #{msg}")
+        load_event.add_problem(msg)
+        load_event.complete({:status=>'failed', :study_counts=> study_counts})
       end
+      finalize_load
+    end
+
+    def db_mgr
+      Util::DbManager.new({:load_event=>self.load_event})
     end
 
     def full
@@ -53,7 +53,6 @@ module Util
       @client.populate_studies
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
-      finalize_load
     end
 
     def incremental
@@ -61,25 +60,23 @@ module Util
       log("finding studies changed in past #{@days_back} days...")
       added_ids = @rss_reader.get_added_nct_ids
       changed_ids = @rss_reader.get_changed_nct_ids
-      puts "#{added_ids.size} added studies: #{@rss_reader.added_url}"
-      puts "#{changed_ids.size} changed studies: #{@rss_reader.changed_url}"
+      log("#{added_ids.size} added studies: #{@rss_reader.added_url}")
+      log("#{changed_ids.size} changed studies: #{@rss_reader.changed_url}")
       ids=(changed_ids + added_ids).uniq
       log("total #{ids.size} studies combined (having removed dups)")
       case ids.size
       when 0
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
-        send_notification
         return
       when 10000..(1.0/0.0)
         log("Incremental load size is suspiciously large. Aborting load.")
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
-        send_notification
         return
       end
       set_expected_counts(ids)
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
-      finalize_load
+      load_event.description=ids.join(",")
     end
 
     def retrieve_xml_from_ctgov
@@ -93,13 +90,14 @@ module Util
       create_calculated_values
       populate_admin_tables
       study_counts[:processed]=Study.count
-      load_event.complete({:study_counts=>study_counts})
       take_snapshot
       if refresh_public_db != true
-        load_event.problems="DID NOT UPDATE PUBLIC DATABASE."
+        load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
         load_event.save!
       end
-      #create_flat_files if params[:event_type] =='full'
+      load_event.complete({:study_counts=>study_counts})
+      db_mgr.grant_db_privs
+      Admin::PublicAnnouncement.clear_load_message
       send_notification
     end
 
@@ -281,20 +279,15 @@ module Util
     def sanity_checks_ok?
       sanity_set=Admin::SanityCheck.where('most_current is true')
       sanity_set.each{|s|
-        load_event.problems="Duplicate data detected. : #{s.table_name}.  #{load_event.problems}" if s.table_name.include? 'duplicate'
+        load_event.add_problem("Duplicate data detected. : #{s.table_name}.") if s.table_name.include? 'duplicate'
       }
-      load_event.problems="Fewer sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size < 40
-      load_event.problems="More sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size > 40
-      load_event.problems="Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.  #{load_event.problems}" if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
-      db_mgr=Util::DbManager.new
+      load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
+      load_event.add_problem("More sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size > 40
+      load_event.add_problem("Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
       old_count=db_mgr.public_study_count
       new_count=db_mgr.background_study_count
-      load_event.problems="New db has fewer studies (#{new_count}) than current public db (#{old_count})" if old_count < new_count
+      load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count < new_count
       return load_event.problems.blank?
-    end
-
-    def load_event
-      @load_event ||= Admin::LoadEvent.new
     end
 
     def refresh_data_definitions(data=Util::FileManager.default_data_definitions)
@@ -303,10 +296,17 @@ module Util
     end
 
     def take_snapshot
-      puts "creating static copy of the database..."
-      Util::DbManager.new.dump_database
-      Util::DbManager.new.save_static_copy if params[:event_type]=='full'
+      log("creating static copy of the database...")
+      db_mgr.dump_database
+      db_mgr.save_static_copy if params[:event_type]=='full'
     end
+
+    def send_notification
+      log("send email notification...")
+      Notifier.report_event(load_event)
+    end
+
+    private
 
     def create_flat_files
       log("exporting tables as flat files...")
@@ -342,11 +342,6 @@ module Util
       end
     end
 
-    def send_notification
-      log("send email notification...")
-      Notifier.report_event(load_event)
-    end
-
     def set_expected_counts(ids)
       study_counts[:should_change] = (Study.pluck(:nct_id) & ids).count
       study_counts[:should_add]    = (ids.count - study_counts[:should_change])
@@ -357,19 +352,14 @@ module Util
       log("studies added/changed: #{study_counts[:processed]}\n")
     end
 
-private
-
     def refresh_public_db
       # recreate public db from back-end db
       if sanity_checks_ok?
         submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
-        Util::DbManager.new.refresh_public_db
-        Admin::PublicAnnouncement.clear_load_message
+        db_mgr.refresh_public_db
         return true
       else
-        puts load_event.problems
         load_event.save!
-        Admin::PublicAnnouncement.clear_load_message
         return false
       end
     end
