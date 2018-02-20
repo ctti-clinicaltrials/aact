@@ -1,6 +1,6 @@
 module Util
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader
+    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr
 
     def initialize(params={})
       @params=params
@@ -26,7 +26,7 @@ module Util
           else
             incremental
         end
-      rescue error
+      rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         log("#{@load_event.event_type} load failed: #{msg}")
         load_event.add_problem(msg)
@@ -36,7 +36,7 @@ module Util
     end
 
     def db_mgr
-      Util::DbManager.new({:load_event=>self.load_event})
+      @db_mgr ||= Util::DbManager.new({:load_event=>self.load_event})
     end
 
     def full

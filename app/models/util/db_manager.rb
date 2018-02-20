@@ -109,6 +109,7 @@ module Util
           con.execute("select pg_terminate_backend(#{session['pid']})")
         end
       }
+      @con=nil
     end
 
     def public_study_count
