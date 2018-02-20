@@ -8,9 +8,9 @@ class Notifier < ApplicationMailer
 
   def send_msg(email, event)
     if event.problems.blank?
-      title="AACT #{Rails.env.capitalize} #{event.event_type.try(:capitalize)} Problems Encountered."
-    else
       title="AACT #{Rails.env.capitalize} #{event.event_type.try(:capitalize)} Load Notification."
+    else
+      title="AACT #{Rails.env.capitalize} #{event.event_type.try(:capitalize)} Problems Encountered."
     end
     if event.processed.nil? or event.processed == 0
       subject_line="#{title} Nothing to load."
