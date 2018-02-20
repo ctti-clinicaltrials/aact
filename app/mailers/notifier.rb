@@ -14,7 +14,7 @@ class Notifier < ApplicationMailer
       title="AACT #{Rails.env.capitalize} #{event.event_type.try(:capitalize)} Load - PROBLEMS ENCOUNTERED."
     end
     if event.processed.nil? or event.processed == 0
-      subject_line="#{title} Nothing to load."
+      subject_line="AACT #{Rails.env.capitalize} #{event.event_type.try(:capitalize)} Load Notification. Nothing to load."
     else
       subject_line="#{title}. Added: #{event.should_add} Updated: #{event.should_change} Total: #{event.processed}"
     end
