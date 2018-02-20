@@ -80,8 +80,8 @@ module Util
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       load_event.description=ids.join(",")
-      load_event.new_studies=added_ids.size
-      load_event.changed_studies=changed_ids.size
+      load_event.should_add=added_ids.size
+      load_event.should_change=changed_ids.size
       load_event.save!
     end
 
@@ -292,7 +292,7 @@ module Util
       load_event.add_problem("Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
       old_count=db_mgr.public_study_count
       new_count=db_mgr.background_study_count
-      load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count < new_count
+      load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
       return load_event.problems.blank?
     end
 
