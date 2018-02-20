@@ -1,6 +1,6 @@
 module Util
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader
+    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr
 
     def initialize(params={})
       @params=params
@@ -36,7 +36,7 @@ module Util
     end
 
     def db_mgr
-      Util::DbManager.new({:load_event=>self.load_event})
+      @db_mgr ||= Util::DbManager.new({:load_event=>self.load_event})
     end
 
     def full
