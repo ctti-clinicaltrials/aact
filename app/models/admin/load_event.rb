@@ -42,7 +42,7 @@ module Admin
         val = ''
         val += description if description
         if problems
-          val += " Problems encountered: "
+          val += "\n\nProblems encountered:\n\n"
           val += problems
         end
         val
