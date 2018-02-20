@@ -42,8 +42,8 @@ describe Util::Updater do
     allow_any_instance_of(Util::RssReader).to receive(:get_added_nct_ids).and_return( [*1..10000] )
     allow_any_instance_of(Util::RssReader).to receive(:get_changed_nct_ids).and_return( [*1..10000] )
     updater=Util::Updater.new
-    expect(updater).to receive(:send_notification).once
     expect(updater).to receive(:update_studies).never
+    expect(updater).to receive(:send_notification).once
     updater.run
   end
 
@@ -51,8 +51,9 @@ describe Util::Updater do
     allow_any_instance_of(Util::DbManager).to receive(:public_study_count).and_return(5)
     allow_any_instance_of(Util::DbManager).to receive(:background_study_count).and_return(1)
     updater=Util::Updater.new
-    expect(updater).to receive(:send_notification).once
+    allow(updater).to receive(:sanity_checks_ok?).and_return(false)
     expect(updater.db_mgr).to receive(:refresh_public_db).never
+    expect(updater).to receive(:send_notification).once
     updater.run
   end
 
