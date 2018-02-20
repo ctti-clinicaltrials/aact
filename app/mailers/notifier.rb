@@ -8,14 +8,15 @@ class Notifier < ApplicationMailer
 
   def send_msg(email, event)
     if event.problems.blank?
-      title="AACT #{Rails.env.capitalize} #{event.event_type.try(:capitalize)} Load Notification."
+      title="AACT #{Rails.env.capitalize} #{event.event_type.try(:capitalize)} Load Notification. Status: #{event.status}"
     else
-      title="AACT #{Rails.env.capitalize} #{event.event_type.try(:capitalize)} Problems Encountered."
+      event.status='failed'
+      title="AACT #{Rails.env.capitalize} #{event.event_type.try(:capitalize)} Load - PROBLEMS ENCOUNTERED."
     end
     if event.processed.nil? or event.processed == 0
       subject_line="#{title} Nothing to load."
     else
-      subject_line="#{title} Load Status: #{event.status}. Added: #{event.should_add} Updated: #{event.should_change} Total: #{event.processed}"
+      subject_line="#{title}. Added: #{event.should_add} Updated: #{event.should_change} Total: #{event.processed}"
     end
     mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email, subject: subject_line, body: event.email_message)
   end
