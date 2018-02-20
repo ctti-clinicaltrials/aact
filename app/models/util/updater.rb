@@ -26,7 +26,7 @@ module Util
           else
             incremental
         end
-      rescue error
+      rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         log("#{@load_event.event_type} load failed: #{msg}")
         load_event.add_problem(msg)
