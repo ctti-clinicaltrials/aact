@@ -42,19 +42,20 @@ module Util
         run_command_line(cmd)
 
         # clear out previous content of staging db
+        puts "Recreating public schema in aact staging database..."
         stage_con.execute('DROP SCHEMA IF EXISTS public CASCADE')
         stage_con.execute('CREATE SCHEMA public')
 
         # refresh staging db
+        puts "Refreshing aact staging database..."
         cmd="psql -h localhost aact < #{psql_file} > /dev/null"
         run_command_line(cmd)
 
-        fm=Util::FileManager.new
-        dump_file_name=fm.pg_dump_file
+        dump_file_name=Util::FileManager.new.pg_dump_file
         db_name=ActiveRecord::Base.connection.current_database
-        File.delete(dump_file_name) if File.exist?(dump_file_name)
-        cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{dump_file_name}"
-        stdout, stderr, status = Open3.capture3(cmd)
+        File.delete(fm.dump_file_name) if File.exist?(fm.dump_file_name)
+        cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{fm.dump_file_name}"
+        run_comand_line(cmd)
       rescue => error
         load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
       end
@@ -95,6 +96,7 @@ module Util
     end
 
     def run_command_line(cmd)
+      puts cmd
       stdout, stderr, status = Open3.capture3(cmd)
       if status.exitstatus != 0
         load_event.add_problem("#{stderr}")
