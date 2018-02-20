@@ -80,8 +80,8 @@ module Util
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       load_event.description=ids.join(",")
-      load_event.new_studies=added_ids.size
-      load_event.changed_studies=changed_ids.size
+      load_event.should_add=added_ids.size
+      load_event.should_change=changed_ids.size
       load_event.save!
     end
 
