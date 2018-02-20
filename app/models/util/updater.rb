@@ -13,6 +13,7 @@ module Util
       @days_back=(@params[:days_back] ? @params[:days_back] : 2)
       @rss_reader = Util::RssReader.new(days_back: @days_back)
       @load_event = Admin::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
+      @load_event.save!  # Save to timestamp created_at
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
       self
     end
@@ -21,17 +22,19 @@ module Util
       begin
         ActiveRecord::Base.logger=nil
         case params[:event_type]
-          when 'full'
-            full
-          else
-            incremental
+        when 'full'
+          full
+        else
+          incremental
         end
+        log('completed incremental load')
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         log("#{@load_event.event_type} load failed: #{msg}")
         load_event.add_problem(msg)
         load_event.complete({:status=>'failed', :study_counts=> study_counts})
       end
+      log('finalizing load')
       finalize_load
     end
 
@@ -77,6 +80,9 @@ module Util
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       load_event.description=ids.join(",")
+      load_event.new_studies=added_ids.size
+      load_event.changed_studies=changed_ids.size
+      load_event.save!
     end
 
     def retrieve_xml_from_ctgov
