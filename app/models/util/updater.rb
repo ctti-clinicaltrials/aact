@@ -27,18 +27,13 @@ module Util
         else
           incremental
         end
-        finalize_load
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         log("#{@load_event.event_type} load failed in run: #{msg}")
         load_event.add_problem(msg)
         load_event.complete({:status=>'failed', :study_counts=> study_counts})
-        finalize_load
       end
-    end
-
-    def db_mgr
-      @db_mgr ||= Util::DbManager.new({:load_event=>self.load_event})
+      finalize_load
     end
 
     def full
@@ -83,6 +78,7 @@ module Util
       load_event.should_add=added_ids.size
       load_event.should_change=changed_ids.size
       load_event.save!
+      log('end of incremental load method')
     end
 
     def retrieve_xml_from_ctgov
@@ -361,10 +357,6 @@ module Util
       log("should change: #{study_counts[:should_change]};  should add: #{study_counts[:should_add]}\n")
     end
 
-    def log_actual_counts
-      log("studies added/changed: #{study_counts[:processed]}\n")
-    end
-
     def refresh_public_db
       log('refreshing public db...')
       # recreate public db from back-end db
@@ -376,6 +368,14 @@ module Util
         load_event.save!
         return false
       end
+    end
+
+    def log_actual_counts
+      log("studies added/changed: #{study_counts[:processed]}\n")
+    end
+
+    def db_mgr
+      @db_mgr ||= Util::DbManager.new({:load_event=>self.load_event})
     end
 
     def db_name
