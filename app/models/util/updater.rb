@@ -27,14 +27,12 @@ module Util
         else
           incremental
         end
-        log('completed incremental load')
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
-        log("#{@load_event.event_type} load failed: #{msg}")
+        log("#{@load_event.event_type} load failed in run: #{msg}")
         load_event.add_problem(msg)
         load_event.complete({:status=>'failed', :study_counts=> study_counts})
       end
-      log('finalizing load')
       finalize_load
     end
 
@@ -79,6 +77,7 @@ module Util
       set_expected_counts(ids)
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
+      log('updating load_event record...')
       load_event.description=ids.join(",")
       load_event.should_add=added_ids.size
       load_event.should_change=changed_ids.size
@@ -86,12 +85,13 @@ module Util
     end
 
     def retrieve_xml_from_ctgov
-      log("retrieving xml from clinicaltrials.gov ...")
+      log("retrieving xml from clinicaltrials.gov...")
       Admin::AdminBase.connection.truncate('study_xml_records')
       @client.save_file_contents(@client.download_xml_files)
     end
 
     def finalize_load
+      log('finalizing load...')
       add_indexes
       create_calculated_values
       populate_admin_tables
@@ -193,6 +193,7 @@ module Util
     end
 
     def remove_indexes
+      log('removing indices...')
       m=ActiveRecord::Migration.new
       Util::Updater.loadable_tables.each {|table_name|
         ActiveRecord::Base.connection.indexes(table_name).each{|index|
@@ -202,10 +203,12 @@ module Util
     end
 
     def create_calculated_values
+      log('creating calculated values...')
       CalculatedValue.populate
     end
 
     def add_indexes
+      log('adding indices...')
       m=ActiveRecord::Migration.new
       indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
     end
@@ -241,7 +244,7 @@ module Util
     end
 
     def update_studies(nct_ids)
-      log('update_studies...')
+      log("updating the set of studies (#{nct_ids.size})...")
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       study_counts[:count_down]=nct_ids.size
 
@@ -257,6 +260,7 @@ module Util
           decrement_count_down
         }
       end
+      log("finished iterating over #{nct_ids.size} studies")
       self
     end
 
@@ -273,6 +277,7 @@ module Util
     end
 
     def populate_admin_tables
+      log('populating admin tables...')
       run_sanity_checks
       refresh_data_definitions
     end
@@ -308,7 +313,7 @@ module Util
     end
 
     def send_notification
-      log("send email notification...")
+      log("sending email notification...")
       Notifier.report_event(load_event)
     end
 
@@ -320,6 +325,7 @@ module Util
     end
 
     def truncate_tables
+      log('truncating tables...')
       Util::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
     end
 
@@ -359,6 +365,7 @@ module Util
     end
 
     def refresh_public_db
+      log('refreshing public db...')
       # recreate public db from back-end db
       if sanity_checks_ok?
         submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
