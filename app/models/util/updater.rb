@@ -27,13 +27,14 @@ module Util
         else
           incremental
         end
+        finalize_load
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         log("#{@load_event.event_type} load failed in run: #{msg}")
         load_event.add_problem(msg)
         load_event.complete({:status=>'failed', :study_counts=> study_counts})
+        finalize_load
       end
-      finalize_load
     end
 
     def db_mgr
