@@ -27,7 +27,6 @@ module Util
         else
           incremental
         end
-        log('completed incremental load')
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         log("#{@load_event.event_type} load failed in run: #{msg}")
