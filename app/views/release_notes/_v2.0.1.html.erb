@@ -1,0 +1,18 @@
+<h3>AACT 2.0.1 <i>(February 7, 2017)</i></h3>
+
+<p>The nightly incremental load was not finding all the added & changed trials from the ClinicalTrials.gov RSS feed. We now send 2 RSS calls to ClinicalTrials.gov to get them all. Also, if a call to the ClinicalTrials.gov API times out, it now tries 5 times before giving up.</p>
+
+<ul class='regularDisplay noBullets'>
+  <li>changed_url = "https://clinicaltrials.gov/ct2/results/rss.xml?lup_d=#{days_back}&count=10000"</li>
+  <li>added_url   = https://clinicaltrials.gov/results/rss.xml?rcv_d=#{days_back}&count=10000"</li>
+</ul>
+
+<p>The set of pipe-delimited files was not getting generated as expected because the process aborted when it tried to create an index on a non-existent column: Calcuated_Values.sponsor_type. This problem has been fixed.</p>
+
+<p>We have added a table to the <a target='_blank' href='https://aact.ctti-clinicaltrials.org/data_dictionary'>Data Dictionary</a> page to summarize all AACT database tables and provide their current row counts.</p>
+
+<p>An enhancement has been made to the <a target='_blank' href='https://aact.ctti-clinicaltrials.org/data_dictionary'>Data Dictionary</a> page: the enumerations column in the table now displays the percentage for each element in the dropdown.</p>
+
+<p>The <a target='_blank' href='https://aact.ctti-clinicaltrials.org/points_to_consider'>Guide for Researchers</a> now provides the effective date (January 18, 2017) for the NIH's recently published policy.</p>
+
+<p>Mailgun was re-configured to belong to CTTI. It had previously been registered under StudyCo.</p>
