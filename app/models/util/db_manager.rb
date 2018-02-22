@@ -39,7 +39,7 @@ module Util
         psql_file="#{Util::FileManager.dump_directory}/aact.psql"
         File.delete(psql_file) if File.exist?(psql_file)
         terminate_active_sessions('aact_back')
-        cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} aact_back > #{psql_file}"
+        cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} --exclude-table schema_migrations aact_back > #{psql_file}"
         run_command_line(cmd)
 
         # clear out previous content of staging db
