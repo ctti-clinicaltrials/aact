@@ -74,10 +74,7 @@ module Util
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       log('updating load_event record...')
-      load_event.description=ids.join(",")
-      load_event.should_add=added_ids.size
-      load_event.should_change=changed_ids.size
-      load_event.save!
+      load_event.save_id_info(added_ids, changed_ids)
       log('end of incremental load method')
     end
 

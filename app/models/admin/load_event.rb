@@ -21,6 +21,15 @@ module Admin
         self.problems = "#{self.problems} \n#{prob}"
       end
 
+      def save_id_info(added_ids, changed_ids)
+        self.description = '' if self.description.nil?
+        self.description += "added:\n" + added_ids.join("\n")
+        self.description += "\n\nchanged:\n" + changed_ids.join("\n")
+        self.should_add=added_ids.size
+        self.should_change=changed_ids.size
+        self.save!
+      end
+
       def calculate_load_time
         time = self.completed_at - self.created_at
         minutes, seconds = time.divmod(60)
