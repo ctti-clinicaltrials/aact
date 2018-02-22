@@ -52,8 +52,15 @@ class Outcome < StudyRelationship
       :param_type      => get_opt('param_type'),
       :dispersion_type => get_opt('dispersion_type'),
       :anticipated_posting_month_year  => get_opt('posting_date'),
-      #:outcome_groups   => OutcomeGroup.create_all_from({:nct_id=>opts[:nct_id],:outcome=>self,:groups=>opts[:groups]}),
+      :anticipated_posting_date  => convert_date('posting_date'),
     }
+  end
+
+  def convert_date(label)
+    dt=get_opt(label)
+    return nil if dt.blank?
+    return dt.to_date.end_of_month  if (dt.count '/') == 1
+    return dt.to_date
   end
 
 end

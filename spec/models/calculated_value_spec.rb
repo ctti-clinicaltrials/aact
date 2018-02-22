@@ -37,7 +37,7 @@ describe CalculatedValue do
     expect(cv.has_us_facility).to eq(true)
     expect(cv.has_single_facility).to eq(false)
     expect(cv.actual_duration).to eq(91)
-    expect(cv.months_to_report_results).to eq(62)
+    expect(cv.months_to_report_results).to eq(61)
   end
 
   it "should set has_us_facility to nil if no facilities provided" do
@@ -72,7 +72,7 @@ describe CalculatedValue do
     expect(cv.has_us_facility).to eq(true)
     expect(cv.has_single_facility).to eq(false)
     expect(cv.actual_duration).to eq(91)
-    expect(cv.months_to_report_results).to eq(62)
+    expect(cv.months_to_report_results).to eq(61)
 
     cv=study2.calculated_value
     expect(study2.start_month_year).to eq('March 2007')
@@ -83,7 +83,7 @@ describe CalculatedValue do
 
     expect(cv.has_single_facility).to eq(false)
     expect(cv.actual_duration).to eq(60)
-    expect(cv.months_to_report_results).to eq(22)
+    expect(cv.months_to_report_results).to eq(21)
     expect(cv.number_of_sae_subjects).to eq(1458)
     expect(cv.number_of_nsae_subjects).to eq(1889)
 
