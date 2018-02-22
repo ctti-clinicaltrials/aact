@@ -54,12 +54,12 @@ module Util
         terminate_active_sessions('aact')
         run_command_line(cmd)
 
-        dump_file_name=Util::FileManager.new.pg_dump_file
+        fm=Util::FileManager.new
         db_name=ActiveRecord::Base.connection.current_database
-        File.delete(fm.dump_file_name) if File.exist?(fm.dump_file_name)
-        cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{fm.dump_file_name}"
+        File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
+        cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{fm.pg_dump_file}"
         terminate_active_sessions('aact')
-        run_comand_line(cmd)
+        run_command_line(cmd)
       rescue => error
         load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
       end

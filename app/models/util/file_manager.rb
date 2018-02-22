@@ -13,7 +13,7 @@ module Util
     end
 
     def self.url_base
-      "/static"
+      "#{Rails.public_path}/static"
     end
 
     def self.static_root_dir
