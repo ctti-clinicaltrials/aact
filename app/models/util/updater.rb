@@ -314,8 +314,6 @@ module Util
       Notifier.report_event(load_event)
     end
 
-    private
-
     def create_flat_files
       log("exporting tables as flat files...")
       Util::TableExporter.new.run(delimiter: '|', should_archive: true)
