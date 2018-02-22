@@ -59,6 +59,8 @@ module Util
       changed_ids = @rss_reader.get_changed_nct_ids
       log("#{added_ids.size} added studies: #{@rss_reader.added_url}")
       log("#{changed_ids.size} changed studies: #{@rss_reader.changed_url}")
+      study_counts[:should_add]=added_ids.size
+      study_counts[:should_change]=changed_ids.size
       ids=(changed_ids + added_ids).uniq
       log("total #{ids.size} studies combined (having removed dups)")
       case ids.size
@@ -70,7 +72,6 @@ module Util
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
         return
       end
-      set_expected_counts(ids)
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
       log('updating load_event record...')
@@ -344,12 +345,6 @@ module Util
       rescue => error
         log("unable to refresh #{nct_id}: #{error.message} (#{error.class} #{error.backtrace}")
       end
-    end
-
-    def set_expected_counts(ids)
-      study_counts[:should_change] = (Study.pluck(:nct_id) & ids).count
-      study_counts[:should_add]    = (ids.count - study_counts[:should_change])
-      log("should change: #{study_counts[:should_change]};  should add: #{study_counts[:should_add]}\n")
     end
 
     def refresh_public_db
