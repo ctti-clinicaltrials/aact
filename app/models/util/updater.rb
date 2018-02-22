@@ -311,7 +311,7 @@ module Util
 
     def send_notification
       log("sending email notification...")
-      Notifier.report_event(load_event)
+      Notifier.report_load_event(load_event)
     end
 
     def create_flat_files
