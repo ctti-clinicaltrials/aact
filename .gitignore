@@ -13,7 +13,5 @@ server.env
 /tags
 /vendor
 /tmp/*
-dump.rdb
 .env
 *.secret
-docker-compose.override.yml
