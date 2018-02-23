@@ -1,0 +1,2226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on February 22, 2018</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01380080</url>
+  </required_header>
+  <id_info>
+    <org_study_id>ACTG A5274</org_study_id>
+    <secondary_id>1U01AI068636</secondary_id>
+    <nct_id>NCT01380080</nct_id>
+  </id_info>
+  <brief_title>REMEMBER: Reducing Early Mortality &amp; Morbidity by Empiric Tuberculosis (TB) Treatment</brief_title>
+  <acronym>REMEMBER</acronym>
+  <official_title>Reducing Early Mortality and Early Morbidity by Empiric Tuberculosis Treatment Regimens (REMEMBER)</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>AIDS Clinical Trials Group</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>National Institute of Allergy and Infectious Diseases (NIAID)</agency>
+      <agency_class>NIH</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>AIDS Clinical Trials Group</source>
+  <oversight_info>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      People with HIV have a high chance of becoming infected with TB, especially when they live in
+      areas where TB infection is common. It can be difficult to diagnose TB in people who need to
+      start HIV treatment right away. Within about 6 months after starting HIV treatment, some of
+      these people can become very sick with TB and can even die from it.
+
+      This study is being done in people who are starting HIV treatment and who live in areas where
+      the TB infection rate is high. The purpose of this study is to test an experimental approach
+      to TB treatment to see if it is better than the usual approach. The experimental approach is
+      to start TB treatment at the same time as HIV treatment, even when TB infection has not been
+      found. The usual approach is to start TB treatment only if TB infection is found.
+
+      In this study, half of the people will start TB treatment at the same time as they start
+      their HIV treatment. The other half will start TB treatment only if TB infection is found.
+
+      The study will also test how safe and effective it is to start TB treatment at about the same
+      time as HIV treatment even when TB infection has not been found. The study will collect
+      information about diet, whether (and when) people in the study become sicker or die, how well
+      their HIV is controlled, how they are feeling, how they are taking their medications, whether
+      it matters where they live or what kind of HIV and TB care is standard, how many people are
+      diagnosed with TB while in the study, and how the cost of the two treatment options on a
+      national level could be compared.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      This was a randomized, open-label, phase IV strategy trial for participants from
+      resource-limited settings (RLS) who present with advanced HIV disease and no probable or
+      confirmed tuberculosis (TB), as defined in the current ACTG diagnosis appendix, and who are
+      initiating antiretroviral treatment (ART) will be randomized to one of two strategy arms:
+      immediate, empiric TB treatment (Empiric arm) or local standard of care TB treatment (IPT
+      arm).
+
+      Randomization was balanced by clinical trial unit and stratified according to CD4+ T cell
+      count (&lt;25 vs. ≥25 cells/mm^3) and presence of any of the following prognostic factors:
+      reportable hospitalization within the past 30 days, BMI &lt;18.5 kg/m^2, or anemia (hemoglobin
+      &lt;8 g/dl).
+
+      Participants are followed for 96 weeks. Participants attended study visits at screening,
+      enrollment, and weeks 1, 2, 4, 8, 12, 16, 20, and 24. Signs and symptoms, ART modifications,
+      concomitant medications, and clinical events as defined by AIDS Clinical Trials Group (ACTG)
+      Appendix 60 were collected at each visit. Blood was collected for CD4 and HIV-1 RNA at study
+      entry, weeks 4 and 24 and blood for safety laboratories (liver function, hematology, and
+      renal function) was collected at all visits except week 1. A sputum sample was collected and
+      stored at study entry.
+
+      The current results submission included data up to the primary outcome time point (week 24),
+      and that after study completion, there will be a second results submission to include the
+      data from the later visits up to week 96.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>October 2011</start_date>
+  <completion_date type="Actual">April 2016</completion_date>
+  <primary_completion_date type="Actual">January 2015</primary_completion_date>
+  <phase>Phase 4</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>None (Open Label)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Cumulative Probability of Death or Unknown Vital Status by Week 24</measure>
+    <time_frame>From study entry to week 24</time_frame>
+    <description>The Kaplan-Meier estimate of the cumulative probability of death or unknown vital status by week 24.
+Vital status at week 48 and again at weeks 60, 72, 84, and 96 was determined for participants who do not complete study follow-up, including those who are prematurely discontinued from the study before week 24 without coming in to the clinic. Vital status for participants who are not discontinued from the study whenever a scheduled visit of any type is missed was also obtained. The vital status was considered unknown at week 24 if a participant prematurely discontinued from the study before week 24 and no vital status was obtained at week 48.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Cumulative Probability of Death by Week 24</measure>
+    <time_frame>From study entry to week 24</time_frame>
+    <description>The Kaplan-Meier estimate of cumulative probability of death by week 24</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Cumulative Probability of First AIDS Progression by Week 96</measure>
+    <time_frame>From study entry to week 96</time_frame>
+    <description>The Kaplan-Meier estimate of the cumulative probability of first AIDS progression which was defined as the identification of a new World Health Organization (WHO) stage 3 or 4 condition</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Cumulative Probability of Death or AIDS Progression by Week 24</measure>
+    <time_frame>From study entry to week 24</time_frame>
+    <description>The Kaplan-Meier estimate of the cumulative probability of death or AIDS progression by week 24
+The result of cumulative probability of death or AIDS progression by week 48 will be submitted after the study is completed. AIDS progression was defined as new WHO stage 3 or 4 conditions occurred after study entry.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Proportion of Participants With HIV-1 RNA Level &lt;400 Copies/mL</measure>
+    <time_frame>At weeks 0, 4, 24, and 48</time_frame>
+    <description>Proportion of participants with HIV-1 RNA level &lt;400 copies/mL at weeks 0, 4, and 24. The results at week 48 will be submitted after the study is completed</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>CD4+ T-cell Count</measure>
+    <time_frame>At weeks 0, 4, 24, and 48</time_frame>
+    <description>The absolute levels of CD4+ T-cell counts (cells/mm^3) at weeks 0, 4, and 24. The results at week 48 will be submitted after the study is completed</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>CD4+ T-cell Count Change From Baseline</measure>
+    <time_frame>From study entry to weeks 4, 24 and 48</time_frame>
+    <description>Change was calculated as the CD4+ T-cell count at week (4 and 24) minus the baseline CD4+ T-cell count. The results at week 48 will be submitted after the study is completed</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Time to Initiation of TB Treatment by Week 96</measure>
+    <time_frame>From study entry to week 96</time_frame>
+    <description>Median time to TB treatment initiation by week 96</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Proportion of Participants With TB Diagnosis Per Current ACTG Diagnosis Appendix by Week 96</measure>
+    <time_frame>From study entry to week 96</time_frame>
+    <description>Proportion of participants with TB diagnosis per current ACTG Diagnosis Appendix 60 by week 96</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Proportion of Participants With at Least One New Grade 3 or 4 Adverse Event That is at Least a One-grade Increase From Baseline by Week 48</measure>
+    <time_frame>From study entry to week 48</time_frame>
+    <description>Proportion of participants with at least one new Grade 3 or 4 laboratory or sign or symptom that is at least a one-grade increase from baseline by Week 48</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Proportion of Participants With at Least One New Grade 3 or 4 That is at Least a One-grade Increase From Baseline for the Following Targeted Laboratory Values by Week 48</measure>
+    <time_frame>From study entry to week 48</time_frame>
+    <description>Proportion of participants with at least one new Grade 3 or 4 that is at least a one-grade increase from baseline for the following targeted laboratory values by Week 48
+The targeted laboratory events include hemoglobin, serum creatinine, ALT and AST</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Proportion of Participants With IRIS (Using Current ACTG Definition) by Week 48</measure>
+    <time_frame>From study entry to week 48</time_frame>
+    <description>Proportion of participants with IRIS (using current ACTG definition Appendix 60) by Week 48</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Proportion of Participants With Reportable Hospitalization by Week 48</measure>
+    <time_frame>From study entry to week 48</time_frame>
+    <description>Proportion of participants with any hospitalization reported by Week 48</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Proportion of Participants Who Prematurely Discontinued Any Component of TB Treatment by Week 48</measure>
+    <time_frame>From study entry to week 48</time_frame>
+    <description>Proportion of participants with premature discontinuation of any component of TB treatment by Week 48</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Proportion of Participants Who Prematurely Discontinued Antiretroviral Therapy by Week 48</measure>
+    <time_frame>From study entry to week 48</time_frame>
+    <description>Proportion of participants with premature discontinuation of antiretroviral therapy (ART) by Week 48</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">851</enrollment>
+  <condition>HIV Infection</condition>
+  <arm_group>
+    <arm_group_label>Arm A: Empiric</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Study treatment for Arm A participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral treatment as soon as possible following randomization and within no more than 3 days following randomization plus a 4-drug anti-tuberculosis treatment (ATT) regimen (defined as rifampin/isoniazid/ethambutol/pyrazinamide) as soon as possible following randomization and within no more than 7 days following initiation of antiretroviral therapy. After 2 months (or 8 weeks), the 4-drug ATT will be followed with 4 months (or 16 weeks) of 2-drug ATT (defined as rifampin/isoniazid). All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Arm B: IPT</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Study treatment for Arm B participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral therapy as soon as possible following randomization and within no more than 3 days following randomization and of initiating anti-TB treatment (ATT) only when indicated according to local standard practice and at the discretion of the site investigator. All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only. Pyridoxine is provided by the sites to all participants while they are receiving isoniazid (INH).</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Atripla (r)</intervention_name>
+    <description>Patients are administered one tablet of Efavirenz 600 mg/emtricitabine 200 mg/tenofovir disoproxil fumarate 300 mg (EFV/FTC/TDF, Atripla) to taken be taken orally once daily at bedtime without food.</description>
+    <arm_group_label>Arm A: Empiric</arm_group_label>
+    <arm_group_label>Arm B: IPT</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Efavirenz</intervention_name>
+    <description>Participants will take one 600 mg tablet administered orally once daily without food.</description>
+    <arm_group_label>Arm A: Empiric</arm_group_label>
+    <arm_group_label>Arm B: IPT</arm_group_label>
+    <other_name>EFV</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Truvada</intervention_name>
+    <description>Participants will take one tablet of Emtricitabine 200mg/tenofovir disoproxil fumarate 300mg (FTC/TDF, Truvada) administered orally once daily with or without food.</description>
+    <arm_group_label>Arm A: Empiric</arm_group_label>
+    <arm_group_label>Arm B: IPT</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Rifampin/isoniazid/pyrazinamide/ethambutol FDC</intervention_name>
+    <description>Participants will be administered Rifampin/isoniazid/pyrazinamide/ethambutol FDC tablets orally, once daily; dose by weight as determined in Table 5.1-1 of the protocol, for the first 8 weeks.</description>
+    <arm_group_label>Arm A: Empiric</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Rifampin/isoniazid FDC</intervention_name>
+    <description>Participants will be administered rifampin/isoniazid FDC tablets orally, once daily; dose by weight as determined in Table 5.1-1 in the protocol, for 16 weeks following the first 8 weeks.</description>
+    <arm_group_label>Arm A: Empiric</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Isoniazid</intervention_name>
+    <description>INH 300 mg orally once daily</description>
+    <arm_group_label>Arm B: IPT</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  HIV-1 infection
+
+          -  Willingness to start efavirenz-based ART as soon as possible and within no more than 3
+             days following randomization.
+
+          -  CD4+ cell count &lt;50 cells/mm^3 obtained within 45 days prior to study entry at any
+             laboratory that has a CLIA certification or its equivalent.
+
+          -  Aspartate aminotransferase (AST) (SGOT), alanine aminotransferase (ALT) (SGPT), and
+             total bilirubin ≤ 2.5 X ULN within 30 days prior to study entry.
+
+          -  Creatinine clearance ≥30 mL/min either measured or estimated* using values obtained
+             within 30 days prior to study entry.
+
+          -  Results from a hepatitis B surface antigen test performed within 30 days prior to
+             study entry.
+
+          -  Agreement not to participate in a conception process (e.g., active attempt to become
+             pregnant or to impregnate, donate sperm, in vitro fertilization).
+
+          -  Female candidates of reproductive potential must have a negative serum or urine (15-25
+             mIU/mL) pregnancy test result within 7 days prior to study entry.
+
+          -  Female candidates of reproductive potential who are participating in sexual activity
+             that could lead to pregnancy must use two reliable methods of contraception while on
+             study.
+
+          -  Karnofsky performance score &gt;/= 30 at time of study entry.
+
+          -  Males and females age &gt;/= 13 years.
+
+          -  Ability to swallow medications.
+
+          -  Ability and willingness of participant or legal guardian/representative to provide
+             informed consent.
+
+          -  Intention to remain in the same general geographic region for the duration of study
+             participation.
+
+        Exclusion Criteria:
+
+          -  Presence of any confirmed or probable TB based on criteria listed in the current ACTG
+             diagnosis appendix within 30 days prior to study entry and following completion of
+             study-specific screening algorithm.
+
+          -  Use of single-dose NVP for prevention of mother-to-child transmission (pMTCT) within
+             24 months prior to study entry.
+
+          -  Use of prohibited medications (see list in A5274/REMEMBER MOPS, section 3.2.1) within
+             30 days prior to study entry.
+
+          -  Known allergy/sensitivity or any hypersensitivity to components of study-required ART
+             or TB treatment.
+
+          -  Current receipt of treatment for active TB or receipt of &gt;14 days cumulative treatment
+             for active TB within 96 weeks prior to study entry.
+
+          -  Receipt of &gt;30 days cumulative of INH prophylaxis within 48 weeks prior to study
+             entry.
+
+          -  Receipt at any time prior to study entry of &gt;7 days cumulative treatment with any ARV
+             or combination of ARVs (except for ARVs taken for any length of time during pregnancy
+             for pMTCT, or ARVs taken for occupational exposure).
+
+          -  Active drug or alcohol use or dependence that, in the opinion of the site
+             investigator, would interfere with adherence to study requirements.
+
+          -  Current Grade ≥2 neuropathy.
+
+          -  History of multi-drug-resistant (MDR) TB.
+
+          -  Within 12 weeks prior to entry, exposure to a household member or co-worker with known
+             MDR TB.
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>13 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Mina C Hosseinipour, MD</last_name>
+    <role>Study Chair</role>
+    <affiliation>University of North Carolina Lilongwe CRS</affiliation>
+  </overall_official>
+  <overall_official>
+    <last_name>Johnstone Kumwenda, MD, MBBS, MMED</last_name>
+    <role>Study Chair</role>
+    <affiliation>College of Med. JHU CRS</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Instituto de Pesquisa Clinica Evandro Chagas (IPEC) CRS</name>
+      <address>
+        <city>Rio de Janeiro,</city>
+        <zip>21045-900</zip>
+        <country>Brazil</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>GHESKIO Institute of Infectious Diseases and Reproductive Health (GHESKIO - IMIS) CRS</name>
+      <address>
+        <city>Port Au Prince</city>
+        <country>Haiti</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Les Centres GHESKIO CRS</name>
+      <address>
+        <city>Port-au-Prince</city>
+        <zip>6110</zip>
+        <country>Haiti</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>YRG CARE Medical Ctr., VHS Chennai CRS</name>
+      <address>
+        <city>Rajiv Gandhi Salai Taramani</city>
+        <state>Chennai</state>
+        <zip>600113</zip>
+        <country>India</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>BJ Medical College CRS</name>
+      <address>
+        <city>Pune</city>
+        <state>Maharashtra</state>
+        <zip>411001</zip>
+        <country>India</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>AMPATH at Moi Univ. Teaching Hosp. Eldoret CRS</name>
+      <address>
+        <city>Eldoret</city>
+        <zip>30100</zip>
+        <country>Kenya</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Walter Reed Project - Kenya Med. Research Institute Kericho CRS</name>
+      <address>
+        <city>Kericho</city>
+        <zip>20200</zip>
+        <country>Kenya</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>College of Med. JHU CRS (30301)</name>
+      <address>
+        <city>Blantyre</city>
+        <country>Malawi</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of North Carolina Lilongwe CRS (12001)</name>
+      <address>
+        <city>Lilongwe</city>
+        <country>Malawi</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>San Miguel CRS</name>
+      <address>
+        <city>San Miguel</city>
+        <state>Lima</state>
+        <country>Peru</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Barranco CRS (11301)</name>
+      <address>
+        <city>Lima</city>
+        <zip>18 PE</zip>
+        <country>Peru</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Wits HIV CRS</name>
+      <address>
+        <city>Johannesburg</city>
+        <state>Gauteng</state>
+        <country>South Africa</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>CAPRISA eThekwini CRS</name>
+      <address>
+        <city>Durban</city>
+        <state>KwaZulu-Natal</state>
+        <zip>4011</zip>
+        <country>South Africa</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Durban Adult HIV CRS</name>
+      <address>
+        <city>Durban</city>
+        <state>KwaZulu-Natal</state>
+        <country>South Africa</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Soweto ACTG CRS (12301)</name>
+      <address>
+        <city>Johannesburg</city>
+        <country>South Africa</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Joint Clinical Research Centre (JCRC) (12401)</name>
+      <address>
+        <city>Kampala</city>
+        <country>Uganda</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Kalingalinga Clinic CRS (12801)</name>
+      <address>
+        <city>Lusaka</city>
+        <country>Zambia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>UZ-Parirenyatwa CRS</name>
+      <address>
+        <city>AIDS Research Unit P.O. Box A178</city>
+        <state>Harare</state>
+        <country>Zimbabwe</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>Brazil</country>
+    <country>Haiti</country>
+    <country>India</country>
+    <country>Kenya</country>
+    <country>Malawi</country>
+    <country>Peru</country>
+    <country>South Africa</country>
+    <country>Uganda</country>
+    <country>Zambia</country>
+    <country>Zimbabwe</country>
+  </location_countries>
+  <removed_countries>
+    <country>Tanzania</country>
+  </removed_countries>
+  <reference>
+    <citation>M. Hosseinipour, G. Bisson, S., et al. Empiric TB therapy does not decrease early mortality compared to Isoniazid Preventive therapy in adults with advanced HIV initiating ART: Results of ACTG A5274 (REMEMBER study). Program and abstracts of the 8th IAS Conference on HIV Pathogenesis, Treatment and prevention; July 19-22, 2015; Vancouver, Canada. Abstract A-729-0105-03495</citation>
+  </reference>
+  <reference>
+    <citation>Johnstone Kumwenda, Amita Gupta, et al. Empiric TB therapy versus IPT in HIV-infected persons initiating ART (ACTG A5274 48 week results). Program and abstracts of the 2016 Conference on Retroviruses and Opportunistic Infections; February 22-25, 2016; Boston, Massachusetts. Abstract 16-1383</citation>
+  </reference>
+  <reference>
+    <citation>Gregory P. Bisson, Amita Gupta, et al. Urine LAM Testing in Advanced HIV-Infected Adults in a Trial of Empiric TB Therapy. Program and abstracts of the 2016 Conference on Retroviruses and Opportunistic Infections; February 22-25, 2016; Boston, Massachusetts. Abstract 16-1650</citation>
+  </reference>
+  <verification_date>January 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>January 24, 2017</lastchanged_date>
+  <firstreceived_date>June 22, 2011</firstreceived_date>
+  <firstreceived_results_date>January 26, 2016</firstreceived_results_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>June 22, 2011</study_first_submitted>
+  <study_first_submitted_qc>June 22, 2011</study_first_submitted_qc>
+  <study_first_posted type="Estimate">June 27, 2011</study_first_posted>
+  <results_first_submitted>January 26, 2016</results_first_submitted>
+  <results_first_submitted_qc>January 26, 2016</results_first_submitted_qc>
+  <results_first_posted type="Estimate">February 23, 2016</results_first_posted>
+  <last_update_submitted>January 24, 2017</last_update_submitted>
+  <last_update_submitted_qc>January 24, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">March 7, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>HIV Infections</mesh_term>
+    <mesh_term>Tuberculosis</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Efavirenz</mesh_term>
+    <mesh_term>Tenofovir</mesh_term>
+    <mesh_term>Emtricitabine, Tenofovir Disoproxil Fumarate Drug Combination</mesh_term>
+    <mesh_term>Efavirenz, Emtricitabine, Tenofovir Disoproxil Fumarate Drug Combination</mesh_term>
+    <mesh_term>Rifampin</mesh_term>
+    <mesh_term>Isoniazid, pyrazinamide, rifampin drug combination</mesh_term>
+    <mesh_term>Isoniazid</mesh_term>
+    <mesh_term>Pyrazinamide</mesh_term>
+    <mesh_term>Ethambutol</mesh_term>
+  </intervention_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <recruitment_details>Recruited at AIDS Clinical Trials Units in 10 international countries. Recruitment occurred between October 31, 2011 (date of first participant was randomized) and June 9, 2014 (date of last participant was randomized).</recruitment_details>
+      <pre_assignment_details>851 were randomized 1:1 to treatment strategies A and B. Results reported for 850 eligible participants; 1 was subsequently found ineligible and excluded from all analyses.</pre_assignment_details>
+      <group_list>
+        <group group_id="P1">
+          <title>Arm A: Empiric</title>
+          <description>Study treatment for Arm A participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral treatment as soon as possible following randomization and within no more than 3 days following randomization plus a 4-drug anti-tuberculosis treatment (ATT) regimen (defined as rifampin/isoniazid/ethambutol/pyrazinamide) as soon as possible following randomization and within no more than 7 days following initiation of antiretroviral therapy. After 2 months (or 8 weeks), the 4-drug ATT will be followed with 4 months (or 16 weeks) of 2-drug ATT (defined as rifampin/isoniazid). All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only</description>
+        </group>
+        <group group_id="P2">
+          <title>Arm B: IPT</title>
+          <description>Study treatment for Arm B participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral therapy as soon as possible following randomization and within no more than 3 days following randomization and of initiating anti-TB treatment (ATT) only when indicated according to local standard practice and at the discretion of the site investigator. All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only. Pyridoxine is provided by the sites to all participants while they are receiving isoniazid (INH).</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="424"/>
+                <participants group_id="P2" count="426"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="391"/>
+                <participants group_id="P2" count="403"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="33"/>
+                <participants group_id="P2" count="23"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Death</title>
+              <participants_list>
+                <participants group_id="P1" count="20"/>
+                <participants group_id="P2" count="22"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Withdrawal by Subject</title>
+              <participants_list>
+                <participants group_id="P1" count="4"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Not able to get to clinic</title>
+              <participants_list>
+                <participants group_id="P1" count="4"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Not willing to adhere to requirements</title>
+              <participants_list>
+                <participants group_id="P1" count="3"/>
+                <participants group_id="P2" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Lost to Follow-up</title>
+              <participants_list>
+                <participants group_id="P1" count="2"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <population>Intent to treat: All eligible participants were included in the baseline characteristics.</population>
+      <group_list>
+        <group group_id="B1">
+          <title>Arm A: Empiric</title>
+          <description>Study treatment for Arm A participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral treatment as soon as possible following randomization and within no more than 3 days following randomization plus a 4-drug anti-tuberculosis treatment (ATT) regimen (defined as rifampin/isoniazid/ethambutol/pyrazinamide) as soon as possible following randomization and within no more than 7 days following initiation of antiretroviral therapy. After 2 months (or 8 weeks), the 4-drug ATT will be followed with 4 months (or 16 weeks) of 2-drug ATT (defined as rifampin/isoniazid). All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only</description>
+        </group>
+        <group group_id="B2">
+          <title>Arm B: IPT</title>
+          <description>Study treatment for Arm B participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral therapy as soon as possible following randomization and within no more than 3 days following randomization and of initiating anti-TB treatment (ATT) only when indicated according to local standard practice and at the discretion of the site investigator. All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only. Pyridoxine is provided by the sites to all participants while they are receiving isoniazid (INH).</description>
+        </group>
+        <group group_id="B3">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="424"/>
+            <count group_id="B2" value="426"/>
+            <count group_id="B3" value="850"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
+      <measure_list>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="36" lower_limit="30" upper_limit="42"/>
+                    <measurement group_id="B2" value="35" lower_limit="30" upper_limit="42"/>
+                    <measurement group_id="B3" value="36" lower_limit="30" upper_limit="42"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Sex: Female, Male</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <title>Female</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="200"/>
+                    <measurement group_id="B2" value="200"/>
+                    <measurement group_id="B3" value="400"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Male</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="224"/>
+                    <measurement group_id="B2" value="226"/>
+                    <measurement group_id="B3" value="450"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Race/Ethnicity, Customized</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Black Non-Hispanic</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="375"/>
+                    <measurement group_id="B2" value="384"/>
+                    <measurement group_id="B3" value="759"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Hispanic (Regardless of Race)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="32"/>
+                    <measurement group_id="B2" value="29"/>
+                    <measurement group_id="B3" value="61"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Asian, Pacific Islander</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="17"/>
+                    <measurement group_id="B2" value="13"/>
+                    <measurement group_id="B3" value="30"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Region of Enrollment</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Haiti</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="53"/>
+                    <measurement group_id="B2" value="56"/>
+                    <measurement group_id="B3" value="109"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Malawi</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="95"/>
+                    <measurement group_id="B2" value="98"/>
+                    <measurement group_id="B3" value="193"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Brazil</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="9"/>
+                    <measurement group_id="B2" value="6"/>
+                    <measurement group_id="B3" value="15"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>South Africa</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="86"/>
+                    <measurement group_id="B2" value="90"/>
+                    <measurement group_id="B3" value="176"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Zimbabwe</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="25"/>
+                    <measurement group_id="B2" value="27"/>
+                    <measurement group_id="B3" value="52"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Uganda</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="25"/>
+                    <measurement group_id="B2" value="24"/>
+                    <measurement group_id="B3" value="49"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Zambia</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="17"/>
+                    <measurement group_id="B2" value="19"/>
+                    <measurement group_id="B3" value="36"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Kenya</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="77"/>
+                    <measurement group_id="B2" value="75"/>
+                    <measurement group_id="B3" value="152"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Peru</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="20"/>
+                    <measurement group_id="B2" value="19"/>
+                    <measurement group_id="B3" value="39"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>India</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="17"/>
+                    <measurement group_id="B2" value="12"/>
+                    <measurement group_id="B3" value="29"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>HIV-1 RNA</title>
+          <units>log10 copies/mL</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5.4" lower_limit="5.0" upper_limit="5.7"/>
+                    <measurement group_id="B2" value="5.3" lower_limit="4.9" upper_limit="5.7"/>
+                    <measurement group_id="B3" value="5.3" lower_limit="4.9" upper_limit="5.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>CD4+ T-cell count</title>
+          <units>cells/mm^3</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="18" lower_limit="9" upper_limit="31"/>
+                    <measurement group_id="B2" value="19" lower_limit="9" upper_limit="33"/>
+                    <measurement group_id="B3" value="18" lower_limit="9" upper_limit="32"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Cumulative Probability of Death or Unknown Vital Status by Week 24</title>
+        <description>The Kaplan-Meier estimate of the cumulative probability of death or unknown vital status by week 24.
+Vital status at week 48 and again at weeks 60, 72, 84, and 96 was determined for participants who do not complete study follow-up, including those who are prematurely discontinued from the study before week 24 without coming in to the clinic. Vital status for participants who are not discontinued from the study whenever a scheduled visit of any type is missed was also obtained. The vital status was considered unknown at week 24 if a participant prematurely discontinued from the study before week 24 and no vital status was obtained at week 48.</description>
+        <time_frame>From study entry to week 24</time_frame>
+        <population>Intent to treat: All eligible participants were included in the analysis: participants were analyzed per original assigned randomized treatment</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Arm A: Empiric</title>
+            <description>Study treatment for Arm A participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral treatment as soon as possible following randomization and within no more than 3 days following randomization plus a 4-drug anti-tuberculosis treatment (ATT) regimen (defined as rifampin/isoniazid/ethambutol/pyrazinamide) as soon as possible following randomization and within no more than 7 days following initiation of antiretroviral therapy. After 2 months (or 8 weeks), the 4-drug ATT will be followed with 4 months (or 16 weeks) of 2-drug ATT (defined as rifampin/isoniazid). All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only</description>
+          </group>
+          <group group_id="O2">
+            <title>Arm B: IPT</title>
+            <description>Study treatment for Arm B participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral therapy as soon as possible following randomization and within no more than 3 days following randomization and of initiating anti-TB treatment (ATT) only when indicated according to local standard practice and at the discretion of the site investigator. All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only. Pyridoxine is provided by the sites to all participants while they are receiving isoniazid (INH).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Cumulative Probability of Death or Unknown Vital Status by Week 24</title>
+          <description>The Kaplan-Meier estimate of the cumulative probability of death or unknown vital status by week 24.
+Vital status at week 48 and again at weeks 60, 72, 84, and 96 was determined for participants who do not complete study follow-up, including those who are prematurely discontinued from the study before week 24 without coming in to the clinic. Vital status for participants who are not discontinued from the study whenever a scheduled visit of any type is missed was also obtained. The vital status was considered unknown at week 24 if a participant prematurely discontinued from the study before week 24 and no vital status was obtained at week 48.</description>
+          <population>Intent to treat: All eligible participants were included in the analysis: participants were analyzed per original assigned randomized treatment</population>
+          <units>Cumulative probablity per 100 persons</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="424"/>
+                <count group_id="O2" value="426"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5.2" lower_limit="3.5" upper_limit="7.8"/>
+                    <measurement group_id="O2" value="5.2" lower_limit="3.4" upper_limit="7.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>Treatment comparison was made using the difference (arm B- arm A) in the Kaplan-Meier estimate for 24 week cumulative probability of death or unknown vital status with 95% confidence interval</groups_desc>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
+            <p_value>0.97</p_value>
+            <method>z-test</method>
+            <param_type>Cumulative probability difference</param_type>
+            <param_value>-0.06</param_value>
+            <ci_percent>95</ci_percent>
+            <ci_n_sides>2-Sided</ci_n_sides>
+            <ci_lower_limit>-3.05</ci_lower_limit>
+            <ci_upper_limit>2.94</ci_upper_limit>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Cumulative Probability of Death by Week 24</title>
+        <description>The Kaplan-Meier estimate of cumulative probability of death by week 24</description>
+        <time_frame>From study entry to week 24</time_frame>
+        <population>Intent to treat: All eligible participants were included in the analysis: participants were analyzed per original assigned randomized treatment</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Arm A: Empiric</title>
+            <description>Study treatment for Arm A participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral treatment as soon as possible following randomization and within no more than 3 days following randomization plus a 4-drug anti-tuberculosis treatment (ATT) regimen (defined as rifampin/isoniazid/ethambutol/pyrazinamide) as soon as possible following randomization and within no more than 7 days following initiation of antiretroviral therapy. After 2 months (or 8 weeks), the 4-drug ATT will be followed with 4 months (or 16 weeks) of 2-drug ATT (defined as rifampin/isoniazid). All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only</description>
+          </group>
+          <group group_id="O2">
+            <title>Arm B: IPT</title>
+            <description>Study treatment for Arm B participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral therapy as soon as possible following randomization and within no more than 3 days following randomization and of initiating anti-TB treatment (ATT) only when indicated according to local standard practice and at the discretion of the site investigator. All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only. Pyridoxine is provided by the sites to all participants while they are receiving isoniazid (INH).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Cumulative Probability of Death by Week 24</title>
+          <description>The Kaplan-Meier estimate of cumulative probability of death by week 24</description>
+          <population>Intent to treat: All eligible participants were included in the analysis: participants were analyzed per original assigned randomized treatment</population>
+          <units>Cumulative probablity per 100 persons</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="424"/>
+                <count group_id="O2" value="426"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4.8" lower_limit="3.1" upper_limit="7.3"/>
+                    <measurement group_id="O2" value="5.2" lower_limit="3.4" upper_limit="7.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Cumulative Probability of First AIDS Progression by Week 96</title>
+        <description>The Kaplan-Meier estimate of the cumulative probability of first AIDS progression which was defined as the identification of a new World Health Organization (WHO) stage 3 or 4 condition</description>
+        <time_frame>From study entry to week 96</time_frame>
+        <posting_date>12/2020</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Cumulative Probability of Death or AIDS Progression by Week 24</title>
+        <description>The Kaplan-Meier estimate of the cumulative probability of death or AIDS progression by week 24
+The result of cumulative probability of death or AIDS progression by week 48 will be submitted after the study is completed. AIDS progression was defined as new WHO stage 3 or 4 conditions occurred after study entry.</description>
+        <time_frame>From study entry to week 24</time_frame>
+        <population>Intent to treat: All eligible participants were included in the analysis: participants were analyzed per original assigned randomized treatment</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Arm A: Empiric</title>
+            <description>Study treatment for Arm A participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral treatment as soon as possible following randomization and within no more than 3 days following randomization plus a 4-drug anti-tuberculosis treatment (ATT) regimen (defined as rifampin/isoniazid/ethambutol/pyrazinamide) as soon as possible following randomization and within no more than 7 days following initiation of antiretroviral therapy. After 2 months (or 8 weeks), the 4-drug ATT will be followed with 4 months (or 16 weeks) of 2-drug ATT (defined as rifampin/isoniazid). All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only</description>
+          </group>
+          <group group_id="O2">
+            <title>Arm B: IPT</title>
+            <description>Study treatment for Arm B participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral therapy as soon as possible following randomization and within no more than 3 days following randomization and of initiating anti-TB treatment (ATT) only when indicated according to local standard practice and at the discretion of the site investigator. All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only. Pyridoxine is provided by the sites to all participants while they are receiving isoniazid (INH).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Cumulative Probability of Death or AIDS Progression by Week 24</title>
+          <description>The Kaplan-Meier estimate of the cumulative probability of death or AIDS progression by week 24
+The result of cumulative probability of death or AIDS progression by week 48 will be submitted after the study is completed. AIDS progression was defined as new WHO stage 3 or 4 conditions occurred after study entry.</description>
+          <population>Intent to treat: All eligible participants were included in the analysis: participants were analyzed per original assigned randomized treatment</population>
+          <units>Cumulative probablity per 100 persons</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="424"/>
+                <count group_id="O2" value="426"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="17.1" lower_limit="13.9" upper_limit="21.1"/>
+                    <measurement group_id="O2" value="12.5" lower_limit="9.7" upper_limit="16.0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Proportion of Participants With HIV-1 RNA Level &lt;400 Copies/mL</title>
+        <description>Proportion of participants with HIV-1 RNA level &lt;400 copies/mL at weeks 0, 4, and 24. The results at week 48 will be submitted after the study is completed</description>
+        <time_frame>At weeks 0, 4, 24, and 48</time_frame>
+        <population>Intent to treat: All eligible participants were included in the analysis: participants were analyzed per original assigned randomized treatment. Missing data were assumed missing completed at random</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Arm A: Empiric</title>
+            <description>Study treatment for Arm A participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral treatment as soon as possible following randomization and within no more than 3 days following randomization plus a 4-drug anti-tuberculosis treatment (ATT) regimen (defined as rifampin/isoniazid/ethambutol/pyrazinamide) as soon as possible following randomization and within no more than 7 days following initiation of antiretroviral therapy. After 2 months (or 8 weeks), the 4-drug ATT will be followed with 4 months (or 16 weeks) of 2-drug ATT (defined as rifampin/isoniazid). All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only</description>
+          </group>
+          <group group_id="O2">
+            <title>Arm B: IPT</title>
+            <description>Study treatment for Arm B participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral therapy as soon as possible following randomization and within no more than 3 days following randomization and of initiating anti-TB treatment (ATT) only when indicated according to local standard practice and at the discretion of the site investigator. All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only. Pyridoxine is provided by the sites to all participants while they are receiving isoniazid (INH).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Proportion of Participants With HIV-1 RNA Level &lt;400 Copies/mL</title>
+          <description>Proportion of participants with HIV-1 RNA level &lt;400 copies/mL at weeks 0, 4, and 24. The results at week 48 will be submitted after the study is completed</description>
+          <population>Intent to treat: All eligible participants were included in the analysis: participants were analyzed per original assigned randomized treatment. Missing data were assumed missing completed at random</population>
+          <units>Proportion of participants</units>
+          <param>Number</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="424"/>
+                <count group_id="O2" value="426"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Week 0 (nA=420, nB=424)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0" lower_limit="0" upper_limit="0.02"/>
+                    <measurement group_id="O2" value="0.01" lower_limit="0" upper_limit="0.03"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Week 4 (nA=377, nB=371)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.46" lower_limit="0.41" upper_limit="0.51"/>
+                    <measurement group_id="O2" value="0.49" lower_limit="0.44" upper_limit="0.55"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Week 24 (nA=370, nB=378)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.84" lower_limit="0.79" upper_limit="0.87"/>
+                    <measurement group_id="O2" value="0.85" lower_limit="0.81" upper_limit="0.89"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>CD4+ T-cell Count</title>
+        <description>The absolute levels of CD4+ T-cell counts (cells/mm^3) at weeks 0, 4, and 24. The results at week 48 will be submitted after the study is completed</description>
+        <time_frame>At weeks 0, 4, 24, and 48</time_frame>
+        <population>Intent to treat: All eligible participants were included in the analysis: Participants were analyzed per original assigned randomized treatment. Missing data were assigned missing completely at random.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Arm A: Empiric</title>
+            <description>Study treatment for Arm A participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral treatment as soon as possible following randomization and within no more than 3 days following randomization plus a 4-drug anti-tuberculosis treatment (ATT) regimen (defined as rifampin/isoniazid/ethambutol/pyrazinamide) as soon as possible following randomization and within no more than 7 days following initiation of antiretroviral therapy. After 2 months (or 8 weeks), the 4-drug ATT will be followed with 4 months (or 16 weeks) of 2-drug ATT (defined as rifampin/isoniazid). All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only</description>
+          </group>
+          <group group_id="O2">
+            <title>Arm B: IPT</title>
+            <description>Study treatment for Arm B participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral therapy as soon as possible following randomization and within no more than 3 days following randomization and of initiating anti-TB treatment (ATT) only when indicated according to local standard practice and at the discretion of the site investigator. All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only. Pyridoxine is provided by the sites to all participants while they are receiving isoniazid (INH).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>CD4+ T-cell Count</title>
+          <description>The absolute levels of CD4+ T-cell counts (cells/mm^3) at weeks 0, 4, and 24. The results at week 48 will be submitted after the study is completed</description>
+          <population>Intent to treat: All eligible participants were included in the analysis: Participants were analyzed per original assigned randomized treatment. Missing data were assigned missing completely at random.</population>
+          <units>cells/ mm^3</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="424"/>
+                <count group_id="O2" value="426"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Week 0 (nA=422, nB=425)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="18" lower_limit="9" upper_limit="31"/>
+                    <measurement group_id="O2" value="19" lower_limit="9" upper_limit="33"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Week 4 (nA=406, nB=406)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="74" lower_limit="37" upper_limit="118"/>
+                    <measurement group_id="O2" value="76" lower_limit="41" upper_limit="123"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Week 24 (nA=387, nB=393)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="121" lower_limit="75" upper_limit="172"/>
+                    <measurement group_id="O2" value="121" lower_limit="80" upper_limit="188"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>CD4+ T-cell Count Change From Baseline</title>
+        <description>Change was calculated as the CD4+ T-cell count at week (4 and 24) minus the baseline CD4+ T-cell count. The results at week 48 will be submitted after the study is completed</description>
+        <time_frame>From study entry to weeks 4, 24 and 48</time_frame>
+        <population>Intention to treat: All eligible participants were included in the analysis: participants were analyzed per original assigned randomized treatment. Missing data were assumed missing completely at random.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Arm A: Empiric</title>
+            <description>Study treatment for Arm A participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral treatment as soon as possible following randomization and within no more than 3 days following randomization plus a 4-drug anti-tuberculosis treatment (ATT) regimen (defined as rifampin/isoniazid/ethambutol/pyrazinamide) as soon as possible following randomization and within no more than 7 days following initiation of antiretroviral therapy. After 2 months (or 8 weeks), the 4-drug ATT will be followed with 4 months (or 16 weeks) of 2-drug ATT (defined as rifampin/isoniazid). All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only</description>
+          </group>
+          <group group_id="O2">
+            <title>Arm B: IPT</title>
+            <description>Study treatment for Arm B participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral therapy as soon as possible following randomization and within no more than 3 days following randomization and of initiating anti-TB treatment (ATT) only when indicated according to local standard practice and at the discretion of the site investigator. All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only. Pyridoxine is provided by the sites to all participants while they are receiving isoniazid (INH).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>CD4+ T-cell Count Change From Baseline</title>
+          <description>Change was calculated as the CD4+ T-cell count at week (4 and 24) minus the baseline CD4+ T-cell count. The results at week 48 will be submitted after the study is completed</description>
+          <population>Intention to treat: All eligible participants were included in the analysis: participants were analyzed per original assigned randomized treatment. Missing data were assumed missing completely at random.</population>
+          <units>cells/ mm^3</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="424"/>
+                <count group_id="O2" value="426"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Week 4 (nA=404, nB=405)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="49" lower_limit="20" upper_limit="91"/>
+                    <measurement group_id="O2" value="54" lower_limit="22" upper_limit="94"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Week 24 (nA=385, nB=392)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="96" lower_limit="55" upper_limit="147"/>
+                    <measurement group_id="O2" value="102" lower_limit="60" upper_limit="159"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Time to Initiation of TB Treatment by Week 96</title>
+        <description>Median time to TB treatment initiation by week 96</description>
+        <time_frame>From study entry to week 96</time_frame>
+        <posting_date>12/2020</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Proportion of Participants With TB Diagnosis Per Current ACTG Diagnosis Appendix by Week 96</title>
+        <description>Proportion of participants with TB diagnosis per current ACTG Diagnosis Appendix 60 by week 96</description>
+        <time_frame>From study entry to week 96</time_frame>
+        <posting_date>12/2020</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Proportion of Participants With at Least One New Grade 3 or 4 Adverse Event That is at Least a One-grade Increase From Baseline by Week 48</title>
+        <description>Proportion of participants with at least one new Grade 3 or 4 laboratory or sign or symptom that is at least a one-grade increase from baseline by Week 48</description>
+        <time_frame>From study entry to week 48</time_frame>
+        <posting_date>12/2020</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Proportion of Participants With at Least One New Grade 3 or 4 That is at Least a One-grade Increase From Baseline for the Following Targeted Laboratory Values by Week 48</title>
+        <description>Proportion of participants with at least one new Grade 3 or 4 that is at least a one-grade increase from baseline for the following targeted laboratory values by Week 48
+The targeted laboratory events include hemoglobin, serum creatinine, ALT and AST</description>
+        <time_frame>From study entry to week 48</time_frame>
+        <posting_date>12/2020</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Proportion of Participants With IRIS (Using Current ACTG Definition) by Week 48</title>
+        <description>Proportion of participants with IRIS (using current ACTG definition Appendix 60) by Week 48</description>
+        <time_frame>From study entry to week 48</time_frame>
+        <posting_date>12/2020</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Proportion of Participants With Reportable Hospitalization by Week 48</title>
+        <description>Proportion of participants with any hospitalization reported by Week 48</description>
+        <time_frame>From study entry to week 48</time_frame>
+        <posting_date>12/2020</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Proportion of Participants Who Prematurely Discontinued Any Component of TB Treatment by Week 48</title>
+        <description>Proportion of participants with premature discontinuation of any component of TB treatment by Week 48</description>
+        <time_frame>From study entry to week 48</time_frame>
+        <posting_date>12/2020</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Proportion of Participants Who Prematurely Discontinued Antiretroviral Therapy by Week 48</title>
+        <description>Proportion of participants with premature discontinuation of antiretroviral therapy (ART) by Week 48</description>
+        <time_frame>From study entry to week 48</time_frame>
+        <posting_date>12/2020</posting_date>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>From treatment dispensation to up to week 24</time_frame>
+      <desc>The protocol required reporting of signs and symptoms and laboratory abnormalities of &gt;=Grade 2 and all grades of fever. The DAIDS Adverse Event (AE) Grading Table, Version 1.0, December 2004 (Clarification, August 2009) was used for grading of AEs. Expedited adverse event reporting followed Version 2.0 of the DAIDS Expedited Adverse Event Manual.</desc>
+      <group_list>
+        <group group_id="E1">
+          <title>Arm A: Empiric</title>
+          <description>Study treatment for Arm A participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral treatment as soon as possible following randomization and within no more than 3 days following randomization plus a 4-drug anti-tuberculosis treatment (ATT) regimen (defined as rifampin/isoniazid/ethambutol/pyrazinamide) as soon as possible following randomization and within no more than 7 days following initiation of antiretroviral therapy. After 2 months (or 8 weeks), the 4-drug ATT will be followed with 4 months (or 16 weeks) of 2-drug ATT (defined as rifampin/isoniazid). All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only</description>
+        </group>
+        <group group_id="E2">
+          <title>Arm B: IPT</title>
+          <description>Study treatment for Arm B participants is the strategy of initiating study-provided or other FDA-approved or tentatively approved antiretroviral therapy as soon as possible following randomization and within no more than 3 days following randomization and of initiating anti-TB treatment (ATT) only when indicated according to local standard practice and at the discretion of the site investigator. All participants will be followed through week 96. Drug provision by or through the study will be through week 48 only. Pyridoxine is provided by the sites to all participants while they are receiving isoniazid (INH).</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <default_vocab>MedDRA 18.0</default_vocab>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="81" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="91" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Blood and lymphatic system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anaemia</sub_title>
+                <counts group_id="E1" subjects_affected="8" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="7" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Disseminated intravascular coagulation</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Leukopenia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Lymphadenopathy</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Lymphopenia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Neutropenia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Thrombocytopenia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Angina unstable</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Cardiac failure congestive</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Eye disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Cataract</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Diarrhoea</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Enteritis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Faecaloma</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Food poisoning</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Gastritis</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Haemorrhoids</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Intestinal obstruction</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Vomiting</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Asthenia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Death</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="6" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Multi-organ failure</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Hepatobiliary disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Drug-induced liver injury</sub_title>
+                <counts group_id="E1" subjects_affected="4" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hepatitis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hepatitis acute</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hepatitis alcoholic</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hepatotoxicity</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hyperbilirubinaemia</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hypertransaminasaemia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Immune system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Drug hypersensitivity</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Immune reconstitution inflammatory syndrome</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>AIDS dementia complex</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Acquired immunodeficiency syndrome</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Atypical pneumonia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Bacterial sepsis</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Bronchitis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Cellulitis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Central nervous system infection</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Cerebral toxoplasmosis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Cytomegalovirus chorioretinitis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Diarrhoea infectious</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Disseminated tuberculosis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Furuncle</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Gastroenteritis</sub_title>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="6" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>HIV infection</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Histoplasmosis disseminated</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Immune reconstitution inflammatory syndrome associated tuberculosis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Lobar pneumonia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Lymph node tuberculosis</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Malaria</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Meningitis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Meningitis bacterial</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Meningitis cryptococcal</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="9" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Meningitis tuberculous</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="5" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Meningitis viral</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Neurosyphilis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Oesophageal candidiasis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Periorbital cellulitis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Peritonitis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Pneumocystis jirovecii pneumonia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Pneumonia</sub_title>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Pneumonia bacterial</sub_title>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Pulmonary tuberculosis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Pyelonephritis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Respiratory tract infection</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Salmonella sepsis</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Sepsis</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Subcutaneous abscess</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Tuberculoma of central nervous system</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Tuberculosis</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Typhoid fever</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Upper respiratory tract infection</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Urinary tract infection</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Urosepsis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Viral vasculitis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Injury, poisoning and procedural complications</title>
+            <event_list>
+              <event>
+                <sub_title>Head injury</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Lower limb fracture</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>Haemoglobin decreased</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hepatic enzyme increased</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Neutrophil count decreased</sub_title>
+                <counts group_id="E1" subjects_affected="3" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Weight decreased</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Metabolism and nutrition disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Dehydration</sub_title>
+                <counts group_id="E1" subjects_affected="5" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Gout</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hyperkalaemia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hypokalaemia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hypophosphataemia</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Metabolic acidosis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Neoplasms benign, malignant and unspecified (incl cysts and polyps)</title>
+            <event_list>
+              <event>
+                <sub_title>Anogenital warts</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Carcinoid tumour of the caecum</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hairy cell leukaemia</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Kaposi's sarcoma</sub_title>
+                <counts group_id="E1" subjects_affected="2" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Oesophageal carcinoma</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Cerebrovascular accident</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Dizziness</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Epilepsy</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Headache</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Ischaemic cerebral infarction</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Syncope</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Psychiatric disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Acute psychosis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="2" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Hallucination</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Reactive psychosis</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Suicide attempt</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Renal and urinary disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Acute kidney injury</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="3" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Chronic kidney disease</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Renal failure</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Reproductive system and breast disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Uterine prolapse</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Respiratory, thoracic and mediastinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Acute respiratory distress syndrome</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Pleural effusion</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Pneumonia aspiration</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Rash maculo-papular</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Stevens-Johnson syndrome</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="1" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Surgical and medical procedures</title>
+            <event_list>
+              <event>
+                <sub_title>Abortion induced</sub_title>
+                <counts group_id="E1" subjects_affected="1" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>5</frequency_threshold>
+        <default_vocab>MedDRA 18.0</default_vocab>
+        <default_assessment>Systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="370" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="375" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Abdominal pain</sub_title>
+                <counts group_id="E1" subjects_affected="26" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="26" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Diarrhoea</sub_title>
+                <counts group_id="E1" subjects_affected="38" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="33" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Leukoplakia oral</sub_title>
+                <counts group_id="E1" subjects_affected="22" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="18" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Nausea</sub_title>
+                <counts group_id="E1" subjects_affected="20" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="22" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Vomiting</sub_title>
+                <counts group_id="E1" subjects_affected="36" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="50" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Pyrexia</sub_title>
+                <counts group_id="E1" subjects_affected="41" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="54" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Oral candidiasis</sub_title>
+                <counts group_id="E1" subjects_affected="48" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="49" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Pulmonary tuberculosis</sub_title>
+                <counts group_id="E1" subjects_affected="22" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="12" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>Alanine aminotransferase increased</sub_title>
+                <counts group_id="E1" subjects_affected="54" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="70" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Aspartate aminotransferase increased</sub_title>
+                <counts group_id="E1" subjects_affected="99" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="98" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Blood albumin decreased</sub_title>
+                <counts group_id="E1" subjects_affected="151" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="159" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Blood alkaline phosphatase increased</sub_title>
+                <counts group_id="E1" subjects_affected="36" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="42" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Blood bicarbonate decreased</sub_title>
+                <counts group_id="E1" subjects_affected="66" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="72" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Blood creatinine increased</sub_title>
+                <counts group_id="E1" subjects_affected="25" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="44" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Blood potassium decreased</sub_title>
+                <counts group_id="E1" subjects_affected="32" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="31" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Blood sodium decreased</sub_title>
+                <counts group_id="E1" subjects_affected="143" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="140" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Haemoglobin decreased</sub_title>
+                <counts group_id="E1" subjects_affected="118" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="94" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Neutrophil count decreased</sub_title>
+                <counts group_id="E1" subjects_affected="160" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="162" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Platelet count decreased</sub_title>
+                <counts group_id="E1" subjects_affected="31" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="38" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Weight decreased</sub_title>
+                <counts group_id="E1" subjects_affected="32" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="23" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>White blood cell count decreased</sub_title>
+                <counts group_id="E1" subjects_affected="136" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="130" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Headache</sub_title>
+                <counts group_id="E1" subjects_affected="24" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="43" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Reproductive system and breast disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Vaginal discharge</sub_title>
+                <counts group_id="E1" subjects_affected="22" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="10" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Respiratory, thoracic and mediastinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Cough</sub_title>
+                <counts group_id="E1" subjects_affected="40" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="47" subjects_at_risk="426"/>
+              </event>
+              <event>
+                <sub_title>Oropharyngeal plaque</sub_title>
+                <counts group_id="E1" subjects_affected="22" subjects_at_risk="424"/>
+                <counts group_id="E2" subjects_affected="13" subjects_at_risk="426"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>In accordance with the Clinical Trials Agreement between NIAID (DAIDS) and company collaborators, NIAID (DAIDS) provides companies with a copy of any abstract, press release, or manuscript prior to submission for publication with sufficient time for company review and comment. The publication/other disclosure can be delayed for up to 30 additional business days for manuscripts and five (5) business days for abstracts, to preserve U.S. or foreign patent or other intellectual property rights.</restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>ACTG Clinicaltrials.gov Coordinator</name_or_title>
+      <organization>ACTG Network Coordinating Center, Social &amp; Scientific Systems, Inc.</organization>
+      <phone>(301) 628-3313</phone>
+      <email>ACTGCT.Gov@s-3.com</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
