@@ -1,0 +1,1043 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on February 22, 2018</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01534533</url>
+  </required_header>
+  <id_info>
+    <org_study_id>NNSFC-30972472</org_study_id>
+    <secondary_id>XLin</secondary_id>
+    <nct_id>NCT01534533</nct_id>
+  </id_info>
+  <brief_title>Effects of Lutein Supplementation on Subclinical Atherosclerosis</brief_title>
+  <official_title>The Effects of Lutein Supplementation on Subclinical Atherosclerosis</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Peking University</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Peking University</source>
+  <oversight_info>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      This study is to investigate the possible positive effects of lutein and lycopene
+      supplementation on early atherosclerosis in Beijing.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Atherosclerosis is the primary cause of cardiovascular and cerebrovascular diseases, both of
+      which are the top two causes of death in industrialized countries including China. Lutein was
+      found to be protective against atherosclerosis in some case control studies. However, the
+      intervention on atherosclerosis have not been reported. In the present study, 192 subjects
+      were randomly assigned to four groups treated with different amounts of lutein. The
+      investigators observe the changes of serum lutein concentration by hyper-pressure liquid
+      chromatography (HPLC), and compare the differences of common carotid IMT and arterial
+      stiffness by carotid ultrasonography before and after the intervention. Serum biochemistry
+      indexes including cholesterol (CHO), triglyceride (TG), high density lipoprotein-cholesterol
+      (HDL-C), low density lipoprotein-cholesterol (LDL-C) and glucose (Glu) were measured at 0, 7
+      and 12 months of treatment by auto-analyzer.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date>June 2010</start_date>
+  <completion_date type="Actual">June 2012</completion_date>
+  <primary_completion_date type="Actual">June 2011</primary_completion_date>
+  <phase>Phase 2/Phase 3</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Prevention</primary_purpose>
+    <masking>Quadruple (Participant, Care Provider, Investigator, Outcomes Assessor)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Table 1 Study Specific Characteristic Part One</measure>
+    <time_frame>at baseline</time_frame>
+    <description>The percentage of female, race, hypertenion history, diabetes history, and hyperlipemia history was calculated.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Table 1 Study Specific Characteristic of Age</measure>
+    <time_frame>at baseline</time_frame>
+    <description>the mean and standard deviation of age was calculated in four groups</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Table 1 Study Specific Characteristic of Body Mass Index (BMI)</measure>
+    <time_frame>at baseline</time_frame>
+    <description>the mean and standard deviation of BMI in four groups was calculated</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Table 1 Study Specific Characteristic of Blood Pressure (BP)</measure>
+    <time_frame>at baseline</time_frame>
+    <description>systolic BP and diastolic BP in four groups was measure twice between 15minutes</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Table 1 Study Specific Characteristic of Serum Carotenoids</measure>
+    <time_frame>at baseline</time_frame>
+    <description>serum major carotenoids, including lutein, zeaxanthin, beta-carotene, and lycopene concentration were measured by hyper-pressure liquid chromatography (HPLC)</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Changes of Right Common Carotid Arterial Stiffness Parameter β(R-β) at Baseline and After 12 Months</measure>
+    <time_frame>at baseline and after 12 months</time_frame>
+    <description>Arterial stiffness was measured by using a high-resolution B-mode carotid ultrasound with echo-tracking system (Aloka prosound α-10, Aloka Co. Ltd., Tokyo, Japan).</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Dietary Intake of Energy During the Study Periods</measure>
+    <time_frame>at baseline and 12 months</time_frame>
+    <description>Dietary intake was assessed at baseline and after 12months by using 3 consecutive 24-hour recalls.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Dietary Intake of Vitamin C,Vitamin E, Lutein Plus Zeaxanthin and Lycopene During the Study Periods</measure>
+    <time_frame>at baseline and 12 months</time_frame>
+    <description>Dietary intake of Vitamin C,Vitamin E, Lutein plus zeaxanthin and Lycopene was assessed at baseline and after 12months by using 3 consecutive 24-hour recalls.</description>
+  </secondary_outcome>
+  <number_of_arms>4</number_of_arms>
+  <enrollment type="Actual">192</enrollment>
+  <condition>Carotid Atherosclerosis</condition>
+  <condition>Carotid Intimal Medial Thickness 1</condition>
+  <arm_group>
+    <arm_group_label>Placebo</arm_group_label>
+    <arm_group_type>Placebo Comparator</arm_group_type>
+    <description>early atherosclerosis cases, received starch in hard shell gelatine capsules, once a day</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Lutein group</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>early atherosclerosis cases, received 20mg lutein, once a day</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Combination group</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>early atherosclerosis cases, received 20mg lutein plus 20mg lycopene, once a day</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Normal lutein control group</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>20mg lutein for subjects free from atherosclerosis, once a day</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Dietary Supplement</intervention_type>
+    <intervention_name>Placebo</intervention_name>
+    <description>one gelatine capsule containing starch per day, for 12 months</description>
+    <arm_group_label>Placebo</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Dietary Supplement</intervention_type>
+    <intervention_name>Lutein group</intervention_name>
+    <description>one gelatine capsule containing 20mg lutein per day, for 12 months</description>
+    <arm_group_label>Lutein group</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Dietary Supplement</intervention_type>
+    <intervention_name>Combination group</intervention_name>
+    <description>one gelatine capsule containing 20mg lutein and 20 mg lycopene per day, for 12 months</description>
+    <arm_group_label>Combination group</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Dietary Supplement</intervention_type>
+    <intervention_name>Normal lutein control group</intervention_name>
+    <description>subjects without early atherosclerosis, treated with one gelatine capsule containing 20mg lutein per day, for 12 months</description>
+    <arm_group_label>Normal lutein control group</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  early atherosclerosis;
+
+          -  aged 45 to 68 years;
+
+          -  Han nationality
+
+        Exclusion Criteria:
+
+          -  history of myocardial infarction,
+
+          -  stroke,
+
+          -  revascularization,
+
+          -  coronary by-pass operation,
+
+          -  local carotid IMT &gt; 1300μm or supplemental vitamin and/or mineral use for ≥ 4 week
+             before the start of the study
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>45 Years</minimum_age>
+    <maximum_age>68 Years</maximum_age>
+    <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Xiaoming Lin, M.M.</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Peking University</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Haidian District</name>
+      <address>
+        <city>Beijing</city>
+        <zip>100191</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>China</country>
+  </location_countries>
+  <reference>
+    <citation>Zou Z, Xu X, Huang Y, Xiao X, Ma L, Sun T, Dong P, Wang X, Lin X. High serum level of lutein may be protective against early atherosclerosis: the Beijing atherosclerosis study. Atherosclerosis. 2011 Dec;219(2):789-93. doi: 10.1016/j.atherosclerosis.2011.08.006. Epub 2011 Aug 10.</citation>
+    <PMID>21872250</PMID>
+  </reference>
+  <verification_date>June 2013</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>June 18, 2013</lastchanged_date>
+  <firstreceived_date>February 13, 2012</firstreceived_date>
+  <firstreceived_results_date>July 26, 2012</firstreceived_results_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>February 13, 2012</study_first_submitted>
+  <study_first_submitted_qc>February 15, 2012</study_first_submitted_qc>
+  <study_first_posted type="Estimate">February 16, 2012</study_first_posted>
+  <results_first_submitted>July 26, 2012</results_first_submitted>
+  <results_first_submitted_qc>September 13, 2012</results_first_submitted_qc>
+  <results_first_posted type="Estimate">October 15, 2012</results_first_posted>
+  <last_update_submitted>June 18, 2013</last_update_submitted>
+  <last_update_submitted_qc>June 18, 2013</last_update_submitted_qc>
+  <last_update_posted type="Estimate">July 22, 2013</last_update_posted>
+  <!-- End of dates                                                                             -->
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>Peking University</investigator_affiliation>
+    <investigator_full_name>Xiaoming Lin</investigator_full_name>
+    <investigator_title>Professor</investigator_title>
+  </responsible_party>
+  <keyword>early atherosclerosis</keyword>
+  <keyword>serum lutein</keyword>
+  <keyword>serum lycopene</keyword>
+  <keyword>intima-media thickness</keyword>
+  <keyword>arterial stiffness</keyword>
+  <keyword>combined effect</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Atherosclerosis</mesh_term>
+    <mesh_term>Carotid Artery Diseases</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Lycopene</mesh_term>
+  </intervention_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <group_list>
+        <group group_id="P1">
+          <title>Placebo</title>
+          <description>starch in hard shell gelatine capsules</description>
+        </group>
+        <group group_id="P2">
+          <title>Lutein Group</title>
+          <description>20mg lutein per day</description>
+        </group>
+        <group group_id="P3">
+          <title>Lutein and Lycopene Group</title>
+          <description>lutein plus lycopene group</description>
+        </group>
+        <group group_id="P4">
+          <title>Normal Lutein Group</title>
+          <description>subjects without early atherosclerosis</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="48"/>
+                <participants group_id="P2" count="48"/>
+                <participants group_id="P3" count="48"/>
+                <participants group_id="P4" count="48"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="40"/>
+                <participants group_id="P2" count="45"/>
+                <participants group_id="P3" count="40"/>
+                <participants group_id="P4" count="44"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="8"/>
+                <participants group_id="P2" count="3"/>
+                <participants group_id="P3" count="8"/>
+                <participants group_id="P4" count="4"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Lost to Follow-up</title>
+              <participants_list>
+                <participants group_id="P1" count="3"/>
+                <participants group_id="P2" count="0"/>
+                <participants group_id="P3" count="4"/>
+                <participants group_id="P4" count="3"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Withdrawal by Subject</title>
+              <participants_list>
+                <participants group_id="P1" count="5"/>
+                <participants group_id="P2" count="3"/>
+                <participants group_id="P3" count="4"/>
+                <participants group_id="P4" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <group_list>
+        <group group_id="B1">
+          <title>Placebo</title>
+          <description>starch in hard shell gelatine capsules</description>
+        </group>
+        <group group_id="B2">
+          <title>Lutein Group</title>
+          <description>20mg lutein per day</description>
+        </group>
+        <group group_id="B3">
+          <title>Lutein and Lycopene Group</title>
+          <description>lutein plus lycopene group</description>
+        </group>
+        <group group_id="B4">
+          <title>Normal Lutein Group</title>
+          <description>subjects without early atherosclerosis</description>
+        </group>
+        <group group_id="B5">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="48"/>
+            <count group_id="B2" value="48"/>
+            <count group_id="B3" value="48"/>
+            <count group_id="B4" value="48"/>
+            <count group_id="B5" value="192"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
+      <measure_list>
+        <measure>
+          <title>Age</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>&lt;=18 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="0"/>
+                    <measurement group_id="B4" value="0"/>
+                    <measurement group_id="B5" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Between 18 and 65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="45"/>
+                    <measurement group_id="B2" value="44"/>
+                    <measurement group_id="B3" value="44"/>
+                    <measurement group_id="B4" value="46"/>
+                    <measurement group_id="B5" value="179"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>&gt;=65 years</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="3"/>
+                    <measurement group_id="B2" value="4"/>
+                    <measurement group_id="B3" value="4"/>
+                    <measurement group_id="B4" value="2"/>
+                    <measurement group_id="B5" value="13"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Age</title>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="57.4" spread="5.0"/>
+                    <measurement group_id="B2" value="57.4" spread="4.4"/>
+                    <measurement group_id="B3" value="57.3" spread="4.9"/>
+                    <measurement group_id="B4" value="53.8" spread="5.8"/>
+                    <measurement group_id="B5" value="56.5" spread="5.2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Gender</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="30"/>
+                    <measurement group_id="B2" value="28"/>
+                    <measurement group_id="B3" value="26"/>
+                    <measurement group_id="B4" value="32"/>
+                    <measurement group_id="B5" value="116"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Male</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="18"/>
+                    <measurement group_id="B2" value="20"/>
+                    <measurement group_id="B3" value="22"/>
+                    <measurement group_id="B4" value="16"/>
+                    <measurement group_id="B5" value="76"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Region of Enrollment</title>
+          <units>participants</units>
+          <param>Number</param>
+          <class_list>
+            <class>
+              <title>China</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="48"/>
+                    <measurement group_id="B2" value="48"/>
+                    <measurement group_id="B3" value="48"/>
+                    <measurement group_id="B4" value="48"/>
+                    <measurement group_id="B5" value="192"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Table 1 Study Specific Characteristic Part One</title>
+        <description>The percentage of female, race, hypertenion history, diabetes history, and hyperlipemia history was calculated.</description>
+        <time_frame>at baseline</time_frame>
+        <population>We conducted a per protocol analysis of all the subjects who completed the study.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Placebo (P Group)</title>
+            <description>starch in hard shell gelatine capsules</description>
+          </group>
+          <group group_id="O2">
+            <title>Lutein Group (L Group)</title>
+            <description>early atherosclerosis case received 20mg lutein</description>
+          </group>
+          <group group_id="O3">
+            <title>Lutein and Lycopene Group (LL Group)</title>
+            <description>received 20mg lutein and 20mg lycopene</description>
+          </group>
+          <group group_id="O4">
+            <title>Normal Lutein Control Group (NL Group)</title>
+            <description>subjects free from atherosclerosis received 20mg lutein</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Table 1 Study Specific Characteristic Part One</title>
+          <description>The percentage of female, race, hypertenion history, diabetes history, and hyperlipemia history was calculated.</description>
+          <population>We conducted a per protocol analysis of all the subjects who completed the study.</population>
+          <units>Percentage of Participants</units>
+          <param>Number</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="40"/>
+                <count group_id="O2" value="45"/>
+                <count group_id="O3" value="40"/>
+                <count group_id="O4" value="44"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Female</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="69.8"/>
+                    <measurement group_id="O2" value="59.8"/>
+                    <measurement group_id="O3" value="59.1"/>
+                    <measurement group_id="O4" value="72.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Race (Han people)</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="100"/>
+                    <measurement group_id="O2" value="100"/>
+                    <measurement group_id="O3" value="100"/>
+                    <measurement group_id="O4" value="100"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Hypertension history</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="63.4"/>
+                    <measurement group_id="O2" value="57.4"/>
+                    <measurement group_id="O3" value="56.8"/>
+                    <measurement group_id="O4" value="20.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Diabetes history</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="12.2"/>
+                    <measurement group_id="O2" value="14.9"/>
+                    <measurement group_id="O3" value="13.6"/>
+                    <measurement group_id="O4" value="25.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Hyperlipemia history</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="73.2"/>
+                    <measurement group_id="O2" value="72.3"/>
+                    <measurement group_id="O3" value="75.0"/>
+                    <measurement group_id="O4" value="65.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+              <group_id>O3</group_id>
+            </group_id_list>
+            <groups_desc>The null hypothesis was &quot;no group difference&quot;</groups_desc>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
+            <p_value>&gt;0.05</p_value>
+            <p_value_desc>The a priori threshold for statistical significance was 0.05 (two sides)</p_value_desc>
+            <method>Chi-squared</method>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Table 1 Study Specific Characteristic of Age</title>
+        <description>the mean and standard deviation of age was calculated in four groups</description>
+        <time_frame>at baseline</time_frame>
+        <population>We conducted a per protocol analysis of all the subjects who completed the study.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Placebo (P Group)</title>
+            <description>starch in hard shell gelatine capsules</description>
+          </group>
+          <group group_id="O2">
+            <title>Lutein Group (L Group)</title>
+            <description>early atherosclerosis case received 20mg lutein</description>
+          </group>
+          <group group_id="O3">
+            <title>Combination Group (LL Group)</title>
+            <description>received 20mg lutein and 20mg lycopene</description>
+          </group>
+          <group group_id="O4">
+            <title>Normal Lutein Control Group (NL Group)</title>
+            <description>subjects free from atherosclerosis received 20mg lutein</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Table 1 Study Specific Characteristic of Age</title>
+          <description>the mean and standard deviation of age was calculated in four groups</description>
+          <population>We conducted a per protocol analysis of all the subjects who completed the study.</population>
+          <units>years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="40"/>
+                <count group_id="O2" value="45"/>
+                <count group_id="O3" value="40"/>
+                <count group_id="O4" value="44"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="57.4" spread="5.0"/>
+                    <measurement group_id="O2" value="57.4" spread="4.4"/>
+                    <measurement group_id="O3" value="57.3" spread="4.9"/>
+                    <measurement group_id="O4" value="53.8" spread="5.8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+              <group_id>O3</group_id>
+            </group_id_list>
+            <groups_desc>The null hypothesis was &quot;no group difference&quot;</groups_desc>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
+            <p_value>0.992</p_value>
+            <p_value_desc>The a priori threshold for statistical significance was 0.05 (two sides)</p_value_desc>
+            <method>ANOVA</method>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Table 1 Study Specific Characteristic of Body Mass Index (BMI)</title>
+        <description>the mean and standard deviation of BMI in four groups was calculated</description>
+        <time_frame>at baseline</time_frame>
+        <population>We conducted a per protocol analysis of all the subjects who completed the study.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Placebo (P Group)</title>
+            <description>starch in hard shell gelatine capsules</description>
+          </group>
+          <group group_id="O2">
+            <title>Lutein Group (L Group)</title>
+            <description>early atherosclerosis case received 20mg lutein</description>
+          </group>
+          <group group_id="O3">
+            <title>Combination Group (LL Group)</title>
+            <description>received 20mg lutein and 20mg lycopene</description>
+          </group>
+          <group group_id="O4">
+            <title>Normal Lutein Control Group (NL Group)</title>
+            <description>subjects free from atherosclerosis received 20mg lutein</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Table 1 Study Specific Characteristic of Body Mass Index (BMI)</title>
+          <description>the mean and standard deviation of BMI in four groups was calculated</description>
+          <population>We conducted a per protocol analysis of all the subjects who completed the study.</population>
+          <units>Kg/m^2</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="40"/>
+                <count group_id="O2" value="45"/>
+                <count group_id="O3" value="40"/>
+                <count group_id="O4" value="44"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="25.3" spread="2.6"/>
+                    <measurement group_id="O2" value="25.4" spread="3.2"/>
+                    <measurement group_id="O3" value="24.8" spread="3.2"/>
+                    <measurement group_id="O4" value="24.1" spread="2.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+              <group_id>O3</group_id>
+            </group_id_list>
+            <groups_desc>The null hypothesis was &quot;no group difference&quot;</groups_desc>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
+            <p_value>0.672</p_value>
+            <p_value_desc>The a priori threshold for statistical significance was 0.05 (two sides)</p_value_desc>
+            <method>ANOVA</method>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Table 1 Study Specific Characteristic of Blood Pressure (BP)</title>
+        <description>systolic BP and diastolic BP in four groups was measure twice between 15minutes</description>
+        <time_frame>at baseline</time_frame>
+        <population>We conducted a per protocol analysis of all the subjects who completed the study.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Placebo (P Group)</title>
+            <description>starch in hard shell gelatine capsules</description>
+          </group>
+          <group group_id="O2">
+            <title>Lutein Group (L Group)</title>
+            <description>early atherosclerosis case received 20mg lutein</description>
+          </group>
+          <group group_id="O3">
+            <title>Lutein and Lycopene Group (LL Group)</title>
+            <description>received 20mg lutein and 20mg lycopene</description>
+          </group>
+          <group group_id="O4">
+            <title>Normal Lutein Control Group (NL Group)</title>
+            <description>subjects free from atherosclerosis received 20mg lutein</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Table 1 Study Specific Characteristic of Blood Pressure (BP)</title>
+          <description>systolic BP and diastolic BP in four groups was measure twice between 15minutes</description>
+          <population>We conducted a per protocol analysis of all the subjects who completed the study.</population>
+          <units>mm Hg</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="43"/>
+                <count group_id="O2" value="47"/>
+                <count group_id="O3" value="44"/>
+                <count group_id="O4" value="44"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Systolic BP</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="129.7" spread="14.3"/>
+                    <measurement group_id="O2" value="125.5" spread="16.4"/>
+                    <measurement group_id="O3" value="126.0" spread="15.5"/>
+                    <measurement group_id="O4" value="117.7" spread="11.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Diastolic BP</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="82.6" spread="10.6"/>
+                    <measurement group_id="O2" value="80.5" spread="9.6"/>
+                    <measurement group_id="O3" value="80.5" spread="9.6"/>
+                    <measurement group_id="O4" value="77.2" spread="8.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+              <group_id>O3</group_id>
+            </group_id_list>
+            <groups_desc>The null hypothesis was &quot;no group difference&quot;</groups_desc>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
+            <p_value>0.402</p_value>
+            <p_value_desc>The a priori threshold for statistical significance was 0.05 (two sides)</p_value_desc>
+            <method>ANOVA</method>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Table 1 Study Specific Characteristic of Serum Carotenoids</title>
+        <description>serum major carotenoids, including lutein, zeaxanthin, beta-carotene, and lycopene concentration were measured by hyper-pressure liquid chromatography (HPLC)</description>
+        <time_frame>at baseline</time_frame>
+        <population>We conducted a per protocol analysis of all the subjects who completed the study.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Placebo (P Group)</title>
+            <description>starch in hard shell gelatine capsules</description>
+          </group>
+          <group group_id="O2">
+            <title>Lutein Group (L Group)</title>
+            <description>early atherosclerosis case received 20mg lutein</description>
+          </group>
+          <group group_id="O3">
+            <title>Combination Group (LL Group)</title>
+            <description>early atherosclerosis cases received 20mg lutein and 20mg lycopene</description>
+          </group>
+          <group group_id="O4">
+            <title>Normal Lutein Control Group (NL Group)</title>
+            <description>subjects free from atherosclerosis received 20mg lutein</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Table 1 Study Specific Characteristic of Serum Carotenoids</title>
+          <description>serum major carotenoids, including lutein, zeaxanthin, beta-carotene, and lycopene concentration were measured by hyper-pressure liquid chromatography (HPLC)</description>
+          <population>We conducted a per protocol analysis of all the subjects who completed the study.</population>
+          <units>μg/ml</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="40"/>
+                <count group_id="O2" value="45"/>
+                <count group_id="O3" value="40"/>
+                <count group_id="O4" value="44"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Lutein</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.17" spread="0.07"/>
+                    <measurement group_id="O2" value="0.19" spread="0.14"/>
+                    <measurement group_id="O3" value="0.20" spread="0.11"/>
+                    <measurement group_id="O4" value="0.18" spread="0.11"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Zeaxanthin</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.034" spread="0.022"/>
+                    <measurement group_id="O2" value="0.034" spread="0.018"/>
+                    <measurement group_id="O3" value="0.035" spread="0.022"/>
+                    <measurement group_id="O4" value="0.030" spread="0.022"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>beta-carotene</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.087" spread="0.026"/>
+                    <measurement group_id="O2" value="0.069" spread="0.026"/>
+                    <measurement group_id="O3" value="0.071" spread="0.031"/>
+                    <measurement group_id="O4" value="0.058" spread="0.005"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Lycopene</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0.106" spread="0.037"/>
+                    <measurement group_id="O2" value="0.092" spread="0.043"/>
+                    <measurement group_id="O3" value="0.104" spread="0.074"/>
+                    <measurement group_id="O4" value="0.098" spread="0.038"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+              <group_id>O3</group_id>
+            </group_id_list>
+            <groups_desc>The null hypothesis was &quot;no group difference&quot;</groups_desc>
+            <non_inferiority_type>Superiority or Other</non_inferiority_type>
+            <p_value>0.636</p_value>
+            <p_value_desc>The a priori threshold for statistical significance was 0.05 (two sides)</p_value_desc>
+            <method>ANOVA</method>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Changes of Right Common Carotid Arterial Stiffness Parameter β(R-β) at Baseline and After 12 Months</title>
+        <description>Arterial stiffness was measured by using a high-resolution B-mode carotid ultrasound with echo-tracking system (Aloka prosound α-10, Aloka Co. Ltd., Tokyo, Japan).</description>
+        <time_frame>at baseline and after 12 months</time_frame>
+        <posting_date>12/3333</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Dietary Intake of Energy During the Study Periods</title>
+        <description>Dietary intake was assessed at baseline and after 12months by using 3 consecutive 24-hour recalls.</description>
+        <time_frame>at baseline and 12 months</time_frame>
+        <posting_date>12/3333</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Dietary Intake of Vitamin C,Vitamin E, Lutein Plus Zeaxanthin and Lycopene During the Study Periods</title>
+        <description>Dietary intake of Vitamin C,Vitamin E, Lutein plus zeaxanthin and Lycopene was assessed at baseline and after 12months by using 3 consecutive 24-hour recalls.</description>
+        <time_frame>at baseline and 12 months</time_frame>
+        <posting_date>12/3333</posting_date>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>adverse event data were collected in 12months</time_frame>
+      <group_list>
+        <group group_id="E1">
+          <title>Placebo</title>
+          <description>early atherosclerosis cases, received starch in hard shell gelatine capsules, once a day</description>
+        </group>
+        <group group_id="E2">
+          <title>Lutein Group</title>
+          <description>early atherosclerosis cases, received 20mg lutein, once a day</description>
+        </group>
+        <group group_id="E3">
+          <title>Combination Group</title>
+          <description>early atherosclerosis cases, received 20mg lutein plus 20mg lycopene, once a day</description>
+        </group>
+        <group group_id="E4">
+          <title>Normal Lutein Control Group</title>
+          <description>20mg lutein for subjects free from atherosclerosis, once a day</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="40"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="45"/>
+                <counts group_id="E3" subjects_affected="0" subjects_at_risk="40"/>
+                <counts group_id="E4" subjects_affected="0" subjects_at_risk="44"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>0</frequency_threshold>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="40"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="45"/>
+                <counts group_id="E3" subjects_affected="0" subjects_at_risk="40"/>
+                <counts group_id="E4" subjects_affected="0" subjects_at_risk="44"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>All Principal Investigators ARE employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed. </restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Dr. Zhiyong Zou</name_or_title>
+      <organization>Peking University</organization>
+      <phone>+8610-13581525193</phone>
+      <email>harveyzou2002@bjmu.edu.cn</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
