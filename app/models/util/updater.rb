@@ -106,14 +106,10 @@ module Util
       [
          [:baseline_measurements, :dispersion_type],
          [:baseline_measurements, :param_type],
-         [:overall_officials, :nct_id],
-         [:responsible_parties, :nct_id],
          [:baseline_measurements, :category],
          [:baseline_measurements, :classification],
-         [:browse_conditions, :nct_id],
          [:browse_conditions, :mesh_term],
          [:browse_conditions, :downcase_mesh_term],
-         [:browse_interventions, :nct_id],
          [:browse_interventions, :mesh_term],
          [:browse_interventions, :downcase_mesh_term],
          [:calculated_values, :actual_duration],
@@ -206,6 +202,13 @@ module Util
       log('adding indices...')
       m=ActiveRecord::Migration.new
       indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
+      #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
+      ActiveRecord::Base.connection.tables.each{|table|
+        begin
+          m.add_index table, 'nct_id'
+        rescue
+        end
+      }
     end
 
     def self.single_study_tables
