@@ -15,6 +15,11 @@
     <li>
       <p>The email notification that is automatically sent to AACT administrators after every database refresh now provides the list of NCT IDs that were added or updated. If the refresh failed, this is now noted in the subject line.</p>
     </li>
+  </ul>
+
+ <h5>NCT_ID Columns Indexed</h5>
+ <p>Every table has an NCT_ID column that serves as the foreign key to the Studies table. These columns need to be indexed so that queries run reasonably fast. Until now, these indexes were missing.</p>
+
  <h5>Release Notes Page</h5>
  <p>This 'Release Notes' page has been enhanced to include past release notes.</p>
 
