@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on February 22, 2018</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01357915</url>
+  </required_header>
+  <id_info>
+    <org_study_id>115429</org_study_id>
+    <secondary_id>2011-002702-78</secondary_id>
+    <nct_id>NCT01357915</nct_id>
+  </id_info>
+  <brief_title>Evaluation of the Long-term Persistence of GlaxoSmithKline (GSK) Biologicals' Candidate Cytomegalovirus (CMV) Vaccine</brief_title>
+  <official_title>A Follow-up Study to Evaluate the Long-term Persistence of GSK Biologicals' Candidate CMV Vaccine Administered to Male Adults</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>GlaxoSmithKline</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>GlaxoSmithKline</source>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to evaluate the persistence of the vaccine induced immune
+      responses at Month 48 (Year 4) and Month 60 (Year 5) in healthy subjects who received 3 doses
+      of GSK Biologicals' candidate CMV vaccine according to a 0-1-6 month schedule during the
+      primary study 108890 (NCT00435396) (vaccine group). The immune response to CMV infection in
+      naturally infected subjects who participated in the screening visit of the primary study
+      108890 (NCT00435396) and who were tested CMV-seropositive, will be used as a reference value
+      (seropositive reference group). In addition, this study will continue to assess the
+      occurrence of CMV infections as well as the continued development and validation of read-outs
+      in the CMV project.
+
+      The primary vaccination phase and Year 2 follow-up were posted as a separate protocol posting
+      (NCT00435396).
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      During the long-term follow-up study, all subjects who received 3 doses of GSK Biologicals'
+      candidate CMV vaccine according to a 0-1-6 month schedule during the primary study 108890
+      (NCT00435396) will be invited to participate at Visit 8 (Year 4) and Visit 9 (Year 5) as the
+      vaccine group. In addition, the healthy subjects who participated in the screening visit of
+      the primary study 108890 (NCT00435396) and who were tested CMV-seropositive will be invited
+      to Visit 9 (Year 5) of this study as the seropositive reference group.This Protocol Posting
+      has been updated following Protocol Amendment 1, March 2012, leading to the update of brief
+      summary, intervention model, enrolment, outcome measures, eligibility and arms.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date type="Actual">June 24, 2011</start_date>
+  <completion_date type="Actual">September 13, 2012</completion_date>
+  <primary_completion_date type="Actual">September 13, 2012</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Non-Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Prevention</primary_purpose>
+    <masking>None (Open Label)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Concentrations of Antibodies Against Anti-gB IgG</measure>
+    <time_frame>At Month 48 and Month 60</time_frame>
+    <description>Anti-gB IgG antibody concentrations were presented as Geometric Mean Concentrations (GMCs) and expressed in ELISA units per milliliter (EL.U/mL), as assessed by Enzyme-linked Immunosorbent Assay (ELISA). Data were collected at Month 48 (M48) and Month 60 (M60) from all subjects.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Number of Subjects With Neutralizing Response Against Anti-CMV Antibodies</measure>
+    <time_frame>At Month 48 and Month 60</time_frame>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Avidity Towards Anti-gB IgG Antibodies</measure>
+    <time_frame>At Month 48 and Month 60</time_frame>
+    <description>Avidity for anti-gB IgG antibodies was assessed by the ELISA Avidity index method in all subjects, at Month 48 (M48) and Month 60 (M60).</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Frequency of gB-specific Cluster of Differentiation (CD4+/CD8+) T-cells Expressing at Least Two Immune Markers</measure>
+    <time_frame>At Month 48 and Month 60</time_frame>
+    <description>Among the immune markers determined by the Intracellular cytokine staining (ICS) were Interferon-gamma (INF-γ), Interleukin-2 (IL-2), Tumor necrosis factor-alpha (TNF-α), and CD40-Ligand (CD40-L). Data were collected for all subjects at Month 48 (M48) and Month 60 (M60).</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Specific B Cell Memory Immune Response for gB</measure>
+    <time_frame>At Month 48 and Month 60</time_frame>
+    <description>Memory B cells specific to the CMV gB antigen, as assessed by the Enzyme-linked Immunosorbent Spot (ELISPOT) method, were expressed as a frequency of the specific memory B-cells per million memory B-cells. Data were collected for all subjects at Month 48 (M48) and Month 60 (M60).</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of Subjects With Response for Anti-CMV Tegument IgG Antibodies</measure>
+    <time_frame>At Month 48 and Month 60</time_frame>
+    <description>CMV infection was determined by the anti-CMV proteins antibody response, using ELISA. Data were collected for all subjects at Month 48 (M48) and Month 60 (M60) in the Vaccine group (GSK149203A S- Group). All subjects from the Reference group (GSK149203A S+ Group) were positive for the anti-CMV tegument IgG antibodies at the screening visit.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Assessment of CMV Infection by CMV Specific Desoxyribonucleic Acid (DNA) in Blood</measure>
+    <time_frame>At Month 48 and Month 60</time_frame>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">47</enrollment>
+  <condition>Infections, Cytomegalovirus</condition>
+  <arm_group>
+    <arm_group_label>GSK149203A S- Group</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Male subjects who received 3 doses of GSK Biologicals' candidate GSK149203A vaccine according to a 0-1-6 month schedule in the primary study 108890 (NCT00435396).</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>GSK149203A S+ Group</arm_group_label>
+    <arm_group_type>Other</arm_group_type>
+    <description>Male subjects who were assessed as being naturally infected with Cytomegalovirus (CMV) at the screening visit of the primary study 108890 (NCT00435396).</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Blood sampling</intervention_name>
+    <description>Blood samples will be collected at 2 time points:
+At the long-term follow-up at approximately Month 48 of study (= ± 42 months post dose 3) from all subjects in the vaccine group.
+At the long-term follow-up at approximately Month 60 of study (= ± 54 months post dose 3) from all subjects.</description>
+    <arm_group_label>GSK149203A S- Group</arm_group_label>
+    <arm_group_label>GSK149203A S+ Group</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>GSK149203A</intervention_name>
+    <description>GSK Biologicals' Recombinant CMV glicoprotein B Vaccine, Intramuscular injection, 3 doses</description>
+    <arm_group_label>GSK149203A S- Group</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Subjects who the investigator believes that they can and will comply with the
+             requirements of the protocol (e.g., return for follow-up visits) should be enrolled in
+             the study.
+
+          -  Written informed consent obtained from the subject.
+
+          -  Healthy subjects as established by clinical evaluation (medical history and physical
+             examination) before entering in the study.
+
+        Subjects of the vaccine group should in addition satisfy the following criterion:
+
+        • Subjects who participated in the primary study 108890 (NCT00435396), having received 3
+        doses of the GSK's CMV candidate vaccine and having completed the Year 2 follow-up study
+        109211 (NCT00435396).
+
+        Subjects of the seropositive reference group should in addition satisfy the following
+        criterion:
+
+        • Subjects who participated in the screening visit of the primary study 108890
+        (NCT00435396), and whose blood sample taken at this visit was tested CMV positive.
+
+        Exclusion Criteria:
+
+          -  Use, or planned use, of any investigational or non-registered product (drug or
+             vaccine) during the study period.
+
+          -  Chronic administration of immunosuppressants or other immune-modifying drugs within
+             six months prior to study visit(s). For corticosteroids, this will mean prednisone,
+             20mg/day, or equivalent. Inhaled and topical steroids are allowed.
+
+          -  Administration of immunoglobulins and/or any blood products within three months
+             preceding study visit(s).
+
+          -  Any confirmed or suspected immunosuppressive or immunodeficient condition, based on
+             medical history and physical examination (no laboratory testing required).
+
+        For subjects in the vaccine group, the following exclusion criterion should be checked in
+        addition:
+
+        • Administration of any additional CMV vaccine since end of primary study 108890
+        (NCT00435396).
+
+        For subjects in the seropositive reference group, the following exclusion criterion should
+        be checked in addition:
+
+        • Administration of any CMV vaccine since the screening visit of primary study 108890
+        (NCT00435396).
+      </textblock>
+    </criteria>
+    <gender>Male</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>45 Years</maximum_age>
+    <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>GSK Clinical Trials</last_name>
+    <role>Study Director</role>
+    <affiliation>GlaxoSmithKline</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>GSK Investigational Site</name>
+      <address>
+        <city>La Louvière</city>
+        <zip>7100</zip>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>GSK Investigational Site</name>
+      <address>
+        <city>Wilrijk</city>
+        <zip>2610</zip>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>Belgium</country>
+  </location_countries>
+  <verification_date>May 2017</verification_date>
+  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
+  <lastchanged_date>May 12, 2017</lastchanged_date>
+  <firstreceived_date>May 12, 2011</firstreceived_date>
+  <firstreceived_results_date>May 12, 2017</firstreceived_results_date>
+  <!-- New date names                                                                           -->
+  <study_first_submitted>May 12, 2011</study_first_submitted>
+  <study_first_submitted_qc>May 19, 2011</study_first_submitted_qc>
+  <study_first_posted type="Estimate">May 23, 2011</study_first_posted>
+  <results_first_submitted>May 12, 2017</results_first_submitted>
+  <results_first_submitted_qc>May 12, 2017</results_first_submitted_qc>
+  <results_first_posted type="Actual">October 6, 2017</results_first_posted>
+  <last_update_submitted>May 12, 2017</last_update_submitted>
+  <last_update_submitted_qc>May 12, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">October 6, 2017</last_update_posted>
+  <!-- End of dates                                                                             -->
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>Cytomegalovirus</keyword>
+  <keyword>Vaccine</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Cytomegalovirus Infections</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Vaccines</mesh_term>
+  </intervention_browse>
+
+  <clinical_results>
+
+    <participant_flow>
+      <recruitment_details>Subjects from the GSK149203A S+ Group participated only in the Month 60 time point of the study.</recruitment_details>
+      <group_list>
+        <group group_id="P1">
+          <title>GSK149203A S- Group</title>
+          <description>Male subjects who received 3 doses of GSK Biologicals’ candidate GSK149203A vaccine according to a 0-1-6 month schedule in the primary study 108890 (NCT00435396).</description>
+        </group>
+        <group group_id="P2">
+          <title>GSK149203A S+ Group</title>
+          <description>Male subjects who were assessed as being naturally infected with Cytomegalovirus (CMV) at the screening visit of the primary study 108890 (NCT00435396).</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="30"/>
+                <participants group_id="P2" count="17"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="27"/>
+                <participants group_id="P2" count="17"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="3"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Lost to Follow-up</title>
+              <participants_list>
+                <participants group_id="P1" count="3"/>
+                <participants group_id="P2" count="0"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <group_list>
+        <group group_id="B1">
+          <title>GSK149203A S- Group</title>
+          <description>Male subjects who received 3 doses of GSK Biologicals’ candidate GSK149203A vaccine according to a 0-1-6 month schedule in the primary study 108890 (NCT00435396).</description>
+        </group>
+        <group group_id="B2">
+          <title>GSK149203A S+ Group</title>
+          <description>Male subjects who were assessed as being naturally infected with CMV at the screening visit of the primary study 108890 (NCT00435396).</description>
+        </group>
+        <group group_id="B3">
+          <title>Total</title>
+          <description>Total of all reporting groups</description>
+        </group>
+      </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="30"/>
+            <count group_id="B2" value="17"/>
+            <count group_id="B3" value="47"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
+      <measure_list>
+        <measure>
+          <title>Age</title>
+          <units>Years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="34.3" spread="6.37"/>
+                    <measurement group_id="B2" value="35.5" spread="7.20"/>
+                    <measurement group_id="B3" value="34.73" spread="6.63"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Sex: Female, Male</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <title>Female</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                    <measurement group_id="B2" value="0"/>
+                    <measurement group_id="B3" value="0"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Male</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="30"/>
+                    <measurement group_id="B2" value="17"/>
+                    <measurement group_id="B3" value="47"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Race/Ethnicity, Customized</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <class_list>
+            <class>
+              <title>White-Caucasian/European heritage</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="30"/>
+                    <measurement group_id="B2" value="16"/>
+                    <measurement group_id="B3" value="46"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Concentrations of Antibodies Against Anti-gB IgG</title>
+        <description>Anti-gB IgG antibody concentrations were presented as Geometric Mean Concentrations (GMCs) and expressed in ELISA units per milliliter (EL.U/mL), as assessed by Enzyme-linked Immunosorbent Assay (ELISA). Data were collected at Month 48 (M48) and Month 60 (M60) from all subjects.</description>
+        <time_frame>At Month 48 and Month 60</time_frame>
+        <population>The analysis was performed on the According-to-Protocol (ATP) cohort for immunogenicity, which included all evaluable subjects for whom data concerning immunogenicity outcome measures were available.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>GSK149203A S- Group</title>
+            <description>Male subjects who received 3 doses of GSK Biologicals’ candidate GSK149203A vaccine according to a 0-1-6 month schedule in the primary study 108890 (NCT00435396).</description>
+          </group>
+          <group group_id="O2">
+            <title>GSK149203A S+ Group</title>
+            <description>Male subjects who were assessed as being naturally infected with CMV at the screening visit of the primary study 108890 (NCT00435396).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Concentrations of Antibodies Against Anti-gB IgG</title>
+          <description>Anti-gB IgG antibody concentrations were presented as Geometric Mean Concentrations (GMCs) and expressed in ELISA units per milliliter (EL.U/mL), as assessed by Enzyme-linked Immunosorbent Assay (ELISA). Data were collected at Month 48 (M48) and Month 60 (M60) from all subjects.</description>
+          <population>The analysis was performed on the According-to-Protocol (ATP) cohort for immunogenicity, which included all evaluable subjects for whom data concerning immunogenicity outcome measures were available.</population>
+          <units>EL.U/mL</units>
+          <param>Geometric Mean</param>
+          <dispersion>95% Confidence Interval</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="27"/>
+                <count group_id="O2" value="16"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Anti-gB IgG, M48</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="27"/>
+                    <count group_id="O2" value="0"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5091.4" lower_limit="3463.2" upper_limit="7485.1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Anti-gB IgG, M60</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="27"/>
+                    <count group_id="O2" value="16"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5495.1" lower_limit="3594.7" upper_limit="8400.1"/>
+                    <measurement group_id="O2" value="2587.2" lower_limit="1745.6" upper_limit="3834.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of Subjects With Neutralizing Response Against Anti-CMV Antibodies</title>
+        <time_frame>At Month 48 and Month 60</time_frame>
+        <posting_date>2025</posting_date>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Avidity Towards Anti-gB IgG Antibodies</title>
+        <description>Avidity for anti-gB IgG antibodies was assessed by the ELISA Avidity index method in all subjects, at Month 48 (M48) and Month 60 (M60).</description>
+        <time_frame>At Month 48 and Month 60</time_frame>
+        <population>The analysis was performed on the ATP cohort for immunogenicity, which included all evaluable subjects for whom data concerning immunogenicity outcome measures were available.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>GSK149203A S- Group</title>
+            <description>Male subjects who received 3 doses of GSK Biologicals’ candidate GSK149203A vaccine according to a 0-1-6 month schedule in the primary study 108890 (NCT00435396).</description>
+          </group>
+          <group group_id="O2">
+            <title>GSK149203A S+ Group</title>
+            <description>Male subjects who were assessed as being naturally infected with CMV at the screening visit of the primary study 108890 (NCT00435396).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Avidity Towards Anti-gB IgG Antibodies</title>
+          <description>Avidity for anti-gB IgG antibodies was assessed by the ELISA Avidity index method in all subjects, at Month 48 (M48) and Month 60 (M60).</description>
+          <population>The analysis was performed on the ATP cohort for immunogenicity, which included all evaluable subjects for whom data concerning immunogenicity outcome measures were available.</population>
+          <units>Avidity Index</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="27"/>
+                <count group_id="O2" value="16"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Anti-gB IgG, M48</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="27"/>
+                    <count group_id="O2" value="0"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="74" lower_limit="70" upper_limit="76"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Anti-gB IgG, M60</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="27"/>
+                    <count group_id="O2" value="16"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="68" lower_limit="65" upper_limit="71"/>
+                    <measurement group_id="O2" value="76" lower_limit="71.5" upper_limit="82.5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Frequency of gB-specific Cluster of Differentiation (CD4+/CD8+) T-cells Expressing at Least Two Immune Markers</title>
+        <description>Among the immune markers determined by the Intracellular cytokine staining (ICS) were Interferon-gamma (INF-γ), Interleukin-2 (IL-2), Tumor necrosis factor-alpha (TNF-α), and CD40-Ligand (CD40-L). Data were collected for all subjects at Month 48 (M48) and Month 60 (M60).</description>
+        <time_frame>At Month 48 and Month 60</time_frame>
+        <population>The analysis was performed on the ATP cohort for immunogenicity, which included all evaluable subjects for whom data concerning immunogenicity outcome measures were available.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>GSK149203A S- Group</title>
+            <description>Male subjects who received 3 doses of GSK Biologicals’ candidate GSK149203A vaccine according to a 0-1-6 month schedule in the primary study 108890 (NCT00435396).</description>
+          </group>
+          <group group_id="O2">
+            <title>GSK149203A S+ Group</title>
+            <description>Male subjects who were assessed as being naturally infected with CMV at the screening visit of the primary study 108890 (NCT00435396).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Frequency of gB-specific Cluster of Differentiation (CD4+/CD8+) T-cells Expressing at Least Two Immune Markers</title>
+          <description>Among the immune markers determined by the Intracellular cytokine staining (ICS) were Interferon-gamma (INF-γ), Interleukin-2 (IL-2), Tumor necrosis factor-alpha (TNF-α), and CD40-Ligand (CD40-L). Data were collected for all subjects at Month 48 (M48) and Month 60 (M60).</description>
+          <population>The analysis was performed on the ATP cohort for immunogenicity, which included all evaluable subjects for whom data concerning immunogenicity outcome measures were available.</population>
+          <units>T cells/million cells</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="26"/>
+                <count group_id="O2" value="15"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>CD4-All doubles, M48</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="25"/>
+                    <count group_id="O2" value="0"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2169.00" lower_limit="1391.00" upper_limit="4290.00"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>CD4-All doubles, M60</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="26"/>
+                    <count group_id="O2" value="15"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1893.50" lower_limit="1070.00" upper_limit="3267.00"/>
+                    <measurement group_id="O2" value="380.00" lower_limit="91.00" upper_limit="1704.00"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>CD8-All doubles, M48</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="25"/>
+                    <count group_id="O2" value="0"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="91.00" lower_limit="1.00" upper_limit="173.00"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>CD8-All doubles, M60</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="26"/>
+                    <count group_id="O2" value="15"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="104.00" lower_limit="24.00" upper_limit="287.00"/>
+                    <measurement group_id="O2" value="81.00" lower_limit="2.00" upper_limit="321.00"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Specific B Cell Memory Immune Response for gB</title>
+        <description>Memory B cells specific to the CMV gB antigen, as assessed by the Enzyme-linked Immunosorbent Spot (ELISPOT) method, were expressed as a frequency of the specific memory B-cells per million memory B-cells. Data were collected for all subjects at Month 48 (M48) and Month 60 (M60).</description>
+        <time_frame>At Month 48 and Month 60</time_frame>
+        <population>The analysis was performed on the ATP cohort for immunogenicity, which included all evaluable subjects for whom data concerning immunogenicity outcome measures were available.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>GSK149203A S- Group</title>
+            <description>Male subjects who received 3 doses of GSK Biologicals’ candidate GSK149203A vaccine according to a 0-1-6 month schedule in the primary study 108890 (NCT00435396).</description>
+          </group>
+          <group group_id="O2">
+            <title>GSK149203A S+ Group</title>
+            <description>Male subjects who were assessed as being naturally infected with CMV at the screening visit of the primary study 108890 (NCT00435396).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Specific B Cell Memory Immune Response for gB</title>
+          <description>Memory B cells specific to the CMV gB antigen, as assessed by the Enzyme-linked Immunosorbent Spot (ELISPOT) method, were expressed as a frequency of the specific memory B-cells per million memory B-cells. Data were collected for all subjects at Month 48 (M48) and Month 60 (M60).</description>
+          <population>The analysis was performed on the ATP cohort for immunogenicity, which included all evaluable subjects for whom data concerning immunogenicity outcome measures were available.</population>
+          <units>B cells/million cells</units>
+          <param>Median</param>
+          <dispersion>Inter-Quartile Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="27"/>
+                <count group_id="O2" value="16"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Memory B-cells, M48</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="27"/>
+                    <count group_id="O2" value="0"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3158.00" lower_limit="1467.00" upper_limit="7419.00"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Memory B-cells, M60</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="26"/>
+                    <count group_id="O2" value="16"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5784.00" lower_limit="4374.00" upper_limit="7240.00"/>
+                    <measurement group_id="O2" value="210.50" lower_limit="46.00" upper_limit="676.50"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Number of Subjects With Response for Anti-CMV Tegument IgG Antibodies</title>
+        <description>CMV infection was determined by the anti-CMV proteins antibody response, using ELISA. Data were collected for all subjects at Month 48 (M48) and Month 60 (M60) in the Vaccine group (GSK149203A S- Group). All subjects from the Reference group (GSK149203A S+ Group) were positive for the anti-CMV tegument IgG antibodies at the screening visit.</description>
+        <time_frame>At Month 48 and Month 60</time_frame>
+        <population>The analysis was performed on the ATP cohort for immunogenicity, which included all evaluable subjects for whom data concerning immunogenicity outcome measures were available.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>GSK149203A S- Group</title>
+            <description>Male subjects who received 3 doses of GSK Biologicals’ candidate GSK149203A vaccine according to a 0-1-6 month schedule in the primary study 108890 (NCT00435396).</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of Subjects With Response for Anti-CMV Tegument IgG Antibodies</title>
+          <description>CMV infection was determined by the anti-CMV proteins antibody response, using ELISA. Data were collected for all subjects at Month 48 (M48) and Month 60 (M60) in the Vaccine group (GSK149203A S- Group). All subjects from the Reference group (GSK149203A S+ Group) were positive for the anti-CMV tegument IgG antibodies at the screening visit.</description>
+          <population>The analysis was performed on the ATP cohort for immunogenicity, which included all evaluable subjects for whom data concerning immunogenicity outcome measures were available.</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="30"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Positive anti-CMV antibodies, M48</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Negative anti-CMV antibodies, M48</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="26"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Positive anti-CMV antibodies, M60</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Negative anti-CMV antibodies, M60</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="25"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Assessment of CMV Infection by CMV Specific Desoxyribonucleic Acid (DNA) in Blood</title>
+        <time_frame>At Month 48 and Month 60</time_frame>
+        <posting_date>2025</posting_date>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>Serious Adverse Events (SAEs): during the entire study period (from Month 48 up to Month 60)</time_frame>
+      <group_list>
+        <group group_id="E1">
+          <title>GSK149203A S- Group</title>
+          <description>Male subjects who received 3 doses of GSK Biologicals’ candidate GSK149203A vaccine according to a 0-1-6 month schedule in the primary study 108890 (NCT00435396).</description>
+        </group>
+        <group group_id="E2">
+          <title>GSK149203A S+ Group</title>
+          <description>Male subjects who were assessed as being naturally infected with Cytomegalovirus (CMV) at the screening visit of the primary study 108890 (NCT00435396).</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, all-cause mortality</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="30"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="17"/>
+              </event>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="30"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="17"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>5</frequency_threshold>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="0" subjects_at_risk="30"/>
+                <counts group_id="E2" subjects_affected="0" subjects_at_risk="17"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>GSK agreements may vary with individual investigators, but will not prohibit any investigator from publishing. GSK supports the publication of results from all centers of a multi-center trial but requests that reports based on single-site data not precede the primary publication of the entire clinical trial.</restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>GSK Response Center</name_or_title>
+      <organization>GlaxoSmithKline</organization>
+      <phone>866-435-7343</phone>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>

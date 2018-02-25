@@ -1,4 +1,4 @@
- <h3>AACT 3.0.1 <i>(February 20, 2018)</i></h3>
+ <h3>AACT 3.0.1 <i>(February 26, 2018)</i></h3>
 
   <h5>Database Updater Enhanced</h5>
   <p>We have improved the process that updates the AACT database by making the following changes:</p>
@@ -15,8 +15,13 @@
     <li>
       <p>The email notification that is automatically sent to AACT administrators after every database refresh now provides the list of NCT IDs that were added or updated. If the refresh failed, this is now noted in the subject line.</p>
     </li>
+  </ul>
+
+ <h5>NCT_ID Columns Indexed</h5>
+ <p>Every table has an NCT_ID column that serves as the foreign key to the Studies table. These columns need to be indexed so that queries run reasonably fast. Until now, these indexes were missing.</p>
+
  <h5>Release Notes Page</h5>
- <p>This page has been added to display all release notes.</p>
+ <p>This 'Release Notes' page has been enhanced to include past release notes.</p>
 
  <h5>Month/Year Date Conversion Uses Last Day of Month</h5>
  <p>If a date value includes only the month & year (no day), we save that value as a string in a column - these string-type columns have the suffix: 'month_year'.  The value is also saved to as a date-type value in a column with a _date suffix. (Example: Studies.start_month_year & Studies.start_date) We have been setting the day to the first day of the month in these date-type conversions. A user noted that the last day of the month is a perferred value.  They noted: <i>“these dates (start, completion, primary_completion) define when registration & results are due. A missing day value that defaults to the 1st of the month is the most restrictive and the last of the month is the most generous – for the purposes of compliance assessments”</i>  To be consistent we made this change for all data elements that can provide just month/day.</p>
