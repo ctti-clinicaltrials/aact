@@ -3,7 +3,6 @@ source "https://rubygems.org"
 ruby "2.4.0"
 
 gem 'nokogiri', '~> 1.8.1'
-gem 'faraday_middleware-aws-signers-v4'
 gem 'rails', github: 'rails/rails', branch: '4-2-stable'
 gem "rack-timeout"
 gem "faraday"
