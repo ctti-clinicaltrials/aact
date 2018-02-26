@@ -63,9 +63,14 @@ module Admin
                         FROM #{array.first}
                        GROUP BY #{array.last}
                        ORDER BY cnt ASC")
-          hash={}
 
           entries=results.ntuples - 1
+          table_name=array.first
+          column_name=array.last
+          # hash to be used to create a populate the enumeration column of the data def record
+          hash={}
+          # healthcheck hash to be used to create a health check record for the enumeration
+          hc_hash={:table_name=>table_name,:column_name=>column_name}
           while entries >= 0 do
             val=results.getvalue(entries,0).to_s
             val='null' if val.size==0
@@ -76,13 +81,18 @@ module Admin
             display_count=cnt.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
             display_percent="#{pct.round(2)}%"
             hash[val]=[display_count,display_percent]
+            hc_hash[:column_value]=val
+            hc_hash[:value_count]=cnt.to_i
+            hc_hash[:value_percent]=pct
+            Admin::HealthCheckEnumeration.create_from(hc_hash) if hc_hash.size > 2
             entries=entries-1
           end
-          row=where("table_name=? and column_name=?",array.first,array.last).first
+          row=where("table_name=? and column_name=?",table_name,column_name).first
           row.enumerations=hash.to_json
           row.save
         rescue => e
-          puts ">>>>  could not determine enumerations for #{array.first}  #{array.last}"
+          puts ">>>>  could not determine enumerations for #{table_name}  #{column_name}"
+          puts e.inspect
         end
       }
     end
