@@ -23,33 +23,40 @@ module Util
         ActiveRecord::Base.logger=nil
         case params[:event_type]
         when 'full'
-          full
+          status=full
         else
-          incremental
+          status=incremental
         end
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         log("#{@load_event.event_type} load failed in run: #{msg}")
         load_event.add_problem(msg)
         load_event.complete({:status=>'failed', :study_counts=> study_counts})
+        return false
       end
-      finalize_load
+      finalize_load if status != false
+      send_notification
     end
 
     def full
-      if should_restart?
-        log("restarting full load...")
-      else
-        log('begin full load ...')
-        retrieve_xml_from_ctgov
+      begin
+        if should_restart?
+          log("restarting full load...")
+        else
+          log('begin full load ...')
+          retrieve_xml_from_ctgov
+        end
+        truncate_tables if !should_restart?
+        remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
+        study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
+        study_counts[:should_change]=0
+        @client.populate_studies
+        MeshTerm.populate_from_file
+        MeshHeading.populate_from_file
+      rescue => e
+        log("full load failed. #{e}")
+        return false
       end
-      truncate_tables if !should_restart?
-      remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
-      study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
-      study_counts[:should_change]=0
-      @client.populate_studies
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
     end
 
     def incremental
@@ -66,11 +73,11 @@ module Util
       case ids.size
       when 0
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
-        return
+        return false
       when 10000..(1.0/0.0)
         log("Incremental load size is suspiciously large. Aborting load.")
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
-        return
+        return false
       end
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
@@ -99,7 +106,6 @@ module Util
       load_event.complete({:study_counts=>study_counts})
       db_mgr.grant_db_privs
       Admin::PublicAnnouncement.clear_load_message
-      send_notification
     end
 
     def indexes
