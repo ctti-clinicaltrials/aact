@@ -43,6 +43,7 @@ describe Util::Updater do
     allow_any_instance_of(Util::RssReader).to receive(:get_changed_nct_ids).and_return( [*1..10000] )
     updater=Util::Updater.new
     expect(updater).to receive(:update_studies).never
+    expect(updater).to receive(:finalize_load).never
     expect(updater).to receive(:send_notification).once
     updater.run
   end
