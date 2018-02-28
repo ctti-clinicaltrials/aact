@@ -7,7 +7,7 @@
       <p>Each night we refresh a 'background' copy of the AACT database and then use <i>pg_restore</i> to copy it to the publicly accessible database. In the past, if people were logged into the public database, the <i>pg_restore</i> command hung and the refresh failed. To prevent this, all database sessions are now terminated before the update process runs the <i>pg_restore</i> command. This typically occurs around 1am EST.</p>
     </li>
     <li>
-      <p>To prevent users from logging in while the refresh is under way, the process locks the public database before starting. Until now, if the refresh terminiated unexpectedly, the database remained locked and inaccessible. This has been fixed. Now we automatically detect when the process fails, unlock the public database, and send an email notification to AACT administrators to report the failure.</p>
+      <p>To prevent users from logging in while the refresh is under way, the process locks the public database before starting. Until now, if the refresh terminated unexpectedly, the database remained locked and inaccessible. This has been fixed. Now we automatically detect when the process fails, unlock the public database, and send an email notification to AACT administrators to report the failure.</p>
     </li>
     <li>
       <p>A validation test has been added to prevent the public database from being refreshed if the number of studies in the updated database appears to have decreased.</p>
