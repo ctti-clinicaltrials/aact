@@ -19,6 +19,7 @@ module Util
     end
 
     def run
+      status=true
       begin
         ActiveRecord::Base.logger=nil
         case params[:event_type]
@@ -32,7 +33,7 @@ module Util
         log("#{@load_event.event_type} load failed in run: #{msg}")
         load_event.add_problem(msg)
         load_event.complete({:status=>'failed', :study_counts=> study_counts})
-        return false
+        status=false
       end
       finalize_load if status != false
       send_notification
