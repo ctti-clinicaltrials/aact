@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::HealthCheckEnumeration, type: :model do
+RSpec.describe Admin::Enumeration, type: :model do
 
   it "populates health check table with enumeration counts & percents " do
 
@@ -10,9 +10,9 @@ RSpec.describe Admin::HealthCheckEnumeration, type: :model do
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     Admin::DataDefinition.populate_enumerations
-    expect(Admin::HealthCheckEnumeration.count).to eq(69)
+    expect(Admin::Enumeration.count).to eq(69)
 
-    events=Admin::HealthCheckEnumeration.where('table_name=? and column_name=?','reported_events','event_type')
+    events=Admin::Enumeration.where('table_name=? and column_name=?','reported_events','event_type')
     expect(events.count).to eq(2)
     # 36 (10.26%) of the sample study's reported events are of type 'other'
     e=events.each.select{|e|e.column_value=='other'}

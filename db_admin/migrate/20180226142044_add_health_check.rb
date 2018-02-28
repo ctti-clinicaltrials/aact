@@ -1,11 +1,17 @@
 class AddHealthCheck < ActiveRecord::Migration
   def change
-    create_table(:health_check_enumerations) do |t|
+
+    add_column :sanity_checks, :column_name, :string
+    add_column :sanity_checks, :check_type, :string
+    add_index  :sanity_checks, :column_name
+    add_index  :sanity_checks, :check_type
+
+    create_table(:enumerations) do |t|
       t.string  :table_name
       t.string  :column_name
       t.string  :column_value
       t.integer :value_count
-      t.decimal  :value_percent
+      t.decimal :value_percent
       t.string  :description
       t.timestamps null: false
     end

@@ -6,7 +6,11 @@ module Admin
       Util::Updater.loadable_tables.each{|table_name|
         table_name='references' if table_name=='study_references'
         cnt=table_name.singularize.camelize.constantize.count
-        Admin::SanityCheck.new({:table_name=>table_name,:row_count=>cnt,:most_current=>true}).save!
+        Admin::SanityCheck.new({
+          :table_name=>table_name,
+          :row_count=>cnt,
+          :check_type=>'row count',
+          :most_current=>true}).save!
       }
     end
 
@@ -18,7 +22,12 @@ module Admin
         cntr=0
         ActiveRecord::Base.connection.execute(query).each{|orphan|
           cntr=cntr+1
-          Admin::SanityCheck.new({:nct_id=>orphan['nct_id'],:table_name=>child,:description=>"Orphaned from #{parent}"}).save
+          Admin::SanityCheck.new({
+            :nct_id=>orphan['nct_id'],
+            :table_name=>child,
+            :check_type=>'orphan',
+            :description=>"Orphaned from #{parent}",
+            :most_current=>true}).save
           return if cntr > 100  # if a widespread problem, we just need to see some examples
         }
       }
@@ -50,32 +59,36 @@ module Admin
              GROUP BY nct_id
              HAVING COUNT(*) > 1")
         results.values.each{|row|
-          Admin::SanityCheck.new({:table_name=>"#{table_name} duplicate",
-                                  :nct_id=>row.first,
-                                  :row_count=>row.last,
-                                  :description=>'duplicate'}).save!
+          Admin::SanityCheck.new({
+            :table_name=>"#{table_name} duplicate",
+            :nct_id=>row.first,
+            :row_count=>row.last,
+            :check_type=>'duplicate',
+            :most_current=>true}).save!
         }
       }
     end
 
     def check_enumerations
-      Admin::HealthCheckEnumeration.enums.each{|array|
+      Admin::Enumeration.enums.each{|array|
         # each enumeration - check most recent % to last % & raise alert if it has changed > 10%
         table_name=array.first
         column_name=array.last
 
-        Admin::HealthCheckEnumeration.get_values_for(table_name,column_name).each{|row|
-          hash=Admin::HealthCheckEnumeration.get_latest_for(table_name,column_name,row.column_value)
+        Admin::Enumeration.get_values_for(table_name,column_name).each{|row|
+          hash=Admin::Enumeration.get_latest_for(table_name,column_name,row.column_value)
           if hash.size == 2
             last=hash[:last].value_percent
             next_last=hash[:next_last].value_percent
             diff=last - next_last
-            if (diff.abs > 0.1)
+            if (diff.abs > 0.05)
               Admin::SanityCheck.new({
-                :table_name=>"#{table_name} enumeration issue",
-                :description=>"change in enumeration pct value looks suspicious: #{row.column_value} #{next_last} -> #{last}"}).save!
+                :table_name=>"#{table_name}",
+                :column_name=>"#{column_name}",
+                :check_type=>"enumeration",
+                :description=>"enumeration changed by more than 5%: #{next_last.round(2)}% -> #{last.round(2)}%"},
+                :most_current=>true).save!
             end
-
           end
         }
       }

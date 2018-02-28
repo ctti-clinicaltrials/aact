@@ -111,10 +111,10 @@ ALTER SEQUENCE database_activities_id_seq OWNED BY database_activities.id;
 
 
 --
--- Name: health_check_enumerations; Type: TABLE; Schema: public; Owner: -
+-- Name: enumerations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE health_check_enumerations (
+CREATE TABLE enumerations (
     id integer NOT NULL,
     table_name character varying,
     column_name character varying,
@@ -128,10 +128,10 @@ CREATE TABLE health_check_enumerations (
 
 
 --
--- Name: health_check_enumerations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: enumerations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE health_check_enumerations_id_seq
+CREATE SEQUENCE enumerations_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -141,10 +141,10 @@ CREATE SEQUENCE health_check_enumerations_id_seq
 
 
 --
--- Name: health_check_enumerations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: enumerations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE health_check_enumerations_id_seq OWNED BY health_check_enumerations.id;
+ALTER SEQUENCE enumerations_id_seq OWNED BY enumerations.id;
 
 
 --
@@ -266,7 +266,9 @@ CREATE TABLE sanity_checks (
     description text,
     most_current boolean,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    column_name character varying,
+    check_type character varying
 );
 
 
@@ -470,10 +472,10 @@ ALTER TABLE ONLY database_activities ALTER COLUMN id SET DEFAULT nextval('databa
 
 
 --
--- Name: health_check_enumerations id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: enumerations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY health_check_enumerations ALTER COLUMN id SET DEFAULT nextval('health_check_enumerations_id_seq'::regclass);
+ALTER TABLE ONLY enumerations ALTER COLUMN id SET DEFAULT nextval('enumerations_id_seq'::regclass);
 
 
 --
@@ -549,11 +551,11 @@ ALTER TABLE ONLY database_activities
 
 
 --
--- Name: health_check_enumerations health_check_enumerations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: enumerations enumerations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY health_check_enumerations
-    ADD CONSTRAINT health_check_enumerations_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY enumerations
+    ADD CONSTRAINT enumerations_pkey PRIMARY KEY (id);
 
 
 --
@@ -618,6 +620,20 @@ ALTER TABLE ONLY use_cases
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_sanity_checks_on_check_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sanity_checks_on_check_type ON sanity_checks USING btree (check_type);
+
+
+--
+-- Name: index_sanity_checks_on_column_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sanity_checks_on_column_name ON sanity_checks USING btree (column_name);
 
 
 --

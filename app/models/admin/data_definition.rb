@@ -53,7 +53,7 @@ module Admin
     def self.populate_enumerations
       dd_rows=where("column_name='id'").size
       populate_from_file if dd_rows==0
-      Admin::HealthCheckEnumeration.enums.each{|array|
+      Admin::Enumeration.enums.each{|array|
         begin
           table_name=array.first
           column_name=array.last
@@ -84,7 +84,7 @@ module Admin
             hc_hash[:column_value]=val
             hc_hash[:value_count]=cnt.to_i
             hc_hash[:value_percent]=pct
-            Admin::HealthCheckEnumeration.create_from(hc_hash) if hc_hash.size > 2
+            Admin::Enumeration.create_from(hc_hash) if hc_hash.size > 2
             entries=entries-1
           end
           row=where("table_name=? and column_name=?",table_name,column_name).first

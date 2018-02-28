@@ -1,9 +1,9 @@
 require 'active_support/all'
 module Admin
-  class HealthCheckEnumeration < Admin::AdminBase
+  class Enumeration < Admin::AdminBase
 
     def self.create_from(hash)
-      Admin::HealthCheckEnumeration.new(
+      Admin::Enumeration.new(
         {:table_name     => hash[:table_name],
          :column_name    => hash[:column_name],
          :column_value   => hash[:column_value],
@@ -14,13 +14,13 @@ module Admin
     end
 
     def self.get_values_for(table_name, column_name)
-      col_values=Admin::HealthCheckEnumeration.where("table_name=? and column_name=?", table_name, column_name)
+      col_values=Admin::Enumeration.where("table_name=? and column_name=?", table_name, column_name)
         .select("column_value")
         .group_by &:column_value
     end
 
     def self.get_last_two_for(table_name, column_name, val)
-      rows=Admin::HealthCheckEnumeration.where("table_name=? and column_name=? and column_value=?", table_name, column_name, val).order("created_at")
+      rows=Admin::Enumeration.where("table_name=? and column_name=? and column_value=?", table_name, column_name, val).order("created_at")
       if rows.size > 1
         return {:last=>rows.last, :next_last=>rows.offset(1).last} if rows.size > 1
       else
