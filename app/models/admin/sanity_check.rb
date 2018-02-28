@@ -50,7 +50,33 @@ module Admin
              GROUP BY nct_id
              HAVING COUNT(*) > 1")
         results.values.each{|row|
-          Admin::SanityCheck.new({:table_name=>"#{table_name} duplicate",:nct_id=>row.first,:row_count=>row.last,:description=>'duplicate'}).save!
+          Admin::SanityCheck.new({:table_name=>"#{table_name} duplicate",
+                                  :nct_id=>row.first,
+                                  :row_count=>row.last,
+                                  :description=>'duplicate'}).save!
+        }
+      }
+    end
+
+    def check_enumerations
+      Admin::HealthCheckEnumeration.enums.each{|array|
+        # each enumeration - check most recent % to last % & raise alert if it has changed > 10%
+        table_name=array.first
+        column_name=array.last
+
+        Admin::HealthCheckEnumeration.get_values_for(table_name,column_name).each{|row|
+          hash=Admin::HealthCheckEnumeration.get_latest_for(table_name,column_name,row.column_value)
+          if hash.size == 2
+            last=hash[:last].value_percent
+            next_last=hash[:next_last].value_percent
+            diff=last - next_last
+            if (diff.abs > 0.1)
+              Admin::SanityCheck.new({
+                :table_name=>"#{table_name} enumeration issue",
+                :description=>"change in enumeration pct value looks suspicious: #{row.column_value} #{next_last} -> #{last}"}).save!
+            end
+
+          end
         }
       }
     end
@@ -63,6 +89,7 @@ module Admin
       save_row_counts
       check_for_orphans
       check_for_duplicates
+      check_enumerations
     end
 
     def generate_report

@@ -53,20 +53,20 @@ module Admin
     def self.populate_enumerations
       dd_rows=where("column_name='id'").size
       populate_from_file if dd_rows==0
-      enums.each{|array|
+      Admin::HealthCheckEnumeration.enums.each{|array|
         begin
-          full_count=ActiveRecord::Base.connection.execute("SELECT count(*) FROM #{array.first}")
+          table_name=array.first
+          column_name=array.last
+          full_count=ActiveRecord::Base.connection.execute("SELECT count(*) FROM #{table_name}")
           rows=full_count.getvalue(0,0).to_i if full_count.ntuples == 1
 
           results=ActiveRecord::Base.connection.execute("
                       SELECT DISTINCT #{array.last}, COUNT(*) AS cnt
-                        FROM #{array.first}
-                       GROUP BY #{array.last}
+                        FROM #{table_name}
+                       GROUP BY #{column_name}
                        ORDER BY cnt ASC")
 
           entries=results.ntuples - 1
-          table_name=array.first
-          column_name=array.last
           # hash to be used to create a populate the enumeration column of the data def record
           hash={}
           # healthcheck hash to be used to create a health check record for the enumeration
@@ -95,74 +95,6 @@ module Admin
           puts e.inspect
         end
       }
-    end
-
-    def self.enums
-      [
-        ['baseline_counts','units'],
-        ['baseline_counts','scope'],
-        ['baseline_measurements','category'],
-        ['baseline_measurements','param_type'],
-        ['calculated_values','has_single_facility'],
-        ['calculated_values','has_us_facility'],
-        ['calculated_values','registered_in_calendar_year'],
-        ['calculated_values','were_results_reported'],
-        ['central_contacts','contact_type'],
-        ['design_groups','group_type'],
-        ['design_outcomes','outcome_type'],
-        ['designs','allocation'],
-        ['designs','intervention_model'],
-        ['designs','masking'],
-        ['designs','observational_model'],
-        ['designs','primary_purpose'],
-        ['designs','caregiver_masked'],
-        ['designs','investigator_masked'],
-        ['designs','outcomes_assessor_masked'],
-        ['designs','subject_masked'],
-        ['drop_withdrawals','period'],
-        ['eligibilities','gender'],
-        ['eligibilities','gender_based'],
-        ['eligibilities','healthy_volunteers'],
-        ['eligibilities','sampling_method'],
-        ['facilities','status'],
-        ['facility_investigators','role'],
-        ['facility_contacts','contact_type'],
-        ['id_information','id_type'],
-        ['interventions','intervention_type'],
-        ['responsible_parties','responsible_party_type'],
-        ['outcome_analyses','ci_n_sides'],
-        ['outcome_analyses','dispersion_type'],
-        ['outcome_analyses','non_inferiority_type'],
-        ['outcome_counts','scope'],
-        ['outcome_measurements','param_type'],
-        ['reported_events','assessment'],
-        ['reported_events','default_assessment'],
-        ['reported_events','event_type'],
-        ['result_agreements','pi_employee'],
-        ['result_groups','result_type'],
-        ['sponsors','agency_class'],
-        ['sponsors','lead_or_collaborator'],
-        ['studies','biospec_retention'],
-        ['studies','completion_date_type'],
-        ['studies','enrollment_type'],
-        ['studies','expanded_access_type_individual'],
-        ['studies','expanded_access_type_intermediate'],
-        ['studies','expanded_access_type_treatment'],
-        ['studies','has_expanded_access'],
-        ['studies','has_dmc'],
-        ['studies','is_fda_regulated_device'],
-        ['studies','is_fda_regulated_drug'],
-        ['studies','is_ppsd'],
-        ['studies','is_unapproved_device'],
-        ['studies','is_us_export'],
-        ['studies','last_known_status'],
-        ['studies','overall_status'],
-        ['studies','phase'],
-        ['studies','primary_completion_date_type'],
-        ['studies','start_date_type'],
-        ['studies','study_type'],
-        ['study_references','reference_type'],
-      ]
     end
 
   end
