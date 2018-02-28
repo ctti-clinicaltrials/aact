@@ -8,9 +8,10 @@ class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
   def self.populate
-    ActiveRecord::Base.connection.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
-    ActiveRecord::Base.connection.execute('TRUNCATE table calculated_values')
-    ActiveRecord::Base.connection.execute("INSERT INTO calculated_values (
+    con=ActiveRecord::Base.connection
+    con.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
+    con.execute('TRUNCATE table calculated_values')
+    con.execute("INSERT INTO calculated_values (
                  nct_id,
                  nlm_download_date
           )
@@ -20,18 +21,18 @@ class CalculatedValue < ActiveRecord::Base
 
     self.sql_methods.each{|method|
       cmd='UPDATE calculated_values '+ CalculatedValue.send(method)
-      ActiveRecord::Base.connection.execute(cmd)
+      con.execute(cmd)
     }
-    self.save_downcased_mesh_terms
-    ActiveRecord::Base.connection.execute("GRANT SELECT ON TABLE calculated_values TO aact")
+    self.save_downcased_mesh_terms(con)
+    con.execute("GRANT SELECT ON TABLE calculated_values TO aact")
   end
 
-  def self.save_downcased_mesh_terms
+  def self.save_downcased_mesh_terms(con)
     #  save a lowercase version of MeSH terms so they can be found without worrying about case
-    ActiveRecord::Base.connection.execute("UPDATE browse_conditions SET downcase_mesh_term=lower(mesh_term);")
-    ActiveRecord::Base.connection.execute("UPDATE browse_interventions SET downcase_mesh_term=lower(mesh_term);")
-    ActiveRecord::Base.connection.execute("UPDATE keywords SET downcase_name=lower(name);")
-    ActiveRecord::Base.connection.execute("UPDATE conditions SET downcase_name=lower(name);")
+    con.execute("UPDATE browse_conditions SET downcase_mesh_term=lower(mesh_term);")
+    con.execute("UPDATE browse_interventions SET downcase_mesh_term=lower(mesh_term);")
+    con.execute("UPDATE keywords SET downcase_name=lower(name);")
+    con.execute("UPDATE conditions SET downcase_name=lower(name);")
   end
 
   def self.sql_methods
