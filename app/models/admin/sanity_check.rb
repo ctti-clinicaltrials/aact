@@ -75,8 +75,8 @@ module Admin
         table_name=array.first
         column_name=array.last
 
-        Admin::Enumeration.get_values_for(table_name,column_name).each{|row|
-          hash=Admin::Enumeration.get_latest_for(table_name,column_name,row.column_value)
+        Admin::Enumeration.get_values_for(table_name,column_name).each{|array|
+          hash=Admin::Enumeration.get_last_two_for(table_name,column_name,array.first)
           if hash.size == 2
             last=hash[:last].value_percent
             next_last=hash[:next_last].value_percent
