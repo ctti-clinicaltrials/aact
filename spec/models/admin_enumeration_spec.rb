@@ -42,6 +42,7 @@ RSpec.describe Admin::Enumeration, type: :model do
     chk=results.first
     expect(chk.check_type).to eq('enumeration')
     expect(chk.description).to eq('enumeration changed by more than 5%: 10.26% -> 1.2%')
+    expect(chk.most_current).to eq(true)
     pct_decreased_compare.destroy
     chk.destroy
     expect(Admin::SanityCheck.count).to eq(0)
@@ -59,6 +60,11 @@ RSpec.describe Admin::Enumeration, type: :model do
     chk=results.first
     expect(chk.check_type).to eq('enumeration')
     expect(chk.description).to eq('enumeration changed by more than 5%: 10.26% -> 90.1%')
+    expect(chk.most_current).to eq(true)
+    updater=Util::Updater.new
+    updater.sanity_checks_ok?
+    expect(updater.load_event.problems.size).to be > 100
+    expect(updater.load_event.problems).to include('enumeration: reported_events  event_type enumeration changed by more than')
   end
 
 end

@@ -86,12 +86,20 @@ module Admin
                 :table_name=>"#{table_name}",
                 :column_name=>"#{column_name}",
                 :check_type=>"enumeration",
-                :description=>"enumeration changed by more than 5%: #{next_last.round(2)}% -> #{last.round(2)}%"},
-                :most_current=>true).save!
+                :description=>"enumeration changed by more than 5%: #{next_last.round(2)}% -> #{last.round(2)}%",
+                :most_current=>true}).save!
             end
           end
         }
       }
+    end
+
+    def self.current_issues
+      col=[]
+      Admin::SanityCheck.where('most_current=? and check_type != ?',true,'row count').each{|issue|
+        col << "#{issue.check_type}: #{issue.table_name} #{ issue.row_count} #{issue.column_name} #{issue.description}"
+      }
+      return col
     end
 
     def self.populate

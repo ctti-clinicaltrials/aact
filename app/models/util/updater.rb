@@ -283,8 +283,8 @@ module Util
 
     def populate_admin_tables
       log('populating admin tables...')
-      run_sanity_checks
       refresh_data_definitions
+      run_sanity_checks
     end
 
     def run_sanity_checks
@@ -293,10 +293,8 @@ module Util
     end
 
     def sanity_checks_ok?
+      Admin::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Admin::SanityCheck.where('most_current is true')
-      sanity_set.each{|s|
-        load_event.add_problem("Duplicate data detected. : #{s.table_name}.") if s.table_name.include? 'duplicate'
-      }
       load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
       load_event.add_problem("More sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size > 40
       load_event.add_problem("Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
