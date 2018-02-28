@@ -1,0 +1,12 @@
+ <h3>AACT 3.0.2 <i>(April 12, 2018)</i></h3>
+
+  <h5>Retain History of Enumeration Ratios</h5>
+  <p>Some table columns represent 'enumerations' of a fixed set of values. The AACT data dictionary presents row counts & the overall percent distribution for the values in enumeration columns. For example: on Februrary 28, 2018 the enumeration summary for Designs.primary_purpose was:</p>
+
+  <section class="schema">
+     <%= image_tag("sample_enumeration.png") %>
+  </section>
+
+  <p/>
+  <p>We now retain a history of this information so that investigators will be able to see how these values trend over time. We also use this information to help verify the accuracy of each database update by comparing the percent distribution of each data element to its previous value. If any value changes more than 5%, an alert is sent to AACT administrators.</p>
+
