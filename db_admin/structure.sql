@@ -148,12 +148,12 @@ ALTER SEQUENCE enumerations_id_seq OWNED BY enumerations.id;
 
 
 --
--- Name: health_check_queries; Type: TABLE; Schema: public; Owner: -
+-- Name: health_checks; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE health_check_queries (
+CREATE TABLE health_checks (
     id integer NOT NULL,
-    sql_query text,
+    query text,
     cost character varying,
     actual_time double precision,
     row_count integer,
@@ -164,10 +164,10 @@ CREATE TABLE health_check_queries (
 
 
 --
--- Name: health_check_queries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: health_checks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE health_check_queries_id_seq
+CREATE SEQUENCE health_checks_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -177,10 +177,10 @@ CREATE SEQUENCE health_check_queries_id_seq
 
 
 --
--- Name: health_check_queries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: health_checks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE health_check_queries_id_seq OWNED BY health_check_queries.id;
+ALTER SEQUENCE health_checks_id_seq OWNED BY health_checks.id;
 
 
 --
@@ -479,10 +479,10 @@ ALTER TABLE ONLY enumerations ALTER COLUMN id SET DEFAULT nextval('enumerations_
 
 
 --
--- Name: health_check_queries id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: health_checks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY health_check_queries ALTER COLUMN id SET DEFAULT nextval('health_check_queries_id_seq'::regclass);
+ALTER TABLE ONLY health_checks ALTER COLUMN id SET DEFAULT nextval('health_checks_id_seq'::regclass);
 
 
 --
@@ -559,11 +559,11 @@ ALTER TABLE ONLY enumerations
 
 
 --
--- Name: health_check_queries health_check_queries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: health_checks health_checks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY health_check_queries
-    ADD CONSTRAINT health_check_queries_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY health_checks
+    ADD CONSTRAINT health_checks_pkey PRIMARY KEY (id);
 
 
 --
