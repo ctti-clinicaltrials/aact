@@ -1,18 +1,19 @@
 module Util
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader
+    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr
 
     def initialize(params={})
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
-        puts("Starting the #{type} load...")
+        log("Starting the #{type} load...")
         type='restart'
       end
       @client = Util::Client.new
       @days_back=(@params[:days_back] ? @params[:days_back] : 2)
       @rss_reader = Util::RssReader.new(days_back: @days_back)
       @load_event = Admin::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
+      @load_event.save!  # Save to timestamp created_at
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
       self
     end
@@ -21,39 +22,41 @@ module Util
       begin
         ActiveRecord::Base.logger=nil
         case params[:event_type]
-          when 'full'
-            full
-          when 'finalize'
-            finalize_load
-          else
-            incremental
+        when 'full'
+          status=full
+        else
+          status=incremental
         end
-      rescue  Exception => error
-        puts ">>>>>>>>>>> #{@load_event.event_type} load failed: #{error}"
+      rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
-        log(msg)
-        Util::DbManager.new.grant_db_privs
-        load_event.complete({:status=>'failed', :problems=> msg, :study_counts=> study_counts})
-        Admin::PublicAnnouncement.clear_load_message
-        send_notification
+        log("#{@load_event.event_type} load failed in run: #{msg}")
+        load_event.add_problem(msg)
+        load_event.complete({:status=>'failed', :study_counts=> study_counts})
+        return false
       end
+      finalize_load if status != false
+      send_notification
     end
 
     def full
-      if should_restart?
-        log("restarting full load...")
-      else
-        log('begin full load ...')
-        retrieve_xml_from_ctgov
+      begin
+        if should_restart?
+          log("restarting full load...")
+        else
+          log('begin full load ...')
+          retrieve_xml_from_ctgov
+        end
+        truncate_tables if !should_restart?
+        remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
+        study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
+        study_counts[:should_change]=0
+        @client.populate_studies
+        MeshTerm.populate_from_file
+        MeshHeading.populate_from_file
+      rescue => e
+        log("full load failed. #{e}")
+        return false
       end
-      truncate_tables if !should_restart?
-      remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
-      study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
-      study_counts[:should_change]=0
-      @client.populate_studies
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
-      finalize_load
     end
 
     def incremental
@@ -61,60 +64,58 @@ module Util
       log("finding studies changed in past #{@days_back} days...")
       added_ids = @rss_reader.get_added_nct_ids
       changed_ids = @rss_reader.get_changed_nct_ids
-      puts "#{added_ids.size} added studies: #{@rss_reader.added_url}"
-      puts "#{changed_ids.size} changed studies: #{@rss_reader.changed_url}"
+      log("#{added_ids.size} added studies: #{@rss_reader.added_url}")
+      log("#{changed_ids.size} changed studies: #{@rss_reader.changed_url}")
+      study_counts[:should_add]=added_ids.size
+      study_counts[:should_change]=changed_ids.size
       ids=(changed_ids + added_ids).uniq
       log("total #{ids.size} studies combined (having removed dups)")
       case ids.size
       when 0
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
-        send_notification
-        return
+        return false
       when 10000..(1.0/0.0)
         log("Incremental load size is suspiciously large. Aborting load.")
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
-        send_notification
-        return
+        return false
       end
-      set_expected_counts(ids)
       remove_indexes  # Index significantly slow the load process.
       update_studies(ids)
-      finalize_load
+      log('updating load_event record...')
+      load_event.save_id_info(added_ids, changed_ids)
+      log('end of incremental load method')
     end
 
     def retrieve_xml_from_ctgov
-      log("retrieving xml from clinicaltrials.gov ...")
+      log("retrieving xml from clinicaltrials.gov...")
       Admin::AdminBase.connection.truncate('study_xml_records')
       @client.save_file_contents(@client.download_xml_files)
     end
 
     def finalize_load
+      log('finalizing load...')
       add_indexes
       create_calculated_values
       populate_admin_tables
       study_counts[:processed]=Study.count
-      load_event.complete({:study_counts=>study_counts})
       take_snapshot
-      if refresh_public_db == false
-        load_event.problems="DID NOT UPDATE PUBLIC DATABASE."
+      if refresh_public_db != true
+        load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
         load_event.save!
       end
-      #create_flat_files if params[:event_type] =='full'
-      send_notification
+      load_event.complete({:study_counts=>study_counts})
+      db_mgr.grant_db_privs
+      Admin::PublicAnnouncement.clear_load_message
     end
 
     def indexes
       [
          [:baseline_measurements, :dispersion_type],
          [:baseline_measurements, :param_type],
-         [:overall_officials, :nct_id],
-         [:responsible_parties, :nct_id],
          [:baseline_measurements, :category],
          [:baseline_measurements, :classification],
-         [:browse_conditions, :nct_id],
          [:browse_conditions, :mesh_term],
          [:browse_conditions, :downcase_mesh_term],
-         [:browse_interventions, :nct_id],
          [:browse_interventions, :mesh_term],
          [:browse_interventions, :downcase_mesh_term],
          [:calculated_values, :actual_duration],
@@ -189,6 +190,7 @@ module Util
     end
 
     def remove_indexes
+      log('removing indices...')
       m=ActiveRecord::Migration.new
       Util::Updater.loadable_tables.each {|table_name|
         ActiveRecord::Base.connection.indexes(table_name).each{|index|
@@ -198,12 +200,21 @@ module Util
     end
 
     def create_calculated_values
+      log('creating calculated values...')
       CalculatedValue.populate
     end
 
     def add_indexes
+      log('adding indices...')
       m=ActiveRecord::Migration.new
       indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
+      #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
+      ActiveRecord::Base.connection.tables.each{|table|
+        begin
+          m.add_index table, 'nct_id'
+        rescue
+        end
+      }
     end
 
     def self.single_study_tables
@@ -237,7 +248,7 @@ module Util
     end
 
     def update_studies(nct_ids)
-      log('update_studies...')
+      log("updating the set of studies (#{nct_ids.size})...")
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       study_counts[:count_down]=nct_ids.size
 
@@ -253,6 +264,7 @@ module Util
           decrement_count_down
         }
       end
+      log("finished iterating over #{nct_ids.size} studies")
       self
     end
 
@@ -269,6 +281,7 @@ module Util
     end
 
     def populate_admin_tables
+      log('populating admin tables...')
       run_sanity_checks
       refresh_data_definitions
     end
@@ -281,16 +294,15 @@ module Util
     def sanity_checks_ok?
       sanity_set=Admin::SanityCheck.where('most_current is true')
       sanity_set.each{|s|
-        load_event.problems="Duplicate data detected. : #{s.table_name}.  #{load_event.problems}" if s.table_name.include? 'duplicate'
+        load_event.add_problem("Duplicate data detected. : #{s.table_name}.") if s.table_name.include? 'duplicate'
       }
-      load_event.problems="Fewer sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size < 40
-      load_event.problems="More sanity check rows than expected (40): #{sanity_set.size}.  #{load_event.problems}" if sanity_set.size > 40
-      load_event.problems="Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.  #{load_event.problems}" if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
+      load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
+      load_event.add_problem("More sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size > 40
+      load_event.add_problem("Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
+      old_count=db_mgr.public_study_count
+      new_count=db_mgr.background_study_count
+      load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
       return load_event.problems.blank?
-    end
-
-    def load_event
-      @load_event ||= Admin::LoadEvent.new
     end
 
     def refresh_data_definitions(data=Util::FileManager.default_data_definitions)
@@ -299,9 +311,14 @@ module Util
     end
 
     def take_snapshot
-      puts "creating static copy of the database..."
-      Util::DbManager.new.dump_database
-      Util::DbManager.new.save_static_copy if params[:event_type]=='full'
+      log("creating static copy of the database...")
+      db_mgr.dump_database
+      db_mgr.save_static_copy if params[:event_type]=='full'
+    end
+
+    def send_notification
+      log("sending email notification...")
+      Notifier.report_load_event(load_event)
     end
 
     def create_flat_files
@@ -310,6 +327,7 @@ module Util
     end
 
     def truncate_tables
+      log('truncating tables...')
       Util::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
     end
 
@@ -338,36 +356,25 @@ module Util
       end
     end
 
-    def send_notification
-      log("send email notification...")
-      Notifier.report_event(load_event)
-    end
-
-    def set_expected_counts(ids)
-      study_counts[:should_change] = (Study.pluck(:nct_id) & ids).count
-      study_counts[:should_add]    = (ids.count - study_counts[:should_change])
-      log("should change: #{study_counts[:should_change]};  should add: #{study_counts[:should_add]}\n")
+    def refresh_public_db
+      log('refreshing public db...')
+      # recreate public db from back-end db
+      if sanity_checks_ok?
+        submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
+        db_mgr.refresh_public_db
+        return true
+      else
+        load_event.save!
+        return false
+      end
     end
 
     def log_actual_counts
       log("studies added/changed: #{study_counts[:processed]}\n")
     end
 
-private
-
-    def refresh_public_db
-      # recreate public db from back-end db
-      # if dump file not provided, restore from most recent snapshot
-      if sanity_checks_ok?
-        submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
-        Util::DbManager.new.refresh_public_db
-        Admin::PublicAnnouncement.clear_load_message
-        return true
-      else
-        puts load_event.problems
-        load_event.save!
-        return false
-      end
+    def db_mgr
+      @db_mgr ||= Util::DbManager.new({:load_event=>self.load_event})
     end
 
     def db_name

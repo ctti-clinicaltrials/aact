@@ -6,7 +6,7 @@ module Admin
         return if self.completed_at.present?
         sc=params[:study_counts]
         self.status  = (params[:status] ?  params[:status] : 'complete')
-        self.problems = params[:problems]
+        self.problems = params[:problems] if params[:problems]
         self.completed_at = Time.now
         self.load_time = calculate_load_time
         if sc
@@ -17,14 +17,17 @@ module Admin
         self.save!
       end
 
-      def add_problem(errors={})
-        err="\n#{errors[:name]}"
-        desc="\n#{errors[:first_backtrace_line]}"
-        self.problems = "#{self.problems}#{err}"
-        self.problems = "#{self.problems}#{desc}"
-        $stdout.puts err
-        $stdout.puts desc
-        $stdout.flush
+      def add_problem(prob)
+        self.problems = "#{self.problems} \n#{prob}"
+      end
+
+      def save_id_info(added_ids, changed_ids)
+        self.description = '' if self.description.nil?
+        self.description += "added:\n" + added_ids.join("\n")
+        self.description += "\n\nchanged:\n" + changed_ids.join("\n")
+        self.should_add=added_ids.size
+        self.should_change=changed_ids.size
+        self.save!
       end
 
       def calculate_load_time
@@ -47,11 +50,27 @@ module Admin
       def email_message
         val = ''
         val += description if description
-        if problems
-          val += " Problems encountered: "
+        if !problems.blank?
+          val += "\n\nProblems encountered:\n\n"
           val += problems
         end
         val
+      end
+
+      def subject_line
+        if problems.blank?
+          title="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load Notification. Status: #{status}"
+        else
+          status='failed'
+          title="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load - PROBLEMS ENCOUNTERED"
+        end
+
+        if processed.nil? or processed == 0
+          subject="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load Notification. Nothing to load."
+        else
+          subject="#{title}. Added: #{should_add} Updated: #{should_change} Total: #{processed}"
+        end
+        subject
       end
 
       def log(msg)

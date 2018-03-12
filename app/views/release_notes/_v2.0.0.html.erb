@@ -1,0 +1,28 @@
+    <h3>AACT 2.0 <i>(January 31, 2017)</i></h3>
+
+    <p>This release represents a significant upgrade that aims to make AACT easier to access and use. Since 2010, the AACT database has been published twice a year as a package that would be current as of a particular date: March 27 for the first annual installation, and September 27 for the second.</p>
+    <p>The package contained the content of ClinicalTrials.gov as 1) an Oracle database instance, 2) a set of SAS cport files & 3) a set of pipe-delimited files. It also included documentation in spreadsheets. Each package was made available to the public on the CTTI website. These packages remain available <a target='_blank' href='https://www.ctti-clinicaltrials.org/aact-database'>here</a>. Until now, the use of AACT involved download/setup that required relatively sophisticated technical skills. AACT users also reported that the information was not current enough and the documentation difficult to use.</p>
+
+    <p>The code that generates the database has been proprietary and inaccessible to others who might want to replicate the process. The code used to create the AACT database and website is now publicly available in <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact'>github</a>. In summary, we have rewritten AACT to make it easier to access and understand, and to encourage others to replicate and make use of any aspect of it.</p>
+
+    <h5>Direct Access to Cloud-based Version of the Database</h5>
+    <p>The AACT database is immediately accessible in the cloud, eliminating the need for users to download and install the data.</p>
+
+    <h5>Static Database Copies</h5>
+    <p>Each month, a static copy of the AACT database is saved and made available for download. The database platform, Postgres is a popular free open source database platform and requires relatively less technical know-how to setup than other larger platforms such as Oracle.</p>
+
+    <h5>Simplified Schema Design</h5>
+    <p>The database schema has been simplified and employs consistent naming and design conventions.</p>
+
+    <h5>Online Documentation</h5>
+    <p>Documentation has been moved from spreadsheets to this website, and provides instructions about how to access and use AACT with instructions on how to access and use AACT with a variety of popular desktop applications including SAS, R, Tableau, and PostgreSQL tools.</p>
+
+    <h5>Calculated Values Table</h5>
+    <p>A 'Calculated Values' table provides commonly-used, pre-computed values for each study such as total number of facilities and number of months to report results.</p>
+
+    <h5>All Open-Source</h5>
+    <p>The public is free to download and recreate the full system or any part of it. All related code (Ruby on Rails) is available in <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact'>github</a>. This includes the processes that pull data from ClinicalTrials.gov and populates the postgreSql database.</p>
+
+    <p>Providing the public with direct, query-able access to a database in the cloud is not a common model and we have yet to determine how well it will serve hundreds or thousands of simultaneous users, however AWS cloud services provides the most promising alternative for scalable solutions. Another notable challenge has been the time required (~15 hours) to load 220,000+ studies. With recent regulatory changes, it’s likely the amount of data in ClinicalTrials.gov will grow at a faster rate; therefore CTTI continues to investigate ways to improve performance and reliability.</p>
+
+  <p>A beta version was released on October 1, 2016. Existing AACT users were asked to test the new version and their advice/suggestions were considered and implemented through the end of 2016. The official launch occurred January 31, 2017, just in time for the HHS ‘final rules’ to take effect. </p>

@@ -1,19 +1,13 @@
 class Notifier < ApplicationMailer
 
-  def self.report_event(event)
+  def self.report_load_event(event)
     admin_addresses.each do |email|
-      send_msg(email, event).deliver_now
+     send_msg(email, event.subject_line, event.email_message).deliver_now
     end
   end
 
-  def send_msg(email, event)
-    title="AACT #{Rails.env.capitalize} #{event.event_type.try(:capitalize)} Load Notification."
-    if event.processed.nil? or event.processed == 0
-      subject_line="#{title} Nothing to load."
-    else
-      subject_line="#{title} Load Status: #{event.status}. Added: #{event.should_add} Updated: #{event.should_change} Total: #{event.processed}"
-    end
-    mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email, subject: subject_line, body: event.email_message)
+  def send_msg(email, subject, body)
+    mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email, subject: subject, body: body)
   end
 
   def self.admin_addresses
