@@ -42,8 +42,19 @@ describe Util::Updater do
     allow_any_instance_of(Util::RssReader).to receive(:get_added_nct_ids).and_return( [*1..10000] )
     allow_any_instance_of(Util::RssReader).to receive(:get_changed_nct_ids).and_return( [*1..10000] )
     updater=Util::Updater.new
-    expect(updater).to receive(:send_notification).once
     expect(updater).to receive(:update_studies).never
+    expect(updater).to receive(:finalize_load).never
+    expect(updater).to receive(:send_notification).once
+    updater.run
+  end
+
+  it "aborts incremental load when number of studies in refreshed (background) db is less than number of studies in public db" do
+    allow_any_instance_of(Util::DbManager).to receive(:public_study_count).and_return(5)
+    allow_any_instance_of(Util::DbManager).to receive(:background_study_count).and_return(1)
+    updater=Util::Updater.new
+    allow(updater).to receive(:sanity_checks_ok?).and_return(false)
+    expect(updater.db_mgr).to receive(:refresh_public_db).never
+    expect(updater).to receive(:send_notification).once
     updater.run
   end
 
@@ -144,10 +155,10 @@ describe Util::Updater do
     expect(study.results_first_submitted_date).to eq('February 12, 2014'.to_date)
     expect(study.last_update_submitted_date).to eq('November 14, 2015'.to_date)
 
-    expect(study.start_date).to eq(study.start_month_year.to_date)
-    expect(study.verification_date).to eq(study.verification_month_year.to_date)
-    expect(study.completion_date).to eq(study.completion_month_year.to_date)
-    expect(study.primary_completion_date).to eq(study.primary_completion_month_year.to_date)
+    expect(study.start_date).to eq(study.start_month_year.to_date.end_of_month)
+    expect(study.verification_date).to eq(study.verification_month_year.to_date.end_of_month)
+    expect(study.completion_date).to eq(study.completion_month_year.to_date.end_of_month)
+    expect(study.primary_completion_date).to eq(study.primary_completion_month_year.to_date.end_of_month)
 
     expect(study.result_contacts.first.name).to eq('Wendy Seiferheld')
     expect(study.result_contacts.first.organization).to eq('Radiation Therapy Oncology Group')

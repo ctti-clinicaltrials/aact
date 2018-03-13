@@ -1,0 +1,7 @@
+<h3>AACT 2.0.4 <i>(April 14, 2017)</i></h3>
+
+<p>A <a target='_blank' href='https://aact.ctti-clinicaltrials.org/use_cases'>Use Case Gallery</a> has been added to the AACT website.</p>
+
+<p>References on the website to static copies of the AACT database are now called <i>'static database copies'</i> instead of <i>'snapshots'</i>. Using 'snapshots' to refer to static copies of the database was confusing because this term has always been used to refer to the annual set of visualizations that summarize (snapshot) the 'state of clinical trials'.</p>
+
+<p>The database refresh failed when executing the final step that retrieved logging information from AWS. When it tried to look at log file: error/postgresql.log.2017-03-08-20, AWS raising error: <i>This file contains binary data and should be downloaded instead of viewed. (Service: AmazonRDS; Status Code: 400; Error Code: InvalidParameterValue; Request ID: c3ff20fc-05a1-11e7-96d9-2dc5508b92a3)</i>  We now catch this error and skip over it.</p>
