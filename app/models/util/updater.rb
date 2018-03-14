@@ -313,6 +313,7 @@ module Util
       log("creating static copy of the database...")
       db_mgr.dump_database
       db_mgr.save_static_copy if params[:event_type]=='full'
+      db_mgr.create_flat_files if params[:event_type]=='full'
     end
 
     def send_notification
