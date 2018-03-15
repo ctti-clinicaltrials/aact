@@ -52,6 +52,7 @@ module Util
         study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
         study_counts[:should_change]=0
         @client.populate_studies
+        remove_download_files
         MeshTerm.populate_from_file
         MeshHeading.populate_from_file
       rescue => e
@@ -312,8 +313,16 @@ module Util
     def take_snapshot
       log("creating static copy of the database...")
       db_mgr.dump_database
-      db_mgr.save_static_copy if params[:event_type]=='full'
-      db_mgr.create_flat_files if params[:event_type]=='full'
+      db_mgr.save_static_copy
+      db_mgr.create_flat_files
+    end
+
+    def remove_download_files
+      log("removing non-permanentant downloadable files...")
+      # Only do this if this is running on the 1st of the month.  If we do ad hoc full load mid-month, don't delete
+      file_mgr=Util::FileManager.new
+      file_mgr.remove_snapshots
+      file_mgr.remove_flat_files
     end
 
     def send_notification

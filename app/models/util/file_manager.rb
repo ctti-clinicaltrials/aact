@@ -52,7 +52,7 @@ module Util
       files_in("static_db_copies")
     end
 
-    def self.pipe_delimited_files
+    def self.flat_files
       files_in("exported_files")
     end
 
@@ -157,6 +157,26 @@ module Util
            }
         }
       end
+    end
+
+    def created_first_day_of_month?(file)
+      day=file[:date_created].split('/')[1]
+      return day == '01'
+    end
+
+    def remove_snapshots
+      remove_files(Util::FileManager.snapshot_files)
+    end
+
+    def remove_flat_files
+      remove_files(Util::FileManager.flat_files)
+    end
+
+    def remove_files(files)
+      # doesn't remove files created on the first day of the month
+      files.each{|file|
+        File.delete(file[:url]) if File.exist?(file[:url]) && !created_first_day_of_month?(file)
+      }
     end
 
   end
