@@ -19,6 +19,7 @@ module Util
     end
 
     def run
+      status=true
       begin
         ActiveRecord::Base.logger=nil
         case params[:event_type]
@@ -32,7 +33,7 @@ module Util
         log("#{@load_event.event_type} load failed in run: #{msg}")
         load_event.add_problem(msg)
         load_event.complete({:status=>'failed', :study_counts=> study_counts})
-        return false
+        status=false
       end
       finalize_load if status != false
       send_notification
@@ -51,6 +52,7 @@ module Util
         study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
         study_counts[:should_change]=0
         @client.populate_studies
+        remove_download_files
         MeshTerm.populate_from_file
         MeshHeading.populate_from_file
       rescue => e
@@ -282,8 +284,8 @@ module Util
 
     def populate_admin_tables
       log('populating admin tables...')
-      run_sanity_checks
       refresh_data_definitions
+      run_sanity_checks
     end
 
     def run_sanity_checks
@@ -292,10 +294,8 @@ module Util
     end
 
     def sanity_checks_ok?
+      Admin::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Admin::SanityCheck.where('most_current is true')
-      sanity_set.each{|s|
-        load_event.add_problem("Duplicate data detected. : #{s.table_name}.") if s.table_name.include? 'duplicate'
-      }
       load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
       load_event.add_problem("More sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size > 40
       load_event.add_problem("Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
@@ -313,7 +313,16 @@ module Util
     def take_snapshot
       log("creating static copy of the database...")
       db_mgr.dump_database
-      db_mgr.save_static_copy if params[:event_type]=='full'
+      db_mgr.save_static_copy
+      db_mgr.create_flat_files
+    end
+
+    def remove_download_files
+      log("removing non-permanentant downloadable files...")
+      # Only do this if this is running on the 1st of the month.  If we do ad hoc full load mid-month, don't delete
+      file_mgr=Util::FileManager.new
+      file_mgr.remove_snapshots
+      file_mgr.remove_flat_files
     end
 
     def send_notification

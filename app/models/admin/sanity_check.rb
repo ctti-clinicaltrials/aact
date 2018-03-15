@@ -6,7 +6,11 @@ module Admin
       Util::Updater.loadable_tables.each{|table_name|
         table_name='references' if table_name=='study_references'
         cnt=table_name.singularize.camelize.constantize.count
-        Admin::SanityCheck.new({:table_name=>table_name,:row_count=>cnt,:most_current=>true}).save!
+        Admin::SanityCheck.new({
+          :table_name=>table_name,
+          :row_count=>cnt,
+          :check_type=>'row count',
+          :most_current=>true}).save!
       }
     end
 
@@ -18,7 +22,12 @@ module Admin
         cntr=0
         ActiveRecord::Base.connection.execute(query).each{|orphan|
           cntr=cntr+1
-          Admin::SanityCheck.new({:nct_id=>orphan['nct_id'],:table_name=>child,:description=>"Orphaned from #{parent}"}).save
+          Admin::SanityCheck.new({
+            :nct_id=>orphan['nct_id'],
+            :table_name=>child,
+            :check_type=>'orphan',
+            :description=>"Orphaned from #{parent}",
+            :most_current=>true}).save
           return if cntr > 100  # if a widespread problem, we just need to see some examples
         }
       }
@@ -50,9 +59,47 @@ module Admin
              GROUP BY nct_id
              HAVING COUNT(*) > 1")
         results.values.each{|row|
-          Admin::SanityCheck.new({:table_name=>"#{table_name} duplicate",:nct_id=>row.first,:row_count=>row.last,:description=>'duplicate'}).save!
+          Admin::SanityCheck.new({
+            :table_name=>"#{table_name} duplicate",
+            :nct_id=>row.first,
+            :row_count=>row.last,
+            :check_type=>'duplicate',
+            :most_current=>true}).save!
         }
       }
+    end
+
+    def check_enumerations
+      Admin::Enumeration.enums.each{|array|
+        # each enumeration - check most recent % to last % & raise alert if it has changed > 10%
+        table_name=array.first
+        column_name=array.last
+
+        Admin::Enumeration.get_values_for(table_name,column_name).each{|array|
+          hash=Admin::Enumeration.get_last_two_for(table_name,column_name,array.first)
+          if hash.size == 2
+            last=hash[:last].value_percent
+            next_last=hash[:next_last].value_percent
+            diff=last - next_last
+            if (diff.abs > 0.05)
+              Admin::SanityCheck.new({
+                :table_name=>"#{table_name}",
+                :column_name=>"#{column_name}",
+                :check_type=>"enumeration",
+                :description=>"enumeration changed by more than 5%: #{next_last.round(2)}% -> #{last.round(2)}%",
+                :most_current=>true}).save!
+            end
+          end
+        }
+      }
+    end
+
+    def self.current_issues
+      col=[]
+      Admin::SanityCheck.where('most_current=? and check_type != ?',true,'row count').each{|issue|
+        col << "#{issue.check_type}: #{issue.table_name} #{ issue.row_count} #{issue.column_name} #{issue.description}"
+      }
+      return col
     end
 
     def self.populate
@@ -63,6 +110,7 @@ module Admin
       save_row_counts
       check_for_orphans
       check_for_duplicates
+      check_enumerations
     end
 
     def generate_report

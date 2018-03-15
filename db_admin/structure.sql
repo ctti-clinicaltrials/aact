@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.2
--- Dumped by pg_dump version 9.6.2
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -59,6 +59,7 @@ CREATE TABLE data_definitions (
 --
 
 CREATE SEQUENCE data_definitions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -94,6 +95,7 @@ CREATE TABLE database_activities (
 --
 
 CREATE SEQUENCE database_activities_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -106,6 +108,79 @@ CREATE SEQUENCE database_activities_id_seq
 --
 
 ALTER SEQUENCE database_activities_id_seq OWNED BY database_activities.id;
+
+
+--
+-- Name: enumerations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE enumerations (
+    id integer NOT NULL,
+    table_name character varying,
+    column_name character varying,
+    column_value character varying,
+    value_count integer,
+    value_percent numeric,
+    description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: enumerations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE enumerations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: enumerations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE enumerations_id_seq OWNED BY enumerations.id;
+
+
+--
+-- Name: health_check_queries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE health_check_queries (
+    id integer NOT NULL,
+    sql_query text,
+    cost character varying,
+    actual_time double precision,
+    row_count integer,
+    description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: health_check_queries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE health_check_queries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: health_check_queries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE health_check_queries_id_seq OWNED BY health_check_queries.id;
 
 
 --
@@ -133,6 +208,7 @@ CREATE TABLE load_events (
 --
 
 CREATE SEQUENCE load_events_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -163,6 +239,7 @@ CREATE TABLE public_announcements (
 --
 
 CREATE SEQUENCE public_announcements_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -189,7 +266,9 @@ CREATE TABLE sanity_checks (
     description text,
     most_current boolean,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    column_name character varying,
+    check_type character varying
 );
 
 
@@ -198,6 +277,7 @@ CREATE TABLE sanity_checks (
 --
 
 CREATE SEQUENCE sanity_checks_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -240,6 +320,7 @@ CREATE TABLE study_xml_records (
 --
 
 CREATE SEQUENCE study_xml_records_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -275,6 +356,7 @@ CREATE TABLE use_case_attachments (
 --
 
 CREATE SEQUENCE use_case_attachments_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -314,6 +396,7 @@ CREATE TABLE use_cases (
 --
 
 CREATE SEQUENCE use_cases_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -359,6 +442,7 @@ CREATE TABLE users (
 --
 
 CREATE SEQUENCE users_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -385,6 +469,20 @@ ALTER TABLE ONLY data_definitions ALTER COLUMN id SET DEFAULT nextval('data_defi
 --
 
 ALTER TABLE ONLY database_activities ALTER COLUMN id SET DEFAULT nextval('database_activities_id_seq'::regclass);
+
+
+--
+-- Name: enumerations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY enumerations ALTER COLUMN id SET DEFAULT nextval('enumerations_id_seq'::regclass);
+
+
+--
+-- Name: health_check_queries id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY health_check_queries ALTER COLUMN id SET DEFAULT nextval('health_check_queries_id_seq'::regclass);
 
 
 --
@@ -453,6 +551,22 @@ ALTER TABLE ONLY database_activities
 
 
 --
+-- Name: enumerations enumerations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY enumerations
+    ADD CONSTRAINT enumerations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: health_check_queries health_check_queries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY health_check_queries
+    ADD CONSTRAINT health_check_queries_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: load_events load_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -506,6 +620,20 @@ ALTER TABLE ONLY use_cases
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_sanity_checks_on_check_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sanity_checks_on_check_type ON sanity_checks USING btree (check_type);
+
+
+--
+-- Name: index_sanity_checks_on_column_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sanity_checks_on_column_name ON sanity_checks USING btree (column_name);
 
 
 --
@@ -584,4 +712,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20170828142046');
+
+INSERT INTO schema_migrations (version) VALUES ('20180226142044');
 
