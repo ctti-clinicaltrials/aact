@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   end
 
   def pipe_files
-    @files=Util::FileManager.pipe_delimited_files
+    @files=Util::FileManager.flat_files
     @most_recent=@files.last
   end
 
