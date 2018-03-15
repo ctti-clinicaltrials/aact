@@ -48,12 +48,24 @@ module Util
       "#{static_root_dir}/exported_files"
     end
 
-    def self.snapshot_files
-      files_in("static_db_copies")
+    def self.monthly_snapshot_files
+      results =  files_in('static_db_copies','monthly')
+      results
     end
 
-    def self.flat_files
-      files_in("exported_files")
+    def self.daily_snapshot_files
+      results = files_in('static_db_copies','daily')
+      results
+    end
+
+    def self.monthly_flat_files
+      results = files_in('exported_files','monthly')
+      results
+    end
+
+    def self.daily_flat_files
+      results = files_in('exported_files','daily')
+      results
     end
 
     #  ----  get files via linux op sys ------------------
@@ -106,8 +118,10 @@ module Util
 
     #  ----  other utility methods  -------------
 
-    def self.files_in(sub_dir)
-      entries=[]
+    def self.files_in(sub_dir, type)
+      # type can be 'monthly' or 'daily'.  If 'daily', we provide only files date stamped this month.  All others go into monthly
+      daily_entries=[]
+      monthly_entries=[]
       dir="#{static_root_dir}/#{sub_dir}"
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
@@ -118,11 +132,19 @@ module Util
         # don't fail if unexpected file encountered
         begin
           date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
-          entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url} if date_created
-        rescue
+          if created_in_current_month?(date_created)
+            daily_entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+          else
+            monthly_entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+          end
+        rescue => e
+          puts  "============= FileManager Error!! Problem in files_in #{sub_dir}  #{type} ======================="
+          puts e
+          puts "==================================================================================="
         end
       }
-      entries.sort_by {|entry| entry[:name]}.reverse!
+      return daily_entries.sort_by {|entry| entry[:name]}.reverse! if type == 'daily'
+      return monthly_entries.sort_by {|entry| entry[:name]}.reverse! if type == 'monthly'
     end
 
     def self.db_log_file_content(params)
@@ -159,8 +181,16 @@ module Util
       end
     end
 
-    def created_first_day_of_month?(file)
-      day=file[:date_created].split('/')[1]
+    def self.created_in_current_month?(str)
+      current_month=Date.today.strftime("%m")
+      current_year=Date.today.year.to_s
+      month=str.split('/')[0]
+      year=str.split('/').last
+      return month == current_month && year == current_year
+    end
+
+    def created_first_day_of_month?(str)
+      day=str[:date_created].split('/')[1]
       return day == '01'
     end
 
