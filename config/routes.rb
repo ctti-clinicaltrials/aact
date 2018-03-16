@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get "/frequently_asked_questions" => "pages#frequently_asked_questions"
   get "/background"           => "pages#background"
   get "/release_notes"        => "pages#release_notes"
+  get "/update_policy"        => "pages#update_policy"
 
   get "/points_to_consider"   => "pages#points_to_consider"
   get "/news"                 => "pages#news"
