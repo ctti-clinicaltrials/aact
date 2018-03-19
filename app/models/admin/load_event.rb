@@ -62,13 +62,15 @@ module Admin
           title="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load Notification. Status: #{status}"
         else
           status='failed'
-          title="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load - PROBLEMS ENCOUNTERED"
+          subject="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load - PROBLEMS ENCOUNTERED"
         end
 
-        if processed.nil? or processed == 0
-          subject="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load Notification. Nothing to load."
-        else
-          subject="#{title}. Added: #{should_add} Updated: #{should_change} Total: #{processed}"
+        if status != 'failed'
+          if processed.nil? or processed == 0
+            subject="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load Notification. Nothing to load."
+          else
+            subject="#{title}. Added: #{should_add} Updated: #{should_change} Total: #{processed}"
+          end
         end
         subject
       end
