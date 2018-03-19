@@ -314,7 +314,7 @@ module Util
       log("creating static copy of the database...")
       db_mgr.dump_database
       db_mgr.save_static_copy
-      db_mgr.create_flat_files
+      create_flat_files
     end
 
     def remove_download_files
