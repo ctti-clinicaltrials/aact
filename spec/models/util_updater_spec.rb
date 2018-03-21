@@ -35,7 +35,7 @@ describe Util::Updater do
     expect(RSS::Parser).to receive(:parse).exactly(10).times
     # Should proceed and finish up by sending a notification
     expect { updater.send_notification }.to change { ActionMailer::Base.deliveries.count }.by(2)
-    updater.incremental
+    updater.run
   end
 
   it "aborts incremental load when number of studies exceeds 10000" do
@@ -45,6 +45,7 @@ describe Util::Updater do
     expect(updater).to receive(:update_studies).never
     expect(updater).to receive(:finalize_load).never
     expect(updater).to receive(:send_notification).once
+    expect(updater.db_mgr).to receive(:refresh_public_db).never
     updater.run
   end
 
@@ -226,12 +227,16 @@ describe Util::Updater do
     end
   end
 
-  context 'when something went wrong with the loads ' do
-    it 'should not refresh the public db' do
-    end
-
-    it 'should record the problem(s) to the LoadEvent record' do
-     #allow_any_instance_of(Util::SanityCheck).to receive(:get_added_nct_ids).and_return( [*1..10000] )
+  context 'when something went wrong with the loads' do
+    it 'should log errors, send notification with apprpriate subject line & not refresh the public db' do
+      allow_any_instance_of(Util::RssReader).to receive(:get_added_nct_ids).and_raise(NoMethodError)
+      updater=Util::Updater.new
+      expect(updater).to receive(:send_notification).once
+      expect(updater.db_mgr).to receive(:refresh_public_db).never
+      updater.run
+      expect(updater.load_event.problems).to include('NoMethodError')
+      expect(updater.load_event.problems.size).to  be > 100
+      expect(updater.load_event.subject_line).to eq('AACT Test Incremental Load - PROBLEMS ENCOUNTERED')
     end
 
   end
