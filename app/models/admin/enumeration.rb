@@ -2,6 +2,54 @@ require 'active_support/all'
 module Admin
   class Enumeration < Admin::AdminBase
 
+    def self.populate
+      con=ActiveRecord::Base.connection
+      enums.each{|array|
+        begin
+          table_name=array.first
+          column_name=array.last
+          full_count=con.execute("SELECT count(*) FROM #{table_name}")
+          rows=full_count.getvalue(0,0).to_i if full_count.ntuples == 1
+
+          results=con.execute("
+                      SELECT DISTINCT #{column_name}, COUNT(*) AS cnt
+                        FROM #{table_name}
+                       GROUP BY #{column_name}
+                       ORDER BY cnt ASC")
+
+          entries=results.ntuples - 1
+          # hash to be used to populate the enumeration column of the associated data definition record
+          hash={}
+          # healthcheck hash to be used to create a health check record for the enumeration
+          hc_hash={:table_name=>table_name,:column_name=>column_name}
+          while entries >= 0 do
+            val=results.getvalue(entries,0).to_s
+            val='null' if val.size==0
+            val='true' if val=='t'
+            val='false' if val=='f'
+            cnt=results.getvalue(entries,1)
+            pct=(cnt.to_f/rows.to_f)*100
+            display_count=cnt.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+            display_percent="#{pct.round(2)}%"
+            hash[val]=[display_count,display_percent]
+            hc_hash[:column_value]=val
+            hc_hash[:value_count]=cnt.to_i
+            hc_hash[:value_percent]=pct
+            create_from(hc_hash) if hc_hash.size > 2
+            entries=entries-1
+          end
+          row=Admin::DataDefinition.where("table_name=? and column_name=?",table_name,column_name).first
+          if row
+            row.enumerations=hash.to_json
+            row.save
+          end
+        rescue => e
+          puts ">>>>  could not determine enumerations for #{table_name}  #{column_name}"
+          puts e.inspect
+        end
+      }
+    end
+
     def self.create_from(hash)
       Admin::Enumeration.new(
         {:table_name     => hash[:table_name],
