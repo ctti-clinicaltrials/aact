@@ -16,9 +16,9 @@ class AddHealthCheck < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table(:health_check_queries) do |t|
-      t.text :sql_query
-      t.string :cost
+    create_table(:health_checks) do |t|
+      t.text    :query
+      t.string  :cost
       t.float   :actual_time,  :precision => 4, :scale => 2
       t.integer :row_count
       t.string :description
