@@ -14,7 +14,9 @@
 
 <ul class='regularDisplay'>
 <li>
-  <p><b>Full Refresh:</b> A full refresh of the database is scheduled to run at midnight on the first day of every month. This process takes 15-20 hours. The database remains available during this time; however it must be locked down for about 5 minutes at the end when it's restored from a version of the database that was refreshed. This process uses the <a target='_blank' href='https://clinicaltrials.gov/ct2/resources/download#DownloadAllData'>ClinicalTrials.gov API</a> to retrieve all data.</p>
+  <p><b>Full Refresh:</b> A full refresh of the database is scheduled to run at midnight on the first day of every month. This process takes 15-20 hours. The database remains available during this time; however it must be locked down for about 5 minutes at the end when it's restored from a version of the database that was refreshed. </p>
+
+  <p>The full load begins by retrieving all data from ClinicalTrials.gov via the <a target='_blank' href='https://clinicaltrials.gov/ct2/resources/download#DownloadAllData'>ClinicalTrials.gov API</a>, therefore the AACT database created on the first of the month will contain data as it existed in ClinicalTrials.gov as of midnight the previous day. The process to pull all data down from ClinicalTrials.gov takes approximately 1 hour.</p>
 
   <p>Why do a full refresh? ClinicalTrials.gov occasionally needs to merge studies that have been identified as duplicates; deleting one of the studies in the process. The incremental/nightly update in AACT cannot detect when studies have been removed from ClinicalTrials.gov, therefore we wipe out the database and run a full refresh to prevent AACT from accumulating these obsolete records. It should be noted that a study that is deleted from ClinicalTrials.gov will not be removed from AACT until the first day of the following month.</p>
 </li>
