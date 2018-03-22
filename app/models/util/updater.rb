@@ -1,5 +1,5 @@
 module Util
-  class Updater
+ class Updater
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr
 
     def initialize(params={})
@@ -52,7 +52,7 @@ module Util
         study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
         study_counts[:should_change]=0
         @client.populate_studies
-        remove_download_files
+        remove_last_months_download_files if Date.today.day == 1  # only do this if it's the first of the month
         MeshTerm.populate_from_file
         MeshHeading.populate_from_file
       rescue => e
@@ -317,12 +317,11 @@ module Util
       create_flat_files
     end
 
-    def remove_download_files
-      log("removing non-permanentant downloadable files...")
-      # Only do this if this is running on the 1st of the month.  If we do ad hoc full load mid-month, don't delete
+    def remove_last_months_download_files
+      log("removing daily downloadable files from last month...")
       file_mgr=Util::FileManager.new
-      file_mgr.remove_snapshots
-      file_mgr.remove_flat_files
+      file_mgr.remove_daily_snapshots
+      file_mgr.remove_daily_flat_files
     end
 
     def send_notification
