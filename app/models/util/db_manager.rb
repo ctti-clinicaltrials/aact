@@ -5,7 +5,11 @@ module Util
     attr_accessor :con, :stage_con, :pub_con, :load_event
 
     def initialize(params={})
-      @load_event = params[:load_event]
+      if params[:load_event]
+        @load_event = params[:load_event]
+      else
+        @load_event = Admin::LoadEvent.create({:event_type=>'ad hoc',:status=>'running',:description=>'',:problems=>''})
+      end
     end
 
     def save_static_copy
