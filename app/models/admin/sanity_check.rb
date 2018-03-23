@@ -81,7 +81,7 @@ module Admin
             last=hash[:last].value_percent
             next_last=hash[:next_last].value_percent
             diff=last - next_last
-            if (diff.abs > 0.10)
+            if (diff.abs > 10)
               Admin::SanityCheck.new({
                 :table_name=>"#{table_name}",
                 :column_name=>"#{column_name}",
@@ -102,15 +102,11 @@ module Admin
       return col
     end
 
-    def self.populate
-      self.new.run
-    end
-
-    def run
+    def run(event_type=nil)
       save_row_counts
       check_for_orphans
       check_for_duplicates
-      check_enumerations
+      check_enumerations if event_type == 'full'
     end
 
     def generate_report

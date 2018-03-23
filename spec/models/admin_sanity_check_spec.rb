@@ -24,10 +24,11 @@ describe Admin::SanityCheck do
             :column_name => c_name,
             :column_value => val,
             :value_count => num,
-            :value_percent => (num.to_f/3.to_f)  # percent vals will differ by > 10%:  1/3 (33%) & 2/3 (66%)
+            :value_percent => ((num*100)/8).to_f
            }
       Admin::Enumeration.create_from(hash)
     }
+    Admin::Enumeration.all.each{|x| puts x.inspect}
 
     described_class.destroy_all
     described_class.new.check_enumerations
@@ -38,12 +39,12 @@ describe Admin::SanityCheck do
     expect(ck.column_name).to eq(c_name)
     expect(ck.check_type).to eq('enumeration')
     expect(ck.most_current).to eq(true)
-    expect(ck.description).to eq("enumeration changed by more than 10%: 0.33% -> 0.67%")
+    expect(ck.description).to eq("enumeration changed by more than 10%: 12.0% -> 25.0%")
 
     # Change the 2nd Enumeration's percent_value so it's within 10% of the previous and reun the sanity check.
     # This should not cause a SanityCheck to get created since it's within a sane range.
     reset_enum=Admin::Enumeration.where('value_count=?',2).first
-    reset_enum.value_percent=0.43
+    reset_enum.value_percent=21
     reset_enum.save!
     described_class.destroy_all
     described_class.new.check_enumerations
