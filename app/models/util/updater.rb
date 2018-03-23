@@ -290,7 +290,7 @@ module Util
 
     def run_sanity_checks
       log("running sanity checks...")
-      Admin::SanityCheck.populate
+      Admin::SanityCheck.new.run(params[:event_type])
     end
 
     def sanity_checks_ok?

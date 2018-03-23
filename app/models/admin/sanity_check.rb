@@ -102,15 +102,11 @@ module Admin
       return col
     end
 
-    def self.populate
-      self.new.run
-    end
-
-    def run
+    def run(event_type=nil)
       save_row_counts
       check_for_orphans
       check_for_duplicates
-      check_enumerations
+      check_enumerations if event_type == 'full'
     end
 
     def generate_report
