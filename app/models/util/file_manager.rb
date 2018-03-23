@@ -118,10 +118,11 @@ module Util
       new.files_in(dir, type)
     end
 
-    def files_in(dir, type)
+    def files_in(sub_dir, type)
       # type can be 'monthly' or 'daily'.  If 'daily', we provide only files date stamped this month.  All others go into monthly
       daily_entries=[]
       monthly_entries=[]
+      dir="#{static_root_dir}/#{sub_dir}"
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
         file_location="#{dir}/#{file_name}"
@@ -133,19 +134,24 @@ module Util
           date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
           current_month=Date.today.strftime("%m")
           current_year=Date.today.year.to_s
-          if created_in?(current_month, current_year, date_created) and !created_first_day_of_month?(date_created)
+
+          created_this_month         = created_in?(current_month, current_year, date_created)
+          created_first_day_of_month = created_first_day_of_month?(date_created)
+
+          if created_this_month && !created_first_day_of_month
             daily_entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
           else
             monthly_entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
           end
         rescue => e
-          puts  "============= FileManager Error!! Problem in files_in #{dir}  #{type} ======================="
           puts e
-          puts "==================================================================================="
         end
       }
-      return daily_entries.sort_by {|entry| entry[:name]}.reverse! if type == 'daily'
-      return monthly_entries.sort_by {|entry| entry[:name]}.reverse! if type == 'monthly'
+      if type == 'monthly'
+        monthly_entries.sort_by {|entry| entry[:name]}.reverse!
+      else
+        daily_entries.sort_by {|entry| entry[:name]}.reverse!
+      end
     end
 
     def all_files_in(dir)
@@ -204,7 +210,7 @@ module Util
     end
 
     def created_first_day_of_month?(str)
-      day=str[:date_created].split('/')[1]
+      day=str.split('/')[1]
       return day == '01'
     end
 
@@ -230,7 +236,7 @@ module Util
       all_files_in(dir).each{ |file|
         exists                     = File.exist?(file[:url])
         created_last_month         = created_in?(mnth, yr, file[:date_created])
-        created_first_day_of_month = created_first_day_of_month?(file)
+        created_first_day_of_month = created_first_day_of_month?(file[:date_created])
         File.delete(file[:url]) if exists && created_last_month && !created_first_day_of_month
       }
     end
