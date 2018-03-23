@@ -42,27 +42,27 @@ module Util
         # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
         psql_file="#{Util::FileManager.dump_directory}/aact.psql"
         File.delete(psql_file) if File.exist?(psql_file)
-        terminate_active_sessions('aact_back')
+        terminate_background_db_sessions
         cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} --exclude-table schema_migrations aact_back > #{psql_file}"
         run_command_line(cmd)
 
         # clear out previous content of staging db
         puts "Recreating public schema in aact staging database..."
-        terminate_active_sessions('aact')
+        terminate_db_sessions
         stage_con.execute('DROP SCHEMA IF EXISTS public CASCADE')
         stage_con.execute('CREATE SCHEMA public')
 
         # refresh staging db
         puts "Refreshing aact staging database..."
         cmd="psql -h localhost aact < #{psql_file} > /dev/null"
-        terminate_active_sessions('aact')
+        terminate_db_sessions
         run_command_line(cmd)
 
         fm=Util::FileManager.new
         db_name=ActiveRecord::Base.connection.current_database
         File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
         cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{fm.pg_dump_file}"
-        terminate_active_sessions('aact')
+        terminate_db_sessions
         run_command_line(cmd)
       rescue => error
         load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
@@ -73,13 +73,13 @@ module Util
       begin
         success_code=true
         revoke_db_privs
-        terminate_active_sessions(public_db_name)
+        terminate_db_sessions
         dump_file_name=Util::FileManager.new.pg_dump_file
         return nil if dump_file_name.nil?
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
         run_command_line(cmd)
 
-        terminate_active_sessions('aact_alt')
+        terminate_alt_db_sessions
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
         run_command_line(cmd)
         grant_db_privs
@@ -113,17 +113,16 @@ module Util
       end
     end
 
-    def terminate_active_sessions(db_name)
-      pub_con.select_all("select * from pg_stat_activity where state='active' and datname='#{db_name}' order by pid;").each { |session|
-        if session['datname']=="#{public_db_name}"
-          begin
-            con.execute("select pg_terminate_backend(#{session['pid']})")
-          rescue
-            # proceed to next session
-          end
-        end
-      }
-      @con=nil
+    def terminate_db_sessions
+      pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{public_db_name}'")
+    end
+
+    def terminate_alt_db_sessions
+      pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = 'aact_alt'")
+    end
+
+    def terminate_background_db_sessions
+      con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = 'aact_back'")
     end
 
     def public_study_count
