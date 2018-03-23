@@ -114,7 +114,7 @@ module Util
     end
 
     def terminate_active_sessions(db_name)
-      con.select_all("select * from pg_stat_activity where state='active' and datname='#{db_name}' order by pid;").each { |session|
+      pub_con.select_all("select * from pg_stat_activity where state='active' and datname='#{db_name}' order by pid;").each { |session|
         if session['datname']=="#{public_db_name}"
           begin
             con.execute("select pg_terminate_backend(#{session['pid']})")
