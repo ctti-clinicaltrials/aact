@@ -59,8 +59,13 @@ class Outcome < StudyRelationship
   def convert_date(label)
     dt=get_opt(label)
     return nil if dt.blank?
-    return dt.to_date.end_of_month  if (dt.count '/') == 1
-    return dt.to_date
+    begin
+      return dt.to_date.end_of_month  if (dt.count '/') == 1
+      return dt.to_date
+    rescue
+      # return nil if invalid date
+      nil
+    end
   end
 
 end

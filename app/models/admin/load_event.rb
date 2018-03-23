@@ -50,11 +50,29 @@ module Admin
       def email_message
         val = ''
         val += description if description
-        if problems
+        if !problems.blank?
           val += "\n\nProblems encountered:\n\n"
           val += problems
         end
         val
+      end
+
+      def subject_line
+        if problems.blank?
+          title="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load Notification. Status: #{status}"
+        else
+          status='failed'
+          subject="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load - PROBLEMS ENCOUNTERED"
+        end
+
+        if status != 'failed'
+          if processed.nil? or processed == 0
+            subject="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load Notification. Nothing to load."
+          else
+            subject="#{title}. Added: #{should_add} Updated: #{should_change} Total: #{processed}"
+          end
+        end
+        subject
       end
 
       def log(msg)

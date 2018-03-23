@@ -12,8 +12,8 @@ module Util
       "https://prsinfo.clinicaltrials.gov/results_definitions.html"
     end
 
-    def self.url_base
-      "#{Rails.public_path}/static"
+    def url_base
+      "/static"
     end
 
     def self.static_root_dir
@@ -48,12 +48,24 @@ module Util
       "#{static_root_dir}/exported_files"
     end
 
-    def self.snapshot_files
-      files_in("static_db_copies")
+    def self.monthly_snapshot_files
+      results =  files_in('static_db_copies','monthly')
+      results
     end
 
-    def self.pipe_delimited_files
-      files_in("exported_files")
+    def self.daily_snapshot_files
+      results = files_in('static_db_copies','daily')
+      results
+    end
+
+    def self.monthly_flat_files
+      results = files_in('exported_files','monthly')
+      results
+    end
+
+    def self.daily_flat_files
+      results = files_in('exported_files','daily')
+      results
     end
 
     #  ----  get files via linux op sys ------------------
@@ -106,23 +118,52 @@ module Util
 
     #  ----  other utility methods  -------------
 
-    def self.files_in(sub_dir)
-      entries=[]
-      dir="#{static_root_dir}/#{sub_dir}"
+    def self.files_in(dir, type)
+      new.files_in(dir, type)
+    end
+
+    def files_in(dir, type)
+      # type can be 'monthly' or 'daily'.  If 'daily', we provide only files date stamped this month.  All others go into monthly
+      daily_entries=[]
+      monthly_entries=[]
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
         file_location="#{dir}/#{file_name}"
-        file_url="#{url_base}/#{sub_dir}/#{file_name}"
+        file_url="#{dir}/#{file_name}"
         size=File.open(file_location).size
         date_string=file_name.split('_').first
         # don't fail if unexpected file encountered
         begin
           date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
-          entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url} if date_created
-        rescue
+          current_month=Date.today.strftime("%m")
+          current_year=Date.today.year.to_s
+          if created_in?(current_month, current_year, date_created) and !created_first_day_of_month?(date_created)
+            daily_entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+          else
+            monthly_entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+          end
+        rescue => e
+          puts  "============= FileManager Error!! Problem in files_in #{dir}  #{type} ======================="
+          puts e
+          puts "==================================================================================="
         end
       }
-      entries.sort_by {|entry| entry[:name]}.reverse!
+      return daily_entries.sort_by {|entry| entry[:name]}.reverse! if type == 'daily'
+      return monthly_entries.sort_by {|entry| entry[:name]}.reverse! if type == 'monthly'
+    end
+
+    def all_files_in(dir)
+      files=[]
+      file_names=Dir.entries(dir) - ['.','..']
+      file_names.each {|file_name|
+        file_location="#{dir}/#{file_name}"
+        file_url="#{dir}/#{file_name}"
+        size=File.open(file_location).size
+        date_string=file_name.split('_').first
+        date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
+        files << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+      }
+      return files.sort_by {|entry| entry[:name]}.reverse!
     end
 
     def self.db_log_file_content(params)
@@ -157,6 +198,45 @@ module Util
            }
         }
       end
+    end
+
+    def created_in?(mnth, yr, str)
+      month=str.split('/')[0]
+      year=str.split('/').last
+      val= (month == mnth && year == yr)
+      return val
+    end
+
+    def created_first_day_of_month?(str)
+      day=str[:date_created].split('/')[1]
+      return day == '01'
+    end
+
+    def remove_daily_snapshots
+      remove_daily_files(Util::FileManager.static_copies_directory)
+    end
+
+    def remove_daily_flat_files
+      remove_daily_files(Util::FileManager.flat_files_directory)
+    end
+
+    def remove_daily_files(dir, mnth=nil, yr=nil)
+      # remove all files in the given directory
+      # If month/year provided, only remove those
+      # if month/year not provided, assume the previous month
+
+      if mnth.nil?
+        prev_date=Time.now - 1.month
+        mnth = prev_date.strftime("%m")
+        yr   = prev_date.year.to_s
+      end
+
+      all_files_in(dir).each{ |file|
+        exists                     = File.exist?(file[:url])
+        created_last_month         = created_in?(mnth, yr, file[:date_created])
+        created_first_day_of_month = created_first_day_of_month?(file)
+        File.delete(file[:url]) if exists && created_last_month && !created_first_day_of_month
+      }
     end
 
   end

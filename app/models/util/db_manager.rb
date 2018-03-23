@@ -5,7 +5,11 @@ module Util
     attr_accessor :con, :stage_con, :pub_con, :load_event
 
     def initialize(params={})
-      @load_event = params[:load_event]
+      if params[:load_event]
+        @load_event = params[:load_event]
+      else
+        @load_event = Admin::LoadEvent.create({:event_type=>'ad hoc',:status=>'running',:description=>'',:problems=>''})
+      end
     end
 
     def save_static_copy
@@ -110,7 +114,7 @@ module Util
     end
 
     def terminate_active_sessions(db_name)
-      con.select_all("select * from pg_stat_activity where state='active' and datname='#{db_name}' order by pid;").each { |session|
+      pub_con.select_all("select * from pg_stat_activity where state='active' and datname='#{db_name}' order by pid;").each { |session|
         if session['datname']=="#{public_db_name}"
           begin
             con.execute("select pg_terminate_backend(#{session['pid']})")

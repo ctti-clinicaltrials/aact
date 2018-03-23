@@ -4,13 +4,15 @@ class PagesController < ApplicationController
   end
 
   def snapshots
-    @files=Util::FileManager.snapshot_files
-    @most_recent=@files.last
+    @daily_files=Util::FileManager.daily_snapshot_files
+    @archive_files=Util::FileManager.monthly_snapshot_files
+    @most_recent=@daily_files.last
   end
 
   def pipe_files
-    @files=Util::FileManager.pipe_delimited_files
-    @most_recent=@files.last
+    @daily_files=Util::FileManager.daily_flat_files
+    @archive_files=Util::FileManager.monthly_flat_files
+    @most_recent=@daily_files.last
   end
 
   def points_to_consider

@@ -1,0 +1,43 @@
+<h2 id="background">Database Update Policy and Schedule</h2>
+
+<h4>In Summary:</h4>
+
+<ul class='regularDisplay'>
+<li>The live cloud-based database is updated every night at midnight to load all studies that have changed or been added to ClinicalTrials.gov the previous day.</li>
+<li>The database is wiped out and completely refreshed on the first day of each month. The process begins at midnight and takes about 15 hours. (The database remains available during this time.)</li>
+<li>After every database update, a static copy of the refreshed database and a set of pipe-delimited flat files containing the content of each database table are published to the <a target='_blank' href='/download'>download page on the AACT website</a> where they are publicly accessible.</li>
+<li>Static database copies & sets of pipe-delimited files created on the first day of the month (after the full refresh) are archived and remain permanently available for download.</li>
+<li>Static database copies & sets of pipe-delimited files created on days of the month other than the first (ie. after incremental updates) remain available for download until the end of the month.</li>
+</ul>
+
+<h4>Details:</h4>
+
+<ul class='regularDisplay'>
+<li>
+  <p><b>Full Refresh:</b> A full refresh of the database is scheduled to run at midnight on the first day of each month. This process takes 15-20 hours. The database remains available during this time; however it must be locked down for about 5 minutes at the end when it's restored from a version of the database that was refreshed. </p>
+
+  <p>The full load begins by retrieving all data from ClinicalTrials.gov via the <a target='_blank' href='https://clinicaltrials.gov/ct2/resources/download#DownloadAllData'>ClinicalTrials.gov API</a>, therefore the AACT database created on the first of the month will contain data as it existed in ClinicalTrials.gov as of midnight the previous day. The actual date when the study record was released via the ClinicalTrials.gov API is stored in the Studies.NLM_Download_Date_Description field.</p>
+
+  <p>Why do a full refresh? ClinicalTrials.gov occasionally needs to merge studies that have been identified as duplicates; deleting one of the studies in the process. The incremental/nightly update in AACT cannot detect when studies have been removed from ClinicalTrials.gov, therefore we wipe out the database and run a full refresh to prevent AACT from accumulating these obsolete records. It should be noted that a study that is deleted from ClinicalTrials.gov will not be removed from AACT until the first day of the following month.</p>
+</li>
+
+<li>
+  <p><b>Incremental Update:</b> A nightly, incremental update is scheduled to run each night at midnight; it takes about one and a half hours to complete. As with the full refresh, the database remains available for use throughout most of this process (excluding the 5 minutes it takes to perform the last step of restoring from the background/updated database). This process uses the <a target='_blank' href='https://clinicaltrials.gov/ct2/resources/rss'>ClinicalTrials.gov RSS Feed</a> to retrieve studies that have been added or changed. The commands used to retrieve this information from ClinicalTrials.gov are:</p>
+  <ul class='regularDisplay noBullets'>
+    <li>
+      <p>https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=2&count=10000 (retrieves new studies)</p>
+    </li>
+    <li>
+      <p>https://clinicaltrials.gov/ct2/results/rss.xml?lup_d=2&count=10000 (retrieves changed studies)</p>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <p><b>Static Database Copies:</b> The postgreSQL pg_dump command is used to create a static copy of the database after each update. It is zipped up with current documentation (the data dictionary, database schema and related information from the National Library of Medicine), and made available on the <a target='_blank' href='/snapshots'>download static copies page</a>. The database copies created after the nightly incremental loads remain available for download until the end of the month.  Database copies created after the full refresh on the first of the month are archived and made permanently available for download. (Note: archived copies of the database created before January, 2018 were not created on the first of the month.)</p>
+</li>
+
+<li>
+  <p><b>Pipe-Delimited Flat Files:</b> After each database update, all data from the database are extracted into a set of pipe-delimited flat files; one file per database table. These file sets can be obtained from the <a target='_blank' href='/pipe_files'>pipe-delimited flat file download page</a>. Like the static database copies, file sets created after the nightly incremental load will remain available for download until the end of the month. File sets created after the full refresh on the first of the month are archived and permanently available. (Note: archived copies of pipe-delimited files created before January, 2018 were not created on the first of the month.)</p>
+</li>
+</ul>
