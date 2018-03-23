@@ -1,39 +1,34 @@
 class PagesController < ApplicationController
-  def home
-    @snapshot_exports="#{ENV['FILESERVER_ENDPOINT']}/snapshots"
-  end
 
   def snapshots
-    @daily_files=Util::FileManager.daily_snapshot_files
-    @archive_files=Util::FileManager.monthly_snapshot_files
-    @most_recent=@daily_files.last
+    @daily_files=Util::FilePresentationManager.daily_snapshot_files
+    @archive_files=Util::FilePresentationManager.monthly_snapshot_files
   end
 
   def pipe_files
-    @daily_files=Util::FileManager.daily_flat_files
-    @archive_files=Util::FileManager.monthly_flat_files
-    @most_recent=@daily_files.last
+    @daily_files=Util::FilePresentationManager.daily_flat_files
+    @archive_files=Util::FilePresentationManager.monthly_flat_files
   end
 
   def points_to_consider
-    @admin_schema_diagram=Util::FileManager.admin_schema_diagram
-    @schema_diagram=Util::FileManager.schema_diagram
-    @data_dictionary=Util::FileManager.data_dictionary
-    @table_dictionary=Util::FileManager.table_dictionary
+    @admin_schema_diagram=Util::FilePresentationManager.admin_schema_diagram
+    @schema_diagram=Util::FilePresentationManager.schema_diagram
+    @data_dictionary=Util::FilePresentationManager.data_dictionary
+    @table_dictionary=Util::FilePresentationManager.table_dictionary
   end
 
   def learn_more
-    @admin_schema_diagram=Util::FileManager.admin_schema_diagram
-    @schema_diagram=Util::FileManager.schema_diagram
-    @data_dictionary=Util::FileManager.data_dictionary
-    @table_dictionary=Util::FileManager.table_dictionary
+    @admin_schema_diagram=Util::FilePresentationManager.admin_schema_diagram
+    @schema_diagram=Util::FilePresentationManager.schema_diagram
+    @data_dictionary=Util::FilePresentationManager.data_dictionary
+    @table_dictionary=Util::FilePresentationManager.table_dictionary
   end
 
   def schema
-    @admin_schema_diagram=Util::FileManager.admin_schema_diagram
-    @schema_diagram=Util::FileManager.schema_diagram
-    @data_dictionary=Util::FileManager.data_dictionary
-    @table_dictionary=Util::FileManager.table_dictionary
+    @admin_schema_diagram=Util::FilePresentationManager.admin_schema_diagram
+    @schema_diagram=Util::FilePresentationManager.schema_diagram
+    @data_dictionary=Util::FilePresentationManager.data_dictionary
+    @table_dictionary=Util::FilePresentationManager.table_dictionary
     @show_dictionary_link = true
   end
 
