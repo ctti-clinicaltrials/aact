@@ -81,7 +81,7 @@ module Admin
             last=hash[:last].value_percent
             next_last=hash[:next_last].value_percent
             diff=last - next_last
-            if (diff.abs > 0.10)
+            if (diff.abs > 10)
               Admin::SanityCheck.new({
                 :table_name=>"#{table_name}",
                 :column_name=>"#{column_name}",
