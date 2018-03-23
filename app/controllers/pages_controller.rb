@@ -41,8 +41,4 @@ class PagesController < ApplicationController
     @sanity_check_report = Admin::SanityCheck.last.report
   end
 
-  def letsencrypt
-     render text: "ze3b2B0EROvY0-pxWJO9va4MrihcnDgpHQfZskEts4o.h4AET8S0L96XTM6tGuJQBD60-2rHKzZ4mlYzKl9Ay6A"
-  end
-
 end
