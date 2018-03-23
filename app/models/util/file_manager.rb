@@ -49,23 +49,19 @@ module Util
     end
 
     def self.monthly_snapshot_files
-      results =  files_in('static_db_copies','monthly')
-      results
+      files_in('static_db_copies','monthly')
     end
 
     def self.daily_snapshot_files
-      results = files_in('static_db_copies','daily')
-      results
+      files_in('static_db_copies','daily')
     end
 
     def self.monthly_flat_files
-      results = files_in('exported_files','monthly')
-      results
+      files_in('exported_files','monthly')
     end
 
     def self.daily_flat_files
-      results = files_in('exported_files','daily')
-      results
+      files_in('exported_files','daily')
     end
 
     #  ----  get files via linux op sys ------------------
