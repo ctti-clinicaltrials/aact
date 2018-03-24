@@ -4,81 +4,37 @@ include ActionView::Helpers::NumberHelper
 module Util
   class FileManager
 
-    def nlm_protocol_data_url
-      "https://prsinfo.clinicaltrials.gov/definitions.html"
+    def static_copies_directory
+      "/static/static_db_copies"
     end
 
-    def nlm_results_data_url
-      "https://prsinfo.clinicaltrials.gov/results_definitions.html"
-    end
-
-    def url_base
-      "/static"
-    end
-
-    def self.static_root_dir
-      '/aact-files'
-    end
-
-    def static_root_dir
-      '/aact-files'
-    end
-
-    def self.dump_directory
-      "#{static_root_dir}/tmp"
-    end
-
-    def dump_directory
-      "#{static_root_dir}/tmp"
-    end
-
-    def self.xml_file_directory
-      "#{static_root_dir}/xml_downloads"
+    def flat_files_directory
+      "/static/exported_files"
     end
 
     def pg_dump_file
-      "#{static_root_dir}/tmp/postgres.dmp"
+      "/static/tmp/postgres.dmp"
     end
 
-    def self.static_copies_directory
-      "#{static_root_dir}/static_db_copies"
-    end
-
-    def self.flat_files_directory
-      "#{static_root_dir}/exported_files"
-    end
-
-    def self.monthly_snapshot_files
-      files_in('static_db_copies','monthly')
-    end
-
-    def self.daily_snapshot_files
-      files_in('static_db_copies','daily')
-    end
-
-    def self.monthly_flat_files
-      files_in('exported_files','monthly')
-    end
-
-    def self.daily_flat_files
-      files_in('exported_files','daily')
+    def dump_directory
+      "/static/tmp"
     end
 
     #  ----  get files via linux op sys ------------------
 
-    def backend_admin_schema_diagram
+    def admin_schema_diagram
       "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
     end
 
-    def backend_schema_diagram
+    def schema_diagram
       "#{Rails.public_path}/static/documentation/aact_schema.png"
     end
 
-    def backend_data_dictionary
+    def data_dictionary
       "#{Rails.public_path}/static/documentation/aact_data_definitions.xlsx"
     end
 
-    def backend_table_dictionary
+    def table_dictionary
       "#{Rails.public_path}/static/documentation/aact_tables.xlsx"
     end
 
@@ -94,64 +50,28 @@ module Util
       Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
     end
 
-    #  ----  get files via url ------------------
-
-    def self.admin_schema_diagram
-      "/static/documentation/aact_admin_schema.png"
-    end
-
-    def self.schema_diagram
-      "/static/documentation/aact_schema.png"
-    end
-
-    def self.data_dictionary
-      "/static/documentation/aact_data_definitions.xlsx"
-    end
-
-    def self.table_dictionary
-      "/static/documentation/aact_tables.xlsx"
-    end
-
-    #  ----  other utility methods  -------------
-
     def self.files_in(dir, type)
       new.files_in(dir, type)
     end
 
     def files_in(sub_dir, type)
-      # type can be 'monthly' or 'daily'.  If 'daily', we provide only files date stamped this month.  All others go into monthly
-      daily_entries=[]
-      monthly_entries=[]
-      dir="#{static_root_dir}/#{sub_dir}"
+      # type ('monthly' or 'daily') identify the subdirectory to use to get the files.
+      entries=[]
+      dir="/static/#{sub_dir}/#{type}"
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
-        file_location="#{dir}/#{file_name}"
-        file_url="#{dir}/#{file_name}"
-        size=File.open(file_location).size
-        date_string=file_name.split('_').first
-        # don't fail if unexpected file encountered
         begin
+          file_url="#{dir}/#{file_name}"
+          size=File.open(file_url).size
+          date_string=file_name.split('_').first
           date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
-          current_month=Date.today.strftime("%m")
-          current_year=Date.today.year.to_s
-
-          created_this_month         = created_in?(current_month, current_year, date_created)
-          created_first_day_of_month = created_first_day_of_month?(date_created)
-
-          if created_this_month && !created_first_day_of_month
-            daily_entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
-          else
-            monthly_entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
-          end
+          entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
         rescue => e
+          # just skip if unexpected file encountered
           puts e
         end
       }
-      if type == 'monthly'
-        monthly_entries.sort_by {|entry| entry[:name]}.reverse!
-      else
-        daily_entries.sort_by {|entry| entry[:name]}.reverse!
-      end
+      entries.sort_by {|entry| entry[:name]}.reverse!
     end
 
     def all_files_in(dir)
@@ -171,7 +91,7 @@ module Util
     def self.db_log_file_content(params)
       return [] if params.nil? or params[:day].nil?
       day=params[:day].capitalize
-      file_name="#{static_root_dir}/logs/postgresql-#{day}.log"
+      file_name="/static/logs/postgresql-#{day}.log"
       if File.exist?(file_name)
         File.open(file_name)
       else
@@ -180,7 +100,7 @@ module Util
     end
 
     def make_file_from_website(fname,url)
-      return_file="#{static_root_dir}/tmp/#{fname}"
+      return_file="/static/tmp/#{fname}"
       File.delete(return_file) if File.exist?(return_file)
       open(url) {|site|
         open(return_file, "wb"){|out_file|
@@ -202,43 +122,17 @@ module Util
       end
     end
 
-    def created_in?(mnth, yr, str)
-      month=str.split('/')[0]
-      year=str.split('/').last
-      val= (month == mnth && year == yr)
-      return val
-    end
-
     def created_first_day_of_month?(str)
       day=str.split('/')[1]
       return day == '01'
     end
 
     def remove_daily_snapshots
-      remove_daily_files(Util::FileManager.static_copies_directory)
+      files_in(Util::FileManager.static_copies_directory).each{ |file| File.delete(file[:url]) }
     end
 
     def remove_daily_flat_files
-      remove_daily_files(Util::FileManager.flat_files_directory)
-    end
-
-    def remove_daily_files(dir, mnth=nil, yr=nil)
-      # remove all files in the given directory
-      # If month/year provided, only remove those
-      # if month/year not provided, assume the previous month
-
-      if mnth.nil?
-        prev_date=Time.now - 1.month
-        mnth = prev_date.strftime("%m")
-        yr   = prev_date.year.to_s
-      end
-
-      all_files_in(dir).each{ |file|
-        exists                     = File.exist?(file[:url])
-        created_last_month         = created_in?(mnth, yr, file[:date_created])
-        created_first_day_of_month = created_first_day_of_month?(file[:date_created])
-        File.delete(file[:url]) if exists && created_last_month && !created_first_day_of_month
-      }
+      files_in(Util::FileManager.flat_files_directory).each{ |file| File.delete(file[:url]) }
     end
 
   end
