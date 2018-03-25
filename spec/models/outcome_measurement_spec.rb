@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe OutcomeMeasurement do
-  xit "should verify that ct.gov returns data as expected" do
+  it "should verify that ct.gov returns data as expected" do
     BASE_URL = 'https://clinicaltrials.gov'
     nct_id='NCT02389088'
     url="#{BASE_URL}/show/#{nct_id}?resultsxml=true"

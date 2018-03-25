@@ -294,6 +294,7 @@ module Util
     end
 
     def sanity_checks_ok?
+      puts "Sanity Checks ok?...."
       Admin::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Admin::SanityCheck.where('most_current is true')
       load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
@@ -311,10 +312,14 @@ module Util
     end
 
     def take_snapshot
-      log("creating static copy of the database...")
-      db_mgr.dump_database
-      db_mgr.save_static_copy
-      create_flat_files
+      log("creating downloadable versions of the database...")
+      begin
+        db_mgr.dump_database
+        Util::FileManager.new.save_static_copy
+        create_flat_files
+      rescue => error
+        load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
+      end
     end
 
     def remove_last_months_download_files

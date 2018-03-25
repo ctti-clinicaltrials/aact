@@ -12,58 +12,29 @@ module Util
       end
     end
 
-    def save_static_copy
-      begin
-        fm=Util::FileManager.new
-        fpm=Util::FilePresentationManager.new
-        schema_diagram_file=File.open("#{fm.schema_diagram}")
-        admin_schema_diagram_file=File.open("#{fm.admin_schema_diagram}")
-        data_dictionary_file=File.open("#{fm.data_dictionary}")
-        nlm_protocol_file=fm.make_file_from_website("nlm_protocol_definitions.html",fpm.nlm_protocol_data_url)
-        nlm_results_file=fm.make_file_from_website("nlm_results_definitions.html",fpm.nlm_results_data_url)
-
-        zip_file_name="#{fm.static_copies_directory}/daily/#{Time.now.strftime('%Y%m%d')}_clinical_trials.zip"
-        File.delete(zip_file_name) if File.exist?(zip_file_name)
-        Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
-          zipfile.add('schema_diagram.png',schema_diagram_file)
-          zipfile.add('admin_schema_diagram.png',admin_schema_diagram_file)
-          zipfile.add('data_dictionary.xlsx',data_dictionary_file)
-          zipfile.add('postgres_data.dmp',fm.pg_dump_file)
-          zipfile.add('nlm_protocol_definitions.html',nlm_protocol_file)
-          zipfile.add('nlm_results_definitions.html',nlm_results_file)
-        }
-      rescue => error
-        load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
-      end
-      return zip_file_name
-    end
-
     def dump_database
-      begin
-        fm=Util::FileManager.new
-        # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
-        psql_file="#{fm.dump_directory}/aact.psql"
-        File.delete(psql_file) if File.exist?(psql_file)
-        cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} --exclude-table schema_migrations aact_back > #{psql_file}"
-        run_command_line(cmd)
+      fm=Util::FileManager.new
+      # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
+      psql_file="#{fm.dump_directory}/aact.psql"
+      File.delete(psql_file) if File.exist?(psql_file)
+      cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} --exclude-table schema_migrations aact_back > #{psql_file}"
+      run_command_line(cmd)
 
-        # clear out previous content of staging db
-        puts "Recreating public schema in aact staging database..."
-        terminate_stage_db_sessions
-        stage_con.execute('DROP SCHEMA IF EXISTS public CASCADE')
-        stage_con.execute('CREATE SCHEMA public')
+      # clear out previous content of staging db
+      puts "Recreating public schema in aact staging database..."
+      terminate_stage_db_sessions
+      stage_con.execute('DROP SCHEMA IF EXISTS public CASCADE')
+      stage_con.execute('CREATE SCHEMA public')
 
-        # refresh staging db
-        puts "Refreshing aact staging database..."
-        cmd="psql -h localhost aact < #{psql_file} > /dev/null"
-        run_command_line(cmd)
+      # refresh staging db
+      puts "Refreshing aact staging database..."
+      cmd="psql -h localhost aact < #{psql_file} > /dev/null"
+      run_command_line(cmd)
 
-        File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-        cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{fm.pg_dump_file}"
-        run_command_line(cmd)
-      rescue => error
-        load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
-      end
+      File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
+      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{fm.pg_dump_file}"
+      run_command_line(cmd)
+      ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
     end
 
     def refresh_public_db

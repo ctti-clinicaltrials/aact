@@ -5,19 +5,19 @@ module Util
   class FileManager
 
     def static_copies_directory
-      "/static/static_db_copies"
+      "#{Rails.public_path}/static/static_db_copies"
     end
 
     def flat_files_directory
-      "/static/exported_files"
+      "#{Rails.public_path}/static/exported_files"
     end
 
     def pg_dump_file
-      "/static/tmp/postgres.dmp"
+      "#{Rails.public_path}/static/tmp/postgres.dmp"
     end
 
     def dump_directory
-      "/static/tmp"
+      "#{Rails.public_path}/static/tmp"
     end
 
     #  ----  get files via linux op sys ------------------
@@ -57,7 +57,7 @@ module Util
     def files_in(sub_dir, type)
       # type ('monthly' or 'daily') identify the subdirectory to use to get the files.
       entries=[]
-      dir="/static/#{sub_dir}/#{type}"
+      dir="/aact-files/#{sub_dir}/#{type}"
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
         begin
@@ -72,20 +72,6 @@ module Util
         end
       }
       entries.sort_by {|entry| entry[:name]}.reverse!
-    end
-
-    def all_files_in(dir)
-      files=[]
-      file_names=Dir.entries(dir) - ['.','..']
-      file_names.each {|file_name|
-        file_location="#{dir}/#{file_name}"
-        file_url="#{dir}/#{file_name}"
-        size=File.open(file_location).size
-        date_string=file_name.split('_').first
-        date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
-        files << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
-      }
-      return files.sort_by {|entry| entry[:name]}.reverse!
     end
 
     def self.db_log_file_content(params)
@@ -127,12 +113,38 @@ module Util
       return day == '01'
     end
 
+    def save_static_copy
+      fpm=Util::FilePresentationManager.new
+      schema_diagram_file=File.open("#{schema_diagram}")
+      admin_schema_diagram_file=File.open("#{admin_schema_diagram}")
+      data_dictionary_file=File.open("#{data_dictionary}")
+      nlm_protocol_file=make_file_from_website("nlm_protocol_definitions.html",fpm.nlm_protocol_data_url)
+      nlm_results_file=make_file_from_website("nlm_results_definitions.html",fpm.nlm_results_data_url)
+
+      date_stamp=Time.now.strftime('%Y%m%d')
+      if created_first_day_of_month? date_stamp
+        zip_file_name="#{static_copies_directory}/monthly/#{date_stamp}_clinical_trials.zip"
+      else
+        zip_file_name="#{static_copies_directory}/daily/#{date_stamp}_clinical_trials.zip"
+      end
+      File.delete(zip_file_name) if File.exist?(zip_file_name)
+      Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
+        zipfile.add('schema_diagram.png',schema_diagram_file)
+        zipfile.add('admin_schema_diagram.png',admin_schema_diagram_file)
+        zipfile.add('data_dictionary.xlsx',data_dictionary_file)
+        zipfile.add('postgres_data.dmp',pg_dump_file)
+        zipfile.add('nlm_protocol_definitions.html',nlm_protocol_file)
+        zipfile.add('nlm_results_definitions.html',nlm_results_file)
+      }
+      return zip_file_name
+    end
+
     def remove_daily_snapshots
-      files_in(Util::FileManager.static_copies_directory).each{ |file| File.delete(file[:url]) }
+      FileUtils.rm_rf(Dir['/aact-files/static_db_copies/daily/*.zip'])
     end
 
     def remove_daily_flat_files
-      files_in(Util::FileManager.flat_files_directory).each{ |file| File.delete(file[:url]) }
+      FileUtils.rm_rf(Dir['/aact-files/exported_files/daily/*.zip'])
     end
 
   end
