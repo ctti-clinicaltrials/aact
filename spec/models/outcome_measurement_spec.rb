@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 describe OutcomeMeasurement do
-  xit "should verify that ct.gov returns data as expected" do
-    BASE_URL = 'https://clinicaltrials.gov'
-    nct_id='NCT02389088'
-    url="#{BASE_URL}/show/#{nct_id}?resultsxml=true"
-    xml=Nokogiri::XML(Faraday.get(url).body)
-    study=Study.new({xml: xml, nct_id: nct_id}).create
-  end
 
   it "saves category in measurements" do
     nct_id='NCT01065844'
