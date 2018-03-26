@@ -22,7 +22,6 @@ describe Util::TableExporter do
         expect(Admin::LoadEvent.count).to eq(1)
         le=Admin::LoadEvent.last
         expect(le.event_type).to eq('table_export')
-        expect(le.load_time).to eq('0 minutes and 0 seconds')
       end
 
       it 'should have content in each csv' do
