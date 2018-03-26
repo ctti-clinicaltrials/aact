@@ -20,8 +20,6 @@ module Util
       "#{Rails.public_path}/static/tmp"
     end
 
-    #  ----  get files via linux op sys ------------------
-
     def admin_schema_diagram
       "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
     end
@@ -38,15 +36,15 @@ module Util
       "#{Rails.public_path}/static/documentation/aact_tables.xlsx"
     end
 
-    def self.default_mesh_terms
+    def default_mesh_terms
       "#{Rails.public_path}/mesh/mesh_terms.txt"
     end
 
-    def self.default_mesh_headings
+    def default_mesh_headings
       "#{Rails.public_path}/mesh/mesh_headings.txt"
     end
 
-    def self.default_data_definitions
+    def default_data_definitions
       Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
     end
 

@@ -306,7 +306,7 @@ module Util
       return load_event.problems.blank?
     end
 
-    def refresh_data_definitions(data=Util::FileManager.default_data_definitions)
+    def refresh_data_definitions(data=Util::FileManager.new.default_data_definitions)
       log("refreshing data definitions...")
       Admin::DataDefinition.populate(data)
     end
