@@ -3,14 +3,14 @@ require 'active_support/all'
 module Admin
   class DataDefinition < Admin::AdminBase
 
-    def self.populate(data=Util::FileManager.default_data_definitions)
+    def self.populate(data=Util::FileManager.new.default_data_definitions)
       self.destroy_all
       self.populate_from_file(data)
       self.populate_row_counts
       Admin::Enumeration.populate
     end
 
-    def self.populate_from_file(data=Util::FileManager.default_data_definitions)
+    def self.populate_from_file(data=Util::FileManager.new.default_data_definitions)
       header = data.first
       dataOut = []
       puts "about to populate data definitions table..."

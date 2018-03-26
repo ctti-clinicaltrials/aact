@@ -3,7 +3,7 @@ module Util
     attr_reader :zipfile_name, :table_names
 
     def initialize(tables=[])
-      @temp_dir     = "#{Util::FileManager.dump_directory}/export"
+      @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
       @zipfile_name = "#{@temp_dir}/#{Time.now.strftime('%Y%m%d')}_export.zip"
       @connection   = ActiveRecord::Base.connection.raw_connection
       @table_names  = tables
@@ -82,7 +82,7 @@ module Util
                        "pipe-delimited-export"
                      end
 
-      archive_file_name="#{Util::FileManager.flat_files_directory}/#{Time.now.strftime('%Y%m%d')}_#{file_type}.zip"
+      archive_file_name="#{Util::FileManager.new.flat_files_directory}/#{Time.now.strftime('%Y%m%d')}_#{file_type}.zip"
       FileUtils.mv(@zipfile_name, archive_file_name)
     end
   end
