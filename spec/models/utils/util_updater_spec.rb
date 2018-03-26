@@ -19,6 +19,7 @@ describe Util::Updater do
 
     stub_request(:get, "https://clinicaltrials.gov/show/timeout?resultsxml=true").and_raise(Net::OpenTimeout)
 
+    Study.destroy_all
     updater=Util::Updater.new
     ids=['NCT02028676','timeout','invalid-nct-id','NCT00023673']
     updater.update_studies(ids)

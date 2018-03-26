@@ -1,5 +1,5 @@
 module Util
-  class Updater
+ class Updater
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr
 
     def initialize(params={})
@@ -52,7 +52,7 @@ module Util
         study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
         study_counts[:should_change]=0
         @client.populate_studies
-        remove_download_files
+        remove_last_months_download_files if Date.today.day == 1  # only do this if it's the first of the month
         MeshTerm.populate_from_file
         MeshHeading.populate_from_file
       rescue => e
@@ -290,10 +290,11 @@ module Util
 
     def run_sanity_checks
       log("running sanity checks...")
-      Admin::SanityCheck.populate
+      Admin::SanityCheck.new.run(params[:event_type])
     end
 
     def sanity_checks_ok?
+      puts "Sanity Checks ok?...."
       Admin::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Admin::SanityCheck.where('most_current is true')
       load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
@@ -311,18 +312,21 @@ module Util
     end
 
     def take_snapshot
-      log("creating static copy of the database...")
-      db_mgr.dump_database
-      db_mgr.save_static_copy
-      create_flat_files
+      log("creating downloadable versions of the database...")
+      begin
+        db_mgr.dump_database
+        Util::FileManager.new.save_static_copy
+        create_flat_files
+      rescue => error
+        load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
+      end
     end
 
-    def remove_download_files
-      log("removing non-permanentant downloadable files...")
-      # Only do this if this is running on the 1st of the month.  If we do ad hoc full load mid-month, don't delete
+    def remove_last_months_download_files
+      log("removing daily downloadable files from last month...")
       file_mgr=Util::FileManager.new
-      file_mgr.remove_snapshots
-      file_mgr.remove_flat_files
+      file_mgr.remove_daily_snapshots
+      file_mgr.remove_daily_flat_files
     end
 
     def send_notification
