@@ -52,7 +52,8 @@ module Util
         study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
         study_counts[:should_change]=0
         @client.populate_studies
-        remove_last_months_download_files if Date.today.day == 1  # only do this if it's the first of the month
+        # for now, just remove daily files from command line
+        #remove_last_months_download_files if Date.today.day == 1  # only do this if it's the first of the month
         MeshTerm.populate_from_file
         MeshHeading.populate_from_file
       rescue => e
