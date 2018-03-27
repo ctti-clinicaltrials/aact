@@ -8,7 +8,7 @@ class DefinitionsController < ApplicationController
   @@protocol_url=Util::FilePresentationManager.new.nlm_protocol_data_url
 
   def index
-    data = Roo::Spreadsheet.open(Util::FilePresentationManager.new.data_dictionary)
+    data = Roo::Spreadsheet.open("/aact-files/documentation/aact_data_definitions.xlsx")
     header = data.first
     dataOut = []
     (2..data.last_row).each do |i|
