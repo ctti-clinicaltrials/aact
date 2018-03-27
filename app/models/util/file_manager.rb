@@ -48,14 +48,14 @@ module Util
       Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
     end
 
-    def self.files_in(dir, type)
-      new.files_in(dir, type)
-    end
-
-    def files_in(sub_dir, type)
+    def files_in(sub_dir, type=nil)
       # type ('monthly' or 'daily') identify the subdirectory to use to get the files.
       entries=[]
-      dir="/aact-files/#{sub_dir}/#{type}"
+      if type.blank?
+        dir="#{Rails.public_path}/static/#{sub_dir}"
+      else
+        dir="#{Rails.public_path}/static/#{sub_dir}/#{type}"
+      end
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
         begin
