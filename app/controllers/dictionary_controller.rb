@@ -18,7 +18,7 @@ class DictionaryController < ApplicationController
   end
 
   def get_dictionary
-    Roo::Spreadsheet.open(Util::FilePresentationManager.new.table_dictionary)
+    Roo::Spreadsheet.open(Util::FileManager.new.table_dictionary)
   end
 
   def fix_attribs(hash)

@@ -20,8 +20,6 @@ module Util
       "#{Rails.public_path}/static/tmp"
     end
 
-    #  ----  get files via linux op sys ------------------
-
     def admin_schema_diagram
       "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
     end
@@ -38,15 +36,15 @@ module Util
       "#{Rails.public_path}/static/documentation/aact_tables.xlsx"
     end
 
-    def self.default_mesh_terms
+    def default_mesh_terms
       "#{Rails.public_path}/mesh/mesh_terms.txt"
     end
 
-    def self.default_mesh_headings
+    def default_mesh_headings
       "#{Rails.public_path}/mesh/mesh_headings.txt"
     end
 
-    def self.default_data_definitions
+    def default_data_definitions
       Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
     end
 
@@ -77,7 +75,7 @@ module Util
     def self.db_log_file_content(params)
       return [] if params.nil? or params[:day].nil?
       day=params[:day].capitalize
-      file_name="/static/logs/postgresql-#{day}.log"
+      file_name="static/logs/postgresql-#{day}.log"
       if File.exist?(file_name)
         File.open(file_name)
       else
@@ -85,8 +83,8 @@ module Util
       end
     end
 
-    def make_file_from_website(fname,url)
-      return_file="/static/tmp/#{fname}"
+    def make_file_from_website(fname, url)
+      return_file="#{Rails.public_path}/static/tmp/#{fname}"
       File.delete(return_file) if File.exist?(return_file)
       open(url) {|site|
         open(return_file, "wb"){|out_file|
