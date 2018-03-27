@@ -75,7 +75,7 @@ module Util
     def self.db_log_file_content(params)
       return [] if params.nil? or params[:day].nil?
       day=params[:day].capitalize
-      file_name="/static/logs/postgresql-#{day}.log"
+      file_name="static/logs/postgresql-#{day}.log"
       if File.exist?(file_name)
         File.open(file_name)
       else
@@ -83,8 +83,8 @@ module Util
       end
     end
 
-    def make_file_from_website(fname,url)
-      return_file="/static/tmp/#{fname}"
+    def make_file_from_website(fname, url)
+      return_file="#{Rails.public_path}/static/tmp/#{fname}"
       File.delete(return_file) if File.exist?(return_file)
       open(url) {|site|
         open(return_file, "wb"){|out_file|
