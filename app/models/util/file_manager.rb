@@ -20,6 +20,10 @@ module Util
       "#{Rails.public_path}/static/tmp"
     end
 
+    def xml_file_directory
+      "#{Rails.public_path}/xml_downloads"
+    end
+
     def admin_schema_diagram
       "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
     end

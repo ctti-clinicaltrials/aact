@@ -40,26 +40,21 @@ module Util
     end
 
     def full
-      begin
-        if should_restart?
-          log("restarting full load...")
-        else
-          log('begin full load ...')
-          retrieve_xml_from_ctgov
-        end
-        truncate_tables if !should_restart?
-        remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
-        study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
-        study_counts[:should_change]=0
-        @client.populate_studies
-        # for now, just remove daily files from command line
-        #remove_last_months_download_files if Date.today.day == 1  # only do this if it's the first of the month
-        MeshTerm.populate_from_file
-        MeshHeading.populate_from_file
-      rescue => e
-        log("full load failed. #{e}")
-        return false
+      if should_restart?
+        log("restarting full load...")
+      else
+        log('begin full load ...')
+        retrieve_xml_from_ctgov
       end
+      truncate_tables if !should_restart?
+      remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
+      study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
+      study_counts[:should_change]=0
+      @client.populate_studies
+      # for now, just remove daily files from command line
+      #remove_last_months_download_files if Date.today.day == 1  # only do this if it's the first of the month
+      MeshTerm.populate_from_file
+      MeshHeading.populate_from_file
     end
 
     def incremental
