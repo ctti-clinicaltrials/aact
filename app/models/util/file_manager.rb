@@ -20,6 +20,10 @@ module Util
       "#{Rails.public_path}/static/tmp"
     end
 
+    def xml_file_directory
+      "#{Rails.public_path}/static/xml_downloads"
+    end
+
     def admin_schema_diagram
       "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
     end
@@ -48,14 +52,14 @@ module Util
       Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
     end
 
-    def self.files_in(dir, type)
-      new.files_in(dir, type)
-    end
-
-    def files_in(sub_dir, type)
+    def files_in(sub_dir, type=nil)
       # type ('monthly' or 'daily') identify the subdirectory to use to get the files.
       entries=[]
-      dir="/aact-files/#{sub_dir}/#{type}"
+      if type.blank?
+        dir="#{Rails.public_path}/static/#{sub_dir}"
+      else
+        dir="#{Rails.public_path}/static/#{sub_dir}/#{type}"
+      end
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
         begin
@@ -75,7 +79,7 @@ module Util
     def self.db_log_file_content(params)
       return [] if params.nil? or params[:day].nil?
       day=params[:day].capitalize
-      file_name="/static/logs/postgresql-#{day}.log"
+      file_name="static/logs/postgresql-#{day}.log"
       if File.exist?(file_name)
         File.open(file_name)
       else
@@ -83,8 +87,8 @@ module Util
       end
     end
 
-    def make_file_from_website(fname,url)
-      return_file="/static/tmp/#{fname}"
+    def make_file_from_website(fname, url)
+      return_file="#{Rails.public_path}/static/tmp/#{fname}"
       File.delete(return_file) if File.exist?(return_file)
       open(url) {|site|
         open(return_file, "wb"){|out_file|

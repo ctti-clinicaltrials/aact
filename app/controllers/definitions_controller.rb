@@ -8,7 +8,7 @@ class DefinitionsController < ApplicationController
   @@protocol_url=Util::FilePresentationManager.new.nlm_protocol_data_url
 
   def index
-    data = Roo::Spreadsheet.open(Util::FilePresentationManager.new.data_dictionary)
+    data = Roo::Spreadsheet.open("/aact-files/documentation/aact_data_definitions.xlsx")
     header = data.first
     dataOut = []
     (2..data.last_row).each do |i|
@@ -49,7 +49,7 @@ class DefinitionsController < ApplicationController
   end
 
   def fix_attribs(hash)
-    enums=Admin::DataDefinition.enums
+    enums=Admin::Enumeration.enums
     enum_tabs=enums.map {|row| row[0]}
     enum_cols=enums.map {|row| row[1]}
     tab=hash['table'].downcase
