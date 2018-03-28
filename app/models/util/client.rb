@@ -17,7 +17,7 @@ module Util
     def download_xml_files
       tries ||= 5
 
-      file_name="#{Util::FileManager.xml_file_directory}/#{Time.now.strftime("%Y%m%d-%H")}.xml"
+      file_name="#{Util::FileManager.new.xml_file_directory}/#{Time.now.strftime("%Y%m%d-%H")}.xml"
       file = File.new file_name, 'w'
 
       begin
