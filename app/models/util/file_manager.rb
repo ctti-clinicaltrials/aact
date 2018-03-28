@@ -21,7 +21,7 @@ module Util
     end
 
     def xml_file_directory
-      "#{Rails.public_path}/xml_downloads"
+      "#{Rails.public_path}/static/xml_downloads"
     end
 
     def admin_schema_diagram
