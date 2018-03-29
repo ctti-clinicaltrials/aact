@@ -296,7 +296,9 @@ module Util
       load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
       load_event.add_problem("More sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size > 40
       load_event.add_problem("Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
-      old_count=db_mgr.public_study_count
+      # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
+      # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to this.
+      old_count=(db_mgr.public_study_count - 10)
       new_count=db_mgr.background_study_count
       load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
       return load_event.problems.blank?
