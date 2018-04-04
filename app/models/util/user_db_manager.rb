@@ -1,5 +1,5 @@
 module Util
-class UserManager < DbManager
+class UserDbManager < DbManager
 
   def self.create_user(user)
     new.create_user(user)
@@ -23,7 +23,7 @@ class UserManager < DbManager
       pub_con.execute("grant connect on database aact to \"#{user.username}\";")
       pub_con.execute("grant usage on schema public TO \"#{user.username}\";")
       pub_con.execute("grant select on all tables in schema public to \"#{user.username}\";")
-      Notifier.send_instructions(user)
+      #Notifier.send_instructions(user)
     #rescue => e
     #  user.errors.add(:base, e.message)
     #end
