@@ -1,12 +1,8 @@
 module Util
-class UserManager < DbManager
+class UserDbManager < DbManager
 
   def self.create_user(user)
     new.create_user(user)
-  end
-
-  def self.create_unconfirmed_user(user)
-    new.create_unconfirmed_user(user)
   end
 
   def self.change_password(user,pwd)
@@ -17,19 +13,20 @@ class UserManager < DbManager
     new.can_create_user?(user)
   end
 
-  def create_unconfirmed_user(user)
+  def create_unconfirmed(user)
     # We add the unconfirmed user to the db to reserve the username - prevent others from
     # subsequently trying to create user with same name before user confirms the account
     # When user eventually confirms the account, we will set their password to what they defined
-    begin
+    #begin
       dummy_pwd=ENV['UNCONFIRMED_USER_PASSWORD']
       pub_con.execute("create user \"#{user.username}\" password '#{dummy_pwd}';")
       pub_con.execute("grant connect on database aact to \"#{user.username}\";")
       pub_con.execute("grant usage on schema public TO \"#{user.username}\";")
       pub_con.execute("grant select on all tables in schema public to \"#{user.username}\";")
-    rescue => e
-      user.errors.add(:base, e.message)
-    end
+      #Notifier.send_instructions(user)
+    #rescue => e
+    #  user.errors.add(:base, e.message)
+    #end
   end
 
   def can_create_user?(user)
@@ -90,14 +87,5 @@ class UserManager < DbManager
       end
     }
   end
-
-  def public_host_name
-    ENV['AACT_PUBLIC_HOSTNAME']
-  end
-
-  def public_db_name
-    ENV['AACT_PUBLIC_DATABASE_NAME']
-  end
-
 end
 end

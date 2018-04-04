@@ -19,11 +19,12 @@ class User < Admin::AdminBase
   validate :can_create_db_account?, on: :create
 
   def can_create_db_account?
+    puts ">>>>>>>>>>>>>>>>>> User.can_create_db_account?"
     error_msg="Database account cannot be created for username '#{self.username}'"
-    if Util::UserManager.can_create_user?(self)
+    if Util::UserDbManager.can_create_user?(self)
       true
     else
-      errors.add(:Username, error_msg) unless Util::UserManager.can_create_user?(self)
+      errors.add(:Username, error_msg) unless Util::UserDbManager.can_create_user?(self)
       false
     end
   end
@@ -33,10 +34,12 @@ class User < Admin::AdminBase
   end
 
   def create_unconfirmed
+    puts "=================== User.create_unconfirmed"
     self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
     self.unencrypted_password=self.password
     self.save!
-    Util::UserManager.create_unconfirmed_user(self)
+    Util::UserDbManager.new.create_unconfirmed(self)
+    #Notifier.send_instructions(self)
   end
 
   def confirm
@@ -45,7 +48,7 @@ class User < Admin::AdminBase
     self.unencrypted_password=nil # after using this to create db account, get rid of it
     self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
     super
-    Util::UserManager.change_password(self,self.password)
+    Util::UserDbManager.change_password(self,self.password)
   end
 
   def self.reset_password_by_token(params)
@@ -55,7 +58,7 @@ class User < Admin::AdminBase
     if !resource.nil?
       resource.skip_password_validation=true
       resource.update_attributes({:password=>params[:password], :password_confirmation=>params[:password_confirmation]})
-      Util::UserManager.change_password(resource,params[:password]) if resource.errors.empty?
+      Util::UserDbManager.change_password(resource,params[:password]) if resource.errors.empty?
     end
     resource
   end
@@ -64,13 +67,13 @@ class User < Admin::AdminBase
     params.delete(:password) if params[:password].blank?
     params.delete(:password_confirmation) if params[:password_confirmation].blank?
     update_attributes(params) if valid_password?(params['current_password'])
-    Util::UserManager.change_password(self,params[:password]) if params[:password]
+    Util::UserDbManager.change_password(self,params[:password]) if params[:password]
     self
   end
 
   def remove
     begin
-      Util::UserManager.new.remove_user(self)
+      Util::UserDbManager.new.remove_user(self)
       destroy
     rescue => e
       puts e.message

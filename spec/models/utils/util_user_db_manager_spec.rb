@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Util::UserManager do
+describe Util::UserDbManager do
   let(:username) { 'testuser' }
   let(:original_password) { 'original_password' }
   let(:dummy_password) { ENV['UNCONFIRMED_USER_PASSWORD'] }
