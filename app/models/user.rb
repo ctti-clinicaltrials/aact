@@ -33,10 +33,12 @@ class User < Admin::AdminBase
   end
 
   def create_unconfirmed
+    puts "=================== User.create_unconfirmed"
     self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
     self.unencrypted_password=self.password
     self.save!
-    Util::UserManager.create_unconfirmed_user(self)
+    Util::UserManager.new.create_unconfirmed(self)
+    Notifier.send_instructions(self)
   end
 
   def confirm
