@@ -1,9 +1,11 @@
 class DictionaryController < ApplicationController
+
   def show
-    @admin_schema_diagram=Util::FileManager.admin_schema_diagram
-    @schema_diagram=Util::FileManager.schema_diagram
-    @data_dictionary=Util::FileManager.data_dictionary
-    @table_dictionary=Util::FileManager.table_dictionary
+    fpm=Util::FilePresentationManager.new
+    @admin_schema_diagram=fpm.admin_schema_diagram
+    @schema_diagram=fpm.schema_diagram
+    @data_dictionary=fpm.data_dictionary
+    @table_dictionary=fpm.table_dictionary
     @tables = []
     tabs=get_dictionary
     header = tabs.first
@@ -16,7 +18,7 @@ class DictionaryController < ApplicationController
   end
 
   def get_dictionary
-    Roo::Spreadsheet.open(Util::FileManager.new.backend_table_dictionary)
+    Roo::Spreadsheet.open(Util::FileManager.new.table_dictionary)
   end
 
   def fix_attribs(hash)

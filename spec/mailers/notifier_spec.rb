@@ -18,7 +18,7 @@ describe Notifier, type: :mailer do
     let(:msg) { described_class.send_msg('test@gmail.com',event.subject_line, event.email_message) }
 
     it 'msg has expected content' do
-      expect(msg.subject).to eq('AACT Test Load - PROBLEMS ENCOUNTERED. Added: 1 Updated: 1 Total: 2')
+      expect(msg.subject).to eq('AACT Test Load - PROBLEMS ENCOUNTERED')
       expect(msg.body).to include('desc')
       expect(msg.body).to include('Problems encountered')
       expect(msg.body).to include('a problem')

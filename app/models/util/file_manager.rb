@@ -4,122 +4,73 @@ include ActionView::Helpers::NumberHelper
 module Util
   class FileManager
 
-    def nlm_protocol_data_url
-      "https://prsinfo.clinicaltrials.gov/definitions.html"
+    def static_copies_directory
+      "#{Rails.public_path}/static/static_db_copies"
     end
 
-    def nlm_results_data_url
-      "https://prsinfo.clinicaltrials.gov/results_definitions.html"
-    end
-
-    def self.url_base
-      "#{Rails.public_path}/static"
-    end
-
-    def self.static_root_dir
-      '/aact-files'
-    end
-
-    def static_root_dir
-      '/aact-files'
-    end
-
-    def self.dump_directory
-      "#{static_root_dir}/tmp"
-    end
-
-    def dump_directory
-      "#{static_root_dir}/tmp"
-    end
-
-    def self.xml_file_directory
-      "#{static_root_dir}/xml_downloads"
+    def flat_files_directory
+      "#{Rails.public_path}/static/exported_files"
     end
 
     def pg_dump_file
-      "#{static_root_dir}/tmp/postgres.dmp"
+      "#{Rails.public_path}/static/tmp/postgres.dmp"
     end
 
-    def self.static_copies_directory
-      "#{static_root_dir}/static_db_copies"
+    def dump_directory
+      "#{Rails.public_path}/static/tmp"
     end
 
-    def self.flat_files_directory
-      "#{static_root_dir}/exported_files"
+    def xml_file_directory
+      "#{Rails.public_path}/xml_downloads"
     end
 
-    def self.snapshot_files
-      files_in("static_db_copies")
-    end
-
-    def self.pipe_delimited_files
-      files_in("exported_files")
-    end
-
-    #  ----  get files via linux op sys ------------------
-
-    def backend_admin_schema_diagram
+    def admin_schema_diagram
       "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
     end
 
-    def backend_schema_diagram
+    def schema_diagram
       "#{Rails.public_path}/static/documentation/aact_schema.png"
     end
 
-    def backend_data_dictionary
+    def data_dictionary
       "#{Rails.public_path}/static/documentation/aact_data_definitions.xlsx"
     end
 
-    def backend_table_dictionary
+    def table_dictionary
       "#{Rails.public_path}/static/documentation/aact_tables.xlsx"
     end
 
-    def self.default_mesh_terms
+    def default_mesh_terms
       "#{Rails.public_path}/mesh/mesh_terms.txt"
     end
 
-    def self.default_mesh_headings
+    def default_mesh_headings
       "#{Rails.public_path}/mesh/mesh_headings.txt"
     end
 
-    def self.default_data_definitions
+    def default_data_definitions
       Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
     end
 
-    #  ----  get files via url ------------------
-
-    def self.admin_schema_diagram
-      "/static/documentation/aact_admin_schema.png"
-    end
-
-    def self.schema_diagram
-      "/static/documentation/aact_schema.png"
-    end
-
-    def self.data_dictionary
-      "/static/documentation/aact_data_definitions.xlsx"
-    end
-
-    def self.table_dictionary
-      "/static/documentation/aact_tables.xlsx"
-    end
-
-    #  ----  other utility methods  -------------
-
-    def self.files_in(sub_dir)
+    def files_in(sub_dir, type=nil)
+      # type ('monthly' or 'daily') identify the subdirectory to use to get the files.
       entries=[]
-      dir="#{static_root_dir}/#{sub_dir}"
+      if type.blank?
+        dir="#{Rails.public_path}/static/#{sub_dir}"
+      else
+        dir="#{Rails.public_path}/static/#{sub_dir}/#{type}"
+      end
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
-        file_location="#{dir}/#{file_name}"
-        file_url="#{url_base}/#{sub_dir}/#{file_name}"
-        size=File.open(file_location).size
-        date_string=file_name.split('_').first
-        # don't fail if unexpected file encountered
         begin
+          file_url="#{dir}/#{file_name}"
+          size=File.open(file_url).size
+          date_string=file_name.split('_').first
           date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
-          entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url} if date_created
-        rescue
+          entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+        rescue => e
+          # just skip if unexpected file encountered
+          puts e
         end
       }
       entries.sort_by {|entry| entry[:name]}.reverse!
@@ -128,7 +79,7 @@ module Util
     def self.db_log_file_content(params)
       return [] if params.nil? or params[:day].nil?
       day=params[:day].capitalize
-      file_name="#{static_root_dir}/logs/postgresql-#{day}.log"
+      file_name="static/logs/postgresql-#{day}.log"
       if File.exist?(file_name)
         File.open(file_name)
       else
@@ -136,8 +87,8 @@ module Util
       end
     end
 
-    def make_file_from_website(fname,url)
-      return_file="#{static_root_dir}/tmp/#{fname}"
+    def make_file_from_website(fname, url)
+      return_file="#{Rails.public_path}/static/tmp/#{fname}"
       File.delete(return_file) if File.exist?(return_file)
       open(url) {|site|
         open(return_file, "wb"){|out_file|
@@ -157,6 +108,45 @@ module Util
            }
         }
       end
+    end
+
+    def created_first_day_of_month?(str)
+      day=str.split('/')[1]
+      return day == '01'
+    end
+
+    def save_static_copy
+      fpm=Util::FilePresentationManager.new
+      schema_diagram_file=File.open("#{schema_diagram}")
+      admin_schema_diagram_file=File.open("#{admin_schema_diagram}")
+      data_dictionary_file=File.open("#{data_dictionary}")
+      nlm_protocol_file=make_file_from_website("nlm_protocol_definitions.html",fpm.nlm_protocol_data_url)
+      nlm_results_file=make_file_from_website("nlm_results_definitions.html",fpm.nlm_results_data_url)
+
+      date_stamp=Time.now.strftime('%Y%m%d')
+      if created_first_day_of_month? date_stamp
+        zip_file_name="#{static_copies_directory}/monthly/#{date_stamp}_clinical_trials.zip"
+      else
+        zip_file_name="#{static_copies_directory}/daily/#{date_stamp}_clinical_trials.zip"
+      end
+      File.delete(zip_file_name) if File.exist?(zip_file_name)
+      Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
+        zipfile.add('schema_diagram.png',schema_diagram_file)
+        zipfile.add('admin_schema_diagram.png',admin_schema_diagram_file)
+        zipfile.add('data_dictionary.xlsx',data_dictionary_file)
+        zipfile.add('postgres_data.dmp',pg_dump_file)
+        zipfile.add('nlm_protocol_definitions.html',nlm_protocol_file)
+        zipfile.add('nlm_results_definitions.html',nlm_results_file)
+      }
+      return zip_file_name
+    end
+
+    def remove_daily_snapshots
+      FileUtils.rm_rf(Dir['/aact-files/static_db_copies/daily/*.zip'])
+    end
+
+    def remove_daily_flat_files
+      FileUtils.rm_rf(Dir['/aact-files/exported_files/daily/*.zip'])
     end
 
   end
