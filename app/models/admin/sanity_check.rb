@@ -106,7 +106,6 @@ module Admin
       save_row_counts
       check_for_orphans
       check_for_duplicates
-      check_enumerations if event_type == 'full'
     end
 
     def generate_report

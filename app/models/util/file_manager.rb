@@ -5,11 +5,19 @@ module Util
   class FileManager
 
     def static_copies_directory
-      "#{Rails.public_path}/static/static_db_copies"
+      if created_first_day_of_month? Time.now.strftime('%Y%m%d')
+        "#{Rails.public_path}/static/static_db_copies/monthly"
+      else
+        "#{Rails.public_path}/static/static_db_copies/daily"
+      end
     end
 
     def flat_files_directory
-      "#{Rails.public_path}/static/exported_files"
+      if created_first_day_of_month? Time.now.strftime('%Y%m%d')
+        "#{Rails.public_path}/static/exported_files/monthly"
+      else
+        "#{Rails.public_path}/static/exported_files/daily"
+      end
     end
 
     def pg_dump_file
@@ -63,8 +71,8 @@ module Util
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
         begin
-          file_url="#{dir}/#{file_name}"
-          size=File.open(file_url).size
+          file_url="/static/#{sub_dir}/#{type}/#{file_name}"
+          size=File.open("#{dir}/#{file_name}").size
           date_string=file_name.split('_').first
           date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
           entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
@@ -124,11 +132,7 @@ module Util
       nlm_results_file=make_file_from_website("nlm_results_definitions.html",fpm.nlm_results_data_url)
 
       date_stamp=Time.now.strftime('%Y%m%d')
-      if created_first_day_of_month? date_stamp
-        zip_file_name="#{static_copies_directory}/monthly/#{date_stamp}_clinical_trials.zip"
-      else
-        zip_file_name="#{static_copies_directory}/daily/#{date_stamp}_clinical_trials.zip"
-      end
+      zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
       File.delete(zip_file_name) if File.exist?(zip_file_name)
       Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
         zipfile.add('schema_diagram.png',schema_diagram_file)

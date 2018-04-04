@@ -101,8 +101,9 @@ module Util
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
         load_event.save!
       end
-      load_event.complete({:study_counts=>study_counts})
       db_mgr.grant_db_privs
+      load_event.complete({:study_counts=>study_counts})
+      create_flat_files
       Admin::PublicAnnouncement.clear_load_message
     end
 
@@ -295,8 +296,10 @@ module Util
       sanity_set=Admin::SanityCheck.where('most_current is true')
       load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
       load_event.add_problem("More sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size > 40
-      load_event.add_problem("Sanity checks ran more than 30 minutes ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.now - 30.minutes)
-      old_count=db_mgr.public_study_count
+      load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.now - 2.hours)
+      # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
+      # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to this.
+      old_count=(db_mgr.public_study_count - 10)
       new_count=db_mgr.background_study_count
       load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
       return load_event.problems.blank?
@@ -312,7 +315,6 @@ module Util
       begin
         db_mgr.dump_database
         Util::FileManager.new.save_static_copy
-        create_flat_files
       rescue => error
         load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
       end
