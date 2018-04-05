@@ -14,11 +14,4 @@ class Notifier < ApplicationMailer
     ['sheri.tibbs@duke.edu','ctti-aact@duke.edu']
   end
 
-  def send_instructions(user)
-    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>> Notifier.send_instructions"
-    @name = user.full_name
-    @confirmation_url = confirmation_url(user)
-    mail to: user.email, subject: 'Subscribe for Access to AACT (Aggregated Content of ClinicalTrials.gov)'
-  end
-
 end
