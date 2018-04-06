@@ -9,26 +9,26 @@ describe User do
     end
   end
 
-  it "doesn't add users with db admin account names" do
+  it "isn't added if they have an invalid name" do
     username='postgres'
     user=User.new(:first_name=>'Illegal', :last_name=>'User',:email=>'illegal_user@duke.edu',:username=>username,:password=>'aact',:password_confirmation=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username Database account cannot be created for username '#{username}'")
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username Database account already exists for username '#{username}'")
     expect(User.count).to eq(0)
   end
 
-  it "Doesn't accept user unless first char of username is alpha" do
+  it "isn't accepted unless first char of username is alpha" do
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'1rspec_test',:password=>'aact')
     expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars, Username must start with an alpha character')
     expect(User.count).to eq(0)
   end
 
-  it "Doesn't accept username with hyphen" do
+  it "isn't accepted if username has a hyphen" do
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1-ectest',:password=>'aact')
     expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
     expect(User.count).to eq(0)
   end
 
-  it "Accepts user with valid username" do
+  it "is accepted with a valid username" do
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1ectest',:password=>'aact')
     user.save!
     expect(User.count).to eq(1)

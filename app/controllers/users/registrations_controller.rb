@@ -3,10 +3,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
   def create
-    super
+    begin
+      super
+    rescue
+      # temporary rescue - until we find out why the mailer is raising errors
+    end
     if resource.errors.size == 0
-      resource.create_unconfirmed
-      flash[:notice] = 'You will soon receive an email from AACT. Once you verify your information by responding to this email, a database account will be created for you.' if !resource.errors.any?
+      Util::UserDbManager.new.create_user_account(resource)
+      flash[:notice] = 'You will soon receive an email from AACT. When you verify your email, you will have acces to your database account.'
     end
   end
 

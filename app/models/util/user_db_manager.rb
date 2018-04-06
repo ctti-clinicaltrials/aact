@@ -1,36 +1,38 @@
 module Util
 class UserDbManager < DbManager
 
-  def self.create_user(user)
-    new.create_user(user)
-  end
-
   def self.change_password(user,pwd)
     new.change_password(user,pwd)
   end
 
-  def self.can_create_user?(user)
-    new.can_create_user?(user)
-  end
-
-  def create_unconfirmed(user)
+  def create_user_account(user)
     # We add the unconfirmed user to the db to reserve the username - prevent others from
     # subsequently trying to create user with same name before user confirms the account
     # When user eventually confirms the account, we will set their password to what they defined
     #begin
+      return false if !can_create_user?(user)
+      user.skip_password_validation=true  # don't validate user entered current password - they didn't have a chance!
+      user.unencrypted_password=user.password
+      user.save!
       dummy_pwd=ENV['UNCONFIRMED_USER_PASSWORD']
+      pub_con = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+
       pub_con.execute("create user \"#{user.username}\" password '#{dummy_pwd}';")
       pub_con.execute("grant connect on database aact to \"#{user.username}\";")
       pub_con.execute("grant usage on schema public TO \"#{user.username}\";")
       pub_con.execute("grant select on all tables in schema public to \"#{user.username}\";")
-      #Notifier.send_instructions(user)
     #rescue => e
     #  user.errors.add(:base, e.message)
     #end
   end
 
   def can_create_user?(user)
-    !user_account_exists?(user)
+    if user_account_exists?(user)
+      user.errors.add(:Username, "Database account already exists for username '#{user.username}'")
+      return false
+    else
+      return true
+    end
   end
 
   def user_account_exists?(user)

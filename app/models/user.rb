@@ -19,27 +19,11 @@ class User < Admin::AdminBase
   validate :can_create_db_account?, on: :create
 
   def can_create_db_account?
-    puts ">>>>>>>>>>>>>>>>>> User.can_create_db_account?"
-    error_msg="Database account cannot be created for username '#{self.username}'"
-    if Util::UserDbManager.can_create_user?(self)
-      true
-    else
-      errors.add(:Username, error_msg) unless Util::UserDbManager.can_create_user?(self)
-      false
-    end
+    Util::UserDbManager.new.can_create_user?(self)
   end
 
   def admin?
     false
-  end
-
-  def create_unconfirmed
-    puts "=================== User.create_unconfirmed"
-    self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
-    self.unencrypted_password=self.password
-    self.save!
-    Util::UserDbManager.new.create_unconfirmed(self)
-    #Notifier.send_instructions(self)
   end
 
   def confirm

@@ -13,7 +13,7 @@ describe Util::UserDbManager do
       # make sure user account doesn't already exist
       subject.remove_user(user)
       expect(subject.user_account_exists?(user)).to be(false)
-      user.create_unconfirmed
+      Util::UserDbManager.new.create_user_account(user)
       expect(user.unencrypted_password).to eq(original_password)
 
       expect(described_class.new.user_account_exists?(user)).to be(true)
