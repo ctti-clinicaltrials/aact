@@ -9,7 +9,7 @@ class UserDbManager < DbManager
     # We add the unconfirmed user to the db to reserve the username - prevent others from
     # subsequently trying to create user with same name before user confirms the account
     # When user eventually confirms the account, we will set their password to what they defined
-    #begin
+    begin
       return false if !can_create_user?(user)
       user.skip_password_validation=true  # don't validate user entered current password - they didn't have a chance!
       user.unencrypted_password=user.password
@@ -21,9 +21,9 @@ class UserDbManager < DbManager
       pub_con.execute("grant connect on database aact to \"#{user.username}\";")
       pub_con.execute("grant usage on schema public TO \"#{user.username}\";")
       pub_con.execute("grant select on all tables in schema public to \"#{user.username}\";")
-    #rescue => e
-    #  user.errors.add(:base, e.message)
-    #end
+    rescue => e
+      user.errors.add(:base, e.message)
+    end
   end
 
   def can_create_user?(user)
