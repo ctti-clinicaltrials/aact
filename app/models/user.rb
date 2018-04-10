@@ -19,7 +19,8 @@ class User < Admin::AdminBase
   validate :can_create_db_account?, on: :create
 
   def can_create_db_account?
-    Util::UserDbManager.new.can_create_user?(self)
+    event='not needed'
+    Util::UserDbManager.new({:load_event=>event}).can_create_user?(self)
   end
 
   def admin?
@@ -32,7 +33,9 @@ class User < Admin::AdminBase
     self.unencrypted_password=nil # after using this to create db account, get rid of it
     self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
     super
-    Util::UserDbManager.change_password(self,self.password)
+    event=Admin::LoadEvent.create({:event_type=>'user-confirm',:status=>'complete',:description=>"confirm user #{self.email}",:problems=>''})
+    db_mgr=Util::UserDbManager.new({:load_event=>event})
+    db_mgr.change_password(self, self.password)
   end
 
   def self.reset_password_by_token(params)
@@ -51,13 +54,15 @@ class User < Admin::AdminBase
     params.delete(:password) if params[:password].blank?
     params.delete(:password_confirmation) if params[:password_confirmation].blank?
     update_attributes(params) if valid_password?(params['current_password'])
-    Util::UserDbManager.change_password(self,params[:password]) if params[:password]
+    event=Admin::LoadEvent.create({:event_type=>'user-update',:status=>'complete',:description=>"update user #{self.email}",:problems=>''})
+    db_mgr=Util::UserDbManager.new({:load_event=>event})
+    db_mgr.change_password(self, params[:password]) if params[:password]
     self
   end
 
   def remove
     begin
-      event=Admin::LoadEvent.create({:event_type=>'remove-user',:status=>'complete',:description=>"remove user #{self.email}",:problems=>''})
+      event=Admin::LoadEvent.create({:event_type=>'user-remove',:status=>'complete',:description=>"remove user #{self.email}",:problems=>''})
       db_mgr=Util::UserDbManager.new({:load_event=>event})
       db_mgr.pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
       db_mgr.remove_user(self)
