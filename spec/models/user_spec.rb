@@ -9,7 +9,7 @@ describe User do
     end
   end
 
-  it "isn't added if they have an invalid name" do
+  it "isn't added if invalid name" do
     username='postgres'
     user=User.new(:first_name=>'Illegal', :last_name=>'User',:email=>'illegal_user@duke.edu',:username=>username,:password=>'aact',:password_confirmation=>'aact')
     expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username Database account already exists for username '#{username}'")
@@ -28,26 +28,37 @@ describe User do
     expect(User.count).to eq(0)
   end
 
-  it "is accepted with a valid username" do
+  it "accepted with a valid username and logs appropriate events when adding/removing user" do
+    Admin::LoadEvent.destroy_all
+    Admin::RemovedUser.destroy_all
+    User.destroy_all
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1ectest',:password=>'aact')
     user.save!
     expect(User.count).to eq(1)
     expect(User.first.username).to eq('r1ectest')
+    # the controller now responsible for creating LoadEvents
+    #expect(Admin::LoadEvent.count).to eq(1)
+    #expect(Admin::LoadEvent.last.event_type).to eq('user-add')
+
     user.remove
     expect(User.count).to eq(0)
+    expect(Admin::RemovedUser.count).to eq(1)
+    expect(Admin::RemovedUser.first.username).to eq('r1ectest')
+    expect(Admin::LoadEvent.last.event_type).to eq('user-remove')
   end
 
-  xit "creates unconfirmed accounts by inserting a row in Users table and creating an unconfirmed account in public db" do
+  it "creates unconfirmed user db account in public db" do
+    User.all.each{|user| user.remove}  # remove all existing users - both from Users table and db accounts
     username='rspec'
-    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>'aact_pwd')
-    unencrypted_password=user.password  # save this to use later
-    user.unencrypted_password=unencrypted_password  #the original password saved by controller - so we can update db acct with it when user confirms
-    user.create_unconfirmed
+    pwd='aact_pwd'
+    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>pwd, :unencrypted_password=>pwd)
+    user.save!
+    Util::UserDbManager.new({:load_event=>'unnecessary'}).create_user_account(user)
     expect(User.count).to eq(1)
     expect(user.sign_in_count).to eq(0)
-    expect(user.unencrypted_password).to eq('aact_pwd')
+    expect(user.unencrypted_password).to eq(pwd)
     # user added to db as un-confirmed
-    expect(Util::UserManager.new.user_account_exists?(user)).to be(true)
+    expect(Util::UserDbManager.new.user_account_exists?(user)).to be(true)
     # user cannot login with the password they provided until they confirm their account
     begin
       con=PublicBase.establish_connection(
@@ -55,8 +66,8 @@ describe User do
         encoding: 'utf8',
         hostname: ENV['AACT_PUBLIC_HOSTNAME'],
         database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-#        username: user.username,
-#        password: user.unencrypted_password,
+        username: user.username,
+        password: user.unencrypted_password,
       ).connection
     rescue => e
       e.inspect
@@ -71,15 +82,15 @@ describe User do
       encoding: 'utf8',
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-#      username: user.username,
-#      password: user.unencrypted_password,
+      username: user.username,
+      password: user.unencrypted_password,
     ).connection
     expect(con.active?).to eq(true)
     expect(con.execute('select count(*) from studies').count).to eq(1)
     con.disconnect!
     expect(con.active?).to eq(false)
 
-    Util::UserManager.new.remove_user(user)
+    user.remove
     expect(User.count).to eq(0)
     # user can no longer access the public database
     expect { PublicBase.establish_connection(
@@ -87,30 +98,29 @@ describe User do
       encoding:'utf8',
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-#      username: user.username,
-#      password: user.unencrypted_password
+      username: user.username,
+      password: user.unencrypted_password
     ).connection}.to raise_error(ActiveRecord::NoDatabaseError)
     # Subsequent spec tests use this public db connection. Force reset back to test db.
     @dbconfig = YAML.load(File.read('config/database.yml'))
     ActiveRecord::Base.establish_connection @dbconfig[:test]
   end
 
-  xit "Doesn't accept users with special char in username" do
-    User.destroy_all
+  it "isn't accepted if special char in username" do
+    User.all.each{|user| user.remove}  # remove all existing users - both from Users table and db accounts
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec!_test',:password=>'aact')
-    expect { user.create_unconfirmed }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
     expect(User.count).to eq(0)
     begin
       PublicBase.establish_connection(
         adapter: 'postgresql',
         encoding: 'utf8',
-        hostname: localhost,
+        hostname: ENV['AACT_PUBLIC_HOSTNAME'],
         database: ENV['AACT_PUBLIC_DATABASE_NAME'],
         username: user.username
       ).connection
     rescue => e
-      #expect(e.class).to eq(ActiveRecord::NoDatabaseError)
-      expect(e.class).to eq(NameError)
+      expect(e.class).to eq(ActiveRecord::NoDatabaseError)
       expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
     end
 
