@@ -57,7 +57,11 @@ class User < Admin::AdminBase
 
   def remove
     begin
-      Util::UserDbManager.new.remove_user(self)
+      event=Admin::LoadEvent.create({:event_type=>'remove-user',:status=>'complete',:description=>"remove user #{self.email}",:problems=>''})
+      db_mgr=Util::UserDbManager.new({:load_event=>event})
+      db_mgr.pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
+      db_mgr.remove_user(self)
+      Admin::RemovedUser.create(self.attributes)
       destroy
     rescue => e
       puts e.message
