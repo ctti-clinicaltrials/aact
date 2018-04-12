@@ -55,8 +55,10 @@ module Util
       table = File.basename(file_name, delimiter == ',' ? '.csv' : '.txt')
       @connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
         while row = @connection.get_copy_data
+          # convert all \n to ~.  Then when you write to the file, convert last ~ back to \n
+          # to prevent it from concatenating all rows into one big long string
           fixed_row=row.gsub(/\"\"/, '').gsub(/\n\s/, '~').gsub(/\n/, '~')
-          file.write(fixed_row)
+          file.write(fixed_row.gsub(/\~$/,"\n"))
         end
       end
     end
