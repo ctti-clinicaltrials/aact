@@ -59,7 +59,7 @@ module Util
           string << row
         end
       end
-      string.gsub(/\"\"/, '').gsub(/\n\s/, '')
+      string.gsub(/\"\"/, '').gsub(/\n\s/, '~').gsub(/\n/, '~')
     end
 
     def cleanup_tempfiles!
