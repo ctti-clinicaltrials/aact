@@ -5,6 +5,13 @@ describe Util::TableExporter do
     let(:table_exporter) { Util::TableExporter.new }
     let(:zipfile_name)   { table_exporter.zipfile_name }
 
+    before do
+      # this study has new line chars embedded in Outcomes.description.  Will verify they don't cause probs in flat files
+      nct_id='NCT03191552'
+      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+      study=Study.new({xml: xml, nct_id: nct_id}).create
+    end
+
     after do
       File.delete(zipfile_name) if File.exist?(zipfile_name)
     end
@@ -30,7 +37,16 @@ describe Util::TableExporter do
         end
 
         entries.each do |entry|
-          expect(entry.get_input_stream.read.length > 0).to eq(true)
+          # some Outcomes have descriptions with embedded newline chars. Make sure they're escaped
+          if entry.name == 'outcomes.txt'
+            content=entry.get_input_stream.read
+            # every row should begin with the id (an integer)
+            rows=content.split("\n")
+            rows.each{|row|
+              attribs=row.split("|")
+              expect(attribs.first.is_a? Integer).to eq(true) if attribs.first != 'id'
+            }
+          end
         end
       end
     end

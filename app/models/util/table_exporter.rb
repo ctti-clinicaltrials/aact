@@ -45,21 +45,20 @@ module Util
                              .map do |file_name|
                                path = "#{@temp_dir}/#{file_name}"
                                File.open(path, 'wb+') do |file|
-                                 file.write(export_table_to_csv(file_name, path, delimiter))
+                                 export_table_to_csv(file, file_name, path, delimiter)
                                  file
                                end
                              end
     end
 
-    def export_table_to_csv(file_name, path, delimiter)
+    def export_table_to_csv(file, file_name, path, delimiter)
       table = File.basename(file_name, delimiter == ',' ? '.csv' : '.txt')
-      string = ''
       @connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
         while row = @connection.get_copy_data
-          string << row
+          fixed_row=row.gsub(/\"\"/, '').gsub(/\n\s/, '~').gsub(/\n/, '~')
+          file.write(fixed_row)
         end
       end
-      string.gsub(/\"\"/, '').gsub(/\n\s/, '~').gsub(/\n/, '~')
     end
 
     def cleanup_tempfiles!
