@@ -38,13 +38,17 @@ describe Util::TableExporter do
 
         entries.each do |entry|
           # some Outcomes have descriptions with embedded newline chars. Make sure they're escaped
+          content=entry.get_input_stream.read
+          expect(content.length > 0).to eq(true)
           if entry.name == 'outcomes.txt'
-            content=entry.get_input_stream.read
-            # every row should begin with the id (an integer)
             rows=content.split("\n")
+            # The test study should have 18 Outcomes
+            expect(rows.count).to eq(18)
             rows.each{|row|
+              # every row should begin with the id (an integer)
               attribs=row.split("|")
-              expect(attribs.first.is_a? Integer).to eq(true) if attribs.first != 'id'
+              is_int = attribs.first =~ /\A\d+\z/ ? true : false
+              expect(is_int).to eq(true) if attribs.first != 'id'
             }
           end
         end
