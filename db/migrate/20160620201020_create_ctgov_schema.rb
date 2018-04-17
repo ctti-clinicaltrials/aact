@@ -2,7 +2,7 @@ class CreateCtgovSchema < ActiveRecord::Migration
 
   def up
     execute <<-SQL
-      create schema if not exists ctgov;
+      create schema ctgov;
       alter role ctti set search_path to ctgov, public;
       grant create on schema ctgov to ctti;
       grant usage on schema ctgov to public;
