@@ -9,7 +9,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # temporary rescue - until we find out why the mailer is raising errors
     end
     if resource.errors.size == 0
-      Util::UserDbManager.new.create_user_account(resource)
+      event=Admin::LoadEvent.create({:event_type=>'user-add',:status=>'complete',:description=>"add user #{resource.email}",:problems=>''})
+      db_mgr=Util::UserDbManager.new({:load_event=>event})
+      db_mgr.create_user_account(resource)
       flash[:notice] = 'You will soon receive an email from AACT. When you verify your email, you will have acces to your database account.'
     end
   end

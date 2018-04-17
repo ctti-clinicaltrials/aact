@@ -75,13 +75,21 @@ module Util
           size=File.open("#{dir}/#{file_name}").size
           date_string=file_name.split('_').first
           date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
-          entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+          if downloadable?(file_name)
+            entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+          else
+            puts "Not a downloadable file: #{file_name}"
+          end
         rescue => e
           # just skip if unexpected file encountered
-          puts e
+          puts "Skipping because #{e}"
         end
       }
       entries.sort_by {|entry| entry[:name]}.reverse!
+    end
+
+    def downloadable? file_name
+      (file_name.size == 34 and file_name[30..34] == '.zip') or (file_name.size == 28 and file_name[24..28] == '.zip')
     end
 
     def self.db_log_file_content(params)

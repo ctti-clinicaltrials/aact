@@ -20,11 +20,11 @@ module Util
       cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} --exclude-table schema_migrations aact_back > #{psql_file}"
       run_command_line(cmd)
 
-      # clear out previous content of staging db
-      puts "Recreating public schema in aact staging database..."
+      # clear out previous ctgov content from staging db
+      puts "Recreating ctgov schema in aact staging database..."
       terminate_stage_db_sessions
-      stage_con.execute('DROP SCHEMA IF EXISTS public CASCADE')
-      stage_con.execute('CREATE SCHEMA public')
+      stage_con.execute('DROP SCHEMA IF EXISTS ctgov CASCADE;')
+      stage_con.execute('CREATE SCHEMA ctgov;')
 
       # refresh staging db
       puts "Refreshing aact staging database..."
@@ -62,14 +62,14 @@ module Util
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
       pub_con.execute("grant connect on database #{public_db_name} to public;")
-      pub_con.execute("grant usage on schema public TO public;")
-      pub_con.execute('grant select on all tables in schema public to public;')
+      pub_con.execute("grant usage on schema ctgov TO public;")
+      pub_con.execute('grant select on all tables in schema ctgov to public;')
     end
 
     def revoke_db_privs
       pub_con.execute("revoke connect on database #{public_db_name} from public;")
-      pub_con.execute("revoke select on all tables in schema public from public;")
-      pub_con.execute("revoke all on schema public from public;")
+      pub_con.execute("revoke select on all tables in schema ctgov from public;")
+      pub_con.execute("revoke all on schema ctgov from public;")
     end
 
     def run_command_line(cmd)

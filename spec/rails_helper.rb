@@ -25,6 +25,9 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = false
 
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Admin::LoadEvent }].clean_with(:truncation)
