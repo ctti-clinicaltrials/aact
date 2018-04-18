@@ -28,6 +28,7 @@ module Util
         else
           status=incremental
         end
+        finalize_load if status != false
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         log("#{@load_event.event_type} load failed in run: #{msg}")
@@ -35,7 +36,6 @@ module Util
         load_event.complete({:status=>'failed', :study_counts=> study_counts})
         status=false
       end
-      finalize_load if status != false
       send_notification
     end
 
