@@ -12,13 +12,13 @@ describe User do
   it "isn't added if invalid name" do
     username='postgres'
     user=User.new(:first_name=>'Illegal', :last_name=>'User',:email=>'illegal_user@duke.edu',:username=>username,:password=>'aact',:password_confirmation=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username Database account already exists for username '#{username}'")
+    user.create
     expect(User.count).to eq(0)
   end
 
   it "isn't accepted unless first char of username is alpha" do
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'1rspec_test',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars, Username must start with an alpha character')
+    expect { user.create }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars, Username must start with an alpha character')
     expect(User.count).to eq(0)
   end
 
@@ -48,17 +48,23 @@ describe User do
   end
 
   it "creates unconfirmed user db account in public db" do
-    User.all.each{|user| user.remove}  # remove all existing users - both from Users table and db accounts
+    db_mgr=Util::UserDbManager.new({:load_event=>'unnecessary'})
+    User.all.each{|user| user.remove }  # remove all existing users - both from Users table and db accounts
+    if Util::UserDbManager.new.user_account_exists? 'rspec'
+      db_mgr.pub_con.execute('drop owned by rspec;')
+      db_mgr.pub_con.execute('drop user rspec;')
+    end
     username='rspec'
     pwd='aact_pwd'
+
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>pwd, :unencrypted_password=>pwd)
     user.save!
-    Util::UserDbManager.new({:load_event=>'unnecessary'}).create_user_account(user)
+    db_mgr.create_user_account(user)
     expect(User.count).to eq(1)
     expect(user.sign_in_count).to eq(0)
     expect(user.unencrypted_password).to eq(pwd)
     # user added to db as un-confirmed
-    expect(Util::UserDbManager.new.user_account_exists?(user)).to be(true)
+    expect(Util::UserDbManager.new.user_account_exists?(user.username)).to be(true)
     # user cannot login with the password they provided until they confirm their account
     begin
       con=PublicBase.establish_connection(
@@ -86,9 +92,11 @@ describe User do
       password: user.unencrypted_password,
     ).connection
     expect(con.active?).to eq(true)
-    expect(con.execute('select count(*) from studies').count).to eq(1)
+    con.execute('show search_path;')
+    expect(con.execute('select count(*) from public.studies').count).to eq(1)
     con.disconnect!
     expect(con.active?).to eq(false)
+    con=nil
 
     user.remove
     expect(User.count).to eq(0)

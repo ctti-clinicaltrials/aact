@@ -16,15 +16,19 @@ class User < Admin::AdminBase
   validates_length_of :username, :maximum=>64
   validates_format_of :username, :with => /\A[a-zA-Z0-9]+\z/, :message => "cannot contain special chars"
   validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with an alpha character"
-  validate :can_create_db_account?, on: :create
 
-  def can_create_db_account?
-    event='not needed'
-    Util::UserDbManager.new({:load_event=>event}).can_create_user?(self)
-  end
-
-  def admin?
-    false
+  def create
+    event=Admin::LoadEvent.create({
+      :event_type=>'user-add',
+      :status=>'complete',
+      :description=>"add user #{self.email}",
+      :problems=>''})
+    mgr=Util::UserDbManager.new({:load_event=>event})
+    if mgr.can_create_user_account?(self)
+      mgr.create_user_account(self) if self.save!
+    else
+      self.errors.add('DB Account', 'could not be created for this user.')
+    end
   end
 
   def confirm
@@ -62,11 +66,11 @@ class User < Admin::AdminBase
 
   def remove
     begin
+      Admin::RemovedUser.create(self.attributes.except('id', 'created_at', 'updated_at'))
       event=Admin::LoadEvent.create({:event_type=>'user-remove',:status=>'complete',:description=>"remove user #{self.email}",:problems=>''})
       db_mgr=Util::UserDbManager.new({:load_event=>event})
       db_mgr.pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
-      db_mgr.remove_user(self)
-      Admin::RemovedUser.create(self.attributes)
+      db_mgr.remove_user(self.username)
       destroy
     rescue => e
       puts e.message
