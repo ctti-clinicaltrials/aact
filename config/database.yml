@@ -12,6 +12,8 @@ test:
   encoding: utf8
   adapter: postgresql
   database: aact_back_test
+  username: <%= ENV.fetch("DB_SUPER_USERNAME", "") %>
+  password: <%= ENV.fetch("DB_SUPER_PASSWORD", "") %>
 
 production: &deploy
   encoding: utf8
