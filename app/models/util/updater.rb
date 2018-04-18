@@ -28,14 +28,20 @@ module Util
         else
           status=incremental
         end
+        finalize_load if status != false
       rescue => error
-        msg="#{error.message} (#{error.class} #{error.backtrace}"
-        log("#{@load_event.event_type} load failed in run: #{msg}")
-        load_event.add_problem(msg)
-        load_event.complete({:status=>'failed', :study_counts=> study_counts})
-        status=false
+        begin
+          status=false
+          msg="#{error.message} (#{error.class} #{error.backtrace}"
+          log("#{@load_event.event_type} load failed in run: #{msg}")
+          load_event.add_problem(msg)
+          load_event.complete({:status=>'failed', :study_counts=> study_counts})
+          Admin::PublicAnnouncement.clear_load_message
+          db_mgr.grant_db_privs
+        rescue
+          load_event.complete({:status=>'failed', :study_counts=> study_counts})
+        end
       end
-      finalize_load if status != false
       send_notification
     end
 
