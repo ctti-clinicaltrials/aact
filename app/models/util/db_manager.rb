@@ -67,9 +67,14 @@ module Util
     end
 
     def revoke_db_privs
-      pub_con.execute("revoke connect on database #{public_db_name} from public;")
-      pub_con.execute("revoke select on all tables in schema ctgov from public;")
-      pub_con.execute("revoke all on schema ctgov from public;")
+      begin
+        pub_con.execute("revoke connect on database #{public_db_name} from public;")
+        pub_con.execute("revoke select on all tables in schema ctgov from public;")
+        pub_con.execute("revoke all on schema ctgov from public;")
+      rescue => error
+        # error raised if schema missing. Ignore. Will be created in a pg_restore.
+        puts "DbManager.revoke_db_privs:  #{error}"
+      end
     end
 
     def run_command_line(cmd)
