@@ -47,10 +47,11 @@ module Util
     def remove_user(username)
       begin
         return false if !user_account_exists?(username)
-        pub_con.execute("drop owned by \"#{username}\";")
-        pub_con.execute("revoke all on schema public from \"#{username}\";")
-        pub_con.execute("revoke connect on database #{public_db_name} from \"#{username}\";")
-        pub_con.execute("drop user \"#{username}\";")
+        pub_con.execute("reassign owned by #{username} to postgres;")
+        pub_con.execute("drop owned by #{username};")
+        pub_con.execute("revoke all on schema public from #{username};")
+        pub_con.execute("revoke connect on database #{public_db_name} from #{username};")
+        pub_con.execute("drop user #{username};")
         return true
       rescue => e
         raise e unless e.message.include? " does not exist"
