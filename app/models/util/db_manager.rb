@@ -21,9 +21,6 @@ module Util
       #cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']} --dbname=aact_back --schema=ctgov > #{psql_file}"
       # pg_dump that works on postgres 9.2.23 - which is what's running on servers as of 4/20/18
       cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']} --schema=ctgov  aact_back > #{psql_file}"
-      #pg_dump --no-owner --no-acl --host=localhost --username=ctti --schema=ctgov aact_back > lookat.sql
-
-
       run_command_line(cmd)
 
       # clear out previous ctgov content from staging db
