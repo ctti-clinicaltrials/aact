@@ -19,6 +19,11 @@ class User < Admin::AdminBase
   validates_length_of :username, :maximum=>64
   validates_format_of :username, :with => /\A[a-zA-Z0-9]+\z/, :message => "cannot contain special chars"
   validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with an alpha character"
+  validate :can_create_db_account?, on: :create
+
+  def can_create_db_account?
+    Util::UserDbManager.new.can_create_user_account?(self)
+  end
 
   def create_db_account
     #self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
