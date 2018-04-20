@@ -14,16 +14,11 @@ describe Util::UserDbManager do
       subject.remove_user(user.username)
       expect(subject.can_create_user_account?(user)).to be(true)
       expect(subject.create_user_account(user)).to be(true)
-      expect(user.unencrypted_password).to eq(original_password)
 
       expect(subject.user_account_exists?(user.username)).to be(true)
       expect(subject.can_create_user_account?(user)).to be(false)
       user_rec=described_class.new.pub_con.execute("SELECT * FROM pg_catalog.pg_user where usename = '#{user.username}'")
       expect(user_rec.count).to eq(1)
-      expect(user.unencrypted_password).to eq(original_password)
-      # once user is confirmed, the unencrypted_password should be set to nil (only used to set pwd for db acct)
-      user.confirm
-      expect(user.unencrypted_password).to eq(nil)
     end
 
   end
