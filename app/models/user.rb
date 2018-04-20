@@ -2,11 +2,14 @@ class User < Admin::AdminBase
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Validations
+  after_create { create_db_account }
+  after_save :grant_db_privs, :if => proc { |l| l.confirmed_at_changed? && l.confirmed_at_was.nil? }
   attr_accessor :current_password, :skip_password_validation
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :current_password, presence: true, on: :update, unless: :skip_password_validation
+  validates_confirmation_of :password
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates_length_of :first_name, :maximum=>100
@@ -16,30 +19,37 @@ class User < Admin::AdminBase
   validates_length_of :username, :maximum=>64
   validates_format_of :username, :with => /\A[a-zA-Z0-9]+\z/, :message => "cannot contain special chars"
   validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with an alpha character"
+  validate :can_create_db_account?, on: :create
 
-  def create
+  def can_create_db_account?
+    Util::UserDbManager.new.can_create_user_account?(self)
+  end
+
+  def create_db_account
+    #self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
     event=Admin::LoadEvent.create({
       :event_type=>'user-add',
       :status=>'complete',
-      :description=>"add user #{self.email}",
+      :description=>"user #{self.email}",
       :problems=>''})
     mgr=Util::UserDbManager.new({:load_event=>event})
     if mgr.can_create_user_account?(self)
-      mgr.create_user_account(self) if self.save!
+      mgr.create_user_account(self)
     else
       self.errors.add('DB Account', 'could not be created for this user.')
+      event.problems='Could not create this user.'
     end
   end
 
-  def confirm
-    self.password =self.unencrypted_password
-    self.password_confirmation = self.unencrypted_password
-    self.unencrypted_password=nil # after using this to create db account, get rid of it
-    self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
-    super
-    event=Admin::LoadEvent.create({:event_type=>'user-confirm',:status=>'complete',:description=>"confirm user #{self.email}",:problems=>''})
+  def grant_db_privs
+    event=Admin::LoadEvent.create({:event_type=>'grant-db-privs',:status=>'complete',:description=>"user #{self.email}",:problems=>''})
+    Util::UserDbManager.new({:load_event=>event}).grant_db_privs(self.username)
+  end
+
+  def change_password(pwd)
+    event=Admin::LoadEvent.create({:event_type=>'user-change-pwd',:status=>'complete',:description=>"user #{self.email}",:problems=>''})
     db_mgr=Util::UserDbManager.new({:load_event=>event})
-    db_mgr.change_password(self, self.password)
+    db_mgr.change_password(self, pwd)
   end
 
   def self.reset_password_by_token(params)
@@ -49,7 +59,7 @@ class User < Admin::AdminBase
     if !resource.nil?
       resource.skip_password_validation=true
       resource.update_attributes({:password=>params[:password], :password_confirmation=>params[:password_confirmation]})
-      Util::UserDbManager.change_password(resource,params[:password]) if resource.errors.empty?
+      resource.change_password(params[:password]) if resource.errors.empty?
     end
     resource
   end

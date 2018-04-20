@@ -11,20 +11,20 @@ describe User do
 
   it "isn't added if invalid name" do
     username='postgres'
-    user=User.new(:first_name=>'Illegal', :last_name=>'User',:email=>'illegal_user@duke.edu',:username=>username,:password=>'aact',:password_confirmation=>'aact')
-    user.create
+    expect(User.create(:first_name=>'Illegal', :last_name=>'User',:email=>'illegal_user@duke.edu',:username=>username,:password=>'aact',:password_confirmation=>'aact').valid?).to eq(false)
     expect(User.count).to eq(0)
   end
 
   it "isn't accepted unless first char of username is alpha" do
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'1rspec_test',:password=>'aact')
-    expect { user.create }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars, Username must start with an alpha character')
+    expect( user.valid? ).to eq(false)
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username cannot contain special chars, Username must start with an alpha character")
     expect(User.count).to eq(0)
   end
 
   it "isn't accepted if username has a hyphen" do
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1-ectest',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username cannot contain special chars")
     expect(User.count).to eq(0)
   end
 
@@ -32,13 +32,10 @@ describe User do
     Admin::LoadEvent.destroy_all
     Admin::RemovedUser.destroy_all
     User.destroy_all
-    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1ectest',:password=>'aact')
+    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'first.last@duke.edu',:username=>'r1ectest',:password=>'aact')
     user.save!
     expect(User.count).to eq(1)
     expect(User.first.username).to eq('r1ectest')
-    # the controller now responsible for creating LoadEvents
-    #expect(Admin::LoadEvent.count).to eq(1)
-    #expect(Admin::LoadEvent.last.event_type).to eq('user-add')
 
     user.remove
     expect(User.count).to eq(0)
