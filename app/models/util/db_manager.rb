@@ -17,7 +17,8 @@ module Util
       # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
       psql_file="#{fm.dump_directory}/aact.psql"
       File.delete(psql_file) if File.exist?(psql_file)
-      cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} --exclude-table schema_migrations aact_back > #{psql_file}"
+      cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']}  --dbname=aact_back --schema=ctgov > #{psql_file}"
+
       run_command_line(cmd)
 
       # clear out previous ctgov content from staging db
@@ -32,7 +33,7 @@ module Util
       run_command_line(cmd)
 
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{fm.pg_dump_file}"
+      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations --schema=ctgov -c -C -Fc -f  #{fm.pg_dump_file}"
       run_command_line(cmd)
       ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
     end

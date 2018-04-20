@@ -20,8 +20,8 @@ module Util
 
         pub_con.execute("create user \"#{user.username}\" password '#{dummy_pwd}';")
         pub_con.execute("grant connect on database aact to \"#{user.username}\";")
-        pub_con.execute("grant usage on schema public TO \"#{user.username}\";")
-        pub_con.execute("grant select on all tables in schema public to \"#{user.username}\";")
+        pub_con.execute("grant usage on schema ctgov TO \"#{user.username}\";")
+        pub_con.execute("grant select on all tables in schema ctgov to \"#{user.username}\";")
         pub_con.disconnect!
         @pub_con=nil
         return true
@@ -49,7 +49,7 @@ module Util
         return false if !user_account_exists?(username)
         pub_con.execute("reassign owned by #{username} to postgres;")
         pub_con.execute("drop owned by #{username};")
-        pub_con.execute("revoke all on schema public from #{username};")
+        pub_con.execute("revoke all on schema ctgov from #{username};")
         pub_con.execute("revoke connect on database #{public_db_name} from #{username};")
         pub_con.execute("drop user #{username};")
         return true
@@ -70,14 +70,14 @@ module Util
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
       con.execute("grant connect on database #{public_db_name} to public;")
-      con.execute("grant usage on schema public TO public;")
-      con.execute('grant select on all tables in schema public to public;')
+      con.execute("grant usage on schema ctgov TO public;")
+      con.execute('grant select on all tables in schema ctgov to public;')
     end
 
     def revoke_db_privs
       con.execute("revoke connect on database #{public_db_name} from public;")
-      con.execute("revoke select on all tables in schema public from public;")
-      con.execute("revoke all on schema public from public;")
+      con.execute("revoke select on all tables in schema ctgov from public;")
+      con.execute("revoke all on schema ctgov from public;")
     end
 
     def terminate_sessions_for(user)
