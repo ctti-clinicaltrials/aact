@@ -46,9 +46,6 @@ module Util
     end
 
     def change_password(user,pwd)
-      puts "=========== about to set password to #{pwd} ===================================================="
-      puts self.inspect
-      puts "==============================================================="
       begin
         pub_con.execute("alter user \"#{user.username}\" password '#{pwd}';")
       rescue => e
