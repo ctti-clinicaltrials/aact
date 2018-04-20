@@ -17,14 +17,17 @@ module Util
       # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
       psql_file="#{fm.dump_directory}/aact.psql"
       File.delete(psql_file) if File.exist?(psql_file)
-      cmd="pg_dump --no-owner --no-acl -h localhost -U #{ENV['DB_SUPER_USERNAME']} --exclude-table schema_migrations aact_back > #{psql_file}"
+      # pg_dump that works on postgres 10.3
+      #cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']} --dbname=aact_back --schema=ctgov > #{psql_file}"
+      # pg_dump that works on postgres 9.2.23 - which is what's running on servers as of 4/20/18
+      cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']} --schema=ctgov  aact_back > #{psql_file}"
       run_command_line(cmd)
 
-      # clear out previous content of staging db
-      puts "Recreating public schema in aact staging database..."
+      # clear out previous ctgov content from staging db
+      puts "Recreating ctgov schema in aact staging database..."
       terminate_stage_db_sessions
-      stage_con.execute('DROP SCHEMA IF EXISTS public CASCADE')
-      stage_con.execute('CREATE SCHEMA public')
+      stage_con.execute('DROP SCHEMA IF EXISTS ctgov CASCADE;')
+      stage_con.execute('CREATE SCHEMA ctgov;')
 
       # refresh staging db
       puts "Refreshing aact staging database..."
@@ -32,7 +35,7 @@ module Util
       run_command_line(cmd)
 
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations  -c -C -Fc -f  #{fm.pg_dump_file}"
+      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations --schema=ctgov -c -C -Fc -f  #{fm.pg_dump_file}"
       run_command_line(cmd)
       ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
     end
@@ -62,14 +65,19 @@ module Util
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
       pub_con.execute("grant connect on database #{public_db_name} to public;")
-      pub_con.execute("grant usage on schema public TO public;")
-      pub_con.execute('grant select on all tables in schema public to public;')
+      pub_con.execute("grant usage on schema ctgov TO public;")
+      pub_con.execute('grant select on all tables in schema ctgov to public;')
     end
 
     def revoke_db_privs
-      pub_con.execute("revoke connect on database #{public_db_name} from public;")
-      pub_con.execute("revoke select on all tables in schema public from public;")
-      pub_con.execute("revoke all on schema public from public;")
+      begin
+        pub_con.execute("revoke connect on database #{public_db_name} from public;")
+        pub_con.execute("revoke select on all tables in schema ctgov from public;")
+        pub_con.execute("revoke all on schema ctgov from public;")
+      rescue => error
+        # error raised if schema missing. Ignore. Will be created in a pg_restore.
+        puts "DbManager.revoke_db_privs:  #{error}"
+      end
     end
 
     def run_command_line(cmd)
