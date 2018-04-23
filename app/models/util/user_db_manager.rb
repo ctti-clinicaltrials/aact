@@ -31,13 +31,17 @@ module Util
     end
 
     def user_account_exists?(username)
-      res=pub_con.execute("SELECT * FROM pg_catalog.pg_user where usename = '#{username}'").count > 0
+      return true if username == 'postgres'
+      return true if username == 'ctti'
+      pub_con.execute("SELECT * FROM pg_catalog.pg_user where usename = '#{username}'").count > 0
     end
 
     def remove_user(username)
       begin
         return false if !user_account_exists?(username)
         revoke_db_privs(username)
+        pub_con.execute("reassign owned by #{username} to postgres;")
+        pub_con.execute("drop owned by #{username};")
         pub_con.execute("drop user #{username};")
         return true
       rescue => e
@@ -54,24 +58,21 @@ module Util
     end
 
     def grant_db_privs(username)
+      pub_con.execute("alter role \"#{username}\" IN DATABASE aact set search_path = ctgov;")
       pub_con.execute("grant connect on database aact to \"#{username}\";")
       pub_con.execute("grant usage on schema ctgov TO \"#{username}\";")
       pub_con.execute("grant select on all tables in schema ctgov to \"#{username}\";")
+      pub_con.execute("alter user \"#{username}\" login;")
     end
 
     def revoke_db_privs(username)
-      pub_con = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
-      pub_con.execute("reassign owned by #{username} to postgres;")
-      pub_con.execute("drop owned by #{username};")
-      pub_con.execute("revoke all on schema ctgov from #{username};")
-      pub_con.execute("revoke connect on database #{public_db_name} from #{username};")
-      pub_con.disconnect!
-      @pub_con=nil
+      terminate_sessions_for(username)
+      pub_con.execute("alter user #{username} nologin;")
     end
 
-    def terminate_sessions_for(user)
+    def terminate_sessions_for(username)
       con.select_all("select * from pg_stat_activity order by pid;").each { |session|
-        if session['usename']=="#{user.username}"
+        if session['usename']=="#{username}"
           con.execute("select pg_terminate_backend(#{session['pid']})")
         end
       }
