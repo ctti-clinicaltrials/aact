@@ -8,12 +8,8 @@ module Util
     def create_user_account(user)
       begin
         return false if !can_create_user_account?(user)
-        #user.skip_password_validation=true  # don't validate that user entered current password.  already validated
-        #pub_con = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
         pub_con.execute("create user \"#{user.username}\" password '#{user.password}';")
-        pub_con.execute("revoke connect on database aact from #{user.username};")
-        #pub_con.disconnect!
-        #@pub_con=nil
+        pub_con.execute("alter user #{user.username} nologin;")
         return true
       rescue => e
         user.errors.add(:base, e.message)
