@@ -29,7 +29,8 @@ module Util
     def user_account_exists?(username)
       return true if username == 'postgres'
       return true if username == 'ctti'
-      pub_con.execute("SELECT * FROM pg_catalog.pg_user where usename = '#{username}'").count > 0
+      pub_con.execute("SELECT usename FROM pg_catalog.pg_user where usename = '#{username}' UNION
+                       SELECT groname  FROM pg_catalog.pg_group where groname = '#{username}'").count > 0
     end
 
     def remove_user(username)

@@ -17,7 +17,7 @@ describe Util::UserDbManager do
 
       expect(subject.user_account_exists?(user.username)).to be(true)
       expect(subject.can_create_user_account?(user)).to be(false)
-      user_rec=described_class.new.pub_con.execute("SELECT * FROM pg_catalog.pg_user where usename = '#{user.username}'")
+      user_rec=described_class.new.pub_con.execute("SELECT * FROM pg_catalog.pg_group where groname = '#{user.username}'")
       expect(user_rec.count).to eq(1)
     end
 
