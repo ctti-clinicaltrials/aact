@@ -10,6 +10,8 @@ describe User do
   end
 
   it "isn't added if invalid name" do
+    User.destroy_all
+    expect(User.count).to eq(0)
     username='postgres'
     expect(User.create(:first_name=>'Illegal', :last_name=>'User',:email=>'illegal_user@duke.edu',:username=>username,:password=>'aact',:password_confirmation=>'aact').valid?).to eq(false)
     expect(User.count).to eq(0)
@@ -105,7 +107,7 @@ describe User do
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
       username: user.username,
       password: user.unencrypted_password
-    ).connection}.to raise_error(ActiveRecord::NoDatabaseError)
+    ).connection}.to raise_error(PG::ConnectionBad)
     # Subsequent spec tests use this public db connection. Force reset back to test db.
     @dbconfig = YAML.load(File.read('config/database.yml'))
     ActiveRecord::Base.establish_connection @dbconfig[:test]
@@ -122,11 +124,12 @@ describe User do
         encoding: 'utf8',
         hostname: ENV['AACT_PUBLIC_HOSTNAME'],
         database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-        username: user.username
+        username: user.username,
+        password: user.password
       ).connection
     rescue => e
-      expect(e.class).to eq(ActiveRecord::NoDatabaseError)
-      expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
+      expect(e.class).to eq(PG::ConnectionBad)
+      expect(e.message).to eq("FATAL:  password authentication failed for user \"rspec!_test\"\n")
     end
 
     # Subsequent spec tests use this public db connection. Force reset back to test db.
