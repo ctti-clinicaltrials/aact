@@ -8,12 +8,8 @@ module Util
     def create_user_account(user)
       begin
         return false if !can_create_user_account?(user)
-        #user.skip_password_validation=true  # don't validate that user entered current password.  already validated
-        #pub_con = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
         pub_con.execute("create user \"#{user.username}\" password '#{user.password}';")
-        pub_con.execute("revoke connect on database aact from #{user.username};")
-        #pub_con.disconnect!
-        #@pub_con=nil
+        pub_con.execute("alter user #{user.username} nologin;")
         return true
       rescue => e
         user.errors.add(:base, e.message)
@@ -33,7 +29,8 @@ module Util
     def user_account_exists?(username)
       return true if username == 'postgres'
       return true if username == 'ctti'
-      pub_con.execute("SELECT * FROM pg_catalog.pg_user where usename = '#{username}'").count > 0
+      pub_con.execute("SELECT usename FROM pg_catalog.pg_user where usename = '#{username}' UNION
+                       SELECT groname  FROM pg_catalog.pg_group where groname = '#{username}'").count > 0
     end
 
     def remove_user(username)

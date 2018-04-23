@@ -34,8 +34,8 @@ describe User do
     Admin::LoadEvent.destroy_all
     Admin::RemovedUser.destroy_all
     User.destroy_all
-    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'first.last@duke.edu',:username=>'r1ectest',:password=>'aact')
-    user.save!
+    Util::UserDbManager.new.remove_user('r1ectest')
+    user=User.create(:first_name=>'first', :last_name=>'last',:email=>'first.last@duke.edu',:username=>'r1ectest',:password=>'aact')
     expect(User.count).to eq(1)
     expect(User.first.username).to eq('r1ectest')
 
@@ -49,16 +49,15 @@ describe User do
   it "creates unconfirmed user db account in public db" do
     db_mgr=Util::UserDbManager.new({:load_event=>'unnecessary'})
     User.all.each{|user| user.remove }  # remove all existing users - both from Users table and db accounts
-    if Util::UserDbManager.new.user_account_exists? 'rspec'
+    username='rspec'
+    pwd='aact_pwd'
+    if Util::UserDbManager.new.user_account_exists? username
       db_mgr.pub_con.execute('drop owned by rspec;')
       db_mgr.pub_con.execute('drop user rspec;')
     end
-    username='rspec'
-    pwd='aact_pwd'
 
-    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>pwd, :unencrypted_password=>pwd)
-    user.save!
-    db_mgr.create_user_account(user)
+    user=User.create(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>pwd, :unencrypted_password=>pwd)
+    #db_mgr.create_user_account(user)
     expect(User.count).to eq(1)
     expect(user.sign_in_count).to eq(0)
     expect(user.unencrypted_password).to eq(pwd)
@@ -76,8 +75,7 @@ describe User do
       ).connection
     rescue => e
       e.inspect
-      expect(e.message).to eq("ActiveRecord::NoDatabaseError: FATAL:  role \"rspec\" does not exist\n")
-      #expect(e.message).to eq("FATAL:  role \"rspec\" does not exist\n")
+      expect(e.message).to eq("FATAL:  role \"rspec\" is not permitted to log in\n")
       expect(con).to be(nil)
     end
     user.confirm  #simulate user email response confirming their account
