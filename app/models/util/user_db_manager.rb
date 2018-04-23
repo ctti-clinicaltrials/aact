@@ -31,13 +31,17 @@ module Util
     end
 
     def user_account_exists?(username)
-      res=pub_con.execute("SELECT * FROM pg_catalog.pg_user where usename = '#{username}'").count > 0
+      return true if username == 'postgres'
+      return true if username == 'ctti'
+      pub_con.execute("SELECT * FROM pg_catalog.pg_user where usename = '#{username}'").count > 0
     end
 
     def remove_user(username)
       begin
         return false if !user_account_exists?(username)
         revoke_db_privs(username)
+        pub_con.execute("reassign owned by #{username} to postgres;")
+        pub_con.execute("drop owned by #{username};")
         pub_con.execute("drop user #{username};")
         return true
       rescue => e
