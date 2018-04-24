@@ -16,7 +16,7 @@ module DeviseHelper
     if errors.size == 1
       messages = content_tag(:p,errors.first)
     else
-      messages = errors.map { |msg| content_tag(:li, msg) }.join
+      messages = errors.uniq.map { |msg| content_tag(:li, msg) }.join
     end
 
     html = <<-HTML
