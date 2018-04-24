@@ -14,10 +14,4 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     end
   end
 
-  private
-
-  def after_confirmation_path_for(resource_name, resource)
-    redirect_to new_user_session_url
-  end
-
 end

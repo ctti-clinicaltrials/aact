@@ -105,19 +105,28 @@ class User < Admin::AdminBase
     first_name + ' ' + last_name
   end
 
-  def summary_info
-    "ID:  #{id}
-     Name:  #{self.full_name}
-     DB username:  #{self.username}
-     Email addr:  #{self.email}
+  def summary_info(type=nil)
+    if type='list'
+      "#{id}|#{self.full_name}|#{self.username}|#{self.email}|#{self.confirmation_sent_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.confirmed_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.sign_in_count}|#{self.last_sign_in_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.last_sign_in_ip}"
+    else
+      "ID:  #{id}
+       Name:  #{self.full_name}
+       DB username:  #{self.username}
+       Email addr:  #{self.email}
 
-     Confirmation email sent: #{self.confirmation_sent_at.strftime("%m/%d/%Y %H:%m")}
-     Confirmed: #{self.confirmed_at.strftime("%m/%d/%Y %H:%m")}
+       Confirmation email sent: #{self.confirmation_sent_at.try(:strftime,"%m/%d/%Y %H:%m")}
+       Confirmed: #{self.confirmed_at.try(:strftime,"%m/%d/%Y %H:%m")}
 
-     Sign in count: #{self.sign_in_count}
-     Last signed in: #{self.last_sign_in_at.strftime("%m/%d/%Y %H:%m")}  (#{self.last_sign_in_ip})
+       Sign in count: #{self.sign_in_count}
+       Last signed in: #{self.last_sign_in_at.try(:strftime,"%m/%d/%Y %H:%m")}  (#{self.last_sign_in_ip})
+      "
+    end
+  end
 
-    "
+  def self.list
+    collection=[]
+    all.each{ |user| collection << user.summary_info('list') }
+    return collection
   end
 
 end
