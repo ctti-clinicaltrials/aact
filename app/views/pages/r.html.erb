@@ -31,9 +31,9 @@
         <span class='command-prompt'>> </span><span class='command-entry'> drv &lt;- dbDriver('PostgreSQL')</span>
 
         <% if user_signed_in? %>
-  <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%= ENV['AACT_PUBLIC_DATABASE_NAME'] %>",host="<%= ENV['AACT_PUBLIC_HOSTNAME'] %>", port=5432, user="<%= current_user.username %>", password="<span class='command-note'>your AACT password</span>")</span>
+        <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%= ENV['AACT_PUBLIC_DATABASE_NAME'] %>",host="<%= ENV['AACT_PUBLIC_HOSTNAME'] %>", port=5432, user="<%= current_user.username %>", password="<span class='command-note'><i>'your AACT password' </i></span>")</span>
         <% else %>
-<span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%= ENV['AACT_PUBLIC_DATABASE_NAME'] %>",host="<%= ENV['AACT_PUBLIC_HOSTNAME'] %>", port=5432, user=<span class='command-note'>(sign up/in to get a username)<span>, password="</span><span class='command-note'>your AACT password</span><span class=command-entry'>")</span>
+        <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%= ENV['AACT_PUBLIC_DATABASE_NAME'] %>",host="<%= ENV['AACT_PUBLIC_HOSTNAME'] %>", port=5432, user=<span class='command-note'>(sign up/in to get a username)<span>, password="</span><span class='command-note'><i>'your AACT password' </i></span><span class=command-entry'>")</span>
         <% end %>
 
         <span class='command-prompt'>> </span><span class='command-entry'> aact_sample <- dbGetQuery(con, "select distinct study_type from studies")</span>
@@ -41,6 +41,10 @@
         <span class='command-prompt'>> </span><span class='command-entry'> print(aact_sample)</span>
       </p>
     </pre>
+
+    <h2>Credentials</h2>
+    <p>You will need the following information to access the database directly in the cloud.</p>
+    <%= render 'credentials/credentials' %>
 
   </div>
 </section>

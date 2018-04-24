@@ -5,7 +5,7 @@ module Util
   class FileManager
 
     def static_copies_directory
-      if created_first_day_of_month? Time.now.strftime('%Y%m%d')
+      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
         "#{Rails.public_path}/static/static_db_copies/monthly"
       else
         "#{Rails.public_path}/static/static_db_copies/daily"
@@ -13,7 +13,7 @@ module Util
     end
 
     def flat_files_directory
-      if created_first_day_of_month? Time.now.strftime('%Y%m%d')
+      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
         "#{Rails.public_path}/static/exported_files/monthly"
       else
         "#{Rails.public_path}/static/exported_files/daily"
@@ -75,13 +75,21 @@ module Util
           size=File.open("#{dir}/#{file_name}").size
           date_string=file_name.split('_').first
           date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
-          entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+          if downloadable?(file_name)
+            entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+          else
+            puts "Not a downloadable file: #{file_name}"
+          end
         rescue => e
           # just skip if unexpected file encountered
-          puts e
+          puts "Skipping because #{e}"
         end
       }
       entries.sort_by {|entry| entry[:name]}.reverse!
+    end
+
+    def downloadable? file_name
+      (file_name.size == 34 and file_name[30..34] == '.zip') or (file_name.size == 28 and file_name[24..28] == '.zip')
     end
 
     def self.db_log_file_content(params)
@@ -131,7 +139,7 @@ module Util
       nlm_protocol_file=make_file_from_website("nlm_protocol_definitions.html",fpm.nlm_protocol_data_url)
       nlm_results_file=make_file_from_website("nlm_results_definitions.html",fpm.nlm_results_data_url)
 
-      date_stamp=Time.now.strftime('%Y%m%d')
+      date_stamp=Time.zone.now.strftime('%Y%m%d')
       zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
       File.delete(zip_file_name) if File.exist?(zip_file_name)
       Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
