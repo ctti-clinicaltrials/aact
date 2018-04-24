@@ -8,6 +8,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
   def update
     resource = resource_class.reset_password_by_token(params[resource_name])
+    Notifier.report_user_event('password reset', resource)
     if resource
       yield resource if block_given?
       sign_out(:user)
