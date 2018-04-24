@@ -67,11 +67,25 @@ class User < Admin::AdminBase
   def update(params)
     params.delete(:password) if params[:password].blank?
     params.delete(:password_confirmation) if params[:password_confirmation].blank?
-    update_attributes(params) if valid_password?(params['current_password'])
-    event=Admin::LoadEvent.create({:event_type=>'user-update',:status=>'complete',:description=>"update user #{self.email}",:problems=>''})
-    db_mgr=Util::UserDbManager.new({:load_event=>event})
-    db_mgr.change_password(self, params[:password]) if params[:password]
-    self
+
+    if !valid_password?(params['current_password'])
+      self.errors.add(:current_password, "is invalid.")
+      return false
+    end
+
+    self.errors.add(:current_password, "must be provided to update account.") if params[:current_password].blank?
+    self.errors.add(:password_confirmation, "& Password must be provided to change your password.") if !params[:password].blank? && params[:password_confirmation].blank?
+    self.errors.add(:password, "& Confirmation Password must be provided to change your password.") if !params[:password_confirmation].blank? && params[:password].blank?
+    return false if !self.errors.empty?
+
+    update_successful=super
+
+    if update_successful
+      event=Admin::LoadEvent.create({:event_type=>'user-update',:status=>'complete',:description=>"update user #{self.email}: #{params}",:problems=>''})
+      db_mgr=Util::UserDbManager.new({:load_event=>event})
+      db_mgr.change_password(self, params[:password]) if params[:password]
+      self
+    end
   end
 
   def remove
