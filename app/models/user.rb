@@ -105,4 +105,8 @@ class User < Admin::AdminBase
     first_name + ' ' + last_name
   end
 
+  def summary_info
+    self.inspect
+  end
+
 end

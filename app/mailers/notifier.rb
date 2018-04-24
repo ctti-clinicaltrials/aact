@@ -1,13 +1,19 @@
 class Notifier < ApplicationMailer
 
   def self.report_load_event(event)
-    admin_addresses.each do |email|
-      send_msg(email, event.subject_line, event.email_message).deliver_now
-    end
+    admin_addresses.each { |email_addr|
+      send_msg(email_addr, event.subject_line, event.email_message).deliver_now
+    }
   end
 
-  def send_msg(email, subject, body)
-    mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email, subject: subject, body: body)
+  def self.report_user_event(event, user)
+    admin_addresses.each { |email_addr|
+      send_msg(email_addr, "AACT user #{event}: #{user.full_name}", user.summary_info).deliver_now
+    }
+  end
+
+  def send_msg(email_addr, subject, body)
+    mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email_addr, subject: subject, body: body)
   end
 
   def self.admin_addresses
