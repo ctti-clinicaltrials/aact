@@ -19,7 +19,7 @@ module Util
 
     def can_create_user_account?(user)
       if user_account_exists?(user.username)
-        user.errors.add(:Username, "Database account already exists for username '#{user.username}'")
+        user.errors.add(:Username, "Database account already exists for '#{user.username}'")
         return false
       else
         return true
