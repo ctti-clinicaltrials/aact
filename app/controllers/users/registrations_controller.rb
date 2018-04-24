@@ -1,5 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_filter :save_password, :only => [ :new, :create ]
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
   def create
@@ -20,20 +19,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def save_password
-    params[:user][:unencrypted_password]=params[:user][:password] if params[:action]=='create' and params[:user][:password]
-  end
-
   def update_resource(resource, params)
-    if params[:current_password].blank?
-      resource.errors.add(:current_password, "must be provided to update account.")
-    else
-      resource.update(params)
-    end
+    resource.update(params)
   end
 
   def configure_devise_permitted_parameters
-    registration_params = [:first_name, :last_name, :email, :username, :password, :password_confirmation, :current_password, :unencrypted_password]
+    registration_params = [:first_name, :last_name, :email, :username, :password, :password_confirmation ]
 
     case params[:action]
     when 'update'
