@@ -2,18 +2,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
   def create
-    begin
-      super
-    rescue
-      # temporary rescue - until we find out why the mailer is raising errors
-    end
+    super
     if resource.errors.size == 0
+      Notifier.report_user_event('created', resource)
       flash[:notice] = 'You will soon receive an email from AACT. When you verify your email, you will have acces to your database account.'
     end
   end
 
   def destroy
     current_user.remove
+    Notifier.report_user_event('removed', resource)
     redirect_to root_path
   end
 
@@ -21,6 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_resource(resource, params)
     resource.update(params)
+    Notifier.report_user_event('updated', resource)
   end
 
   def configure_devise_permitted_parameters
