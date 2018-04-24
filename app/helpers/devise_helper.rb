@@ -20,7 +20,7 @@ module DeviseHelper
     end
 
     html = <<-HTML
-    <div id="error_explanation">
+    <div id="errorExplanation">
       <p>#{messages}</p>
     </div>
     HTML
