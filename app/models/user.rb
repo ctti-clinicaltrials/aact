@@ -115,7 +115,7 @@ class User < Admin::AdminBase
   end
 
   def summary_info(type=nil)
-    if type='list'
+    if type == 'list'
       "#{id}|#{self.full_name}|#{self.username}|#{self.email}|#{self.confirmation_sent_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.confirmed_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.sign_in_count}|#{self.last_sign_in_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.last_sign_in_ip}"
     else
       "ID:  #{id}
