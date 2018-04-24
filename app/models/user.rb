@@ -26,7 +26,6 @@ class User < Admin::AdminBase
   end
 
   def create_db_account
-    #self.skip_password_validation=true  # don't validate that user entered current password - they didn't have a chance to
     event=Admin::LoadEvent.create({
       :event_type=>'user-add',
       :status=>'complete',
