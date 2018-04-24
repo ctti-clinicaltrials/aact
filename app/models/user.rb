@@ -97,6 +97,7 @@ class User < Admin::AdminBase
       db_mgr.remove_user(self.username)
       destroy
     rescue => e
+      self.errors.add(e.message)
       puts e.message
     end
   end
