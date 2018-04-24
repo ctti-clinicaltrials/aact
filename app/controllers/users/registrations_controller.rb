@@ -11,15 +11,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def destroy
     current_user.remove
-    Notifier.report_user_event('removed', resource)
-    redirect_to root_path
+    if resource.errors.empty?
+      Notifier.report_user_event('removed', resource)
+      redirect_to root_path
+    else
+      flash[:notice] = "#{resource.errors.first.first} #{resource.errors.first.last}"
+      redirect_to edit_user_registration_path resource
+    end
   end
 
   protected
 
   def update_resource(resource, params)
     resource.update(params)
-    Notifier.report_user_event('updated', resource)
+    if resource.errors.size == 0
+      Notifier.report_user_event('updated', resource)
+    end
   end
 
   def configure_devise_permitted_parameters

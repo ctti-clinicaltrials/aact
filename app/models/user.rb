@@ -19,10 +19,15 @@ class User < Admin::AdminBase
   validates_length_of :username, :maximum=>64
   validates_format_of :username, :with => /\A[a-zA-Z0-9]+\z/, :message => "cannot contain special chars"
   validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with an alpha character"
-  validate :can_create_db_account?, on: :create
+  validate :can_create_db_account?, :on => :create
+  validate :can_access_db?, :on => :create
 
   def can_create_db_account?
     Util::UserDbManager.new.can_create_user_account?(self)
+  end
+
+  def can_access_db?
+    Util::UserDbManager.new.can_access_db?(self)
   end
 
   def create_db_account
@@ -64,8 +69,11 @@ class User < Admin::AdminBase
   end
 
   def update(params)
+
     params.delete(:password) if params[:password].blank?
     params.delete(:password_confirmation) if params[:password_confirmation].blank?
+
+    can_access_db?
 
     if !valid_password?(params['current_password'])
       self.errors.add(:current_password, "is invalid.")
@@ -89,6 +97,7 @@ class User < Admin::AdminBase
 
   def remove
     begin
+      return false if !can_access_db?
       Admin::RemovedUser.create(self.attributes.except('id', 'created_at', 'updated_at'))
       event=Admin::LoadEvent.create({:event_type=>'user-remove',:status=>'complete',:description=>"remove user #{self.email}",:problems=>''})
       db_mgr=Util::UserDbManager.new({:load_event=>event})
