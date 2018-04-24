@@ -106,7 +106,18 @@ class User < Admin::AdminBase
   end
 
   def summary_info
-    self.inspect
+    "ID:  #{id}
+     Name:  #{self.full_name}
+     DB username:  #{self.username}
+     Email addr:  #{self.email}
+
+     Confirmation email sent: #{self.confirmation_sent_at.strftime("%m/%d/%Y %H:%m")}
+     Confirmed: #{self.confirmed_at.strftime("%m/%d/%Y %H:%m")}
+
+     Sign in count: #{self.sign_in_count}
+     Last signed in: #{self.last_sign_in_at.strftime("%m/%d/%Y %H:%m")}  (#{self.last_sign_in_ip})
+
+    "
   end
 
 end
