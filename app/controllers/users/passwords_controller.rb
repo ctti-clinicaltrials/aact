@@ -19,7 +19,7 @@ class Users::PasswordsController < Devise::PasswordsController
   protected
 
   def configure_devise_permitted_parameters
-    params.permit :reset_password_token, :utf8, :_method, :authenticity_token, :commit, user: [:email, :reset_password_token, :password, :password_confirmation, :unencrypted_password]
+    params.permit :reset_password_token, :utf8, :_method, :authenticity_token, :commit, user: [:email, :reset_password_token, :password, :password_confirmation]
   end
 
 end

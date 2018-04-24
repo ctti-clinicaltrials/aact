@@ -142,7 +142,7 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def create_from(new_study)
-    stime=Time.now
+    stime=Time.zone.now
     self.study=new_study
     self.has_us_facility           = calc_has_us_facility
     self.has_single_facility       = calc_has_single_facility
@@ -166,7 +166,7 @@ class CalculatedValue < ActiveRecord::Base
     self.maximum_age_unit          = max_stuff.first
 
     self.months_to_report_results = calc_months_to_report_results
-    tm=Time.now - stime
+    tm=Time.zone.now - stime
     self
   end
 
@@ -185,9 +185,9 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_has_age_limit(type)
-    xtime=Time.now
+    xtime=Time.zone.now
     result=!calc_age(type).nil?
-    tm=Time.now - xtime
+    tm=Time.zone.now - xtime
     return result
   end
 
@@ -209,10 +209,10 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def calc_number_of_subjects(reported_events,type)
-    xtime=Time.now
+    xtime=Time.zone.now
     all=reported_events.select{|re| re.event_type == type}.map(&:subjects_affected)
     result=all.reduce(0, :+)
-    tm=Time.now - xtime
+    tm=Time.zone.now - xtime
     puts "time to load #{result}  #{type} subjects #{tm}    #{self.nct_id}" if tm > 1
     return result
   end

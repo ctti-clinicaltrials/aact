@@ -1,7 +1,7 @@
 <%=  stylesheet_link_tag "use_cases/use_cases" %>
 <%= form_for @use_case, :html => { :multipart => true} do |f| %>
   <% if @use_case.errors.any? %>
-    <div id="error_explanation">
+    <div id="errorExplanation">
       <h2><%= pluralize(@use_case.errors.count, "error") %> prohibited this use_case from being saved:</h2>
 
       <ul>

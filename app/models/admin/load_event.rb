@@ -7,7 +7,7 @@ module Admin
         sc=params[:study_counts]
         self.status  = (params[:status] ?  params[:status] : 'complete')
         self.problems = params[:problems] if params[:problems]
-        self.completed_at = Time.now
+        self.completed_at = Time.zone.now
         self.load_time = calculate_load_time
         if sc
           self.should_add = sc[:should_add]
@@ -76,7 +76,7 @@ module Admin
       end
 
       def log(msg)
-        stamped_message="\n#{Time.now} #{msg}"
+        stamped_message="\n#{Time.zone.now} #{msg}"
         self.description << stamped_message
         self.save!
         $stdout.puts stamped_message
