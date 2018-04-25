@@ -16,6 +16,7 @@ class User < Admin::AdminBase
   validates_length_of :last_name, :maximum=>100
   validates :username, presence: true
   validates_uniqueness_of :username
+  validates_length_of :username, :minimum=>3
   validates_length_of :username, :maximum=>64
   validates_format_of :username, :with => /\A[a-zA-Z0-9]+\z/, :message => "cannot contain special chars"
   validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with an alpha character"
@@ -23,11 +24,21 @@ class User < Admin::AdminBase
   validate :can_access_db?, :on => :create
 
   def can_create_db_account?
-    Util::UserDbManager.new.can_create_user_account?(self)
+    if Util::UserDbManager.new.user_account_exists?(self.username)
+      self.errors.add(:Username, "Database account already exists for '#{self.username}'")
+      return false
+    else
+      return true
+    end
   end
 
   def can_access_db?
-    Util::UserDbManager.new.can_access_db?(self)
+    if !Util::DbManager.new.public_db_accessible?
+      self.errors.add(:Sorry, "AACT database is temporarily unavailable.  Please try later.")
+      return false
+    else
+      return true
+    end
   end
 
   def create_db_account

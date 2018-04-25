@@ -18,21 +18,9 @@ module Util
     end
 
     def can_create_user_account?(user)
-      if user_account_exists?(user.username)
-        user.errors.add(:Username, "Database account already exists for '#{user.username}'")
-        return false
-      else
-        return true
-      end
-    end
-
-    def can_access_db?(user)
-      if privs_revoked?
-        user.errors.add(:Sorry, "AACT database is temporarily unavailable.  Please try later.")
-        return false
-      else
-        return true
-      end
+      return false if user_account_exists?(user.username)
+      return false if !public_db_accessible?
+      return true
     end
 
     def user_account_exists?(username)
