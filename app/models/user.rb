@@ -16,6 +16,7 @@ class User < Admin::AdminBase
   validates_length_of :last_name, :maximum=>100
   validates :username, presence: true
   validates_uniqueness_of :username
+  validates_length_of :username, :minimum=>3
   validates_length_of :username, :maximum=>64
   validates_format_of :username, :with => /\A[a-zA-Z0-9]+\z/, :message => "cannot contain special chars"
   validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with an alpha character"
