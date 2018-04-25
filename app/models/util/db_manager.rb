@@ -83,13 +83,12 @@ module Util
       end
     end
 
-    def privs_revoked?
+    def public_db_accessible?
       result=pub_con.execute("select count(*) from information_schema.role_table_grants where grantee='PUBLIC' and table_schema='ctgov';").first["count"]
-      result.to_i == 0
+      result.to_i > 0
     end
 
     def run_command_line(cmd)
-      puts cmd
       stdout, stderr, status = Open3.capture3(cmd)
       if status.exitstatus != 0
         load_event.add_problem("#{stderr}")

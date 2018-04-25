@@ -24,11 +24,21 @@ class User < Admin::AdminBase
   validate :can_access_db?, :on => :create
 
   def can_create_db_account?
-    Util::UserDbManager.new.can_create_user_account?(self)
+    if Util::UserDbManager.new.user_account_exists?(self.username)
+      self.errors.add(:Username, "Database account already exists for '#{self.username}'")
+      return false
+    else
+      return true
+    end
   end
 
   def can_access_db?
-    Util::UserDbManager.new.can_access_db?(self)
+    if !Util::DbManager.new.public_db_accessible?
+      self.errors.add(:Sorry, "AACT database is temporarily unavailable.  Please try later.")
+      return false
+    else
+      return true
+    end
   end
 
   def create_db_account
