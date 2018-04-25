@@ -64,9 +64,12 @@ module Util
 
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
-      pub_con.execute("grant connect on database #{public_db_name} to public;")
-      pub_con.execute("grant usage on schema ctgov TO public;")
-      pub_con.execute('grant select on all tables in schema ctgov to public;')
+      c = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+      c.execute("grant connect on database #{public_db_name} to public;")
+      c.execute("grant usage on schema ctgov TO public;")
+      c.execute('grant select on all tables in schema ctgov to public;')
+      c.disconnect!
+      c=nil
     end
 
     def revoke_db_privs
@@ -78,6 +81,11 @@ module Util
         # error raised if schema missing. Ignore. Will be created in a pg_restore.
         puts "DbManager.revoke_db_privs:  #{error}"
       end
+    end
+
+    def privs_revoked?
+      result=pub_con.execute("select count(*) from information_schema.role_table_grants where grantee='PUBLIC' and table_schema='ctgov';").first["count"]
+      result.to_i == 0
     end
 
     def run_command_line(cmd)

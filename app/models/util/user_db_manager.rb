@@ -26,6 +26,15 @@ module Util
       end
     end
 
+    def can_access_db?(user)
+      if privs_revoked?
+        user.errors.add(:Sorry, "AACT database is temporarily unavailable.  Please try later.")
+        return false
+      else
+        return true
+      end
+    end
+
     def user_account_exists?(username)
       return true if username == 'postgres'
       return true if username == 'ctti'
