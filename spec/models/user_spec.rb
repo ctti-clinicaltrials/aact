@@ -31,7 +31,7 @@ describe User do
   end
 
   it "accepted with a valid username and logs appropriate events when adding/removing user" do
-    Admin::LoadEvent.destroy_all
+    Admin::UserEvent.destroy_all
     Admin::RemovedUser.destroy_all
     User.destroy_all
     Util::UserDbManager.new.remove_user('r1ectest')
@@ -43,7 +43,7 @@ describe User do
     expect(User.count).to eq(0)
     expect(Admin::RemovedUser.count).to eq(1)
     expect(Admin::RemovedUser.first.username).to eq('r1ectest')
-    expect(Admin::LoadEvent.last.event_type).to eq('user-remove')
+    expect(Admin::UserEvent.last.event_type).to eq('remove')
   end
 
   it "creates unconfirmed user db account in public db" do

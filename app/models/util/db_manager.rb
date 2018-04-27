@@ -8,7 +8,7 @@ module Util
       if params[:load_event]
         @load_event = params[:load_event]
       else
-        @load_event = Admin::LoadEvent.create({:event_type=>'ad hoc',:status=>'running',:description=>'',:problems=>''})
+        @load_event = Admin::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
     end
 
