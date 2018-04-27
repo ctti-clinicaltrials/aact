@@ -48,10 +48,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def notify_user_of_email_confirmation
-    respond_to do |format|
-      format.html { redirect_to new_user_registration_path, notice: 'You will soon receive an email from AACT. Once you verify your information by responding to this email, a database account will be created for you.' }
-    end
-  end
-
 end
