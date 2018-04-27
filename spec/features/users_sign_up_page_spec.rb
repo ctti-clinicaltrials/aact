@@ -3,7 +3,6 @@ require 'rails_helper'
 feature "Users Sign Up Page" do
 
   scenario "sign up - verify new user validations" do
-    allow_any_instance_of(Notifier).to receive(:send_msg).and_return(nil)
     visit '/users/sign_up'
     expect(page).to have_title "AACT Database | Clinical Trials Transformation Initiative"
     expect(page).to have_field 'user_first_name'
@@ -20,14 +19,14 @@ feature "Users Sign Up Page" do
     db_mgr = Util::UserDbManager.new
     db_mgr.remove_user(valid_username)
 
-    # Make sure test user is gone
+    # Start fresh - make sure user is gone
     user=User.where('username=?',valid_username).first
     user.remove if user
     expect(db_mgr.user_account_exists?(valid_username)).to eq(false)
 
     # first and last name missing
     expect(db_mgr.user_account_exists?(valid_username)).to eq(false)
-    find('input[name="commit"]').click
+    submit
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(false)
     expect(page).to have_content "First name can't be blank"
     expect(page).to have_content "Last name can't be blank"
@@ -37,7 +36,7 @@ feature "Users Sign Up Page" do
     long_name = "s" * 129
     fill_in 'user_first_name', with: long_name
     fill_in 'user_last_name', with: long_name
-    find('input[name="commit"]').click
+    submit
     expect(page).to have_content "First name is too long (maximum is 100 characters)"
     expect(page).to have_content "Last name is too long (maximum is 100 characters)"
     expect(page).not_to have_content "First name can't be blank"
@@ -47,7 +46,7 @@ feature "Users Sign Up Page" do
     # valid first & last names
     fill_in 'user_first_name', with:valid_first_name
     fill_in 'user_last_name', with: valid_last_name
-    find('input[name="commit"]').click
+    submit
     expect(page).not_to have_content "First name can't be blank"
     expect(page).not_to have_content "Last name can't be blank"
     expect(page).not_to have_content "First name is too long (maximum is 100 characters)"
@@ -60,7 +59,7 @@ feature "Users Sign Up Page" do
     expect(page).to have_content "Username can't be blank"
     fill_in 'user_email', with: valid_email
     fill_in 'user_username', with: valid_username
-    find('input[name="commit"]').click
+    submit
     expect(page).not_to have_content "Email can't be blank"
     expect(page).not_to have_content "Username can't be blank"
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(false)
@@ -69,7 +68,7 @@ feature "Users Sign Up Page" do
     expect(page).to have_content "Password can't be blank"
     fill_in 'user_password', with: 'pw'
     fill_in 'user_password_confirmation', with: 'pw'
-    find('input[name="commit"]').click
+    submit
     expect(page).to have_content "Password is too short (minimum is 3 characters)"
     expect(page).not_to have_content "Password can't be blank"
     expect(User.where('username=?',valid_username).size).to eq(0)
@@ -79,7 +78,7 @@ feature "Users Sign Up Page" do
     long_pwd = "0" * 129
     fill_in 'user_password', with: long_pwd
     fill_in 'user_password_confirmation', with: long_pwd
-    find('input[name="commit"]').click
+    submit
     expect(page).to have_content "Password is too long (maximum is 128 characters)"
     expect(User.where('username=?',valid_username).size).to eq(0)
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(false)
@@ -87,26 +86,26 @@ feature "Users Sign Up Page" do
     # mismatch of password & confirmation password
     fill_in 'user_password', with: 'pwd'
     fill_in 'user_password_confirmation', with: 'pw'
-    find('input[name="commit"]').click
+    submit
     expect(page).to have_content "Password confirmation doesn't match Password"
     expect(User.where('username=?',valid_username).size).to eq(0)
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(false)
 
     # invalid username
     fill_in 'user_username', with: 'x'
-    find('input[name="commit"]').click
+    submit
     expect(page).to have_content "Username is too short (minimum is 3 characters)"
     fill_in 'user_username', with: '1ax'
-    find('input[name="commit"]').click
+    submit
     expect(page).not_to have_content "Username is too short (minimum is 3 characters)"
     expect(page).to have_content "Username must start with an alpha character"
     fill_in 'user_username', with: 'axaa@'
-    find('input[name="commit"]').click
+    submit
     expect(page).to have_content "Username cannot contain special chars"
     expect(page).not_to have_content "Username is too short (minimum is 3 characters)"
     expect(page).not_to have_content "Username must start with an alpha character"
     fill_in 'user_username', with: valid_username
-    find('input[name="commit"]').click
+    submit
     expect(page).not_to have_content "Username cannot contain special chars"
     expect(User.where('username=?',valid_username).size).to eq(0)
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(false)
@@ -114,21 +113,22 @@ feature "Users Sign Up Page" do
     # db is inaccessible
     Util::DbManager.new.revoke_db_privs
     expect(Util::DbManager.new.public_db_accessible?).to eq(false)
-    find('input[name="commit"]').click
+    submit
     expect(page).to have_content "Sorry AACT database is temporarily unavailable"
     Util::DbManager.new.grant_db_privs
     expect(Util::DbManager.new.public_db_accessible?).to eq(true)
-    find('input[name="commit"]').click
+    submit
     expect(page).not_to have_content "Sorry AACT database is temporarily unavailable"
     expect(User.where('username=?',valid_username).size).to eq(0)
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(false)
 
-    # all valid values
+    # successful create - all valid values
     fill_in 'user_password', with: valid_password
     fill_in 'user_password_confirmation', with: valid_password
-    find('input[name="commit"]').click
-    expect(page).to have_content "A message with a confirmation link has been sent to your email address"
+    expect(Notifier).to receive(:report_user_event).exactly(Notifier.admin_addresses.size).times
+    submit
 
+    expect(page).to have_content "A message with a confirmation link has been sent to your email address"
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(true)
     user=User.where('username=?',valid_username).first
     expect(user.email).to eq(valid_email)
