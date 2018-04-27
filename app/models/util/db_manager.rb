@@ -2,13 +2,13 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :stage_con, :pub_con, :load_event
+    attr_accessor :con, :stage_con, :pub_con, :event
 
     def initialize(params={})
-      if params[:load_event]
-        @load_event = params[:load_event]
+      if params[:event]
+        @event = params[:event]
       else
-        @load_event = Admin::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
+        @event = Admin::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
     end
 
@@ -56,7 +56,7 @@ module Util
         grant_db_privs
         return success_code
       rescue => error
-        load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
+        event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
         grant_db_privs
         return false
       end
@@ -91,7 +91,7 @@ module Util
     def run_command_line(cmd)
       stdout, stderr, status = Open3.capture3(cmd)
       if status.exitstatus != 0
-        load_event.add_problem("#{stderr}")
+        event.add_problem("#{stderr}")
         success_code=false
       end
     end
