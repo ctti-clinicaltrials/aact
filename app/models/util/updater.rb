@@ -391,7 +391,7 @@ module Util
     end
 
     def db_mgr
-      @db_mgr ||= Util::DbManager.new({:load_event=>self.load_event})
+      @db_mgr ||= Util::DbManager.new({:event=>self.load_event})
     end
 
     def db_name

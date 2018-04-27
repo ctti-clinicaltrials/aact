@@ -43,7 +43,7 @@ class User < Admin::AdminBase
 
   def create_db_account
     event=Admin::UserEvent.create( { :event_type  => 'create', :email => self.email })
-    mgr=Util::UserDbManager.new({ :load_event => event })
+    mgr=Util::UserDbManager.new({ :event => event })
     if mgr.can_create_user_account?(self)
       mgr.create_user_account(self)
     else
@@ -53,13 +53,13 @@ class User < Admin::AdminBase
   end
 
   def grant_db_privs
-    event=Admin::UserEvent.create( { :email => self.email, :event_type => 'grant-db-privs' })
-    Util::UserDbManager.new({ :load_event => event }).grant_db_privs(self.username)
+    event=Admin::UserEvent.create( { :email => self.email, :event_type => 'confirm' })
+    Util::UserDbManager.new({ :event => event }).grant_db_privs(self.username)
   end
 
   def change_password(pwd)
     event=Admin::UserEvent.create( { :email=>self.email, :event_type=>'change-pwd' })
-    db_mgr=Util::UserDbManager.new({:load_event => event})
+    db_mgr=Util::UserDbManager.new({:event => event})
     db_mgr.change_password(self, pwd)
   end
 
@@ -97,7 +97,7 @@ class User < Admin::AdminBase
 
     if update_successful
       event=Admin::UserEvent.create( { :email => self.email, :event_type =>'update' })
-      db_mgr=Util::UserDbManager.new({ :load_event => event })
+      db_mgr=Util::UserDbManager.new({ :event => event })
       db_mgr.change_password(self, params[:password]) if params[:password]
       self
     end
@@ -109,7 +109,7 @@ class User < Admin::AdminBase
       Admin::RemovedUser.create(self.attributes.except('id', 'created_at', 'updated_at'))
       event=Admin::UserEvent.create( { :email => self.email, :event_type =>'remove' })
 
-      db_mgr=Util::UserDbManager.new({ :load_event=>event })
+      db_mgr=Util::UserDbManager.new({ :event=> event })
       db_mgr.pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
       db_mgr.remove_user(self.username)
       destroy
