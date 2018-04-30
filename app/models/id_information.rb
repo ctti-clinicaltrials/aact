@@ -1,5 +1,5 @@
 class IdInformation < StudyRelationship
-  self.table_name = 'id_information'
+  self.table_name = 'ctgov.id_information'
   def self.top_level_label
     '//id_info'
   end

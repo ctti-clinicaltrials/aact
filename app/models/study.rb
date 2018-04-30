@@ -1,12 +1,15 @@
 class String
+
   def is_missing_the_day?
     # use this method on string representations of dates.  If only one space in the string, then the day is not provided.
     (count ' ') == 1
   end
+
 end
 
 require 'csv'
 class Study < ActiveRecord::Base
+  establish_connection :ctgov_schema
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
 

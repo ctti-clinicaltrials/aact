@@ -5,6 +5,7 @@ module Util
     attr_accessor :con, :stage_con, :pub_con, :event
 
     def initialize(params={})
+      pub_con.execute("alter role ctti IN DATABASE aact set search_path = ctgov;")
       if params[:event]
         @event = params[:event]
       else
@@ -37,7 +38,7 @@ module Util
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
       cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations --schema=ctgov -c -C -Fc -f  #{fm.pg_dump_file}"
       run_command_line(cmd)
-      ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
+      (ActiveRecord::Base.establish_connection :ctgov_schema).connection
     end
 
     def refresh_public_db
@@ -117,7 +118,7 @@ module Util
     end
 
     def con
-      @con ||= ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
+      @con ||= (ActiveRecord::Base.establish_connection :ctgov_schema).connection
     end
 
     def stage_con

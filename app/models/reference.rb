@@ -1,5 +1,5 @@
 class Reference < StudyRelationship
-  self.table_name='study_references'
+  self.table_name='ctgov.study_references'
 
   def self.nodes(opts)
     opts[:xml].xpath('//reference') + opts[:xml].xpath('//results_reference')
