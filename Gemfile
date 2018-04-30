@@ -12,7 +12,7 @@ gem "high_voltage"
 gem "jquery-rails"
 gem "sidekiq"
 gem "normalize-rails"
-gem "pg"
+gem 'pg', '~> 0.20.0'
 gem 'rails_12factor'
 gem "coderay"
 gem "recipient_interceptor"

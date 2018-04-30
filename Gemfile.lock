@@ -190,7 +190,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     normalize-rails (4.1.1)
     orm_adapter (0.5.0)
-    pg (0.21.0)
+    pg (0.20.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -376,7 +376,7 @@ DEPENDENCIES
   libv8 (~> 3.16.14.15)
   nokogiri (~> 1.8.1)
   normalize-rails
-  pg
+  pg (~> 0.20.0)
   pry-byebug
   pry-rails
   quiet_assets
