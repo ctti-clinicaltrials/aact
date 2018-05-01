@@ -15,3 +15,12 @@
 
   <p>User registration will allow us to contact people about scheduled downtimes and other events. It also helps us monitor and manage database activity.</p>
   <p>Users do not need to register to download static copies of the database and the pipe-delimited flat file sets; if you only use these resources, you do not need to register.</p>
+
+ <h5>Tables now available in <i>'ctgov'</i> schema (No longer in <i>'public'</i> schema)</h5>
+ <p>In preparation for future enhancements that will provide supplemental information to enhance ClinicalTrials.gov data, all current AACT tables (ie. table containing only data retrieved from ClinicalTrials.gov) have been moved to a schema named <i>'ctgov'</i>. The live database user accounts use <i>'ctgov'</i> as the default schema, so SQL queries need not specify the schema.</p>
+
+ <p>If queries composed for the previous version of AACT did not explicitly prefix table names with <i>'public.'</i>, they should continue to work without alteration. If however, your queries have prepended the <i>'public.'</i> schema definition to table names, you will need to change these prefixes to <i>'ctgov.'</i></p>
+
+ <p>Note:  This change has not effect on users of the pipe-delimited flat file extracts.</p>
+
+
