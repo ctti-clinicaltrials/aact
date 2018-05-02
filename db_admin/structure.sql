@@ -459,6 +459,40 @@ ALTER SEQUENCE public.use_cases_id_seq OWNED BY public.use_cases.id;
 
 
 --
+-- Name: user_events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_events (
+    id integer NOT NULL,
+    event_type character varying,
+    email character varying,
+    description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: user_events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_events_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_events_id_seq OWNED BY public.user_events.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -582,6 +616,13 @@ ALTER TABLE ONLY public.use_cases ALTER COLUMN id SET DEFAULT nextval('public.us
 
 
 --
+-- Name: user_events id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_events ALTER COLUMN id SET DEFAULT nextval('public.user_events_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -674,6 +715,14 @@ ALTER TABLE ONLY public.use_case_attachments
 
 ALTER TABLE ONLY public.use_cases
     ADD CONSTRAINT use_cases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_events user_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_events
+    ADD CONSTRAINT user_events_pkey PRIMARY KEY (id);
 
 
 --
@@ -799,4 +848,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170828142046');
 INSERT INTO schema_migrations (version) VALUES ('20180226142044');
 
 INSERT INTO schema_migrations (version) VALUES ('20180409181440');
+
+INSERT INTO schema_migrations (version) VALUES ('20180427144951');
 

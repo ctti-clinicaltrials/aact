@@ -11,15 +11,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def destroy
     current_user.remove
-    Notifier.report_user_event('removed', resource)
-    redirect_to root_path
+    if resource.errors.empty?
+      Notifier.report_user_event('removed', resource)
+      redirect_to root_path
+    else
+      flash[:notice] = "#{resource.errors.first.first} #{resource.errors.first.last}"
+      redirect_to edit_user_registration_path resource
+    end
   end
 
   protected
 
   def update_resource(resource, params)
     resource.update(params)
-    Notifier.report_user_event('updated', resource)
+    if resource.errors.size == 0
+      Notifier.report_user_event('updated', resource)
+    end
   end
 
   def configure_devise_permitted_parameters
@@ -38,12 +45,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       devise_parameter_sanitizer.permit(:delete) {
         |u| u.permit(registration_params)
       }
-    end
-  end
-
-  def notify_user_of_email_confirmation
-    respond_to do |format|
-      format.html { redirect_to new_user_registration_path, notice: 'You will soon receive an email from AACT. Once you verify your information by responding to this email, a database account will be created for you.' }
     end
   end
 

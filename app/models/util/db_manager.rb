@@ -2,13 +2,13 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :stage_con, :pub_con, :load_event
+    attr_accessor :con, :stage_con, :pub_con, :event
 
     def initialize(params={})
-      if params[:load_event]
-        @load_event = params[:load_event]
+      if params[:event]
+        @event = params[:event]
       else
-        @load_event = Admin::LoadEvent.create({:event_type=>'ad hoc',:status=>'running',:description=>'',:problems=>''})
+        @event = Admin::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
     end
 
@@ -56,7 +56,7 @@ module Util
         grant_db_privs
         return success_code
       rescue => error
-        load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
+        event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
         grant_db_privs
         return false
       end
@@ -64,9 +64,12 @@ module Util
 
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
-      pub_con.execute("grant connect on database #{public_db_name} to public;")
-      pub_con.execute("grant usage on schema ctgov TO public;")
-      pub_con.execute('grant select on all tables in schema ctgov to public;')
+      c = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+      c.execute("grant connect on database #{public_db_name} to public;")
+      c.execute("grant usage on schema ctgov TO public;")
+      c.execute('grant select on all tables in schema ctgov to public;')
+      c.disconnect!
+      c=nil
     end
 
     def revoke_db_privs
@@ -80,11 +83,15 @@ module Util
       end
     end
 
+    def public_db_accessible?
+      result=pub_con.execute("select count(*) from information_schema.role_table_grants where grantee='PUBLIC' and table_schema='ctgov';").first["count"]
+      result.to_i > 0
+    end
+
     def run_command_line(cmd)
-      puts cmd
       stdout, stderr, status = Open3.capture3(cmd)
       if status.exitstatus != 0
-        load_event.add_problem("#{stderr}")
+        event.add_problem("#{stderr}")
         success_code=false
       end
     end

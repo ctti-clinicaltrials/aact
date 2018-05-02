@@ -16,56 +16,72 @@ class User < Admin::AdminBase
   validates_length_of :last_name, :maximum=>100
   validates :username, presence: true
   validates_uniqueness_of :username
+  validates_length_of :username, :minimum=>3
   validates_length_of :username, :maximum=>64
   validates_format_of :username, :with => /\A[a-zA-Z0-9]+\z/, :message => "cannot contain special chars"
   validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with an alpha character"
-  validate :can_create_db_account?, on: :create
+  validate :can_create_db_account?, :on => :create
+  validate :can_access_db?, :on => :create
 
   def can_create_db_account?
-    Util::UserDbManager.new.can_create_user_account?(self)
+    if Util::UserDbManager.new.user_account_exists?(self.username)
+      self.errors.add(:Username, "Database account already exists for '#{self.username}'")
+      return false
+    else
+      return true
+    end
+  end
+
+  def can_access_db?
+    if !Util::DbManager.new.public_db_accessible?
+      self.errors.add(:Sorry, "AACT database is temporarily unavailable.  Please try later.")
+      return false
+    else
+      return true
+    end
   end
 
   def create_db_account
-    event=Admin::LoadEvent.create({
-      :event_type=>'user-add',
-      :status=>'complete',
-      :description=>"user #{self.email}",
-      :problems=>''})
-    mgr=Util::UserDbManager.new({:load_event=>event})
+    event=Admin::UserEvent.create( { :event_type  => 'create', :email => self.email })
+    mgr=Util::UserDbManager.new({ :event => event })
     if mgr.can_create_user_account?(self)
       mgr.create_user_account(self)
     else
       self.errors.add('DB Account', 'could not be created for this user.')
-      event.problems='Could not create this user.'
+      event.description='Could not create this user.'.save
     end
   end
 
   def grant_db_privs
-    event=Admin::LoadEvent.create({:event_type=>'grant-db-privs',:status=>'complete',:description=>"user #{self.email}",:problems=>''})
-    Util::UserDbManager.new({:load_event=>event}).grant_db_privs(self.username)
+    event=Admin::UserEvent.create( { :email => self.email, :event_type => 'confirm' })
+    Util::UserDbManager.new({ :event => event }).grant_db_privs(self.username)
   end
 
   def change_password(pwd)
-    event=Admin::LoadEvent.create({:event_type=>'user-change-pwd',:status=>'complete',:description=>"user #{self.email}",:problems=>''})
-    db_mgr=Util::UserDbManager.new({:load_event=>event})
+    event=Admin::UserEvent.create( { :email=>self.email, :event_type=>'change-pwd' })
+    db_mgr=Util::UserDbManager.new({:event => event})
     db_mgr.change_password(self, pwd)
   end
 
   def self.reset_password_by_token(params)
     original_token       = params[:reset_password_token]
     reset_password_token = Devise.token_generator.digest(self, :reset_password_token, original_token)
-    resource=where('reset_password_token=?',reset_password_token).first
+    user=where('reset_password_token=?',reset_password_token).first
     if !resource.nil?
-      resource.skip_password_validation=true
-      resource.update_attributes({:password=>params[:password], :password_confirmation=>params[:password_confirmation]})
-      resource.change_password(params[:password]) if resource.errors.empty?
+      user.skip_password_validation=true
+      user.update_attributes({:password=>params[:password], :password_confirmation=>params[:password_confirmation]})
+      user.change_password(params[:password]) if resource.errors.empty?
+      event=Admin::UserEvent.create( { :email=>user.email, :event_type=>'reset-pwd' })
     end
-    resource
+    user
   end
 
   def update(params)
+
     params.delete(:password) if params[:password].blank?
     params.delete(:password_confirmation) if params[:password_confirmation].blank?
+
+    can_access_db?
 
     if !valid_password?(params['current_password'])
       self.errors.add(:current_password, "is invalid.")
@@ -80,8 +96,8 @@ class User < Admin::AdminBase
     update_successful=super
 
     if update_successful
-      event=Admin::LoadEvent.create({:event_type=>'user-update',:status=>'complete',:description=>"update user #{self.email}: #{params}",:problems=>''})
-      db_mgr=Util::UserDbManager.new({:load_event=>event})
+      event=Admin::UserEvent.create( { :email => self.email, :event_type =>'update' })
+      db_mgr=Util::UserDbManager.new({ :event => event })
       db_mgr.change_password(self, params[:password]) if params[:password]
       self
     end
@@ -89,9 +105,11 @@ class User < Admin::AdminBase
 
   def remove
     begin
+      return false if !can_access_db?
       Admin::RemovedUser.create(self.attributes.except('id', 'created_at', 'updated_at'))
-      event=Admin::LoadEvent.create({:event_type=>'user-remove',:status=>'complete',:description=>"remove user #{self.email}",:problems=>''})
-      db_mgr=Util::UserDbManager.new({:load_event=>event})
+      event=Admin::UserEvent.create( { :email => self.email, :event_type =>'remove' })
+
+      db_mgr=Util::UserDbManager.new({ :event=> event })
       db_mgr.pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
       db_mgr.remove_user(self.username)
       destroy
@@ -106,7 +124,7 @@ class User < Admin::AdminBase
   end
 
   def summary_info(type=nil)
-    if type='list'
+    if type == 'list'
       "#{id}|#{self.full_name}|#{self.username}|#{self.email}|#{self.confirmation_sent_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.confirmed_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.sign_in_count}|#{self.last_sign_in_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.last_sign_in_ip}"
     else
       "ID:  #{id}
