@@ -1,38 +1,26 @@
-development: &default
+default: &default
   encoding: utf8
   adapter: postgresql
   min_messages: warning
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  url:  <%= ENV.fetch("AACT_BACK_DATABASE_URL", "") %>
   username: <%= ENV.fetch("DB_SUPER_USERNAME", "") %>
   password: <%= ENV.fetch("DB_SUPER_PASSWORD", "") %>
+
+development:
+  <<: *default
+  url:  <%= ENV.fetch("AACT_BACK_DATABASE_URL", "") %>
 
 test:
-  encoding: utf8
-  adapter: postgresql
+  <<: *default
   database: aact_back_test
-  username: <%= ENV.fetch("DB_SUPER_USERNAME", "") %>
-  password: <%= ENV.fetch("DB_SUPER_PASSWORD", "") %>
 
-production: &deploy
-  encoding: utf8
-  adapter: postgresql
-  min_messages: warning
-  pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
-  timeout: 5000
+production:
+  <<: *default
   url:  <%= ENV.fetch("AACT_BACK_DATABASE_URL", "") %>
-  username: <%= ENV.fetch("DB_SUPER_USERNAME", "") %>
-  password: <%= ENV.fetch("DB_SUPER_PASSWORD", "") %>
 
-public: &deploy
-  encoding: utf8
-  adapter: postgresql
-  min_messages: warning
-  pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
-  timeout: 5000
+public:
+  <<: *default
   url:  <%= ENV.fetch("AACT_PUBLIC_DATABASE_URL", "") %>
-  username: <%= ENV.fetch("DB_SUPER_USERNAME", "") %>
-  password: <%= ENV.fetch("DB_SUPER_PASSWORD", "") %>
 
 
