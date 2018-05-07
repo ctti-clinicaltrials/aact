@@ -90,7 +90,7 @@ describe User do
     ).connection
     expect(con.active?).to eq(true)
     con.execute('show search_path;')
-    expect(con.execute('select count(*) from public.studies').count).to eq(1)
+    expect(con.execute('select count(*) from ctgov.studies').count).to eq(1)
     con.disconnect!
     expect(con.active?).to eq(false)
     con=nil
