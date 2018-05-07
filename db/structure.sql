@@ -1666,6 +1666,15 @@ ALTER SEQUENCE ctgov.result_groups_id_seq OWNED BY ctgov.result_groups.id;
 
 
 --
+-- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.schema_migrations (
+    version character varying NOT NULL
+);
+
+
+--
 -- Name: sponsors_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -1789,15 +1798,6 @@ CREATE SEQUENCE ctgov.study_references_id_seq
 --
 
 ALTER SEQUENCE ctgov.study_references_id_seq OWNED BY ctgov.study_references.id;
-
-
---
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.schema_migrations (
-    version character varying NOT NULL
-);
 
 
 --
@@ -2955,19 +2955,17 @@ CREATE INDEX index_study_references_on_reference_type ON ctgov.study_references 
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
+-- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
+CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
 
 
 --
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov, public;
-
-INSERT INTO schema_migrations (version) VALUES ('20160620201020');
+SET search_path TO ctgov;
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
