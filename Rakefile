@@ -12,7 +12,7 @@ namespace :db do
     puts "Setting search path to ctgov..."
     con=ActiveRecord::Base.connection
     con.execute("create schema ctgov;")
-    con.execute("alter role ctti set search_path to ctgov;")
+    con.execute("alter role ctti set search_path to ctgov, public;")
     con.execute("grant usage on schema ctgov to ctti;")
     con.execute("grant create on schema ctgov to ctti;")
     con.reset!
