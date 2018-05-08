@@ -2,7 +2,7 @@ class Notifier < ApplicationMailer
 
   def self.report_load_event(event)
     admin_addresses.each do |email|
-     send_msg(email, event.subject_line, event.email_message).deliver_now
+      send_msg(email, event.subject_line, event.email_message).deliver_now
     end
   end
 

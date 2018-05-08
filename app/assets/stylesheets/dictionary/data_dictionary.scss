@@ -80,6 +80,11 @@ label::before {
   background: #008aa1;
 }
 
+.standardLayout {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 section.dataDictionaryShow {
   padding-bottom: 500px;
 
@@ -159,15 +164,7 @@ section.dataDictionaryShow {
 
     span {
       font-family: $font-sans;
-      padding: 2px 4px;
       text-transform: uppercase;
-
-    }
-
-    a {
-      font-family: $font-sans;
-      font-size: 11px;
-      letter-spacing: 1px;
 
     }
   }

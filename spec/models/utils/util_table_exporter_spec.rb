@@ -5,6 +5,13 @@ describe Util::TableExporter do
     let(:table_exporter) { Util::TableExporter.new }
     let(:zipfile_name)   { table_exporter.zipfile_name }
 
+    before do
+      # this study has new line chars embedded in Outcomes.description.  Will verify they don't cause probs in flat files
+      nct_id='NCT03191552'
+      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+      study=Study.new({xml: xml, nct_id: nct_id}).create
+    end
+
     after do
       File.delete(zipfile_name) if File.exist?(zipfile_name)
     end
@@ -22,7 +29,6 @@ describe Util::TableExporter do
         expect(Admin::LoadEvent.count).to eq(1)
         le=Admin::LoadEvent.last
         expect(le.event_type).to eq('table_export')
-        expect(le.load_time).to eq('0 minutes and 0 seconds')
       end
 
       it 'should have content in each csv' do
@@ -31,7 +37,20 @@ describe Util::TableExporter do
         end
 
         entries.each do |entry|
-          expect(entry.get_input_stream.read.length > 0).to eq(true)
+          # some Outcomes have descriptions with embedded newline chars. Make sure they're escaped
+          content=entry.get_input_stream.read
+          expect(content.length > 0).to eq(true)
+          if entry.name == 'outcomes.txt'
+            rows=content.split("\n")
+            # The test study should have 18 Outcomes
+            expect(rows.count).to eq(18)
+            rows.each{|row|
+              # every row should begin with the id (an integer)
+              attribs=row.split("|")
+              is_int = attribs.first =~ /\A\d+\z/ ? true : false
+              expect(is_int).to eq(true) if attribs.first != 'id'
+            }
+          end
         end
       end
     end
