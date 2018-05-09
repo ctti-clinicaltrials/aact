@@ -67,10 +67,10 @@ class User < Admin::AdminBase
     original_token       = params[:reset_password_token]
     reset_password_token = Devise.token_generator.digest(self, :reset_password_token, original_token)
     user=where('reset_password_token=?',reset_password_token).first
-    if !resource.nil?
+    if !user.nil?
       user.skip_password_validation=true
       user.update_attributes({:password=>params[:password], :password_confirmation=>params[:password_confirmation]})
-      user.change_password(params[:password]) if resource.errors.empty?
+      user.change_password(params[:password]) if user.errors.empty?
       event=Admin::UserEvent.create( { :email=>user.email, :event_type=>'reset-pwd' })
     end
     user
