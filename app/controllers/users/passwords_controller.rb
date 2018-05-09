@@ -7,12 +7,14 @@ class Users::PasswordsController < Devise::PasswordsController
   end
 
   def update
-    resource = resource_class.reset_password_by_token(params[resource_name])
-    Notifier.report_user_event('password reset', resource)
-    if resource
-      yield resource if block_given?
+    self.resource = resource_class.reset_password_by_token(params[resource_name])
+    yield resource if block_given?
+    if resource and resource.errors.empty?
+      Notifier.report_user_event('password reset', resource)
       sign_out(:user)
       sign_in(:user, resource)
+    else
+      Notifier.report_user_event('password reset error', resource)
     end
     redirect_to root_path
   end
