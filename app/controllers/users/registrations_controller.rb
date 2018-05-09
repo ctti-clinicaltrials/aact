@@ -34,12 +34,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     case params[:action]
     when 'update'
-      params['user']['unencrypted_password'] = params['user']['password'] if params['user']['password']
+      params['user']['unencrypted_password'] = params['user']['password'] if !params['user']['password'].blank?
       devise_parameter_sanitizer.permit(:account_update) {
         |u| u.permit(registration_params << :current_password)
       }
     when 'create'
-      params['user']['unencrypted_password'] = params['user']['password'] if params['user']['password']
+      params['user']['unencrypted_password'] = params['user']['password'] if !params['user']['password'].blank?
       devise_parameter_sanitizer.permit(:sign_up) {
         |u| u.permit(registration_params)
       }
