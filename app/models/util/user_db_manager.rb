@@ -9,7 +9,7 @@ module Util
       begin
         return false if !can_create_user_account?(user)
         pub_con.execute("create user \"#{user.username}\" password '#{user.password}';")
-        pub_con.execute("alter user #{user.username} nologin;")
+        pub_con.execute("alter user #{user.username} nologin;")  # can't login until they confirm their email
         return true
       rescue => e
         user.errors.add(:base, e.message)

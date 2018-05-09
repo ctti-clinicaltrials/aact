@@ -53,10 +53,13 @@ module Util
         terminate_alt_db_sessions
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
         run_command_line(cmd)
+
         grant_db_privs
         return success_code
       rescue => error
-        event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
+        msg="#{error.message} (#{error.class} #{error.backtrace}"
+        event.add_problem(msg)
+        puts msg
         grant_db_privs
         return false
       end
