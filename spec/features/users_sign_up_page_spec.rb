@@ -148,6 +148,18 @@ feature "Users Sign Up Page" do
     expect(page).to have_field 'user_current_password'
     expect(user.unencrypted_password).to eq(valid_password)
 
+    visit '/users/edit'
+    new_first_name='new first name'
+    fill_in 'user_first_name', with: new_first_name
+    fill_in 'user_current_password', with: valid_password
+    fill_in 'user_password', with: ''
+    fill_in 'user_password_confirmation', with: ''
+    expect(Notifier).to receive(:report_user_event).exactly(1).times
+    submit
+    user=User.where('username=?',valid_username).first
+    expect(user.first_name).to eq(new_first_name)
+    expect(user.unencrypted_password).to eq(valid_password)
+
     user.remove
     expect(User.where('username=?',valid_username).size).to eq(0)
     expect(Util::UserDbManager.new.user_account_exists?(user.username)).to eq(false)
