@@ -40,24 +40,6 @@ module Util
       ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
     end
 
-    def restore_public_db(prefix)
-      begin
-        success_code=true
-        revoke_db_privs
-        file_name=Util::FileManager.new.public_db_backup(prefix)
-        cmd="gunzip #{file_name} | pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']} -d #{public_db_name}"
-        run_command_line(cmd)
-        grant_db_privs
-        return success_code
-      rescue => error
-        grant_db_privs
-        msg="#{error.message} (#{error.class} #{error.backtrace}"
-        event.add_problem(msg)
-        puts msg
-        return false
-      end
-    end
-
     def refresh_public_db
       begin
         success_code=true
@@ -66,10 +48,6 @@ module Util
         dump_file_name=Util::FileManager.new.pg_dump_file
         return nil if dump_file_name.nil?
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
-        run_command_line(cmd)
-
-        # while users are locked out, create backup of the public AACT db (to backup user account info).
-        cmd="pg_dump --no-owner -h #{public_host_name} --lock-wait-timeout=100 -U #{ENV['DB_SUPER_USERNAME']}  #{public_db_name} | gzip > #{Util::FileManager.new.public_db_backup_today}"
         run_command_line(cmd)
 
         terminate_alt_db_sessions

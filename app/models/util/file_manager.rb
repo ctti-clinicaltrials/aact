@@ -20,14 +20,6 @@ module Util
       end
     end
 
-    def public_db_backup_today
-      "#{Rails.public_path}/db_backups/#{Time.zone.now.strftime('%Y%m%d')}_db_backup.zip"
-    end
-
-    def public_db_backup(prefix)
-      "#{Rails.public_path}/db_backups/#{prefix}_db_backup.zip"
-    end
-
     def pg_dump_file
       "#{Rails.public_path}/static/tmp/postgres.dmp"
     end
