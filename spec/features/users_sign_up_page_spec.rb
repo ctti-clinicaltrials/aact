@@ -146,7 +146,6 @@ feature "Users Sign Up Page" do
     expect(page).to have_field 'user_password'
     expect(page).to have_field 'user_password_confirmation'
     expect(page).to have_field 'user_current_password'
-    expect(user.unencrypted_password).to eq(valid_password)
 
     visit '/users/edit'
     new_first_name='new first name'
@@ -158,7 +157,6 @@ feature "Users Sign Up Page" do
     submit
     user=User.where('username=?',valid_username).first
     expect(user.first_name).to eq(new_first_name)
-    expect(user.unencrypted_password).to eq(valid_password)
 
     user.remove
     expect(User.where('username=?',valid_username).size).to eq(0)
