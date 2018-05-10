@@ -4,7 +4,6 @@ class AddDeviseToUsers < ActiveRecord::Migration
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
-      t.string :unencrypted_password  #save original string until user confirms. Then use to create their db account & delete
 
       ## Recoverable
       t.string   :reset_password_token
