@@ -13,7 +13,6 @@ module Admin
     def self.populate_from_file(data=Util::FileManager.new.default_data_definitions)
       header = data.first
       dataOut = []
-      puts "about to populate data definitions table..."
       (2..data.last_row).each do |i|
         row = Hash[[header, data.row(i)].transpose]
         if !row['table'].nil? and !row['column'].nil?

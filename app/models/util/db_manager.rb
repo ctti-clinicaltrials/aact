@@ -24,13 +24,16 @@ module Util
       run_command_line(cmd)
 
       # clear out previous ctgov content from staging db
-      puts "Recreating ctgov schema in aact staging database..."
+      log "Recreating ctgov schema in aact staging database..."
       terminate_stage_db_sessions
-      stage_con.execute('DROP SCHEMA IF EXISTS ctgov CASCADE;')
-      stage_con.execute('CREATE SCHEMA ctgov;')
+      begin
+        stage_con.execute('DROP SCHEMA ctgov CASCADE;')
+      rescue
+      end
+      #stage_con.execute('CREATE SCHEMA ctgov;')
 
       # refresh staging db
-      puts "Refreshing aact staging database..."
+      log "Refreshing aact staging database..."
       cmd="psql -h localhost aact < #{psql_file} > /dev/null"
       run_command_line(cmd)
 
@@ -59,7 +62,7 @@ module Util
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         event.add_problem(msg)
-        puts msg
+        log msg
         grant_db_privs
         return false
       end
@@ -82,7 +85,7 @@ module Util
         pub_con.execute("revoke all on schema ctgov from public;")
       rescue => error
         # error raised if schema missing. Ignore. Will be created in a pg_restore.
-        puts "DbManager.revoke_db_privs:  #{error}"
+        log "DbManager.revoke_db_privs:  #{error}"
       end
     end
 
@@ -94,9 +97,13 @@ module Util
     def run_command_line(cmd)
       stdout, stderr, status = Open3.capture3(cmd)
       if status.exitstatus != 0
-        event.add_problem("#{stderr}")
+        event.add_problem("#{Time.zone.now}: #{stderr}")
         success_code=false
       end
+    end
+
+    def log(msg)
+      puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
     end
 
     def terminate_stage_db_sessions
