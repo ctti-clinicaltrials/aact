@@ -10,12 +10,6 @@ class Notifier < ApplicationMailer
     admin_addresses.each { |email_addr| send_user_event_msg(email_addr, user, event_type).deliver_now }
   end
 
-  def self.report_user_backup(event)
-    admin_addresses.each { |email_addr|
-      send_msg(email_addr, event.subject_line, event.notification_message).deliver_now
-    }
-  end
-
   def send_user_event_msg(email_addr, user, event_type)
     #  refactor this so that it uses the user_event.subject_line
     send_msg(email_addr, user.notification_subject_line(event_type), user.summary_info)

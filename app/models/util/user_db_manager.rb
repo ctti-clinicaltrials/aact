@@ -60,7 +60,7 @@ module Util
       account_file_name="#{file_prefix}_aact_user_accounts.sql"
 
       File.delete(table_file_name) if File.exist?(table_file_name)
-      File.delete(events_file_name) if File.exist?(event_file_name)
+      File.delete(event_file_name) if File.exist?(event_file_name)
       File.delete(account_file_name) if File.exist?(account_file_name)
 
       log "dumping Users table..."
@@ -75,8 +75,8 @@ module Util
       cmd="pg_dumpall -U  #{ENV['DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{account_file_name}"
       run_command_line(cmd)
 
-      event=Admin::UserEvent.new({:event_type=>'backup', :file_names=>[table_file_name, event_file_name, account_file_name]})
-      Notifier.report_user_backup(event)
+      event=Admin::UserEvent.new({:event_type=>'backup', :file_names=>" #{table_file_name}, #{event_file_name}, #{account_file_name}" })
+      BackupMailer.report_user_backup(event).deliver_now
     end
 
     def grant_db_privs(username)
