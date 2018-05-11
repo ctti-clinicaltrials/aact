@@ -24,7 +24,7 @@ module Util
       run_command_line(cmd)
 
       # clear out previous ctgov content from staging db
-      log "Recreating ctgov schema in aact staging database..."
+      log "recreating ctgov schema in aact staging database..."
       terminate_stage_db_sessions
       begin
         stage_con.execute('DROP SCHEMA ctgov CASCADE;')
@@ -33,7 +33,7 @@ module Util
       #stage_con.execute('CREATE SCHEMA ctgov;')
 
       # refresh staging db
-      log "Refreshing aact staging database..."
+      log "refreshing aact staging database..."
       cmd="psql -h localhost aact < #{psql_file} > /dev/null"
       run_command_line(cmd)
 
@@ -79,13 +79,14 @@ module Util
     end
 
     def revoke_db_privs
+      log "db_manager.revoking db privs..."
       begin
         pub_con.execute("revoke connect on database #{public_db_name} from public;")
         pub_con.execute("revoke select on all tables in schema ctgov from public;")
         pub_con.execute("revoke all on schema ctgov from public;")
       rescue => error
         # error raised if schema missing. Ignore. Will be created in a pg_restore.
-        log "DbManager.revoke_db_privs:  #{error}"
+        log "db_manager.revoke_db_privs - error encountered:  #{error}"
       end
     end
 

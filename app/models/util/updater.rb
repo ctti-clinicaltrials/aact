@@ -297,7 +297,7 @@ module Util
     end
 
     def sanity_checks_ok?
-      log "Sanity Checks ok?...."
+      log "sanity checks ok?...."
       Admin::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Admin::SanityCheck.where('most_current is true')
       load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
