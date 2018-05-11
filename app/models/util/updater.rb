@@ -107,7 +107,7 @@ module Util
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
         load_event.save!
       end
-      Util::UserDbmanager.new.backup_user_info
+      Util::UserDbManager.new.backup_user_info
       db_mgr.grant_db_privs
       load_event.complete({:study_counts=>study_counts})
       create_flat_files
