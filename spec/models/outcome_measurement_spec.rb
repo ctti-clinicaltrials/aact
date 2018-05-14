@@ -82,7 +82,7 @@ describe OutcomeMeasurement do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.outcomes.size).to eq(5)
+    expect(study.outcomes.size).to eq(6)
     outcome=(study.outcomes.select{|o|o.outcome_type=='Primary' and o.title=='Percentage of Patients Who Survive at Least 12 Months'}).first
     expect(outcome.population).to eq('Eligible patients at the MTD dose level who started protocol treatment.')
     expect(outcome.units).to eq('percentage of participants')
