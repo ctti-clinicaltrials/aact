@@ -151,11 +151,11 @@ describe Util::Updater do
     expect(study.start_month_year).to eq('July 2001')
     expect(study.completion_month_year).to eq('November 2013')
     expect(study.primary_completion_month_year).to eq('January 2009')
-    expect(study.verification_month_year).to eq('November 2015')
+    expect(study.verification_month_year).to eq('November 2017')
 
     expect(study.study_first_submitted_date).to eq('September 13, 2001'.to_date)
     expect(study.results_first_submitted_date).to eq('February 12, 2014'.to_date)
-    expect(study.last_update_submitted_date).to eq('November 14, 2015'.to_date)
+    expect(study.last_update_submitted_date).to eq('November 27, 2017'.to_date)
 
     expect(study.start_date).to eq(study.start_month_year.to_date.end_of_month)
     expect(study.verification_date).to eq(study.verification_month_year.to_date.end_of_month)
