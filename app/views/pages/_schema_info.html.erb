@@ -14,7 +14,7 @@
    <ul class='regularDisplay'>
      <li>Table names are all plural. (ie. <i>studies, facilities, interventions,</i> etc.)</li>
      <li>Column names are all singular. (ie. <i>description, phase, name</i>, etc.)</li>
-     <li>Table/column names derived from multiple words are delimited with underscores. (ie. <i>mesh_term, first_received_date, number_of_groups</i>, etc.)</li>
+     <li>Table/column names derived from multiple words are delimited with underscores. (ie. <i>mesh_term, study_first_submitted_date, number_of_groups</i>, etc.)</li>
      <li>Case (upper vs lower) is not relevant since PostgreSQL ignores case. <i>Studies</i>, <i>STUDIES</i> and <i>studies</i> all represent the same table and can be used interchangably.</li>
      <li>Information about study design entered into ClinicalTrials.gov during registration is stored in AACT tables prefixed with <i>Design_</i> to distinguish it from the results data. For example, the <i>Design_Groups</i> table contains registry information about anticipated participant groups, whereas the <i>Result_Groups</i> table contains information that was entered after the study has completed to describe actual participant groups. <i>Design_Outcomes</i> contains information about the outcomes to be measured and <i>Outcomes</i> contains info about the actual outcomes reported when the study completed.</li>
      <li>Where possible, tables & columns are given fully qualified names; abbreviations are avoided. (ie. <i>description</i> rather than <i>desc</i>; <i>category</i> rather than <i>ctgry</i>)</li>

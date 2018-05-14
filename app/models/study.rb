@@ -220,12 +220,6 @@ class Study < ActiveRecord::Base
       :last_update_submitted_qc_date        =>  get('last_update_submitted_qc').try(:to_date),
       :last_update_posted_date              =>  get('last_update_posted').try(:to_date),
 
-      # deprecate (delete) these at some point in 2018
-      :first_received_date => get_date(get('study_first_submitted')),
-      :first_received_results_date => get_date(get('results_first_submitted')),
-      :received_results_disposit_date => get_date(get('disposition_first_submitted')),
-      :last_changed_date => get_date(get('last_update_submitted')),
-
       # the previous have been replaced with:
       :study_first_submitted_date => get_date(get('study_first_submitted')),
       :results_first_submitted_date => get_date(get('results_first_submitted')),
