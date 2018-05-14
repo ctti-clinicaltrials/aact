@@ -3,6 +3,10 @@ module Admin
   class Enumeration < Admin::AdminBase
 
     def self.populate
+      new.populate
+    end
+
+    def populate
       con=ActiveRecord::Base.connection
       enums.each{|array|
         begin
@@ -50,7 +54,8 @@ module Admin
       }
     end
 
-    def self.create_from(hash)
+    def create_from(hash)
+      # Bi-Monthly creation of Enumeration rows.
       Admin::Enumeration.new(
         {:table_name     => hash[:table_name],
          :column_name    => hash[:column_name],
@@ -58,7 +63,13 @@ module Admin
          :value_count    => hash[:value_count],
          :value_percent  => hash[:value_percent],
         }
-      ).save!
+      ).save! if is_day_to_create_enums?
+    end
+
+    def is_day_to_create_enums?
+      # We create set of Enumerations on the 2nd & 16th day of the month.
+      [2,16].include? Time.zone.today.day
+      # We avoid the 1st of the month cuz full loads run that day & might at some point take more than 24 hrs.
     end
 
     def self.get_values_for(table_name, column_name)
@@ -68,7 +79,7 @@ module Admin
     end
 
     def self.get_last_two_for(table_name, column_name, val)
-      rows=Admin::Enumeration.where("table_name=? and column_name=? and column_value=?", table_name, column_name, val).order("created_at")
+      rows=where("table_name=? and column_name=? and column_value=?", table_name, column_name, val).order("created_at")
       if rows.size > 1
         return {:last=>rows.last, :next_last=>rows.offset(1).last} if rows.size > 1
       else
@@ -76,7 +87,7 @@ module Admin
       end
     end
 
-    def self.enums
+    def enums
       [
         ['baseline_counts','units'],
         ['baseline_counts','scope'],

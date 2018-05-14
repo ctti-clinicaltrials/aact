@@ -75,8 +75,10 @@ class CreateIndices < ActiveRecord::Migration
     add_index :studies, :start_date
     add_index :studies, :start_date_type
     add_index :studies, :study_type
-    add_index :studies, :first_received_results_date
-    add_index :studies, :received_results_disposit_date
+    add_index :studies, :study_first_submitted_date
+    add_index :studies, :results_first_submitted_date
+    add_index :studies, :disposition_first_submitted_date
+    add_index :studies, :last_update_submitted_date
     add_index :study_references, :reference_type
   end
 

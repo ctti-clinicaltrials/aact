@@ -28,6 +28,10 @@ module Util
       "#{Rails.public_path}/static/tmp"
     end
 
+    def backup_directory
+      "#{Rails.public_path}/static/db_backups"
+    end
+
     def xml_file_directory
       "#{Rails.public_path}/static/xml_downloads"
     end

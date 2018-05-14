@@ -49,7 +49,7 @@ class DefinitionsController < ApplicationController
   end
 
   def fix_attribs(hash)
-    enums=Admin::Enumeration.enums
+    enums=Admin::Enumeration.new.enums
     enum_tabs=enums.map {|row| row[0]}
     enum_cols=enums.map {|row| row[1]}
     tab=hash['table'].downcase

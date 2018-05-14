@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+<p>Hello!</p>
+
+<p>AACT User information is saved to the attached SQL files.</p>
+
+       <ul>
+          <% @files.each do |file_info| %>
+           <li><%= file_info[:file_name] %></li>
+          <% end %>
+       </ul>
+
+       <p>User info can be restored with the following commands:</p>
+<p>
+        First verify the schema defined in the file is correct (ctgov).
+        in aact_admin db:
+          truncate table users;
+          truncate table user_events;
+        psql -d aact_admin -a -f YYYYMMDD-aact-users_table.sql
+        psql -d aact_admin -a -f YYYYMMDD-aact-user_events.sql
+
+        On the public server that hosts the publicly accessible database:
+        psql -d aact -a -f YYYYMMDD-aact-user_accounts.sql </p>
+  </body>
+</html>
+

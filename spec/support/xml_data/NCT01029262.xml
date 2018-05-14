@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01029262</url>
   </required_header>
@@ -50,17 +50,17 @@
   <primary_outcome>
     <measure>Percentage of Participants Who Achieved Red Blood Cell (RBC) Transfusion Independence for ≥ 56 Days as Determined by an Independent Review Committee (IRC)</measure>
     <time_frame>Up to 49 months; From randomization to the data cut-off of 17 Mar 2014; maximum exposure to study drug was 1158 days</time_frame>
-    <description>The percentage of participants who achieved the 56-day RBC transfusion independent (TI) response was defined as the absence of any RBC transfusions during any consecutive "rolling" 56-day interval within the double-blind treatment phase (ie, Days 2 (Day 1 is the first study drug day) to 57, Days 3 to 58, etcetera). The double-blind treatment phase was defined as the period between the 1st dosing up until 28 days after the last study drug dose</description>
+    <description>The percentage of participants who achieved the 56-day RBC transfusion independent (TI) response was defined as the absence of any RBC transfusions during any consecutive &quot;rolling&quot; 56-day interval within the double-blind treatment phase (ie, Days 2 (Day 1 is the first study drug day) to 57, Days 3 to 58, etcetera). The double-blind treatment phase was defined as the period between the 1st dosing up until 28 days after the last study drug dose</description>
   </primary_outcome>
   <primary_outcome>
     <measure>Percentage of Participants With a Erythroid Gene Signature Who Achieved RBC Transfusion Independence for ≥ 56 Days as Determined by an Independent Review Committee (IRC)</measure>
     <time_frame>Up to 49 months; Up to data cut-off of 17 Mar 2014; maximum exposure to study drug was 1158 days</time_frame>
-    <description>The percentage of participants who achieved the 56-day RBC TI response was defined as the absence of any RBC transfusions during any consecutive "rolling" 56-day interval within the double-blind treatment phase (ie, Days 2 (Day 1 is the first study drug day) to 57, Days 3 to 58, etcetera). A participant who achieved at least a 56-day RBC-transfusion-independent response was considered a 56-day RBC-TI responder.</description>
+    <description>The percentage of participants who achieved the 56-day RBC TI response was defined as the absence of any RBC transfusions during any consecutive &quot;rolling&quot; 56-day interval within the double-blind treatment phase (ie, Days 2 (Day 1 is the first study drug day) to 57, Days 3 to 58, etcetera). A participant who achieved at least a 56-day RBC-transfusion-independent response was considered a 56-day RBC-TI responder.</description>
   </primary_outcome>
   <secondary_outcome>
     <measure>Percentage of Participants Who Achieved RBC Transfusion Independence With a Duration of ≥ 24 Weeks (168 Days) as Determined by the Sponsor</measure>
     <time_frame>Up to 49 months; From randomization to the data cut-off of 17 Mar 2014; maximum exposure to study drug was 1158 days</time_frame>
-    <description>The 168-day RBC-transfusion-independent response was defined as the absence of any RBC transfusion during any consecutive "rolling" 168 days during the treatment period, for example Days 2 (Day 1 is the first study drug day) to 169, Days 3 to 170, Days 4 to 171, etcetera. A responder was defined as a participant who had a ≥ 168 consecutive days of RBC-transfusion-free period after the first dose of study drug in the treatment phase.</description>
+    <description>The 168-day RBC-transfusion-independent response was defined as the absence of any RBC transfusion during any consecutive &quot;rolling&quot; 168 days during the treatment period, for example Days 2 (Day 1 is the first study drug day) to 169, Days 3 to 170, Days 4 to 171, etcetera. A responder was defined as a participant who had a ≥ 168 consecutive days of RBC-transfusion-free period after the first dose of study drug in the treatment phase.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Kaplan Meier Estimates of Duration of 56-day RBC TI Response as Determined by the Sponsor</measure>
@@ -1336,11 +1336,14 @@ The EORTC QLQ-C30 Emotional Functioning Domain was scored between 0 and 100, wit
     <PMID>27354480</PMID>
   </results_reference>
   <verification_date>July 2017</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>July 25, 2017</lastchanged_date>
-  <firstreceived_date>December 8, 2009</firstreceived_date>
-  <firstreceived_results_date>May 8, 2015</firstreceived_results_date>
-  <!-- New date names                                                                           -->
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>December 8, 2009</study_first_submitted>
   <study_first_submitted_qc>December 8, 2009</study_first_submitted_qc>
   <study_first_posted type="Estimate">December 9, 2009</study_first_posted>
@@ -1350,7 +1353,6 @@ The EORTC QLQ-C30 Emotional Functioning Domain was scored between 0 and 100, wit
   <last_update_submitted>July 25, 2017</last_update_submitted>
   <last_update_submitted_qc>July 25, 2017</last_update_submitted_qc>
   <last_update_posted type="Actual">July 27, 2017</last_update_posted>
-  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
@@ -2746,7 +2748,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
       <outcome>
         <type>Primary</type>
         <title>Percentage of Participants With a Erythroid Gene Signature Who Achieved RBC Transfusion Independence for ≥ 56 Days as Determined by an Independent Review Committee (IRC)</title>
-        <description>The percentage of participants who achieved the 56-day RBC TI response was defined as the absence of any RBC transfusions during any consecutive "rolling" 56-day interval within the double-blind treatment phase (ie, Days 2 (Day 1 is the first study drug day) to 57, Days 3 to 58, etcetera). A participant who achieved at least a 56-day RBC-transfusion-independent response was considered a 56-day RBC-TI responder.</description>
+        <description>The percentage of participants who achieved the 56-day RBC TI response was defined as the absence of any RBC transfusions during any consecutive &quot;rolling&quot; 56-day interval within the double-blind treatment phase (ie, Days 2 (Day 1 is the first study drug day) to 57, Days 3 to 58, etcetera). A participant who achieved at least a 56-day RBC-transfusion-independent response was considered a 56-day RBC-TI responder.</description>
         <time_frame>Up to 49 months; Up to data cut-off of 17 Mar 2014; maximum exposure to study drug was 1158 days</time_frame>
         <population>Analysis population includes ITT participants with an erythroid gene expression signature with a positive response</population>
         <group_list>
@@ -2762,7 +2764,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         </group_list>
         <measure>
           <title>Percentage of Participants With a Erythroid Gene Signature Who Achieved RBC Transfusion Independence for ≥ 56 Days as Determined by an Independent Review Committee (IRC)</title>
-          <description>The percentage of participants who achieved the 56-day RBC TI response was defined as the absence of any RBC transfusions during any consecutive "rolling" 56-day interval within the double-blind treatment phase (ie, Days 2 (Day 1 is the first study drug day) to 57, Days 3 to 58, etcetera). A participant who achieved at least a 56-day RBC-transfusion-independent response was considered a 56-day RBC-TI responder.</description>
+          <description>The percentage of participants who achieved the 56-day RBC TI response was defined as the absence of any RBC transfusions during any consecutive &quot;rolling&quot; 56-day interval within the double-blind treatment phase (ie, Days 2 (Day 1 is the first study drug day) to 57, Days 3 to 58, etcetera). A participant who achieved at least a 56-day RBC-transfusion-independent response was considered a 56-day RBC-TI responder.</description>
           <population>Analysis population includes ITT participants with an erythroid gene expression signature with a positive response</population>
           <units>percentage of participants</units>
           <param>Number</param>
@@ -2814,7 +2816,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Fatigue Scale is scored between 0 and 100, with a high score indicating a higher level of symptoms. Negative change from Baseline values indicate reduction in fatigue (i.e. improvement in symptom) and positive values indicate increases in fatigue (i.e. worsening of symptom).</description>
         <time_frame>Baseline and Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -2830,7 +2832,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
           <title>Mean Change From Baseline in the EORTC QLQ-C30 Fatigue Domain at Week 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Fatigue Scale is scored between 0 and 100, with a high score indicating a higher level of symptoms. Negative change from Baseline values indicate reduction in fatigue (i.e. improvement in symptom) and positive values indicate increases in fatigue (i.e. worsening of symptom).</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>units on a scale</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
@@ -2900,7 +2902,7 @@ The EORTC QLQ-C30 Fatigue Scale is scored between 0 and 100, with a high score i
         <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Dyspnea scale is scored between 0 and 100, with a high score indicating a higher level of symptoms. Negative change from Baseline values indicate decreased dyspnea (i.e. improvement in symptom) and positive values indicate increased dyspnea (i.e. worsening of symptom).</description>
         <time_frame>Baseline and Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n" are included).</population>
+        <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot; are included).</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -2916,7 +2918,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
           <title>Mean Change From Baseline in the EORTC QLQ-C30 Dyspnea Domain at Week 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Dyspnea scale is scored between 0 and 100, with a high score indicating a higher level of symptoms. Negative change from Baseline values indicate decreased dyspnea (i.e. improvement in symptom) and positive values indicate increased dyspnea (i.e. worsening of symptom).</description>
-          <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n" are included).</population>
+          <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot; are included).</population>
           <units>units on a scale</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
@@ -2986,7 +2988,7 @@ The EORTC QLQ-C30 Dyspnea scale is scored between 0 and 100, with a high score i
         <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Physical Functioning Scale was scored between 0 and 100, with a high score indicating better functioning. Negative change from Baseline values indicate deterioration in functioning and positive values indicate improvement.</description>
         <time_frame>Baseline and Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3002,7 +3004,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
           <title>Mean Change From Baseline in the EORTC QLQ-C30 Physical Functioning Domain at Week 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Physical Functioning Scale was scored between 0 and 100, with a high score indicating better functioning. Negative change from Baseline values indicate deterioration in functioning and positive values indicate improvement.</description>
-          <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>units on a scale</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
@@ -3072,7 +3074,7 @@ The EORTC QLQ-C30 Physical Functioning Scale was scored between 0 and 100, with 
         <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Global Health Status/QOL scale was scored between 0 and 100, with a high score indicating better Global Health Status/QOL. Negative change from Baseline values indicate deterioration in Global Health Status/QOL and positive values indicate improvement.</description>
         <time_frame>Baseline and Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3088,7 +3090,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
           <title>Mean Change From Baseline in the EORTC QLQ-C30 Global Health Status/Quality of Life (QOL) Domain at Week 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Global Health Status/QOL scale was scored between 0 and 100, with a high score indicating better Global Health Status/QOL. Negative change from Baseline values indicate deterioration in Global Health Status/QOL and positive values indicate improvement.</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>units on a scale</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
@@ -3157,7 +3159,7 @@ The EORTC QLQ-C30 Global Health Status/QOL scale was scored between 0 and 100, w
         <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Emotional Functioning Domain was scored between 0 and 100, with a high score indicating better functioning. Negative change from Baseline values indicate deterioration in functioning and positive values indicate improvement.</description>
         <time_frame>Baseline and Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3173,7 +3175,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
           <title>Mean Change From Baseline in the EORTC QLQ-C30 Emotional Functioning Domain at Week 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Emotional Functioning Domain was scored between 0 and 100, with a high score indicating better functioning. Negative change from Baseline values indicate deterioration in functioning and positive values indicate improvement.</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>units on a scale</units>
           <param>Mean</param>
           <dispersion>Standard Deviation</dispersion>
@@ -3242,7 +3244,7 @@ The EORTC QLQ-C30 Emotional Functioning Domain was scored between 0 and 100, wit
         <title>Mean Change From Baseline in Fatigue Domain Associated With the EORTC QLQ-C-30 Scale at Week 12 and Week 24</title>
         <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). The EORTC QLQ-C30 Fatigue Scale is scored between 0 and 100, with a high score indicating a higher level of symptoms. Negative change from Baseline values indicate reduction in fatigue (i.e. improvement in symptom) and positive values indicate increases in fatigue (i.e. worsening of symptom).</description>
         <time_frame>Baseline, Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3257,7 +3259,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <measure>
           <title>Mean Change From Baseline in Fatigue Domain Associated With the EORTC QLQ-C-30 Scale at Week 12 and Week 24</title>
           <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). The EORTC QLQ-C30 Fatigue Scale is scored between 0 and 100, with a high score indicating a higher level of symptoms. Negative change from Baseline values indicate reduction in fatigue (i.e. improvement in symptom) and positive values indicate increases in fatigue (i.e. worsening of symptom).</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>units on a scale</units>
           <param>Least Squares Mean</param>
           <dispersion>95% Confidence Interval</dispersion>
@@ -3327,7 +3329,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Dyspnea scale is scored between 0 and 100, with a high score indicating a higher level of symptoms. Negative change from Baseline values indicate decreased dyspnea (i.e. improvement in symptom) and positive values indicate increased dyspnea (i.e. worsening of symptom).</description>
         <time_frame>Baseline, Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3343,7 +3345,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
           <title>Mean Change From Baseline in the Dyspnea Domain Associated With the EORTC QLQ-C-30 Scale at Week 12 and Week 24</title>
           <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Dyspnea scale is scored between 0 and 100, with a high score indicating a higher level of symptoms. Negative change from Baseline values indicate decreased dyspnea (i.e. improvement in symptom) and positive values indicate increased dyspnea (i.e. worsening of symptom).</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>units on a scale</units>
           <param>Least Squares Mean</param>
           <dispersion>95% Confidence Interval</dispersion>
@@ -3412,7 +3414,7 @@ The EORTC QLQ-C30 Dyspnea scale is scored between 0 and 100, with a high score i
         <title>Mean Change From Baseline in the Physical Functioning Domain Associated With the EORTC QLQ-C-30 Scale at Week 12 and Week 24</title>
         <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). The EORTC QLQ-C30 Physical Functioning was scored between 0 and 100, with a high score indicating better Global Health Status/QOL. Negative change from Baseline values indicate deterioration in Global Health Status/QOL and positive values indicate improvement.</description>
         <time_frame>Baseline, Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3427,7 +3429,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <measure>
           <title>Mean Change From Baseline in the Physical Functioning Domain Associated With the EORTC QLQ-C-30 Scale at Week 12 and Week 24</title>
           <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). The EORTC QLQ-C30 Physical Functioning was scored between 0 and 100, with a high score indicating better Global Health Status/QOL. Negative change from Baseline values indicate deterioration in Global Health Status/QOL and positive values indicate improvement.</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>units on a scale</units>
           <param>Least Squares Mean</param>
           <dispersion>95% Confidence Interval</dispersion>
@@ -3496,7 +3498,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <title>Mean Change From Baseline in the Global Health Status/QoL Domain Associated With the EORTC QLQ-C-30 Scale at Week 12 and Week 24</title>
         <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). The EORTC QLQ-C30 Global Health Status/QOL scale was scored between 0 and 100, with a high score indicating better Global Health Status/QOL. Negative change from Baseline values indicate deterioration in Global Health Status/QOL and positive values indicate improvement.</description>
         <time_frame>Baseline, Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3511,7 +3513,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <measure>
           <title>Mean Change From Baseline in the Global Health Status/QoL Domain Associated With the EORTC QLQ-C-30 Scale at Week 12 and Week 24</title>
           <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). The EORTC QLQ-C30 Global Health Status/QOL scale was scored between 0 and 100, with a high score indicating better Global Health Status/QOL. Negative change from Baseline values indicate deterioration in Global Health Status/QOL and positive values indicate improvement.</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>units on a scale</units>
           <param>Least Squares Mean</param>
           <dispersion>95% Confidence Interval</dispersion>
@@ -3581,7 +3583,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Emotional Functioning Scale is scored between 0 and 100, with a high score indicating better functioning. Negative change from Baseline values indicate deterioration in functioning and positive values indicate improvement.</description>
         <time_frame>Baseline, Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n" ) are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot; ) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3597,7 +3599,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
           <title>Mean Change From Baseline in the Emotional Functioning Domain Associated With the EORTC QLQ-C30 Scale at Weeks 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Emotional Functioning Scale is scored between 0 and 100, with a high score indicating better functioning. Negative change from Baseline values indicate deterioration in functioning and positive values indicate improvement.</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n" ) are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot; ) are included.</population>
           <units>units on a scale</units>
           <param>Least Squares Mean</param>
           <dispersion>95% Confidence Interval</dispersion>
@@ -3666,7 +3668,7 @@ The EORTC QLQ-C30 Emotional Functioning Scale is scored between 0 and 100, with 
         <title>Percentage of Participants With a Clinically Meaningful Improvement in QOL (EORTC QLQ-C-30 Scale) From Baseline in Fatigue Domain at Weeks 12 and 24</title>
         <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). Subscale scores are transformed to a 0 to 100 scale, with higher scores on functional scales indicating better function and higher score on symptom scales indicating worse symptoms. Improvement means at least 10 points better compared to baseline</description>
         <time_frame>Baseline, Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n" ) are included.</population>
+        <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot; ) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3681,7 +3683,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <measure>
           <title>Percentage of Participants With a Clinically Meaningful Improvement in QOL (EORTC QLQ-C-30 Scale) From Baseline in Fatigue Domain at Weeks 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). Subscale scores are transformed to a 0 to 100 scale, with higher scores on functional scales indicating better function and higher score on symptom scales indicating worse symptoms. Improvement means at least 10 points better compared to baseline</description>
-          <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n" ) are included.</population>
+          <population>Analyses were performed based on the Health Related Quality of Life (HRQoL) evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot; ) are included.</population>
           <units>percentage of participants</units>
           <param>Number</param>
           <analyzed_list>
@@ -3750,7 +3752,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Dyspnea scale is scored between 0 and 100, with a high score indicating a higher level of symptoms. Negative change from Baseline values indicate decreased dyspnea (i.e. improvement in symptom) and positive values indicate increased dyspnea (i.e. worsening of symptom). Improvement means at least 10 points better compared to baseline.</description>
         <time_frame>Baseline, Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3766,7 +3768,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
           <title>Percentage of Participants With a Clinically Meaningful Improvement in HRQOL Associated With the EORTC QLQ-C-30 Scale From Baseline in the Dyspnea Domain at Weeks 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Dyspnea scale is scored between 0 and 100, with a high score indicating a higher level of symptoms. Negative change from Baseline values indicate decreased dyspnea (i.e. improvement in symptom) and positive values indicate increased dyspnea (i.e. worsening of symptom). Improvement means at least 10 points better compared to baseline.</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>percentage of participants</units>
           <param>Number</param>
           <analyzed_list>
@@ -3834,7 +3836,7 @@ The EORTC QLQ-C30 Dyspnea scale is scored between 0 and 100, with a high score i
         <title>Percentage of Participants With a Clinically Meaningful Improvement in HRQOL Associated With the EORTC QLQ-C-30 Scale From Baseline Within the Physical Functioning Domain at Weeks 12 and 24</title>
         <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). Subscale scores are transformed to a 0 to 100 scale, with higher scores on functional scales indicating better function and higher score on symptom scales indicating worse symptoms. A change of at least 10 points on the standardized domain scores was required for it to be considered clinically meaningful.</description>
         <time_frame>Baseline, Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment with the EORTC QLQ-C-30. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment with the EORTC QLQ-C-30. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3849,7 +3851,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <measure>
           <title>Percentage of Participants With a Clinically Meaningful Improvement in HRQOL Associated With the EORTC QLQ-C-30 Scale From Baseline Within the Physical Functioning Domain at Weeks 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). Subscale scores are transformed to a 0 to 100 scale, with higher scores on functional scales indicating better function and higher score on symptom scales indicating worse symptoms. A change of at least 10 points on the standardized domain scores was required for it to be considered clinically meaningful.</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment with the EORTC QLQ-C-30. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment with the EORTC QLQ-C-30. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>percentage of participants</units>
           <param>Number</param>
           <analyzed_list>
@@ -3917,7 +3919,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <title>Percentage of Participants With a Clinically Meaningful Improvement in HRQOL Associated With the EORTC QLQ-C-30 Scale From Baseline in the Global Health Status/QOL Domain at Weeks 12 and 24</title>
         <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). Subscale scores are transformed to a 0 to 100 scale, with higher scores on functional scales indicating better function and higher score on symptom scales indicating worse symptoms. A change of at least 10 points on the standardized domain scores was required for it to be considered clinically meaningful.</description>
         <time_frame>Baseline, Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment with the EORTC QLQ-C-30. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment with the EORTC QLQ-C-30. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -3932,7 +3934,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <measure>
           <title>Percentage of Participants With a Clinically Meaningful Improvement in HRQOL Associated With the EORTC QLQ-C-30 Scale From Baseline in the Global Health Status/QOL Domain at Weeks 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer QOL Questionnaire for Patients with Cancer (EORTC QLQ-C30) was a 30-item oncology-specific questionnaire. The questionnaire was developed to assess the quality of life of cancer patients. It contains 30 questions, 24 of which form 9 multi-item scales representing various aspects of HRQOL: 1 global scale, 5 functional scales (Physical, Role, Emotional, Cognitive and Social), and 3 symptom scales (Fatigue, Pain, and Nausea). The remaining 6 items are intended to be mono-item scales describing relevant cancer-oriented symptoms (dyspnea, insomnia, appetite, constipation, diarrhea, financial difficulties). Subscale scores are transformed to a 0 to 100 scale, with higher scores on functional scales indicating better function and higher score on symptom scales indicating worse symptoms. A change of at least 10 points on the standardized domain scores was required for it to be considered clinically meaningful.</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment with the EORTC QLQ-C-30. Only those with available data at baseline and each time point (indicated by "n") are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment with the EORTC QLQ-C-30. Only those with available data at baseline and each time point (indicated by &quot;n&quot;) are included.</population>
           <units>percentage of participants</units>
           <param>Number</param>
           <analyzed_list>
@@ -4001,7 +4003,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
         <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Emotional Functioning Domain was scored between 0 and 100, with a high score indicating better functioning. Negative change from Baseline values indicate deterioration in functioning and positive values indicate improvement.</description>
         <time_frame>Baseline, Week 12, ±3 days and Week 24, ±3 days</time_frame>
-        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n" ) are included.</population>
+        <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot; ) are included.</population>
         <group_list>
           <group group_id="O1">
             <title>Placebo</title>
@@ -4017,7 +4019,7 @@ Lenalidomide 5 mg PO daily plus 2 placebo capsules for participants with a creat
           <title>Percentage of Participants With a Clinically Meaningful Improvement in HRQOL Associated With the EORTC QLQ-C-30 Scale From Baseline in the Emotional Functioning Domain at Weeks 12 and 24</title>
           <description>The European Organization for Research and Treatment of Cancer (EORTC) Core Quality of Life (QOL) questionnaire (EORTC QLQ-C30) is a 30-question tool used to assess the overall quality of life in cancer patients. It consists of 15 domains: 1 global health status (GHS) scale, 5 functional scales (Physical, Role, Cognitive, Emotional, Social), and 9 symptom scales/items (Fatigue, Nausea and Vomiting, Pain, Dyspnea, Sleep Disturbance, Appetite Loss, Constipation, Diarrhea, Financial Impact).
 The EORTC QLQ-C30 Emotional Functioning Domain was scored between 0 and 100, with a high score indicating better functioning. Negative change from Baseline values indicate deterioration in functioning and positive values indicate improvement.</description>
-          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by "n" ) are included.</population>
+          <population>Analyses were performed based on the HRQoL evaluable population, defined as all randomized participants who completed the baseline assessment and at least one post-baseline assessment for the intent to treat population. Only those with available data at baseline and each time point (indicated by &quot;n&quot; ) are included.</population>
           <units>percentage of participants</units>
           <param>Number</param>
           <analyzed_list>

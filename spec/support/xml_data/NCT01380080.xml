@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on February 22, 2018</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01380080</url>
   </required_header>
@@ -522,11 +522,14 @@ The targeted laboratory events include hemoglobin, serum creatinine, ALT and AST
     <citation>Gregory P. Bisson, Amita Gupta, et al. Urine LAM Testing in Advanced HIV-Infected Adults in a Trial of Empiric TB Therapy. Program and abstracts of the 2016 Conference on Retroviruses and Opportunistic Infections; February 22-25, 2016; Boston, Massachusetts. Abstract 16-1650</citation>
   </reference>
   <verification_date>January 2017</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>January 24, 2017</lastchanged_date>
-  <firstreceived_date>June 22, 2011</firstreceived_date>
-  <firstreceived_results_date>January 26, 2016</firstreceived_results_date>
-  <!-- New date names                                                                           -->
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>June 22, 2011</study_first_submitted>
   <study_first_submitted_qc>June 22, 2011</study_first_submitted_qc>
   <study_first_posted type="Estimate">June 27, 2011</study_first_posted>
@@ -536,7 +539,6 @@ The targeted laboratory events include hemoglobin, serum creatinine, ALT and AST
   <last_update_submitted>January 24, 2017</last_update_submitted>
   <last_update_submitted_qc>January 24, 2017</last_update_submitted_qc>
   <last_update_posted type="Actual">March 7, 2017</last_update_posted>
-  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>

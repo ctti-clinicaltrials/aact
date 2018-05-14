@@ -15,6 +15,7 @@ describe Admin::SanityCheck do
 
   it 'correctly detects when enumeration changed by > 10%' do
     #  Create a set of enumerations for a specific table/column/value
+    allow_any_instance_of(Admin::Enumeration).to receive(:is_day_to_create_enums?).and_return( true )
     Admin::Enumeration.destroy_all
     t_name='studies'
     c_name='overall_status'
@@ -26,7 +27,7 @@ describe Admin::SanityCheck do
             :value_count => num,
             :value_percent => ((num*100)/8).to_f
            }
-      Admin::Enumeration.create_from(hash)
+      Admin::Enumeration.new.create_from(hash)
     }
     Admin::Enumeration.all.each{|x| puts x.inspect}
 

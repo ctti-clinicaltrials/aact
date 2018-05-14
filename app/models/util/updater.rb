@@ -107,6 +107,7 @@ module Util
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
         load_event.save!
       end
+      Util::UserDbManager.new.backup_user_info
       db_mgr.grant_db_privs
       load_event.complete({:study_counts=>study_counts})
       create_flat_files
@@ -297,7 +298,7 @@ module Util
     end
 
     def sanity_checks_ok?
-      puts "Sanity Checks ok?...."
+      log "sanity checks ok?...."
       Admin::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Admin::SanityCheck.where('most_current is true')
       load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
