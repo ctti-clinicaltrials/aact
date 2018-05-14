@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01065844</url>
   </required_header>
@@ -72,9 +72,9 @@
       failed all other therapies and have no other therapeutic options left.
     </textblock>
   </detailed_description>
-  <overall_status>Active, not recruiting</overall_status>
+  <overall_status>Completed</overall_status>
   <start_date>October 2009</start_date>
-  <completion_date type="Anticipated">December 2018</completion_date>
+  <completion_date type="Actual">November 2017</completion_date>
   <primary_completion_date type="Actual">May 2015</primary_completion_date>
   <phase>Phase 2</phase>
   <study_type>Interventional</study_type>
@@ -207,22 +207,24 @@
     <citation>Hoover AC, Milhem MM, Anderson CM, Sun W, Smith BJ, Hoffman HT, Buatti JM. Efficacy of nelfinavir as monotherapy in refractory adenoid cystic carcinoma: Results of a phase II clinical trial. Head Neck. 2015 May;37(5):722-6. doi: 10.1002/hed.23664. Epub 2014 Jun 18.</citation>
     <PMID>24596143</PMID>
   </results_reference>
-  <verification_date>October 2016</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>October 25, 2016</lastchanged_date>
-  <firstreceived_date>February 8, 2010</firstreceived_date>
-  <firstreceived_results_date>October 25, 2016</firstreceived_results_date>
-  <!-- New date names                                                                           -->
+  <verification_date>November 2017</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>February 8, 2010</study_first_submitted>
   <study_first_submitted_qc>February 8, 2010</study_first_submitted_qc>
   <study_first_posted type="Estimate">February 9, 2010</study_first_posted>
   <results_first_submitted>October 25, 2016</results_first_submitted>
   <results_first_submitted_qc>October 25, 2016</results_first_submitted_qc>
   <results_first_posted type="Estimate">December 19, 2016</results_first_posted>
-  <last_update_submitted>October 25, 2016</last_update_submitted>
-  <last_update_submitted_qc>October 25, 2016</last_update_submitted_qc>
-  <last_update_posted type="Estimate">December 19, 2016</last_update_posted>
-  <!-- End of dates                                                                             -->
+  <last_update_submitted>November 9, 2017</last_update_submitted>
+  <last_update_submitted_qc>November 9, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">December 11, 2017</last_update_posted>
   <responsible_party>
     <responsible_party_type>Principal Investigator</responsible_party_type>
     <investigator_affiliation>University of Iowa</investigator_affiliation>
@@ -335,7 +337,7 @@ Nelfinavir: 1250 mg Nelfinavir twice daily Monday - Sunday</description>
           </class_list>
         </measure>
         <measure>
-          <title>Gender, Customized</title>
+          <title>Sex/Gender, Customized</title>
           <description>Self-reported gender at time of study enrollment</description>
           <units>Participants</units>
           <param>Count of Participants</param>
