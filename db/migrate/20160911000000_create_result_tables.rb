@@ -118,12 +118,12 @@ class CreateResultTables < ActiveRecord::Migration
       t.text    "description"
       t.text    "time_frame"
       t.text    "population"
+      t.date    "anticipated_posting_date"
       t.string  "anticipated_posting_month_year"
       t.string  "units"
       t.string  "units_analyzed"
       t.string  "dispersion_type"
       t.string  "param_type"
-      t.date    "anticipated_posting_date"
     end
 
     create_table "outcome_counts", force: :cascade do |t|
