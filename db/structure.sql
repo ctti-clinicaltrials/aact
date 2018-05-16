@@ -798,6 +798,38 @@ ALTER SEQUENCE ctgov.detailed_descriptions_id_seq OWNED BY ctgov.detailed_descri
 
 
 --
+-- Name: documents; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.documents (
+    id integer NOT NULL,
+    nct_id character varying,
+    document_type character varying,
+    document_url text
+);
+
+
+--
+-- Name: documents_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.documents_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: documents_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.documents_id_seq OWNED BY ctgov.documents.id;
+
+
+--
 -- Name: drop_withdrawals; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1928,6 +1960,13 @@ ALTER TABLE ONLY ctgov.detailed_descriptions ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: documents id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.documents ALTER COLUMN id SET DEFAULT nextval('ctgov.documents_id_seq'::regclass);
+
+
+--
 -- Name: drop_withdrawals id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2233,6 +2272,14 @@ ALTER TABLE ONLY ctgov.designs
 
 ALTER TABLE ONLY ctgov.detailed_descriptions
     ADD CONSTRAINT detailed_descriptions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: documents documents_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.documents
+    ADD CONSTRAINT documents_pkey PRIMARY KEY (id);
 
 
 --
