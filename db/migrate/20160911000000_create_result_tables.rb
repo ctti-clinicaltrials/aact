@@ -2,6 +2,13 @@ class CreateResultTables < ActiveRecord::Migration
 
   def change
 
+    create_table "pending_results", force: :cascade do |t|
+      t.string "nct_id"
+      t.string "event"
+      t.string "event_date_description"
+      t.date   "event_date"
+    end
+
     create_table "result_agreements", force: :cascade do |t|
       t.string "nct_id"
       t.string "pi_employee"
