@@ -32,6 +32,8 @@ class CreateIndices < ActiveRecord::Migration
     add_index :designs, :caregiver_masked
     add_index :designs, :investigator_masked
     add_index :designs, :outcomes_assessor_masked
+    add_index :documents, :document_id
+    add_index :documents, :document_type
     add_index :drop_withdrawals, :period
     add_index :eligibilities, :gender
     add_index :eligibilities, :healthy_volunteers
