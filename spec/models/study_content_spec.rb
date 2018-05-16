@@ -30,6 +30,7 @@ describe Study do
     expect(study.expanded_access_type_individual).to be nil
     expect(study.expanded_access_type_intermediate).to be nil
     expect(study.expanded_access_type_treatment).to be true
+    expect(study.study_first_submitted_qc_date).to eq('August 7, 2017'.to_date)
   end
 
   it "saves expanded access info correctly"  do

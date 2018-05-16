@@ -185,6 +185,9 @@ module Util
          [:studies, :results_first_submitted_date],
          [:studies, :disposition_first_submitted_date],
          [:studies, :last_update_submitted_date],
+         [:studies, :results_first_submitted_qc_date],
+         [:studies, :study_first_submitted_qc_date],
+         [:studies, :last_update_submitted_qc_date],
          [:study_references, :reference_type],
       ]
     end
