@@ -35,7 +35,7 @@ class PendingResult < StudyRelationship
       val=xml.text
       create({
         :nct_id=>opts[:nct_id],
-        :event=>'submission canceled',
+        :event=>'submission_canceled',
         :event_date_description=>val,
         :event_date=> val.try(:to_date),
       })
