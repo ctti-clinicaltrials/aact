@@ -1,44 +1,28 @@
 class PendingResult < StudyRelationship
 
   def self.create_all_from(opts)
-    opts[:pending_results]=opts[:xml].xpath('//pending_results')
-    return nil if opts[:pending_results].blank?
-    submitted(opts) + returned(opts) + submission_canceled(opts)
+    pending_results=opts[:xml].xpath('//pending_results')
+    return nil if pending_results.blank?
+    opts[:pending_results]=pending_results.children
+    collect_events(opts)
   end
 
-  def self.submitted(opts)
-    opts[:pending_results].xpath('submitted').collect{|xml|
-      val=xml.text
-      create({
-        :nct_id => opts[:nct_id],
-        :event => 'submitted',
-        :event_date_description => val,
-        :event_date => val.try(:to_date),
-      })
-    }
-  end
-
-  def self.returned(opts)
-    opts[:pending_results].xpath('returned').collect{|xml|
-      val=xml.text
-      create({
-        :nct_id=>opts[:nct_id],
-        :event=>'returned',
-        :event_date_description=>val,
-        :event_date=> val.try(:to_date),
-      })
-    }
-  end
-
-  def self.submission_canceled(opts)
-    opts[:pending_results].xpath('submission_canceled').collect{|xml|
-      val=xml.text
-      create({
-        :nct_id=>opts[:nct_id],
-        :event=>'submission_canceled',
-        :event_date_description=>val,
-        :event_date=> val.try(:to_date),
-      })
+  def self.collect_events(opts)
+    opts[:pending_results].each{|event|
+      if !event.blank?
+        dt_val=event.text
+        begin
+          dt=dt_val.try(:to_date)
+        rescue
+          dt=nil
+        end
+        create({
+          :nct_id => opts[:nct_id],
+          :event => event.name,
+          :event_date_description => dt_val,
+          :event_date => dt,
+        })
+      end
     }
   end
 
