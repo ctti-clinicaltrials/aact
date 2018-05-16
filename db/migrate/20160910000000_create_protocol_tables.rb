@@ -102,8 +102,10 @@ class CreateProtocolTables < ActiveRecord::Migration
 
     create_table "documents", force: :cascade do |t|
       t.string "nct_id"
+      t.string "document_id"
       t.string "document_type"
-      t.text   "document_url"
+      t.string "url"
+      t.text   "comment"
     end
 
     create_table "eligibilities", force: :cascade do |t|
