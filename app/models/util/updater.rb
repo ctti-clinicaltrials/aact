@@ -185,6 +185,9 @@ module Util
          [:studies, :results_first_submitted_date],
          [:studies, :disposition_first_submitted_date],
          [:studies, :last_update_submitted_date],
+         [:studies, :results_first_submitted_qc_date],
+         [:studies, :study_first_submitted_qc_date],
+         [:studies, :last_update_submitted_qc_date],
          [:study_references, :reference_type],
       ]
     end
@@ -303,8 +306,8 @@ module Util
       log "sanity checks ok?...."
       Admin::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Admin::SanityCheck.where('most_current is true')
-      load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
-      load_event.add_problem("More sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size > 40
+      load_event.add_problem("Fewer sanity check rows than expected (42): #{sanity_set.size}.") if sanity_set.size < 42
+      load_event.add_problem("More sanity check rows than expected (42): #{sanity_set.size}.") if sanity_set.size > 42
       load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
       # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
       # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to this.

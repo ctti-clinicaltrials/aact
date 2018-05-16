@@ -10,7 +10,7 @@ describe Admin::SanityCheck do
   end
 
   it 'should have one row for each study-related table' do
-    expect(Admin::SanityCheck.count).to eq(40)
+    expect(Admin::SanityCheck.count).to eq(42)
   end
 
   it 'correctly detects when enumeration changed by > 10%' do

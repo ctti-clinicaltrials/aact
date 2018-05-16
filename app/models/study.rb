@@ -52,6 +52,7 @@ class Study < ActiveRecord::Base
   has_many :design_outcomes,       :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :design_group_interventions, :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :documents,             :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :drop_withdrawals,      :foreign_key => 'nct_id', :dependent => :delete_all
 
   has_many :facilities,            :foreign_key => 'nct_id', :dependent => :delete_all
@@ -68,6 +69,7 @@ class Study < ActiveRecord::Base
   has_many :outcome_analyses,      :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :outcome_measurements,  :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :pending_results,       :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :references,            :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :reported_events,       :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :responsible_parties,   :foreign_key => 'nct_id', :dependent => :delete_all
@@ -113,6 +115,7 @@ class Study < ActiveRecord::Base
     CentralContact.create_all_from(opts)
     Condition.create_all_from(opts)
     Country.create_all_from(opts)
+    Document.create_all_from(opts)
     Facility.create_all_from(opts)
     IdInformation.create_all_from(opts)
     Keyword.create_all_from(opts)
@@ -121,6 +124,7 @@ class Study < ActiveRecord::Base
     Outcome.create_all_from(opts)
     OverallOfficial.create_all_from(opts)
     DesignOutcome.create_all_from(opts)
+    PendingResult.create_all_from(opts)
     ReportedEvent.create_all_from(opts)
     ResponsibleParty.create_all_from(opts)
     ResultAgreement.create_all_from(opts)

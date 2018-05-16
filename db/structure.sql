@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.3
+-- Dumped from database version 10.4
 -- Dumped by pg_dump version 10.4
 
 SET statement_timeout = 0;
@@ -798,6 +798,38 @@ ALTER SEQUENCE ctgov.detailed_descriptions_id_seq OWNED BY ctgov.detailed_descri
 
 
 --
+-- Name: documents; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.documents (
+    id integer NOT NULL,
+    nct_id character varying,
+    document_type character varying,
+    document_url text
+);
+
+
+--
+-- Name: documents_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.documents_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: documents_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.documents_id_seq OWNED BY ctgov.documents.id;
+
+
+--
 -- Name: drop_withdrawals; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1391,12 +1423,12 @@ CREATE TABLE ctgov.outcomes (
     description text,
     time_frame text,
     population text,
+    anticipated_posting_date date,
     anticipated_posting_month_year character varying,
     units character varying,
     units_analyzed character varying,
     dispersion_type character varying,
-    param_type character varying,
-    anticipated_posting_date date
+    param_type character varying
 );
 
 
@@ -1483,6 +1515,39 @@ CREATE SEQUENCE ctgov.participant_flows_id_seq
 --
 
 ALTER SEQUENCE ctgov.participant_flows_id_seq OWNED BY ctgov.participant_flows.id;
+
+
+--
+-- Name: pending_results; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.pending_results (
+    id integer NOT NULL,
+    nct_id character varying,
+    event character varying,
+    event_date_description character varying,
+    event_date date
+);
+
+
+--
+-- Name: pending_results_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.pending_results_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pending_results_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.pending_results_id_seq OWNED BY ctgov.pending_results.id;
 
 
 --
@@ -1895,6 +1960,13 @@ ALTER TABLE ONLY ctgov.detailed_descriptions ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: documents id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.documents ALTER COLUMN id SET DEFAULT nextval('ctgov.documents_id_seq'::regclass);
+
+
+--
 -- Name: drop_withdrawals id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2032,6 +2104,13 @@ ALTER TABLE ONLY ctgov.overall_officials ALTER COLUMN id SET DEFAULT nextval('ct
 --
 
 ALTER TABLE ONLY ctgov.participant_flows ALTER COLUMN id SET DEFAULT nextval('ctgov.participant_flows_id_seq'::regclass);
+
+
+--
+-- Name: pending_results id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.pending_results ALTER COLUMN id SET DEFAULT nextval('ctgov.pending_results_id_seq'::regclass);
 
 
 --
@@ -2196,6 +2275,14 @@ ALTER TABLE ONLY ctgov.detailed_descriptions
 
 
 --
+-- Name: documents documents_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.documents
+    ADD CONSTRAINT documents_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: drop_withdrawals drop_withdrawals_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -2353,6 +2440,14 @@ ALTER TABLE ONLY ctgov.overall_officials
 
 ALTER TABLE ONLY ctgov.participant_flows
     ADD CONSTRAINT participant_flows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pending_results pending_results_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.pending_results
+    ADD CONSTRAINT pending_results_pkey PRIMARY KEY (id);
 
 
 --
