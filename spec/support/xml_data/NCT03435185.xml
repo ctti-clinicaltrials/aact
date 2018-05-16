@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on May 16, 2018</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT03435185</url>
+  </required_header>
+  <id_info>
+    <org_study_id>2014/514/85/5</org_study_id>
+    <nct_id>NCT03435185</nct_id>
+  </id_info>
+  <brief_title>Greater Occipital and Supraorbital Nerve Blockade in Migraine Patients</brief_title>
+  <official_title>Greater Occipital and Supraorbital Nerve Blockade For The Preventive Treatment of Migraine</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Dr.Lütfi Kırdar Kartal Eğitim ve Araştırma Hastanesi</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Dr.Lütfi Kırdar Kartal Eğitim ve Araştırma Hastanesi</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+    <is_fda_regulated_drug>No</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The investigators aimed to evaluate the efficacy of greater occipital nerve and supraorbital
+      nerve blockade with local anesthetics for the preventive treatment of migraine without aura.
+    </textblock>
+  </brief_summary>
+  <overall_status>Completed</overall_status>
+  <start_date type="Actual">September 1, 2014</start_date>
+  <completion_date type="Actual">June 1, 2016</completion_date>
+  <primary_completion_date type="Actual">June 1, 2015</primary_completion_date>
+  <study_type>Observational</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <observational_model>Case-Control</observational_model>
+    <time_perspective>Prospective</time_perspective>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Reduction of frequency of headache</measure>
+    <time_frame>September 2014 and June 2015</time_frame>
+    <description>Number of headache days in a month.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Reduction of severity of headache</measure>
+    <time_frame>September 2014 and June 2015</time_frame>
+    <description>Mean visual analog scale (VAS) scores</description>
+  </primary_outcome>
+  <number_of_groups>2</number_of_groups>
+  <enrollment type="Actual">103</enrollment>
+  <condition>Migraine Disorders</condition>
+  <arm_group>
+    <arm_group_label>Blockade Group</arm_group_label>
+    <description>Grater occipital nerve and supraorbital nerve blockade injections with %2 lidocaine</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Placebo Group</arm_group_label>
+    <description>Grater occipital nerve and supraorbital nerve injections with saline</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Lidocaine injections</intervention_name>
+    <description>Lidocaine injections. A mixture of 1 ml 2% lidocaine and 0.9% 1 ml saline was injected bilaterally to greater occipital nerve and supraorbital nerve in the blockade patients.</description>
+    <arm_group_label>Blockade Group</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Procedure</intervention_type>
+    <intervention_name>Saline injections</intervention_name>
+    <description>Saline injections. Patients received 2 ml 0.9% saline in bilaterally to greater occipital nerve and supraorbital nerve</description>
+    <arm_group_label>Placebo Group</arm_group_label>
+  </intervention>
+  <eligibility>
+    <study_pop>
+      <textblock>
+        Patients with migraine
+      </textblock>
+    </study_pop>
+    <sampling_method>Probability Sample</sampling_method>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Lack of benefits 1 year from preventive treatment or intolerance to their treatments.
+
+          -  18 ≥ years old
+
+          -  Migraine without aura for more than 1 year, minimum of two or more migraine attacks
+             per month.
+
+        Exclusion Criteria:
+
+          -  Patients with any chronic illness, medication overuse headache, a history of cranial
+             and cervical surgery
+
+          -  Allergies to local anesthetics
+
+          -  Hemorrhagic diathesis
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <reference>
+    <citation>Tang Y, Kang J, Zhang Y, Zhang X. Influence of greater occipital nerve block on pain severity in migraine patients: A systematic review and meta-analysis. Am J Emerg Med. 2017 Nov;35(11):1750-1754. doi: 10.1016/j.ajem.2017.08.027. Epub 2017 Aug 14. Review.</citation>
+    <PMID>28844531</PMID>
+  </reference>
+  <verification_date>February 2018</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
+  <study_first_submitted>February 8, 2018</study_first_submitted>
+  <study_first_submitted_qc>February 14, 2018</study_first_submitted_qc>
+  <study_first_posted type="Actual">February 15, 2018</study_first_posted>
+  <last_update_submitted>February 14, 2018</last_update_submitted>
+  <last_update_submitted_qc>February 14, 2018</last_update_submitted_qc>
+  <last_update_posted type="Actual">February 15, 2018</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>Dr.Lütfi Kırdar Kartal Eğitim ve Araştırma Hastanesi</investigator_affiliation>
+    <investigator_full_name>Cem Bölük</investigator_full_name>
+    <investigator_title>Medical Doctor</investigator_title>
+  </responsible_party>
+  <keyword>Pain</keyword>
+  <keyword>Nerve Blocks</keyword>
+  <keyword>Headache</keyword>
+  <keyword>Local Anaesthetics</keyword>
+  <keyword>Migraine</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Migraine Disorders</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Lidocaine</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
+  <pending_results>
+    <submitted>February 20, 2018</submitted>
+    <submission_canceled>Unknown</submission_canceled>
+    <submitted>March 8, 2018</submitted>
+  </pending_results>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
