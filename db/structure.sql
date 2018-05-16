@@ -804,8 +804,10 @@ ALTER SEQUENCE ctgov.detailed_descriptions_id_seq OWNED BY ctgov.detailed_descri
 CREATE TABLE ctgov.documents (
     id integer NOT NULL,
     nct_id character varying,
+    document_id character varying,
     document_type character varying,
-    document_url text
+    url character varying,
+    comment text
 );
 
 

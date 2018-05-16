@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on May 16, 2018</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT03391583</url>
+  </required_header>
+  <id_info>
+    <org_study_id>Grant 17-0098-GAP</org_study_id>
+    <nct_id>NCT03391583</nct_id>
+  </id_info>
+  <brief_title>Can Targeted Education Impact the Current Standard of Care in Patients With Mild Traumatic Brain Injury?</brief_title>
+  <official_title>Can Targeted Education Impact the Current Standard of Care in Patients With Mild Traumatic Brain Injury?</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>St. Michael's Hospital, Toronto</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>St. Michael's Hospital, Toronto</source>
+  <oversight_info>
+    <has_dmc>Yes</has_dmc>
+    <is_fda_regulated_drug>No</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The study will ask the question as to whether or not it is possible to deliver education
+      material to patients with a mild traumatic brain injury in a consistent matter. The question
+      will be asked as to whether an educational intervention decreases symptom reporting
+      specifically looking at headache symptoms. Half of the patients will receive the current
+      standard of care in the tertiary clinic they have been referred to while the other half will
+      also receive the current standard of care with the addition of targeted headache educational
+      material at various time points.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Post-traumatic headache is a common symptom endorsed in individuals who have suffered from
+      mild traumatic brain injury. Headaches are often debilitating and can significantly impact a
+      patient's ability to function and interact in society(Azulay et.al 2013).
+
+      The provision of education to patients and primary care physicians is important. There is
+      often not enough time during clinic appointments to ensure that patients understand the
+      pathophysiology, treatment and red-flags of their post concussive symptoms. The question is
+      asked as to whether educational material can be delivered in a consistent and comprehensible
+      manner.
+
+      The study will look at whether or not targeted headache education material presented to
+      patients at multiple time points outside of the current standard of care is feasible and if
+      there is any impact on symptom severity scores utilizing standardized surveys such as the
+      Rivermead Post Concussion Questionnaire. A patient's frequency and type of social
+      interactions during their recovery along with their perceived quality of life will be
+      measured using the Participation Assessment with Recombined Tools-Objective (PART-O tool) and
+      the Quality of Life after Brain Injury (Quolibri) tools respectively will be analyzed. By
+      providing the basics of when to seek medical attention, the hope is be able to track what
+      type and how frequently patients access medical treatment outside of the tertiary care clinic
+      setting.
+
+      The investigators would like to see whether this education model is feasible and can be used
+      as a consistent message sent to patients as well as other health care professionals.
+    </textblock>
+  </detailed_description>
+  <overall_status>Not yet recruiting</overall_status>
+  <start_date type="Anticipated">January 8, 2018</start_date>
+  <completion_date type="Anticipated">June 1, 2019</completion_date>
+  <primary_completion_date type="Anticipated">December 17, 2018</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <intervention_model_description>Randomized Control Feasibility trial looking at educational intervention at multiple time points during a patient's recovery from mild traumatic brain injury. The control group will be followed at these time points as well and will continue on with the current standard of care.</intervention_model_description>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Single (Outcomes Assessor)</masking>
+    <masking_description>Subjects will be randomized via block randomization. An outcome assessor will have sealed envelopes that will assign the patients to either the intervention group versus the current standard of care. There will be three intervention time points 0, 6 and 12 weeks from the patient's initial presentation at the St. Michael's head injury clinic.</masking_description>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Survey response</measure>
+    <time_frame>12 weeks</time_frame>
+    <description>How many people randomized to the study will complete the study. This will be a raw number and calculated by counting how many people complete the administered surveys at the end of the trial.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Rivermead post concussion questionnaire scores (RPQ)</measure>
+    <time_frame>12 weeks</time_frame>
+    <description>The Rivermead post concussion questionnaire (RPQ) asks 16 questions about patient's headache symptoms after head injury and are given a scale from 0-4 in order to rate symptoms from none to maximum severity (0 = Not experienced at all, 1 = No more of a problem, 2 = A mild problem, 3 = A moderate problem and 4 = a severe problem).
+The first three questions( RPQ-3) focuses on the most frequently endorsed headache symptoms. This study aims to reduce a patients overall score at the end of the study by 3 with the max possible score being 12 ( maximum score of 4 times 3 questions). Only those initially scoring 9 or more out of the 12 will be asked to participate in the study.
+The last thirteen questions (RPQ-13) focuses on other frequently endorsed symptoms of headache. For these questions, the target is to decrease a patient's total score by 10 out of a possible maximum score of 52 (maximum score of 4 times 13 questions). Both the RPQ-3 and 13 will be compared to the standard of care.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Access to health care</measure>
+    <time_frame>12 weeks</time_frame>
+    <description>What type of health care services do participants in this study access. Both the educational group and the standard of care patients will be asked to document this on administered surveys</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Social and Societal Functioning</measure>
+    <time_frame>12 weeks</time_frame>
+    <description>Can an educational intervention regarding headache management and lifestyle strategies improve social/societal functioning. This will be assessed with the Participation Assessment with Recombined Tools (PART-O tool). A 5-point decrease in total score out of 17 questions will be deemed significant.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Perceived quality of life</measure>
+    <time_frame>12 weeks</time_frame>
+    <description>Does education and reassurance alter a patient's perceived quality of life after a mild-traumatic brain injury. This will be analyzed by using the QOLIBRI (Quality of Life after Brain Injury).
+The investigators hope to capture whether or not patients believe they play an active role in their health and whether or not they feel empowered to alter their health status.
+The point is to capture what barriers there are to a patient's recovery in regard to what negative feelings and limits they perceive.</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Anticipated">70</enrollment>
+  <condition>Headache Disorders</condition>
+  <condition>Post-Concussion Syndrome</condition>
+  <condition>Mild Traumatic Brain Injury</condition>
+  <arm_group>
+    <arm_group_label>Standard of Care plus Education</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Educational material will be provided at three time points along with the current standard of care provided in tertiary health care setting</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Standard of Care</arm_group_label>
+    <arm_group_type>No Intervention</arm_group_type>
+    <description>Current standard of care provided in tertiary health care setting</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Other</intervention_type>
+    <intervention_name>Education</intervention_name>
+    <description>Participants in the education arm of the study will be provided with three PowerPoint presentations. Material for these slides has been adapted from material developed by the Ontario Neurotrauma Foundation. Topics to be addressed will surround post-traumatic headache and will include information regarding common symptoms, timeline for improvement, red- flags and when to seek medical attention</description>
+    <arm_group_label>Standard of Care plus Education</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Patients must be diagnosed with a chronic ( between 2 and 4 months post injury) mTBI
+             based on CDC criteria. They must have the ability to give consent, speak English with
+             awareness that they will need to be contacted at various time points, and must have
+             access to email. There will be inclusion of patients who score 3 or more on the RPQ
+             during their initial assessment in the St. Michael's Head Injury Clinic. They must be
+             medically stable.
+
+        Exclusion Criteria:
+
+          -  Patients will be excluded from the study if they have a documented history of moderate
+             to severe traumatic brain injury. If they have a prior history of other neurological
+             (i.e. Epilepsy, MS, Alzheimer's Disease, primary headache disorder), psychiatric (i.e.
+             Psychotic disorder or other history of a mental health disorder) or substance abuse
+             disorders. Subjects will be excluded if they have no fixed address or are
+             incarcerated, as that would hinder follow up.
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>65 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Donna Ouchterlony</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>St. Michael's Hospital, Toronto</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Cindy Hunt, PH, RN</last_name>
+    <phone>Phone: 416-864-6060</phone>
+    <phone_ext>77081</phone_ext>
+    <email>huntci@smh.ca</email>
+  </overall_contact>
+  <overall_contact_backup>
+    <last_name>Candice M Todd, MD</last_name>
+    <phone>416-603-5800</phone>
+    <phone_ext>6262</phone_ext>
+    <email>candice.todd@mail.utoronto.ca</email>
+  </overall_contact_backup>
+  <link>
+    <url>http://www.stmichaelshospital.com/programs/trauma/head-injury-clinic.php</url>
+    <description>Head Injury Clinic Website</description>
+  </link>
+  <link>
+    <url>http://www.hubresearch.ca/services/data-capture-management/</url>
+    <description>Data Capture and Management at St. Michaels</description>
+  </link>
+  <reference>
+    <citation>Azulay J, Smart CM, Mott T, Cicerone KD. A pilot study examining the effect of mindfulness-based stress reduction on symptoms of chronic mild traumatic brain injury/postconcussive syndrome. J Head Trauma Rehabil. 2013 Jul-Aug;28(4):323-31. doi: 10.1097/HTR.0b013e318250ebda.</citation>
+    <PMID>22688212</PMID>
+  </reference>
+  <verification_date>December 2017</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
+  <study_first_submitted>November 7, 2017</study_first_submitted>
+  <study_first_submitted_qc>December 30, 2017</study_first_submitted_qc>
+  <study_first_posted type="Actual">January 5, 2018</study_first_posted>
+  <last_update_submitted>December 30, 2017</last_update_submitted>
+  <last_update_submitted_qc>December 30, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">January 5, 2018</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>St. Michael's Hospital, Toronto</investigator_affiliation>
+    <investigator_full_name>Donna Ouchterlony</investigator_full_name>
+    <investigator_title>Principal Investigator</investigator_title>
+  </responsible_party>
+  <keyword>Education</keyword>
+  <keyword>Pain</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Wounds and Injuries</mesh_term>
+    <mesh_term>Brain Injuries</mesh_term>
+    <mesh_term>Brain Injuries, Traumatic</mesh_term>
+    <mesh_term>Headache</mesh_term>
+    <mesh_term>Brain Concussion</mesh_term>
+    <mesh_term>Post-Concussion Syndrome</mesh_term>
+    <mesh_term>Headache Disorders</mesh_term>
+  </condition_browse>
+  <patient_data>
+    <sharing_ipd>Yes</sharing_ipd>
+    <ipd_description>Patient study data will be de-identified or coded. A master linking log with identifiers will be kept and stored separately from the data. Data for all primary and secondary outcomes will be available.</ipd_description>
+  </patient_data>
+  <study_docs>
+    <study_doc>
+      <doc_type>Individual Participant Data Set</doc_type>
+      <doc_url>http://project-redcap.org/</doc_url>
+      <doc_comment>The Applied Health Research Centre (AHRC), an academic research organization based at St Michael's Hospital, will use software called REDCap to create the web-based electronic CRF (eCRF).
+Authorized personnel receive a username and password which is unique, and database access is controlled by the DCC in collaboration with the Principal Investigator.</doc_comment>
+    </study_doc>
+  </study_docs>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
