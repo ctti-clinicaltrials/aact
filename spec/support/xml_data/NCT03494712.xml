@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on May 16, 2018</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT03494712</url>
+  </required_header>
+  <id_info>
+    <org_study_id>CL1-95010-001</org_study_id>
+    <secondary_id>2017-004180-12</secondary_id>
+    <nct_id>NCT03494712</nct_id>
+  </id_info>
+  <brief_title>Safety of Single Intravenous Administration of S95010 in Human Healthy Volunteers</brief_title>
+  <official_title>Safety, Tolerability and Pharmacokinetics of S 95010 After Single Escalating Intravenous Doses in Young Healthy Male Subjects. A Randomised, Doubleblind, Placebo-controlled, Monocentre, First-In-Human Study.</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Institut de Recherches Internationales Servier</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>ADIR Association</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Servier</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+    <is_fda_regulated_drug>Yes</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+    <is_us_export>Yes</is_us_export>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of the study is to assess, the safety and tolerability of single ascending doses
+      of S 95010 and to assess the pharmacokinetics (PK) of S 95010.
+    </textblock>
+  </brief_summary>
+  <overall_status>Recruiting</overall_status>
+  <start_date type="Actual">February 21, 2018</start_date>
+  <completion_date type="Anticipated">January 13, 2020</completion_date>
+  <primary_completion_date type="Anticipated">January 14, 2019</primary_completion_date>
+  <phase>Phase 1</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Sequential Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Double (Participant, Investigator)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Safety assessed by incidence of Adverse Events</measure>
+    <time_frame>Through study completion, an average of 12 weeks</time_frame>
+    <description>Safety criterion</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>The PK (pharmacokinetic) profile of S 95010 plasma concentration : Area under the plasma concentration-time curve (AUC)</measure>
+    <time_frame>During Hospitalization Period (Day 1, Day 2, Day 3, Day 4) and during ambulatory follow-up period (at Week 2, Week 4 and Week 12)</time_frame>
+    <description>Safety and pharmacokinetic criteria - S 95010 (active parent compound) and its metabolites (if applicable) concentration in serial plasma and urinary samples</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>The PK profile of S 95010 plasma concentration : Plasma half-life</measure>
+    <time_frame>During Hospitalization Period (Day 1, Day 2, Day 3, Day 4) and during ambulatory follow-up period (at Week 2, Week 4 and Week 12)</time_frame>
+    <description>Safety and pharmacokinetic criteria - S 95010 (active parent compound) and its metabolites (if applicable) concentration in serial plasma and urinary samples</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>The PK profile of S 95010 plasma concentration : Maximum plasma concentration (Cmax)</measure>
+    <time_frame>During Hospitalization Period (Day 1, Day 2, Day 3, Day 4) and during ambulatory follow-up period (at Week 2, Week 4 and Week 12)</time_frame>
+    <description>Safety and pharmacokinetic criteria - S 95010 (active parent compound) and its metabolites (if applicable) concentration in serial plasma and urinary samples</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Anticipated">49</enrollment>
+  <condition>Cardiovascular Diseases</condition>
+  <arm_group>
+    <arm_group_label>S 95010</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Increasing single doses of S 95010 to 5 subjects.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Placebo</arm_group_label>
+    <arm_group_type>Placebo Comparator</arm_group_type>
+    <description>Increasing single doses of Placebo to 2 subjects.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>S 95010</intervention_name>
+    <description>Single administration of S 95010 in healthy volunteers</description>
+    <arm_group_label>S 95010</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Other</intervention_type>
+    <intervention_name>Placebo</intervention_name>
+    <description>Single administration of placebo in healthy volunteers</description>
+    <arm_group_label>Placebo</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  Young healthy Caucasian male subjects aged between 18 and 45 years (both inclusive)
+
+        Exclusion Criteria:
+
+          -  Any acute or chronic illness or clinically relevant findings such as livers,kidney,
+             spleen, cardiovascular disease, eye disease in the selection/ inclusion visit
+             examinations
+
+          -  Any abnormal laboratory result on blood and urine samples taken during screening,
+             judged clinically relevant by the investigator
+
+          -  History of liver dysfunction or total bilirubin or ALT or AST or ALP or γGT &gt; ULN at
+             selection
+
+          -  History of renal dysfunction or GFR &lt; 90 mL/min/1.73 m2 (MDRD equation) at selection
+      </textblock>
+    </criteria>
+    <gender>Male</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>45 Years</maximum_age>
+    <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
+  </eligibility>
+  <overall_contact>
+    <last_name>Institut de Recherches Internationales Servier Clinical Studies Department</last_name>
+    <phone>+33 1 55 72 43 66</phone>
+    <email>clinicaltrials@servier.com</email>
+  </overall_contact>
+  <location>
+    <facility>
+      <name>SGS Clinical Pharmacology Unit</name>
+      <address>
+        <city>Antwerpen</city>
+        <zip>B-2060</zip>
+        <country>Belgium</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location_countries>
+    <country>Belgium</country>
+  </location_countries>
+  <link>
+    <url>https://clinicaltrials.servier.com/</url>
+    <description>Description Find Results on Servier Clinical Trial Data</description>
+  </link>
+  <verification_date>April 2018</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
+  <study_first_submitted>February 16, 2018</study_first_submitted>
+  <study_first_submitted_qc>April 4, 2018</study_first_submitted_qc>
+  <study_first_posted type="Actual">April 11, 2018</study_first_posted>
+  <last_update_submitted>April 4, 2018</last_update_submitted>
+  <last_update_submitted_qc>April 4, 2018</last_update_submitted_qc>
+  <last_update_posted type="Actual">April 11, 2018</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>healthy volunteer</keyword>
+  <keyword>antimiR</keyword>
+  <keyword>single ascending dose</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Cardiovascular Diseases</mesh_term>
+  </condition_browse>
+  <patient_data>
+    <sharing_ipd>Yes</sharing_ipd>
+    <ipd_description>Researchers can ask for a study protocol, patient-level and/or study-level clinical trial data including clinical study reports (CSRs).
+They can ask all interventional clinical studies in patients:
+submitted for new medicines and new indications approved after 1 January 2014 in the European Economic Area (EEA) or the United States (US).
+Where Servier or an affiliate are the Marketing Authorization Holders (MAH). The date of the first Marketing Authorization of the new medicine (or the new indication) in one of the EEA Member States will be considered within this scope.</ipd_description>
+  </patient_data>
+  <study_docs>
+    <study_doc>
+      <doc_type>Individual Participant Data Set</doc_type>
+      <doc_url>https://clinicaltrials.servier.com/</doc_url>
+    </study_doc>
+    <study_doc>
+      <doc_type>Study Protocol</doc_type>
+      <doc_url>https://clinicaltrials.servier.com/</doc_url>
+    </study_doc>
+    <study_doc>
+      <doc_type>Statistical Analysis Plan</doc_type>
+      <doc_url>https://clinicaltrials.servier.com/</doc_url>
+    </study_doc>
+    <study_doc>
+      <doc_type>Informed Consent Form</doc_type>
+      <doc_url>https://clinicaltrials.servier.com/</doc_url>
+    </study_doc>
+    <study_doc>
+      <doc_type>Clinical Study Report</doc_type>
+      <doc_url>https://clinicaltrials.servier.com/</doc_url>
+    </study_doc>
+    <study_doc>
+      <doc_type>study-level clinical trial data</doc_type>
+      <doc_url>https://clinicaltrials.servier.com/</doc_url>
+    </study_doc>
+  </study_docs>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
