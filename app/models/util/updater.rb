@@ -137,6 +137,8 @@ module Util
          [:designs, :caregiver_masked],
          [:designs, :investigator_masked],
          [:designs, :outcomes_assessor_masked],
+         [:documents, :document_id],
+         [:documents, :document_type],
          [:drop_withdrawals, :period],
          [:eligibilities, :gender],
          [:eligibilities, :healthy_volunteers],
