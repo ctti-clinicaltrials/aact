@@ -126,6 +126,7 @@ module Admin
         ['outcome_analyses','non_inferiority_type'],
         ['outcome_counts','scope'],
         ['outcome_measurements','param_type'],
+        ['pending_results','event'],
         ['reported_events','assessment'],
         ['reported_events','default_assessment'],
         ['reported_events','event_type'],
