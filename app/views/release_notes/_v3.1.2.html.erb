@@ -1,6 +1,6 @@
- <h3>AACT 3.1.2 <i>(May 21, 2018)</i></h3>
+ <h3>AACT 3.1.2 <i>(May 22, 2018)</i></h3>
 
-  h5>Added Pending_Results Table</h5>
+  <h5>Pending_Results Table Added</h5>
   <p>On May 9, 2018, the National Library of Medicine (NLM) added data about 'pending results' to the ClinicalTrials.gov API. A <i>Pending_Results</i> table has been added to the AACT database to present this new information.</p>
 
   <p>NLM provides result submission date(s) for studies that have results awaiting quality control (QC) review. The results themselves are not publicly posted until the review is complete. The dates for three types of events related to results submission are reported in the Pending_Results table:</p>
@@ -19,14 +19,13 @@
     <li>All rows for the study with reviewed/approved results are removed from the <i>Pending_Events</i> table.</li>
   </ul>
 
-
-  <h5>Added Documents Table</h5>
-  <p>The ClinicalTrials.gov API provides information about & links to documents related to a study. AACT now saves this information to the table: <i>Documents</i>. NLM provides the following information about these data:</p>
+  <h5>Documents Table Added</h5>
+  <p>The ClinicalTrials.gov API provides information about & links to documents related to a study. NLM provides the following information about these data:</p>
   <blockquote cite="https://clinicaltrials.gov/ct2/html/images/info/public.xsd"><p class='quotedText'>The full study protocol and statistical analysis plan must be uploaded as part of results information submission, for studies with a Primary Completion Date on or after January 18, 2017. The protocol and statistical analysis plan may be optionally uploaded before results information submission and updated with new versions, as needed. Informed consent forms may optionally be uploaded at any time.</p></blockquote>
 
-  <p>Please refer to <a href='https://prsinfo.clinicaltrials.gov/results_definitions.html#DocumentUpload' target='_blank'>NLM Results Data Element Definitions</a> for more detailed information about study documents.</p>
+  <p>AACT now saves this information to the <i>Documents</i> table. Please refer to <a href='https://prsinfo.clinicaltrials.gov/results_definitions.html#DocumentUpload' target='_blank'>NLM Results Data Element Definitions</a> and the <a href='/data_dictionary' target='_blank'>AACT Data Dictionary</a> for more detailed information about study documents.</p>
 
-  <h5>Deprecated Date Attributes Removed from ClinicalTrials.gov; Also Removed from AACT</h5>
+  <h5>Deprecated Date Attributes Removed from AACT</h5>
   <p>On May 3, 2018, NLM posted this comment to their API schema documentation:</p>
   <div class='quotedText'> <blockquote cite="https://clinicaltrials.gov/ct2/html/images/info/public.xsd"><p class='innerQuotedText'>As promised in 08/30/2017 entry above, old redundant date names have been retired and their tags removed.  Please update systems to stop using the date on the left in favor of the date on the right.
     <table>
@@ -38,31 +37,29 @@
     </table>
     </p></blockquote>
   </div>
-  <p>All these date attributes are stored in the Studies table. On January 22, 2018, the obsolete date tags/columns were identified as deprecated and new columns were added that mimic the new labels defined by NLM. The removed columns are:</p>
+  <p>All these date attributes are stored in the Studies table. On January 22, 2018, the obsolete date tags/columns were identified as deprecated and new columns were added that mimic the new labels defined by NLM. The columns are:</p>
    <table class='regularDisplay'>
+     <tr><th>Deprecated Column</th>                           <th>Replacement Column</th></tr>
      <tr><td><i>first_received_date</i></td>                  <td><i>study_first_submitted_date</i></tr>
      <tr><td><i>first_received_results_date</i></td>          <td><i>results_first_submitted_date</i></tr>
      <tr><td><i>first_received_results_disposit_date</i></td> <td><i>disposition_first_submitted_date</i></tr>
      <tr><td><i>last_changed_date</i></td>                    <td><i>last_update_submitted_date</i></tr>
    </table>
 
-   <p>With these release, the deprecated columns have been removed.</p>
+   <p>With this release, the deprecated columns have been removed.</p>
 
-  <h5>Update Automated Test Scripts</h5>
-  <p>Since ClinicalTrials.gov has made several changes to the API (adding new tags; removing deprecated tags), we needed to update the sample studies we use to run automated test scripts so that they correctly reflect the current structure of the ClinicalTrials.gov API. The latest version of all studies used in automated tests were downloaded, and test scripts were updated to accomodate the changes found.</p>
-
-  <h5>Update SAS Connection Documentation</h5>
-  <p>Inclusion of the database password was missing and the fonts were 'off'.</p>
-
-  <h5>Automate Process to Save Tables to Schema Named: ctgov</h5>
-  <p></p>
+  <h5>Automated Tests Revised to Use Most Current Data from ClinicalTrials.gov</h5>
+  <p>ClinicalTrials.gov has made changes to the API (adding new tags; removing deprecated tags), so we needed to update the studies used by automated test scripts; the tests need to use data that accurrately represents the current structure of the ClinicalTrials.gov API. The latest version of all test studies were downloaded and test scripts were updated to address all changes.</p>
 
   <h5>Email User Restoration SQL to AACT Administrators</h5>
-  <p>To ensure we are able to recover user account information if we need to, we now dump the SQL that can be used to recreate user-related tables and database account information to files and then email the files to AACT Administrators.</p>
+  <p>To ensure we're able to recover user account information if necessary, we have added a step to the nightly update process that extracts all data from user-related tables and user account information and emails this to AACT Administrators along with instructions about how to run the scripts to restore the information.</p>
 
-  <h5>Collect Enumeration Data Twice a Month</h5>
-  <p></p>
+  <h5>SAS Connection Documentation Modified</h5>
+  <p>The documentation that explains how to use SAS to connect to AACT needed to be tweaked. The sample script was missing the line that identifies the user's password. We also fixed some awkward-looking fonts.</p>
 
-  <h5>Prefix Every Log Line with the Date/Time Stamp</h5>
-  <p></p>
+  <h5>Process to Create 'ctgov' Schema Has Been Automated</h5>
+  <p>All data retrieved from ClinicalTrials.gov is saved into a schema named 'ctgov'. Before, when standing up a new instance of the AACT database, we needed to manually create the ctgov schema, grant privileges to the database administrator and define 'ctgov' as the default schema. We have now modified the database initialization process so that the ctgov schema is automatically created so that the tables, views and indexes are saved there without requiring any extra manual steps.</p>
+
+  <h5>Email User Restoration SQL to AACT Administrators</h5>
+  <p>To ensure we're able to recover user account information, we now dump the SQL to reproduce user-related tables and user database account information, and email these scripts to AACT Administrators. This is done daily.</p>
 
