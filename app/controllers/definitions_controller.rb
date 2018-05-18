@@ -70,12 +70,12 @@ class DefinitionsController < ApplicationController
         str=str+"<option>"+cnt+" ("+pct+")&nbsp&nbsp; - "+e.first+"</option>"
       }
       str=str+'</select>'
-      hash['enumerations'] = str
+      hash['enumerations'] = str.html_safe
     end
 
     if hash['nlm doc'].present?
       url=hash["db section"].downcase == "results" ? @@results_url : @@protocol_url
-      hash['nlm doc'] = "<a href=#{url}##{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>"
+      hash['nlm doc'] = "<a href=#{url}##{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>".html_safe
     end
 
     if (col == 'id') or (tab.downcase == 'studies' and col == 'nct_id')
