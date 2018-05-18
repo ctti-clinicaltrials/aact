@@ -109,6 +109,7 @@ module Admin
         ['designs','investigator_masked'],
         ['designs','outcomes_assessor_masked'],
         ['designs','subject_masked'],
+        ['documents','document_type'],
         ['drop_withdrawals','period'],
         ['eligibilities','gender'],
         ['eligibilities','gender_based'],
