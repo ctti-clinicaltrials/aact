@@ -51,7 +51,7 @@
   <h5>Automated Tests Revised to Use Most Current Data from ClinicalTrials.gov</h5>
   <p>ClinicalTrials.gov has made changes to the API (adding new tags; removing deprecated tags), so we needed to update the studies used by automated test scripts; the tests need to use data that accurrately represents the current structure of the ClinicalTrials.gov API. The latest version of all test studies were downloaded and test scripts were updated to address all changes.</p>
 
-  <h5>Email User Restoration SQL to AACT Administrators</h5>
+  <h5>Automatically Email the User Restoration SQL to AACT Administrators</h5>
   <p>To ensure we're able to recover user account information if necessary, we have added a step to the nightly update process that extracts all data from user-related tables and user account information and emails this to AACT Administrators along with instructions about how to run the scripts to restore the information.</p>
 
   <h5>SAS Connection Documentation Modified</h5>
@@ -59,7 +59,4 @@
 
   <h5>Process to Create 'ctgov' Schema Has Been Automated</h5>
   <p>All data retrieved from ClinicalTrials.gov is saved into a schema named 'ctgov'. Before, when standing up a new instance of the AACT database, we needed to manually create the ctgov schema, grant privileges to the database administrator and define 'ctgov' as the default schema. We have now modified the database initialization process so that the ctgov schema is automatically created so that the tables, views and indexes are saved there without requiring any extra manual steps.</p>
-
-  <h5>Email User Restoration SQL to AACT Administrators</h5>
-  <p>To ensure we're able to recover user account information, we now dump the SQL to reproduce user-related tables and user database account information, and email these scripts to AACT Administrators. This is done daily.</p>
 
