@@ -112,6 +112,7 @@ GEM
     connection_pool (2.2.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    crass (1.0.4)
     database_cleaner (1.6.1)
     devise (4.3.0)
       bcrypt (~> 3.0)
@@ -170,7 +171,8 @@ GEM
     letter_opener (1.4.1)
       launchy (~> 2.2)
     libv8 (3.16.14.19)
-    loofah (2.0.3)
+    loofah (2.2.2)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
@@ -203,11 +205,11 @@ GEM
     public_suffix (2.0.5)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
-    rack (1.6.8)
+    rack (1.6.10)
     rack-cors (1.0.2)
     rack-mini-profiler (0.10.5)
       rack (>= 1.2.0)
-    rack-protection (1.5.3)
+    rack-protection (1.5.5)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -223,8 +225,8 @@ GEM
       activesupport (>= 3.2)
       choice (~> 0.2.0)
       ruby-graphviz (~> 1.2)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -374,6 +376,7 @@ DEPENDENCIES
   launchy
   letter_opener
   libv8 (~> 3.16.14.15)
+  loofah (~> 2.2.1)
   nokogiri (~> 1.8.1)
   normalize-rails
   pg
@@ -383,9 +386,11 @@ DEPENDENCIES
   rack
   rack-cors
   rack-mini-profiler
+  rack-protection (~> 1.5.5)
   rack-timeout
   rails!
   rails-erd
+  rails-html-sanitizer (~> 1.0.4)
   rails_12factor
   recipient_interceptor
   rest-client
