@@ -9,8 +9,6 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
-  get "/users/edit"           => "users/edit"
-  get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
   get "/learn_more"           => "pages#learn_more"
   get "/schema"               => "pages#schema"
   get "/data_dictionary"      => "dictionary#show"
@@ -41,6 +39,7 @@ Rails.application.routes.draw do
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
 
   resources :definitions
+  resources :users
   resources :use_cases
   resources :use_case_attachments
 end
