@@ -1,0 +1,30 @@
+<%=  stylesheet_link_tag "users/users" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<table id='users' class='table dataTable data-table table-striped table-hover'>
+
+    <tr>
+        <th>name</th>
+        <th>email</th>
+        <th>username</th>
+        <th>sign in count</th>
+        <th>confirmed</th>
+        <th>last signed in</th>
+        <th>last ip addr</th>
+    </tr>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.full_name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.username %></td>
+          <td><%= user.sign_in_count %></td>
+          <td><%= user.confirmed_at.strftime('%Y/%m/%d') %></td>
+          <td><%= user.last_sign_in_at.strftime('%Y/%m/%d') %></td>
+          <td><%= user.last_sign_in_ip %></td>
+        </tr>
+      <% end %>
+   </tbody>
+
+</table>

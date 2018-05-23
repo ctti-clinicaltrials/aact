@@ -1,0 +1,11 @@
+<%=  stylesheet_link_tag "users/users" %>
+<div class="wrap">
+
+  <div class="users">
+    <h4> <%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h4>
+
+      <%= render 'user_table' %>
+
+  </div>
+
+</div>
