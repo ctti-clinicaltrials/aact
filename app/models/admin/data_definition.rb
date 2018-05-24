@@ -1,4 +1,3 @@
-require 'csv'
 require 'active_support/all'
 module Admin
   class DataDefinition < Admin::AdminBase
