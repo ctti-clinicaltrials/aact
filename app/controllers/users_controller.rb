@@ -3,7 +3,12 @@ class UsersController < ApplicationController
 
   def index
     @user_count = User.all.size
-    @users = User.all.sort_by &:last_name
+    @users = User.order(:last_name)
+    respond_to do |format|
+      format.html
+      format.csv { render text: @users.to_csv }
+      format.xls { render text: @users.to_csv(col_sep: "\t") }
+    end
   end
 
   def show

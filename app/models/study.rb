@@ -5,7 +5,6 @@ class String
   end
 end
 
-require 'csv'
 class Study < ActiveRecord::Base
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
