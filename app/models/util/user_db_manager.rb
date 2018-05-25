@@ -72,11 +72,7 @@ module Util
       run_command_line(cmd)
 
       log "dumping User accounts..."
-      # to backup user accounts on the public server, we need to use the same version of postgres (9.6) - but for some
-      # reason, we cannot get 9.2 replaced with 9.6 on the OIT servers, but can get a 9.6 instance installed,
-      # We should shift everything on OIT server to 9.6, but for now, just run the pg_dumpall using 9.6, cuz it won't work
-      # without it.
-      cmd="scl enable rh-postgresql96 bash; /opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{account_file_name}"
+      cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{account_file_name}"
       run_command_line(cmd)
 
       event=Admin::UserEvent.new({:event_type=>'backup', :file_names=>" #{table_file_name}, #{event_file_name}, #{account_file_name}" })
