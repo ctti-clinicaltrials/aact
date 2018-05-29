@@ -7,11 +7,14 @@ class Users::PasswordsController < Devise::PasswordsController
   end
 
   def update
-    resource = resource_class.reset_password_by_token(params[resource_name])
-    if resource
-      yield resource if block_given?
+    self.resource = resource_class.reset_password_by_token(params[resource_name])
+    yield resource if block_given?
+    if resource and resource.errors.empty?
+      Notifier.report_user_event('password reset', resource)
       sign_out(:user)
       sign_in(:user, resource)
+    else
+      Notifier.report_user_event('password reset error', resource)
     end
     redirect_to root_path
   end
@@ -19,7 +22,7 @@ class Users::PasswordsController < Devise::PasswordsController
   protected
 
   def configure_devise_permitted_parameters
-    params.permit :reset_password_token, :utf8, :_method, :authenticity_token, :commit, user: [:email, :reset_password_token, :password, :password_confirmation, :unencrypted_password]
+    params.permit :reset_password_token, :utf8, :_method, :authenticity_token, :commit, user: [:email, :reset_password_token, :password, :password_confirmation]
   end
 
 end

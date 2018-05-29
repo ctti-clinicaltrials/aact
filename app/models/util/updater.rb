@@ -28,14 +28,20 @@ module Util
         else
           status=incremental
         end
+        finalize_load if status != false
       rescue => error
-        msg="#{error.message} (#{error.class} #{error.backtrace}"
-        log("#{@load_event.event_type} load failed in run: #{msg}")
-        load_event.add_problem(msg)
-        load_event.complete({:status=>'failed', :study_counts=> study_counts})
-        status=false
+        begin
+          status=false
+          msg="#{error.message} (#{error.class} #{error.backtrace}"
+          log("#{@load_event.event_type} load failed in run: #{msg}")
+          load_event.add_problem(msg)
+          load_event.complete({:status=>'failed', :study_counts=> study_counts})
+          Admin::PublicAnnouncement.clear_load_message
+          db_mgr.grant_db_privs
+        rescue
+          load_event.complete({:status=>'failed', :study_counts=> study_counts})
+        end
       end
-      finalize_load if status != false
       send_notification
     end
 
@@ -253,9 +259,9 @@ module Util
 
       ActiveRecord::Base.transaction do
         Util::Updater.loadable_tables.each { |table|
-          stime=Time.now
+          stime=Time.zone.now
           ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
-          log("deleted studies from #{table}   #{Time.now - stime}")
+          log("deleted studies from #{table}   #{Time.zone.now - stime}")
         }
         Admin::AdminBase.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
         nct_ids.each {|nct_id|
@@ -268,7 +274,7 @@ module Util
     end
 
     def log(msg)
-      puts msg   # log to STDOUT
+      puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
     end
 
     def show_progress(nct_id,action)
@@ -296,7 +302,7 @@ module Util
       sanity_set=Admin::SanityCheck.where('most_current is true')
       load_event.add_problem("Fewer sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size < 40
       load_event.add_problem("More sanity check rows than expected (40): #{sanity_set.size}.") if sanity_set.size > 40
-      load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.now - 2.hours)
+      load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
       # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
       # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to this.
       old_count=(db_mgr.public_study_count - 10)
@@ -347,18 +353,18 @@ module Util
     end
 
     def refresh_study(nct_id)
-      stime=Time.now
+      stime=Time.zone.now
       #  Call to ct.gov API has been known to timeout.  Catch it rather than abort the rest of the load
       #  Also, if a study is not found for the NCT ID we have, don't save an empty study
       begin
         new_xml=@client.get_xml_for(nct_id)
         StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-        stime=Time.now
+        stime=Time.zone.now
         verify_xml=(new_xml.xpath('//clinical_study').xpath('source').text).strip
         if verify_xml.size > 1
           Study.new({ xml: new_xml, nct_id: nct_id }).create
           study_counts[:processed]+=1
-          show_progress(nct_id, " refreshed #{Time.now - stime}")
+          show_progress(nct_id, " refreshed #{Time.zone.now - stime}")
         else
           log("no data found for #{nct_id}")
         end
@@ -385,7 +391,7 @@ module Util
     end
 
     def db_mgr
-      @db_mgr ||= Util::DbManager.new({:load_event=>self.load_event})
+      @db_mgr ||= Util::DbManager.new({:event=>self.load_event})
     end
 
     def db_name

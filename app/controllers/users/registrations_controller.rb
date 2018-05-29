@@ -1,36 +1,36 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_filter :save_password, :only => [ :new, :create ]
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
   def create
     super
     if resource.errors.size == 0
-      resource.create_unconfirmed
-      flash[:notice] = 'You will soon receive an email from AACT. Once you verify your information by responding to this email, a database account will be created for you.' if !resource.errors.any?
+      Notifier.report_user_event('created', resource)
+      flash[:notice] = 'You will soon receive an email from AACT. When you verify your email, you will have acces to your database account.'
     end
   end
 
   def destroy
     current_user.remove
-    redirect_to root_path
+    if resource.errors.empty?
+      Notifier.report_user_event('removed', resource)
+      redirect_to root_path
+    else
+      flash[:notice] = "#{resource.errors.first.first} #{resource.errors.first.last}"
+      redirect_to edit_user_registration_path resource
+    end
   end
 
   protected
 
-  def save_password
-    params[:user][:unencrypted_password]=params[:user][:password] if params[:action]=='create' and params[:user][:password]
-  end
-
   def update_resource(resource, params)
-    if params[:current_password].blank?
-      resource.errors.add(:current_password, "must be provided to update account.")
-    else
-      resource.update(params)
+    resource.update(params)
+    if resource.errors.size == 0
+      Notifier.report_user_event('updated', resource)
     end
   end
 
   def configure_devise_permitted_parameters
-    registration_params = [:first_name, :last_name, :email, :username, :password, :password_confirmation, :current_password, :unencrypted_password]
+    registration_params = [:first_name, :last_name, :email, :username, :password, :password_confirmation ]
 
     case params[:action]
     when 'update'
@@ -45,12 +45,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       devise_parameter_sanitizer.permit(:delete) {
         |u| u.permit(registration_params)
       }
-    end
-  end
-
-  def notify_user_of_email_confirmation
-    respond_to do |format|
-      format.html { redirect_to new_user_registration_path, notice: 'You will soon receive an email from AACT. Once you verify your information by responding to this email, a database account will be created for you.' }
     end
   end
 
