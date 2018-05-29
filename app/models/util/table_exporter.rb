@@ -3,7 +3,7 @@ module Util
     attr_reader :zipfile_name, :table_names
 
     def initialize(tables=[])
-      @temp_dir     = "#{Util::FileManager.dump_directory}/export"
+      @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
       @zipfile_name = "#{@temp_dir}/#{Time.now.strftime('%Y%m%d')}_export.zip"
       @connection   = ActiveRecord::Base.connection.raw_connection
       @table_names  = tables
@@ -45,21 +45,22 @@ module Util
                              .map do |file_name|
                                path = "#{@temp_dir}/#{file_name}"
                                File.open(path, 'wb+') do |file|
-                                 file.write(export_table_to_csv(file_name, path, delimiter))
+                                 export_table_to_csv(file, file_name, path, delimiter)
                                  file
                                end
                              end
     end
 
-    def export_table_to_csv(file_name, path, delimiter)
+    def export_table_to_csv(file, file_name, path, delimiter)
       table = File.basename(file_name, delimiter == ',' ? '.csv' : '.txt')
-      string = ''
       @connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
         while row = @connection.get_copy_data
-          string << row
+          # convert all \n to ~.  Then when you write to the file, convert last ~ back to \n
+          # to prevent it from concatenating all rows into one big long string
+          fixed_row=row.gsub(/\"\"/, '').gsub(/\n\s/, '~').gsub(/\n/, '~')
+          file.write(fixed_row.gsub(/\~$/,"\n"))
         end
       end
-      string.gsub(/\"\"/, '').gsub(/\n\s/, '')
     end
 
     def cleanup_tempfiles!
@@ -82,7 +83,7 @@ module Util
                        "pipe-delimited-export"
                      end
 
-      archive_file_name="#{Util::FileManager.flat_files_directory}/#{Time.now.strftime('%Y%m%d')}_#{file_type}.zip"
+      archive_file_name="#{Util::FileManager.new.flat_files_directory}/#{Time.now.strftime('%Y%m%d')}_#{file_type}.zip"
       FileUtils.mv(@zipfile_name, archive_file_name)
     end
   end

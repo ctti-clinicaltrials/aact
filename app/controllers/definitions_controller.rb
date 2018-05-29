@@ -4,11 +4,11 @@ class DefinitionsController < ApplicationController
   # This code uses data dictionary spreadsheet stored on the DO file server
   # *******///********
 
-  @@results_url=Util::FileManager.new.nlm_results_data_url
-  @@protocol_url=Util::FileManager.new.nlm_protocol_data_url
+  @@results_url=Util::FilePresentationManager.new.nlm_results_data_url
+  @@protocol_url=Util::FilePresentationManager.new.nlm_protocol_data_url
 
   def index
-    data = Roo::Spreadsheet.open(Util::FileManager.new.backend_data_dictionary)
+    data = Roo::Spreadsheet.open("/aact-files/documentation/aact_data_definitions.xlsx")
     header = data.first
     dataOut = []
     (2..data.last_row).each do |i|
@@ -49,7 +49,7 @@ class DefinitionsController < ApplicationController
   end
 
   def fix_attribs(hash)
-    enums=Admin::DataDefinition.enums
+    enums=Admin::Enumeration.enums
     enum_tabs=enums.map {|row| row[0]}
     enum_cols=enums.map {|row| row[1]}
     tab=hash['table'].downcase

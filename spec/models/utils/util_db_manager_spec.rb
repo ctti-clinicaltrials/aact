@@ -15,8 +15,9 @@ describe Util::DbManager do
            to_return(status: 200, body: "", headers: {})
 
       dm=Util::DbManager.new(:load_event=>Admin::LoadEvent.create({:event_type=>'incremental',:status=>'running',:description=>'',:problems=>''}))
+      fm=Util::FileManager.new
       dm.dump_database
-      dm.save_static_copy
+      fm.save_static_copy
       dm.refresh_public_db
 
       back_db_con = PublicBase.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection

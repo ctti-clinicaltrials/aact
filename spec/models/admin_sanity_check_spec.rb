@@ -13,6 +13,45 @@ describe Admin::SanityCheck do
     expect(Admin::SanityCheck.count).to eq(40)
   end
 
+  it 'correctly detects when enumeration changed by > 10%' do
+    #  Create a set of enumerations for a specific table/column/value
+    Admin::Enumeration.destroy_all
+    t_name='studies'
+    c_name='overall_status'
+    val='some value'
+    [1,2].each {|num|
+      hash={:table_name => t_name,
+            :column_name => c_name,
+            :column_value => val,
+            :value_count => num,
+            :value_percent => ((num*100)/8).to_f
+           }
+      Admin::Enumeration.create_from(hash)
+    }
+    Admin::Enumeration.all.each{|x| puts x.inspect}
+
+    described_class.destroy_all
+    described_class.new.check_enumerations
+    cks=described_class.all
+    expect(cks.size).to eq(1)
+    ck=cks.first
+    expect(ck.table_name).to eq(t_name)
+    expect(ck.column_name).to eq(c_name)
+    expect(ck.check_type).to eq('enumeration')
+    expect(ck.most_current).to eq(true)
+    expect(ck.description).to eq("enumeration changed by more than 10%: 12.0% -> 25.0%")
+
+    # Change the 2nd Enumeration's percent_value so it's within 10% of the previous and reun the sanity check.
+    # This should not cause a SanityCheck to get created since it's within a sane range.
+    reset_enum=Admin::Enumeration.where('value_count=?',2).first
+    reset_enum.value_percent=21
+    reset_enum.save!
+    described_class.destroy_all
+    described_class.new.check_enumerations
+    cks=described_class.all
+    expect(cks.size).to eq(0)
+  end
+
   it 'should have row count 1 for each table that has 1-to-1 relationship with studies table' do
     Util::Updater.single_study_tables.each{|table_name|
        rows=Admin::SanityCheck.where('table_name=?',table_name)

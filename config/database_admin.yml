@@ -7,7 +7,8 @@ development: &default
   url:  <%= ENV.fetch("AACT_ADMIN_DATABASE_URL", "") %>
 
 test:
-  <<: *default
+  encoding: utf8
+  adapter: postgresql
   database: aact_admin_test
 
 production: &deploy

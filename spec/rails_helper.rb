@@ -30,9 +30,10 @@ RSpec.configure do |config|
     DatabaseCleaner[:active_record, { model: Admin::LoadEvent }].clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Admin::SanityCheck }].clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: StudyXmlRecord }].clean_with(:truncation)
+    DatabaseCleaner[:active_record, { model: Study }].clean_with(:truncation)
   end
 
-    config.before(:each) do |example|
+  config.before(:each) do |example|
     unit_test = ![:feature, :request].include?(example.metadata[:type])
     strategy = unit_test ? :transaction : :truncation
 
@@ -52,6 +53,7 @@ RSpec.configure do |config|
     DatabaseCleaner[:active_record, { model: Admin::LoadEvent }].clean
     DatabaseCleaner[:active_record, { model: Admin::SanityCheck }].clean
     DatabaseCleaner[:active_record, { model: StudyXmlRecord }].clean
+    DatabaseCleaner[:active_record, { model: Study }].clean
   end
 
 end
