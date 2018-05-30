@@ -146,8 +146,29 @@
    <h2>Information about dates</h2>
 	 <p>ClinicalTrials.gov has historically provided the month/year (without day) for several date values including start date, completion date, primary completion date and verification date. Because the 'day' was not provided, AACT stored these dates in the <i>Studies</i> table as character-type rather than date-type values. Character-type dates are of limited utility in an analytic database because they can't be used to perform standard date calculations such as determining study duration or the average number of months for someone to report results or identifying studies registered before/after a certain date.</p>
 
-   <p>NLM recently reported that ClinicalTrials.gov will start providing full date values (mm/dd/yy) for these date elements, however this only applies to new studies; pre-existing studies will continue to have only month/year date values. We considered various alternatives to handle dates given this issue. We decided to provide 2 columns in the <i>Studies</i> table for each date element: 1) a character-type column that displays the value exactly as it was received from ClinicalTrials.gov & 2) a date-type column that can be used for date calculations. If the date received from ClinicalTrials.gov has only month/year, in order to convert the string to a date, it is assigned the first day of the month. For example, a study with start date June, 2014 will have <i>June, 2014</i> in the <i>start_month_year</i> column and <i>06/01/14</i> in the <i>start_date</i> column.
+   <p>NLM recently reported that ClinicalTrials.gov will start providing full date values (mm/dd/yy) for these date elements, however this only applies to new studies; studies entered prior to this announcement will continue to have only month/year date values. We considered various alternatives to handle dates given this issue. We decided to provide 2 columns in the <i>Studies</i> table for each date element: 1) a character-type column that displays the value exactly as it was received from ClinicalTrials.gov & 2) a date-type column that can be used for date calculations. If the date received from ClinicalTrials.gov has only month/year, in order to convert the string to a date, it is assigned the first day of the month. For example, a study with start date June, 2014 will have <i>June, 2014</i> in the <i>start_month_year</i> column and <i>06/01/14</i> in the <i>start_date</i> column.
     <p>
+
+    <div id='pending_results'>
+    <h2>Information about dates related to 'pending results'</h2>
+    <p>On May 9, 2018, the NLM added a new section of date information to the ClinicalTrials.gov API. The section is labeled "pendng_results" and serves to provide information about result submission activity while the results await quality control review.</p>
+
+      <p>NLM provides result submission date(s) for studies that have results awaiting quality control (QC) review. The results themselves are not publicly posted until the review is complete. The dates for three types of events related to results submission are reported in the Pending_Results table:</p>
+      <ul class='regularDisplay'>
+
+    <li><i>Submission:</i> The date(s) that study results were submitted to NLM for QC review.</li>
+    <li><i>Submission Canceled:</i> The date(s) that such submissions were canceled by the data provider. (Note: this value is set to "Unknown" if the cancellation occurred before 05/08/2018 when this data started to be collected).</li>
+    <li><i>Returned:</i>  The date(s) that study results were returned to the data provider because they required modification.</li>
+  </ul>
+  <p>The NLM reports that the following updates occur to this information when a study passes the quality control review:</p>
+  <ul class='regularDisplay'>
+
+    <li><i>Study.results_first_submitted_date</i> is populated with the earliest 'submitted date' from Pending_Results.</li>
+    <li><i>Study.results_first_submitted_qc_date</i> is populated with the submitted date of the version of results that passed QC.</li>
+    <li>Result tables (<i>Reported_Events, Outcomes, Baseline_Measurements</i>, etc.) are populated with the result information that passed QC.</li>
+    <li>All rows for the study with reviewed/approved results are removed from the <i>Pending_Events</i> table.</li>
+  </ul>
+    </div>
 
     <h2>Information about trial sites (Facilities and Countries)</h2>
     <p> Information about organizations where the study is/was conducted (aka. facilities, trial sites) is stored in the <i>Facilities</i> table. This represents the facility information that was included in the study record on the date that information was downloaded from ClinicalTrials.gov.</p>
@@ -176,7 +197,7 @@
       <li>New use: the manufacturer of a drug, biologic or device is the sponsor of the trial and has filed or will file within one year, an application seeking FDA approval, licensure, or clearance of the new use studied in the trial. A responsible party may also request, for good cause, an extension of the deadline for the submission of results.</li>
     </ul>
 
-    <p>Studies for which a certification or extension request have been submitted include the date of the first certification or extension request in the data element: <i>Studies.received_results_disposit_date</i>.</p>
+    <p>Studies for which a certification or extension request have been submitted include the date of the first certification or extension request in the data element: <i>Studies.disposition_first_submitted_date</i>.</p>
 
     <p>In general, the content that is contained in the AACT database preserves the content in the source XML files that are downloaded from ClinicalTrials.gov.</p>
 
