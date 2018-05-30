@@ -48,7 +48,8 @@ class User < Admin::AdminBase
       mgr.create_user_account(self)
     else
       self.errors.add('DB Account', 'could not be created for this user.')
-      event.description='Could not create this user.'.save
+      event.description='Could not create this user.'
+      event.save!
     end
   end
 
