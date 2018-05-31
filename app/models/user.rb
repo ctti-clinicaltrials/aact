@@ -124,6 +124,16 @@ class User < Admin::AdminBase
     first_name + ' ' + last_name
   end
 
+  def display_confirmed_at
+    return '' if self.confirmed_at.nil?
+    self.confirmed_at.strftime('%Y/%m/%d')
+  end
+
+  def display_last_sign_in_at
+    return '' if self.last_sign_in_at.nil?
+    self.last_sign_in_at.strftime('%Y/%m/%d')
+  end
+
   def summary_info(type=nil)
     if type == 'list'
       "#{id}|#{self.full_name}|#{self.username}|#{self.email}|#{self.confirmation_sent_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.confirmed_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.sign_in_count}|#{self.last_sign_in_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.last_sign_in_ip}"
