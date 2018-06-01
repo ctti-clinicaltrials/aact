@@ -1,4 +1,4 @@
-class BackupMailer < ApplicationMailer
+class UserMailer < ApplicationMailer
 
   def report_user_backup(event)
     @event=event
