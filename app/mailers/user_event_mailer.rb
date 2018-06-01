@@ -11,13 +11,14 @@ class UserEventMailer < ApplicationMailer
       }
     }
     admin_addresses.each { |email_addr|
-      mail(to: email_addr, subject: @event.subject_line).deliver_now
+      send_msg(email_addr, @event.subject_line).deliver_now
     }
   end
 
   def report_user_event(event_type, user)
+    @user=user
     admin_addresses.each { |email_addr|
-      send_msg(email_addr, user.notification_subject_line(event_type)).deliver_now
+      send_msg(email_addr, @user.notification_subject_line(event_type)).deliver_now
     }
   end
 
