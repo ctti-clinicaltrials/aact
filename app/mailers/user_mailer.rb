@@ -1,6 +1,6 @@
-class UserEventMailer < ApplicationMailer
+class UserMailer < ApplicationMailer
 
-  def report_user_backup(event)
+  def report_backup(event)
     @event=event
     @files=[]
     @event.file_names.delete(' ').split(',').each {|f|
@@ -15,7 +15,7 @@ class UserEventMailer < ApplicationMailer
     }
   end
 
-  def report_user_event(event_type, user)
+  def report_event(event_type, user)
     @user=user
     admin_addresses.each { |email_addr|
       send_msg(email_addr, @user.notification_subject_line(event_type)).deliver_now

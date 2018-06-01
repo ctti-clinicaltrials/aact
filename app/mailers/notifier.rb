@@ -6,4 +6,8 @@ class Notifier < ApplicationMailer
     }
   end
 
+  def send_msg(email_addr, subject, body)
+    mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email_addr, subject: subject, body: body)
+  end
+
 end
