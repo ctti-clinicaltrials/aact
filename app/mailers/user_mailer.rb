@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
 
-  def report_user_backup(event)
+  def report_backup(event)
     @event=event
     @files=[]
     @event.file_names.delete(' ').split(',').each {|f|
