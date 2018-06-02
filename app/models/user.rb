@@ -129,6 +129,11 @@ class User < Admin::AdminBase
     self.confirmed_at.strftime('%Y/%m/%d')
   end
 
+  def display_confirmation_sent_at
+    return '' if self.confirmation_sent_at.nil?
+    self.confirmation_sent_at.strftime('%Y/%m/%d')
+  end
+
   def display_last_sign_in_at
     return '' if self.last_sign_in_at.nil?
     self.last_sign_in_at.strftime('%Y/%m/%d')
