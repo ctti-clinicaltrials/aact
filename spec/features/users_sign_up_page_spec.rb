@@ -125,7 +125,7 @@ feature "Users Sign Up Page" do
     # successful create - all valid values
     fill_in 'user_password', with: valid_password
     fill_in 'user_password_confirmation', with: valid_password
-    expect(UserMailer).to receive(:report_user_event).exactly(Notifier.admin_addresses.size).times
+    expect(UserMailer).to receive(:send_event_notification).exactly(ApplicationMailer.admin_addresses.size).times
     submit
 
     expect(page).to have_content "A message with a confirmation link has been sent to your email address"
@@ -153,7 +153,7 @@ feature "Users Sign Up Page" do
     fill_in 'user_current_password', with: valid_password
     fill_in 'user_password', with: ''
     fill_in 'user_password_confirmation', with: ''
-    expect(UserMailer).to receive(:report_user_event).exactly(1).times
+    expect(UserMailer).to receive(:send_event_notification).exactly(1).times
     submit
     user=User.where('username=?',valid_username).first
     expect(user.first_name).to eq(new_first_name)

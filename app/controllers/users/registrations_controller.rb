@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     if resource.errors.size == 0
-      UserMailer.report_user_event('created', resource)
+      UserMailer.send_event_notification('created', resource)
       flash[:notice] = 'You will soon receive an email from AACT. When you verify your email, you will have acces to your database account.'
     end
   end
@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def destroy
     current_user.remove
     if resource.errors.empty?
-      UserMailer.report_user_event('removed', resource)
+      UserMailer.send_event_notification('removed', resource)
       redirect_to root_path
     else
       flash[:notice] = "#{resource.errors.first.first} #{resource.errors.first.last}"
@@ -25,7 +25,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_resource(resource, params)
     resource.update(params)
     if resource.errors.size == 0
-      UserMailer.report_user_event('updated', resource)
+      UserMailer.send_event_notification('updated', resource)
     end
   end
 

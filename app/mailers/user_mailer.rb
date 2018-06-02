@@ -19,7 +19,7 @@ class UserMailer < ApplicationMailer
     mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email, subject: @event.subject_line)
   end
 
-  def self.report_user_event(event_type, user)
+  def self.send_event_notification(event_type, user)
     admin_addresses.each { |email_addr| send_user_event_msg(email_addr, user, event_type).deliver_now }
   end
 
