@@ -76,7 +76,7 @@ module Util
       run_command_line(cmd)
 
       event=Admin::UserEvent.new({:event_type=>'backup', :file_names=>" #{table_file_name}, #{event_file_name}, #{account_file_name}" })
-      UserMailer.report_backup(event)
+      UserMailer.send_backup_notification(event)
     end
 
     def grant_db_privs(username)

@@ -10,8 +10,4 @@ class Notifier < ApplicationMailer
     mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email_addr, subject: subject, body: body)
   end
 
-  def self.admin_addresses
-    ['sheri.tibbs@duke.edu','ctti-aact@duke.edu']
-  end
-
 end
