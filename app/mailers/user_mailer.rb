@@ -6,6 +6,12 @@ class UserMailer < ApplicationMailer
     }
   end
 
+  def self.send_event_notification(event_type, user)
+    admin_addresses.each { |email_addr|
+      event_notification(email_addr, user, event_type).try(:deliver_now)
+    }
+  end
+
   def backup_notification(email, event)
     @event=event
     @files=[]
@@ -16,18 +22,13 @@ class UserMailer < ApplicationMailer
         :file => File.read(f)
       }
     } if @event.file_names
-    mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email, subject: @event.subject_line)
-  end
-
-  def self.send_event_notification(event_type, user)
-    admin_addresses.each { |email_addr|
-      event_notification(email_addr, user, event_type).try(:deliver_now)
-    }
+    mail(to: email, subject: "AACT #{Rails.env.capitalize} User Backups")
   end
 
   def event_notification(email_addr, user, event_type)
     @user=user
-    mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email_addr, subject: @user.notification_subject_line(event_type))
+    subj="AACT #{Rails.env.capitalize} user #{event_type}: #{@user.full_name}"
+    mail(to: email_addr, subject: subj)
   end
 
 end

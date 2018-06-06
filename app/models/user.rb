@@ -157,10 +157,6 @@ class User < Admin::AdminBase
     end
   end
 
-  def notification_subject_line(event_type)
-    "AACT #{Rails.env.capitalize} user #{event_type}: #{self.full_name}"
-  end
-
   def self.list
     collection=[]
     all.each{ |user| collection << user.summary_info('list') }

@@ -24,9 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_resource(resource, params)
     resource.update(params)
-    if resource.errors.size == 0
-      UserMailer.send_event_notification('updated', resource)
-    end
+    UserMailer.send_event_notification('updated', resource) if resource.errors.size == 0
   end
 
   def configure_devise_permitted_parameters
