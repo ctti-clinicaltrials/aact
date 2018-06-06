@@ -36,7 +36,6 @@ describe User do
   it "accepted with a valid username and logs appropriate events when adding/removing user" do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     Admin::UserEvent.destroy_all
-    Admin::RemovedUser.destroy_all
     User.destroy_all
     Util::UserDbManager.new.remove_user('r1ectest')
     user=User.create(:first_name=>'first', :last_name=>'last',:email=>'first.last@duke.edu',:username=>'r1ectest',:password=>'aact')
@@ -47,8 +46,6 @@ describe User do
 
     user.remove
     expect(User.count).to eq(0)
-    expect(Admin::RemovedUser.count).to eq(1)
-    expect(Admin::RemovedUser.first.username).to eq('r1ectest')
     expect(Admin::UserEvent.last.event_type).to eq('remove')
   end
 

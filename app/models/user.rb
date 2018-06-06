@@ -107,9 +107,7 @@ class User < Admin::AdminBase
   def remove
     begin
       return false if !can_access_db?
-      Admin::RemovedUser.create(self.attributes.except('id', 'created_at', 'updated_at'))
       event=Admin::UserEvent.create( { :email => self.email, :event_type =>'remove' })
-
       db_mgr=Util::UserDbManager.new({ :event=> event })
       db_mgr.pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
       db_mgr.remove_user(self.username)

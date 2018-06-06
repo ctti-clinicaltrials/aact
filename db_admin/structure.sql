@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.3
--- Dumped by pg_dump version 10.3
+-- Dumped from database version 10.4
+-- Dumped by pg_dump version 10.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -258,53 +258,6 @@ CREATE SEQUENCE ctgov.public_announcements_id_seq
 --
 
 ALTER SEQUENCE ctgov.public_announcements_id_seq OWNED BY ctgov.public_announcements.id;
-
-
---
--- Name: removed_users; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.removed_users (
-    id integer NOT NULL,
-    email character varying,
-    encrypted_password character varying,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    sign_in_count integer,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying,
-    last_sign_in_ip character varying,
-    first_name character varying,
-    last_name character varying,
-    username character varying,
-    confirmation_token character varying,
-    confirmed_at timestamp without time zone,
-    confirmation_sent_at timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: removed_users_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.removed_users_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: removed_users_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.removed_users_id_seq OWNED BY ctgov.removed_users.id;
 
 
 --
@@ -587,13 +540,6 @@ ALTER TABLE ONLY ctgov.public_announcements ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- Name: removed_users id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.removed_users ALTER COLUMN id SET DEFAULT nextval('ctgov.removed_users_id_seq'::regclass);
-
-
---
 -- Name: sanity_checks id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -684,14 +630,6 @@ ALTER TABLE ONLY ctgov.public_announcements
 
 
 --
--- Name: removed_users removed_users_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.removed_users
-    ADD CONSTRAINT removed_users_pkey PRIMARY KEY (id);
-
-
---
 -- Name: sanity_checks sanity_checks_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -737,20 +675,6 @@ ALTER TABLE ONLY ctgov.user_events
 
 ALTER TABLE ONLY ctgov.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: index_removed_users_on_email; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_removed_users_on_email ON ctgov.removed_users USING btree (email);
-
-
---
--- Name: index_removed_users_on_username; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_removed_users_on_username ON ctgov.removed_users USING btree (username);
 
 
 --
@@ -841,7 +765,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING bt
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov;
+SET search_path TO ctgov, public;
 
 INSERT INTO schema_migrations (version) VALUES ('20160214191640');
 
@@ -856,4 +780,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180226142044');
 INSERT INTO schema_migrations (version) VALUES ('20180409181440');
 
 INSERT INTO schema_migrations (version) VALUES ('20180427144951');
+
+INSERT INTO schema_migrations (version) VALUES ('20180606153216');
 
