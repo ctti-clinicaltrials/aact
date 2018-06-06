@@ -129,6 +129,11 @@ class User < Admin::AdminBase
     self.confirmed_at.strftime('%Y/%m/%d')
   end
 
+  def display_confirmation_sent_at
+    return '' if self.confirmation_sent_at.nil?
+    self.confirmation_sent_at.strftime('%Y/%m/%d')
+  end
+
   def display_last_sign_in_at
     return '' if self.last_sign_in_at.nil?
     self.last_sign_in_at.strftime('%Y/%m/%d')
@@ -150,10 +155,6 @@ class User < Admin::AdminBase
        Last signed in: #{self.last_sign_in_at.try(:strftime,"%m/%d/%Y %H:%m")}  (#{self.last_sign_in_ip})
       "
     end
-  end
-
-  def notification_subject_line(event_type)
-    "AACT #{Rails.env.capitalize} user #{event_type}: #{self.full_name}"
   end
 
   def self.list
