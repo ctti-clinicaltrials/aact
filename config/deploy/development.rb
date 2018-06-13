@@ -35,7 +35,7 @@
 #
 # Global options
 # --------------
-  set :deploy_to, '/srv/web/aact-dev.oit.duke.edu'
+  set :deploy_to, '/apps/aact'
   set :ssh_options, {
     keys: %w(/home/ctti-aact/.ssh/id_rsa),
     forward_agent: false,
