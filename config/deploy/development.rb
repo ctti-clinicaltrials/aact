@@ -35,7 +35,7 @@
 #
 # Global options
 # --------------
-  set :deploy_to, '/apps/aact'
+  set :deploy_to, '/home/ctti-aact/apps/aact'
   set :ssh_options, {
     keys: %w(/home/ctti-aact/.ssh/id_rsa),
     forward_agent: false,
