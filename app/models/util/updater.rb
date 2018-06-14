@@ -244,6 +244,7 @@ module Util
 
     def self.loadable_tables
       blacklist = %w(
+        ar_internal_metadata
         schema_migrations
         data_definitions
         mesh_headings
