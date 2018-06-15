@@ -38,7 +38,7 @@
 # http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start
 #
 # Global options
-  set :deploy_to, '/srv/web/aact.ctti-clinicaltrials.org'
+  set :deploy_to, '/home/ctti-aact/apps/aact/'
   set :ssh_options, {
     keys: %w(/home/ctti-aact/.ssh/id_rsa),
     forward_agent: false,

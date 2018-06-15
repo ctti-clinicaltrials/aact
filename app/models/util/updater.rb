@@ -114,120 +114,19 @@ module Util
       Admin::PublicAnnouncement.clear_load_message
     end
 
-    def indexes
-      [
-         [:baseline_measurements, :dispersion_type],
-         [:baseline_measurements, :param_type],
-         [:baseline_measurements, :category],
-         [:baseline_measurements, :classification],
-         [:browse_conditions, :mesh_term],
-         [:browse_conditions, :downcase_mesh_term],
-         [:browse_interventions, :mesh_term],
-         [:browse_interventions, :downcase_mesh_term],
-         [:calculated_values, :actual_duration],
-         [:calculated_values, :months_to_report_results],
-         [:calculated_values, :number_of_facilities],
-         [:central_contacts, :contact_type],
-         [:conditions, :name],
-         [:conditions, :downcase_name],
-         [:design_groups, :group_type],
-         [:design_outcomes, :outcome_type],
-         [:designs, :masking],
-         [:designs, :subject_masked],
-         [:designs, :caregiver_masked],
-         [:designs, :investigator_masked],
-         [:designs, :outcomes_assessor_masked],
-         [:documents, :document_id],
-         [:documents, :document_type],
-         [:drop_withdrawals, :period],
-         [:eligibilities, :gender],
-         [:eligibilities, :healthy_volunteers],
-         [:eligibilities, :minimum_age],
-         [:eligibilities, :maximum_age],
-         [:facilities, :status],
-         [:facility_contacts, :contact_type],
-         [:facilities, :name],
-         [:facilities, :city],
-         [:facilities, :state],
-         [:facilities, :country],
-         [:id_information, :id_type],
-         [:interventions, :intervention_type],
-         [:keywords, :name],
-         [:keywords, :downcase_name],
-         [:mesh_terms, :qualifier],
-         [:mesh_terms, :description],
-         [:mesh_terms, :mesh_term],
-         [:mesh_terms, :downcase_mesh_term],
-         [:mesh_headings, :qualifier],
-         [:milestones, :period],
-         [:outcomes, :param_type],
-         [:outcome_analyses, :dispersion_type],
-         [:outcome_analyses, :param_type],
-         [:outcome_measurements, :dispersion_type],
-         [:outcomes, :dispersion_type],
-         [:overall_officials, :affiliation],
-         [:outcome_measurements, :category],
-         [:outcome_measurements, :classification],
-         [:reported_events, :event_type],
-         [:reported_events, :subjects_affected],
-         [:responsible_parties, :organization],
-         [:responsible_parties, :responsible_party_type],
-         [:result_contacts, :organization],
-         [:result_groups, :result_type],
-         [:sponsors, :agency_class],
-         [:sponsors, :name],
-         [:studies, :enrollment_type],
-         [:studies, :overall_status],
-         [:studies, :phase],
-         [:studies, :last_known_status],
-         [:studies, :primary_completion_date_type],
-         [:studies, :source],
-         [:studies, :study_type],
-         [:studies, :study_first_submitted_date],
-         [:studies, :results_first_submitted_date],
-         [:studies, :disposition_first_submitted_date],
-         [:studies, :last_update_submitted_date],
-         [:studies, :results_first_submitted_qc_date],
-         [:studies, :study_first_submitted_qc_date],
-         [:studies, :last_update_submitted_qc_date],
-         [:study_references, :reference_type],
-      ]
-    end
-
-    def should_keep_index?(index)
-      return true if index.table=='studies' and index.columns==['nct_id']
-      return true if index.table=='study_xml_records' and index.columns==['nct_id']
-      return true if index.table=='study_xml_records' and index.columns==['created_study_at']
-      return true if index.table=='sanity_checks'
-      false
-    end
-
     def remove_indexes
-      log('removing indices...')
-      m=ActiveRecord::Migration.new
-      Util::Updater.loadable_tables.each {|table_name|
-        ActiveRecord::Base.connection.indexes(table_name).each{|index|
-          m.remove_index(index.table, index.columns) if !should_keep_index?(index) and m.index_exists?(index.table, index.columns)
-        }
-      }
+      log('removing indexes...')
+      db_mgr.remove_indexes
+    end
+
+    def add_indexes
+      log('adding indexes...')
+      db_mgr.add_indexes
     end
 
     def create_calculated_values
       log('creating calculated values...')
       CalculatedValue.populate
-    end
-
-    def add_indexes
-      log('adding indices...')
-      m=ActiveRecord::Migration.new
-      indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
-      #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
-      ActiveRecord::Base.connection.tables.each{|table|
-        begin
-          m.add_index table, 'nct_id'
-        rescue
-        end
-      }
     end
 
     def self.single_study_tables
@@ -244,6 +143,7 @@ module Util
 
     def self.loadable_tables
       blacklist = %w(
+        ar_internal_metadata
         schema_migrations
         data_definitions
         mesh_headings
@@ -257,7 +157,8 @@ module Util
         use_cases
         use_case_attachments
       )
-      ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
+      table_names=ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
+#      table_names.each{|table_name| table_name.singularize.camelize.constantize
     end
 
     def update_studies(nct_ids)
@@ -266,7 +167,7 @@ module Util
       study_counts[:count_down]=nct_ids.size
 
       ActiveRecord::Base.transaction do
-        Util::Updater.loadable_tables.each { |table|
+        db_mgr.loadable_tables.each { |table|
           stime=Time.zone.now
           ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
           log("deleted studies from #{table}   #{Time.zone.now - stime}")

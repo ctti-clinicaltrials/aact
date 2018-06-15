@@ -11,7 +11,6 @@ gem "autoprefixer-rails"
 gem "flutie"
 gem "high_voltage"
 gem "jquery-rails"
-gem "sidekiq"
 gem "normalize-rails"
 gem "pg"
 gem 'rails_12factor'

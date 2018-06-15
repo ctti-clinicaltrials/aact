@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>AACT User event notification</p>
+
+    <p>ID:  <%= @user.id %></p>
+    <p>       Name:  <%= @user.full_name %></p>
+    <p>       DB username:  <%= @user.username %></p>
+    <p>       Email addr:  <%= @user.email %></p>
+    <p>       Confirmation email sent: <%= @user.display_confirmation_sent_at %></p>
+    <p>       Confirmed: <%= @user.display_confirmed_at %></p>
+
+    <p>       Sign in count: <%= @user.sign_in_count %></p>
+    <p>       Last signed in: <%= @user.last_sign_in_at.try(:strftime,"%m/%d/%Y %H:%m") %>  (<%= @user.last_sign_in_ip %>)</p>
+  </body>
+</html>
+
