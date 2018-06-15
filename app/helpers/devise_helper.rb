@@ -16,11 +16,11 @@ module DeviseHelper
     if errors.size == 1
       messages = content_tag(:p,errors.first)
     else
-      messages = errors.map { |msg| content_tag(:li, msg) }.join
+      messages = errors.uniq.map { |msg| content_tag(:li, msg) }.join
     end
 
     html = <<-HTML
-    <div id="error_explanation">
+    <div id="errorExplanation">
       <p>#{messages}</p>
     </div>
     HTML

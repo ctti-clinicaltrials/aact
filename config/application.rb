@@ -8,6 +8,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 require 'zip'
+require 'csv'
 
 Bundler.require(*Rails.groups)
 module AACT

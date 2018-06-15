@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02798588</url>
   </required_header>
@@ -74,8 +74,8 @@
   </brief_summary>
   <overall_status>Recruiting</overall_status>
   <start_date type="Actual">February 16, 2017</start_date>
-  <completion_date type="Anticipated">June 16, 2019</completion_date>
-  <primary_completion_date type="Anticipated">June 16, 2019</primary_completion_date>
+  <completion_date type="Anticipated">August 16, 2020</completion_date>
+  <primary_completion_date type="Anticipated">August 16, 2020</primary_completion_date>
   <phase>N/A</phase>
   <study_type>Interventional</study_type>
   <has_expanded_access>No</has_expanded_access>
@@ -119,7 +119,7 @@ dead patients</description>
     <description>Defining an association of criteria which are available in the 1st month after coma, that are able to predict at 1 year with a high positive predictive value the quality of functional outcome in the subgroup with favourable outcome in analyzing the level of autonomy according to Glasgow Outcome Scale (GOS)</description>
   </secondary_outcome>
   <number_of_arms>1</number_of_arms>
-  <enrollment type="Anticipated">20</enrollment>
+  <enrollment type="Anticipated">27</enrollment>
   <condition>Coma</condition>
   <arm_group>
     <arm_group_label>Comatose patients in ICU</arm_group_label>
@@ -179,22 +179,16 @@ dead patients</description>
     <healthy_volunteers>No</healthy_volunteers>
   </eligibility>
   <overall_official>
-    <last_name>Frédéric DAILLER, MD</last_name>
+    <last_name>Florent GOBERT, MD</last_name>
     <role>Principal Investigator</role>
     <affiliation>Réanimation polyvalente neurologique Hospices Civils de Lyon</affiliation>
   </overall_official>
   <overall_contact>
-    <last_name>Frédéric DAILLER, MD</last_name>
-    <phone>4 72 35 75 76</phone>
-    <phone_ext>+33</phone_ext>
-    <email>frederic.dailler@chu-lyon.fr</email>
-  </overall_contact>
-  <overall_contact_backup>
     <last_name>Florent GOBERT, MD</last_name>
-    <phone>6 78 64 90 66</phone>
+    <phone>04 72 68 12 96</phone>
     <phone_ext>+33</phone_ext>
-    <email>gobert.flo@gmail.com</email>
-  </overall_contact_backup>
+    <email>florent.gobert01@chu-lyon.fr</email>
+  </overall_contact>
   <location>
     <facility>
       <name>Réanimation polyvalente neurologique Hôpital Neurologique HCL</name>
@@ -206,20 +200,14 @@ dead patients</description>
     </facility>
     <status>Recruiting</status>
     <contact>
-      <last_name>Frédéric DAILLER, MD</last_name>
-      <phone>472 35 75 76</phone>
-      <phone_ext>+33</phone_ext>
-      <email>frederic.dailler@chu-lyon.fr</email>
-    </contact>
-    <contact_backup>
       <last_name>Florent GOBERT, MD</last_name>
-      <phone>6 78 64 90 66</phone>
+      <phone>04 72 68 12 96</phone>
       <phone_ext>+33</phone_ext>
-      <email>gobert.flo@gmail.com</email>
-    </contact_backup>
+      <email>florent.gobert01@chu-lyon.fr</email>
+    </contact>
     <investigator>
       <last_name>Frédéric DAILLER, MD</last_name>
-      <role>Principal Investigator</role>
+      <role>Sub-Investigator</role>
     </investigator>
     <investigator>
       <last_name>Jacques LUAUTE, MD</last_name>
@@ -229,22 +217,29 @@ dead patients</description>
       <last_name>Nathalie ANDRE-OBADIA, MD</last_name>
       <role>Sub-Investigator</role>
     </investigator>
+    <investigator>
+      <last_name>Florent GOBERT, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
   </location>
   <location_countries>
     <country>France</country>
   </location_countries>
-  <verification_date>August 2017</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>August 8, 2017</lastchanged_date>
-  <firstreceived_date>May 27, 2016</firstreceived_date>
-  <!-- New date names                                                                           -->
+  <verification_date>March 2018</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>May 27, 2016</study_first_submitted>
   <study_first_submitted_qc>June 8, 2016</study_first_submitted_qc>
   <study_first_posted type="Estimate">June 14, 2016</study_first_posted>
-  <last_update_submitted>August 8, 2017</last_update_submitted>
-  <last_update_submitted_qc>August 8, 2017</last_update_submitted_qc>
-  <last_update_posted type="Actual">August 9, 2017</last_update_posted>
-  <!-- End of dates                                                                             -->
+  <last_update_submitted>March 22, 2018</last_update_submitted>
+  <last_update_submitted_qc>March 22, 2018</last_update_submitted_qc>
+  <last_update_posted type="Actual">March 23, 2018</last_update_posted>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
@@ -258,5 +253,8 @@ dead patients</description>
     <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
     <mesh_term>Coma</mesh_term>
   </condition_browse>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
   <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

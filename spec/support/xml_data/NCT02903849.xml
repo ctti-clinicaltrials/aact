@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02903849</url>
   </required_header>
@@ -40,7 +40,7 @@
       in the challenge and motivate them to exercise more frequently. One week into the challenge,
       employees who have signed up for the challenge will receive an email inviting them to
       participate in a short activity. Employees who click on the link will be directed to a
-      survey. Once they finish reading the first introductory page and click "next", they will be
+      survey. Once they finish reading the first introductory page and click &quot;next&quot;, they will be
       randomly assigned to one of two groups. In the control group, employees will be encouraged to
       write down what they think will motivate them to walk more after 20, 50, and 90 days into the
       Challenge. These employees will receive standard reminders on the 20th, 50th, and 90th day of
@@ -92,7 +92,7 @@
   <secondary_outcome>
     <measure>Stress</measure>
     <time_frame>After the 100-day challenge ends</time_frame>
-    <description>Most recent self-reported stress level on a 1-5 scale (with 1 indicating "Relaxed" and 5 indicating "Highly Stressed") as entered by participant, an expected average of 2 months after study start. Obtaining the data is dependent on the ability to obtain the data from the online portal.</description>
+    <description>Most recent self-reported stress level on a 1-5 scale (with 1 indicating &quot;Relaxed&quot; and 5 indicating &quot;Highly Stressed&quot;) as entered by participant, an expected average of 2 months after study start. Obtaining the data is dependent on the ability to obtain the data from the online portal.</description>
   </secondary_outcome>
   <number_of_arms>2</number_of_arms>
   <enrollment type="Actual">324</enrollment>
@@ -160,17 +160,20 @@
     <country>United States</country>
   </location_countries>
   <verification_date>May 2017</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>May 8, 2017</lastchanged_date>
-  <firstreceived_date>September 13, 2016</firstreceived_date>
-  <!-- New date names                                                                           -->
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>September 13, 2016</study_first_submitted>
   <study_first_submitted_qc>September 15, 2016</study_first_submitted_qc>
   <study_first_posted type="Estimate">September 16, 2016</study_first_posted>
   <last_update_submitted>May 8, 2017</last_update_submitted>
   <last_update_submitted_qc>May 8, 2017</last_update_submitted_qc>
   <last_update_posted type="Actual">May 9, 2017</last_update_posted>
-  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Principal Investigator</responsible_party_type>
     <investigator_affiliation>Washington University School of Medicine</investigator_affiliation>

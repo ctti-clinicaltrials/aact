@@ -30,6 +30,7 @@ describe Study do
     expect(study.expanded_access_type_individual).to be nil
     expect(study.expanded_access_type_intermediate).to be nil
     expect(study.expanded_access_type_treatment).to be true
+    expect(study.study_first_submitted_qc_date).to eq('August 7, 2017'.to_date)
   end
 
   it "saves expanded access info correctly"  do
@@ -81,12 +82,12 @@ describe Study do
     expect(study.completion_date.strftime('%m/%d/%Y')).to eq('11/30/2013')
     expect(study.primary_completion_month_year).to eq('January 2009')
     expect(study.primary_completion_date.strftime('%m/%d/%Y')).to eq('01/31/2009')
-    expect(study.verification_month_year).to eq('November 2015')
-    expect(study.verification_date.strftime('%m/%d/%Y')).to eq('11/30/2015')
+    expect(study.verification_month_year).to eq('November 2017')
+    expect(study.verification_date.strftime('%m/%d/%Y')).to eq('11/30/2017')
 
     expect(study.study_first_submitted_date).to eq('September 13, 2001'.to_date)
     expect(study.results_first_submitted_date).to eq('February 12, 2014'.to_date)
-    expect(study.last_update_submitted_date).to eq('November 14, 2015'.to_date)
+    expect(study.last_update_submitted_date).to eq('November 27, 2017'.to_date)
 
     expect(study.study_first_submitted_qc_date).to eq('April 8, 2003'.to_date)
     expect(study.study_first_posted_date).to eq('April 9, 2003'.to_date)
@@ -94,13 +95,13 @@ describe Study do
     expect(study.results_first_posted_date).to eq('March 27, 2014'.to_date)
     expect(study.disposition_first_submitted_qc_date).to eq(''.to_date)
     expect(study.disposition_first_posted_date).to eq(''.to_date)
-    expect(study.last_update_submitted_qc_date).to eq('November 14, 2015'.to_date)
-    expect(study.last_update_posted_date).to eq('November 17, 2015'.to_date)
+    expect(study.last_update_submitted_qc_date).to eq('November 27, 2017'.to_date)
+    expect(study.last_update_posted_date).to eq('December 22, 2017'.to_date)
 
     expect(study.study_first_posted_date_type).to eq('Estimate')
     expect(study.results_first_posted_date_type).to eq('Estimate')
     expect(study.disposition_first_posted_date_type).to be nil
-    expect(study.last_update_posted_date_type).to eq('Estimate')
+    expect(study.last_update_posted_date_type).to eq('Actual')
 
     expect(study.start_date).to eq(study.start_month_year.to_date.end_of_month)
     expect(study.verification_date).to eq(study.verification_month_year.to_date.end_of_month)

@@ -17,7 +17,7 @@ module Util
     def download_xml_files
       tries ||= 5
 
-      file_name="#{Util::FileManager.new.xml_file_directory}/#{Time.now.strftime("%Y%m%d-%H")}.xml"
+      file_name="#{Util::FileManager.new.xml_file_directory}/#{Time.zone.now.strftime("%Y%m%d-%H")}.xml"
       file = File.new file_name, 'w'
 
       begin
@@ -78,22 +78,22 @@ module Util
     def populate_studies
       return if @dry_run
       cntr=StudyXmlRecord.not_yet_loaded.count
-      start_time=Time.now
+      start_time=Time.zone.now
       puts "Load #{cntr} studies Start Time.....#{start_time}"
 
       while cntr > 0
         StudyXmlRecord.find_each do |xml_record|
-          stime=Time.now
+          stime=Time.zone.now
           if xml_record.created_study_at.blank?
             import_xml_file(xml_record.content)
             xml_record.created_study_at=Date.today
             xml_record.save!
-            puts "#{cntr} saved #{xml_record.nct_id}:  #{Time.now - stime}"
+            puts "#{cntr} saved #{xml_record.nct_id}:  #{Time.zone.now - stime}"
           end
           cntr=cntr-1
         end
       end
-      puts "Total Load Time:.....#{Time.now - start_time}"
+      puts "Total Load Time:.....#{Time.zone.now - start_time}"
     end
 
     def import_xml_file(study_xml, benchmark: false)

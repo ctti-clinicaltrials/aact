@@ -12,13 +12,13 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'AACT@ctti-clinicaltrials.org'
+  config.mailer_sender = 'ctti-aact@duke.edu'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'Devise::Mailer'
 
   # Configure the parent class responsible to send e-mails.
-  # config.parent_mailer = 'ActionMailer::Base'
+  config.parent_mailer = 'ActionMailer::Base'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -112,7 +112,7 @@ Devise.setup do |config|
   # config.pepper = 'e992e888f487e07ad072d5dde7a5658c940490863f6cff50a87d1be20b76beb384392c4070964653c0760b72db65ce4d9b7d1da59d0136d44da63dea314c8c20'
 
   # Send a notification to the original email when the user's email is changed.
-  config.send_email_changed_notification = false
+  config.send_email_changed_notification = true
 
   # Send a notification email when the user's password is changed.
   config.send_password_change_notification = false
@@ -158,7 +158,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 4..128
+  config.password_length = 3..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly

@@ -9,14 +9,23 @@ describe OutcomeMeasurement do
     m=study.outcome_measurements.select{|x|x.category=='Complete reponse (CR)'}
     expect(m.size).to eq(1)
     expect(m.first.ctgov_group_code).to eq('O1')
+    o=study.outcomes.select{|x|x.title=='Tumor Progression'}
+    expect(o.size).to eq(1)
+    expect(o.first.description).to eq('Tumor progression as defined by RECIST version v1.1 criteria with ordinal measurements of complete response (CR), partial response (PR), stable disease (SD), and progressive disease (PD).')
+    expect(o.first.time_frame).to eq('Every 1 to 3 months')
   end
 
   it "should handle outcomes that have no measures" do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    o=study.outcomes.select{|x|x.title=='Partial Organ Tolerance Doses for Lung and Esophagus'}
+    expect(study.outcomes.size).to eq(6)
+    o=study.outcomes.select{|x|x.title=='Maximum Tolerated Dose (MTD) of Three-dimensional Conformal Radiation Therapy (3DRT), in Terms of Gy Per Fraction, Combined With Concurrent Chemotherapy'}
     expect(o.size).to eq(1)
+
+    expect(o.first.description).to include('Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia)')
+    expect(o.first.time_frame).to eq('From start of treatment to 90 days')
+    expect(o.first.outcome_type).to eq('Primary')
   end
 
   it "saves dispersion type in both outcome and measurements" do
@@ -73,7 +82,7 @@ describe OutcomeMeasurement do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.outcomes.size).to eq(5)
+    expect(study.outcomes.size).to eq(6)
     outcome=(study.outcomes.select{|o|o.outcome_type=='Primary' and o.title=='Percentage of Patients Who Survive at Least 12 Months'}).first
     expect(outcome.population).to eq('Eligible patients at the MTD dose level who started protocol treatment.')
     expect(outcome.units).to eq('percentage of participants')

@@ -5,7 +5,7 @@ module Util
   class FileManager
 
     def static_copies_directory
-      if created_first_day_of_month? Time.now.strftime('%Y%m%d')
+      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
         "#{Rails.public_path}/static/static_db_copies/monthly"
       else
         "#{Rails.public_path}/static/static_db_copies/daily"
@@ -13,7 +13,7 @@ module Util
     end
 
     def flat_files_directory
-      if created_first_day_of_month? Time.now.strftime('%Y%m%d')
+      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
         "#{Rails.public_path}/static/exported_files/monthly"
       else
         "#{Rails.public_path}/static/exported_files/daily"
@@ -26,6 +26,10 @@ module Util
 
     def dump_directory
       "#{Rails.public_path}/static/tmp"
+    end
+
+    def backup_directory
+      "#{Rails.public_path}/static/db_backups"
     end
 
     def xml_file_directory
@@ -139,7 +143,7 @@ module Util
       nlm_protocol_file=make_file_from_website("nlm_protocol_definitions.html",fpm.nlm_protocol_data_url)
       nlm_results_file=make_file_from_website("nlm_results_definitions.html",fpm.nlm_results_data_url)
 
-      date_stamp=Time.now.strftime('%Y%m%d')
+      date_stamp=Time.zone.now.strftime('%Y%m%d')
       zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
       File.delete(zip_file_name) if File.exist?(zip_file_name)
       Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|

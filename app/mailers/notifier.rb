@@ -1,23 +1,26 @@
 class Notifier < ApplicationMailer
 
   def self.report_load_event(event)
-    admin_addresses.each do |email|
-      send_msg(email, event.subject_line, event.email_message).deliver_now
-    end
+    admin_addresses.each { |email_addr|
+      send_msg(email_addr, event.subject_line, event.email_message).deliver_now
+    }
   end
 
-  def send_msg(email, subject, body)
-    mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email, subject: subject, body: body)
+  def self.report_user_event(event_type, user)
+    admin_addresses.each { |email_addr| send_user_event_msg(email_addr, user, event_type).deliver_now }
+  end
+
+  def send_user_event_msg(email_addr, user, event_type)
+    #  refactor this so that it uses the user_event.subject_line
+    send_msg(email_addr, user.notification_subject_line(event_type), user.summary_info)
+  end
+
+  def send_msg(email_addr, subject, body)
+    mail(from: 'AACT <aact@ctti-clinicaltrials.org>', to: email_addr, subject: subject, body: body)
   end
 
   def self.admin_addresses
     ['sheri.tibbs@duke.edu','ctti-aact@duke.edu']
-  end
-
-  def instructions(user)
-    @name = user.full_name
-    @confirmation_url = confirmation_url(user)
-    mail to: user.email, subject: 'Subscribe for Access to AACT (Aggregated Content of ClinicalTrials.gov)'
   end
 
 end

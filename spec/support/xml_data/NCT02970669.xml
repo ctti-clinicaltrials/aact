@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02970669</url>
   </required_header>
@@ -29,15 +29,16 @@
     </textblock>
   </brief_summary>
   <overall_status>Recruiting</overall_status>
-  <start_date>December 2016</start_date>
-  <completion_date type="Anticipated">October 2018</completion_date>
-  <primary_completion_date type="Anticipated">October 2018</primary_completion_date>
+  <start_date type="Actual">December 16, 2016</start_date>
+  <completion_date type="Anticipated">October 1, 2018</completion_date>
+  <primary_completion_date type="Anticipated">October 1, 2018</primary_completion_date>
   <phase>Phase 4</phase>
   <study_type>Interventional</study_type>
   <has_expanded_access>Yes</has_expanded_access>
   <study_design_info>
     <allocation>Randomized</allocation>
     <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Other</primary_purpose>
     <masking>Double (Participant, Investigator)</masking>
   </study_design_info>
   <primary_outcome>
@@ -112,6 +113,13 @@ Open-label treatment epoch: All patients entering this epoch (8 weeks) will be g
           -  Subjects diagnosed with NYHA class II or III heart failure and with reduced ejection
              (HFrEF).
 
+        (Reduced ejection is defined as left ventricular EF ≤ 40%. LVEF ≤40% may be determined via
+        any local measurement within the past 6 months prior to signing consent, using
+        echocardiography, multi gated acquisition scan (MUGA), CT scanning, MRI or ventricular
+        angiography provided no subsequent study documenting an EF of &gt;40%. If the EF measurement
+        is expressed as a value range, the average of the range endpoint values should be used as
+        the EF).
+
           -  Subjects must be a candidate for treatment with sacubitril/valsartan as per USPI.
 
           -  Subjects must be living in a traditional residence, apartment, or non-communal adult
@@ -161,10 +169,191 @@ Open-label treatment epoch: All patients entering this epoch (8 weeks) will be g
   <overall_contact>
     <last_name>Novartis Pharmaceuticals</last_name>
     <phone>1-888-669-6682</phone>
+    <email>novartis.email@novartis.com</email>
   </overall_contact>
   <overall_contact_backup>
     <last_name>Novartis Pharmaceuticals</last_name>
   </overall_contact_backup>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Fort Payne</city>
+        <state>Alabama</state>
+        <zip>35967</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Completed</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Beverly Hills</city>
+        <state>California</state>
+        <zip>90211</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Fresno</city>
+        <state>California</state>
+        <zip>93720</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Stockton</city>
+        <state>California</state>
+        <zip>95204</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>West Hills</city>
+        <state>California</state>
+        <zip>91307</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Doral</city>
+        <state>Florida</state>
+        <zip>33126</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Inverness</city>
+        <state>Florida</state>
+        <zip>34452</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Completed</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Ormond Beach</city>
+        <state>Florida</state>
+        <zip>32174</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Port Orange</city>
+        <state>Florida</state>
+        <zip>32127</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Lutherville</city>
+        <state>Maryland</state>
+        <zip>21093</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Completed</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>East Brunswick</city>
+        <state>New Jersey</state>
+        <zip>08816</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Completed</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Ridgewood</city>
+        <state>New Jersey</state>
+        <zip>07450</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Columbia</city>
+        <state>South Carolina</state>
+        <zip>29203</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Greenville</city>
+        <state>South Carolina</state>
+        <zip>29615</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Completed</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Lancaster</city>
+        <state>South Carolina</state>
+        <zip>29720</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
   <location>
     <facility>
       <name>Novartis Investigative Site</name>
@@ -175,23 +364,134 @@ Open-label treatment epoch: All patients entering this epoch (8 weeks) will be g
         <country>United States</country>
       </address>
     </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>McKinney</city>
+        <state>Texas</state>
+        <zip>75013</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>New Braunfels</city>
+        <state>Texas</state>
+        <zip>78130</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>San Antonio</city>
+        <state>Texas</state>
+        <zip>78229</zip>
+        <country>United States</country>
+      </address>
+    </facility>
     <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>San Marcos</city>
+        <state>Texas</state>
+        <zip>78666</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Sherman</city>
+        <state>Texas</state>
+        <zip>75092</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Tomball</city>
+        <state>Texas</state>
+        <zip>77375</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Midlothian</city>
+        <state>Virginia</state>
+        <zip>23114</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Active, not recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Bellevue</city>
+        <state>Washington</state>
+        <zip>98004</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Novartis Investigative Site</name>
+      <address>
+        <city>Tacoma</city>
+        <state>Washington</state>
+        <zip>98405</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Completed</status>
   </location>
   <location_countries>
     <country>United States</country>
   </location_countries>
-  <verification_date>January 2017</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>January 17, 2017</lastchanged_date>
-  <firstreceived_date>November 17, 2016</firstreceived_date>
-  <!-- New date names                                                                           -->
+  <verification_date>January 2018</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>November 17, 2016</study_first_submitted>
   <study_first_submitted_qc>November 17, 2016</study_first_submitted_qc>
   <study_first_posted type="Estimate">November 22, 2016</study_first_posted>
-  <last_update_submitted>January 17, 2017</last_update_submitted>
-  <last_update_submitted_qc>January 17, 2017</last_update_submitted_qc>
-  <last_update_posted type="Estimate">January 19, 2017</last_update_posted>
-  <!-- End of dates                                                                             -->
+  <last_update_submitted>January 16, 2018</last_update_submitted>
+  <last_update_submitted_qc>January 16, 2018</last_update_submitted_qc>
+  <last_update_posted type="Actual">January 17, 2018</last_update_posted>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>

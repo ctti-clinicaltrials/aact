@@ -42,21 +42,37 @@
       <span>Learn
     </span>
     </a>
+
+    <% if  (!current_user.nil? and ENV['AACT_ADMIN_USERNAMES'].split(',').include? current_user.username) %>
+      <a href="/users">
+        <div class="iconWrap">
+          <%= fa_icon('address-book') %>
+        </div>
+        <span>Users
+      </span>
+      </a>
+    <% end %>
+
   </div>
 </section>
 
 <section class="homeHero">
   <div class="heroPanelRow">
-    <a href="/points_to_consider" class="button small light">
+    <a href="/points_to_consider" class="button small">
       <span class="type">Practical Info for Researchers and Analysts</span>
       <span class="title">Researcher's Guide to Using AACT</span>
       <%= fa_icon('info-circle') %>
     </a>
 
-    <a href='https://www.ctti-clinicaltrials.org/briefing-room/publications' target='_blank' class='button big'>
-      <%= fa_icon('newspaper-o') %>
+    <a href='https://www.ctti-clinicaltrials.org/briefing-room/publications' target='_blank' class='button small light'>
       <span class="type">News</span>
       <span class="title">Related Publications</span>
+    </a>
+
+    <a href="https://www.bmj.com/content/361/bmj.k1452" target='_blank' class="button big">
+      <span class="type">More Practical Advice</span>
+      <span class="title">How to avoid common problems when using ClinicalTrials.gov in research</span>
+      <%= fa_icon('info-circle') %>
     </a>
 
   </div>

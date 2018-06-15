@@ -1,0 +1,26 @@
+ <h3>AACT 3.1.0 <i>(May 7, 2018)</i></h3>
+
+  <h5>Implement User Registration Feature</h5>
+  <p>With this release, users of the live AACT database will need to register and receive an individual user account to access the database. Individual accounts will replace the single common login-name/password (aact/aact) that has been used until now. To register and get a database account, please visit the <a target='_blank' href='/'>AACT website</a> and click <i>Sign-Up</i> in the upper right corner of any page.</p>
+
+  <div align="center">
+    <%= image_tag('sign-up-screenshot.png', :size => '460x120', :class => 'centerImage') %>
+  </div>
+
+  <p>The registration process is automated, using standard methods to verify the email address you provide. This should take about 5 minutes. If you have questions or encounter problems, please send email with the word 'registration' in the subject line to <%= mail_to 'ctti-aact@duke.edu', 'ctti-aact@duke.edu' %>.</p>
+
+  <p>While your login-name & password will change from aact/aact to the login-name/password you define, all other connection information (hostname, database name, and port number) will remain the same.</p>
+
+  <p>The previous login-name/password (aact/aact) will remain active for several weeks while people become aware of this new requirement and have the chance to create and test their new database account.</p>
+
+  <p>User registration will allow us to contact people about scheduled downtimes and other events. It also helps us monitor and manage database activity.</p>
+  <p>You can download static copies of the database and the pipe-delimited flat file sets without creating an account; if you only use these resources, you need not register unless you wish to receive email notifications.</p>
+
+ <h5>All AACT tables are now available in <i>'ctgov'</i> schema (No longer in <i>'public'</i> schema)</h5>
+ <p>In preparation for future enhancements that will provide supplemental information to enhance/annotate ClinicalTrials.gov data, all current AACT tables (ie. tables containing only data retrieved from ClinicalTrials.gov) have been moved to a schema named <i>'ctgov'</i>. All database user accounts will define <i>'ctgov'</i> as the default schema, so SQL queries need not specify this.</p>
+
+ <p>Queries created to run against the previous version of AACT that do not explicitly prefix table names with <i>'public.'</i> should continue to run without needing any change. If however, your queries have prepended <i>'public.'</i> to the table names, you will need to either remove these prefixes or change them to <i>'ctgov.'</i></p>
+
+ <p>Note:  This change has no impact on users of the pipe-delimited flat file extracts.</p>
+
+

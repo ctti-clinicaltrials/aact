@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02958956</url>
   </required_header>
@@ -47,10 +47,9 @@
     </textblock>
   </detailed_description>
   <overall_status>Completed</overall_status>
-  <start_date>January 1997</start_date>
-  <completion_date type="Actual">May 2015</completion_date>
-  <primary_completion_date type="Actual">May 2015</primary_completion_date>
-  <phase>N/A</phase>
+  <start_date type="Actual">January 1, 1997</start_date>
+  <completion_date type="Actual">May 29, 2015</completion_date>
+  <primary_completion_date type="Actual">May 29, 2015</primary_completion_date>
   <study_type>Observational</study_type>
   <has_expanded_access>No</has_expanded_access>
   <study_design_info>
@@ -98,7 +97,7 @@
     <description>The 10 most common cancer cases included: prostate, female breast, lung/bronchus, endometrial, colon, non-Hodgkin lymphoma, pancreas, kidney/renal pelvis, rectal, and melanoma associated with dose of pioglitazone. The various doses include 1-9000 mg, 9001-25000 mg, 25001-50000 mg and &gt;=50001 mg.</description>
   </secondary_outcome>
   <number_of_groups>2</number_of_groups>
-  <enrollment type="Actual">252467</enrollment>
+  <enrollment type="Actual">236507</enrollment>
   <condition>Diabetes Mellitus, Type 2, Cancer</condition>
   <arm_group>
     <arm_group_label>Ever User of Pioglitazone</arm_group_label>
@@ -160,22 +159,32 @@
     <role>Study Director</role>
     <affiliation>Takeda</affiliation>
   </overall_official>
-  <verification_date>November 2016</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>November 12, 2016</lastchanged_date>
-  <firstreceived_date>November 4, 2016</firstreceived_date>
-  <firstreceived_results_date>November 12, 2016</firstreceived_results_date>
-  <!-- New date names                                                                           -->
+  <link>
+    <url>https://www.takeda.com/siteassets/en-us/home/external-reference/clinicaltrials.gov/ad-4833-403-fum_35.4_kpnc_interim_results_report-2011-12-07.pdf</url>
+    <description>Interim Results Report</description>
+  </link>
+  <link>
+    <url>https://www.takeda.com/siteassets/en-us/home/external-reference/clinicaltrials.gov/ad4833-403_kpnc_10_common_cancers_10-yr_study_report.pdf</url>
+    <description>10 yr Study Report</description>
+  </link>
+  <verification_date>February 2018</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>November 4, 2016</study_first_submitted>
   <study_first_submitted_qc>November 4, 2016</study_first_submitted_qc>
   <study_first_posted type="Estimate">November 8, 2016</study_first_posted>
   <results_first_submitted>November 12, 2016</results_first_submitted>
   <results_first_submitted_qc>November 12, 2016</results_first_submitted_qc>
   <results_first_posted type="Estimate">January 10, 2017</results_first_posted>
-  <last_update_submitted>November 12, 2016</last_update_submitted>
-  <last_update_submitted_qc>November 12, 2016</last_update_submitted_qc>
-  <last_update_posted type="Estimate">January 10, 2017</last_update_posted>
-  <!-- End of dates                                                                             -->
+  <last_update_submitted>February 6, 2018</last_update_submitted>
+  <last_update_submitted_qc>February 6, 2018</last_update_submitted_qc>
+  <last_update_posted type="Actual">March 7, 2018</last_update_posted>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
@@ -283,7 +292,7 @@
           </class_list>
         </measure>
         <measure>
-          <title>Gender</title>
+          <title>Sex: Female, Male</title>
           <units>Participants</units>
           <param>Count of Participants</param>
           <class_list>

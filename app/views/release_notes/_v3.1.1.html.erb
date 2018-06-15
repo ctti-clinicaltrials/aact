@@ -1,0 +1,11 @@
+ <h3>AACT 3.1.1 <i>(May 9, 2018)</i></h3>
+
+  <h5>Fix bug in 'Forgot your password?' Feature</h5>
+  <p>If a user forgot their password and clicked the link to receive an email to reset it, the process raised an error after they entered their password and confirmation password.  This bug has been fixed.</p>
+
+  <h5>Backup User Account Information</h5>
+  <p>Prior to Version 3.1.0, the AACT database did not <u>own</u> any data; all information in AACT was retrieved from ClinicalTrials.gov.  The database could be (and frequently was) wiped out and recreated from this data source.</p>
+  <p>With the introduction of a user registration feature, AACT is now the system of record for user account information and must therefore ensure copies of user-related information are backed up and can be restored if necessary. We've setup a daily <a target='_blank' href='https://www.postgresql.org/docs/9.2/static/app-pgdump.html'>pg_dump</a>  process to create copies of the admin database (which contains a table of Users), and a <a target='_blank' href='https://www.postgresql.org/docs/9.2/static/app-pg-dumpall.html'>pg_dumpall --globals-only</a> process to save the database accounts (username/password/access rights) created in the publicly accessible AACT database.</p>
+
+  <p>As noted, the only reason to backup the public AACT database is to ensure we have restorable copies of user accounts. Since the actual content of the database can be recovered from ClinicalTrials.gov, only account usernames, encrypted passwords and ACL information are backed up.</p>
+

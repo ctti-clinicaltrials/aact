@@ -12,6 +12,8 @@
   <h5>Retain History of Enumerations</h5>
   <p>Some columns contain a limited number of possible values; several such columns are enumerated in the <a target='_blank' href='/data_dictionary'>data dictionary</a>, displaying the total number of rows with each value and the percent distribution. For example: on Februrary 28, 2018 the enumeration summary for Designs.primary_purpose was:</p>
 
-  <%= image_tag('sample_enumeration.png', :size => '260x180', :class => 'centerImage') %>
+  <div align="center">
+   <%= image_tag('sample_enumeration.png', :size => '260x180', :class => 'centerImage') %>
+  </div>
 
   <p>We are now saving enumeration information to an administrative table so that trends can be identified with the passage of time. This information will also help us verify the accuracy of updates by comparing current percent distributions to previous distributions. If values change dramatically, an alert is sent to AACT administrators.</p>

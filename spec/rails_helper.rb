@@ -1,3 +1,4 @@
+require 'helpers/form_helpers.rb'
 ENV["RACK_ENV"] = "test"
 ENV["RAILS_ENV"] = "test"
 
@@ -25,9 +26,14 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = false
 
+  config.include FormHelpers, :type => :feature
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Admin::LoadEvent }].clean_with(:truncation)
+    DatabaseCleaner[:active_record, { model: Admin::UserEvent }].clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Admin::SanityCheck }].clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: StudyXmlRecord }].clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Study }].clean_with(:truncation)
@@ -39,11 +45,13 @@ RSpec.configure do |config|
 
     DatabaseCleaner.strategy = strategy
     DatabaseCleaner[:active_record, { model: Admin::LoadEvent }].strategy = strategy
+    DatabaseCleaner[:active_record, { model: Admin::UserEvent }].strategy = strategy
     DatabaseCleaner[:active_record, { model: Admin::SanityCheck }].strategy = strategy
     DatabaseCleaner[:active_record, { model: StudyXmlRecord }].strategy = strategy
 
     DatabaseCleaner.start
     DatabaseCleaner[:active_record, { model: Admin::LoadEvent }].start
+    DatabaseCleaner[:active_record, { model: Admin::UserEvent }].start
     DatabaseCleaner[:active_record, { model: Admin::SanityCheck }].start
     DatabaseCleaner[:active_record, { model: StudyXmlRecord }].start
   end
@@ -51,6 +59,7 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
     DatabaseCleaner[:active_record, { model: Admin::LoadEvent }].clean
+    DatabaseCleaner[:active_record, { model: Admin::UserEvent }].clean
     DatabaseCleaner[:active_record, { model: Admin::SanityCheck }].clean
     DatabaseCleaner[:active_record, { model: StudyXmlRecord }].clean
     DatabaseCleaner[:active_record, { model: Study }].clean
