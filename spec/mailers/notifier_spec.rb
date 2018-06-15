@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Notifier, type: :mailer do
 
   describe 'load notification when nothing to load' do
-    let!(:event) {Admin::LoadEvent.new(:description=>'desc', :problems=>'')}
+    let!(:event) {Support::LoadEvent.new(:description=>'desc', :problems=>'')}
     let(:msg) { described_class.send_msg('test@gmail.com',event.subject_line, event.email_message) }
 
     it 'msg has expected content' do
@@ -15,7 +15,7 @@ describe Notifier, type: :mailer do
   end
 
   describe 'load notification when problems encountered' do
-    let!(:event) {Admin::LoadEvent.new(:description=>'desc', :problems=>'a problem',:should_add=>'1',:should_change=>'1', :processed=>'2')}
+    let!(:event) {Support::LoadEvent.new(:description=>'desc', :problems=>'a problem',:should_add=>'1',:should_change=>'1', :processed=>'2')}
     let(:msg) { described_class.send_msg('test@gmail.com',event.subject_line, event.email_message) }
 
     it 'msg has expected content' do
@@ -27,7 +27,7 @@ describe Notifier, type: :mailer do
   end
 
   describe 'load notification when no problems encountered' do
-    let!(:event) {Admin::LoadEvent.new(:status=>'completed', :description=>'desc', :problems=>'',:should_add=>'1',:should_change=>'1', :processed=>'2')}
+    let!(:event) {Support::LoadEvent.new(:status=>'completed', :description=>'desc', :problems=>'',:should_add=>'1',:should_change=>'1', :processed=>'2')}
     let(:msg) { described_class.send_msg('test@gmail.com',event.subject_line, event.email_message) }
 
     it 'msg has expected content' do
