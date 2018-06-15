@@ -125,7 +125,7 @@ module Util
     end
 
     def background_study_count
-      con.execute("select count(*) from studies").values.flatten.first.to_i
+      Study.count
     end
 
     def remove_indexes
@@ -257,7 +257,7 @@ module Util
     end
 
     def con
-      return @con if @con
+      return @con if @con and @con.active?
       @con = ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
       @con.schema_search_path='ctgov'
       return @con
