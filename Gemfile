@@ -39,10 +39,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
 gem 'loofah', '~> 2.2.1'
 
-# user registration
-gem 'devise'
-gem 'devise-encryptable'
-
 # deployment to server
 gem 'capistrano', '~> 3.8'
 gem 'capistrano-rails', '~> 1.2'

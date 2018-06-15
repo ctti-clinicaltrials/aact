@@ -418,86 +418,6 @@ ALTER SEQUENCE ctgov.use_cases_id_seq OWNED BY ctgov.use_cases.id;
 
 
 --
--- Name: user_events; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.user_events (
-    id integer NOT NULL,
-    email character varying,
-    event_type character varying,
-    description text,
-    file_names character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: user_events_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.user_events_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: user_events_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.user_events_id_seq OWNED BY ctgov.user_events.id;
-
-
---
--- Name: users; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.users (
-    id integer NOT NULL,
-    email character varying DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    sign_in_count integer DEFAULT 0 NOT NULL,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying,
-    last_sign_in_ip character varying,
-    first_name character varying,
-    last_name character varying,
-    username character varying,
-    confirmation_token character varying,
-    confirmed_at timestamp without time zone,
-    confirmation_sent_at timestamp without time zone
-);
-
-
---
--- Name: users_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.users_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.users_id_seq OWNED BY ctgov.users.id;
-
-
---
 -- Name: data_definitions id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -565,20 +485,6 @@ ALTER TABLE ONLY ctgov.use_case_attachments ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY ctgov.use_cases ALTER COLUMN id SET DEFAULT nextval('ctgov.use_cases_id_seq'::regclass);
-
-
---
--- Name: user_events id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.user_events ALTER COLUMN id SET DEFAULT nextval('ctgov.user_events_id_seq'::regclass);
-
-
---
--- Name: users id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.users ALTER COLUMN id SET DEFAULT nextval('ctgov.users_id_seq'::regclass);
 
 
 --
@@ -662,22 +568,6 @@ ALTER TABLE ONLY ctgov.use_cases
 
 
 --
--- Name: user_events user_events_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.user_events
-    ADD CONSTRAINT user_events_pkey PRIMARY KEY (id);
-
-
---
--- Name: users users_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
 -- Name: index_sanity_checks_on_check_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -727,34 +617,6 @@ CREATE INDEX index_study_xml_records_on_nct_id ON ctgov.study_xml_records USING 
 
 
 --
--- Name: index_users_on_confirmation_token; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_users_on_confirmation_token ON ctgov.users USING btree (confirmation_token);
-
-
---
--- Name: index_users_on_email; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_users_on_email ON ctgov.users USING btree (email);
-
-
---
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_users_on_reset_password_token ON ctgov.users USING btree (reset_password_token);
-
-
---
--- Name: index_users_on_username; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_users_on_username ON ctgov.users USING btree (username);
-
-
---
 -- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -767,8 +629,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING bt
 
 SET search_path TO ctgov, public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160214191640');
-
 INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
@@ -776,10 +636,4 @@ INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 INSERT INTO schema_migrations (version) VALUES ('20170828142046');
 
 INSERT INTO schema_migrations (version) VALUES ('20180226142044');
-
-INSERT INTO schema_migrations (version) VALUES ('20180409181440');
-
-INSERT INTO schema_migrations (version) VALUES ('20180427144951');
-
-INSERT INTO schema_migrations (version) VALUES ('20180606153216');
 
