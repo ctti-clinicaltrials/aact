@@ -1,5 +1,5 @@
-module Admin
-  class LoadEvent < Admin::AdminBase
+module Support
+  class LoadEvent < Support::SupportBase
     extend Enumerize
 
     def complete(params={})

@@ -9,7 +9,7 @@ module Util
       if params[:event]
         @event = params[:event]
       else
-        @event = Admin::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
+        @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
     end
 

@@ -12,7 +12,7 @@ module Util
       @client = Util::Client.new
       @days_back=(@params[:days_back] ? @params[:days_back] : 2)
       @rss_reader = Util::RssReader.new(days_back: @days_back)
-      @load_event = Admin::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
+      @load_event = Support::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @load_event.save!  # Save to timestamp created_at
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
       self
@@ -92,7 +92,7 @@ module Util
 
     def retrieve_xml_from_ctgov
       log("retrieving xml from clinicaltrials.gov...")
-      Admin::AdminBase.connection.truncate('study_xml_records')
+      Support::SupportBase.connection.truncate('study_xml_records')
       @client.save_file_contents(@client.download_xml_files)
     end
 
@@ -171,7 +171,7 @@ module Util
           ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
           log("deleted studies from #{table}   #{Time.zone.now - stime}")
         }
-        Admin::AdminBase.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
+        Support::SupportBase.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
         nct_ids.each {|nct_id|
           refresh_study(nct_id)
           decrement_count_down
@@ -201,13 +201,13 @@ module Util
 
     def run_sanity_checks
       log("running sanity checks...")
-      Admin::SanityCheck.new.run(params[:event_type])
+      Support::SanityCheck.new.run(params[:event_type])
     end
 
     def sanity_checks_ok?
       log "sanity checks ok?...."
-      Admin::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
-      sanity_set=Admin::SanityCheck.where('most_current is true')
+      Support::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
+      sanity_set=Support::SanityCheck.where('most_current is true')
       load_event.add_problem("Fewer sanity check rows than expected (42): #{sanity_set.size}.") if sanity_set.size < 42
       load_event.add_problem("More sanity check rows than expected (42): #{sanity_set.size}.") if sanity_set.size > 42
       load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)

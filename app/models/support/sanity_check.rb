@@ -1,12 +1,12 @@
-module Admin
-  class SanityCheck < Admin::AdminBase
+module Support
+  class SanityCheck < Support::SupportBase
 
     def save_row_counts
-      Admin::AdminBase.connection.execute('UPDATE sanity_checks SET most_current=false')
+      Support::SupportBase.connection.execute('UPDATE sanity_checks SET most_current=false')
       Util::Updater.loadable_tables.each{|table_name|
         table_name='references' if table_name=='study_references'
         cnt=table_name.singularize.camelize.constantize.count
-        Admin::SanityCheck.new({
+        Support::SanityCheck.new({
           :table_name=>table_name,
           :row_count=>cnt,
           :check_type=>'row count',
@@ -22,7 +22,7 @@ module Admin
         cntr=0
         ActiveRecord::Base.connection.execute(query).each{|orphan|
           cntr=cntr+1
-          Admin::SanityCheck.new({
+          Support::SanityCheck.new({
             :nct_id=>orphan['nct_id'],
             :table_name=>child,
             :check_type=>'orphan',
@@ -59,7 +59,7 @@ module Admin
              GROUP BY nct_id
              HAVING COUNT(*) > 1")
         results.values.each{|row|
-          Admin::SanityCheck.new({
+          Support::SanityCheck.new({
             :table_name=>"#{table_name} duplicate",
             :nct_id=>row.first,
             :row_count=>row.last,
@@ -82,7 +82,7 @@ module Admin
             next_last=hash[:next_last].value_percent
             diff=last - next_last
             if (diff.abs > 10)
-              Admin::SanityCheck.new({
+              Support::SanityCheck.new({
                 :table_name=>"#{table_name}",
                 :column_name=>"#{column_name}",
                 :check_type=>"enumeration",
@@ -96,7 +96,7 @@ module Admin
 
     def self.current_issues
       col=[]
-      Admin::SanityCheck.where('most_current=? and check_type != ?',true,'row count').each{|issue|
+      Support::SanityCheck.where('most_current=? and check_type != ?',true,'row count').each{|issue|
         col << "#{issue.check_type}: #{issue.table_name} #{ issue.row_count} #{issue.column_name} #{issue.description}"
       }
       return col
