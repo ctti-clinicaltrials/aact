@@ -2670,6 +2670,20 @@ CREATE INDEX index_designs_on_subject_masked ON ctgov.designs USING btree (subje
 
 
 --
+-- Name: index_documents_on_document_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_documents_on_document_id ON ctgov.documents USING btree (document_id);
+
+
+--
+-- Name: index_documents_on_document_type; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_documents_on_document_type ON ctgov.documents USING btree (document_type);
+
+
+--
 -- Name: index_drop_withdrawals_on_period; Type: INDEX; Schema: ctgov; Owner: -
 --
 
