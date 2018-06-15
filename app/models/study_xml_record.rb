@@ -1,4 +1,4 @@
-class StudyXmlRecord < Support::AdminBase
+class StudyXmlRecord < Support::SupportBase
   belongs_to :study, foreign_key: "nct_id"
 
   def self.not_yet_loaded(study_filter=nil)
