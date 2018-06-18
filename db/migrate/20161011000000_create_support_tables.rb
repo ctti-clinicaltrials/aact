@@ -1,8 +1,15 @@
-class CreateAdminTables < ActiveRecord::Migration
+class CreateSupportTables < ActiveRecord::Migration
 
-  def change
+  def up
 
-    create_table "load_events", force: :cascade do |t|
+    execute <<-SQL
+      CREATE SCHEMA IF NOT EXISTS support;
+      ALTER role ctti set search_path to ctgov, support, public;
+      GRANT usage on schema support to ctti;
+      GRANT create on schema support to ctti;
+    SQL
+
+    create_table "support.load_events", force: :cascade do |t|
       t.string   "event_type"
       t.string   "status"
       t.text     "description"
@@ -15,7 +22,7 @@ class CreateAdminTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table "sanity_checks", force: :cascade do |t|
+    create_table "support.sanity_checks", force: :cascade do |t|
       t.string   'table_name'
       t.string   'nct_id'
       t.integer  'row_count'
@@ -24,13 +31,20 @@ class CreateAdminTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table "study_xml_records", force: :cascade do |t|
+    create_table "support.study_xml_records", force: :cascade do |t|
       t.string   "nct_id"
       t.xml      "content"
       t.datetime "created_study_at"
       t.timestamps null: false
     end
 
+  end
+
+  def down
+    execute <<-SQL
+      DROP SCHEMA IF EXISTS support CASCADE;
+      ALTER role ctti set search_path to ctgov, public;
+    SQL
   end
 
 end
