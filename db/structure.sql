@@ -1918,6 +1918,8 @@ CREATE TABLE support.sanity_checks (
     id integer NOT NULL,
     table_name character varying,
     nct_id character varying,
+    column_name character varying,
+    check_type character varying,
     row_count integer,
     description text,
     most_current boolean,
@@ -3256,6 +3258,20 @@ CREATE INDEX "index_support.load_events_on_event_type" ON support.load_events US
 --
 
 CREATE INDEX "index_support.load_events_on_status" ON support.load_events USING btree (status);
+
+
+--
+-- Name: index_support.sanity_checks_on_check_type; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.sanity_checks_on_check_type" ON support.sanity_checks USING btree (check_type);
+
+
+--
+-- Name: index_support.sanity_checks_on_column_name; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.sanity_checks_on_column_name" ON support.sanity_checks USING btree (column_name);
 
 
 --

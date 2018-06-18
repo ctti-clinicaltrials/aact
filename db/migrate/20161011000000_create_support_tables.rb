@@ -25,6 +25,8 @@ class CreateSupportTables < ActiveRecord::Migration
     create_table "support.sanity_checks", force: :cascade do |t|
       t.string   'table_name'
       t.string   'nct_id'
+      t.string   'column_name'
+      t.string   'check_type'
       t.integer  'row_count'
       t.text     'description'
       t.boolean  'most_current'
@@ -44,6 +46,8 @@ class CreateSupportTables < ActiveRecord::Migration
     add_index "support.study_xml_records", :created_study_at
     add_index "support.sanity_checks", :table_name
     add_index "support.sanity_checks", :nct_id
+    add_index "support.sanity_checks", :column_name
+    add_index "support.sanity_checks", :check_type
   end
 
   def down
