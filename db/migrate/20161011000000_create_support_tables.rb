@@ -38,6 +38,12 @@ class CreateSupportTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
+    add_index "support.load_events", :event_type
+    add_index "support.load_events", :status
+    add_index "support.study_xml_records", :nct_id
+    add_index "support.study_xml_records", :created_study_at
+    add_index "support.sanity_checks", :table_name
+    add_index "support.sanity_checks", :nct_id
   end
 
   def down
