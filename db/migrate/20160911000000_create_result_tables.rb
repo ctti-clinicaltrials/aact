@@ -2,20 +2,20 @@ class CreateResultTables < ActiveRecord::Migration
 
   def change
 
-    create_table "pending_results", force: :cascade do |t|
+    create_table "ctgov.pending_results", force: :cascade do |t|
       t.string "nct_id"
       t.string "event"
       t.string "event_date_description"
       t.date   "event_date"
     end
 
-    create_table "result_agreements", force: :cascade do |t|
+    create_table "ctgov.result_agreements", force: :cascade do |t|
       t.string "nct_id"
       t.string "pi_employee"
       t.text   "agreement"
     end
 
-    create_table "result_contacts", force: :cascade do |t|
+    create_table "ctgov.result_contacts", force: :cascade do |t|
       t.string "nct_id"
       t.string "organization"
       t.string "name"
@@ -23,7 +23,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string "email"
     end
 
-    create_table "result_groups", force: :cascade do |t|
+    create_table "ctgov.result_groups", force: :cascade do |t|
       t.string  "nct_id"
       t.string  "ctgov_group_code"
       t.string  "result_type"
@@ -31,7 +31,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.text    "description"
     end
 
-    create_table "reported_events", force: :cascade do |t|
+    create_table "ctgov.reported_events", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
@@ -52,13 +52,13 @@ class CreateResultTables < ActiveRecord::Migration
 
     # ----  Participant Flow Data ----------------------------
 
-    create_table "participant_flows", force: :cascade do |t|
+    create_table "ctgov.participant_flows", force: :cascade do |t|
       t.string "nct_id"
       t.text   "recruitment_details"
       t.text   "pre_assignment_details"
     end
 
-    create_table "drop_withdrawals", force: :cascade do |t|
+    create_table "ctgov.drop_withdrawals", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
@@ -67,7 +67,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.integer "count"
     end
 
-    create_table "milestones", force: :cascade do |t|
+    create_table "ctgov.milestones", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
@@ -79,7 +79,7 @@ class CreateResultTables < ActiveRecord::Migration
 
     # ----  Baseline Data ----------------------------
 
-    create_table "baseline_measurements", force: :cascade do |t|
+    create_table "ctgov.baseline_measurements", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
@@ -99,7 +99,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "explanation_of_na"
     end
 
-    create_table "baseline_counts", force: :cascade do |t|
+    create_table "ctgov.baseline_counts", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "result_group_id"
       t.string  "ctgov_group_code"
@@ -118,7 +118,7 @@ class CreateResultTables < ActiveRecord::Migration
     #        outcome_analyses
     #           outcome_anaysis_groups
 
-    create_table "outcomes", force: :cascade do |t|
+    create_table "ctgov.outcomes", force: :cascade do |t|
       t.string  "nct_id"
       t.string  "outcome_type"
       t.text    "title"
@@ -133,7 +133,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.string  "param_type"
     end
 
-    create_table "outcome_counts", force: :cascade do |t|
+    create_table "ctgov.outcome_counts", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "outcome_id"
       t.integer "result_group_id"
@@ -143,7 +143,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.integer "count"
     end
 
-    create_table "outcome_measurements", force: :cascade do |t|
+    create_table "ctgov.outcome_measurements", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "outcome_id"
       t.integer "result_group_id"
@@ -164,7 +164,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.text    "explanation_of_na"
     end
 
-    create_table "outcome_analyses", force: :cascade do |t|
+    create_table "ctgov.outcome_analyses", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "outcome_id"
       t.string  "non_inferiority_type"
@@ -188,7 +188,7 @@ class CreateResultTables < ActiveRecord::Migration
       t.text    "other_analysis_description"
     end
 
-    create_table "outcome_analysis_groups", force: :cascade do |t|
+    create_table "ctgov.outcome_analysis_groups", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "outcome_analysis_id"
       t.integer "result_group_id"

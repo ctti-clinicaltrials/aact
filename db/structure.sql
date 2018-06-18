@@ -3245,6 +3245,48 @@ CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING bt
 
 
 --
+-- Name: index_support.load_events_on_event_type; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.load_events_on_event_type" ON support.load_events USING btree (event_type);
+
+
+--
+-- Name: index_support.load_events_on_status; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.load_events_on_status" ON support.load_events USING btree (status);
+
+
+--
+-- Name: index_support.sanity_checks_on_nct_id; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.sanity_checks_on_nct_id" ON support.sanity_checks USING btree (nct_id);
+
+
+--
+-- Name: index_support.sanity_checks_on_table_name; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.sanity_checks_on_table_name" ON support.sanity_checks USING btree (table_name);
+
+
+--
+-- Name: index_support.study_xml_records_on_created_study_at; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.study_xml_records_on_created_study_at" ON support.study_xml_records USING btree (created_study_at);
+
+
+--
+-- Name: index_support.study_xml_records_on_nct_id; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_records USING btree (nct_id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
