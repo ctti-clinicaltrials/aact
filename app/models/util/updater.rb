@@ -54,7 +54,7 @@ module Util
       end
       truncate_tables if !should_restart?
       remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
-      study_counts[:should_add]=StudyXmlRecord.not_yet_loaded.count
+      study_counts[:should_add]=Support::StudyXmlRecord.not_yet_loaded.count
       study_counts[:should_change]=0
       @client.populate_studies
       # for now, just remove daily files from command line
@@ -257,7 +257,7 @@ module Util
     end
 
     def should_restart?
-      @params[:restart]==true && StudyXmlRecord.not_yet_loaded.size > 0
+      @params[:restart]==true && Support::StudyXmlRecord.not_yet_loaded.size > 0
     end
 
     def refresh_study(nct_id)
@@ -266,7 +266,7 @@ module Util
       #  Also, if a study is not found for the NCT ID we have, don't save an empty study
       begin
         new_xml=@client.get_xml_for(nct_id)
-        StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
+        Support::StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
         stime=Time.zone.now
         verify_xml=(new_xml.xpath('//clinical_study').xpath('source').text).strip
         if verify_xml.size > 1

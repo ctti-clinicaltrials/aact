@@ -26,8 +26,8 @@ describe Util::TableExporter do
       end
 
       it 'should have logged event to LoadEvents' do
-        expect(Admin::LoadEvent.count).to eq(1)
-        le=Admin::LoadEvent.last
+        expect(Support::LoadEvent.count).to eq(1)
+        le=Support::LoadEvent.last
         expect(le.event_type).to eq('table_export')
       end
 

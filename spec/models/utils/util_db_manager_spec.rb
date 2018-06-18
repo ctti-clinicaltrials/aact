@@ -14,7 +14,7 @@ describe Util::DbManager do
            with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
            to_return(status: 200, body: "", headers: {})
 
-      dm=Util::DbManager.new(:load_event=>Admin::LoadEvent.create({:event_type=>'incremental',:status=>'running',:description=>'',:problems=>''}))
+      dm=Util::DbManager.new(:load_event=>Support::LoadEvent.create({:event_type=>'incremental',:status=>'running',:description=>'',:problems=>''}))
       fm=Util::FileManager.new
       dm.dump_database
       fm.save_static_copy

@@ -28,7 +28,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Support::LoadEvent }].clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Support::SanityCheck }].clean_with(:truncation)
-    DatabaseCleaner[:active_record, { model: StudyXmlRecord }].clean_with(:truncation)
+    DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Study }].clean_with(:truncation)
   end
 
@@ -39,19 +39,19 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = strategy
     DatabaseCleaner[:active_record, { model: Support::LoadEvent }].strategy = strategy
     DatabaseCleaner[:active_record, { model: Support::SanityCheck }].strategy = strategy
-    DatabaseCleaner[:active_record, { model: StudyXmlRecord }].strategy = strategy
+    DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].strategy = strategy
 
     DatabaseCleaner.start
     DatabaseCleaner[:active_record, { model: Support::LoadEvent }].start
     DatabaseCleaner[:active_record, { model: Support::SanityCheck }].start
-    DatabaseCleaner[:active_record, { model: StudyXmlRecord }].start
+    DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].start
   end
 
   config.after(:each) do
     DatabaseCleaner.clean
     DatabaseCleaner[:active_record, { model: Support::LoadEvent }].clean
     DatabaseCleaner[:active_record, { model: Support::SanityCheck }].clean
-    DatabaseCleaner[:active_record, { model: StudyXmlRecord }].clean
+    DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].clean
     DatabaseCleaner[:active_record, { model: Study }].clean
   end
 
