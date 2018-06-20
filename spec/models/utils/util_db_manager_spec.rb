@@ -31,8 +31,8 @@ describe Util::DbManager do
 
       pub_study_count=pub_db_con.execute('select count(*) from studies').first['count'].to_i
       pub_outcome_count=pub_db_con.execute('select count(*) from outcomes').first['count'].to_i
-#      expect(Study.count).to eq(pub_study_count)
-#      expect(Outcome.count).to eq(pub_outcome_count)
+      expect(Study.count).to eq(pub_study_count)
+      expect(Outcome.count).to eq(pub_outcome_count)
     end
   end
 end
