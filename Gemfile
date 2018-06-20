@@ -16,11 +16,7 @@ gem "pg"
 gem 'rails_12factor'
 gem "coderay"
 gem "recipient_interceptor"
-gem "sass-rails"
-gem "sprockets-rails",'>= 2.0'
 gem "title"
-gem "uglifier"
-gem "jbuilder"
 gem "rails-erd"
 gem 'rest-client'
 gem 'enumerize'
@@ -45,8 +41,6 @@ gem 'capistrano-rails', '~> 1.2'
 
 group :development do
   gem "quiet_assets"
-#  gem "spring"
-#  gem "spring-commands-rspec"
   gem 'letter_opener'
 end
 
@@ -64,10 +58,6 @@ end
 
 group :test do
   gem "database_cleaner"
-  gem 'capybara'
-  gem "capybara-webkit"
-  gem 'selenium-webdriver' # For Firefox
-  gem 'chromedriver-helper'
   gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers"
