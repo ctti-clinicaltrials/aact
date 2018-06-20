@@ -3,7 +3,7 @@ class CreateSupportTables < ActiveRecord::Migration
   def up
 
     execute <<-SQL
-      CREATE SCHEMA IF NOT EXISTS support;
+      CREATE SCHEMA support;
       ALTER role ctti set search_path to ctgov, support, public;
       GRANT usage on schema support to ctti;
       GRANT create on schema support to ctti;
