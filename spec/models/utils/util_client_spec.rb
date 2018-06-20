@@ -30,7 +30,7 @@ describe Util::Client do
   let(:study_xml_official_titles) { [official_study_title_1, official_study_title_2] }
   let(:study_xml_official_titles_mod) { [official_study_title_1_mod, official_study_title_2] }
 
-  let(:study_xml_record) { StudyXmlRecord.create(content: raw_study_xml_1, nct_id: "NCT00513591") }
+  let(:study_xml_record) { Support::StudyXmlRecord.create(content: raw_study_xml_1, nct_id: "NCT00513591") }
 
   context 'initialization' do
     it 'should set the url based on the provided search term' do
@@ -67,11 +67,11 @@ describe Util::Client do
     end
 
     context 'default dry_run false' do
-      it 'should save data from the xml file to the StudyXmlRecords table' do
-        StudyXmlRecord.destroy_all
+      it 'should save data from the xml file to the Support::StudyXmlRecords table' do
+        Support::StudyXmlRecord.destroy_all
         subject.save_file_contents(File.open(Rails.root.join('spec','support','xml_data','download_xml_files.zip')))
-        expect(StudyXmlRecord.count).to eq(2)
-        rec = StudyXmlRecord.find_by(nct_id:'NCT00513591')
+        expect(Support::StudyXmlRecord.count).to eq(2)
+        rec = Support::StudyXmlRecord.find_by(nct_id:'NCT00513591')
 
         raw_xml_content = Nokogiri::XML(raw_study_xml_1).child.to_xml
         existing_xml_content = Nokogiri::XML(rec.content).child.to_xml
@@ -93,7 +93,7 @@ describe Util::Client do
         }
         expect(subject.processed_studies).to eq(processed_studies)
 
-        study_xml_record_1 = StudyXmlRecord.find_by(nct_id:'NCT00513591')
+        study_xml_record_1 = Support::StudyXmlRecord.find_by(nct_id:'NCT00513591')
         expect(study_xml_record_1).to be
       end
 
@@ -106,7 +106,7 @@ describe Util::Client do
         nct_id="NCT00513591"
         expect {
           subject.create_study_xml_record(nct_id,raw_study_xml_1)
-        }.not_to change{StudyXmlRecord.count}
+        }.not_to change{Support::StudyXmlRecord.count}
 
         processed_studies = {
           updated_studies: [],
@@ -133,7 +133,7 @@ describe Util::Client do
         expect(study_1.last_update_submitted).to eq(study_last_changed_date_1.to_date)
 
         expect(Study.pluck(:nct_id)).to match_array(study_xml_nct_ids)
-        expect(StudyXmlRecord.pluck(:nct_id)).to match_array(study_xml_nct_ids)
+        expect(Support::StudyXmlRecord.pluck(:nct_id)).to match_array(study_xml_nct_ids)
         expect(Study.pluck(:official_title)).to match_array(study_xml_official_titles)
       end
     end
@@ -158,7 +158,7 @@ describe Util::Client do
     end
 
     it 'should create a study from an existing study xml record' do
-      study_xml_record_1 = StudyXmlRecord.find_by(nct_id: study_nct_id_1)
+      study_xml_record_1 = Support::StudyXmlRecord.find_by(nct_id: study_nct_id_1)
       expect(study_xml_record_1).to be_truthy
       expect(Study.count).to be(0)
 
@@ -169,7 +169,7 @@ describe Util::Client do
     end
 
     it 'should not create a load event if benchmark is nil or false' do
-      study_xml_record_1 = StudyXmlRecord.find_by(nct_id: study_nct_id_1)
+      study_xml_record_1 = Support::StudyXmlRecord.find_by(nct_id: study_nct_id_1)
 
       expect {
         subject.import_xml_file(study_xml_record_1.content)
