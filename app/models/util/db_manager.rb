@@ -19,9 +19,9 @@ module Util
       psql_file="#{fm.dump_directory}/aact.psql"
       File.delete(psql_file) if File.exist?(psql_file)
       # pg_dump that works on postgres 10.3
-      #cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']} --dbname=aact_back --schema=ctgov > #{psql_file}"
+      #cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['AACT_DB_SUPER_USERNAME']} --dbname=aact_back --schema=ctgov > #{psql_file}"
       # pg_dump that works on postgres 9.2.23 - which is what's running on servers as of 4/20/18
-      cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']} --schema=ctgov  aact_back > #{psql_file}"
+      cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['AACT_DB_SUPER_USERNAME']} --schema=ctgov  aact_back > #{psql_file}"
       run_command_line(cmd)
 
       # clear out previous ctgov content from staging db
@@ -39,7 +39,7 @@ module Util
       run_command_line(cmd)
 
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations --schema=ctgov -c -C -Fc -f  #{fm.pg_dump_file}"
+      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations --schema=ctgov -c -C -Fc -f  #{fm.pg_dump_file}"
       run_command_line(cmd)
       ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
     end
@@ -51,11 +51,11 @@ module Util
         terminate_db_sessions
         dump_file_name=Util::FileManager.new.pg_dump_file
         return nil if dump_file_name.nil?
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
         run_command_line(cmd)
 
         terminate_alt_db_sessions
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
         run_command_line(cmd)
 
         grant_db_privs

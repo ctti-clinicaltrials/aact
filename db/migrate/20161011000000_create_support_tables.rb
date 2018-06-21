@@ -46,7 +46,7 @@ class CreateSupportTables < ActiveRecord::Migration
   def down
     execute <<-SQL
       DROP SCHEMA IF EXISTS support CASCADE;
-      ALTER role  #{ENV['DB_SUPER_USERNAME']} set search_path to ctgov, public;
+      ALTER role  #{ENV['AACT_DB_SUPER_USERNAME']} set search_path to ctgov, public;
     SQL
   end
 
