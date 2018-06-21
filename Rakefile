@@ -13,11 +13,11 @@ namespace :db do
     con=ActiveRecord::Base.connection
     con.execute("create schema ctgov;")
     con.execute("create schema support;")
-    con.execute("alter role ctti set search_path to ctgov, support, public;")
-    con.execute("grant usage on schema ctgov to ctti;")
-    con.execute("grant create on schema ctgov to ctti;")
-    con.execute("grant usage on schema support to ctti;")
-    con.execute("grant create on schema support to ctti;")
+    con.execute("alter role #{ENV['DB_SUPER_USERNAME']} set search_path to ctgov, support, public;")
+    con.execute("grant usage on schema ctgov to #{ENV['DB_SUPER_USERNAME']};")
+    con.execute("grant create on schema ctgov to #{ENV['DB_SUPER_USERNAME']};")
+    con.execute("grant usage on schema support to #{ENV['DB_SUPER_USERNAME']};")
+    con.execute("grant create on schema support t #{ENV['DB_SUPER_USERNAME']};")
     con.reset!
   end
 
