@@ -23,7 +23,7 @@ describe Util::DbManager do
       back_db_con = ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
       back_tables=back_db_con.execute("select * from information_schema.tables where table_schema='ctgov'")
       back_table_count=back_db_con.execute("select count(*) from information_schema.tables where table_schema='ctgov'").first['count'].to_i
-      pub_db_con = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+      pub_db_con = PublicBase.connection
       pub_table_count=pub_db_con.execute("select count(*) from information_schema.tables where table_schema='ctgov'").first['count'].to_i
       pub_tables=pub_db_con.execute("select * from information_schema.tables where table_schema='ctgov'")
       # both dbs should have all the same tables except schema_migrations table is removed from public db
