@@ -35,7 +35,7 @@
 #
 # Global options
 # --------------
-  set :repo_url, ENV['AACT_DEV_REPO']]
+  set :repo_url, ENV['AACT_DEV_REPO']
   set :deploy_to, ENV['AACT_DEV_DEPLOY_TO']
   set :ssh_options, {
     keys: %w(/home/ctti-aact/.ssh/id_rsa),

@@ -17,7 +17,7 @@ namespace :db do
     con.execute("grant usage on schema ctgov to #{ENV['DB_SUPER_USERNAME']};")
     con.execute("grant create on schema ctgov to #{ENV['DB_SUPER_USERNAME']};")
     con.execute("grant usage on schema support to #{ENV['DB_SUPER_USERNAME']};")
-    con.execute("grant create on schema support t #{ENV['DB_SUPER_USERNAME']};")
+    con.execute("grant create on schema support to #{ENV['DB_SUPER_USERNAME']};")
     con.reset!
   end
 
