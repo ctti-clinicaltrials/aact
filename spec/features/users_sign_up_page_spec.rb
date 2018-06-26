@@ -101,12 +101,18 @@ feature "Users Sign Up Page" do
     expect(page).to have_content "Username must start with an alpha character"
     fill_in 'user_username', with: 'axaa@'
     submit
-    expect(page).to have_content "Username cannot contain special chars"
+    expect(page).to have_content "Username must be lowercase alph-numeric"
     expect(page).not_to have_content "Username is too short (minimum is 3 characters)"
     expect(page).not_to have_content "Username must start with an alpha character"
+
+    fill_in 'user_username', with: valid_username.upcase
+    submit
+    expect(page).to have_content "Username must be lowercase alph-numeric"
+
+
     fill_in 'user_username', with: valid_username
     submit
-    expect(page).not_to have_content "Username cannot contain special chars"
+    expect(page).not_to have_content "Username must be lowercase alph-numeric"
     expect(User.where('username=?',valid_username).size).to eq(0)
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(false)
 
