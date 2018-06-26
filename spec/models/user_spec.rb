@@ -22,14 +22,21 @@ describe User do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'1rspec_test',:password=>'aact')
     expect( user.valid? ).to eq(false)
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username cannot contain special chars, Username must start with an alpha character")
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username must be lowercase alph-numeric, Username must start with an alpha character")
     expect(User.count).to eq(0)
   end
 
   it "isn't accepted if username has a hyphen" do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1-ectest',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username cannot contain special chars")
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username must be lowercase alph-numeric")
+    expect(User.count).to eq(0)
+  end
+
+  it "isn't accepted if username is mixed-case" do
+    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
+    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'recTest',:password=>'aact')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username must be lowercase alph-numeric")
     expect(User.count).to eq(0)
   end
 
@@ -122,7 +129,7 @@ describe User do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     User.all.each{|user| user.remove}  # remove all existing users - both from Users table and db accounts
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec!_test',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username must be lowercase alph-numeric')
     expect(User.count).to eq(0)
     begin
       PublicBase.establish_connection(
