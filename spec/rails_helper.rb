@@ -74,7 +74,7 @@ RSpec.configure do |config|
       encoding: 'utf8',
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-      username: ENV['DB_SUPER_USERNAME'])
+      username: ENV['AACT_DB_SUPER_USERNAME'])
     @dbconfig = YAML.load(File.read('config/database.yml'))
     ActiveRecord::Base.establish_connection @dbconfig[:test]
   end

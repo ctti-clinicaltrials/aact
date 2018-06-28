@@ -28,7 +28,7 @@ describe Util::DbManager do
         encoding: 'utf8',
         hostname: ENV['AACT_PUBLIC_HOSTNAME'],
         database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-        username: ENV['DB_SUPER_USERNAME'])
+        username: ENV['AACT_DB_SUPER_USERNAME'])
       pub_con = PublicBase.connection
       pub_table_count=pub_con.execute("select count(*) from information_schema.tables where table_schema='ctgov'").first['count'].to_i
       pub_tables=pub_con.execute("select * from information_schema.tables where table_schema='ctgov'")
