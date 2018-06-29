@@ -20,7 +20,7 @@ module Util
       # pg_dump that works on postgres 10.3
       #cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']} --dbname=aact_back --schema=ctgov > #{psql_file}"
       # pg_dump that works on postgres 9.2.23 - which is what's running on servers as of 4/20/18
-      cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']} --schema=ctgov  aact_back > #{psql_file}"
+      cmd="pg_dump --no-owner --no-acl --host localhost --username #{ENV['DB_SUPER_USERNAME']} --schema ctgov #{ENV['AACT_BACK_DATABASE_URL']}  > #{psql_file}"
       run_command_line(cmd)
 
       # clear out previous ctgov content from staging db
@@ -34,11 +34,11 @@ module Util
 
       # refresh staging db
       log "refreshing aact staging database..."
-      cmd="psql -h localhost aact < #{psql_file} > /dev/null"
+      cmd="psql -h localhost  #{ENV['AACT_STAGE_DATABASE_URL']} < #{psql_file} > /dev/null"
       run_command_line(cmd)
 
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations --schema=ctgov -c -C -Fc -f  #{fm.pg_dump_file}"
+      cmd="pg_dump  #{ENV['AACT_STAGE_DATABASE_URL']} -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations --schema ctgov -c -C -Fc -f  #{fm.pg_dump_file}"
       run_command_line(cmd)
       ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
     end
