@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe MeshTerm do
   before do
+    Study.destroy_all
     MeshTerm.populate_from_file(Rails.root.join('spec', 'support', 'flat_data', 'mesh_terms.txt'))
 
     ids=['NCT02586688','NCT03228394','NCT00023673']  # 2 studies about depression; one not

@@ -4,11 +4,14 @@ RSpec.describe Country, type: :model do
   context 'when only location_countries exist' do
 
     it 'should return the expected country name' do
+      Country.destroy_all
       nct_id='NCT00513591'
       xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
       opts={xml: xml, nct_id: nct_id}
       Country.create_all_from(opts)
-      test_country = Country.where('nct_id=', nct_id)
+      countries = Country.where('nct_id=?', nct_id)
+      expect(countries.size).to eq(1)
+      test_country=countries.first
       expect(test_country.name).to eq('United States')
       expect(test_country.removed).to eq(nil)
     end
@@ -27,24 +30,15 @@ RSpec.describe Country, type: :model do
     it "has removed country" do
       nct_id='NCT02586688'
       xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-      study=Study.new({xml: xml, nct_id: nct_id}).create
-      expect(study.countries.select{|x|x.removed==true}.first.name).to eq('Canada')
-    end
-  end
-
-  context 'when location_countries and removed_countries exist' do
-
-    it 'should return the correct number of countries' do
-      nct_id='NCT02586688'
-      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
       opts={xml: xml, nct_id: nct_id}
       Country.create_all_from(opts)
-      countries = Country.where('nct_id=', nct_id)
-      removed_countries = countries.select{|c|c.removed == true}
-      not_removed_countries = countries.select{|c|c.removed != true}
+
+      all_countries = Country.where('nct_id=?', nct_id)
+      removed_countries = all_countries.select{|c|c.removed == true}
+      not_removed_countries = all_countries.select{|c|c.removed != true}
 
       # it should return the expected removed_country name' do
-      expect(countries.size).to eq(2)
+      expect(all_countries.size).to eq(2)
       expect(removed_countries.size).to eq(1)
       expect(not_removed_countries.size).to eq(1)
 
@@ -56,11 +50,11 @@ RSpec.describe Country, type: :model do
 
   context 'when country does not exist' do
     it 'should return nothing' do
-      nct_id='NCT02586688'
+      nct_id='NCT02389088'
       xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
       opts={xml: xml, nct_id: nct_id}
       Country.create_all_from(opts)
-      countries = Country.where('nct_id=', nct_id)
+      countries = Country.where('nct_id=?', nct_id)
       expect(countries.size).to eq(0)
     end
   end

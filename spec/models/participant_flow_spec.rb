@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe ParticipantFlow do
   it "study should have the expected participant_flow relationships and values" do
+    ParticipantFlow.destroy_all
     nct_id='NCT02028676'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create

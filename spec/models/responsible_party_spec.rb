@@ -33,8 +33,9 @@ describe ResponsibleParty do
       ResponsibleParty.create_all_from(opts)
       rp=ResponsibleParty.where('nct_id=?',nct_id)
 
-      expect(rp.name).to eq('Menachem Bitan')
-      expect(rp.organization).to eq('Tel-Aviv Sourasky Medical Center')
+      expect(rp.size).to eq(1)
+      expect(rp.first.name).to eq('Menachem Bitan')
+      expect(rp.first.organization).to eq('Tel-Aviv Sourasky Medical Center')
     end
   end
 
@@ -46,10 +47,12 @@ describe ResponsibleParty do
       ResponsibleParty.create_all_from(opts)
       rp=ResponsibleParty.where('nct_id=?',nct_id)
 
-      expect(rp.responsible_party_type).to eq('Sponsor-Investigator')
-      expect(rp.affiliation).to eq('Mansoura University')
-      expect(rp.name).to eq('Mohamed Sayed Abdelhafez')
-      expect(rp.title).to eq('Dr')
+      expect(rp.size).to eq(1)
+      r=rp.first
+      expect(r.responsible_party_type).to eq('Sponsor-Investigator')
+      expect(r.affiliation).to eq('Mansoura University')
+      expect(r.name).to eq('Mohamed Sayed Abdelhafez')
+      expect(r.title).to eq('Dr')
     end
   end
 

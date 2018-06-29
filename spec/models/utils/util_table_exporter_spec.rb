@@ -7,9 +7,11 @@ describe Util::TableExporter do
 
     before do
       # this study has new line chars embedded in Outcomes.description.  Will verify they don't cause probs in flat files
+      Study.destroy_all
       nct_id='NCT03191552'
       xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
       study=Study.new({xml: xml, nct_id: nct_id}).create
+      expect(Study.count).to eq(1)
     end
 
     after do

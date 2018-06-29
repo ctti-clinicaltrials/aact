@@ -4,6 +4,7 @@ RSpec.describe CentralContact, type: :model do
   context 'when central contact exists' do
 
     it 'should have expected primary contact values' do
+      CentralContact.destroy_all
       nct_id='NCT02830269'
       xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
       opts={xml: xml, nct_id: nct_id}
