@@ -62,6 +62,7 @@ RSpec.configure do |config|
     DatabaseCleaner[:active_record, { model: Support::LoadEvent }].strategy = strategy
     DatabaseCleaner[:active_record, { model: Support::SanityCheck }].strategy = strategy
     DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].strategy = strategy
+    DatabaseCleaner[:active_record, { model: Study }].clean_with(:truncation)
 
     DatabaseCleaner.start
     DatabaseCleaner[:active_record, { model: Support::LoadEvent }].start
