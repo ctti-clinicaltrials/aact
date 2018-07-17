@@ -2,13 +2,6 @@ class CreateSupportTables < ActiveRecord::Migration
 
   def up
 
-    execute <<-SQL
-      CREATE SCHEMA support;
-      ALTER role ctti set search_path to ctgov, support, public;
-      GRANT usage on schema support to ctti;
-      GRANT create on schema support to ctti;
-    SQL
-
     create_table "support.load_events", force: :cascade do |t|
       t.string   "event_type"
       t.string   "status"
@@ -53,7 +46,7 @@ class CreateSupportTables < ActiveRecord::Migration
   def down
     execute <<-SQL
       DROP SCHEMA IF EXISTS support CASCADE;
-      ALTER role ctti set search_path to ctgov, public;
+      ALTER role  #{ENV['AACT_DB_SUPER_USERNAME']} set search_path to ctgov, public;
     SQL
   end
 

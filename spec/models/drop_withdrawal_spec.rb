@@ -5,9 +5,7 @@ describe DropWithdrawal do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-
     expect(study.nct_id).to eq(nct_id)
-    expect(DropWithdrawal.count).to eq(8)
     expect(study.drop_withdrawals.size).to eq(8)
 
     p1=(study.drop_withdrawals.select{|m|m.ctgov_group_code=='P1'})
