@@ -2,24 +2,24 @@ class CreateProtocolTables < ActiveRecord::Migration
 
   def change
 
-    create_table "brief_summaries", force: :cascade do |t|
+    create_table "ctgov.brief_summaries", force: :cascade do |t|
       t.string "nct_id"
       t.text   "description"
     end
 
-    create_table "browse_conditions", force: :cascade do |t|
+    create_table "ctgov.browse_conditions", force: :cascade do |t|
       t.string "nct_id"
       t.string "mesh_term"
       t.string "downcase_mesh_term"
     end
 
-    create_table "browse_interventions", force: :cascade do |t|
+    create_table "ctgov.browse_interventions", force: :cascade do |t|
       t.string "nct_id"
       t.string "mesh_term"
       t.string "downcase_mesh_term"
     end
 
-    create_table "calculated_values", force: :cascade do |t|
+    create_table "ctgov.calculated_values", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "number_of_facilities"
       t.integer "number_of_nsae_subjects"
@@ -37,7 +37,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string  "maximum_age_unit"
     end
 
-    create_table "central_contacts", force: :cascade do |t|
+    create_table "ctgov.central_contacts", force: :cascade do |t|
       t.string "nct_id"
       t.string "contact_type"
       t.string "name"
@@ -45,32 +45,32 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string "email"
     end
 
-    create_table "conditions", force: :cascade do |t|
+    create_table "ctgov.conditions", force: :cascade do |t|
       t.string "nct_id"
       t.string "name"
       t.string "downcase_name"
     end
 
-    create_table "countries", force: :cascade do |t|
+    create_table "ctgov.countries", force: :cascade do |t|
       t.string  "nct_id"
       t.string  "name"
       t.boolean "removed"
     end
 
-    create_table "design_group_interventions", force: :cascade do |t|
+    create_table "ctgov.design_group_interventions", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "design_group_id"
       t.integer "intervention_id"
     end
 
-    create_table "design_groups", force: :cascade do |t|
+    create_table "ctgov.design_groups", force: :cascade do |t|
       t.string "nct_id"
       t.string "group_type"
       t.string "title"
       t.text   "description"
     end
 
-    create_table "design_outcomes", force: :cascade do |t|
+    create_table "ctgov.design_outcomes", force: :cascade do |t|
       t.string "nct_id"
       t.string "outcome_type"
       t.text   "measure"
@@ -79,7 +79,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.text   "description"
     end
 
-    create_table "designs", force: :cascade do |t|
+    create_table "ctgov.designs", force: :cascade do |t|
       t.string  "nct_id"
       t.string  "allocation"
       t.string  "intervention_model"
@@ -95,12 +95,12 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.boolean "outcomes_assessor_masked"
     end
 
-    create_table "detailed_descriptions", force: :cascade do |t|
+    create_table "ctgov.detailed_descriptions", force: :cascade do |t|
       t.string "nct_id"
       t.text   "description"
     end
 
-    create_table "documents", force: :cascade do |t|
+    create_table "ctgov.documents", force: :cascade do |t|
       t.string "nct_id"
       t.string "document_id"
       t.string "document_type"
@@ -108,7 +108,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.text   "comment"
     end
 
-    create_table "eligibilities", force: :cascade do |t|
+    create_table "ctgov.eligibilities", force: :cascade do |t|
       t.string "nct_id"
       t.string "sampling_method"
       t.string "gender"
@@ -121,7 +121,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.boolean "gender_based"
     end
 
-    create_table "facilities", force: :cascade do |t|
+    create_table "ctgov.facilities", force: :cascade do |t|
       t.string "nct_id"
       t.string "status"
       t.string "name"
@@ -131,7 +131,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string "country"
     end
 
-    create_table "facility_contacts", force: :cascade do |t|
+    create_table "ctgov.facility_contacts", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "facility_id"
       t.string  "contact_type"
@@ -140,52 +140,52 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.string  "phone"
     end
 
-    create_table "facility_investigators", force: :cascade do |t|
+    create_table "ctgov.facility_investigators", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "facility_id"
       t.string  "role"
       t.string  "name"
     end
 
-    create_table "id_information", force: :cascade do |t|
+    create_table "ctgov.id_information", force: :cascade do |t|
       t.string "nct_id"
       t.string "id_type"
       t.string "id_value"
     end
 
-    create_table "intervention_other_names", force: :cascade do |t|
+    create_table "ctgov.intervention_other_names", force: :cascade do |t|
       t.string  "nct_id"
       t.integer "intervention_id"
       t.string  "name"
     end
 
-    create_table "interventions", force: :cascade do |t|
+    create_table "ctgov.interventions", force: :cascade do |t|
       t.string "nct_id"
       t.string "intervention_type"
       t.string "name"
       t.text   "description"
     end
 
-    create_table "keywords", force: :cascade do |t|
+    create_table "ctgov.keywords", force: :cascade do |t|
       t.string "nct_id"
       t.string "name"
       t.string "downcase_name"
     end
 
-    create_table "links", force: :cascade do |t|
+    create_table "ctgov.links", force: :cascade do |t|
       t.string "nct_id"
       t.string "url"
       t.text   "description"
     end
 
-    create_table "overall_officials", force: :cascade do |t|
+    create_table "ctgov.overall_officials", force: :cascade do |t|
       t.string "nct_id"
       t.string "role"
       t.string "name"
       t.string "affiliation"
     end
 
-    create_table "responsible_parties", force: :cascade do |t|
+    create_table "ctgov.responsible_parties", force: :cascade do |t|
       t.string "nct_id"
       t.string "responsible_party_type"
       t.string "name"
@@ -194,14 +194,14 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.text   "affiliation"
     end
 
-    create_table "sponsors", force: :cascade do |t|
+    create_table "ctgov.sponsors", force: :cascade do |t|
       t.string "nct_id"
       t.string "agency_class"
       t.string "lead_or_collaborator"
       t.string "name"
     end
 
-    create_table "studies", id: false, force: :cascade do |t|
+    create_table "ctgov.studies", id: false, force: :cascade do |t|
       t.string   "nct_id"
       t.string   "nlm_download_date_description"
 
@@ -267,7 +267,7 @@ class CreateProtocolTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table "study_references", force: :cascade do |t|
+    create_table "ctgov.study_references", force: :cascade do |t|
       t.string "nct_id"
       t.string "pmid"
       t.string "reference_type"

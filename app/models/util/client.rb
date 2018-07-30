@@ -72,17 +72,17 @@ module Util
         @processed_studies[:updated_studies].delete(nct_id)
       end
       @processed_studies[:new_studies] << nct_id
-      StudyXmlRecord.where(nct_id: nct_id).first_or_create {|rec|rec.content = xml} unless @dry_run
+      Support::StudyXmlRecord.where(nct_id: nct_id).first_or_create {|rec|rec.content = xml} unless @dry_run
     end
 
     def populate_studies
       return if @dry_run
-      cntr=StudyXmlRecord.not_yet_loaded.count
+      cntr=Support::StudyXmlRecord.not_yet_loaded.count
       start_time=Time.zone.now
       puts "Load #{cntr} studies Start Time.....#{start_time}"
 
       while cntr > 0
-        StudyXmlRecord.find_each do |xml_record|
+        Support::StudyXmlRecord.find_each do |xml_record|
           stime=Time.zone.now
           if xml_record.created_study_at.blank?
             import_xml_file(xml_record.content)

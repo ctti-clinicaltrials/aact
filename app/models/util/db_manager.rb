@@ -5,10 +5,11 @@ module Util
     attr_accessor :con, :stage_con, :pub_con, :event
 
     def initialize(params={})
+      # Should only manage content of ctgov db schema
       if params[:event]
         @event = params[:event]
       else
-        @event = Admin::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
+        @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
     end
 
@@ -18,9 +19,9 @@ module Util
       psql_file="#{fm.dump_directory}/aact.psql"
       File.delete(psql_file) if File.exist?(psql_file)
       # pg_dump that works on postgres 10.3
-      #cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']} --dbname=aact_back --schema=ctgov > #{psql_file}"
+      #cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['AACT_DB_SUPER_USERNAME']} --dbname=aact_back --schema=ctgov > #{psql_file}"
       # pg_dump that works on postgres 9.2.23 - which is what's running on servers as of 4/20/18
-      cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['DB_SUPER_USERNAME']} --schema=ctgov  aact_back > #{psql_file}"
+      cmd="pg_dump --no-owner --no-acl --host=localhost --username #{ENV['AACT_DB_SUPER_USERNAME']} --schema=ctgov  #{ENV['AACT_BACK_DATABASE_URL']} > #{psql_file}"
       run_command_line(cmd)
 
       # clear out previous ctgov content from staging db
@@ -34,11 +35,11 @@ module Util
 
       # refresh staging db
       log "refreshing aact staging database..."
-      cmd="psql -h localhost aact < #{psql_file} > /dev/null"
+      cmd="psql -h localhost  #{ENV['AACT_STAGE_DATABASE_URL']} < #{psql_file} > /dev/null"
       run_command_line(cmd)
 
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{ENV['DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations --schema=ctgov -c -C -Fc -f  #{fm.pg_dump_file}"
+      cmd="pg_dump #{ENV['AACT_STAGE_DATABASE_URL']} -v -h localhost -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations --schema ctgov -c -C -Fc -f #{fm.pg_dump_file}"
       run_command_line(cmd)
       ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
     end
@@ -50,11 +51,11 @@ module Util
         terminate_db_sessions
         dump_file_name=Util::FileManager.new.pg_dump_file
         return nil if dump_file_name.nil?
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
         run_command_line(cmd)
 
         terminate_alt_db_sessions
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
         run_command_line(cmd)
 
         grant_db_privs
@@ -124,11 +125,142 @@ module Util
     end
 
     def background_study_count
-      con.execute("select count(*) from studies").values.flatten.first.to_i
+      Study.count
+    end
+
+    def remove_indexes
+      m=ActiveRecord::Migration.new
+      loadable_tables.each {|table_name|
+        con.indexes(table_name).each{|index|
+          m.remove_index(index.table, index.columns) if !should_keep_index?(index) and m.index_exists?(index.table, index.columns)
+        }
+      }
+    end
+
+    def add_indexes
+      m=ActiveRecord::Migration.new
+      indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
+      #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
+      ActiveRecord::Base.connection.tables.each{|table|
+        begin
+          m.add_index table, 'nct_id'
+        rescue
+        end
+      }
+    end
+
+    def loadable_tables
+      blacklist = %w(
+        ar_internal_metadata
+        schema_migrations
+        data_definitions
+        mesh_headings
+        mesh_terms
+        load_events
+        mesh_terms
+        mesh_headings
+        sanity_checks
+        statistics
+        study_xml_records
+        use_cases
+        use_case_attachments
+      )
+      table_names=ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
+    end
+
+    def indexes
+      [
+         [:baseline_measurements, :dispersion_type],
+         [:baseline_measurements, :param_type],
+         [:baseline_measurements, :category],
+         [:baseline_measurements, :classification],
+         [:browse_conditions, :mesh_term],
+         [:browse_conditions, :downcase_mesh_term],
+         [:browse_interventions, :mesh_term],
+         [:browse_interventions, :downcase_mesh_term],
+         [:calculated_values, :actual_duration],
+         [:calculated_values, :months_to_report_results],
+         [:calculated_values, :number_of_facilities],
+         [:central_contacts, :contact_type],
+         [:conditions, :name],
+         [:conditions, :downcase_name],
+         [:design_groups, :group_type],
+         [:design_outcomes, :outcome_type],
+         [:designs, :masking],
+         [:designs, :subject_masked],
+         [:designs, :caregiver_masked],
+         [:designs, :investigator_masked],
+         [:designs, :outcomes_assessor_masked],
+         [:documents, :document_id],
+         [:documents, :document_type],
+         [:drop_withdrawals, :period],
+         [:eligibilities, :gender],
+         [:eligibilities, :healthy_volunteers],
+         [:eligibilities, :minimum_age],
+         [:eligibilities, :maximum_age],
+         [:facilities, :status],
+         [:facility_contacts, :contact_type],
+         [:facilities, :name],
+         [:facilities, :city],
+         [:facilities, :state],
+         [:facilities, :country],
+         [:id_information, :id_type],
+         [:interventions, :intervention_type],
+         [:keywords, :name],
+         [:keywords, :downcase_name],
+         [:mesh_terms, :qualifier],
+         [:mesh_terms, :description],
+         [:mesh_terms, :mesh_term],
+         [:mesh_terms, :downcase_mesh_term],
+         [:mesh_headings, :qualifier],
+         [:milestones, :period],
+         [:outcomes, :param_type],
+         [:outcome_analyses, :dispersion_type],
+         [:outcome_analyses, :param_type],
+         [:outcome_measurements, :dispersion_type],
+         [:outcomes, :dispersion_type],
+         [:overall_officials, :affiliation],
+         [:outcome_measurements, :category],
+         [:outcome_measurements, :classification],
+         [:reported_events, :event_type],
+         [:reported_events, :subjects_affected],
+         [:responsible_parties, :organization],
+         [:responsible_parties, :responsible_party_type],
+         [:result_contacts, :organization],
+         [:result_groups, :result_type],
+         [:sponsors, :agency_class],
+         [:sponsors, :name],
+         [:studies, :enrollment_type],
+         [:studies, :overall_status],
+         [:studies, :phase],
+         [:studies, :last_known_status],
+         [:studies, :primary_completion_date_type],
+         [:studies, :source],
+         [:studies, :study_type],
+         [:studies, :study_first_submitted_date],
+         [:studies, :results_first_submitted_date],
+         [:studies, :disposition_first_submitted_date],
+         [:studies, :last_update_submitted_date],
+         [:studies, :results_first_submitted_qc_date],
+         [:studies, :study_first_submitted_qc_date],
+         [:studies, :last_update_submitted_qc_date],
+         [:study_references, :reference_type],
+      ]
+    end
+
+    def should_keep_index?(index)
+      return true if index.table=='studies' and index.columns==['nct_id']
+      return true if index.table=='study_xml_records' and index.columns==['nct_id']
+      return true if index.table=='study_xml_records' and index.columns==['created_study_at']
+      return true if index.table=='sanity_checks'
+      false
     end
 
     def con
-      @con ||= ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
+      return @con if @con and @con.active?
+      @con = ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
+      @con.schema_search_path='ctgov'
+      return @con
     end
 
     def stage_con

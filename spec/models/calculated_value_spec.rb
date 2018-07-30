@@ -51,6 +51,8 @@ describe CalculatedValue do
   it "should set correct calculated values for a set of studies" do
     nct_id1='NCT00023673'
     nct_id2='NCT02028676'
+    Study.destroy_all
+    CalculatedValue.destroy_all
     expect(CalculatedValue.count).to eq(0)
 
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id1}.xml"))

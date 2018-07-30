@@ -3,7 +3,12 @@ module Admin
   class Enumeration < Admin::AdminBase
 
     def self.populate
-      new.populate
+      begin
+        new.populate
+      rescue => error
+        # no guarantee the AACT Admin db exists
+        puts "#{Time.zone.now}: Unable to populate enumerations.  #{error.message}"
+      end
     end
 
     def populate
@@ -48,7 +53,7 @@ module Admin
             row.save
           end
         rescue => e
-          puts ">>>>  could not determine enumerations for #{table_name}  #{column_name}"
+          puts "#{Time.zone.now}: could not determine enumerations for #{table_name}  #{column_name}"
           puts e.inspect
         end
       }

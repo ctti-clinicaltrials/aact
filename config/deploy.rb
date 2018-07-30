@@ -2,7 +2,6 @@
 lock "3.8.2"
 
 set :application, "aact"
-set :repo_url, "git@github.com:ctti-clinicaltrials/aact.git"
 
 # Default branch is :master
 ask :branch, 'development'
@@ -45,12 +44,12 @@ set :format_options, command_output: true, log_file: "log/capistrano.log", color
 # Default value for default_env is {}
 
 set :default_env, {
-  'PATH' => "/home/ctti-aact/bin/:/srv/web/aact.ctti-clinicaltrials.org/shared/bundle/ruby/2.4.0/bin:/opt/rh/rh-ruby24/root/usr/lib64:$PATH",
-  'LD_LIBRARY_PATH' => "/opt/rh/rh-ruby24/root/usr/lib64",
+  'PATH'             => ENV['AACT_PATH'],
+  'LD_LIBRARY_PATH'  => ENV['AACT_LD_LIBRARY_PATH'],
   'APPLICATION_HOST' => ENV['APPLICATION_HOST'],
-  'RUBY_VERSION' => 'ruby 2.4.0',
-  'GEM_HOME' => '/home/ctti-aact/.gem/ruby',
-  'GEM_PATH' => '/home/ctti-aact/.gem/ruby/gems:/opt/rh/rh-ruby24/root/usr/share/gems:/opt/rh/rh-ruby24/root/usr/local/share/gems:/opt/rh/rh-ruby24/root/usr/lib64'
+  'RUBY_VERSION'     => 'ruby 2.4.0',
+  'GEM_HOME'         => ENV['AACT_GEM_HOME'],
+  'GEM_PATH'         => ENV['AACT_GEM_PATH'],
 }
 
 # Default value for keep_releases is 5
