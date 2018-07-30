@@ -32,6 +32,8 @@ class CreateIndices < ActiveRecord::Migration
     add_index :designs, :caregiver_masked
     add_index :designs, :investigator_masked
     add_index :designs, :outcomes_assessor_masked
+    add_index :documents, :document_id
+    add_index :documents, :document_type
     add_index :drop_withdrawals, :period
     add_index :eligibilities, :gender
     add_index :eligibilities, :healthy_volunteers
@@ -75,8 +77,10 @@ class CreateIndices < ActiveRecord::Migration
     add_index :studies, :start_date
     add_index :studies, :start_date_type
     add_index :studies, :study_type
-    add_index :studies, :first_received_results_date
-    add_index :studies, :received_results_disposit_date
+    add_index :studies, :study_first_submitted_date
+    add_index :studies, :results_first_submitted_date
+    add_index :studies, :disposition_first_submitted_date
+    add_index :studies, :last_update_submitted_date
     add_index :study_references, :reference_type
   end
 

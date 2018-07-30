@@ -1,0 +1,40 @@
+<%=  stylesheet_link_tag "users/users" %>
+<div class="wrap">
+
+  <p>
+  Download:
+  <%= link_to "CSV", users_path(format: "csv") %> |
+  <%= link_to "Excel", users_path(format: "xls") %>
+</p>
+  <div class="users">
+    <h4> <%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h4>
+
+    <table id='users' class='table dataTable'>
+
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>username</th>
+            <th>confirmed</th>
+            <th>website sign ins</th>
+            <th>last signed in</th>
+        </tr>
+
+        <tbody class='users'>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.full_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.username %></td>
+              <td><%= user.display_confirmed_at %></td>
+              <td align='center'><%= user.sign_in_count %></td>
+              <td><%= user.display_last_sign_in_at %></td>
+            </tr>
+          <% end %>
+       </tbody>
+
+    </table>
+
+  </div>
+
+</div>

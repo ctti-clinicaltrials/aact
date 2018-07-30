@@ -18,8 +18,8 @@ class User < Admin::AdminBase
   validates_uniqueness_of :username
   validates_length_of :username, :minimum=>3
   validates_length_of :username, :maximum=>64
-  validates_format_of :username, :with => /\A[a-zA-Z0-9]+\z/, :message => "cannot contain special chars"
-  validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with an alpha character"
+  validates_format_of :username, :with => /\A[a-z0-9]+\z/, :message => "must be lowercase alph-numeric"
+  validates_format_of :username, :with => /\A[a-z]/, :message => "must start with an alpha character"
   validate :can_create_db_account?, :on => :create
   validate :can_access_db?, :on => :create
 
@@ -48,7 +48,8 @@ class User < Admin::AdminBase
       mgr.create_user_account(self)
     else
       self.errors.add('DB Account', 'could not be created for this user.')
-      event.description='Could not create this user.'.save
+      event.description='Could not create this user.'
+      event.save!
     end
   end
 
@@ -123,6 +124,16 @@ class User < Admin::AdminBase
     first_name + ' ' + last_name
   end
 
+  def display_confirmed_at
+    return '' if self.confirmed_at.nil?
+    self.confirmed_at.strftime('%Y/%m/%d')
+  end
+
+  def display_last_sign_in_at
+    return '' if self.last_sign_in_at.nil?
+    self.last_sign_in_at.strftime('%Y/%m/%d')
+  end
+
   def summary_info(type=nil)
     if type == 'list'
       "#{id}|#{self.full_name}|#{self.username}|#{self.email}|#{self.confirmation_sent_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.confirmed_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.sign_in_count}|#{self.last_sign_in_at.try(:strftime,"%m/%d/%Y %H:%m")}|#{self.last_sign_in_ip}"
@@ -151,4 +162,12 @@ class User < Admin::AdminBase
     return collection
   end
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |user|
+        csv << user.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

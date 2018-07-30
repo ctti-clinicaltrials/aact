@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT01642004</url>
   </required_header>
@@ -32,8 +32,8 @@
     </textblock>
   </brief_summary>
   <overall_status>Active, not recruiting</overall_status>
-  <start_date type="Actual">October 16, 2012</start_date>
-  <completion_date type="Anticipated">January 23, 2018</completion_date>
+  <start_date type="Actual">September 26, 2012</start_date>
+  <completion_date type="Anticipated">December 29, 2018</completion_date>
   <primary_completion_date type="Actual">November 17, 2014</primary_completion_date>
   <phase>Phase 3</phase>
   <study_type>Interventional</study_type>
@@ -129,7 +129,6 @@ Participants who neither progressed nor died were censored on the date of their 
     <intervention_type>Biological</intervention_type>
     <intervention_name>Nivolumab</intervention_name>
     <arm_group_label>Arm A: Nivolumab</arm_group_label>
-    <arm_group_label>Arm B: Docetaxel</arm_group_label>
     <other_name>BMS-936558</other_name>
   </intervention>
   <intervention>
@@ -224,11 +223,11 @@ Participants who neither progressed nor died were censored on the date of their 
   </location>
   <location>
     <facility>
-      <name>City Of Hope National Medical Center</name>
+      <name>City Of Hope</name>
       <address>
         <city>Duarte</city>
         <state>California</state>
-        <zip>91010</zip>
+        <zip>91010-3000</zip>
         <country>United States</country>
       </address>
     </facility>
@@ -257,7 +256,7 @@ Participants who neither progressed nor died were censored on the date of their 
   </location>
   <location>
     <facility>
-      <name>Northwest Georgia Oncology Center, P.C.</name>
+      <name>Northwest Georgia Oncology Ctr</name>
       <address>
         <city>Marietta</city>
         <state>Georgia</state>
@@ -279,7 +278,7 @@ Participants who neither progressed nor died were censored on the date of their 
   </location>
   <location>
     <facility>
-      <name>The Johns Hopkins University</name>
+      <name>Johns Hopkins Sidney Kimmel Comprehensive Cancer Center</name>
       <address>
         <city>Baltimore</city>
         <state>Maryland</state>
@@ -345,7 +344,7 @@ Participants who neither progressed nor died were censored on the date of their 
   </location>
   <location>
     <facility>
-      <name>Oncology Hematology Care</name>
+      <name>Oncology Hematology Care, Inc.</name>
       <address>
         <city>Cincinnati</city>
         <state>Ohio</state>
@@ -378,7 +377,7 @@ Participants who neither progressed nor died were censored on the date of their 
   </location>
   <location>
     <facility>
-      <name>Guthrie Clinic, Ltd</name>
+      <name>Guthrie Medical Group, P.C.</name>
       <address>
         <city>Sayre</city>
         <state>Pennsylvania</state>
@@ -411,7 +410,7 @@ Participants who neither progressed nor died were censored on the date of their 
   </location>
   <location>
     <facility>
-      <name>Tennessee Oncology, Pllc</name>
+      <name>Tennessee Oncology, PLLC</name>
       <address>
         <city>Nashville</city>
         <state>Tennessee</state>
@@ -481,7 +480,7 @@ Participants who neither progressed nor died were censored on the date of their 
       <address>
         <city>Morgantown</city>
         <state>West Virginia</state>
-        <zip>26506</zip>
+        <zip>26506-9162</zip>
         <country>United States</country>
       </address>
     </facility>
@@ -668,7 +667,7 @@ Participants who neither progressed nor died were censored on the date of their 
   </location>
   <location>
     <facility>
-      <name>Centre De Sante Et De Services Sociaux Rimouski Neigette</name>
+      <name>CISSS du Bas-Saint-Laurent Hopital Regional de Rimouski</name>
       <address>
         <city>Rimouski</city>
         <state>Quebec</state>
@@ -693,7 +692,7 @@ Participants who neither progressed nor died were censored on the date of their 
       <name>Local Institution</name>
       <address>
         <city>Recoleta</city>
-        <state>Santiago de Chile</state>
+        <state>Santiago DE Chile</state>
         <country>Chile</country>
       </address>
     </facility>
@@ -902,6 +901,16 @@ Participants who neither progressed nor died were censored on the date of their 
     <facility>
       <name>Local Institution</name>
       <address>
+        <city>Krefeld</city>
+        <zip>47805</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
         <city>Budapest</city>
         <zip>H-1121</zip>
         <country>Hungary</country>
@@ -1002,9 +1011,9 @@ Participants who neither progressed nor died were censored on the date of their 
     <facility>
       <name>Local Institution</name>
       <address>
-        <city>Mexico City</city>
+        <city>Mexico</city>
         <state>Distrito Federal</state>
-        <zip>14080</zip>
+        <zip>06735</zip>
         <country>Mexico</country>
       </address>
     </facility>
@@ -1015,7 +1024,7 @@ Participants who neither progressed nor died were censored on the date of their 
       <address>
         <city>Mexico</city>
         <state>Distrito Federal</state>
-        <zip>06735</zip>
+        <zip>14080</zip>
         <country>Mexico</country>
       </address>
     </facility>
@@ -1267,7 +1276,7 @@ Participants who neither progressed nor died were censored on the date of their 
       <name>Local Institution</name>
       <address>
         <city>Cottingham</city>
-        <state>East Yorkshire</state>
+        <state>EAST Yorkshire</state>
         <zip>HU16 5JQ</zip>
         <country>United Kingdom</country>
       </address>
@@ -1341,24 +1350,30 @@ Participants who neither progressed nor died were censored on the date of their 
     <description>BMS Clinical Trial Information</description>
   </link>
   <link>
-    <url>http://www.bms.com/studyconnect/Pages/home.aspx</url>
-    <description>BMS clinical trial educational resource</description>
-  </link>
-  <link>
-    <url>http://www.bms.com/clinical_trials/Pages/Investigator_Inquiry_form.aspx</url>
-    <description>Investigator Inquiry form</description>
-  </link>
-  <link>
     <url>http://www.fda.gov/MEDWATCH/safety.htm</url>
     <description>FDA Safety Alerts and Recalls</description>
   </link>
-  <verification_date>June 2017</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>June 12, 2017</lastchanged_date>
-  <firstreceived_date>July 9, 2012</firstreceived_date>
-  <firstreceived_results_date>February 19, 2016</firstreceived_results_date>
-  <firstreceived_results_disposition_date>November 17, 2015</firstreceived_results_disposition_date>
-  <!-- New date names                                                                           -->
+  <link>
+    <url>http://bms.com/studyconnect/Pages/home.aspx</url>
+    <description>BMS Clinical Trial Patient Recruiting</description>
+  </link>
+  <link>
+    <url>http://www.bms.com/clinical_trials/Pages/Investigator_inquiry_form.aspx</url>
+    <description>Investigator Inquiry Form</description>
+  </link>
+  <link>
+    <url>http://www.bms.com/studyconnect/Pages/home.aspx</url>
+    <description>BMS clinical trial educational resource</description>
+  </link>
+  <verification_date>March 2018</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>July 9, 2012</study_first_submitted>
   <study_first_submitted_qc>July 16, 2012</study_first_submitted_qc>
   <study_first_posted type="Estimate">July 17, 2012</study_first_posted>
@@ -1368,10 +1383,9 @@ Participants who neither progressed nor died were censored on the date of their 
   <disposition_first_submitted>November 17, 2015</disposition_first_submitted>
   <disposition_first_submitted_qc>November 17, 2015</disposition_first_submitted_qc>
   <disposition_first_posted type="Estimate">December 16, 2015</disposition_first_posted>
-  <last_update_submitted>June 12, 2017</last_update_submitted>
-  <last_update_submitted_qc>June 12, 2017</last_update_submitted_qc>
-  <last_update_posted type="Actual">July 11, 2017</last_update_posted>
-  <!-- End of dates                                                                             -->
+  <last_update_submitted>March 13, 2018</last_update_submitted>
+  <last_update_submitted_qc>March 13, 2018</last_update_submitted_qc>
+  <last_update_posted type="Actual">April 10, 2018</last_update_posted>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>

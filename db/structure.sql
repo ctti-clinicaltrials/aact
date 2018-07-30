@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.3
--- Dumped by pg_dump version 10.3
+-- Dumped from database version 10.4
+-- Dumped by pg_dump version 10.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -61,7 +61,7 @@ CREATE FUNCTION ctgov.count_estimate(query text) RETURNS integer
 -- Name: ctgov_summaries(character varying); Type: FUNCTION; Schema: ctgov; Owner: -
 --
 
-CREATE FUNCTION ctgov.ctgov_summaries(character varying) RETURNS TABLE(nct_id character varying, title text, recruitment character varying, were_results_reported boolean, conditions text, interventions text, sponsors text, gender character varying, age text, phase character varying, enrollment integer, study_type character varying, other_ids text, first_received_date date, start_date date, completion_month_year character varying, last_changed_date date, verification_month_year character varying, first_received_results_date date, acronym character varying, primary_completion_month_year character varying, outcome_measures text, received_results_disposit_date date, allocation character varying, intervention_model character varying, observational_model character varying, primary_purpose character varying, time_perspective character varying, masking character varying, masking_description text, intervention_model_description text, subject_masked boolean, caregiver_masked boolean, investigator_masked boolean, outcomes_assessor_masked boolean, number_of_facilities integer)
+CREATE FUNCTION ctgov.ctgov_summaries(character varying) RETURNS TABLE(nct_id character varying, title text, recruitment character varying, were_results_reported boolean, conditions text, interventions text, sponsors text, gender character varying, age text, phase character varying, enrollment integer, study_type character varying, other_ids text, study_first_submitted_date date, start_date date, completion_month_year character varying, last_update_submitted_date date, verification_month_year character varying, results_first_submitted_date date, acronym character varying, primary_completion_month_year character varying, outcome_measures text, disposition_first_submitted_date date, allocation character varying, intervention_model character varying, observational_model character varying, primary_purpose character varying, time_perspective character varying, masking character varying, masking_description text, intervention_model_description text, subject_masked boolean, caregiver_masked boolean, investigator_masked boolean, outcomes_assessor_masked boolean, number_of_facilities integer)
     LANGUAGE sql
     AS $_$
 
@@ -85,10 +85,10 @@ CREATE FUNCTION ctgov.ctgov_summaries(character varying) RETURNS TABLE(nct_id ch
           END,
           s.enrollment, s.study_type,
           id.id_value,
-          s.first_received_date, s.start_date,
-          s.completion_month_year, s.last_changed_date, s.verification_month_year,
-          s.first_received_results_date, s.acronym, s.primary_completion_month_year,
-          o.measure, s.received_results_disposit_date,
+          s.study_first_submitted_date, s.start_date,
+          s.completion_month_year, s.last_update_submitted_date, s.verification_month_year,
+          s.results_first_submitted_date, s.acronym, s.primary_completion_month_year,
+          o.measure, s.disposition_first_submitted_date,
           d.allocation, d.intervention_model, d.observational_model, d.primary_purpose, d.time_perspective, d.masking,
           d.masking_description, d.intervention_model_description, d.subject_masked, d.caregiver_masked, d.investigator_masked,
           d.outcomes_assessor_masked,
@@ -128,10 +128,10 @@ CREATE FUNCTION ctgov.ctgov_summaries(character varying) RETURNS TABLE(nct_id ch
           END,
           s.enrollment, s.study_type,
           id.id_value,
-          s.first_received_date, s.start_date,
-          s.completion_month_year, s.last_changed_date, s.verification_month_year,
-          s.first_received_results_date, s.acronym, s.primary_completion_month_year,
-          o.measure, s.received_results_disposit_date,
+          s.study_first_submitted_date, s.start_date,
+          s.completion_month_year, s.last_update_submitted_date, s.verification_month_year,
+          s.results_first_submitted_date, s.acronym, s.primary_completion_month_year,
+          o.measure, s.disposition_first_submitted_date,
           d.allocation, d.intervention_model, d.observational_model, d.primary_purpose, d.time_perspective, d.masking,
           d.masking_description, d.intervention_model_description, d.subject_masked, d.caregiver_masked, d.investigator_masked,
           d.outcomes_assessor_masked,
@@ -798,6 +798,40 @@ ALTER SEQUENCE ctgov.detailed_descriptions_id_seq OWNED BY ctgov.detailed_descri
 
 
 --
+-- Name: documents; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.documents (
+    id integer NOT NULL,
+    nct_id character varying,
+    document_id character varying,
+    document_type character varying,
+    url character varying,
+    comment text
+);
+
+
+--
+-- Name: documents_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.documents_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: documents_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.documents_id_seq OWNED BY ctgov.documents.id;
+
+
+--
 -- Name: drop_withdrawals; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1391,12 +1425,12 @@ CREATE TABLE ctgov.outcomes (
     description text,
     time_frame text,
     population text,
+    anticipated_posting_date date,
     anticipated_posting_month_year character varying,
     units character varying,
     units_analyzed character varying,
     dispersion_type character varying,
-    param_type character varying,
-    anticipated_posting_date date
+    param_type character varying
 );
 
 
@@ -1483,6 +1517,39 @@ CREATE SEQUENCE ctgov.participant_flows_id_seq
 --
 
 ALTER SEQUENCE ctgov.participant_flows_id_seq OWNED BY ctgov.participant_flows.id;
+
+
+--
+-- Name: pending_results; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.pending_results (
+    id integer NOT NULL,
+    nct_id character varying,
+    event character varying,
+    event_date_description character varying,
+    event_date date
+);
+
+
+--
+-- Name: pending_results_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.pending_results_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pending_results_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.pending_results_id_seq OWNED BY ctgov.pending_results.id;
 
 
 --
@@ -1666,6 +1733,15 @@ ALTER SEQUENCE ctgov.result_groups_id_seq OWNED BY ctgov.result_groups.id;
 
 
 --
+-- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.schema_migrations (
+    version character varying NOT NULL
+);
+
+
+--
 -- Name: sponsors_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -1692,10 +1768,6 @@ ALTER SEQUENCE ctgov.sponsors_id_seq OWNED BY ctgov.sponsors.id;
 CREATE TABLE ctgov.studies (
     nct_id character varying,
     nlm_download_date_description character varying,
-    first_received_date date,
-    last_changed_date date,
-    first_received_results_date date,
-    received_results_disposit_date date,
     study_first_submitted_date date,
     results_first_submitted_date date,
     disposition_first_submitted_date date,
@@ -1789,15 +1861,6 @@ CREATE SEQUENCE ctgov.study_references_id_seq
 --
 
 ALTER SEQUENCE ctgov.study_references_id_seq OWNED BY ctgov.study_references.id;
-
-
---
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.schema_migrations (
-    version character varying NOT NULL
-);
 
 
 --
@@ -1896,6 +1959,13 @@ ALTER TABLE ONLY ctgov.designs ALTER COLUMN id SET DEFAULT nextval('ctgov.design
 --
 
 ALTER TABLE ONLY ctgov.detailed_descriptions ALTER COLUMN id SET DEFAULT nextval('ctgov.detailed_descriptions_id_seq'::regclass);
+
+
+--
+-- Name: documents id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.documents ALTER COLUMN id SET DEFAULT nextval('ctgov.documents_id_seq'::regclass);
 
 
 --
@@ -2036,6 +2106,13 @@ ALTER TABLE ONLY ctgov.overall_officials ALTER COLUMN id SET DEFAULT nextval('ct
 --
 
 ALTER TABLE ONLY ctgov.participant_flows ALTER COLUMN id SET DEFAULT nextval('ctgov.participant_flows_id_seq'::regclass);
+
+
+--
+-- Name: pending_results id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.pending_results ALTER COLUMN id SET DEFAULT nextval('ctgov.pending_results_id_seq'::regclass);
 
 
 --
@@ -2200,6 +2277,14 @@ ALTER TABLE ONLY ctgov.detailed_descriptions
 
 
 --
+-- Name: documents documents_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.documents
+    ADD CONSTRAINT documents_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: drop_withdrawals drop_withdrawals_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -2357,6 +2442,14 @@ ALTER TABLE ONLY ctgov.overall_officials
 
 ALTER TABLE ONLY ctgov.participant_flows
     ADD CONSTRAINT participant_flows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pending_results pending_results_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.pending_results
+    ADD CONSTRAINT pending_results_pkey PRIMARY KEY (id);
 
 
 --
@@ -2574,6 +2667,20 @@ CREATE INDEX index_designs_on_outcomes_assessor_masked ON ctgov.designs USING bt
 --
 
 CREATE INDEX index_designs_on_subject_masked ON ctgov.designs USING btree (subject_masked);
+
+
+--
+-- Name: index_documents_on_document_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_documents_on_document_id ON ctgov.documents USING btree (document_id);
+
+
+--
+-- Name: index_documents_on_document_type; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_documents_on_document_type ON ctgov.documents USING btree (document_type);
 
 
 --
@@ -2857,6 +2964,13 @@ CREATE INDEX index_studies_on_completion_date ON ctgov.studies USING btree (comp
 
 
 --
+-- Name: index_studies_on_disposition_first_submitted_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_studies_on_disposition_first_submitted_date ON ctgov.studies USING btree (disposition_first_submitted_date);
+
+
+--
 -- Name: index_studies_on_enrollment_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -2864,17 +2978,17 @@ CREATE INDEX index_studies_on_enrollment_type ON ctgov.studies USING btree (enro
 
 
 --
--- Name: index_studies_on_first_received_results_date; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_studies_on_first_received_results_date ON ctgov.studies USING btree (first_received_results_date);
-
-
---
 -- Name: index_studies_on_last_known_status; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_studies_on_last_known_status ON ctgov.studies USING btree (last_known_status);
+
+
+--
+-- Name: index_studies_on_last_update_submitted_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_studies_on_last_update_submitted_date ON ctgov.studies USING btree (last_update_submitted_date);
 
 
 --
@@ -2913,10 +3027,10 @@ CREATE INDEX index_studies_on_primary_completion_date_type ON ctgov.studies USIN
 
 
 --
--- Name: index_studies_on_received_results_disposit_date; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_studies_on_results_first_submitted_date; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_studies_on_received_results_disposit_date ON ctgov.studies USING btree (received_results_disposit_date);
+CREATE INDEX index_studies_on_results_first_submitted_date ON ctgov.studies USING btree (results_first_submitted_date);
 
 
 --
@@ -2941,6 +3055,13 @@ CREATE INDEX index_studies_on_start_date_type ON ctgov.studies USING btree (star
 
 
 --
+-- Name: index_studies_on_study_first_submitted_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_studies_on_study_first_submitted_date ON ctgov.studies USING btree (study_first_submitted_date);
+
+
+--
 -- Name: index_studies_on_study_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -2955,10 +3076,10 @@ CREATE INDEX index_study_references_on_reference_type ON ctgov.study_references 
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
+-- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
+CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
 
 
 --
@@ -2966,8 +3087,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 --
 
 SET search_path TO ctgov, public;
-
-INSERT INTO schema_migrations (version) VALUES ('20160620201020');
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
@@ -2980,4 +3099,6 @@ INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 INSERT INTO schema_migrations (version) VALUES ('20170307184859');
 
 INSERT INTO schema_migrations (version) VALUES ('20170411000122');
+
+INSERT INTO schema_migrations (version) VALUES ('20180514161006');
 

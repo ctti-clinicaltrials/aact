@@ -40,7 +40,7 @@ describe Outcome do
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     expect(study.nct_id).to eq(nct_id)
-    expect(study.outcomes.size).to eq(5)
+    expect(study.outcomes.size).to eq(6)
 
     primary_outcomes=(study.outcomes.select{|m|m.outcome_type=='Primary'})
     expect(primary_outcomes.size).to eq(2)

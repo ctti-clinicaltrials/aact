@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT02708238</url>
   </required_header>
@@ -39,7 +39,7 @@
       This will be a prospective, multicentre, open label, randomized, controlled trial. All
       consecutive infants diagnosed with IC, according to Rome III criteria, will be prospectively
       enrolled in a 12 months period by 3 different Pediatric Gastroenterology units: Department of
-      Translational Medical Science, Section of Pediatrics, University of Naples "Federico II";
+      Translational Medical Science, Section of Pediatrics, University of Naples &quot;Federico II&quot;;
       Institute of Pediatrics of the University of Foggia; Endoscopy and Gastroenterology Unit,
       Department of Pediatrics, University of Messina.
 
@@ -151,11 +151,14 @@
     <affiliation>Federico II University</affiliation>
   </overall_official>
   <verification_date>June 2016</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>June 20, 2016</lastchanged_date>
-  <firstreceived_date>March 4, 2016</firstreceived_date>
-  <firstreceived_results_date>April 15, 2016</firstreceived_results_date>
-  <!-- New date names                                                                           -->
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>March 4, 2016</study_first_submitted>
   <study_first_submitted_qc>March 14, 2016</study_first_submitted_qc>
   <study_first_posted type="Estimate">March 15, 2016</study_first_posted>
@@ -165,7 +168,6 @@
   <last_update_submitted>June 20, 2016</last_update_submitted>
   <last_update_submitted_qc>June 20, 2016</last_update_submitted_qc>
   <last_update_posted type="Estimate">July 29, 2016</last_update_posted>
-  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Principal Investigator</responsible_party_type>
     <investigator_affiliation>Federico II University</investigator_affiliation>
@@ -564,7 +566,7 @@ Simethicone</description>
     <limitations_and_caveats>The absence of a placebo group and the open label design represent the main limitations of this study</limitations_and_caveats>
     <point_of_contact>
       <name_or_title>Annamaria Staiano</name_or_title>
-      <organization>Department of Translational Medical Sciences, Section of Pediatrics, University of Naples "Federico II"</organization>
+      <organization>Department of Translational Medical Sciences, Section of Pediatrics, University of Naples &quot;Federico II&quot;</organization>
       <phone>00390817462679</phone>
       <email>staiano@unina.it</email>
     </point_of_contact>

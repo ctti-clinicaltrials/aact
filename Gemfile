@@ -4,6 +4,7 @@ ruby "2.4.0"
 
 gem 'nokogiri', '~> 1.8.1'
 gem 'rails', github: 'rails/rails', branch: '4-2-stable'
+gem 'rails-html-sanitizer', '~> 1.0.4'
 gem "rack-timeout"
 gem "faraday"
 gem "autoprefixer-rails"
@@ -36,6 +37,8 @@ gem 'therubyracer', '~> 0.12.3'
 gem 'libv8', '~> 3.16.14.15'
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-protection', '~> 1.5.5'
+gem 'loofah', '~> 2.2.1'
 
 # user registration
 gem 'devise'

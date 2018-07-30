@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00277524</url>
   </required_header>
@@ -63,7 +63,6 @@
   <start_date>August 2005</start_date>
   <completion_date type="Actual">November 2010</completion_date>
   <primary_completion_date type="Actual">November 2010</primary_completion_date>
-  <phase>N/A</phase>
   <study_type>Observational</study_type>
   <has_expanded_access>No</has_expanded_access>
   <study_design_info>
@@ -106,11 +105,11 @@ Detection intervals are used to detect atrial tachyarrhythmia. Detection Interva
     <description>Evaluate the utility of the Antitachycardia Pacing (ATP) During Charging feature of the device.</description>
   </secondary_outcome>
   <secondary_outcome>
-    <measure>Compare First Shock Rate Between Medtronic "PainFREE" Programming and "SCD-HeFT" Programming in Primary Prevention Study Participants.</measure>
+    <measure>Compare First Shock Rate Between Medtronic &quot;PainFREE&quot; Programming and &quot;SCD-HeFT&quot; Programming in Primary Prevention Study Participants.</measure>
     <time_frame>4 years post implant</time_frame>
     <description>First shock rate for VF and FVT zones was estimated using Kaplan-Meier method.
-OMNI "PainFREE" definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
-OMNI "SCD-HeFT" definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
+OMNI &quot;PainFREE&quot; definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
+OMNI &quot;SCD-HeFT&quot; definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
   </secondary_outcome>
   <secondary_outcome>
     <measure>Frequencies of Subjects With OptiVol Trends and Disease Progression.</measure>
@@ -1436,11 +1435,14 @@ A subject who crossed OptiVol threshold since last visit was regarded as 'crosse
     <citation>Liang KY, Zeger S. Longitudinal data analysis using generalized linear models. Biometrika, 1986, 73:13-22.</citation>
   </reference>
   <verification_date>May 2013</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>May 21, 2013</lastchanged_date>
-  <firstreceived_date>January 12, 2006</firstreceived_date>
-  <firstreceived_results_date>July 13, 2012</firstreceived_results_date>
-  <!-- New date names                                                                           -->
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>January 12, 2006</study_first_submitted>
   <study_first_submitted_qc>January 12, 2006</study_first_submitted_qc>
   <study_first_posted type="Estimate">January 16, 2006</study_first_posted>
@@ -1450,7 +1452,6 @@ A subject who crossed OptiVol threshold since last visit was regarded as 'crosse
   <last_update_submitted>May 21, 2013</last_update_submitted>
   <last_update_submitted_qc>May 21, 2013</last_update_submitted_qc>
   <last_update_posted type="Estimate">August 28, 2013</last_update_posted>
-  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
@@ -2987,23 +2988,23 @@ Stage A - At high risk for HF but without structural heart disease or symptoms o
       </outcome>
       <outcome>
         <type>Secondary</type>
-        <title>Compare First Shock Rate Between Medtronic "PainFREE" Programming and "SCD-HeFT" Programming in Primary Prevention Study Participants.</title>
+        <title>Compare First Shock Rate Between Medtronic &quot;PainFREE&quot; Programming and &quot;SCD-HeFT&quot; Programming in Primary Prevention Study Participants.</title>
         <description>First shock rate for VF and FVT zones was estimated using Kaplan-Meier method.
 OMNI “PainFREE” definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
 OMNI “SCD-HeFT” definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
         <time_frame>4 years post implant</time_frame>
         <group_list>
           <group group_id="O1">
-            <title>"PainFREE" Programming</title>
+            <title>&quot;PainFREE&quot; Programming</title>
             <description>OMNI “PainFREE” definition: programming combinations that result in ATP therapy for VT at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.</description>
           </group>
           <group group_id="O2">
-            <title>"SCD-HeFT" Programming</title>
+            <title>&quot;SCD-HeFT&quot; Programming</title>
             <description>OMNI “SCD-HeFT” definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>
           </group>
         </group_list>
         <measure>
-          <title>Compare First Shock Rate Between Medtronic "PainFREE" Programming and "SCD-HeFT" Programming in Primary Prevention Study Participants.</title>
+          <title>Compare First Shock Rate Between Medtronic &quot;PainFREE&quot; Programming and &quot;SCD-HeFT&quot; Programming in Primary Prevention Study Participants.</title>
           <description>First shock rate for VF and FVT zones was estimated using Kaplan-Meier method.
 OMNI “PainFREE” definition: programming combinations that result in ATP therapy for ventricular tachycardia (VT) at cycle lengths &lt;320 ms. Programming at cycle lengths ≥320 ms were not mandated.
 OMNI “SCD-HeFT” definition: programming combinations that result in shock therapy only for arrhythmias at cycle lengths of &lt;320 ms or faster and no therapy for arrhythmias at cycle lengths ≥320 ms.</description>

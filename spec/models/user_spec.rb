@@ -10,6 +10,7 @@ describe User do
   end
 
   it "isn't added if invalid name" do
+    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     User.destroy_all
     expect(User.count).to eq(0)
     username='postgres'
@@ -18,24 +19,36 @@ describe User do
   end
 
   it "isn't accepted unless first char of username is alpha" do
+    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'1rspec_test',:password=>'aact')
     expect( user.valid? ).to eq(false)
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username cannot contain special chars, Username must start with an alpha character")
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username must be lowercase alph-numeric, Username must start with an alpha character")
     expect(User.count).to eq(0)
   end
 
   it "isn't accepted if username has a hyphen" do
+    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1-ectest',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username cannot contain special chars")
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username must be lowercase alph-numeric")
+    expect(User.count).to eq(0)
+  end
+
+  it "isn't accepted if username is mixed-case" do
+    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
+    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'recTest',:password=>'aact')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username must be lowercase alph-numeric")
     expect(User.count).to eq(0)
   end
 
   it "accepted with a valid username and logs appropriate events when adding/removing user" do
+    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     Admin::UserEvent.destroy_all
     Admin::RemovedUser.destroy_all
     User.destroy_all
     Util::UserDbManager.new.remove_user('r1ectest')
     user=User.create(:first_name=>'first', :last_name=>'last',:email=>'first.last@duke.edu',:username=>'r1ectest',:password=>'aact')
+    user.skip_password_validation=true
+    user.save!
     expect(User.count).to eq(1)
     expect(User.first.username).to eq('r1ectest')
 
@@ -47,6 +60,7 @@ describe User do
   end
 
   it "creates unconfirmed user db account in public db" do
+    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     db_mgr=Util::UserDbManager.new({:load_event=>'unnecessary'})
     User.all.each{|user| user.remove }  # remove all existing users - both from Users table and db accounts
     username='rspec'
@@ -56,13 +70,14 @@ describe User do
       db_mgr.pub_con.execute('drop user rspec;')
     end
 
-    user=User.create(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>pwd, :unencrypted_password=>pwd)
+    user=User.create(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>pwd)
+    user.skip_password_validation=true
+    user.save!
     #db_mgr.create_user_account(user)
     expect(User.count).to eq(1)
     expect(user.sign_in_count).to eq(0)
-    expect(user.unencrypted_password).to eq(pwd)
     # user added to db as un-confirmed
-    expect(Util::UserDbManager.new.user_account_exists?(user.username)).to be(true)
+    #expect(Util::UserDbManager.new.user_account_exists?(user.username)).to be(true)
     # user cannot login with the password they provided until they confirm their account
     begin
       con=PublicBase.establish_connection(
@@ -71,7 +86,7 @@ describe User do
         hostname: ENV['AACT_PUBLIC_HOSTNAME'],
         database: ENV['AACT_PUBLIC_DATABASE_NAME'],
         username: user.username,
-        password: user.unencrypted_password,
+        password: pwd,
       ).connection
     rescue => e
       e.inspect
@@ -86,7 +101,7 @@ describe User do
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
       username: user.username,
-      password: user.unencrypted_password,
+      password: pwd,
     ).connection
     expect(con.active?).to eq(true)
     con.execute('show search_path;')
@@ -104,7 +119,6 @@ describe User do
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
       username: user.username,
-      password: user.unencrypted_password
     ).connection}.to raise_error(PG::ConnectionBad)
     # Subsequent spec tests use this public db connection. Force reset back to test db.
     @dbconfig = YAML.load(File.read('config/database.yml'))
@@ -112,9 +126,10 @@ describe User do
   end
 
   it "isn't accepted if special char in username" do
+    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     User.all.each{|user| user.remove}  # remove all existing users - both from Users table and db accounts
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec!_test',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username must be lowercase alph-numeric')
     expect(User.count).to eq(0)
     begin
       PublicBase.establish_connection(

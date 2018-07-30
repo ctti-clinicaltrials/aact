@@ -70,7 +70,7 @@ module Admin
     end
 
     def check_enumerations
-      Admin::Enumeration.enums.each{|array|
+      Admin::Enumeration.new.enums.each{|array|
         # each enumeration - check most recent % to last % & raise alert if it has changed > 10%
         table_name=array.first
         column_name=array.last

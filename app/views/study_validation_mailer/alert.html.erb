@@ -1,8 +1,0 @@
-<h1>Data validation failed</h1>
-
-<% @errors.each do |error| %>
-  <p><%= error[:validation_title] %> for <%= error[:nct_id] %></p>
-  <p>Expected: <%= error[:expected_result] %></p>
-  <p>Actual: <%= error[:actual_result] %></p>
-<% end %>
-

@@ -14,7 +14,7 @@
    <ul class='regularDisplay'>
      <li>Table names are all plural. (ie. <i>studies, facilities, interventions,</i> etc.)</li>
      <li>Column names are all singular. (ie. <i>description, phase, name</i>, etc.)</li>
-     <li>Table/column names derived from multiple words are delimited with underscores. (ie. <i>mesh_term, first_received_date, number_of_groups</i>, etc.)</li>
+     <li>Table/column names derived from multiple words are delimited with underscores. (ie. <i>mesh_term, study_first_submitted_date, number_of_groups</i>, etc.)</li>
      <li>Case (upper vs lower) is not relevant since PostgreSQL ignores case. <i>Studies</i>, <i>STUDIES</i> and <i>studies</i> all represent the same table and can be used interchangably.</li>
      <li>Information about study design entered into ClinicalTrials.gov during registration is stored in AACT tables prefixed with <i>Design_</i> to distinguish it from the results data. For example, the <i>Design_Groups</i> table contains registry information about anticipated participant groups, whereas the <i>Result_Groups</i> table contains information that was entered after the study has completed to describe actual participant groups. <i>Design_Outcomes</i> contains information about the outcomes to be measured and <i>Outcomes</i> contains info about the actual outcomes reported when the study completed.</li>
      <li>Where possible, tables & columns are given fully qualified names; abbreviations are avoided. (ie. <i>description</i> rather than <i>desc</i>; <i>category</i> rather than <i>ctgry</i>)</li>
@@ -146,39 +146,64 @@
    <h2>Information about dates</h2>
 	 <p>ClinicalTrials.gov has historically provided the month/year (without day) for several date values including start date, completion date, primary completion date and verification date. Because the 'day' was not provided, AACT stored these dates in the <i>Studies</i> table as character-type rather than date-type values. Character-type dates are of limited utility in an analytic database because they can't be used to perform standard date calculations such as determining study duration or the average number of months for someone to report results or identifying studies registered before/after a certain date.</p>
 
-   <p>NLM recently reported that ClinicalTrials.gov will start providing full date values (mm/dd/yy) for these date elements, however this only applies to new studies; pre-existing studies will continue to have only month/year date values. We considered various alternatives to handle dates given this issue. We decided to provide 2 columns in the <i>Studies</i> table for each date element: 1) a character-type column that displays the value exactly as it was received from ClinicalTrials.gov & 2) a date-type column that can be used for date calculations. If the date received from ClinicalTrials.gov has only month/year, in order to convert the string to a date, it is assigned the first day of the month. For example, a study with start date June, 2014 will have <i>June, 2014</i> in the <i>start_month_year</i> column and <i>06/01/14</i> in the <i>start_date</i> column.
+   <p>NLM recently reported that ClinicalTrials.gov will start providing full date values (mm/dd/yy) for these date elements, however this only applies to new studies; studies entered prior to this announcement will continue to have only month/year date values. We considered various alternatives to handle dates given this issue. We decided to provide 2 columns in the <i>Studies</i> table for each date element: 1) a character-type column that displays the value exactly as it was received from ClinicalTrials.gov & 2) a date-type column that can be used for date calculations. If the date received from ClinicalTrials.gov has only month/year, in order to convert the string to a date, it is assigned the first day of the month. For example, a study with start date June, 2014 will have <i>June, 2014</i> in the <i>start_month_year</i> column and <i>06/01/14</i> in the <i>start_date</i> column.
     <p>
 
-    <h2>Information about trial sites (Facilities and Countries)</h2>
-    <p> Information about organizations where the study is/was conducted (aka. facilities, trial sites) is stored in the <i>Facilities</i> table. This represents the facility information that was included in the study record on the date that information was downloaded from ClinicalTrials.gov.</p>
+    <div id='pending_results'>
+      <h2>Information about dates related to 'pending results'</h2>
+      <p>On May 9, 2018, the NLM added a new section of date information to the ClinicalTrials.gov API. The section is labeled "pendng_results" and serves to provide information about result submission activity while the results await quality control review.</p>
 
-    <p>The name and email/phone for the contact person (and optionally, a backup contact) at a facility is available if the facility status (<i>Facilities.status</i>) is ‘<i>Recruiting</i>’ or ‘<i>Not yet recruiting</i>’, and if the data provider has provided such information. This information is stored in AACT in the <i>Facility_Contacts</i> table, which is a ‘child’ of the <i>Facilities</i> table. Facility-level contact information is not required if a central contact has been provided. Contact information is removed from the publicly available content at ClinicalTrials.gov (and therefore from AACT) when the facility is no longer recruiting, or when the overall study status (<i>Studies.overall_status</i>) changes to indicate that the study has completed recruitment.</p>
+      <p>NLM provides result submission date(s) for studies that have results awaiting quality control (QC) review. The results themselves are not publicly posted until the review is complete. The dates for three types of events related to results submission are reported in the Pending_Results table:</p>
+      <ul class='regularDisplay'>
 
-    <p>Similarly, the names and roles of investigators at the facility are available if the facility status (<i>Facilities.status</i>) is ‘<i>Recruiting</i>’ or ‘<i>Not yet recruiting</i>’, and if the data provider has provided such information. This information is stored in AACT in the <i>Facility_Investigators</i> table, which is a ‘child’ of the <i>Facilities</i> table. Facility-level investigator information is optional. Facility-level investigator information is removed from the publicly available content at ClinicalTrials.gov (and therefore from AACT) when the facility is no longer recruiting, or when the overall study status (<i>Studies.overall_status</i>) changes to indicate that the study has completed recruitment. </p>
+        <li><i>Submission:</i> The date(s) that study results were submitted to NLM for QC review.</li>
+        <li><i>Submission Canceled:</i> The date(s) that such submissions were canceled by the data provider. (Note: this value is set to "Unknown" if the cancellation occurred before 05/08/2018 when this data started to be collected).</li>
+        <li><i>Returned:</i>  The date(s) that study results were returned to the data provider because they required modification.</li>
+      </ul>
+      <p>The NLM reports that the following updates occur to this information when a study passes the quality control review:</p>
+      <ul class='regularDisplay'>
 
-    <p>AACT includes a <i>Countries</i> table, which contains one record per unique country per study. The <i>Countries</i> table includes countries currently & previously associated with the study. The <i>removed</i> column identifies those countries that are no longer associated with the study. NLM uses facilities information to create a list of unique countries associated with the study. In some cases, ClinicalTrials.gov data submitters subsequently remove facilities that were entered when the study was registered. Naturally these will not appear in AACT's <i>Facilities</i> table. If all of a country’s facilities have been removed from a study, NLM flags the country as ‘Removed’ which appears in AACT as <i>Countries.removed</i> = true.
+        <li><i>Study.results_first_submitted_date</i> is populated with the earliest 'submitted date' from Pending_Results.</li>
+        <li><i>Study.results_first_submitted_qc_date</i> is populated with the submitted date of the version of results that passed QC.</li>
+        <li>Result tables (<i>Reported_Events, Outcomes, Baseline_Measurements</i>, etc.) are populated with the result information that passed QC.</li>
+        <li>All rows for the study with reviewed/approved results are removed from the <i>Pending_Events</i> table.</li>
+      </ul>
+      <p>More information about the quality control (QC) review process and how this information is presented in ClinicalTrials.gov can be found in the December, 2017 <a target='_blank' href='https://www.nlm.nih.gov/pubs/techbull/nd17/nd17_clinicaltrials_enhanced.html#anch_30'>NLM Technical Bulletin</a></p>
+    </div>
 
-    </ul>
+    <div id='trial_sites'>
+      <h2>Information about trial sites (Facilities and Countries)</h2>
+      <p> Information about organizations where the study is/was conducted (aka. facilities, trial sites) is stored in the <i>Facilities</i> table. This represents the facility information that was included in the study record on the date that information was downloaded from ClinicalTrials.gov.</p>
 
-    <p>The reasons facilities are removed are varied and unknown. A site may have been removed because it was never initiated or because it was entered with incorrect information. The recommended action for sites that have completed or have terminated enrollment is to change the enrollment status to “Completed” or “Terminated”; however, such sites are sometimes deleted from the study record by the responsible party. Data analysts may consider using Countries where <i>removed</i> is set to true to supplement the information about trial locations that is contained in <i>Facilities</i>, particularly for studies that have completed enrollment and have no records in <i>Facilities</i>.</p>
+      <p>The name and email/phone for the contact person (and optionally, a backup contact) at a facility is available if the facility status (<i>Facilities.status</i>) is ‘<i>Recruiting</i>’ or ‘<i>Not yet recruiting</i>’, and if the data provider has provided such information. This information is stored in AACT in the <i>Facility_Contacts</i> table, which is a ‘child’ of the <i>Facilities</i> table. Facility-level contact information is not required if a central contact has been provided. Contact information is removed from the publicly available content at ClinicalTrials.gov (and therefore from AACT) when the facility is no longer recruiting, or when the overall study status (<i>Studies.overall_status</i>) changes to indicate that the study has completed recruitment.</p>
 
-    <p>Users who are interested in identifying countries where participants are being/were enrolled may use either the <i>Facilities</i> or <i>Countries</i> (where <i>Countries.removed</i> is not true) with equivalent results.</p>
+      <p>Similarly, the names and roles of investigators at the facility are available if the facility status (<i>Facilities.status</i>) is ‘<i>Recruiting</i>’ or ‘<i>Not yet recruiting</i>’, and if the data provider has provided such information. This information is stored in AACT in the <i>Facility_Investigators</i> table, which is a ‘child’ of the <i>Facilities</i> table. Facility-level investigator information is optional. Facility-level investigator information is removed from the publicly available content at ClinicalTrials.gov (and therefore from AACT) when the facility is no longer recruiting, or when the overall study status (<i>Studies.overall_status</i>) changes to indicate that the study has completed recruitment. </p>
 
-    <h2>MeSH terms in Browse_Conditions and Browse_Interventions</h2>
-    <p>When data submitters provide information to ClinicalTrials.gov about a study, they’re encouraged to use Medical Subject Heading (<a target='_blank' href='https://www.nlm.nih.gov/mesh/meshhome.html'>MeSH</a>) terminology for interventions, conditions, and keywords. The <i>Browse_Conditions</i> and <i>Browse_Interventions</i> tables contain MeSH terms generated by an algorithm run by NLM. The NLM algorithm is re-run nightly on all studies in the ClinicalTrials.gov database, and sources the most up-to-date information in the study record, the latest version of the algorithm, and the version of the MeSH thesaurus in use at that time.</p>
+      <p>AACT includes a <i>Countries</i> table, which contains one record per unique country per study. The <i>Countries</i> table includes countries currently & previously associated with the study. The <i>removed</i> column identifies those countries that are no longer associated with the study. NLM uses facilities information to create a list of unique countries associated with the study. In some cases, ClinicalTrials.gov data submitters subsequently remove facilities that were entered when the study was registered. Naturally these will not appear in AACT's <i>Facilities</i> table. If all of a country’s facilities have been removed from a study, NLM flags the country as ‘Removed’ which appears in AACT as <i>Countries.removed</i> = true.
 
-    <h2>“Delayed Results” data elements are available in AACT</h2>
+      <p>The reasons facilities are removed are varied and unknown. A site may have been removed because it was never initiated or because it was entered with incorrect information. The recommended action for sites that have completed or have terminated enrollment is to change the enrollment status to “Completed” or “Terminated”; however, such sites are sometimes deleted from the study record by the responsible party. Data analysts may consider using Countries where <i>removed</i> is set to true to supplement the information about trial locations that is contained in <i>Facilities</i>, particularly for studies that have completed enrollment and have no records in <i>Facilities</i>.</p>
 
-    <p>A responsible party of an applicable clinical trial may delay the deadline for submitting results information to ClinicalTrials.gov for up to two additional years if one of the following two certification conditions applies to the trial:</p>
+      <p>Users who are interested in identifying countries where participants are being/were enrolled may use either the <i>Facilities</i> or <i>Countries</i> (where <i>Countries.removed</i> is not true) with equivalent results.</p>
+    </div>
 
-    <ul class='regularDisplay'>
-      <li>Initial approval: trial completed before a drug, biologic or device studied in the trial is initially approved, licensed or cleared by the FDA for any use.</li>
-      <li>New use: the manufacturer of a drug, biologic or device is the sponsor of the trial and has filed or will file within one year, an application seeking FDA approval, licensure, or clearance of the new use studied in the trial. A responsible party may also request, for good cause, an extension of the deadline for the submission of results.</li>
-    </ul>
+    <div id='mesh_terms'>
+      <h2>MeSH terms in Browse_Conditions and Browse_Interventions</h2>
+      <p>When data submitters provide information to ClinicalTrials.gov about a study, they’re encouraged to use Medical Subject Heading (<a target='_blank' href='https://www.nlm.nih.gov/mesh/meshhome.html'>MeSH</a>) terminology for interventions, conditions, and keywords. The <i>Browse_Conditions</i> and <i>Browse_Interventions</i> tables contain MeSH terms generated by an algorithm run by NLM. The NLM algorithm is re-run nightly on all studies in the ClinicalTrials.gov database, and sources the most up-to-date information in the study record, the latest version of the algorithm, and the version of the MeSH thesaurus in use at that time.</p>
+    </div>
 
-    <p>Studies for which a certification or extension request have been submitted include the date of the first certification or extension request in the data element: <i>Studies.received_results_disposit_date</i>.</p>
+    <div id='delayed_results'>
+      <h2>“Delayed Results” data elements are available in AACT</h2>
+      <p>A responsible party of an applicable clinical trial may delay the deadline for submitting results information to ClinicalTrials.gov for up to two additional years if one of the following two certification conditions applies to the trial:</p>
 
-    <p>In general, the content that is contained in the AACT database preserves the content in the source XML files that are downloaded from ClinicalTrials.gov.</p>
+      <ul class='regularDisplay'>
+        <li>Initial approval: trial completed before a drug, biologic or device studied in the trial is initially approved, licensed or cleared by the FDA for any use.</li>
+        <li>New use: the manufacturer of a drug, biologic or device is the sponsor of the trial and has filed or will file within one year, an application seeking FDA approval, licensure, or clearance of the new use studied in the trial. A responsible party may also request, for good cause, an extension of the deadline for the submission of results.</li>
+      </ul>
+
+      <p>Studies for which a certification or extension request have been submitted include the date of the first certification or extension request in the data element: <i>Studies.disposition_first_submitted_date</i>.</p>
+
+      <p>In general, the content that is contained in the AACT database preserves the content in the source XML files that are downloaded from ClinicalTrials.gov.</p>
+    </div>
 
 </section>
 </main>

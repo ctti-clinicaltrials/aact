@@ -52,16 +52,17 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
         <span class='command-prompt'>   cloud            </span><span class='command-response'> /* my libref  */</span>
         <span class='command-prompt'>   postgres         </span><span class='command-response'> /* postgres engine  */</span>
         <% if user_signed_in? %>
-        <span class='command-prompt'>   user=</span><span>"<%= current_user.username %>"     </span><span class='command-response'> /* supply your login credentials  */</span>
+         <span class='command-prompt'>   user=</span><span class='command-entry'>"<%= current_user.username %>"     </span><span class='command-response'> /* supply your login credentials  */</span>
         <% else %>
         <span class='command-prompt'>   user=</span><span class='command-note'> (sign up/in to get a username) </span><span class='command-response'> /* supply your login credentials  */</span>
         <% end %>
-        <span class='command-prompt'>   database=</span><span>"<%= ENV["AACT_PUBLIC_DATABASE_NAME"] %>"</span>
-        <span class='command-prompt'>   server=</span><span>"<%= ENV["AACT_PUBLIC_HOSTNAME"] %>"</span>
-        <span class='command-prompt'>   port=</span><span>5432</span>
-        <span class='command-prompt'>   dbmax_text=</span><span>32767 </span><span class='command-response'> /* sets the length of long text variables */</span>
-        <span class='command-prompt'>   preserve_tab_names=</span><span>yes</span>
-        <span class='command-prompt'>   access=</span><span>readonly</span>
+        <span class='command-prompt'>   password=</span><span class='command-note'><i>"your AACT password" </i></span>
+        <span class='command-prompt'>   database=</span><span class='command-entry'>"<%= ENV["AACT_PUBLIC_DATABASE_NAME"] %>"</span>
+        <span class='command-prompt'>   server=</span><span class='command-entry'>"<%= ENV["AACT_PUBLIC_HOSTNAME"] %>"</span>
+        <span class='command-prompt'>   port=</span><span class='command-entry'>5432</span>
+        <span class='command-prompt'>   dbmax_text=</span><span class='command-entry'>32767 </span><span class='command-response'> /* sets the length of long text variables */</span>
+        <span class='command-prompt'>   preserve_tab_names=</span><span  class='command-entry'>yes</span>
+        <span class='command-prompt'>   access=</span><span class='command-entry'>readonly</span>
         <span class='command-prompt'>;</span>
       </p>
       </pre>
@@ -95,7 +96,7 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
     <p class='CodeRay'>
       <pre>
         <p class='code'>
-          <span class='command-prompt'>proc contents data=</span><span>cloud._all_;</span>
+          <span class='command-prompt'>proc contents data=</span><span class='command-entry'>cloud._all_;</span>
           <span class='command-prompt'>run;</span>
         </p>
       </pre>
@@ -107,8 +108,8 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
       <pre>
         <p class='code'>
           <span class='command-prompt'>title 'Number of studies by type';</span>
-          <span class='command-prompt'>proc freq data=</span><span>cloud.studies;</span>
-          <span class='command-prompt'>   tables </span><span>study_type;</span>
+          <span class='command-prompt'>proc freq data=</span><span class='command-entry'>cloud.studies;</span>
+          <span class='command-prompt'>   tables </span><span class='command-entry'>study_type;</span>
           <span class='command-prompt'>   run;</span>
           <span class='command-prompt'>title;</span>
       </p>
@@ -144,11 +145,11 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
           <span class='command-response'>* Consider extracting just a subset of records (e.g., 1000) first;</span>
           <span class='command-response'>* In the example below, the maximum length for character variables stored as ‘text’ type in the postgreSQL database is set at 1000;</span>
 
-          <span class='command-prompt'>libname sasdata </span><span> "&lt;my file path&gt;" </span><span class='command-prompt'> ;</span><span class='command-response'>  /* folder for storing dataset */</span>
+          <span class='command-prompt'>libname sasdata </span><span class='command-entry'> "&lt;my file path&gt;" </span><span class='command-prompt'> ;</span><span class='command-response'>  /* folder for storing dataset */</span>
 
           <span class='command-prompt'>data sasdata.studies;</span>
           <span class='command-prompt'>   set cloud.studies </span>
-          <span class='command-prompt'>      (dbmax_text=</span><span>1000</span><span class='command-prompt'> obs=</span><span>1000);</span>
+          <span class='command-prompt'>      (dbmax_text=</span><span class='command-entry'>1000</span><span class='command-prompt'> obs=</span><span class='command-entry'>1000);</span>
           <span class='command-prompt'>   run;</span>
         </p>
       </pre>
@@ -167,8 +168,8 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
           <span class='command-response'>*  For example, the following code took >2.5 h to run on PC SAS;</span>
           <span class='command-response'>*    over a home internet connection;</span>
           <span class='command-prompt'>proc copy</span>
-          <span class='command-prompt'>   in = </span><span>cloud</span>
-          <span class='command-prompt'>   out = </span><span>sasdata</span>
+          <span class='command-prompt'>   in = </span><span class='command-entry'>cloud</span>
+          <span class='command-prompt'>   out = </span><span class='command-entry'>sasdata</span>
           <span class='command-prompt'>   ;</span>
           <span class='command-entry'>   select studies  sponsors ; </span><span class='command-response'> /* select a subset of database tables */</span>
           <span class='command-prompt'>   run;</span>
@@ -196,16 +197,16 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
     <p class='CodeRay'>
       <pre>
         <p class='code'>
-          <span>proc sql;</span>
+          <span class='command-entry'>proc sql;</span>
           <span class='command-prompt'>   connect to postgres as aact (</span>
           <% if user_signed_in? %>
-          <span class='command-prompt'>      user=</span><span>"<%= current_user.username %>"</span>
+          <span class='command-prompt'>      user=</span><span class='command-entry'>"<%= current_user.username %>"</span>
           <% else %>
           <span class='command-prompt'>      user=</span><span class='command-note'>(sign up/in to get a username)</span>
           <% end %>
-          <span class='command-prompt'>      database=</span><span>"<%= ENV["DB_READONLY_DBNAME"] %>"</span>
-          <span class='command-prompt'>      server=</span><span>"<%= ENV["DB_HOSTNAME"] %>"</span>
-          <span class='command-prompt'>      port=</span><span>5432</span>
+          <span class='command-prompt'>      database=</span><span class='command-entry'>"<%= ENV["DB_READONLY_DBNAME"] %>"</span>
+          <span class='command-prompt'>      server=</span><span class='command-entry'>"<%= ENV["DB_HOSTNAME"] %>"</span>
+          <span class='command-prompt'>      port=</span><span class='command-entry'>5432</span>
           <span class='command-prompt'>      );</span>
           <span class='command-prompt'>   title 'Number of studies'; </span>
           <span class='command-entry'>      select count(*) from connection to aact </span>

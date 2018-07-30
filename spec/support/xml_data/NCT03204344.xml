@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT03204344</url>
   </required_header>
@@ -291,17 +291,20 @@ For patients who enter the operating room before 12:00, no oral or intravenoous 
     <PMID>18331374</PMID>
   </reference>
   <verification_date>September 2017</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>September 18, 2017</lastchanged_date>
-  <firstreceived_date>June 26, 2017</firstreceived_date>
-  <!-- New date names                                                                           -->
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>June 26, 2017</study_first_submitted>
   <study_first_submitted_qc>June 28, 2017</study_first_submitted_qc>
   <study_first_posted type="Actual">July 2, 2017</study_first_posted>
   <last_update_submitted>September 18, 2017</last_update_submitted>
   <last_update_submitted_qc>September 18, 2017</last_update_submitted_qc>
   <last_update_posted type="Actual">September 19, 2017</last_update_posted>
-  <!-- End of dates                                                                             -->
   <responsible_party>
     <responsible_party_type>Sponsor-Investigator</responsible_party_type>
     <investigator_affiliation>Peking University First Hospital</investigator_affiliation>
@@ -318,5 +321,9 @@ For patients who enter the operating room before 12:00, no oral or intravenoous 
     <mesh_term>Insulin</mesh_term>
     <mesh_term>Magnesium Sulfate</mesh_term>
   </intervention_browse>
+  <patient_data>
+    <sharing_ipd>Undecided</sharing_ipd>
+    <ipd_description>IPD will be available by contacting Dr. Xue Li (lixuepku@hotmail.com) after the trial is completed.</ipd_description>
+  </patient_data>
   <!-- Results have not yet been posted for this study                                          -->
 </clinical_study>

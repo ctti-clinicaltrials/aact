@@ -51,6 +51,34 @@ module Util
       end
     end
 
+    def backup_user_info
+      fm=Util::FileManager.new
+      file_prefix="#{fm.backup_directory}/#{Time.zone.now.strftime('%Y%m%d')}"
+
+      table_file_name="#{file_prefix}_aact_users_table.sql"
+      event_file_name="#{file_prefix}_aact_user_events.sql"
+      account_file_name="#{file_prefix}_aact_user_accounts.sql"
+
+      File.delete(table_file_name) if File.exist?(table_file_name)
+      File.delete(event_file_name) if File.exist?(event_file_name)
+      File.delete(account_file_name) if File.exist?(account_file_name)
+
+      log "dumping Users table..."
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['DB_SUPER_USERNAME']} --table=Users  --data-only aact_admin > #{table_file_name}"
+      run_command_line(cmd)
+
+      log "dumping User events..."
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['DB_SUPER_USERNAME']} --table=User_Events  --data-only aact_admin > #{event_file_name}"
+      run_command_line(cmd)
+
+      log "dumping User accounts..."
+      cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{account_file_name}"
+      run_command_line(cmd)
+
+      event=Admin::UserEvent.new({:event_type=>'backup', :file_names=>" #{table_file_name}, #{event_file_name}, #{account_file_name}" })
+      BackupMailer.report_user_backup(event).deliver_now
+    end
+
     def grant_db_privs(username)
       pub_con.execute("alter role \"#{username}\" IN DATABASE aact set search_path = ctgov;")
       pub_con.execute("grant connect on database aact to \"#{username}\";")

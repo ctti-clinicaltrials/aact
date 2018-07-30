@@ -3,7 +3,7 @@
   <!-- This xml conforms to an XML Schema at:
     https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
   <required_header>
-    <download_date>ClinicalTrials.gov processed this data on October 20, 2017</download_date>
+    <download_date>ClinicalTrials.gov processed this data on May 11, 2018</download_date>
     <link_text>Link to the current ClinicalTrials.gov record.</link_text>
     <url>https://clinicaltrials.gov/show/NCT00023673</url>
   </required_header>
@@ -98,7 +98,7 @@
   <primary_outcome>
     <measure>Maximum Tolerated Dose (MTD) of Three-dimensional Conformal Radiation Therapy (3DRT), in Terms of Gy Per Fraction, Combined With Concurrent Chemotherapy</measure>
     <time_frame>From start of treatment to 90 days</time_frame>
-    <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on RTOG (Radiation Therapy Oncolgy Group) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
+    <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on Radiation Therapy Oncology Group (RTOG) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
 Rating scale: 0 = not the MTD, 1 = MTD</description>
   </primary_outcome>
   <primary_outcome>
@@ -107,16 +107,24 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
     <description>Null hypothesis: p&lt;= 62.3% (the best arm of RTOG 94-10); alternative hypothesis: p&gt;= 77.9%. Where p is the percentage of patients alive at at 12 months. Using a one-group chi-square test with alpha = 0.10, a sample size of 50 patients provides at least 87% power to detect a 25% or greater relative increase in the 12-month survival rate, or equivalently, an absolute increase of at least 15.6 percentage points (62.3 versus 77.9). If the point estimate is greater than 71.1% (upper bound), then the conclusion is that the 12-month survival rate from the new treatment significantly improved from 62.3%.</description>
   </primary_outcome>
   <secondary_outcome>
-    <measure>Toxicity</measure>
-    <time_frame>From start of treatment to end of follow-up</time_frame>
+    <measure>Frequency of Highest Grade Chemotherapy/Acute RT Toxicities and Late RT Toxicities.</measure>
+    <time_frame>Chemotherapy/Acute RT toxicity: from start of treatment to 90 days from start of study treatment; Late RT toxicity: from 90 days after start of treatment to last follow-up (Maximum follow-up = 57.9 months.)</time_frame>
+    <description>Highest grade toxicity per subject was counted. Toxicities were graded using the Common Toxicity Criteria (CTC) v 2.0 for chemotherapy/acute RT toxicities and using the RTOG/EORTC Late Toxicity Criteria for late RT toxicity. Grade refers to the severity of the toxicity. Both criteria assign Grades 1 through 5 with unique clinical descriptions of severity for a given toxicity based on this general guideline: Grade 1 Mild, Grade 2 Moderate, Grade 3 Severe, Grade 4 Life-threatening or disabling, Grade 5 Death related to toxicity.Chemotherapy/Acute RT toxicities occur during chemotherapy and/or within 90 days of the start of RT. Late RT toxicities occur more than 90 days after the start of RT.</description>
   </secondary_outcome>
   <secondary_outcome>
-    <measure>Partial Organ Tolerance Doses for Lung and Esophagus</measure>
-    <time_frame>From start of treatment to end of follow-up</time_frame>
+    <measure>Partial Organ Tolerance Doses for Lung and Esophagus (Percent Volume of Total Lung Receiving &gt; 20 Gy by Toxicity Level)</measure>
+    <time_frame>From start of treatment to last follow-up (Maximum follow-up = 57.9 months.)</time_frame>
+    <description>Percent volume of total lung receiving &gt; 20 Gy radiation therapy (Lung V20) was compared between the two patient groups of those who experienced a grade 3 and higher lung toxicity and those who did not. Similarly, it was also compared between the two patient groups of those who experienced a grade 2 and higher esophageal toxicity and those who did not. Toxicities graded using CTC v 2.0 for chemotherapy/acute RT toxicities and using the RTOG/EORTC Late Toxicity Criteria for late RT toxicity. Grade refers to the severity of the toxicity. Both criteria assign Grades 1 through 5 with unique clinical descriptions of severity for a given toxicity based on this general guideline: Grade 1 Mild, Grade 2 Moderate, Grade 3 Severe, Grade 4 Life-threatening or disabling, Grade 5 Death related to toxicity.</description>
   </secondary_outcome>
   <secondary_outcome>
-    <measure>Complete Response Rate at 3 Months After Therapy</measure>
-    <time_frame>From start of treatment until 3 months after completion of therapy</time_frame>
+    <measure>Partial Organ Tolerance Doses for Lung and Esophagus (Mean Organ Dose by Toxicity Level)</measure>
+    <time_frame>From start of treatment to last follow-up (Maximum follow-up = 57.9 months.)</time_frame>
+    <description>Mean lung dose was compared between the two patient groups of those who experienced a grade 3 and higher lung toxicity and those who did not. Similarly, mean lung dose, and mean esophageal dose were compared between the two patient groups of those who experienced a grade 2 and higher esophageal toxicity and those who did not. Toxicities graded using CTC v 2.0 for chemotherapy/acute RT toxicities and using the RTOG/EORTC Late Toxicity Criteria for late RT toxicity. Grade refers to the severity of the toxicity. Both criteria assign Grades 1 through 5 with unique clinical descriptions of severity for a given toxicity based on this general guideline: Grade 1 Mild, Grade 2 Moderate, Grade 3 Severe, Grade 4 Life-threatening or disabling, Grade 5 Death related to toxicity.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of Patients With Complete Response at 3 Months After Completion of Therapy</measure>
+    <time_frame>From start of treatment until 3 months after completion of all study treatment, estimated to be 5 or 6.5 months depending whether or not subject received optional adjuvant chemotherapy.</time_frame>
+    <description>&quot;Complete response&quot; means no evidence of tumor on the CT scan.</description>
   </secondary_outcome>
   <number_of_arms>4</number_of_arms>
   <enrollment type="Actual">63</enrollment>
@@ -390,7 +398,7 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
     <facility>
       <name>Good Samaritan Regional Health Center</name>
       <address>
-        <city>Mt. Vernon</city>
+        <city>Mount Vernon</city>
         <state>Illinois</state>
         <zip>62864</zip>
         <country>United States</country>
@@ -432,6 +440,17 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
   </location>
   <location>
     <facility>
+      <name>Southeast Missouri Regional Cancer Center at Southeast Missouri Hospital</name>
+      <address>
+        <city>Cape Girardeau</city>
+        <state>Missouri</state>
+        <zip>63701</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
       <name>Cancer Institute of Cape Girardeau, LLC</name>
       <address>
         <city>Cape Girardeau</city>
@@ -454,11 +473,11 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
   </location>
   <location>
     <facility>
-      <name>Southeast Missouri Regional Cancer Center at Southeast Missouri Hospital</name>
+      <name>CCOP - St. Louis-Cape Girardeau</name>
       <address>
-        <city>Gape Girardeau</city>
+        <city>Saint Louis</city>
         <state>Missouri</state>
-        <zip>63701</zip>
+        <zip>63141</zip>
         <country>United States</country>
       </address>
     </facility>
@@ -492,17 +511,6 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
         <city>Springfield</city>
         <state>Missouri</state>
         <zip>65807</zip>
-        <country>United States</country>
-      </address>
-    </facility>
-  </location>
-  <location>
-    <facility>
-      <name>CCOP - St. Louis-Cape Girardeau</name>
-      <address>
-        <city>St. Louis</city>
-        <state>Missouri</state>
-        <zip>63141</zip>
         <country>United States</country>
       </address>
     </facility>
@@ -753,22 +761,24 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
   <results_reference>
     <citation>Bradley JD, Graham M, Suzanne S, et al.: Phase I results of RTOG L-0117: a phase I/II dose intensification study using 3DCRT and concurrent chemotherapy for patients with inoperable NSCLC. [Abstract] J Clin Oncol 23 (Suppl 16): A-7063, 636s, 2005.</citation>
   </results_reference>
-  <verification_date>November 2015</verification_date>
-  <!-- Old date names will be dropped in a few months (sometime in 2018)                        -->
-  <lastchanged_date>November 14, 2015</lastchanged_date>
-  <firstreceived_date>September 13, 2001</firstreceived_date>
-  <firstreceived_results_date>February 12, 2014</firstreceived_results_date>
-  <!-- New date names                                                                           -->
+  <verification_date>November 2017</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
   <study_first_submitted>September 13, 2001</study_first_submitted>
   <study_first_submitted_qc>April 8, 2003</study_first_submitted_qc>
   <study_first_posted type="Estimate">April 9, 2003</study_first_posted>
   <results_first_submitted>February 12, 2014</results_first_submitted>
   <results_first_submitted_qc>February 12, 2014</results_first_submitted_qc>
   <results_first_posted type="Estimate">March 27, 2014</results_first_posted>
-  <last_update_submitted>November 14, 2015</last_update_submitted>
-  <last_update_submitted_qc>November 14, 2015</last_update_submitted_qc>
-  <last_update_posted type="Estimate">November 17, 2015</last_update_posted>
-  <!-- End of dates                                                                             -->
+  <last_update_submitted>November 27, 2017</last_update_submitted>
+  <last_update_submitted_qc>November 27, 2017</last_update_submitted_qc>
+  <last_update_posted type="Actual">December 22, 2017</last_update_posted>
   <responsible_party>
     <responsible_party_type>Sponsor</responsible_party_type>
   </responsible_party>
@@ -921,14 +931,14 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
           </class_list>
         </measure>
         <measure>
-          <title>Gender</title>
-          <units>participants</units>
-          <param>Number</param>
+          <title>Sex: Female, Male</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
           <class_list>
             <class>
-              <title>Female</title>
               <category_list>
                 <category>
+                  <title>Female</title>
                   <measurement_list>
                     <measurement group_id="B1" value="1"/>
                     <measurement group_id="B2" value="8"/>
@@ -936,12 +946,8 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
                     <measurement group_id="B4" value="16"/>
                   </measurement_list>
                 </category>
-              </category_list>
-            </class>
-            <class>
-              <title>Male</title>
-              <category_list>
                 <category>
+                  <title>Male</title>
                   <measurement_list>
                     <measurement group_id="B1" value="7"/>
                     <measurement group_id="B2" value="1"/>
@@ -960,7 +966,7 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
       <outcome>
         <type>Primary</type>
         <title>Maximum Tolerated Dose (MTD) of Three-dimensional Conformal Radiation Therapy (3DRT), in Terms of Gy Per Fraction, Combined With Concurrent Chemotherapy</title>
-        <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on RTOG (Radiation Therapy Oncolgy Group) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
+        <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on Radiation Therapy Oncology Group (RTOG) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
 Rating scale: 0 = not the MTD, 1 = MTD</description>
         <time_frame>From start of treatment to 90 days</time_frame>
         <population>The first seven eligible patients who started protocol treatment at each dose level.</population>
@@ -976,7 +982,7 @@ Rating scale: 0 = not the MTD, 1 = MTD</description>
         </group_list>
         <measure>
           <title>Maximum Tolerated Dose (MTD) of Three-dimensional Conformal Radiation Therapy (3DRT), in Terms of Gy Per Fraction, Combined With Concurrent Chemotherapy</title>
-          <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on RTOG (Radiation Therapy Oncolgy Group) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
+          <description>Dose limiting toxicity (DLT) = Grade 3/4 non-hematologic toxicities (excluding nausea, vomiting, and alopecia) and Grade 4 hematologic toxicities. The DLT rate for this study was set at 40% based on Radiation Therapy Oncology Group (RTOG) study 94-10. No acute (within 90 days from start of 3DRT) DLT's in the first 5 patients (0/5) or the combination of one acute DLT in the first 5 patients (1/5) and none in the next 2 patients (0/2) was required to deem a given dose level to be acceptable. If at any time a Grade 5 toxicity (death) occurred, accrual would be suspended and the event reviewed by a study chair. At any given dose level, this design gives at least 90% confidence that the true acute DLT rate is less than 40% and the probability of not escalating when the true toxicity rate is 40% or higher is at least 83%.
 Rating scale: 0 = not the MTD, 1 = MTD</description>
           <population>The first seven eligible patients who started protocol treatment at each dose level.</population>
           <units>units on a scale</units>
@@ -1051,23 +1057,602 @@ three-dimensional conformal radiation therapy</description>
       </outcome>
       <outcome>
         <type>Secondary</type>
-        <title>Toxicity</title>
-        <time_frame>From start of treatment to end of follow-up</time_frame>
+        <title>Frequency of Highest Grade Chemotherapy/Acute RT Toxicities and Late RT Toxicities.</title>
+        <description>Highest grade toxicity per subject was counted. Toxicities were graded using the Common Toxicity Criteria (CTC) v 2.0 for chemotherapy/acute RT toxicities and using the RTOG/EORTC Late Toxicity Criteria for late RT toxicity. Grade refers to the severity of the toxicity. Both criteria assign Grades 1 through 5 with unique clinical descriptions of severity for a given toxicity based on this general guideline: Grade 1 Mild, Grade 2 Moderate, Grade 3 Severe, Grade 4 Life-threatening or disabling, Grade 5 Death related to toxicity.Chemotherapy/Acute RT toxicities occur during chemotherapy and/or within 90 days of the start of RT. Late RT toxicities occur more than 90 days after the start of RT.</description>
+        <time_frame>Chemotherapy/Acute RT toxicity: from start of treatment to 90 days from start of study treatment; Late RT toxicity: from 90 days after start of treatment to last follow-up (Maximum follow-up = 57.9 months.)</time_frame>
+        <population>Eligible patients from Phase I and II 74 Gy arms who started study treatment. Additionally for late RT toxicity, those who have toxicity data at least 90 days from start of RT.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Phase I/II: 74 Gy/37 fx + Chemotherapy</title>
+            <description>Phase I/II: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Frequency of Highest Grade Chemotherapy/Acute RT Toxicities and Late RT Toxicities.</title>
+          <description>Highest grade toxicity per subject was counted. Toxicities were graded using the Common Toxicity Criteria (CTC) v 2.0 for chemotherapy/acute RT toxicities and using the RTOG/EORTC Late Toxicity Criteria for late RT toxicity. Grade refers to the severity of the toxicity. Both criteria assign Grades 1 through 5 with unique clinical descriptions of severity for a given toxicity based on this general guideline: Grade 1 Mild, Grade 2 Moderate, Grade 3 Severe, Grade 4 Life-threatening or disabling, Grade 5 Death related to toxicity.Chemotherapy/Acute RT toxicities occur during chemotherapy and/or within 90 days of the start of RT. Late RT toxicities occur more than 90 days after the start of RT.</description>
+          <population>Eligible patients from Phase I and II 74 Gy arms who started study treatment. Additionally for late RT toxicity, those who have toxicity data at least 90 days from start of RT.</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="53"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Chemotherapy/Acute RT non-hematologic: Grade 1</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="53"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="4"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Chemotherapy/Acute RT non-hematologic: Grade 2</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="53"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="16"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Chemotherapy/Acute RT non-hematologic: Grade 3</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="53"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="28"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Chemotherapy/Acute RT non-hematologic: Grade 4</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="53"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Chemotherapy/Acute RT non-hematologic: Grade 5</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="53"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Chemotherapy/Acute RT hematologic: Grade 1</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="53"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Chemotherapy/Acute RT hematologic: Grade 2</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="53"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="8"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Chemotherapy/Acute RT hematologic: Grade 3</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="53"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="37"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Chemotherapy/Acute RT hematologic: Grade 4</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="53"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="5"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Chemotherapy/Acute RT hematologic: Grade 5</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="53"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Late RT toxicity: Grade 1</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="50"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="13"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Late RT toxicity: Grade 2</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="50"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="10"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Late RT toxicity: Grade 3</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="50"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Late RT toxicity: Grade 4</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="50"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Late RT toxicity: Grade 5</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="50"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
       <outcome>
         <type>Secondary</type>
-        <title>Partial Organ Tolerance Doses for Lung and Esophagus</title>
-        <time_frame>From start of treatment to end of follow-up</time_frame>
+        <title>Partial Organ Tolerance Doses for Lung and Esophagus (Percent Volume of Total Lung Receiving &gt; 20 Gy by Toxicity Level)</title>
+        <description>Percent volume of total lung receiving &gt; 20 Gy radiation therapy (Lung V20) was compared between the two patient groups of those who experienced a grade 3 and higher lung toxicity and those who did not. Similarly, it was also compared between the two patient groups of those who experienced a grade 2 and higher esophageal toxicity and those who did not. Toxicities graded using CTC v 2.0 for chemotherapy/acute RT toxicities and using the RTOG/EORTC Late Toxicity Criteria for late RT toxicity. Grade refers to the severity of the toxicity. Both criteria assign Grades 1 through 5 with unique clinical descriptions of severity for a given toxicity based on this general guideline: Grade 1 Mild, Grade 2 Moderate, Grade 3 Severe, Grade 4 Life-threatening or disabling, Grade 5 Death related to toxicity.</description>
+        <time_frame>From start of treatment to last follow-up (Maximum follow-up = 57.9 months.)</time_frame>
+        <population>All eligible patients on the phase I and II 74 Gy arms who received treatment and had RT plan data available with the given structure</population>
+        <group_list>
+          <group group_id="O1">
+            <title>No High Grade Toxicity</title>
+            <description>For lung toxicity, no high grade toxicity means &lt; Grade 3. For esophagitis toxicity, no high grade toxicity means &lt; Grade 2. Therefore overall number of participants analyzed differs.</description>
+          </group>
+          <group group_id="O2">
+            <title>High Grade Toxicity</title>
+            <description>For lung toxicity, high grade toxicity means &gt;= Grade 3. For esophagitis toxicity, high grade toxicity means &gt;= Grade 2. Therefore overall number of participants analyzed differs.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Partial Organ Tolerance Doses for Lung and Esophagus (Percent Volume of Total Lung Receiving &gt; 20 Gy by Toxicity Level)</title>
+          <description>Percent volume of total lung receiving &gt; 20 Gy radiation therapy (Lung V20) was compared between the two patient groups of those who experienced a grade 3 and higher lung toxicity and those who did not. Similarly, it was also compared between the two patient groups of those who experienced a grade 2 and higher esophageal toxicity and those who did not. Toxicities graded using CTC v 2.0 for chemotherapy/acute RT toxicities and using the RTOG/EORTC Late Toxicity Criteria for late RT toxicity. Grade refers to the severity of the toxicity. Both criteria assign Grades 1 through 5 with unique clinical descriptions of severity for a given toxicity based on this general guideline: Grade 1 Mild, Grade 2 Moderate, Grade 3 Severe, Grade 4 Life-threatening or disabling, Grade 5 Death related to toxicity.</description>
+          <population>All eligible patients on the phase I and II 74 Gy arms who received treatment and had RT plan data available with the given structure</population>
+          <units>Percent (V20)</units>
+          <param>Median</param>
+          <dispersion>Full Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="53"/>
+                <count group_id="O2" value="53"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Lung Toxicity: Lung V20</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="39"/>
+                    <count group_id="O2" value="12"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="24.1" lower_limit="9.9" upper_limit="35.7"/>
+                    <measurement group_id="O2" value="26.3" lower_limit="15.6" upper_limit="33.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Esophagitis Toxicity: Lung V20</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="30"/>
+                    <count group_id="O2" value="21"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="22.4" lower_limit="9.9" upper_limit="35.7"/>
+                    <measurement group_id="O2" value="26.3" lower_limit="14.0" upper_limit="33.3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>Lung toxicity (&lt;Grade 3 vs. &gt;= Grade 3): Lung V20</groups_desc>
+            <non_inferiority_type>Superiority</non_inferiority_type>
+            <p_value>0.62</p_value>
+            <method>Wilcoxon (Mann-Whitney)</method>
+            <method_desc>2-sided significance level = 0.05</method_desc>
+          </analysis>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>Esophagitis toxicity (&lt;Grade 2 vs. &gt;= Grade 2): Lung V20</groups_desc>
+            <non_inferiority_type>Superiority</non_inferiority_type>
+            <p_value>0.22</p_value>
+            <method>Wilcoxon (Mann-Whitney)</method>
+            <method_desc>2-sided significance level = 0.05</method_desc>
+          </analysis>
+        </analysis_list>
       </outcome>
       <outcome>
         <type>Secondary</type>
-        <title>Complete Response Rate at 3 Months After Therapy</title>
-        <time_frame>From start of treatment until 3 months after completion of therapy</time_frame>
+        <title>Partial Organ Tolerance Doses for Lung and Esophagus (Mean Organ Dose by Toxicity Level)</title>
+        <description>Mean lung dose was compared between the two patient groups of those who experienced a grade 3 and higher lung toxicity and those who did not. Similarly, mean lung dose, and mean esophageal dose were compared between the two patient groups of those who experienced a grade 2 and higher esophageal toxicity and those who did not. Toxicities graded using CTC v 2.0 for chemotherapy/acute RT toxicities and using the RTOG/EORTC Late Toxicity Criteria for late RT toxicity. Grade refers to the severity of the toxicity. Both criteria assign Grades 1 through 5 with unique clinical descriptions of severity for a given toxicity based on this general guideline: Grade 1 Mild, Grade 2 Moderate, Grade 3 Severe, Grade 4 Life-threatening or disabling, Grade 5 Death related to toxicity.</description>
+        <time_frame>From start of treatment to last follow-up (Maximum follow-up = 57.9 months.)</time_frame>
+        <population>All eligible patients on the phase I and II 74 Gy arms who received treatment and had RT plan data available with the given structure</population>
+        <group_list>
+          <group group_id="O1">
+            <title>No High Grade Toxicity</title>
+            <description>For lung toxicity, no high grade toxicity means &lt; Grade 3. For esophagitis toxicity, no high grade toxicity means &lt; Grade 2. Therefore overall number of participants analyzed differs.</description>
+          </group>
+          <group group_id="O2">
+            <title>High Grade Toxicity</title>
+            <description>For lung toxicity, high grade toxicity means &gt;= Grade 3. For esophagitis toxicity, high grade toxicity means &gt;= Grade 2. Therefore overall number of participants analyzed differs.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Partial Organ Tolerance Doses for Lung and Esophagus (Mean Organ Dose by Toxicity Level)</title>
+          <description>Mean lung dose was compared between the two patient groups of those who experienced a grade 3 and higher lung toxicity and those who did not. Similarly, mean lung dose, and mean esophageal dose were compared between the two patient groups of those who experienced a grade 2 and higher esophageal toxicity and those who did not. Toxicities graded using CTC v 2.0 for chemotherapy/acute RT toxicities and using the RTOG/EORTC Late Toxicity Criteria for late RT toxicity. Grade refers to the severity of the toxicity. Both criteria assign Grades 1 through 5 with unique clinical descriptions of severity for a given toxicity based on this general guideline: Grade 1 Mild, Grade 2 Moderate, Grade 3 Severe, Grade 4 Life-threatening or disabling, Grade 5 Death related to toxicity.</description>
+          <population>All eligible patients on the phase I and II 74 Gy arms who received treatment and had RT plan data available with the given structure</population>
+          <units>Gy (mean dose)</units>
+          <param>Mean</param>
+          <dispersion>Full Range</dispersion>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="53"/>
+                <count group_id="O2" value="53"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Lung Toxicity: Mean Lung Dose</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="39"/>
+                    <count group_id="O2" value="12"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="15.2" lower_limit="5.7" upper_limit="21.8"/>
+                    <measurement group_id="O2" value="17.2" lower_limit="11.5" upper_limit="18.9"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Esophagitis Toxicity: Mean Lung Dose</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="30"/>
+                    <count group_id="O2" value="21"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="14.5" lower_limit="5.7" upper_limit="21.8"/>
+                    <measurement group_id="O2" value="16.9" lower_limit="9.9" upper_limit="20.6"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Esophagitis Toxicity: Mean Esophageal Dose</title>
+              <analyzed_list>
+                <analyzed>
+                  <units>Participants</units>
+                  <scope>Class</scope>
+                  <count_list>
+                    <count group_id="O1" value="30"/>
+                    <count group_id="O2" value="22"/>
+                  </count_list>
+                </analyzed>
+              </analyzed_list>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="21.0" lower_limit="7.1" upper_limit="34.9"/>
+                    <measurement group_id="O2" value="24.6" lower_limit="16.2" upper_limit="33.7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <analysis_list>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>Lung toxicity (&lt;Grade 3 vs. &gt;= Grade 3): Mean Lung Dose</groups_desc>
+            <non_inferiority_type>Superiority</non_inferiority_type>
+            <p_value>0.30</p_value>
+            <method>t-test, 2 sided</method>
+            <method_desc>2-sided significance level = 0.05</method_desc>
+          </analysis>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>Esophagitis toxicity (&lt;Grade 2 vs. &gt;= Grade 2): Mean Lung Dose</groups_desc>
+            <non_inferiority_type>Superiority</non_inferiority_type>
+            <p_value>0.17</p_value>
+            <method>t-test, 2 sided</method>
+            <method_desc>2-sided significance level = 0.05</method_desc>
+          </analysis>
+          <analysis>
+            <group_id_list>
+              <group_id>O1</group_id>
+              <group_id>O2</group_id>
+            </group_id_list>
+            <groups_desc>Esophagitis toxicity (&lt;Grade 2 vs. &gt;= Grade 2): Mean Esophageal Dose</groups_desc>
+            <non_inferiority_type>Superiority</non_inferiority_type>
+            <p_value>0.08</p_value>
+            <method>t-test, 2 sided</method>
+            <method_desc>2-sided significance level = 0.05</method_desc>
+          </analysis>
+        </analysis_list>
+      </outcome>
+      <outcome>
+        <type>Secondary</type>
+        <title>Number of Patients With Complete Response at 3 Months After Completion of Therapy</title>
+        <description>&quot;Complete response&quot; means no evidence of tumor on the CT scan.</description>
+        <time_frame>From start of treatment until 3 months after completion of all study treatment, estimated to be 5 or 6.5 months depending whether or not subject received optional adjuvant chemotherapy.</time_frame>
+        <population>Eligible patients from Phase I and II 74 Gy arms who started study treatment.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Phase I/II: 74 Gy/37 fx + Chemotherapy</title>
+            <description>Phase I/II: Three-dimensional conformal radiation therapy (3DRT) of 74 Gy given in 37 fractions (2.0 Gy per fraction) with concurrent chemotherapy consisting of weekly paclitaxel at 50mg/m2 and carboplatin at area under the curve 2mg/m2. Adjuvant systemic chemotherapy (two cycles of paclitaxel and carboplatin) following completion of RT was optional.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of Patients With Complete Response at 3 Months After Completion of Therapy</title>
+          <description>&quot;Complete response&quot; means no evidence of tumor on the CT scan.</description>
+          <population>Eligible patients from Phase I and II 74 Gy arms who started study treatment.</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="53"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
       </outcome>
     </outcome_list>
 
     <reported_events>
-      <desc>Subjects experiencing more than one of a given SAE (serious adverse event) are counted only once for that SAE. The same methodology was applied for non-SAE adverse events (AE).</desc>
+      <desc>Subjects experiencing more than one of a given serious adverse event (SAE) are counted only once for that SAE. The same methodology was applied for non-SAE adverse events (AE).</desc>
       <group_list>
         <group group_id="E1">
           <title>Phase I: 75.25 Gy/36 fx + Chemotherapy</title>
