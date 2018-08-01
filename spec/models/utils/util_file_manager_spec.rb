@@ -33,7 +33,6 @@ describe Util::FileManager do
       FileUtils.mkdir_p(dir_name)
       allow_any_instance_of(Util::FileManager).to receive(:static_copies_directory).and_return(dir_name)
       fm=Util::FileManager.new
-      fpm=Util::FilePresentationManager.new
 
       good_file_name="#{fm.static_copies_directory}/20180404_clinical_trials.zip"
       good_file=File.new(good_file_name,"w")

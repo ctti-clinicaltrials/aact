@@ -4,6 +4,14 @@ include ActionView::Helpers::NumberHelper
 module Util
   class FileManager
 
+    def nlm_protocol_data_url
+      "https://prsinfo.clinicaltrials.gov/definitions.html"
+    end
+
+    def nlm_results_data_url
+      "https://prsinfo.clinicaltrials.gov/results_definitions.html"
+    end
+
     def static_copies_directory
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
         "#{Rails.public_path}/static/static_db_copies/monthly"
@@ -136,12 +144,11 @@ module Util
     end
 
     def save_static_copy
-      fpm=Util::FilePresentationManager.new
       schema_diagram_file=File.open("#{schema_diagram}")
       admin_schema_diagram_file=File.open("#{admin_schema_diagram}")
       data_dictionary_file=File.open("#{data_dictionary}")
-      nlm_protocol_file=make_file_from_website("nlm_protocol_definitions.html",fpm.nlm_protocol_data_url)
-      nlm_results_file=make_file_from_website("nlm_results_definitions.html",fpm.nlm_results_data_url)
+      nlm_protocol_file=make_file_from_website("nlm_protocol_definitions.html", nlm_protocol_data_url)
+      nlm_results_file=make_file_from_website("nlm_results_definitions.html", nlm_results_data_url)
 
       date_stamp=Time.zone.now.strftime('%Y%m%d')
       zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
