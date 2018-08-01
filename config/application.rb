@@ -4,7 +4,6 @@ require "active_model/railtie"
 require "active_job/railtie"
 require "active_record/railtie"
 require "action_mailer/railtie"
-require "action_view/railtie"
 require "sprockets/railtie"
 require 'zip'
 require 'csv'
@@ -25,10 +24,6 @@ module AACT
     end
     config.active_record.schema_format = :sql
     config.active_record.raise_in_transactional_callbacks = true
-    config.eager_load_paths += [
-      "#{config.root}/app/workers",
-      "#{config.root}/app/docs"
-    ]
 
     #CORS
     cors_origins = '*'
