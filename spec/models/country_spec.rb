@@ -28,6 +28,7 @@ RSpec.describe Country, type: :model do
     end
 
     it "has removed country" do
+      Country.destroy_all
       nct_id='NCT02586688'
       xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
       opts={xml: xml, nct_id: nct_id}
