@@ -46,11 +46,13 @@ describe Util::DbManager do
       pub_table_count=pub_con.execute("select count(*) from information_schema.tables where table_schema='ctgov'").first['count'].to_i
       pub_tables=pub_con.execute("select * from information_schema.tables where table_schema='ctgov'")
       # both dbs should have all the same tables except schema_migrations table is removed from public db
-      expect(back_table_count).to eq(pub_table_count)
+      expect(back_table_count).to eq(pub_table_count+1)
 
       pub_study_count=pub_con.execute('select count(*) from studies').first['count'].to_i
+      pub_sponsor_count=pub_con.execute('select count(*) from sponsors').first['count'].to_i
       pub_outcome_count=pub_con.execute('select count(*) from outcomes').first['count'].to_i
       expect(Study.count).to eq(pub_study_count)
+      expect(Sponsor.count).to eq(pub_sponsor_count)
       expect(Outcome.count).to eq(pub_outcome_count)
     end
   end
