@@ -46,7 +46,7 @@ describe Util::DbManager do
       pub_table_count=pub_con.execute("select count(*) from information_schema.tables where table_schema='ctgov'").first['count'].to_i
       pub_tables=pub_con.execute("select * from information_schema.tables where table_schema='ctgov'")
       # both dbs should have all the same tables except schema_migrations table is removed from public db
-      expect(back_table_count).to eq(pub_table_count+1)
+      expect(back_table_count - 1).to eq(pub_table_count)
 
       pub_browse_condition_count=pub_con.execute('select count(*) from browse_conditions').first['count'].to_i
       pub_country_count=pub_con.execute('select count(*) from countries').first['count'].to_i
