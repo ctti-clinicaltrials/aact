@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 20, 2018</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT03101111</url>
+  </required_header>
+  <id_info>
+    <org_study_id>MV-CHIK-204</org_study_id>
+    <nct_id>NCT03101111</nct_id>
+  </id_info>
+  <brief_title>Study of a Live Attenuated Chikungunya Vaccine in a Previously Epidemic Area</brief_title>
+  <official_title>Phase 2 Study of a Live Attenuated Measles Virus-Vectored Chikungunya Vaccine in a Previously Epidemic Area</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Themis Bioscience GmbH</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Walter Reed Army Institute of Research (WRAIR)</agency>
+      <agency_class>U.S. Fed</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Themis Bioscience GmbH</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+    <is_fda_regulated_drug>Yes</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The clinical study primarily assesses the safety of MV-CHIK a new Chikungunya vaccine in a
+      previously epidemic area in healthy volunteers. Secondarily, immune response and viremia will
+      be assessed.
+
+      MV-CHIK will be compared to the commercially available MMR vaccine. 80% of the subjects will
+      receive MV-CHIK; 20% will receive MMR vaccine.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      The clinical study to be conducted under this IND will assess the safety of MV-CHIK in a
+      previously epidemic area (Puerto Rico).
+
+      A total of 100 healthy volunteers, 50 of whom are seropositive to Chikungunya at baseline and
+      50 of whom are seronegative, will be randomized in a 4:1 ratio to receive either MV-CHIK or
+      the commercially available MMR vaccine in a double blinded fashion. Memory aids, to be
+      completed by the volunteer at home, and the investigator at scheduled follow-up visits, will
+      solicit symptoms of injection site reactions, fever, headache, malaise, joint and muscle
+      pain. Acute phase reactants (C-reactive protein and ferritin) will be checked routinely
+      throughout the study and at the discretion of the investigator in order to help determine if
+      symptoms, particularly those referred to the joints, have an immunological basis.
+
+      This study will also evaluate the immune response in Chikungunya-exposed versus unexposed
+      individuals by comparing neutralizing antibody titers at specific time points. Measles
+      viremia will also be measured and compared between MV-CHIK and MMR recipients, and at three
+      days after the second versus after the first dose. The relationship between measles viremia
+      and the immune response to MV-CHIK will be explored.
+    </textblock>
+  </detailed_description>
+  <overall_status>Active, not recruiting</overall_status>
+  <start_date type="Actual">August 9, 2017</start_date>
+  <completion_date type="Anticipated">March 28, 2019</completion_date>
+  <primary_completion_date type="Anticipated">March 28, 2019</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <intervention_model_description>Prospective, comparator controled, randomized, double-blinded, interventional, safety study</intervention_model_description>
+    <primary_purpose>Prevention</primary_purpose>
+    <masking>Quadruple (Participant, Care Provider, Investigator, Outcomes Assessor)</masking>
+    <masking_description>All subjects will receive two intramuscular injections on day 0 and 28 and one subcutaneous injection on day 0.
+Subjects randomized to verum will receive MV-CHIK intramuscularely on days 0 and 28 and placebo subcutaneously in the contralateral arm on day 0.
+Subjects randomized to the comparator will receive MMR-vaccine subcutaneously on day 0 and placebo (dummy injection) intramuscularely on days 0 and 28 in the contralateral arm.</masking_description>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Incidence of AEs and abnormal lab values, vital signs, and PE findings</measure>
+    <time_frame>Throughout the whole study period (until day 392 after first dose)</time_frame>
+    <description>Incidence of solicited and unsolicited adverse events and incidence of grade 2 and higher solicited and unsolicited adverse events including clinically significant abnormal safety laboratory results, vital signs, and physical examination findings in previously exposed versus unexposed individuals.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Immunogenicity</measure>
+    <time_frame>Days 0, 28, 56, 168, 290, and 392</time_frame>
+    <description>Immunogenicity on days 0, 28, 56, 168, 280, and at the end of the study measured as geometric mean titer (GMT) of neutralizing antibodies to chikungunya in previously exposed versus unexposed individuals.</description>
+  </secondary_outcome>
+  <other_outcome>
+    <measure>Viremia</measure>
+    <time_frame>Days 0, 3, 28, 31, and 56</time_frame>
+    <description>Measles virus genome equivalents per milliliter of serum.</description>
+  </other_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Anticipated">100</enrollment>
+  <condition>Chikungunya</condition>
+  <arm_group>
+    <arm_group_label>MV-CHIK and Placebo</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Subjects will receive two injections on study day 0 and one injection on day 28.
+On both days they will receive a 5E+05 (+/- 0.5 log) TCID50 intramuscularly in the deltoid muscle of one arm.
+On day 0 they will receive a dummy injection of placebo (physiological saline) subcutaneously in the contralateral arm.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>MMR-vaccine and Placebo</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Subjects will receive two injections on study day 0 and one injection on day 28.
+On both days they will receive dummy injections of placebo (physiological saline) in the deltoid muscle of one arm.
+On day 0 they will receive MMR-vaccine subcutaneously in the contralateral arm.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>MV-CHIK</intervention_name>
+    <description>Lyophilized, life attenuated, measles vectored Chikungunya vaccine; 5E+05 TCID50 (+/- 0.5 log) per dose</description>
+    <arm_group_label>MV-CHIK and Placebo</arm_group_label>
+    <other_name>MV-CHIK vaccine</other_name>
+    <other_name>MV-CHIK/DP</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>MMR-vaccine</intervention_name>
+    <description>Lyophilized mixture of life attenuated Measles, Mumps, and Rubella viruses; 1000, 12500, and 1000, respectively, TCID50 per dose</description>
+    <arm_group_label>MMR-vaccine and Placebo</arm_group_label>
+    <other_name>MPR vaccine</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          1. Aged ≥21 to ≤50 years on the day of enrollment.
+
+          2. Able to provide informed consent.
+
+          3. Available and accessible for the duration of the trial.
+
+          4. Able and willing to comply with all requirements of the study.
+
+          5. For female subjects, willing to practice a reliable form of contraception as specified
+             in the protocol until five months after the second and final vaccination in accordance
+             with recommendations following MMR vaccination.
+
+          6. Medical history and physical examination findings are considered normal or not
+             clinically significant in the opinion of the Investigator.
+
+          7. Laboratory values are considered normal or not clinically significant in the opinion
+             of the Investigator.
+
+          8. History of previous measles vaccination, either in childhood or as an adult if more
+             than three months before participation in this study.
+
+        Exclusion Criteria:
+
+          1. Taking medication or other treatment for unresolved symptoms attributed to a previous
+             chikungunya virus infection.
+
+          2. Prior receipt of any chikungunya or other alphavirus vaccine.
+
+          3. Recent infection, including suspected chikungunya (within 1 week prior to Screening
+             Visit).
+
+          4. History of an allergic or anaphylactic reaction to any vaccine.
+
+          5. An allergic reaction other than allergic contact dermatitis to any component of either
+             vaccine (i.e., neomycin, gelatin), or a current egg allergy. Volunteers with a
+             childhood history of egg allergy who are able to tolerate egg in their diet now will
+             not be excluded on this basis.
+
+          6. History of an immunosuppressive disorder (such as human immunodeficiency virus [HIV]
+             infection, common variable immunodeficiency), chronic infection (such as chronic
+             hepatitis B or C), autoimmune disease (such as rheumatoid arthritis, systemic lupus
+             erythematosus [SLE], autoimmune thyroid disease) or any medical condition that, in the
+             opinion of the Investigator, could lead to an atypical immune response to the vaccine.
+
+          7. History of moderate or severe non-traumatic arthritis or arthralgia within 3 months of
+             the Screening Visit.
+
+          8. Recent (within 30 days), current or anticipated use of any immunosuppressive or immune
+             modifying medication including corticosteroids (excluding nasal, ophthalmic, and other
+             topical preparations).
+
+          9. Other vaccination or planned vaccination within 4 weeks of either study dose (seasonal
+             influenza vaccine excepted).
+
+         10. Measles vaccination or booster within the last 3 months or planned during the clinical
+             study.
+
+         11. Receipt or planned receipt of blood products including immunoglobulins within 120 days
+             of the Screening Visit.
+
+         12. Pregnant or lactating or planning pregnancy during the trial.
+
+         13. Known alcohol or other substance abuse that in the opinion of the Investigator affects
+             the ability or willingness of the participant to understand and comply with the study
+             protocol.
+
+         14. Participation in another clinical study within the past 30 days in which the subject
+             was exposed to an investigational product (pharmaceutical product or placebo or
+             device) or planned concurrent participation in another clinical study during the study
+             period.
+
+         15. Relevant history of any medical condition that, in the opinion of the Investigator,
+             may interfere with the safety of the subject (volunteer) or aims of the study.
+
+         16. History of neoplastic disease (excluding successfully treated non-melanoma skin cancer
+             or cervical intraepithelial neoplasia) within the past 5 years or a history of any
+             hematological malignancy.
+
+         17. Behavioral or psychiatric disease or cognitive impairment that in the opinion of the
+             Investigator affects the ability or willingness of the participant to understand and
+             comply with the study protocol.
+
+         18. Non-consent to storage of blood specimens for future research.
+
+         19. Persons in direct relationship with the Sponsor or its contract service provider, the
+             clinical research organization (CRO) or its subcontractors, the Investigator or study
+             site staff. Direct relationship includes first degree relatives or dependents
+             (children, spouse/partner, siblings or parents), as well as employees (site or
+             Sponsor). Employees of the University of Puerto Rico not directly employed by the
+             Clinical &amp; Translational Research Center will not be excluded.
+
+         20. Any condition that would, in the opinion of the site Investigator, place the subject
+             at an unacceptable risk of injury or render the subject unable to meet the
+             requirements of the protocol.
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>21 Years</minimum_age>
+    <maximum_age>50 Years</maximum_age>
+    <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Clemente Diaz, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>University of Puerto Rico</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>University of Puerto Rico - Medical Sciences Campus</name>
+      <address>
+        <city>San Juan</city>
+        <zip>00936-5067</zip>
+        <country>Puerto Rico</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>Puerto Rico</country>
+  </location_countries>
+  <verification_date>August 2017</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
+  <study_first_submitted>March 29, 2017</study_first_submitted>
+  <study_first_submitted_qc>March 29, 2017</study_first_submitted_qc>
+  <study_first_posted type="Actual">April 4, 2017</study_first_posted>
+  <last_update_submitted>June 19, 2018</last_update_submitted>
+  <last_update_submitted_qc>June 19, 2018</last_update_submitted_qc>
+  <last_update_posted type="Actual">June 20, 2018</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Chikungunya Fever</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Vaccines</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>

@@ -86,8 +86,13 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def self.sql_for_has_us_facility2
-    # SECOND: set to true if at least one facility is US
-    "SET has_us_facility=true WHERE nct_id in (SELECT distinct nct_id FROM countries WHERE name='United States' AND removed IS NOT true)"
+    # SECOND: set to true if at least one facility is US or US territory
+    "SET has_us_facility=true WHERE nct_id in (
+          SELECT distinct nct_id
+            FROM countries
+           WHERE removed IS NOT true
+             AND name in ('United States', 'Guam', 'Virgin Islands (U.S.)', 'American Samoa', 'Puerto Rico', 'Northern Mariana Islands', 'Wake Island', 'Johnston Atoll')
+         )"
   end
 
   def self.sql_for_has_us_facility3

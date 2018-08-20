@@ -17,6 +17,17 @@ describe CalculatedValue do
     expect(cv.registered_in_calendar_year).to eq(2007)
   end
 
+  it "should flag study with just a Puerto Rican site as has_us_facility" do
+    nct_id='NCT03101111'
+    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    study=Study.new({xml: xml, nct_id: nct_id}).create
+    CalculatedValue.populate
+    cv=study.calculated_value
+    expect(study.countries.size).to eq(1)  # Make sure it only has one country: Puerto Rico
+    expect(study.countries.first.name).to eq('Puerto Rico')  # Make sure it only has one country: Puerto Rico
+    expect(cv.has_us_facility).to eq(true)
+  end
+
   it "should not have actual_duration if completion date is 'anticipated'" do
     nct_id='NCT00023673'
     # this study's primary completion date is 'actual'
