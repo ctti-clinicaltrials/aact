@@ -164,13 +164,5 @@ module Util
       return zip_file_name
     end
 
-    def remove_daily_snapshots
-      FileUtils.rm_rf(Dir['/aact-files/static_db_copies/daily/*.zip'])
-    end
-
-    def remove_daily_flat_files
-      FileUtils.rm_rf(Dir['/aact-files/exported_files/daily/*.zip'])
-    end
-
   end
 end
