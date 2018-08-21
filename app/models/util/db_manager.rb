@@ -121,7 +121,11 @@ module Util
     end
 
     def public_study_count
-      pub_con.execute("select count(*) from studies").values.flatten.first.to_i
+      begin
+        pub_con.execute("select count(*) from studies").values.flatten.first.to_i
+      rescue
+        return 0
+      end
     end
 
     def background_study_count
