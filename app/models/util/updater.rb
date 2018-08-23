@@ -57,8 +57,6 @@ module Util
       study_counts[:should_add]=Support::StudyXmlRecord.not_yet_loaded.count
       study_counts[:should_change]=0
       @client.populate_studies
-      # for now, just remove daily files from command line
-      #remove_last_months_download_files if Date.today.day == 1  # only do this if it's the first of the month
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
     end
@@ -232,13 +230,6 @@ module Util
       rescue => error
         load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
       end
-    end
-
-    def remove_last_months_download_files
-      log("removing daily downloadable files from last month...")
-      file_mgr=Util::FileManager.new
-      file_mgr.remove_daily_snapshots
-      file_mgr.remove_daily_flat_files
     end
 
     def send_notification

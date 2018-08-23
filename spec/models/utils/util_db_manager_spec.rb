@@ -48,9 +48,17 @@ describe Util::DbManager do
       # both dbs should have all the same tables except schema_migrations table is removed from public db
       expect(back_table_count - 1).to eq(pub_table_count)
 
+      pub_browse_condition_count=pub_con.execute('select count(*) from browse_conditions').first['count'].to_i
+      pub_country_count=pub_con.execute('select count(*) from countries').first['count'].to_i
+      pub_design_count=pub_con.execute('select count(*) from designs').first['count'].to_i
       pub_study_count=pub_con.execute('select count(*) from studies').first['count'].to_i
+      pub_sponsor_count=pub_con.execute('select count(*) from sponsors').first['count'].to_i
       pub_outcome_count=pub_con.execute('select count(*) from outcomes').first['count'].to_i
+      expect(BrowseCondition.count).to eq(pub_browse_condition_count)
+      expect(Country.count).to eq(pub_country_count)
+      expect(Design.count).to eq(pub_design_count)
       expect(Study.count).to eq(pub_study_count)
+      expect(Sponsor.count).to eq(pub_sponsor_count)
       expect(Outcome.count).to eq(pub_outcome_count)
     end
   end
