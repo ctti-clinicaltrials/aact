@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe Study do
   it "handles last known status" do
     nct_id='NCT02591940'
@@ -152,14 +151,19 @@ describe Study do
     end
   end
 
-  context 'when loading a study' do
-    nct_id='NCT01174550'
+  context 'when loading a study with all IPD data' do
+    nct_id='NCT03599518'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     it 'should have expected sharing ipd values' do
       expect(study.plan_to_share_ipd).to eq('Yes')
-      expect(study.plan_to_share_ipd_description).to eq('Data will be submitted to the NHLBI according to their guidelines which state"The data sets must be submitted to the study NHLBI study Program Official no later than 3 years after the end of the clinical activity (final patient follow-up, etc.) or 2 years after the main paper of the trial has been published, whichever comes first. Data are prepared by the study coordinating center and sent to the PO for review prior to release."')
+      expect(study.plan_to_share_ipd_description).to eq("De-identified individual participant data (IPD) and applicable supporting clinical trial documents may be available upon request at https://www.clinicalstudydatarequest.com//. In cases where clinical trial data and supporting documents are provided pursuant to our company policies and procedures, Daiichi Sankyo will continue to protect the privacy of our clinical trial participants. Details on data sharing criteria and the procedure for requesting access can be found at this web address: https://www.clinicalstudydatarequest.com/Study-Sponsors/Study-Sponsors-DS.aspx")
+      expect(study.ipd_time_frame).to eq('Studies for which the medicine and indication have received European Union (EU) and United States (US), and/or Japan (JP) marketing approval on or after 01 January 2014 or by the US or EU or JP Health Authorities when regulatory submissions in all regions are not planned and after the primary study results have been accepted for publication.')
+      expect(study.ipd_access_criteria).to eq("Formal request from qualified scientific and medical researchers on IPD and clinical study documents from clinical trials supporting products submitted and licensed in the United States, the European Union and/or Japan from 01 January 2014 and beyond for the purpose of conducting legitimate research. This must be consistent with the principle of safeguarding study participants' privacy and consistent with provision of informed consent.")
+      expect(study.ipd_url).to eq('https://www.clinicalstudydatarequest.com/Study-Sponsors/Study-Sponsors-DS.aspx')
+      expect(study.ipd_info_types.size).to eq(5)
+      expect(study.ipd_info_types.map{|i|i.name='Study Protocol'}.size).to eq(1)
     end
   end
 
@@ -172,6 +176,9 @@ describe Study do
       expect(study.limitations_and_caveats).to eq('This study was originally designed to escalate 3DRT via increasing doses per fraction. However, due to excessive toxicity at dose level 1 (75.25 Gy, 2.15 Gy/fraction), the protocol was amended in January 2003 to de-escalate 3DRT dose.')
     end
 
+  end
+
+  context 'when patient data section does not exist' do
   end
 
   context 'when patient data section does not exist' do
