@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on August 24, 2018</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT03599518</url>
+  </required_header>
+  <id_info>
+    <org_study_id>DS1205-A-J102</org_study_id>
+    <nct_id>NCT03599518</nct_id>
+  </id_info>
+  <brief_title>DS-1205c With Gefitinib for Metastatic or Unresectable Epidermal Growth Factor Receptor (EGFR)-Mutant Non-Small Cell Lung Cancer</brief_title>
+  <official_title>A Multicenter, Open-Label Phase 1 Study of DS-1205c in Combination With Gefitinib in Subjects With Metastatic or Unresectable EGFR-Mutant Non-Small Cell Lung Cancer</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Daiichi Sankyo Co., Ltd.</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Daiichi Sankyo, Inc.</source>
+  <oversight_info>
+    <has_dmc>Yes</has_dmc>
+    <is_fda_regulated_drug>No</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      This study has two parts: dose escalation and dose expansion.
+
+      The primary objectives are:
+
+        -  For Dose Escalation, to assess the safety and tolerability of DS-1205c when combined
+           with gefitinib in the study population and to determine the recommended dose for
+           expansion of DS-1205c when combined with gefitinib in the study population
+
+        -  For Dose Expansion, to assess the safety and tolerability of DS-1205c when combined with
+           gefitinib in the study population.
+
+      In Dose Escalation, after a 7-day run in period (Cycle 0), there will be 21-day cycles (Cycle
+      1 onward). In Dose Expansion, there will be 21-day cycles.
+
+      The number of treatment cycles is not fixed in this study. Participants will continue study
+      treatment for 36 months unless they decide not to (withdraw consent), their disease gets
+      worse [progressive disease (PD)], or side effects become unacceptable (unacceptable
+      toxicity).
+    </textblock>
+  </brief_summary>
+  <overall_status>Not yet recruiting</overall_status>
+  <start_date type="Anticipated">August 2018</start_date>
+  <completion_date type="Anticipated">March 2021</completion_date>
+  <primary_completion_date type="Anticipated">March 2021</primary_completion_date>
+  <phase>Phase 1</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <intervention_model>Single Group Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>None (Open Label)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Number pf participants with dose-limiting toxicities during the Dose Escalation period</measure>
+    <time_frame>within 28 days</time_frame>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Number of participants with adverse events (AEs)</measure>
+    <time_frame>within 36 months</time_frame>
+    <description>An adverse event (AE) is any unfavorable and unintended sign (including an abnormal laboratory finding, for example), symptom, or disease temporally associated with the use of a medicinal product, whether or not considered related to the medicinal product</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Plasma concentration of DS-1205a versus time</measure>
+    <time_frame>during the 7 day run-in period</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Maximum observed analyte concentration (Cmax)</measure>
+    <time_frame>during the 7 day run-in period</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Actual sampling time to reach Cmax (Tmax)</measure>
+    <time_frame>during the 7 day run-in period</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Area under the analyte concentration versus time curve during a dosing interval (AUCtau)</measure>
+    <time_frame>during the 7 day run-in period</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Minimum observed analyte concentration prior to the beginning, or at the end, of a dosing interval (Ctrough)</measure>
+    <time_frame>during the 7 day run-in period</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Cmax during a dosing interval (Tau) at steady state (Cmax,ss)</measure>
+    <time_frame>during the dose expansion period, within 36 months</time_frame>
+    <description>Categories: DS-1205a, gefitinib</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Plasma concentration of DS-1205a versus time</measure>
+    <time_frame>during the dose expansion period, within 36 months</time_frame>
+    <description>Categories: DS-1205a, gefitinib</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Tmax</measure>
+    <time_frame>during the dose expansion period, within 36 months</time_frame>
+    <description>Categories: DS-1205a, gefitinib</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Ctrough</measure>
+    <time_frame>during the dose expansion period, within 36 months</time_frame>
+    <description>Categories: DS-1205a, gefitinib</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>AUCtau</measure>
+    <time_frame>during the dose expansion period, within 36 months</time_frame>
+    <description>Categories: DS-1205a, gefitinib</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Objective response rate (ORR), graded according to RECIST version 1.1</measure>
+    <time_frame>within 36 months</time_frame>
+    <description>Objective response rate is calculated as the number of participants with best objective response [complete response (CR) or partial response (PR) determined by Investigator assessment based on Response Evaluation Criteria In Solid Tumors (RECIST) version 1.1], divided by the number of participants in the analysis population.</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline in size of target lesion(s)</measure>
+    <time_frame>within 36 months</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Duration of response (DOR)</measure>
+    <time_frame>within 36 months</time_frame>
+    <description>DOR is defined as the time from documentation of tumor response [either CR or PR] to disease progression</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Disease control rate (DCR)</measure>
+    <time_frame>within 36 months</time_frame>
+    <description>DCR is defined as the sum of CR rate, PR rate, and stable disease (SD) rate</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Progression-free survival (PFS)</measure>
+    <time_frame>within 36 months</time_frame>
+    <description>PFS is defined as the time from the date of the first dose to the earlier of the dates of the first objective documentation of radiographic PD, or death due to any cause</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Overall survival (OS)</measure>
+    <time_frame>within 36 months</time_frame>
+  </secondary_outcome>
+  <number_of_arms>1</number_of_arms>
+  <enrollment type="Anticipated">63</enrollment>
+  <condition>Non Small Cell Lung Cancer</condition>
+  <arm_group>
+    <arm_group_label>DS-1205c with Gefitinib</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Participants receive DS-1205c (at planned doses given orally twice daily: 200 mg, 400 mg, 600 mg, 800 mg) in combination with daily 250 mg oral dose of gefitinib</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>DS-1205c</intervention_name>
+    <description>DS-1205c 200 mg capsule for oral administration</description>
+    <arm_group_label>DS-1205c with Gefitinib</arm_group_label>
+    <other_name>Experimental product</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Gefitinib</intervention_name>
+    <description>Gefitinib 250 mg tablet for oral administration</description>
+    <arm_group_label>DS-1205c with Gefitinib</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          1. Has histologically or cytologically documented adenocarcinoma NSCLC
+
+          2. Has locally advanced or metastatic NSCLC, not amenable to curative surgery or
+             radiation
+
+          3. Has acquired resistance to EGFR tyrosine kinase inhibitor (TKI) according to the
+             Jackman criteria (PMID: 19949011):
+
+               1. Historical confirmation that the tumor harbors an EGFR mutation known to be
+                  associated with EGFR TKI sensitivity (including G719X, exon 19 deletion, L858R,
+                  L861Q) OR
+
+               2. Has experienced clinical benefit from an EGFR TKI, followed by systemic
+                  progression [Response Evaluation Criteria in Solid Tumors (RECIST version 1.1) or
+                  World Health Organization (WHO)] while on continuous treatment with an EGFR TKI
+
+          4. Is currently receiving and able to interrupt gefitinib or discontinue erlotinib,
+             afatinib, or osimertinib
+
+          5. Has been receiving gefitinib, erlotinib, afatinib, or osimertinib for at least 6 weeks
+             with well-controlled related toxicities less than Grade 3 in severity at the time of
+             screening period; participants who have been receiving gefitinib must be taking
+             gefitinib at a dose of 250 mg/day
+
+          6. Has radiological documentation of disease progression while receiving continuous
+             treatment with gefitinib, erlotinib, afatinib, or osimertinib
+
+          7. Has at least one measurable lesion per RECIST version 1.1
+
+          8. Is willing to provide archival tumor tissue from a biopsy performed after progression
+             during treatment with gefitinib, erlotinib, afatinib, or osimertinib OR has at least
+             one lesion, not previously irradiated, amenable to core biopsy and is willing to
+             undergo screening tumor biopsy
+
+          9. Demonstrates absence of EGFR T790M mutation in tumor tissue since progression during
+             gefitinib, erlotinib, or afatinib treatment; T790M testing is not required for
+             progression during osimertinib treatment
+
+         10. Has Eastern Cooperative Oncology Group (ECOG) performance status (PS) of 0 or 1, with
+             no deterioration over the previous 2 weeks
+
+        Exclusion Criteria:
+
+          1. Has any evidence of small cell histology, or combined small cell and non-small cell
+             histology, in original tumor biopsy or in screening biopsy performed since progression
+
+          2. Has previously documented evidence of anaplastic lymphoma kinase (ALK) fusion, ROS
+             proto-oncogene 1 (ROS1) fusion, BRAF V600E mutation, rearranged during transfection
+             (RET) rearrangement, human epidermal growth factor receptor 2 (HER2) mutation, or MET
+             exon 14 skipping mutation - no new testing for these genomic alterations is required
+             for Screening
+
+          3. Has received treatment with any of the following:
+
+               1. Any cytotoxic chemotherapy, immune checkpoint inhibitor therapy, investigational
+                  agent or other anticancer drug(s) from a previous cancer treatment regimen or
+                  clinical study (other than EGFR TKI), within 14 days of the first dose of study
+                  treatment
+
+               2. Immune checkpoint inhibitor therapy within 30 days of first dose of study
+                  treatment
+
+               3. Major surgery (excluding placement of vascular access) within 4 weeks of the
+                  first dose of study treatment
+
+               4. Radiotherapy treatment to more than 30% of the bone marrow or with a wide field
+                  of radiation within 4 weeks, or palliative radiation therapy within 2 weeks of
+                  the first dose of study drug treatment
+
+          4. Has history of other active malignancy within 3 years prior to enrollment, except:
+
+               1. Adequately treated non-melanoma skin cancer OR
+
+               2. Superficial bladder tumors (Tumor stage &quot;a&quot; [Ta], Tumor stage &quot;is&quot; [Tis], Tumor
+                  stage &quot;1&quot; [T1]) OR
+
+               3. Curatively treated in situ disease OR
+
+               4. Low-risk non-metastatic prostate cancer (with Gleason score &lt; 7 on antiandrogen
+                  therapy)
+
+          5. Has spinal cord compression or clinically active brain metastases, defined as
+             untreated and symptomatic, or requiring therapy with corticosteroids or
+             anticonvulsants to control associated symptoms - Subjects with clinically inactive
+             brain metastases may be included in the study. Subjects with treated brain metastases
+             that are no longer symptomatic and who require no treatment with corticosteroids or
+             anticonvulsants may be included in the study if they have recovered from the acute
+             toxic effect of radiotherapy. A minimum of 2 weeks must have elapsed between the end
+             of whole brain radiotherapy and study enrollment (1 week for stereotactic
+             radiotherapy).
+
+          6. Has retinal disease in the eye that is not due to neovascular age-related macular
+             degeneration (nAMD; eg, significant diabetic retinopathy, glaucomatous retinal
+             atrophy, retinal detachment)
+
+          7. Has history of myocardial infarction within the past 6 months
+
+          8. Has symptomatic congestive heart failure [New York Heart Association (NYHA) Classes
+             II-IV], unstable angina, or cardiac arrhythmia requiring antiarrhythmic treatment
+
+          9. Has left ventricular ejection fraction (LVEF) &lt; 45% by either echocardiogram (ECHO) or
+             multigated acquisition (MUGA) scan
+
+         10. Has any clinically important abnormalities in rhythm, conduction or morphology of
+             resting ECG, eg, complete left bundle branch block, third-degree heart block,
+             second-degree heart block, or PR interval &gt; 250 milliseconds (ms)
+
+         11. Has a mean corrected QT interval using Fridericia's correction (QTcF) prolongation
+             &gt;470 ms for females and &gt;450 ms for males in three successive Screening measurements
+
+         12. Unable or unwilling to discontinue concomitant use of drugs that are known to prolong
+             the QT interval
+
+         13. Has any factors that increase the risk of QTc prolongation or risk of arrhythmic
+             events, such as congenital long QT. syndrome, family history of long QT syndrome or
+             unexplained sudden death under 40 years of age in first degree relatives
+
+         14. Has a history of (non-infectious) interstitial lung disease (ILD)/pneumonitis that
+             required corticosteroid treatment, has current ILD/pneumonitis, or has suspected
+             ILD/pneumonitis which cannot be ruled out by imaging at screening
+
+         15. Has history of pancreatitis within the past 6 months
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>20 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Clinical Study Leader</last_name>
+    <role>Study Director</role>
+    <affiliation>Daiichi Sankyo, Inc.</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Daiichi Sankyo Contact for Clinical Trial Information</last_name>
+    <phone>+81-3-6225-1111 (M-F 9-5 JST)</phone>
+    <email>dsclinicaltrial@daiichisankyo.co.jp</email>
+  </overall_contact>
+  <verification_date>July 2018</verification_date>
+  <!-- For several months we've had both old and new date name tags                             -->
+  <!-- Now, the old date names have been dropped.                                               -->
+  <!-- The new date name replacements are:                                                      -->
+  <!--     OLD (gone)                                        NEW (in use)                       -->
+  <!--   lastchanged_date                         becomes   last_update_submitted               -->
+  <!--   firstreceived_date                       becomes   study_first_submitted               -->
+  <!--   firstreceived_results_date               becomes   results_first_submitted             -->
+  <!--   firstreceived_results_disposition_date   becomes   disposition_first_submitted         -->
+  <study_first_submitted>July 16, 2018</study_first_submitted>
+  <study_first_submitted_qc>July 16, 2018</study_first_submitted_qc>
+  <study_first_posted type="Estimate">July 25, 2018</study_first_posted>
+  <last_update_submitted>July 16, 2018</last_update_submitted>
+  <last_update_submitted_qc>July 16, 2018</last_update_submitted_qc>
+  <last_update_posted type="Estimate">July 25, 2018</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Lung Neoplasms</mesh_term>
+    <mesh_term>Carcinoma, Non-Small-Cell Lung</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Gefitinib</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>Yes</sharing_ipd>
+    <ipd_description>De-identified individual participant data (IPD) and applicable supporting clinical trial documents may be available upon request at https://www.clinicalstudydatarequest.com//. In cases where clinical trial data and supporting documents are provided pursuant to our company policies and procedures, Daiichi Sankyo will continue to protect the privacy of our clinical trial participants. Details on data sharing criteria and the procedure for requesting access can be found at this web address: https://www.clinicalstudydatarequest.com/Study-Sponsors/Study-Sponsors-DS.aspx</ipd_description>
+    <ipd_info_type>Study Protocol</ipd_info_type>
+    <ipd_info_type>Statistical Analysis Plan (SAP)</ipd_info_type>
+    <ipd_info_type>Informed Consent Form (ICF)</ipd_info_type>
+    <ipd_info_type>Clinical Study Report (CSR)</ipd_info_type>
+    <ipd_info_type>Analytic Code</ipd_info_type>
+    <ipd_time_frame>Studies for which the medicine and indication have received European Union (EU) and United States (US), and/or Japan (JP) marketing approval on or after 01 January 2014 or by the US or EU or JP Health Authorities when regulatory submissions in all regions are not planned and after the primary study results have been accepted for publication.</ipd_time_frame>
+    <ipd_access_criteria>Formal request from qualified scientific and medical researchers on IPD and clinical study documents from clinical trials supporting products submitted and licensed in the United States, the European Union and/or Japan from 01 January 2014 and beyond for the purpose of conducting legitimate research. This must be consistent with the principle of safeguarding study participants' privacy and consistent with provision of informed consent.</ipd_access_criteria>
+    <ipd_url>https://www.clinicalstudydatarequest.com/Study-Sponsors/Study-Sponsors-DS.aspx</ipd_url>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
