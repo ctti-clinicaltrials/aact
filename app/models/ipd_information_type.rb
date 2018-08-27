@@ -1,11 +1,8 @@
 class IpdInformationType < StudyRelationship
 
   def self.create_all_from(opts)
-    col=[]
-    opts[:xml].xpath("//ipd_info_type").collect{|xml|
-      col << new({:name=>xml.text.strip, :nct_id=>(opts[:nct_id]) })
-    }
-    import(col)
+    info_types = opts[:xml].xpath("//ipd_info_type").collect{|xml|new(:nct_id=>opts[:nct_id],:name=>xml.text)}.flatten.compact
+    import(info_types)
   end
 
 end

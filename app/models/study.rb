@@ -118,6 +118,7 @@ class Study < ActiveRecord::Base
     Document.create_all_from(opts)
     Facility.create_all_from(opts)
     IdInformation.create_all_from(opts)
+    IpdInformationType.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     Milestone.create_all_from(opts)
