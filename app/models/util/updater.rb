@@ -206,8 +206,8 @@ module Util
       log "sanity checks ok?...."
       Support::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Support::SanityCheck.where('most_current is true')
-      load_event.add_problem("Fewer sanity check rows than expected (42): #{sanity_set.size}.") if sanity_set.size < 42
-      load_event.add_problem("More sanity check rows than expected (42): #{sanity_set.size}.") if sanity_set.size > 42
+      load_event.add_problem("Fewer sanity check rows than expected (43): #{sanity_set.size}.") if sanity_set.size < 43
+      load_event.add_problem("More sanity check rows than expected (43): #{sanity_set.size}.") if sanity_set.size > 43
       load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
       # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
       # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to this.
