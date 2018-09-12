@@ -91,8 +91,26 @@ class CalculatedValue < ActiveRecord::Base
           SELECT distinct nct_id
             FROM countries
            WHERE removed IS NOT true
-             AND name in ('United States', 'Guam', 'Virgin Islands (U.S.)', 'American Samoa', 'Puerto Rico', 'Northern Mariana Islands', 'Wake Island', 'Johnston Atoll')
-         )"
+             AND name in (
+               'United States',
+               'Guam',
+               'Puerto Rico',
+               'U.S. Virgin Islands',
+               'Virgin Islands (U.S.)',
+               'Northern Mariana Islands',
+               'American Samoa',
+                'Midway Atoll',
+               'Palmyra Atoll',
+               'Baker Island',
+               'Howland Island',
+               'Jarvis Island',
+               'Johnston Atoll',
+               'Kingman Reef',
+               'Wake Island',
+               'Navassa Island',
+               'Serranilla Bank',
+               'Bajo Nuevo Bank')
+           )"
   end
 
   def self.sql_for_has_us_facility3
