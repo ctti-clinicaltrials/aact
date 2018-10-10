@@ -69,7 +69,7 @@ module Util
     end
 
     def default_data_definitions
-      Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
+      Roo::Spreadsheet.open("#{Rails.public_path}/static/documentation/aact_data_definitions.xlsx")
     end
 
     def files_in(sub_dir, type=nil)
