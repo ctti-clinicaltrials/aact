@@ -31,7 +31,6 @@ module Util
         stage_con.execute('DROP SCHEMA ctgov CASCADE;')
       rescue
       end
-      #stage_con.execute('CREATE SCHEMA ctgov;')
 
       # refresh staging db
       log "refreshing aact staging database..."
@@ -39,8 +38,9 @@ module Util
       run_command_line(cmd)
 
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-      cmd="pg_dump #{ENV['AACT_STAGE_DATABASE_URL']} -v -h localhost -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']} --no-password --clean --exclude-table schema_migrations --schema ctgov -c -C -Fc -f #{fm.pg_dump_file}"
+      cmd="pg_dump #{ENV['AACT_STAGE_DATABASE_URL']} -v -h localhost -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']} --no-password --clean --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema ctgov --schema proj --schema proj_tag_nephrology --schema proj_anderson -b -c -C -Fc -f #{fm.pg_dump_file}"
       run_command_line(cmd)
+
       ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
     end
 
