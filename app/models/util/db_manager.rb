@@ -13,6 +13,26 @@ module Util
       end
     end
 
+    def drop_project_views
+      con=ActiveRecord::Base.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+      # Create a collection of 'DROP VIEW commands for each project view.
+      creation_cmd="
+        SELECT 'DROP VIEW ' || table_schema || '.' || table_name || ';'
+          FROM information_schema.views
+         WHERE table_schema LIKE 'proj%'
+           AND table_name != 'data_definitions';"
+      cmds=con.execute(creation_cmd)
+      cmds.each{ |cmd| con.execute(cmd['?column?']) }
+      con.disconnect!
+    end
+
+    def create_project_views
+      con=ActiveRecord::Base.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+      cmd="select create_views();"
+      con.execute(cmd)
+      con.disconnect!
+    end
+
     def dump_database
       fm=Util::FileManager.new
       # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
@@ -49,6 +69,7 @@ module Util
         success_code=true
         revoke_db_privs
         terminate_db_sessions
+        drop_project_views
         dump_file_name=Util::FileManager.new.pg_dump_file
         return nil if dump_file_name.nil?
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
@@ -57,6 +78,7 @@ module Util
         terminate_alt_db_sessions
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
         run_command_line(cmd)
+        create_project_views
 
         grant_db_privs
         return success_code
