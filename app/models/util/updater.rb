@@ -155,7 +155,6 @@ module Util
         use_case_attachments
       )
       table_names=ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
-#      table_names.each{|table_name| table_name.singularize.camelize.constantize
     end
 
     def update_studies(nct_ids)
