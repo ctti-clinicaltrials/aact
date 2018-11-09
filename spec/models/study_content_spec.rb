@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe Study do
   it "handles last known status" do
     nct_id='NCT02591940'
@@ -152,17 +151,6 @@ describe Study do
     end
   end
 
-  context 'when loading a study' do
-    nct_id='NCT01174550'
-    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-    study=Study.new({xml: xml, nct_id: nct_id}).create
-
-    it 'should have expected sharing ipd values' do
-      expect(study.plan_to_share_ipd).to eq('Yes')
-      expect(study.plan_to_share_ipd_description).to eq('Data will be submitted to the NHLBI according to their guidelines which state"The data sets must be submitted to the study NHLBI study Program Official no later than 3 years after the end of the clinical activity (final patient follow-up, etc.) or 2 years after the main paper of the trial has been published, whichever comes first. Data are prepared by the study coordinating center and sent to the PO for review prior to release."')
-    end
-  end
-
   context 'study has limitations and caveats' do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
@@ -172,6 +160,9 @@ describe Study do
       expect(study.limitations_and_caveats).to eq('This study was originally designed to escalate 3DRT via increasing doses per fraction. However, due to excessive toxicity at dose level 1 (75.25 Gy, 2.15 Gy/fraction), the protocol was amended in January 2003 to de-escalate 3DRT dose.')
     end
 
+  end
+
+  context 'when patient data section does not exist' do
   end
 
   context 'when patient data section does not exist' do

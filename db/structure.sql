@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.4
--- Dumped by pg_dump version 10.4
+-- Dumped from database version 10.5
+-- Dumped by pg_dump version 10.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1089,6 +1089,37 @@ ALTER SEQUENCE ctgov.interventions_id_seq OWNED BY ctgov.interventions.id;
 
 
 --
+-- Name: ipd_information_types; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.ipd_information_types (
+    id integer NOT NULL,
+    nct_id character varying,
+    name character varying
+);
+
+
+--
+-- Name: ipd_information_types_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.ipd_information_types_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ipd_information_types_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.ipd_information_types_id_seq OWNED BY ctgov.ipd_information_types.id;
+
+
+--
 -- Name: keywords; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1830,7 +1861,6 @@ CREATE TABLE ctgov.studies (
     is_us_export boolean,
     biospec_retention character varying,
     biospec_description text,
-    ipd_info_type character varying,
     ipd_time_frame character varying,
     ipd_access_criteria character varying,
     ipd_url character varying,
@@ -2145,6 +2175,13 @@ ALTER TABLE ONLY ctgov.intervention_other_names ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY ctgov.interventions ALTER COLUMN id SET DEFAULT nextval('ctgov.interventions_id_seq'::regclass);
+
+
+--
+-- Name: ipd_information_types id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.ipd_information_types ALTER COLUMN id SET DEFAULT nextval('ctgov.ipd_information_types_id_seq'::regclass);
 
 
 --
@@ -2490,6 +2527,14 @@ ALTER TABLE ONLY ctgov.intervention_other_names
 
 ALTER TABLE ONLY ctgov.interventions
     ADD CONSTRAINT interventions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ipd_information_types ipd_information_types_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.ipd_information_types
+    ADD CONSTRAINT ipd_information_types_pkey PRIMARY KEY (id);
 
 
 --
