@@ -33,7 +33,7 @@ gem 'libv8', '~> 3.16.14.15'
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
-gem 'loofah', '~> 2.2.1'
+gem 'loofah', '~> 2.2.3'
 
 # deployment to server
 gem 'capistrano', '~> 3.8'
