@@ -38,7 +38,9 @@
 # http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start
 #
 # Global options
-  set :deploy_to, '/srv/web/aact.ctti-clinicaltrials.org'
+  set :repo_url, ENV['AACT_PROD_REPO_URL']
+  set :deploy_to, ENV['AACT_PROD_DEPLOY_TO']
+
   set :ssh_options, {
     keys: %w(/home/ctti-aact/.ssh/id_rsa),
     forward_agent: false,
@@ -47,10 +49,10 @@
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
- server "ctti-web-01.oit.duke.edu",
+ server "#{ENV['AACT_PROD_SERVER']}",
    roles: %w{web app},
    ssh_options: {
-     user: "ctti-aact", # overrides user setting above
+     user: "#{ENV['AACT_SERVER_USERNAME']}",
      keys: %w(/home/ctti-aact/.ssh/id_rsa),
      forward_agent: false,
      auth_methods: %w(publickey)

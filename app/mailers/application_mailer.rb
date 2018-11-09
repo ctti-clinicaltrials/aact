@@ -1,9 +1,9 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "aact@ctti-clinicaltrials.org"
+  default from: ENV['AACT_OWNER_EMAIL']
   layout 'mailer'
 
-  def admin_addresses
-    ['sheri.tibbs@duke.edu','ctti-aact@duke.edu']
+  def self.admin_addresses
+    ENV['AACT_ADMIN_EMAILS'].split(",")
   end
 
 end

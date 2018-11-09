@@ -1,14 +1,12 @@
 Rails.application.configure do
   config.cache_classes = true
-  config.eager_load = true
+  config.eager_load = false
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.middleware.use Rack::Deflater
   config.assets.js_compressor = :uglifier
-  config.assets.digest = true
   config.log_level = :debug
-  config.assets.precompile =  ['*.js', '*.css', '*.scss']
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings =  {
     :address => '127.0.0.1',

@@ -15,10 +15,11 @@ require 'rails_helper'
 #NCT00660179
 
 describe Study do
+  nct_id='NCT00002475'
   subject { Study.new({xml: Nokogiri::XML(File.read(Rails.root.join('spec',
                                                           'support',
                                                           'xml_data',
-                                                          'example_study.xml'))), nct_id: 'NCT00002475'}).create }
+                                                          'example_study.xml'))), nct_id: nct_id}).create }
 
   describe 'associations' do
     it { should have_one(:brief_summary).dependent(:delete) }
@@ -63,7 +64,10 @@ describe Study do
     end
 
     it 'should have created a calculated value record for each study' do
-      expect(CalculatedValue.count).to eq(1)
+      sample=Study.where('nct_id=?',nct_id)
+      calc_val=CalculatedValue.where('nct_id=?',nct_id)
+      expect(sample.size).to eq(1)
+      expect(calc_val.size).to eq(1)
     end
   end
 

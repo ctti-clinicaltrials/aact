@@ -1,5 +1,5 @@
 # AACT
-Aggregated Analysis of ClinicalTrials.gov
+Database of Aggregated Analysis of ClinicalTrials.gov
 
 ## Getting Started
 

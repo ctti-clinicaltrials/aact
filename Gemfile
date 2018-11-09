@@ -11,17 +11,12 @@ gem "autoprefixer-rails"
 gem "flutie"
 gem "high_voltage"
 gem "jquery-rails"
-gem "sidekiq"
 gem "normalize-rails"
 gem "pg"
 gem 'rails_12factor'
 gem "coderay"
 gem "recipient_interceptor"
-gem "sass-rails"
-gem "sprockets-rails",'>= 2.0'
 gem "title"
-gem "uglifier"
-gem "jbuilder"
 gem "rails-erd"
 gem 'rest-client'
 gem 'enumerize'
@@ -38,11 +33,7 @@ gem 'libv8', '~> 3.16.14.15'
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
-gem 'loofah', '~> 2.2.1'
-
-# user registration
-gem 'devise'
-gem 'devise-encryptable'
+gem 'loofah', '~> 2.2.3'
 
 # deployment to server
 gem 'capistrano', '~> 3.8'
@@ -50,8 +41,6 @@ gem 'capistrano-rails', '~> 1.2'
 
 group :development do
   gem "quiet_assets"
-#  gem "spring"
-#  gem "spring-commands-rspec"
   gem 'letter_opener'
 end
 
@@ -69,10 +58,6 @@ end
 
 group :test do
   gem "database_cleaner"
-  gem 'capybara'
-  gem "capybara-webkit"
-  gem 'selenium-webdriver' # For Firefox
-  gem 'chromedriver-helper'
   gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers"

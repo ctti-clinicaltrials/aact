@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.4
--- Dumped by pg_dump version 10.4
+-- Dumped from database version 10.5
+-- Dumped by pg_dump version 10.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,6 +20,13 @@ SET row_security = off;
 --
 
 CREATE SCHEMA ctgov;
+
+
+--
+-- Name: support; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA support;
 
 
 --
@@ -1082,6 +1089,37 @@ ALTER SEQUENCE ctgov.interventions_id_seq OWNED BY ctgov.interventions.id;
 
 
 --
+-- Name: ipd_information_types; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.ipd_information_types (
+    id integer NOT NULL,
+    nct_id character varying,
+    name character varying
+);
+
+
+--
+-- Name: ipd_information_types_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.ipd_information_types_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ipd_information_types_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.ipd_information_types_id_seq OWNED BY ctgov.ipd_information_types.id;
+
+
+--
 -- Name: keywords; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1823,6 +1861,9 @@ CREATE TABLE ctgov.studies (
     is_us_export boolean,
     biospec_retention character varying,
     biospec_description text,
+    ipd_time_frame character varying,
+    ipd_access_criteria character varying,
+    ipd_url character varying,
     plan_to_share_ipd character varying,
     plan_to_share_ipd_description character varying,
     created_at timestamp without time zone NOT NULL,
@@ -1861,6 +1902,118 @@ CREATE SEQUENCE ctgov.study_references_id_seq
 --
 
 ALTER SEQUENCE ctgov.study_references_id_seq OWNED BY ctgov.study_references.id;
+
+
+--
+-- Name: load_events; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.load_events (
+    id integer NOT NULL,
+    event_type character varying,
+    status character varying,
+    description text,
+    problems text,
+    should_add integer,
+    should_change integer,
+    processed integer,
+    load_time character varying,
+    completed_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: load_events_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.load_events_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: load_events_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.load_events_id_seq OWNED BY support.load_events.id;
+
+
+--
+-- Name: sanity_checks; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.sanity_checks (
+    id integer NOT NULL,
+    table_name character varying,
+    nct_id character varying,
+    column_name character varying,
+    check_type character varying,
+    row_count integer,
+    description text,
+    most_current boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sanity_checks_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.sanity_checks_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sanity_checks_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.sanity_checks_id_seq OWNED BY support.sanity_checks.id;
+
+
+--
+-- Name: study_xml_records; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.study_xml_records (
+    id integer NOT NULL,
+    nct_id character varying,
+    content xml,
+    created_study_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: study_xml_records_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.study_xml_records_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: study_xml_records_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.study_xml_records_id_seq OWNED BY support.study_xml_records.id;
 
 
 --
@@ -2025,6 +2178,13 @@ ALTER TABLE ONLY ctgov.interventions ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
+-- Name: ipd_information_types id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.ipd_information_types ALTER COLUMN id SET DEFAULT nextval('ctgov.ipd_information_types_id_seq'::regclass);
+
+
+--
 -- Name: keywords id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2162,6 +2322,27 @@ ALTER TABLE ONLY ctgov.sponsors ALTER COLUMN id SET DEFAULT nextval('ctgov.spons
 --
 
 ALTER TABLE ONLY ctgov.study_references ALTER COLUMN id SET DEFAULT nextval('ctgov.study_references_id_seq'::regclass);
+
+
+--
+-- Name: load_events id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.load_events ALTER COLUMN id SET DEFAULT nextval('support.load_events_id_seq'::regclass);
+
+
+--
+-- Name: sanity_checks id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.sanity_checks ALTER COLUMN id SET DEFAULT nextval('support.sanity_checks_id_seq'::regclass);
+
+
+--
+-- Name: study_xml_records id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.study_xml_records ALTER COLUMN id SET DEFAULT nextval('support.study_xml_records_id_seq'::regclass);
 
 
 --
@@ -2349,6 +2530,14 @@ ALTER TABLE ONLY ctgov.interventions
 
 
 --
+-- Name: ipd_information_types ipd_information_types_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.ipd_information_types
+    ADD CONSTRAINT ipd_information_types_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: keywords keywords_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -2506,6 +2695,30 @@ ALTER TABLE ONLY ctgov.sponsors
 
 ALTER TABLE ONLY ctgov.study_references
     ADD CONSTRAINT study_references_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: load_events load_events_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.load_events
+    ADD CONSTRAINT load_events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sanity_checks sanity_checks_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.sanity_checks
+    ADD CONSTRAINT sanity_checks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: study_xml_records study_xml_records_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.study_xml_records
+    ADD CONSTRAINT study_xml_records_pkey PRIMARY KEY (id);
 
 
 --
@@ -3083,10 +3296,66 @@ CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING bt
 
 
 --
+-- Name: index_support.load_events_on_event_type; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.load_events_on_event_type" ON support.load_events USING btree (event_type);
+
+
+--
+-- Name: index_support.load_events_on_status; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.load_events_on_status" ON support.load_events USING btree (status);
+
+
+--
+-- Name: index_support.sanity_checks_on_check_type; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.sanity_checks_on_check_type" ON support.sanity_checks USING btree (check_type);
+
+
+--
+-- Name: index_support.sanity_checks_on_column_name; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.sanity_checks_on_column_name" ON support.sanity_checks USING btree (column_name);
+
+
+--
+-- Name: index_support.sanity_checks_on_nct_id; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.sanity_checks_on_nct_id" ON support.sanity_checks USING btree (nct_id);
+
+
+--
+-- Name: index_support.sanity_checks_on_table_name; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.sanity_checks_on_table_name" ON support.sanity_checks USING btree (table_name);
+
+
+--
+-- Name: index_support.study_xml_records_on_created_study_at; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.study_xml_records_on_created_study_at" ON support.study_xml_records USING btree (created_study_at);
+
+
+--
+-- Name: index_support.study_xml_records_on_nct_id; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_records USING btree (nct_id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov, public;
+SET search_path TO ctgov, support, public;
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
@@ -3094,11 +3363,11 @@ INSERT INTO schema_migrations (version) VALUES ('20160910000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20160911000000');
 
+INSERT INTO schema_migrations (version) VALUES ('20161011000000');
+
 INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20170307184859');
 
 INSERT INTO schema_migrations (version) VALUES ('20170411000122');
-
-INSERT INTO schema_migrations (version) VALUES ('20180514161006');
 
