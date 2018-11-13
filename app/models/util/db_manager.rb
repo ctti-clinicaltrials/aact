@@ -19,61 +19,40 @@ module Util
       creation_cmd="
         SELECT 'DROP VIEW ' || table_schema || '.' || table_name || ';'
           FROM information_schema.views
-         WHERE table_schema LIKE 'proj%'
+         WHERE table_schema LIKE 'proj_%'
            AND table_name != 'data_definitions';"
       cmds=con.execute(creation_cmd)
-      cmds.each{ |cmd| con.execute(cmd['?column?']) }
-      con.disconnect!
+      cmds.each{ |cmd|
+        puts ">>>>>>>>>>>>>> #{cmd}"
+        con.execute(cmd['?column?'])
+      }
+      con.reset!
     end
 
     def create_project_views
       con=ActiveRecord::Base.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
-      cmd="select create_views();"
-      con.execute(cmd)
-      con.disconnect!
+      Admin::Project.schema_name_array.each{|schema_name|
+        cmd="select #{schema_name}.create_views();"
+        con.execute(cmd)
+      }
+      con.reset!
     end
 
     def dump_database
-      # First populate db named 'aact' from background db so the dump file will be configured to restore db named aact
-      #psql_file="#{fm.dump_directory}/aact.psql"
-      #File.delete(psql_file) if File.exist?(psql_file)
-      # pg_dump that works on postgres 10.3
-      #cmd="pg_dump --no-owner --no-acl --host=localhost --username=#{ENV['AACT_DB_SUPER_USERNAME']} --dbname=aact_back --schema=ctgov > #{psql_file}"
-      # pg_dump that works on postgres 9.2.23 - which is what's running on servers as of 4/20/18
-      #cmd="pg_dump --no-owner --username #{ENV['AACT_DB_SUPER_USERNAME']} --schema=ctgov --exclude-table ar_internal_metadata --exclude-table schema_migrations #{ENV['AACT_BACK_DATABASE_URL']} > #{psql_file}"
-      #run_command_line(cmd)
-
-      # clear out previous ctgov content from staging db
-      #log "recreating ctgov schema in aact staging database..."
-      #terminate_stage_db_sessions
-      #begin
-      #  stage_con.execute('DROP SCHEMA ctgov CASCADE;')
-      #rescue
-      #end
-
-      # refresh staging db
-      #log "refreshing aact staging database..."
-      #cmd="psql -h localhost  #{ENV['AACT_STAGE_DATABASE_URL']} < #{psql_file} > /dev/null"
-      #run_command_line(cmd)
-
       fm=Util::FileManager.new
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-      # TODO - refactor this to compose command by iterating over the collection of project schema names.
-      #cmd="pg_dump --no-owner --username #{ENV['AACT_DB_SUPER_USERNAME']} --schema=ctgov --exclude-table ar_internal_metadata --exclude-table schema_migrations #{ENV['AACT_BACK_DATABASE_URL']} > #{fm.pg_dump_file}"
 
       cmd="pg_dump #{ENV['AACT_BACK_DATABASE_URL']} -v -h localhost -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']} --clean --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema ctgov -b -c -C -Fc -f #{fm.pg_dump_file}"
       puts cmd
       run_command_line(cmd)
-
-      #ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
     end
 
-    def refresh_public_db
+   def refresh_public_db
       begin
         success_code=true
         revoke_db_privs
         terminate_db_sessions
-        #drop_project_views
+        drop_project_views  # <<-----  Related to the Project App
         dump_file_name=Util::FileManager.new.pg_dump_file
         return nil if dump_file_name.nil?
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
@@ -82,8 +61,7 @@ module Util
         terminate_alt_db_sessions
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
         run_command_line(cmd)
-        #create_project_views
-
+        create_project_views  # <<-----  Related to the Project App
         grant_db_privs
         return success_code
       rescue => error
@@ -101,7 +79,7 @@ module Util
       c.execute("grant connect on database #{public_db_name} to public;")
       c.execute("grant usage on schema ctgov TO public;")
       c.execute('grant select on all tables in schema ctgov to public;')
-      c.disconnect!
+      c.reset!
       c=nil
     end
 
