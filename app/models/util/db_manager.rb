@@ -2,7 +2,7 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :stage_con, :pub_con, :event
+    attr_accessor :con, :pub_con, :alt_pub_con, :event
 
     def initialize(params={})
       # Should only manage content of ctgov db schema
@@ -11,31 +11,6 @@ module Util
       else
         @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
-    end
-
-    def drop_project_views
-      con=ActiveRecord::Base.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
-      # Create a collection of 'DROP VIEW commands for each project view.
-      creation_cmd="
-        SELECT 'DROP VIEW ' || table_schema || '.' || table_name || ';'
-          FROM information_schema.views
-         WHERE table_schema LIKE 'proj_%'
-           AND table_name != 'data_definitions';"
-      cmds=con.execute(creation_cmd)
-      cmds.each{ |cmd|
-        puts ">>>>>>>>>>>>>> #{cmd}"
-        con.execute(cmd['?column?'])
-      }
-      con.reset!
-    end
-
-    def create_project_views
-      con=ActiveRecord::Base.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
-      Admin::Project.schema_name_array.each{|schema_name|
-        cmd="select #{schema_name}.create_views();"
-        con.execute(cmd)
-      }
-      con.reset!
     end
 
     def dump_database
@@ -48,20 +23,61 @@ module Util
     end
 
    def refresh_public_db
+      dump_file_name=Util::FileManager.new.pg_dump_file
+      return nil if dump_file_name.nil?
       begin
         success_code=true
-        revoke_db_privs
-        terminate_db_sessions
-        drop_project_views  # <<-----  Related to the Project App
-        dump_file_name=Util::FileManager.new.pg_dump_file
-        return nil if dump_file_name.nil?
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
-        run_command_line(cmd)
+        revoke_db_privs   # Prevent users from logging in while db restore is running.
 
+        # Refresh the aact_alt database first.  If something goes wrong, don't restore aact.
+        drop_project_views(PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection)
         terminate_alt_db_sessions
+
+        begin
+          #  Drop the existing ctgov schema with cascade.  If dependencies exist on anything in ctgov, the restore will end up being unable to
+          #  drop it before running the restore - resulting in a db full of duplicate data.  So get rid of it first.
+          log "Dropping ctgov schema in alt public database..."
+          cmd="DROP SCHEMA ctgov CASCADE;"
+          PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
+          cmd="CREATE SCHEMA ctgov;"
+          PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
+        rescue
+        end
+        log "Restoring alt public database..."
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
         run_command_line(cmd)
-        create_project_views  # <<-----  Related to the Project App
+
+        log "Verifying alt public database..."
+        public_studies_count = PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute('select count(*) from studies;').first['count'].to_i
+
+        back_studies_count   = PublicBase.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection.execute('select count(*) from studies;').first['count'].to_i
+        if public_studies_count != back_studies_count
+          success_code = false
+          msg = "SOMETHING WENT WRONG!  PROBLEM IN PRODUCTION DATABASE: aact_alt.  Study count is #{public_studies_count}. Should be #{back_studies_count}"
+          event.add_problem(msg)
+          log msg
+          grant_db_privs
+          return false
+        end
+        create_project_views(PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection)
+        puts "..........  all systems go....  update public aact...."
+
+        # If all goes well with AACT_ALT DB, proceed with AACT
+
+        drop_project_views(PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection)
+        terminate_db_sessions
+        begin
+          log "Dropping ctgov schema in main public database..."
+          cmd="DROP SCHEMA ctgov CASCADE;"
+          PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
+          cmd="CREATE SCHEMA ctgov;"
+          PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
+        rescue
+        end
+        log "Restoring main public database..."
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
+        run_command_line(cmd)
+        create_project_views(PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection)
         grant_db_privs
         return success_code
       rescue => error
@@ -75,6 +91,8 @@ module Util
 
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
+      #pub_con.execute("alter user read_only login;")
+      log "db_manager.granting db privs..."
       c = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
       c.execute("grant connect on database #{public_db_name} to public;")
       c.execute("grant usage on schema ctgov TO public;")
@@ -86,6 +104,7 @@ module Util
     def revoke_db_privs
       log "db_manager.revoking db privs..."
       begin
+        #pub_con.execute("alter user read_only nologin;")
         pub_con.execute("revoke connect on database #{public_db_name} from public;")
         pub_con.execute("revoke select on all tables in schema ctgov from public;")
         pub_con.execute("revoke all on schema ctgov from public;")
@@ -112,16 +131,12 @@ module Util
       puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
     end
 
-    def terminate_stage_db_sessions
-      stage_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='aact'")
-    end
-
     def terminate_db_sessions
-      pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{public_db_name}'")
+      PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{public_db_name}' AND usename <> '#{ENV['AACT_DB_SUPER_USERNAME']}'")
     end
 
     def terminate_alt_db_sessions
-      pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = 'aact_alt'")
+      PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = 'aact_alt' AND usename <> '#{ENV['AACT_DB_SUPER_USERNAME']}'")
     end
 
     def public_study_count
@@ -264,6 +279,37 @@ module Util
       false
     end
 
+    def drop_project_views(conn)
+      # Create a collection of 'DROP VIEW commands for each project view.
+      creation_cmd="
+        SELECT 'DROP VIEW ' || table_schema || '.' || table_name || ';'
+          FROM information_schema.views
+         WHERE table_schema LIKE 'proj_%'
+           AND table_name != 'data_definitions';"
+      cmds=conn.execute(creation_cmd)
+      cmds.each{ |cmd|
+        begin
+          conn.execute(cmd['?column?'])
+        rescue
+          # Don't stop if error encountered
+        end
+      }
+    end
+
+    def create_project_views(conn)
+      Admin::Project.schema_name_array.each{|schema_name|
+        if conn.execute("select nspname from pg_catalog.pg_namespace where nspname = '#{schema_name}';").count > 0
+          schema_functions = conn.execute("SELECT routines.routine_name FROM information_schema.routines LEFT JOIN information_schema.parameters ON routines.specific_name=parameters.specific_name WHERE routines.specific_schema='#{schema_name}' ORDER BY routines.routine_name, parameters.ordinal_position;")
+          create_view_function_exists = (schema_functions.select{|f| f['routine_name'] == 'create_views'}).size > 0
+          cmd="select #{schema_name}.create_views();"
+          if create_view_function_exists
+            log "creating project view for #{schema_name}"
+            conn.execute(cmd)
+          end
+        end
+      }
+    end
+
     def con
       return @con if @con and @con.active?
       @con = ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
@@ -271,12 +317,12 @@ module Util
       return @con
     end
 
-    def stage_con
-      @stage_con ||= ActiveRecord::Base.establish_connection(ENV["AACT_STAGE_DATABASE_URL"]).connection
-    end
-
     def pub_con
       @pub_con ||= PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+    end
+
+    def alt_pub_con
+      @alt_pub_con ||= PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection
     end
 
     def public_host_name
