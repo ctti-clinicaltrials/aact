@@ -202,7 +202,7 @@ module Util
     end
 
     def sanity_checks_ok?
-      log "sanity checks ok?...."
+      log "  sanity checks ok?...."
       Support::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Support::SanityCheck.where('most_current is true')
       load_event.add_problem("Fewer sanity check rows than expected (43): #{sanity_set.size}.") if sanity_set.size < 43

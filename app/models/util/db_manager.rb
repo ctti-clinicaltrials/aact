@@ -35,45 +35,45 @@ module Util
         begin
           #  Drop the existing ctgov schema with cascade. If dependencies exist on anything in ctgov, the restore won't be able to
           #  drop before replacing - resulting in a db of duplicate data.  Get rid of it using CASCADE' first.
-          log "Dropping ctgov schema in alt public database..."
+          log "  dropping ctgov schema in alt public database..."
           cmd="DROP SCHEMA ctgov CASCADE;"
           PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
           cmd="CREATE SCHEMA ctgov;"
           PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
         rescue
         end
-        log "Restoring alt public database..."
+        log "  restoring alt public database..."
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
         run_restore_command_line(cmd)
 
-        log "Verifying alt public database..."
+        log "  verifying alt public database..."
         public_studies_count = PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute('select count(*) from studies;').first['count'].to_i
 
         back_studies_count   = PublicBase.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection.execute('select count(*) from studies;').first['count'].to_i
         if public_studies_count != back_studies_count
           success_code = false
-          msg = "SOMETHING WENT WRONG!  PROBLEM IN PRODUCTION DATABASE: aact_alt.  Study count is #{public_studies_count}. Should be #{back_studies_count}"
+          msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: aact_alt.  Study count is #{public_studies_count}. Should be #{back_studies_count}"
           event.add_problem(msg)
           log msg
           grant_db_privs
           return false
         end
         create_project_views(PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection)
-        log "all systems go....  update public aact...."
+        log "  all systems go... we can update primary public aact...."
 
         # If all goes well with AACT_ALT DB, proceed with AACT
 
         drop_project_views(PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection)
         terminate_db_sessions
         begin
-          log "Dropping ctgov schema in main public database..."
+          log "  dropping ctgov schema in main public database..."
           cmd="DROP SCHEMA ctgov CASCADE;"
           PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
           cmd="CREATE SCHEMA ctgov;"
           PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
         rescue
         end
-        log "Restoring main public database..."
+        log "  restoring main public database..."
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
         run_restore_command_line(cmd)
         create_project_views(PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection)
@@ -91,7 +91,7 @@ module Util
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
       #pub_con.execute("alter user read_only login;")
-      log "db_manager.granting db privs..."
+      log "  db_manager.granting db privs..."
       c = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
       c.execute("grant connect on database #{public_db_name} to public;")
       c.execute("grant usage on schema ctgov TO public;")
@@ -101,7 +101,7 @@ module Util
     end
 
     def revoke_db_privs
-      log "db_manager.revoking db privs..."
+      log "  db_manager.revoking db privs..."
       begin
         #pub_con.execute("alter user read_only nologin;")
         pub_con.execute("revoke connect on database #{public_db_name} from public;")
@@ -139,7 +139,6 @@ module Util
           end
         end
     end
-
 
     def log(msg)
       puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
