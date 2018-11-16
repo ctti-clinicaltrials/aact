@@ -5,11 +5,12 @@ describe Util::FileManager do
     it "should save db static copy to the appropriate directory" do
       allow_any_instance_of(Util::FileManager).to receive(:make_file_from_website).and_return(Util::FileManager.new.schema_diagram)
       fm=Util::FileManager.new
+      File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
+      expect(File.exist?(fm.pg_dump_file)).to eq(false)
+
       dm=Util::DbManager.new(:load_event=>Support::LoadEvent.create({:event_type=>'incremental',:status=>'running',:description=>'',:problems=>''}))
       dm.dump_database
-      psql_file="#{fm.dump_directory}/aact.psql"   # brittle.  refactor later
-      expect(File.size(psql_file) > 50000).to eq(true)
-      expect(File.read(psql_file)).to include("CREATE SCHEMA ctgov")
+      expect(File.size(fm.pg_dump_file) > 50000).to eq(true)
 
       zip_file=fm.save_static_copy
       expect(File).to exist(zip_file)

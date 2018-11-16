@@ -18,7 +18,6 @@ module Util
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
 
       cmd="pg_dump #{ENV['AACT_BACK_DATABASE_URL']} -v -h localhost -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']} --clean --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema ctgov -b -c -C -Fc -f #{fm.pg_dump_file}"
-      puts cmd
       run_command_line(cmd)
     end
 
@@ -34,8 +33,8 @@ module Util
         terminate_alt_db_sessions
 
         begin
-          #  Drop the existing ctgov schema with cascade.  If dependencies exist on anything in ctgov, the restore will end up being unable to
-          #  drop it before running the restore - resulting in a db full of duplicate data.  So get rid of it first.
+          #  Drop the existing ctgov schema with cascade. If dependencies exist on anything in ctgov, the restore won't be able to
+          #  drop before replacing - resulting in a db of duplicate data.  Get rid of it using CASCADE' first.
           log "Dropping ctgov schema in alt public database..."
           cmd="DROP SCHEMA ctgov CASCADE;"
           PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
@@ -45,7 +44,7 @@ module Util
         end
         log "Restoring alt public database..."
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d aact_alt #{dump_file_name}"
-        run_command_line(cmd)
+        run_restore_command_line(cmd)
 
         log "Verifying alt public database..."
         public_studies_count = PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute('select count(*) from studies;').first['count'].to_i
@@ -60,7 +59,7 @@ module Util
           return false
         end
         create_project_views(PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection)
-        puts "..........  all systems go....  update public aact...."
+        log "all systems go....  update public aact...."
 
         # If all goes well with AACT_ALT DB, proceed with AACT
 
@@ -76,7 +75,7 @@ module Util
         end
         log "Restoring main public database..."
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{ENV['AACT_DB_SUPER_USERNAME']}  -d #{public_db_name} #{dump_file_name}"
-        run_command_line(cmd)
+        run_restore_command_line(cmd)
         create_project_views(PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection)
         grant_db_privs
         return success_code
@@ -126,6 +125,21 @@ module Util
         success_code=false
       end
     end
+
+    def run_restore_command_line(cmd)
+      stdout, stderr, status = Open3.capture3(cmd)
+      if status.exitstatus != 0
+          # Errors that report a db object doesn't already exist aren't real errors. Ignore those.  Look for real errors.
+          real_errors = []
+          stderr_array = stderr.split('pg_restore:')
+          stderr_array.each {|line| real_errors << line  if line.include?('ERROR') && !line.include?("does not exist") }
+          if !real_errors.empty?
+            real_errors.each {|e| event.add_problem("#{Time.zone.now}: #{e}") }
+            success_code=false
+          end
+        end
+    end
+
 
     def log(msg)
       puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
@@ -291,7 +305,7 @@ module Util
         begin
           conn.execute(cmd['?column?'])
         rescue
-          # Don't stop if error encountered
+          # Don't stop if error encountered while dropping view.  Prob cuz view doesn't exist yet.
         end
       }
     end
