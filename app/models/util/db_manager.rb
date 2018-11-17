@@ -89,28 +89,20 @@ module Util
     end
 
     def grant_db_privs
-      revoke_db_privs # to avoid errors, ensure privs revoked first
-      #pub_con.execute("alter user read_only login;")
-      log "  db_manager.granting db privs..."
-      c = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
-      c.execute("grant connect on database #{public_db_name} to public;")
-      c.execute("grant usage on schema ctgov TO public;")
-      c.execute('grant select on all tables in schema ctgov to public;')
-      c.reset!
-      c=nil
+      #revoke_db_privs # to avoid errors, ensure privs revoked first
+      log "  db_manager:  letting read_only users login now..."
+      PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute("alter role read_only login;")
+      PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute('grant select on all tables in schema ctgov to read_only;')
+      #c.execute("grant connect on database #{public_db_name} to read_only;")
+      #c.execute("grant usage on schema ctgov TO read_only;")
     end
 
     def revoke_db_privs
-      log "  db_manager.revoking db privs..."
-      begin
-        #pub_con.execute("alter user read_only nologin;")
-        pub_con.execute("revoke connect on database #{public_db_name} from public;")
-        pub_con.execute("revoke select on all tables in schema ctgov from public;")
-        pub_con.execute("revoke all on schema ctgov from public;")
-      rescue => error
-        # error raised if schema missing. Ignore. Will be created in a pg_restore.
-        log "db_manager.revoke_db_privs - error encountered:  #{error}"
-      end
+      log "  db_manager: don't let read_only users login..."
+      PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute("alter role read_only nologin;")
+      PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute("revoke select on all tables in schema ctgov from read_only;")
+      #pub_con.execute("revoke connect on database #{public_db_name} from read_only;")
+      #pub_con.execute("revoke all on schema ctgov from read_only;")
     end
 
     def public_db_accessible?
