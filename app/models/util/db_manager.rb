@@ -89,25 +89,25 @@ module Util
     end
 
     def grant_db_privs
-      #revoke_db_privs # to avoid errors, ensure privs revoked first
-      log "  db_manager:  letting read_only users login now..."
-      PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute("alter role read_only login;")
-      PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute('grant select on all tables in schema ctgov to read_only;')
-      #c.execute("grant connect on database #{public_db_name} to read_only;")
-      #c.execute("grant usage on schema ctgov TO read_only;")
+      log "  db_manager:  letting users connect now..."
+      con=PublicBase.connection
+      con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      con.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+      con.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 200;")
+      con.reset!
     end
 
     def revoke_db_privs
-      log "  db_manager: don't let read_only users login..."
-      PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute("alter role read_only nologin;")
-      PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection.execute("revoke select on all tables in schema ctgov from read_only;")
-      #pub_con.execute("revoke connect on database #{public_db_name} from read_only;")
-      #pub_con.execute("revoke all on schema ctgov from read_only;")
+      log "  db_manager: set connection limit so only db owner can login..."
+      con=PublicBase.connection
+      con.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
+      con.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 0;")
+      con.reset!
     end
 
     def public_db_accessible?
-      result=pub_con.execute("select count(*) from information_schema.role_table_grants where grantee='PUBLIC' and table_schema='ctgov';").first["count"]
-      result.to_i > 0
+      # we temporarily restrict access to the public db (set allowed connections to zero) during db restore.
+      PublicBase.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection.execute("select datconnlimit from pg_database where datname='aact';").first["datconnlimit"].to_i > 0
     end
 
     def run_command_line(cmd)
