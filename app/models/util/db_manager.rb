@@ -308,7 +308,7 @@ module Util
           create_view_function_exists = (schema_functions.select{|f| f['routine_name'] == 'create_views'}).size > 0
           cmd="select #{schema_name}.create_views();"
           if create_view_function_exists
-            log "creating project view for #{schema_name}"
+            log "  creating project view for #{schema_name}"
             conn.execute(cmd)
           end
         end
