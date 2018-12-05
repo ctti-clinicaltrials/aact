@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
 ruby "2.4.0"
+gem "sprockets", ">= 3.7.2"
+gem "rubyzip", ">= 1.2.2"
 
 gem 'nokogiri', '~> 1.8.1'
 gem 'loofah', '~> 2.2.3'
