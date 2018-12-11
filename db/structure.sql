@@ -524,7 +524,10 @@ CREATE TABLE ctgov.calculated_values (
     minimum_age_num integer,
     maximum_age_num integer,
     minimum_age_unit character varying,
-    maximum_age_unit character varying
+    maximum_age_unit character varying,
+    number_of_primary_outcomes_to_measure integer,
+    number_of_secondary_outcomes_to_measure integer,
+    number_of_other_outcomes_to_measure integer
 );
 
 
@@ -2722,6 +2725,13 @@ ALTER TABLE ONLY support.study_xml_records
 
 
 --
+-- Name: index_baseline_counts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_baseline_counts_on_nct_id ON ctgov.baseline_counts USING btree (nct_id);
+
+
+--
 -- Name: index_baseline_measurements_on_category; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -2743,10 +2753,24 @@ CREATE INDEX index_baseline_measurements_on_dispersion_type ON ctgov.baseline_me
 
 
 --
+-- Name: index_baseline_measurements_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_baseline_measurements_on_nct_id ON ctgov.baseline_measurements USING btree (nct_id);
+
+
+--
 -- Name: index_baseline_measurements_on_param_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_baseline_measurements_on_param_type ON ctgov.baseline_measurements USING btree (param_type);
+
+
+--
+-- Name: index_brief_summaries_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_brief_summaries_on_nct_id ON ctgov.brief_summaries USING btree (nct_id);
 
 
 --
@@ -2806,6 +2830,13 @@ CREATE INDEX index_calculated_values_on_months_to_report_results ON ctgov.calcul
 
 
 --
+-- Name: index_calculated_values_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_calculated_values_on_nct_id ON ctgov.calculated_values USING btree (nct_id);
+
+
+--
 -- Name: index_calculated_values_on_number_of_facilities; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -2817,6 +2848,13 @@ CREATE INDEX index_calculated_values_on_number_of_facilities ON ctgov.calculated
 --
 
 CREATE INDEX index_central_contacts_on_contact_type ON ctgov.central_contacts USING btree (contact_type);
+
+
+--
+-- Name: index_central_contacts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_central_contacts_on_nct_id ON ctgov.central_contacts USING btree (nct_id);
 
 
 --
@@ -2834,10 +2872,45 @@ CREATE INDEX index_conditions_on_name ON ctgov.conditions USING btree (name);
 
 
 --
+-- Name: index_conditions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_conditions_on_nct_id ON ctgov.conditions USING btree (nct_id);
+
+
+--
+-- Name: index_countries_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_countries_on_nct_id ON ctgov.countries USING btree (nct_id);
+
+
+--
+-- Name: index_design_group_interventions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_design_group_interventions_on_nct_id ON ctgov.design_group_interventions USING btree (nct_id);
+
+
+--
 -- Name: index_design_groups_on_group_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_design_groups_on_group_type ON ctgov.design_groups USING btree (group_type);
+
+
+--
+-- Name: index_design_groups_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_design_groups_on_nct_id ON ctgov.design_groups USING btree (nct_id);
+
+
+--
+-- Name: index_design_outcomes_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_design_outcomes_on_nct_id ON ctgov.design_outcomes USING btree (nct_id);
 
 
 --
@@ -2869,6 +2942,13 @@ CREATE INDEX index_designs_on_masking ON ctgov.designs USING btree (masking);
 
 
 --
+-- Name: index_designs_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_designs_on_nct_id ON ctgov.designs USING btree (nct_id);
+
+
+--
 -- Name: index_designs_on_outcomes_assessor_masked; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -2883,6 +2963,13 @@ CREATE INDEX index_designs_on_subject_masked ON ctgov.designs USING btree (subje
 
 
 --
+-- Name: index_detailed_descriptions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_detailed_descriptions_on_nct_id ON ctgov.detailed_descriptions USING btree (nct_id);
+
+
+--
 -- Name: index_documents_on_document_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -2894,6 +2981,20 @@ CREATE INDEX index_documents_on_document_id ON ctgov.documents USING btree (docu
 --
 
 CREATE INDEX index_documents_on_document_type ON ctgov.documents USING btree (document_type);
+
+
+--
+-- Name: index_documents_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_documents_on_nct_id ON ctgov.documents USING btree (nct_id);
+
+
+--
+-- Name: index_drop_withdrawals_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_drop_withdrawals_on_nct_id ON ctgov.drop_withdrawals USING btree (nct_id);
 
 
 --
@@ -2932,6 +3033,13 @@ CREATE INDEX index_eligibilities_on_minimum_age ON ctgov.eligibilities USING btr
 
 
 --
+-- Name: index_eligibilities_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_eligibilities_on_nct_id ON ctgov.eligibilities USING btree (nct_id);
+
+
+--
 -- Name: index_facilities_on_city; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -2950,6 +3058,13 @@ CREATE INDEX index_facilities_on_country ON ctgov.facilities USING btree (countr
 --
 
 CREATE INDEX index_facilities_on_name ON ctgov.facilities USING btree (name);
+
+
+--
+-- Name: index_facilities_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_facilities_on_nct_id ON ctgov.facilities USING btree (nct_id);
 
 
 --
@@ -2974,6 +3089,20 @@ CREATE INDEX index_facility_contacts_on_contact_type ON ctgov.facility_contacts 
 
 
 --
+-- Name: index_facility_contacts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_facility_contacts_on_nct_id ON ctgov.facility_contacts USING btree (nct_id);
+
+
+--
+-- Name: index_facility_investigators_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_facility_investigators_on_nct_id ON ctgov.facility_investigators USING btree (nct_id);
+
+
+--
 -- Name: index_id_information_on_id_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -2981,10 +3110,38 @@ CREATE INDEX index_id_information_on_id_type ON ctgov.id_information USING btree
 
 
 --
+-- Name: index_id_information_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_id_information_on_nct_id ON ctgov.id_information USING btree (nct_id);
+
+
+--
+-- Name: index_intervention_other_names_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_intervention_other_names_on_nct_id ON ctgov.intervention_other_names USING btree (nct_id);
+
+
+--
 -- Name: index_interventions_on_intervention_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_interventions_on_intervention_type ON ctgov.interventions USING btree (intervention_type);
+
+
+--
+-- Name: index_interventions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_interventions_on_nct_id ON ctgov.interventions USING btree (nct_id);
+
+
+--
+-- Name: index_ipd_information_types_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_ipd_information_types_on_nct_id ON ctgov.ipd_information_types USING btree (nct_id);
 
 
 --
@@ -2999,6 +3156,20 @@ CREATE INDEX index_keywords_on_downcase_name ON ctgov.keywords USING btree (down
 --
 
 CREATE INDEX index_keywords_on_name ON ctgov.keywords USING btree (name);
+
+
+--
+-- Name: index_keywords_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_keywords_on_nct_id ON ctgov.keywords USING btree (nct_id);
+
+
+--
+-- Name: index_links_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_links_on_nct_id ON ctgov.links USING btree (nct_id);
 
 
 --
@@ -3037,6 +3208,13 @@ CREATE INDEX index_mesh_terms_on_qualifier ON ctgov.mesh_terms USING btree (qual
 
 
 --
+-- Name: index_milestones_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_milestones_on_nct_id ON ctgov.milestones USING btree (nct_id);
+
+
+--
 -- Name: index_milestones_on_period; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3051,10 +3229,31 @@ CREATE INDEX index_outcome_analyses_on_dispersion_type ON ctgov.outcome_analyses
 
 
 --
+-- Name: index_outcome_analyses_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_outcome_analyses_on_nct_id ON ctgov.outcome_analyses USING btree (nct_id);
+
+
+--
 -- Name: index_outcome_analyses_on_param_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_outcome_analyses_on_param_type ON ctgov.outcome_analyses USING btree (param_type);
+
+
+--
+-- Name: index_outcome_analysis_groups_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_outcome_analysis_groups_on_nct_id ON ctgov.outcome_analysis_groups USING btree (nct_id);
+
+
+--
+-- Name: index_outcome_counts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_outcome_counts_on_nct_id ON ctgov.outcome_counts USING btree (nct_id);
 
 
 --
@@ -3079,10 +3278,24 @@ CREATE INDEX index_outcome_measurements_on_dispersion_type ON ctgov.outcome_meas
 
 
 --
+-- Name: index_outcome_measurements_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_outcome_measurements_on_nct_id ON ctgov.outcome_measurements USING btree (nct_id);
+
+
+--
 -- Name: index_outcomes_on_dispersion_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_outcomes_on_dispersion_type ON ctgov.outcomes USING btree (dispersion_type);
+
+
+--
+-- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_outcomes_on_nct_id ON ctgov.outcomes USING btree (nct_id);
 
 
 --
@@ -3107,10 +3320,31 @@ CREATE INDEX index_overall_officials_on_nct_id ON ctgov.overall_officials USING 
 
 
 --
+-- Name: index_participant_flows_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_participant_flows_on_nct_id ON ctgov.participant_flows USING btree (nct_id);
+
+
+--
+-- Name: index_pending_results_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_pending_results_on_nct_id ON ctgov.pending_results USING btree (nct_id);
+
+
+--
 -- Name: index_reported_events_on_event_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_reported_events_on_event_type ON ctgov.reported_events USING btree (event_type);
+
+
+--
+-- Name: index_reported_events_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_reported_events_on_nct_id ON ctgov.reported_events USING btree (nct_id);
 
 
 --
@@ -3142,10 +3376,31 @@ CREATE INDEX index_responsible_parties_on_responsible_party_type ON ctgov.respon
 
 
 --
+-- Name: index_result_agreements_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_result_agreements_on_nct_id ON ctgov.result_agreements USING btree (nct_id);
+
+
+--
+-- Name: index_result_contacts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_result_contacts_on_nct_id ON ctgov.result_contacts USING btree (nct_id);
+
+
+--
 -- Name: index_result_contacts_on_organization; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_result_contacts_on_organization ON ctgov.result_contacts USING btree (organization);
+
+
+--
+-- Name: index_result_groups_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_result_groups_on_nct_id ON ctgov.result_groups USING btree (nct_id);
 
 
 --
@@ -3170,10 +3425,10 @@ CREATE INDEX index_sponsors_on_name ON ctgov.sponsors USING btree (name);
 
 
 --
--- Name: index_studies_on_completion_date; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_sponsors_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_studies_on_completion_date ON ctgov.studies USING btree (completion_date);
+CREATE INDEX index_sponsors_on_nct_id ON ctgov.sponsors USING btree (nct_id);
 
 
 --
@@ -3205,6 +3460,13 @@ CREATE INDEX index_studies_on_last_update_submitted_date ON ctgov.studies USING 
 
 
 --
+-- Name: index_studies_on_last_update_submitted_qc_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_studies_on_last_update_submitted_qc_date ON ctgov.studies USING btree (last_update_submitted_qc_date);
+
+
+--
 -- Name: index_studies_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3226,13 +3488,6 @@ CREATE INDEX index_studies_on_phase ON ctgov.studies USING btree (phase);
 
 
 --
--- Name: index_studies_on_primary_completion_date; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_studies_on_primary_completion_date ON ctgov.studies USING btree (primary_completion_date);
-
-
---
 -- Name: index_studies_on_primary_completion_date_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3247,24 +3502,17 @@ CREATE INDEX index_studies_on_results_first_submitted_date ON ctgov.studies USIN
 
 
 --
+-- Name: index_studies_on_results_first_submitted_qc_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_studies_on_results_first_submitted_qc_date ON ctgov.studies USING btree (results_first_submitted_qc_date);
+
+
+--
 -- Name: index_studies_on_source; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_studies_on_source ON ctgov.studies USING btree (source);
-
-
---
--- Name: index_studies_on_start_date; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_studies_on_start_date ON ctgov.studies USING btree (start_date);
-
-
---
--- Name: index_studies_on_start_date_type; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_studies_on_start_date_type ON ctgov.studies USING btree (start_date_type);
 
 
 --
@@ -3275,10 +3523,24 @@ CREATE INDEX index_studies_on_study_first_submitted_date ON ctgov.studies USING 
 
 
 --
+-- Name: index_studies_on_study_first_submitted_qc_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_studies_on_study_first_submitted_qc_date ON ctgov.studies USING btree (study_first_submitted_qc_date);
+
+
+--
 -- Name: index_studies_on_study_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_studies_on_study_type ON ctgov.studies USING btree (study_type);
+
+
+--
+-- Name: index_study_references_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_study_references_on_nct_id ON ctgov.study_references USING btree (nct_id);
 
 
 --
@@ -3370,4 +3632,6 @@ INSERT INTO schema_migrations (version) VALUES ('20161030000000');
 INSERT INTO schema_migrations (version) VALUES ('20170307184859');
 
 INSERT INTO schema_migrations (version) VALUES ('20170411000122');
+
+INSERT INTO schema_migrations (version) VALUES ('20181212000000');
 
