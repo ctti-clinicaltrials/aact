@@ -40,6 +40,8 @@ module Util
           PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
           cmd="CREATE SCHEMA ctgov;"
           PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
+          cmd="GRANT USAGE ON SCHEMA ctgov TO read_only;"
+          PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection.execute(cmd)
         rescue
         end
         log "  restoring alt public database..."
