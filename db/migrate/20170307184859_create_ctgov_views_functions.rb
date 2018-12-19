@@ -2,6 +2,11 @@ class CreateCtgovViewsFunctions < ActiveRecord::Migration
 
   def up
     execute <<-SQL
+      create or replace view all_keywords as
+      SELECT nct_id, array_to_string(array_agg(distinct name),'|') AS name
+        FROM keywords
+      GROUP BY nct_id;
+
       create or replace view all_sponsors as
       SELECT nct_id, array_to_string(array_agg(distinct name),'|') AS name
         FROM sponsors

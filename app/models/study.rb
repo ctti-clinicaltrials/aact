@@ -60,6 +60,7 @@ class Study < ActiveRecord::Base
   has_many :id_information,        :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :interventions,         :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :intervention_other_names, :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :ipd_information_types, :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :keywords,              :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :links,                 :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :milestones,            :foreign_key => 'nct_id', :dependent => :delete_all
@@ -117,6 +118,7 @@ class Study < ActiveRecord::Base
     Document.create_all_from(opts)
     Facility.create_all_from(opts)
     IdInformation.create_all_from(opts)
+    IpdInformationType.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     Milestone.create_all_from(opts)
@@ -261,7 +263,6 @@ class Study < ActiveRecord::Base
       :is_unapproved_device              => get_boolean('//is_unapproved_device'),
       :is_ppsd                           => get_boolean('//is_ppsd'),
       :is_us_export                      => get_boolean('//is_us_export'),
-      :ipd_info_type                     => get('patient_data/ipd_info_type'),
       :ipd_time_frame                    => get('patient_data/ipd_time_frame'),
       :ipd_access_criteria               => get('patient_data/ipd_access_criteria'),
       :ipd_url                           => get('patient_data/ipd_url'),
