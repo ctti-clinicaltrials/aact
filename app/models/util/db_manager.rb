@@ -91,10 +91,16 @@ module Util
     end
 
     def grant_db_privs
-      log "  db_manager:  letting users connect now..."
+      log "  db_manager:  granting ctgov schema access to read_only..."
       con=PublicBase.connection
       con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA ctgov TO read_only;")
+      #con.execute("GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA ctgov TO read_only;")
       con.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+      con.reset!
+      con=PublicBase.establish_connection(ENV["AACT_ALT_PUBLIC_DATABASE_URL"]).connection
+      con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA ctgov TO read_only;")
       con.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 200;")
       con.reset!
     end
