@@ -5,6 +5,7 @@ describe Study do
     nct_id='NCT01841593'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+    CalculatedValue.populate
     expect(study.source).to eq('St Stephens Aids Trust')
     expect(study.id_information.select{|x| x.id_type=='org_study_id'}.size).to eq(1)
     expect(study.id_information.size).to eq(1)
@@ -27,6 +28,10 @@ describe Study do
     expect(study.design.masking).to eq('None (Open Label)')
     expect(study.design.primary_purpose).to eq('Treatment')
     expect(study.design_outcomes.size).to eq(5)
+    expect(study.calculated_value.number_of_primary_outcomes_to_measure.to_i).to eq(5)
+    expect(study.calculated_value.number_of_secondary_outcomes_to_measure).to be(nil)
+    expect(study.calculated_value.number_of_other_outcomes_to_measure).to be(nil)
+
     outcomes=study.design_outcomes.select{|o|o.measure=='Raltegravir C12h'}
     expect(outcomes.size).to eq(1)
     an_outcome=outcomes.first

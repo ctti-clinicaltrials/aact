@@ -60,6 +60,7 @@ class Study < ActiveRecord::Base
   has_many :id_information,        :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :interventions,         :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :intervention_other_names, :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :ipd_information_types, :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :keywords,              :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :links,                 :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :milestones,            :foreign_key => 'nct_id', :dependent => :delete_all
@@ -117,6 +118,7 @@ class Study < ActiveRecord::Base
     Document.create_all_from(opts)
     Facility.create_all_from(opts)
     IdInformation.create_all_from(opts)
+    IpdInformationType.create_all_from(opts)
     Keyword.create_all_from(opts)
     Link.create_all_from(opts)
     Milestone.create_all_from(opts)
@@ -209,66 +211,69 @@ class Study < ActiveRecord::Base
       :completion_month_year         => get('completion_date'),
       :primary_completion_month_year => get('primary_completion_date'),
 
-      :start_date                    =>  convert_date('start_date'),
-      :verification_date             =>  convert_date('verification_date'),
-      :completion_date               =>  convert_date('completion_date'),
-      :primary_completion_date       =>  convert_date('primary_completion_date'),
+      :start_date                    => convert_date('start_date'),
+      :verification_date             => convert_date('verification_date'),
+      :completion_date               => convert_date('completion_date'),
+      :primary_completion_date       => convert_date('primary_completion_date'),
 
-      :study_first_submitted_qc_date        =>  get('study_first_submitted_qc').try(:to_date),
-      :study_first_posted_date              =>  get('study_first_posted').try(:to_date),
-      :results_first_submitted_qc_date      =>  get('results_first_submitted_qc').try(:to_date),
-      :results_first_posted_date            =>  get('results_first_posted').try(:to_date),
-      :disposition_first_submitted_qc_date  =>  get('disposition_first_submitted_qc').try(:to_date),
-      :disposition_first_posted_date        =>  get('disposition_first_posted').try(:to_date),
-      :last_update_submitted_qc_date        =>  get('last_update_submitted_qc').try(:to_date),
-      :last_update_posted_date              =>  get('last_update_posted').try(:to_date),
+      :study_first_submitted_qc_date        => get('study_first_submitted_qc').try(:to_date),
+      :study_first_posted_date              => get('study_first_posted').try(:to_date),
+      :results_first_submitted_qc_date      => get('results_first_submitted_qc').try(:to_date),
+      :results_first_posted_date            => get('results_first_posted').try(:to_date),
+      :disposition_first_submitted_qc_date  => get('disposition_first_submitted_qc').try(:to_date),
+      :disposition_first_posted_date        => get('disposition_first_posted').try(:to_date),
+      :last_update_submitted_qc_date        => get('last_update_submitted_qc').try(:to_date),
+      :last_update_posted_date              => get('last_update_posted').try(:to_date),
 
       # the previous have been replaced with:
-      :study_first_submitted_date => get_date(get('study_first_submitted')),
-      :results_first_submitted_date => get_date(get('results_first_submitted')),
+      :study_first_submitted_date       => get_date(get('study_first_submitted')),
+      :results_first_submitted_date     => get_date(get('results_first_submitted')),
       :disposition_first_submitted_date => get_date(get('disposition_first_submitted')),
-      :last_update_submitted_date => get_date(get('last_update_submitted')),
+      :last_update_submitted_date       => get_date(get('last_update_submitted')),
 
-      :nlm_download_date_description => xml.xpath('//download_date').text,
-      :acronym =>get('acronym'),
-      :baseline_population  =>xml.xpath('//baseline/population').try(:text),
-      :number_of_arms => get('number_of_arms'),
-      :number_of_groups =>get('number_of_groups'),
-      :source => get('source'),
-      :brief_title  => get('brief_title') ,
-      :official_title => get('official_title'),
-      :overall_status => get('overall_status'),
-      :last_known_status => get('last_known_status'),
-      :phase => get('phase'),
-      :target_duration => get('target_duration'),
-      :enrollment => get('enrollment'),
-      :biospec_description =>get_text('biospec_descr'),
+      :nlm_download_date_description  => xml.xpath('//download_date').text,
+      :acronym                        => get('acronym'),
+      :baseline_population            => xml.xpath('//baseline/population').try(:text),
+      :number_of_arms                 => get('number_of_arms'),
+      :number_of_groups               => get('number_of_groups'),
+      :source                         => get('source'),
+      :brief_title                    => get('brief_title') ,
+      :official_title                 => get('official_title'),
+      :overall_status                 => get('overall_status'),
+      :last_known_status              => get('last_known_status'),
+      :phase                          => get('phase'),
+      :target_duration                => get('target_duration'),
+      :enrollment                     => get('enrollment'),
+      :biospec_description            => get_text('biospec_descr'),
 
-      :start_date_type                           => get_type('start_date'),
-      :primary_completion_date_type              => get_type('primary_completion_date'),
-      :completion_date_type                      => get_type('completion_date'),
-      :study_first_posted_date_type              => get_type('study_first_posted'),
-      :results_first_posted_date_type            => get_type('results_first_posted'),
-      :disposition_first_posted_date_type        => get_type('disposition_first_posted'),
-      :last_update_posted_date_type              => get_type('last_update_posted'),
-      :enrollment_type                           => get_type('enrollment'),
+      :start_date_type                     => get_type('start_date'),
+      :primary_completion_date_type        => get_type('primary_completion_date'),
+      :completion_date_type                => get_type('completion_date'),
+      :study_first_posted_date_type        => get_type('study_first_posted'),
+      :results_first_posted_date_type      => get_type('results_first_posted'),
+      :disposition_first_posted_date_type  => get_type('disposition_first_posted'),
+      :last_update_posted_date_type        => get_type('last_update_posted'),
+      :enrollment_type                     => get_type('enrollment'),
 
-      :study_type                                => get('study_type'),
-      :biospec_retention =>get('biospec_retention'),
-      :limitations_and_caveats  =>xml.xpath('//limitations_and_caveats').text,
-      :is_fda_regulated_drug =>get_boolean('//is_fda_regulated_drug'),
-      :is_fda_regulated_device =>get_boolean('//is_fda_regulated_device'),
-      :is_unapproved_device =>get_boolean('//is_unapproved_device'),
-      :is_ppsd =>get_boolean('//is_ppsd'),
-      :is_us_export  =>get_boolean('//is_us_export'),
-      :plan_to_share_ipd => get('patient_data/sharing_ipd'),
-      :plan_to_share_ipd_description => get('patient_data/ipd_description'),
-      :has_expanded_access => get_boolean('//has_expanded_access'),
-      :expanded_access_type_individual => get_boolean('//expanded_access_info/expanded_access_type_individual'),
+      :study_type                        => get('study_type'),
+      :biospec_retention                 => get('biospec_retention'),
+      :limitations_and_caveats           => xml.xpath('//limitations_and_caveats').text,
+      :is_fda_regulated_drug             => get_boolean('//is_fda_regulated_drug'),
+      :is_fda_regulated_device           => get_boolean('//is_fda_regulated_device'),
+      :is_unapproved_device              => get_boolean('//is_unapproved_device'),
+      :is_ppsd                           => get_boolean('//is_ppsd'),
+      :is_us_export                      => get_boolean('//is_us_export'),
+      :ipd_time_frame                    => get('patient_data/ipd_time_frame'),
+      :ipd_access_criteria               => get('patient_data/ipd_access_criteria'),
+      :ipd_url                           => get('patient_data/ipd_url'),
+      :plan_to_share_ipd                 => get('patient_data/sharing_ipd'),
+      :plan_to_share_ipd_description     => get('patient_data/ipd_description'),
+      :has_expanded_access               => get_boolean('//has_expanded_access'),
+      :expanded_access_type_individual   => get_boolean('//expanded_access_info/expanded_access_type_individual'),
       :expanded_access_type_intermediate => get_boolean('//expanded_access_info/expanded_access_type_intermediate'),
-      :expanded_access_type_treatment => get_boolean('//expanded_access_info/expanded_access_type_treatment'),
-      :has_dmc => get_boolean('//has_dmc'),
-      :why_stopped =>get('why_stopped')
+      :expanded_access_type_treatment    => get_boolean('//expanded_access_info/expanded_access_type_treatment'),
+      :has_dmc                           => get_boolean('//has_dmc'),
+      :why_stopped                       => get('why_stopped')
     }
   end
 

@@ -48,6 +48,9 @@ class CalculatedValue < ActiveRecord::Base
       :sql_for_actual_duration,
       :sql_for_number_of_sae_subjects,
       :sql_for_number_of_nsae_subjects,
+      :sql_for_number_of_primary_outcomes,
+      :sql_for_number_of_secondary_outcomes,
+      :sql_for_number_of_other_outcomes,
       :sql_for_minimum_age_num,
       :sql_for_minimum_age_unit,
       :sql_for_maximum_age_num,
@@ -86,8 +89,31 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def self.sql_for_has_us_facility2
-    # SECOND: set to true if at least one facility is US
-    "SET has_us_facility=true WHERE nct_id in (SELECT distinct nct_id FROM countries WHERE name='United States' AND removed IS NOT true)"
+    # SECOND: set to true if at least one facility is US or US territory
+    "SET has_us_facility=true WHERE nct_id in (
+          SELECT distinct nct_id
+            FROM countries
+           WHERE removed IS NOT true
+             AND name in (
+               'United States',
+               'Guam',
+               'Puerto Rico',
+               'U.S. Virgin Islands',
+               'Virgin Islands (U.S.)',
+               'Northern Mariana Islands',
+               'American Samoa',
+                'Midway Atoll',
+               'Palmyra Atoll',
+               'Baker Island',
+               'Howland Island',
+               'Jarvis Island',
+               'Johnston Atoll',
+               'Kingman Reef',
+               'Wake Island',
+               'Navassa Island',
+               'Serranilla Bank',
+               'Bajo Nuevo Bank')
+           )"
   end
 
   def self.sql_for_has_us_facility3
@@ -123,6 +149,18 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.sql_for_number_of_nsae_subjects
     "SET number_of_nsae_subjects = x.res FROM ( SELECT re.nct_id, sum(re.subjects_affected) as res FROM reported_events re WHERE re.event_type='other' GROUP BY re.nct_id) x WHERE x.nct_id = calculated_values.nct_id "
+  end
+
+  def self.sql_for_number_of_primary_outcomes
+    "SET number_of_primary_outcomes_to_measure = x.res FROM ( SELECT nct_id, count(*) as res FROM design_outcomes WHERE outcome_type='primary' GROUP BY nct_id) x WHERE x.nct_id = calculated_values.nct_id AND number_of_primary_outcomes_to_measure is null"
+  end
+
+  def self.sql_for_number_of_secondary_outcomes
+    "SET number_of_secondary_outcomes_to_measure = x.res FROM ( SELECT nct_id, count(*) as res FROM design_outcomes WHERE outcome_type='secondary' GROUP BY nct_id) x WHERE x.nct_id = calculated_values.nct_id AND number_of_secondary_outcomes_to_measure is null"
+  end
+
+  def self.sql_for_number_of_other_outcomes
+    "SET number_of_other_outcomes_to_measure = x.res FROM ( SELECT nct_id, count(*) as res FROM design_outcomes WHERE outcome_type='other' GROUP BY nct_id) x WHERE x.nct_id = calculated_values.nct_id AND number_of_other_outcomes_to_measure is null"
   end
 
   def self.sql_for_minimum_age_num
