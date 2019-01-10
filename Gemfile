@@ -4,6 +4,9 @@ ruby "2.4.0"
 gem "sprockets", ">= 3.7.2"
 gem "rubyzip", ">= 1.2.2"
 
+gem "sprockets", ">= 3.7.2"
+gem "rubyzip", ">= 1.2.2"
+
 gem 'nokogiri', '~> 1.8.1'
 gem 'loofah', '~> 2.2.3'
 gem 'rails', github: 'rails/rails', branch: '4-2-stable'
@@ -20,7 +23,6 @@ gem 'rails_12factor'
 gem "coderay"
 gem "recipient_interceptor"
 gem "title"
-gem "rails-erd"
 gem 'rest-client'
 gem 'enumerize'
 gem 'bulk_insert'
