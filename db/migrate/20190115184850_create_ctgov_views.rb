@@ -18,6 +18,7 @@ class CreateCtgovViews < ActiveRecord::Migration
         FROM design_outcomes
       GROUP BY nct_id;
 
+
       create or replace view all_facilities as
       SELECT nct_id, array_to_string(array_agg(name),'|') AS names
         FROM facilities
@@ -83,6 +84,8 @@ class CreateCtgovViews < ActiveRecord::Migration
       GRANT SELECT on all_secondary_outcome_measures to read_only;
       GRANT SELECT on all_sponsors to read_only;
       GRANT SELECT on all_states to read_only;
+
+      add_index :design_outcomes, :measure
 
     SQL
   end
