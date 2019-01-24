@@ -250,7 +250,7 @@ class CreateCtgovFunctions < ActiveRecord::Migration
         $$
        LANGUAGE 'sql' VOLATILE;
 
-      GRANT EXECUTE ON FUNCTION ctgov.study_summaries(VARCHAR) TO read_only;
+      GRANT EXECUTE ON FUNCTION ctgov.study_summaries_for_condition(VARCHAR) TO read_only;
 
     SQL
   end
