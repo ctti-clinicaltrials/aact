@@ -84,10 +84,8 @@ class CreateCtgovViews < ActiveRecord::Migration
       GRANT SELECT on all_secondary_outcome_measures to read_only;
       GRANT SELECT on all_sponsors to read_only;
       GRANT SELECT on all_states to read_only;
-
-      add_index :design_outcomes, :measure
-
     SQL
+    add_index :design_outcomes, :measure
   end
 
   def down
