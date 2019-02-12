@@ -2,6 +2,11 @@ class CreateCtgovViews < ActiveRecord::Migration
 
   def up
     execute <<-SQL
+      create or replace view all_cities as
+      SELECT nct_id, array_to_string(array_agg(distinct city),'|') AS names
+        FROM facilities
+      GROUP BY nct_id;
+
       create or replace view all_conditions as
       SELECT nct_id, array_to_string(array_agg(distinct mesh_term),'|') AS names
         FROM browse_conditions
@@ -71,6 +76,7 @@ class CreateCtgovViews < ActiveRecord::Migration
         FROM facilities
       GROUP BY nct_id;
 
+      GRANT SELECT on all_cities to read_only;
       GRANT SELECT on all_conditions to read_only;
       GRANT SELECT on all_countries to read_only;
       GRANT SELECT on all_design_outcomes to read_only;
@@ -92,6 +98,7 @@ class CreateCtgovViews < ActiveRecord::Migration
 
   def down
     execute <<-SQL
+      DROP VIEW ctgov.all_cities;
       DROP VIEW ctgov.all_conditions;
       DROP VIEW ctgov.all_countries;
       DROP VIEW ctgov.all_design_outcomes;
