@@ -70,6 +70,7 @@ class Study < ActiveRecord::Base
   has_many :outcome_measurements,  :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :overall_officials,     :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :pending_results,       :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :provided_documents,    :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :references,            :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :reported_events,       :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :responsible_parties,   :foreign_key => 'nct_id', :dependent => :delete_all
@@ -126,6 +127,7 @@ class Study < ActiveRecord::Base
     OverallOfficial.create_all_from(opts)
     DesignOutcome.create_all_from(opts)
     PendingResult.create_all_from(opts)
+    ProvidedDocument.create_all_from(opts)
     ReportedEvent.create_all_from(opts)
     ResponsibleParty.create_all_from(opts)
     ResultAgreement.create_all_from(opts)
