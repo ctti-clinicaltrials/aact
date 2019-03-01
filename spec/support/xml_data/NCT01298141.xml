@@ -1,0 +1,2195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on February 28, 2019</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT01298141</url>
+  </required_header>
+  <id_info>
+    <org_study_id>HGT-REP-081</org_study_id>
+    <nct_id>NCT01298141</nct_id>
+  </id_info>
+  <brief_title>A Multicenter Open-Label Treatment Protocol to Observe the Safety of Replagal (Agalsidase Alfa) Enzyme Replacement Therapy in Canadian Patients With Fabry Disease</brief_title>
+  <official_title>A Multicenter Open-Label Treatment Protocol to Observe the Safety of Replagal® (Agalsidase Alfa) Enzyme Replacement Therapy in Canadian Patients With Fabry Disease</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Shire</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Shire</source>
+  <oversight_info>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to observe the safety of agalsidase alfa in Canadian patients
+      with Fabry disease.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      This study will evaluate the safety of agalsidase alfa in patients with Fabry disease.
+
+      Patients diagnosed with Fabry disease who meet current Canadian guidelines for enzyme
+      replacement therapy will be eligible to enroll in the study and will receive agalsidase alfa
+      at a dose of 0.2 mg/kg body weight administered by an IV infusion over 40 minutes every week
+      or every other week, based on previous treatment.
+
+      Shire has implemented a change to the drug substance manufacturing process. Safety data will
+      be collected in patients receiving product manufactured with this process. There are no
+      changes to the drug product formulation, manufacturing site, manufacturing process, and
+      container closure.
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date type="Actual">August 10, 2011</start_date>
+  <completion_date type="Actual">September 25, 2017</completion_date>
+  <primary_completion_date type="Actual">September 25, 2017</primary_completion_date>
+  <phase>Phase 3</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <intervention_model>Single Group Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>None (Open Label)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Number of Participants With Treatment-emergent Adverse Events (TEAEs)</measure>
+    <time_frame>From the start of study treatment up to 30 days after the last dose of study drug administration (up to 320 weeks)</time_frame>
+    <description>An adverse event (AE) was any noxious, pathologic, or unintended change in anatomical, physiologic, or metabolic function as indicated by physical signs, symptoms, or laboratory changes occurring in any phase of a clinical study, whether or not considered investigational product-related.Treatment-emergent adverse events (TEAEs) were defined as those events which occurred or worsened in severity after first treatment with Replagal AF until 30 days after the last dose. A serious AE (SAE) was any AE occurred at any dose that resulted in death, life-threatening, hospitalization, prolongation of existing hospitalization, persistent or significant disability or incapacity and congenital anomaly or birth defect.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Number of Participants With Infusion-Related Reactions (IRR)</measure>
+    <time_frame>From the start of study treatment up to 30 days after the last dose of study drug administration (up to 320 weeks)</time_frame>
+    <description>An IRR (also referred to as infusion-related adverse event [IRAE]) was defined as an AE that began either during the infusion or within 12 hours after the start of the infusion and was judged as possibly or probably related to study drug. The IRRs were classified based on the severity as Mild=No limitation of usual activities, Moderate=Some limitation of usual activities, Severe=Inability to carry out usual activities and Life-threatening=Immediate risk of death. The number of participants with infusion-related reactions was reported.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Number of Participants Who Reported Positive to Immunoglobulin A (IgA)</measure>
+    <time_frame>Baseline (within 6 months prior to first dose) up to Week 129</time_frame>
+    <description>The IgA status was measured using enzyme-linked immunosorbent assay (ELISA). Number of participants who reported positive to IgA was reported.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Number of Participants Who Reported Positive to Immunoglobulin E (IgE)</measure>
+    <time_frame>Baseline (within 6 months prior to first dose) up to Week 129</time_frame>
+    <description>The IgE status was measured using ELISA. Number of participants who reported positive to IgE was reported.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Number of Participants Who Reported Positive to Immunoglobulin M (IgM)</measure>
+    <time_frame>Baseline (within 6 months prior to first dose) up to Week 129</time_frame>
+    <description>The IgM status was measured using ELISA. Number of participants who reported positive to IgM was reported.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Number of Participants Who Reported Positive to Anti-drug Antibody (ADA)</measure>
+    <time_frame>Baseline (within 6 months prior to first dose) up to Week 285</time_frame>
+    <description>The ADA status was measured using ELISA and electrochemiluminescent (ECL) immunoassay. Number of participants who reported positive to ADA was reported.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Number of Participants Who Reported Positive to Neutralizing Antibody (NAb)</measure>
+    <time_frame>Baseline (within 6 months prior to first dose) up to Week 285</time_frame>
+    <description>The NAb status was measured using enzyme activity inhibition assay. Number of participants who reported positive to NAb was reported.</description>
+  </primary_outcome>
+  <number_of_arms>1</number_of_arms>
+  <enrollment type="Actual">171</enrollment>
+  <condition>Fabry Disease</condition>
+  <arm_group>
+    <arm_group_label>Replagal®</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>All eligible patients may receive Replagal produced by the bioreactor process (AF Replagal) on this treatment plan until AF Replagal is commercially available for the patient, the patient's participation is discontinued, or the study is discontinued, whichever comes first.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>agalsidase alfa</intervention_name>
+    <description>Cohort 1: 0.2 mg/kg body weight administered as an intravenous (IV) infusion over 40 minutes every other week (EOW)
+Cohort 2: 0.2 mg/kg body weight administered as an intravenous (IV) infusion over 40 minutes weekly</description>
+    <arm_group_label>Replagal®</arm_group_label>
+    <other_name>Replagal</other_name>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+        Cohort 1:
+
+          1. The patient has a documented diagnosis of Fabry disease.
+
+          2. The patient is sufficiently compliant with study activities to participate in this
+             treatment plan, as judged by the Investigator.
+
+          3. The patient must meet current Canadian guidelines for enzyme replacement therapy for
+             Fabry disease by meeting one of the following criteria:
+
+               1. Age-adjusted glomerular filtration rate (GFR) &lt;80 ml/min or a decline in GFR of
+                  &gt;10% which is sustained for 3 months and for which other causes of declining
+                  renal function have been excluded by a nephrologist or any 2 of the following:
+
+                    -  Isolated proteinuria ≥500 mg/day/1.73 m2 without other cause
+
+                    -  Nephrogenic diabetes insipidus
+
+                    -  Fanconi syndrome
+
+                    -  Hypertension
+
+               2. Evidence of cardiac involvement related to Fabry disease including any 2 of the
+                  following:
+
+                    -  Left ventricular (LV) wall thickness &gt;12 mm
+
+                    -  Left ventricular hypertrophy (LVH) by electrocardiogram (ECG); Estes ECG
+                       score must be &gt;5
+
+                    -  Left ventricular mass index (LVMI) by 2D echocardiogram 20% above normal for
+                       age
+
+                    -  Diastolic filling abnormalities by 2D echocardiogram or by other accepted
+                       measures of diastolic filling. E/A ration &gt;2.0 and deceleration time &lt;140
+                       msec
+
+                    -  Increase of LV mass of at least 5 g/m2/year, with three measurements over a
+                       minimum of 12 months
+
+                    -  Increase of left atrium (LA) size on 2D echo at least 10% above normal for
+                       age. In parasternal long axis view (PLAX) &gt;33 mm; in four chamber view &gt;42
+                       mm
+
+                    -  Cardiac conduction and rhythm abnormalities: atrioventricular (AV) block,
+                       short PR interval, left branch bundle block (LBBB), ventricular or atrial
+                       tachyarrhythmias, sinus bradycardia (in the absence of drugs with negative
+                       chronotropic activity)
+
+                    -  Delayed posterolateral left ventricular wall late enhancement on MRI as
+                       evidence of advanced cardiac disease with fibrosis
+
+               3. Evidence of neurological involvement related to Fabry disease including 1 of the
+                  following:
+
+                    -  Stroke or transient ischemic attack (TIA) prior to the age of 55 documented
+                       by a neurologist
+
+                    -  Acute onset unilateral hearing loss
+
+                    -  Acut monocular visual loss without other cause
+
+               4. Chronic, intractable diarrhea and/or abdominal pain/cramps, refractory to
+                  standard management for at least 6 months.
+
+               5. Chronic, intractable neuropathic pain, refractory to analgesics and standard pain
+                  management for at least 6 months.
+
+             Cohort 2:
+
+          4. Patient must have participated in Study REP001a.
+
+        Exclusion Criteria:
+
+          1. The patient has experienced an anaphylactic or anaphylactoid reaction or other
+             infusion-related reaction which, in the opinion of the Investigator, precludes further
+             treatment with agalsidase alfa or may interfere with the interpretation of the study.
+
+          2. The patient is otherwise unsuitable for the study, in the opinion of the Investigator.
+
+          3. The patient is enrolled in another clinical study, other than the Canadian Fabry
+             Disease Initiative (CFDI).
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>N/A</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Shire Physician</last_name>
+    <role>Study Director</role>
+    <affiliation>Shire</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Alberta Children's Hospital</name>
+      <address>
+        <city>Calgary</city>
+        <state>Alberta</state>
+        <zip>T3B 6A8</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of Alberta Hospital</name>
+      <address>
+        <city>Edmonton</city>
+        <state>Alberta</state>
+        <zip>T6G 2H7</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Vancouver General Hospital</name>
+      <address>
+        <city>Vancouver</city>
+        <state>British Columbia</state>
+        <zip>V5Z 1M9</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University of Manitoba</name>
+      <address>
+        <city>Winnipeg</city>
+        <state>Manitoba</state>
+        <zip>R3A 1S1</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Queen Elizabeth II Health Sciences Centre</name>
+      <address>
+        <city>Halifax</city>
+        <state>Nova Scotia</state>
+        <zip>B3H 1V8</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Izaak Walton Killam (IWK) Health Centre</name>
+      <address>
+        <city>Halifax</city>
+        <state>Nova Scotia</state>
+        <zip>B3K 6R8</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Kingston General Hospital</name>
+      <address>
+        <city>Kingston</city>
+        <state>Ontario</state>
+        <zip>K7L 3J6</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>London Health Sciences Centre - Victoria Hospital</name>
+      <address>
+        <city>London</city>
+        <state>Ontario</state>
+        <zip>N6C 2V5</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>The Hospital for Sick Children</name>
+      <address>
+        <city>Toronto</city>
+        <state>Ontario</state>
+        <zip>M5G 1X8</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>The Fred A. Litwin Family Centre in Genetic Medicine</name>
+      <address>
+        <city>Toronto</city>
+        <state>Ontario</state>
+        <zip>M5T 3L9</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Hopital du Sacre-Coeur de Montreal</name>
+      <address>
+        <city>Montreal</city>
+        <state>Quebec</state>
+        <zip>H4J 1C5</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Centre Hospitalier Universitaire de Sherbrooke (CHUS)</name>
+      <address>
+        <city>Sherbrooke</city>
+        <state>Quebec</state>
+        <zip>J1H 5N4</zip>
+        <country>Canada</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>Canada</country>
+  </location_countries>
+  <verification_date>May 2018</verification_date>
+  <study_first_submitted>February 15, 2011</study_first_submitted>
+  <study_first_submitted_qc>February 16, 2011</study_first_submitted_qc>
+  <study_first_posted type="Estimate">February 17, 2011</study_first_posted>
+  <results_first_submitted>September 24, 2018</results_first_submitted>
+  <results_first_submitted_qc>September 24, 2018</results_first_submitted_qc>
+  <results_first_posted type="Actual">February 15, 2019</results_first_posted>
+  <last_update_submitted>September 24, 2018</last_update_submitted>
+  <last_update_submitted_qc>September 24, 2018</last_update_submitted_qc>
+  <last_update_posted type="Actual">February 15, 2019</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>Replagal</keyword>
+  <keyword>Enzyme Replacement Therapy</keyword>
+  <keyword>agalsidase alfa</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Fabry Disease</mesh_term>
+  </condition_browse>
+  <provided_document_section>
+    <provided_document>
+      <document_type>Study Protocol: Original Protocol</document_type>
+      <document_has_protocol>Yes</document_has_protocol>
+      <document_has_icf>No</document_has_icf>
+      <document_has_sap>No</document_has_sap>
+      <document_date>September 30, 2010</document_date>
+      <document_url>https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_000.pdf</document_url>
+    </provided_document>
+    <provided_document>
+      <document_type>Study Protocol: Amendment 1</document_type>
+      <document_has_protocol>Yes</document_has_protocol>
+      <document_has_icf>No</document_has_icf>
+      <document_has_sap>No</document_has_sap>
+      <document_date>November 23, 2010</document_date>
+      <document_url>https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_001.pdf</document_url>
+    </provided_document>
+    <provided_document>
+      <document_type>Study Protocol: Amendment 2</document_type>
+      <document_has_protocol>Yes</document_has_protocol>
+      <document_has_icf>No</document_has_icf>
+      <document_has_sap>No</document_has_sap>
+      <document_date>December 6, 2010</document_date>
+      <document_url>https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_002.pdf</document_url>
+    </provided_document>
+    <provided_document>
+      <document_type>Study Protocol: Amendment 3</document_type>
+      <document_has_protocol>Yes</document_has_protocol>
+      <document_has_icf>No</document_has_icf>
+      <document_has_sap>No</document_has_sap>
+      <document_date>September 15, 2011</document_date>
+      <document_url>https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_003.pdf</document_url>
+    </provided_document>
+    <provided_document>
+      <document_type>Study Protocol: Amendment 4</document_type>
+      <document_has_protocol>Yes</document_has_protocol>
+      <document_has_icf>No</document_has_icf>
+      <document_has_sap>No</document_has_sap>
+      <document_date>March 28, 2013</document_date>
+      <document_url>https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_004.pdf</document_url>
+    </provided_document>
+    <provided_document>
+      <document_type>Study Protocol: Amendment 5</document_type>
+      <document_has_protocol>Yes</document_has_protocol>
+      <document_has_icf>No</document_has_icf>
+      <document_has_sap>No</document_has_sap>
+      <document_date>March 27, 2015</document_date>
+      <document_url>https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_005.pdf</document_url>
+    </provided_document>
+    <provided_document>
+      <document_type>Statistical Analysis Plan</document_type>
+      <document_has_protocol>No</document_has_protocol>
+      <document_has_icf>No</document_has_icf>
+      <document_has_sap>Yes</document_has_sap>
+      <document_date>December 6, 2017</document_date>
+      <document_url>https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/SAP_006.pdf</document_url>
+    </provided_document>
+  </provided_document_section>
+
+  <clinical_results>
+
+    <participant_flow>
+      <recruitment_details>This multicenter study was conducted at 12 sites in Canada between 10 Aug 2011 (first participant first visit) and 25 Sep 2017 (last participant last visit).</recruitment_details>
+      <pre_assignment_details>A total of 171 participants enrolled into cohort 1 (participants from Canadian Fabry Disease Initiative [CFDI]) and cohort 2 (participants who participated in study REP001a) and among them 167 participants received at least one full or partial dose of Replagal (agalsidase alfa) animal free (AF).</pre_assignment_details>
+      <group_list>
+        <group group_id="P1">
+          <title>Replagal (Agalsidase Alfa)</title>
+          <description>Participants in cohort 1 received Replagal AF intravenous (IV) infusion at a dose of 0.2 milligram per kilogram (mg/kg) body weight every other week (EOW) and cohort 2 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight weekly until the drug became commercially available or the participant discontinued, whichever came first.</description>
+        </group>
+      </group_list>
+      <period_list>
+        <period>
+          <title>Overall Study</title>
+          <milestone_list>
+            <milestone>
+              <title>STARTED</title>
+              <participants_list>
+                <participants group_id="P1" count="171"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>Treated</title>
+              <participants_list>
+                <participants group_id="P1" count="167"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="140"/>
+              </participants_list>
+            </milestone>
+            <milestone>
+              <title>NOT COMPLETED</title>
+              <participants_list>
+                <participants group_id="P1" count="31"/>
+              </participants_list>
+            </milestone>
+          </milestone_list>
+          <drop_withdraw_reason_list>
+            <drop_withdraw_reason>
+              <title>Adverse Event</title>
+              <participants_list>
+                <participants group_id="P1" count="3"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Refusal of Required Study Procedures</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Withdrawal by Subject</title>
+              <participants_list>
+                <participants group_id="P1" count="6"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Termination of Study by the Investigator</title>
+              <participants_list>
+                <participants group_id="P1" count="5"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Other</title>
+              <participants_list>
+                <participants group_id="P1" count="5"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Lost to Follow-up</title>
+              <participants_list>
+                <participants group_id="P1" count="1"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Death</title>
+              <participants_list>
+                <participants group_id="P1" count="6"/>
+              </participants_list>
+            </drop_withdraw_reason>
+            <drop_withdraw_reason>
+              <title>Not treated</title>
+              <participants_list>
+                <participants group_id="P1" count="4"/>
+              </participants_list>
+            </drop_withdraw_reason>
+          </drop_withdraw_reason_list>
+        </period>
+      </period_list>
+    </participant_flow>
+
+    <baseline>
+      <population>Safety Population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+      <group_list>
+        <group group_id="B1">
+          <title>Replagal (Agalsidase Alfa)</title>
+          <description>Participants in cohort 1 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight EOW and cohort 2 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight weekly until the drug became commercially available or the participant discontinued, whichever came first.</description>
+        </group>
+      </group_list>
+      <analyzed_list>
+        <analyzed>
+          <units>Participants</units>
+          <scope>Overall</scope>
+          <count_list>
+            <count group_id="B1" value="167"/>
+          </count_list>
+        </analyzed>
+      </analyzed_list>
+      <measure_list>
+        <measure>
+          <title>Age</title>
+          <description>Age at Informed Consent</description>
+          <units>Years</units>
+          <param>Mean</param>
+          <dispersion>Standard Deviation</dispersion>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="B1" value="48.85" spread="14.821"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Sex: Female, Male</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <title>Female</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="76"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Male</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="91"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Ethnicity (NIH/OMB)</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <title>Hispanic or Latino</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Not Hispanic or Latino</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="165"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Unknown or Not Reported</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+        <measure>
+          <title>Race (NIH/OMB)</title>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <title>American Indian or Alaska Native</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Asian</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="5"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Native Hawaiian or Other Pacific Islander</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Black or African American</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>White</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="160"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>More than one race</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="0"/>
+                  </measurement_list>
+                </category>
+                <category>
+                  <title>Unknown or Not Reported</title>
+                  <measurement_list>
+                    <measurement group_id="B1" value="2"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </measure_list>
+    </baseline>
+
+    <outcome_list>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of Participants With Treatment-emergent Adverse Events (TEAEs)</title>
+        <description>An adverse event (AE) was any noxious, pathologic, or unintended change in anatomical, physiologic, or metabolic function as indicated by physical signs, symptoms, or laboratory changes occurring in any phase of a clinical study, whether or not considered investigational product-related.Treatment-emergent adverse events (TEAEs) were defined as those events which occurred or worsened in severity after first treatment with Replagal AF until 30 days after the last dose. A serious AE (SAE) was any AE occurred at any dose that resulted in death, life-threatening, hospitalization, prolongation of existing hospitalization, persistent or significant disability or incapacity and congenital anomaly or birth defect.</description>
+        <time_frame>From the start of study treatment up to 30 days after the last dose of study drug administration (up to 320 weeks)</time_frame>
+        <population>Safety Population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Replagal (Agalsidase Alfa)</title>
+            <description>Participants in cohort 1 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight EOW and cohort 2 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight weekly until the drug became commercially available or the participant discontinued, whichever came first.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of Participants With Treatment-emergent Adverse Events (TEAEs)</title>
+          <description>An adverse event (AE) was any noxious, pathologic, or unintended change in anatomical, physiologic, or metabolic function as indicated by physical signs, symptoms, or laboratory changes occurring in any phase of a clinical study, whether or not considered investigational product-related.Treatment-emergent adverse events (TEAEs) were defined as those events which occurred or worsened in severity after first treatment with Replagal AF until 30 days after the last dose. A serious AE (SAE) was any AE occurred at any dose that resulted in death, life-threatening, hospitalization, prolongation of existing hospitalization, persistent or significant disability or incapacity and congenital anomaly or birth defect.</description>
+          <population>Safety Population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="167"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Any TEAE</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="163"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Any Serious TEAE</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="74"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Any TEAE Leading to Treatment Discontinuation</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="7"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of Participants With Infusion-Related Reactions (IRR)</title>
+        <description>An IRR (also referred to as infusion-related adverse event [IRAE]) was defined as an AE that began either during the infusion or within 12 hours after the start of the infusion and was judged as possibly or probably related to study drug. The IRRs were classified based on the severity as Mild=No limitation of usual activities, Moderate=Some limitation of usual activities, Severe=Inability to carry out usual activities and Life-threatening=Immediate risk of death. The number of participants with infusion-related reactions was reported.</description>
+        <time_frame>From the start of study treatment up to 30 days after the last dose of study drug administration (up to 320 weeks)</time_frame>
+        <population>Safety Population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Replagal (Agalsidase Alfa)</title>
+            <description>Participants in cohort 1 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight EOW and cohort 2 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight weekly until the drug became commercially available or the participant discontinued, whichever came first.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of Participants With Infusion-Related Reactions (IRR)</title>
+          <description>An IRR (also referred to as infusion-related adverse event [IRAE]) was defined as an AE that began either during the infusion or within 12 hours after the start of the infusion and was judged as possibly or probably related to study drug. The IRRs were classified based on the severity as Mild=No limitation of usual activities, Moderate=Some limitation of usual activities, Severe=Inability to carry out usual activities and Life-threatening=Immediate risk of death. The number of participants with infusion-related reactions was reported.</description>
+          <population>Safety Population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="167"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <title>Mild</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="21"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Moderate</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="16"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Severe</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="3"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+            <class>
+              <title>Life-threatening</title>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="0"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of Participants Who Reported Positive to Immunoglobulin A (IgA)</title>
+        <description>The IgA status was measured using enzyme-linked immunosorbent assay (ELISA). Number of participants who reported positive to IgA was reported.</description>
+        <time_frame>Baseline (within 6 months prior to first dose) up to Week 129</time_frame>
+        <population>Safety population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Replagal (Agalsidase Alfa)</title>
+            <description>Participants in cohort 1 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight EOW and cohort 2 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight weekly until the drug became commercially available or the participant discontinued, whichever came first.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of Participants Who Reported Positive to Immunoglobulin A (IgA)</title>
+          <description>The IgA status was measured using enzyme-linked immunosorbent assay (ELISA). Number of participants who reported positive to IgA was reported.</description>
+          <population>Safety population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="167"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="10"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of Participants Who Reported Positive to Immunoglobulin E (IgE)</title>
+        <description>The IgE status was measured using ELISA. Number of participants who reported positive to IgE was reported.</description>
+        <time_frame>Baseline (within 6 months prior to first dose) up to Week 129</time_frame>
+        <population>Safety population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Replagal (Agalsidase Alfa)</title>
+            <description>Participants in cohort 1 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight EOW and cohort 2 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight weekly until the drug became commercially available or the participant discontinued, whichever came first.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of Participants Who Reported Positive to Immunoglobulin E (IgE)</title>
+          <description>The IgE status was measured using ELISA. Number of participants who reported positive to IgE was reported.</description>
+          <population>Safety population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="167"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="1"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of Participants Who Reported Positive to Immunoglobulin M (IgM)</title>
+        <description>The IgM status was measured using ELISA. Number of participants who reported positive to IgM was reported.</description>
+        <time_frame>Baseline (within 6 months prior to first dose) up to Week 129</time_frame>
+        <population>Safety population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Replagal (Agalsidase Alfa)</title>
+            <description>Participants in cohort 1 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight EOW and cohort 2 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight weekly until the drug became commercially available or the participant discontinued, whichever came first.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of Participants Who Reported Positive to Immunoglobulin M (IgM)</title>
+          <description>The IgM status was measured using ELISA. Number of participants who reported positive to IgM was reported.</description>
+          <population>Safety population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="167"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="48"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of Participants Who Reported Positive to Anti-drug Antibody (ADA)</title>
+        <description>The ADA status was measured using ELISA and electrochemiluminescent (ECL) immunoassay. Number of participants who reported positive to ADA was reported.</description>
+        <time_frame>Baseline (within 6 months prior to first dose) up to Week 285</time_frame>
+        <population>Safety population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Replagal (Agalsidase Alfa)</title>
+            <description>Participants in cohort 1 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight EOW and cohort 2 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight weekly until the drug became commercially available or the participant discontinued, whichever came first.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of Participants Who Reported Positive to Anti-drug Antibody (ADA)</title>
+          <description>The ADA status was measured using ELISA and electrochemiluminescent (ECL) immunoassay. Number of participants who reported positive to ADA was reported.</description>
+          <population>Safety population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="167"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="42"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+      <outcome>
+        <type>Primary</type>
+        <title>Number of Participants Who Reported Positive to Neutralizing Antibody (NAb)</title>
+        <description>The NAb status was measured using enzyme activity inhibition assay. Number of participants who reported positive to NAb was reported.</description>
+        <time_frame>Baseline (within 6 months prior to first dose) up to Week 285</time_frame>
+        <population>Safety population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+        <group_list>
+          <group group_id="O1">
+            <title>Replagal (Agalsidase Alfa)</title>
+            <description>Participants in cohort 1 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight EOW and cohort 2 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight weekly until the drug became commercially available or the participant discontinued, whichever came first.</description>
+          </group>
+        </group_list>
+        <measure>
+          <title>Number of Participants Who Reported Positive to Neutralizing Antibody (NAb)</title>
+          <description>The NAb status was measured using enzyme activity inhibition assay. Number of participants who reported positive to NAb was reported.</description>
+          <population>Safety population included all participants who received at least one full or partial infusion of Replagal AF.</population>
+          <units>Participants</units>
+          <param>Count of Participants</param>
+          <analyzed_list>
+            <analyzed>
+              <units>Participants</units>
+              <scope>Measure</scope>
+              <count_list>
+                <count group_id="O1" value="167"/>
+              </count_list>
+            </analyzed>
+          </analyzed_list>
+          <class_list>
+            <class>
+              <category_list>
+                <category>
+                  <measurement_list>
+                    <measurement group_id="O1" value="27"/>
+                  </measurement_list>
+                </category>
+              </category_list>
+            </class>
+          </class_list>
+        </measure>
+      </outcome>
+    </outcome_list>
+
+    <reported_events>
+      <time_frame>From the start of study treatment up to 30 days after the last dose of study drug administration (up to 320 weeks)</time_frame>
+      <group_list>
+        <group group_id="E1">
+          <title>Replagal (Agalsidase Alfa)</title>
+          <description>Participants in cohort 1 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight EOW and cohort 2 received Replagal AF IV infusion at a dose of 0.2 mg/kg body weight weekly until the drug became commercially available or the participant discontinued, whichever came first.</description>
+        </group>
+      </group_list>
+      <serious_events>
+        <default_vocab>MedDRA 13.1</default_vocab>
+        <default_assessment>Non-systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, all-cause mortality</sub_title>
+                <counts group_id="E1" subjects_affected="6" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Total, serious adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="74" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Blood and lymphatic system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anaemia</sub_title>
+                <counts group_id="E1" events="5" subjects_affected="5" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Iron deficiency anaemia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pancytopenia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Thrombocytopenia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Acute coronary syndrome</sub_title>
+                <counts group_id="E1" events="4" subjects_affected="4" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Acute myocardial infarction</sub_title>
+                <counts group_id="E1" events="3" subjects_affected="3" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Angina pectoris</sub_title>
+                <counts group_id="E1" events="6" subjects_affected="6" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Angina unstable</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Aortic valve incompetence</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Aortic valve stenosis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Atrial fibrillation</sub_title>
+                <counts group_id="E1" events="7" subjects_affected="5" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Atrial flutter</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cardiac arrest</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cardiac failure</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cardiac failure congestive</sub_title>
+                <counts group_id="E1" events="4" subjects_affected="4" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Coronary artery disease</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Coronary artery stenosis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Hypertrophic cardiomyopathy</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Intracardiac thrombus</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Left ventricular dysfunction</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Myocardial infarction</sub_title>
+                <counts group_id="E1" events="8" subjects_affected="7" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Palpitations</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Supraventricular tachycardia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Ventricular tachycardia</sub_title>
+                <counts group_id="E1" events="7" subjects_affected="7" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Congenital, familial and genetic disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Fabry's disease</sub_title>
+                <counts group_id="E1" events="3" subjects_affected="3" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pyloric stenosis</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Ear and labyrinth disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Hypoacusis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Sudden hearing loss</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Vertigo positional</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Vestibular disorder</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Eye disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Eye swelling</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Abdominal discomfort</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Abdominal pain</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Abdominal pain lower</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Colitis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Constipation</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Diarrhoea</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Dysphagia</sub_title>
+                <counts group_id="E1" events="3" subjects_affected="3" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Gastric haemorrhage</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Gastrointestinal haemorrhage</sub_title>
+                <counts group_id="E1" events="3" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Gastrooesophageal reflux disease</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Haemorrhoidal haemorrhage</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Hypoaesthesia oral</sub_title>
+                <counts group_id="E1" events="4" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Inguinal hernia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Intestinal perforation</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Nausea</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pancreatitis</sub_title>
+                <counts group_id="E1" events="3" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Paraesthesia oral</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Retroperitoneal haematoma</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Swollen tongue</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Umbilical hernia</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Upper gastrointestinal haemorrhage</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Asthenia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Chest pain</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Device malfunction</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Malaise</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Non-Cardiac chest pain</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Oedema peripheral</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pyrexia</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Hepatobiliary disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Biloma</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cholangitis acute</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cholecystitis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cholecystitis acute</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cholelithiasis</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Immune system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anaphylactic reaction</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Kidney transplant rejection</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Bacteraemia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Bacterial sepsis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Beta haemolytic streptococcal infection</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cellulitis</sub_title>
+                <counts group_id="E1" events="9" subjects_affected="7" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cholangitis suppurative</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cytomegalovirus viraemia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Device related infection</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Escherichia bacteraemia</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Infection</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Influenza</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Perihepatic abscess</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pneumonia</sub_title>
+                <counts group_id="E1" events="7" subjects_affected="7" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pneumonia adenoviral</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pneumonia cytomegaloviral</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pneumonia primary atypical</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pseudomonal sepsis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Sepsis</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Septic shock</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Tooth abscess</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Upper respiratory tract infection</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Urosepsis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Injury, poisoning and procedural complications</title>
+            <event_list>
+              <event>
+                <sub_title>Accident</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Accidental overdose</sub_title>
+                <counts group_id="E1" events="4" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Ankle fracture</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Fall</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Foot fracture</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Hip fracture</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Intentional overdose</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Psychosis postoperative</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Rib fracture</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Scapula fracture</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Soft tissue injury</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>Ejection fraction decreased</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Electrocardiogram qt prolonged</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Enterococcus test positive</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Heart rate decreased</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Troponin increased</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Weight decreased</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Metabolism and nutrition disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Dehydration</sub_title>
+                <counts group_id="E1" events="3" subjects_affected="3" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Failure to thrive</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Hyperglycaemia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Musculoskeletal and connective tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Cervical spinal stenosis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Osteolysis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Osteonecrosis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pain in extremity</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Neoplasms benign, malignant and unspecified (incl cysts and polyps)</title>
+            <event_list>
+              <event>
+                <sub_title>Splenic neoplasm malignancy unspecified</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Thyroid cancer</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Aphasia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cerebral infarction</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cerebrovascular accident</sub_title>
+                <counts group_id="E1" events="8" subjects_affected="8" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Hypoaesthesia</sub_title>
+                <counts group_id="E1" events="5" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Ischaemic stroke</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Nervous system disorder</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Neuralgia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Presyncope</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Syncope</sub_title>
+                <counts group_id="E1" events="3" subjects_affected="3" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Tension headache</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Transient ischaemic attack</sub_title>
+                <counts group_id="E1" events="4" subjects_affected="3" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Tremor</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Psychiatric disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Depression</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Renal and urinary disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Nephrolithiasis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Nephropathy</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Renal failure</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Renal failure acute</sub_title>
+                <counts group_id="E1" events="8" subjects_affected="7" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Renal failure chronic</sub_title>
+                <counts group_id="E1" events="9" subjects_affected="8" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Reproductive system and breast disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Endometrial hyperplasia</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Priapism</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Respiratory, thoracic and mediastinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Choking sensation</sub_title>
+                <counts group_id="E1" events="3" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cough</sub_title>
+                <counts group_id="E1" events="3" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Dyspnoea</sub_title>
+                <counts group_id="E1" events="5" subjects_affected="2" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Increased upper airway secretion</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pneumothorax</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pulmonary embolism</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Respiratory tract congestion</sub_title>
+                <counts group_id="E1" events="2" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Tracheal stenosis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Erythema</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Hypoaesthesia facial</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Piloerection</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pruritus generalised</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Surgical and medical procedures</title>
+            <event_list>
+              <event>
+                <sub_title>Aortic valve replacement</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cardiac ablation</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cardiac pacemaker insertion</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cardiac pacemaker replacement</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cardiac pacemaker revision</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Implantable defibrillator insertion</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Implantable defibrillator replacement</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Mitral valve replacement</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Vascular disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Deep vein thrombosis</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Thrombophlebitis superficial</sub_title>
+                <counts group_id="E1" events="1" subjects_affected="1" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </serious_events>
+      <other_events>
+        <frequency_threshold>5</frequency_threshold>
+        <default_vocab>MedDRA 13.1</default_vocab>
+        <default_assessment>Non-systematic Assessment</default_assessment>
+        <category_list>
+          <category>
+            <title>Total</title>
+            <event_list>
+              <event>
+                <sub_title>Total, other adverse events</sub_title>
+                <counts group_id="E1" subjects_affected="160" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Blood and lymphatic system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anaemia</sub_title>
+                <counts group_id="E1" events="25" subjects_affected="11" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Cardiac disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Angina pectoris</sub_title>
+                <counts group_id="E1" events="44" subjects_affected="22" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Palpitations</sub_title>
+                <counts group_id="E1" events="49" subjects_affected="35" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Ear and labyrinth disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Ear pain</sub_title>
+                <counts group_id="E1" events="11" subjects_affected="11" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Tinnitus</sub_title>
+                <counts group_id="E1" events="17" subjects_affected="17" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Vertigo</sub_title>
+                <counts group_id="E1" events="26" subjects_affected="23" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Eye disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Vision blurred</sub_title>
+                <counts group_id="E1" events="19" subjects_affected="16" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Gastrointestinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Abdominal discomfort</sub_title>
+                <counts group_id="E1" events="14" subjects_affected="13" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Abdominal pain</sub_title>
+                <counts group_id="E1" events="50" subjects_affected="29" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Abdominal pain upper</sub_title>
+                <counts group_id="E1" events="21" subjects_affected="17" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Constipation</sub_title>
+                <counts group_id="E1" events="16" subjects_affected="14" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Diarrhoea</sub_title>
+                <counts group_id="E1" events="90" subjects_affected="51" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Dyspepsia</sub_title>
+                <counts group_id="E1" events="12" subjects_affected="11" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Gastrooesophageal reflux disease</sub_title>
+                <counts group_id="E1" events="12" subjects_affected="11" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Haematochezia</sub_title>
+                <counts group_id="E1" events="9" subjects_affected="9" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Nausea</sub_title>
+                <counts group_id="E1" events="119" subjects_affected="57" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Vomiting</sub_title>
+                <counts group_id="E1" events="79" subjects_affected="44" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>General disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Asthenia</sub_title>
+                <counts group_id="E1" events="18" subjects_affected="14" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Chest discomfort</sub_title>
+                <counts group_id="E1" events="16" subjects_affected="11" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Chest pain</sub_title>
+                <counts group_id="E1" events="22" subjects_affected="16" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Chills</sub_title>
+                <counts group_id="E1" events="30" subjects_affected="15" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Fatigue</sub_title>
+                <counts group_id="E1" events="95" subjects_affected="70" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Influenza like illness</sub_title>
+                <counts group_id="E1" events="21" subjects_affected="14" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Non-Cardiac chest pain</sub_title>
+                <counts group_id="E1" events="27" subjects_affected="23" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Oedema</sub_title>
+                <counts group_id="E1" events="10" subjects_affected="9" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Oedema peripheral</sub_title>
+                <counts group_id="E1" events="82" subjects_affected="56" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pain</sub_title>
+                <counts group_id="E1" events="21" subjects_affected="16" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pyrexia</sub_title>
+                <counts group_id="E1" events="35" subjects_affected="28" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Infections and infestations</title>
+            <event_list>
+              <event>
+                <sub_title>Bronchitis</sub_title>
+                <counts group_id="E1" events="21" subjects_affected="18" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cellulitis</sub_title>
+                <counts group_id="E1" events="15" subjects_affected="11" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Cystitis</sub_title>
+                <counts group_id="E1" events="15" subjects_affected="11" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Ear infection</sub_title>
+                <counts group_id="E1" events="14" subjects_affected="13" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Influenza</sub_title>
+                <counts group_id="E1" events="45" subjects_affected="31" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Localised infection</sub_title>
+                <counts group_id="E1" events="17" subjects_affected="12" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Lower respiratory tract infection</sub_title>
+                <counts group_id="E1" events="21" subjects_affected="19" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Nasopharyngitis</sub_title>
+                <counts group_id="E1" events="123" subjects_affected="64" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pneumonia</sub_title>
+                <counts group_id="E1" events="18" subjects_affected="11" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Sinusitis</sub_title>
+                <counts group_id="E1" events="25" subjects_affected="17" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Upper respiratory tract infection</sub_title>
+                <counts group_id="E1" events="20" subjects_affected="14" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Urinary tract infection</sub_title>
+                <counts group_id="E1" events="38" subjects_affected="23" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Injury, poisoning and procedural complications</title>
+            <event_list>
+              <event>
+                <sub_title>Contusion</sub_title>
+                <counts group_id="E1" events="29" subjects_affected="21" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Skin laceration</sub_title>
+                <counts group_id="E1" events="10" subjects_affected="9" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Investigations</title>
+            <event_list>
+              <event>
+                <sub_title>Cardiac murmur</sub_title>
+                <counts group_id="E1" events="16" subjects_affected="12" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Temperature difference of extremities</sub_title>
+                <counts group_id="E1" events="18" subjects_affected="16" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Metabolism and nutrition disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Gout</sub_title>
+                <counts group_id="E1" events="16" subjects_affected="9" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Musculoskeletal and connective tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Arthralgia</sub_title>
+                <counts group_id="E1" events="68" subjects_affected="45" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Back pain</sub_title>
+                <counts group_id="E1" events="63" subjects_affected="46" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Joint swelling</sub_title>
+                <counts group_id="E1" events="17" subjects_affected="14" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Muscle spasms</sub_title>
+                <counts group_id="E1" events="30" subjects_affected="22" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Muscular weakness</sub_title>
+                <counts group_id="E1" events="12" subjects_affected="10" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Musculoskeletal pain</sub_title>
+                <counts group_id="E1" events="29" subjects_affected="23" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Myalgia</sub_title>
+                <counts group_id="E1" events="22" subjects_affected="21" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Neck pain</sub_title>
+                <counts group_id="E1" events="14" subjects_affected="14" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Osteoarthritis</sub_title>
+                <counts group_id="E1" events="12" subjects_affected="12" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pain in extremity</sub_title>
+                <counts group_id="E1" events="49" subjects_affected="34" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Nervous system disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Balance disorder</sub_title>
+                <counts group_id="E1" events="9" subjects_affected="9" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Dizziness</sub_title>
+                <counts group_id="E1" events="85" subjects_affected="54" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Headache</sub_title>
+                <counts group_id="E1" events="104" subjects_affected="54" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Hypoaesthesia</sub_title>
+                <counts group_id="E1" events="31" subjects_affected="26" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Migraine</sub_title>
+                <counts group_id="E1" events="16" subjects_affected="13" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Neuralgia</sub_title>
+                <counts group_id="E1" events="63" subjects_affected="32" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Paraesthesia</sub_title>
+                <counts group_id="E1" events="31" subjects_affected="29" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Syncope</sub_title>
+                <counts group_id="E1" events="11" subjects_affected="10" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Tremor</sub_title>
+                <counts group_id="E1" events="19" subjects_affected="17" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Psychiatric disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Anxiety</sub_title>
+                <counts group_id="E1" events="22" subjects_affected="19" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Depression</sub_title>
+                <counts group_id="E1" events="13" subjects_affected="12" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Insomnia</sub_title>
+                <counts group_id="E1" events="16" subjects_affected="13" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Respiratory, thoracic and mediastinal disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Cough</sub_title>
+                <counts group_id="E1" events="82" subjects_affected="51" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Dyspnoea</sub_title>
+                <counts group_id="E1" events="58" subjects_affected="40" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Dyspnoea exertional</sub_title>
+                <counts group_id="E1" events="16" subjects_affected="14" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Epistaxis</sub_title>
+                <counts group_id="E1" events="25" subjects_affected="16" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Nasal congestion</sub_title>
+                <counts group_id="E1" events="19" subjects_affected="16" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Oropharyngeal pain</sub_title>
+                <counts group_id="E1" events="34" subjects_affected="24" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Productive cough</sub_title>
+                <counts group_id="E1" events="17" subjects_affected="11" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Respiratory tract congestion</sub_title>
+                <counts group_id="E1" events="11" subjects_affected="10" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Skin and subcutaneous tissue disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Angiokeratoma</sub_title>
+                <counts group_id="E1" events="11" subjects_affected="11" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Hyperhidrosis</sub_title>
+                <counts group_id="E1" events="29" subjects_affected="19" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Pruritus</sub_title>
+                <counts group_id="E1" events="13" subjects_affected="10" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Rash</sub_title>
+                <counts group_id="E1" events="24" subjects_affected="18" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+          <category>
+            <title>Vascular disorders</title>
+            <event_list>
+              <event>
+                <sub_title>Flushing</sub_title>
+                <counts group_id="E1" events="49" subjects_affected="9" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Hypertension</sub_title>
+                <counts group_id="E1" events="22" subjects_affected="17" subjects_at_risk="167"/>
+              </event>
+              <event>
+                <sub_title>Hypotension</sub_title>
+                <counts group_id="E1" events="23" subjects_affected="17" subjects_at_risk="167"/>
+              </event>
+            </event_list>
+          </category>
+        </category_list>
+      </other_events>
+    </reported_events>
+
+    <certain_agreements>
+      <pi_employee>Principal Investigators are NOT employed by the organization sponsoring the study.</pi_employee>
+      <restrictive_agreement>If a multicenter publication is not submitted within twelve (12) months after conclusion, abandonment or termination of the Study at all sites, or after Sponsor confirms there shall be no multicenter Study publication, the Institution and/or such Principal Investigator may publish the results from the Institution site individually.</restrictive_agreement>
+    </certain_agreements>
+    <point_of_contact>
+      <name_or_title>Study Director</name_or_title>
+      <organization>Shire</organization>
+      <phone>+1 866 842 5335</phone>
+      <email>ClinicalTransparency@shire.com</email>
+    </point_of_contact>
+  </clinical_results>
+</clinical_study>
