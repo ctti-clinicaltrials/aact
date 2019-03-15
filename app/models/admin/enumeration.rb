@@ -155,6 +155,7 @@ module Admin
         ['studies','last_known_status'],
         ['studies','overall_status'],
         ['studies','phase'],
+        ['studies','plan_to_share_ipd'],
         ['studies','primary_completion_date_type'],
         ['studies','start_date_type'],
         ['studies','study_type'],
