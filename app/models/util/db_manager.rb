@@ -221,6 +221,7 @@ module Util
          [:conditions, :name],
          [:conditions, :downcase_name],
          [:design_groups, :group_type],
+         [:design_outcomes, :measure],
          [:design_outcomes, :outcome_type],
          [:designs, :masking],
          [:designs, :subject_masked],

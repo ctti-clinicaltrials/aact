@@ -9,7 +9,6 @@ abort("AACT_ADMIN_DATABASE_URL env var should be set to integrate with admin fea
 abort("AACT_BACK_DATABASE_URL env var is not set")    if !ENV["AACT_BACK_DATABASE_URL"]
 abort("AACT_PUBLIC_DATABASE_URL env var is not set")  if !ENV["AACT_PUBLIC_DATABASE_URL"]
 abort("AACT_PUBLIC_DATABASE_NAME env var is not set") if !ENV["AACT_PUBLIC_DATABASE_NAME"]
-abort("AACT_STAGE_DATABASE_URL env var is not set")   if !ENV["AACT_STAGE_DATABASE_URL"]
 
 #  Define info needed to deploy code to a servers with Capistrano
 abort("AACT_PUBLIC_HOSTNAME env var must be set for capistrano to deploy code to a server")  if !ENV["AACT_PUBLIC_HOSTNAME"]
