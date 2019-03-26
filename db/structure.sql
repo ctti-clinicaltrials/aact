@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 11.1
--- Dumped by pg_dump version 11.1
+-- Dumped by pg_dump version 11.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -3911,6 +3911,13 @@ CREATE INDEX index_pending_results_on_nct_id ON ctgov.pending_results USING btre
 
 
 --
+-- Name: index_provided_documents_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_provided_documents_on_nct_id ON ctgov.provided_documents USING btree (nct_id);
+
+
+--
 -- Name: index_reported_events_on_event_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4198,6 +4205,326 @@ CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_re
 
 
 --
+-- Name: baseline_counts baseline_c_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.baseline_counts
+    ADD CONSTRAINT baseline_c_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
+
+
+--
+-- Name: baseline_measurements baseline_m_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.baseline_measurements
+    ADD CONSTRAINT baseline_m_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
+
+
+--
+-- Name: brief_summaries brief_summaries_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.brief_summaries
+    ADD CONSTRAINT brief_summaries_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: browse_conditions browse_conditions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.browse_conditions
+    ADD CONSTRAINT browse_conditions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: browse_interventions browse_interventions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.browse_interventions
+    ADD CONSTRAINT browse_interventions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: calculated_values calculated_values_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.calculated_values
+    ADD CONSTRAINT calculated_values_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: central_contacts central_contacts_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.central_contacts
+    ADD CONSTRAINT central_contacts_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: conditions conditions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.conditions
+    ADD CONSTRAINT conditions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: countries countries_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.countries
+    ADD CONSTRAINT countries_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: design_groups design_groups_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.design_groups
+    ADD CONSTRAINT design_groups_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: design_outcomes design_outcomes_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.design_outcomes
+    ADD CONSTRAINT design_outcomes_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: designs designs_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.designs
+    ADD CONSTRAINT designs_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: detailed_descriptions detailed_descriptions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.detailed_descriptions
+    ADD CONSTRAINT detailed_descriptions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: documents documents_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.documents
+    ADD CONSTRAINT documents_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: drop_withdrawals drop_with_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.drop_withdrawals
+    ADD CONSTRAINT drop_with_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
+
+
+--
+-- Name: eligibilities eligibilities_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.eligibilities
+    ADD CONSTRAINT eligibilities_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: facilities facilities_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.facilities
+    ADD CONSTRAINT facilities_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: facility_contacts facility_contacts_facility_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.facility_contacts
+    ADD CONSTRAINT facility_contacts_facility_id_fkey FOREIGN KEY (facility_id) REFERENCES ctgov.facilities(id);
+
+
+--
+-- Name: facility_investigators facility_i_f_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.facility_investigators
+    ADD CONSTRAINT facility_i_f_fkey FOREIGN KEY (facility_id) REFERENCES ctgov.facilities(id);
+
+
+--
+-- Name: id_information id_study_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.id_information
+    ADD CONSTRAINT id_study_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: interventions interventions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.interventions
+    ADD CONSTRAINT interventions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: keywords keywords_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.keywords
+    ADD CONSTRAINT keywords_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: links links_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.links
+    ADD CONSTRAINT links_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: milestones milestones_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.milestones
+    ADD CONSTRAINT milestones_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
+
+
+--
+-- Name: outcome_analyses outcome_analyses_outcome_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.outcome_analyses
+    ADD CONSTRAINT outcome_analyses_outcome_id_fkey FOREIGN KEY (outcome_id) REFERENCES ctgov.outcomes(id);
+
+
+--
+-- Name: outcome_analysis_groups outcome_analysis_group_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.outcome_analysis_groups
+    ADD CONSTRAINT outcome_analysis_group_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
+
+
+--
+-- Name: outcome_analysis_groups outcome_analysis_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.outcome_analysis_groups
+    ADD CONSTRAINT outcome_analysis_group_id_fkey FOREIGN KEY (outcome_analysis_id) REFERENCES ctgov.outcome_analyses(id);
+
+
+--
+-- Name: outcome_measurements outcome_measurement_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.outcome_measurements
+    ADD CONSTRAINT outcome_measurement_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
+
+
+--
+-- Name: outcome_measurements outcome_measurement_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.outcome_measurements
+    ADD CONSTRAINT outcome_measurement_id_fkey FOREIGN KEY (outcome_id) REFERENCES ctgov.outcomes(id);
+
+
+--
+-- Name: overall_officials overall_officials_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.overall_officials
+    ADD CONSTRAINT overall_officials_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: participant_flows part_flow_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.participant_flows
+    ADD CONSTRAINT part_flow_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: pending_results pending_results_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.pending_results
+    ADD CONSTRAINT pending_results_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: provided_documents provided_documents_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.provided_documents
+    ADD CONSTRAINT provided_documents_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: reported_events reported_events_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.reported_events
+    ADD CONSTRAINT reported_events_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
+
+
+--
+-- Name: responsible_parties responsible_parties_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.responsible_parties
+    ADD CONSTRAINT responsible_parties_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: result_agreements result_agreements_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.result_agreements
+    ADD CONSTRAINT result_agreements_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: result_contacts result_contacts_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.result_contacts
+    ADD CONSTRAINT result_contacts_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: result_groups result_groups_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.result_groups
+    ADD CONSTRAINT result_groups_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: sponsors sponsors_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.sponsors
+    ADD CONSTRAINT sponsors_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
+-- Name: study_references study_references_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.study_references
+    ADD CONSTRAINT study_references_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -4224,4 +4551,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190115184850');
 INSERT INTO schema_migrations (version) VALUES ('20190115204850');
 
 INSERT INTO schema_migrations (version) VALUES ('20190301204850');
+
+INSERT INTO schema_migrations (version) VALUES ('20190326174016');
 
