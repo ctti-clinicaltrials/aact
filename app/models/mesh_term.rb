@@ -3,11 +3,10 @@ class MeshTerm < ActiveRecord::Base
     puts "about to populate table of mesh terms..."
     MeshTerm.destroy_all
     File.open(file_name).each_line{|line|
-      line_array=line.gsub("\n",'').split(';')
-      tree=line_array.last
+      line_array=line.gsub("\n",'').split(' ')
+      tree=line_array.first
       qualifier=tree.split('.').first
-      #term=line.split(/\t/).first.strip
-      term=line_array.first
+      term=line.split(/\t/).last.strip
       if !qualifier.nil?
         new(:qualifier=>qualifier,
             :tree_number=>tree,
