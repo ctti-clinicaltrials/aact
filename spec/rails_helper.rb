@@ -51,11 +51,13 @@ RSpec.configure do |config|
     DatabaseCleaner[:active_record, { model: Support::SanityCheck }].clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Study }].clean_with(:truncation)
+    Util::DbManager.new.remove_indexes_and_constraints
   end
 
   config.before(:each) do |example|
     unit_test = ![:feature, :request].include?(example.metadata[:type])
     strategy = unit_test ? :transaction : :truncation
+    allow_any_instance_of( Util::DbManager ).to receive(:add_indexes_and_constraints).and_return(nil)
 
     DatabaseCleaner.strategy = strategy
     DatabaseCleaner[:active_record, { model: Support::LoadEvent }].strategy = strategy
@@ -85,6 +87,7 @@ RSpec.configure do |config|
     DatabaseCleaner[:active_record, { model: Support::SanityCheck }].clean
     DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].clean
     DatabaseCleaner[:active_record, { model: Study }].clean
+    Util::DbManager.new.add_indexes_and_constraints
   end
 
 end
