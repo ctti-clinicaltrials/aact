@@ -164,24 +164,42 @@ module Util
       Study.count
     end
 
-    def remove_indexes
+    def add_indexes_and_constraints
+      m=ActiveRecord::Migration.new
+      indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
+      #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
+      loadable_tables.each {|table_name|
+        begin
+          m.add_index table_name, 'nct_id'
+          if !con.foreign_keys(table_name).map(&:column).include?("nct_id")
+            m.add_foreign_key table_name,  "studies", column: "nct_id", primary_key: "nct_id", name: "#{table_name}_nct_id_fkey"
+          end
+        rescue
+        end
+      }
+      foreign_key_constraints.each { |constraint |
+        child_table = constraint[:child_table]
+        parent_table = constraint[:parent_table]
+        child_column = constraint[:child_column]
+        parent_column = constraint[:parent_column]
+        m.add_foreign_key child_table,  parent_table, column: child_column, primary_key: parent_column, name: "#{child_table}_#{child_column}_fkey"
+      }
+    end
+
+    def remove_indexes_and_constraints
       m=ActiveRecord::Migration.new
       loadable_tables.each {|table_name|
+        # remove foreign key that links most tables to Studies table via the NCT ID
+        con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
         con.indexes(table_name).each{|index|
           m.remove_index(index.table, index.columns) if !should_keep_index?(index) and m.index_exists?(index.table, index.columns)
         }
       }
-    end
-
-    def add_indexes
-      m=ActiveRecord::Migration.new
-      indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
-      #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
-      ActiveRecord::Base.connection.tables.each{|table|
-        begin
-          m.add_index table, 'nct_id'
-        rescue
-        end
+      # Remove foreign Key constraints
+      foreign_key_constraints.each { |constraint|
+        table = constraint[:child_table]
+        column = constraint[:child_column]
+        con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
       }
     end
 
@@ -282,6 +300,23 @@ module Util
          [:studies, :study_first_submitted_qc_date],
          [:studies, :last_update_submitted_qc_date],
          [:study_references, :reference_type],
+      ]
+    end
+
+    def foreign_key_constraints
+      [
+        {:child_table => 'baseline_counts',         :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'baseline_measurements',   :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'drop_withdrawals',        :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'reported_events',         :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'facility_contacts',       :parent_table => 'facilities',       :child_column => 'facility_id',         :parent_column => 'id'},
+        {:child_table => 'facility_investigators',  :parent_table => 'facilities',       :child_column => 'facility_id',         :parent_column => 'id'},
+        {:child_table => 'milestones',              :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'outcome_analyses',        :parent_table => 'outcomes',         :child_column => 'outcome_id',          :parent_column => 'id'},
+        {:child_table => 'outcome_analysis_groups', :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'outcome_analysis_groups', :parent_table => 'outcome_analyses', :child_column => 'outcome_analysis_id', :parent_column => 'id'},
+        {:child_table => 'outcome_measurements',    :parent_table => 'outcomes',         :child_column => 'outcome_id',          :parent_column => 'id'},
+        {:child_table => 'outcome_measurements',    :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
       ]
     end
 
