@@ -33,13 +33,13 @@ class CreateForeignKeys < ActiveRecord::Migration
     add_foreign_key "baseline_counts",            "result_groups", column: 'result_group_id', primary_key: 'id', name: "baseline_c_result_group_id_fkey"
     add_foreign_key "baseline_measurements",      "result_groups", column: 'result_group_id', primary_key: 'id', name: "baseline_m_result_group_id_fkey"
     add_foreign_key "reported_events",            "result_groups", column: 'result_group_id', primary_key: 'id', name: "reported_events_result_group_id_fkey"
-    #add_foreign_key "outcome_counts",             "result_groups", column: 'result_group_id', primary_key: 'id', name: "outcome_count_group_id_fkey"
+    add_foreign_key "outcome_counts",             "result_groups", column: 'result_group_id', primary_key: 'id', name: "outcome_count_group_id_fkey"
     add_foreign_key "outcome_measurements",       "result_groups", column: 'result_group_id', primary_key: 'id', name: "outcome_measurement_group_id_fkey"
     add_foreign_key "outcome_analysis_groups",    "result_groups", column: 'result_group_id', primary_key: 'id', name: "outcome_analysis_group_group_id_fkey"
 
-#    add_foreign_key "design_group_interventions", "design_groups", column: 'intervention_id', primary_key: 'id', name: "design_groups_interventions_design_group_id_fkey"
-#    add_foreign_key "design_group_interventions", "interventions", column: 'design_group_id', primary_key: 'id', name: "design_groups_interventions_intervention_id_fkey"
-#    add_foreign_key "intervention_other_names",   "interventions", column: 'intervention_id', primary_key: 'id', name: "ion_intervention_id_fkey"
+    add_foreign_key "design_group_interventions", "design_groups", column: 'design_group_id', primary_key: 'id', name: "design_groups_interventions_design_group_id_fkey"
+    add_foreign_key "design_group_interventions", "interventions", column: 'intervention_id', primary_key: 'id', name: "design_groups_interventions_intervention_id_fkey"
+    add_foreign_key "intervention_other_names",   "interventions", column: 'intervention_id', primary_key: 'id', name: "ion_intervention_id_fkey"
 
     add_foreign_key "facility_contacts",          "facilities", column: 'facility_id', primary_key: 'id', name: "facility_contacts_facility_id_fkey"
     add_foreign_key "facility_investigators",     "facilities", column: 'facility_id', primary_key: 'id', name: "facility_i_f_fkey"
@@ -48,7 +48,7 @@ class CreateForeignKeys < ActiveRecord::Migration
     add_foreign_key "drop_withdrawals",           "result_groups", column: 'result_group_id', primary_key: 'id', name: "drop_with_group_id_fkey"
 
     add_foreign_key "outcome_analyses",           "outcomes", column: 'outcome_id', primary_key: 'id', name: "outcome_analyses_outcome_id_fkey"
-#    add_foreign_key "outcome_counts",             "outcomes", column: 'outcome_id', primary_key: 'id', name: "outcome_counts_outcomes_id_fkey"
+    add_foreign_key "outcome_counts",             "outcomes", column: 'outcome_id', primary_key: 'id', name: "outcome_counts_outcomes_id_fkey"
     add_foreign_key "outcome_measurements",       "outcomes", column: 'outcome_id', primary_key: 'id', name: "outcome_measurement_id_fkey"
 
     add_foreign_key "outcome_analysis_groups",    "outcome_analyses", column: 'outcome_analysis_id', primary_key: 'id', name: "outcome_analysis_group_id_fkey"

@@ -3644,6 +3644,22 @@ ALTER TABLE ONLY ctgov.countries
 
 
 --
+-- Name: design_group_interventions design_groups_interventions_design_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.design_group_interventions
+    ADD CONSTRAINT design_groups_interventions_design_group_id_fkey FOREIGN KEY (design_group_id) REFERENCES ctgov.design_groups(id);
+
+
+--
+-- Name: design_group_interventions design_groups_interventions_intervention_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.design_group_interventions
+    ADD CONSTRAINT design_groups_interventions_intervention_id_fkey FOREIGN KEY (intervention_id) REFERENCES ctgov.interventions(id);
+
+
+--
 -- Name: design_groups design_groups_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3740,6 +3756,14 @@ ALTER TABLE ONLY ctgov.interventions
 
 
 --
+-- Name: intervention_other_names ion_intervention_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.intervention_other_names
+    ADD CONSTRAINT ion_intervention_id_fkey FOREIGN KEY (intervention_id) REFERENCES ctgov.interventions(id);
+
+
+--
 -- Name: keywords keywords_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3785,6 +3809,22 @@ ALTER TABLE ONLY ctgov.outcome_analysis_groups
 
 ALTER TABLE ONLY ctgov.outcome_analysis_groups
     ADD CONSTRAINT outcome_analysis_group_id_fkey FOREIGN KEY (outcome_analysis_id) REFERENCES ctgov.outcome_analyses(id);
+
+
+--
+-- Name: outcome_counts outcome_count_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.outcome_counts
+    ADD CONSTRAINT outcome_count_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
+
+
+--
+-- Name: outcome_counts outcome_counts_outcomes_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.outcome_counts
+    ADD CONSTRAINT outcome_counts_outcomes_id_fkey FOREIGN KEY (outcome_id) REFERENCES ctgov.outcomes(id);
 
 
 --
