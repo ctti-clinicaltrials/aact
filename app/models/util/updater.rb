@@ -81,7 +81,7 @@ module Util
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
         return false
       end
-      remove_indexes  # Index significantly slow the load process.
+      remove_indexes_and_constraints  # Index significantly slow the load process.
       update_studies(ids)
       log('updating load_event record...')
       load_event.save_id_info(added_ids, changed_ids)
