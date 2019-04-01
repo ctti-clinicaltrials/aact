@@ -90,7 +90,7 @@ module Util
 
     def retrieve_xml_from_ctgov
       log("retrieving xml from clinicaltrials.gov...")
-      Support::SupportBase.connection.truncate('study_xml_records')
+      Support::SupportBase.connection.execute('TRUNCATE TABLE study_xml_records CASCADE')
       @client.save_file_contents(@client.download_xml_files)
     end
 
@@ -243,7 +243,7 @@ module Util
 
     def truncate_tables
       log('truncating tables...')
-      Util::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
+      Util::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} CASCADE") }
     end
 
     def should_restart?

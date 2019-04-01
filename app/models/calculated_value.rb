@@ -10,7 +10,7 @@ class CalculatedValue < ActiveRecord::Base
   def self.populate
     con=ActiveRecord::Base.connection
     con.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
-    con.execute('TRUNCATE table calculated_values')
+    con.execute('TRUNCATE table calculated_values CASCADE')
     con.execute("INSERT INTO calculated_values (
                  nct_id,
                  nlm_download_date

@@ -16,8 +16,8 @@ describe Util::DbManager do
 
       Study.destroy_all
       pub_con = PublicBase.connection
-      pub_con.execute('truncate table studies')
-      pub_con.execute('truncate table outcomes')
+      pub_con.execute('truncate table studies cascade')
+      pub_con.execute('truncate table outcomes cascade')
 
 
       dm=Util::DbManager.new(:load_event=>Support::LoadEvent.create({:event_type=>'incremental',:status=>'running',:description=>'',:problems=>''}))
