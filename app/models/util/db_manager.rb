@@ -184,6 +184,15 @@ module Util
         parent_column = constraint[:parent_column]
         m.add_foreign_key child_table,  parent_table, column: child_column, primary_key: parent_column, name: "#{child_table}_#{child_column}_fkey"
       }
+      unique_constraints.each { |constraint |
+        table = constraint[:table_name]
+        column = constraint[:column_name]
+        begin
+          m.remove_index table, [column]
+        rescue
+        end
+        m.add_index table, [column], unique: true
+      }
     end
 
     def remove_indexes_and_constraints
@@ -200,6 +209,14 @@ module Util
         table = constraint[:child_table]
         column = constraint[:child_column]
         con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
+      }
+      unique_constraints.each { |constraint|
+        table = constraint[:table_name]
+        column = constraint[:column_name]
+        begin
+          m.remove_index table, [column]
+        rescue
+        end
       }
     end
 
@@ -322,6 +339,17 @@ module Util
         {:child_table => 'outcome_counts',             :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
         {:child_table => 'outcome_measurements',       :parent_table => 'outcomes',         :child_column => 'outcome_id',          :parent_column => 'id'},
         {:child_table => 'outcome_measurements',       :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+      ]
+    end
+
+    def unique_constraints
+      [
+        {:table_name => 'brief_summaries',       :column_name => 'nct_id'},
+        {:table_name => 'designs',               :column_name => 'nct_id'},
+        {:table_name => 'detailed_descriptions', :column_name => 'nct_id'},
+        {:table_name => 'eligibilities',         :column_name => 'nct_id'},
+        {:table_name => 'participant_flows',     :column_name => 'nct_id'},
+        {:table_name => 'calculated_values',     :column_name => 'nct_id'},
       ]
     end
 
