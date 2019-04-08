@@ -344,6 +344,7 @@ module Util
 
     def unique_constraints
       [
+        {:table_name => 'studies',               :column_name => 'nct_id'},
         {:table_name => 'brief_summaries',       :column_name => 'nct_id'},
         {:table_name => 'designs',               :column_name => 'nct_id'},
         {:table_name => 'detailed_descriptions', :column_name => 'nct_id'},
