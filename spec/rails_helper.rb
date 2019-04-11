@@ -16,15 +16,13 @@ abort("AACT_GEM_HOME env var must be set for capistrano to deploy code to a serv
 abort("AACT_GEM_PATH env var must be set for capistrano to deploy code to a server")         if !ENV["AACT_GEM_PATH"]
 abort("AACT_PATH env var must be set for capistrano to deploy code to a server")             if !ENV["AACT_PATH"]
 abort("AACT_LD_LIBRARY_PATH env var must be set for capistrano to deploy code to a server")  if !ENV["AACT_LD_LIBRARY_PATH"]
-abort("AACT_DEV_DEPLOY_TO env var must be set for capistrano to deploy code to a server")    if !ENV["AACT_DEV_DEPLOY_TO"]
+abort("AACT_DEPLOY_TO env var must be set for capistrano to deploy code to a server")        if !ENV["AACT_DEPLOY_TO"]
 abort("AACT_DEV_PUBLIC_HOSTNAME env var must be set for capistrano to deploy code to a server")  if !ENV["AACT_DEV_PUBLIC_HOSTNAME"]
 abort("AACT_DEV_REPO_URL env var must be set for capistrano to deploy code to a server")     if !ENV["AACT_DEV_REPO_URL"]
 abort("AACT_DEV_SERVER env var must be set for capistrano to deploy code to a server")       if !ENV["AACT_DEV_SERVER"]
-abort("AACT_DEV_SSH_KEY_DIR env var must be set for capistrano to deploy code to a server")  if !ENV["AACT_DEV_SSH_KEY_DIR"]
-abort("AACT_PROD_DEPLOY_TO env var must be set for capistrano to deploy code to a server")   if !ENV["AACT_PROD_DEPLOY_TO"]
+abort("AACT_SSH_KEY_DIR env var must be set for capistrano to deploy code to a server")      if !ENV["AACT_SSH_KEY_DIR"]
 abort("AACT_PROD_REPO_URL env var must be set for capistrano to deploy code to a server")    if !ENV["AACT_PROD_REPO_URL"]
 abort("AACT_PROD_SERVER env var must be set for capistrano to deploy code to a server")      if !ENV["AACT_PROD_SERVER"]
-abort("AACT_PROD_SSH_KEY_DIR env var must be set for capistrano to deploy code to a server") if !ENV["AACT_PROD_SSH_KEY_DIR"]
 abort("AACT_SERVER_USERNAME env var must be set for capistrano to deploy code to a server")  if !ENV["AACT_SERVER_USERNAME"]
 
 #  Define contact info...
