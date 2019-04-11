@@ -2,7 +2,7 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :pub_con, :alt_pub_con, :event
+    attr_accessor :con, :pub_con, :alt_pub_con, :event, :migration
 
     def initialize(params={})
       # Should only manage content of ctgov db schema
@@ -170,12 +170,11 @@ module Util
     end
 
     def add_indexes
-      m=ActiveRecord::Migration.new
       indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
       #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
       loadable_tables.each {|table_name|
         begin
-          if one_to_one_related_tables.include? table_name or table_name =='studies'
+          if one_to_one_related_tables.include? table_name or table_name == 'studies'
             m.add_index table_name, 'nct_id', unique: true
           else
             m.add_index table_name, 'nct_id'
@@ -206,7 +205,6 @@ module Util
     end
 
     def remove_indexes_and_constraints
-      m=ActiveRecord::Migration.new
       loadable_tables.each {|table_name|
         # remove foreign key that links most tables to Studies table via the NCT ID
         begin
@@ -412,6 +410,11 @@ module Util
       @con = ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
       @con.schema_search_path='ctgov'
       return @con
+    end
+
+    def m
+      @m ||= ActiveRecord::Migration.new
+
     end
 
     def pub_con
