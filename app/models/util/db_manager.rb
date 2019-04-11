@@ -175,7 +175,11 @@ module Util
       #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
       loadable_tables.each {|table_name|
         begin
-          m.add_index table_name, 'nct_id'
+          if one_to_one_related_tables.include? table_name or table_name =='studies'
+            m.add_index table_name, 'nct_id', unique: true
+          else
+            m.add_index table_name, 'nct_id'
+          end
           if !con.foreign_keys(table_name).map(&:column).include?("nct_id")
             m.add_foreign_key table_name,  "studies", column: "nct_id", primary_key: "nct_id", name: "#{table_name}_nct_id_fkey"
           end
@@ -194,22 +198,6 @@ module Util
         parent_column = constraint[:parent_column]
         begin
           m.add_foreign_key child_table,  parent_table, column: child_column, primary_key: parent_column, name: "#{child_table}_#{child_column}_fkey"
-        rescue => e
-          log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
-        end
-      }
-      unique_constraints.each { |constraint |
-        table = constraint[:table_name]
-        column = constraint[:column_name]
-        begin
-          m.remove_index table, [column]
-        rescue => e
-          log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
-        end
-        begin
-          m.add_index table, [column], unique: true
         rescue => e
           log(e)
           event.add_problem("#{Time.zone.now}: #{e}")
@@ -243,16 +231,6 @@ module Util
         column = constraint[:child_column]
         begin
           con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
-        rescue => e
-          log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
-        end
-      }
-      unique_constraints.each { |constraint|
-        table = constraint[:table_name]
-        column = constraint[:column_name]
-        begin
-          m.remove_index table, [column]
         rescue => e
           log(e)
           event.add_problem("#{Time.zone.now}: #{e}")
@@ -382,16 +360,8 @@ module Util
       ]
     end
 
-    def unique_constraints
-      [
-        {:table_name => 'studies',               :column_name => 'nct_id'},
-        {:table_name => 'brief_summaries',       :column_name => 'nct_id'},
-        {:table_name => 'designs',               :column_name => 'nct_id'},
-        {:table_name => 'detailed_descriptions', :column_name => 'nct_id'},
-        {:table_name => 'eligibilities',         :column_name => 'nct_id'},
-        {:table_name => 'participant_flows',     :column_name => 'nct_id'},
-        {:table_name => 'calculated_values',     :column_name => 'nct_id'},
-      ]
+    def one_to_one_related_tables
+      [ 'brief_summaries', 'designs','detailed_descriptions', 'eligibilities', 'participant_flows', 'calculated_values' ]
     end
 
     def should_keep_index?(index)
@@ -434,7 +404,7 @@ module Util
     end
 
     def indexes_for(table_name)
-      con.execute("select t.relname as table_name, i.relname as index_name, a.attname as column_name, ix.indisprimary as is_primary from pg_class t, pg_class i, pg_index ix, pg_attribute a where t.oid = ix.indrelid and i.oid = ix.indexrelid and a.attrelid = t.oid and a.attnum = ANY(ix.indkey) and t.relkind = 'r' and t.relname = '#{table_name}';")
+      con.execute("select t.relname as table_name, i.relname as index_name, a.attname as column_name, ix.indisprimary as is_primary, ix.indisunique as is_unique from pg_class t, pg_class i, pg_index ix, pg_attribute a where t.oid = ix.indrelid and i.oid = ix.indexrelid and a.attrelid = t.oid and a.attnum = ANY(ix.indkey) and t.relkind = 'r' and t.relname = '#{table_name}';")
     end
 
     def con

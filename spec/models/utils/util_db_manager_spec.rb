@@ -15,7 +15,7 @@ describe Util::DbManager do
 
       mgr.remove_indexes_and_constraints
       study_indexes=mgr.indexes_for('studies')
-      expect(study_indexes.values.size).to eq(0)
+      expect(study_indexes.values.size).to eq(1)  #  method should_keep_indexes? prevents the studies.nct_id from being removed.
 
       mgr.add_indexes
       mgr.add_constraints
@@ -25,6 +25,13 @@ describe Util::DbManager do
       design_indexes=mgr.indexes_for('designs')
       design_id_index=design_indexes.select{|di| di['column_name']=='id'}.first
       expect(design_id_index['is_primary']).to eq('t')
+
+      mgr.one_to_one_related_tables.each {|table_name|
+        this_tables_indexes=mgr.indexes_for(table_name)
+        nct_id_indexes = this_tables_indexes.select{ |i| i['column_name']== 'nct_id' }
+        sz=nct_id_indexes.size
+        expect(nct_id_indexes.first['is_unique']).to eq('t') if sz = 1
+      }
     end
   end
 
