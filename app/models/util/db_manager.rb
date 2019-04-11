@@ -413,8 +413,7 @@ module Util
     end
 
     def m
-      @m ||= ActiveRecord::Migration.new
-
+      @migration ||= ActiveRecord::Migration.new
     end
 
     def pub_con
