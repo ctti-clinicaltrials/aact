@@ -4,6 +4,30 @@ describe Util::DbManager do
 
   subject { described_class.new }
 
+  context 'when loading the databases' do
+    it 'should add indexes and constraints' do
+      event = Support::LoadEvent.create({:event_type=> 'test', :status => 'in prog'})
+      mgr = Util::DbManager.new(event)
+      mgr.add_indexes
+      mgr.add_constraints
+      study_indexes=mgr.indexes_for('studies')
+      expect(study_indexes.values.size).to eq(15)
+
+      mgr.remove_indexes_and_constraints
+      study_indexes=mgr.indexes_for('studies')
+      expect(study_indexes.values.size).to eq(0)
+
+      mgr.add_indexes
+      mgr.add_constraints
+      study_indexes=mgr.indexes_for('studies')
+      expect(study_indexes.values.size).to eq(15)
+
+      design_indexes=mgr.indexes_for('designs')
+      design_id_index=design_indexes.select{|di| di['column_name']=='id'}.first
+      expect(design_id_index['is_primary']).to eq('t')
+    end
+  end
+
   context 'when managing the databases' do
     it 'should restore the public db from current dump file - then both dbs should be identical' do
       stub_request(:get, "https://prsinfo.clinicaltrials.gov/results_definitions.html").

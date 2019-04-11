@@ -165,6 +165,11 @@ module Util
     end
 
     def add_indexes_and_constraints
+      add_indexes
+      add_constraints
+    end
+
+    def add_indexes
       m=ActiveRecord::Migration.new
       indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
       #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
