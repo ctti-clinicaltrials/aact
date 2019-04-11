@@ -32,7 +32,7 @@ After running `bin/setup`, you'll have a `.env` file that contains an empty temp
 
 `bash -l -c 'bundle exec rake full:load:run'`
 
-The full import will download the entire dataset from clinicaltrials.gov.
+The full import will download the entire dataset from clinicaltrials.gov; this takes about 20 minutes. When complete, it populates the study_xml_records table from the resulting file. Once that table's loaded with one row per study, it iterates thru each row in the table to parse the xml and saves study info to the appropriate tables.
 
 ## Daily import
 
