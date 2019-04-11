@@ -174,24 +174,41 @@ module Util
           if !con.foreign_keys(table_name).map(&:column).include?("nct_id")
             m.add_foreign_key table_name,  "studies", column: "nct_id", primary_key: "nct_id", name: "#{table_name}_nct_id_fkey"
           end
-        rescue
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
         end
       }
+    end
+
+    def add_constraints
       foreign_key_constraints.each { |constraint |
         child_table = constraint[:child_table]
         parent_table = constraint[:parent_table]
         child_column = constraint[:child_column]
         parent_column = constraint[:parent_column]
-        m.add_foreign_key child_table,  parent_table, column: child_column, primary_key: parent_column, name: "#{child_table}_#{child_column}_fkey"
+        begin
+          m.add_foreign_key child_table,  parent_table, column: child_column, primary_key: parent_column, name: "#{child_table}_#{child_column}_fkey"
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
+        end
       }
       unique_constraints.each { |constraint |
         table = constraint[:table_name]
         column = constraint[:column_name]
         begin
           m.remove_index table, [column]
-        rescue
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
         end
-        m.add_index table, [column], unique: true
+        begin
+          m.add_index table, [column], unique: true
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
+        end
       }
     end
 
@@ -199,23 +216,41 @@ module Util
       m=ActiveRecord::Migration.new
       loadable_tables.each {|table_name|
         # remove foreign key that links most tables to Studies table via the NCT ID
-        con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
+        begin
+          con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
+        end
+
         con.indexes(table_name).each{|index|
-          m.remove_index(index.table, index.columns) if !should_keep_index?(index) and m.index_exists?(index.table, index.columns)
+          begin
+            m.remove_index(index.table, index.columns) if !should_keep_index?(index) and m.index_exists?(index.table, index.columns)
+          rescue => e
+            log(e)
+            event.add_problem("#{Time.zone.now}: #{e}")
+          end
         }
       }
       # Remove foreign Key constraints
       foreign_key_constraints.each { |constraint|
         table = constraint[:child_table]
         column = constraint[:child_column]
-        con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
+        begin
+          con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
+        end
       }
       unique_constraints.each { |constraint|
         table = constraint[:table_name]
         column = constraint[:column_name]
         begin
           m.remove_index table, [column]
-        rescue
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
         end
       }
     end
@@ -391,6 +426,10 @@ module Util
           end
         end
       }
+    end
+
+    def indexes_for(table_name)
+      con.execute("select t.relname as table_name, i.relname as index_name, a.attname as column_name, ix.indisprimary as is_primary from pg_class t, pg_class i, pg_index ix, pg_attribute a where t.oid = ix.indrelid and i.oid = ix.indexrelid and a.attrelid = t.oid and a.attnum = ANY(ix.indkey) and t.relkind = 'r' and t.relname = '#{table_name}';")
     end
 
     def con
