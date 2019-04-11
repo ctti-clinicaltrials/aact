@@ -10,7 +10,7 @@ class CalculatedValue < ActiveRecord::Base
   def self.populate
     con=ActiveRecord::Base.connection
     con.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
-    con.execute('TRUNCATE table calculated_values')
+    con.execute('TRUNCATE table calculated_values CASCADE')
     con.execute("INSERT INTO calculated_values (
                  nct_id,
                  nlm_download_date
@@ -172,11 +172,11 @@ class CalculatedValue < ActiveRecord::Base
   end
 
   def self.sql_for_maximum_age_unit
-    "SET maximum_age_unit = x.res FROM ( SELECT nct_id, substring(maximum_age from position(' ' in maximum_age)) as res FROM eligibilities WHERE maximum_age != 'N/A' AND maximum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
+    "SET maximum_age_unit = x.res FROM ( SELECT nct_id, ltrim(substring(maximum_age from position(' ' in maximum_age))) as res FROM eligibilities WHERE maximum_age != 'N/A' AND maximum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
   end
 
   def self.sql_for_minimum_age_unit
-    "SET minimum_age_unit = x.res FROM ( SELECT nct_id, substring(minimum_age from position(' ' in minimum_age)) as res FROM eligibilities WHERE minimum_age != 'N/A' AND minimum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
+    "SET minimum_age_unit = x.res FROM ( SELECT nct_id, ltrim(substring(minimum_age from position(' ' in minimum_age))) as res FROM eligibilities WHERE minimum_age != 'N/A' AND minimum_age != '') x WHERE x.nct_id = calculated_values.nct_id"
   end
 
   def create_from(new_study)

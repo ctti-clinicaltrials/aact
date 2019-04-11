@@ -1,6 +1,6 @@
 class OutcomeCount < StudyRelationship
   belongs_to :outcome, autosave: true
-  belongs_to :result_group
+  belongs_to :result_group, autosave: true
 
   def self.create_all_from(opts)
     all_analyzed=opts[:xml].xpath("analyzed_list").xpath('analyzed')

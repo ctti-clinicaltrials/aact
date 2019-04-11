@@ -53,7 +53,7 @@ module Util
         retrieve_xml_from_ctgov
       end
       truncate_tables if !should_restart?
-      remove_indexes  # Index significantly slow the load process. Will be re-created after data loaded.
+      remove_indexes_and_constraints  # Index significantly slow the load process. Will be re-created after data loaded.
       study_counts[:should_add]=Support::StudyXmlRecord.not_yet_loaded.count
       study_counts[:should_change]=0
       @client.populate_studies
@@ -81,7 +81,7 @@ module Util
         load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
         return false
       end
-      remove_indexes  # Index significantly slow the load process.
+      remove_indexes_and_constraints  # Index significantly slow the load process.
       update_studies(ids)
       log('updating load_event record...')
       load_event.save_id_info(added_ids, changed_ids)
@@ -90,13 +90,13 @@ module Util
 
     def retrieve_xml_from_ctgov
       log("retrieving xml from clinicaltrials.gov...")
-      Support::SupportBase.connection.truncate('study_xml_records')
+      Support::SupportBase.connection.execute('TRUNCATE TABLE study_xml_records CASCADE')
       @client.save_file_contents(@client.download_xml_files)
     end
 
     def finalize_load
       log('finalizing load...')
-      add_indexes
+      add_indexes_and_constraints
       create_calculated_values
       populate_admin_tables
       study_counts[:processed]=Study.count
@@ -111,14 +111,14 @@ module Util
       Admin::PublicAnnouncement.clear_load_message
     end
 
-    def remove_indexes
+    def remove_indexes_and_constraints
       log('removing indexes...')
-      db_mgr.remove_indexes
+      db_mgr.remove_indexes_and_constraints
     end
 
-    def add_indexes
+    def add_indexes_and_constraints
       log('adding indexes...')
-      db_mgr.add_indexes
+      db_mgr.add_indexes_and_constraints
     end
 
     def create_calculated_values
@@ -243,7 +243,7 @@ module Util
 
     def truncate_tables
       log('truncating tables...')
-      Util::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.truncate(table) }
+      Util::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} CASCADE") }
     end
 
     def should_restart?

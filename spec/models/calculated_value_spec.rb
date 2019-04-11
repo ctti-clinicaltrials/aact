@@ -18,6 +18,10 @@ describe CalculatedValue do
     expect(study.calculated_value.number_of_primary_outcomes_to_measure.to_i).to eq(1)
     expect(study.calculated_value.number_of_secondary_outcomes_to_measure).to be(nil)
     expect(study.calculated_value.number_of_other_outcomes_to_measure).to be(nil)
+    expect(study.calculated_value.minimum_age_num).to be(nil)
+    expect(study.calculated_value.minimum_age_unit).to be(nil)
+    expect(study.calculated_value.maximum_age_num).to be(nil)
+    expect(study.calculated_value.maximum_age_unit).to be(nil)
   end
 
   it "should flag study with just a Puerto Rican site as has_us_facility" do
@@ -32,6 +36,10 @@ describe CalculatedValue do
     expect(study.calculated_value.number_of_primary_outcomes_to_measure.to_i).to be(1)
     expect(study.calculated_value.number_of_secondary_outcomes_to_measure.to_i).to be(1)
     expect(study.calculated_value.number_of_other_outcomes_to_measure.to_i).to be(1)
+    expect(study.calculated_value.minimum_age_num.to_i).to be(21)
+    expect(study.calculated_value.minimum_age_unit).to eq('Years')
+    expect(study.calculated_value.maximum_age_num.to_i).to be(50)
+    expect(study.calculated_value.maximum_age_unit).to eq('Years')
   end
 
   it "should not have actual_duration if completion date is 'anticipated'" do

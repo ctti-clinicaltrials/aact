@@ -164,23 +164,76 @@ module Util
       Study.count
     end
 
-    def remove_indexes
-      m=ActiveRecord::Migration.new
-      loadable_tables.each {|table_name|
-        con.indexes(table_name).each{|index|
-          m.remove_index(index.table, index.columns) if !should_keep_index?(index) and m.index_exists?(index.table, index.columns)
-        }
-      }
+    def add_indexes_and_constraints
+      add_indexes
+      add_constraints
     end
 
     def add_indexes
       m=ActiveRecord::Migration.new
       indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
       #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
-      ActiveRecord::Base.connection.tables.each{|table|
+      loadable_tables.each {|table_name|
         begin
-          m.add_index table, 'nct_id'
-        rescue
+          if one_to_one_related_tables.include? table_name or table_name =='studies'
+            m.add_index table_name, 'nct_id', unique: true
+          else
+            m.add_index table_name, 'nct_id'
+          end
+          if !con.foreign_keys(table_name).map(&:column).include?("nct_id")
+            m.add_foreign_key table_name,  "studies", column: "nct_id", primary_key: "nct_id", name: "#{table_name}_nct_id_fkey"
+          end
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
+        end
+      }
+    end
+
+    def add_constraints
+      foreign_key_constraints.each { |constraint |
+        child_table = constraint[:child_table]
+        parent_table = constraint[:parent_table]
+        child_column = constraint[:child_column]
+        parent_column = constraint[:parent_column]
+        begin
+          m.add_foreign_key child_table,  parent_table, column: child_column, primary_key: parent_column, name: "#{child_table}_#{child_column}_fkey"
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
+        end
+      }
+    end
+
+    def remove_indexes_and_constraints
+      m=ActiveRecord::Migration.new
+      loadable_tables.each {|table_name|
+        # remove foreign key that links most tables to Studies table via the NCT ID
+        begin
+          con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
+        end
+
+        con.indexes(table_name).each{|index|
+          begin
+            m.remove_index(index.table, index.columns) if !should_keep_index?(index) and m.index_exists?(index.table, index.columns)
+          rescue => e
+            log(e)
+            event.add_problem("#{Time.zone.now}: #{e}")
+          end
+        }
+      }
+      # Remove foreign Key constraints
+      foreign_key_constraints.each { |constraint|
+        table = constraint[:child_table]
+        column = constraint[:child_column]
+        begin
+          con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
         end
       }
     end
@@ -285,6 +338,32 @@ module Util
       ]
     end
 
+    def foreign_key_constraints
+      [
+        {:child_table => 'baseline_counts',            :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'baseline_measurements',      :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'design_group_interventions', :parent_table => 'interventions',    :child_column => 'intervention_id',     :parent_column => 'id'},
+        {:child_table => 'design_group_interventions', :parent_table => 'design_groups',    :child_column => 'design_group_id',     :parent_column => 'id'},
+        {:child_table => 'drop_withdrawals',           :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'reported_events',            :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'facility_contacts',          :parent_table => 'facilities',       :child_column => 'facility_id',         :parent_column => 'id'},
+        {:child_table => 'facility_investigators',     :parent_table => 'facilities',       :child_column => 'facility_id',         :parent_column => 'id'},
+        {:child_table => 'intervention_other_names',   :parent_table => 'interventions',    :child_column => 'intervention_id',     :parent_column => 'id'},
+        {:child_table => 'milestones',                 :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'outcome_analyses',           :parent_table => 'outcomes',         :child_column => 'outcome_id',          :parent_column => 'id'},
+        {:child_table => 'outcome_analysis_groups',    :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'outcome_analysis_groups',    :parent_table => 'outcome_analyses', :child_column => 'outcome_analysis_id', :parent_column => 'id'},
+        {:child_table => 'outcome_counts',             :parent_table => 'outcomes',         :child_column => 'outcome_id',          :parent_column => 'id'},
+        {:child_table => 'outcome_counts',             :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+        {:child_table => 'outcome_measurements',       :parent_table => 'outcomes',         :child_column => 'outcome_id',          :parent_column => 'id'},
+        {:child_table => 'outcome_measurements',       :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
+      ]
+    end
+
+    def one_to_one_related_tables
+      [ 'brief_summaries', 'designs','detailed_descriptions', 'eligibilities', 'participant_flows', 'calculated_values' ]
+    end
+
     def should_keep_index?(index)
       return true if index.table=='studies' and index.columns==['nct_id']
       return true if index.table=='study_xml_records' and index.columns==['nct_id']
@@ -322,6 +401,10 @@ module Util
           end
         end
       }
+    end
+
+    def indexes_for(table_name)
+      con.execute("select t.relname as table_name, i.relname as index_name, a.attname as column_name, ix.indisprimary as is_primary, ix.indisunique as is_unique from pg_class t, pg_class i, pg_index ix, pg_attribute a where t.oid = ix.indrelid and i.oid = ix.indexrelid and a.attrelid = t.oid and a.attnum = ANY(ix.indkey) and t.relkind = 'r' and t.relname = '#{table_name}';")
     end
 
     def con
