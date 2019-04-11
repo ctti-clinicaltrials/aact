@@ -1,17 +1,26 @@
 # AACT
 Database of Aggregated Analysis of ClinicalTrials.gov
 
+## Purpose
+
+This is a ruby on rails application that retreives the content of ClinicalTrials.gov (via their API) and makes the information available in a relational database as a complete aggregate set so that we can look at it as a whole, helping us investigate the clinical trials industry.
+
 ## Getting Started
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
+#### You will need:
 
-    % ./bin/setup
+*  ruby 2.4.0
+*  rails 4.2
+*  postgres 11.1 (You could use other database platforms, but would need to make changes to app/models/util/db_manager.db since it drops/creates indexes on the assumption that it's dealing with a postgres database.)
 
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
+This might help setup your machine:
 
 [this script]: https://github.com/thoughtbot/laptop
+
+####Install AACT:
+
+*  Clone this repo.
+*  Run this setup script: ./bin/setup
 
 ## Environment variables
 
@@ -19,22 +28,17 @@ After running `bin/setup`, you'll have a `.env` file that contains an empty temp
 
 ## Importing studies from clinicaltrials.gov
 
-### Full import
+## Full import
 
-`bundle exec rake import:full:run`
+`bash -l -c 'bundle exec rake full:load:run'`
 
-The full import will download the entire dataset from clinicaltrials.gov. This rake task is designed to only work on the first of the month. To run the task and ignore the date, run `bundle exec rake import:full:run[force]`
+The full import will download the entire dataset from clinicaltrials.gov.
 
-### Daily import
+## Daily import
 
-`bundle exec rake import:daily:run[{days_back}]`
+`bash -l -c 'bundle exec rake incremental:load:run[days_back]'`
 
-The daily import will check the RSS feed at clinicaltrials.gov for studies that have been added or changed. You can specify how many days back to look in the dataset with the `days_back` argument above. To import changed/new studies from two days back: `bundle exec rake import:daily:run[2]`
-
-
-## Sanity checks
-
-Sanity checks are a simple way for us to check that the tables in the database have been imported correctly and gives some insight into how the data looks at a high level. Both the daily and full import rake tasks run the sanity check automatically. To run it manually, open up a Rails console and enter `SanityCheck.run`. This will create a record in the `sanity_checks` table with a report represented in JSON.
+The daily import checks the ClinicalTrials.gov RSS feed for studies that have been added or changed. You can specify how many days back to look in the dataset with the `days_back` argument above. To import changed/new studies from two days back: `bundle exec rake incremental:load:run[2]`
 
 ## Guidelines
 
