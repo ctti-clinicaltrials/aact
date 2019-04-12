@@ -174,13 +174,16 @@ module Util
       #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
       loadable_tables.each {|table_name|
         begin
-          if one_to_one_related_tables.include? table_name or table_name == 'studies'
-            m.add_index table_name, 'nct_id', unique: true
-          else
-            m.add_index table_name, 'nct_id'
-          end
-          if !con.foreign_keys(table_name).map(&:column).include?("nct_id")
-            m.add_foreign_key table_name,  "studies", column: "nct_id", primary_key: "nct_id", name: "#{table_name}_nct_id_fkey"
+          if table_name != 'studies'  # studies.nct_id unique index persists.  Don't add/remove it.
+            if one_to_one_related_tables.include? table_name
+              m.add_index table_name, 'nct_id', unique: true
+            else
+              m.add_index table_name, 'nct_id'
+            end
+            #  foreign keys that link to the studies table via the nct_id
+            if !con.foreign_keys(table_name).map(&:column).include?("nct_id")
+              m.add_foreign_key table_name,  "studies", column: "nct_id", primary_key: "nct_id", name: "#{table_name}_nct_id_fkey"
+            end
           end
         rescue => e
           log(e)
