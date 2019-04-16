@@ -2,7 +2,7 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :pub_con, :alt_pub_con, :event
+    attr_accessor :con, :pub_con, :alt_pub_con, :event, :migration
 
     def initialize(params={})
       # Should only manage content of ctgov db schema
@@ -170,18 +170,20 @@ module Util
     end
 
     def add_indexes
-      m=ActiveRecord::Migration.new
       indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
       #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
       loadable_tables.each {|table_name|
         begin
-          if one_to_one_related_tables.include? table_name or table_name =='studies'
-            m.add_index table_name, 'nct_id', unique: true
-          else
-            m.add_index table_name, 'nct_id'
-          end
-          if !con.foreign_keys(table_name).map(&:column).include?("nct_id")
-            m.add_foreign_key table_name,  "studies", column: "nct_id", primary_key: "nct_id", name: "#{table_name}_nct_id_fkey"
+          if table_name != 'studies'  # studies.nct_id unique index persists.  Don't add/remove it.
+            if one_to_one_related_tables.include? table_name
+              m.add_index table_name, 'nct_id', unique: true
+            else
+              m.add_index table_name, 'nct_id'
+            end
+            #  foreign keys that link to the studies table via the nct_id
+            if !con.foreign_keys(table_name).map(&:column).include?("nct_id")
+              m.add_foreign_key table_name,  "studies", column: "nct_id", primary_key: "nct_id", name: "#{table_name}_nct_id_fkey"
+            end
           end
         rescue => e
           log(e)
@@ -206,7 +208,6 @@ module Util
     end
 
     def remove_indexes_and_constraints
-      m=ActiveRecord::Migration.new
       loadable_tables.each {|table_name|
         # remove foreign key that links most tables to Studies table via the NCT ID
         begin
@@ -412,6 +413,10 @@ module Util
       @con = ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
       @con.schema_search_path='ctgov'
       return @con
+    end
+
+    def m
+      @migration ||= ActiveRecord::Migration.new
     end
 
     def pub_con
