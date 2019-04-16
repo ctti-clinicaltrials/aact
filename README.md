@@ -16,8 +16,8 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 ### You'll need:
 
 *  <a href='https://git-scm.com/book/en/v2/Getting-Started-Installing-Git' target='_blank'>git</a> to clone the AACT application.
-*  We recommend a ruby version manager. <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a> are popular. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a>
-*  **ruby 2.4.5**  Once chruby is installed, you can get this version of ruby with the command: `ruby-install 2.4.5`
+*  We recommend a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight.
+*  **ruby 2.4.5**  If using chruby, you can get this version with the command: `ruby-install 2.4.5`
 *  **postgres 11.1** `brew install postgresql`  You could use other versions of postgres or a different relational database such as mysql, but if so, you might need to make changes to files in db/migrate & will probably need to make a few changes to *app/models/util/db_manager.db* since it drops/creates indexes thinking it's dealing with postgres 11.1.
 *  **wget** if you don't already have it: `brew install wget`
 
