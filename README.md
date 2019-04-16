@@ -3,9 +3,9 @@ Database for Aggregated Analysis of ClinicalTrials.gov
 
 ## Purpose
 
-This is a ruby on rails application that retreives the content of ClinicalTrials.gov (via their API) and makes the information available in a relational database, so this body of information can be accessed as a complete aggregated set.
+This is a ruby on rails application that retreives the content of ClinicalTrials.gov (via their API) and makes the information available in a relational database.  We do this to make this valuable body of information accessible to the public as a complete aggregated set of data.
 
-If you need a local copy of the database, but don't want to bother installing & running this app to create it, copies of the database are available for download from the <a href='https://aact.ctti-clinicaltrials.org/snapshots' target='_blank'>AACT website (Download page).</a> We use pg_dump to create a snapshot of the database after each nightly update, so a version is always available with the most current info from ClinicalTrials.gov.
+If you need a copy of the database, but don't want to bother installing & running this app, copies of the database are available for download from the <a href='https://aact.ctti-clinicaltrials.org/snapshots' target='_blank'>AACT website (Download page).</a> We use pg_dump to create a snapshot of the database after each nightly update, so a version is always available with the most current info from ClinicalTrials.gov.
 
 ## Getting Started
 
@@ -15,11 +15,11 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 
 ### You'll need:
 
-*  <a href='https://git-scm.com/book/en/v2/Getting-Started-Installing-Git' target='_blank'>git</a> to clone down this code.
-*  A ruby version manager is recommended. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a>
-*  ruby 2.4.5  Once chruby is installed, you can install with this command: `ruby-install 2.4.5`
-*  postgres 11.1 `brew install postgresql`  (You can use other versions of postgres or other relational database platforms such as mysql, but you'll probably need to make changes to app/models/util/db_manager.db since it drops/creates indexes on the assumption that it's dealing with postgres 11.1.)
-* Also, you'll need wget if you don't already have it: `brew install wget`
+*  <a href='https://git-scm.com/book/en/v2/Getting-Started-Installing-Git' target='_blank'>git</a> to clone the AACT application.
+*  We recommend a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight.
+*  **ruby 2.4.5**  If using chruby, you can get this version with the command: `ruby-install 2.4.5`
+*  **postgres 11.1** `brew install postgresql`  You could use other versions of postgres or a different relational database such as mysql, but if so, you might need to make changes to files in db/migrate & will probably need to make a few changes to *app/models/util/db_manager.db* since it drops/creates indexes thinking it's dealing with postgres 11.1.
+*  **wget** if you don't already have it: `brew install wget`
 
 ### Setup Basic Environment Variables
 
@@ -29,7 +29,7 @@ In your shell profile file (for example .bash_profile), define the following:
 * export AACT_BACK_DATABASE_URL=(name of postgres loading/staging AACT database.  example:  **aact_back**)
 * export AACT_PUBLIC_DATABASE_URL=(name of postgres final/public AACT database.  example:  **aact**)
 
-`source ~/.bash_profile` (to bring newly created environment variables into your current session)
+`source ~/.bash_profile` (Make these new environment variables available in your current session.)
 
 ### Install AACT:
 
