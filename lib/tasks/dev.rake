@@ -1,6 +1,5 @@
 if Rails.env.development? || Rails.env.test?  ||
   Rails.env.docker? || Rails.env.docker_test?
-  require "factory_girl"
 
   namespace :dev do
     desc "Sample data for local development environment"
