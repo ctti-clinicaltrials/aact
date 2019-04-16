@@ -3,31 +3,31 @@ Database for Aggregated Analysis of ClinicalTrials.gov
 
 ## Purpose
 
-This is a ruby on rails application that retreives the content of ClinicalTrials.gov (via their API) and makes the information available in a relational database as a complete aggregate set so that we can study the info as a whole.
+This is a ruby on rails application that retreives the content of ClinicalTrials.gov (via their API) and makes the information available in a relational database, so this body of information can be accessed as a complete aggregated set.
 
-Please note: if you want to create & use a local copy of the AACT relational database, but would prefer not to install & run this app to create it, you can always download a copy of the database from the <a href='https://aact.ctti-clinicaltrials.org/snapshots' target='_blank'>AACT website download page.</a> A copy of the database is created/archived each night, so a version is available with the most current info from ClinicalTrials.gov.
+If you need a local copy of the database, but don't want to bother installing & running this app to create it, copies of the database are available for download from the <a href='https://aact.ctti-clinicaltrials.org/snapshots' target='_blank'>AACT website (Download page).</a> We use pg_dump to create a snapshot of the database after each nightly update, so a version is always available with the most current info from ClinicalTrials.gov.
 
 ## Getting Started
 
-The following assumes you're on a Mac. Most of this will probably work on Linux too. (Apologies to Windows users.)
+These instructions assume you're on a Mac. Linux users will need to use yum or apt-get to install tools. (Apologies to Windows users.)
 
-* If you don't already have standard dev tools on your machine, this might help get you setup: https://github.com/thoughtbot/laptop
-* Also, you'll need wget if you don't already have it: `brew install wget`
+* If you don't already have standard development tools on your machine, this might help get you mostly setup: https://github.com/thoughtbot/laptop
 
 ### You'll need:
 
-*  <a href='https://git-scm.com/book/en/v2/Getting-Started-Installing-Git' target='_blank'>git</a>
+*  <a href='https://git-scm.com/book/en/v2/Getting-Started-Installing-Git' target='_blank'>git</a> to clone down this code.
 *  A ruby version manager is recommended. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a>
-*  ruby 2.4.5  `ruby-install 2.4.5`
-*  postgres 11.1 (You can use other versions of postgres or other relational database platforms such as mysql, but you'll probably need to make changes to app/models/util/db_manager.db since it drops/creates indexes on the assumption that it's dealing with postgres 11.1.)
+*  ruby 2.4.5  Once chruby is installed, you can install with this command: `ruby-install 2.4.5`
+*  postgres 11.1 `brew install postgresql`  (You can use other versions of postgres or other relational database platforms such as mysql, but you'll probably need to make changes to app/models/util/db_manager.db since it drops/creates indexes on the assumption that it's dealing with postgres 11.1.)
+* Also, you'll need wget if you don't already have it: `brew install wget`
 
 ### Setup Basic Environment Variables
 
-In your shell profile file (for example .bash_profile), define the following
+In your shell profile file (for example .bash_profile), define the following:
 
-* export AACT_DB_SUPER_USERNAME=(name of postgres database superuser.  example:  ctti)
-* export AACT_BACK_DATABASE_URL=(name of postgres loading/staging AACT database.  example:  aact_back)
-* export AACT_PUBLIC_DATABASE_URL=(name of postgres final/public AACT database.  example:  aact)
+* export AACT_DB_SUPER_USERNAME=(name of postgres database superuser.  example:  **postgres**)
+* export AACT_BACK_DATABASE_URL=(name of postgres loading/staging AACT database.  example:  **aact_back**)
+* export AACT_PUBLIC_DATABASE_URL=(name of postgres final/public AACT database.  example:  **aact**)
 
 `source ~/.bash_profile` (to bring newly created environment variables into your current session)
 
