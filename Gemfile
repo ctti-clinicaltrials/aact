@@ -1,15 +1,13 @@
 source "https://rubygems.org"
 
-ruby "2.4.0"
-gem "sprockets", ">= 3.7.2"
-gem "rubyzip", ">= 1.2.2"
+ruby "2.4.5"
 
 gem "sprockets", ">= 3.7.2"
 gem "rubyzip", ">= 1.2.2"
 
-gem 'nokogiri', '~> 1.8.1'
+gem 'nokogiri'
 gem 'loofah', '~> 2.2.3'
-gem 'rails', github: 'rails/rails', branch: '4-2-stable'
+gem 'rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 gem "rack-timeout"
 gem "faraday"
@@ -22,11 +20,11 @@ gem "pg"
 gem 'rails_12factor'
 gem "coderay"
 gem "recipient_interceptor"
-gem "title"
 gem 'rest-client'
 gem 'enumerize'
 gem 'bulk_insert'
 gem 'activerecord-import'
+gem 'activesupport', '~> 4.2.9'
 gem 'sinatra', :require => nil
 gem 'font-awesome-rails'
 gem 'roo', '~> 2.4.0'
@@ -52,7 +50,6 @@ group :development, :test do
   gem "rack-mini-profiler", require: false
   gem "awesome_print"
   gem "bullet"
-  gem "bundler-audit", ">= 0.5.0", require: false
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
