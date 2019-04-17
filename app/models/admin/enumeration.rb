@@ -125,6 +125,7 @@ module Admin
         ['facility_contacts','contact_type'],
         ['id_information','id_type'],
         ['interventions','intervention_type'],
+        ['ipd_information_types','name'],
         ['responsible_parties','responsible_party_type'],
         ['outcome_analyses','ci_n_sides'],
         ['outcome_analyses','dispersion_type'],
