@@ -858,7 +858,8 @@ CREATE TABLE ctgov.criteria (
     nct_id character varying,
     order_number integer,
     criteria_type character varying,
-    name character varying
+    name character varying,
+    downcase_name character varying
 );
 
 

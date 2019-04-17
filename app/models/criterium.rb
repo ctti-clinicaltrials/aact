@@ -3,9 +3,9 @@ class Criterium < StudyRelationship
 
   def self.create_all_from(opts)
     opts[:xml].xpath('//criteria').collect{|xml|
-      arr=xml.text.downcase.split('exclusion criteria')
-      #arr=xml.text.split('Exclusion criteria') if arr.nil?
-      #arr=xml.text.split('Exclusion Criteria') if arr.nil?
+      arr=xml.text.split('Exclusion criteria:')
+      arr=xml.text.split('Exclusion Criteria:') if arr.nil?
+      arr=xml.text.downcase.split('exclusion criteria') if arr.nil?
       return if arr.nil?
       incl = arr.first
       excl = arr.last
@@ -32,6 +32,7 @@ class Criterium < StudyRelationship
       :nct_id        => get_opt(:nct_id),
       :criteria_type => get_opt('type'),
       :name          => nm.strip!,
+      :downcase_name => nm.downcase.strip!,
       :order_number  => order
     }
   end

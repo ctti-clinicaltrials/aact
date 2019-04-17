@@ -7,6 +7,7 @@ class CreateCriteriaTable < ActiveRecord::Migration
       t.integer "order_number"
       t.string  "criteria_type"
       t.string  "name"
+      t.string  "downcase_name"
     end
 
   end
