@@ -6,18 +6,18 @@ class Criterium < StudyRelationship
   def self.create_all_from(opts)
     opts[:xml].xpath('//criteria').collect{|xml|
       test_input = xml.text
-      if (test_input.include?('Inclusion Criteria:') and test_input.include?('Exclusion Criteria:'))
-        beginning = test_input.split('Exclusion Criteria:').first
-        other = beginning.split('Inclusion Criteria:').first
-        incl  = beginning.split('Inclusion Criteria:').last
-        excl  = test_input.split('Exclusion Criteria:').last
-      elsif test_input.include?('Inclusion Criteria:')
-        other = test_input.split('Inclusion Criteria:').first
-        incl  = test_input.split('Inclusion Criteria:').last
+      if (test_input.include?('Inclusion Criteria') and test_input.include?('Exclusion Criteria'))
+        beginning = test_input.split('Exclusion Criteria').first
+        other = beginning.split('Inclusion Criteria').first
+        incl  = beginning.split('Inclusion Criteria').last
+        excl  = test_input.split('Exclusion Criteria').last
+      elsif test_input.include?('Inclusion Criteria')
+        other = test_input.split('Inclusion Criteria').first
+        incl  = test_input.split('Inclusion Criteria').last
         excl  = ''
-      elsif test_input.include?('Exclusion Criteria:')
-        other = test_input.split('Exclusion Criteria:').first
-        excl  = test_input.split('Exclusion Criteria:').last
+      elsif test_input.include?('Exclusion Criteria')
+        other = test_input.split('Exclusion Criteria').first
+        excl  = test_input.split('Exclusion Criteria').last
         incl=''
       else
         # TODO.   Report this error properly
