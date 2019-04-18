@@ -31,9 +31,11 @@ class Criterium < StudyRelationship
   end
 
   def self.create_each(collection, type, opts)
+    return if collection.nil?
     cntr = 1
     previous_cntr = 1
     lev = 1
+    indent_diff = 0
     previous_indent_size = 100000
     previous_criterium = nil
     parent_criterium = nil
@@ -44,6 +46,7 @@ class Criterium < StudyRelationship
       elsif indent_size > previous_indent_size
         # this must be a child to the previous criterium
         parent_criterium = previous_criterium
+        indent_diff = indent_size - previous_indent_size
         previous_indent_size = indent_size
         previous_cntr = cntr
         cntr = 1
@@ -51,9 +54,21 @@ class Criterium < StudyRelationship
       elsif indent_size < previous_indent_size
         # seems we've finished with the children of the previous criterium
         parent_criterium = nil
+
+        # save the indent level.  The next criteria might be several levels back, so keep subtracting the indent size diff from previous
+        # until it's at the current indent location.
+        i = previous_indent_size
+        while indent_size < i
+          if indent_diff == 0
+            i = indent_size
+          else
+            i = i - indent_diff
+            lev = lev - 1 if i == indent_size
+          end
+        end
+
         previous_indent_size = indent_size
         cntr = previous_cntr
-        lev = lev - 1  # TODO:  this will be wrong if the indent goes back 2 levels.  Need to test size of indent diff
       end
 
       c=new.create_from({:xml=>criterium, :type=>type, :nct_id=>opts[:nct_id], :cntr => cntr, :parent => parent_criterium, :level => lev})

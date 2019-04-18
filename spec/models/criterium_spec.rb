@@ -3,6 +3,18 @@ require 'rails_helper'
 RSpec.describe Criterium, type: :model do
   context 'when criteria provided' do
 
+    it 'should handle when inc/excl headers are unusual' do
+      described_class.destroy_all
+      nct_id='NCT03424005'
+      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+      opts={xml: xml, nct_id: nct_id}
+      described_class.create_all_from(opts)
+      inclusion = described_class.where(criterium_type: 'inclusion')
+      exclusion = described_class.where(criterium_type: 'exclusion')
+      expect(inclusion.size).to eq(21)
+      expect(exclusion.size).to eq(21)
+    end
+
     it 'should handle studies that only have inclusion criteria' do
       described_class.destroy_all
       sample1_name = "Women of childbearing potential must have a negative serum pregnancy test within 2 weeks prior to registration; patients that are pregnant or breast feeding are excluded; a female of childbearing potential is any woman, regardless of sexual orientation or whether they have undergone tubal ligation, who meets the following criteria:"
