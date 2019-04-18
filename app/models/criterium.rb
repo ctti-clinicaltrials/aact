@@ -10,7 +10,7 @@ class Criterium < StudyRelationship
       elsif test_input.include?('Inclusion Criteria:')
         incl=test_input
         excl=''
-      elseif test_input.include?('Exclusion Criteria:')
+      elsif test_input.include?('Exclusion Criteria:')
         incl=''
         excl=test_input
       else
