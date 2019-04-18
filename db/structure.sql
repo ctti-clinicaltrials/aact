@@ -857,8 +857,9 @@ CREATE TABLE ctgov.criteria (
     id integer NOT NULL,
     nct_id character varying,
     parent_id integer,
+    level integer,
     order_number integer,
-    criteria_type character varying,
+    criterium_type character varying,
     name character varying,
     downcase_name character varying
 );
