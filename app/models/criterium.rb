@@ -7,27 +7,33 @@ class Criterium < StudyRelationship
     opts[:xml].xpath('//criteria').collect{|xml|
       test_input = xml.text
       if (test_input.include?('Inclusion Criteria:') and test_input.include?('Exclusion Criteria:'))
-        incl=test_input.split('Exclusion Criteria:').first
-        excl=test_input.split('Exclusion Criteria:').last
+        beginning = test_input.split('Exclusion Criteria:').first
+        other = beginning.split('Inclusion Criteria:').first
+        incl  = beginning.split('Inclusion Criteria:').last
+        excl  = test_input.split('Exclusion Criteria:').last
       elsif test_input.include?('Inclusion Criteria:')
-        incl=test_input
-        excl=''
+        other = test_input.split('Inclusion Criteria:').first
+        incl  = test_input.split('Inclusion Criteria:').last
+        excl  = ''
       elsif test_input.include?('Exclusion Criteria:')
+        other = test_input.split('Exclusion Criteria:').first
+        excl  = test_input.split('Exclusion Criteria:').last
         incl=''
-        excl=test_input
       else
         # TODO.   Report this error properly
         puts "ERROR:  Unexpected criteria"
-        return
+        other = test_input
       end
-      create_each(incl, 'inclusion', opts)
-      create_each(excl, 'exclusion', opts)
+      create_each(incl,  'inclusion', opts)
+      create_each(excl,  'exclusion', opts)
+      create_each(other, 'other', opts)
     }
   end
 
   def self.create_each(collection, type, opts)
     cntr = 1
     previous_cntr = 1
+    lev = 1
     previous_indent_size = 100000
     previous_criterium = nil
     parent_criterium = nil
@@ -41,14 +47,16 @@ class Criterium < StudyRelationship
         previous_indent_size = indent_size
         previous_cntr = cntr
         cntr = 1
+        lev = lev + 1
       elsif indent_size < previous_indent_size
         # seems we've finished with the children of the previous criterium
         parent_criterium = nil
         previous_indent_size = indent_size
         cntr = previous_cntr
+        lev = lev - 1  # TODO:  this will be wrong if the indent goes back 2 levels.  Need to test size of indent diff
       end
 
-      c=new.create_from({:xml=>criterium, :type=>type, :nct_id=>opts[:nct_id], :cntr => cntr, :parent => parent_criterium})
+      c=new.create_from({:xml=>criterium, :type=>type, :nct_id=>opts[:nct_id], :cntr => cntr, :parent => parent_criterium, :level => lev})
       if !c.name.nil? and c.name.size > 1
         c.save!
         previous_criterium = c
@@ -65,7 +73,8 @@ class Criterium < StudyRelationship
     {
       :nct_id               => get_opt(:nct_id),
       :parent               => get_opt(:parent),
-      :criteria_type        => get_opt('type'),
+      :level                => get_opt(:level),
+      :criterium_type       => get_opt('type'),
       :name                 => nm,
       :downcase_name        => dnm,
       :order_number         => order

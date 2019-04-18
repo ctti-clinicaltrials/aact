@@ -10,8 +10,8 @@ RSpec.describe Criterium, type: :model do
       xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
       opts={xml: xml, nct_id: nct_id}
       described_class.create_all_from(opts)
-      inclusion = described_class.where(criteria_type: 'inclusion')
-      exclusion = described_class.where(criteria_type: 'exclusion')
+      inclusion = described_class.where(criterium_type: 'inclusion')
+      exclusion = described_class.where(criterium_type: 'exclusion')
       expect(exclusion.size).to eq(0)
       expect(inclusion.size).to eq(82)
       # should strip off leading ' - '
@@ -23,7 +23,7 @@ RSpec.describe Criterium, type: :model do
       # should link children criteria to another child criterium where appropriate
       parent_sample = described_class.where('name=?',"Patients must have an electrocardiogram (ECG) within 8 weeks prior to registration to screening step and must meet the following cardiac criteria:").first
       child_sample = described_class.where('name=?',"Resting corrected QT interval (QTc) =< 480 msec").first
-      expect(child_sample.criteria_type).to eq('inclusion')
+      expect(child_sample.criterium_type).to eq('inclusion')
       grandchild_sample = described_class.where('name=?',"NOTE: If the first recorded QTc exceeds 480 msec, two additional, consecutive ECGs are required and must result in a mean resting QTc =< 480 msec; it is recommended that there are 10-minute (+/- 5 minutes) breaks between the ECGs").first
       expect(child_sample.parent_id).to eq(parent_sample.id)
       expect(grandchild_sample.parent_id).to eq(child_sample.id)
@@ -36,8 +36,8 @@ RSpec.describe Criterium, type: :model do
       opts={xml: xml, nct_id: nct_id}
       described_class.create_all_from(opts)
 
-      inclusion = described_class.where(criteria_type: 'inclusion')
-      exclusion = described_class.where(criteria_type: 'exclusion')
+      inclusion = described_class.where(criterium_type: 'inclusion')
+      exclusion = described_class.where(criterium_type: 'exclusion')
       expect(exclusion.size).to eq(23)
       expect(inclusion.size).to eq(12)
       incl_with_parents=inclusion.select{|x| !x.parent_id.nil?}
@@ -48,7 +48,7 @@ RSpec.describe Criterium, type: :model do
       expect(sample.name).to eq('Has histologically or cytologically documented adenocarcinoma NSCLC')
       expect(sample.downcase_name).to eq('has histologically or cytologically documented adenocarcinoma nsclc')
       expect(sample.order_number).to eq(1)
-      sample=described_class.where('criteria_type=? and order_number=3','inclusion').first
+      sample=described_class.where('criterium_type=? and order_number=3','inclusion').first
       expect(sample.name).to eq('Has acquired resistance to EGFR tyrosine kinase inhibitor (TKI) according to the Jackman criteria (PMID: 19949011):')
       expect(sample.parent_id).to be(nil)
     end
@@ -58,12 +58,54 @@ RSpec.describe Criterium, type: :model do
       'NCT02260193  Key Inclusion & Key Exclusion Criteria'
     end
 
-    xit 'should handle studies with criteria all on one line' do
-      "NCT03840122 Inclusion Criteria: 1. Patient is over the age of 21 2. Patient is scheduled to undergo a unilateral, primary TKA, secondary to osteoarthritis 3. Patient agrees to participate as a study subject and signs the Informed Consent and Research Authorization documents 4. Patient is able to read and speak English. Exclusion Criteria: 1. Patient is under the age of 21 2. Patient's primary diagnosis is not osteoarthritis (e.g. post-traumatic arthritis) 3. Patient is scheduled to undergo a bilateral TKA surgery 4. Patient is unable to read and speak English"
+    it 'should handle studies with criteria all on one line' do
+      described_class.destroy_all
+      nct_id='NCT03840122'
+      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+      opts={xml: xml, nct_id: nct_id}
+      described_class.create_all_from(opts)
+
+      inclusion = described_class.where(criterium_type: 'inclusion')
+      exclusion = described_class.where(criterium_type: 'exclusion')
+      expect(exclusion.size).to eq(4)
+      expect(inclusion.size).to eq(4)
+
+      sample = inclusion.select{|x| x.order_number == 1}.first
+      expect(sample.name).to eq('Patient is over the age of 21')
+      sample = exclusion.select{|x| x.order_number == 1}.first
+      expect(sample.name).to eq('Patient is under the age of 21')
+
       'NCT03720470 has both inclusion & exclusion all on one line'
-      "NCT02481830 doesn't specify inclusion or exclusion"
     end
 
+    it 'should handle studies with criteria specifies neither inclusion or exclusion' do
+      "NCT02481830 doesn't specify inclusion or exclusion"
+      described_class.destroy_all
+      nct_id='NCT02481830'
+      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+      opts={xml: xml, nct_id: nct_id}
+      described_class.create_all_from(opts)
+
+      inclusion = described_class.where(criterium_type: 'inclusion')
+      exclusion = described_class.where(criterium_type: 'exclusion')
+      other     = described_class.where(criterium_type: 'other')
+      expect(inclusion.size).to eq(4)
+      expect(exclusion.size).to eq(3)
+      expect(other.size).to eq(1)
+      sample = exclusion.select{|x| x.order_number == 3 }.first
+      expect(sample.name).to eq("Inadequate hematologic or hepatic function")
+
+      "For more information regarding BMS clinical trial participation, please visit www.BMSStudyConnect.com
+      Inclusion Criteria:
+      - Histologically or cytologically confirmed small cell lung cancer (SCLC)
+      - Subjects with either limited or extensive disease stage at the initial diagnosis
+      - Must have recurrence or progression after platinum-based first-line chemotherapy or chemoradiation therapy for the treatment of limited or extensive disease stage SCLC
+      - Eastern Cooperative Oncology Group (ECOG) performance status 0 or 1
+      Exclusion Criteria:
+      - Untreated or symptomatic central nervous system (CNS) metastases
+      - Prior therapy with anti-PD-1, anti-PDL1, anti-PD-L2, anti-CD137, or anti-CTLA-4 antibody
+      - Inadequate hematologic or hepatic function"
+    end
   end
 
 end
