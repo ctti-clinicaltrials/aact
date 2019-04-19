@@ -4,30 +4,55 @@ class Criterium < StudyRelationship
   has_many   :children, class_name: 'Criterium', foreign_key: 'parent_id'
 
   def self.create_all_from(opts)
-    opts[:xml].xpath('//criteria').collect{|xml|
-      test_input = xml.text
-      if (test_input.include?('Inclusion Criteria') and test_input.include?('Exclusion Criteria'))
-        beginning = test_input.split('Exclusion Criteria').first
-        other = beginning.split('Inclusion Criteria').first
-        incl  = beginning.split('Inclusion Criteria').last
-        excl  = test_input.split('Exclusion Criteria').last
-      elsif test_input.include?('Inclusion Criteria')
-        other = test_input.split('Inclusion Criteria').first
-        incl  = test_input.split('Inclusion Criteria').last
-        excl  = ''
-      elsif test_input.include?('Exclusion Criteria')
-        other = test_input.split('Exclusion Criteria').first
-        excl  = test_input.split('Exclusion Criteria').last
-        incl=''
+    criteria = opts[:xml].xpath('//criteria')
+    return if criteria.nil?
+    criteria.collect{|xml|
+      test_input=standardize_tags(xml.text)
+
+      if (test_input.include?('inclusion criteria') and test_input.include?('exclusion criteria'))
+        above_excl    = test_input.split('exclusion criteria').first # assume 'exclusion criteria marks end of inclusion
+        below_incl    = test_input.split('inclusion criteria').last
+
+        # There might be multiple exclusion sections, so break the whole text blob on string 'exclusion criteria'
+        # then delete the first one that will almost certainly be the 'inclusion criteria'
+        # That way we have all exclusion criteria sections if there are more than 1
+        excl_sections = test_input.split('exclusion criteria')
+        excl_sections.delete_at(0) if excl_sections.first.include? 'inclusion criteria'
+
+        other         = above_excl.split('inclusion criteria').first # anything before the first 'incl' tag is 'other'
+        incl_sections = above_excl.split('inclusion criteria')  #  break up possible inclusion sections
+        incl_sections.delete_at(0) if other.size > 0
+
+      elsif test_input.include?('inclusion criteria')
+        other          = test_input.split('inclusion criteria').first
+        incl_sections  = test_input.split('inclusion criteria')
+        excl_sections  = []
+
+      elsif test_input.include?('exclusion criteria')
+        other          = test_input.split('exclusion criteria').first
+        excl_sections  = test_input.split('exclusion criteria')
+        incl_sections  = []
       else
         # TODO.   Report this error properly
         puts "ERROR:  Unexpected criteria"
         other = test_input
       end
-      create_each(incl,  'inclusion', opts)
-      create_each(excl,  'exclusion', opts)
-      create_each(other, 'other', opts)
+      incl_sections.each {|incl| create_each(incl,  'inclusion', opts) } if !incl_sections.nil?
+      excl_sections.each {|excl| create_each(excl,  'exclusion', opts) } if !excl_sections.nil?
+      create_each(other, 'other', opts) if !other.nil?
     }
+  end
+
+  def self.standardize_tags(xml)
+      val = xml.gsub('Exclusion Criteria','exclusion criteria')
+      val = val.gsub('Exclusion criteria','exclusion criteria')
+      val = val.gsub('exclusion criteria','exclusion criteria')
+      val = val.gsub('exclusion Criteria','exclusion criteria')
+
+      val = val.gsub('Inclusion Criteria','inclusion criteria')
+      val = val.gsub('Inclusion criteria','inclusion criteria')
+      val = val.gsub('inclusion criteria','inclusion criteria')
+      val = val.gsub('inclusion Criteria','inclusion criteria')
   end
 
   def self.create_each(collection, type, opts)
