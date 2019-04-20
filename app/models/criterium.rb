@@ -37,18 +37,20 @@ class Criterium < StudyRelationship
         puts "ERROR:  Unexpected criteria"
         other = test_input
       end
+      create_each(other, 'other', opts) if !other.nil?
       incl_sections.each {|incl| create_each(incl,  'inclusion', opts) } if !incl_sections.nil?
       excl_sections.each {|excl| create_each(excl,  'exclusion', opts) } if !excl_sections.nil?
-      create_each(other, 'other', opts) if !other.nil?
     }
   end
 
   def self.standardize_tags(xml)
-      val = xml.gsub('Exclusion Criteria','exclusion criteria')
+      val = xml.gsub('EXCLUSION CRITERIA','exclusion criteria')
+      val = val.gsub('Exclusion Criteria','exclusion criteria')
       val = val.gsub('Exclusion criteria','exclusion criteria')
       val = val.gsub('exclusion criteria','exclusion criteria')
       val = val.gsub('exclusion Criteria','exclusion criteria')
 
+      val = val.gsub('INCLUSION CRITERIA','inclusion criteria')
       val = val.gsub('Inclusion Criteria','inclusion criteria')
       val = val.gsub('Inclusion criteria','inclusion criteria')
       val = val.gsub('inclusion criteria','inclusion criteria')
