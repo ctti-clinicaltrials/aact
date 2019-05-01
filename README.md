@@ -47,7 +47,8 @@ Optional vars.  (They default to the given value if you don't set them.)
 * export AACT_PUBLIC_DATABASE_NAME=aact
 * export AACT_BACK_DATABASE_NAME=aact_back
 * export AACT_ADMIN_DATABASE_NAME=aact_admin
-
+* export RACK_TIMEOUT=20
+* export RAILS_SERVE_STATIC_FILES=false
 
 * export AACT_BACK_DATABASE_URL=postgres://$AACT_DB_SUPER_USERNAME@localhost:5432/$AACT_BACK_DATABASE_NAME
 * export AACT_PUBLIC_DATABASE_URL=postgres://$AACT_DB_SUPER_USERNAME@localhost:5432/$AACT_PUBLIC_DATABASE_NAME
