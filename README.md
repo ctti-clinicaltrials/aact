@@ -23,6 +23,7 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
   `brew services start postgresql`
   `psql -U postgres template1`
   template1=# `create role <your_pg_user> login password '<your_password>';`
+    template1=# `create role read_only;`
   template1=# `alter user <your_pg_user> with superuser;`
   template1=# `\q`  (quite out of postgres)
   Create .pgpass in your root directory that contains line: `localhost:5432:*:your_pg_user:<your_password>`
@@ -40,6 +41,7 @@ In your shell profile file (for example .bash_profile), define the following:
 * export AACT_BACK_DATABASE_URL=postgres://<your_pg_user>@localhost:5432/aact_back
 * export AACT_PUBLIC_DATABASE_URL=postgres://<your_pg_user>@localhost:5432/aact
 * export AACT_PUBLIC_DATABASE_NAME=aact
+* export AACT_BACK_DATABASE=aact_back
 * export AACT_ADMIN_DATABASE_URL=postgres://<your_pg_user>@localhost:5432/aact_admin
 
 `source ~/.bash_profile` (Make these new environment variables available in your current session.)
