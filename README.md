@@ -38,6 +38,7 @@ Note:  You could use other versions of postgres or a different relational databa
 In your shell profile file (for example .bash_profile), define the following:
 
 * export APPLICATION_HOST=localhost
+* export AACT_PUBLIC_HOSTNAME=localhost
 * export AACT_PUBLIC_DATABASE_NAME=aact
 * export AACT_BACK_DATABASE_NAME=aact_back
 * export AACT_ADMIN_DATABASE_NAME=aact_admin
