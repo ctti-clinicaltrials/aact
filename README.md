@@ -19,16 +19,17 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 *  We recommend a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight.
 *  **ruby 2.4.5**  If using chruby, you can get this version with the command: `ruby-install ruby 2.4.5`
 *  **postgres 11.1** 
-  `brew install postgresql`
-  `brew services start postgresql`
-  `psql -U postgres template1`
-  template1=# `create role <your_pg_user> login password '<your_password>';`
-    template1=# `create role read_only;`
-  template1=# `alter user <your_pg_user> with superuser;`
-  template1=# `\q`  (quite out of postgres)
-  Create .pgpass in your root directory that contains line: `localhost:5432:*:your_pg_user:<your_password>`
-  `chmod 0600 .pgpass`  (set restrictive permissions on this file)
-  Verify your new user can login to postgres with command: `psql -U myuser -d template1`  
+**  `brew install postgresql`
+**  `brew services start postgresql`
+**  `psql -U postgres template1`
+**  template1=# `create role <your_pg_user> login password '<your_password>';`
+**  template1=# `create role read_only;`
+**  template1=# `alter user <your_pg_user> with superuser;`
+**  template1=# `\q`  (quite out of postgres)
+*  Create .pgpass in your root directory that contains line: `localhost:5432:*:your_pg_user:<your_password>`
+*  `chmod 0600 .pgpass`  (set restrictive permissions on this file)
+*  Verify your new user can login to postgres with command: `psql -U myuser -d template1`  
+
 Note:  You could use other versions of postgres or a different relational database such as mysql, but if so, you might need to make changes to files in db/migrate & will probably need to make a few changes to *app/models/util/db_manager.db* since it drops/creates indexes thinking it's dealing with postgres 11.1.
 *  **wget** if you don't already have it: `brew install wget`
 
@@ -37,12 +38,13 @@ Note:  You could use other versions of postgres or a different relational databa
 In your shell profile file (for example .bash_profile), define the following:
 
 * export APPLICATION_HOST=localhost
-* export AACT_DB_SUPER_USERNAME=<your_pg_user>
-* export AACT_BACK_DATABASE_URL=postgres://<your_pg_user>@localhost:5432/aact_back
-* export AACT_PUBLIC_DATABASE_URL=postgres://<your_pg_user>@localhost:5432/aact
 * export AACT_PUBLIC_DATABASE_NAME=aact
-* export AACT_BACK_DATABASE=aact_back
-* export AACT_ADMIN_DATABASE_URL=postgres://<your_pg_user>@localhost:5432/aact_admin
+* export AACT_BACK_DATABASE_NAME=aact_back
+* export AACT_ADMIN_DATABASE_NAME=aact_admin
+* export AACT_DB_SUPER_USERNAME=<your_pg_user>
+* export AACT_BACK_DATABASE_URL=postgres://$AACT_DB_SUPER_USERNAME@localhost:5432/$AACT_BACK_DATABASE_NAME
+* export AACT_PUBLIC_DATABASE_URL=postgres://$AACT_DB_SUPER_USERNAME@localhost:5432/$AACT_PUBLIC_DATABASE_NAME
+* export AACT_ADMIN_DATABASE_URL=postgres://$AACT_DB_SUPER_USERNAME@localhost:5432/$AACT_ADMIN_DATABASE_NAME
 
 `source ~/.bash_profile` (Make these new environment variables available in your current session.)
 
