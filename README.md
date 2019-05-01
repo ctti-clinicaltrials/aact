@@ -37,12 +37,18 @@ Note:  You could use other versions of postgres or a different relational databa
 
 In your shell profile file (for example .bash_profile), define the following:
 
+Required vars.
+* export AACT_DB_SUPER_USERNAME=<your_pg_user>
+* export AACT_ADMIN_EMAILS=your@email.addr,another-admin@email.addr
+
+Optional vars.  (They default to the given value if you don't set them.)
 * export APPLICATION_HOST=localhost
 * export AACT_PUBLIC_HOSTNAME=localhost
 * export AACT_PUBLIC_DATABASE_NAME=aact
 * export AACT_BACK_DATABASE_NAME=aact_back
 * export AACT_ADMIN_DATABASE_NAME=aact_admin
-* export AACT_DB_SUPER_USERNAME=<your_pg_user>
+
+
 * export AACT_BACK_DATABASE_URL=postgres://$AACT_DB_SUPER_USERNAME@localhost:5432/$AACT_BACK_DATABASE_NAME
 * export AACT_PUBLIC_DATABASE_URL=postgres://$AACT_DB_SUPER_USERNAME@localhost:5432/$AACT_PUBLIC_DATABASE_NAME
 * export AACT_ADMIN_DATABASE_URL=postgres://$AACT_DB_SUPER_USERNAME@localhost:5432/$AACT_ADMIN_DATABASE_NAME
