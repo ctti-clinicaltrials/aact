@@ -20,7 +20,7 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 
 ##  ruby
 *  We recommend you use a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight. (`brew install chruby`)
-*  **ruby 2.4.5**  If using chruby, you can get this version with the command: `ruby-install ruby 2.4.5`
+*  **ruby 2.4.5**  If using chruby, you can get it with the command: `ruby-install ruby 2.4.5`
 
 ## postgres 11.1 
 *  `brew install postgresql`
