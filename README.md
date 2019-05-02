@@ -19,13 +19,14 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 *  We recommend a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight.
 *  **ruby 2.4.5**  If using chruby, you can get this version with the command: `ruby-install ruby 2.4.5`
 *  **postgres 11.1** 
-**  `brew install postgresql`
-**  `brew services start postgresql`
-**  `psql -U postgres template1`
-**  template1=# `create role <your_pg_user> login password '<your_password>';`
-**  template1=# `create role read_only;`
-**  template1=# `alter user <your_pg_user> with superuser;`
-**  template1=# `\q`  (quite out of postgres)
+*  `brew install postgresql`
+*  `brew services start postgresql`
+*  `psql -U postgres template1`
+*  template1=# `create role <your_pg_user> login password '<your_password>';`
+*  template1=# `create role read_only;`
+*  template1=# `alter user <your_pg_user> with superuser;`
+*  template1=# `\q`  (quite out of postgres)
+
 *  Create .pgpass in your root directory that contains line: `localhost:5432:*:your_pg_user:<your_password>`
 *  `chmod 0600 .pgpass`  (set restrictive permissions on this file)
 *  Verify your new user can login to postgres with command: `psql -U myuser -d template1`  
@@ -33,7 +34,7 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 Note:  You could use other versions of postgres or a different relational database such as mysql, but if so, you might need to make changes to files in db/migrate & will probably need to make a few changes to *app/models/util/db_manager.db* since it drops/creates indexes thinking it's dealing with postgres 11.1.
 *  **wget** if you don't already have it: `brew install wget`
 
-### Setup Basic Environment Variables
+### Environment variables
 
 In your shell profile file (for example .bash_profile), define the following:
 
@@ -65,10 +66,6 @@ Optional vars.  (They default to the given value if you don't set them.)
 *  `bundle exec rake db:create`
 *  `bundle exec rake db:migrate`
 
-
-### Environment variables
-
-After running `bin/setup`, you'll have a `.env` file that contains an empty template for other environment variables you'll need. These variables are copied from `.env.example`
 
 ## Importing studies from clinicaltrials.gov
 
