@@ -15,16 +15,20 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 
 ### You'll need:
 
+## git
 *  <a href='https://git-scm.com/book/en/v2/Getting-Started-Installing-Git' target='_blank'>git</a> to clone the AACT application.
-*  We recommend a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight.
+
+##  ruby
+*  We recommend you use a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight. (`brew install chruby`)
 *  **ruby 2.4.5**  If using chruby, you can get this version with the command: `ruby-install ruby 2.4.5`
-*  **postgres 11.1** 
+
+## postgres 11.1 
 *  `brew install postgresql`
 *  `brew services start postgresql`
 *  `psql -U postgres template1`
 *  template1=# `create role <your_pg_user> login password '<your_password>';`
-*  template1=# `create role read_only;`
 *  template1=# `alter user <your_pg_user> with superuser;`
+*  template1=# `create role read_only;`
 *  template1=# `\q`  (quite out of postgres)
 
 *  Create .pgpass in your root directory that contains line: `localhost:5432:*:your_pg_user:<your_password>`
