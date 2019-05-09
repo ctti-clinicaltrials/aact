@@ -44,12 +44,12 @@ set :format_options, command_output: true, log_file: "log/capistrano.log", color
 # Default value for default_env is {}
 
 set :default_env, {
-  'PATH'             => ENV['AACT_PATH'],
-  'LD_LIBRARY_PATH'  => ENV['AACT_LD_LIBRARY_PATH'],
-  'APPLICATION_HOST' => ENV['APPLICATION_HOST'],
-  'RUBY_VERSION'     => 'ruby 2.4.0',
-  'GEM_HOME'         => ENV['AACT_GEM_HOME'],
-  'GEM_PATH'         => ENV['AACT_GEM_PATH'],
+  'PATH' => ENV['AACT_PATH'] || "<server-path>/shared/bundle/ruby/2.4.0/bin:/opt/rh/rh-ruby24/root/usr/lib64",
+  'LD_LIBRARY_PATH' => ENV['LD_LIBRARY_PATH'] || "/opt/rh/rh-ruby24/root/usr/lib64",
+  'APPLICATION_HOST' => ENV['APPLICATION_HOST'] || 'localhost',
+  'RUBY_VERSION' =>  ENV['RUBY_VERSION'] || 'ruby 2.4.5',
+  'GEM_HOME' => ENV['GEM_HOME'] || '~/.gem/ruby',
+  'GEM_PATH' => ENV['GEM_PATH'] || '~/.gem/ruby/gems:/opt/rh/rh-ruby24/root/usr/share/gems:/opt/rh/rh-ruby24/root/usr/local/share/gems:/opt/rh/rh-ruby24/root/usr/lib64'
 }
 
 # Default value for keep_releases is 5
