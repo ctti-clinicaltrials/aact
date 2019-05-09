@@ -36,7 +36,7 @@ module Util
           log("#{@load_event.event_type} load failed in run: #{msg}")
           load_event.add_problem(msg)
           load_event.complete({:status=>'failed', :study_counts=> study_counts})
-          Admin::PublicAnnouncement.clear_load_message
+          Admin::PublicAnnouncement.clear_load_message if Admin::AdminBase.database_exists?
           db_mgr.grant_db_privs
         rescue
           load_event.complete({:status=>'failed', :study_counts=> study_counts})
@@ -217,8 +217,10 @@ module Util
     end
 
     def refresh_data_definitions(data=Util::FileManager.new.default_data_definitions)
-      log("refreshing data definitions...")
-      Admin::DataDefinition.populate(data)
+      if Admin::AdminBase.database_exists?
+        log("refreshing data definitions...")
+        Admin::DataDefinition.populate(data)
+      end
     end
 
     def take_snapshot
@@ -232,8 +234,10 @@ module Util
     end
 
     def send_notification
-      log("sending email notification...")
-      Notifier.report_load_event(load_event)
+      if !AACT::Application::AACT_OWNER_EMAIL.nil?
+        log("sending email notification...")
+        Notifier.report_load_event(load_event)
+      end
     end
 
     def create_flat_files
@@ -297,7 +301,7 @@ module Util
     end
 
     def submit_public_announcement(announcement)
-      Admin::PublicAnnouncement.populate(announcement)
+      Admin::PublicAnnouncement.populate(announcement) if Admin::AdminBase.database_exists?
     end
 
   end
