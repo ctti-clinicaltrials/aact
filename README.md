@@ -45,16 +45,22 @@ Add the following to your shell profile (for example .bash_profile):
 
 **Required variables:**
 * export AACT_DB_SUPER_USERNAME=*<your_pg_user>*
-* export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
 
 **Optional variables:**  (These default to the given value if you don't set them to something different.)
 * export APPLICATION_HOST=*localhost*
-* export AACT_PUBLIC_HOSTNAME=*localhost*   (Set this to the ip addr or domain name of the server that will host the database available to users.)
+
 * export AACT_PUBLIC_DATABASE_NAME=*aact*   (Set this to the name of the database that will be the database available to users.)
 * export AACT_BACK_DATABASE_NAME=*aact_back*  (Set this to the name of the database that does all the work to load data from ClinicalTrials.gov.)
 * export AACT_ADMIN_DATABASE_NAME=*aact_admin*  (This database can contain anncillary tables such as users, public_announcements, etc. This is primarily to support the AACT website, but is also referred to by the load process, so we include it here.)
-* export RACK_TIMEOUT=*20*
+* export RACK_TIMEOUT=*10*
 * export RAILS_SERVE_STATIC_FILES=*false*
+
+If you intend to populate a 'public' database on a different server from the one that performs the loads:
+* export AACT_PUBLIC_HOSTNAME=*domain name of server*   (Set this to the domain name of the server that will host the database available to users.)
+
+If you intend to send email notifications to yourself or others whenever a database load completes, you will need to set these variables:
+* export AACT_OWNER_EMAIL=*<aact-sys@email.addr>*
+* export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
 
 `source ~/.bash_profile` (Make these new environment variables available in your current session.)
 
