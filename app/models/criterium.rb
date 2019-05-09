@@ -34,7 +34,6 @@ class Criterium < StudyRelationship
         incl_sections  = []
       else
         # TODO.   Report this error properly
-        puts "ERROR:  Unexpected criteria"
         other = test_input
       end
       create_each(other, 'other', opts) if !other.nil?
