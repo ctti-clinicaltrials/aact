@@ -25,27 +25,23 @@ module AACT
     config.active_record.schema_format = :sql
     config.active_record.raise_in_transactional_callbacks = true
 
-    AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-    AACT_DB_VERSION        = ENV['AACT_DB_VERSION'] || 'uncertain'   # get this from the public database
-    AACT_OWNER_EMAIL       = ENV['AACT_OWNER_EMAIL']
-    AACT_ADMIN_USERNAMES   = ENV['AACT_ADMIN_USERNAMES'] || 'aact','admin'
-    AACT_ADMIN_EMAILS      = ENV['AACT_ADMIN_EMAILS'] || "aact@your-org.org,admin@your-org.org"
-    AACT_VIEW_PASSWORD     = ENV['AACT_VIEW_PASSWORD'] || 'ViewUseCasesPassword'  # needed to get to use case edit view
+    AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'   # Name of postgres user that has permission to update the database
+    AACT_OWNER_EMAIL       = ENV['AACT_OWNER_EMAIL']                   # Don't define this if your email service is not setup
+    AACT_ADMIN_EMAILS      = ENV['AACT_ADMIN_EMAILS'] || "aact@your-org.org,admin@your-org.org" # Identifes who will receive load notifications
     RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
-    if Rails.env == 'test'
+
+    if Rails.env != 'test'
+      APPLICATION_HOST          = ENV['APPLICATION_HOST'] || 'localhost'           # Server on which database loads run
+      AACT_PUBLIC_HOSTNAME      = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'       # Server on which the publicly accessible database resides
+      AACT_BACK_DATABASE_NAME   = ENV['AACT_BACK_DATABASE_NAME'] || 'aact_back'    # Name of background database used to process loads
+      AACT_ADMIN_DATABASE_NAME  = ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin'  # Name of database used to support the AACT website
+      AACT_PUBLIC_DATABASE_NAME = ENV['AACT_PUBLIC_DATABASE_NAME'] || 'aact'       # Name of database available to the public
+    else
       APPLICATION_HOST          = 'localhost'
       AACT_PUBLIC_HOSTNAME      = 'localhost'
       AACT_BACK_DATABASE_NAME   = 'aact_back_test'
       AACT_ADMIN_DATABASE_NAME  = 'aact_admin_test'
       AACT_PUBLIC_DATABASE_NAME = 'aact_test'
-      AACT_PUBLIC_IP_ADDRESS    = '127.0.0.1'
-    else
-      APPLICATION_HOST          = ENV['APPLICATION_HOST'] || 'localhost'
-      AACT_PUBLIC_HOSTNAME      = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'
-      AACT_BACK_DATABASE_NAME   = ENV['AACT_BACK_DATABASE_NAME'] || 'aact_back'
-      AACT_ADMIN_DATABASE_NAME  = ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin'
-      AACT_PUBLIC_DATABASE_NAME = ENV['AACT_PUBLIC_DATABASE_NAME'] || 'aact'
-      AACT_PUBLIC_IP_ADDRESS    = ENV['AACT_PUBLIC_IP_ADDRESS'] || '127.0.0.1'
     end
     AACT_BACK_DATABASE_URL       = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"
     AACT_ADMIN_DATABASE_URL      = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
