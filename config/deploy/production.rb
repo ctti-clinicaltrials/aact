@@ -53,7 +53,7 @@
    roles: %w{web app},
    ssh_options: {
      user: "#{ENV['AACT_SERVER_USERNAME']}",
-     keys: %w(/home/ctti-aact/.ssh/id_rsa),
+     keys: %w("#{ENV['AACT_SSH_KEY_DIR']}"),
      forward_agent: false,
      auth_methods: %w(publickey)
    }
