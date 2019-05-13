@@ -43,21 +43,15 @@ Note:  You could use other versions of postgres or a different relational databa
 
 Add the following to your shell profile (for example .bash_profile):
 
-**Required variables:**
-* export AACT_DB_SUPER_USERNAME=*<your_aact_pg_user>*
-
-**Optional variables:**  (These default to the given value if you don't set them to something different.)
-
  | env var | default value | description |
  |---|:---:|---|
- |APPLICATION_HOST | localhost | Where the application runs |
+ |AACT_DB_SUPER_USERNAME | ctti | Database user name responsible for creating and populating the AACT DB. Must have rights to create db. |
+ |APPLICATION_HOST | localhost | Server where the system runs to load the database. |
  | AACT_PUBLIC_DATABASE_NAME | aact | Name of the database that will be available to users. |
  | AACT_BACK_DATABASE_NAME | aact_back | Name of the database that is the target for initially loading data from ClinicalTrials.gov |
  | AACT_ADMIN_DATABASE_NAME | aact_back | Name of the database that contains admin info such as users, public announcements, etc.  This is primarily to support the AACT website, but is also referred to by the load process, so we include it here. |
- 
-
-* export RACK_TIMEOUT=*10*
-* export RAILS_SERVE_STATIC_FILES=*false*
+ | RACK_TIMEOUT | 10 | Number of seconds to wait before aborting requests that take too long. |
+ | AACT_STATIC_FILE_DIR | /aact-files | Directory containing AACT static files such as the downloadable db snapshots. |
 
 If you intend to populate a 'public' database on a different server from the one that performs the loads:
 * export AACT_PUBLIC_HOSTNAME=*domain name of server*   (Set this to the domain name of the server that will host the database available to users.)
