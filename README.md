@@ -44,14 +44,18 @@ Note:  You could use other versions of postgres or a different relational databa
 Add the following to your shell profile (for example .bash_profile):
 
 **Required variables:**
-* export AACT_DB_SUPER_USERNAME=*<your_pg_user>*
+* export AACT_DB_SUPER_USERNAME=*<your_aact_pg_user>*
 
 **Optional variables:**  (These default to the given value if you don't set them to something different.)
-* export APPLICATION_HOST=*localhost*
 
-* export AACT_PUBLIC_DATABASE_NAME=*aact*   (Set this to the name of the database that will be the database available to users.)
-* export AACT_BACK_DATABASE_NAME=*aact_back*  (Set this to the name of the database that does all the work to load data from ClinicalTrials.gov.)
-* export AACT_ADMIN_DATABASE_NAME=*aact_admin*  (This database can contain anncillary tables such as users, public_announcements, etc. This is primarily to support the AACT website, but is also referred to by the load process, so we include it here.)
+ | env var | default value | description |
+ |---|:---:|---|
+ |APPLICATION_HOST | localhost | Where the application runs |
+ | AACT_PUBLIC_DATABASE_NAME | aact | Name of the database that will be available to users. |
+ | AACT_BACK_DATABASE_NAME | aact_back | Name of the database that is the target for initially loading data from ClinicalTrials.gov |
+ | AACT_ADMIN_DATABASE_NAME | aact_back | Name of the database that contains admin info such as users, public announcements, etc.  This is primarily to support the AACT website, but is also referred to by the load process, so we include it here. |
+ 
+
 * export RACK_TIMEOUT=*10*
 * export RAILS_SERVE_STATIC_FILES=*false*
 
