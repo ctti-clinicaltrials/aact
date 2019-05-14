@@ -335,6 +335,7 @@ module Util
          [:studies, :results_first_submitted_qc_date],
          [:studies, :study_first_submitted_qc_date],
          [:studies, :last_update_submitted_qc_date],
+         [:study_references, :pmid],
          [:study_references, :reference_type],
       ]
     end
