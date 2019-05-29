@@ -282,6 +282,8 @@ module Util
          [:designs, :caregiver_masked],
          [:designs, :investigator_masked],
          [:designs, :outcomes_assessor_masked],
+         [:design_group_interventions, :design_group_id],
+         [:design_group_interventions, :intervention_id],
          [:documents, :document_id],
          [:documents, :document_type],
          [:drop_withdrawals, :period],

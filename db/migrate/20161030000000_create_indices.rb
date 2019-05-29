@@ -26,6 +26,8 @@ class CreateIndices < ActiveRecord::Migration
     add_index :conditions, :name
     add_index :conditions, :downcase_name
     add_index :design_groups, :group_type
+    add_index :design_group_interventions, :design_group_id
+    add_index :design_group_interventions, :intervention_id
     add_index :design_outcomes, :outcome_type
     add_index :designs, :masking
     add_index :designs, :subject_masked
