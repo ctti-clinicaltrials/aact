@@ -8,6 +8,11 @@ class CreateCtgovViews < ActiveRecord::Migration
       GROUP BY nct_id;
 
       create or replace view all_conditions as
+      SELECT nct_id, array_to_string(array_agg(distinct name),'|') AS names
+        FROM conditions
+      GROUP BY nct_id;
+
+      create or replace view all_browse_conditions as
       SELECT nct_id, array_to_string(array_agg(distinct mesh_term),'|') AS names
         FROM browse_conditions
       GROUP BY nct_id;
@@ -22,7 +27,6 @@ class CreateCtgovViews < ActiveRecord::Migration
       SELECT nct_id, array_to_string(array_agg(distinct measure),'|') AS names
         FROM design_outcomes
       GROUP BY nct_id;
-
 
       create or replace view all_facilities as
       SELECT nct_id, array_to_string(array_agg(name),'|') AS names
@@ -39,9 +43,14 @@ class CreateCtgovViews < ActiveRecord::Migration
         FROM id_information
       GROUP BY nct_id;
 
-      create or replace view all_interventions as
+      create or replace view all_browse_interventions as
       SELECT nct_id, array_to_string(array_agg(mesh_term),'|') AS names
         FROM browse_interventions
+      GROUP BY nct_id;
+
+      create or replace view all_interventions as
+      SELECT nct_id, array_to_string(array_agg(name),'|') AS names
+        FROM interventions
       GROUP BY nct_id;
 
       create or replace view all_intervention_types as
@@ -60,6 +69,16 @@ class CreateCtgovViews < ActiveRecord::Migration
       WHERE outcome_type='primary'
       GROUP BY nct_id;
 
+      create or replace view all_overall_officials as
+      SELECT nct_id, array_to_string(array_agg(name),'|') AS names
+        FROM overall_officials
+      GROUP BY nct_id;
+
+      create or replace view all_overall_official_affiliations as
+      SELECT nct_id, array_to_string(array_agg(affiliation),'|') AS names
+        FROM overall_officials
+      GROUP BY nct_id;
+
       create or replace view all_secondary_outcome_measures as
       SELECT nct_id, array_to_string(array_agg(distinct measure),'|') AS names
         FROM design_outcomes
@@ -76,6 +95,8 @@ class CreateCtgovViews < ActiveRecord::Migration
         FROM facilities
       GROUP BY nct_id;
 
+      GRANT SELECT on all_browse_conditions to read_only;
+      GRANT SELECT on all_browse_interventions to read_only;
       GRANT SELECT on all_cities to read_only;
       GRANT SELECT on all_conditions to read_only;
       GRANT SELECT on all_countries to read_only;
@@ -86,6 +107,8 @@ class CreateCtgovViews < ActiveRecord::Migration
       GRANT SELECT on all_intervention_types to read_only;
       GRANT SELECT on all_id_information to read_only;
       GRANT SELECT on all_keywords to read_only;
+      GRANT SELECT ON all_overall_officials to read_only;
+      GRANT SELECT ON all_overall_official_affiliations to read_only;
       GRANT SELECT on all_primary_outcome_measures to read_only;
       GRANT SELECT on all_secondary_outcome_measures to read_only;
       GRANT SELECT on all_sponsors to read_only;
@@ -96,6 +119,8 @@ class CreateCtgovViews < ActiveRecord::Migration
 
   def down
     execute <<-SQL
+      DROP VIEW ctgov.all_browse_conditions;
+      DROP VIEW ctgov.all_browse_interventions;
       DROP VIEW ctgov.all_cities;
       DROP VIEW ctgov.all_conditions;
       DROP VIEW ctgov.all_countries;
@@ -106,6 +131,8 @@ class CreateCtgovViews < ActiveRecord::Migration
       DROP VIEW ctgov.all_interventions;
       DROP VIEW ctgov.all_intervention_types;
       DROP VIEW ctgov.all_keywords;
+      DROP VIEW ctgov.all_overall_officials;
+      DROP VIEW ctgov.all_overall_official_affiliations;
       DROP VIEW ctgov.all_primary_outcome_measures;
       DROP VIEW ctgov.all_secondary_outcome_measures;
       DROP VIEW ctgov.all_sponsors;
