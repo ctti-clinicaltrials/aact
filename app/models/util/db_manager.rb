@@ -13,11 +13,23 @@ module Util
       end
     end
 
+    def dump_schema(schema_name)
+      fm=Util::FileManager.new
+      file_name="#{fm.pg_dump_file}_#{schema_name}"
+      File.delete(file_name) if File.exist?(file_name)
+
+      cmd="pg_dump aact -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
+      puts ">>>>>>>>>>>>>>>>>>>>> #{cmd}"
+      run_command_line(cmd)
+    end
+
     def dump_database
       fm=Util::FileManager.new
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
+      puts ">>>>>>>>>>>>>>>>>>>>> #{fm.pg_dump_file}"
 
       cmd="pg_dump #{AACT::Application::AACT_BACK_DATABASE_URL} -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema ctgov -b -c -C -Fc -f #{fm.pg_dump_file}"
+      puts ">>>>>>>>>>>>>>>>>>>>> #{cmd}"
       run_command_line(cmd)
     end
 
@@ -46,6 +58,7 @@ module Util
         end
         log "  restoring alt public database..."
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d aact_alt #{dump_file_name}"
+        #  pg_restore -c -j 5 -v -h localhost -p 5432 -U ctti -d aact_alt postgres.dmp_pubmed
         run_restore_command_line(cmd)
 
         log "  verifying alt public database..."
@@ -93,7 +106,12 @@ module Util
     def grant_db_privs
       log "  db_manager:  granting ctgov schema access to read_only..."
       con=PublicBase.connection
-      con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      begin
+        con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      rescue
+        con.execute("CREATE SCHEMA ctgov;")
+        con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      end
       con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA ctgov TO read_only;")
       #con.execute("GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA ctgov TO read_only;")
       con.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
