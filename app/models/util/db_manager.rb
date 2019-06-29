@@ -28,7 +28,7 @@ module Util
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
       cmd="pg_dump #{AACT::Application::AACT_BACK_DATABASE_URL} -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema ctgov -b -c -C -Fc -f #{fm.pg_dump_file}"
       run_command_line(cmd)
-      cmd="scp #{fm.pg_dump_file} ctti@#{AACT::Application::AACT_PUBLIC_HOSTNAME}:/aact-files/other"
+      cmd="scp #{fm.pg_dump_file} ctti@#{AACT::Application::AACT_PUBLIC_HOSTNAME}:/aact-files/dump_files"
       system(cmd)
     end
 
