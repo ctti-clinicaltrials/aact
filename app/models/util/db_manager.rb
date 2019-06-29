@@ -40,7 +40,6 @@ module Util
         revoke_db_privs   # Prevent users from logging in while db restore is running.
 
         # Refresh the aact_alt database first.  If something goes wrong, don't restore aact.
-        drop_project_views(PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection)
         terminate_alt_db_sessions
 
         begin
@@ -72,12 +71,10 @@ module Util
           grant_db_privs
           return false
         end
-        create_project_views(PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection)
         log "  all systems go... we can update primary public aact...."
 
         # If all goes well with AACT_ALT DB, proceed with AACT
 
-        drop_project_views(PublicBase.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection)
         terminate_db_sessions
         begin
           log "  dropping ctgov schema in main public database..."
@@ -90,7 +87,6 @@ module Util
         log "  restoring main public database..."
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d #{public_db_name} #{dump_file_name}"
         run_restore_command_line(cmd)
-        create_project_views(PublicBase.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection)
         grant_db_privs
         return success_code
       rescue => error
@@ -391,37 +387,6 @@ module Util
       return true if index.table=='study_xml_records' and index.columns==['created_study_at']
       return true if index.table=='sanity_checks'
       false
-    end
-
-    def drop_project_views(conn)
-      # Create a collection of 'DROP VIEW commands for each project view.
-      creation_cmd="
-        SELECT 'DROP VIEW ' || table_schema || '.' || table_name || ';'
-          FROM information_schema.views
-         WHERE table_schema LIKE 'proj_%'
-           AND table_name != 'data_definitions';"
-      cmds=conn.execute(creation_cmd)
-      cmds.each{ |cmd|
-        begin
-          conn.execute(cmd['?column?'])
-        rescue
-          # Don't stop if error encountered while dropping view.  Prob cuz view doesn't exist yet.
-        end
-      }
-    end
-
-    def create_project_views(conn)
-      Admin::Project.schema_name_array.each{|schema_name|
-        if conn.execute("select nspname from pg_catalog.pg_namespace where nspname = '#{schema_name}';").count > 0
-          schema_functions = conn.execute("SELECT routines.routine_name FROM information_schema.routines LEFT JOIN information_schema.parameters ON routines.specific_name=parameters.specific_name WHERE routines.specific_schema='#{schema_name}' ORDER BY routines.routine_name, parameters.ordinal_position;")
-          create_view_function_exists = (schema_functions.select{|f| f['routine_name'] == 'create_views'}).size > 0
-          cmd="select #{schema_name}.create_views();"
-          if create_view_function_exists
-            log "  creating project view for #{schema_name}"
-            conn.execute(cmd)
-          end
-        end
-      }
     end
 
     def indexes_for(table_name)
