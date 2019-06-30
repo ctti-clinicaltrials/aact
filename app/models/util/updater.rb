@@ -211,7 +211,7 @@ module Util
       # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
       # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to this.
       old_count=(db_mgr.public_study_count - 10)
-      new_count=db_mgr.background_study_count
+      new_count=Study.count
       load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
       return load_event.problems.blank?
     end

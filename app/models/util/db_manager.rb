@@ -19,7 +19,6 @@ module Util
       File.delete(file_name) if File.exist?(file_name)
 
       cmd="pg_dump aact -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
-      puts ">>>>>>>>>>>>>>>>>>>>> #{cmd}"
       run_command_line(cmd)
     end
 
@@ -61,14 +60,12 @@ module Util
         end
         log "  restoring alt public database..."
         cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d aact_alt #{dump_file_name}"
-        #  pg_restore -c -j 5 -v -h localhost -p 5432 -U ctti -d aact_alt postgres.dmp_pubmed
         run_restore_command_line(cmd)
 
         log "  verifying alt public database..."
         public_studies_count = PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute('select count(*) from studies;').first['count'].to_i
 
-        back_studies_count   = PublicBase.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL).connection.execute('select count(*) from studies;').first['count'].to_i
-        if public_studies_count != back_studies_count
+        if public_studies_count != Study.count
           success_code = false
           msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: aact_alt.  Study count is #{public_studies_count}. Should be #{back_studies_count}"
           event.add_problem(msg)
@@ -178,10 +175,6 @@ module Util
       end
     end
 
-    def background_study_count
-      Study.count
-    end
-
     def add_indexes_and_constraints
       add_indexes
       add_constraints
@@ -277,6 +270,7 @@ module Util
     end
 
     def indexes
+      # we drop all indexes to dramatically speed loads. This is used to recreate them after the load.  (better way?)
       [
          [:baseline_measurements, :dispersion_type],
          [:baseline_measurements, :param_type],
@@ -361,6 +355,7 @@ module Util
     end
 
     def foreign_key_constraints
+      # we drop all constraints to dramatically speed loads. This is used to recreate them after the load.  (better way?)
       [
         {:child_table => 'baseline_counts',            :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
         {:child_table => 'baseline_measurements',      :parent_table => 'result_groups',    :child_column => 'result_group_id',     :parent_column => 'id'},
