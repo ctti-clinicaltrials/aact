@@ -23,11 +23,20 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 
 ### Setup Basic Environment Variables
 
-In your shell profile file (for example .bash_profile), define the following:
+Add the following to your shell profile (for example .bash_profile):
 
-* export AACT_DB_SUPER_USERNAME=(name of postgres database superuser.  example:  **postgres**)
-* export AACT_BACK_DATABASE_URL=(name of postgres loading/staging AACT database.  example:  **aact_back**)
-* export AACT_PUBLIC_DATABASE_URL=(name of postgres final/public AACT database.  example:  **aact**)
+**Required variables:**
+* export AACT_DB_SUPER_USERNAME=*<your_pg_user>*
+* export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
+
+**Optional variables:**  (These default to the given value if you don't set them to something different.)
+* export APPLICATION_HOST=*localhost*
+* export AACT_PUBLIC_HOSTNAME=*localhost*   (Set this to the ip addr or domain name of the server that will host the database available to users.)
+* export AACT_PUBLIC_DATABASE_NAME=*aact*   (Set this to the name of the database that will be the database available to users.)
+* export AACT_BACK_DATABASE_NAME=*aact_back*  (Set this to the name of the database that does all the work to load data from ClinicalTrials.gov.)
+* export AACT_ADMIN_DATABASE_NAME=*aact_admin*  (This database can contain anncillary tables such as users, public_announcements, etc. This is primarily to support the AACT website, but is also referred to by the load process, so we include it here.)
+* export RACK_TIMEOUT=*20*
+* export RAILS_SERVE_STATIC_FILES=*false*
 
 `source ~/.bash_profile` (Make these new environment variables available in your current session.)
 
