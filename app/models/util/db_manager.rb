@@ -65,7 +65,7 @@ module Util
         log "  verifying alt public database..."
         public_studies_count = PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute('select count(*) from studies;').first['count'].to_i
 
-        if public_studies_count != Study.count
+        if public_studies_count != background_study_count
           success_code = false
           msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: aact_alt.  Study count is #{public_studies_count}. Should be #{back_studies_count}"
           event.add_problem(msg)
@@ -98,6 +98,11 @@ module Util
         grant_db_privs
         return false
       end
+    end
+
+    def background_study_count
+      # partly to allow us to stub this value in tests
+      Study.count
     end
 
     def grant_db_privs

@@ -99,7 +99,7 @@ module Util
       add_indexes_and_constraints
       create_calculated_values
       populate_admin_tables
-      study_counts[:processed]=Study.count
+      study_counts[:processed]=db_mgr.background_study_count
       take_snapshot
       if refresh_public_db != true
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
