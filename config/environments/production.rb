@@ -1,5 +1,5 @@
 Rails.application.configure do
-  ENV.fetch('APPLICATION_HOST','localhost')
+  host = ENV.fetch('APPLICATION_HOST','localhost')
   config.cache_classes = true
   config.eager_load = false
   config.consider_all_requests_local       = false
