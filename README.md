@@ -34,12 +34,11 @@ In your shell profile file (for example .bash_profile), define the following:
 ### Install AACT:
 
 *  Clone this repo: `git clone git@github.com:ctti-clinicaltrials/aact.git`
-*  Change into the AACT directory: `cd aact`
-*  Run this setup script: `./bin/setup`
-
-### Environment variables
-
-After running `bin/setup`, you'll have a `.env` file that contains an empty template for other environment variables you'll need. These variables are copied from `.env.example`
+*  Change into the AACT directory: `cd aact` and run the following commands:
+*  `gem install bundler -v 1.9.0`
+*  `bundle install`
+*  `bundle exec rake db:create`  (create the database)
+*  `bundle exec rake db:migrate`  (create tables, indexes, views, etc. in the database)
 
 ## Importing studies from clinicaltrials.gov
 
