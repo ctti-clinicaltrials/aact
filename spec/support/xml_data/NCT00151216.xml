@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on April 18, 2019</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT00151216</url>
+  </required_header>
+  <id_info>
+    <org_study_id>0401007010</org_study_id>
+    <secondary_id>OBA-RAC 0312-619</secondary_id>
+    <nct_id>NCT00151216</nct_id>
+  </id_info>
+  <brief_title>Safety Study of a Gene Transfer Vector for Children With Late Infantile Neuronal Ceroid Lipofuscinosis</brief_title>
+  <official_title>Administration of a Replication Deficient Adeno-associated Virus Gene Transfer Vector Expressing the Human CLN2 cDNA to the Brain of Children With Late Infantile Neuronal Ceroid Lipofuscinosis</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Weill Medical College of Cornell University</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Nathan's Battle Foundation</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Weill Medical College of Cornell University</source>
+  <oversight_info>
+    <has_dmc>Yes</has_dmc>
+    <is_fda_regulated_drug>Yes</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The aim of this study is to treat the signs and symptoms of late infantile neuronal ceroid
+      lipofuscinosis (LINCL), a fatal inherited disease in the brain. This will be accomplished by
+      using delivery of a gene (method called gene transfer) to administer to the brain an
+      experimental drug called AAV2CUhCLN2, a gene transfer vector.
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Late infantile neuronal ceroid lipofuscinosis (LINCL) is a fatal childhood neurodegenerative
+      lysosomal storage disease with no known therapy. There are estimated to be 200 to 300
+      children in the USA at any one time with the disease. LINCL is a genetic disease resulting
+      from mutations in the CLN2 gene. The CLN2 gene encodes a protein tripeptidyl peptidase-I
+      (TPP-I) which is absent/deficient in children with LINCL. This absence/deficiency of TPP-I
+      results in lysosomal storage and subsequent cell death (especially neurons). The children
+      with LINCL are chronically ill, with a progressive CNS disorder that invariably results in
+      death, typically by age 8 to 12.
+
+      This clinical study will evaluate the concept that persistent expression of the normal CLN2
+      cDNA in the CNS will result in the production of sufficient amounts of TPP-I to prevent
+      further loss of neurons, and hence limit disease progression. To assess this concept, an
+      adeno-associated virus vector encoding the normal human CLN2 gene (AAV2CUhCLN2) will be used
+      as a vehicle to deliver and express the human CLN2 cDNA in the brain of children with LINCL.
+      The proposed study will include 11 individuals and will be divided into two parts. Group A,
+      to be studied first, will include 5 individuals with the severe form of the disease. Group B
+      of the trial will include 6 individuals with a moderate form of the disease. Following direct
+      intracranial administration of the vector, there will be neurological assessment using the
+      LINCL clinical rating scale and magnetic resonance imaging/magnetic resonance spectroscopy
+      assessment of the CNS in regions of vector administration. The data generated will help
+      evaluate two hypotheses: (1) that it is safe to carry out direct intracranial administration
+      of the AAV2CUhCLN2 vector to the CNS of individuals with LINCL; and (2) that administration
+      of the AAV2CUhCLN2 vector will slow down or halt the progression of the disease in the
+      central nervous system.
+    </textblock>
+  </detailed_description>
+  <overall_status>Active, not recruiting</overall_status>
+  <start_date>June 2004</start_date>
+  <completion_date type="Anticipated">June 2020</completion_date>
+  <primary_completion_date type="Anticipated">June 2020</primary_completion_date>
+  <phase>Phase 1</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Non-Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <intervention_model_description>The study will be carried out in two populations of children with LINCL. Group A will include n= 5 children with a total disability score of 0 to 4 (the severe forms of the disease; the staging based on a modification of the scale of Steinfeld et al. Group B will include n=6 children with a total disability score of 5 to 6, a moderate stage of the disease. All of the study population of 11 children (Group A, n= 5 and Group B, n=6) will receive 3x10^12 particle units of the AAV2CUhCLN2 vector divided among 12 locations delivered through 6 burr holes (2 locations at varying depths through each hole), 3 burr holes per hemisphere. The choice of the locations for the burr holes and needle placement will be on a case-by-case basis due to the diffuse and variable nature of the disease presentation.</intervention_model_description>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>None (Open Label)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Neurological assessment using the LINCL clinical rating scale</measure>
+    <time_frame>screening; pre-therapy; and 6 and 18 months post-vector administration</time_frame>
+    <description>The neurological examination will be carried out using a standard format with input from the parents/legal guardians as relevant. The clinical rating scale, referred to as a &quot;CNS disability scale&quot; is made up of individual sum of 4 point scales for each of 3 activities; the ratings for each activity are summed, giving a &quot;CNS disability score&quot;. Each of the activities are rated 0 to 3, where 0 is the most severe form of the disease. This scale, developed by Steinfeld et al, originally included the four major functional problems in LINCL (loss of motor performance, seizure activity, loss of vision, and loss of language). In this modified clinical rating system, these are now 3 categories.</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>MRI/MRS assessment</measure>
+    <time_frame>screening; pre-therapy; and 6 and 18 months post-vector administration</time_frame>
+    <description>The secondary endpoint variable will be the MRI/MRS assessment of the CNS in regions of vector administration. Anatomical measurements of brain parenchymal volume will be combined with proton spectroscopic imaging of the n-acetyl-aspartate (NAA) resonance, a neuronal marker measurable using clinical magnetic resonance techniques.</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">10</enrollment>
+  <condition>Batten Disease</condition>
+  <condition>Late Infantile Neuronal Ceroid Lipofuscinosis</condition>
+  <arm_group>
+    <arm_group_label>Group A-Severe Stages of LINCL</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Group A will include n= 5 children with a total disability score of 0 to 4 (the severe forms of the disease; the staging based on a modification of the scale of Steinfeld et al.
+All subjects will receive 3x10^12 particle units of the AAV2CUhCLN2 vector.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Group B-Moderate Stages of LINCL</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Group B will include n=6 children with a total disability score of 5 to 6, a moderate stage of the disease.
+All subjects will receive 3x10^12 particle units of the AAV2CUhCLN2 vector.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>AAV2CUhCLN2 (3x10^12 particle units)</intervention_name>
+    <description>gene transfer; one-time administration via neuro surgery procedure</description>
+    <arm_group_label>Group A-Severe Stages of LINCL</arm_group_label>
+    <arm_group_label>Group B-Moderate Stages of LINCL</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          -  A definitive diagnosis of late infantile neuronal ceroid lipofuscinosis, based on
+             clinical phenotype and genotype, with CLN2 gene mutations known to be associated with
+             the disease.
+
+          -  All subjects will be naive, i.e., they have not previously participated in a gene
+             therapy study for LINCL.
+
+          -  Parents of study participants must agree to comply in good faith with the conditions
+             of the study, including attending all of the required baseline and follow-up
+             assessments.
+
+          -  Both parents or legal guardians must give consent for their child's participation in
+             the research study.
+
+          -  For group A, subjects will have a LINCL average total disability score 0 to 4, the
+             severe form of the disease.
+
+          -  For group B, subjects will have a LINCL average total disability score 5 to 6, a
+             moderate form of the disease.
+
+        Exclusion criteria
+
+          -  Other significant medical or neurological conditions may disqualify the patient from
+             participation in this study, particularly those which would create an unacceptable
+             operative risk or risk to receiving the AAV2CUhCLN2 vector. Examples include
+             malignancy (other than skin cancer), congenital heart disease, liver or renal failure,
+             or seropositive for HIV. Each case will be individually reviewed and the final
+             decision shall rest with the Eligibility Committee comprised on three physicians other
+             than the Principal Investigator, including a pediatric neurosurgeon, pediatric
+             neurologist and general pediatrician.
+
+          -  Individuals without adequate control of seizures (i.e., a seizure score &lt;3 on the CNS
+             Disability Scoring System for Late Infantile Neuronal Ceroid Lipofuscinosis).
+
+          -  Individuals with heart disease that would be a risk for anesthesia.
+
+          -  History of hemorrhage or major risk factors for hemorrhage (e.g., abnormally low
+             platelet counts).
+
+          -  Concurrent participation in any other FDA approved Investigational New Drug clinical
+             protocol is not allowed, although the Principal Investigator will work with other
+             doctors to accommodate specific requests (e.g., a study of nutritional supplements
+             probably would not be a disqualification).
+
+          -  Individuals who have a (1) heart pacemaker and/or related implants, (2) metal
+             fragment/chip in the eye or other sites, (3) an aneurysm clip in their brain, and (4)
+             metallic inner ear implants.
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>3 Years</minimum_age>
+    <maximum_age>18 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Ronald G. Crystal, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Weill Medical College of Cornell University</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>New York Presbyterian Hospital - Weill Medical College of Cornell University</name>
+      <address>
+        <city>New York</city>
+        <state>New York</state>
+        <zip>10021</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <verification_date>April 2019</verification_date>
+  <study_first_submitted>September 6, 2005</study_first_submitted>
+  <study_first_submitted_qc>September 6, 2005</study_first_submitted_qc>
+  <study_first_posted type="Estimate">September 8, 2005</study_first_posted>
+  <last_update_submitted>April 16, 2019</last_update_submitted>
+  <last_update_submitted_qc>April 16, 2019</last_update_submitted_qc>
+  <last_update_posted type="Estimate">April 18, 2019</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>Batten Disease</keyword>
+  <keyword>Late Infantile Neuronal Ceroid Lipofuscinosis</keyword>
+  <keyword>LINCL</keyword>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Neuronal Ceroid-Lipofuscinoses</mesh_term>
+  </condition_browse>
+  <patient_data>
+    <sharing_ipd>Undecided</sharing_ipd>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>

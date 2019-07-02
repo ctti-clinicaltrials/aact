@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on April 18, 2019</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT03424005</url>
+  </required_header>
+  <id_info>
+    <org_study_id>CO40115</org_study_id>
+    <secondary_id>2017-002038-21</secondary_id>
+    <nct_id>NCT03424005</nct_id>
+  </id_info>
+  <brief_title>A Study Evaluating the Efficacy and Safety of Multiple Immunotherapy-Based Treatment Combinations in Patients With Metastatic or Inoperable Locally Advanced Triple-Negative Breast Cancer (Morpheus-TNBC)</brief_title>
+  <acronym>Morpheus-TNBC</acronym>
+  <official_title>A Phase Ib/II, Open-Label, Multicenter, Randomized Umbrella Study Evaluating The Efficacy And Safety Of Multiple Immunotherapy-Based Treatment Combinations In Patients With Metastatic Triple-Negative Breast Cancer (Morpheus-TNBC)</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Hoffmann-La Roche</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Seattle Genetics, Inc.</agency>
+      <agency_class>Industry</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Hoffmann-La Roche</source>
+  <oversight_info>
+    <is_fda_regulated_drug>Yes</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      This is a Phase Ib/II, open-label, multicenter, randomized umbrella study evaluating the
+      efficacy and safety of multiple immunotherapy-based treatment combinations in patients with
+      metastatic or inoperable locally advanced TNBC who had disease progression during or
+      following first-line metastatic treatment with chemotherapy.
+
+      The study will be performed in two stages. During Stage 1, participants will be randomized to
+      capecitabine (control) or an atezolizumab-containing doublet or triplet combination. Those
+      who experience disease progression, loss of clinical benefit, or unacceptable toxicity may be
+      eligible to receive a new doublet combination treatment in Stage 2 until loss of clinical
+      benefit or unacceptable toxicity. New treatment arms may be added and/or existing treatment
+      arms may be closed during the course of the study on the basis of ongoing clinical efficacy
+      and safety as well as the current treatments available.
+    </textblock>
+  </brief_summary>
+  <overall_status>Recruiting</overall_status>
+  <start_date type="Actual">March 30, 2018</start_date>
+  <completion_date type="Anticipated">August 17, 2021</completion_date>
+  <primary_completion_date type="Anticipated">August 17, 2021</primary_completion_date>
+  <phase>Phase 1/Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>None (Open Label)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Objective Response Rate (ORR)</measure>
+    <time_frame>Baseline until disease progression or loss of clinical benefit ( approximately 4 years)</time_frame>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Progression Free Survival (PFS)</measure>
+    <time_frame>Randomization until the first occurrence of disease progression or death from any cause, which ever occurs first, through the end of study (approximately 4 years) as determined by the investigator according to RECIST v1.1</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Disease Control Rate (DCR)</measure>
+    <time_frame>Baseline through end of study (approximately 4 years)</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Overall Survival (OS)</measure>
+    <time_frame>Randomization to death from any cause, through the end of study (approximately 4 years)</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Overall Survival (at specific time-points)</measure>
+    <time_frame>12 and 18 months</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Duration of Response (DOR)</measure>
+    <time_frame>Randomization until first occurrence of a documented objective response to the first recorded occurrence of disease progression or death from any cause (whichever occurs first), through end of study (approximately 4 years)</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Percentage of Participants with Adverse Events</measure>
+    <time_frame>Baseline to end of study (approximately 4 years)</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Serum Concentration of Atezolizumab</measure>
+    <time_frame>Day 1, Cycle 1 pre-treatment and 30 mins post-infusion; Day 1 of Cycles 2,3,4,8,12, and 16 pre-treatment (Cycles = 21 or 28 days); through end of study (~ 4 years); 120 days after last dose</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Plasma Concentration of Ipatasertib</measure>
+    <time_frame>Day 15, Cycle 1 pre treatment and 1-3 hours after Ipatasertib dose (Cycle = 28 days);</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Plasma or Serum Concentration of SGN-LIV1A</measure>
+    <time_frame>Day 1 Cycle, 1 pre-treatment and 30 minutes after SGN-LIV1A infusion (Cycle = 21 days).</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Plasma Concentration of Cobimetinib</measure>
+    <time_frame>Day 15, Cycle 1 Pre- Cobimetinib dose and 2-4 hours after Cobimetinib dose (Cycle = 28 days).</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Plasma Concentration of Capecitabine</measure>
+    <time_frame>Day 1, Cycle 1, 2 hours after capecitabine dose (Cycle = 21 days).</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Serum Concentration of RO6874281</measure>
+    <time_frame>From pre-treatment on Cycle 1 Day 1 (Cycle = 21 days), though to end of study (~ 4 years, see Description for specific timings).</time_frame>
+    <description>Pre-treatment and at end of infusion on Day 1 of Cycles 1, 2, 3, 4, 6, 8, 10, 12, 14, 16 and 19 and every third cycle thereafter; 1, 2 and 4 hours after start of infusion on Day 1 of Cycles 1 and 3; 24 hours, 48 hours and 168 hours after infusion on Days 2, 3 and 8 of Cycle 1 and 3 (Cycle = 21 days); through end of study (~ 4 years).</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Serum Concentration of Selicrelumab</measure>
+    <time_frame>Pre-treatment on Day 1 of Cycles 1, 2, 4, 8, 12, and 16 (Cycle = 28 days).</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Serum Concentration of Bevacizumab</measure>
+    <time_frame>Pre-treatment on Day 1 of Cycles 1 and 4 (Cycles = 21 or 28 days).</time_frame>
+  </secondary_outcome>
+  <number_of_arms>9</number_of_arms>
+  <enrollment type="Anticipated">310</enrollment>
+  <condition>Triple Negative Breast Cancer</condition>
+  <arm_group>
+    <arm_group_label>Capecitabine</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Participants will receive Capecitabine until unacceptable toxicity or disease progression per Response Evaluation Criteria in Solid Tumors v1.1 (RECIST v1.1).
+Participants who progressed on treatment may have the option of receiving Atezolizumab + Chemo, provided they meet the eligibility criteria</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Atezolizumab + Ipatasertib</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Participants will receive doublet combination treatment with atezolizumab + Ipatasertib until unacceptable toxicity or loss of clinical benefit as determined by the investigator.
+Participants who progressed on treatment may have the option of receiving Atezolizumab + Chemo, provided they meet the eligibility criteria</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Atezolizumab + SGN-LIV1A</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Participants will receive doublet combination treatment with atezolizumab plus SGNLIV1A until unacceptable toxicity or loss of clinical benefit as determined by the investigator.
+Participants who progressed on treatment may have the option of receiving Atezolizumab + Chemo, provided they meet the eligibility criteria</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Atezolizumab + Bevacizumab</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Participants will receive doublet combination treatment with atezolizumab plus Bevacizumab until unacceptable toxicity or loss of clinical benefit as determined by the investigator. Participants who progressed on treatment may have the option of receiving Atezolizumab + Chemo, provided they meet the eligibility criteria</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Atezolizumab + Bevacizumab + Cobimetinib</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Participants will receive doublet combination treatment with atezolizumab + Bevacizumab + Cobimetinib until unacceptable toxicity or loss of clinical benefit as determined by the investigator.
+Participants who progressed on treatment may have the option of receiving Atezolizumab + Chemo, provided they meet the eligibility criteria</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Atezolizumab + Capecitabine</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Participants will receive doublet combination treatment with atezolizumab + Capecitabine until unacceptable toxicity or loss of clinical benefit as determined by the investigator.
+Participants who progressed on treatment may have the option of receiving Atezolizumab + Chemo, provided they meet the eligibility criteria</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Atezolizumab + Chemo (Gemcitabine + Carboplatin or Eribulin)</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Participants will receive doublet combination treatment with atezolizumab plus Chemotherapy (Gemcitabine + Carboplatin or Eribulin) until unacceptable toxicity or loss of clinical benefit as determined by the investigator.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Atezolizumab + RO6874281</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Participants will receive doublet combination treatment with atezolizumab plus RO6874281 until unacceptable toxicity or loss of clinical benefit as determined by the investigator.
+Participants who progressed on treatment may have the option of receiving Atezolizumab + Chemo, provided they meet the eligibility criteria.</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Atezolizumab + Selicrelumab + Bevacizumab</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Participants will receive doublet combination treatment with atezolizumab plus Selicrelumab and Bevacizumab until unacceptable toxicity or loss of clinical benefit as determined by the investigator.
+Participants who progressed on treatment may have the option of receiving Atezolizumab + Chemo, provided they meet the eligibility criteria.</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Capecitabine</intervention_name>
+    <description>Capecitabine will be administered 1250 mg/m2 orally twice daily on Days 1−14, of each 21 day cycle</description>
+    <arm_group_label>Capecitabine</arm_group_label>
+    <arm_group_label>Atezolizumab + Capecitabine</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Atezolizumab</intervention_name>
+    <description>For Atezolizumab + SGN-LIV1A, Bevacizumab, Capecitabine, RO6874281 or Chemo arms: Atezolizumab will be administered by IV, 1200 mg, on Day 1 of each 21-day cycle.
+For Atezolizumab + Bevacizumab+ Cobimetinib, + Selicrelumab + Bevacizumab, or + Ipatasertib arms: Atezolizumab will be administered by IV, 840 mg on Days 1 and 15, of each 28 day cycle</description>
+    <arm_group_label>Atezolizumab + Ipatasertib</arm_group_label>
+    <arm_group_label>Atezolizumab + SGN-LIV1A</arm_group_label>
+    <arm_group_label>Atezolizumab + Bevacizumab</arm_group_label>
+    <arm_group_label>Atezolizumab + Bevacizumab + Cobimetinib</arm_group_label>
+    <arm_group_label>Atezolizumab + Capecitabine</arm_group_label>
+    <arm_group_label>Atezolizumab + Chemo (Gemcitabine + Carboplatin or Eribulin)</arm_group_label>
+    <arm_group_label>Atezolizumab + RO6874281</arm_group_label>
+    <arm_group_label>Atezolizumab + Selicrelumab + Bevacizumab</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Ipatasertib</intervention_name>
+    <description>Ipatasertib will be administered by mouth 400 mg once a day, on Day 1-21 of each 28 day cycle</description>
+    <arm_group_label>Atezolizumab + Ipatasertib</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>SGN-LIV1A</intervention_name>
+    <description>SGN-LIV1A will be administered by IV, 2.5 mg/kg (maximum calculated dose 250 mg), on Day 1 of each 21 day cycle</description>
+    <arm_group_label>Atezolizumab + SGN-LIV1A</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Bevacizumab</intervention_name>
+    <description>When given as a doublet combination, Bevacizumab will be administered by IV, 15 mg/kg, on Day 1 of each 21 day cycle. When given as a triplet combination, Bevacizumab will be administered by IV, 10 mg/kg, on Days 1 and 15 of each 28 day cycle.</description>
+    <arm_group_label>Atezolizumab + Bevacizumab</arm_group_label>
+    <arm_group_label>Atezolizumab + Bevacizumab + Cobimetinib</arm_group_label>
+    <arm_group_label>Atezolizumab + Selicrelumab + Bevacizumab</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Cobimetinib</intervention_name>
+    <description>Cobimetinib will be administered orally, once per day, 60 mg, on Days 1-21 of a 28-day cycle.</description>
+    <arm_group_label>Atezolizumab + Bevacizumab + Cobimetinib</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Chemotherapy (Gemcitabine + Carboplatin or Eribulin)</intervention_name>
+    <description>Gemcitabine will be administered by IV, 1000 mg/m2, along with Carboplatin, by IV, AUC 2, on Days 1 and 8 of each 21 day cycle
+Or
+Eribulin will be administered by IV, 1.4 mg/m2 on days 1 and 8 of each 21 day cycle</description>
+    <arm_group_label>Atezolizumab + Chemo (Gemcitabine + Carboplatin or Eribulin)</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>RO6874281</intervention_name>
+    <description>RO6874281 will be administered at a fixed dose of 10 mg IV on Day 1 of each 21 day cycle.</description>
+    <arm_group_label>Atezolizumab + RO6874281</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Selicrelumab</intervention_name>
+    <description>Selicrelumab will be administered by SC injection at a fixed dose of 16 mg on Day 1 of Cycles 1 to 4 and every third cycle thereafter (cycle = 28 days).</description>
+    <arm_group_label>Atezolizumab + Selicrelumab + Bevacizumab</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria Stage 1
+
+          -  ECOG Performance Status of 0 or 1
+
+          -  Metastatic or inoperable locally advanced, histologically documented TNBC (absence of
+             HER2, ER, and PR expression)
+
+          -  Radiologic/objective evidence of recurrence or disease progression after chemotherapy
+             for a total of one line of therapy for inoperable locally advanced or metastatic
+             breast cancer
+
+          -  Availability of a representative tumor specimen that is suitable for determination of
+             PD-L1 and/or additional biomarker status via central testing
+
+          -  Eligible for capecitabine monotherapy
+
+          -  Life expectancy =/&gt; 3 months, as determined by the investigator
+
+          -  Tumor accessible for biopsy
+
+          -  For women of childbearing potential: agreement to remain abstinent (refrain from
+             heterosexual intercourse) or use contraceptive measures and agreement to refrain from
+             breastfeeding and donating eggs as outlined for each specific treatment arm
+
+          -  For men: agreement to remain abstinent (refrain from heterosexual intercourse) or use
+             contraceptive measures, and agreement to refrain from donating sperm, as outlined for
+             each specific treatment arm
+
+          -  Adequate hematologic and end-organ function, laboratory test results, obtained within
+             14 days prior to initiation of study treatment.
+
+          -  Negative HIV test at screening
+
+          -  Negative hepatitis B surface antigen test
+
+          -  Negative total hepatitis B core antibody (HBcAb)
+
+          -  Negative hepatitis C virus (HCV) antibody test at screening
+
+          -  Measurable disease (at least one target lesion)
+
+        Inclusion criteria stage 2
+
+          -  ECOG Performance Status of 0, 1, or 2
+
+          -  Patients randomly allocated to the control arm during Stage 1: ability to initiate
+             Stage 2 treatment within 3 months after experiencing unacceptable toxicity, provided
+             that Medical Monitor approval for entry into Stage 2 is obtained, or disease
+             progression per RECIST v1.1 while receiving control treatment
+
+          -  Patients randomly allocated to an experimental arm during Stage 1: ability to initiate
+             Stage 2 treatment within 3 months after experiencing unacceptable toxicity not related
+             to atezolizumab, disease progression per RECIST v1.1, or loss of clinical benefit as
+             determined by the investigator (see Section 3.1.1.1 for details) while receiving Stage
+             1 treatment
+
+          -  Availability of a tumor specimen from a biopsy performed upon discontinuation of Stage
+             1 (if deemed clinically feasible by the investigator)
+
+        Exclusion Criteria for Stage 1
+
+          -  Prior treatment with any of the Stage 1 protocol-specified study treatments included
+             in arms that are open at the time of screening, with the exception of capecitabine
+
+          -  Treatment with investigational therapy within 28 days prior to initiation of study
+             treatment
+
+          -  Inability to swallow medication or malabsorption condition that would alter the
+             absorption of orally administered medications
+
+          -  Treatment with sorivudine or its chemically related analogues, such as brivudine
+
+          -  History of severe and unexpected reactions to fluoropyrimidine therapy
+
+          -  Uncontrolled pleural effusion, pericardial effusion, or ascites requiring recurrent
+             drainage procedures (once monthly or more frequently)
+
+          -  Uncontrolled tumor-related pain
+
+          -  Symptomatic, untreated, or actively progressing CNS metastases
+
+          -  History of leptomeningeal disease
+
+          -  Active or history of autoimmune disease or immune deficiency
+
+          -  History of idiopathic pulmonary fibrosis, organizing pneumonia (e.g., bronchiolitis
+             obliterans), drug-induced pneumonitis, or idiopathic pneumonitis, or evidence of
+             active pneumonitis on screening chest computed tomography (CT) scan History of
+             radiation pneumonitis in the radiation field (fibrosis) is permitted.
+
+          -  Active tuberculosis
+
+          -  Severe infection within 4 weeks prior to initiation of study treatment
+
+          -  Treatment with therapeutic oral or IV antibiotics within 2 weeks prior to initiation
+             of study treatment
+
+          -  Significant cardiovascular disease
+
+          -  Prior allogeneic stem cell or solid organ transplantation
+
+          -  History of malignancy other than breast cancer within 2 years prior to screening, with
+             the exception of those with a negligible risk of metastasis or death
+
+          -  Treatment with systemic immunosuppressive medication (including, but not limited to,
+             corticosteroids, cyclophosphamide, azathioprine, methotrexate, thalidomide, and
+             anti-tumor necrosis factor alpha agents) within 2 weeks prior to initiation of study
+             treatment, or anticipation of need for systemic immunosuppressive medication during
+             the course of the study
+
+          -  Pregnancy or breastfeeding, or intention of becoming pregnant during the study
+
+          -  Additional drug-specific exclusion criteria might apply.
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Clinical Trials</last_name>
+    <role>Study Director</role>
+    <affiliation>Hoffmann-La Roche</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Reference Study ID Number: CO40115 www.roche.com/about_roche/roche_worldwide.htm</last_name>
+    <phone>888-662-6728 (U.S. and Canada)</phone>
+    <email>global-roche-genentech-trials@gene.com</email>
+  </overall_contact>
+  <location>
+    <facility>
+      <name>University of California San Diego Medical Center; Moores Cancer Center</name>
+      <address>
+        <city>La Jolla</city>
+        <state>California</state>
+        <zip>92093</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>H. Lee Moffitt Cancer Center and Research Inst.</name>
+      <address>
+        <city>Tampa</city>
+        <state>Florida</state>
+        <zip>33612</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Hackensack Univ Medical Center; John Theurer Cancer Ctr</name>
+      <address>
+        <city>Hackensack</city>
+        <state>New Jersey</state>
+        <zip>07601</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Completed</status>
+  </location>
+  <location>
+    <facility>
+      <name>Rutgers Cancer Institute of New Jersey</name>
+      <address>
+        <city>New Brunswick</city>
+        <state>New Jersey</state>
+        <zip>08901</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>NYU Langone Medical Center; NYU Perlmutter Cancer Center</name>
+      <address>
+        <city>New York</city>
+        <state>New York</state>
+        <zip>10016</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Thomas Jefferson University Hospital</name>
+      <address>
+        <city>Philadelphia</city>
+        <state>Pennsylvania</state>
+        <zip>19107</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>University of Pittsburgh Medical Center</name>
+      <address>
+        <city>Pittsburgh</city>
+        <state>Pennsylvania</state>
+        <zip>15213</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>The West Clinic; West Cancer Center</name>
+      <address>
+        <city>Germantown</city>
+        <state>Tennessee</state>
+        <zip>38138</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Peter MacCallum Cancer Centre-East Melbourne</name>
+      <address>
+        <city>Melbourne</city>
+        <state>Victoria</state>
+        <zip>3000</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Centre Léon Bérard</name>
+      <address>
+        <city>Lyon</city>
+        <zip>69008</zip>
+        <country>France</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Institut Universitaire du Cancer de Toulouse-Oncopole</name>
+      <address>
+        <city>Toulouse</city>
+        <zip>31059</zip>
+        <country>France</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Gustave Roussy</name>
+      <address>
+        <city>Villejuif CEDEX</city>
+        <zip>94800</zip>
+        <country>France</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Universitätsklinikum Erlangen; Frauenklinik</name>
+      <address>
+        <city>Erlangen</city>
+        <zip>91054</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Universitätsklinikum Essen</name>
+      <address>
+        <city>Essen</city>
+        <zip>45147</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Seoul National University Hospital</name>
+      <address>
+        <city>Seoul</city>
+        <zip>03080</zip>
+        <country>Korea, Republic of</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Severance Hospital</name>
+      <address>
+        <city>Seoul</city>
+        <zip>03722</zip>
+        <country>Korea, Republic of</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>University of Ulsan College of Medicine - Asan Medical Center</name>
+      <address>
+        <city>Seoul</city>
+        <zip>05505</zip>
+        <country>Korea, Republic of</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Vall d´Hebron Institute of Oncology (VHIO), Barcelona</name>
+      <address>
+        <city>Barcelona</city>
+        <zip>08035</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Hospital Universitario Ramon y Cajal</name>
+      <address>
+        <city>Madrid</city>
+        <zip>28034</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Centro Integral Oncológico Clara Campal Ensayos Clínicos START</name>
+      <address>
+        <city>Madrid</city>
+        <zip>28050</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Beatson West of Scotland Cancer Centre</name>
+      <address>
+        <city>Glasgow</city>
+        <zip>G12 0YN</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location>
+    <facility>
+      <name>Barts Health NHS Trust - St Bartholomew's Hospital</name>
+      <address>
+        <city>London</city>
+        <zip>EC1A 7BE</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+  </location>
+  <location_countries>
+    <country>Australia</country>
+    <country>France</country>
+    <country>Germany</country>
+    <country>Korea, Republic of</country>
+    <country>Spain</country>
+    <country>United Kingdom</country>
+    <country>United States</country>
+  </location_countries>
+  <verification_date>April 2019</verification_date>
+  <study_first_submitted>January 30, 2018</study_first_submitted>
+  <study_first_submitted_qc>February 5, 2018</study_first_submitted_qc>
+  <study_first_posted type="Actual">February 6, 2018</study_first_posted>
+  <last_update_submitted>April 15, 2019</last_update_submitted>
+  <last_update_submitted_qc>April 15, 2019</last_update_submitted_qc>
+  <last_update_posted type="Actual">April 16, 2019</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Breast Neoplasms</mesh_term>
+    <mesh_term>Triple Negative Breast Neoplasms</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Gemcitabine</mesh_term>
+    <mesh_term>Capecitabine</mesh_term>
+    <mesh_term>Bevacizumab</mesh_term>
+    <mesh_term>Carboplatin</mesh_term>
+    <mesh_term>Atezolizumab</mesh_term>
+    <mesh_term>Antibodies, Monoclonal</mesh_term>
+    <mesh_term>Immunoconjugates</mesh_term>
+  </intervention_browse>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>

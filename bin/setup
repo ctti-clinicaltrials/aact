@@ -10,13 +10,15 @@ set -e
 gem install bundler --conservative
 bundle check || bundle install
 
+cp ./.env.example ./.env
+
 # Set up database and add any development seed data
-bin/rake dev:prime
+bundle exec rake db:drop
+bundle exec rake db:create
+bundle exec rake db:migrate
 
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
 mkdir -p .git/safe
-
-cp ./.env.example ./.env
 
 # Only if this isn't CI
 # if [ -z "$CI" ]; then

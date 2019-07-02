@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on April 17, 2019</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT03840122</url>
+  </required_header>
+  <id_info>
+    <org_study_id>18.1246</org_study_id>
+    <nct_id>NCT03840122</nct_id>
+  </id_info>
+  <brief_title>ACB + IPACK Block With or Without Local Infiltration in RA-TKA</brief_title>
+  <official_title>Comparing ACB + IPACK Block With or Without Local Infiltration in Patients Undergoing Primary Robotic Arm-Assisted TKA</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>University of Louisville</agency>
+      <agency_class>Other</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>University of Louisville</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+    <is_fda_regulated_drug>No</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to compare the outcomes of an Adductor canal block (ACB) +
+      interspace between the popliteal artery and the capsule of the knee (IPACK) block along with
+      a single intraoperative injection of a standard local anesthetic that includes Ropivacaine,
+      Epinephrine, Ketorolac, Clonidine and saline to an ACB + IPACK block without the
+      intraoperative injection of a standard local anesthetic in patients undergoing Robotic
+      Arm-Assisted TKA (RA-TKA).
+    </textblock>
+  </brief_summary>
+  <overall_status>Not yet recruiting</overall_status>
+  <start_date type="Anticipated">May 2019</start_date>
+  <completion_date type="Anticipated">May 2020</completion_date>
+  <primary_completion_date type="Anticipated">December 2019</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Basic Science</primary_purpose>
+    <masking>Single (Participant)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>total length of hospital stay</measure>
+    <time_frame>outcome measure will be taken at 2 weeks postoperatively</time_frame>
+    <description>total length of hospital stay as defined by number of days from date of surgery to date of discharge</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Knee Society Score</measure>
+    <time_frame>outcome measure will be taken preoperatively (4-6 weeks prior to date of surgery) and 6 weeks (± 2 weeks) postoperatively.</time_frame>
+    <description>Knee Society Score as recorded preoperatively and 6 weeks (± 2 weeks) postoperatively. The score is on a scale from 0-100. A higher value represents a better outcome.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>WOMAC score</measure>
+    <time_frame>outcome measure will be taken preoperatively (4-6 weeks prior to date of surgery) and 6 weeks (± 2 weeks) postoperatively</time_frame>
+    <description>WOMAC score as recorded preoperatively and 6 weeks (± 2 weeks) postoperatively. The score is on a scale from 0-100. In contrast to the Knee Society Score, on the WOMAC a lower value represents a better outcome.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Visual Analog Scale</measure>
+    <time_frame>outcome measure will be taken 24 hours postoperatively, 48 hours postoperatively, 72 hours postoperatively, 2 weeks (± 4 days) postoperatively, and 6 weeks (± 2 weeks) postoperatively.</time_frame>
+    <description>The Visual Analog Scale measures the patient's level of knee pain on a scale of zero to ten via what the patient expresses verbally. The Visual Analog Scale (VAS) represents the degree of pain that the patient is experiencing at the time the measure is taken. Zero represents &quot;pain-free&quot;. A 10 would represent pain so excruciating as to warrant emergency medical assistance, or as it is described to the patient, &quot;the worst pain imaginable&quot;. Obviously, the lower the number, the better the outcome. There is no subscale.</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Amount of narcotic medication utilized</measure>
+    <time_frame>outcome measure will be taken 24 hours postoperatively, 48 hours postoperatively, 72 hours postoperatively, 2 weeks (± 4 days) postoperatively, and 6 weeks (± 2 weeks) postoperatively</time_frame>
+    <description>Amount of narcotic medication utilized (daily dosage measured as a Milligram Morphine Equivalent (MME) value).</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Ability to rise from a chair independently</measure>
+    <time_frame>outcome measure will be taken 24 hours postoperatively, 48 hours postoperatively, 72 hours postoperatively, 2 weeks (± 4 days) postoperatively, and 6 weeks (± 2 weeks) postoperatively</time_frame>
+    <description>Ability to rise from a chair independently (Yes/No)</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Active range-of-motion (ROM)</measure>
+    <time_frame>outcome measure will be taken 24 hours postoperatively, 48 hours postoperatively, 72 hours postoperatively, 2 weeks (± 4 days) postoperatively, and 6 weeks (± 2 weeks) postoperatively</time_frame>
+    <description>Active ROM (range-of-motion) as measured by a goniometer (range of 0-135 degrees)</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Distance that patient is able to walk</measure>
+    <time_frame>outcome measure will be taken 24 hours postoperatively, 48 hours postoperatively, 72 hours postoperatively, 2 weeks (± 4 days) postoperatively, and 6 weeks (± 2 weeks) postoperatively</time_frame>
+    <description>Distance that patient is able to walk, as measured in feet</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Use of an ambulatory assistive device</measure>
+    <time_frame>outcome measure will be taken 24 hours postoperatively, 48 hours postoperatively, 72 hours postoperatively, 2 weeks (± 4 days) postoperatively, 6 weeks (± 2 weeks) postoperatively</time_frame>
+    <description>Use of an ambulatory assistive device (Yes/No)</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Return to driving</measure>
+    <time_frame>outcome measure will be taken 2 weeks (± 4 days) postoperatively and 6 weeks (± 2 weeks) postoperatively</time_frame>
+    <description>Return to driving (Yes/No)</description>
+  </primary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Anticipated">100</enrollment>
+  <condition>Knee Arthropathy</condition>
+  <arm_group>
+    <arm_group_label>A - ACB + IPACK with injection</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>50 arms: ACB + IPACK block with injection of local anesthetic of Ropivacaine, Epinephrine, Ketorolac, Clonidine and saline</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>B - ACB + IPACK without injection</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>50 arms: ACB + IPACK block without injection of local anesthetic</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Other</intervention_type>
+    <intervention_name>ACB + IPACK block with injection of local anesthetic</intervention_name>
+    <description>ACB + IPACK block with injection of local anesthetic which is comprised of the following agents and amounts:
+Ropivacaine 5mg/ml (49.25ml)
+Epinephrine 1mg/ml (0.5ml)
+Ketorolac 30mg/ml (1ml)
+Clonidine 0.1mg/ml (0.8ml)
+Saline 48.45ml</description>
+    <arm_group_label>A - ACB + IPACK with injection</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Other</intervention_type>
+    <intervention_name>ACB + IPACK block without injection</intervention_name>
+    <description>ACB + IPACK block without an injection of local anesthetic</description>
+    <arm_group_label>B - ACB + IPACK without injection</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:
+
+          1. Patient is over the age of 21
+
+          2. Patient is scheduled to undergo a unilateral, primary TKA, secondary to osteoarthritis
+
+          3. Patient agrees to participate as a study subject and signs the Informed Consent and
+             Research Authorization documents
+
+          4. Patient is able to read and speak English.
+
+        Exclusion Criteria:
+
+          1. Patient is under the age of 21
+
+          2. Patient's primary diagnosis is not osteoarthritis (e.g. post-traumatic arthritis)
+
+          3. Patient is scheduled to undergo a bilateral TKA surgery
+
+          4. Patient is unable to read and speak English
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>21 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Arthur Malkani, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>University of Louisville</affiliation>
+  </overall_official>
+  <overall_contact>
+    <last_name>Langan S Smith, BS</last_name>
+    <phone>5025878222</phone>
+    <phone_ext>753</phone_ext>
+    <email>langanssmith@kentuckyonehealth.org</email>
+  </overall_contact>
+  <location>
+    <facility>
+      <name>Jewish Hospital</name>
+      <address>
+        <city>Louisville</city>
+        <state>Kentucky</state>
+        <zip>40202</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+    <status>Enrolling by invitation</status>
+  </location>
+  <location_countries>
+    <country>United States</country>
+  </location_countries>
+  <verification_date>April 2019</verification_date>
+  <study_first_submitted>January 30, 2019</study_first_submitted>
+  <study_first_submitted_qc>February 11, 2019</study_first_submitted_qc>
+  <study_first_posted type="Actual">February 15, 2019</study_first_posted>
+  <last_update_submitted>April 16, 2019</last_update_submitted>
+  <last_update_submitted_qc>April 16, 2019</last_update_submitted_qc>
+  <last_update_posted type="Estimate">April 17, 2019</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>University of Louisville</investigator_affiliation>
+    <investigator_full_name>Arthur Malkani</investigator_full_name>
+    <investigator_title>Professor, Adult Reconstruction</investigator_title>
+  </responsible_party>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Joint Diseases</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Anesthetics</mesh_term>
+    <mesh_term>Anesthetics, Local</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
