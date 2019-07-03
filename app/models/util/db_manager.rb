@@ -18,7 +18,7 @@ module Util
       file_name="#{fm.pg_dump_file}_#{schema_name}"
       File.delete(file_name) if File.exist?(file_name)
 
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --no-owner --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
+      cmd="pg_dump aact -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --no-owner --no-acl --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
       run_command_line(cmd)
     end
 
