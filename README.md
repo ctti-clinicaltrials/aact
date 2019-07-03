@@ -32,7 +32,6 @@ If you don't already have postgres, you'll need to know a bit about setting up &
 *  `brew services start postgresql`
 *  `mkdir /usr/local/var/pg_data`
 *  `initdb /usr/local/var/pg_data -E utf8`
-*  `createuser aact --superuser`
 *  `pg_ctl -D /usr/local/var/pg_data -l logfile start`
 
 *  template1=# `create role <your_aact_pg_user> login password '<your_pg_password>';`
