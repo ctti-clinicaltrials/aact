@@ -22,12 +22,19 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 *  We recommend you use a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight. (`brew install chruby`)
 *  **ruby 2.4.5**  If using chruby, you can get it with the command: `ruby-install ruby 2.4.5`
 
+### python
+brew install python
+
 ### postgreSQL (supported: version 11.1)
 If you don't already have postgres, you'll need to know a bit about setting up & administering it, particularly with respect to security.  In short, if you're installing on a Mac, basic steps to get started can be:
 
 *  `brew install postgresql`
 *  `brew services start postgresql`
-*  `psql -U postgres template1`
+*  `mkdir /usr/local/var/pg_data`
+*  `initdb /usr/local/var/pg_data -E utf8`
+*  `createuser aact --superuser`
+*  `pg_ctl -D /usr/local/var/pg_data -l logfile start`
+
 *  template1=# `create role <your_aact_pg_user> login password '<your_pg_password>';`
 *  template1=# `alter user <your_aact_pg_user> with superuser;`
 *  template1=# `create role read_only;`
