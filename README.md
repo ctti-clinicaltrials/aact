@@ -37,6 +37,7 @@ If you don't already have postgres, you'll need to know a bit about setting up &
 *  template1=# `create role <your_aact_pg_user> login password '<your_pg_password>';`
 *  template1=# `alter user <your_aact_pg_user> with superuser;`
 *  template1=# `create role read_only;`
+*  template1=# `create database aact;`
 *  template1=# `\q`  (quite out of postgres)
 
 *  Create *.pgpass* in your root directory that contains line: `localhost:5432:*:<your_aact_pg_user>:<your_pg_password>`
