@@ -45,6 +45,18 @@ If you don't already have postgres, you'll need to know a bit about setting up &
 
 Note:  You could use other versions of postgres or a different relational database such as mysql. If so, you'll need to make changes to files in db/migrate & *app/models/util/db_manager.db* since it drops/creates indexes under assumption it's using postgres 11.1.
 
+###  If you just want to load an existing copy of the database...
+
+Download and unzip the file from the AACT website: https://aact.ctti-clinicaltrials.org/snapshots
+
+If this is the first time & the aact database doesn't yet exist, use this command:
+
+`pg_restore -c -C  -j 5 -v -U aact -d postgres --no-acl postgres_data.dmp &> pg_restore.log`
+
+If you want to refresh the aact database you already have on your local machine:
+
+`pg_restore -c -j 5 -v -U aact -d aact --no-acl postgres_data.dmp &> pg_restore.log`
+
 ### Environment variables
 
 Add the following to your shell profile (for example .bash_profile):
