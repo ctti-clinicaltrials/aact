@@ -25,7 +25,7 @@ module Util
     def dump_database
       fm=Util::FileManager.new
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-      cmd="pg_dump #{AACT::Application::AACT_BACK_DATABASE_URL} -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean  --no-owners --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema ctgov -b -c -C -Fc -f #{fm.pg_dump_file}"
+      cmd="pg_dump #{AACT::Application::AACT_BACK_DATABASE_NAME} -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --no-owner --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema ctgov -b -c -C -Fc -f #{fm.pg_dump_file}"
       run_command_line(cmd)
       copy_dump_file_to_public_server
     end
