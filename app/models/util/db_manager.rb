@@ -67,7 +67,7 @@ module Util
 
         if public_studies_count != background_study_count
           success_code = false
-          msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: aact_alt.  Study count is #{public_studies_count}. Should be #{back_studies_count}"
+          msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: aact_alt.  Study count is #{public_studies_count}. Should be #{background_study_count}"
           event.add_problem(msg)
           log msg
           grant_db_privs
