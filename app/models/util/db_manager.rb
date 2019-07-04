@@ -2,7 +2,7 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :pub_con, :alt_pub_con, :event, :migration
+    attr_accessor :con, :event, :migration_object
 
     def initialize(params={})
       # Should only manage content of ctgov db schema
@@ -11,15 +11,6 @@ module Util
       else
         @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
-    end
-
-    def dump_schema(schema_name)
-      fm=Util::FileManager.new
-      file_name="#{fm.pg_dump_file}_#{schema_name}"
-      File.delete(file_name) if File.exist?(file_name)
-
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --no-owners --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
-      run_command_line(cmd)
     end
 
     def dump_database
@@ -44,32 +35,29 @@ module Util
         revoke_db_privs   # Prevent users from logging in while db restore is running.
 
         # Refresh the aact_alt database first.  If something goes wrong, don't restore aact.
-        terminate_alt_db_sessions
+        alt_db_name=AACT::Application::AACT_ALT_PUBLIC_DATABASE_NAME
+        terminate_db_sessions(alt_db_name)
 
         begin
           #  Drop the existing ctgov schema with cascade. If dependencies exist on anything in ctgov, the restore won't be able to
-          #  drop before replacing - resulting in a db of duplicate data.  Get rid of it using CASCADE' first.
+          #  drop before replacing - resulting in a db of duplicate data. So get rid of it using CASCADE'.
+          #  Wrap in begin/rescue/end in case we're running this on a db tht doesn't yet have the ctgov schem
           log "  dropping ctgov schema in alt public database..."
-          cmd="DROP SCHEMA ctgov CASCADE;"
-          PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute(cmd)
-          cmd="CREATE SCHEMA ctgov;"
-          PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute(cmd)
-          cmd="GRANT USAGE ON SCHEMA ctgov TO read_only;"
-          PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute(cmd)
+          PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute("DROP SCHEMA ctgov CASCADE;")
+          PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute("CREATE SCHEMA ctgov;")
+          PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
         rescue
         end
-        log "  restoring alt public database..."
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d aact_alt #{dump_file_name}"
-        puts cmd
-        exit
+        log "  restoring alterntive public database..."
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d #{alt_db_name} #{dump_file_name}"
         run_restore_command_line(cmd)
 
         log "  verifying alt public database..."
-        public_studies_count = PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute('select count(*) from studies;').first['count'].to_i
+        public_studies_count = PublicBase.connection.execute('select count(*) from studies;').first['count'].to_i
 
         if public_studies_count != background_study_count
           success_code = false
-          msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: aact_alt.  Study count is #{public_studies_count}. Should be #{background_study_count}"
+          msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{alt_db_name}.  Study count is #{public_studies_count}. Should be #{background_study_count}"
           event.add_problem(msg)
           log msg
           grant_db_privs
@@ -79,17 +67,17 @@ module Util
 
         # If all goes well with AACT_ALT DB, proceed with AACT
 
-        terminate_db_sessions
+        db_name = AACT::Application::AACT_PUBLIC_DATABASE_NAME
+        terminate_db_sessions(db_name)
         begin
           log "  dropping ctgov schema in main public database..."
-          cmd="DROP SCHEMA ctgov CASCADE;"
-          PublicBase.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection.execute(cmd)
-          cmd="CREATE SCHEMA ctgov;"
-          PublicBase.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection.execute(cmd)
+          PublicBase.connection.execute('DROP SCHEMA ctgov CASCADE;')
+          PublicBase.connection.execute('CREATE SCHEMA ctgov;')
+          PublicBase.connection.execute('GRANT USAGE ON SCHEMA ctgov TO read_only;')
         rescue
         end
         log "  restoring main public database..."
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d #{public_db_name} #{dump_file_name}"
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} -d #{db_name} #{dump_file_name}"
         run_restore_command_line(cmd)
         grant_db_privs
         return success_code
@@ -103,41 +91,33 @@ module Util
     end
 
     def background_study_count
-      # partly to allow us to stub this value in tests
+      # created method to stub for tests
       Study.count
     end
 
-    def grant_db_privs
-      log "  db_manager:  granting ctgov schema access to read_only..."
-      con=PublicBase.connection
+    def public_study_count
       begin
-        con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+        PublicBase.connection.execute("select count(*) from studies").values.flatten.first.to_i
       rescue
-        con.execute("CREATE SCHEMA ctgov;")
-        con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+        return 0
       end
-      con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA ctgov TO read_only;")
-      #con.execute("GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA ctgov TO read_only;")
-      con.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
-      con.reset!
-      con=PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection
-      con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
-      con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA ctgov TO read_only;")
-      con.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 200;")
-      con.reset!
     end
 
     def revoke_db_privs
       log "  db_manager: set connection limit so only db owner can login..."
-      con=PublicBase.connection
-      con.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
-      con.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 0;")
-      con.reset!
+      PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
+      PublicBase.connection.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 0;")
+    end
+
+    def grant_db_privs
+      log "  db_manager:  granting ctgov schema access to read_only..."
+      PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+      PublicBase.connection.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 200;")
     end
 
     def public_db_accessible?
       # we temporarily restrict access to the public db (set allowed connections to zero) during db restore.
-      PublicBase.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL).connection.execute("select datconnlimit from pg_database where datname='aact';").first["datconnlimit"].to_i > 0
+      PublicBase.connection.execute("select datconnlimit from pg_database where datname='aact';").first["datconnlimit"].to_i > 0
     end
 
     def run_command_line(cmd)
@@ -166,20 +146,8 @@ module Util
       puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
     end
 
-    def terminate_db_sessions
-      PublicBase.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{public_db_name}' AND usename <> '#{AACT::Application::AACT_DB_SUPER_USERNAME}'")
-    end
-
-    def terminate_alt_db_sessions
-      PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = 'aact_alt' AND usename <> '#{AACT::Application::AACT_DB_SUPER_USERNAME}'")
-    end
-
-    def public_study_count
-      begin
-        pub_con.execute("select count(*) from studies").values.flatten.first.to_i
-      rescue
-        return 0
-      end
+    def terminate_db_sessions(db_name)
+      PublicBase.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{db_name}' AND usename <> '#{AACT::Application::AACT_DB_SUPER_USERNAME}'")
     end
 
     def add_indexes_and_constraints
@@ -188,19 +156,19 @@ module Util
     end
 
     def add_indexes
-      indexes.each{|index| m.add_index index.first, index.last  if !m.index_exists?(index.first, index.last)}
+      indexes.each{|index| migration.add_index index.first, index.last  if !migration.index_exists?(index.first, index.last)}
       #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
       loadable_tables.each {|table_name|
         begin
           if table_name != 'studies'  # studies.nct_id unique index persists.  Don't add/remove it.
             if one_to_one_related_tables.include? table_name
-              m.add_index table_name, 'nct_id', unique: true
+              migration.add_index table_name, 'nct_id', unique: true
             else
-              m.add_index table_name, 'nct_id'
+              migration.add_index table_name, 'nct_id'
             end
             #  foreign keys that link to the studies table via the nct_id
             if !con.foreign_keys(table_name).map(&:column).include?("nct_id")
-              m.add_foreign_key table_name,  "studies", column: "nct_id", primary_key: "nct_id", name: "#{table_name}_nct_id_fkey"
+              migration.add_foreign_key table_name,  "studies", column: "nct_id", primary_key: "nct_id", name: "#{table_name}_nct_id_fkey"
             end
           end
         rescue => e
@@ -217,7 +185,7 @@ module Util
         child_column = constraint[:child_column]
         parent_column = constraint[:parent_column]
         begin
-          m.add_foreign_key child_table,  parent_table, column: child_column, primary_key: parent_column, name: "#{child_table}_#{child_column}_fkey"
+          migration.add_foreign_key child_table,  parent_table, column: child_column, primary_key: parent_column, name: "#{child_table}_#{child_column}_fkey"
         rescue => e
           log(e)
           event.add_problem("#{Time.zone.now}: #{e}")
@@ -237,7 +205,7 @@ module Util
 
         con.indexes(table_name).each{|index|
           begin
-            m.remove_index(index.table, index.columns) if !should_keep_index?(index) and m.index_exists?(index.table, index.columns)
+            migration.remove_index(index.table, index.columns) if !should_keep_index?(index) and migration.index_exists?(index.table, index.columns)
           rescue => e
             log(e)
             event.add_problem("#{Time.zone.now}: #{e}")
@@ -407,24 +375,22 @@ module Util
       return @con
     end
 
-    def m
-      @migration ||= ActiveRecord::Migration.new
-    end
-
-    def pub_con
-      @pub_con ||= PublicBase.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection
-    end
-
-    def alt_pub_con
-      @alt_pub_con ||= PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection
+    def migration
+      @migration_object ||= ActiveRecord::Migration.new
     end
 
     def public_host_name
       AACT::Application::AACT_PUBLIC_HOSTNAME
     end
 
-    def public_db_name
-      AACT::Application::AACT_PUBLIC_DATABASE_NAME
+    def dump_schema(schema_name)
+      # this is an ad hoc method that I sometimes use at the command line
+      fm=Util::FileManager.new
+      file_name="#{fm.pg_dump_file}_#{schema_name}"
+      File.delete(file_name) if File.exist?(file_name)
+
+      cmd="pg_dump aact -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --no-owner --no-acl --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
+      run_command_line(cmd)
     end
 
   end
