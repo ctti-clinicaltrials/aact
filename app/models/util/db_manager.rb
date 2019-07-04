@@ -2,7 +2,7 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :pub_con, :alt_pub_con, :event, :migration
+    attr_accessor :con, :event, :migration
 
     def initialize(params={})
       # Should only manage content of ctgov db schema
@@ -44,11 +44,12 @@ module Util
         revoke_db_privs   # Prevent users from logging in while db restore is running.
 
         # Refresh the aact_alt database first.  If something goes wrong, don't restore aact.
-        terminate_alt_db_sessions
+        alt_db_name=AACT::Application::AACT_ALT_PUBLIC_DATABASE_NAME
+        terminate_db_sessions(alt_db_name)
 
         begin
           #  Drop the existing ctgov schema with cascade. If dependencies exist on anything in ctgov, the restore won't be able to
-          #  drop before replacing - resulting in a db of duplicate data.  Get rid of it using CASCADE' first.
+          #  drop before replacing - resulting in a db of duplicate data. So get rid of it using CASCADE'.
           log "  dropping ctgov schema in alt public database..."
           cmd="DROP SCHEMA ctgov CASCADE;"
           PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute(cmd)
@@ -58,10 +59,8 @@ module Util
           PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute(cmd)
         rescue
         end
-        log "  restoring alt public database..."
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d aact_alt #{dump_file_name}"
-        puts cmd
-        exit
+        log "  restoring alterntive public database..."
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d #{alt_db_name} #{dump_file_name}"
         run_restore_command_line(cmd)
 
         log "  verifying alt public database..."
@@ -69,7 +68,7 @@ module Util
 
         if public_studies_count != background_study_count
           success_code = false
-          msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: aact_alt.  Study count is #{public_studies_count}. Should be #{background_study_count}"
+          msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{alt_db_name}.  Study count is #{public_studies_count}. Should be #{background_study_count}"
           event.add_problem(msg)
           log msg
           grant_db_privs
@@ -79,17 +78,17 @@ module Util
 
         # If all goes well with AACT_ALT DB, proceed with AACT
 
-        terminate_db_sessions
+        db_name = AACT::Application::AACT_PUBLIC_DATABASE_NAME
+        terminate_db_sessions(db_name)
         begin
           log "  dropping ctgov schema in main public database..."
-          cmd="DROP SCHEMA ctgov CASCADE;"
-          PublicBase.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection.execute(cmd)
-          cmd="CREATE SCHEMA ctgov;"
-          PublicBase.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection.execute(cmd)
+          PublicBase.connection.execute('DROP SCHEMA ctgov CASCADE;')
+          PublicBase.connection.execute('CREATE SCHEMA ctgov;')
+          PublicBase.connection.execute('GRANT USAGE ON SCHEMA ctgov TO read_only;')
         rescue
         end
         log "  restoring main public database..."
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d #{public_db_name} #{dump_file_name}"
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d #{db_name} #{dump_file_name}"
         run_restore_command_line(cmd)
         grant_db_privs
         return success_code
@@ -103,36 +102,20 @@ module Util
     end
 
     def background_study_count
-      # partly to allow us to stub this value in tests
+      # created method to stub for tests
       Study.count
-    end
-
-    def grant_db_privs
-      log "  db_manager:  granting ctgov schema access to read_only..."
-      con=PublicBase.connection
-      begin
-        con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
-      rescue
-        con.execute("CREATE SCHEMA ctgov;")
-        con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
-      end
-      con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA ctgov TO read_only;")
-      #con.execute("GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA ctgov TO read_only;")
-      con.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
-      con.reset!
-      con=PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection
-      con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
-      con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA ctgov TO read_only;")
-      con.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 200;")
-      con.reset!
     end
 
     def revoke_db_privs
       log "  db_manager: set connection limit so only db owner can login..."
-      con=PublicBase.connection
-      con.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
-      con.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 0;")
-      con.reset!
+      PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
+      PublicBase.connection.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 0;")
+    end
+
+    def grant_db_privs
+      log "  db_manager:  granting ctgov schema access to read_only..."
+      PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+      PublicBase.connection.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 200;")
     end
 
     def public_db_accessible?
@@ -166,17 +149,13 @@ module Util
       puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
     end
 
-    def terminate_db_sessions
-      PublicBase.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{public_db_name}' AND usename <> '#{AACT::Application::AACT_DB_SUPER_USERNAME}'")
-    end
-
-    def terminate_alt_db_sessions
-      PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = 'aact_alt' AND usename <> '#{AACT::Application::AACT_DB_SUPER_USERNAME}'")
+    def terminate_db_sessions(db_name)
+      PublicBase.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{db_name}' AND usename <> '#{AACT::Application::AACT_DB_SUPER_USERNAME}'")
     end
 
     def public_study_count
       begin
-        pub_con.execute("select count(*) from studies").values.flatten.first.to_i
+        PublicBase.connection.execute("select count(*) from studies").values.flatten.first.to_i
       rescue
         return 0
       end
@@ -411,20 +390,8 @@ module Util
       @migration ||= ActiveRecord::Migration.new
     end
 
-    def pub_con
-      @pub_con ||= PublicBase.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection
-    end
-
-    def alt_pub_con
-      @alt_pub_con ||= PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection
-    end
-
     def public_host_name
       AACT::Application::AACT_PUBLIC_HOSTNAME
-    end
-
-    def public_db_name
-      AACT::Application::AACT_PUBLIC_DATABASE_NAME
     end
 
   end
