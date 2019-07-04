@@ -37,17 +37,19 @@ module AACT
       AACT_BACK_DATABASE_NAME   = ENV['AACT_BACK_DATABASE_NAME'] || 'aact_back'    # Name of background database used to process loads
       AACT_ADMIN_DATABASE_NAME  = ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin'  # Name of database used to support the AACT website
       AACT_PUBLIC_DATABASE_NAME = ENV['AACT_PUBLIC_DATABASE_NAME'] || 'aact'       # Name of database available to the public
+      AACT_ALT_PUBLIC_DATABASE_NAME = ENV['AACT_ALT_PUBLIC_DATABASE_NAME'] || 'aact_alt'  # Name of alternate database available to the public
     else
       APPLICATION_HOST          = 'localhost'
       AACT_PUBLIC_HOSTNAME      = 'localhost'
       AACT_BACK_DATABASE_NAME   = 'aact_back_test'
       AACT_ADMIN_DATABASE_NAME  = 'aact_admin_test'
       AACT_PUBLIC_DATABASE_NAME = 'aact_test'
+      AACT_ALT_PUBLIC_DATABASE_NAME = 'aact_alt_test'
     end
     AACT_BACK_DATABASE_URL       = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"
     AACT_ADMIN_DATABASE_URL      = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
     AACT_PUBLIC_DATABASE_URL     = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_PUBLIC_DATABASE_NAME}"
-    AACT_ALT_PUBLIC_DATABASE_URL = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_PUBLIC_DATABASE_NAME}_alt"
+    AACT_ALT_PUBLIC_DATABASE_URL = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_ALT_PUBLIC_DATABASE_NAME}"
 
     #CORS
     cors_origins = '*'
