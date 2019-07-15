@@ -3684,7 +3684,7 @@ CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_re
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov, support, pubmed, lookup, wiki;
+SET search_path TO ctgov, support, public;
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
