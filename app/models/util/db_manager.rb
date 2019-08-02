@@ -23,7 +23,7 @@ module Util
 
     def copy_dump_file_to_public_server
       fm=Util::FileManager.new
-      cmd="scp #{fm.pg_dump_file} ctti@#{AACT::Application::AACT_PUBLIC_HOSTNAME}:/aact-files/dump_files"
+      cmd="scp #{fm.pg_dump_file} ctti@#{AACT::Application::AACT_PUBLIC_HOSTNAME}:/#{AACT::Application::AACT_STATIC_FILE_DIR}/dump_files"
       system(cmd)
     end
 
@@ -63,9 +63,9 @@ module Util
           grant_db_privs
           return false
         end
-        log "  all systems go... we can update primary public aact...."
+        log "  all systems go... we can update primary public database...."
 
-        # If all goes well with AACT_ALT DB, proceed with AACT
+        # If all goes well with AACT_ALT DB, proceed with regular AACT
 
         db_name = AACT::Application::AACT_PUBLIC_DATABASE_NAME
         terminate_db_sessions(db_name)
@@ -105,19 +105,19 @@ module Util
 
     def revoke_db_privs
       log "  db_manager: set connection limit so only db owner can login..."
-      PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
-      PublicBase.connection.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 0;")
+      PublicBase.connection.execute("ALTER DATABASE #{AACT::Application::AACT_PUBLIC_DATABASE_NAME} CONNECTION LIMIT 0;")
+      PublicBase.connection.execute("ALTER DATABASE #{AACT::Application::AACT_ALT_PUBLIC_DATABASE_NAME} CONNECTION LIMIT 0;")
     end
 
     def grant_db_privs
       log "  db_manager:  granting ctgov schema access to read_only..."
-      PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
-      PublicBase.connection.execute("ALTER DATABASE aact_alt CONNECTION LIMIT 200;")
+      PublicBase.connection.execute("ALTER DATABASE #{AACT::Application::AACT_PUBLIC_DATABASE_NAME} CONNECTION LIMIT 200;")
+      PublicBase.connection.execute("ALTER DATABASE #{AACT::Application::AACT_ALT_PUBLIC_DATABASE_NAME} CONNECTION LIMIT 200;")
     end
 
     def public_db_accessible?
       # we temporarily restrict access to the public db (set allowed connections to zero) during db restore.
-      PublicBase.connection.execute("select datconnlimit from pg_database where datname='aact';").first["datconnlimit"].to_i > 0
+      PublicBase.connection.execute("select datconnlimit from pg_database where datname='#{AACT::Application::AACT_PUBLIC_DATABASE_NAME}';").first["datconnlimit"].to_i > 0
     end
 
     def run_command_line(cmd)
