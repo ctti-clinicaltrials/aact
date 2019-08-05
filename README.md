@@ -26,8 +26,8 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 Add the following to your shell profile (for example .bash_profile):
 
 **Required variables:**
-* export AACT_DB_SUPER_USERNAME=*<your_pg_user>*  (Will default to 'aact'.)
-* export AACT_DB_SUPER_PASSWORD=*<secure password for your AACT SuperUser database account>*
+* export AACT_DB_SUPER_USERNAME=*<your_pg_superuser_name>*  (Will default to 'aact')
+* export AACT_DB_SUPER_PASSWORD=*<your_pg_superuser_password>*  (MUST BE DEFINED)
 * export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
   
 Create .pgpass file in the root directory of your database server that includes the line:  localhost:5432:*:<your_pg_superuser_name>:<your_superuser_password>
