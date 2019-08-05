@@ -27,8 +27,10 @@ Add the following to your shell profile (for example .bash_profile):
 
 **Required variables:**
 * export AACT_DB_SUPER_USERNAME=*<your_pg_user>*  (Will default to 'aact'.)
-* export AACT_DB_SUPER_PASSWORD=*<a secure password for your AACT SuperUser Database account>*
+* export AACT_DB_SUPER_PASSWORD=*<secure password for your AACT SuperUser database account>*
 * export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
+  
+Create .pgpass file in the root directory of your database server that includes the line:  localhost:5432:*:<your_pg_superuser_name>:<your_superuser_password>
 
 **Optional variables:**  (These default to the given value if you don't set them to something different.)
 * export APPLICATION_HOST=*localhost*
