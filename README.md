@@ -19,6 +19,7 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 *  We recommend a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight.
 *  **ruby 2.4.5**  If using chruby, you can get this version with the command: `ruby-install 2.4.5`
 *  **postgres 11.1** `brew install postgresql`  You could use other versions of postgres or a different relational database such as mysql, but if so, you might need to make changes to files in db/migrate & will probably need to make a few changes to *app/models/util/db_manager.db* since it drops/creates indexes thinking it's dealing with postgres 11.1.
+*  Create a postgres superuser account/password for the AACT database.  Grant this user permission to create a database. You will also need to create environment variables that define the username password for this account. (See required variables below.)
 *  **wget** if you don't already have it: `brew install wget`
 
 ### Setup Basic Environment Variables
@@ -26,8 +27,8 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 Add the following to your shell profile (for example .bash_profile):
 
 **Required variables:**
-* export AACT_DB_SUPER_USERNAME=*<your_pg_superuser_name>*  (Will default to 'aact')
-* export AACT_DB_SUPER_PASSWORD=*<your_pg_superuser_password>*  (MUST BE DEFINED)
+* export AACT_DB_SUPER_USERNAME=*<your_pg_superuser_name>*  (The postgres superuser account you created in previous step.)
+* export AACT_DB_SUPER_PASSWORD=*<your_pg_superuser_password>*  (The password you defined for the postgres superuser account.)
 * export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
   
 Create .pgpass file in the root directory of your database server that includes the line:  localhost:5432:*:<your_pg_superuser_name>:<your_superuser_password>
