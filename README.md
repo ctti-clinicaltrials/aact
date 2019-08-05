@@ -30,7 +30,6 @@ Add the following to your shell profile (for example .bash_profile):
 
 **Required variables:**
 * export AACT_DB_SUPER_USERNAME=*<your_pg_superuser_name>*  (The postgres superuser account you created in previous step.)
-* export AACT_DB_SUPER_PASSWORD=*<your_pg_superuser_password>*  (The password you defined for the postgres superuser account.)
 * export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
   
 Create .pgpass file in the root directory of your database server that includes the line:  localhost:5432:*:<your_pg_superuser_name>:<your_superuser_password>
