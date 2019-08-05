@@ -26,7 +26,8 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 Add the following to your shell profile (for example .bash_profile):
 
 **Required variables:**
-* export AACT_DB_SUPER_USERNAME=*<your_pg_user>*
+* export AACT_DB_SUPER_USERNAME=*<your_pg_user>*  (Will default to 'aact'.)
+* export AACT_DB_SUPER_PASSWORD=*<a secure password for your AACT SuperUser Database account>*
 * export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
 
 **Optional variables:**  (These default to the given value if you don't set them to something different.)
