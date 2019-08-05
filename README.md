@@ -20,8 +20,8 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 *  **ruby 2.4.5**  If using chruby, you can get this version with the command: `ruby-install 2.4.5`
 *  **postgres 11.1** `brew install postgresql`  You could use other versions of postgres or a different relational database such as mysql, but if so, you might need to make changes to files in db/migrate & will probably need to make a few changes to *app/models/util/db_manager.db* since it drops/creates indexes thinking it's dealing with postgres 11.1.
 *  Create a postgres superuser account/password for the AACT database.  Grant this user permission to create a database. You will also need to create environment variables that define the username password for this account. (See required variables below.)
-** create user *<your_pg_superuser_name>* with password '*<a-secure-password>*';
-** alter user *<your_pg_superuser_password>* createdb;
+*  ** create user *<your_pg_superuser_name>* with password '*<a-secure-password>*';
+*  ** alter user *<your_pg_superuser_password>* createdb;
 *  **wget** if you don't already have it: `brew install wget`
 
 ### Setup Basic Environment Variables
