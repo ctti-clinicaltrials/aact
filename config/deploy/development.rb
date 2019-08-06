@@ -45,8 +45,7 @@
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
- #server "#{ENV['AACT_DEV_SERVER']}",
- server "159.89.54.108",
+ server "#{ENV['AACT_DEV_SERVER']}",
    roles: %w{web app},
    ssh_options: {
      user: "#{ENV['AACT_SERVER_USERNAME']}",
