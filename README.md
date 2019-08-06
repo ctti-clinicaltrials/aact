@@ -46,17 +46,17 @@ If you don't already have postgres, you'll need to know a bit about setting up &
 
 Note:  You could use other versions of postgres or a different relational database such as mysql. If so, you'll need to make changes to files in db/migrate & *app/models/util/db_manager.db* since it drops/creates indexes under assumption it's using postgres 11.1.
 
-###  If you just want to load an existing copy of the database...
+### Create directory for static files
 
-Download and unzip the file from the AACT website: https://aact.ctti-clinicaltrials.org/snapshots
+AACT downloads the complete set of studies from ClinicalTrials.gov as a zipfile that contains an xml file for each study [[https://clinicaltrials.gov/search/resultsxml=true]].  Until recently, the ClinicalTrials.gov API only provided this info in XML format.  In June, 2019, an improved API was deployed in beta which provides a far more flexible way to retrieve studies from ClinicalTrials.gov and also lets you retrieve it as json.  [[https://clinicaltrials.gov/ct2/about-site/new]]
 
-If this is the first time & the aact database doesn't yet exist, use this command:
+By default, AACT saves the downloaded xml file in a directory under /aact-files. (Note, this is in the server root directory, not the root of the AACT application.)  To override this, use the AACT_STATIC_FILE_DIR environment variable to define a different directory.  Otherwise, you will need to create /aact-files at the server root directory and change permissions on it so that the rails application owner has permission to read/write to that directory.
 
-`pg_restore -c -C  -j 5 -v -U aact -d postgres --no-acl postgres_data.dmp &> pg_restore.log`
-
-If you want to refresh the aact database you already have on your local machine:
-
-`pg_restore -c -j 5 -v -U aact -d aact --no-acl postgres_data.dmp &> pg_restore.log`
+`sudo su`               # you need superuser rights to create the directory
+`mkdir /aact-files`
+`chown <your-system-account> /aact-files`
+`chgrp <your-system-account> /aact-files`
+`exit`                 # exit the superuser login
 
 ### Environment variables
 
@@ -64,7 +64,7 @@ Add the following to your shell profile (for example .bash_profile):
 
  | env var | default value | description |
  |---|:---:|---|
- |AACT_DB_SUPER_USERNAME | ctti | Database user name responsible for creating and populating the AACT DB. Must have rights to create db. |
+ |AACT_DB_SUPER_USERNAME | aact | Database user name responsible for creating and populating the AACT DB. Must have rights to create db. |
  |APPLICATION_HOST | localhost | Server where the system runs to load the database. |
  | AACT_PUBLIC_DATABASE_NAME | aact | Name of the database that will be available to users. |
  | AACT_BACK_DATABASE_NAME | aact_back | Name of the database that is the target for initially loading data from ClinicalTrials.gov |
@@ -87,8 +87,9 @@ If you intend to send email notifications to yourself or others whenever a datab
 *  Change into the AACT directory you just created: `cd aact`
 *  `gem install bundler -v 1.9.0`
 *  `bundle install`
-*  `bundle exec rake db:create`  (create the database)
+*  `bundle exec rake db:create`   (create the database)
 *  `bundle exec rake db:migrate`  (create tables, indexes, views, etc. in the database)
+*  `bundle exec rake db:seed`     (Populate with sample data to verify it all works.)
 
 ## Import studies from clinicaltrials.gov
 
@@ -103,6 +104,18 @@ The full import will download the entire dataset from clinicaltrials.gov; this t
 `bash -l -c 'bundle exec rake incremental:load:run[days_back]'`
 
 The daily import checks the ClinicalTrials.gov RSS feed for studies that have been added or changed. You can specify how many days back to look in the dataset with the `days_back` argument above. To import changed/new studies from two days back: `bash -l -c 'bundle exec rake incremental:load:run[2]'`
+
+###  If you just want to load an existing copy of the database...
+
+Download and unzip the file from the AACT website: https://aact.ctti-clinicaltrials.org/snapshots
+
+If this is the first time & the aact database doesn't yet exist, use this command:
+
+`pg_restore -c -C  -j 5 -v -U aact -d postgres --no-acl postgres_data.dmp &> pg_restore.log`
+
+If you want to refresh the aact database you already have on your local machine:
+
+`pg_restore -c -j 5 -v -U aact -d aact --no-acl postgres_data.dmp &> pg_restore.log`
 
 ## Guidelines
 
