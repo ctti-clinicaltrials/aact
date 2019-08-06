@@ -25,9 +25,11 @@ module AACT
     config.active_record.schema_format = :sql
     config.active_record.raise_in_transactional_callbacks = true
 
-    AACT_DB_SUPER_USERNAME = 'tibbs001'   # Name of postgres user that has permission to update the database
-    AACT_OWNER_EMAIL       = 'sheri.tibbs@gmail.com'                   # Don't define this if your email service is not setup
-    AACT_ADMIN_EMAILS      = ['sheri.tibbs@gmail.com']         # Identifes who will receive load notifications
+    # Note:  You must define the AACT DB superuser's password in the .pgpass file that needs to be in the root directory of the user who runs
+    # the rails app.  We don't save passwords in Env Vars because they can be to easily exposed that way.
+    AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'   # Name of postgres superuser that has permission to create a database.
+    AACT_OWNER_EMAIL       = ENV['AACT_OWNER_EMAIL']                   # Don't define this if your email service is not setup
+    AACT_ADMIN_EMAILS      = ENV['AACT_ADMIN_EMAILS'] || "aact@your-org.org,admin@your-org.org" # Identifes who will receive load notifications
     AACT_STATIC_FILE_DIR   = ENV['AACT_STATIC_FILE_DIR'] || '/aact-files'  # directory containing AACT static files such as the downloadable db snapshots
     RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
 
