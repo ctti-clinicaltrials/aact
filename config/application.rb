@@ -33,15 +33,14 @@ module AACT
     AACT_STATIC_FILE_DIR   = ENV['AACT_STATIC_FILE_DIR'] || '/aact-files'  # directory containing AACT static files such as the downloadable db snapshots
     RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
 
+    APPLICATION_HOST          = 'localhost'
     if Rails.env != 'test'
-      APPLICATION_HOST          = 'localhost'           # Server on which database loads run
       AACT_PUBLIC_HOSTNAME      = 'localhost'       # Server on which the publicly accessible database resides
       AACT_BACK_DATABASE_NAME   =  'aact_back'    # Name of background database used to process loads
       AACT_ADMIN_DATABASE_NAME  =  'aact_admin'  # Name of database used to support the AACT website
       AACT_PUBLIC_DATABASE_NAME =  'aact'       # Name of database available to the public
       AACT_ALT_PUBLIC_DATABASE_NAME = 'aact_alt'  # Name of alternate database available to the public
     else
-      APPLICATION_HOST          = 'localhost'
       AACT_PUBLIC_HOSTNAME      = 'localhost'
       AACT_BACK_DATABASE_NAME   = 'aact_back_test'
       AACT_ADMIN_DATABASE_NAME  = 'aact_admin_test'
