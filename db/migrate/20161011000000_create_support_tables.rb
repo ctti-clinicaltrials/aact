@@ -33,6 +33,10 @@ class CreateSupportTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
+    execute <<-SQL
+      CREATE ROLE read_only;
+    SQL
+
     add_index "support.load_events", :event_type
     add_index "support.load_events", :status
     add_index "support.study_xml_records", :nct_id
