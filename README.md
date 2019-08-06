@@ -52,11 +52,11 @@ AACT downloads the complete set of studies from ClinicalTrials.gov as a zipfile 
 
 By default, AACT saves the downloaded xml file in a directory under /aact-files. (Note, this is in the server root directory, not the root of the AACT application.)  To override this, use the AACT_STATIC_FILE_DIR environment variable to define a different directory.  Otherwise, you will need to create /aact-files at the server root directory and change permissions on it so that the rails application owner has permission to read/write to that directory.
 
-`sudo su`               # you need superuser rights to create the directory
-`mkdir /aact-files`
-`chown <your-system-account> /aact-files`
-`chgrp <your-system-account> /aact-files`
-`exit`                 # exit the superuser login
+*  `sudo su`               # you need superuser rights to create the directory
+*  `mkdir /aact-files`
+*  `chown <your-system-account> /aact-files`
+*  `chgrp <your-system-account> /aact-files`
+*  `exit`                 # exit the superuser login
 
 ### Environment variables
 
