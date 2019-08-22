@@ -73,8 +73,8 @@ Add the following to your shell profile (for example .bash_profile):
  |AACT_DB_SUPER_USERNAME | aact | Database user name responsible for creating and populating the AACT DB. Must have rights to create db. |
  |APPLICATION_HOST | localhost | Server where the system runs to load the database. |
  | AACT_PUBLIC_DATABASE_NAME | aact | Name of the database that will be available to users. |
- | AACT_BACK_DATABASE_NAME | aact_back | Name of the database that is the target for initially loading data from ClinicalTrials.gov |
- | AACT_ADMIN_DATABASE_NAME | aact_back | Name of the database that contains admin info such as users, public announcements, etc.  This is primarily to support the AACT website, but is also referred to by the load process, so we include it here. |
+ | AACT_BACK_DATABASE_NAME | aact | Name of the database that is the target for initially loading data from ClinicalTrials.gov |
+ | AACT_ADMIN_DATABASE_NAME | aact_admin | Name of the database that contains admin info such as users, public announcements, etc.  This is primarily to support the AACT website, but is also referred to by the load process, so we include it here. |
  | RACK_TIMEOUT | 10 | Number of seconds to wait before aborting requests that take too long. |
  | AACT_STATIC_FILE_DIR | /aact-files | Directory containing AACT static files such as the downloadable db snapshots. |
 
