@@ -33,8 +33,8 @@ In short, if you're installing on a Mac, basic steps to get started can be:
 *  `brew install postgresql`
 *  `ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents`
 *  Add these lines to your shell profile (such as .bash_profile):
-** alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-** alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+   *   `alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"`
+   *   `alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"`
 *  `mkdir /usr/local/var/pg_data`
 *  `initdb /usr/local/var/pg_data -E utf8`
 *  `pg_ctl -D /usr/local/var/pg_data -l logfile start`
