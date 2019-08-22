@@ -11,7 +11,7 @@ default: &default
 development:
   <<: *default
   host:  <%= ENV.fetch('APPLICATION_HOST', 'localhost') %>
-  database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact_back') %>
+  database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact') %>
 
 test:
   <<: *default
@@ -20,11 +20,11 @@ test:
 production:
   <<: *default
   host:  <%= ENV.fetch('APPLICATION_HOST', 'localhost') %>
-  database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact_back') %>
+  database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact') %>
 
 public:
   <<: *default
   host:  <%= ENV.fetch('AACT_PUBLIC_HOSTNAME', 'localhost') %>
-  database: <%= ENV.fetch('AACT_PUBLIC_DATABASE_NAME', 'aact') %>
+  database: <%= ENV.fetch('AACT_PUBLIC_DATABASE_NAME', 'aact_pub') %>
 
 
