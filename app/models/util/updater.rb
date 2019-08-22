@@ -3,7 +3,7 @@ module Util
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured
 
     def initialize(params={})
-      @full_featured = false
+      @full_featured = params[:full_featured] || false
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
