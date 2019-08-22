@@ -26,14 +26,20 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 brew install python
 
 ### postgreSQL (supported: version 11.1)
-If you don't already have postgres, you'll need to know a bit about setting up & administering it, particularly with respect to security.  In short, if you're installing on a Mac, basic steps to get started can be:
+If you don't already have postgreSQL, you'll need to know a bit about setting up & administering it, particularly with respect to security. At the time of this writing, a good site for postgreSQL instructions for the Mac: https://gist.github.com/ibraheem4/ce5ccd3e4d7a65589ce84f2a3b7c23a3.  
+
+In short, if you're installing on a Mac, basic steps to get started can be:
 
 *  `brew install postgresql`
-*  `brew services start postgresql`
+*  `ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents`
+*  Add these lines to your shell profile (such as .bash_profile):
+** alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+** alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 *  `mkdir /usr/local/var/pg_data`
 *  `initdb /usr/local/var/pg_data -E utf8`
 *  `pg_ctl -D /usr/local/var/pg_data -l logfile start`
-
+*  `createuser -s postgres`
+*  `psql -d template1`
 *  template1=# `create role <your_aact_pg_user> login password '<your_pg_password>';`
 *  template1=# `alter user <your_aact_pg_user> with superuser;`
 *  template1=# `create role read_only;`
