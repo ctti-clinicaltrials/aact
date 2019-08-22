@@ -1,8 +1,9 @@
 module Util
  class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr
+    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured
 
     def initialize(params={})
+      @full_featured = false
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
@@ -36,7 +37,7 @@ module Util
           log("#{@load_event.event_type} load failed in run: #{msg}")
           load_event.add_problem(msg)
           load_event.complete({:status=>'failed', :study_counts=> study_counts})
-          Admin::PublicAnnouncement.clear_load_message if Admin::AdminBase.database_exists?
+          Admin::PublicAnnouncement.clear_load_message if full_featured and Admin::AdminBase.database_exists?
           db_mgr.grant_db_privs
         rescue
           load_event.complete({:status=>'failed', :study_counts=> study_counts})
@@ -99,6 +100,8 @@ module Util
       add_indexes_and_constraints
       create_calculated_values
       populate_admin_tables
+      run_sanity_checks
+      return if ! full_featured  # no need to continue unless configured as a fully featured implementation of AACT
       study_counts[:processed]=db_mgr.background_study_count
       take_snapshot
       if refresh_public_db != true
@@ -107,8 +110,10 @@ module Util
       end
       db_mgr.grant_db_privs
       load_event.complete({:study_counts=>study_counts})
-      create_flat_files
-      Admin::PublicAnnouncement.clear_load_message
+      if full_featured
+        create_flat_files
+        Admin::PublicAnnouncement.clear_load_message
+      end
     end
 
     def remove_indexes_and_constraints
@@ -191,9 +196,9 @@ module Util
     end
 
     def populate_admin_tables
+      return if ! full_featured
       log('populating admin tables...')
       refresh_data_definitions
-      run_sanity_checks
     end
 
     def run_sanity_checks
@@ -213,6 +218,7 @@ module Util
       old_count=(db_mgr.public_study_count - 10)
       new_count=Study.count
       load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
+      log(load_event.problems) if !load_event.problems.blank?
       return load_event.problems.blank?
     end
 
@@ -301,7 +307,7 @@ module Util
     end
 
     def submit_public_announcement(announcement)
-      Admin::PublicAnnouncement.populate(announcement) if Admin::AdminBase.database_exists?
+      Admin::PublicAnnouncement.populate(announcement) if full_featured and Admin::AdminBase.database_exists?
     end
 
   end
