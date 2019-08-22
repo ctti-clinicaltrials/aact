@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.2
+-- Dumped from database version 11.4
 -- Dumped by pg_dump version 11.4
 
 SET statement_timeout = 0;
@@ -81,11 +81,9 @@ CREATE FUNCTION ctgov.ids_for_term(character varying) RETURNS TABLE(nct_id chara
         UNION
         SELECT DISTINCT nct_id FROM browse_interventions WHERE downcase_mesh_term like lower($1)
         UNION
-        SELECT DISTINCT nct_id FROM keywords WHERE name like $1
+        SELECT DISTINCT nct_id FROM studies WHERE lower(brief_title) like lower($1)
         UNION
-        SELECT DISTINCT nct_id FROM facilities WHERE name like $1 or city like $1 or state like $1 or country like $1
-        UNION
-        SELECT DISTINCT nct_id FROM sponsors WHERE name like $1
+        SELECT DISTINCT nct_id FROM keywords WHERE lower(name) like lower($1)
         ;
         $_$;
 
