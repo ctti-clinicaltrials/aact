@@ -11,7 +11,7 @@ module Util
         type='restart'
       end
       @client = Util::Client.new
-      @days_back=(@params[:days_back] ? @params[:days_back] : 2)
+      @days_back=(params[:days_back] ? params[:days_back] : 2)
       @rss_reader = Util::RssReader.new(days_back: @days_back)
       @load_event = Support::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @load_event.save!  # Save to timestamp created_at
@@ -101,7 +101,7 @@ module Util
       create_calculated_values
       populate_admin_tables
       run_sanity_checks
-      return if ! full_featured  # no need to continue unless configured as a fully featured implementation of AACT
+      return unless full_featured  # no need to continue unless configured as a fully featured implementation of AACT
       study_counts[:processed]=db_mgr.background_study_count
       take_snapshot
       if refresh_public_db != true
@@ -110,10 +110,8 @@ module Util
       end
       db_mgr.grant_db_privs
       load_event.complete({:study_counts=>study_counts})
-      if full_featured
-        create_flat_files
-        Admin::PublicAnnouncement.clear_load_message
-      end
+      create_flat_files
+      Admin::PublicAnnouncement.clear_load_message
     end
 
     def remove_indexes_and_constraints
@@ -196,7 +194,7 @@ module Util
     end
 
     def populate_admin_tables
-      return if ! full_featured
+      return unless full_featured
       log('populating admin tables...')
       refresh_data_definitions
     end
