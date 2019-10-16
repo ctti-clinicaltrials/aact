@@ -15,7 +15,7 @@ development:
 
 test:
   <<: *default
-  database: aact_back_test
+  database: aact_test
 
 production:
   <<: *default

@@ -42,9 +42,9 @@ module AACT
       AACT_ALT_PUBLIC_DATABASE_NAME = 'aact_alt'    # Name of alternate database available to the public
     else
       AACT_PUBLIC_HOSTNAME      = 'localhost'
-      AACT_BACK_DATABASE_NAME   = 'aact_back_test'
+      AACT_BACK_DATABASE_NAME   = 'aact_test'
       AACT_ADMIN_DATABASE_NAME  = 'aact_admin_test'
-      AACT_PUBLIC_DATABASE_NAME = 'aact_test'
+      AACT_PUBLIC_DATABASE_NAME = 'aact_pub_test'
       AACT_ALT_PUBLIC_DATABASE_NAME = 'aact_alt_test'
     end
     AACT_BACK_DATABASE_URL       = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"

@@ -53,11 +53,10 @@ module Util
         run_restore_command_line(cmd)
 
         log "  verifying alt public database..."
-        public_studies_count = PublicBase.connection.execute('select count(*) from studies;').first['count'].to_i
 
-        if public_studies_count != background_study_count
+        if public_study_count != background_study_count
           success_code = false
-          msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{alt_db_name}.  Study count is #{public_studies_count}. Should be #{background_study_count}"
+          msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{alt_db_name}.  Study count is #{public_study_count}. Should be #{background_study_count}"
           event.add_problem(msg)
           log msg
           grant_db_privs
@@ -97,7 +96,7 @@ module Util
 
     def public_study_count
       begin
-        PublicBase.connection.execute("select count(*) from studies").values.flatten.first.to_i
+        PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute('select count(*) from studies;').first['count'].to_i
       rescue
         return 0
       end
