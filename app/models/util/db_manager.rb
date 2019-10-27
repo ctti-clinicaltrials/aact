@@ -2,40 +2,42 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :event, :migration_object
+    attr_accessor :con, :event, :migration_object, :fm
 
     def initialize(params={})
-      # Should only manage content of ctgov db schema
+      # 'event' keeps track of what happened during a single load event & then saves to LoadEvent table in the admin db, so we have a log
+      # of all load events that have occurred.  If an event is passed in, use it; otherwise, create a new one.
       if params[:event]
         @event = params[:event]
       else
         @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
+      @fm = Util::FileManager.new
     end
 
     def dump_database
-      fm=Util::FileManager.new
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-      cmd="pg_dump #{AACT::Application::AACT_BACK_DATABASE_NAME} -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --no-owner --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema ctgov -b -c -C -Fc -f #{fm.pg_dump_file}"
+      cmd="pg_dump #{background_db_name} -v -h localhost -p 5432 -U #{super_username} --clean --no-owner --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema ctgov -b -c -C -Fc -f #{fm.pg_dump_file}"
       run_command_line(cmd)
       copy_dump_file_to_public_server
     end
 
     def copy_dump_file_to_public_server
-      fm=Util::FileManager.new
-      cmd="scp #{fm.pg_dump_file} ctti@#{AACT::Application::AACT_PUBLIC_HOSTNAME}:/#{AACT::Application::AACT_STATIC_FILE_DIR}/dump_files"
+      # copy the dump file to the public server. It's much faster to load public db from its own server.
+      # If this load fails, the file is over there for a quick load by hand if necessary.
+      # We should reconfigure to just use that file & run pg_restore on the public server rather than here. How to do that, tho?
+      cmd="scp #{fm.pg_dump_file} ctti@#{public_host_name}:/#{static_file_dir}/dump_files"
       system(cmd)
     end
 
     def refresh_public_db
-      dump_file_name=Util::FileManager.new.pg_dump_file
+      dump_file_name=fm.pg_dump_file
       return nil if dump_file_name.nil?
       begin
         success_code=true
         revoke_db_privs   # Prevent users from logging in while db restore is running.
 
         # Refresh the aact_alt database first.  If something goes wrong, don't restore aact.
-        alt_db_name=AACT::Application::AACT_ALT_PUBLIC_DATABASE_NAME
         terminate_db_sessions(alt_db_name)
 
         begin
@@ -43,13 +45,15 @@ module Util
           #  drop before replacing - resulting in a db of duplicate data. So get rid of it using CASCADE'.
           #  Wrap in begin/rescue/end in case we're running this on a db tht doesn't yet have the ctgov schem
           log "  dropping ctgov schema in alt public database..."
-          PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute("DROP SCHEMA ctgov CASCADE;")
-          PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute("CREATE SCHEMA ctgov;")
-          PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+          con=PublicBase.establish_connection(alt_db_url).connection
+          con.execute("DROP SCHEMA ctgov CASCADE;")
+          con.execute("CREATE SCHEMA ctgov;")
+          con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+          con.disconnect!
         rescue
         end
         log "  restoring alterntive public database..."
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME}  -d #{alt_db_name} #{dump_file_name}"
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{super_username}  -d #{alt_db_name} #{dump_file_name}"
         run_restore_command_line(cmd)
 
         log "  verifying alt public database..."
@@ -66,17 +70,18 @@ module Util
 
         # If all goes well with AACT_ALT DB, proceed with regular AACT
 
-        db_name = AACT::Application::AACT_PUBLIC_DATABASE_NAME
         terminate_db_sessions(db_name)
         begin
           log "  dropping ctgov schema in main public database..."
-          PublicBase.connection.execute('DROP SCHEMA ctgov CASCADE;')
-          PublicBase.connection.execute('CREATE SCHEMA ctgov;')
-          PublicBase.connection.execute('GRANT USAGE ON SCHEMA ctgov TO read_only;')
+          con=PublicBase.connection
+          con.execute('DROP SCHEMA ctgov CASCADE;')
+          con.execute('CREATE SCHEMA ctgov;')
+          con.execute('GRANT USAGE ON SCHEMA ctgov TO read_only;')
+          con.disconnect!
         rescue
         end
         log "  restoring main public database..."
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} -d #{db_name} #{dump_file_name}"
+        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{super_username} -d #{db_name} #{dump_file_name}"
         run_restore_command_line(cmd)
         grant_db_privs
         return success_code
@@ -96,7 +101,7 @@ module Util
 
     def public_study_count
       begin
-        PublicBase.establish_connection(AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL).connection.execute('select count(*) from studies;').first['count'].to_i
+        PublicBase.establish_connection(alt_db_url).connection.execute('select count(*) from studies;').first['count'].to_i
       rescue
         return 0
       end
@@ -104,19 +109,19 @@ module Util
 
     def revoke_db_privs
       log "  db_manager: set connection limit so only db owner can login..."
-      PublicBase.connection.execute("ALTER DATABASE #{AACT::Application::AACT_PUBLIC_DATABASE_NAME} CONNECTION LIMIT 0;")
-      PublicBase.connection.execute("ALTER DATABASE #{AACT::Application::AACT_ALT_PUBLIC_DATABASE_NAME} CONNECTION LIMIT 0;")
+      PublicBase.connection.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 0;")
+      PublicBase.connection.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 0;")
     end
 
     def grant_db_privs
       log "  db_manager:  granting ctgov schema access to read_only..."
-      PublicBase.connection.execute("ALTER DATABASE #{AACT::Application::AACT_PUBLIC_DATABASE_NAME} CONNECTION LIMIT 200;")
-      PublicBase.connection.execute("ALTER DATABASE #{AACT::Application::AACT_ALT_PUBLIC_DATABASE_NAME} CONNECTION LIMIT 200;")
+      PublicBase.connection.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 200;")
+      PublicBase.connection.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 200;")
     end
 
     def public_db_accessible?
       # we temporarily restrict access to the public db (set allowed connections to zero) during db restore.
-      PublicBase.connection.execute("select datconnlimit from pg_database where datname='#{AACT::Application::AACT_PUBLIC_DATABASE_NAME}';").first["datconnlimit"].to_i > 0
+      PublicBase.connection.execute("select datconnlimit from pg_database where datname='#{db_name}';").first["datconnlimit"].to_i > 0
     end
 
     def run_command_line(cmd)
@@ -146,7 +151,7 @@ module Util
     end
 
     def terminate_db_sessions(db_name)
-      PublicBase.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{db_name}' AND usename <> '#{AACT::Application::AACT_DB_SUPER_USERNAME}'")
+      PublicBase.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{db_name}' AND usename <> '#{super_username}'")
     end
 
     def add_indexes_and_constraints
@@ -378,20 +383,42 @@ module Util
       @migration_object ||= ActiveRecord::Migration.new
     end
 
+    def dump_schema(schema_name)
+      # this is an ad hoc method that I sometimes use at the command line
+      file_name="#{fm.pg_dump_file}_#{schema_name}"
+      File.delete(file_name) if File.exist?(file_name)
+
+      cmd="pg_dump aact -v -h localhost -p 5432 -U #{super_username} --clean --no-owner --no-acl --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
+      run_command_line(cmd)
+    end
+
     def public_host_name
       AACT::Application::AACT_PUBLIC_HOSTNAME
     end
 
-    def dump_schema(schema_name)
-      # this is an ad hoc method that I sometimes use at the command line
-      fm=Util::FileManager.new
-      file_name="#{fm.pg_dump_file}_#{schema_name}"
-      File.delete(file_name) if File.exist?(file_name)
-
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --clean --no-owner --no-acl --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
-      run_command_line(cmd)
+    def alt_db_name
+      AACT::Application::AACT_ALT_PUBLIC_DATABASE_NAME
     end
 
+    def background_db_name
+      AACT::Application::AACT_BACK_DATABASE_NAME
+    end
+
+    def alt_db_url
+      AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL
+    end
+
+    def db_name
+      AACT::Application::AACT_PUBLIC_DATABASE_NAME
+    end
+
+    def super_username
+      AACT::Application::AACT_DB_SUPER_USERNAME
+    end
+
+    def static_file_dir
+      AACT::Application::AACT_STATIC_FILE_DIR
+    end
   end
 
 end

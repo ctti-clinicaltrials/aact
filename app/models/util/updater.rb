@@ -37,8 +37,8 @@ module Util
           log("#{@load_event.event_type} load failed in run: #{msg}")
           load_event.add_problem(msg)
           load_event.complete({:status=>'failed', :study_counts=> study_counts})
-          Admin::PublicAnnouncement.clear_load_message if full_featured and Admin::AdminBase.database_exists?
           db_mgr.grant_db_privs
+          Admin::PublicAnnouncement.clear_load_message if full_featured and Admin::AdminBase.database_exists?
         rescue
           load_event.complete({:status=>'failed', :study_counts=> study_counts})
         end
