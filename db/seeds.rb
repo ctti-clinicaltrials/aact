@@ -1,3 +1,4 @@
+Util::Updater.new.run
 pub_con=ActiveRecord::Base.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
 pub_con.execute("
     DO
@@ -21,4 +22,3 @@ pub_con.execute("grant select on all tables in schema ctgov to read_only;")
 pub_con.execute("alter role read_only login;")
 pub_con.reset!
 
-Util::Updater.new.run

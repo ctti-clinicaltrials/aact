@@ -4,22 +4,27 @@ default: &default
   min_messages: warning
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  username: <%= ENV.fetch("AACT_DB_SUPER_USERNAME", "") %>
+  #  Make sure you've created a database account for the AACT_DB_SUPER_USERNAME (default: aact) with permission to create databases.
+  #  Also, add an entry for this user in the .pgpass file in the root directory of the user who run the rails apps so the app knows its password.
+  username: <%= ENV.fetch("AACT_DB_SUPER_USERNAME") || 'aact' %>
 
 development:
   <<: *default
-  url:  <%= ENV.fetch("AACT_BACK_DATABASE_URL", "") %>
+  host:  <%= ENV.fetch('APPLICATION_HOST', 'localhost') %>
+  database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact') %>
 
 test:
   <<: *default
-  database: aact_back_test
+  database: aact_test
 
 production:
   <<: *default
-  url:  <%= ENV.fetch("AACT_BACK_DATABASE_URL", "") %>
+  host:  <%= ENV.fetch('APPLICATION_HOST', 'localhost') %>
+  database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact') %>
 
 public:
   <<: *default
-  url:  <%= ENV.fetch("AACT_PUBLIC_DATABASE_URL", "") %>
+  host:  <%= ENV.fetch('AACT_PUBLIC_HOSTNAME', 'localhost') %>
+  database: <%= ENV.fetch('AACT_PUBLIC_DATABASE_NAME', 'aact_pub') %>
 
 

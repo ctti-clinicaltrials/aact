@@ -10,11 +10,9 @@ class CreateCtgovFunctions < ActiveRecord::Migration
         UNION
         SELECT DISTINCT nct_id FROM browse_interventions WHERE downcase_mesh_term like lower($1)
         UNION
-        SELECT DISTINCT nct_id FROM keywords WHERE name like $1
+        SELECT DISTINCT nct_id FROM studies WHERE lower(brief_title) like lower($1)
         UNION
-        SELECT DISTINCT nct_id FROM facilities WHERE name like $1 or city like $1 or state like $1 or country like $1
-        UNION
-        SELECT DISTINCT nct_id FROM sponsors WHERE name like $1
+        SELECT DISTINCT nct_id FROM keywords WHERE lower(name) like lower($1)
         ;
         $_$;
 

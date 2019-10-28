@@ -1,7 +1,7 @@
 Rails.application.configure do
 
   ENV["AACT_ADMIN_DATABASE_URL"] = 'postgres://localhost:5432/aact_admin_test'
-  ENV["AACT_BACK_DATABASE_URL"] = 'postgres://localhost:5432/aact_back_test'
+  ENV["AACT_BACK_DATABASE_URL"] = 'postgres://localhost:5432/aact_test'
   config.assets.raise_runtime_errors = true
   config.cache_classes = true
   config.eager_load = false
