@@ -36,7 +36,7 @@ module Util
           log("#{@load_event.event_type} load failed in run: #{msg}")
           load_event.add_problem(msg)
           load_event.complete({:status=>'failed', :study_counts=> study_counts})
-          Admin::PublicAnnouncement.clear_load_message
+          Admin::PublicAnnouncement.clear_load_message if Admin::AdminBase.database_exists?
           db_mgr.grant_db_privs
         rescue
           load_event.complete({:status=>'failed', :study_counts=> study_counts})
@@ -99,7 +99,7 @@ module Util
       add_indexes_and_constraints
       create_calculated_values
       populate_admin_tables
-      study_counts[:processed]=Study.count
+      study_counts[:processed]=db_mgr.background_study_count
       take_snapshot
       if refresh_public_db != true
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
@@ -206,19 +206,21 @@ module Util
       Support::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Support::SanityCheck.where('most_current is true')
       load_event.add_problem("Fewer sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size < 44
-      load_event.add_problem("More sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size > 44
+      load_event.add_problem("More sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size > 45
       load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
       # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
       # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to this.
       old_count=(db_mgr.public_study_count - 10)
-      new_count=db_mgr.background_study_count
+      new_count=Study.count
       load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
       return load_event.problems.blank?
     end
 
     def refresh_data_definitions(data=Util::FileManager.new.default_data_definitions)
-      log("refreshing data definitions...")
-      Admin::DataDefinition.populate(data)
+      if Admin::AdminBase.database_exists?
+        log("refreshing data definitions...")
+        Admin::DataDefinition.populate(data)
+      end
     end
 
     def take_snapshot
@@ -232,8 +234,10 @@ module Util
     end
 
     def send_notification
-      log("sending email notification...")
-      Notifier.report_load_event(load_event)
+      if !AACT::Application::AACT_OWNER_EMAIL.nil?
+        log("sending email notification...")
+        Notifier.report_load_event(load_event)
+      end
     end
 
     def create_flat_files
@@ -297,7 +301,7 @@ module Util
     end
 
     def submit_public_announcement(announcement)
-      Admin::PublicAnnouncement.populate(announcement)
+      Admin::PublicAnnouncement.populate(announcement) if Admin::AdminBase.database_exists?
     end
 
   end
