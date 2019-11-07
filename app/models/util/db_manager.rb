@@ -45,11 +45,11 @@ module Util
           #  drop before replacing - resulting in a db of duplicate data. So get rid of it using CASCADE'.
           #  Wrap in begin/rescue/end in case we're running this on a db tht doesn't yet have the ctgov schem
           log "  dropping ctgov schema in alt public database..."
-          con=PublicBase.establish_connection(alt_db_url).connection
-          con.execute("DROP SCHEMA ctgov CASCADE;")
-          con.execute("CREATE SCHEMA ctgov;")
-          con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
-          con.disconnect!
+          c=PublicBase.establish_connection(alt_db_url).connection
+          c.execute("DROP SCHEMA ctgov CASCADE;")
+          c.execute("CREATE SCHEMA ctgov;")
+          c.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+          c.disconnect!
         rescue
         end
         log "  restoring alterntive public database..."
