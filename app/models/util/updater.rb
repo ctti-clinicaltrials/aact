@@ -162,21 +162,12 @@ module Util
 
     def update_studies(nct_ids)
       log("updating the set of studies (#{nct_ids.size})...")
-      ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       study_counts[:count_down]=nct_ids.size
-
-      ActiveRecord::Base.transaction do
-        db_mgr.loadable_tables.each { |table|
-          stime=Time.zone.now
-          ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
-          log("deleted studies from #{table}   #{Time.zone.now - stime}")
-        }
-        Support::SupportBase.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
+        db_mgr.clear_out_data_for(nct_ids)
         nct_ids.each {|nct_id|
           refresh_study(nct_id)
           decrement_count_down
         }
-      end
       log("finished iterating over #{nct_ids.size} studies")
       self
     end

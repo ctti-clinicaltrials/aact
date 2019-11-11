@@ -2,7 +2,7 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :event, :migration_object, :fm
+    attr_accessor :con, :public_con, :public_alt_con, :event, :migration_object, :fm
 
     def initialize(params={})
       # 'event' keeps track of what happened during a single load event & then saves to LoadEvent table in the admin db, so we have a log
@@ -45,11 +45,9 @@ module Util
           #  drop before replacing - resulting in a db of duplicate data. So get rid of it using CASCADE'.
           #  Wrap in begin/rescue/end in case we're running this on a db tht doesn't yet have the ctgov schem
           log "  dropping ctgov schema in alt public database..."
-          c=PublicBase.establish_connection(alt_db_url).connection
-          c.execute("DROP SCHEMA ctgov CASCADE;")
-          c.execute("CREATE SCHEMA ctgov;")
-          c.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
-          c.disconnect!
+          public_alt_con.execute("DROP SCHEMA ctgov CASCADE;")
+          public_alt_con.execute("CREATE SCHEMA ctgov;")
+          public_alt_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
         rescue
         end
         log "  restoring alterntive public database..."
@@ -73,11 +71,9 @@ module Util
         terminate_db_sessions(db_name)
         begin
           log "  dropping ctgov schema in main public database..."
-          con=PublicBase.connection
-          con.execute('DROP SCHEMA ctgov CASCADE;')
-          con.execute('CREATE SCHEMA ctgov;')
-          con.execute('GRANT USAGE ON SCHEMA ctgov TO read_only;')
-          con.disconnect!
+          public_con.execute('DROP SCHEMA ctgov CASCADE;')
+          public_con.execute('CREATE SCHEMA ctgov;')
+          public_con.execute('GRANT USAGE ON SCHEMA ctgov TO read_only;')
         rescue
         end
         log "  restoring main public database..."
@@ -94,6 +90,20 @@ module Util
       end
     end
 
+    def clear_out_data_for(nct_ids)
+      ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
+      loadable_tables.each { |table|
+        stime=Time.zone.now
+        con.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
+        log("deleted studies from #{table}   #{Time.zone.now - stime}")
+      }
+      delete_xml_records(ids)
+    end
+
+    def delete_xml_records(ids)
+      con.execute("DELETE FROM support.study_xml_records WHERE nct_id IN (#{ids})")
+    end
+
     def background_study_count
       # created method to stub for tests
       Study.count
@@ -101,7 +111,7 @@ module Util
 
     def public_study_count
       begin
-        PublicBase.establish_connection(alt_db_url).connection.execute('select count(*) from studies;').first['count'].to_i
+        public_alt_con.execute('select count(*) from studies;').first['count'].to_i
       rescue
         return 0
       end
@@ -109,19 +119,18 @@ module Util
 
     def revoke_db_privs
       log "  db_manager: set connection limit so only db owner can login..."
-      PublicBase.connection.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 0;")
-      PublicBase.connection.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 0;")
+      public_con.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 0;")
+      public_alt_con.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 0;")
     end
 
     def grant_db_privs
-      log "  db_manager:  granting ctgov schema access to read_only..."
-      PublicBase.connection.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 200;")
-      PublicBase.connection.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 200;")
+      public_con.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 200;")
+      public_alt_con.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 200;")
     end
 
     def public_db_accessible?
       # we temporarily restrict access to the public db (set allowed connections to zero) during db restore.
-      PublicBase.connection.execute("select datconnlimit from pg_database where datname='#{db_name}';").first["datconnlimit"].to_i > 0
+      public_con.execute("select datconnlimit from pg_database where datname='#{db_name}';").first["datconnlimit"].to_i > 0
     end
 
     def run_command_line(cmd)
@@ -151,7 +160,7 @@ module Util
     end
 
     def terminate_db_sessions(db_name)
-      PublicBase.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{db_name}' AND usename <> '#{super_username}'")
+      public_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{db_name}' AND usename <> '#{super_username}'")
     end
 
     def add_indexes_and_constraints
@@ -245,7 +254,7 @@ module Util
         use_cases
         use_case_attachments
       )
-      table_names=ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
+      table_names=con.tables.reject{|table|blacklist.include?(table)}
     end
 
     def indexes
@@ -372,9 +381,23 @@ module Util
       con.execute("select t.relname as table_name, i.relname as index_name, a.attname as column_name, ix.indisprimary as is_primary, ix.indisunique as is_unique from pg_class t, pg_class i, pg_index ix, pg_attribute a where t.oid = ix.indrelid and i.oid = ix.indexrelid and a.attrelid = t.oid and a.attnum = ANY(ix.indkey) and t.relkind = 'r' and t.relname = '#{table_name}';")
     end
 
+    def public_con
+      return @public_con if @public_con and @public_con.active?
+      @public_con = PublicBase.establish_connection(public_db_url).connection
+      @public_con.schema_search_path='ctgov'
+      return @public_con
+    end
+
+    def public_alt_con
+      return @public_alt_con if @public_alt_con and @public_alt_con.active?
+      @public_alt_con = PublicBase.establish_connection(alt_db_url).connection
+      @public_alt_con.schema_search_path='ctgov'
+      return @public_alt_con
+    end
+
     def con
       return @con if @con and @con.active?
-      @con = ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL).connection
+      @con = ActiveRecord::Base.establish_connection(back_db_url).connection
       @con.schema_search_path='ctgov'
       return @con
     end
@@ -396,16 +419,24 @@ module Util
       AACT::Application::AACT_PUBLIC_HOSTNAME
     end
 
-    def alt_db_name
-      AACT::Application::AACT_ALT_PUBLIC_DATABASE_NAME
-    end
-
     def background_db_name
       AACT::Application::AACT_BACK_DATABASE_NAME
     end
 
+    def back_db_url
+      AACT::Application::AACT_BACK_DATABASE_URL
+    end
+
     def alt_db_url
       AACT::Application::AACT_ALT_PUBLIC_DATABASE_URL
+    end
+
+    def public_db_url
+      AACT::Application::AACT_PUBLIC_DATABASE_URL
+    end
+
+    def alt_db_name
+      AACT::Application::AACT_ALT_PUBLIC_DATABASE_NAME
     end
 
     def db_name
