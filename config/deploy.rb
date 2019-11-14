@@ -17,7 +17,7 @@ task :finish_up do
   on roles(:app) do
     # create symlink to to the root directory containing aact static files
     # content of this directory can get big; we create this directory on a separate NAS drive
-    source = '~/aact-files'
+    source = ENV.fetch('AACT_STATIC_FILE_DIR','~/aact-files')
     target = release_path.join('public/static')
     begin
       execute :ln, '-s', source, target
@@ -35,7 +35,7 @@ end
 
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
-set :format_options, command_output: true, log_file: "~/aact-files/logs/capistrano_aact.log", color: :auto, truncate: :auto
+set :format_options, command_output: true, log_file: "#{ENV.fetch('STATIC_FILE_DIR','~/aact-files')}/logs/capistrano_aact.log", color: :auto, truncate: :auto
 
 # Default value for :pty is false
 # set :pty, true

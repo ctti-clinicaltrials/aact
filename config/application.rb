@@ -35,11 +35,11 @@ module AACT
 
     APPLICATION_HOST          = 'localhost'
     if Rails.env != 'test'
-      AACT_PUBLIC_HOSTNAME      = 'localhost'       # Server on which the publicly accessible database resides
-      AACT_BACK_DATABASE_NAME   =  'aact'           # Name of background database used to process loads
-      AACT_ADMIN_DATABASE_NAME  =  'aact_admin'     # Name of database used to support the AACT website
-      AACT_PUBLIC_DATABASE_NAME =  'aact'           # Name of database available to the public
-      AACT_ALT_PUBLIC_DATABASE_NAME = 'aact_alt'    # Name of alternate database available to the public
+      AACT_PUBLIC_HOSTNAME      =  ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'#Server on which the publicly accessible database resides
+      AACT_BACK_DATABASE_NAME   =  ENV['AACT_BACK_DATABASE_NAME']|| 'aact'    # Name of background database used to process loads
+      AACT_ADMIN_DATABASE_NAME  =  ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin' # Name of database used to support the AACT website
+      AACT_PUBLIC_DATABASE_NAME =  ENV['AACT_PUBLIC_DATABASE_NAME'] || 'aact'  # Name of database available to the public
+      AACT_ALT_PUBLIC_DATABASE_NAME = ENV['AACT_ALT_PUBLIC_DATABASE_NAME'] || 'aact_alt' # Name of alternate database available to the public
     else
       AACT_PUBLIC_HOSTNAME      = 'localhost'
       AACT_BACK_DATABASE_NAME   = 'aact_test'
