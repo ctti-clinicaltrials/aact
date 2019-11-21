@@ -1,8 +1,28 @@
 require 'action_view'
 require 'open-uri'
+require 'fileutils'
 include ActionView::Helpers::NumberHelper
 module Util
   class FileManager
+
+    attr_accessor :root_dir
+
+    def initialize
+      @root_dir = "#{Rails.public_path}/static"
+      if ! File.exists?(root_dir)
+        FileUtils.mkdir root_dir
+        FileUtils.mkdir_p "#{root_dir}/static_db_copies/daily"
+        FileUtils.mkdir_p "#{root_dir}/static_db_copies/monthly"
+        FileUtils.mkdir_p "#{root_dir}/exported_files/daily"
+        FileUtils.mkdir_p "#{root_dir}/exported_files/monthly"
+        FileUtils.mkdir_p "#{root_dir}/db_backups"
+        FileUtils.mkdir_p "#{root_dir}/documentation"
+        FileUtils.mkdir_p "#{root_dir}/logs"
+        FileUtils.mkdir_p "#{root_dir}/tmp"
+        FileUtils.mkdir_p "#{root_dir}/other"
+        FileUtils.mkdir_p "#{root_dir}/xml_downloads"
+      end
+    end
 
     def nlm_protocol_data_url
       "https://prsinfo.clinicaltrials.gov/definitions.html"
@@ -14,50 +34,50 @@ module Util
 
     def static_copies_directory
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{Rails.public_path}/static/static_db_copies/monthly"
+        "#{root_dir}/static_db_copies/monthly"
       else
-        "#{Rails.public_path}/static/static_db_copies/daily"
+        "#{root_dir}/static_db_copies/daily"
       end
     end
 
     def flat_files_directory
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{Rails.public_path}/static/exported_files/monthly"
+        "#{root_dir}/exported_files/monthly"
       else
-        "#{Rails.public_path}/static/exported_files/daily"
+        "#{root_dir}/exported_files/daily"
       end
     end
 
     def pg_dump_file
-      "#{Rails.public_path}/static/tmp/postgres.dmp"
+      "#{root_dir}/tmp/postgres.dmp"
     end
 
     def dump_directory
-      "#{Rails.public_path}/static/tmp"
+      "#{root_dir}/tmp"
     end
 
     def backup_directory
-      "#{Rails.public_path}/static/db_backups"
+      "#{root_dir}/db_backups"
     end
 
     def xml_file_directory
-      "#{Rails.public_path}/static/xml_downloads"
+      "#{root_dir}/xml_downloads"
     end
 
     def admin_schema_diagram
-      "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
+      "#{root_dir}/documentation/aact_admin_schema.png"
     end
 
     def schema_diagram
-      "#{Rails.public_path}/static/documentation/aact_schema.png"
+      "#{root_dir}/documentation/aact_schema.png"
     end
 
     def data_dictionary
-      "#{Rails.public_path}/static/documentation/aact_data_definitions.xlsx"
+      "#{root_dir}/documentation/aact_data_definitions.xlsx"
     end
 
     def table_dictionary
-      "#{Rails.public_path}/static/documentation/aact_tables.xlsx"
+      "#{root_dir}/documentation/aact_tables.xlsx"
     end
 
     def default_mesh_terms
@@ -69,16 +89,20 @@ module Util
     end
 
     def default_data_definitions
-      Roo::Spreadsheet.open("#{Rails.public_path}/static/documentation/aact_data_definitions.xlsx")
+      begin
+        Roo::Spreadsheet.open("#{root_dir}/documentation/aact_data_definitions.xlsx")
+      rescue
+        # No guarantee the file exists
+      end
     end
 
     def files_in(sub_dir, type=nil)
       # type ('monthly' or 'daily') identify the subdirectory to use to get the files.
       entries=[]
       if type.blank?
-        dir="#{Rails.public_path}/static/#{sub_dir}"
+        dir="#{root_dir}/#{sub_dir}"
       else
-        dir="#{Rails.public_path}/static/#{sub_dir}/#{type}"
+        dir="#{root_dir}/#{sub_dir}/#{type}"
       end
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
@@ -116,7 +140,7 @@ module Util
     end
 
     def make_file_from_website(fname, url)
-      return_file="#{Rails.public_path}/static/tmp/#{fname}"
+      return_file="#{root_dir}/tmp/#{fname}"
       File.delete(return_file) if File.exist?(return_file)
       open(url) {|site|
         open(return_file, "wb"){|out_file|
@@ -144,24 +168,26 @@ module Util
     end
 
     def save_static_copy
-      schema_diagram_file=File.open("#{schema_diagram}")
-      admin_schema_diagram_file=File.open("#{admin_schema_diagram}")
-      data_dictionary_file=File.open("#{data_dictionary}")
-      nlm_protocol_file=make_file_from_website("nlm_protocol_definitions.html", nlm_protocol_data_url)
-      nlm_results_file=make_file_from_website("nlm_results_definitions.html", nlm_results_data_url)
+      nlm_protocol_file         = make_file_from_website("nlm_protocol_definitions.html", nlm_protocol_data_url)
+      nlm_results_file          = make_file_from_website("nlm_results_definitions.html", nlm_results_data_url)
 
       date_stamp=Time.zone.now.strftime('%Y%m%d')
+      files_to_zip = {}
+      files_to_zip['schema_diagram.png']            = File.open(schema_diagram)       if File.exists?(schema_diagram)
+      files_to_zip['admin_schema_diagram.png']      = File.open(admin_schema_diagram) if File.exists?(admin_schema_diagram)
+      files_to_zip['data_dictionary.xlsx']          = File.open(data_dictionary)      if File.exists?(data_dictionary)
+      files_to_zip['postgres_data.dmp']             = File.open(pg_dump_file)         if File.exists?(pg_dump_file)
+      files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
+      files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
+
       zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
       File.delete(zip_file_name) if File.exist?(zip_file_name)
-      Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
-        zipfile.add('schema_diagram.png',schema_diagram_file)
-        zipfile.add('admin_schema_diagram.png',admin_schema_diagram_file)
-        zipfile.add('data_dictionary.xlsx',data_dictionary_file)
-        zipfile.add('postgres_data.dmp',pg_dump_file)
-        zipfile.add('nlm_protocol_definitions.html',nlm_protocol_file)
-        zipfile.add('nlm_results_definitions.html',nlm_results_file)
+        Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
+          files_to_zip.each { |entry|
+            zipfile.add(entry.first, entry.last)
+        }
       }
-      return zip_file_name
+      zip_file_name
     end
 
   end

@@ -9,7 +9,7 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.populate
     con=ActiveRecord::Base.connection
-    con.execute('REVOKE SELECT ON TABLE calculated_values FROM aact;')
+    con.execute('REVOKE SELECT ON TABLE calculated_values FROM read_only;')
     con.execute('TRUNCATE table calculated_values CASCADE')
     con.execute("INSERT INTO calculated_values (
                  nct_id,
@@ -24,7 +24,7 @@ class CalculatedValue < ActiveRecord::Base
       con.execute(cmd)
     }
     self.save_downcased_mesh_terms(con)
-    con.execute("GRANT SELECT ON TABLE calculated_values TO aact")
+    con.execute("GRANT SELECT ON TABLE calculated_values TO read_only")
   end
 
   def self.save_downcased_mesh_terms(con)

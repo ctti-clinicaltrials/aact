@@ -3,7 +3,11 @@ require 'rails_helper'
 describe Util::FileManager do
   context 'create static db copy' do
     it "should save db static copy to the appropriate directory" do
-      allow_any_instance_of(Util::FileManager).to receive(:make_file_from_website).and_return(Util::FileManager.new.schema_diagram)
+      allow_any_instance_of(Util::FileManager).to receive(:static_copies_directory).and_return('spec/support/shared_examples')
+      allow_any_instance_of(Util::FileManager).to receive(:admin_schema_diagram).and_return("spec/support/shared_examples/aact_admin_schema.png")
+      allow_any_instance_of(Util::FileManager).to receive(:schema_diagram).and_return("spec/support/shared_examples/aact_schema.png")
+      allow_any_instance_of(Util::FileManager).to receive(:make_file_from_website).and_return("spec/support/shared_examples/nlm_results_definitions.html")
+
       fm=Util::FileManager.new
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
       expect(File.exist?(fm.pg_dump_file)).to eq(false)
