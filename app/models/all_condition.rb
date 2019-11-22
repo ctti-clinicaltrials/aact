@@ -1,2 +1,0 @@
-class AllCondition < StudyRelationship
-end

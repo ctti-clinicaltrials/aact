@@ -1,8 +1,9 @@
 module Util
  class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr
+    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured
 
     def initialize(params={})
+      @full_featured = params[:full_featured] || false
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
@@ -10,7 +11,7 @@ module Util
         type='restart'
       end
       @client = Util::Client.new
-      @days_back=(@params[:days_back] ? @params[:days_back] : 2)
+      @days_back=(params[:days_back] ? params[:days_back] : 2)
       @rss_reader = Util::RssReader.new(days_back: @days_back)
       @load_event = Support::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @load_event.save!  # Save to timestamp created_at
@@ -36,8 +37,8 @@ module Util
           log("#{@load_event.event_type} load failed in run: #{msg}")
           load_event.add_problem(msg)
           load_event.complete({:status=>'failed', :study_counts=> study_counts})
-          Admin::PublicAnnouncement.clear_load_message if Admin::AdminBase.database_exists?
           db_mgr.grant_db_privs
+          Admin::PublicAnnouncement.clear_load_message if full_featured and Admin::AdminBase.database_exists?
         rescue
           load_event.complete({:status=>'failed', :study_counts=> study_counts})
         end
@@ -99,6 +100,8 @@ module Util
       add_indexes_and_constraints
       create_calculated_values
       populate_admin_tables
+      run_sanity_checks
+      return unless full_featured  # no need to continue unless configured as a fully featured implementation of AACT
       study_counts[:processed]=db_mgr.background_study_count
       take_snapshot
       if refresh_public_db != true
@@ -159,21 +162,12 @@ module Util
 
     def update_studies(nct_ids)
       log("updating the set of studies (#{nct_ids.size})...")
-      ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       study_counts[:count_down]=nct_ids.size
-
-      ActiveRecord::Base.transaction do
-        db_mgr.loadable_tables.each { |table|
-          stime=Time.zone.now
-          ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
-          log("deleted studies from #{table}   #{Time.zone.now - stime}")
-        }
-        Support::SupportBase.connection.execute("DELETE FROM study_xml_records WHERE nct_id IN (#{ids})")
+        db_mgr.clear_out_data_for(nct_ids)
         nct_ids.each {|nct_id|
           refresh_study(nct_id)
           decrement_count_down
         }
-      end
       log("finished iterating over #{nct_ids.size} studies")
       self
     end
@@ -191,9 +185,9 @@ module Util
     end
 
     def populate_admin_tables
+      return unless full_featured
       log('populating admin tables...')
       refresh_data_definitions
-      run_sanity_checks
     end
 
     def run_sanity_checks
@@ -209,10 +203,11 @@ module Util
       load_event.add_problem("More sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size > 45
       load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
       # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
-      # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to this.
+      # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to ct.gov having deleted studies.
       old_count=(db_mgr.public_study_count - 10)
       new_count=Study.count
       load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
+      log(load_event.problems) if !load_event.problems.blank?
       return load_event.problems.blank?
     end
 
@@ -301,7 +296,7 @@ module Util
     end
 
     def submit_public_announcement(announcement)
-      Admin::PublicAnnouncement.populate(announcement) if Admin::AdminBase.database_exists?
+      Admin::PublicAnnouncement.populate(announcement) if full_featured and Admin::AdminBase.database_exists?
     end
 
   end

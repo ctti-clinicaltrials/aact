@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.2
--- Dumped by pg_dump version 11.2
+-- Dumped from database version 11.4
+-- Dumped by pg_dump version 11.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12,6 +12,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -80,11 +81,9 @@ CREATE FUNCTION ctgov.ids_for_term(character varying) RETURNS TABLE(nct_id chara
         UNION
         SELECT DISTINCT nct_id FROM browse_interventions WHERE downcase_mesh_term like lower($1)
         UNION
-        SELECT DISTINCT nct_id FROM keywords WHERE name like $1
+        SELECT DISTINCT nct_id FROM studies WHERE lower(brief_title) like lower($1)
         UNION
-        SELECT DISTINCT nct_id FROM facilities WHERE name like $1 or city like $1 or state like $1 or country like $1
-        UNION
-        SELECT DISTINCT nct_id FROM sponsors WHERE name like $1
+        SELECT DISTINCT nct_id FROM keywords WHERE lower(name) like lower($1)
         ;
         $_$;
 
@@ -904,42 +903,6 @@ CREATE SEQUENCE ctgov.countries_id_seq
 --
 
 ALTER SEQUENCE ctgov.countries_id_seq OWNED BY ctgov.countries.id;
-
-
---
--- Name: criteria; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.criteria (
-    id integer NOT NULL,
-    nct_id character varying,
-    parent_id integer,
-    level integer,
-    order_number integer,
-    criterium_type character varying,
-    name character varying,
-    downcase_name character varying
-);
-
-
---
--- Name: criteria_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.criteria_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: criteria_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.criteria_id_seq OWNED BY ctgov.criteria.id;
 
 
 --
@@ -2358,13 +2321,6 @@ ALTER TABLE ONLY ctgov.countries ALTER COLUMN id SET DEFAULT nextval('ctgov.coun
 
 
 --
--- Name: criteria id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.criteria ALTER COLUMN id SET DEFAULT nextval('ctgov.criteria_id_seq'::regclass);
-
-
---
 -- Name: design_group_interventions id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2707,14 +2663,6 @@ ALTER TABLE ONLY ctgov.conditions
 
 ALTER TABLE ONLY ctgov.countries
     ADD CONSTRAINT countries_pkey PRIMARY KEY (id);
-
-
---
--- Name: criteria criteria_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.criteria
-    ADD CONSTRAINT criteria_pkey PRIMARY KEY (id);
 
 
 --
@@ -3684,7 +3632,7 @@ CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_re
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov, support, pubmed, lookup, wiki;
+SET search_path TO ctgov, support, public;
 
 INSERT INTO schema_migrations (version) VALUES ('20160630191037');
 
@@ -3705,6 +3653,4 @@ INSERT INTO schema_migrations (version) VALUES ('20190115184850');
 INSERT INTO schema_migrations (version) VALUES ('20190115204850');
 
 INSERT INTO schema_migrations (version) VALUES ('20190301204850');
-
-INSERT INTO schema_migrations (version) VALUES ('20190401702640');
 

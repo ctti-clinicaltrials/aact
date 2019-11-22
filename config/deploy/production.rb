@@ -3,7 +3,6 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-# server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
@@ -20,7 +19,6 @@
 # role :db,  %w{deploy@example.com}
 
 
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -28,8 +26,6 @@
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
-
 
 # Custom SSH Options
 # ==================
@@ -39,7 +35,7 @@
 #
 # Global options
   set :repo_url, ENV['AACT_PROD_REPO_URL']
-  set :deploy_to, ENV['AACT_DEPLOY_TO']
+  set :deploy_to, ENV['AACT_PROD_DEPLOY_TO']
 
   set :ssh_options, {
     keys: %w("#{ENV['AACT_SSH_KEY_DIR']}"),
