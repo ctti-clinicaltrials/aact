@@ -2113,6 +2113,40 @@ CREATE TABLE ctgov.studies (
 
 
 --
+-- Name: study_json_records; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.study_json_records (
+    id integer NOT NULL,
+    nct_id character varying NOT NULL,
+    content jsonb NOT NULL,
+    saved_study_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: study_json_records_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.study_json_records_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: study_json_records_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.study_json_records_id_seq OWNED BY ctgov.study_json_records.id;
+
+
+--
 -- Name: study_references; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -2566,6 +2600,13 @@ ALTER TABLE ONLY ctgov.sponsors ALTER COLUMN id SET DEFAULT nextval('ctgov.spons
 
 
 --
+-- Name: study_json_records id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.study_json_records ALTER COLUMN id SET DEFAULT nextval('ctgov.study_json_records_id_seq'::regclass);
+
+
+--
 -- Name: study_references id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2943,6 +2984,14 @@ ALTER TABLE ONLY ctgov.result_groups
 
 ALTER TABLE ONLY ctgov.sponsors
     ADD CONSTRAINT sponsors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: study_json_records study_json_records_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.study_json_records
+    ADD CONSTRAINT study_json_records_pkey PRIMARY KEY (id);
 
 
 --
@@ -3653,4 +3702,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190115184850');
 INSERT INTO schema_migrations (version) VALUES ('20190115204850');
 
 INSERT INTO schema_migrations (version) VALUES ('20190301204850');
+
+INSERT INTO schema_migrations (version) VALUES ('20191125205210');
 
