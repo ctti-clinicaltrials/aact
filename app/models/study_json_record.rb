@@ -1,119 +1,59 @@
 class StudyJsonRecord < ActiveRecord::Base
-  def collect_attributes
-    deep_info = content['Study']['ProtocolSection']['StatusModule']
-    {
-      :start_month_year              => deep_info['StartDateStruct']['StartDate'],
-      :verification_month_year       => deep_info['StatusVerifiedDate'],
-      :completion_month_year         => deep_info['CompletionDateStruct']['CompletionDate'],
-      :primary_completion_month_year => deep_info['PrimaryCompletionDateStruct']['PrimaryCompletionDate'],
-
-      :start_date                    => convert_date(deep_info['StartDateStruct']['StartDate']),
-      :verification_date             => convert_date(deep_info['StatusVerifiedDate']),
-      :completion_date               => convert_date(deep_info['CompletionDateStruct']['CompletionDate']),
-      :primary_completion_date       => convert_date(deep_info['PrimaryCompletionDateStruct']['PrimaryCompletionDate']),
-
-      :study_first_submitted_qc_date        => get(deep_info['StudyFirstSubmitQCDate']).try(:to_date),
-      :study_first_posted_date              => get(deep_info['StudyFirstPostDateStruct']['StudyFirstPostDate']).try(:to_date),
-      :results_first_submitted_qc_date      => get('results_first_submitted_qc').try(:to_date),
-      :results_first_posted_date            => get('results_first_posted').try(:to_date),
-      :disposition_first_submitted_qc_date  => get('disposition_first_submitted_qc').try(:to_date),
-      :disposition_first_posted_date        => get('disposition_first_posted').try(:to_date),
-      :last_update_submitted_qc_date        => get(deep_info['LastUpdateSubmitDate']).try(:to_date),
-      :last_update_posted_date              => get(deep_info['LastUpdatePostDateStruct']['LastUpdatePostDate']).try(:to_date),
-
-      # the previous have been replaced with:
-      :study_first_submitted_date       => get_date(get('study_first_submitted')),
-      :results_first_submitted_date     => get_date(get('results_first_submitted')),
-      :disposition_first_submitted_date => get_date(get('disposition_first_submitted')),
-      :last_update_submitted_date       => get_date(get('last_update_submitted')),
-
-      :nlm_download_date_description  => xml.xpath('//download_date').text,
-      :acronym                        => get('acronym'),
-      :baseline_population            => xml.xpath('//baseline/population').try(:text),
-      :number_of_arms                 => get('number_of_arms'),
-      :number_of_groups               => get('number_of_groups'),
-      :source                         => get('source'),
-      :brief_title                    => get('brief_title') ,
-      :official_title                 => get('official_title'),
-      :overall_status                 => get('overall_status'),
-      :last_known_status              => get('last_known_status'),
-      :phase                          => get('phase'),
-      :target_duration                => get('target_duration'),
-      :enrollment                     => get('enrollment'),
-      :biospec_description            => get_text('biospec_descr'),
-
-      :start_date_type                     => get_type('start_date'),
-      :primary_completion_date_type        => get_type('primary_completion_date'),
-      :completion_date_type                => get_type('completion_date'),
-      :study_first_posted_date_type        => get_type('study_first_posted'),
-      :results_first_posted_date_type      => get_type('results_first_posted'),
-      :disposition_first_posted_date_type  => get_type('disposition_first_posted'),
-      :last_update_posted_date_type        => get_type('last_update_posted'),
-      :enrollment_type                     => get_type('enrollment'),
-
-      :study_type                        => get('study_type'),
-      :biospec_retention                 => get('biospec_retention'),
-      :limitations_and_caveats           => xml.xpath('//limitations_and_caveats').text,
-      :is_fda_regulated_drug             => get_boolean('//is_fda_regulated_drug'),
-      :is_fda_regulated_device           => get_boolean('//is_fda_regulated_device'),
-      :is_unapproved_device              => get_boolean('//is_unapproved_device'),
-      :is_ppsd                           => get_boolean('//is_ppsd'),
-      :is_us_export                      => get_boolean('//is_us_export'),
-      :ipd_time_frame                    => get('patient_data/ipd_time_frame'),
-      :ipd_access_criteria               => get('patient_data/ipd_access_criteria'),
-      :ipd_url                           => get('patient_data/ipd_url'),
-      :plan_to_share_ipd                 => get('patient_data/sharing_ipd'),
-      :plan_to_share_ipd_description     => get('patient_data/ipd_description'),
-      :has_expanded_access               => get_boolean('//has_expanded_access'),
-      :expanded_access_type_individual   => get_boolean('//expanded_access_info/expanded_access_type_individual'),
-      :expanded_access_type_intermediate => get_boolean('//expanded_access_info/expanded_access_type_intermediate'),
-      :expanded_access_type_treatment    => get_boolean('//expanded_access_info/expanded_access_type_treatment'),
-      :has_dmc                           => get_boolean('//has_dmc'),
-      :why_stopped                       => get('why_stopped')
-    }
+  def key_check(key)
+    return key if key
+      
+    {}
   end
-
-  def self.true_attrib(big_hash=study_structure)
-    big_hash = JSON.parse(big_hash)
-    content = big_hash['StudyStructure']['ElmtDefs']
+  def self.true_attrib(content=TestJson.test_data)
     protocol = content['Study']['ProtocolSection']
     status = protocol['StatusModule']
     ident = protocol['IdentificationModule']
     design = protocol['DesignModule']
     oversight= protocol['OversightModule']
     ipd_sharing = protocol['IPDSharingStatementModule']
+    study_posted = status['StudyFirstPostDateStruct']
+    results_posted = status['ResultsFirstPostDateStruct']
+    disp_posted = status['DispFirstPostDateStruct']
+    last_posted = status['LastUpdatePostDateStruct']
+    start_date = status['StartDateStruct']
+    completion_date = status['CompletionDateStruct']
+    primary_completion_date = status['PrimaryCompletionDateStruct']
     results = content['Study']['ResultsSection']
     baseline = results['BaselineCharacteristicsModule']
+    enrollment = design['EnrollmentInfo']
+    expanded = design['ExpandedAccessTypes']
+    biospec = design['BioSpec']
+
     { 
-      nct_id: nct_id,
+      nct_id: "nct_id",
       nlm_download_date_description: nil,
       study_first_submitted_date: status['StudyFirstSubmitDate'],
       results_first_submitted_date: status['ResultsFirstSubmitDate'],
       disposition_first_submitted_date: status['DispFirstSubmitDate'],
       last_update_submitted_date: status['LastUpdateSubmitDate'],
       study_first_submitted_qc_date: status['StudyFirstSubmitQCDate'],
-      study_first_posted_date: status['StudyFirstPostDateStruct']['StudyFirstPostDate'],
-      study_first_posted_date_type: status['StudyFirstPostDateStruct']['StudyFirstPostDateType'],
+      study_first_posted_date: study_posted['StudyFirstPostDate'],
+      study_first_posted_date_type: study_posted['StudyFirstPostDateType'],
       results_first_submitted_qc_date: status['ResultsFirstSubmitQCDate'],
-      results_first_posted_date: status['ResultsFirstPostDateStruct']['ResultsFirstPostDate'],
-      results_first_posted_date_type: status['ResultsFirstPostDateStruct']['ResultsFirstPostDateType'],
+      results_first_posted_date: results_posted['ResultsFirstPostDate'],
+      results_first_posted_date_type: results_posted['ResultsFirstPostDateType'],
       disposition_first_submitted_qc_date: status['DispFirstSubmitQCDate'],
-      disposition_first_posted_date: status['DispFirstPostDateStruct']['DispFirstPostDate'],
-      disposition_first_posted_date_type: status['DispFirstPostDateStruct']['DispFirstPostDateType'],
+      disposition_first_posted_date: disp_posted['DispFirstPostDate'],
+      disposition_first_posted_date_type: disp_posted['DispFirstPostDateType'],
       last_update_submitted_qc_date: status['LastUpdateSubmitDate'],
-      last_update_posted_date: status['LastUpdatePostDateStruct']['LastUpdatePostDate'],
-      last_update_posted_date_type: status['LastUpdatePostDateStruct']['LastUpdatePostDateType'],
+      last_update_posted_date: last_posted['LastUpdatePostDate'],
+      last_update_posted_date_type: last_posted['LastUpdatePostDateType'],
       start_month_year: nil,
-      start_date_type: status['StartDateStruct']['StartDateType'],
-      start_date: status['StartDateStruct']['StartDate'],
+      start_date_type: start_date['StartDateType'],
+      start_date: start_date['StartDate'],
       verification_month_year: status['StatusVerifiedDate'],
       verification_date: status['StatusVerifiedDate'],
       completion_month_year: nil,
-      completion_date_type: status['CompletionDateStruct']['CompletionDateType'],
-      completion_date: status['CompletionDateStruct']['CompletionDate'],
+      completion_date_type: completion_date['CompletionDateType'],
+      completion_date: completion_date['CompletionDate'],
       primary_completion_month_year: nil,
-      primary_completion_date_type: status['PrimaryCompletionDateStruct']['PrimaryCompletionDateType'],
-      primary_completion_date: status['PrimaryCompletionDateStruct']['PrimaryCompletionDate'],
+      primary_completion_date_type: primary_completion_date['PrimaryCompletionDateType'],
+      primary_completion_date: primary_completion_date['PrimaryCompletionDate'],
       target_duration: design['TargetDuration'],
       study_type: design['StudyType'],
       acronym: ident['Acronym'],
@@ -123,25 +63,138 @@ class StudyJsonRecord < ActiveRecord::Base
       overall_status: status['OverallStatus'],
       last_known_status: status['LastKnownStatus'],
       phase: design['PhaseList']['Phase'],
-      enrollment: design['EnrollmentInfo']['EnrollmentCount'],
-      enrollment_type: design['EnrollmentInfo']['EnrollmentType'],
+      enrollment: enrollment['EnrollmentCount'],
+      enrollment_type: enrollment['EnrollmentType'],
       source: nil,
       limitations_and_caveats: results['MoreInfoModule']['LimitationsAndCaveats'],
       number_of_arms: nil,
       number_of_groups: nil,
       why_stopped: status['WhyStopped'],
       has_expanded_access: nil,
-      expanded_access_type_individual: design['ExpandedAccessTypes']['ExpAccTypeIndividual'],
-      expanded_access_type_intermediate: design['ExpandedAccessTypes']['ExpAccTypeIntermediate'],
-      expanded_access_type_treatment: design['ExpandedAccessTypes']['ExpAccTypeTreatment'],
+      expanded_access_type_individual: expanded['ExpAccTypeIndividual'],
+      expanded_access_type_intermediate: expanded['ExpAccTypeIntermediate'],
+      expanded_access_type_treatment: expanded['ExpAccTypeTreatment'],
       has_dmc: oversight['OversightHasDMC'],
       is_fda_regulated_drug: oversight['IsFDARegulatedDrug'],
       is_fda_regulated_device: oversight['IsFDARegulatedDevice'],
       is_unapproved_device: nil,
       is_ppsd: nil,
       is_us_export: nil,
-      biospec_retention: design['BioSpec']['BioSpecRetention'],
-      biospec_description: design['BioSpec']['BioSpecDescription '],
+      biospec_retention: biospec['BioSpecRetention'],
+      biospec_description: biospec['BioSpecDescription'],
+      ipd_time_frame: ipd_sharing['IPDSharingTimeFrame'],
+      ipd_access_criteria: ipd_sharing['IPDSharingAccessCriteria'],
+      ipd_url: ipd_sharing['IPDSharingURL'],
+      plan_to_share_ipd: ipd_sharing['IPDSharing'],
+      plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription']
+    }
+  end
+
+  def self.check
+    all.each{|sjr| sjr.attrib_hash}
+  end
+
+  def get_boolean(val)
+    return nil unless val
+    return true if val.downcase=='yes'||val.downcase=='y'||val.downcase=='true'
+    return false if val.downcase=='no'||val.downcase=='n'||val.downcase=='false'
+  end
+
+  def get_date(str)
+    Date.parse(str) if str
+  end
+
+  def convert_date(str)
+    return nil unless str
+    return str.to_date.end_of_month if is_missing_the_day?(str)
+    
+    get_date(str)
+  end
+
+  def is_missing_the_day?(str)
+    # use this method on string representations of dates.  If only one space in the string, then the day is not provided.
+    (str.count ' ') == 1
+  end
+  
+  def attrib_hash
+    puts "Study Record #{id}"
+    protocol = content['Study']['ProtocolSection']
+    status = protocol['StatusModule']
+    ident = protocol['IdentificationModule']
+    design = key_check(protocol['DesignModule'])
+    oversight = key_check(protocol['OversightModule'])
+    ipd_sharing = key_check(protocol['IPDSharingStatementModule'])
+    study_posted = status['StudyFirstPostDateStruct']
+    results_posted = key_check(status['ResultsFirstPostDateStruct'])
+    disp_posted = key_check(status['DispFirstPostDateStruct'])
+    last_posted = status['LastUpdatePostDateStruct']
+    start_date = key_check(status['StartDateStruct'])
+    completion_date = key_check(status['CompletionDateStruct'])
+    primary_completion_date = key_check(status['PrimaryCompletionDateStruct'])
+    results = key_check(content['Study']['ResultsSection'])
+    baseline = key_check(results['BaselineCharacteristicsModule'])
+    enrollment = key_check(design['EnrollmentInfo'])
+    expanded = key_check(design['ExpandedAccessTypes'])
+    biospec = key_check(design['BioSpec'])
+
+    { 
+      nct_id: nct_id,
+      nlm_download_date_description: nil,
+      study_first_submitted_date: get_date(status['StudyFirstSubmitDate']),
+      results_first_submitted_date: get_date(status['ResultsFirstSubmitDate']),
+      disposition_first_submitted_date: get_date(status['DispFirstSubmitDate']),
+      last_update_submitted_date: get_date(status['LastUpdateSubmitDate']),
+      study_first_submitted_qc_date: status['StudyFirstSubmitQCDate'],
+      study_first_posted_date: study_posted['StudyFirstPostDate'],
+      study_first_posted_date_type: study_posted['StudyFirstPostDateType'],
+      results_first_submitted_qc_date: status['ResultsFirstSubmitQCDate'],
+      results_first_posted_date: results_posted['ResultsFirstPostDate'],
+      results_first_posted_date_type: results_posted['ResultsFirstPostDateType'],
+      disposition_first_submitted_qc_date: status['DispFirstSubmitQCDate'],
+      disposition_first_posted_date: disp_posted['DispFirstPostDate'],
+      disposition_first_posted_date_type: disp_posted['DispFirstPostDateType'],
+      last_update_submitted_qc_date: status['LastUpdateSubmitDate'],
+      last_update_posted_date: last_posted['LastUpdatePostDate'],
+      last_update_posted_date_type: last_posted['LastUpdatePostDateType'],
+      start_month_year: start_date['StartDate'],
+      start_date_type: start_date['StartDateType'],
+      start_date: convert_date(start_date['StartDate']),
+      verification_month_year: status['StatusVerifiedDate'],
+      verification_date: convert_date(status['StatusVerifiedDate']),
+      completion_month_year: completion_date['CompletionDate'],
+      completion_date_type: completion_date['CompletionDateType'],
+      completion_date: convert_date(completion_date['CompletionDate']),
+      primary_completion_month_year: primary_completion_date['PrimaryCompletionDate'],
+      primary_completion_date_type: primary_completion_date['PrimaryCompletionDateType'],
+      primary_completion_date: convert_date(primary_completion_date['PrimaryCompletionDate']),
+      target_duration: design['TargetDuration'],
+      study_type: design['StudyType'],
+      acronym: ident['Acronym'],
+      baseline_population: baseline['BaselinePopulationDescription'],
+      brief_title: ident['BriefTitle'],
+      official_title: ident['OfficialTitle'],
+      overall_status: status['OverallStatus'],
+      last_known_status: status['LastKnownStatus'],
+      phase: key_check(design['PhaseList'])['Phase'],
+      enrollment: enrollment['EnrollmentCount'],
+      enrollment_type: enrollment['EnrollmentType'],
+      source: nil,
+      limitations_and_caveats: key_check(results['MoreInfoModule'])['LimitationsAndCaveats'],
+      number_of_arms: nil,
+      number_of_groups: nil,
+      why_stopped: status['WhyStopped'],
+      has_expanded_access: nil,
+      expanded_access_type_individual: get_boolean(expanded['ExpAccTypeIndividual']),
+      expanded_access_type_intermediate: get_boolean(expanded['ExpAccTypeIntermediate']),
+      expanded_access_type_treatment: get_boolean(expanded['ExpAccTypeTreatment']),
+      has_dmc: get_boolean(oversight['OversightHasDMC']),
+      is_fda_regulated_drug: get_boolean(oversight['IsFDARegulatedDrug']),
+      is_fda_regulated_device: get_boolean(oversight['IsFDARegulatedDevice']),
+      is_unapproved_device: nil,
+      is_ppsd: nil,
+      is_us_export: nil,
+      biospec_retention: biospec['BioSpecRetention'],
+      biospec_description: biospec['BioSpecDescription'],
       ipd_time_frame: ipd_sharing['IPDSharingTimeFrame'],
       ipd_access_criteria: ipd_sharing['IPDSharingAccessCriteria'],
       ipd_url: ipd_sharing['IPDSharingURL'],
@@ -832,12 +885,6 @@ class StudyJsonRecord < ActiveRecord::Base
           }
         }
       }
-    }.stringify_keys
-  end
-
-  def convert_date(date)
-    return nil if date.nil?
-    return date.to_date.end_of_month if date.is_missing_the_day?
-    return data.to_date
+    }
   end
 end
