@@ -35,7 +35,7 @@
 #
 # Global options
   set :repo_url, ENV['AACT_PROD_REPO_URL']
-  set :deploy_to, ENV['AACT_PROD_DEPLOY_TO']
+  set :deploy_to, ENV['AACT_DEPLOY_TO']
 
   set :ssh_options, {
     keys: %w("#{ENV['AACT_SSH_KEY_DIR']}"),
