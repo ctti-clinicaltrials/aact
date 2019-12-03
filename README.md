@@ -3,7 +3,7 @@ Database for Aggregated Analysis of ClinicalTrials.gov
 
 ## Purpose
 
-This is a ruby on rails application that retreives all studies from ClinicalTrials.gov (via their API) and makes the information available in a relational database.  We do this to make this valuable body of information accessible to the public as a complete aggregated set of data.
+This is a ruby on rails application that retreives the content of ClinicalTrials.gov (via their API) and makes the information available in a relational database.  We do this to make this valuable body of information accessible to the public as a complete aggregated set of data.
 
 If you need a copy of the database, but don't want to bother installing & running this app, copies of the database are available for download from the <a href='https://aact.ctti-clinicaltrials.org/snapshots' target='_blank'>AACT website (Download page).</a> We use pg_dump to create a snapshot of the database after each nightly update, so a version is always available with the most current info from ClinicalTrials.gov.
 
@@ -17,13 +17,34 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 
 ### git
 *  <a href='https://git-scm.com/book/en/v2/Getting-Started-Installing-Git' target='_blank'>git</a> to clone the AACT application.
+*  We recommend a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight.
+*  **ruby 2.4.5**  If using chruby, you can get this version with the command: `ruby-install 2.4.5`
+*  **postgres 11.1** `brew install postgresql`  You could use other versions of postgres or a different relational database such as mysql, but if so, you might need to make changes to files in db/migrate & will probably need to make a few changes to *app/models/util/db_manager.db* since it drops/creates indexes thinking it's dealing with postgres 11.1.
+*  Create a postgres superuser account/password for the AACT database.  Grant this user permission to create a database. You will also need to create environment variables that define the username password for this account. (See required variables below.)
+*  ** create user *<your_pg_superuser_name>* with password '*<a-secure-password>*';
+*  ** alter user *<your_pg_superuser_password>* createdb;
+*  **wget** if you don't already have it: `brew install wget`
 
 ###  ruby
 *  We recommend you use a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight. (`brew install chruby`)
 *  **ruby 2.4.5**  If using chruby, you can get it with the command: `ruby-install ruby 2.4.5`
 
-### python
-brew install python
+Add the following to your shell profile (for example .bash_profile):
+
+**Required variables:**
+* export AACT_DB_SUPER_USERNAME=*<your_pg_superuser_name>*  (The postgres superuser account you created in previous step.)
+* export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
+
+Create .pgpass file in the root directory of your database server that includes the line:  localhost:5432:*:<your_pg_superuser_name>:<your_superuser_password>
+
+**Optional variables:**  (These default to the given value if you don't set them to something different.)
+* export APPLICATION_HOST=*localhost*
+* export AACT_PUBLIC_HOSTNAME=*localhost*   (Set this to the ip addr or domain name of the server that will host the database available to users.)
+* export AACT_PUBLIC_DATABASE_NAME=*aact*   (Set this to the name of the database that will be the database available to users.)
+* export AACT_BACK_DATABASE_NAME=*aact_back*  (Set this to the name of the database that does all the work to load data from ClinicalTrials.gov.)
+* export AACT_ADMIN_DATABASE_NAME=*aact_admin*  (This database can contain anncillary tables such as users, public_announcements, etc. This is primarily to support the AACT website, but is also referred to by the load process, so we include it here.)
+* export RACK_TIMEOUT=*20*
+* export RAILS_SERVE_STATIC_FILES=*false*
 
 ### postgreSQL (supported: version 11.1)
 If you don't already have postgreSQL, you'll need to know a bit about setting up & administering it, particularly with respect to security. At the time of this writing, a good site for postgreSQL instructions for the Mac: https://gist.github.com/ibraheem4/ce5ccd3e4d7a65589ce84f2a3b7c23a3.  
@@ -48,7 +69,10 @@ In short, if you're installing on a Mac, basic steps to get started can be:
 
 *  Create *.pgpass* in your root directory that contains line: `localhost:5432:*:<your_aact_pg_user>:<your_pg_password>`
 *  `chmod 0600 .pgpass`  (set restrictive permissions on this file)
-*  Verify your new user can login to postgres with command: `psql -U <your_aact_pg_user> -d template1`  
+*  Verify your new user can login to postgres with command: `psql -U <your_aact_pg_user> -d template1`
+
+*  Clone this repo: `git clone git@github.com:ctti-clinicaltrials/aact.git`
+*  Change into the AACT directory: `cd aact` and run the following commands:
 
 Note:  You could use other versions of postgres or a different relational database such as mysql. If so, you'll need to make changes to files in db/migrate & *app/models/util/db_manager.db* since it drops/creates indexes under assumption it's using postgres 11.1.
 
@@ -131,4 +155,3 @@ programming in style.
 * [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
 * [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
 * [Style](http://github.com/thoughtbot/guides/blob/master/style)
-

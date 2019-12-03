@@ -48,6 +48,7 @@ class Study < ActiveRecord::Base
   has_many :central_contacts,      :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :conditions,            :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :countries,             :foreign_key => 'nct_id', :dependent => :delete_all
+  #has_many :criteria,              :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :design_outcomes,       :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :design_groups,         :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :design_group_interventions, :foreign_key => 'nct_id', :dependent => :delete_all
@@ -116,6 +117,7 @@ class Study < ActiveRecord::Base
     CentralContact.create_all_from(opts)
     Condition.create_all_from(opts)
     Country.create_all_from(opts)
+    #Criterium.create_all_from(opts)
     Document.create_all_from(opts)
     Facility.create_all_from(opts)
     IdInformation.create_all_from(opts)

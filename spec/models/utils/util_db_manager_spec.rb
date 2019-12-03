@@ -45,6 +45,7 @@ describe Util::DbManager do
            with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
            to_return(status: 200, body: "", headers: {})
 
+      allow_any_instance_of(Util::RssReader).to receive(:get_added_nct_ids).and_return( [*1..10000] )
       Study.destroy_all
       pub_con = PublicBase.connection
       pub_con.execute('truncate table studies cascade')
@@ -57,7 +58,7 @@ describe Util::DbManager do
       fm.save_static_copy
       dm.refresh_public_db
 
-      back_con = ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
+      back_con = ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL).connection
       back_tables=back_con.execute("select * from information_schema.tables where table_schema='ctgov'")
       back_table_count=back_con.execute("select count(*) from information_schema.tables where table_schema='ctgov'").first['count'].to_i
 
@@ -65,9 +66,9 @@ describe Util::DbManager do
       PublicBase.establish_connection(
         adapter: 'postgresql',
         encoding: 'utf8',
-        hostname: ENV['AACT_PUBLIC_HOSTNAME'],
-        database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-        username: ENV['AACT_DB_SUPER_USERNAME'])
+        hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
+        database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
+        username: AACT::Application::AACT_DB_SUPER_USERNAME)
       pub_con = PublicBase.connection
 
       pub_study_count=pub_con.execute('select count(*) from studies').first['count'].to_i
@@ -85,12 +86,21 @@ describe Util::DbManager do
       pub_study_count=pub_con.execute('select count(*) from studies').first['count'].to_i
       pub_sponsor_count=pub_con.execute('select count(*) from sponsors').first['count'].to_i
       pub_outcome_count=pub_con.execute('select count(*) from outcomes').first['count'].to_i
-      expect(BrowseCondition.count).to eq(pub_browse_condition_count)
-      expect(Country.count).to eq(pub_country_count)
-      expect(Design.count).to eq(pub_design_count)
-      expect(Study.count).to eq(pub_study_count)
-      expect(Sponsor.count).to eq(pub_sponsor_count)
-      expect(Outcome.count).to eq(pub_outcome_count)
+
+      con = ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL).connection
+      back_browse_condition_count=con.execute('select count(*) from browse_conditions').first['count'].to_i
+      back_country_count=con.execute('select count(*) from countries').first['count'].to_i
+      back_design_count=con.execute('select count(*) from designs').first['count'].to_i
+      back_study_count=con.execute('select count(*) from studies').first['count'].to_i
+      back_sponsor_count=con.execute('select count(*) from sponsors').first['count'].to_i
+      back_outcome_count=con.execute('select count(*) from outcomes').first['count'].to_i
+
+      expect(back_browse_condition_count).to eq(pub_browse_condition_count)
+      expect(back_country_count).to eq(pub_country_count)
+      expect(back_design_count).to eq(pub_design_count)
+      expect(back_study_count).to eq(pub_study_count)
+      expect(back_sponsor_count).to eq(pub_sponsor_count)
+      expect(back_outcome_count).to eq(pub_outcome_count)
     end
   end
 end

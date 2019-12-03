@@ -1,0 +1,1751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on April 18, 2019</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT02481830</url>
+  </required_header>
+  <id_info>
+    <org_study_id>CA209-331</org_study_id>
+    <secondary_id>2015-001097-18</secondary_id>
+    <nct_id>NCT02481830</nct_id>
+  </id_info>
+  <brief_title>Effectiveness Study of Nivolumab Compared to Chemotherapy in Patients With Relapsed Small-cell Lung Cancer</brief_title>
+  <acronym>CheckMate331</acronym>
+  <official_title>An Open-label, Randomized, Phase 3 Study of Nivolumab or Chemotherapy in Subjects With Relapsed Small-cell Lung Cancer After Platinum-based First Line Chemotherapy (CheckMate 331: CHECKpoint Pathway and nivoluMAb Clinical Trial Evaluation 331)</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Bristol-Myers Squibb</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Ono Pharmaceutical Co. Ltd</agency>
+      <agency_class>Industry</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Bristol-Myers Squibb</source>
+  <oversight_info>
+    <has_dmc>Yes</has_dmc>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      The purpose of this study is to compare the overall survival of nivolumab versus chemotherapy
+      in subjects with relapsed SCLC.
+    </textblock>
+  </brief_summary>
+  <overall_status>Active, not recruiting</overall_status>
+  <start_date type="Actual">August 28, 2015</start_date>
+  <completion_date type="Anticipated">November 30, 2019</completion_date>
+  <primary_completion_date type="Actual">August 17, 2018</primary_completion_date>
+  <phase>Phase 3</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>None (Open Label)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Overall survival (OS) in subjects with relapsed SCLC</measure>
+    <time_frame>approximately 12 months. Additional survival follow-up may continue for up to 5 years from the completion of the study</time_frame>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Progression free survival (PFS)</measure>
+    <time_frame>upto 12 months</time_frame>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Objective response rate (ORR)</measure>
+    <time_frame>upto 12 months</time_frame>
+  </secondary_outcome>
+  <number_of_arms>3</number_of_arms>
+  <enrollment type="Actual">803</enrollment>
+  <condition>Lung Cancer</condition>
+  <arm_group>
+    <arm_group_label>Arm A Nivolumab</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>Nivolumab intravenous infusion as specified</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Arm B Chemotherapy Topotecan</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Topotecan as specified</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Arm B Chemotherapy Amrubicin</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>Amrubicin intravenous infusion as specified (upon investigator's choice, where locally approved for 2nd line SCLC treatment)</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Nivolumab</intervention_name>
+    <arm_group_label>Arm A Nivolumab</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Topotecan</intervention_name>
+    <arm_group_label>Arm B Chemotherapy Topotecan</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Amrubicin</intervention_name>
+    <arm_group_label>Arm B Chemotherapy Amrubicin</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        For more information regarding BMS clinical trial participation, please visit
+        www.BMSStudyConnect.com
+
+        Inclusion Criteria:
+
+          -  Histologically or cytologically confirmed small cell lung cancer (SCLC)
+
+          -  Subjects with either limited or extensive disease stage at the initial diagnosis
+
+          -  Must have recurrence or progression after platinum-based first-line chemotherapy or
+             chemoradiation therapy for the treatment of limited or extensive disease stage SCLC
+
+          -  Eastern Cooperative Oncology Group (ECOG) performance status 0 or 1
+
+        Exclusion Criteria:
+
+          -  Untreated or symptomatic central nervous system (CNS) metastases
+
+          -  Prior therapy with anti-PD-1, anti-PDL1, anti-PD-L2, anti-CD137, or anti-CTLA-4
+             antibody
+
+          -  Inadequate hematologic or hepatic function
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Bristol-Myers Squibb</last_name>
+    <role>Study Director</role>
+    <affiliation>Bristol-Myers Squibb</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Univ Of Ark For Med Sci</name>
+      <address>
+        <city>Little Rock</city>
+        <state>Arkansas</state>
+        <zip>72205</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Smilow Cancer Hospital. At Yale New Haven</name>
+      <address>
+        <city>New Haven</city>
+        <state>Connecticut</state>
+        <zip>06510</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Emory University</name>
+      <address>
+        <city>Atlanta</city>
+        <state>Georgia</state>
+        <zip>30322</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Washington University School Of Medicine</name>
+      <address>
+        <city>Saint Louis</city>
+        <state>Missouri</state>
+        <zip>63110</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Nebraska Hematology Oncology Pc</name>
+      <address>
+        <city>Lincoln</city>
+        <state>Nebraska</state>
+        <zip>68506</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Broome Oncology</name>
+      <address>
+        <city>Johnson City</city>
+        <state>New York</state>
+        <zip>13790</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Duke University</name>
+      <address>
+        <city>Durham</city>
+        <state>North Carolina</state>
+        <zip>27710</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University Hospitals Cleveland Medical Center</name>
+      <address>
+        <city>Cleveland</city>
+        <state>Ohio</state>
+        <zip>44106</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>St. Luke's University Health Network</name>
+      <address>
+        <city>Bethlehem</city>
+        <state>Pennsylvania</state>
+        <zip>18015</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Lancaster General Hospital</name>
+      <address>
+        <city>Lancaster</city>
+        <state>Pennsylvania</state>
+        <zip>17604</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Fox Chase Cancer Center</name>
+      <address>
+        <city>Philadelphia</city>
+        <state>Pennsylvania</state>
+        <zip>19111-2412</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Tennessee Oncology, Pllc</name>
+      <address>
+        <city>Nashville</city>
+        <state>Tennessee</state>
+        <zip>37203</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Vanderbilt-Ingram Cancer Center</name>
+      <address>
+        <city>Nashville</city>
+        <state>Tennessee</state>
+        <zip>37232</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Kadlec Clinic Hematology and Oncology</name>
+      <address>
+        <city>Kennewick</city>
+        <state>Washington</state>
+        <zip>99336</zip>
+        <country>United States</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Waratah</city>
+        <state>New South Wales</state>
+        <zip>2298</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Brisbane</city>
+        <state>Queensland</state>
+        <zip>4032</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Kurralta Park</city>
+        <state>South Australia</state>
+        <zip>5037</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Perth</city>
+        <state>Western Australia</state>
+        <zip>6150</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Elizabeth Vale</city>
+        <zip>5112</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Murdoch</city>
+        <zip>6150</zip>
+        <country>Australia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Graz</city>
+        <zip>8036</zip>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Wels</city>
+        <zip>4600</zip>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Akh Wien</name>
+      <address>
+        <city>Wien</city>
+        <zip>1090</zip>
+        <country>Austria</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Bruxelles</city>
+        <zip>1200</zip>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Edegem</city>
+        <zip>2650</zip>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Leuven</city>
+        <zip>3000</zip>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Yvoir</city>
+        <zip>5530</zip>
+        <country>Belgium</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Ijui</city>
+        <state>RIO Grande DO SUL</state>
+        <zip>98700-000</zip>
+        <country>Brazil</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Porto Alegre</city>
+        <state>RIO Grande DO SUL</state>
+        <zip>90610-000</zip>
+        <country>Brazil</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Barretos</city>
+        <state>SAO Paulo</state>
+        <zip>14784-400</zip>
+        <country>Brazil</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Sao Paulo</city>
+        <zip>01321-001</zip>
+        <country>Brazil</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Recoleta</city>
+        <state>Santiago DE Chile</state>
+        <country>Chile</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Beijing</city>
+        <state>Beijing</state>
+        <zip>100001</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Beijing</city>
+        <state>Beijing</state>
+        <zip>100021</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Beijing</city>
+        <state>Beijing</state>
+        <zip>100032</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Beijing</city>
+        <state>Beijing</state>
+        <zip>101149</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Guanzhou</city>
+        <state>Guangdong</state>
+        <zip>510080</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Zhengzhou</city>
+        <state>Henan</state>
+        <zip>450008</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Nanjing</city>
+        <state>Jiangsu</state>
+        <zip>210000</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Changchun</city>
+        <state>Jilin</state>
+        <zip>130012</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Xian</city>
+        <state>Shaanxi</state>
+        <zip>710038</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Shanghai</city>
+        <state>Shanghai</state>
+        <zip>200025</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Shanghai</city>
+        <state>Shanghai</state>
+        <zip>200032</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Urumqi</city>
+        <state>Xinjiang</state>
+        <zip>830011</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Hangzhou</city>
+        <state>Zhejiang</state>
+        <zip>310022</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Beijing</city>
+        <zip>100071</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Guangzhou</city>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Hangzhou</city>
+        <zip>310016</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Shanghai</city>
+        <zip>200030</zip>
+        <country>China</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Brno</city>
+        <zip>625 00</zip>
+        <country>Czechia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Klinika komplexni onkologicke pece</name>
+      <address>
+        <city>Brno</city>
+        <zip>656 53</zip>
+        <country>Czechia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Klinika plicnich nemoci a tuberkulozy</name>
+      <address>
+        <city>Olomouc</city>
+        <zip>779 00</zip>
+        <country>Czechia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Pneumologicka klinika 1. LF a TN</name>
+      <address>
+        <city>Praha 4</city>
+        <zip>140 59</zip>
+        <country>Czechia</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Copenhagen</city>
+        <zip>2100</zip>
+        <country>Denmark</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Herlev</city>
+        <zip>2730</zip>
+        <country>Denmark</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Odense</city>
+        <zip>5000</zip>
+        <country>Denmark</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Brest</city>
+        <zip>29200</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Lille Cedex</city>
+        <zip>59037</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Paris Cedex 14</city>
+        <zip>75014</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Pringy Cedex</city>
+        <zip>74374</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Reims</city>
+        <zip>51100</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Toulon Cedex</city>
+        <zip>83056</zip>
+        <country>France</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Bamberg</city>
+        <zip>96049</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Berlin</city>
+        <zip>13125</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Essen</city>
+        <zip>45122</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Frankfurt am Main</city>
+        <zip>60590</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Gera</city>
+        <zip>07548</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Gerlingen</city>
+        <zip>70839</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Grosshansdorf</city>
+        <zip>22927</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Halle (saale)</city>
+        <zip>06120</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Hamburg</city>
+        <zip>21075</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Heidelberg</city>
+        <zip>69126</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Immenstadt</city>
+        <zip>87509</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Koeln</city>
+        <zip>50937</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Muenchen</city>
+        <zip>81925</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Oberhausen</city>
+        <zip>46145</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Regensburg</city>
+        <zip>93053</zip>
+        <country>Germany</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>University Hospital Of Heraklion</name>
+      <address>
+        <city>Heraklion</city>
+        <state>Creta</state>
+        <zip>71110</zip>
+        <country>Greece</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Sotiria General Hospital</name>
+      <address>
+        <city>Athens</city>
+        <zip>11527</zip>
+        <country>Greece</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Papageorgiou General Hospital</name>
+      <address>
+        <city>Thessaloniki</city>
+        <zip>56429</zip>
+        <country>Greece</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Orsz.Koranyi Tbc es Pulm.Int.</name>
+      <address>
+        <city>Budapest</city>
+        <zip>1121</zip>
+        <country>Hungary</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Pulmonologiai Klinika</name>
+      <address>
+        <city>Budapest</city>
+        <zip>1125</zip>
+        <country>Hungary</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Beer Sheva</city>
+        <zip>84101</zip>
+        <country>Israel</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Kfar Saba</city>
+        <country>Israel</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Ramat -Gan</city>
+        <zip>52621</zip>
+        <country>Israel</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Ospedale Bellaria-Maggiore</name>
+      <address>
+        <city>Bologna</city>
+        <zip>40139</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Ospedale Civile Di Livorno</name>
+      <address>
+        <city>Livorno</city>
+        <zip>57100</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Ospedale San Luca</name>
+      <address>
+        <city>Lucca</city>
+        <zip>55100</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>IRST Meldola</name>
+      <address>
+        <city>Meldola</city>
+        <zip>47014</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>IRCCS Istituto Nazionale Tumori Milano</name>
+      <address>
+        <city>Milano</city>
+        <zip>20133</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Azienda Ospedaliera - Nuovo Ospedale San Gerardo</name>
+      <address>
+        <city>Monza</city>
+        <zip>20052</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Ospedale Degli Infermi</name>
+      <address>
+        <city>Rimini</city>
+        <zip>47923</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Azienda Ospedaliera S. Andrea</name>
+      <address>
+        <city>Roma</city>
+        <zip>00189</zip>
+        <country>Italy</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Nagoya-shi</city>
+        <state>Aichi</state>
+        <zip>4648681</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Nagoya</city>
+        <state>Aichi</state>
+        <zip>4600001</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Kashiwa</city>
+        <state>Chiba</state>
+        <zip>277-8577</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Matsuyama</city>
+        <state>Ehime</state>
+        <zip>7910280</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Fukuoka-shi</city>
+        <state>Fukuoka</state>
+        <zip>811-1395</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Akashi-shi</city>
+        <state>Hyogo</state>
+        <zip>6738558</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Kobe-shi</city>
+        <state>Hyogo</state>
+        <zip>6500047</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Natori-shi</city>
+        <state>Miyagi</state>
+        <zip>9811293</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Niigata-shi</city>
+        <state>Niigata</state>
+        <zip>9518566</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Habikino-shi</city>
+        <state>Osaka</state>
+        <zip>563-8588</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Hirakata-shi</city>
+        <state>Osaka</state>
+        <zip>5731191</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Osaka-sayama</city>
+        <state>Osaka</state>
+        <zip>589-8511</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Osaka-shi</city>
+        <state>Osaka</state>
+        <zip>5340021</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Osaka-shi</city>
+        <state>Osaka</state>
+        <zip>537-8511</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Sakai</city>
+        <state>Osaka</state>
+        <zip>591-8555</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Kitaadachigun</city>
+        <state>Saitama</state>
+        <zip>362-0806</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Bunkyo-ku</city>
+        <state>Tokyo</state>
+        <zip>1138431</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Chuo-ku</city>
+        <state>Tokyo</state>
+        <zip>1040045</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Koto-ku</city>
+        <state>Tokyo</state>
+        <zip>1358550</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Wakayama</city>
+        <zip>641-8510</zip>
+        <country>Japan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Cheongju-si</city>
+        <state>Chungcheonbuk-do</state>
+        <zip>28644</zip>
+        <country>Korea, Republic of</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Suwon</city>
+        <state>Gyeonggi-do</state>
+        <zip>16247</zip>
+        <country>Korea, Republic of</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Seoul</city>
+        <zip>02841</zip>
+        <country>Korea, Republic of</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Seoul</city>
+        <zip>05505</zip>
+        <country>Korea, Republic of</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Bergen</city>
+        <zip>5021</zip>
+        <country>Norway</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Oslo</city>
+        <zip>0424</zip>
+        <country>Norway</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Wojewodzki Szpital Zespolony W Elblagu</name>
+      <address>
+        <city>Elblag</city>
+        <zip>82-300</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Klinika Onkologii I Radioterapii Am</name>
+      <address>
+        <city>Gdansk</city>
+        <zip>80211</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Oddzial Onkologiczny</name>
+      <address>
+        <city>Krakow</city>
+        <zip>31-202</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Regionalny Osrodek Onkologiczny</name>
+      <address>
+        <city>Lodz</city>
+        <zip>93-513</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Oddzial Onkologii Klinicznej</name>
+      <address>
+        <city>Poznan</city>
+        <zip>60-569</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Klinika Nowotworow Pluca i Klatki Piersiowej</name>
+      <address>
+        <city>Warszawa</city>
+        <zip>02-781</zip>
+        <country>Poland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Bucharest</city>
+        <zip>020122</zip>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Craiova</city>
+        <zip>200347</zip>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Romania</city>
+        <zip>400015</zip>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Timisoara, Timis</city>
+        <zip>300239</zip>
+        <country>Romania</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Moscow</city>
+        <zip>115478</zip>
+        <country>Russian Federation</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Ryazan</city>
+        <zip>390011</zip>
+        <country>Russian Federation</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Saint-Petersburg</city>
+        <zip>197758</zip>
+        <country>Russian Federation</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>St. Petersburg</city>
+        <zip>194291</zip>
+        <country>Russian Federation</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Barcelona</city>
+        <zip>08025</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Barcelona</city>
+        <zip>08035</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Madrid</city>
+        <zip>28034</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Madrid</city>
+        <zip>28050</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Sevilla</city>
+        <zip>41009</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Valencia</city>
+        <zip>46026</zip>
+        <country>Spain</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Basel</city>
+        <zip>4031</zip>
+        <country>Switzerland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Centre hospitalier universitaire Vaudois (CHUV)</name>
+      <address>
+        <city>Lausanne</city>
+        <zip>1011</zip>
+        <country>Switzerland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Winterthur</city>
+        <zip>8401</zip>
+        <country>Switzerland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Zurich</city>
+        <zip>8091</zip>
+        <country>Switzerland</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Taichung</city>
+        <zip>404</zip>
+        <country>Taiwan</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>London</city>
+        <state>Greater London</state>
+        <zip>SW3 6JJ</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Manchester</city>
+        <state>Greater Manchester</state>
+        <zip>M20 4XB</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Southampton</city>
+        <state>Hampshire</state>
+        <zip>SO16 6YD</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Maidstone</city>
+        <state>Kent</state>
+        <zip>ME16 9QQ</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Local Institution</name>
+      <address>
+        <city>Sutton</city>
+        <state>Surrey</state>
+        <zip>SM2 5PT</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>Australia</country>
+    <country>Austria</country>
+    <country>Belgium</country>
+    <country>Brazil</country>
+    <country>Chile</country>
+    <country>China</country>
+    <country>Czechia</country>
+    <country>Denmark</country>
+    <country>France</country>
+    <country>Germany</country>
+    <country>Greece</country>
+    <country>Hungary</country>
+    <country>Israel</country>
+    <country>Italy</country>
+    <country>Japan</country>
+    <country>Korea, Republic of</country>
+    <country>Norway</country>
+    <country>Poland</country>
+    <country>Romania</country>
+    <country>Russian Federation</country>
+    <country>Spain</country>
+    <country>Switzerland</country>
+    <country>Taiwan</country>
+    <country>United Kingdom</country>
+    <country>United States</country>
+  </location_countries>
+  <removed_countries>
+    <country>Czech Republic</country>
+    <country>Netherlands</country>
+  </removed_countries>
+  <link>
+    <url>https://www.bms.com/researchers-and-partners/clinical-trials-and-research.html</url>
+    <description>BMS Clinical Trial Information</description>
+  </link>
+  <link>
+    <url>https://www.bmsstudyconnect.com/s/US/English/USenHome</url>
+    <description>BMS Clinical Trial Patient Recruiting</description>
+  </link>
+  <link>
+    <url>https://www.bms.com/researchers-and-partners/investigator-inquiry-form.html</url>
+    <description>Investigator Inquiry Form</description>
+  </link>
+  <link>
+    <url>https://www.fda.gov/Safety/MedWatch/SafetyInformation/default.htm</url>
+    <description>FDA Safety Alerts and Recalls</description>
+  </link>
+  <verification_date>April 2019</verification_date>
+  <study_first_submitted>June 23, 2015</study_first_submitted>
+  <study_first_submitted_qc>June 23, 2015</study_first_submitted_qc>
+  <study_first_posted type="Estimate">June 25, 2015</study_first_posted>
+  <last_update_submitted>April 15, 2019</last_update_submitted>
+  <last_update_submitted_qc>April 15, 2019</last_update_submitted_qc>
+  <last_update_posted type="Actual">April 17, 2019</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <condition_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Lung Neoplasms</mesh_term>
+    <mesh_term>Small Cell Lung Carcinoma</mesh_term>
+  </condition_browse>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Nivolumab</mesh_term>
+    <mesh_term>Topotecan</mesh_term>
+    <mesh_term>Amrubicin</mesh_term>
+  </intervention_browse>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
