@@ -316,11 +316,6 @@ class StudyJsonRecord < ActiveRecord::Base
     {}
   end
 
-  def get_masked_roles
-    val=get('masking')
-    result=val.split('(').last if val
-    result.tr('()', '') if result
-  end
   #   Design.new.create_from(opts).try(:save)
   #   BriefSummary.new.create_from(opts).try(:save)
   #   Eligibility.new.create_from(opts).save
