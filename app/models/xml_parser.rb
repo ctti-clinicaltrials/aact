@@ -1,30 +1,7 @@
 
 class StudyRelationship < ActiveRecord::Base
 
-  def self.study_data
-  end
-
-  def attrib_hash
-    puts "Study Record #{id}"
-    protocol = content['Study']['ProtocolSection']
-    status = protocol['StatusModule']
-    ident = protocol['IdentificationModule']
-    design = key_check(protocol['DesignModule'])
-    oversight = key_check(protocol['OversightModule'])
-    ipd_sharing = key_check(protocol['IPDSharingStatementModule'])
-    study_posted = status['StudyFirstPostDateStruct']
-    results_posted = key_check(status['ResultsFirstPostDateStruct'])
-    disp_posted = key_check(status['DispFirstPostDateStruct'])
-    last_posted = status['LastUpdatePostDateStruct']
-    start_date = key_check(status['StartDateStruct'])
-    completion_date = key_check(status['CompletionDateStruct'])
-    primary_completion_date = key_check(status['PrimaryCompletionDateStruct'])
-    results = key_check(content['Study']['ResultsSection'])
-    baseline = key_check(results['BaselineCharacteristicsModule'])
-    enrollment = key_check(design['EnrollmentInfo'])
-    expanded = key_check(design['ExpandedAccessTypes'])
-    biospec = key_check(design['BioSpec'])
-
+  def xml_study_data
     { 
       nct_id: nct_id,
       nlm_download_date_description: xml.xpath('//download_date').text,
@@ -45,54 +22,65 @@ class StudyRelationship < ActiveRecord::Base
       disposition_first_posted_date: get('disposition_first_posted').try(:to_date),
       disposition_first_posted_date_type: get_type('disposition_first_posted'),
       
-      last_update_submitted_qc_date: status['LastUpdateSubmitDate'],
-      last_update_posted_date: last_posted['LastUpdatePostDate'],
-      last_update_posted_date_type: last_posted['LastUpdatePostDateType'],
+      last_update_submitted_qc_date: get('last_update_submitted_qc').try(:to_date),
+      last_update_posted_date: get('last_update_posted').try(:to_date)
+      last_update_posted_date_type: get_type('last_update_posted'),
       
       start_month_year: => get('start_date'),
       start_date_type: get_type('start_date'),
-      start_date: convert_date(start_date['StartDate']),
-      verification_month_year: status['StatusVerifiedDate'],
-      verification_date: convert_date(status['StatusVerifiedDate']),
-      completion_month_year: completion_date['CompletionDate'],
-      completion_date_type: completion_date['CompletionDateType'],
-      completion_date: convert_date(completion_date['CompletionDate']),
-      primary_completion_month_year: primary_completion_date['PrimaryCompletionDate'],
-      primary_completion_date_type: primary_completion_date['PrimaryCompletionDateType'],
-      primary_completion_date: convert_date(primary_completion_date['PrimaryCompletionDate']),
-      target_duration: design['TargetDuration'],
-      study_type: design['StudyType'],
-      acronym: ident['Acronym'],
-      baseline_population: baseline['BaselinePopulationDescription'],
-      brief_title: ident['BriefTitle'],
-      official_title: ident['OfficialTitle'],
-      overall_status: status['OverallStatus'],
-      last_known_status: status['LastKnownStatus'],
-      phase: key_check(design['PhaseList'])['Phase'],
-      enrollment: enrollment['EnrollmentCount'],
-      enrollment_type: enrollment['EnrollmentType'],
-      source: nil,
-      limitations_and_caveats: key_check(results['MoreInfoModule'])['LimitationsAndCaveats'],
-      number_of_arms: nil,
-      number_of_groups: nil,
-      why_stopped: status['WhyStopped'],
-      has_expanded_access: nil,
-      expanded_access_type_individual: get_boolean(expanded['ExpAccTypeIndividual']),
-      expanded_access_type_intermediate: get_boolean(expanded['ExpAccTypeIntermediate']),
-      expanded_access_type_treatment: get_boolean(expanded['ExpAccTypeTreatment']),
-      has_dmc: get_boolean(oversight['OversightHasDMC']),
-      is_fda_regulated_drug: get_boolean(oversight['IsFDARegulatedDrug']),
-      is_fda_regulated_device: get_boolean(oversight['IsFDARegulatedDevice']),
-      is_unapproved_device: nil,
-      is_ppsd: nil,
-      is_us_export: nil,
-      biospec_retention: biospec['BioSpecRetention'],
-      biospec_description: biospec['BioSpecDescription'],
-      ipd_time_frame: ipd_sharing['IPDSharingTimeFrame'],
-      ipd_access_criteria: ipd_sharing['IPDSharingAccessCriteria'],
-      ipd_url: ipd_sharing['IPDSharingURL'],
-      plan_to_share_ipd: ipd_sharing['IPDSharing'],
-      plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription']
+      start_date: convert_date('start_date'),
+
+      verification_month_year: get('verification_date'),
+      verification_date: convert_date('verification_date'),
+      
+      completion_month_year: get('completion_date'),
+      completion_date_type: get_type('completion_date'),
+      completion_date: convert_date('completion_date'),
+      
+      primary_completion_month_year: get('primary_completion_date'),
+      primary_completion_date_type:  get_type('primary_completion_date'),
+      primary_completion_date: convert_date('primary_completion_date'),
+      
+      target_duration: get('target_duration'),
+      study_type: get('study_type'),
+      acronym: get('acronym'),
+      baseline_population: xml.xpath('//baseline/population').try(:text),
+      brief_title:  get('brief_title'),
+      official_title: get('official_title'),
+      overall_status: get('overall_status'),
+      last_known_status: get('last_known_status'),
+      phase: get('phase'),
+
+      enrollment: get('enrollment'),
+      enrollment_type: get_type('enrollment'),
+
+      source:  get('source'),
+      limitations_and_caveats: xml.xpath('//limitations_and_caveats').text,
+      number_of_arms: get('number_of_arms'),
+      number_of_groups: get('number_of_groups'),
+      why_stopped: get('why_stopped'),
+
+      has_expanded_access: get_boolean('//has_expanded_access'),
+      expanded_access_type_individual: get_boolean('//expanded_access_info/expanded_access_type_individual'),
+      expanded_access_type_intermediate: get_boolean('//expanded_access_info/expanded_access_type_intermediate'),
+      expanded_access_type_treatment: get_boolean('//expanded_access_info/expanded_access_type_treatment'),
+      
+      has_dmc: get_boolean('//has_dmc'),
+      
+      is_fda_regulated_drug: get_boolean('//is_fda_regulated_drug'),
+      is_fda_regulated_device: get_boolean('//is_fda_regulated_device'),
+      is_unapproved_device:  get_boolean('//is_unapproved_device'),
+      is_ppsd: get_boolean('//is_ppsd'),
+      is_us_export: get_boolean('//is_us_export'),
+      
+      biospec_retention: get('biospec_retention'),
+      biospec_description: get_text('biospec_descr'),
+      
+      ipd_time_frame: get('patient_data/ipd_time_frame'),
+      ipd_access_criteria: get('patient_data/ipd_access_criteria'),
+      ipd_url: get('patient_data/ipd_url',
+      plan_to_share_ipd: get('patient_data/sharing_ipd'),
+      plan_to_share_ipd_description: get('patient_data/ipd_description')
     }
   end
 
@@ -102,7 +90,33 @@ class StudyRelationship < ActiveRecord::Base
     value=='' ? nil : value
   end
 
+  def get_text(label)
+    str=''
+    nodes=xml.xpath("//#{label}")
+    nodes.each {|node| str << node.xpath("textblock").text}
+    str
+  end
+
+  def get_type(label)
+    node=xml.xpath("//#{label}")
+    node.attribute('type').try(:value) if !node.blank?
+  end
+
+  def get_boolean(label)
+    val=xml.xpath("#{label}").try(:text)
+    return nil if val.blank?
+    return true if val.downcase=='yes'||val.downcase=='y'||val.downcase=='true'
+    return false if val.downcase=='no'||val.downcase=='n'||val.downcase=='false'
+  end
+
   def get_date(str)
     Date.parse(str) if !str.blank?
+  end
+
+  def convert_date(label)
+    dt=get(label)
+    return nil if dt.nil?
+    return dt.to_date.end_of_month if dt.is_missing_the_day?
+    return dt.to_date
   end
 end

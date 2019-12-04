@@ -93,10 +93,14 @@ class StudyJsonRecord < ActiveRecord::Base
     # use this method on string representations of dates.  If only one space in the string, then the day is not provided.
     (str.count ' ') == 1
   end
-  
-  def attrib_hash
-    puts "Study Record #{id}"
+
+  def protocol_module
     protocol = content['Study']['ProtocolSection']
+  end
+  
+  def study_data
+    puts "Json Record #{id}"
+    protocol = protocol_module
     status = protocol['StatusModule']
     ident = protocol['IdentificationModule']
     design = key_check(protocol['DesignModule'])
@@ -180,4 +184,171 @@ class StudyJsonRecord < ActiveRecord::Base
       plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription']
     }
   end
+
+  def arms_module_group(list_type='ArmGroup')
+    protocol = protocol_module
+    arms = key_check(protocol['ArmsInterventionsModule'])
+    list = list_type =~ /Arm/i ? 'ArmGroupList' : 'InterventionList'
+    key_check(arms[list])
+  end
+
+  def design_groups_data
+    list = arms_module_group('ArmGroupList')
+    collection = []
+    list.each do |group|
+      # group looks like ['ArmGroup', [array of hashes]]
+      group_data = group[1][0]
+      collection.push(
+                      :group_type => group_data['ArmGroupType'],
+                      :title => group_data['ArmGroupLabel'],
+                      :description => group_data['ArmGroupDescription'],
+                      )
+    end
+    collection
+  end
+  
+  def interventions_data
+    list = arms_module_group('InterventionList')
+    collection = []
+    list.each do |group|
+      # group looks like ['Intervention', [array of hashes]]
+      puts "~~~#{group}~~~~"
+      group_data = group[1][0]
+      collection.push(
+                      :intervention_type => group_data['InterventionType'],
+                      :name => group_data['InterventionName'],
+                      :description => group_data['InterventionDescription'],
+                      # :intervention_other_names => group_data['InterventionOtherNameList']
+                      # :design_group_interventions => group_data[]
+                      )
+        # {
+        #   :intervention_type=>get('intervention_type'),
+        #   :name => get('intervention_name'),
+        #   :description => get('description'),
+        #   :intervention_other_names => InterventionOtherName.create_all_from(opts.merge(:intervention=>self)),
+        #   :design_group_interventions => DesignGroupIntervention.create_all_from(opts.merge(:intervention=>self)),
+        
+        # }
+      end
+      collection
+  end
+
+  def intervention_other_names_data
+    list = arms_module_group('InterventionList')
+    collection = []
+    list.each do |group|
+      # group looks like ['Intervention', [array of hashes]]
+      puts "~~~#{group}~~~~"
+      group_data = group[1][0]
+      collection.push(
+                      :intervention_other_names => group_data['InterventionOtherNameList']
+                      # :design_group_interventions => group_data[]
+                      )
+      end
+      collection
+  end
+
+  def design_group_interventions_data
+    list = arms_module_group('InterventionList')
+    collection = []
+    list.each do |group|
+      # group looks like ['Intervention', [array of hashes]]
+      puts "~~~#{group}~~~~"
+      group_data = group[1][0]
+      collection.push(
+                      :design_group_interventions => group_data[]
+                      )
+    end
+    collection
+  end
+
+  def detailed_description_data
+    protocol = protocol_module
+    description = protocol['DescriptionModule']['DetailedDescription']
+    {description: description}
+  end
+
+  def design_data 
+    protocol = protocol_module
+    design = protocol['DesignModule']
+    return design unless design
+
+    info = design['DesignInfo']
+    return info unless info
+
+    masking = info['DesignMaskingInfo']
+    return masking unless masking
+
+    masked_list = masking['DesignWhoMaskedList']
+    return masked_list  unless masked_list
+
+    puts "List #{masked_list}"
+    # puts "who #{ who_masked}"
+    who_masked = masked_list['DesignWhoMasked']
+    puts "who #{ who_masked}"
+    {
+      :allocation => info['DesignAllocation'],
+      :observational_model => info['DesignObservationalModelList'],
+      :intervention_model => info['DesignInterventionModel'],
+      :intervention_model_description => info['DesignInterventionModelDescription'],
+      :primary_purpose => info['DesignPrimaryPurpose'],
+      :time_perspective => info['DesignTimePerspectiveList'],
+      :masking => masking['DesignMasking'],
+      :masking_description => masking['DesignMaskingDescription'],
+      :subject_masked => is_masked?(who_masked, ['Subject','Participant']),
+      :caregiver_masked => is_masked?(who_masked, ['Caregiver','Care Provider']),
+      :investigator_masked => is_masked?(who_masked, ['Investigator']),
+      :outcomes_assessor_masked => is_masked?(who_masked, ['Outcomes Assessor']),
+    }
+  end
+
+  def is_masked?(who_masked_array, query_array)
+     # example who_masked array ["Participant", "Care Provider", "Investigator", "Outcomes Assessor"]
+    query_array.each do |term|
+      return true if who_masked_array.try(:include?, term)
+    end
+    nil
+  end
+
+  def self.design_check
+    array = StudyJsonRecord.all.select{|s| s.design_data}
+    array.each{|i| puts i.design_data}
+    {}
+  end
+
+  def get_masked_roles
+    val=get('masking')
+    result=val.split('(').last if val
+    result.tr('()', '') if result
+  end
+  #   Design.new.create_from(opts).try(:save)
+  #   BriefSummary.new.create_from(opts).try(:save)
+  #   Eligibility.new.create_from(opts).save
+  #   ParticipantFlow.new.create_from(opts).try(:save)
+
+  #   BaselineMeasurement.create_all_from(opts)
+  #   BrowseCondition.create_all_from(opts)
+  #   BrowseIntervention.create_all_from(opts)
+  #   CentralContact.create_all_from(opts)
+  #   Condition.create_all_from(opts)
+  #   Country.create_all_from(opts)
+  #   Document.create_all_from(opts)
+  #   Facility.create_all_from(opts)
+  #   IdInformation.create_all_from(opts)
+  #   IpdInformationType.create_all_from(opts)
+  #   Keyword.create_all_from(opts)
+  #   Link.create_all_from(opts)
+  #   Milestone.create_all_from(opts)
+  #   Outcome.create_all_from(opts)
+  #   OverallOfficial.create_all_from(opts)
+  #   DesignOutcome.create_all_from(opts)
+  #   PendingResult.create_all_from(opts)
+  #   ProvidedDocument.create_all_from(opts)
+  #   ReportedEvent.create_all_from(opts)
+  #   ResponsibleParty.create_all_from(opts)
+  #   ResultAgreement.create_all_from(opts)
+  #   ResultContact.create_all_from(opts)
+  #   Reference.create_all_from(opts)
+  #   Sponsor.create_all_from(opts)
+
 end
