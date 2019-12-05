@@ -225,14 +225,6 @@ class StudyJsonRecord < ActiveRecord::Base
                       # :intervention_other_names => group_data['InterventionOtherNameList']
                       # :design_group_interventions => group_data[]
                       )
-        # {
-        #   :intervention_type=>get('intervention_type'),
-        #   :name => get('intervention_name'),
-        #   :description => get('description'),
-        #   :intervention_other_names => InterventionOtherName.create_all_from(opts.merge(:intervention=>self)),
-        #   :design_group_interventions => DesignGroupIntervention.create_all_from(opts.merge(:intervention=>self)),
-        
-        # }
       end
       collection
   end
@@ -308,12 +300,6 @@ class StudyJsonRecord < ActiveRecord::Base
     nil
   end
 
-  def self.design_check
-    array = StudyJsonRecord.all.select{|i| i.baseline_measurement_data}
-    array.each{|i| puts i.baseline_measurement_data}
-    {}
-  end
-
   def eligibility_data
     protocol = protocal_section
     eligibility =  key_check(protocol['EligibilityModule'])
@@ -343,52 +329,88 @@ class StudyJsonRecord < ActiveRecord::Base
     results = key_check(results_section)
     baseline = key_check(results['BaselineCharacteristicsModule'])
     baseline_measurement = key_check(baseline['BaselineMeasureList'])
+    baseline_group = baseline['BaselineGroupList']
     collection = []
-    # return [] if opts[:xml].xpath('//baseline').blank?
-    # original_xml=opts[:xml]
-    # opts[:xml]=opts[:xml].xpath('//baseline')
-    # opts[:result_type]='Baseline'
-    # opts[:groups]=ResultGroup.create_group_set(opts)
-    # col=[]
     return if baseline_measurement.empty?
 
     baseline_measurement.each do |measure|
       
       measure[1].each do |measurement|
         class_list = measurement['BaselineClassList']
+        # baseline_class = class_list[0]['BaselineClass']
+        # category_list = baseline_class.dig('BaselineCategoryList', 'BaselineCategory')
         puts "class list #{class_list}"
+        {"BaselineClass"=>[{"BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineCategoryTitle"=>"Female", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"20", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"19", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"39", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"Male", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"3", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"5", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"8", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}]}
+        
+        puts "count #{class_list.count}"
+        # puts "baseline class #{baseline_class} ~~~~~~~~~~~~~~~"
+        
+        class_list.each do |item|
+          puts "classification #{item}~~~~~~~~~~~~~~~~~"
+        end
         puts "..."
         collection.push(
         :description => measurement['BaselineMeasureDescription'],
         :title => measurement['BaselineMeasureTitle'],
         :units => measurement['BaselineMeasureUnitOfMeasure'],
-        :param => measurement['BaselineMeasureParamType']
-      )
+        :param_type => measurement['BaselineMeasureParamType'],
+        :dispersion_type => measurement['BaselineMeasureDispersionType'],
+        :classification => nil,
+        # :result_group           => get_group(opts[:groups]),
+        # :classification         => get_opt('classification'),
+    #   :category               => get_opt(:category),
+    #   :ctgov_group_code       => gid,
+    #   :title                  => get_opt(:title),
+    #   :description            => get_opt(:description),
+    #   :units                  => get_opt(:units),
+    #   :param_type             => get_opt(:param),
+    #   :param_value            => get_opt('param_value'),
+    #   :param_value_num        => get_opt('param_value_num'),
+    #   :dispersion_type        => get_opt(:dispersion),
+    #   :dispersion_value       => get_opt('dispersion_value'),
+    #   :dispersion_value_num   => get_opt('dispersion_value_num'),
+    #   :dispersion_lower_limit => get_opt('lower_limit'),
+    #   :dispersion_upper_limit => get_opt('upper_limit'),
+    #   :explanation_of_na      => xml.text,
+        )
       end
     end
     collection
-    # all=opts[:xml].xpath("measure_list").xpath('measure')
-    # measure=all.pop
-    # while measure
-    #   opts[:description]=measure.xpath('description').text
-    #   opts[:title]=measure.xpath('title').text
-    #   opts[:units]=measure.xpath('units').text
-    #   opts[:param]=measure.xpath('param').text
-    #   opts[:dispersion]=measure.xpath('dispersion').text
-    
-    #   classifications=measure.xpath("class_list").xpath('class')
-    #   a_class=classifications.pop
-    #   while a_class
-    #     opts[:classification]=a_class.xpath('title').text
-    #     opts[:class]=a_class
-    #     col << self.nested_pop_create(opts)
-    #     a_class=classifications.pop
-    #   end
-    #   measure=all.pop
-    # end
-    # opts[:xml]=original_xml
-    # BaselineCount.create_all_from(opts)
-    # col.flatten.each{|x|x.save!}
+    # {
+    #   :result_group           => get_group(opts[:groups]),
+    #   :classification         => get_opt('classification'),
+    #   :category               => get_opt(:category),
+    #   :ctgov_group_code       => gid,
+    #   :title                  => get_opt(:title),
+    #   :description            => get_opt(:description),
+    #   :units                  => get_opt(:units),
+    #   :param_type             => get_opt(:param),
+    #   :param_value            => get_opt('param_value'),
+    #   :param_value_num         => get_opt('param_value_num'),
+    #   :dispersion_type        => get_opt(:dispersion),
+    #   :dispersion_value       => get_opt('dispersion_value'),
+    #   :dispersion_value_num   => get_opt('dispersion_value_num'),
+    #   :dispersion_lower_limit => get_opt('lower_limit'),
+    #   :dispersion_upper_limit => get_opt('upper_limit'),
+    #   :explanation_of_na      => xml.text,
+    # }
+  end
+
+  def self.baseline_check
+    hash = {"BaselineClass"=>
+              [{"BaselineClassTitle"=>"Baseline, total score(TS)= 1", "BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"11", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"14", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"25", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}, {"BaselineClassTitle"=>"Baseline, TS= 1.5", "BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"16", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"12", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"28", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}, {"BaselineClassTitle"=>"Baseline, TS= 2", "BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"7", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"3", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"10", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}, {"BaselineClassTitle"=>"Baseline, TS= 2.5", "BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"1", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"6", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"7", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}, {"BaselineClassTitle"=>"Baseline, TS= 3", "BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"5", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"6", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"11", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}, {"BaselineClassTitle"=>"Baseline, TS= 3.5", "BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"1", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"1", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"2", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}, {"BaselineClassTitle"=>"Baseline, TS= 4", "BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"2", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"4", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"6", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}, {"BaselineClassTitle"=>"Baseline, TS= 4.5", "BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"1", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"1", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}]}
+    array = hash['BaselineClass']
+    puts "hash parse #{array}"
+    puts "count #{array.count}"
+  end
+  def self.design_check
+    array = StudyJsonRecord.all.select{|i| i.baseline_measurement_data}
+    array.each{|i| puts i.baseline_measurement_data}
+    {}
+  end
+
+  def browse_condition_data
+
   end
 
   #   BaselineMeasurement.create_all_from(opts)
