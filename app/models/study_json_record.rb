@@ -94,13 +94,17 @@ class StudyJsonRecord < ActiveRecord::Base
     (str.count ' ') == 1
   end
 
-  def protocol_module
+  def protocal_section
     protocol = content['Study']['ProtocolSection']
+  end
+
+  def results_section
+    protocol = content['Study']['ResultsSection']
   end
   
   def study_data
     puts "Json Record #{id}"
-    protocol = protocol_module
+    protocol = protocal_section
     status = protocol['StatusModule']
     ident = protocol['IdentificationModule']
     design = key_check(protocol['DesignModule'])
@@ -186,7 +190,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def arms_module_group(list_type='ArmGroup')
-    protocol = protocol_module
+    protocol = protocal_section
     arms = key_check(protocol['ArmsInterventionsModule'])
     list = list_type =~ /Arm/i ? 'ArmGroupList' : 'InterventionList'
     key_check(arms[list])
@@ -263,29 +267,23 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def detailed_description_data
-    protocol = protocol_module
+    protocol = protocal_section
     description = protocol['DescriptionModule']['DetailedDescription']
     {description: description}
   end
 
+  def brief_summary_data
+    protocol = protocal_section
+    {:description => protocol['DescriptionModule']['BriefSummary']}
+  end
+
   def design_data 
-    protocol = protocol_module
-    design = protocol['DesignModule']
-    return design unless design
-
-    info = design['DesignInfo']
-    return info unless info
-
-    masking = info['DesignMaskingInfo']
-    return masking unless masking
-
-    masked_list = masking['DesignWhoMaskedList']
-    return masked_list  unless masked_list
-
-    puts "List #{masked_list}"
-    # puts "who #{ who_masked}"
-    who_masked = masked_list['DesignWhoMasked']
-    puts "who #{ who_masked}"
+    protocol = protocal_section
+    design = key_check(protocol['DesignModule'])
+    info = key_check(design['DesignInfo'])
+    masking = key_check(info['DesignMaskingInfo'])
+    masked_list = key_check(masking['DesignWhoMaskedList'])
+    who_masked = masked_list['DesignWhoMasked'] || []
     {
       :allocation => info['DesignAllocation'],
       :observational_model => info['DesignObservationalModelList'],
@@ -311,15 +309,87 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.design_check
-    array = StudyJsonRecord.all.select{|s| s.design_data}
-    array.each{|i| puts i.design_data}
+    array = StudyJsonRecord.all.select{|i| i.baseline_measurement_data}
+    array.each{|i| puts i.baseline_measurement_data}
     {}
   end
 
-  #   Design.new.create_from(opts).try(:save)
-  #   BriefSummary.new.create_from(opts).try(:save)
-  #   Eligibility.new.create_from(opts).save
-  #   ParticipantFlow.new.create_from(opts).try(:save)
+  def eligibility_data
+    protocol = protocal_section
+    eligibility =  key_check(protocol['EligibilityModule'])
+    {
+      :sampling_method => eligibility['SamplingMethod'],
+      :population=> eligibility['StudyPopulation'],
+      :maximum_age => eligibility['MaximumAge'],
+      :minimum_age => eligibility['MinimumAge'],
+      :gender => eligibility['Gender'],
+      :gender_based => get_boolean(eligibility['GenderBased']),
+      :gender_description => eligibility['GenderDescription'],
+      :healthy_volunteers=> eligibility['HealthyVolunteers'],
+      :criteria => eligibility['EligibilityCriteria']
+    }
+  end
+
+  def participant_flow_data
+    results = key_check(results_section)
+    participant_flow = key_check(results['ParticipantFlowModule'])
+    {
+      :recruitment_details => participant_flow['FlowRecruitmentDetails'],
+      :pre_assignment_details => participant_flow['FlowPreAssignmentDetails'],
+    }
+  end
+ 
+  def baseline_measurement_data
+    results = key_check(results_section)
+    baseline = key_check(results['BaselineCharacteristicsModule'])
+    baseline_measurement = key_check(baseline['BaselineMeasureList'])
+    collection = []
+    # return [] if opts[:xml].xpath('//baseline').blank?
+    # original_xml=opts[:xml]
+    # opts[:xml]=opts[:xml].xpath('//baseline')
+    # opts[:result_type]='Baseline'
+    # opts[:groups]=ResultGroup.create_group_set(opts)
+    # col=[]
+    return if baseline_measurement.empty?
+
+    baseline_measurement.each do |measure|
+      
+      measure[1].each do |measurement|
+        class_list = measurement['BaselineClassList']
+        puts "class list #{class_list}"
+        puts "..."
+        collection.push(
+        :description => measurement['BaselineMeasureDescription'],
+        :title => measurement['BaselineMeasureTitle'],
+        :units => measurement['BaselineMeasureUnitOfMeasure'],
+        :param => measurement['BaselineMeasureParamType']
+      )
+      end
+    end
+    collection
+    # all=opts[:xml].xpath("measure_list").xpath('measure')
+    # measure=all.pop
+    # while measure
+    #   opts[:description]=measure.xpath('description').text
+    #   opts[:title]=measure.xpath('title').text
+    #   opts[:units]=measure.xpath('units').text
+    #   opts[:param]=measure.xpath('param').text
+    #   opts[:dispersion]=measure.xpath('dispersion').text
+    
+    #   classifications=measure.xpath("class_list").xpath('class')
+    #   a_class=classifications.pop
+    #   while a_class
+    #     opts[:classification]=a_class.xpath('title').text
+    #     opts[:class]=a_class
+    #     col << self.nested_pop_create(opts)
+    #     a_class=classifications.pop
+    #   end
+    #   measure=all.pop
+    # end
+    # opts[:xml]=original_xml
+    # BaselineCount.create_all_from(opts)
+    # col.flatten.each{|x|x.save!}
+  end
 
   #   BaselineMeasurement.create_all_from(opts)
   #   BrowseCondition.create_all_from(opts)
