@@ -403,6 +403,15 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "hash parse #{array}"
     puts "count #{array.count}"
   end
+
+  def self.classification_check
+    all = BaselineMeasurement.where.not(classification: '')
+    puts BaselineMeasurement.count
+    puts all.count
+
+    all.each{|i| puts i.classification }
+    []
+  end
   def self.design_check
     array = StudyJsonRecord.all.select{|i| i.baseline_measurement_data}
     array.each{|i| puts i.baseline_measurement_data}
