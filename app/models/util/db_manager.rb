@@ -125,7 +125,11 @@ module Util
 
     def grant_db_privs
       public_con.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 200;")
+      public_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      public_con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
       public_alt_con.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 200;")
+      public_alt_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      public_alt_con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
     end
 
     def public_db_accessible?
