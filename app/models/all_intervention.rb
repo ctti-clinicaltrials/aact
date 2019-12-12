@@ -1,2 +1,0 @@
-class AllIntervention < StudyRelationship
-end
