@@ -1,4 +1,8 @@
 class TestJson < ActiveRecord::Base
+
+  def self.url
+    'https://clinicaltrials.gov/api/info/study_structure?fmt=json'
+  end
   def self.test_data
     {
       "Rank" => 1,
@@ -679,4 +683,155 @@ class TestJson < ActiveRecord::Base
       }
     }
   end
+
+  def self.baseline_class
+    {"BaselineClass"=>[{"BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineCategoryTitle"=>"American Indian or Alaska Native", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"Asian", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"Native Hawaiian or Other Pacific Islander", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"Black or African American", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"1", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"1", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"2", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"White", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"15", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"13", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"28", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"More than one race", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"Unknown or Not Reported", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}]}
+  end
+
+  def self.baseline_measurement_list
+    "BaselineMeasureList":{
+                "BaselineMeasure":[
+                  {
+                    "BaselineMeasureTitle":"Age, Categorical",
+                    "BaselineMeasureDescription":"Age- was calculated based on patients identification (ID) number (in Poland each ID number contains date of birth).",
+                    "BaselineMeasureParamType":"Count of Participants",
+                    "BaselineMeasureUnitOfMeasure":"Participants",
+                    "BaselineMeasureDenomUnitsSelected":"Participants",
+                    "BaselineClassList":{
+                      "BaselineClass":[
+                        {
+                          "BaselineCategoryList":{
+                            "BaselineCategory":[
+                              {
+                                "BaselineCategoryTitle":"<=18 years",
+                                "BaselineMeasurementList":{
+                                  "BaselineMeasurement":[
+                                    {
+                                      "BaselineMeasurementGroupId":"BG000",
+                                      "BaselineMeasurementValue":"0"
+                                    }
+                                  ]
+                                }
+                              },{
+                                "BaselineCategoryTitle":"Between 18 and 65 years",
+                                "BaselineMeasurementList":{
+                                  "BaselineMeasurement":[
+                                    {
+                                      "BaselineMeasurementGroupId":"BG000",
+                                      "BaselineMeasurementValue":"478"
+                                    }
+                                  ]
+                                }
+                              },{
+                                "BaselineCategoryTitle":">=65 years",
+                                "BaselineMeasurementList":{
+                                  "BaselineMeasurement":[
+                                    {
+                                      "BaselineMeasurementGroupId":"BG000",
+                                      "BaselineMeasurementValue":"496"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "BaselineMeasureTitle":"Age, Continuous",
+                    "BaselineMeasureParamType":"Mean",
+                    "BaselineMeasureDispersionType":"Standard Deviation",
+                    "BaselineMeasureUnitOfMeasure":"years",
+                    "BaselineMeasureDenomUnitsSelected":"Participants",
+                    "BaselineClassList":{
+                      "BaselineClass":[
+                        {
+                          "BaselineCategoryList":{
+                            "BaselineCategory":[
+                              {
+                                "BaselineMeasurementList":{
+                                  "BaselineMeasurement":[
+                                    {
+                                      "BaselineMeasurementGroupId":"BG000",
+                                      "BaselineMeasurementValue":"64.6",
+                                      "BaselineMeasurementSpread":"11.15"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "BaselineMeasureTitle":"Sex: Female, Male",
+                    "BaselineMeasureParamType":"Count of Participants",
+                    "BaselineMeasureUnitOfMeasure":"Participants",
+                    "BaselineMeasureDenomUnitsSelected":"Participants",
+                    "BaselineClassList":{
+                      "BaselineClass":[
+                        {
+                          "BaselineCategoryList":{
+                            "BaselineCategory":[
+                              {
+                                "BaselineCategoryTitle":"Female",
+                                "BaselineMeasurementList":{
+                                  "BaselineMeasurement":[
+                                    {
+                                      "BaselineMeasurementGroupId":"BG000",
+                                      "BaselineMeasurementValue":"523"
+                                    }
+                                  ]
+                                }
+                              },{
+                                "BaselineCategoryTitle":"Male",
+                                "BaselineMeasurementList":{
+                                  "BaselineMeasurement":[
+                                    {
+                                      "BaselineMeasurementGroupId":"BG000",
+                                      "BaselineMeasurementValue":"451"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "BaselineMeasureTitle":"Region of Enrollment",
+                    "BaselineMeasureParamType":"Number",
+                    "BaselineMeasureUnitOfMeasure":"participants",
+                    "BaselineMeasureDenomUnitsSelected":"Participants",
+                    "BaselineClassList":{
+                      "BaselineClass":[
+                        {
+                          "BaselineClassTitle":"Poland",
+                          "BaselineCategoryList":{
+                            "BaselineCategory":[
+                              {
+                                "BaselineMeasurementList":{
+                                  "BaselineMeasurement":[
+                                    {
+                                      "BaselineMeasurementGroupId":"BG000",
+                                      "BaselineMeasurementValue":"974"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+    end
 end

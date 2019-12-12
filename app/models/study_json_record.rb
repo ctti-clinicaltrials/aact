@@ -1,4 +1,5 @@
 require 'open-uri'
+include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   def self.save_all_studies
     start_time = Time.current
@@ -11,14 +12,15 @@ class StudyJsonRecord < ActiveRecord::Base
     # using min and max to determine the study to start with and the study to end with respectively (in that batch)
     min = 101
     max = 200
+
     limit = (total_number/100.0).ceil
     
-    for x in 416..limit
+    for x in 1..limit
       puts "batch #{x}"
       fetch_studies(min, max)
       min += 100
       max += 100
-      puts "Current Study Record Count #{StudyJsonRecord.count}"
+      puts "Current Study Json Record Count #{StudyJsonRecord.count}"
       sleep 1
     end
     seconds = Time.now - start_time
@@ -58,6 +60,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.json_data(url='https://clinicaltrials.gov/api/query/full_studies?expr=&min_rnk=1&max_rnk=100&fmt=json')
+    puts url
     page = open(url)
     JSON.parse(page.read)
   end
@@ -66,10 +69,6 @@ class StudyJsonRecord < ActiveRecord::Base
     return key if key
       
     {}
-  end
-
-  def self.check
-    all.each{|sjr| sjr.attrib_hash}
   end
 
   def get_boolean(val)
@@ -222,8 +221,6 @@ class StudyJsonRecord < ActiveRecord::Base
                       :intervention_type => group_data['InterventionType'],
                       :name => group_data['InterventionName'],
                       :description => group_data['InterventionDescription'],
-                      # :intervention_other_names => group_data['InterventionOtherNameList']
-                      # :design_group_interventions => group_data[]
                       )
       end
       collection
@@ -238,7 +235,6 @@ class StudyJsonRecord < ActiveRecord::Base
       group_data = group[1][0]
       collection.push(
                       :intervention_other_names => group_data['InterventionOtherNameList']
-                      # :design_group_interventions => group_data[]
                       )
       end
       collection
@@ -339,15 +335,16 @@ class StudyJsonRecord < ActiveRecord::Base
         class_list = measurement['BaselineClassList']
         # baseline_class = class_list[0]['BaselineClass']
         # category_list = baseline_class.dig('BaselineCategoryList', 'BaselineCategory')
-        puts "class list #{class_list}"
+        puts class_list
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         {"BaselineClass"=>[{"BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineCategoryTitle"=>"Female", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"20", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"19", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"39", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"Male", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"3", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"5", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"8", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}]}
         
-        puts "count #{class_list.count}"
+        # puts "count #{class_list.count}"
         # puts "baseline class #{baseline_class} ~~~~~~~~~~~~~~~"
         
-        class_list.each do |item|
-          puts "classification #{item}~~~~~~~~~~~~~~~~~"
-        end
+        # class_list.each do |item|
+        #   puts "classification #{item}~~~~~~~~~~~~~~~~~"
+        # end
         puts "..."
         collection.push(
         :description => measurement['BaselineMeasureDescription'],

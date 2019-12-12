@@ -177,7 +177,7 @@ module Util
       #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
       loadable_tables.each {|table_name|
         begin
-          if table_name != 'studies'  # studies.nct_id unique index persists.  Don't add/remove it.
+          if table_name != 'studies' && table_name != 'study_json_records'  # studies.nct_id unique index persists.  Don't add/remove it.
             if one_to_one_related_tables.include? table_name
               migration.add_index table_name, 'nct_id', unique: true
             else
