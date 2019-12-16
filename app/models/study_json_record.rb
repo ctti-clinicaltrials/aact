@@ -93,7 +93,7 @@ class StudyJsonRecord < ActiveRecord::Base
     (str.count ' ') == 1
   end
 
-  def protocal_section
+  def protocol_section
     protocol = content['Study']['ProtocolSection']
   end
 
@@ -103,7 +103,7 @@ class StudyJsonRecord < ActiveRecord::Base
   
   def study_data
     puts "Json Record #{id}"
-    protocol = protocal_section
+    protocol = protocol_section
     status = protocol['StatusModule']
     ident = protocol['IdentificationModule']
     design = key_check(protocol['DesignModule'])
@@ -188,59 +188,97 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
-  def arms_module_group(list_type='ArmGroup')
-    protocol = protocal_section
-    arms = key_check(protocol['ArmsInterventionsModule'])
-    list = list_type =~ /Arm/i ? 'ArmGroupList' : 'InterventionList'
-    key_check(arms[list])
-  end
-
   def design_groups_data
-    list = arms_module_group('ArmGroupList')
+    arms_intervention = key_check(protocol_section['ArmsInterventionsModule'])
+    arms_group_list = key_check(arms_intervention['ArmGroupList'])
+    arms_groups = arms_group_list['ArmGroup'] ||= []
     collection = []
-    list.each do |group|
-      # group looks like ['ArmGroup', [array of hashes]]
-      group_data = group[1][0]
-      collection.push(
-                      :group_type => group_data['ArmGroupType'],
-                      :title => group_data['ArmGroupLabel'],
-                      :description => group_data['ArmGroupDescription'],
+    arms_groups.each do |group|
+      collection.push( 
+                      design_group: {
+                                      nct_id: nct_id,
+                                      group_type: group['ArmGroupType'],
+                                      title: group['ArmGroupLabel'],
+                                      description: group['ArmGroupDescription']
+                                    },
+                      design_group_interventions: design_group_interventions_data(group)
                       )
     end
     collection
   end
-  
+
+  def self.new_check
+    nct = %w[
+      NCT03927443
+      NCT03842761
+      NCT03259503
+      NCT03259230
+      NCT03259230
+      NCT03247686
+      NCT04179097
+      NCT04179084
+      NCT04179084
+      NCT04179071
+      NCT04179071
+      NCT04179058
+    ]
+    
+    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.design_groups_data }
+    # StudyJsonRecord.all.each{ |i| puts i.interventions_data }
+    []
+  end
+
+  def design_group_interventions_data(arms_group)
+    collection = []
+    intervention_list = arms_group['ArmGroupInterventionList']
+    intervention_names = intervention_list['ArmGroupInterventionName']
+    intervention_names.each do |name|
+      # I collect the info I need to do queries later so I can create or find the links
+      # between design groups and interventions in the database
+      divide = name.split(': ')
+      collection.push(
+                      nct_id: nct_id,
+                      name: divide[1],
+                      type: divide[0],
+                      design_group: arms_group['ArmGroupLabel']
+                    )
+    end
+    collection
+    # nct_id: string, design_group_id: integer, intervention_id: integer
+  end
+
   def interventions_data
-    list = arms_module_group('InterventionList')
+    arms_intervention = key_check(protocol_section['ArmsInterventionsModule'])
+    intervention_list = key_check(arms_intervention['InterventionList'])
+    interventions = intervention_list['Intervention'] ||= []
     collection = []
-    list.each do |group|
-      # group looks like ['Intervention', [array of hashes]]
-      puts "~~~#{group}~~~~"
-      group_data = group[1][0]
+    interventions.each do |intervention|
       collection.push(
-                      :intervention_type => group_data['InterventionType'],
-                      :name => group_data['InterventionName'],
-                      :description => group_data['InterventionDescription'],
-                      )
-      end
-      collection
+                      intervention: {
+                                      nct_id: nct_id,
+                                      intervention_type: intervention['InterventionType'],
+                                      name: intervention['InterventionName'],
+                                      description: intervention['InterventionDescription']
+                                    },
+                      intervention_other_names: intervention_other_names_data(intervention)
+                    )
+    end
+    collection
   end
 
-  def intervention_other_names_data
-    list = arms_module_group('InterventionList')
+  def intervention_other_names_data(intervention)
+    other_name_list = key_check(intervention['InterventionOtherNameList'])
     collection = []
-    list.each do |group|
-      # group looks like ['Intervention', [array of hashes]]
-      puts "~~~#{group}~~~~"
-      group_data = group[1][0]
-      collection.push(
-                      :intervention_other_names => group_data['InterventionOtherNameList']
-                      )
-      end
-      collection
+    other_names = other_name_list['InterventionOtherName'] ||= []
+    other_names.each do |name|
+      collection.push(nct_id: nct_id, intervention_id: nil, name: name)
+    end
+    collection
   end
 
-  def design_group_interventions_data
+ 
+
+  def xdesign_group_interventions_data
     list = arms_module_group('InterventionList')
     collection = []
     list.each do |group|
@@ -255,18 +293,18 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def detailed_description_data
-    protocol = protocal_section
+    protocol = protocol_section
     description = protocol['DescriptionModule']['DetailedDescription']
     {description: description}
   end
 
   def brief_summary_data
-    protocol = protocal_section
+    protocol = protocol_section
     {:description => protocol['DescriptionModule']['BriefSummary']}
   end
 
   def design_data 
-    protocol = protocal_section
+    protocol = protocol_section
     design = key_check(protocol['DesignModule'])
     info = key_check(design['DesignInfo'])
     masking = key_check(info['DesignMaskingInfo'])
@@ -297,7 +335,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def eligibility_data
-    protocol = protocal_section
+    protocol = protocol_section
     eligibility =  key_check(protocol['EligibilityModule'])
     {
       :sampling_method => eligibility['SamplingMethod'],
@@ -418,6 +456,13 @@ class StudyJsonRecord < ActiveRecord::Base
   def browse_condition_data
 
   end
+
+  #   Intervention.create_all_from(opts.merge(:design_groups=>groups))
+  #   DetailedDescription.new.create_from(opts).try(:save)
+  #   Design.new.create_from(opts).try(:save)
+  #   BriefSummary.new.create_from(opts).try(:save)
+  #   Eligibility.new.create_from(opts).save
+  #   ParticipantFlow.new.create_from(opts).try(:save)
 
   #   BaselineMeasurement.create_all_from(opts)
   #   BrowseCondition.create_all_from(opts)

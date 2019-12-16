@@ -688,6 +688,405 @@ class TestJson < ActiveRecord::Base
     {"BaselineClass"=>[{"BaselineCategoryList"=>{"BaselineCategory"=>[{"BaselineCategoryTitle"=>"American Indian or Alaska Native", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"Asian", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"Native Hawaiian or Other Pacific Islander", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"Black or African American", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"1", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"1", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"2", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"White", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"15", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"13", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"28", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"More than one race", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG002"}]}}, {"BaselineCategoryTitle"=>"Unknown or Not Reported", "BaselineMeasurementList"=>{"BaselineMeasurement"=>[{"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG000"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG001"}, {"BaselineMeasurementValue"=>"0", "BaselineMeasurementGroupId"=>"BG002"}]}}]}}]}
   end
 
+  def self.new_check
+    # StudyRecord 322929
+      {
+        "Rank"=>1,
+        "Study"=>{
+          "ProtocolSection"=>{
+            "IdentificationModule"=>{
+              "NCTId"=>"NCT00000102",
+              "OrgStudyIdInfo"=>{
+                "OrgStudyId"=>"NCRR-M01RR01070-0506"
+              },
+              "SecondaryIdInfoList"=>{
+                "SecondaryIdInfo"=>[
+                  {
+                    "SecondaryId"=>"M01RR001070",
+                    "SecondaryIdType"=>"U.S. NIH Grant/Contract",
+                    "SecondaryIdLink"=>"https://projectreporter.nih.gov/reporterapi.cfm?PROJECTNUM=M01RR001070&Fy=all"
+                  }
+                ]
+              },
+              "Organization"=>{
+                "OrgFullName"=>"National Center for Research Resources (NCRR)",
+                "OrgClass"=>"NIH"
+              },
+              "BriefTitle"=>"Congenital Adrenal Hyperplasia=> Calcium Channels as Therapeutic Targets"
+            },
+            "StatusModule"=>{
+              "StatusVerifiedDate"=>"January 2004",
+              "OverallStatus"=>"Completed",
+              "ExpandedAccessInfo"=>{
+                "HasExpandedAccess"=>"No"
+              },
+              "StudyFirstSubmitDate"=>"November 3, 1999",
+              "StudyFirstSubmitQCDate"=>"November 3, 1999",
+              "StudyFirstPostDateStruct"=>{
+                "StudyFirstPostDate"=>"November 4, 1999",
+                "StudyFirstPostDateType"=>"Estimate"
+              },
+              "LastUpdateSubmitDate"=>"June 23, 2005",
+              "LastUpdatePostDateStruct"=>{
+                "LastUpdatePostDate"=>"June 24, 2005",
+                "LastUpdatePostDateType"=>"Estimate"
+              }
+            },
+            "SponsorCollaboratorsModule"=>{
+              "LeadSponsor"=>{
+                "LeadSponsorName"=>"National Center for Research Resources (NCRR)",
+                "LeadSponsorClass"=>"NIH"
+              }
+            },
+            "DescriptionModule"=>{
+              "BriefSummary"=>"This study will test the ability of extended release nifedipine (Procardia XL), a blood pressure medication, to permit a decrease in the dose of glucocorticoid medication children take to treat congenital adrenal hyperplasia (CAH).",
+              "DetailedDescription"=>"This protocol is designed to assess both acute and chronic effects of the calcium channel antagonist, nifedipine, on the hypothalamic-pituitary-adrenal axis in patients with congenital adrenal hyperplasia. The multicenter trial is composed of two phases and will involve a double-blind, placebo-controlled parallel design. The goal of Phase I is to examine the ability of nifedipine vs. placebo to decrease adrenocorticotropic hormone (ACTH) levels, as well as to begin to assess the dose-dependency of nifedipine effects. The goal of Phase II is to evaluate the long-term effects of nifedipine; that is, can attenuation of ACTH release by nifedipine permit a decrease in the dosage of glucocorticoid needed to suppress the HPA axis? Such a decrease would, in turn, reduce the deleterious effects of glucocorticoid treatment in CAH."
+            },
+            "ConditionsModule"=>{
+              "ConditionList"=>{
+                "Condition"=>[
+                  "Congenital Adrenal Hyperplasia"
+                ]
+              }
+            },
+            "DesignModule"=>{
+              "StudyType"=>"Interventional",
+              "PhaseList"=>{
+                "Phase"=>[
+                  "Phase 1",
+                  "Phase 2"
+                ]
+              },
+              "DesignInfo"=>{
+                "DesignInterventionModel"=>"Parallel Assignment",
+                "DesignPrimaryPurpose"=>"Treatment",
+                "DesignMaskingInfo"=>{
+                  "DesignMasking"=>"Double"
+                }
+              }
+            },
+            "ArmsInterventionsModule"=>{
+              "InterventionList"=>{
+                "Intervention"=>[
+                  {
+                    "InterventionType"=>"Drug",
+                    "InterventionName"=>"Nifedipine"
+                  }
+                ]
+              }
+            },
+            "EligibilityModule"=>{
+              "EligibilityCriteria"=>"Inclusion Criteria=>\n\ndiagnosed with Congenital Adrenal Hyperplasia (CAH)\nnormal ECG during baseline evaluation\n\nExclusion Criteria=>\n\nhistory of liver disease, or elevated liver function tests\nhistory of cardiovascular disease",
+              "HealthyVolunteers"=>"No",
+              "Gender"=>"All",
+              "MinimumAge"=>"14 Years",
+              "MaximumAge"=>"35 Years",
+              "StdAgeList"=>{
+                "StdAge"=>[
+                  "Child",
+                  "Adult"
+                ]
+              }
+            },
+            "ContactsLocationsModule"=>{
+              "LocationList"=>{
+                "Location"=>[
+                  {
+                    "LocationFacility"=>"Medical University of South Carolina",
+                    "LocationCity"=>"Charleston",
+                    "LocationState"=>"South Carolina",
+                    "LocationCountry"=>"United States"
+                  }
+                ]
+              }
+            }
+          },
+          "DerivedSection"=>{
+            "MiscInfoModule"=>{
+              "VersionHolder"=>"December 13, 2019"
+            },
+            "InterventionBrowseModule"=>{
+              "InterventionMeshList"=>{
+                "InterventionMesh"=>[
+                  {
+                    "InterventionMeshId"=>"D000009543",
+                    "InterventionMeshTerm"=>"Nifedipine"
+                  }
+                ]
+              },
+              "InterventionAncestorList"=>{
+                "InterventionAncestor"=>[
+                  {
+                    "InterventionAncestorId"=>"D000002121",
+                    "InterventionAncestorTerm"=>"Calcium Channel Blockers"
+                  },{
+                    "InterventionAncestorId"=>"D000049990",
+                    "InterventionAncestorTerm"=>"Membrane Transport Modulators"
+                  },{
+                    "InterventionAncestorId"=>"D000045504",
+                    "InterventionAncestorTerm"=>"Molecular Mechanisms of Pharmacological Action"
+                  },{
+                    "InterventionAncestorId"=>"D000077264",
+                    "InterventionAncestorTerm"=>"Calcium-Regulating Hormones and Agents"
+                  },{
+                    "InterventionAncestorId"=>"D000045505",
+                    "InterventionAncestorTerm"=>"Physiological Effects of Drugs"
+                  },{
+                    "InterventionAncestorId"=>"D000014665",
+                    "InterventionAncestorTerm"=>"Vasodilator Agents"
+                  },{
+                    "InterventionAncestorId"=>"D000015149",
+                    "InterventionAncestorTerm"=>"Tocolytic Agents"
+                  },{
+                    "InterventionAncestorId"=>"D000012102",
+                    "InterventionAncestorTerm"=>"Reproductive Control Agents"
+                  }
+                ]
+              },
+              "InterventionBrowseLeafList"=>{
+                "InterventionBrowseLeaf"=>[
+                  {
+                    "InterventionBrowseLeafId"=>"M6575",
+                    "InterventionBrowseLeafName"=>"Epinephrine",
+                    "InterventionBrowseLeafRelevance"=>"low"
+                  },{
+                    "InterventionBrowseLeafId"=>"M28958",
+                    "InterventionBrowseLeafName"=>"Racepinephrine",
+                    "InterventionBrowseLeafRelevance"=>"low"
+                  },{
+                    "InterventionBrowseLeafId"=>"M217972",
+                    "InterventionBrowseLeafName"=>"Epinephryl borate",
+                    "InterventionBrowseLeafRelevance"=>"low"
+                  },{
+                    "InterventionBrowseLeafId"=>"M3980",
+                    "InterventionBrowseLeafName"=>"Calcium, Dietary",
+                    "InterventionBrowseLeafRelevance"=>"low"
+                  },{
+                    "InterventionBrowseLeafId"=>"M3963",
+                    "InterventionBrowseLeafName"=>"Calcium",
+                    "InterventionBrowseLeafRelevance"=>"low"
+                  },{
+                    "InterventionBrowseLeafId"=>"M11066",
+                    "InterventionBrowseLeafName"=>"Nifedipine",
+                    "InterventionBrowseLeafAsFound"=>"Nifedipine",
+                    "InterventionBrowseLeafRelevance"=>"high"
+                  },{
+                    "InterventionBrowseLeafId"=>"M3966",
+                    "InterventionBrowseLeafName"=>"Calcium Channel Blockers",
+                    "InterventionBrowseLeafRelevance"=>"low"
+                  },{
+                    "InterventionBrowseLeafId"=>"M8372",
+                    "InterventionBrowseLeafName"=>"Hormones",
+                    "InterventionBrowseLeafRelevance"=>"low"
+                  },{
+                    "InterventionBrowseLeafId"=>"M15995",
+                    "InterventionBrowseLeafName"=>"Vasodilator Agents",
+                    "InterventionBrowseLeafRelevance"=>"low"
+                  },{
+                    "InterventionBrowseLeafId"=>"M16452",
+                    "InterventionBrowseLeafName"=>"Tocolytic Agents",
+                    "InterventionBrowseLeafRelevance"=>"low"
+                  }
+                ]
+              },
+              "InterventionBrowseBranchList"=>{
+                "InterventionBrowseBranch"=>[
+                  {
+                    "InterventionBrowseBranchAbbrev"=>"VaCoAg",
+                    "InterventionBrowseBranchName"=>"Vasoconstrictor Agents"
+                  },{
+                    "InterventionBrowseBranchAbbrev"=>"Resp",
+                    "InterventionBrowseBranchName"=>"Respiratory System Agents"
+                  },{
+                    "InterventionBrowseBranchAbbrev"=>"All",
+                    "InterventionBrowseBranchName"=>"All Drugs and Chemicals"
+                  },{
+                    "InterventionBrowseBranchAbbrev"=>"BDCA",
+                    "InterventionBrowseBranchName"=>"Bone Density Conservation Agents"
+                  },{
+                    "InterventionBrowseBranchAbbrev"=>"ChanBlk",
+                    "InterventionBrowseBranchName"=>"Channel Blockers"
+                  },{
+                    "InterventionBrowseBranchAbbrev"=>"VaDiAg",
+                    "InterventionBrowseBranchName"=>"Vasodilator Agents"
+                  },{
+                    "InterventionBrowseBranchAbbrev"=>"Repr",
+                    "InterventionBrowseBranchName"=>"Reproductive Control Agents"
+                  }
+                ]
+              }
+            },
+            "ConditionBrowseModule"=>{
+              "ConditionMeshList"=>{
+                "ConditionMesh"=>[
+                  {
+                    "ConditionMeshId"=>"D000000312",
+                    "ConditionMeshTerm"=>"Adrenal Hyperplasia, Congenital"
+                  },{
+                    "ConditionMeshId"=>"D000047808",
+                    "ConditionMeshTerm"=>"Adrenogenital Syndrome"
+                  },{
+                    "ConditionMeshId"=>"D000000308",
+                    "ConditionMeshTerm"=>"Adrenocortical Hyperfunction"
+                  },{
+                    "ConditionMeshId"=>"D000006965",
+                    "ConditionMeshTerm"=>"Hyperplasia"
+                  }
+                ]
+              },
+              "ConditionAncestorList"=>{
+                "ConditionAncestor"=>[
+                  {
+                    "ConditionAncestorId"=>"D000010335",
+                    "ConditionAncestorTerm"=>"Pathologic Processes"
+                  },{
+                    "ConditionAncestorId"=>"D000012734",
+                    "ConditionAncestorTerm"=>"Disorders of Sex Development"
+                  },{
+                    "ConditionAncestorId"=>"D000014564",
+                    "ConditionAncestorTerm"=>"Urogenital Abnormalities"
+                  },{
+                    "ConditionAncestorId"=>"D000000013",
+                    "ConditionAncestorTerm"=>"Congenital Abnormalities"
+                  },{
+                    "ConditionAncestorId"=>"D000030342",
+                    "ConditionAncestorTerm"=>"Genetic Diseases, Inborn"
+                  },{
+                    "ConditionAncestorId"=>"D000043202",
+                    "ConditionAncestorTerm"=>"Steroid Metabolism, Inborn Errors"
+                  },{
+                    "ConditionAncestorId"=>"D000008661",
+                    "ConditionAncestorTerm"=>"Metabolism, Inborn Errors"
+                  },{
+                    "ConditionAncestorId"=>"D000008659",
+                    "ConditionAncestorTerm"=>"Metabolic Diseases"
+                  },{
+                    "ConditionAncestorId"=>"D000000307",
+                    "ConditionAncestorTerm"=>"Adrenal Gland Diseases"
+                  },{
+                    "ConditionAncestorId"=>"D000004700",
+                    "ConditionAncestorTerm"=>"Endocrine System Diseases"
+                  },{
+                    "ConditionAncestorId"=>"D000006058",
+                    "ConditionAncestorTerm"=>"Gonadal Disorders"
+                  }
+                ]
+              },
+              "ConditionBrowseLeafList"=>{
+                "ConditionBrowseLeaf"=>[
+                  {
+                    "ConditionBrowseLeafId"=>"M8599",
+                    "ConditionBrowseLeafName"=>"Hyperplasia",
+                    "ConditionBrowseLeafAsFound"=>"Hyperplasia",
+                    "ConditionBrowseLeafRelevance"=>"high"
+                  },{
+                    "ConditionBrowseLeafId"=>"M2245",
+                    "ConditionBrowseLeafName"=>"Adrenal Hyperplasia, Congenital",
+                    "ConditionBrowseLeafAsFound"=>"Congenital Adrenal Hyperplasia",
+                    "ConditionBrowseLeafRelevance"=>"high"
+                  },{
+                    "ConditionBrowseLeafId"=>"M24440",
+                    "ConditionBrowseLeafName"=>"Adrenogenital Syndrome",
+                    "ConditionBrowseLeafAsFound"=>"Congenital Adrenal Hyperplasia",
+                    "ConditionBrowseLeafRelevance"=>"high"
+                  },{
+                    "ConditionBrowseLeafId"=>"M14938",
+                    "ConditionBrowseLeafName"=>"Syndrome",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"M2241",
+                    "ConditionBrowseLeafName"=>"Adrenocortical Hyperfunction",
+                    "ConditionBrowseLeafAsFound"=>"Adrenal Hyperplasia",
+                    "ConditionBrowseLeafRelevance"=>"high"
+                  },{
+                    "ConditionBrowseLeafId"=>"M14128",
+                    "ConditionBrowseLeafName"=>"Disorders of Sex Development",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"M12",
+                    "ConditionBrowseLeafName"=>"Congenital Abnormalities",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"M15897",
+                    "ConditionBrowseLeafName"=>"Urogenital Abnormalities",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"M22270",
+                    "ConditionBrowseLeafName"=>"Genetic Diseases, Inborn",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"M10224",
+                    "ConditionBrowseLeafName"=>"Metabolism, Inborn Errors",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"M23706",
+                    "ConditionBrowseLeafName"=>"Steroid Metabolism, Inborn Errors",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"M10222",
+                    "ConditionBrowseLeafName"=>"Metabolic Diseases",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"M2240",
+                    "ConditionBrowseLeafName"=>"Adrenal Gland Diseases",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"M6445",
+                    "ConditionBrowseLeafName"=>"Endocrine System Diseases",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"M7746",
+                    "ConditionBrowseLeafName"=>"Gonadal Disorders",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  },{
+                    "ConditionBrowseLeafId"=>"T28",
+                    "ConditionBrowseLeafName"=>"21-hydroxylase Deficiency",
+                    "ConditionBrowseLeafAsFound"=>"Congenital Adrenal Hyperplasia",
+                    "ConditionBrowseLeafRelevance"=>"high"
+                  },{
+                    "ConditionBrowseLeafId"=>"T1470",
+                    "ConditionBrowseLeafName"=>"Congenital Adrenal Hyperplasia",
+                    "ConditionBrowseLeafAsFound"=>"Congenital Adrenal Hyperplasia",
+                    "ConditionBrowseLeafRelevance"=>"high"
+                  },{
+                    "ConditionBrowseLeafId"=>"T2895",
+                    "ConditionBrowseLeafName"=>"Hyperadrenalism",
+                    "ConditionBrowseLeafRelevance"=>"low"
+                  }
+                ]
+              },
+              "ConditionBrowseBranchList"=>{
+                "ConditionBrowseBranch"=>[
+                  {
+                    "ConditionBrowseBranchAbbrev"=>"BC23",
+                    "ConditionBrowseBranchName"=>"Symptoms and General Pathology"
+                  },{
+                    "ConditionBrowseBranchAbbrev"=>"All",
+                    "ConditionBrowseBranchName"=>"All Conditions"
+                  },{
+                    "ConditionBrowseBranchAbbrev"=>"BXS",
+                    "ConditionBrowseBranchName"=>"Urinary Tract, Sexual Organs, and Pregnancy Conditions"
+                  },{
+                    "ConditionBrowseBranchAbbrev"=>"BC16",
+                    "ConditionBrowseBranchName"=>"Diseases and Abnormalities at or Before Birth"
+                  },{
+                    "ConditionBrowseBranchAbbrev"=>"BC18",
+                    "ConditionBrowseBranchName"=>"Nutritional and Metabolic Diseases"
+                  },{
+                    "ConditionBrowseBranchAbbrev"=>"BC19",
+                    "ConditionBrowseBranchName"=>"Gland and Hormone Related Diseases"
+                  },{
+                    "ConditionBrowseBranchAbbrev"=>"Rare",
+                    "ConditionBrowseBranchName"=>"Rare Diseases"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+  end
+
   def self.baseline_measurement_list
     "BaselineMeasureList":{
                 "BaselineMeasure":[
