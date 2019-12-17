@@ -1,7 +1,6 @@
 module Util
   class ApiReader
     BASE_URL = 'https://clinicaltrials.gov'
-    #https://clinicaltrials.gov/ct2/results/rss.xml?lup_d=4&count=10000
 
     attr_reader :changed_url, :added_url, :date_since
 
