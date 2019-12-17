@@ -12,7 +12,8 @@ module Util
       end
       @client = Util::Client.new
       @days_back=(params[:days_back] ? params[:days_back] : 2)
-      @rss_reader = Util::RssReader.new(days_back: @days_back)
+      # @rss_reader = Util::RssReader.new(days_back: @days_back)
+      @api_reader = Util::ApiReader.new(days_back: @days_back)
       @load_event = Support::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @load_event.save!  # Save to timestamp created_at
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
@@ -65,10 +66,10 @@ module Util
     def incremental
       log("begin incremental load...")
       log("finding studies changed in past #{@days_back} days...")
-      added_ids = @rss_reader.get_added_nct_ids
-      changed_ids = @rss_reader.get_changed_nct_ids
-      log("#{added_ids.size} added studies: #{@rss_reader.added_url}")
-      log("#{changed_ids.size} changed studies: #{@rss_reader.changed_url}")
+      added_ids = @api_reader.get_added_nct_ids
+      changed_ids = @api_reader.get_changed_nct_ids
+      log("#{added_ids.size} added studies: #{@api_reader.added_url}")
+      log("#{changed_ids.size} changed studies: #{@api_reader.changed_url}")
       study_counts[:should_add]=added_ids.size
       study_counts[:should_change]=changed_ids.size
       ids=(changed_ids + added_ids).uniq
