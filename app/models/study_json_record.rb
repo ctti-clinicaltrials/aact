@@ -363,6 +363,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def baseline_measurements_data
+
     results = results_section
     baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
     baseline_measure_list = key_check(baseline_characteristics_module['BaselineMeasureList'])
@@ -412,7 +413,14 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
 
-  def results_group_data
+  def result_groups_data
+    {
+      nct_id: nil,
+      ctgov_group_code: nil,
+      result_type: nil,
+      title: nil,
+      description: nil
+    }
     opts[:groups]=ResultGroup.create_group_set(opts)
   end
 
