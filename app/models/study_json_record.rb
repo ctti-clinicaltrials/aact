@@ -111,7 +111,6 @@ class StudyJsonRecord < ActiveRecord::Base
       eligibility: eligibility_data,
       participant_flow: participant_flow_data,
       baseline_measurements: baseline_measurements_data
-
     }
   end
   
@@ -345,25 +344,7 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
-  def self.new_check
-    nct = %w[
-      NCT00909480
-      NCT00967226
-      NCT00891774
-      NCT00880087
-      NCT00909155
-      NCT00900627
-      NCT00908544
-      NCT00430781
-    ]
-    
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.baseline_measurements_data }
-    StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
-    []
-  end
-
   def baseline_measurements_data
-
     results = results_section
     baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
     baseline_measure_list = key_check(baseline_characteristics_module['BaselineMeasureList'])
@@ -383,23 +364,28 @@ class StudyJsonRecord < ActiveRecord::Base
             param_value = measurement['BaselineMeasurementValue']
             dispersion_value = measurement['BaselineMeasurementSpread']
             collection.push(
-                        nct_id: nct_id,
-                        result_group_id: nil,
-                        ctgov_group_code: measurement['BaselineMeasurementGroupId'],
-                        classification: baseline_class['BaselineClassTitle'],
-                        category: baseline_category['BaselineCategoryTitle'],
-                        title: measure['BaselineMeasureTitle'],
-                        description: measure['BaselineMeasureDescription'],
-                        units: measure['BaselineMeasureUnitOfMeasure'],
-                        param_type: measure['BaselineMeasureParamType'],
-                        param_value: param_value,
-                        param_value_num: StudyJsonRecord.float(param_value),
-                        dispersion_type: measure['BaselineMeasureDispersionType'],
-                        dispersion_value: dispersion_value,
-                        dispersion_value_num: StudyJsonRecord.float(dispersion_value),
-                        dispersion_lower_limit: nil,
-                        dispersion_upper_limit: nil,
-                        explanation_of_na: measurement['BaselineMeasurementComment']
+                        measurement: {
+                                        nct_id: nct_id,
+                                        # result_group_id: nil,
+                                        ctgov_group_code: measurement['BaselineMeasurementGroupId'],
+                                        classification: baseline_class['BaselineClassTitle'],
+                                        category: baseline_category['BaselineCategoryTitle'],
+                                        title: measure['BaselineMeasureTitle'],
+                                        description: measure['BaselineMeasureDescription'],
+                                        units: measure['BaselineMeasureUnitOfMeasure'],
+                                        param_type: measure['BaselineMeasureParamType'],
+                                        param_value: param_value,
+                                        param_value_num: StudyJsonRecord.float(param_value),
+                                        dispersion_type: measure['BaselineMeasureDispersionType'],
+                                        dispersion_value: dispersion_value,
+                                        dispersion_value_num: StudyJsonRecord.float(dispersion_value),
+                                        dispersion_lower_limit: nil,
+                                        dispersion_upper_limit: nil,
+                                        explanation_of_na: measurement['BaselineMeasurementComment']
+                                      },
+                        result_group: {
+                                        result_groups_data
+                                      }
                       )
           end
         end
@@ -412,16 +398,47 @@ class StudyJsonRecord < ActiveRecord::Base
     Float(string) rescue nil
   end
 
+  def self.new_check
+    nct = %w[
+      NCT00946114
+      NCT02058147
+      NCT00835211
+      NCT01600677
+      NCT00720876
+      NCT00967226
+      NCT00640146
+      NCT00167414
+      NCT02340663
+      NCT01123850
+      NCT00571103
+      NCT01635764
+      NCT02053753
+    ]
+    
+    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.baseline_measurements_data }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
+    []
+  end
 
   def result_groups_data
-    {
-      nct_id: nil,
-      ctgov_group_code: nil,
-      result_type: nil,
-      title: nil,
-      description: nil
-    }
-    opts[:groups]=ResultGroup.create_group_set(opts)
+    results = results_section
+    baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
+    baseline_group_list = key_check(baseline_characteristics_module['BaselineGroupList'])
+    baseline_group = baseline_group_list['BaselineGroup'] ||= []
+    collection = []
+    baseline_group.each do |group|
+      collection.push(
+                        nct_id: nct_id,
+                        ctgov_group_code: group['BaselineGroupId'],
+                        result_type: 'Baseline',
+                        title: group['BaselineGroupTitle'],
+                        description: group['BaselineGroupDescription']
+                      )
+        
+      }
+    end
+    collection
+    # opts[:groups]=ResultGroup.create_group_set(opts)
   end
 
   def baseline_count_data
