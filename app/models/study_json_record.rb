@@ -92,11 +92,15 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def protocol_section
-    protocol = content['Study']['ProtocolSection'] ||= {}
+    content['Study']['ProtocolSection'] ||= {}
   end
 
   def results_section
-    protocol = content['Study']['ResultsSection'] ||= {}
+    content['Study']['ResultsSection'] ||= {}
+  end
+
+  def derived_section
+    content['Study']['DerivedSection'] ||= {}
   end
 
   def data_collection
@@ -110,7 +114,9 @@ class StudyJsonRecord < ActiveRecord::Base
       design: designs_data,
       eligibility: eligibility_data,
       participant_flow: participant_flow_data,
-      baseline_measurements: baseline_measurements_data
+      baseline_measurements: baseline_measurements_data,
+      browse_conditions: browse_conditions_data,
+      browse_interventions: browse_interventions_data
     }
   end
   
@@ -349,8 +355,7 @@ class StudyJsonRecord < ActiveRecord::Base
     baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
     baseline_measure_list = key_check(baseline_characteristics_module['BaselineMeasureList'])
     baseline_measure = baseline_measure_list['BaselineMeasure'] ||= []
-    collection = []
-
+    collection = {result_groups: result_groups_data, baseline_counts: baseline_counts_data, measurements: []}
     baseline_measure.each do |measure|
       baseline_class_list = key_check(measure['BaselineClassList'])
       baseline_classes = baseline_class_list['BaselineClass'] ||= []
@@ -363,30 +368,25 @@ class StudyJsonRecord < ActiveRecord::Base
           measurements.each do |measurement|
             param_value = measurement['BaselineMeasurementValue']
             dispersion_value = measurement['BaselineMeasurementSpread']
-            collection.push(
-                        measurement: {
-                                        nct_id: nct_id,
-                                        # result_group_id: nil,
-                                        ctgov_group_code: measurement['BaselineMeasurementGroupId'],
-                                        classification: baseline_class['BaselineClassTitle'],
-                                        category: baseline_category['BaselineCategoryTitle'],
-                                        title: measure['BaselineMeasureTitle'],
-                                        description: measure['BaselineMeasureDescription'],
-                                        units: measure['BaselineMeasureUnitOfMeasure'],
-                                        param_type: measure['BaselineMeasureParamType'],
-                                        param_value: param_value,
-                                        param_value_num: StudyJsonRecord.float(param_value),
-                                        dispersion_type: measure['BaselineMeasureDispersionType'],
-                                        dispersion_value: dispersion_value,
-                                        dispersion_value_num: StudyJsonRecord.float(dispersion_value),
-                                        dispersion_lower_limit: nil,
-                                        dispersion_upper_limit: nil,
-                                        explanation_of_na: measurement['BaselineMeasurementComment']
-                                      },
-                        result_group: {
-                                        result_groups_data
-                                      }
-                      )
+            collection[:measurements].push(
+                                            nct_id: nct_id,
+                                            result_group_id: nil,
+                                            ctgov_group_code: measurement['BaselineMeasurementGroupId'],
+                                            classification: baseline_class['BaselineClassTitle'],
+                                            category: baseline_category['BaselineCategoryTitle'],
+                                            title: measure['BaselineMeasureTitle'],
+                                            description: measure['BaselineMeasureDescription'],
+                                            units: measure['BaselineMeasureUnitOfMeasure'],
+                                            param_type: measure['BaselineMeasureParamType'],
+                                            param_value: param_value,
+                                            param_value_num: StudyJsonRecord.float(param_value),
+                                            dispersion_type: measure['BaselineMeasureDispersionType'],
+                                            dispersion_value: dispersion_value,
+                                            dispersion_value_num: StudyJsonRecord.float(dispersion_value),
+                                            dispersion_lower_limit: nil,
+                                            dispersion_upper_limit: nil,
+                                            explanation_of_na: measurement['BaselineMeasurementComment']
+                                          )
           end
         end
       end
@@ -396,28 +396,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.float(string)
     Float(string) rescue nil
-  end
-
-  def self.new_check
-    nct = %w[
-      NCT00946114
-      NCT02058147
-      NCT00835211
-      NCT01600677
-      NCT00720876
-      NCT00967226
-      NCT00640146
-      NCT00167414
-      NCT02340663
-      NCT01123850
-      NCT00571103
-      NCT01635764
-      NCT02053753
-    ]
-    
-    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.baseline_measurements_data }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
-    []
   end
 
   def result_groups_data
@@ -434,31 +412,102 @@ class StudyJsonRecord < ActiveRecord::Base
                         title: group['BaselineGroupTitle'],
                         description: group['BaselineGroupDescription']
                       )
-        
-      }
     end
     collection
-    # opts[:groups]=ResultGroup.create_group_set(opts)
   end
 
-  def baseline_count_data
-    BaselineCount.create_all_from(opts)
+  def baseline_counts_data
+    results = results_section
+    baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
+    baseline_denom_list = key_check(baseline_characteristics_module['BaselineDenomList'])
+    baseline_denom = key_check(baseline_denom_list['BaselineDenom'])
+    collection = []
+    baseline_denom.each do |denom|
+      baseline_denom_count_list = denom['BaselineDenomCountList']
+      baseline_denom_count = baseline_denom_count_list['BaselineDenomCount'] ||= []
+      baseline_denom_count.each do |count|
+        collection.push(
+                          nct_id: nct_id,
+                          result_group_id: nil,
+                          ctgov_group_code: count['BaselineDenomCountGroupId'],
+                          units: denom['BaselineDenomUnits'],
+                          scope: 'overall',
+                          count: count['BaselineDenomCountValue']
+
+                        )
+      end
+    end
+    collection
   end
 
-  def self.design_check
-    array = StudyJsonRecord.all.select{|i| i.baseline_measurement_data}
-    array.each{|i| puts i.baseline_measurement_data}
-    {}
+  def browse_conditions_data
+    browse('Condition')
   end
 
-  def browse_condition_data
-
+  def browse_interventions_data
+    browse('Intervention')
   end
 
-  #   BaselineMeasurement.create_all_from(opts)
-  #   BrowseCondition.create_all_from(opts)
-  #   BrowseIntervention.create_all_from(opts)
-  #   CentralContact.create_all_from(opts)
+  def browse(type='Condition')
+    derived = derived_section
+    browse_module = key_check(derived["#{type}BrowseModule"])
+    mesh_list = key_check(browse_module["#{type}MeshList"])
+    meshes = mesh_list["#{type}Mesh"] ||= []
+    collection = []
+    meshes.each do |mesh|
+      collection.push(
+                        nct_id: nct_id, mesh_term: mesh["#{type}MeshTerm"], downcase_mesh_term: mesh["#{type}MeshTerm"].try(:downcase)
+
+                      )
+    end
+    collection
+  end
+
+  def self.new_check
+    nct = %w[
+      NCT03894189
+      NCT04214015
+      NCT04167566
+      NCT00946114
+      NCT02058147
+      NCT00835211
+      NCT01600677
+      NCT00720876
+      NCT00967226
+      NCT00640146
+      NCT00167414
+      NCT02340663
+      NCT01123850
+      NCT00571103
+      NCT01635764
+      NCT02053753
+    ]
+    
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.central_contacts_data }
+    StudyJsonRecord.all.order(:id).each{ |i| puts i.central_contacts_data }
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
+    []
+  end
+
+  def central_contacts_data
+    contacts_location_module = key_check(protocol_section['ContactsLocationsModule'])
+    central_contacts_list = key_check(contacts_location_module['CentralContactList'])
+    central_contacts = central_contacts_list['CentralContact'] ||= []
+    collection = []
+
+    central_contacts.each do |contact|
+      collection.push(
+                        nct_id: nct_id,
+                        contact_type: nil,
+                        name: contact['CentralContactName'],
+                        phone: contact['CentralContactPhone'],
+                        email: contact['CentralContactEMail']
+                      )
+    end
+    collection
+  end
+ 
   #   Condition.create_all_from(opts)
   #   Country.create_all_from(opts)
   #   Document.create_all_from(opts)
