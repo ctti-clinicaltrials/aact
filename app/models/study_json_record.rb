@@ -1,7 +1,82 @@
 require 'open-uri'
+require 'fileutils'
+# require 'zip'
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
+
+  def self.root_dir
+    "#{Rails.public_path}/static"
+  end
+
+  def self.json_file_directory
+      # FileUtils.mkdir_p root_dir
+    FileUtils.mkdir_p "#{root_dir}/json_downloads"
+    "#{root_dir}/json_downloads"
+  end
+
+  def self.download(url='https://ClinicalTrials.gov/AllAPIJSON.zip')
+    file_name="#{json_file_directory}/#{Time.zone.now.strftime("%Y%m%d-%H")}.zip"
+    puts 'entered'
+    File.open(file_name, "wb") do |file|
+      file.write open(url).read
+    end
+  end
+  def self.download_all_studies(url='https://ClinicalTrials.gov/AllAPIJSON.zip')
+    tries ||= 5
+
+    file_name="#{json_file_directory}/#{Time.zone.now.strftime("%Y%m%d-%H")}.zip"
+    file = File.new file_name, 'w'
+    begin
+      `wget -o #{file.path} #{url}`
+    rescue Errno::ECONNRESET => e
+      if (tries -=1) > 0
+        puts "  download failed.  trying again..."
+        retry
+      end
+    end
+    file.binmode
+    # file.write(download)
+    file.size
+    file
+  end
+
+  def save_file_contents(file)
+    Zip::File.open(file.path) do |zipfile|
+      cnt=zipfile.size
+      zipfile.each do |file|
+        xml = file.get_input_stream.read
+        nct_id = extract_nct_id_from_study(xml)
+        puts "add study_xml_record: #{cnt} #{nct_id}"
+        create_study_xml_record(nct_id,xml)
+        cnt=cnt-1
+      end
+    end
+  end
+
+  
   def self.save_all_studies
+    study_download = download_all_studies
+    puts "got file"
+    Zip::File.open(study_download.path) do |unzippped_files|
+      puts "unziped file"
+      cnt = unzippped_files.size
+      puts "has #{cnt}"
+      puts unzippped_files
+      # unzippped_files.each do |file|
+      #   json = file.get_input_stream.read
+      #   nct_id = json['Study']['ProtocolSection']['IdentificationModule']['NCTId']
+      #   puts json
+      #   puts '~~~~~~~~~~~~'
+      #   # nct_id = extract_nct_id_from_study(xml)
+      #   puts "add study_xml_record: #{cnt} #{nct_id}"
+      #   # create_study_xml_record(nct_id,xml)
+        
+      #   cnt=cnt-1
+      # end
+    end
+  end
+
+  def self.x_save_all_studies
     start_time = Time.current
     first_batch = json_data
     save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
@@ -120,7 +195,7 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
   
-  def study_data
+  def study_data 
     protocol = protocol_section
     status = protocol['StatusModule']
     ident = protocol['IdentificationModule']
@@ -500,6 +575,7 @@ class StudyJsonRecord < ActiveRecord::Base
       collection.push(
                         nct_id: nct_id,
                         contact_type: nil,
+                        contact_role: contact['CentralContactRole'],
                         name: contact['CentralContactName'],
                         phone: contact['CentralContactPhone'],
                         email: contact['CentralContactEMail']
