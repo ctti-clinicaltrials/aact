@@ -9,25 +9,21 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.json_file_directory
-      # FileUtils.mkdir_p root_dir
     FileUtils.mkdir_p "#{root_dir}/json_downloads"
     "#{root_dir}/json_downloads"
   end
 
-  def self.download(url='https://ClinicalTrials.gov/AllAPIJSON.zip')
-    file_name="#{json_file_directory}/#{Time.zone.now.strftime("%Y%m%d-%H")}.zip"
-    puts 'entered'
-    File.open(file_name, "wb") do |file|
-      file.write open(url).read
-    end
-  end
   def self.download_all_studies(url='https://ClinicalTrials.gov/AllAPIJSON.zip')
     tries ||= 5
 
     file_name="#{json_file_directory}/#{Time.zone.now.strftime("%Y%m%d-%H")}.zip"
     file = File.new file_name, 'w'
     begin
-      `wget -o #{file.path} #{url}`
+      if tries < 5
+        `wget -c #{url} -O #{file.path}`
+      else
+        `wget #{url} -O #{file.path}`
+      end
     rescue Errno::ECONNRESET => e
       if (tries -=1) > 0
         puts "  download failed.  trying again..."
@@ -35,48 +31,42 @@ class StudyJsonRecord < ActiveRecord::Base
       end
     end
     file.binmode
-    # file.write(download)
     file.size
     file
   end
 
-  def save_file_contents(file)
-    Zip::File.open(file.path) do |zipfile|
-      cnt=zipfile.size
-      zipfile.each do |file|
-        xml = file.get_input_stream.read
-        nct_id = extract_nct_id_from_study(xml)
-        puts "add study_xml_record: #{cnt} #{nct_id}"
-        create_study_xml_record(nct_id,xml)
-        cnt=cnt-1
-      end
-    end
-  end
-
-  
-  def self.save_all_studies
+  def self.save_all_downloaded_studies
+    start_time = Time.current
     study_download = download_all_studies
-    puts "got file"
-    Zip::File.open(study_download.path) do |unzippped_files|
-      puts "unziped file"
-      cnt = unzippped_files.size
-      puts "has #{cnt}"
-      puts unzippped_files
-      # unzippped_files.each do |file|
-      #   json = file.get_input_stream.read
-      #   nct_id = json['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-      #   puts json
-      #   puts '~~~~~~~~~~~~'
-      #   # nct_id = extract_nct_id_from_study(xml)
-      #   puts "add study_xml_record: #{cnt} #{nct_id}"
-      #   # create_study_xml_record(nct_id,xml)
-        
-      #   cnt=cnt-1
-      # end
+    # finshed in about 12 hours
+    # total number we have 326614
+    Zip::File.open(study_download.path) do |unzipped_folders|
+      puts "unzipped folders"
+      original_count = unzipped_folders.size
+      count_down = original_count
+      unzipped_folders.each do |file|
+        begin 
+        contents = file.get_input_stream.read
+        json = JSON.parse(contents)
+        rescue 
+          next unless json
+        end
+
+        study = json['FullStudy']
+        next unless study
+
+        save_single_study(study)
+        nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
+        puts "added NCTId #{nct_id} study_json_record: #{count_down} of #{original_count}"
+        count_down -= 1
+      end  
     end
+    seconds = Time.now - start_time
+    puts "finshed in #{time_ago_in_words(start_time)}"
+    puts "total number we have #{StudyJsonRecord.count}"
   end
 
-  def self.x_save_all_studies
+  def self.save_all_api_studies
     start_time = Time.current
     first_batch = json_data
     save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
@@ -127,9 +117,7 @@ class StudyJsonRecord < ActiveRecord::Base
     record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.new(nct_id: nct_id)
     record.content = study_data
     record.saved_study_at = nil 
-    if record.save
-      puts study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-    else
+    unless record.save
       puts "failed to save #{nct_id}"
     end
   end
@@ -218,6 +206,7 @@ class StudyJsonRecord < ActiveRecord::Base
     { 
       nct_id: nct_id,
       nlm_download_date_description: nil,
+      # "DataVrs":"2020:01:05 23:07:51.513"
       study_first_submitted_date: get_date(status['StudyFirstSubmitDate']),
       results_first_submitted_date: get_date(status['ResultsFirstSubmitDate']),
       disposition_first_submitted_date: get_date(status['DispFirstSubmitDate']),
