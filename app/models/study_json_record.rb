@@ -67,6 +67,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.save_all_api_studies
+    # Current Study Json Record Count 326614
+    # finshed in about 17 hours
+    # total number we should have 326612
     start_time = Time.current
     first_batch = json_data
     save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
@@ -179,7 +182,11 @@ class StudyJsonRecord < ActiveRecord::Base
       participant_flow: participant_flow_data,
       baseline_measurements: baseline_measurements_data,
       browse_conditions: browse_conditions_data,
-      browse_interventions: browse_interventions_data
+      browse_interventions: browse_interventions_data,
+      central_contacts_list: central_contacts_data,
+      conditions: conditions_data,
+      countries: countries_data,
+      documents: documents_data
     }
   end
   
@@ -273,7 +280,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def design_groups_data
     arms_intervention = key_check(protocol_section['ArmsInterventionsModule'])
     arms_group_list = key_check(arms_intervention['ArmGroupList'])
-    arms_groups = arms_group_list['ArmGroup'] ||= []
+    arms_groups = arms_group_list['ArmGroup'] || []
     collection = []
     arms_groups.each do |group|
       collection.push( 
@@ -292,7 +299,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def design_group_interventions_data(arms_group)
     collection = []
     intervention_list = key_check(arms_group['ArmGroupInterventionList'])
-    intervention_names = intervention_list['ArmGroupInterventionName'] ||= []
+    intervention_names = intervention_list['ArmGroupInterventionName'] || []
     intervention_names.each do |name|
       # I collect the info I need to do queries later so I can create or find the links
       # between design groups and interventions in the database
@@ -311,7 +318,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def interventions_data
     arms_intervention = key_check(protocol_section['ArmsInterventionsModule'])
     intervention_list = key_check(arms_intervention['InterventionList'])
-    interventions = intervention_list['Intervention'] ||= []
+    interventions = intervention_list['Intervention'] || []
     collection = []
     interventions.each do |intervention|
       collection.push(
@@ -330,7 +337,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def intervention_other_names_data(intervention)
     other_name_list = key_check(intervention['InterventionOtherNameList'])
     collection = []
-    other_names = other_name_list['InterventionOtherName'] ||= []
+    other_names = other_name_list['InterventionOtherName'] || []
     other_names.each do |name|
       collection.push(nct_id: nct_id, intervention_id: nil, name: name)
     end
@@ -359,9 +366,9 @@ class StudyJsonRecord < ActiveRecord::Base
     masked_list = key_check(masking['DesignWhoMaskedList'])
     who_masked = masked_list['DesignWhoMasked'] || []
     observation_list = key_check(info['DesignObservationalModelList'])
-    observations = observation_list['DesignObservationalModel'] ||= []
+    observations = observation_list['DesignObservationalModel'] || []
     time_perspective_list = key_check(info['DesignTimePerspectiveList'])
-    time_perspectives = time_perspective_list['DesignTimePerspective'] ||= []
+    time_perspectives = time_perspective_list['DesignTimePerspective'] || []
     {
       nct_id: nct_id,
       allocation: info['DesignAllocation'],
@@ -394,8 +401,8 @@ class StudyJsonRecord < ActiveRecord::Base
       nct_id: nct_id,
       sampling_method: eligibility['SamplingMethod'],
       population: eligibility['StudyPopulation'],
-      maximum_age: eligibility['MaximumAge'] ||= 'N/A',
-      minimum_age: eligibility['MinimumAge'] ||= 'N/A',
+      maximum_age: eligibility['MaximumAge'] || 'N/A',
+      minimum_age: eligibility['MinimumAge'] || 'N/A',
       gender: eligibility['Gender'],
       gender_based: get_boolean(eligibility['GenderBased']),
       gender_description: eligibility['GenderDescription'],
@@ -418,17 +425,17 @@ class StudyJsonRecord < ActiveRecord::Base
     results = results_section
     baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
     baseline_measure_list = key_check(baseline_characteristics_module['BaselineMeasureList'])
-    baseline_measure = baseline_measure_list['BaselineMeasure'] ||= []
-    collection = {result_groups: result_groups_data, baseline_counts: baseline_counts_data, measurements: []}
+    baseline_measure = baseline_measure_list['BaselineMeasure'] || []
+    collection = {result_groups: baseline_result_groups_data, baseline_counts: baseline_counts_data, measurements: []}
     baseline_measure.each do |measure|
       baseline_class_list = key_check(measure['BaselineClassList'])
-      baseline_classes = baseline_class_list['BaselineClass'] ||= []
+      baseline_classes = baseline_class_list['BaselineClass'] || []
       baseline_classes.each do |baseline_class|
         baseline_category_list = key_check(baseline_class['BaselineCategoryList'])
-        baseline_categories = baseline_category_list['BaselineCategory'] ||= []
+        baseline_categories = baseline_category_list['BaselineCategory'] || []
         baseline_categories.each do |baseline_category|
           measurement_list = key_check(baseline_category['BaselineMeasurementList'])
-          measurements = measurement_list['BaselineMeasurement'] ||= []
+          measurements = measurement_list['BaselineMeasurement'] || []
           measurements.each do |measurement|
             param_value = measurement['BaselineMeasurementValue']
             dispersion_value = measurement['BaselineMeasurementSpread']
@@ -462,11 +469,11 @@ class StudyJsonRecord < ActiveRecord::Base
     Float(string) rescue nil
   end
 
-  def result_groups_data
+  def baseline_result_groups_data
     results = results_section
     baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
     baseline_group_list = key_check(baseline_characteristics_module['BaselineGroupList'])
-    baseline_group = baseline_group_list['BaselineGroup'] ||= []
+    baseline_group = baseline_group_list['BaselineGroup'] || []
     collection = []
     baseline_group.each do |group|
       collection.push(
@@ -488,7 +495,7 @@ class StudyJsonRecord < ActiveRecord::Base
     collection = []
     baseline_denom.each do |denom|
       baseline_denom_count_list = denom['BaselineDenomCountList']
-      baseline_denom_count = baseline_denom_count_list['BaselineDenomCount'] ||= []
+      baseline_denom_count = baseline_denom_count_list['BaselineDenomCount'] || []
       baseline_denom_count.each do |count|
         collection.push(
                           nct_id: nct_id,
@@ -516,7 +523,7 @@ class StudyJsonRecord < ActiveRecord::Base
     derived = derived_section
     browse_module = key_check(derived["#{type}BrowseModule"])
     mesh_list = key_check(browse_module["#{type}MeshList"])
-    meshes = mesh_list["#{type}Mesh"] ||= []
+    meshes = mesh_list["#{type}Mesh"] || []
     collection = []
     meshes.each do |mesh|
       collection.push(
@@ -527,37 +534,10 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def self.new_check
-    nct = %w[
-      NCT03894189
-      NCT04214015
-      NCT04167566
-      NCT00946114
-      NCT02058147
-      NCT00835211
-      NCT01600677
-      NCT00720876
-      NCT00967226
-      NCT00640146
-      NCT00167414
-      NCT02340663
-      NCT01123850
-      NCT00571103
-      NCT01635764
-      NCT02053753
-    ]
-    
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.central_contacts_data }
-    StudyJsonRecord.all.order(:id).each{ |i| puts i.central_contacts_data }
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
-    []
-  end
-
   def central_contacts_data
     contacts_location_module = key_check(protocol_section['ContactsLocationsModule'])
     central_contacts_list = key_check(contacts_location_module['CentralContactList'])
-    central_contacts = central_contacts_list['CentralContact'] ||= []
+    central_contacts = central_contacts_list['CentralContact'] || []
     collection = []
 
     central_contacts.each do |contact|
@@ -572,10 +552,75 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     collection
   end
+
+  def conditions_data
+    conditions_module = key_check(protocol_section['ConditionsModule'])
+    conditions_list = key_check(conditions_module['ConditionList'])
+    conditions = conditions_list['Condition'] || []
+    collection = []
+    conditions.each do |condition|
+      collection.push(nct_id: nct_id, name: condition, downcase_name: condition.try(:downcase))
+    end
+    {nct_id: nil, name: nil, downcase_name: nil}
+    collection
+  end
+
+  def countries_data
+    contacts_location_module = key_check(protocol_section['ContactsLocationsModule'])
+    locations_list = key_check(contacts_location_module['LocationList'])
+    locations = locations_list['Location'] || []
+    misc_module = key_check(derived_section['MiscInfoModule'])
+    removed_country_list = key_check(misc_module['RemovedCountryList'])
+    removed_countries = removed_country_list['RemovedCountry'] || []
+    collection = []
+
+    locations.each do |location|
+      collection.push(nct_id: nct_id, name: location['LocationCountry'], removed: false)
+    end
+
+    removed_countries.each do |country|
+      collection.push(nct_id: nct_id, name: country, removed: true)
+    end
+    collection
+  end
+
+  def documents_data
+    reference_module = key_check(protocol_section['ReferencesModule'])
+    avail_ipd_list = key_check(reference_module['AvailIPDList'])
+    avail_ipd = avail_ipd_list['AvailIPD'] || []
+    collection = []
+
+    avail_ipd.each do |item|
+      collection.push(
+                        nct_id: nct_id,
+                        document_id: item['AvailIPDId'],
+                        document_type: item['AvailIPDType'],
+                        url: item['AvailIPDURL'],
+                        comment: item['AvailIPDComment']
+                      )
+    end
+    collection
+  end
+
+  def self.new_check
+    nct = %w[
+      NCT04164186
+      NCT04210765
+      NCT04175600
+      NCT04158700
+      NCT01301274
+      NCT01301287
+      NCT01301261
+      NCT03894189
+    ]
+    
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.document_data }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.document_data }
+    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
+    []
+  end
  
-  #   Condition.create_all_from(opts)
-  #   Country.create_all_from(opts)
-  #   Document.create_all_from(opts)
   #   Facility.create_all_from(opts)
   #   IdInformation.create_all_from(opts)
   #   IpdInformationType.create_all_from(opts)
