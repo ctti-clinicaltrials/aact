@@ -101,6 +101,7 @@ class StudyJsonRecord < ActiveRecord::Base
     begin
       retries ||= 0
       puts "try ##{ retries }"
+      # incremental_url = "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[01/01/2020,%20MAX]&fmt=json"
       url="https://clinicaltrials.gov/api/query/full_studies?expr=&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
       data = json_data(url)['FullStudiesResponse']['FullStudies']
       save_study_records(data)
