@@ -159,36 +159,24 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def protocol_section
-    content['Study']['ProtocolSection'] ||= {}
+    key_check(content['Study']['ProtocolSection'])
   end
 
   def results_section
-    content['Study']['ResultsSection'] ||= {}
+    key_check(content['Study']['ResultsSection'])
   end
 
   def derived_section
-    content['Study']['DerivedSection'] ||= {}
+    key_check(content['Study']['DerivedSection'])
   end
 
-  def data_collection
-    puts "Json Record #{id}"
-    {
-      study: study_data,
-      design_groups: design_groups_data,
-      interventions: interventions_data,
-      detailed_description: detailed_description_data,
-      brief_summary: brief_summary_data,
-      design: designs_data,
-      eligibility: eligibility_data,
-      participant_flow: participant_flow_data,
-      baseline_measurements: baseline_measurements_data,
-      browse_conditions: browse_conditions_data,
-      browse_interventions: browse_interventions_data,
-      central_contacts_list: central_contacts_data,
-      conditions: conditions_data,
-      countries: countries_data,
-      documents: documents_data
-    }
+  def contacts_location_module
+    key_check(protocol_section['ContactsLocationsModule'])
+  end
+
+  def locations_array
+    locations_list = key_check(contacts_location_module['LocationList'])
+    locations_list['Location'] || []
   end
   
   def study_data 
@@ -536,7 +524,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def central_contacts_data
-    contacts_location_module = key_check(protocol_section['ContactsLocationsModule'])
     central_contacts_list = key_check(contacts_location_module['CentralContactList'])
     central_contacts = central_contacts_list['CentralContact'] || []
     collection = []
@@ -567,15 +554,12 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def countries_data
-    contacts_location_module = key_check(protocol_section['ContactsLocationsModule'])
-    locations_list = key_check(contacts_location_module['LocationList'])
-    locations = locations_list['Location'] || []
     misc_module = key_check(derived_section['MiscInfoModule'])
     removed_country_list = key_check(misc_module['RemovedCountryList'])
     removed_countries = removed_country_list['RemovedCountry'] || []
     collection = []
 
-    locations.each do |location|
+    locations_array.each do |location|
       collection.push(nct_id: nct_id, name: location['LocationCountry'], removed: false)
     end
 
@@ -603,8 +587,100 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
+  def facility_contact_type
+  end
+
+  def facilities_data
+    collection = []
+    locations_array.each do |location|
+      location_contact_list = key_check(location['LocationContactList'])
+      location_contact = key_check(location_contact_list['LocationContact'])
+      facility_contacts = []
+      facility_investigators = []
+      location_contact.each do |contact|
+        contact_role = contact['LocationContactRole']
+        if contact_role =~ /Investigator/i
+          facility_investigators.push(
+                                      nct_id: nct_id,
+                                      facility_id: nil,
+                                      role: contact_role,
+                                      name: contact['LocationContactName']
+                                    )
+        else
+          facility_contacts.push(
+                                  nct_id: nct_id,
+                                  facility_id: nil,
+                                  contact_type: nil,
+                                  contact_role: contact_role,
+                                  name: contact['LocationContactName'],
+                                  email: contact['LocationContactEMail'],
+                                  phone: contact['LocationContactPhone']
+                                )
+        end
+      end
+
+      collection.push(
+                      nct_id: nct_id,
+                      status: location['LocationStatus'],
+                      name: location['LocationFacility'],
+                      city: location['LocationCity'],
+                      state: location['LocationState'],
+                      zip: location['LocationZip'],
+                      country: location['LocationCountry'],
+                      facility_contacts: facility_contacts,
+                      facility_investigators: facility_investigators
+                    )
+    end
+    collection
+  end
+
+  def id_information_data
+    identification_module = key_check(protocol_section['IdentificationModule'])
+    org_study_info = key_check(identification_module['OrgStudyIdInfo'])
+    secondary_info_list = key_check(identification_module['SecondaryIdInfoList'])
+    secondary_info = key_check(secondary_info_list['SecondaryIdInfo'])
+    collection = [{nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId']}]
+    
+    secondary_info.each do |info|
+      collection.push(
+        nct_id: nct_id, id_type: 'secondary_id', id_value: info['SecondaryId']
+      )
+    end
+    collection
+  end
+
+  def data_collection
+    puts "Json Record #{id}"
+    {
+      study: study_data,
+      design_groups: design_groups_data,
+      interventions: interventions_data,
+      detailed_description: detailed_description_data,
+      brief_summary: brief_summary_data,
+      design: designs_data,
+      eligibility: eligibility_data,
+      participant_flow: participant_flow_data,
+      baseline_measurements: baseline_measurements_data,
+      browse_conditions: browse_conditions_data,
+      browse_interventions: browse_interventions_data,
+      central_contacts_list: central_contacts_data,
+      conditions: conditions_data,
+      countries: countries_data,
+      documents: documents_data,
+      facilities: facilities_data,
+      id_information: id_information_data
+    }
+  end
+
   def self.new_check
     nct = %w[
+      NCT04214080
+      NCT04214093
+      NCT00444327
+      NCT00444431
+      NCT00444600
+      NCT04213976
+      NCT04213794
       NCT04164186
       NCT04210765
       NCT04175600
@@ -615,15 +691,13 @@ class StudyJsonRecord < ActiveRecord::Base
       NCT03894189
     ]
     
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.document_data }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.document_data }
-    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.id_information_data }
+    StudyJsonRecord.all.order(:id).each{ |i| puts i.id_information_data }
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     []
   end
  
-  #   Facility.create_all_from(opts)
-  #   IdInformation.create_all_from(opts)
   #   IpdInformationType.create_all_from(opts)
   #   Keyword.create_all_from(opts)
   #   Link.create_all_from(opts)
