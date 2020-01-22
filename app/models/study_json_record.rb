@@ -733,7 +733,8 @@ class StudyJsonRecord < ActiveRecord::Base
       facilities: facilities_data,
       id_information: id_information_data,
       ipd_information_type: ipd_information_types_data,
-      keywords: keywords_data
+      keywords: keywords_data,
+      links: links_data
     }
   end
  
