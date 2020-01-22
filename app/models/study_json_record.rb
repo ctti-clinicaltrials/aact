@@ -587,14 +587,11 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def facility_contact_type
-  end
-
   def facilities_data
     collection = []
     locations_array.each do |location|
       location_contact_list = key_check(location['LocationContactList'])
-      location_contact = key_check(location_contact_list['LocationContact'])
+      location_contact = location_contact_list['LocationContact'] || []
       facility_contacts = []
       facility_investigators = []
       location_contact.each do |contact|
@@ -638,7 +635,7 @@ class StudyJsonRecord < ActiveRecord::Base
     identification_module = key_check(protocol_section['IdentificationModule'])
     org_study_info = key_check(identification_module['OrgStudyIdInfo'])
     secondary_info_list = key_check(identification_module['SecondaryIdInfoList'])
-    secondary_info = key_check(secondary_info_list['SecondaryIdInfo'])
+    secondary_info = secondary_info_list['SecondaryIdInfo'] || []
     collection = [{nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId']}]
     
     secondary_info.each do |info|
@@ -647,6 +644,72 @@ class StudyJsonRecord < ActiveRecord::Base
       )
     end
     collection
+  end
+
+  def ipd_information_types_data
+    ipd_sharing_statement_module = key_check(protocol_section['IPDSharingStatementModule'])
+    ipd_sharing_info_type_list = key_check(ipd_sharing_statement_module['IPDSharingInfoTypeList'])
+    ipd_sharing_info_type = ipd_sharing_info_type_list['IPDSharingInfoType'] || []
+    collection = []
+
+    ipd_sharing_info_type.each do |info|
+      collection.push(nct_id: nct_id, name: info)
+    end
+
+    collection
+  end
+
+  def keywords_data
+    conditions_module = key_check(protocol_section['ConditionsModule'])
+    keyword_list = key_check(conditions_module['KeywordList'])
+    keywords = keyword_list['Keyword'] || []
+    collection = []
+
+    keywords.each do |keyword|
+      collection.push(nct_id: nct_id, name: keyword, downcase_name: keyword.downcase)
+    end
+    collection
+  end
+
+  def links_data
+    references_module = key_check(protocol_section['ReferencesModule'])
+    see_also_link_list = key_check(references_module['SeeAlsoLinkList'])
+    see_also_links = see_also_link_list['SeeAlsoLink'] || []
+    collection = []
+
+    see_also_links.each do |link|
+      collection.push(nct_id: nct_id, url: link['SeeAlsoLinkURL'], description: link['SeeAlsoLinkLabel'])
+    end
+    collection
+  end
+
+  def self.new_check
+    nct = %w[
+      NCT01122706
+      NCT01122745
+      NCT04213846
+      NCT04214080
+      NCT04214093
+      NCT00444327
+      NCT00444431
+      NCT00444600
+      NCT04213976
+      NCT04213794
+      NCT04164186
+      NCT04210765
+      NCT04175600
+      NCT04158700
+      NCT01301274
+      NCT01301287
+      NCT01301261
+      NCT03894189
+    ]
+    
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.links_data }
+    StudyJsonRecord.all.order(:id).each{ |i| puts i.links_data }
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
+    []
   end
 
   def data_collection
@@ -668,38 +731,13 @@ class StudyJsonRecord < ActiveRecord::Base
       countries: countries_data,
       documents: documents_data,
       facilities: facilities_data,
-      id_information: id_information_data
+      id_information: id_information_data,
+      ipd_information_type: ipd_information_types_data,
+      keywords: keywords_data
     }
   end
-
-  def self.new_check
-    nct = %w[
-      NCT04214080
-      NCT04214093
-      NCT00444327
-      NCT00444431
-      NCT00444600
-      NCT04213976
-      NCT04213794
-      NCT04164186
-      NCT04210765
-      NCT04175600
-      NCT04158700
-      NCT01301274
-      NCT01301287
-      NCT01301261
-      NCT03894189
-    ]
-    
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.id_information_data }
-    StudyJsonRecord.all.order(:id).each{ |i| puts i.id_information_data }
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
-    []
-  end
  
-  #   IpdInformationType.create_all_from(opts)
-  #   Keyword.create_all_from(opts)
+
   #   Link.create_all_from(opts)
   #   Milestone.create_all_from(opts)
   #   Outcome.create_all_from(opts)
