@@ -464,17 +464,6 @@ class StudyJsonRecord < ActiveRecord::Base
     baseline_group_list = key_check(baseline_characteristics_module['BaselineGroupList'])
     baseline_group = baseline_group_list['BaselineGroup'] || []
     StudyJsonRecord.result_groups(baseline_group, type='Baseline', nct_id)
-    # collection = []
-    # baseline_group.each do |group|
-    #   collection.push(
-    #                     nct_id: nct_id,
-    #                     ctgov_group_code: group['BaselineGroupId'],
-    #                     result_type: 'Baseline',
-    #                     title: group['BaselineGroupTitle'],
-    #                     description: group['BaselineGroupDescription']
-    #                   )
-    # end
-    # collection
   end
 
   def baseline_counts_data
@@ -718,15 +707,6 @@ class StudyJsonRecord < ActiveRecord::Base
     participant_flow_module = key_check(results_section['ParticipantFlowModule'])
     flow_group_list = key_check(participant_flow_module['FlowGroupList'])
     flow_groups = flow_group_list['FlowGroup'] || []
-    # flow_group.each do |group|
-    #   collection.push(
-    #                     nct_id: nct_id,
-    #                     ctgov_group_code: group['FlowGroupId'],
-    #                     result_type: 'Participant Flow',
-    #                     title: group['FlowGroupTitle'],
-    #                     description: group['FlowGroupDescription']
-    #                   )
-    # end
     StudyJsonRecord.result_groups(flow_groups, type='Flow', nct_id)
   end
 
@@ -754,37 +734,10 @@ class StudyJsonRecord < ActiveRecord::Base
                                         param_type: outcome_measure['OutcomeMeasureParamType']
                                         },
                       outcome_count: StudyJsonRecord.outcome_count_data(outcome_measure, nct_id),
-                      outcome_measurement: StudyJsonRecord.outcome_measurements_data(outcome_measure, nct_id)
-                      # outcome_analysis:
+                      outcome_measurement: StudyJsonRecord.outcome_measurements_data(outcome_measure, nct_id),
+                      outcome_analysis: StudyJsonRecord.outcome_analyses_data(outcome_measure, nct_id)
                       )
-      
     end
-    # outcome_measurement
-    
-    # outcome_analysis
-    {
-      nct_id: nil,
-      outcome_id: nil,
-      non_inferiority_type: nil,
-      non_inferiority_description: nil,
-      param_type: nil,
-      param_value: nil,
-      dispersion_type: nil,
-      dispersion_value: nil,
-      p_value_modifier: nil,
-      p_value: nil,
-      ci_n_sides: nil,
-      ci_percent: nil,
-      ci_lower_limit: nil,
-      ci_upper_limit: nil,
-      ci_upper_limit_na_comment: nil,
-      p_value_description: nil,
-      method: nil,
-      method_description: nil,
-      estimate_description: nil,
-      groups_description: nil,
-      other_analysis_description: nil
-    }
     collection
   end
 
@@ -879,9 +832,66 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
+  def self.outcome_analyses_data(outcome_measure, nct_id)
+    outcome_analysis_list = key_check(outcome_measure['OutcomeAnalysisList'])
+    outcome_analyses = outcome_analysis_list['OutcomeAnalysis'] || []
+    collection = []
+
+    outcome_analyses.each do |analysis|
+      raw_value = analysis['OutcomeAnalysisPValue'] || ''
+      collection.push( 
+                      outcome_analyses: {
+                                          nct_id: nct_id,
+                                          outcome_id: nil,
+                                          non_inferiority_type: analysis['OutcomeAnalysisNonInferiorityType'],
+                                          non_inferiority_description: analysis['OutcomeAnalysisNonInferiorityComment'],
+                                          param_type: analysis['OutcomeAnalysisParamType'],
+                                          param_value: analysis['OutcomeAnalysisParamValue'],
+                                          dispersion_type: analysis['OutcomeAnalysisDispersionType'],
+                                          dispersion_value: analysis['OutcomeAnalysisDispersionValue'],
+                                          p_value_modifier: raw_value.gsub(/\d+/, "").gsub('.','').gsub('-','').strip,
+                                          p_value: raw_value.gsub(/</, '').gsub(/>/, '').gsub(/ /, '').strip,
+                                          p_value_description: analysis['OutcomeAnalysisPValueComment'],
+                                          ci_n_sides: analysis['OutcomeAnalysisCINumSides'],
+                                          ci_percent: float(analysis['OutcomeAnalysisCIPctValue']),
+                                          ci_lower_limit: analysis['OutcomeAnalysisCILowerLimit'],
+                                          ci_upper_limit: analysis['OutcomeAnalysisCIUpperLimit'],
+                                          ci_upper_limit_na_comment: analysis['OutcomeAnalysisCIUpperLimitComment'],
+                                          
+                                          method: analysis['OutcomeAnalysisStatisticalMethod'],
+                                          method_description: analysis['OutcomeAnalysisStatisticalComment'],
+                                          estimate_description: analysis['OutcomeAnalysisEstimateComment'],
+                                          groups_description: analysis['OutcomeAnalysisGroupDescription'],
+                                          other_analysis_description: analysis['OutcomeAnalysisOtherAnalysisDescription']
+                                        },
+                      outcome_analysis_group_ids: StudyJsonRecord.outcome_analysis_groups_data(outcome_analysis, nct_id)  
+                    )
+    end
+    collection
+  end
+
+  def self.outcome_analysis_groups_data(outcome_analysis, nct_id)
+    outcome_analysis_group_id_list = key_check(outcome_analysis['OutcomeAnalysisGroupIdList'])
+    outcome_analysis_group_ids = outcome_analysis_group_id_list['OutcomeAnalysisGroupId'] || []
+    collection = []
+
+    outcome_analysis_group_ids.each do |group_id|
+      collection.push(
+                      nct_id: nct_id,
+                      outcome_analysis_id: nil,
+                      result_group_id: nil,
+                      ctgov_group_code: group_id
+                    )
+    end
+  end
 
   def self.new_check
     nct = %w[
+      NCT02982187
+      NCT04027218
+      NCT03811093
+      NCT04109703
+      NCT03763058
       NCT00489281
       NCT04076787
       NCT00725621
@@ -890,28 +900,11 @@ class StudyJsonRecord < ActiveRecord::Base
       NCT00320424
       NCT04144088
       NCT01122706
-      NCT01122745
-      NCT04213846
-      NCT04214080
-      NCT04214093
-      NCT00444327
-      NCT00444431
-      NCT00444600
-      NCT04213976
-      NCT04213794
-      NCT04164186
-      NCT04210765
-      NCT04175600
-      NCT04158700
-      NCT01301274
-      NCT01301287
-      NCT01301261
-      NCT03894189
     ]
     
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.milestones_data }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.milestones_data }
-    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
+    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.outcomes_data }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.outcomes_data }
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     []
   end
@@ -939,7 +932,8 @@ class StudyJsonRecord < ActiveRecord::Base
       ipd_information_type: ipd_information_types_data,
       keywords: keywords_data,
       links: links_data,
-      milestones: milestones_data
+      milestones: milestones_data,
+      outcomes: outcomes_data
     }
   end
  
