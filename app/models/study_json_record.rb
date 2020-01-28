@@ -170,6 +170,10 @@ class StudyJsonRecord < ActiveRecord::Base
     key_check(content['Study']['DerivedSection'])
   end
 
+  def annotation_section
+    key_check(content['Study']['AnnotationSection'])
+  end
+
   def contacts_location_module
     key_check(protocol_section['ContactsLocationsModule'])
   end
@@ -928,10 +932,27 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def pending_results_data
+    annotation_module = key_check(annotation_section['AnnotationModule'])
+    unposted_annotation = key_check(annotation_module['UnpostedAnnotation'])
+    unposted_event_list = key_check(unposted_annotation['UnpostedEventList'])
+    unposted_events = unposted_event_list['UnpostedEvent'] || []
+    collection = []
+
+    unposted_events.each do |event|
+      collection.push(
+                      nct_id: nct_id,
+                      event: event['UnpostedEventType'],
+                      event_date_description: event['UnpostedEventDate'],
+                      event_date: event['UnpostedEventDate'].try(:to_date)
+                    )
+    end
+    collection
   end
 
   def self.new_check
     nct = %w[
+      NCT04204200
+      NCT04182217
       NCT04167644
       NCT04214080
       NCT02982187
@@ -947,8 +968,8 @@ class StudyJsonRecord < ActiveRecord::Base
     ]
     
     
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.design_outcomes_data }
-    StudyJsonRecord.all.order(:id).each{ |i| puts i.design_outcomes_data }
+    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.pending_results_data }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.pending_results_data }
     # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     []
@@ -980,11 +1001,11 @@ class StudyJsonRecord < ActiveRecord::Base
       milestones: milestones_data,
       outcomes: outcomes_data,
       overall_officials: overall_officials_data,
-      design_outcomes: design_outcomes_data
+      design_outcomes: design_outcomes_data,
+      pending_results: pending_results_data
     }
   end
 
-  #   PendingResult.create_all_from(opts)
   #   ProvidedDocument.create_all_from(opts)
   #   ReportedEvent.create_all_from(opts)
   #   ResponsibleParty.create_all_from(opts)
