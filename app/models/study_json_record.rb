@@ -174,6 +174,10 @@ class StudyJsonRecord < ActiveRecord::Base
     key_check(content['Study']['AnnotationSection'])
   end
 
+  def document_section
+    key_check(content['Study']['DocumentSection'])
+  end
+
   def contacts_location_module
     key_check(protocol_section['ContactsLocationsModule'])
   end
@@ -949,6 +953,27 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
+  def provided_documents_data
+    large_document_module = key_check(document_section['LargeDocumentModule'])
+    large_doc_list = key_check(large_document_module['LargeDocList'])
+    large_docs = large_doc_list['LargeDoc'] || []
+    collection = []
+
+    large_docs.each do |doc|
+      collection.push(
+                      nct_id: nct_id,
+                      document_type: doc['LargeDocLabel'],
+                      has_protocol: get_boolean(doc['LargeDocHasProtocol']),
+                      has_icf: get_boolean(doc['LargeDocHasICF']),
+                      has_sap: get_boolean(doc['LargeDocHasSAP']),
+                      document_date: doc['LargeDocDate'].try(:to_date),
+                      url: doc['LargeDocFilename']
+                      )
+                    
+    end
+    collection
+  end
+
   def self.new_check
     nct = %w[
       NCT04204200
@@ -968,8 +993,8 @@ class StudyJsonRecord < ActiveRecord::Base
     ]
     
     
-    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.pending_results_data }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.pending_results_data }
+    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.provided_documents_data }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.provided_documents_data }
     # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     []
@@ -1002,11 +1027,11 @@ class StudyJsonRecord < ActiveRecord::Base
       outcomes: outcomes_data,
       overall_officials: overall_officials_data,
       design_outcomes: design_outcomes_data,
-      pending_results: pending_results_data
+      pending_results: pending_results_data,
+      provided_documents: provided_documents_data
     }
   end
-
-  #   ProvidedDocument.create_all_from(opts)
+  
   #   ReportedEvent.create_all_from(opts)
   #   ResponsibleParty.create_all_from(opts)
   #   ResultAgreement.create_all_from(opts)
