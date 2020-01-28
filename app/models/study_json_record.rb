@@ -733,9 +733,9 @@ class StudyJsonRecord < ActiveRecord::Base
                                         dispersion_type: outcome_measure['OutcomeMeasureDispersionType'],
                                         param_type: outcome_measure['OutcomeMeasureParamType']
                                         },
-                      outcome_count: StudyJsonRecord.outcome_count_data(outcome_measure, nct_id),
-                      outcome_measurement: StudyJsonRecord.outcome_measurements_data(outcome_measure, nct_id),
-                      outcome_analysis: StudyJsonRecord.outcome_analyses_data(outcome_measure, nct_id)
+                      outcome_counts: outcome_counts_data(outcome_measure),
+                      outcome_measurements: outcome_measurements_data(outcome_measure),
+                      outcome_analyses: outcome_analyses_data(outcome_measure)
                       )
     end
     collection
@@ -770,7 +770,7 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def self.outcome_count_data(outcome_measure, nct_id)
+  def outcome_counts_data(outcome_measure)
     outcome_denom_list = key_check(outcome_measure['OutcomeDenomList'])
     outcome_denoms = outcome_denom_list['OutcomeDenom'] || []
     collection = []
@@ -790,9 +790,10 @@ class StudyJsonRecord < ActiveRecord::Base
                         )
       end
     end
+    collection
   end
 
-  def self.outcome_measurements_data(outcome_measure, nct_id)
+  def outcome_measurements_data(outcome_measure)
     outcome_class_list = key_check(outcome_measure['OutcomeClassList'])
     outcome_classes = outcome_class_list['OutcomeClass'] || []
     collection = []
@@ -832,7 +833,7 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def self.outcome_analyses_data(outcome_measure, nct_id)
+  def outcome_analyses_data(outcome_measure)
     outcome_analysis_list = key_check(outcome_measure['OutcomeAnalysisList'])
     outcome_analyses = outcome_analysis_list['OutcomeAnalysis'] || []
     collection = []
@@ -853,7 +854,7 @@ class StudyJsonRecord < ActiveRecord::Base
                                           p_value: raw_value.gsub(/</, '').gsub(/>/, '').gsub(/ /, '').strip,
                                           p_value_description: analysis['OutcomeAnalysisPValueComment'],
                                           ci_n_sides: analysis['OutcomeAnalysisCINumSides'],
-                                          ci_percent: float(analysis['OutcomeAnalysisCIPctValue']),
+                                          ci_percent: StudyJsonRecord.float(analysis['OutcomeAnalysisCIPctValue']),
                                           ci_lower_limit: analysis['OutcomeAnalysisCILowerLimit'],
                                           ci_upper_limit: analysis['OutcomeAnalysisCIUpperLimit'],
                                           ci_upper_limit_na_comment: analysis['OutcomeAnalysisCIUpperLimitComment'],
@@ -864,13 +865,13 @@ class StudyJsonRecord < ActiveRecord::Base
                                           groups_description: analysis['OutcomeAnalysisGroupDescription'],
                                           other_analysis_description: analysis['OutcomeAnalysisOtherAnalysisDescription']
                                         },
-                      outcome_analysis_group_ids: StudyJsonRecord.outcome_analysis_groups_data(outcome_analysis, nct_id)  
+                      outcome_analysis_group_ids: outcome_analysis_groups_data(analysis)  
                     )
     end
     collection
   end
 
-  def self.outcome_analysis_groups_data(outcome_analysis, nct_id)
+  def outcome_analysis_groups_data(outcome_analysis)
     outcome_analysis_group_id_list = key_check(outcome_analysis['OutcomeAnalysisGroupIdList'])
     outcome_analysis_group_ids = outcome_analysis_group_id_list['OutcomeAnalysisGroupId'] || []
     collection = []
@@ -885,8 +886,54 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
+  def overall_officials_data
+    overall_officials_list = key_check(contacts_location_module['OverallOfficialList'])
+    overall_officials = overall_officials_list['OverallOfficial'] || []
+    collection = []
+
+    overall_officials.each do |overall_official|
+      collection.push(
+                      nct_id: nct_id,
+                      role: overall_official['OverallOfficialRole'],
+                      name: overall_official['OverallOfficialName'],
+                      affiliation: overall_official['OverallOfficialAffiliation']
+                      )
+    end
+    collection
+  end
+
+  def design_outcomes_data
+    primary_outcomes = outcome_list('Primary')
+    secondary_outcomes = outcome_list('Secondary')
+    primary_outcomes + secondary_outcomes
+  end
+
+  def outcome_list(outcome_type='Primary')
+    outcomes_module = key_check(protocol_section['OutcomesModule'])
+    outcome_list = key_check(outcomes_module["#{outcome_type}OutcomeList"])
+    outcomes = outcome_list["#{outcome_type}Outcome"] || []
+    collection = []
+
+    outcomes.each do |outcome|
+      collection.push(
+                      nct_id: nct_id,
+                      outcome_type: outcome_type,
+                      measure: outcome["#{outcome_type}OutcomeMeasure"],
+                      time_frame: outcome["#{outcome_type}OutcomeTimeFrame"],
+                      population: nil,
+                      description: outcome["#{outcome_type}OutcomeDescription"]
+                      )
+    end
+    collection
+  end
+
+  def pending_results_data
+  end
+
   def self.new_check
     nct = %w[
+      NCT04167644
+      NCT04214080
       NCT02982187
       NCT04027218
       NCT03811093
@@ -897,13 +944,11 @@ class StudyJsonRecord < ActiveRecord::Base
       NCT00725621
       NCT02222493
       NCT04014062
-      NCT00320424
-      NCT04144088
-      NCT01122706
     ]
     
-    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.outcomes_data }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.outcomes_data }
+    
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.design_outcomes_data }
+    StudyJsonRecord.all.order(:id).each{ |i| puts i.design_outcomes_data }
     # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     []
@@ -933,13 +978,12 @@ class StudyJsonRecord < ActiveRecord::Base
       keywords: keywords_data,
       links: links_data,
       milestones: milestones_data,
-      outcomes: outcomes_data
+      outcomes: outcomes_data,
+      overall_officials: overall_officials_data,
+      design_outcomes: design_outcomes_data
     }
   end
- 
-  #   Outcome.create_all_from(opts)
-  #   OverallOfficial.create_all_from(opts)
-  #   DesignOutcome.create_all_from(opts)
+
   #   PendingResult.create_all_from(opts)
   #   ProvidedDocument.create_all_from(opts)
   #   ReportedEvent.create_all_from(opts)
