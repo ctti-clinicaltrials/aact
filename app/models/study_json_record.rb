@@ -471,7 +471,7 @@ class StudyJsonRecord < ActiveRecord::Base
     baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
     baseline_group_list = key_check(baseline_characteristics_module['BaselineGroupList'])
     baseline_group = baseline_group_list['BaselineGroup'] || []
-    StudyJsonRecord.result_groups(baseline_group, type='Baseline', nct_id)
+    StudyJsonRecord.result_groups(baseline_group, 'Baseline', 'Baseline', nct_id)
   end
 
   def baseline_counts_data
@@ -715,14 +715,13 @@ class StudyJsonRecord < ActiveRecord::Base
     participant_flow_module = key_check(results_section['ParticipantFlowModule'])
     flow_group_list = key_check(participant_flow_module['FlowGroupList'])
     flow_groups = flow_group_list['FlowGroup'] || []
-    StudyJsonRecord.result_groups(flow_groups, type='Flow', nct_id)
+    StudyJsonRecord.result_groups(flow_groups, 'Flow', 'Participant Flow', nct_id)
   end
 
   def outcomes_data
     outcomes_module = key_check(results_section['OutcomeMeasuresModule'])
     outcome_measure_list = key_check(outcomes_module['OutcomeMeasureList'])
     outcome_measures = outcome_measure_list['OutcomeMeasure'] || []
-    collection = []
     collection = {result_groups: outcome_result_groups_data, outcome_measures: []}
 
     outcome_measures.each do |outcome_measure|
@@ -758,21 +757,22 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_measures.each do |measure|
       outcome_group_list = key_check(measure['OutcomeGroupList'])
       outcome_groups = outcome_group_list['OutcomeGroup'] || []
-      collection.push(StudyJsonRecord.result_groups(outcome_groups, 'Outcome', nct_id))
+      collection.push(
+                      StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
+                      )
     end
     collection.flatten.uniq
   end
 
-  def self.result_groups(groups, type='Outcome', nct_id)
+  def self.result_groups(groups, key_name='Flow', type='Participant Flow', nct_id)
     collection = []
     groups.each do |group|
-      result_type = type =~ /Flow/i ? 'Participant Flow' : type
       collection.push(
                         nct_id: nct_id,
-                        ctgov_group_code: group["#{type}GroupId"],
-                        result_type: result_type,
-                        title: group["#{type}GroupTitle"],
-                        description: group["#{type}GroupDescription"]
+                        ctgov_group_code: group["#{key_name}GroupId"],
+                        result_type: type,
+                        title: group["#{key_name}GroupTitle"],
+                        description: group["#{key_name}GroupDescription"]
                       )
     end
     collection
@@ -973,9 +973,57 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     collection
   end
+ 
+  def reported_events_data
+    adverse_events_module = key_check(results_section['AdverseEventsModule'])
+    event_group_list = key_check(adverse_events_module['EventGroupList'])
+    event_groups = event_group_list['EventGroup'] || []
+    events = event_data('Serious') + event_data('Other')
+    {
+      result_groups: StudyJsonRecord.result_groups(event_groups, 'Event', 'Reported Event', nct_id),
+      events: events 
+    }
+  end
+
+  def event_data(event_type='Serious')
+    adverse_events_module = key_check(results_section['AdverseEventsModule'])
+    event_list = key_check(adverse_events_module["#{event_type}EventList"])
+    events = event_list["#{event_type}Event"] || []
+    collection = []
+
+    events.each do |event|
+      event_stat_list = key_check(event["#{event_type}EventStatsList"])
+      event_stats = event_stat_list["#{event_type}EventStats"] || []
+      event_stats.each do |event_stat|
+        collection.push(
+                        nct_id: nct_id,
+                        result_group_id: nil,
+                        ctgov_group_code: event_stat["#{event_type}EventStatsGroupId"],
+                        time_frame: adverse_events_module['EventsTimeFrame'],
+                        event_type: event_type.downcase,
+                        default_vocab: event["#{event_type}EventSourceVocabulary"],
+                        default_assessment: event["#{event_type}EventAssessmentType"],
+                        subjects_affected: event_stat["#{event_type}EventStatsNumAffected"],
+                        subjects_at_risk: event_stat["SeriousEventStatsNumAtRisk"],
+                        description: adverse_events_module['EventsDescription'],
+                        event_count: event_stat["#{event_type}EventStatsNumEvents"],
+                        organ_system: event["#{event_type}EventOrganSystem"],
+                        adverse_event_term: event["#{event_type}EventTerm"],
+                        frequency_threshold: adverse_events_module['EventsFrequencyThreshold'],
+                        vocab: nil,
+                        assessment: event["#{event_type}EventAssessmentType"]
+        )
+
+      end
+    end
+    collection
+  end
 
   def self.new_check
     nct = %w[
+      NCT03519243
+      NCT03034044
+      NCT03496987
       NCT04204200
       NCT04182217
       NCT04167644
@@ -993,8 +1041,8 @@ class StudyJsonRecord < ActiveRecord::Base
     ]
     
     
-    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.provided_documents_data }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.provided_documents_data }
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.reported_events_data }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.reported_events_data }
     # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     []
@@ -1028,10 +1076,11 @@ class StudyJsonRecord < ActiveRecord::Base
       overall_officials: overall_officials_data,
       design_outcomes: design_outcomes_data,
       pending_results: pending_results_data,
-      provided_documents: provided_documents_data
+      provided_documents: provided_documents_data,
+      reported_events: reported_events_data
     }
   end
-  
+
   #   ReportedEvent.create_all_from(opts)
   #   ResponsibleParty.create_all_from(opts)
   #   ResultAgreement.create_all_from(opts)
