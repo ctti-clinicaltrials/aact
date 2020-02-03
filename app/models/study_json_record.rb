@@ -978,14 +978,14 @@ class StudyJsonRecord < ActiveRecord::Base
     adverse_events_module = key_check(results_section['AdverseEventsModule'])
     event_group_list = key_check(adverse_events_module['EventGroupList'])
     event_groups = event_group_list['EventGroup'] || []
-    events = event_data('Serious') + event_data('Other')
+    events = events_data('Serious') + events_data('Other')
     {
       result_groups: StudyJsonRecord.result_groups(event_groups, 'Event', 'Reported Event', nct_id),
       events: events 
     }
   end
 
-  def event_data(event_type='Serious')
+  def events_data(event_type='Serious')
     adverse_events_module = key_check(results_section['AdverseEventsModule'])
     event_list = key_check(adverse_events_module["#{event_type}EventList"])
     events = event_list["#{event_type}Event"] || []
@@ -1004,7 +1004,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         default_vocab: event["#{event_type}EventSourceVocabulary"],
                         default_assessment: event["#{event_type}EventAssessmentType"],
                         subjects_affected: event_stat["#{event_type}EventStatsNumAffected"],
-                        subjects_at_risk: event_stat["SeriousEventStatsNumAtRisk"],
+                        subjects_at_risk: event_stat["#{event_type}EventStatsNumAtRisk"],
                         description: adverse_events_module['EventsDescription'],
                         event_count: event_stat["#{event_type}EventStatsNumEvents"],
                         organ_system: event["#{event_type}EventOrganSystem"],
@@ -1013,14 +1013,87 @@ class StudyJsonRecord < ActiveRecord::Base
                         vocab: nil,
                         assessment: event["#{event_type}EventAssessmentType"]
         )
-
       end
+    end
+    collection
+  end
+
+  def responsible_party_data
+    # https://clinicaltrials.gov/api/query/full_studies?expr=NCT04053270&fmt=json
+    # https://clinicaltrials.gov/api/query/full_studies?expr=NCT04076787&fmt=json
+    sponsor_collaborators_module = key_check(protocol_section['SponsorCollaboratorsModule'])
+    responsible_party = key_check(sponsor_collaborators_module['ResponsibleParty'])
+    {
+      nct_id: nct_id,
+      responsible_party_type: responsible_party['ResponsiblePartyType'],
+      name: responsible_party['ResponsiblePartyInvestigatorFullName'],
+      title: responsible_party['ResponsiblePartyInvestigatorTitle'],
+      organization: responsible_party['ResponsiblePartyOldOrganization'],
+      affiliation: responsible_party['ResponsiblePartyInvestigatorAffiliation']
+    }
+  end
+
+  def result_agreement_data
+    more_info_module = key_check(results_section['MoreInfoModule'])
+    certain_agreement = key_check(more_info_module['CertainAgreement'])
+
+    {
+      nct_id: nct_id,
+      pi_employee: StudyJsonRecord.translate_agreement('PI', certain_agreement['AgreementPISponsorEmployee']),
+      agreement: StudyJsonRecord.translate_agreement('Agreement', certain_agreement['AgreementOtherDetails'])
+    }
+  end
+
+  def self.translate_agreement(type='PI', value)
+    pi_true = 'All Principal Investigators ARE employed by the organization sponsoring the study.'
+    pi_false = 'Principal Investigators are NOT employed by the organization sponsoring the study.'
+    agreement_false = "There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed."
+    return value =~ /no/i ? pi_false : pi_true if type == 'PI'
+    return value ? value : agreement_false
+
+  end
+
+  def result_contact_data
+    more_info_module = key_check(results_section['MoreInfoModule'])
+    point_of_contact = key_check(more_info_module['PointOfContact'])
+    ext = point_of_contact['PointOfContactPhoneExt']
+    phone = point_of_contact['PointOfContactPhone']
+    {
+      nct_id: nct_id,
+      organization: point_of_contact['PointOfContactOrganization'], 
+      name: point_of_contact['PointOfContactTitle'], 
+      phone: ext ? (phone + " ext #{ext}") : phone, 
+      email: point_of_contact['PointOfContactEMail']
+    }
+  end
+
+  def study_references_data
+    reference_module = key_check(protocol_section['ReferencesModule'])
+    reference_list = key_check(reference_module['ReferenceList'])
+    references = reference_list['Reference'] || []
+    collection = []
+
+    references.each do |reference|
+      collection.push(
+                      nct_id: nct_id,
+                      pmid: reference['ReferencePMID'],
+                      reference_type: reference['ReferenceType'],
+                      # results_reference - old data format
+                      citation: reference['ReferenceCitation']
+
+                      )
     end
     collection
   end
 
   def self.new_check
     nct = %w[
+      NCT00530010
+      NCT04144088
+      NCT04053270
+      NCT03897712
+      NCT03845673
+      NCT04245423
       NCT03519243
       NCT03034044
       NCT03496987
@@ -1041,8 +1114,8 @@ class StudyJsonRecord < ActiveRecord::Base
     ]
     
     
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.reported_events_data }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.reported_events_data }
+    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.study_references_data }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.study_references_data }
     # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     []
@@ -1077,14 +1150,13 @@ class StudyJsonRecord < ActiveRecord::Base
       design_outcomes: design_outcomes_data,
       pending_results: pending_results_data,
       provided_documents: provided_documents_data,
-      reported_events: reported_events_data
+      reported_events: reported_events_data,
+      responsible_party: responsible_party_data,
+      result_agreement: result_agreement_data,
+      result_contact: result_contact_data
     }
   end
 
-  #   ReportedEvent.create_all_from(opts)
-  #   ResponsibleParty.create_all_from(opts)
-  #   ResultAgreement.create_all_from(opts)
-  #   ResultContact.create_all_from(opts)
   #   Reference.create_all_from(opts)
   #   Sponsor.create_all_from(opts)
 
