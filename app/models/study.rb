@@ -7,7 +7,7 @@ end
 
 class Study < ActiveRecord::Base
 
-  before_update do
+  before_save do
     if enrollment_changed?
       StudyHistory.create(nct_id: nct_id, study_enrollment_type_id: StudyEnrollmentType.find_by(name: enrollment_type).id, timestamp: Time.now, enrollment: enrollment)
     end
