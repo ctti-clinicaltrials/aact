@@ -1086,8 +1086,34 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
+  def sponsors_data
+    sponsor_collaborators_module = key_check(protocol_section['SponsorCollaboratorsModule'])
+    lead_sponsor = key_check(sponsor_collaborators_module['LeadSponsor'])
+    collaborator_list = key_check(sponsor_collaborators_module['CollaboratorList'])
+    collaborators = collaborator_list['Collaborator'] || []
+    collection = []
+    collection.push(sponsor_info(lead_sponsor, 'LeadSponsor'))
+
+    collaborators.each do |collaborator|
+      collection.push(sponsor_info(collaborator, 'Collaborator'))
+    end
+
+    collection
+  end
+
+  def sponsor_info(sponsor_hash, sponsor_type='LeadSponsor')
+    type_of_sponsor = sponsor_type =~ /Lead/i ? 'lead' : 'collaborator'
+    {
+      nct_id: nct_id,
+      agency_class: sponsor_hash["#{sponsor_type}Class"],
+      lead_or_collaborator: type_of_sponsor,
+      name: sponsor_hash["#{sponsor_type}Name"]
+    }
+  end
+
   def self.new_check
     nct = %w[
+      NCT04050527
       NCT00530010
       NCT04144088
       NCT04053270
@@ -1114,8 +1140,8 @@ class StudyJsonRecord < ActiveRecord::Base
     ]
     
     
-    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.study_references_data }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.study_references_data }
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.sponsors_data }
+    StudyJsonRecord.all.order(:id).each{ |i| puts i.sponsors_data }
     # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     []
@@ -1153,11 +1179,10 @@ class StudyJsonRecord < ActiveRecord::Base
       reported_events: reported_events_data,
       responsible_party: responsible_party_data,
       result_agreement: result_agreement_data,
-      result_contact: result_contact_data
+      result_contact: result_contact_data,
+      study_references: study_references_data,
+      sponsors: sponsors_data
     }
   end
-
-  #   Reference.create_all_from(opts)
-  #   Sponsor.create_all_from(opts)
 
 end
