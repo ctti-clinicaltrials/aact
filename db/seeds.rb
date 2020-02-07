@@ -21,5 +21,3 @@ pub_con.execute("grant usage on schema ctgov TO read_only;")
 pub_con.execute("grant select on all tables in schema ctgov to read_only;")
 pub_con.execute("alter role read_only login;")
 pub_con.reset!
-
-StudyEnrollmentType.create([{name: "Actual"}, {name: "Anticipated"}])

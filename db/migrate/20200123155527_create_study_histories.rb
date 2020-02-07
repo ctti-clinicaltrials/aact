@@ -1,6 +1,7 @@
 class CreateStudyHistories < ActiveRecord::Migration
   def change
-    create_table :study_histories do |t|
+
+    create_table 'historical.study_histories' do |t|
       t.string :nct_id
       t.integer :study_enrollment_type_id
       t.datetime :timestamp
