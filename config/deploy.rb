@@ -1,6 +1,6 @@
 # config valid only for current version of Capistrano
 lock "3.8.2"
-set :chruby_ruby, 'ruby-2.4.5'
+set :chruby_ruby, 'ruby-2.6.2'
 
 set :application, "aact"
 
@@ -47,6 +47,7 @@ set :format_options, command_output: true, log_file: "#{ENV.fetch('STATIC_FILE_D
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
 # Default value for default_env is {}
+puts "HAHAHAHA", ENV['AACT_PATH']
 
 set :default_env, {
   'PATH' => ENV['AACT_PATH'] || "<server-path>/shared/bundle/ruby/2.4.5/bin:/opt/rh/rh-ruby26/root/usr/lib64",

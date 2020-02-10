@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.4.5"
+ruby "2.6.2"
 
 gem "sprockets", ">= 3.7.2"
 gem "rubyzip", ">= 1.2.2"
