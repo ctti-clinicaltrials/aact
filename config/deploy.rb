@@ -49,13 +49,13 @@ set :format_options, command_output: true, log_file: "#{ENV.fetch('STATIC_FILE_D
 # Default value for default_env is {}
 
 set :default_env, {
-  'PATH' => ENV['AACT_PATH'] || "<server-path>/shared/bundle/ruby/2.4.5/bin:/opt/rh/rh-ruby24/root/usr/lib64",
-  'LD_LIBRARY_PATH' => ENV['LD_LIBRARY_PATH'] || "/opt/rh/rh-ruby24/root/usr/lib64",
+  'PATH' => ENV['AACT_PATH'] || "<server-path>/shared/bundle/ruby/2.4.5/bin:/opt/rh/rh-ruby26/root/usr/lib64",
+  'LD_LIBRARY_PATH' => ENV['LD_LIBRARY_PATH'] || "/opt/rh/rh-ruby26/root/usr/lib64",
   'APPLICATION_HOST' => ENV['APPLICATION_HOST'] || 'localhost',
   'AACT_STATIC_FILE_DIR' => ENV['AACT_STATIC_FILE_DIR'] || '~/aact-files',
-  'RUBY_VERSION' =>  ENV['RUBY_VERSION'] || 'ruby 2.4.5',
-  'GEM_HOME' => ENV['GEM_HOME'] || '~/.gem/ruby',
-  'GEM_PATH' => ENV['GEM_PATH'] || '~/.gem/ruby/gems:/opt/rh/rh-ruby24/root/usr/share/gems:/opt/rh/rh-ruby24/root/usr/local/share/gems:/opt/rh/rh-ruby24/root/usr/lib64'
+  'RUBY_VERSION' =>  ENV['RUBY_VERSION'] || 'ruby 2.6.2',
+  'GEM_HOME' => ENV['AACT_GEM_HOME'] || '~/.gem/ruby',
+  'GEM_PATH' => ENV['AACT_GEM_PATH'] || '~/.gem/ruby/gems:/opt/rh/rh-ruby26/root/usr/share/gems:/opt/rh/rh-ruby26/root/usr/local/share/gems:/opt/rh/rh-ruby26/root/usr/lib64'
 }
 
 # Default value for keep_releases is 5
