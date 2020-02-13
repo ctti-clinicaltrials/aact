@@ -119,7 +119,6 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.4.1)
       launchy (~> 2.2)
-    libv8 (3.16.14.19)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -194,7 +193,6 @@ GEM
     rake (12.0.0)
     recipient_interceptor (0.1.2)
       mail
-    ref (2.0.0)
     request_store (1.3.2)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
@@ -247,9 +245,6 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     string-similarity (2.0.0)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -283,7 +278,6 @@ DEPENDENCIES
   coderay
   database_cleaner
   enumerize
-  execjs
   factory_girl_rails
   faraday
   flutie
@@ -294,7 +288,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   letter_opener
-  libv8 (~> 3.16.14.15)
   loofah (~> 2.2.3)
   nokogiri
   normalize-rails
@@ -321,7 +314,6 @@ DEPENDENCIES
   single_test
   sprockets (>= 3.7.2)
   string-similarity
-  therubyracer (~> 0.12.3)
   timecop
   vcr
   webmock
