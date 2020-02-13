@@ -325,3 +325,9 @@ DEPENDENCIES
   timecop
   vcr
   webmock
+
+RUBY VERSION
+   ruby 2.4.5p335
+
+BUNDLED WITH
+   1.17.3

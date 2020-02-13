@@ -10,6 +10,7 @@ server.env
 /log/*
 /public/system
 /public/assets
+/public/static
 /tags
 /vendor
 /tmp/*

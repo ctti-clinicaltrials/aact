@@ -33,6 +33,17 @@ class CreateSupportTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
+    execute <<-SQL
+      DO
+      $do$
+        BEGIN
+           IF NOT EXISTS ( SELECT rolname FROM pg_catalog.pg_roles WHERE  rolname = 'read_only') THEN
+              CREATE ROLE read_only;
+           END IF;
+        END
+      $do$;
+    SQL
+
     add_index "support.load_events", :event_type
     add_index "support.load_events", :status
     add_index "support.study_xml_records", :nct_id
