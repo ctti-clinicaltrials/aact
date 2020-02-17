@@ -39,7 +39,7 @@ namespace :db do
   end
 
   task copy_schema_to_beta: [:environment] do
-    ActiveRecord::Base.connection.execute("CREATE SCHEMA IF NOT EXISTS ctgov;")
+    ActiveRecord::Base.connection.execute("CREATE SCHEMA IF NOT EXISTS ctgov_beta;")
     aact_superuser = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'
     aact_back_db = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
     `pg_dump -U #{aact_superuser} --schema='ctgov' --schema-only #{aact_back_db} | sed 's/ctgov/ctgov_beta/g' | psql -U #{aact_superuser} -d #{aact_back_db}`
