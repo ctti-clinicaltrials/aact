@@ -2373,7 +2373,8 @@ CREATE TABLE ctgov.study_json_records (
     content jsonb NOT NULL,
     saved_study_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    download_date character varying
 );
 
 
@@ -4278,7 +4279,8 @@ CREATE TABLE ctgov_beta.study_json_records (
     content jsonb NOT NULL,
     saved_study_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    download_date character varying
 );
 
 
@@ -7149,4 +7151,6 @@ INSERT INTO schema_migrations (version) VALUES ('20191125205210');
 INSERT INTO schema_migrations (version) VALUES ('20200217214455');
 
 INSERT INTO schema_migrations (version) VALUES ('20200217215102');
+
+INSERT INTO schema_migrations (version) VALUES ('20200217220919');
 

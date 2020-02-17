@@ -120,7 +120,8 @@ class StudyJsonRecord < ActiveRecord::Base
     nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
     record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.new(nct_id: nct_id)
     record.content = study_data
-    record.saved_study_at = nil 
+    record.saved_study_at = nil
+    record.download_date = Time.current
     unless record.save
       puts "failed to save #{nct_id}"
     end
@@ -209,8 +210,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     { 
       nct_id: nct_id,
-      nlm_download_date_description: nil,
-      # "DataVrs":"2020:01:05 23:07:51.513"
+      nlm_download_date_description: download_date,
       study_first_submitted_date: get_date(status['StudyFirstSubmitDate']),
       results_first_submitted_date: get_date(status['ResultsFirstSubmitDate']),
       disposition_first_submitted_date: get_date(status['DispFirstSubmitDate']),
