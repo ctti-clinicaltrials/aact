@@ -1039,8 +1039,9 @@ class StudyJsonRecord < ActiveRecord::Base
 
     {
       nct_id: nct_id,
-      pi_employee: StudyJsonRecord.translate_agreement('PI', certain_agreement['AgreementPISponsorEmployee']),
-      agreement: StudyJsonRecord.translate_agreement('Agreement', certain_agreement['AgreementOtherDetails'])
+      pi_employee: certain_agreement['AgreementPISponsorEmployee'],
+      restrictive_agreement: certain_agreement['AgreementOtherDetails'],
+      restriction_type: certain_agreement['AgreementRestrictionType']
     }
   end
 
