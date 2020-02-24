@@ -3,6 +3,63 @@ require 'fileutils'
 # require 'zip'
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
+  def initialize(params={})
+    @full_featured = params[:full_featured] || false
+    @params=params
+    @type=(params[:event_type] ? params[:event_type] : 'incremental')
+    if params[:restart]
+      log("Starting the #{@type} load...")
+      @type='restart'
+    end
+    @days_back=(params[:days_back] ? params[:days_back] : 2)
+    @load_event = Support::LoadEvent.create({:event_type=>@type,:status=>'running',:description=>'',:problems=>''})
+    @load_event.save!  # Save to timestamp created_at
+    @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
+    self
+  end
+
+  def run
+    status=true
+    begin
+      ActiveRecord::Base.logger=nil
+      case params[:event_type]
+      when 'full'
+        status=full
+      else
+        status=incremental
+      end
+      finalize_load if status != false
+    rescue => error
+      begin
+        status=false
+        msg="#{error.message} (#{error.class} #{error.backtrace}"
+        log("#{@load_event.event_type} load failed in run: #{msg}")
+        load_event.add_problem(msg)
+        load_event.complete({:status=>'failed', :study_counts=> study_counts})
+        db_mgr.grant_db_privs
+        Admin::PublicAnnouncement.clear_load_message if full_featured and Admin::AdminBase.database_exists?
+      rescue
+        load_event.complete({:status=>'failed', :study_counts=> study_counts})
+      end
+    end
+    send_notification
+  end
+
+  def finalize_load
+    log('finalizing load...')
+    
+    return unless full_featured  # no need to continue unless configured as a fully featured implementation of AACT
+    study_counts[:processed]=db_mgr.background_study_count
+    take_snapshot
+    if refresh_public_db != true
+      load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
+      load_event.save!
+    end
+    db_mgr.grant_db_privs
+    load_event.complete({:study_counts=>study_counts})
+    create_flat_files
+    Admin::PublicAnnouncement.clear_load_message
+  end
 
   def self.root_dir
     "#{Rails.public_path}/static"
@@ -35,8 +92,7 @@ class StudyJsonRecord < ActiveRecord::Base
     file
   end
 
-  def self.save_all_downloaded_studies
-    Util::Updater.const_set('SCHEMA', 'ctgov_beta')
+  def full
     start_time = Time.current
     study_download = download_all_studies
     # finshed in about 12 hours
@@ -67,8 +123,7 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "total number we have #{StudyJsonRecord.count}"
   end
 
-  def self.save_all_api_studies(load_type='full', days_back=1)
-    Util::Updater.const_set('SCHEMA', 'ctgov_beta')
+  def incremental
     # Current Study Json Record Count 326614
     # finshed in about 17 hours
     # total number we should have 326612
@@ -87,7 +142,7 @@ class StudyJsonRecord < ActiveRecord::Base
     
     for x in 1..limit
       puts "batch #{x}"
-      fetch_studies(min, max, load_type, days_back)
+      fetch_studies(min, max)
       min += 100
       max += 100
       puts "Current Study Json Record Count #{StudyJsonRecord.count}"
@@ -99,18 +154,12 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "total number we have #{StudyJsonRecord.count}"
   end
 
-  def self.fetch_studies(min=1, max=100, load_type='full', days_back=1)
+  def self.fetch_studies(min=1, max=100)
     begin
       retries ||= 0
       puts "try ##{ retries }"
-      if load_type == 'incremental'
-        date = (Date.current - days_back).strftime('%m/%d/%Y')
-        time_range = "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
-      else
-        time_range = nil
-      end
       #   "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[01/01/2020,%20MAX]&fmt=json"
-      url="https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
+      url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
       data = json_data(url)['FullStudiesResponse']['FullStudies']
       save_study_records(data)
     rescue
@@ -135,10 +184,17 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def self.json_data(url='https://clinicaltrials.gov/api/query/full_studies?expr=&min_rnk=1&max_rnk=100&fmt=json')
+  def self.json_data(url="https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=1&max_rnk=100&fmt=json")
     puts url
     page = open(url)
     JSON.parse(page.read)
+  end
+
+  def time_range
+    return nil if @type == 'full'
+    
+    date = (Date.current - @days_back).strftime('%m/%d/%Y')
+    "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
   end
 
   def key_check(key)
