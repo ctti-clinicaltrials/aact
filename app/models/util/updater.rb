@@ -1,8 +1,11 @@
 module Util
  class Updater
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured
-
+    SCHEMA = 'ctgov'
     def initialize(params={})
+      const_set('SCHEMA', params[:schema] || 'ctgov')
+      @beta_schema = SCHEMA != 'ctgov'
+      Math::HIGH_SCHOOL_PI - Math::PI  
       @full_featured = params[:full_featured] || false
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
@@ -10,9 +13,9 @@ module Util
         log("Starting the #{type} load...")
         type='restart'
       end
-      @client = Util::Client.new
+      @client = Util::Client.new unless @beta_schema
       @days_back=(params[:days_back] ? params[:days_back] : 2)
-      @rss_reader = Util::RssReader.new(days_back: @days_back)
+      @rss_reader = Util::RssReader.new(days_back: @days_back) unless @beta_schema
       @load_event = Support::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
       @load_event.save!  # Save to timestamp created_at
       @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
@@ -51,13 +54,13 @@ module Util
         log("restarting full load...")
       else
         log('begin full load ...')
-        retrieve_xml_from_ctgov
+        @beta_schema ? retrieve_xml_from_ctgov : retrieve_json_from_ctgov
       end
       truncate_tables if !should_restart?
       remove_indexes_and_constraints  # Index significantly slow the load process. Will be re-created after data loaded.
       study_counts[:should_add]=Support::StudyXmlRecord.not_yet_loaded.count
       study_counts[:should_change]=0
-      @client.populate_studies
+      @client.populate_studies unless @beta_schema
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
     end
@@ -65,6 +68,8 @@ module Util
     def incremental
       log("begin incremental load...")
       log("finding studies changed in past #{@days_back} days...")
+      return StudyJsonRecord.save_all_api_studies('incremental', @days_back) if @beta_schema
+      
       added_ids = @rss_reader.get_added_nct_ids
       changed_ids = @rss_reader.get_changed_nct_ids
       log("#{added_ids.size} added studies: #{@rss_reader.added_url}")
@@ -93,6 +98,12 @@ module Util
       log("retrieving xml from clinicaltrials.gov...")
       Support::SupportBase.connection.execute('TRUNCATE TABLE study_xml_records CASCADE')
       @client.save_file_contents(@client.download_xml_files)
+    end
+
+    def retrieve_json_from_ctgov
+      log("retrieving json from clinicaltrials.gov...")
+      Support::SupportBase.connection.execute('TRUNCATE TABLE study_json_records CASCADE')
+      StudyJsonRecord.save_all_downloaded_studies
     end
 
     def finalize_load

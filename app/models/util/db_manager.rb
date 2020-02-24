@@ -388,22 +388,21 @@ module Util
     def public_con
       return @public_con if @public_con and @public_con.active?
       @public_con = PublicBase.establish_connection(public_db_url).connection
-      @public_con.schema_search_path='ctgov'
+      @public_con.schema_search_path = Util::Updater::SCHEMA
       return @public_con
     end
 
     def public_alt_con
       return @public_alt_con if @public_alt_con and @public_alt_con.active?
       @public_alt_con = PublicBase.establish_connection(alt_db_url).connection
-      @public_alt_con.schema_search_path='ctgov'
+      @public_alt_con.schema_search_path = Util::Updater::SCHEMA
       return @public_alt_con
     end
 
-    def con(load_type= 'xml')
+    def con
       return @con if @con and @con.active?
       @con = ActiveRecord::Base.establish_connection(back_db_url).connection
-      if load_type
-      @con.schema_search_path= load_type == 'json' ? 'ctgov_beta': 'ctgov'
+      @con.schema_search_path = Util::Updater::SCHEMA
       return @con
     end
 

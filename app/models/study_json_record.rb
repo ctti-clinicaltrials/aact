@@ -66,7 +66,7 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "total number we have #{StudyJsonRecord.count}"
   end
 
-  def self.save_all_api_studies
+  def self.save_all_api_studies(load_type='full', days_back=1)
     # Current Study Json Record Count 326614
     # finshed in about 17 hours
     # total number we should have 326612
@@ -85,7 +85,7 @@ class StudyJsonRecord < ActiveRecord::Base
     
     for x in 1..limit
       puts "batch #{x}"
-      fetch_studies(min, max)
+      fetch_studies(min, max, load_type, days_back)
       min += 100
       max += 100
       puts "Current Study Json Record Count #{StudyJsonRecord.count}"
@@ -97,12 +97,21 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "total number we have #{StudyJsonRecord.count}"
   end
 
-  def self.fetch_studies(min=1, max=100)
+  def self.incremental_save(load_type='full', days_back=1)
+  end
+
+  def self.fetch_studies(min=1, max=100, load_type='full', days_back=1)
     begin
       retries ||= 0
       puts "try ##{ retries }"
-      # incremental_url = "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[01/01/2020,%20MAX]&fmt=json"
-      url="https://clinicaltrials.gov/api/query/full_studies?expr=&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
+      if load_type == 'incremental'
+        date = (Date.current - days_back).strftime('%m/%d/%Y')
+        time_range = "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
+      else
+        time_range = nil
+      end
+      #   "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[01/01/2020,%20MAX]&fmt=json"
+      url="https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
       data = json_data(url)['FullStudiesResponse']['FullStudies']
       save_study_records(data)
     rescue
