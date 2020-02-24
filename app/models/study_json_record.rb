@@ -1041,7 +1041,8 @@ class StudyJsonRecord < ActiveRecord::Base
       nct_id: nct_id,
       pi_employee: certain_agreement['AgreementPISponsorEmployee'],
       restrictive_agreement: certain_agreement['AgreementOtherDetails'],
-      restriction_type: certain_agreement['AgreementRestrictionType']
+      restriction_type: certain_agreement['AgreementRestrictionType'],
+      other_details: certain_agreement['AgreementOtherDetails']
     }
   end
 
