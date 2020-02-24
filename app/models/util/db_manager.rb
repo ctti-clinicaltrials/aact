@@ -399,10 +399,11 @@ module Util
       return @public_alt_con
     end
 
-    def con
+    def con(load_type= 'xml')
       return @con if @con and @con.active?
       @con = ActiveRecord::Base.establish_connection(back_db_url).connection
-      @con.schema_search_path='ctgov'
+      if load_type
+      @con.schema_search_path= load_type == 'json' ? 'ctgov_beta': 'ctgov'
       return @con
     end
 
