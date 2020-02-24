@@ -3,7 +3,6 @@ module Util
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured
     SCHEMA = 'ctgov'
     def initialize(params={})
-      const_set('SCHEMA', params[:schema] || 'ctgov')
       @beta_schema = SCHEMA != 'ctgov'
       Math::HIGH_SCHOOL_PI - Math::PI  
       @full_featured = params[:full_featured] || false

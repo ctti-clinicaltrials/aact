@@ -36,6 +36,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.save_all_downloaded_studies
+    Util::Updater.const_set('SCHEMA', 'ctgov_beta')
     start_time = Time.current
     study_download = download_all_studies
     # finshed in about 12 hours
@@ -67,6 +68,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.save_all_api_studies(load_type='full', days_back=1)
+    Util::Updater.const_set('SCHEMA', 'ctgov_beta')
     # Current Study Json Record Count 326614
     # finshed in about 17 hours
     # total number we should have 326612
@@ -95,9 +97,6 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "finshed in #{time_ago_in_words(start_time)}"
     puts "total number we should have #{total_number}"
     puts "total number we have #{StudyJsonRecord.count}"
-  end
-
-  def self.incremental_save(load_type='full', days_back=1)
   end
 
   def self.fetch_studies(min=1, max=100, load_type='full', days_back=1)
