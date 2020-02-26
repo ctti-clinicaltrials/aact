@@ -5,9 +5,8 @@ require 'fileutils'
 # run full load with: bundle exec rake db:load[1,full,true,ctgov_beta]
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
-
+  self.table_name = 'ctgov_beta.study_json_records'
   def self.run(params={})
-    Util::DbManager.new(params).public_con
     @full_featured = params[:full_featured] || false
     @params = params
     @type = params[:event_type] ? params[:event_type] : 'incremental'
@@ -15,7 +14,7 @@ class StudyJsonRecord < ActiveRecord::Base
     puts 'params set...'
     print 'now running'
     begin
-     @type == 'full' ? full : incremental
+      @type == 'full' ? full : incremental
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       log("#{@type} load failed in run: #{msg}")
