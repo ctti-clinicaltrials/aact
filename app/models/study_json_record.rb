@@ -1,64 +1,25 @@
 require 'open-uri'
 require 'fileutils'
 # require 'zip'
+# run incremental load with: bundle exec rake db:load[1,incremental,true,ctgov_beta]
+# run full load with: bundle exec rake db:load[1,full,true,ctgov_beta]
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
-  def initialize(params={})
+
+  def self.run(params={})
+    Util::DbManager.new(params).public_con
     @full_featured = params[:full_featured] || false
-    @params=params
-    @type=(params[:event_type] ? params[:event_type] : 'incremental')
-    if params[:restart]
-      log("Starting the #{@type} load...")
-      @type='restart'
-    end
-    @days_back=(params[:days_back] ? params[:days_back] : 2)
-    @load_event = Support::LoadEvent.create({:event_type=>@type,:status=>'running',:description=>'',:problems=>''})
-    @load_event.save!  # Save to timestamp created_at
-    @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
-    self
-  end
-
-  def run
-    status=true
+    @params = params
+    @type = params[:event_type] ? params[:event_type] : 'incremental'
+    @days_back = (params[:days_back] ? params[:days_back] : 2)
+    puts 'params set...'
+    print 'now running'
     begin
-      ActiveRecord::Base.logger=nil
-      case params[:event_type]
-      when 'full'
-        status=full
-      else
-        status=incremental
-      end
-      finalize_load if status != false
+     @type == 'full' ? full : incremental
     rescue => error
-      begin
-        status=false
-        msg="#{error.message} (#{error.class} #{error.backtrace}"
-        log("#{@load_event.event_type} load failed in run: #{msg}")
-        load_event.add_problem(msg)
-        load_event.complete({:status=>'failed', :study_counts=> study_counts})
-        db_mgr.grant_db_privs
-        Admin::PublicAnnouncement.clear_load_message if full_featured and Admin::AdminBase.database_exists?
-      rescue
-        load_event.complete({:status=>'failed', :study_counts=> study_counts})
-      end
+      msg="#{error.message} (#{error.class} #{error.backtrace}"
+      log("#{@type} load failed in run: #{msg}")
     end
-    send_notification
-  end
-
-  def finalize_load
-    log('finalizing load...')
-    
-    return unless full_featured  # no need to continue unless configured as a fully featured implementation of AACT
-    study_counts[:processed]=db_mgr.background_study_count
-    take_snapshot
-    if refresh_public_db != true
-      load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
-      load_event.save!
-    end
-    db_mgr.grant_db_privs
-    load_event.complete({:study_counts=>study_counts})
-    create_flat_files
-    Admin::PublicAnnouncement.clear_load_message
   end
 
   def self.root_dir
@@ -92,7 +53,7 @@ class StudyJsonRecord < ActiveRecord::Base
     file
   end
 
-  def full
+  def self.full
     start_time = Time.current
     study_download = download_all_studies
     # finshed in about 12 hours
@@ -123,7 +84,7 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "total number we have #{StudyJsonRecord.count}"
   end
 
-  def incremental
+  def self.incremental
     # Current Study Json Record Count 326614
     # finshed in about 17 hours
     # total number we should have 326612
@@ -154,6 +115,10 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "total number we have #{StudyJsonRecord.count}"
   end
 
+  def log(msg)
+    puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
+  end
+
   def self.fetch_studies(min=1, max=100)
     begin
       retries ||= 0
@@ -179,7 +144,9 @@ class StudyJsonRecord < ActiveRecord::Base
     record.content = study_data
     record.saved_study_at = nil
     record.download_date = Time.current
-    unless record.save
+    if record.save
+      record.build_study
+    else
       puts "failed to save #{nct_id}"
     end
   end
@@ -190,10 +157,10 @@ class StudyJsonRecord < ActiveRecord::Base
     JSON.parse(page.read)
   end
 
-  def time_range
+  def self.time_range
     return nil if @type == 'full'
     
-    date = (Date.current - @days_back).strftime('%m/%d/%Y')
+    date = (Date.current - @days_back.to_i).strftime('%m/%d/%Y')
     "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
   end
 
@@ -1249,6 +1216,10 @@ class StudyJsonRecord < ActiveRecord::Base
       study_references: study_references_data,
       sponsors: sponsors_data
     }
+  end
+
+  def build_study
+    puts 'here we create/update studies and all associated models'
   end
 
 end
