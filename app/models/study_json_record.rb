@@ -7,6 +7,7 @@ include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'ctgov_beta.study_json_records'
   def self.run(params={})
+    Util::DbManager.new(params).public_con
     @full_featured = params[:full_featured] || false
     @params = params
     @type = params[:event_type] ? params[:event_type] : 'incremental'
@@ -14,10 +15,10 @@ class StudyJsonRecord < ActiveRecord::Base
     puts 'params set...'
     print 'now running'
     begin
-      @type == 'full' ? full : incremental
+     @type == 'full' ? full : incremental
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
-      log("#{@type} load failed in run: #{msg}")
+      puts"#{@type} load failed in run: #{msg}"
     end
   end
 
@@ -100,7 +101,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
     limit = (total_number/100.0).ceil
     
-    for x in 1..limit
+    # for x in 1..limit
+    for x in 1..2
       puts "batch #{x}"
       fetch_studies(min, max)
       min += 100
@@ -114,9 +116,9 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "total number we have #{StudyJsonRecord.count}"
   end
 
-  def log(msg)
-    puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
-  end
+  # def log(msg)
+  #   puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
+  # end
 
   def self.fetch_studies(min=1, max=100)
     begin
@@ -1218,7 +1220,75 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def build_study
+    data = data_collection
+    StudyJsonRecord.set_tables_to_beta_schema
+    # ActiveRecord::Base.connection.execute "SET search_path TO ctgov_beta;"
+    # ActiveRecord::Base.connection.schema_search_path = 'ctgov_beta'
+    Study.find_or_create_by(nct_id: nct_id).update(data[:study])
+    # puts "data #{nct_id} ---#{data[:design_groups]}"
+    save_interventions(data[:interventions])
+    save_design_groups(data[:design_groups])
+
+    puts "Study Beta count #{Study.count}"
+    puts "Interventions Beta count #{Intervention.count}"
+    puts "InterventionOtherNames Beta count #{InterventionOtherName.count}"
+    puts "DesignGroup Beta count #{DesignGroup.count}"
+    puts "DesignGroupInterventions Beta count #{DesignGroupIntervention.count}"
+    puts "~~~~~~~~~~~~~~"
     puts 'here we create/update studies and all associated models'
+    StudyJsonRecord.set_tables_to_standard
+  end
+
+  def self.set_tables_to_beta_schema
+    Study.table_name = 'ctgov_beta.studies'
+    InterventionOtherName.table_name = 'ctgov_beta.intervention_other_names'
+    DesignGroup.table_name = 'ctgov_beta.design_groups'
+    DesignGroupIntervention.table_name = 'ctgov_beta.design_group_interventions'
+  end
+
+  def self.set_tables_to_standard
+    Study.table_name = 'ctgov.studies'
+  end
+
+  def save_interventions(interventions)
+    interventions.each do |intervention_info|
+      # puts "intervention info #{intervention_info}"
+      info = intervention_info[:intervention]
+      intervention = Intervention.find_by(nct_id: nct_id, name: info[:name])
+      intervention ||= Intervention.create(nct_id: nct_id, name: info[:name])
+      intervention.update(info)
+      intervention_other_names = intervention_info[:intervention_other_names]
+      intervention_other_names.each do |name|
+        puts "Intervention other name #{name}"
+        name[:intervention_id] = intervention.id
+        InterventionOtherName.find_or_create_by(name)
+      end
+    end
+  end
+
+  def save_design_groups(design_groups)
+    design_groups.each do |group|
+      design_info = group[:design_group]
+      design_group = DesignGroup.find_by(nct_id: nct_id, title: design_info[:title])
+      design_group ||= DesignGroup.create(nct_id: nct_id, title: design_info[:title])
+      design_group.update(design_info)
+
+      interventions = group[:design_group_interventions]
+      interventions.each do |intervention_info|
+        puts "intervention #{intervention_info}"
+        intervention = Intervention.find_by(
+                                            nct_id: nct_id,
+                                            name: intervention_info[:name],
+                                            intervention_type: intervention_info[:type]
+                                            )
+        puts "found #{intervention}"
+        DesignGroupIntervention.find_or_create_by(
+                                                  nct_id: nct_id,
+                                                  design_group_id: design_group.id,
+                                                  intervention_id: intervention.id
+                                                  )
+      end
+    end
   end
 
 end

@@ -3,7 +3,6 @@ module Util
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured
     
     def initialize(params={})
-      Util::Updater.const_set('SCHEMA', schema) unless SCHEMA
       @full_featured = params[:full_featured] || false
       @params=params
       type=(params[:event_type] ? params[:event_type] : 'incremental')
