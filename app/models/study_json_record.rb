@@ -116,10 +116,6 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "total number we have #{StudyJsonRecord.count}"
   end
 
-  # def log(msg)
-  #   puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
-  # end
-
   def self.fetch_studies(min=1, max=100)
     begin
       retries ||= 0
@@ -134,6 +130,8 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.save_study_records(study_batch)
+    return unless study_batch
+
     study_batch.each do |study_data|
       save_single_study(study_data)
     end
@@ -237,8 +235,12 @@ class StudyJsonRecord < ActiveRecord::Base
     results = key_check(content['Study']['ResultsSection'])
     baseline = key_check(results['BaselineCharacteristicsModule'])
     enrollment = key_check(design['EnrollmentInfo'])
+    expanded_access = status.dig('ExpandedAccessInfo', 'HasExpandedAccess')
     expanded = key_check(design['ExpandedAccessTypes'])
     biospec = key_check(design['BioSpec'])
+    arms_intervention = key_check(protocol['ArmsInterventionsModule'])
+    arms_group_list = key_check(arms_intervention['ArmGroupList'])
+    arms_groups = arms_group_list['ArmGroup'] || []
 
     { 
       nct_id: nct_id,
@@ -281,21 +283,21 @@ class StudyJsonRecord < ActiveRecord::Base
       phase: key_check(design['PhaseList'])['Phase'],
       enrollment: enrollment['EnrollmentCount'],
       enrollment_type: enrollment['EnrollmentType'],
-      source: nil,
+      source: ident.dig('Organization', 'OrgFullName'),
       limitations_and_caveats: key_check(results['MoreInfoModule'])['LimitationsAndCaveats'],
-      number_of_arms: nil,
-      number_of_groups: nil,
+      number_of_arms: arms_groups.count,
+      number_of_groups: arms_groups.count,
       why_stopped: status['WhyStopped'],
-      has_expanded_access: nil,
+      has_expanded_access: get_boolean(expanded_access),
       expanded_access_type_individual: get_boolean(expanded['ExpAccTypeIndividual']),
       expanded_access_type_intermediate: get_boolean(expanded['ExpAccTypeIntermediate']),
       expanded_access_type_treatment: get_boolean(expanded['ExpAccTypeTreatment']),
       has_dmc: get_boolean(oversight['OversightHasDMC']),
       is_fda_regulated_drug: get_boolean(oversight['IsFDARegulatedDrug']),
       is_fda_regulated_device: get_boolean(oversight['IsFDARegulatedDevice']),
-      is_unapproved_device: nil,
-      is_ppsd: nil,
-      is_us_export: nil,
+      is_unapproved_device: get_boolean(oversight['IsUnapprovedDevice']),
+      is_ppsd: get_boolean(oversight['IsPPSD']),
+      is_us_export: get_boolean(oversight['IsUSExport']),
       biospec_retention: biospec['BioSpecRetention'],
       biospec_description: biospec['BioSpecDescription'],
       ipd_time_frame: ipd_sharing['IPDSharingTimeFrame'],
@@ -1174,8 +1176,8 @@ class StudyJsonRecord < ActiveRecord::Base
     ]
     
     
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.sponsors_data }
-    StudyJsonRecord.all.order(:id).each{ |i| puts i.sponsors_data }
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.study_data }
+    StudyJsonRecord.all.order(:id).each{ |i| puts i.study_data }
     # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     []
@@ -1248,7 +1250,7 @@ class StudyJsonRecord < ActiveRecord::Base
             ]
     return unless schema == 'ctgov' || schema == 'ctgov_beta'       
     table_array.each do |name|
-      name.constantize.table_name = schema + ".#{name.downcase.pluralize}"
+      name.constantize.table_name = schema + ".#{name.tableize}"
       puts name.constantize.table_name
     end
     # Study.table_name = 'ctgov_beta.studies'
