@@ -561,8 +561,8 @@ class StudyJsonRecord < ActiveRecord::Base
     central_contacts.each do |contact|
       collection.push(
                         nct_id: nct_id,
-                        contact_type: nil,
-                        contact_role: contact['CentralContactRole'],
+                        # contact_type: nil,
+                        contact_type: contact['CentralContactRole'],
                         name: contact['CentralContactName'],
                         phone: contact['CentralContactPhone'],
                         email: contact['CentralContactEMail']
@@ -1221,7 +1221,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def build_study
     data = data_collection
-    StudyJsonRecord.set_tables_to_beta_schema
+    StudyJsonRecord.set_table_schema('ctgov_beta')
     # ActiveRecord::Base.connection.execute "SET search_path TO ctgov_beta;"
     # ActiveRecord::Base.connection.schema_search_path = 'ctgov_beta'
     Study.find_or_create_by(nct_id: nct_id).update(data[:study])
@@ -1236,18 +1236,25 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "DesignGroupInterventions Beta count #{DesignGroupIntervention.count}"
     puts "~~~~~~~~~~~~~~"
     puts 'here we create/update studies and all associated models'
-    StudyJsonRecord.set_tables_to_standard
+    StudyJsonRecord.set_table_schema('ctgov')
   end
 
-  def self.set_tables_to_beta_schema
-    Study.table_name = 'ctgov_beta.studies'
-    InterventionOtherName.table_name = 'ctgov_beta.intervention_other_names'
-    DesignGroup.table_name = 'ctgov_beta.design_groups'
-    DesignGroupIntervention.table_name = 'ctgov_beta.design_group_interventions'
-  end
-
-  def self.set_tables_to_standard
-    Study.table_name = 'ctgov.studies'
+  def self.set_table_schema(schema = 'ctgov')
+    table_array = %w[
+              Study
+              InterventionOtherName
+              DesignGroup
+              DesignGroupIntervention
+            ]
+    return unless schema == 'ctgov' || schema == 'ctgov_beta'       
+    table_array.each do |name|
+      name.constantize.table_name = schema + ".#{name.downcase.pluralize}"
+      puts name.constantize.table_name
+    end
+    # Study.table_name = 'ctgov_beta.studies'
+    # InterventionOtherName.table_name = 'ctgov_beta.intervention_other_names'
+    # DesignGroup.table_name = 'ctgov_beta.design_groups'
+    # DesignGroupIntervention.table_name = 'ctgov_beta.design_group_interventions'
   end
 
   def save_interventions(interventions)
