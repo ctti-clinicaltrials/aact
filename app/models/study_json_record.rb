@@ -158,7 +158,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.time_range
     return nil if @type == 'full'
-    
+    return nil unless @days_back != 'nil'
+
     date = (Date.current - @days_back.to_i).strftime('%m/%d/%Y')
     "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
   end
@@ -220,6 +221,8 @@ class StudyJsonRecord < ActiveRecord::Base
   
   def study_data 
     protocol = protocol_section
+    return nil if protocol.empty?
+
     status = protocol['StatusModule']
     ident = protocol['IdentificationModule']
     design = key_check(protocol['DesignModule'])
@@ -313,6 +316,8 @@ class StudyJsonRecord < ActiveRecord::Base
     arms_group_list = key_check(arms_intervention['ArmGroupList'])
     arms_groups = arms_group_list['ArmGroup'] || []
     collection = []
+    return nil if arms_groups.empty?
+
     arms_groups.each do |group|
       collection.push( 
                       design_group: {
@@ -331,6 +336,8 @@ class StudyJsonRecord < ActiveRecord::Base
     collection = []
     intervention_list = key_check(arms_group['ArmGroupInterventionList'])
     intervention_names = intervention_list['ArmGroupInterventionName'] || []
+    return nil if intervention_names.empty?
+
     intervention_names.each do |name|
       # I collect the info I need to do queries later so I can create or find the links
       # between design groups and interventions in the database
@@ -343,7 +350,6 @@ class StudyJsonRecord < ActiveRecord::Base
                     )
     end
     collection
-    # nct_id: string, design_group_id: integer, intervention_id: integer
   end
 
   def interventions_data
@@ -351,6 +357,8 @@ class StudyJsonRecord < ActiveRecord::Base
     intervention_list = key_check(arms_intervention['InterventionList'])
     interventions = intervention_list['Intervention'] || []
     collection = []
+    return nil if interventions.empty?
+
     interventions.each do |intervention|
       collection.push(
                       intervention: {
@@ -369,6 +377,8 @@ class StudyJsonRecord < ActiveRecord::Base
     other_name_list = key_check(intervention['InterventionOtherNameList'])
     collection = []
     other_names = other_name_list['InterventionOtherName'] || []
+    return nil if other_names.empty?
+
     other_names.each do |name|
       collection.push(nct_id: nct_id, intervention_id: nil, name: name)
     end
@@ -377,12 +387,17 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def detailed_description_data
     protocol = protocol_section 
-    { nct_id: nct_id, description: key_check(protocol['DescriptionModule'])['DetailedDescription'] }
+    description = key_check(protocol['DescriptionModule'])['DetailedDescription']
+    return nil unless description
+    { nct_id: nct_id, description: description }
   end
 
   def brief_summary_data
     protocol = protocol_section
-    { nct_id: nct_id, description: key_check(protocol['DescriptionModule'])['BriefSummary'] }
+    description = key_check(protocol['DescriptionModule'])['BriefSummary']
+    return nil unless description
+
+    { nct_id: nct_id, description: description }
   end
 
   def self.make_list(array)
@@ -400,6 +415,8 @@ class StudyJsonRecord < ActiveRecord::Base
     observations = observation_list['DesignObservationalModel'] || []
     time_perspective_list = key_check(info['DesignTimePerspectiveList'])
     time_perspectives = time_perspective_list['DesignTimePerspective'] || []
+    return nil if info.empty?
+
     {
       nct_id: nct_id,
       allocation: info['DesignAllocation'],
@@ -428,6 +445,8 @@ class StudyJsonRecord < ActiveRecord::Base
   def eligibility_data
     protocol = protocol_section
     eligibility =  key_check(protocol['EligibilityModule'])
+    return nil if eligibility.empty?
+
     {
       nct_id: nct_id,
       sampling_method: eligibility['SamplingMethod'],
@@ -445,6 +464,8 @@ class StudyJsonRecord < ActiveRecord::Base
   def participant_flow_data
     results = key_check(results_section)
     participant_flow = key_check(results['ParticipantFlowModule'])
+    return nil if participant_flow.empty?
+
     {
       nct_id: nct_id,
       recruitment_details: participant_flow['FlowRecruitmentDetails'],
@@ -455,10 +476,14 @@ class StudyJsonRecord < ActiveRecord::Base
   def baseline_measurements_data
     results = results_section
     baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
+    return nil if baseline_characteristics_module.empty?
+
     baseline_measure_list = key_check(baseline_characteristics_module['BaselineMeasureList'])
-    baseline_measure = baseline_measure_list['BaselineMeasure'] || []
+    baseline_measures = baseline_measure_list['BaselineMeasure'] || []
     collection = {result_groups: baseline_result_groups_data, baseline_counts: baseline_counts_data, measurements: []}
-    baseline_measure.each do |measure|
+    return if baseline_measures.empty?
+
+    baseline_measures.each do |measure|
       baseline_class_list = key_check(measure['BaselineClassList'])
       baseline_classes = baseline_class_list['BaselineClass'] || []
       baseline_classes.each do |baseline_class|
@@ -512,9 +537,11 @@ class StudyJsonRecord < ActiveRecord::Base
     results = results_section
     baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
     baseline_denom_list = key_check(baseline_characteristics_module['BaselineDenomList'])
-    baseline_denom = key_check(baseline_denom_list['BaselineDenom'])
+    baseline_denoms = key_check(baseline_denom_list['BaselineDenom'])
     collection = []
-    baseline_denom.each do |denom|
+    return nil if baseline_demons.empty?
+
+    baseline_denoms.each do |denom|
       baseline_denom_count_list = denom['BaselineDenomCountList']
       baseline_denom_count = baseline_denom_count_list['BaselineDenomCount'] || []
       baseline_denom_count.each do |count|
@@ -546,6 +573,8 @@ class StudyJsonRecord < ActiveRecord::Base
     mesh_list = key_check(browse_module["#{type}MeshList"])
     meshes = mesh_list["#{type}Mesh"] || []
     collection = []
+    return nil if meshes.empty?
+
     meshes.each do |mesh|
       collection.push(
                         nct_id: nct_id, mesh_term: mesh["#{type}MeshTerm"], downcase_mesh_term: mesh["#{type}MeshTerm"].try(:downcase)
@@ -559,7 +588,8 @@ class StudyJsonRecord < ActiveRecord::Base
     central_contacts_list = key_check(contacts_location_module['CentralContactList'])
     central_contacts = central_contacts_list['CentralContact'] || []
     collection = []
-
+    return nil if central_contacts.empty?
+    
     central_contacts.each do |contact|
       collection.push(
                         nct_id: nct_id,
@@ -800,6 +830,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.result_groups(groups, key_name='Flow', type='Participant Flow', nct_id)
     collection = []
+    return nil if groups.empty? || groups.nil?
+
     groups.each do |group|
       collection.push(
                         nct_id: nct_id,
@@ -1232,6 +1264,12 @@ class StudyJsonRecord < ActiveRecord::Base
     DetailedDescription.find_or_create_by(nct_id: nct_id).update(data[:detailed_description])
     BriefSummary.find_or_create_by(nct_id: nct_id).update(data[:brief_summary])
     Design.find_or_create_by(nct_id: nct_id).update(data[:design])
+    Eligibility.find_or_create_by(nct_id: nct_id).update(data[:eligibility])
+    ParticipantFlow.find_or_create_by(nct_id: nct_id).update(data[:participant_flow])
+    baseline_info = data[:baseline_measurements]
+    # saving baseline_measurement result_groups
+    save_result_groups(baseline_info[:result_groups])
+    save_baseline_counts(baseline_info[:baseline_counts])
 
     puts "Study Beta count #{Study.count}"
     puts "Interventions Beta count #{Intervention.count}"
@@ -1241,6 +1279,10 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "DetailedDescription Beta count #{DetailedDescription.count}"
     puts "BriefSummary Beta count #{BriefSummary.count}"
     puts "Design Beta count #{Design.count}"
+    puts "Eligibility Beta count #{Eligibility.count}"
+    puts "ParticipantFlow Beta count #{ParticipantFlow.count}"
+    puts "Baseline ResultGroup Beta count #{ResultGroup.count}"
+    puts "BaselineCount Beta count #{BaselineCount.count}"
     puts "~~~~~~~~~~~~~~"
     puts 'here we create/update studies and all associated models'
     # StudyJsonRecord.set_table_schema('ctgov')
@@ -1256,6 +1298,10 @@ class StudyJsonRecord < ActiveRecord::Base
               DetailedDescription
               BriefSummary
               Design
+              Eligibility
+              ParticipantFlow
+              ResultGroup
+              BaselineCount
             ]
     return unless schema == 'ctgov' || schema == 'ctgov_beta'       
     table_array.each do |name|
@@ -1304,6 +1350,24 @@ class StudyJsonRecord < ActiveRecord::Base
                                                   intervention_id: intervention.id
                                                   )
       end
+    end
+  end
+
+  def save_result_groups(groups)
+    puts "result_group_data #{groups}"
+    groups.each do |group|
+      ResultGroup.find_or_create_by(group)
+    end
+  end
+
+  def save_baseline_counts(counts)
+
+    counts.each do |count|
+      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_group_code: count[:ctgov_group_code])
+      next unless result_group
+
+      count[:result_group_id] = result_group.id
+      BaselineCount.find_or_create_by(count)
     end
   end
 
