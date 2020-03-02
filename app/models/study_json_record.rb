@@ -608,6 +608,8 @@ class StudyJsonRecord < ActiveRecord::Base
     conditions_list = key_check(conditions_module['ConditionList'])
     conditions = conditions_list['Condition'] || []
     collection = []
+    return nil if conditions.empty?
+
     conditions.each do |condition|
       collection.push(nct_id: nct_id, name: condition, downcase_name: condition.try(:downcase))
     end
@@ -619,6 +621,7 @@ class StudyJsonRecord < ActiveRecord::Base
     removed_country_list = key_check(misc_module['RemovedCountryList'])
     removed_countries = removed_country_list['RemovedCountry'] || []
     collection = []
+    return nil unless !locations_array.empty? || !removed_countries.empty?
 
     locations_array.each do |location|
       collection.push(nct_id: nct_id, name: location['LocationCountry'], removed: false)
@@ -633,10 +636,11 @@ class StudyJsonRecord < ActiveRecord::Base
   def documents_data
     reference_module = key_check(protocol_section['ReferencesModule'])
     avail_ipd_list = key_check(reference_module['AvailIPDList'])
-    avail_ipd = avail_ipd_list['AvailIPD'] || []
+    avail_ipds = avail_ipd_list['AvailIPD'] || []
     collection = []
+    return nil if avail_ipds.empty?
 
-    avail_ipd.each do |item|
+    avail_ipds.each do |item|
       collection.push(
                         nct_id: nct_id,
                         document_id: item['AvailIPDId'],
@@ -650,6 +654,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def facilities_data
     collection = []
+    return nil if locations_array.empty?
+
     locations_array.each do |location|
       location_contact_list = key_check(location['LocationContactList'])
       location_contact = location_contact_list['LocationContact'] || []
@@ -698,7 +704,8 @@ class StudyJsonRecord < ActiveRecord::Base
     secondary_info_list = key_check(identification_module['SecondaryIdInfoList'])
     secondary_info = secondary_info_list['SecondaryIdInfo'] || []
     collection = [{nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId']}]
-    
+    return unless !org_study_info.empty? || !secondary_info.empty?
+
     secondary_info.each do |info|
       collection.push(
         nct_id: nct_id, id_type: 'secondary_id', id_value: info['SecondaryId']
@@ -710,10 +717,11 @@ class StudyJsonRecord < ActiveRecord::Base
   def ipd_information_types_data
     ipd_sharing_statement_module = key_check(protocol_section['IPDSharingStatementModule'])
     ipd_sharing_info_type_list = key_check(ipd_sharing_statement_module['IPDSharingInfoTypeList'])
-    ipd_sharing_info_type = ipd_sharing_info_type_list['IPDSharingInfoType'] || []
+    ipd_sharing_info_types = ipd_sharing_info_type_list['IPDSharingInfoType'] || []
     collection = []
+    return nil if ipd_sharing_info_types.empty?
 
-    ipd_sharing_info_type.each do |info|
+    ipd_sharing_info_types.each do |info|
       collection.push(nct_id: nct_id, name: info)
     end
 
@@ -725,6 +733,7 @@ class StudyJsonRecord < ActiveRecord::Base
     keyword_list = key_check(conditions_module['KeywordList'])
     keywords = keyword_list['Keyword'] || []
     collection = []
+    return nil if keywords.empty?
 
     keywords.each do |keyword|
       collection.push(nct_id: nct_id, name: keyword, downcase_name: keyword.downcase)
@@ -737,6 +746,7 @@ class StudyJsonRecord < ActiveRecord::Base
     see_also_link_list = key_check(references_module['SeeAlsoLinkList'])
     see_also_links = see_also_link_list['SeeAlsoLink'] || []
     collection = []
+    return nil if see_also_links.empty?
 
     see_also_links.each do |link|
       collection.push(nct_id: nct_id, url: link['SeeAlsoLinkURL'], description: link['SeeAlsoLinkLabel'])
@@ -749,6 +759,8 @@ class StudyJsonRecord < ActiveRecord::Base
     flow_period_list = key_check(participant_flow_module['FlowPeriodList'])
     flow_periods = flow_period_list['FlowPeriod'] || []
     collection = {result_groups: flow_result_groups_data, milestones: []}
+    return nil if flow_periods.empty?
+
     flow_periods.each do |period|
 
       flow_period = period['FlowPeriodTitle']
@@ -772,6 +784,8 @@ class StudyJsonRecord < ActiveRecord::Base
         end
       end
     end
+    return nil if collection[:milestones].empty?
+
     collection
   end
 
@@ -787,6 +801,7 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_measure_list = key_check(outcomes_module['OutcomeMeasureList'])
     outcome_measures = outcome_measure_list['OutcomeMeasure'] || []
     collection = {result_groups: outcome_result_groups_data, outcome_measures: []}
+    return nil if outcome_measures.empty?
 
     outcome_measures.each do |outcome_measure|
       collection[:outcome_measures].push(
@@ -830,7 +845,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.result_groups(groups, key_name='Flow', type='Participant Flow', nct_id)
     collection = []
-    return nil if groups.empty? || groups.nil?
+    return nil if  groups.nil? || groups.empty?
 
     groups.each do |group|
       collection.push(
@@ -848,6 +863,8 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_denom_list = key_check(outcome_measure['OutcomeDenomList'])
     outcome_denoms = outcome_denom_list['OutcomeDenom'] || []
     collection = []
+    return nil if outcome_denoms.empty?
+
     outcome_denoms.each do |denom|
       outcome_denom_count_list = key_check(denom['OutcomeDenomCountList'])
       outcome_denom_count = outcome_denom_count_list['OutcomeDenomCount'] || []
@@ -871,6 +888,7 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_class_list = key_check(outcome_measure['OutcomeClassList'])
     outcome_classes = outcome_class_list['OutcomeClass'] || []
     collection = []
+    return nil if outcome_classes.empty?
 
     outcome_classes.each do |outcome_class|
     outcome_category_list = key_check(outcome_class['OutcomeCategoryList'])
@@ -911,6 +929,7 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_analysis_list = key_check(outcome_measure['OutcomeAnalysisList'])
     outcome_analyses = outcome_analysis_list['OutcomeAnalysis'] || []
     collection = []
+    return nil if outcome_analyses.empty?
 
     outcome_analyses.each do |analysis|
       raw_value = analysis['OutcomeAnalysisPValue'] || ''
@@ -949,7 +968,8 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_analysis_group_id_list = key_check(outcome_analysis['OutcomeAnalysisGroupIdList'])
     outcome_analysis_group_ids = outcome_analysis_group_id_list['OutcomeAnalysisGroupId'] || []
     collection = []
-
+    return nil if outcome_analysis_group_ids.empty?
+  
     outcome_analysis_group_ids.each do |group_id|
       collection.push(
                       nct_id: nct_id,
@@ -964,6 +984,7 @@ class StudyJsonRecord < ActiveRecord::Base
     overall_officials_list = key_check(contacts_location_module['OverallOfficialList'])
     overall_officials = overall_officials_list['OverallOfficial'] || []
     collection = []
+    return nil if overall_officials.empty?
 
     overall_officials.each do |overall_official|
       collection.push(
