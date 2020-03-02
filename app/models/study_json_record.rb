@@ -1227,36 +1227,41 @@ class StudyJsonRecord < ActiveRecord::Base
     # ActiveRecord::Base.connection.execute "SET search_path TO ctgov_beta;"
     # ActiveRecord::Base.connection.schema_search_path = 'ctgov_beta'
     Study.find_or_create_by(nct_id: nct_id).update(data[:study])
-    # puts "data #{nct_id} ---#{data[:design_groups]}"
     save_interventions(data[:interventions])
     save_design_groups(data[:design_groups])
+    DetailedDescription.find_or_create_by(nct_id: nct_id).update(data[:detailed_description])
+    BriefSummary.find_or_create_by(nct_id: nct_id).update(data[:brief_summary])
+    Design.find_or_create_by(nct_id: nct_id).update(data[:design])
 
     puts "Study Beta count #{Study.count}"
     puts "Interventions Beta count #{Intervention.count}"
     puts "InterventionOtherNames Beta count #{InterventionOtherName.count}"
     puts "DesignGroup Beta count #{DesignGroup.count}"
     puts "DesignGroupInterventions Beta count #{DesignGroupIntervention.count}"
+    puts "DetailedDescription Beta count #{DetailedDescription.count}"
+    puts "BriefSummary Beta count #{BriefSummary.count}"
+    puts "Design Beta count #{Design.count}"
     puts "~~~~~~~~~~~~~~"
     puts 'here we create/update studies and all associated models'
-    StudyJsonRecord.set_table_schema('ctgov')
+    # StudyJsonRecord.set_table_schema('ctgov')
   end
 
   def self.set_table_schema(schema = 'ctgov')
     table_array = %w[
               Study
+              Intervention
               InterventionOtherName
               DesignGroup
               DesignGroupIntervention
+              DetailedDescription
+              BriefSummary
+              Design
             ]
     return unless schema == 'ctgov' || schema == 'ctgov_beta'       
     table_array.each do |name|
       name.constantize.table_name = schema + ".#{name.tableize}"
       puts name.constantize.table_name
     end
-    # Study.table_name = 'ctgov_beta.studies'
-    # InterventionOtherName.table_name = 'ctgov_beta.intervention_other_names'
-    # DesignGroup.table_name = 'ctgov_beta.design_groups'
-    # DesignGroupIntervention.table_name = 'ctgov_beta.design_group_interventions'
   end
 
   def save_interventions(interventions)
@@ -1291,6 +1296,8 @@ class StudyJsonRecord < ActiveRecord::Base
                                             intervention_type: intervention_info[:type]
                                             )
         puts "found #{intervention}"
+        next unless intervention
+
         DesignGroupIntervention.find_or_create_by(
                                                   nct_id: nct_id,
                                                   design_group_id: design_group.id,
