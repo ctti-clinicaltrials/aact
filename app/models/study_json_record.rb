@@ -510,8 +510,8 @@ class StudyJsonRecord < ActiveRecord::Base
                                             dispersion_type: measure['BaselineMeasureDispersionType'],
                                             dispersion_value: dispersion_value,
                                             dispersion_value_num: StudyJsonRecord.float(dispersion_value),
-                                            dispersion_lower_limit: nil,
-                                            dispersion_upper_limit: nil,
+                                            dispersion_lower_limit: StudyJsonRecord.float(measurement['BaselineMeasurementLowerLimit']),
+                                            dispersion_upper_limit: StudyJsonRecord.float(measurement['BaselineMeasurementUpperLimit']),
                                             explanation_of_na: measurement['BaselineMeasurementComment']
                                           )
           end
@@ -1303,8 +1303,10 @@ class StudyJsonRecord < ActiveRecord::Base
     ParticipantFlow.find_or_create_by(nct_id: nct_id).update(data[:participant_flow]) if data[:participant_flow]
     baseline_info = data[:baseline_measurements]
     # saving baseline_measurement result_groups
+    # result_groups: baseline_result_groups_data, baseline_counts: baseline_counts_data, measurements: []
     save_result_groups(baseline_info[:result_groups]) if baseline_info
     save_baseline_counts(baseline_info[:baseline_counts]) if baseline_info
+    save_baseline_measurements(baseline_info[:measurements]) if baseline_info
 
     puts "Study Beta count #{Study.count}"
     puts "Interventions Beta count #{Intervention.count}"
@@ -1318,6 +1320,7 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "ParticipantFlow Beta count #{ParticipantFlow.count}"
     puts "Baseline ResultGroup Beta count #{ResultGroup.count}"
     puts "BaselineCount Beta count #{BaselineCount.count}"
+    puts "BaselineMeasurement Beta count #{BaselineMeasurement.count}"
     puts "~~~~~~~~~~~~~~"
     puts 'here we create/update studies and all associated models'
     # StudyJsonRecord.set_table_schema('ctgov')
@@ -1337,6 +1340,7 @@ class StudyJsonRecord < ActiveRecord::Base
               ParticipantFlow
               ResultGroup
               BaselineCount
+              BaselineMeasurement
             ]
     return unless schema == 'ctgov' || schema == 'ctgov_beta'       
     table_array.each do |name|
@@ -1376,7 +1380,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
       interventions = group[:design_group_interventions]
       next unless interventions
-      
+
       interventions.each do |intervention_info|
         puts "intervention #{intervention_info}"
         intervention = Intervention.find_by(
@@ -1414,6 +1418,18 @@ class StudyJsonRecord < ActiveRecord::Base
 
       count[:result_group_id] = result_group.id
       BaselineCount.find_or_create_by(count)
+    end
+  end
+
+  def save_baseline_measurements(measurements)
+    return unless measurements
+
+    measurements.each do |measurement|
+      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_group_code: measurement[:ctgov_group_code])
+      next unless result_group
+
+      measurement[:result_group_id] = result_group.id
+      BaselineMeasurement.find_or_create_by(measurement)
     end
   end
 
