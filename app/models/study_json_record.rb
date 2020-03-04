@@ -1000,7 +1000,12 @@ class StudyJsonRecord < ActiveRecord::Base
   def design_outcomes_data
     primary_outcomes = outcome_list('Primary')
     secondary_outcomes = outcome_list('Secondary')
-    primary_outcomes + secondary_outcomes
+    primary_outcomes ||= []
+    secondary_outcomes ||= []
+    total = primary_outcomes + secondary_outcomes
+    return nil if total.empty?
+
+    total
   end
 
   def outcome_list(outcome_type='Primary')
@@ -1008,6 +1013,7 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_list = key_check(outcomes_module["#{outcome_type}OutcomeList"])
     outcomes = outcome_list["#{outcome_type}Outcome"] || []
     collection = []
+    return nil if outcomes.empty?
 
     outcomes.each do |outcome|
       collection.push(
@@ -1028,6 +1034,7 @@ class StudyJsonRecord < ActiveRecord::Base
     unposted_event_list = key_check(unposted_annotation['UnpostedEventList'])
     unposted_events = unposted_event_list['UnpostedEvent'] || []
     collection = []
+    return nil if unposted_events.empty?
 
     unposted_events.each do |event|
       collection.push(
@@ -1045,6 +1052,7 @@ class StudyJsonRecord < ActiveRecord::Base
     large_doc_list = key_check(large_document_module['LargeDocList'])
     large_docs = large_doc_list['LargeDoc'] || []
     collection = []
+    return nil if large_docs.empty?
 
     large_docs.each do |doc|
       collection.push(
@@ -1066,6 +1074,8 @@ class StudyJsonRecord < ActiveRecord::Base
     event_group_list = key_check(adverse_events_module['EventGroupList'])
     event_groups = event_group_list['EventGroup'] || []
     events = events_data('Serious') + events_data('Other')
+    return nil if events.empty?
+
     {
       result_groups: StudyJsonRecord.result_groups(event_groups, 'Event', 'Reported Event', nct_id),
       events: events 
@@ -1110,6 +1120,8 @@ class StudyJsonRecord < ActiveRecord::Base
     # https://clinicaltrials.gov/api/query/full_studies?expr=NCT04076787&fmt=json
     sponsor_collaborators_module = key_check(protocol_section['SponsorCollaboratorsModule'])
     responsible_party = key_check(sponsor_collaborators_module['ResponsibleParty'])
+    return nil if responsible_party.empty?
+
     {
       nct_id: nct_id,
       responsible_party_type: responsible_party['ResponsiblePartyType'],
@@ -1123,6 +1135,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def result_agreement_data
     more_info_module = key_check(results_section['MoreInfoModule'])
     certain_agreement = key_check(more_info_module['CertainAgreement'])
+    return nil if certain_agreement.empty?
 
     {
       nct_id: nct_id,
@@ -1133,20 +1146,14 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
-  def self.translate_agreement(type='PI', value)
-    pi_true = 'All Principal Investigators ARE employed by the organization sponsoring the study.'
-    pi_false = 'Principal Investigators are NOT employed by the organization sponsoring the study.'
-    agreement_false = "There is NOT an agreement between Principal Investigators and the Sponsor (or its agents) that restricts the PI's rights to discuss or publish trial results after the trial is completed."
-    return value =~ /no/i ? pi_false : pi_true if type == 'PI'
-    return value ? value : agreement_false
-
-  end
-
   def result_contact_data
     more_info_module = key_check(results_section['MoreInfoModule'])
     point_of_contact = key_check(more_info_module['PointOfContact'])
+    return nil if point_of_contact.empty?
+
     ext = point_of_contact['PointOfContactPhoneExt']
     phone = point_of_contact['PointOfContactPhone']
+
     {
       nct_id: nct_id,
       organization: point_of_contact['PointOfContactOrganization'], 
@@ -1161,6 +1168,7 @@ class StudyJsonRecord < ActiveRecord::Base
     reference_list = key_check(reference_module['ReferenceList'])
     references = reference_list['Reference'] || []
     collection = []
+    return nil if references.empty?
 
     references.each do |reference|
       collection.push(
@@ -1181,10 +1189,14 @@ class StudyJsonRecord < ActiveRecord::Base
     collaborator_list = key_check(sponsor_collaborators_module['CollaboratorList'])
     collaborators = collaborator_list['Collaborator'] || []
     collection = []
-    collection.push(sponsor_info(lead_sponsor, 'LeadSponsor'))
+    lead_info = sponsor_info(lead_sponsor, 'LeadSponsor')
+    return nil if lead_info.nil? && collaborators.empty?
+
+    collection.push(lead_info) unless lead_info.nil?
 
     collaborators.each do |collaborator|
-      collection.push(sponsor_info(collaborator, 'Collaborator'))
+      info = sponsor_info(collaborator, 'Collaborator')
+      collection.push(info) unless info.nil?
     end
 
     collection
@@ -1192,6 +1204,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def sponsor_info(sponsor_hash, sponsor_type='LeadSponsor')
     type_of_sponsor = sponsor_type =~ /Lead/i ? 'lead' : 'collaborator'
+    return nil if sponsor_hash.empty?
+
     {
       nct_id: nct_id,
       agency_class: sponsor_hash["#{sponsor_type}Class"],
@@ -1279,18 +1293,18 @@ class StudyJsonRecord < ActiveRecord::Base
     StudyJsonRecord.set_table_schema('ctgov_beta')
     # ActiveRecord::Base.connection.execute "SET search_path TO ctgov_beta;"
     # ActiveRecord::Base.connection.schema_search_path = 'ctgov_beta'
-    Study.find_or_create_by(nct_id: nct_id).update(data[:study])
+    Study.find_or_create_by(nct_id: nct_id).update(data[:study]) if data[:study]
     save_interventions(data[:interventions])
     save_design_groups(data[:design_groups])
-    DetailedDescription.find_or_create_by(nct_id: nct_id).update(data[:detailed_description])
-    BriefSummary.find_or_create_by(nct_id: nct_id).update(data[:brief_summary])
-    Design.find_or_create_by(nct_id: nct_id).update(data[:design])
-    Eligibility.find_or_create_by(nct_id: nct_id).update(data[:eligibility])
-    ParticipantFlow.find_or_create_by(nct_id: nct_id).update(data[:participant_flow])
+    DetailedDescription.find_or_create_by(nct_id: nct_id).update(data[:detailed_description]) if data[:detailed_description]
+    BriefSummary.find_or_create_by(nct_id: nct_id).update(data[:brief_summary]) if data[:brief_summary]
+    Design.find_or_create_by(nct_id: nct_id).update(data[:design]) if data[:design]
+    Eligibility.find_or_create_by(nct_id: nct_id).update(data[:eligibility]) if data[:eligibility]
+    ParticipantFlow.find_or_create_by(nct_id: nct_id).update(data[:participant_flow]) if data[:participant_flow]
     baseline_info = data[:baseline_measurements]
     # saving baseline_measurement result_groups
-    save_result_groups(baseline_info[:result_groups])
-    save_baseline_counts(baseline_info[:baseline_counts])
+    save_result_groups(baseline_info[:result_groups]) if baseline_info
+    save_baseline_counts(baseline_info[:baseline_counts]) if baseline_info
 
     puts "Study Beta count #{Study.count}"
     puts "Interventions Beta count #{Intervention.count}"
@@ -1332,6 +1346,8 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def save_interventions(interventions)
+    return unless interventions
+
     interventions.each do |intervention_info|
       # puts "intervention info #{intervention_info}"
       info = intervention_info[:intervention]
@@ -1339,6 +1355,8 @@ class StudyJsonRecord < ActiveRecord::Base
       intervention ||= Intervention.create(nct_id: nct_id, name: info[:name])
       intervention.update(info)
       intervention_other_names = intervention_info[:intervention_other_names]
+      next unless intervention_other_names
+
       intervention_other_names.each do |name|
         puts "Intervention other name #{name}"
         name[:intervention_id] = intervention.id
@@ -1348,6 +1366,8 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def save_design_groups(design_groups)
+    return unless design_groups
+
     design_groups.each do |group|
       design_info = group[:design_group]
       design_group = DesignGroup.find_by(nct_id: nct_id, title: design_info[:title])
@@ -1355,6 +1375,8 @@ class StudyJsonRecord < ActiveRecord::Base
       design_group.update(design_info)
 
       interventions = group[:design_group_interventions]
+      next unless interventions
+      
       interventions.each do |intervention_info|
         puts "intervention #{intervention_info}"
         intervention = Intervention.find_by(
@@ -1375,6 +1397,8 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def save_result_groups(groups)
+    return unless groups 
+
     puts "result_group_data #{groups}"
     groups.each do |group|
       ResultGroup.find_or_create_by(group)
@@ -1382,6 +1406,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def save_baseline_counts(counts)
+    return unless counts
 
     counts.each do |count|
       result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_group_code: count[:ctgov_group_code])
