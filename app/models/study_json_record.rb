@@ -91,6 +91,7 @@ class StudyJsonRecord < ActiveRecord::Base
     start_time = Time.current
     first_batch = json_data
     save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
+     
     # total_number is the number of studies available, meaning the total number in their database
     total_number = first_batch['FullStudiesResponse']['NStudiesAvail']
     # since I already saved the first hundred studies I start the loop after that point
@@ -132,6 +133,10 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.save_study_records(study_batch)
     return unless study_batch
 
+    StudyJsonRecord.set_table_schema('ctgov_beta')
+    nct_id_array = study_batch.map{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
+    clear_out_data_for(nct_id_array)
+
     study_batch.each do |study_data|
       save_single_study(study_data)
     end
@@ -148,6 +153,22 @@ class StudyJsonRecord < ActiveRecord::Base
     else
       puts "failed to save #{nct_id}"
     end
+  end
+
+  def self.clear_out_data_for(nct_ids)
+    ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
+    names = Util::DbManager.new.loadable_tables
+    names.each { |table|
+      stime=Time.zone.now
+      ActiveRecord::Base.connection.execute("DELETE FROM ctgov_beta.#{table} WHERE nct_id IN (#{ids})")
+      puts "deleted studies from #{table}   #{Time.zone.now - stime}"
+    }
+    delete_json_records(ids)
+    puts object_counts
+  end
+
+  def self.delete_json_records(ids)
+    ActiveRecord::Base.connection.execute("DELETE FROM #{self.table_name} WHERE nct_id IN (#{ids})")
   end
 
   def self.json_data(url="https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=1&max_rnk=100&fmt=json")
@@ -590,11 +611,21 @@ class StudyJsonRecord < ActiveRecord::Base
     collection = []
     return nil if central_contacts.empty?
     
+    # the primary contact is first in the array
+    primary_contact = central_contacts.first
+    collection.push(
+                    nct_id: nct_id,
+                    contact_type: 'primary',
+                    name: primary_contact['CentralContactName'],
+                    phone: primary_contact['CentralContactPhone'],
+                    email: primary_contact['CentralContactEMail']
+                    )
+    # after getting the data from the first contact I remove it from the array and add the rest
+    central_contacts.shift
     central_contacts.each do |contact|
       collection.push(
                         nct_id: nct_id,
-                        # contact_type: nil,
-                        contact_type: contact['CentralContactRole'],
+                        contact_type: 'backup',
                         name: contact['CentralContactName'],
                         phone: contact['CentralContactPhone'],
                         email: contact['CentralContactEMail']
@@ -684,13 +715,15 @@ class StudyJsonRecord < ActiveRecord::Base
       end
 
       collection.push(
-                      nct_id: nct_id,
-                      status: location['LocationStatus'],
-                      name: location['LocationFacility'],
-                      city: location['LocationCity'],
-                      state: location['LocationState'],
-                      zip: location['LocationZip'],
-                      country: location['LocationCountry'],
+                      facilities: {
+                                    nct_id: nct_id,
+                                    status: location['LocationStatus'],
+                                    name: location['LocationFacility'],
+                                    city: location['LocationCity'],
+                                    state: location['LocationState'],
+                                    zip: location['LocationZip'],
+                                    country: location['LocationCountry']
+                                  },
                       facility_contacts: facility_contacts,
                       facility_investigators: facility_investigators
                     )
@@ -1291,59 +1324,90 @@ class StudyJsonRecord < ActiveRecord::Base
   def build_study
     data = data_collection
     StudyJsonRecord.set_table_schema('ctgov_beta')
-    # ActiveRecord::Base.connection.execute "SET search_path TO ctgov_beta;"
-    # ActiveRecord::Base.connection.schema_search_path = 'ctgov_beta'
+
     Study.find_or_create_by(nct_id: nct_id).update(data[:study]) if data[:study]
+    
+    # saving design_groups, and associated objects
     save_interventions(data[:interventions])
     save_design_groups(data[:design_groups])
+
     DetailedDescription.find_or_create_by(nct_id: nct_id).update(data[:detailed_description]) if data[:detailed_description]
     BriefSummary.find_or_create_by(nct_id: nct_id).update(data[:brief_summary]) if data[:brief_summary]
     Design.find_or_create_by(nct_id: nct_id).update(data[:design]) if data[:design]
     Eligibility.find_or_create_by(nct_id: nct_id).update(data[:eligibility]) if data[:eligibility]
     ParticipantFlow.find_or_create_by(nct_id: nct_id).update(data[:participant_flow]) if data[:participant_flow]
+    
+    # saving baseline_measurements and associated objects
     baseline_info = data[:baseline_measurements]
-    # saving baseline_measurement result_groups
-    # result_groups: baseline_result_groups_data, baseline_counts: baseline_counts_data, measurements: []
-    save_result_groups(baseline_info[:result_groups]) if baseline_info
+    ResultGroup.create(baseline_info[:result_groups]) if baseline_info
     save_baseline_counts(baseline_info[:baseline_counts]) if baseline_info
     save_baseline_measurements(baseline_info[:measurements]) if baseline_info
+    
+    BrowseCondition.create(data[:browse_conditions]) if data[:browse_conditions]
+    BrowseIntervention.create(data[:browse_interventions]) if data[:browse_interventions]
+    CentralContact.create(data[:central_contacts_list]) if data[:central_contacts_list]
+    Condition.create(data[:conditions]) if data[:conditions]
+    Country.create(data[:countries]) if data[:countries]
+    Document.create(data[:documents]) if data[:documents]
 
-    puts "Study Beta count #{Study.count}"
-    puts "Interventions Beta count #{Intervention.count}"
-    puts "InterventionOtherNames Beta count #{InterventionOtherName.count}"
-    puts "DesignGroup Beta count #{DesignGroup.count}"
-    puts "DesignGroupInterventions Beta count #{DesignGroupIntervention.count}"
-    puts "DetailedDescription Beta count #{DetailedDescription.count}"
-    puts "BriefSummary Beta count #{BriefSummary.count}"
-    puts "Design Beta count #{Design.count}"
-    puts "Eligibility Beta count #{Eligibility.count}"
-    puts "ParticipantFlow Beta count #{ParticipantFlow.count}"
-    puts "Baseline ResultGroup Beta count #{ResultGroup.count}"
-    puts "BaselineCount Beta count #{BaselineCount.count}"
-    puts "BaselineMeasurement Beta count #{BaselineMeasurement.count}"
+    puts StudyJsonRecord.object_counts
+    
     puts "~~~~~~~~~~~~~~"
     puts 'here we create/update studies and all associated models'
     # StudyJsonRecord.set_table_schema('ctgov')
   end
 
+  def self.object_counts
+    {
+      study: Study.count,
+      intervention: Intervention.count,
+      intervention_other_name: InterventionOtherName.count,
+      design_group: DesignGroup.count,
+      design_group_intervention: DesignGroupIntervention.count,
+      detailed_description: DetailedDescription.count,
+      brief_summary: BriefSummary.count,
+      design: Design.count,
+      eligibility: Eligibility.count,
+      participant_flow: ParticipantFlow.count,
+      result_groups: ResultGroup.count,
+      baseline_count: BaselineCount.count,
+      baseline_measurement: BaselineMeasurement.count,
+      browse_condition: BrowseCondition.count,
+      browse_intervention: BrowseIntervention.count,
+      central_contact: CentralContact.count,
+      condition: Condition.count,
+      country: Country.count,
+      document: Document.count
+    }
+  end
+
+  def self.table_names
+    %w[
+        Study
+        Intervention
+        InterventionOtherName
+        DesignGroup
+        DesignGroupIntervention
+        DetailedDescription
+        BriefSummary
+        Design
+        Eligibility
+        ParticipantFlow
+        ResultGroup
+        BaselineCount
+        BaselineMeasurement
+        BrowseCondition
+        BrowseIntervention
+        CentralContact
+        Condition
+        Country
+        Document
+      ]
+  end
+
   def self.set_table_schema(schema = 'ctgov')
-    table_array = %w[
-              Study
-              Intervention
-              InterventionOtherName
-              DesignGroup
-              DesignGroupIntervention
-              DetailedDescription
-              BriefSummary
-              Design
-              Eligibility
-              ParticipantFlow
-              ResultGroup
-              BaselineCount
-              BaselineMeasurement
-            ]
     return unless schema == 'ctgov' || schema == 'ctgov_beta'       
-    table_array.each do |name|
+    table_names.each do |name|
       name.constantize.table_name = schema + ".#{name.tableize}"
       puts name.constantize.table_name
     end
@@ -1355,8 +1419,7 @@ class StudyJsonRecord < ActiveRecord::Base
     interventions.each do |intervention_info|
       # puts "intervention info #{intervention_info}"
       info = intervention_info[:intervention]
-      intervention = Intervention.find_by(nct_id: nct_id, name: info[:name])
-      intervention ||= Intervention.create(nct_id: nct_id, name: info[:name])
+      intervention = Intervention.find_or_create_by(nct_id: nct_id, name: info[:name])
       intervention.update(info)
       intervention_other_names = intervention_info[:intervention_other_names]
       next unless intervention_other_names
@@ -1400,15 +1463,6 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def save_result_groups(groups)
-    return unless groups 
-
-    puts "result_group_data #{groups}"
-    groups.each do |group|
-      ResultGroup.find_or_create_by(group)
-    end
-  end
-
   def save_baseline_counts(counts)
     return unless counts
 
@@ -1431,6 +1485,5 @@ class StudyJsonRecord < ActiveRecord::Base
       measurement[:result_group_id] = result_group.id
       BaselineMeasurement.find_or_create_by(measurement)
     end
-  end
-
+  end 
 end
