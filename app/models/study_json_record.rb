@@ -611,21 +611,10 @@ class StudyJsonRecord < ActiveRecord::Base
     collection = []
     return nil if central_contacts.empty?
     
-    # the primary contact is first in the array
-    primary_contact = central_contacts.first
-    collection.push(
-                    nct_id: nct_id,
-                    contact_type: 'primary',
-                    name: primary_contact['CentralContactName'],
-                    phone: primary_contact['CentralContactPhone'],
-                    email: primary_contact['CentralContactEMail']
-                    )
-    # after getting the data from the first contact I remove it from the array and add the rest
-    central_contacts.shift
-    central_contacts.each do |contact|
+    central_contacts.each_with_index do |contact, index|
       collection.push(
                         nct_id: nct_id,
-                        contact_type: 'backup',
+                        contact_type: index == 0 ? 'primary' : 'backup',
                         name: contact['CentralContactName'],
                         phone: contact['CentralContactPhone'],
                         email: contact['CentralContactEMail']
@@ -692,9 +681,9 @@ class StudyJsonRecord < ActiveRecord::Base
       location_contact = location_contact_list['LocationContact'] || []
       facility_contacts = []
       facility_investigators = []
-      location_contact.each do |contact|
+      location_contact.each_with_index do |contact, index|
         contact_role = contact['LocationContactRole']
-        if contact_role =~ /Investigator/i
+        if contact_role =~ /Investigator|Study Chair/i
           facility_investigators.push(
                                       nct_id: nct_id,
                                       facility_id: nil,
@@ -705,8 +694,7 @@ class StudyJsonRecord < ActiveRecord::Base
           facility_contacts.push(
                                   nct_id: nct_id,
                                   facility_id: nil,
-                                  contact_type: nil,
-                                  contact_role: contact_role,
+                                  contact_type: index == 0 ? 'primary' : 'backup',
                                   name: contact['LocationContactName'],
                                   email: contact['LocationContactEMail'],
                                   phone: contact['LocationContactPhone']
@@ -715,7 +703,7 @@ class StudyJsonRecord < ActiveRecord::Base
       end
 
       collection.push(
-                      facilities: {
+                      facility: {
                                     nct_id: nct_id,
                                     status: location['LocationStatus'],
                                     name: location['LocationFacility'],
@@ -1350,6 +1338,9 @@ class StudyJsonRecord < ActiveRecord::Base
     Country.create(data[:countries]) if data[:countries]
     Document.create(data[:documents]) if data[:documents]
 
+    # saving facilities and related objects
+    save_facilities(data[:facilities])
+
     puts StudyJsonRecord.object_counts
     
     puts "~~~~~~~~~~~~~~"
@@ -1377,7 +1368,10 @@ class StudyJsonRecord < ActiveRecord::Base
       central_contact: CentralContact.count,
       condition: Condition.count,
       country: Country.count,
-      document: Document.count
+      document: Document.count,
+      facility: Facility.count,
+      facility_contact: FacilityContact.count,
+      facility_investigator: FacilityInvestigator.count
     }
   end
 
@@ -1402,6 +1396,9 @@ class StudyJsonRecord < ActiveRecord::Base
         Condition
         Country
         Document
+        Facility
+        FacilityContact
+        FacilityInvestigator
       ]
   end
 
@@ -1417,7 +1414,6 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless interventions
 
     interventions.each do |intervention_info|
-      # puts "intervention info #{intervention_info}"
       info = intervention_info[:intervention]
       intervention = Intervention.find_or_create_by(nct_id: nct_id, name: info[:name])
       intervention.update(info)
@@ -1425,7 +1421,6 @@ class StudyJsonRecord < ActiveRecord::Base
       next unless intervention_other_names
 
       intervention_other_names.each do |name|
-        puts "Intervention other name #{name}"
         name[:intervention_id] = intervention.id
         InterventionOtherName.find_or_create_by(name)
       end
@@ -1485,5 +1480,19 @@ class StudyJsonRecord < ActiveRecord::Base
       measurement[:result_group_id] = result_group.id
       BaselineMeasurement.find_or_create_by(measurement)
     end
-  end 
+  end
+
+  def save_facilities(facilities)
+    return unless facilities
+
+    facilities.each do |facility_info|
+      facility = Facility.create(facility_info[:facility]) if facility_info[:facility]
+      next unless facility
+
+      facility_info[:facility_contacts].each{|h| h[:facility_id] = facility.id}
+      facility_info[:facility_investigators].each{|h| h[:facility_id] = facility.id}
+      FacilityContact.create(facility_info[:facility_contacts]) if facility_info[:facility_contacts]
+      FacilityInvestigator.create(facility_info[:facility_investigators]) if facility_info[:facility_investigators]
+    end
+  end
 end
