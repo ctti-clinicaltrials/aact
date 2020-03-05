@@ -721,12 +721,21 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def id_information_data
     identification_module = key_check(protocol_section['IdentificationModule'])
+    alias_list = key_check(identification_module['NCTIdAliasList'])
+    nct_id_alias = alias_list['NCTIdAlias'] || []
     org_study_info = key_check(identification_module['OrgStudyIdInfo'])
     secondary_info_list = key_check(identification_module['SecondaryIdInfoList'])
     secondary_info = secondary_info_list['SecondaryIdInfo'] || []
-    collection = [{nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId']}]
-    return unless !org_study_info.empty? || !secondary_info.empty?
+    return if org_study_info.empty? && secondary_info.empty? && nct_id_alias.empty?
 
+    collection = [{nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId']}]
+    
+
+    nct_id_alias.each do |nct_alias|
+      collection.push(
+        nct_id: nct_id, id_type: 'nct_alias', id_value: nct_alias
+      )
+    end
     secondary_info.each do |info|
       collection.push(
         nct_id: nct_id, id_type: 'secondary_id', id_value: info['SecondaryId']
@@ -1337,6 +1346,8 @@ class StudyJsonRecord < ActiveRecord::Base
     Condition.create(data[:conditions]) if data[:conditions]
     Country.create(data[:countries]) if data[:countries]
     Document.create(data[:documents]) if data[:documents]
+    IdInformation.create(data[:id_information]) if data[:id_information]
+    IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
 
     # saving facilities and related objects
     save_facilities(data[:facilities])
@@ -1371,42 +1382,20 @@ class StudyJsonRecord < ActiveRecord::Base
       document: Document.count,
       facility: Facility.count,
       facility_contact: FacilityContact.count,
-      facility_investigator: FacilityInvestigator.count
+      facility_investigator: FacilityInvestigator.count,
+      id_information: IdInformation.count,
+      ipd_information_type: IpdInformationType.count,
     }
   end
 
-  def self.table_names
-    %w[
-        Study
-        Intervention
-        InterventionOtherName
-        DesignGroup
-        DesignGroupIntervention
-        DetailedDescription
-        BriefSummary
-        Design
-        Eligibility
-        ParticipantFlow
-        ResultGroup
-        BaselineCount
-        BaselineMeasurement
-        BrowseCondition
-        BrowseIntervention
-        CentralContact
-        Condition
-        Country
-        Document
-        Facility
-        FacilityContact
-        FacilityInvestigator
-      ]
-  end
-
   def self.set_table_schema(schema = 'ctgov')
-    return unless schema == 'ctgov' || schema == 'ctgov_beta'       
+    return unless schema == 'ctgov' || schema == 'ctgov_beta'   
+    
+    table_names = Util::DbManager.new.loadable_tables
     table_names.each do |name|
-      name.constantize.table_name = schema + ".#{name.tableize}"
-      puts name.constantize.table_name
+      model_name = name.singularize.camelize.safe_constantize
+      model_name.table_name = schema + ".#{name}" if model_name
+      puts model_name.table_name if model_name
     end
   end
 
