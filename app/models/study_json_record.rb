@@ -1324,6 +1324,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def build_study
+    puts 'here we create/update studies and all associated models'
     data = data_collection
     StudyJsonRecord.set_table_schema('ctgov_beta')
 
@@ -1379,12 +1380,21 @@ class StudyJsonRecord < ActiveRecord::Base
     reported_events_info = data[:reported_events] || {}
     ResultGroup.create(reported_events_info[:result_groups]) if reported_events_info[:result_groups]
     save_with_result_group(reported_events_info[:events]) if reported_events_info[:events]
-
+    
+    ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
+    ResultAgreement.create(data[:result_agreement]) if data[:result_agreement]
+    ResultContact.create(data[:result_contact]) if data[:result_contact]
+    Reference.create(data[:study_references]) if data[:study_references]
+    Sponsor.create(data[:sponsors]) if data[:sponsors]
+    puts 'Beta API Counts'
     puts StudyJsonRecord.object_counts
     
     puts "~~~~~~~~~~~~~~"
-    puts 'here we create/update studies and all associated models'
-    # StudyJsonRecord.set_table_schema('ctgov')
+    puts "#{nct_id} done"
+    puts "~~~~~~~~~~~~~~"
+    StudyJsonRecord.set_table_schema('ctgov')
+    puts 'Old API Counts'
+    puts StudyJsonRecord.object_counts
   end
 
   def self.object_counts
@@ -1425,7 +1435,12 @@ class StudyJsonRecord < ActiveRecord::Base
       design_outcome: DesignOutcome.count,
       pending_result: PendingResult.count,
       provided_document: ProvidedDocument.count,
-      reported_event: ReportedEvent.count
+      reported_event: ReportedEvent.count,
+      responsible_party: ResponsibleParty.count,
+      result_agreement: ResultAgreement.count,
+      result_contact: ResultContact.count,
+      study_reference: Reference.count,
+      sponsor: Sponsor.count
     }
   end
 
