@@ -1337,8 +1337,8 @@ class StudyJsonRecord < ActiveRecord::Base
     # saving baseline_measurements and associated objects
     baseline_info = data[:baseline_measurements]
     ResultGroup.create(baseline_info[:result_groups]) if baseline_info
-    save_baseline_counts(baseline_info[:baseline_counts]) if baseline_info
-    save_baseline_measurements(baseline_info[:measurements]) if baseline_info
+    save_with_result_group(baseline_info[:baseline_counts], 'BaselineCount') if baseline_info
+    save_with_result_group(baseline_info[:measurements], 'BaselineMeasurement') if baseline_info
     
     BrowseCondition.create(data[:browse_conditions]) if data[:browse_conditions]
     BrowseIntervention.create(data[:browse_interventions]) if data[:browse_interventions]
@@ -1346,11 +1346,19 @@ class StudyJsonRecord < ActiveRecord::Base
     Condition.create(data[:conditions]) if data[:conditions]
     Country.create(data[:countries]) if data[:countries]
     Document.create(data[:documents]) if data[:documents]
-    IdInformation.create(data[:id_information]) if data[:id_information]
-    IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
 
     # saving facilities and related objects
     save_facilities(data[:facilities])
+
+    IdInformation.create(data[:id_information]) if data[:id_information]
+    IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
+    Keyword.create(data[:keywords]) if data[:keywords]
+    Link.create(data[:links]) if data[:links]
+
+    # saving milestones
+    milestone_info = data[:milestones]
+    ResultGroup.create(milestone_info[:result_groups]) if milestone_info
+    save_with_result_group(milestone_info[:milestones], 'Milestone') if milestone_info
 
     puts StudyJsonRecord.object_counts
     
@@ -1385,6 +1393,9 @@ class StudyJsonRecord < ActiveRecord::Base
       facility_investigator: FacilityInvestigator.count,
       id_information: IdInformation.count,
       ipd_information_type: IpdInformationType.count,
+      keyword: Keyword.count,
+      link: Link.count,
+      milestone: Milestone.count,
     }
   end
 
@@ -1459,15 +1470,15 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def save_baseline_measurements(measurements)
-    return unless measurements
+  def save_with_result_group(group, model_name='BaselineMeasurement')
+    return unless group
 
-    measurements.each do |measurement|
-      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_group_code: measurement[:ctgov_group_code])
+    group.each do |item|
+      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_group_code: item[:ctgov_group_code])
       next unless result_group
 
-      measurement[:result_group_id] = result_group.id
-      BaselineMeasurement.find_or_create_by(measurement)
+      item[:result_group_id] = result_group.id
+      model_name.safe_constantize.find_or_create_by(item)
     end
   end
 
