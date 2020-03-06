@@ -842,10 +842,10 @@ class StudyJsonRecord < ActiveRecord::Base
                                         description: outcome_measure['OutcomeMeasureDescription'],
                                         time_frame: outcome_measure['OutcomeMeasureTimeFrame'],
                                         population: outcome_measure['OutcomeMeasurePopulationDescription'],
-                                        anticipated_posting_date: nil,
-                                        anticipated_posting_month_year: nil,
+                                        anticipated_posting_date: convert_date(outcome_measure['OutcomeMeasureAnticipatedPostingDate']),
+                                        anticipated_posting_month_year: outcome_measure['OutcomeMeasureAnticipatedPostingDate'],
                                         units: outcome_measure['OutcomeMeasureUnitOfMeasure'],
-                                        units_analyzed: nil,
+                                        units_analyzed: outcome_measure['OutcomeMeasureTypeUnitsAnalyzed'],
                                         dispersion_type: outcome_measure['OutcomeMeasureDispersionType'],
                                         param_type: outcome_measure['OutcomeMeasureParamType']
                                         },
@@ -905,7 +905,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         outcome_id: nil,
                         result_group_id: nil,
                         ctgov_group_code: denom_count['OutcomeDenomCountGroupId'],
-                        scope: 'Measurement',
+                        scope: 'Measure',
                         units: denom['OutcomeDenomUnits'],
                         count: denom_count['OutcomeDenomCountValue']
                         )
@@ -964,7 +964,7 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_analyses.each do |analysis|
       raw_value = analysis['OutcomeAnalysisPValue'] || ''
       collection.push( 
-                      outcome_analyses: {
+                      outcome_analysis: {
                                           nct_id: nct_id,
                                           outcome_id: nil,
                                           non_inferiority_type: analysis['OutcomeAnalysisNonInferiorityType'],
@@ -1355,11 +1355,16 @@ class StudyJsonRecord < ActiveRecord::Base
     Keyword.create(data[:keywords]) if data[:keywords]
     Link.create(data[:links]) if data[:links]
 
-    # saving milestones
-    milestone_info = data[:milestones]
-    ResultGroup.create(milestone_info[:result_groups]) if milestone_info
-    save_with_result_group(milestone_info[:milestones], 'Milestone') if milestone_info
+    # saving milestones and associated objects
+    milestone_info = data[:milestones] || {}
+    ResultGroup.create(milestone_info[:result_groups]) if milestone_info[:result_groups]
+    save_with_result_group(milestone_info[:milestones], 'Milestone') if milestone_info[:milestones]
 
+    # saving outcomes and associated objects
+    outcomes_info = data[:outcomes] || {}
+    ResultGroup.create(outcomes_info[:result_groups]) if outcomes_info[:result_groups]
+    save_outcomes(outcomes_info[:outcome_measures]) if outcomes_info[:outcome_measures]
+    
     puts StudyJsonRecord.object_counts
     
     puts "~~~~~~~~~~~~~~"
@@ -1396,6 +1401,10 @@ class StudyJsonRecord < ActiveRecord::Base
       keyword: Keyword.count,
       link: Link.count,
       milestone: Milestone.count,
+      outcome: Outcome.count,
+      outcome_count: OutcomeCount.count,
+      outcome_measurement: OutcomeMeasurement.count,
+      outcome_analysis: OutcomeAnalysis.count,
     }
   end
 
@@ -1440,13 +1449,11 @@ class StudyJsonRecord < ActiveRecord::Base
       next unless interventions
 
       interventions.each do |intervention_info|
-        puts "intervention #{intervention_info}"
         intervention = Intervention.find_by(
                                             nct_id: nct_id,
                                             name: intervention_info[:name],
                                             intervention_type: intervention_info[:type]
                                             )
-        puts "found #{intervention}"
         next unless intervention
 
         DesignGroupIntervention.find_or_create_by(
@@ -1494,5 +1501,45 @@ class StudyJsonRecord < ActiveRecord::Base
       FacilityContact.create(facility_info[:facility_contacts]) if facility_info[:facility_contacts]
       FacilityInvestigator.create(facility_info[:facility_investigators]) if facility_info[:facility_investigators]
     end
+  end
+
+  def save_outcomes(outcome_measures)
+    return unless outcome_measures
+
+    outcome_measures.each do |outcome_measure|
+      outcome = Outcome.create(outcome_measure[:outcome_measure]) if outcome_measure[:outcome_measure]
+      next unless outcome
+
+      outcome_counts = StudyJsonRecord.set_key_value(outcome_measure[:outcome_counts], :outcome_id, outcome.id)
+      outcome_measurements = StudyJsonRecord.set_key_value(outcome_measure[:outcome_measurements], :outcome_id, outcome.id)
+      outcome_analyses = outcome_measure[:outcome_analyses]
+      analyses = StudyJsonRecord.set_key_value(outcome_analyses[:outcome_analysis], :outcome_id, outcome.id) if outcome_analyses
+      
+      save_with_result_group(outcome_counts, 'OutcomeCount') if outcome_counts
+      save_with_result_group(outcome_measurements, 'OutcomeMeasurement') if outcome_measurements
+      save_with_result_group(analyses, 'OutcomeAnalysis') if analyses
+      save_outcome_analyses(outcome_analyses[:outcome_analysis_group_ids]) if outcome_analyses
+      
+    end
+  end
+
+  def save_outcome_analyses(outcome_analysis_groups)
+    return unless outcome_analysis_groups
+
+    outcome_analysis_groups.each do |group|
+      analysis = OutcomeAnalysis.find_by(nct_id: nct_id, ctgov_group_code: outcome_analysis[:ctgov_group_code])
+      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_group_code: outcome_analysis[:ctgov_group_code])
+      next unless result_group && analysis
+
+      StudyJsonRecord.set_key_value(group, :outcome_analysis_id, analysis.id) if analysis
+      save_with_result_group(group, 'OutcomeAnalysisGroup')
+    end
+  end
+
+  def self.set_key_value(hash_array, key, value)
+    return unless hash_array
+    
+    hash_array.map{ |h| h[key] = value }
+    hash_array
   end
 end
