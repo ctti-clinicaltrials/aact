@@ -1086,6 +1086,10 @@ class StudyJsonRecord < ActiveRecord::Base
     return nil if large_docs.empty?
 
     large_docs.each do |doc|
+      base_url = 'https://ClinicalTrials.gov/ProvidedDocs/'
+      number = "#{nct_id[-2]}#{nct_id[-1]}/#{nct_id}"
+      full_url = base_url + number + "/#{doc['LargeDocFilename']}" if doc['LargeDocFilename']
+
       collection.push(
                       nct_id: nct_id,
                       document_type: doc['LargeDocLabel'],
@@ -1093,7 +1097,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       has_icf: get_boolean(doc['LargeDocHasICF']),
                       has_sap: get_boolean(doc['LargeDocHasSAP']),
                       document_date: doc['LargeDocDate'].try(:to_date),
-                      url: doc['LargeDocFilename']
+                      url: full_url
                       )
                     
     end
@@ -1369,7 +1373,12 @@ class StudyJsonRecord < ActiveRecord::Base
     OverallOfficial.create(data[:overall_officials]) if data[:overall_officials]
     DesignOutcome.create(data[:design_outcomes]) if data[:design_outcomes]
     PendingResult.create(data[:pending_results]) if data[:pending_results]
-    
+    ProvidedDocument.create(data[:provided_documents]) if data[:provided_documents]
+
+    # saving reported events and associated objects
+    reported_events_info = data[:reported_events] || {}
+    ResultGroup.create(reported_events_info[:result_groups]) if reported_events_info[:result_groups]
+    save_with_result_group(reported_events_info[:events]) if reported_events_info[:events]
 
     puts StudyJsonRecord.object_counts
     
@@ -1415,6 +1424,8 @@ class StudyJsonRecord < ActiveRecord::Base
       overall_official: OverallOfficial.count,
       design_outcome: DesignOutcome.count,
       pending_result: PendingResult.count,
+      provided_document: ProvidedDocument.count,
+      reported_event: ReportedEvent.count
     }
   end
 
