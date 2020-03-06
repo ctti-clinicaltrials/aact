@@ -1030,6 +1030,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def design_outcomes_data
     primary_outcomes = outcome_list('Primary')
     secondary_outcomes = outcome_list('Secondary')
+    other_outcomes = outcome_list('Other')
     primary_outcomes ||= []
     secondary_outcomes ||= []
     total = primary_outcomes + secondary_outcomes
@@ -1048,7 +1049,7 @@ class StudyJsonRecord < ActiveRecord::Base
     outcomes.each do |outcome|
       collection.push(
                       nct_id: nct_id,
-                      outcome_type: outcome_type,
+                      outcome_type: outcome_type.downcase,
                       measure: outcome["#{outcome_type}OutcomeMeasure"],
                       time_frame: outcome["#{outcome_type}OutcomeTimeFrame"],
                       population: nil,
@@ -1364,7 +1365,12 @@ class StudyJsonRecord < ActiveRecord::Base
     outcomes_info = data[:outcomes] || {}
     ResultGroup.create(outcomes_info[:result_groups]) if outcomes_info[:result_groups]
     save_outcomes(outcomes_info[:outcome_measures]) if outcomes_info[:outcome_measures]
+
+    OverallOfficial.create(data[:overall_officials]) if data[:overall_officials]
+    DesignOutcome.create(data[:design_outcomes]) if data[:design_outcomes]
+    PendingResult.create(data[:pending_results]) if data[:pending_results]
     
+
     puts StudyJsonRecord.object_counts
     
     puts "~~~~~~~~~~~~~~"
@@ -1405,6 +1411,10 @@ class StudyJsonRecord < ActiveRecord::Base
       outcome_count: OutcomeCount.count,
       outcome_measurement: OutcomeMeasurement.count,
       outcome_analysis: OutcomeAnalysis.count,
+      outcome_analysis_group: OutcomeAnalysisGroup.count,
+      overall_official: OverallOfficial.count,
+      design_outcome: DesignOutcome.count,
+      pending_result: PendingResult.count,
     }
   end
 
@@ -1519,7 +1529,6 @@ class StudyJsonRecord < ActiveRecord::Base
       save_with_result_group(outcome_measurements, 'OutcomeMeasurement') if outcome_measurements
       save_with_result_group(analyses, 'OutcomeAnalysis') if analyses
       save_outcome_analyses(outcome_analyses[:outcome_analysis_group_ids]) if outcome_analyses
-      
     end
   end
 
@@ -1531,7 +1540,7 @@ class StudyJsonRecord < ActiveRecord::Base
       result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_group_code: outcome_analysis[:ctgov_group_code])
       next unless result_group && analysis
 
-      StudyJsonRecord.set_key_value(group, :outcome_analysis_id, analysis.id) if analysis
+      StudyJsonRecord.set_key_value(group, :outcome_analysis_id, analysis.id)
       save_with_result_group(group, 'OutcomeAnalysisGroup')
     end
   end
