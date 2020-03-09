@@ -80,11 +80,11 @@ class Study < ActiveRecord::Base
   has_many :sponsors,              :foreign_key => 'nct_id', :dependent => :delete_all
   accepts_nested_attributes_for :outcomes
 
-  # def initialize(hash)
-  #   super
-  #   @xml=hash[:xml]
-  #   self.nct_id=hash[:nct_id]
-  # end
+  def initialize(hash)
+    super
+    @xml=hash[:xml]
+    self.nct_id=hash[:nct_id]
+  end
 
   def opts
     {
