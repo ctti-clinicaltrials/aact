@@ -33,6 +33,7 @@ namespace :db do
     con.execute("CREATE SCHEMA IF NOT EXISTS ctgov;")
     con.execute("CREATE SCHEMA IF NOT EXISTS support;")
     con.execute("CREATE SCHEMA IF NOT EXISTS ctgov_beta;")
+    con.execute("GRANT ALL ON ALL TABLES IN SCHEMA ctgov_beta TO #{aact_superuser};")
     con.execute("GRANT ALL ON ALL TABLES IN SCHEMA ctgov TO #{aact_superuser};")
     con.execute("GRANT ALL ON ALL TABLES IN SCHEMA support TO #{aact_superuser};")
     con.execute("ALTER ROLE #{aact_superuser} WITH CREATEROLE;")
