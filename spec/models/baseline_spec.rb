@@ -85,8 +85,8 @@ describe BaselineMeasurement do
     expect(counts.size).to eq(10);
     expect(study.baseline_counts.size).to eq(10);
     expect(study.baseline_counts.size).to eq(10);
-    ba1=study.baseline_counts.select{|x|x.units=='Participants' && x.scope =='Overall' && x.ctgov_group_code == 'B1'}.first
-    ba3=study.baseline_counts.select{|x|x.units=='Participants' && x.scope =='Overall' && x.ctgov_group_code == 'B3'}.first
+    ba1=study.baseline_counts.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B1'}.first
+    ba3=study.baseline_counts.select{|x|x.units=='Participants' && x.scope=='Overall' && x.ctgov_group_code=='B3'}.first
     expect(ba1.count).to eq(606);
     expect(ba3.count).to eq(397);
 

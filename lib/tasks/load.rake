@@ -5,6 +5,6 @@ namespace :db do
     # The updater will default the params to run a relativey quick load:
     # incremental, not full featured, just a couple days
     Util::Updater.new(args).run
-    StudyJsonRecord.run(args)
+    StudyJsonRecord.run(args) unless ENV['RAILS_ENV'] == test
   end
 end
