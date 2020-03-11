@@ -1,6 +1,7 @@
 module Util
  class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured   
+    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured
+       
     def initialize(params={})
       @full_featured = params[:full_featured] || false
       @params=params
