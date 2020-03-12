@@ -1,25 +1,42 @@
 require 'open-uri'
 require 'fileutils'
 # require 'zip'
-# run incremental load with: bundle exec rake db:load[1,incremental,true,ctgov_beta]
-# run full load with: bundle exec rake db:load[1,full,true,ctgov_beta]
+# run incremental load with: bundle exec rake db:load[1,incremental,true]
+# run full load with: bundle exec rake db:load[1,full,true]
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'ctgov_beta.study_json_records'
+  
+  def self.db_mgr
+    @db_mgr ||= Util::DbManager.new({search_path: 'ctgov_beta'})
+  end
+
+  def self.updater(params={})
+    @updater ||= Util::Updater.new(params)
+  end
+
   def self.run(params={})
-    Util::DbManager.new(params).public_con
+    StudyJsonRecord.set_table_schema('ctgov_beta')
+    db_mgr.remove_indexes_and_constraints  # Index significantly slow the load process.
     @full_featured = params[:full_featured] || false
     @params = params
     @type = params[:event_type] ? params[:event_type] : 'incremental'
     @days_back = (params[:days_back] ? params[:days_back] : 2)
     puts 'params set...'
-    print 'now running'
+    print "now running #{@type}, #{@days_back} days back"
     begin
      @type == 'full' ? full : incremental
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       puts"#{@type} load failed in run: #{msg}"
     end
+    db_mgr.add_indexes_and_constraints
+    puts 'Beta API Counts'
+    puts StudyJsonRecord.object_counts
+    
+    StudyJsonRecord.set_table_schema('ctgov')
+    puts 'Old API Counts'
+    puts StudyJsonRecord.object_counts
   end
 
   def self.root_dir
@@ -58,6 +75,12 @@ class StudyJsonRecord < ActiveRecord::Base
     study_download = download_all_studies
     # finshed in about 12 hours
     # total number we have 326614
+    
+    # finshed in about 1 hour
+    # total number we should have 3131
+    # total number we have 1578
+    nct_ids = StudyJsonRecord.all.map(&:nct_id)
+    clear_out_data_for(nct_ids)
     Zip::File.open(study_download.path) do |unzipped_folders|
       puts "unzipped folders"
       original_count = unzipped_folders.size
@@ -93,7 +116,7 @@ class StudyJsonRecord < ActiveRecord::Base
     save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
      
     # total_number is the number of studies available, meaning the total number in their database
-    total_number = first_batch['FullStudiesResponse']['NStudiesAvail']
+    total_number = first_batch['FullStudiesResponse']['NStudiesFound']
     # since I already saved the first hundred studies I start the loop after that point
     # studies must be retrieved in batches of 99,
     # using min and max to determine the study to start with and the study to end with respectively (in that batch)
@@ -102,14 +125,13 @@ class StudyJsonRecord < ActiveRecord::Base
 
     limit = (total_number/100.0).ceil
     
-    # for x in 1..limit
-    for x in 1..2
+    for x in 1..limit
       puts "batch #{x}"
       fetch_studies(min, max)
       min += 100
       max += 100
       puts "Current Study Json Record Count #{StudyJsonRecord.count}"
-      sleep 1
+      sleep 5
     end
     seconds = Time.now - start_time
     puts "finshed in #{time_ago_in_words(start_time)}"
@@ -133,7 +155,6 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.save_study_records(study_batch)
     return unless study_batch
 
-    StudyJsonRecord.set_table_schema('ctgov_beta')
     nct_id_array = study_batch.map{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
     clear_out_data_for(nct_id_array)
 
@@ -156,14 +177,22 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.clear_out_data_for(nct_ids)
-    ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
-    names = Util::DbManager.new.loadable_tables
-    names.each { |table|
-      stime=Time.zone.now
-      ActiveRecord::Base.connection.execute("DELETE FROM ctgov_beta.#{table} WHERE nct_id IN (#{ids})")
-      puts "deleted studies from #{table}   #{Time.zone.now - stime}"
-    }
-    delete_json_records(ids)
+    db_mgr.clear_out_data_for(nct_ids) unless nct_ids.empty? 
+
+    # ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
+    
+    # names = Util::DbManager.new.loadable_tables
+    
+    # names.sort.reverse.each { |table|
+    #   stime=Time.zone.now
+    #   next if table == 'studies'
+      
+    #   ActiveRecord::Base.connection.execute("DELETE FROM ctgov_beta.#{table} WHERE nct_id IN (#{ids})")
+    #   puts "deleted studies from #{table}   #{Time.zone.now - stime}"
+    # }
+    # ActiveRecord::Base.connection.execute("DELETE FROM ctgov_beta.studies WHERE nct_id IN (#{ids})")
+    # ActiveRecord::Base.connection.execute("DELETE FROM ctgov_beta.study_json_records WHERE nct_id IN (#{ids})")
+    delete_json_records(nct_ids)
     puts object_counts
   end
 
@@ -1286,7 +1315,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def data_collection
-    puts "Json Record #{id}"
     {
       study: study_data,
       design_groups: design_groups_data,
@@ -1324,9 +1352,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def build_study
-    puts 'here we create/update studies and all associated models'
     data = data_collection
-    StudyJsonRecord.set_table_schema('ctgov_beta')
 
     Study.find_or_create_by(nct_id: nct_id).update(data[:study]) if data[:study]
     
@@ -1386,15 +1412,12 @@ class StudyJsonRecord < ActiveRecord::Base
     ResultContact.create(data[:result_contact]) if data[:result_contact]
     Reference.create(data[:study_references]) if data[:study_references]
     Sponsor.create(data[:sponsors]) if data[:sponsors]
-    puts 'Beta API Counts'
-    puts StudyJsonRecord.object_counts
-    
+
+    update(saved_study_at: Time.now)
+
     puts "~~~~~~~~~~~~~~"
     puts "#{nct_id} done"
     puts "~~~~~~~~~~~~~~"
-    StudyJsonRecord.set_table_schema('ctgov')
-    puts 'Old API Counts'
-    puts StudyJsonRecord.object_counts
   end
 
   def self.object_counts

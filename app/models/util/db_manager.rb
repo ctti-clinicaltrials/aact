@@ -13,6 +13,7 @@ module Util
         @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
       @fm = Util::FileManager.new
+      @search_path = params[:search_path] ? params[:search_path] : 'ctgov'
     end
 
     def dump_database
@@ -255,6 +256,7 @@ module Util
         sanity_checks
         statistics
         study_xml_records
+        study_json_records
         use_cases
         use_case_attachments
       )
@@ -402,7 +404,7 @@ module Util
     def con
       return @con if @con and @con.active?
       @con = ActiveRecord::Base.establish_connection(back_db_url).connection
-      @con.schema_search_path='ctgov'
+      @con.schema_search_path = @search_path
       return @con
     end
 
