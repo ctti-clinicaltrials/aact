@@ -407,10 +407,13 @@ class StudyJsonRecord < ActiveRecord::Base
       # I collect the info I need to do queries later so I can create or find the links
       # between design groups and interventions in the database
       divide = name.split(': ')
+      intervention_name = divide[0]
+      divide.shift
+      intvervention_type = divide.join(': ')
       collection.push(
                       nct_id: nct_id,
-                      name: divide[1],
-                      type: divide[0],
+                      name: intervention_name,
+                      type: intvervention_type,
                       design_group: arms_group['ArmGroupLabel']
                     )
     end
@@ -1295,6 +1298,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.new_check
     nct = %w[
+      NCT04292080
       NCT04050527
       NCT00530010
       NCT04144088
@@ -1322,8 +1326,8 @@ class StudyJsonRecord < ActiveRecord::Base
     ]
     
     
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.study_data }
-    StudyJsonRecord.all.order(:id).each{ |i| puts i.study_data }
+    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.design_groups_data }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.study_data }
     # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     []
