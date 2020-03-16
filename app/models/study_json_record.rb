@@ -1,8 +1,8 @@
 require 'open-uri'
 require 'fileutils'
 # require 'zip'
-# run incremental load with: bundle exec rake db:load[1,incremental,true]
-# run full load with: bundle exec rake db:load[1,full,true]
+# run incremental load with: bundle exec rake db:beta_load[1,incremental]
+# run full load with: bundle exec rake db:beta_loadload[1,full]
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'ctgov_beta.study_json_records'
@@ -17,7 +17,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.run(params={})
     @broken_batch = {}
-    StudyJsonRecord.set_table_schema('ctgov_beta')
+    set_table_schema('ctgov_beta')
     @full_featured = params[:full_featured] || false
     @params = params
     @type = params[:event_type] ? params[:event_type] : 'incremental'
@@ -30,11 +30,16 @@ class StudyJsonRecord < ActiveRecord::Base
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       puts"#{@type} load failed in run: #{msg}"
     end
-    StudyJsonRecord.set_table_schema('ctgov')
+    
+
+    puts "rerunning broken----- #{@broken_batch}" if @type == 'incremental'
     sleep 120
-    "rerunning broken #{@broken_batch}" if @type != 'full'
-    sleep 60
+
     rerun_batches(@broken_batch)
+
+    puts "still broken----- #{@broken_batch}" if @type == 'incremental'
+    set_table_schema('ctgov')
+    comparison
   end
 
   def self.root_dir
@@ -141,17 +146,16 @@ class StudyJsonRecord < ActiveRecord::Base
     begin
       retries ||= 0
       puts "try ##{ retries }"
-      sleep 50
       #   "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[01/01/2020,%20MAX]&fmt=json"
       url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
       data = json_data(url) || {}
       data = data.dig('FullStudiesResponse', 'FullStudies')
       save_study_records(data) if data
-      unless data
-        @broken_batch[url] = { min: min, max: max }
-      end
     rescue
       retry if (retries += 1) < 6
+      if retries >= 6
+        @broken_batch[url] = { min: min, max: max }
+      end
     end
   end
 
@@ -162,10 +166,15 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def self.test_batch
-    url = 'https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/10/2020,%20MAX]&min_rnk=1501&max_rnk=1600&fmt=json'
-    min = 1501
-    max = 1600
+  def self.test_batch(url='https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/15/2020,%20MAX]&min_rnk=801&max_rnk=900&fmt=json')
+    # url = 'https://clinicaltrials.gov/api/query/full_studies?expr=AREA%5BLastUpdatePostDate%5DRANGE%5B03/15/2020,%20MAX%5D&min_rnk=701&max_rnk=800&fmt=json'
+    url = 'https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/15/2020,%20MAX]&min_rnk=801&max_rnk=900&fmt=json'
+    # https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/15/2020,%20MAX]&min_rnk=801&max_rnk=900&fmt=json
+    # url = 'https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/10/2020,%20MAX]&min_rnk=1501&max_rnk=1600&fmt=json'
+    url_split = url.split('&min_rnk=').last.split('&max_rnk=')
+    puts url_split
+    min = url_split[0]
+    max = url_split[1].split('&fmt=json').first
     @days_back = 3
     hash = {url: { min: min, max: max }}
     rerun_batches(hash)
@@ -1493,6 +1502,23 @@ class StudyJsonRecord < ActiveRecord::Base
       model_name = name.singularize.camelize.safe_constantize
       model_name.table_name = schema + ".#{name}" if model_name
     end
+  end
+
+  def self.comparison
+    count_array = []
+    dif = []
+    set_table_schema('ctgov_beta')
+    beta_counts = object_counts
+    set_table_schema('ctgov')
+    reg_counts = object_counts
+
+    beta_counts.each do |model_name, object_count|
+      count_hash = { beta: object_count, reg: reg_counts[:"#{model_name}"]}
+      dif.push({ "#{model_name}": count_hash }) if object_count != reg_counts[:"#{model_name}"]
+      count_array.push({ "#{model_name}": count_hash })
+    end
+
+    count_array.push({inconsistencies: dif})
   end
 
   def save_interventions(interventions)
