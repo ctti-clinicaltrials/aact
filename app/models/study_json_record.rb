@@ -16,8 +16,8 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.run(params={})
+    @broken_batch = {}
     StudyJsonRecord.set_table_schema('ctgov_beta')
-    db_mgr.remove_indexes_and_constraints  # Index significantly slow the load process.
     @full_featured = params[:full_featured] || false
     @params = params
     @type = params[:event_type] ? params[:event_type] : 'incremental'
@@ -30,13 +30,11 @@ class StudyJsonRecord < ActiveRecord::Base
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       puts"#{@type} load failed in run: #{msg}"
     end
-    db_mgr.add_indexes_and_constraints
-    puts 'Beta API Counts'
-    puts StudyJsonRecord.object_counts
-    
     StudyJsonRecord.set_table_schema('ctgov')
-    puts 'Old API Counts'
-    puts StudyJsonRecord.object_counts
+    sleep 120
+    "rerunning broken #{@broken_batch}" if @type != 'full'
+    sleep 60
+    rerun_batches(@broken_batch)
   end
 
   def self.root_dir
@@ -131,7 +129,7 @@ class StudyJsonRecord < ActiveRecord::Base
       min += 100
       max += 100
       puts "Current Study Json Record Count #{StudyJsonRecord.count}"
-      sleep 5
+      sleep 10
     end
     seconds = Time.now - start_time
     puts "finshed in #{time_ago_in_words(start_time)}"
@@ -143,13 +141,34 @@ class StudyJsonRecord < ActiveRecord::Base
     begin
       retries ||= 0
       puts "try ##{ retries }"
+      sleep 50
       #   "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[01/01/2020,%20MAX]&fmt=json"
       url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
-      data = json_data(url)['FullStudiesResponse']['FullStudies']
-      save_study_records(data)
+      data = json_data(url) || {}
+      data = data.dig('FullStudiesResponse', 'FullStudies')
+      save_study_records(data) if data
+      unless data
+        @broken_batch[url] = { min: min, max: max }
+      end
     rescue
       retry if (retries += 1) < 6
     end
+  end
+
+  def self.rerun_batches(url_hash)
+    url_hash.each do |url, min_max|
+      puts "running #{url}"
+      fetch_studies(min_max[:min], min_max[:max])
+    end
+  end
+
+  def self.test_batch
+    url = 'https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/10/2020,%20MAX]&min_rnk=1501&max_rnk=1600&fmt=json'
+    min = 1501
+    max = 1600
+    @days_back = 3
+    hash = {url: { min: min, max: max }}
+    rerun_batches(hash)
   end
 
   def self.save_study_records(study_batch)
@@ -173,38 +192,34 @@ class StudyJsonRecord < ActiveRecord::Base
       record.build_study
     else
       puts "failed to save #{nct_id}"
+      byebug
     end
   end
 
   def self.clear_out_data_for(nct_ids)
-    db_mgr.clear_out_data_for(nct_ids) unless nct_ids.empty? 
+    return if nct_ids.nil? || nct_ids.empty?
 
-    # ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
-    
-    # names = Util::DbManager.new.loadable_tables
-    
-    # names.sort.reverse.each { |table|
-    #   stime=Time.zone.now
-    #   next if table == 'studies'
-      
-    #   ActiveRecord::Base.connection.execute("DELETE FROM ctgov_beta.#{table} WHERE nct_id IN (#{ids})")
-    #   puts "deleted studies from #{table}   #{Time.zone.now - stime}"
-    # }
-    # ActiveRecord::Base.connection.execute("DELETE FROM ctgov_beta.studies WHERE nct_id IN (#{ids})")
-    # ActiveRecord::Base.connection.execute("DELETE FROM ctgov_beta.study_json_records WHERE nct_id IN (#{ids})")
+    db_mgr.remove_indexes_and_constraints  # Index significantly slow the load process.
+    db_mgr.clear_out_data_for(nct_ids)
     delete_json_records(nct_ids)
-    puts object_counts
+    db_mgr.add_indexes_and_constraints
   end
 
-  def self.delete_json_records(ids)
+  def self.delete_json_records(nct_ids)
+    return if nct_ids.nil? || nct_ids.empty?
+
+    ids = nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
     ActiveRecord::Base.connection.execute("DELETE FROM #{self.table_name} WHERE nct_id IN (#{ids})")
   end
 
   def self.json_data(url="https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=1&max_rnk=100&fmt=json")
     puts url
+    sleep 5
     page = open(url)
     JSON.parse(page.read)
   end
+
+  
 
   def self.time_range
     return nil if @type == 'full'
@@ -589,7 +604,7 @@ class StudyJsonRecord < ActiveRecord::Base
     baseline_denom_list = key_check(baseline_characteristics_module['BaselineDenomList'])
     baseline_denoms = key_check(baseline_denom_list['BaselineDenom'])
     collection = []
-    return nil if baseline_demons.empty?
+    return nil if baseline_denoms.empty?
 
     baseline_denoms.each do |denom|
       baseline_denom_count_list = denom['BaselineDenomCountList']
@@ -1353,7 +1368,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def build_study
     data = data_collection
-
     Study.find_or_create_by(nct_id: nct_id).update(data[:study]) if data[:study]
     
     # saving design_groups, and associated objects
@@ -1417,7 +1431,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     puts "~~~~~~~~~~~~~~"
     puts "#{nct_id} done"
-    puts "~~~~~~~~~~~~~~"
+    "~~~~~~~~~~~~~~"
   end
 
   def self.object_counts
@@ -1474,7 +1488,6 @@ class StudyJsonRecord < ActiveRecord::Base
     table_names.each do |name|
       model_name = name.singularize.camelize.safe_constantize
       model_name.table_name = schema + ".#{name}" if model_name
-      puts model_name.table_name if model_name
     end
   end
 

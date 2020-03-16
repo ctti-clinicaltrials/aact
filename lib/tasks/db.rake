@@ -37,7 +37,7 @@ namespace :db do
     con.execute("GRANT ALL ON ALL TABLES IN SCHEMA ctgov TO #{aact_superuser};")
     con.execute("GRANT ALL ON ALL TABLES IN SCHEMA support TO #{aact_superuser};")
     con.execute("ALTER ROLE #{aact_superuser} WITH CREATEROLE;")
-    con.execute("ALTER ROLE #{aact_superuser} IN DATABASE #{aact_back_db} SET SEARCH_PATH TO ctgov, support, public;")
+    con.execute("ALTER ROLE #{aact_superuser} IN DATABASE #{aact_back_db} SET SEARCH_PATH TO ctgov, support, public, ctgov_beta;")
   end
 
   task copy_schema: [:environment] do

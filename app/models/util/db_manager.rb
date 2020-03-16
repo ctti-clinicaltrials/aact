@@ -95,10 +95,10 @@ module Util
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       loadable_tables.each { |table|
         stime=Time.zone.now
-        con.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
-        log("deleted studies from #{table}   #{Time.zone.now - stime}")
+        con.execute("DELETE FROM #{@search_path}.#{table} WHERE nct_id IN (#{ids})")
+        log("deleted studies from #{@search_path}.#{table}   #{Time.zone.now - stime}")
       }
-      delete_xml_records(ids)
+      delete_xml_records(ids) if @search_path == 'ctgov'
     end
 
     def delete_xml_records(ids)
