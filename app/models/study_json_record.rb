@@ -566,7 +566,7 @@ class StudyJsonRecord < ActiveRecord::Base
             collection[:measurements].push(
                                             nct_id: nct_id,
                                             result_group_id: nil,
-                                            ctgov_group_code: measurement['BaselineMeasurementGroupId'],
+                                            ctgov_beta_group_code: measurement['BaselineMeasurementGroupId'],
                                             classification: baseline_class['BaselineClassTitle'],
                                             category: baseline_category['BaselineCategoryTitle'],
                                             title: measure['BaselineMeasureTitle'],
@@ -616,7 +616,7 @@ class StudyJsonRecord < ActiveRecord::Base
         collection.push(
                           nct_id: nct_id,
                           result_group_id: nil,
-                          ctgov_group_code: count['BaselineDenomCountGroupId'],
+                          ctgov_beta_group_code: count['BaselineDenomCountGroupId'],
                           units: denom['BaselineDenomUnits'],
                           scope: 'overall',
                           count: count['BaselineDenomCountValue']
@@ -852,7 +852,7 @@ class StudyJsonRecord < ActiveRecord::Base
           collection[:milestones].push(
                           nct_id: nct_id,
                           result_group_id: nil,
-                          ctgov_group_code: achievement['FlowAchievementGroupId'],
+                          ctgov_beta_group_code: achievement['FlowAchievementGroupId'],
                           title: milestone['FlowMilestoneType'],
                           period: period['FlowPeriodTitle'],
                           description: achievement['FlowAchievementComment'],
@@ -927,7 +927,7 @@ class StudyJsonRecord < ActiveRecord::Base
     groups.each do |group|
       collection.push(
                         nct_id: nct_id,
-                        ctgov_group_code: group["#{key_name}GroupId"],
+                        ctgov_beta_group_code: group["#{key_name}GroupId"],
                         result_type: type,
                         title: group["#{key_name}GroupTitle"],
                         description: group["#{key_name}GroupDescription"]
@@ -951,7 +951,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         nct_id: nct_id,
                         outcome_id: nil,
                         result_group_id: nil,
-                        ctgov_group_code: denom_count['OutcomeDenomCountGroupId'],
+                        ctgov_beta_group_code: denom_count['OutcomeDenomCountGroupId'],
                         scope: 'Measure',
                         units: denom['OutcomeDenomUnits'],
                         count: denom_count['OutcomeDenomCountValue']
@@ -980,7 +980,7 @@ class StudyJsonRecord < ActiveRecord::Base
                             nct_id: nct_id,
                             outcome_id: nil,
                             result_group_id: nil,
-                            ctgov_group_code: measure['OutcomeMeasurementGroupId'],
+                            ctgov_beta_group_code: measure['OutcomeMeasurementGroupId'],
                             classification: outcome_class['OutcomeClassTitle'],
                             category: category['OutcomeCategoryTitle'],
                             title: outcome_measure['OutcomeMeasureTitle'],
@@ -1052,7 +1052,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       nct_id: nct_id,
                       outcome_analysis_id: nil,
                       result_group_id: nil,
-                      ctgov_group_code: group_id
+                      ctgov_beta_group_code: group_id
                     )
     end
   end
@@ -1177,7 +1177,7 @@ class StudyJsonRecord < ActiveRecord::Base
         collection.push(
                         nct_id: nct_id,
                         result_group_id: nil,
-                        ctgov_group_code: event_stat["#{event_type}EventStatsGroupId"],
+                        ctgov_beta_group_code: event_stat["#{event_type}EventStatsGroupId"],
                         time_frame: adverse_events_module['EventsTimeFrame'],
                         event_type: event_type.downcase,
                         default_vocab: event["#{event_type}EventSourceVocabulary"],
@@ -1545,7 +1545,7 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless counts
 
     counts.each do |count|
-      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_group_code: count[:ctgov_group_code])
+      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_beta_group_code: count[:ctgov_beta_group_code])
       next unless result_group
 
       count[:result_group_id] = result_group.id
@@ -1557,7 +1557,7 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless group
 
     group.each do |item|
-      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_group_code: item[:ctgov_group_code])
+      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_beta_group_code: item[:ctgov_beta_group_code])
       next unless result_group
 
       item[:result_group_id] = result_group.id
@@ -1602,8 +1602,8 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless outcome_analysis_groups
 
     outcome_analysis_groups.each do |group|
-      analysis = OutcomeAnalysis.find_by(nct_id: nct_id, ctgov_group_code: outcome_analysis[:ctgov_group_code])
-      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_group_code: outcome_analysis[:ctgov_group_code])
+      analysis = OutcomeAnalysis.find_by(nct_id: nct_id, ctgov_beta_group_code: outcome_analysis[:ctgov_beta_group_code])
+      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_beta_group_code: outcome_analysis[:ctgov_beta_group_code])
       next unless result_group && analysis
 
       StudyJsonRecord.set_key_value(group, :outcome_analysis_id, analysis.id)
