@@ -16,8 +16,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.run(params={})
-    @broken_batch = {}
     set_table_schema('ctgov_beta')
+    @broken_batch = {}
+    @study_build_failures = []
     @full_featured = params[:full_featured] || false
     @params = params
     @type = params[:event_type] ? params[:event_type] : 'incremental'
@@ -32,14 +33,15 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     
 
-    puts "rerunning broken----- #{@broken_batch}" if @type == 'incremental'
+    puts "broken----- #{@broken_batch}" if @type == 'incremental'
+    puts "failed to build #{@study_build_failures}"
     sleep 120
 
     rerun_batches(@broken_batch)
 
     puts "still broken----- #{@broken_batch}" if @type == 'incremental'
     set_table_schema('ctgov')
-    comparison
+    puts comparison
   end
 
   def self.root_dir
@@ -148,18 +150,22 @@ class StudyJsonRecord < ActiveRecord::Base
       puts "try ##{ retries }"
       #   "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[01/01/2020,%20MAX]&fmt=json"
       url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
+      puts url
+      sleep 5
       data = json_data(url) || {}
       data = data.dig('FullStudiesResponse', 'FullStudies')
       save_study_records(data) if data
     rescue
       retry if (retries += 1) < 6
       if retries >= 6
+        @broken_batch ||= {}
         @broken_batch[url] = { min: min, max: max }
       end
     end
   end
 
   def self.rerun_batches(url_hash)
+    set_table_schema('ctgov_beta')
     url_hash.each do |url, min_max|
       puts "running #{url}"
       fetch_studies(min_max[:min], min_max[:max])
@@ -167,16 +173,23 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.test_batch(url='https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/15/2020,%20MAX]&min_rnk=801&max_rnk=900&fmt=json')
-    # url = 'https://clinicaltrials.gov/api/query/full_studies?expr=AREA%5BLastUpdatePostDate%5DRANGE%5B03/15/2020,%20MAX%5D&min_rnk=701&max_rnk=800&fmt=json'
-    url = 'https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/15/2020,%20MAX]&min_rnk=801&max_rnk=900&fmt=json'
-    # https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/15/2020,%20MAX]&min_rnk=801&max_rnk=900&fmt=json
-    # url = 'https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/10/2020,%20MAX]&min_rnk=1501&max_rnk=1600&fmt=json'
-    url_split = url.split('&min_rnk=').last.split('&max_rnk=')
-    puts url_split
-    min = url_split[0]
-    max = url_split[1].split('&fmt=json').first
+    broken = {"https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1101&max_rnk=1200&fmt=json"=>{:min=>1101, :max=>1200}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1201&max_rnk=1300&fmt=json"=>{:min=>1201, :max=>1300}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1301&max_rnk=1400&fmt=json"=>{:min=>1301, :max=>1400}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1401&max_rnk=1500&fmt=json"=>{:min=>1401, :max=>1500}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1501&max_rnk=1600&fmt=json"=>{:min=>1501, :max=>1600}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1601&max_rnk=1700&fmt=json"=>{:min=>1601, :max=>1700}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1701&max_rnk=1800&fmt=json"=>{:min=>1701, :max=>1800}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1801&max_rnk=1900&fmt=json"=>{:min=>1801, :max=>1900}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1901&max_rnk=2000&fmt=json"=>{:min=>1901, :max=>2000}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=2001&max_rnk=2100&fmt=json"=>{:min=>2001, :max=>2100}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=2101&max_rnk=2200&fmt=json"=>{:min=>2101, :max=>2200}, "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=2201&max_rnk=2300&fmt=json"=>{:min=>2201, :max=>2300}}
+    set_table_schema('ctgov_beta')
+    # "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=401&max_rnk=500&fmt=json"=>{:min=>401, :max=>500}
+    # "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1001&max_rnk=1100&fmt=json"=>{:min=>1001, :max=>1100}
+    hash = {
+      "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=1001&max_rnk=1100&fmt=json"=>{:min=>1001, :max=>1100}
+          }
+    puts hash
+    sleep 5
+    # url = 'https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[03/17/2020,%20MAX]&min_rnk=401&max_rnk=500&fmt=json'
+    # url_split = url.split('&min_rnk=').last.split('&max_rnk=')
+    # puts url_split
+    # min = url_split[0]
+    # max = url_split[1].split('&fmt=json').first
     @days_back = 3
-    hash = {url: { min: min, max: max }}
+    # hash = {url: { min: min, max: max }}
+
     rerun_batches(hash)
   end
 
@@ -222,8 +235,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.json_data(url="https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=1&max_rnk=100&fmt=json")
-    puts url
-    sleep 5
     page = open(url)
     JSON.parse(page.read)
   end
@@ -1305,43 +1316,6 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
-  def self.new_check
-    nct = %w[
-      NCT04292080
-      NCT04050527
-      NCT00530010
-      NCT04144088
-      NCT04053270
-      NCT03897712
-      NCT03845673
-      NCT04245423
-      NCT03519243
-      NCT03034044
-      NCT03496987
-      NCT04204200
-      NCT04182217
-      NCT04167644
-      NCT04214080
-      NCT02982187
-      NCT04027218
-      NCT03811093
-      NCT04109703
-      NCT03763058
-      NCT00489281
-      NCT04076787
-      NCT00725621
-      NCT02222493
-      NCT04014062
-    ]
-    
-    
-    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.design_groups_data }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.study_data }
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
-    []
-  end
-
   def data_collection
     {
       study: study_data,
@@ -1380,71 +1354,79 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def build_study
-    data = data_collection
-    Study.find_or_create_by(nct_id: nct_id).update(data[:study]) if data[:study]
-    
-    # saving design_groups, and associated objects
-    save_interventions(data[:interventions])
-    save_design_groups(data[:design_groups])
+    begin
+      data = data_collection
+      Study.find_or_create_by(nct_id: nct_id).update(data[:study]) if data[:study]
+      
+      # saving design_groups, and associated objects
+      save_interventions(data[:interventions])
+      save_design_groups(data[:design_groups])
 
-    DetailedDescription.find_or_create_by(nct_id: nct_id).update(data[:detailed_description]) if data[:detailed_description]
-    BriefSummary.find_or_create_by(nct_id: nct_id).update(data[:brief_summary]) if data[:brief_summary]
-    Design.find_or_create_by(nct_id: nct_id).update(data[:design]) if data[:design]
-    Eligibility.find_or_create_by(nct_id: nct_id).update(data[:eligibility]) if data[:eligibility]
-    ParticipantFlow.find_or_create_by(nct_id: nct_id).update(data[:participant_flow]) if data[:participant_flow]
-    
-    # saving baseline_measurements and associated objects
-    baseline_info = data[:baseline_measurements]
-    ResultGroup.create(baseline_info[:result_groups]) if baseline_info
-    save_with_result_group(baseline_info[:baseline_counts], 'BaselineCount') if baseline_info
-    save_with_result_group(baseline_info[:measurements], 'BaselineMeasurement') if baseline_info
-    
-    BrowseCondition.create(data[:browse_conditions]) if data[:browse_conditions]
-    BrowseIntervention.create(data[:browse_interventions]) if data[:browse_interventions]
-    CentralContact.create(data[:central_contacts_list]) if data[:central_contacts_list]
-    Condition.create(data[:conditions]) if data[:conditions]
-    Country.create(data[:countries]) if data[:countries]
-    Document.create(data[:documents]) if data[:documents]
+      DetailedDescription.find_or_create_by(nct_id: nct_id).update(data[:detailed_description]) if data[:detailed_description]
+      BriefSummary.find_or_create_by(nct_id: nct_id).update(data[:brief_summary]) if data[:brief_summary]
+      Design.find_or_create_by(nct_id: nct_id).update(data[:design]) if data[:design]
+      Eligibility.find_or_create_by(nct_id: nct_id).update(data[:eligibility]) if data[:eligibility]
+      ParticipantFlow.find_or_create_by(nct_id: nct_id).update(data[:participant_flow]) if data[:participant_flow]
+      
+      # saving baseline_measurements and associated objects
+      baseline_info = data[:baseline_measurements]
+      ResultGroup.create(baseline_info[:result_groups]) if baseline_info
+      # byebug
+      save_with_result_group(baseline_info[:baseline_counts], 'BaselineCount') if baseline_info
+      save_with_result_group(baseline_info[:measurements], 'BaselineMeasurement') if baseline_info
+      
+      BrowseCondition.create(data[:browse_conditions]) if data[:browse_conditions]
+      BrowseIntervention.create(data[:browse_interventions]) if data[:browse_interventions]
+      CentralContact.create(data[:central_contacts_list]) if data[:central_contacts_list]
+      Condition.create(data[:conditions]) if data[:conditions]
+      Country.create(data[:countries]) if data[:countries]
+      Document.create(data[:documents]) if data[:documents]
 
-    # saving facilities and related objects
-    save_facilities(data[:facilities])
+      # saving facilities and related objects
+      save_facilities(data[:facilities])
 
-    IdInformation.create(data[:id_information]) if data[:id_information]
-    IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
-    Keyword.create(data[:keywords]) if data[:keywords]
-    Link.create(data[:links]) if data[:links]
+      IdInformation.create(data[:id_information]) if data[:id_information]
+      IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
+      Keyword.create(data[:keywords]) if data[:keywords]
+      Link.create(data[:links]) if data[:links]
 
-    # saving milestones and associated objects
-    milestone_info = data[:milestones] || {}
-    ResultGroup.create(milestone_info[:result_groups]) if milestone_info[:result_groups]
-    save_with_result_group(milestone_info[:milestones], 'Milestone') if milestone_info[:milestones]
+      # saving milestones and associated objects
+      milestone_info = data[:milestones] || {}
+      ResultGroup.create(milestone_info[:result_groups]) if milestone_info[:result_groups]
+      save_with_result_group(milestone_info[:milestones], 'Milestone') if milestone_info[:milestones]
 
-    # saving outcomes and associated objects
-    outcomes_info = data[:outcomes] || {}
-    ResultGroup.create(outcomes_info[:result_groups]) if outcomes_info[:result_groups]
-    save_outcomes(outcomes_info[:outcome_measures]) if outcomes_info[:outcome_measures]
+      # saving outcomes and associated objects
+      outcomes_info = data[:outcomes] || {}
+      ResultGroup.create(outcomes_info[:result_groups]) if outcomes_info[:result_groups]
+      save_outcomes(outcomes_info[:outcome_measures]) if outcomes_info[:outcome_measures]
 
-    OverallOfficial.create(data[:overall_officials]) if data[:overall_officials]
-    DesignOutcome.create(data[:design_outcomes]) if data[:design_outcomes]
-    PendingResult.create(data[:pending_results]) if data[:pending_results]
-    ProvidedDocument.create(data[:provided_documents]) if data[:provided_documents]
+      OverallOfficial.create(data[:overall_officials]) if data[:overall_officials]
+      DesignOutcome.create(data[:design_outcomes]) if data[:design_outcomes]
+      PendingResult.create(data[:pending_results]) if data[:pending_results]
+      ProvidedDocument.create(data[:provided_documents]) if data[:provided_documents]
 
-    # saving reported events and associated objects
-    reported_events_info = data[:reported_events] || {}
-    ResultGroup.create(reported_events_info[:result_groups]) if reported_events_info[:result_groups]
-    save_with_result_group(reported_events_info[:events]) if reported_events_info[:events]
-    
-    ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
-    ResultAgreement.create(data[:result_agreement]) if data[:result_agreement]
-    ResultContact.create(data[:result_contact]) if data[:result_contact]
-    Reference.create(data[:study_references]) if data[:study_references]
-    Sponsor.create(data[:sponsors]) if data[:sponsors]
+      # saving reported events and associated objects
+      reported_events_info = data[:reported_events] || {}
+      ResultGroup.create(reported_events_info[:result_groups]) if reported_events_info[:result_groups]
+      save_with_result_group(reported_events_info[:events], 'ReportedEvent') if reported_events_info[:events]
+      
+      ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
+      ResultAgreement.create(data[:result_agreement]) if data[:result_agreement]
+      ResultContact.create(data[:result_contact]) if data[:result_contact]
+      Reference.create(data[:study_references]) if data[:study_references]
+      Sponsor.create(data[:sponsors]) if data[:sponsors]
 
-    update(saved_study_at: Time.now)
+      update(saved_study_at: Time.now)
 
-    puts "~~~~~~~~~~~~~~"
-    puts "#{nct_id} done"
-    "~~~~~~~~~~~~~~"
+      puts "~~~~~~~~~~~~~~"
+      puts "#{nct_id} done"
+      "~~~~~~~~~~~~~~"
+    rescue
+      puts "NctId: #{nct_id} failed, Record ID #{id}"
+      sleep 10
+      @study_build_failures ||= []
+      @study_build_failures << id
+    end
   end
 
   def self.object_counts
@@ -1579,6 +1561,45 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
+  def self.new_check
+    set_table_schema('ctgov_beta')
+    nct = %w[
+      NCT04292080
+      NCT04050527
+      NCT00530010
+      NCT04144088
+      NCT04053270
+      NCT03897712
+      NCT03845673
+      NCT04245423
+      NCT03519243
+      NCT03034044
+      NCT03496987
+      NCT04204200
+      NCT04182217
+      NCT04167644
+      NCT04214080
+      NCT02982187
+      NCT04027218
+      NCT03811093
+      NCT04109703
+      NCT03763058
+      NCT00489281
+      NCT04076787
+      NCT00725621
+      NCT02222493
+      NCT04014062
+    ]
+    
+    
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.outcomes_data }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.study_data }
+    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
+    # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
+    # record = StudyJsonRecord.find_by(nct_id: 'NCT04072432')
+    []
+  end
+
   def save_with_result_group(group, model_name='BaselineMeasurement')
     return unless group
 
@@ -1609,33 +1630,49 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless outcome_measures
 
     outcome_measures.each do |outcome_measure|
+      puts outcome_measure
       outcome = Outcome.create(outcome_measure[:outcome_measure]) if outcome_measure[:outcome_measure]
       next unless outcome
 
       outcome_counts = StudyJsonRecord.set_key_value(outcome_measure[:outcome_counts], :outcome_id, outcome.id)
       outcome_measurements = StudyJsonRecord.set_key_value(outcome_measure[:outcome_measurements], :outcome_id, outcome.id)
-      outcome_analyses = outcome_measure[:outcome_analyses]
-      analyses = StudyJsonRecord.set_key_value(outcome_analyses[:outcome_analysis], :outcome_id, outcome.id) if outcome_analyses
-      
       save_with_result_group(outcome_counts, 'OutcomeCount') if outcome_counts
       save_with_result_group(outcome_measurements, 'OutcomeMeasurement') if outcome_measurements
-      save_with_result_group(analyses, 'OutcomeAnalysis') if analyses
-      save_outcome_analyses(outcome_analyses[:outcome_analysis_group_ids]) if outcome_analyses
+      
+      outcome_analyses = outcome_measure[:outcome_analyses] || []
+      outcome_analyses.map{ |h| h[:outcome_analysis][:outcome_id] = outcome.id } unless outcome_analyses.empty?
+      
+      outcome_analyses.each do |analysis_info|
+        outcome_analysis = OutcomeAnalysis.create(analysis_info[:outcome_analysis])
+        outcome_analysis_group_ids = analysis_info[:outcome_analysis_group_ids] || []
+        outcome_analysis_group_ids.each do |group_id|
+          result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_beta_group_code: group_id)
+          next unless result_group && outcome_analysis
+
+          OutcomeAnalysisGroup.create(
+                                      nct_id: nct_id,
+                                      outcome_analysis_id: outcome_analysis.id,
+                                      result_group_id: result_group.id,
+                                      ctgov_beta_group_code: group_id
+                                      )
+        end
+
+      end
     end
   end
 
-  def save_outcome_analyses(outcome_analysis_groups)
-    return unless outcome_analysis_groups
+  # def save_outcome_analyses(outcome_analysis_groups)
+  #   return unless outcome_analysis_groups
 
-    outcome_analysis_groups.each do |group|
-      analysis = OutcomeAnalysis.find_by(nct_id: nct_id, ctgov_beta_group_code: outcome_analysis[:ctgov_beta_group_code])
-      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_beta_group_code: outcome_analysis[:ctgov_beta_group_code])
-      next unless result_group && analysis
+  #   outcome_analysis_groups.each do |group|
+  #     analysis = OutcomeAnalysis.find_by(nct_id: nct_id, ctgov_beta_group_code: outcome_analysis[:ctgov_beta_group_code])
+  #     result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_beta_group_code: outcome_analysis[:ctgov_beta_group_code])
+  #     next unless result_group && analysis
 
-      StudyJsonRecord.set_key_value(group, :outcome_analysis_id, analysis.id)
-      save_with_result_group(group, 'OutcomeAnalysisGroup')
-    end
-  end
+  #     StudyJsonRecord.set_key_value(group, :outcome_analysis_id, analysis.id)
+  #     save_with_result_group(group, 'OutcomeAnalysisGroup')
+  #   end
+  # end
 
   def self.set_key_value(hash_array, key, value)
     return unless hash_array
