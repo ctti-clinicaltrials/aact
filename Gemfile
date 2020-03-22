@@ -8,9 +8,9 @@ gem "rubyzip", "< 2.0.0"
 
 gem 'nokogiri'
 gem 'loofah'
-gem 'rails', '5.0.0'
-gem 'activesupport', '5.0.0'
-gem 'actionpack', '5.0.0'
+gem 'rails', '6.0.0'
+gem 'activesupport', '6.0.0'
+gem 'actionpack', '6.0.0'
 gem 'rails-html-sanitizer'
 gem "rack-timeout"
 gem "faraday"
@@ -52,7 +52,7 @@ group :development, :test do
   gem "rack-mini-profiler", require: false
   gem "awesome_print"
   gem "bullet"
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "pry-byebug"
   gem "pry-rails"
   gem 'rspec-rails'
