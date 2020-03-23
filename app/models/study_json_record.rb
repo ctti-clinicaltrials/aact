@@ -16,6 +16,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.run(params={})
+    start_time = Time.current
     set_table_schema('ctgov_beta')
     @broken_batch = {}
     @study_build_failures = []
@@ -23,8 +24,7 @@ class StudyJsonRecord < ActiveRecord::Base
     @params = params
     @type = params[:event_type] ? params[:event_type] : 'incremental'
     @days_back = (params[:days_back] ? params[:days_back] : 2)
-    puts 'params set...'
-    print "now running #{@type}, #{@days_back} days back"
+    puts "now running #{@type}, #{@days_back} days back"
     begin
      @type == 'full' ? full : incremental
     rescue => error
@@ -34,16 +34,17 @@ class StudyJsonRecord < ActiveRecord::Base
     
 
     puts "broken----- #{@broken_batch}" if @type == 'incremental'
-    puts "failed to build #{@study_build_failures.uniq}"
     puts "about to rerun batches"
     sleep 5
 
     rerun_batches(@broken_batch)
 
-    puts "still broken----- #{@broken_batch}" if @type == 'incremental'
+    puts "broken----- #{@broken_batch}" if @type == 'incremental'
     puts "failed to build #{@study_build_failures.uniq}"
     set_table_schema('ctgov')
     puts comparison
+    puts "finshed in #{time_ago_in_words(start_time)}"
+    puts "total number we have #{StudyJsonRecord.count}"
   end
 
   def self.root_dir
@@ -68,7 +69,6 @@ class StudyJsonRecord < ActiveRecord::Base
       end
     rescue Errno::ECONNRESET => e
       if (tries -=1) > 0
-        puts "  download failed.  trying again..."
         retry
       end
     end
@@ -89,7 +89,6 @@ class StudyJsonRecord < ActiveRecord::Base
     nct_ids = StudyJsonRecord.all.map(&:nct_id)
     clear_out_data_for(nct_ids)
     Zip::File.open(study_download.path) do |unzipped_folders|
-      puts "unzipped folders"
       original_count = unzipped_folders.size
       count_down = original_count
       unzipped_folders.each do |file|
@@ -110,12 +109,9 @@ class StudyJsonRecord < ActiveRecord::Base
       end  
     end
     seconds = Time.now - start_time
-    puts "finshed in #{time_ago_in_words(start_time)}"
-    puts "total number we have #{StudyJsonRecord.count}"
   end
 
   def self.incremental
-    start_time = Time.current
     first_batch = json_data
     # total_number is the number of studies available, meaning the total number in their database
     total_number = first_batch['FullStudiesResponse']['NStudiesFound']
@@ -138,10 +134,6 @@ class StudyJsonRecord < ActiveRecord::Base
       min += 100
       max += 100
     end
-    seconds = Time.now - start_time
-    puts "finshed in #{time_ago_in_words(start_time)}"
-    puts "total number number of studies updated #{total_number}"
-    puts "total number of studies we have #{StudyJsonRecord.count}"
   end
 
   def self.fetch_studies(min=1, max=100)
@@ -150,7 +142,6 @@ class StudyJsonRecord < ActiveRecord::Base
       puts "try ##{ retries }"
       #   "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[01/01/2020,%20MAX]&fmt=json"
       url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
-      puts url
       data = json_data(url) || {}
       data = data.dig('FullStudiesResponse', 'FullStudies')
       save_study_records(data) if data
@@ -191,7 +182,6 @@ class StudyJsonRecord < ActiveRecord::Base
     if record.save
       record.build_study
     else
-      puts "failed to save #{nct_id}"
       byebug
     end
   end
@@ -213,6 +203,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.json_data(url="https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=1&max_rnk=100&fmt=json")
+    puts url
     page = open(url)
     JSON.parse(page.read)
   end
@@ -407,6 +398,9 @@ class StudyJsonRecord < ActiveRecord::Base
       # Foo.where("bar LIKE ?", "%#{query}%")
       divide = name.split(': ')
       intervention_type = divide[0]
+      if divide.count < 2
+        byebug
+      end
       divide.shift
       intervention_name = divide.join(': ')
       collection.push(
@@ -1335,7 +1329,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def build_study
     begin
       data = data_collection
-      Study.find_or_create_by(nct_id: nct_id).update(data[:study]) if data[:study]
+      Study.create(data[:study]) if data[:study]
       
       # saving design_groups, and associated objects
       save_interventions(data[:interventions])
@@ -1400,7 +1394,6 @@ class StudyJsonRecord < ActiveRecord::Base
       puts "#{nct_id} done"
       "~~~~~~~~~~~~~~"
     rescue => error
-      puts "#{error}"
       byebug
       @study_build_failures ||= []
       @study_build_failures << id
