@@ -23,7 +23,7 @@ module AACT
       generate.view_specs false
     end
     config.active_record.schema_format = :sql
-    config.active_record.raise_in_transactional_callbacks = true
+    # config.active_record.raise_in_transactional_callbacks = true
 
     # Note:  You must define the AACT DB superuser's password in the .pgpass file that needs to be in the root directory of the user who runs
     # the rails app.  We don't save passwords in Env Vars because they can be to easily exposed that way.
@@ -68,7 +68,7 @@ module AACT
     cors_origins = '*'
     cors_origins = ENV['CORS_ORIGINS'].split(',') if ENV['CORS_ORIGINS']
 
-    config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
+    config.middleware.insert_before 0, Rack::Cors, :debug => true, :logger => (-> { Rails.logger }) do
       allow do
         origins cors_origins
 
