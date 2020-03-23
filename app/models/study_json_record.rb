@@ -296,8 +296,12 @@ class StudyJsonRecord < ActiveRecord::Base
     expanded = key_check(design['ExpandedAccessTypes'])
     biospec = key_check(design['BioSpec'])
     arms_intervention = key_check(protocol['ArmsInterventionsModule'])
-    arms_group_list = key_check(arms_intervention['ArmGroupList'])
-    arms_groups = arms_group_list['ArmGroup'] || []
+    study_type = design['StudyType']
+    group_list = key_check(arms_intervention['ArmGroupList'])
+    groups = group_list['ArmGroup'] || []
+    num_of_groups = groups.count == 0 ? nil : groups.count
+    arms_count = study_type =~ /Interventional/i ? num_of_groups : nil
+    groups_count = arms_count ? nil : num_of_groups 
 
     { 
       nct_id: nct_id,
@@ -330,7 +334,7 @@ class StudyJsonRecord < ActiveRecord::Base
       primary_completion_date_type: primary_completion_date['PrimaryCompletionDateType'],
       primary_completion_date: convert_date(primary_completion_date['PrimaryCompletionDate']),
       target_duration: design['TargetDuration'],
-      study_type: design['StudyType'],
+      study_type: study_type,
       acronym: ident['Acronym'],
       baseline_population: baseline['BaselinePopulationDescription'],
       brief_title: ident['BriefTitle'],
@@ -342,8 +346,8 @@ class StudyJsonRecord < ActiveRecord::Base
       enrollment_type: enrollment['EnrollmentType'],
       source: ident.dig('Organization', 'OrgFullName'),
       limitations_and_caveats: key_check(results['MoreInfoModule'])['LimitationsAndCaveats'],
-      number_of_arms: arms_groups.count,
-      number_of_groups: arms_groups.count,
+      number_of_arms: arms_count,
+      number_of_groups: groups_count,
       why_stopped: status['WhyStopped'],
       has_expanded_access: get_boolean(expanded_access),
       expanded_access_type_individual: get_boolean(expanded['ExpAccTypeIndividual']),
@@ -1289,6 +1293,50 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
+  def self.tester
+    set_table_schema('ctgov_beta')
+    flow_results = ResultGroup.where(result_type: 'Participant Flow')
+    nct_ids = flow_results.map(&:nct_id)
+    flow_study_jsons = StudyJsonRecord.where(nct_id: nct_ids)
+    flow_study_jsons.each{|i| puts i.build_study}
+    
+    set_table_schema('ctgov')
+  end
+
+  def drop_withdrawals_data
+    participant_flow_module = key_check(results_section['ParticipantFlowModule'])
+    flow_period_list = key_check(participant_flow_module['FlowPeriodList'])
+    flow_periods = flow_period_list['FlowPeriod'] || []
+    collection = {result_groups: flow_result_groups_data, drop_withdrawals: []}
+    return nil if flow_periods.empty?
+
+    flow_periods.each do |period|
+
+      flow_period = period['FlowPeriodTitle']
+      flow_drop_withdrawal_list = key_check(period['FlowDropWithdrawList'])
+      flow_drop_withdrawals = flow_drop_withdrawal_list['FlowDropWithdraw'] || []
+
+      flow_drop_withdrawals.each do |drop_withdrawal|
+        reason = drop_withdrawal['FlowDropWithdrawType']
+        flow_reason_list = key_check(drop_withdrawal['FlowReasonList'])
+        flow_reasons = flow_reason_list['FlowReason'] || []
+
+        flow_reasons.each do |flow_reason|
+            collection[:drop_withdrawals].push(
+                                                nct_id: nct_id,
+                                                result_group_id: nil,
+                                                ctgov_group_code: flow_reason['FlowReasonGroupId'],
+                                                period: flow_period,
+                                                reason: reason,
+                                                count: flow_reason['FlowReasonNumSubjects']
+                                              )
+        end
+
+      end
+    end
+    collection
+  end
+
   def data_collection
     {
       study: study_data,
@@ -1322,7 +1370,8 @@ class StudyJsonRecord < ActiveRecord::Base
       result_agreement: result_agreement_data,
       result_contact: result_contact_data,
       study_references: study_references_data,
-      sponsors: sponsors_data
+      sponsors: sponsors_data,
+      drop_withdrawals: drop_withdrawals_data,
     }
   end
 
@@ -1364,12 +1413,12 @@ class StudyJsonRecord < ActiveRecord::Base
 
       # saving milestones and associated objects
       milestone_info = data[:milestones] || {}
-      ResultGroup.create(milestone_info[:result_groups]) if milestone_info[:result_groups]
+      save_result_groups(milestone_info[:result_groups]) if milestone_info[:result_groups]
       save_with_result_group(milestone_info[:milestones], 'Milestone') if milestone_info[:milestones]
 
       # saving outcomes and associated objects
       outcomes_info = data[:outcomes] || {}
-      ResultGroup.create(outcomes_info[:result_groups]) if outcomes_info[:result_groups]
+      save_result_groups(outcomes_info[:result_groups]) if outcomes_info[:result_groups]
       save_outcomes(outcomes_info[:outcome_measures]) if outcomes_info[:outcome_measures]
 
       OverallOfficial.create(data[:overall_officials]) if data[:overall_officials]
@@ -1379,7 +1428,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
       # saving reported events and associated objects
       reported_events_info = data[:reported_events] || {}
-      ResultGroup.create(reported_events_info[:result_groups]) if reported_events_info[:result_groups]
+      save_result_groups(reported_events_info[:result_groups]) if reported_events_info[:result_groups]
       save_with_result_group(reported_events_info[:events], 'ReportedEvent') if reported_events_info[:events]
       
       ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
@@ -1387,7 +1436,12 @@ class StudyJsonRecord < ActiveRecord::Base
       ResultContact.create(data[:result_contact]) if data[:result_contact]
       Reference.create(data[:study_references]) if data[:study_references]
       Sponsor.create(data[:sponsors]) if data[:sponsors]
-
+      
+      # saving drop_withdrawals
+      drop_withdrawals_info = data[:drop_withdrawals] || {}
+      save_result_groups(drop_withdrawals_info[:result_groups]) if drop_withdrawals_info[:result_groups]
+      save_with_result_group(drop_withdrawals_info[:drop_withdrawals], 'DropWithdrawal') if drop_withdrawals_info[:drop_withdrawals]
+      
       update(saved_study_at: Time.now)
 
       puts "~~~~~~~~~~~~~~"
@@ -1443,7 +1497,8 @@ class StudyJsonRecord < ActiveRecord::Base
       result_agreement: ResultAgreement.count,
       result_contact: ResultContact.count,
       study_reference: Reference.count,
-      sponsor: Sponsor.count
+      sponsor: Sponsor.count,
+      drop_withdrawal: DropWithdrawal.count,
     }
   end
 
@@ -1474,46 +1529,35 @@ class StudyJsonRecord < ActiveRecord::Base
     count_array.push({inconsistencies: dif})
   end
 
-  def self.check_results
-    set_table_schema('ctgov_beta')
-    beta_outcomes = ResultGroup.where(result_type: 'Outcome').count
-    beta_baseline = ResultGroup.where(result_type: 'Baseline').count
-    beta_participant = ResultGroup.where(result_type: 'Participant Flow').count
-    beta_reported = ResultGroup.where(result_type: 'Reported Event').count
-    set_table_schema('ctgov')
-    reg_outcomes = ResultGroup.where(result_type: 'Outcome').count
-    reg_baseline = ResultGroup.where(result_type: 'Baseline').count
-    reg_participant = ResultGroup.where(result_type: 'Participant Flow').count
-    reg_reported = ResultGroup.where(result_type: 'Reported Event').count
+  # def self.check_results
+  #   set_table_schema('ctgov_beta')
+  #   beta_outcomes = ResultGroup.where(result_type: 'Outcome').count
+  #   beta_baseline = ResultGroup.where(result_type: 'Baseline').count
+  #   beta_participant = ResultGroup.where(result_type: 'Participant Flow').count
+  #   beta_reported = ResultGroup.where(result_type: 'Reported Event').count
+  #   set_table_schema('ctgov')
+  #   reg_outcomes = ResultGroup.where(result_type: 'Outcome').count
+  #   reg_baseline = ResultGroup.where(result_type: 'Baseline').count
+  #   reg_participant = ResultGroup.where(result_type: 'Participant Flow').count
+  #   reg_reported = ResultGroup.where(result_type: 'Reported Event').count
 
-    {
-      beta_outcome: beta_outcomes,
-      reg_outcomes: reg_outcomes,
-      beta_baseline: beta_baseline,
-      reg_baseline: reg_baseline,
-      beta_participant: beta_participant,
-      reg_participant: reg_participant,
-      beta_reported: beta_reported,
-      reg_reported: reg_reported
-    }
-  end
+  #   {
+  #     beta_outcome: beta_outcomes,
+  #     reg_outcomes: reg_outcomes,
+  #     beta_baseline: beta_baseline,
+  #     reg_baseline: reg_baseline,
+  #     beta_participant: beta_participant,
+  #     reg_participant: reg_participant,
+  #     beta_reported: beta_reported,
+  #     reg_reported: reg_reported
+  #   }
+  # end
 
   def self.new_check
     set_table_schema('ctgov_beta')
     nct = %w[
       NCT04316403
     ]
-#     Outcome
-#  Baseline
-#  Participant Flow
-#  Reported Event
-    {:inconsistencies=>[  {:design_group_intervention=>{:beta=>4906, :reg=>4911}},
-                          {:design=>{:beta=>1551, :reg=>1562}},
-                          {:eligibility=>{:beta=>1555, :reg=>1562}},
-                          {:result_groups=>{:beta=>925, :reg=>2561}},
-                          {:country=>{:beta=>44121, :reg=>3830}},
-                          {:design_outcome=>{:beta=>12642, :reg=>13230}},
-                          {:reported_event=>{:beta=>13544, :reg=>14119}}]}
     x_nct = %w[
       NCT04292080
       NCT04050527
@@ -1549,6 +1593,14 @@ class StudyJsonRecord < ActiveRecord::Base
     # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
     # record = StudyJsonRecord.find_by(nct_id: 'NCT04072432')
     []
+  end
+
+  def save_result_groups(groups)
+    return unless groups
+
+    groups.each do |group|
+      ResultGroup.find_or_create_by(group)
+    end
   end
 
   def save_interventions(interventions)
