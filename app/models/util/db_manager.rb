@@ -251,8 +251,6 @@ module Util
         mesh_headings
         mesh_terms
         load_events
-        mesh_terms
-        mesh_headings
         sanity_checks
         statistics
         study_xml_records
