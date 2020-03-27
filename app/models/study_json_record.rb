@@ -24,6 +24,8 @@ class StudyJsonRecord < ActiveRecord::Base
     @params = params
     @type = params[:event_type] ? params[:event_type] : 'incremental'
     @days_back = (params[:days_back] ? params[:days_back] : 2)
+    remove_indexes_and_constraints
+
     puts "now running #{@type}, #{@days_back} days back"
     begin
      @type == 'full' ? full : incremental
@@ -31,19 +33,19 @@ class StudyJsonRecord < ActiveRecord::Base
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       puts"#{@type} load failed in run: #{msg}"
     end
-    # CalculatedValue.populate
 
-    puts "broken----- #{@broken_batch}" if @type == 'incremental'
-    puts "about to rerun batches"
-    sleep 5
+    add_indexes_and_constraints
+    CalculatedValue.populate
 
-    # rerun_batches(@broken_batch)
+    if @type == 'incremental' && !@broken_batch.empty?
+      puts "about to rerun #{@broken_batch}"
+      rerun_batches(@broken_batch)
+      puts "still broken----- #{@broken_batch}"
+    end
+
     puts comparison
-    # puts "broken----- #{@broken_batch}" if @type == 'incremental'
-    # puts "failed to build #{@study_build_failures.uniq}"
-    # set_table_schema('ctgov')
-    puts "finshed in #{time_ago_in_words(start_time)}"
-    puts "total number we have #{StudyJsonRecord.count}"
+    set_table_schema('ctgov')
+    puts "finshed in #{time_ago_in_words(start_time)} and failed to build #{@study_build_failures.uniq}"
   end
 
   def self.root_dir
@@ -103,7 +105,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
         save_single_study(study)
         nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-        puts "added NCTId #{nct_id} study_json_record: #{count_down} of #{original_count}"
+        puts "added NCTId #{nct_id}, #{count_down} left out of #{original_count}"
         count_down -= 1
       end  
     end
@@ -117,8 +119,6 @@ class StudyJsonRecord < ActiveRecord::Base
     total_number = first_batch['FullStudiesResponse']['NStudiesFound']
     limit = (total_number/100.0).ceil
     puts "batch 1 of #{limit}"
-    sleep 5
-
     save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
     
     # since I already saved the first hundred studies I start the loop after that point
@@ -155,6 +155,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.rerun_batches(url_hash)
+    @broken_batch = {}
     set_table_schema('ctgov_beta')
     url_hash.each do |url, min_max|
       puts "running #{url}"
@@ -181,17 +182,23 @@ class StudyJsonRecord < ActiveRecord::Base
     record.download_date = Time.current
     if record.save
       record.build_study
-    else
-      byebug
     end
   end
 
   def self.clear_out_data_for(nct_ids)
     return if nct_ids.nil? || nct_ids.empty?
 
-    db_mgr.remove_indexes_and_constraints  # Index significantly slow the load process.
+    # db_mgr.remove_indexes_and_constraints  # Index significantly slow the load process.
     db_mgr.clear_out_data_for(nct_ids)
     delete_json_records(nct_ids)
+    # db_mgr.add_indexes_and_constraints
+  end
+
+  def self.remove_indexes_and_constraints
+    db_mgr.remove_indexes_and_constraints
+  end
+
+  def self.add_indexes_and_constraints
     db_mgr.add_indexes_and_constraints
   end
 
@@ -402,10 +409,7 @@ class StudyJsonRecord < ActiveRecord::Base
       # Foo.where("bar LIKE ?", "%#{query}%")
       divide = name.split(': ')
       intervention_type = divide[0]
-      if divide.count < 2
-        byebug
-      end
-      divide.shift
+      divide.shift if divide.count > 1
       intervention_name = divide.join(': ')
       collection.push(
                       nct_id: nct_id,
@@ -1293,27 +1297,6 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
-  def self.tester
-    set_table_schema('ctgov_beta')
-    # p_results= ResultGroup.where(result_type: 'Participant Flow')
-    # p_ids = p_results.map(&:nct_id)
-    # j_records = StudyJsonRecord.where(nct_id: p_ids)
-
-    # j_records.each{|i| puts i.drop_withdrawals_data}
-    []
-
-    record = StudyJsonRecord.find_by(nct_id: 'NCT00033631')
-
-    data = record.data_collection
-    drop_withdrawals_info = data[:drop_withdrawals] || {}
-    puts drop_withdrawals_info
-    record.save_result_groups(drop_withdrawals_info[:result_groups]) if drop_withdrawals_info[:result_groups]
-    record.save_with_result_group(drop_withdrawals_info[:drop_withdrawals], 'DropWithdrawal') if drop_withdrawals_info[:drop_withdrawals]
-    puts drop_withdrawals_info[:drop_withdrawals]
-    puts DropWithdrawal.count
-  end
-
-
   def drop_withdrawals_data
     participant_flow_module = key_check(results_section['ParticipantFlowModule'])
     flow_period_list = key_check(participant_flow_module['FlowPeriodList'])
@@ -1387,7 +1370,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def build_study
-    # begin
+    begin
       data = data_collection
       Study.create(data[:study]) if data[:study]
       
@@ -1453,15 +1436,12 @@ class StudyJsonRecord < ActiveRecord::Base
       save_result_groups(drop_withdrawals_info[:result_groups]) if drop_withdrawals_info[:result_groups]
       save_with_result_group(drop_withdrawals_info[:drop_withdrawals], 'DropWithdrawal') if drop_withdrawals_info[:drop_withdrawals]
       update(saved_study_at: Time.now)
-
-      puts "~~~~~~~~~~~~~~"
-      puts "#{nct_id} done"
-      "~~~~~~~~~~~~~~"
-    # rescue => error
+      puts "~~~~~~~~~~~~#{nct_id} done"
+    rescue => error
       # byebug
-      # @study_build_failures ||= []
-      # @study_build_failures << id
-    # end
+      @study_build_failures ||= []
+      @study_build_failures << id
+    end
   end
 
   def self.object_counts
@@ -1656,16 +1636,6 @@ class StudyJsonRecord < ActiveRecord::Base
                                             name: intervention_info[:name],
                                             intervention_type: intervention_info[:type]
                                             )
-
-        unless intervention
-          hash = {
-            nct_id: nct_id,
-            name: intervention_info[:name],
-            intervention_type: intervention_info[:type]
-          }
-          puts hash
-          byebug
-        end
         next unless intervention
 
         DesignGroupIntervention.create(
@@ -1719,7 +1689,6 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless outcome_measures
 
     outcome_measures.each do |outcome_measure|
-      puts outcome_measure
       outcome = Outcome.create(outcome_measure[:outcome_measure]) if outcome_measure[:outcome_measure]
       next unless outcome
 
