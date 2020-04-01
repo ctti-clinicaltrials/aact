@@ -1648,9 +1648,10 @@ class StudyJsonRecord < ActiveRecord::Base
 
     design_groups.each do |group|
       design_info = group[:design_group]
-      design_group = DesignGroup.find_by(nct_id: nct_id, title: design_info[:title])
-      design_group ||= DesignGroup.create(nct_id: nct_id, title: design_info[:title])
-      design_group.update(design_info)
+      # design_group = DesignGroup.find_by(nct_id: nct_id, title: design_info[:title])
+      # design_group ||= DesignGroup.create(nct_id: nct_id, title: design_info[:title])
+      # design_group.update(design_info)
+      design_group = DesignGroup.create(design_info)
 
       interventions = group[:design_group_interventions]
       next unless interventions
