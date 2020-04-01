@@ -1397,7 +1397,21 @@ class StudyJsonRecord < ActiveRecord::Base
     begin
       data = data_collection
       Study.create(data[:study]) if data[:study]
+    
+      baseline_info = data[:baseline_measurements]
+      milestone_info = data[:milestones] || {}
+      outcomes_info = data[:outcomes] || {}
+      reported_events_info = data[:reported_events] || {}
+      drop_withdrawals_info = data[:drop_withdrawals] || {}
+
+      save_result_groups(baseline_info[:result_groups]) if baseline_info
+      save_result_groups(milestone_info[:result_groups]) if milestone_info[:result_groups]
+      save_result_groups(outcomes_info[:result_groups]) if outcomes_info[:result_groups]
+      save_result_groups(reported_events_info[:result_groups]) if reported_events_info[:result_groups]
+      save_result_groups(drop_withdrawals_info[:result_groups]) if drop_withdrawals_info[:result_groups]
       
+      @study_result_groups = ResultGroup.where(nct_id: nct_id)
+
       # saving design_groups, and associated objects
       save_interventions(data[:interventions])
       save_design_groups(data[:design_groups])
@@ -1409,11 +1423,9 @@ class StudyJsonRecord < ActiveRecord::Base
       ParticipantFlow.create(data[:participant_flow]) if data[:participant_flow]
       
       # saving baseline_measurements and associated objects
-      baseline_info = data[:baseline_measurements]
-      ResultGroup.create(baseline_info[:result_groups]) if baseline_info
       save_with_result_group(baseline_info[:baseline_counts], 'BaselineCount') if baseline_info
       save_with_result_group(baseline_info[:measurements], 'BaselineMeasurement') if baseline_info
-      
+  
       BrowseCondition.create(data[:browse_conditions]) if data[:browse_conditions]
       BrowseIntervention.create(data[:browse_interventions]) if data[:browse_interventions]
       CentralContact.create(data[:central_contacts_list]) if data[:central_contacts_list]
@@ -1430,13 +1442,9 @@ class StudyJsonRecord < ActiveRecord::Base
       Link.create(data[:links]) if data[:links]
 
       # saving milestones and associated objects
-      milestone_info = data[:milestones] || {}
-      save_result_groups(milestone_info[:result_groups]) if milestone_info[:result_groups]
       save_with_result_group(milestone_info[:milestones], 'Milestone') if milestone_info[:milestones]
 
       # saving outcomes and associated objects
-      outcomes_info = data[:outcomes] || {}
-      save_result_groups(outcomes_info[:result_groups]) if outcomes_info[:result_groups]
       save_outcomes(outcomes_info[:outcome_measures]) if outcomes_info[:outcome_measures]
 
       OverallOfficial.create(data[:overall_officials]) if data[:overall_officials]
@@ -1445,8 +1453,6 @@ class StudyJsonRecord < ActiveRecord::Base
       ProvidedDocument.create(data[:provided_documents]) if data[:provided_documents]
 
       # saving reported events and associated objects
-      reported_events_info = data[:reported_events] || {}
-      save_result_groups(reported_events_info[:result_groups]) if reported_events_info[:result_groups]
       save_with_result_group(reported_events_info[:events], 'ReportedEvent') if reported_events_info[:events]
       
       ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
@@ -1456,8 +1462,6 @@ class StudyJsonRecord < ActiveRecord::Base
       Sponsor.create(data[:sponsors]) if data[:sponsors]
       
       # saving drop_withdrawals
-      drop_withdrawals_info = data[:drop_withdrawals] || {}
-      save_result_groups(drop_withdrawals_info[:result_groups]) if drop_withdrawals_info[:result_groups]
       save_with_result_group(drop_withdrawals_info[:drop_withdrawals], 'DropWithdrawal') if drop_withdrawals_info[:drop_withdrawals]
       update(saved_study_at: Time.now)
       puts "~~~~~~~~~~~~#{nct_id} done"
@@ -1546,30 +1550,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
     count_array.push({inconsistencies: dif})
   end
-
-  # def self.check_results
-  #   set_table_schema('ctgov_beta')
-  #   beta_outcomes = ResultGroup.where(result_type: 'Outcome').count
-  #   beta_baseline = ResultGroup.where(result_type: 'Baseline').count
-  #   beta_participant = ResultGroup.where(result_type: 'Participant Flow').count
-  #   beta_reported = ResultGroup.where(result_type: 'Reported Event').count
-  #   set_table_schema('ctgov')
-  #   reg_outcomes = ResultGroup.where(result_type: 'Outcome').count
-  #   reg_baseline = ResultGroup.where(result_type: 'Baseline').count
-  #   reg_participant = ResultGroup.where(result_type: 'Participant Flow').count
-  #   reg_reported = ResultGroup.where(result_type: 'Reported Event').count
-
-  #   {
-  #     beta_outcome: beta_outcomes,
-  #     reg_outcomes: reg_outcomes,
-  #     beta_baseline: beta_baseline,
-  #     reg_baseline: reg_baseline,
-  #     beta_participant: beta_participant,
-  #     reg_participant: reg_participant,
-  #     beta_reported: beta_reported,
-  #     reg_reported: reg_reported
-  #   }
-  # end
 
   def self.new_check
 
@@ -1677,7 +1657,7 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless counts
 
     counts.each do |count|
-      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_beta_group_code: count[:ctgov_beta_group_code])
+      result_group = @study_result_groups.find_by(nct_id: nct_id, ctgov_beta_group_code: count[:ctgov_beta_group_code])
       next unless result_group
 
       count[:result_group_id] = result_group.id
@@ -1689,7 +1669,7 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless group
 
     group.each do |item|
-      result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_beta_group_code: item[:ctgov_beta_group_code])
+      result_group = @study_result_groups.find_by(nct_id: nct_id, ctgov_beta_group_code: item[:ctgov_beta_group_code])
       next unless result_group
 
       item[:result_group_id] = result_group.id
@@ -1730,7 +1710,7 @@ class StudyJsonRecord < ActiveRecord::Base
         outcome_analysis = OutcomeAnalysis.create(analysis_info[:outcome_analysis])
         outcome_analysis_group_ids = analysis_info[:outcome_analysis_group_ids] || []
         outcome_analysis_group_ids.each do |group_id|
-          result_group = ResultGroup.find_by(nct_id: nct_id, ctgov_beta_group_code: group_id)
+          result_group = @study_result_groups.find_by(nct_id: nct_id, ctgov_beta_group_code: group_id)
           next unless result_group && outcome_analysis
 
           OutcomeAnalysisGroup.create(
