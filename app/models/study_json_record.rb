@@ -1,12 +1,15 @@
 require 'open-uri'
 require 'fileutils'
+require 'logger'
 # require 'zip'
 # run incremental load with: bundle exec rake db:beta_load[1,incremental]
 # run full load with: bundle exec rake db:beta_loadload[1,full]
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'ctgov_beta.study_json_records'
-  
+  @save_time = Logger.new('save_time.txt')
+  @error_log = Logger.new('error.txt')
+
   def self.db_mgr
     @db_mgr ||= Util::DbManager.new({search_path: 'ctgov_beta'})
   end
@@ -78,6 +81,27 @@ class StudyJsonRecord < ActiveRecord::Base
     file
   end
 
+  def self.too_long
+    set_table_schema('ctgov_beta')
+    remove_indexes_and_constraints
+    nct_ids = %w[
+      NCT00003139
+      NCT00000479
+      NCT00000575
+      NCT00001137
+      NCT00003224
+    ]
+    study_jsons = StudyJsonRecord.where(nct_id: nct_ids)
+    db_mgr.clear_out_data_for(nct_ids)
+
+    study_jsons.each do |study_json|
+      stime=Time.zone.now
+      study_json.build_study
+      @save_time.info("took #{Time.zone.now - stime}--#{study_json.nct_id}") 
+    end
+    add_indexes_and_constraints
+  end
+
   def self.full
     start_time = Time.current
     study_download = download_all_studies
@@ -105,7 +129,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
         save_single_study(study)
         nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-        puts "added NCTId #{nct_id}, #{count_down} left out of #{original_count}"
+        @save_time.info "added NCTId #{nct_id}, #{count_down} left out of #{original_count}"
         count_down -= 1
       end  
     end
@@ -1439,6 +1463,7 @@ class StudyJsonRecord < ActiveRecord::Base
       puts "~~~~~~~~~~~~#{nct_id} done"
     rescue => error
       # byebug
+      @error_log.error(error)
       @study_build_failures ||= []
       @study_build_failures << id
     end
