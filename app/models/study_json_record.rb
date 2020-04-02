@@ -1413,9 +1413,6 @@ class StudyJsonRecord < ActiveRecord::Base
       result_groups = baseline_result_groups | milestone_result_groups | outcome_result_groups | reported_event_result_groups | drop_withdrawal_result_groups
       @study_result_groups = save_result_groups(result_groups).index_by(&:ctgov_beta_group_code)
       
-      # save_result_groups(result_groups)
-      # @study_result_groups = ResultGroup.where(nct_id: nct_id).index_by(&:ctgov_beta_group_code)
-
       # saving design_groups, and associated objects
       save_interventions(data[:interventions])
       save_design_groups(data[:design_groups])
@@ -1631,9 +1628,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
     design_groups.each do |group|
       design_info = group[:design_group]
-      # design_group = DesignGroup.find_by(nct_id: nct_id, title: design_info[:title])
-      # design_group ||= DesignGroup.create(nct_id: nct_id, title: design_info[:title])
-      # design_group.update(design_info)
       design_group = DesignGroup.create(design_info)
 
       interventions = group[:design_group_interventions]
