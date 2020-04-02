@@ -1671,7 +1671,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def save_with_result_group(group, model_name='BaselineMeasurement')
     return unless group
 
-    group.map{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_beta_group_code]]}
+    group.each{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_beta_group_code]]}
     model_name.safe_constantize.create(group)
     # group.each do |item|
     #   result_group = @study_result_groups[item[:ctgov_beta_group_code]]
@@ -1709,7 +1709,7 @@ class StudyJsonRecord < ActiveRecord::Base
       save_with_result_group(outcome_measurements, 'OutcomeMeasurement') if outcome_measurements
       
       outcome_analyses = outcome_measure[:outcome_analyses] || []
-      outcome_analyses.map{ |h| h[:outcome_analysis][:outcome_id] = outcome.id } unless outcome_analyses.empty?
+      outcome_analyses.each{ |h| h[:outcome_analysis][:outcome_id] = outcome.id } unless outcome_analyses.empty?
       
       outcome_analyses.each do |analysis_info|
         outcome_analysis = OutcomeAnalysis.create(analysis_info[:outcome_analysis])
@@ -1733,7 +1733,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.set_key_value(hash_array, key, value)
     return unless hash_array
     
-    hash_array.map{ |h| h[key] = value }
+    hash_array.each{ |h| h[key] = value }
     hash_array
   end
 end
