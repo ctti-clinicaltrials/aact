@@ -1667,13 +1667,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
     group.each{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_beta_group_code]]}
     model_name.safe_constantize.create(group)
-    # group.each do |item|
-    #   result_group = @study_result_groups[item[:ctgov_beta_group_code]]
-    #   next unless result_group
-
-    #   item[:result_group_id] = result_group.id
-    #   model_name.safe_constantize.create(item)
-    # end
   end
 
   def save_facilities(facilities)
