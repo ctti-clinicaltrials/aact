@@ -575,7 +575,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
     baseline_measure_list = key_check(baseline_characteristics_module['BaselineMeasureList'])
     baseline_measures = baseline_measure_list['BaselineMeasure'] || []
-    collection = {result_groups: baseline_result_groups_data, baseline_counts: baseline_counts_data, measurements: []}
+    # collection = {result_groups: baseline_result_groups_data, baseline_counts: baseline_counts_data, measurements: []}
+    collection = { baseline_counts: baseline_counts_data, measurements: []}
     return if baseline_measures.empty?
 
     baseline_measures.each do |measure|
@@ -862,7 +863,8 @@ class StudyJsonRecord < ActiveRecord::Base
     participant_flow_module = key_check(results_section['ParticipantFlowModule'])
     flow_period_list = key_check(participant_flow_module['FlowPeriodList'])
     flow_periods = flow_period_list['FlowPeriod'] || []
-    collection = {result_groups: flow_result_groups_data, milestones: []}
+    # collection = {result_groups: flow_result_groups_data, milestones: []}
+    collection = []
     return nil if flow_periods.empty?
 
     flow_periods.each do |period|
@@ -876,7 +878,7 @@ class StudyJsonRecord < ActiveRecord::Base
         flow_achievements = flow_achievement_list['FlowAchievement'] || []
 
         flow_achievements.each do |achievement|
-          collection[:milestones].push(
+          collection.push(
                           nct_id: nct_id,
                           result_group_id: nil,
                           ctgov_beta_group_code: achievement['FlowAchievementGroupId'],
@@ -888,7 +890,7 @@ class StudyJsonRecord < ActiveRecord::Base
         end
       end
     end
-    return nil if collection[:milestones].empty?
+    return nil if collection.empty?
 
     collection
   end
@@ -904,11 +906,12 @@ class StudyJsonRecord < ActiveRecord::Base
     outcomes_module = key_check(results_section['OutcomeMeasuresModule'])
     outcome_measure_list = key_check(outcomes_module['OutcomeMeasureList'])
     outcome_measures = outcome_measure_list['OutcomeMeasure'] || []
-    collection = {result_groups: outcome_result_groups_data, outcome_measures: []}
+    # collection = {result_groups: outcome_result_groups_data, outcome_measures: []}
+    collection = []
     return nil if outcome_measures.empty?
 
     outcome_measures.each do |outcome_measure|
-      collection[:outcome_measures].push(
+      collection.push(
                       outcome_measure: {
                                         nct_id: nct_id,
                                         outcome_type: outcome_measure['OutcomeMeasureType'],
@@ -928,6 +931,8 @@ class StudyJsonRecord < ActiveRecord::Base
                       outcome_analyses: outcome_analyses_data(outcome_measure)
                       )
     end
+    return if collection.empty?
+
     collection
   end
 
@@ -961,6 +966,14 @@ class StudyJsonRecord < ActiveRecord::Base
                       )
     end
     collection
+  end
+
+  def all_result_groups
+    baseline_result_groups = baseline_result_groups_data || []
+    milestone_result_groups = flow_result_groups_data || []
+    outcome_result_groups = outcome_result_groups_data || []
+    reported_event_result_groups = reported_events_result_groups_data || []
+    baseline_result_groups | milestone_result_groups | outcome_result_groups | reported_event_result_groups
   end
 
   def outcome_counts_data(outcome_measure)
@@ -1179,16 +1192,10 @@ class StudyJsonRecord < ActiveRecord::Base
   end
  
   def reported_events_data
-    adverse_events_module = key_check(results_section['AdverseEventsModule'])
-    event_group_list = key_check(adverse_events_module['EventGroupList'])
-    event_groups = event_group_list['EventGroup'] || []
     events = events_data('Serious') + events_data('Other')
     return nil if events.empty?
 
-    {
-      result_groups: StudyJsonRecord.result_groups(event_groups, 'Event', 'Reported Event', nct_id),
-      events: events 
-    }
+    events 
   end
 
   def events_data(event_type='Serious')
@@ -1222,6 +1229,13 @@ class StudyJsonRecord < ActiveRecord::Base
       end
     end
     collection
+  end
+
+  def reported_events_result_groups_data
+    adverse_events_module = key_check(results_section['AdverseEventsModule'])
+    event_group_list = key_check(adverse_events_module['EventGroupList'])
+    event_groups = event_group_list['EventGroup'] || []
+    StudyJsonRecord.result_groups(event_groups, 'Event', 'Reported Event', nct_id)
   end
 
   def responsible_party_data
@@ -1327,7 +1341,8 @@ class StudyJsonRecord < ActiveRecord::Base
     participant_flow_module = key_check(results_section['ParticipantFlowModule'])
     flow_period_list = key_check(participant_flow_module['FlowPeriodList'])
     flow_periods = flow_period_list['FlowPeriod'] || []
-    collection = {result_groups: flow_result_groups_data, drop_withdrawals: []}
+    # collection = {result_groups: flow_result_groups_data, drop_withdrawals: []}
+    collection = []
     return nil if flow_periods.empty?
 
     flow_periods.each do |period|
@@ -1342,18 +1357,20 @@ class StudyJsonRecord < ActiveRecord::Base
         flow_reasons = flow_reason_list['FlowReason'] || []
 
         flow_reasons.each do |flow_reason|
-            collection[:drop_withdrawals].push(
-                                                nct_id: nct_id,
-                                                result_group_id: nil,
-                                                ctgov_beta_group_code: flow_reason['FlowReasonGroupId'],
-                                                period: flow_period,
-                                                reason: reason,
-                                                count: flow_reason['FlowReasonNumSubjects']
-                                              )
+            collection.push(
+                            nct_id: nct_id,
+                            result_group_id: nil,
+                            ctgov_beta_group_code: flow_reason['FlowReasonGroupId'],
+                            period: flow_period,
+                            reason: reason,
+                            count: flow_reason['FlowReasonNumSubjects']
+                          )
         end
 
       end
     end
+    return nil if collection.empty?
+    
     collection
   end
 
@@ -1392,72 +1409,30 @@ class StudyJsonRecord < ActiveRecord::Base
       study_references: study_references_data,
       sponsors: sponsors_data,
       drop_withdrawals: drop_withdrawals_data,
+      result_groups: all_result_groups,
     }
   end
 
   def build_study
     begin
       @method_time ||= Logger.new('method_time.txt')
-      data = {}
-      @method_time.info(
-        Benchmark.measure('data_collection') {
       data = data_collection
-    })
       Study.create(data[:study]) if data[:study]
-    
-      baseline_info = {}
-      milestone_info = {}
-      outcomes_info = {}
-      reported_events_info = {}
-      drop_withdrawals_info = {}
 
-      baseline_result_groups = []
-      milestone_result_groups = []
-      outcome_result_groups = []
-      reported_event_result_groups =[]
-      drop_withdrawal_result_groups = []
-      result_groups = []
-
-      
-      @method_time.info(
-        Benchmark.measure('gathering_results') {
-          # h.fetch(:a, 0)
-          baseline_info = data.fetch(:baseline_measurements, {})
-          milestone_info = data.fetch(:milestones, {})
-          outcomes_info = data.fetch(:outcomes, {})
-          reported_events_info = data.fetch(:reported_events, {})
-          drop_withdrawals_info = data.fetch(:drop_withdrawals, {})
-    
-          baseline_result_groups = baseline_info.fetch(:result_groups, [])
-          milestone_result_groups = milestone_info.fetch(:result_groups, [])
-          outcome_result_groups = outcomes_info.fetch(:result_groups, [])
-          reported_event_result_groups = reported_events_info.fetch(:result_groups, [])
-          drop_withdrawal_result_groups = drop_withdrawals_info.fetch(:result_groups, [])
-        }
-      )
+      # gathering_results
+      # combining_results
+      # save_facilities
+      # save_outcomes maybe
      
-      @method_time.info(
-        Benchmark.measure('combining_results') {
-      result_groups = baseline_result_groups | milestone_result_groups | outcome_result_groups | reported_event_result_groups | drop_withdrawal_result_groups
-        }
-      )
-      result_groups = baseline_result_groups | milestone_result_groups | outcome_result_groups | reported_event_result_groups | drop_withdrawal_result_groups
-      @method_time.info(
-        Benchmark.measure('save_result_groups') {@study_result_groups = save_result_groups(result_groups).index_by(&:ctgov_beta_group_code)}
-      )
+      # byebug
+      result_groups = data[:result_groups]
+      @study_result_groups = save_result_groups(result_groups)
+      @study_result_groups = @study_result_groups.index_by(&:ctgov_beta_group_code) if @study_result_groups
       
-      
-      # Benchmark.measure { "a"*1_000_000_000 }
       # saving design_groups, and associated objects
-      @method_time.info(
-        Benchmark.measure('save_interventions') {
       save_interventions(data[:interventions])
-        })
-
-        @method_time.info(
-          Benchmark.measure('save_design_groups') {
       save_design_groups(data[:design_groups])
-          })
+
       DetailedDescription.create(data[:detailed_description]) if data[:detailed_description]
       BriefSummary.create(data[:brief_summary]) if data[:brief_summary]
       Design.create(data[:design]) if data[:design]
@@ -1465,14 +1440,10 @@ class StudyJsonRecord < ActiveRecord::Base
       ParticipantFlow.create(data[:participant_flow]) if data[:participant_flow]
       
       # saving baseline_measurements and associated objects
-      @method_time.info(
-        Benchmark.measure('save_with_result_groups_baseline_count') {
+      baseline_info = data[:baseline_measurements] || {}
       save_with_result_group(baseline_info[:baseline_counts], 'BaselineCount') if baseline_info[:baseline_counts]
-        })
-        @method_time.info(
-          Benchmark.measure('save_with_result_groups_baseline_measurement') {
       save_with_result_group(baseline_info[:measurements], 'BaselineMeasurement') if baseline_info[:measurements]
-          })
+        
       BrowseCondition.create(data[:browse_conditions]) if data[:browse_conditions]
       BrowseIntervention.create(data[:browse_interventions]) if data[:browse_interventions]
       CentralContact.create(data[:central_contacts_list]) if data[:central_contacts_list]
@@ -1485,31 +1456,26 @@ class StudyJsonRecord < ActiveRecord::Base
         Benchmark.measure('save_facilities') {
       save_facilities(data[:facilities])
         })
+      # save_facilities(data[:facilities])
       IdInformation.create(data[:id_information]) if data[:id_information]
       IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
       Keyword.create(data[:keywords]) if data[:keywords]
       Link.create(data[:links]) if data[:links]
 
       # saving milestones and associated objects
-      @method_time.info(
-        Benchmark.measure('save_with_result_groups_milestones') {
-      save_with_result_group(milestone_info[:milestones], 'Milestone') if milestone_info[:milestones]
-        })
+      save_with_result_group(data[:milestones], 'Milestone') if data[:milestones]
+
       # saving outcomes and associated objects
-      @method_time.info(
-        Benchmark.measure('save_outcomes') {
-      save_outcomes(outcomes_info[:outcome_measures]) if outcomes_info[:outcome_measures]
-      })
+      save_outcomes(data[:outcomes]) if data[:outcomes]
+
       OverallOfficial.create(data[:overall_officials]) if data[:overall_officials]
       DesignOutcome.create(data[:design_outcomes]) if data[:design_outcomes]
       PendingResult.create(data[:pending_results]) if data[:pending_results]
       ProvidedDocument.create(data[:provided_documents]) if data[:provided_documents]
 
       # saving reported events and associated objects
-      @method_time.info(
-        Benchmark.measure('save_with_result_groups_reported_events') {
-      save_with_result_group(reported_events_info[:events], 'ReportedEvent') if reported_events_info[:events]
-    })
+      save_with_result_group(data[:reported_events], 'ReportedEvent') if data[:reported_events]
+
       ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
       ResultAgreement.create(data[:result_agreement]) if data[:result_agreement]
       ResultContact.create(data[:result_contact]) if data[:result_contact]
@@ -1517,10 +1483,9 @@ class StudyJsonRecord < ActiveRecord::Base
       Sponsor.create(data[:sponsors]) if data[:sponsors]
       
       # saving drop_withdrawals
-      @method_time.info(
-        Benchmark.measure('save_with_result_groups_drop_withdrawals') {
-      save_with_result_group(drop_withdrawals_info[:drop_withdrawals], 'DropWithdrawal') if drop_withdrawals_info[:drop_withdrawals]
-      })
+      save_with_result_group(data[:drop_withdrawals], 'DropWithdrawal') if data[:drop_withdrawals]
+    
+
       update(saved_study_at: Time.now)
       puts "~~~~~~~~~~~~#{nct_id} done"
     rescue => error
@@ -1659,7 +1624,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def save_result_groups(groups)
-    return unless groups
+    return if groups.nil? || groups.empty?
 
     ResultGroup.create(groups)
   end
