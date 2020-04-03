@@ -32,10 +32,19 @@ describe Util::RssReader do
   describe '#get_changed_nct_ids' do
     it 'should return an array of nct_ids' do
       reader  = described_class.new(days_back: 5)
+      puts "Step: 1"
       reader.set_changed_url(File.read(Rails.root.join('spec', 'support', 'xml_data', 'rss_feed.xml')))
+
+      puts "Step: 2"
+      feed = RSS::Parser.parse(File.read(Rails.root.join('spec', 'support', 'xml_data', 'rss_feed.xml')), false)
+      feed2 = RSS::Parser.parse('', false)
+      allow(RSS::Parser).to receive(:parse).and_return(feed, feed2)
       results=reader.get_changed_nct_ids
 
+      puts "Step: 3"
       expect(results.class).to eq(Array)
+
+      puts "Step: 4"
       expect(results.count).to eq(971)
     end
   end
