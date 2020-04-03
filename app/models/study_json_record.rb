@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'fileutils'
 require 'logger'
+require 'benchmark'
 # require 'zip'
 # run incremental load with: bundle exec rake db:beta_load[1,incremental]
 # run full load with: bundle exec rake db:beta_loadload[1,full]
@@ -9,6 +10,7 @@ class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'ctgov_beta.study_json_records'
   @save_time = Logger.new('save_time.txt')
   @error_log = Logger.new('error.txt')
+  @method_time = Logger.new('method_time.txt')
 
   def self.db_mgr
     @db_mgr ||= Util::DbManager.new({search_path: 'ctgov_beta'})
@@ -1395,28 +1397,67 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def build_study
     begin
+      @method_time ||= Logger.new('method_time.txt')
+      data = {}
+      @method_time.info(
+        Benchmark.measure('data_collection') {
       data = data_collection
+    })
       Study.create(data[:study]) if data[:study]
     
-      baseline_info = data[:baseline_measurements] || {}
-      milestone_info = data[:milestones] || {}
-      outcomes_info = data[:outcomes] || {}
-      reported_events_info = data[:reported_events] || {}
-      drop_withdrawals_info = data[:drop_withdrawals] || {}
+      baseline_info = {}
+      milestone_info = {}
+      outcomes_info = {}
+      reported_events_info = {}
+      drop_withdrawals_info = {}
 
-      baseline_result_groups = baseline_info[:result_groups] || []
-      milestone_result_groups = milestone_info[:result_groups] || []
-      outcome_result_groups = outcomes_info[:result_groups] || []
-      reported_event_result_groups = reported_events_info[:result_groups] || []
-      drop_withdrawal_result_groups = drop_withdrawals_info[:result_groups] || []
+      baseline_result_groups = []
+      milestone_result_groups = []
+      outcome_result_groups = []
+      reported_event_result_groups =[]
+      drop_withdrawal_result_groups = []
+      result_groups = []
+
       
+      @method_time.info(
+        Benchmark.measure('gathering_results') {
+          # h.fetch(:a, 0)
+          baseline_info = data.fetch(:baseline_measurements, {})
+          milestone_info = data.fetch(:milestones, {})
+          outcomes_info = data.fetch(:outcomes, {})
+          reported_events_info = data.fetch(:reported_events, {})
+          drop_withdrawals_info = data.fetch(:drop_withdrawals, {})
+    
+          baseline_result_groups = baseline_info.fetch(:result_groups, [])
+          milestone_result_groups = milestone_info.fetch(:result_groups, [])
+          outcome_result_groups = outcomes_info.fetch(:result_groups, [])
+          reported_event_result_groups = reported_events_info.fetch(:result_groups, [])
+          drop_withdrawal_result_groups = drop_withdrawals_info.fetch(:result_groups, [])
+        }
+      )
+     
+      @method_time.info(
+        Benchmark.measure('combining_results') {
       result_groups = baseline_result_groups | milestone_result_groups | outcome_result_groups | reported_event_result_groups | drop_withdrawal_result_groups
-      @study_result_groups = save_result_groups(result_groups).index_by(&:ctgov_beta_group_code)
+        }
+      )
+      result_groups = baseline_result_groups | milestone_result_groups | outcome_result_groups | reported_event_result_groups | drop_withdrawal_result_groups
+      @method_time.info(
+        Benchmark.measure('save_result_groups') {@study_result_groups = save_result_groups(result_groups).index_by(&:ctgov_beta_group_code)}
+      )
       
+      
+      # Benchmark.measure { "a"*1_000_000_000 }
       # saving design_groups, and associated objects
+      @method_time.info(
+        Benchmark.measure('save_interventions') {
       save_interventions(data[:interventions])
-      save_design_groups(data[:design_groups])
+        })
 
+        @method_time.info(
+          Benchmark.measure('save_design_groups') {
+      save_design_groups(data[:design_groups])
+          })
       DetailedDescription.create(data[:detailed_description]) if data[:detailed_description]
       BriefSummary.create(data[:brief_summary]) if data[:brief_summary]
       Design.create(data[:design]) if data[:design]
@@ -1424,9 +1465,14 @@ class StudyJsonRecord < ActiveRecord::Base
       ParticipantFlow.create(data[:participant_flow]) if data[:participant_flow]
       
       # saving baseline_measurements and associated objects
+      @method_time.info(
+        Benchmark.measure('save_with_result_groups_baseline_count') {
       save_with_result_group(baseline_info[:baseline_counts], 'BaselineCount') if baseline_info[:baseline_counts]
+        })
+        @method_time.info(
+          Benchmark.measure('save_with_result_groups_baseline_measurement') {
       save_with_result_group(baseline_info[:measurements], 'BaselineMeasurement') if baseline_info[:measurements]
-  
+          })
       BrowseCondition.create(data[:browse_conditions]) if data[:browse_conditions]
       BrowseIntervention.create(data[:browse_interventions]) if data[:browse_interventions]
       CentralContact.create(data[:central_contacts_list]) if data[:central_contacts_list]
@@ -1435,27 +1481,35 @@ class StudyJsonRecord < ActiveRecord::Base
       Document.create(data[:documents]) if data[:documents]
 
       # saving facilities and related objects
+      @method_time.info(
+        Benchmark.measure('save_facilities') {
       save_facilities(data[:facilities])
-
+        })
       IdInformation.create(data[:id_information]) if data[:id_information]
       IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
       Keyword.create(data[:keywords]) if data[:keywords]
       Link.create(data[:links]) if data[:links]
 
       # saving milestones and associated objects
+      @method_time.info(
+        Benchmark.measure('save_with_result_groups_milestones') {
       save_with_result_group(milestone_info[:milestones], 'Milestone') if milestone_info[:milestones]
-
+        })
       # saving outcomes and associated objects
+      @method_time.info(
+        Benchmark.measure('save_outcomes') {
       save_outcomes(outcomes_info[:outcome_measures]) if outcomes_info[:outcome_measures]
-
+      })
       OverallOfficial.create(data[:overall_officials]) if data[:overall_officials]
       DesignOutcome.create(data[:design_outcomes]) if data[:design_outcomes]
       PendingResult.create(data[:pending_results]) if data[:pending_results]
       ProvidedDocument.create(data[:provided_documents]) if data[:provided_documents]
 
       # saving reported events and associated objects
+      @method_time.info(
+        Benchmark.measure('save_with_result_groups_reported_events') {
       save_with_result_group(reported_events_info[:events], 'ReportedEvent') if reported_events_info[:events]
-      
+    })
       ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
       ResultAgreement.create(data[:result_agreement]) if data[:result_agreement]
       ResultContact.create(data[:result_contact]) if data[:result_contact]
@@ -1463,7 +1517,10 @@ class StudyJsonRecord < ActiveRecord::Base
       Sponsor.create(data[:sponsors]) if data[:sponsors]
       
       # saving drop_withdrawals
+      @method_time.info(
+        Benchmark.measure('save_with_result_groups_drop_withdrawals') {
       save_with_result_group(drop_withdrawals_info[:drop_withdrawals], 'DropWithdrawal') if drop_withdrawals_info[:drop_withdrawals]
+      })
       update(saved_study_at: Time.now)
       puts "~~~~~~~~~~~~#{nct_id} done"
     rescue => error
