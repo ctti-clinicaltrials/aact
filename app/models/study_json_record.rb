@@ -1452,7 +1452,7 @@ class StudyJsonRecord < ActiveRecord::Base
       #   Benchmark.measure('save_facilities') {
       # save_facilities(data[:facilities])
       #   })
-      save_facilities(data[:facilities])
+      save_facilities(data[:facilities]) if data[:facilities]
       IdInformation.create(data[:id_information]) if data[:id_information]
       IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
       Keyword.create(data[:keywords]) if data[:keywords]
