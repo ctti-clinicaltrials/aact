@@ -1,5 +1,0 @@
-I, [2020-04-03T18:25:45.482231 #12467]  INFO -- : #<Benchmark::Tms:0x00007f7fc935b420 @label="save_facilities", @real=5.000001692678779e-06, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>
-I, [2020-04-03T18:25:48.357076 #12467]  INFO -- : #<Benchmark::Tms:0x00007f7fcd817078 @label="save_facilities", @real=5.999994755256921e-06, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.0, @total=0.0>
-I, [2020-04-03T18:25:51.418348 #12467]  INFO -- : #<Benchmark::Tms:0x00007f7fc9558778 @label="save_facilities", @real=0.4937580000041635, @cstime=0.0, @cutime=0.0, @stime=0.020000000000000018, @utime=0.20000000000000018, @total=0.2200000000000002>
-I, [2020-04-03T18:25:55.717551 #12467]  INFO -- : #<Benchmark::Tms:0x00007f7fcd8fc498 @label="save_facilities", @real=1.9755259999947157, @cstime=0.0, @cutime=0.0, @stime=0.06000000000000005, @utime=0.6000000000000005, @total=0.6600000000000006>
-I, [2020-04-03T18:25:56.906220 #12467]  INFO -- : #<Benchmark::Tms:0x00007f7fcd8d79b8 @label="save_facilities", @real=0.006347000002278946, @cstime=0.0, @cutime=0.0, @stime=0.0, @utime=0.010000000000000675, @total=0.010000000000000675>

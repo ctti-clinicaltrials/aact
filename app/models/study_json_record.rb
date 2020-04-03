@@ -954,7 +954,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.result_groups(groups, key_name='Flow', type='Participant Flow', nct_id)
     collection = []
-    return nil if  groups.nil? || groups.empty?
+    return collection if  groups.nil? || groups.empty?
 
     groups.each do |group|
       collection.push(
@@ -969,11 +969,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def all_result_groups
-    baseline_result_groups = baseline_result_groups_data || []
-    milestone_result_groups = flow_result_groups_data || []
-    outcome_result_groups = outcome_result_groups_data || []
-    reported_event_result_groups = reported_events_result_groups_data || []
-    baseline_result_groups | milestone_result_groups | outcome_result_groups | reported_event_result_groups
+    baseline_result_groups_data | flow_result_groups_data | outcome_result_groups_data | reported_events_result_groups_data
   end
 
   def outcome_counts_data(outcome_measure)
@@ -1452,11 +1448,11 @@ class StudyJsonRecord < ActiveRecord::Base
       Document.create(data[:documents]) if data[:documents]
 
       # saving facilities and related objects
-      @method_time.info(
-        Benchmark.measure('save_facilities') {
-      save_facilities(data[:facilities])
-        })
+      # @method_time.info(
+      #   Benchmark.measure('save_facilities') {
       # save_facilities(data[:facilities])
+      #   })
+      save_facilities(data[:facilities])
       IdInformation.create(data[:id_information]) if data[:id_information]
       IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
       Keyword.create(data[:keywords]) if data[:keywords]
