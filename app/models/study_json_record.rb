@@ -1150,7 +1150,10 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def pending_results_data
-    unposted_events = annotation_section.dig('AnnotationModule', 'UnpostedAnnotation', 'UnpostedEventList', 'UnpostedEvent')
+    annotations = annotation_section
+    return unless annotations
+
+    unposted_events = annotations.dig('AnnotationModule', 'UnpostedAnnotation', 'UnpostedEventList', 'UnpostedEvent')
     return unless unposted_events
 
     collection = []
@@ -1166,12 +1169,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def provided_documents_data
-    large_document_module = key_check(document_section['LargeDocumentModule'])
-    large_doc_list = key_check(large_document_module['LargeDocList'])
-    large_docs = large_doc_list['LargeDoc'] || []
-    collection = []
-    return nil if large_docs.empty?
+    documents = document_section
+    return unless documents
 
+    large_docs = documents.dig('LargeDocumentModule', 'LargeDocList', 'LargeDoc')
+    return unless large_docs
+
+    collection = []
     large_docs.each do |doc|
       base_url = 'https://ClinicalTrials.gov/ProvidedDocs/'
       number = "#{nct_id[-2]}#{nct_id[-1]}/#{nct_id}"
