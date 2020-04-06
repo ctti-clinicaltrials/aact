@@ -1150,13 +1150,10 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def pending_results_data
-    annotation_module = key_check(annotation_section['AnnotationModule'])
-    unposted_annotation = key_check(annotation_module['UnpostedAnnotation'])
-    unposted_event_list = key_check(unposted_annotation['UnpostedEventList'])
-    unposted_events = unposted_event_list['UnpostedEvent'] || []
-    collection = []
-    return nil if unposted_events.empty?
+    unposted_events = annotation_section.dig('AnnotationModule', 'UnpostedAnnotation', 'UnpostedEventList', 'UnpostedEvent')
+    return unless unposted_events
 
+    collection = []
     unposted_events.each do |event|
       collection.push(
                       nct_id: nct_id,
