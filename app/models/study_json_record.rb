@@ -1080,11 +1080,12 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def outcome_analysis_groups_data(outcome_analysis)
-    outcome_analysis_group_id_list = key_check(outcome_analysis['OutcomeAnalysisGroupIdList'])
-    outcome_analysis_group_ids = outcome_analysis_group_id_list['OutcomeAnalysisGroupId'] || []
+    return unless outcome_analysis
+
+    outcome_analysis_group_ids = outcome_analysis.dig('OutcomeAnalysisGroupIdList', 'OutcomeAnalysisGroupId')
+    return unless outcome_analysis_group_ids
+
     collection = []
-    return nil if outcome_analysis_group_ids.empty?
-  
     outcome_analysis_group_ids.each do |group_id|
       collection.push(
                       nct_id: nct_id,
