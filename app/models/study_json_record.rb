@@ -1040,11 +1040,12 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def outcome_analyses_data(outcome_measure)
-    outcome_analysis_list = key_check(outcome_measure['OutcomeAnalysisList'])
-    outcome_analyses = outcome_analysis_list['OutcomeAnalysis'] || []
-    collection = []
-    return nil if outcome_analyses.empty?
+    return unless outcome_measure
 
+    outcome_analyses = outcome_measure.dig('OutcomeAnalysisList', 'OutcomeAnalysis')
+    return unless outcome_analyses
+
+    collection = []
     outcome_analyses.each do |analysis|
       raw_value = analysis['OutcomeAnalysisPValue'] || ''
       collection.push( 
