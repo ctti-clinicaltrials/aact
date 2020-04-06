@@ -302,8 +302,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def locations_array
-    locations_list = key_check(contacts_location_module['LocationList'])
-    locations_list['Location'] || []
+    return unless contacts_location_module
+    
+    contacts_location_module.dig('LocationList', 'Location')  
   end
   
   def study_data 
@@ -746,15 +747,15 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def facilities_data
-    collection = []
-    return nil if locations_array.empty?
+    locations =  locations_array
+    return unless locations
 
-    locations_array.each do |location|
-      location_contact_list = key_check(location['LocationContactList'])
-      location_contact = location_contact_list['LocationContact'] || []
+    collection = []
+    locations.each do |location|
+      location_contacts = location.dig('LocationContactList', 'LocationContact')
       facility_contacts = []
       facility_investigators = []
-      location_contact.each_with_index do |contact, index|
+      location_contacts.each_with_index do |contact, index|
         contact_role = contact['LocationContactRole']
         if contact_role =~ /Investigator|Study Chair/i
           facility_investigators.push(
