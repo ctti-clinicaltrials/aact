@@ -1116,9 +1116,12 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def design_outcomes_data
-    primary_outcomes = outcome_list('Primary')
-    secondary_outcomes = outcome_list('Secondary')
-    other_outcomes = outcome_list('Other')
+    protocols = protocol_section
+    return unless protocols
+
+    primary_outcomes = outcome_list('Primary', protocols)
+    secondary_outcomes = outcome_list('Secondary', protocols)
+    other_outcomes = outcome_list('Other', protocols)
     primary_outcomes ||= []
     secondary_outcomes ||= []
     other_outcomes ||= []
@@ -1128,13 +1131,11 @@ class StudyJsonRecord < ActiveRecord::Base
     total
   end
 
-  def outcome_list(outcome_type='Primary')
-    outcomes_module = key_check(protocol_section['OutcomesModule'])
-    outcome_list = key_check(outcomes_module["#{outcome_type}OutcomeList"])
-    outcomes = outcome_list["#{outcome_type}Outcome"] || []
-    collection = []
-    return nil if outcomes.empty?
+  def outcome_list(outcome_type='Primary', protocols = protocol_section)
+    outcomes = protocols.dig('OutcomesModule', "#{outcome_type}OutcomeList", "#{outcome_type}Outcome")
+    return unless outcomes
 
+    collection = []
     outcomes.each do |outcome|
       collection.push(
                       nct_id: nct_id,
