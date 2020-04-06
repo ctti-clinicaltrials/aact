@@ -796,7 +796,7 @@ class StudyJsonRecord < ActiveRecord::Base
     protocols = protocol_section
     return unless protocols
 
-    identification_module = protocol_section['IdentificationModule']
+    identification_module = protocols['IdentificationModule']
     return unless identification_module
     
     nct_id_alias = identification_module.dig('NCTIdAliasList', 'NCTIdAlias') || []
