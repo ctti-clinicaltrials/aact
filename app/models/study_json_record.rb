@@ -1282,9 +1282,11 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def result_contact_data
-    more_info_module = key_check(results_section['MoreInfoModule'])
-    point_of_contact = key_check(more_info_module['PointOfContact'])
-    return nil if point_of_contact.empty?
+    results = results_section
+    return unless results
+
+    point_of_contact = results.dig('MoreInfoModule', 'PointOfContact')
+    return unless point_of_contact
 
     ext = point_of_contact['PointOfContactPhoneExt']
     phone = point_of_contact['PointOfContactPhone']
