@@ -832,12 +832,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def keywords_data
-    conditions_module = key_check(protocol_section['ConditionsModule'])
-    keyword_list = key_check(conditions_module['KeywordList'])
-    keywords = keyword_list['Keyword'] || []
-    collection = []
-    return nil if keywords.empty?
+    protocols = protocol_section
+    return unless protocols
 
+    keywords = protocols.dig('ConditionsModule', 'KeywordList', 'Keyword')
+    return unless keywords
+
+    collection = []
     keywords.each do |keyword|
       collection.push(nct_id: nct_id, name: keyword, downcase_name: keyword.downcase)
     end
