@@ -858,21 +858,22 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def milestones_data
-    participant_flow_module = key_check(results_section['ParticipantFlowModule'])
-    flow_period_list = key_check(participant_flow_module['FlowPeriodList'])
-    flow_periods = flow_period_list['FlowPeriod'] || []
-    collection = []
-    return nil if flow_periods.empty?
+    results = results_section
+    return unless results
 
+    flow_periods = results.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
+    return unless flow_periods
+
+    collection = []
     flow_periods.each do |period|
 
       flow_period = period['FlowPeriodTitle']
-      flow_milestone_list = key_check(period['FlowMilestoneList'])
-      flow_milestones = flow_milestone_list['FlowMilestone'] || []
+      flow_milestones = period.dig('FlowMilestoneList', 'FlowMilestone')
+      next unless flow_milestones
 
       flow_milestones.each do |milestone|
-        flow_achievement_list = key_check(milestone['FlowAchievementList'])
-        flow_achievements = flow_achievement_list['FlowAchievement'] || []
+        flow_achievements = milestone.dig('FlowAchievementList', 'FlowAchievement')
+        next unless flow_achievements
 
         flow_achievements.each do |achievement|
           collection.push(
@@ -887,7 +888,7 @@ class StudyJsonRecord < ActiveRecord::Base
         end
       end
     end
-    return nil if collection.empty?
+    return if collection.empty?
 
     collection
   end
