@@ -1266,9 +1266,11 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def result_agreement_data
-    more_info_module = key_check(results_section['MoreInfoModule'])
-    certain_agreement = key_check(more_info_module['CertainAgreement'])
-    return nil if certain_agreement.empty?
+    results = results_section
+    return unless results
+
+    certain_agreement = results.dig('MoreInfoModule', 'CertainAgreement')
+    return unless certain_agreement
 
     {
       nct_id: nct_id,
