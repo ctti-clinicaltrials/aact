@@ -793,17 +793,19 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def id_information_data
-    identification_module = key_check(protocol_section['IdentificationModule'])
-    alias_list = key_check(identification_module['NCTIdAliasList'])
-    nct_id_alias = alias_list['NCTIdAlias'] || []
-    org_study_info = key_check(identification_module['OrgStudyIdInfo'])
-    secondary_info_list = key_check(identification_module['SecondaryIdInfoList'])
-    secondary_info = secondary_info_list['SecondaryIdInfo'] || []
-    return if org_study_info.empty? && secondary_info.empty? && nct_id_alias.empty?
+    protocols = protocol_section
+    return unless protocols
 
-    collection = [{nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId']}]
+    identification_module = protocol_section['IdentificationModule']
+    return unless identification_module
     
+    nct_id_alias = identification_module.dig('NCTIdAliasList', 'NCTIdAlias') || []
+    secondary_info = identification_module.dig('SecondaryIdInfoList', 'SecondaryIdInfo') || []
+    org_study_info = identification_module['OrgStudyIdInfo']
+    collection = []
+    collection.push({nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId']}) if org_study_info
 
+    
     nct_id_alias.each do |nct_alias|
       collection.push(
         nct_id: nct_id, id_type: 'nct_alias', id_value: nct_alias
