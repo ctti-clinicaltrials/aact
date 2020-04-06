@@ -1097,11 +1097,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def overall_officials_data
-    overall_officials_list = key_check(contacts_location_module['OverallOfficialList'])
-    overall_officials = overall_officials_list['OverallOfficial'] || []
-    collection = []
-    return nil if overall_officials.empty?
+    contact_module = contacts_location_module
+    return unless contact_module
 
+    overall_officials = contact_module.dig('OverallOfficialList', 'OverallOfficial')
+    return unless overall_officials
+
+    collection = []
     overall_officials.each do |overall_official|
       collection.push(
                       nct_id: nct_id,
