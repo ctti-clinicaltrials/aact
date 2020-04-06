@@ -1321,28 +1321,33 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def sponsors_data
-    sponsor_collaborators_module = key_check(protocol_section['SponsorCollaboratorsModule'])
-    lead_sponsor = key_check(sponsor_collaborators_module['LeadSponsor'])
-    collaborator_list = key_check(sponsor_collaborators_module['CollaboratorList'])
-    collaborators = collaborator_list['Collaborator'] || []
-    collection = []
-    lead_info = sponsor_info(lead_sponsor, 'LeadSponsor')
-    return nil if lead_info.nil? && collaborators.empty?
+    protocols = protocol_section
+    return unless protocols
 
-    collection.push(lead_info) unless lead_info.nil?
+    sponsor_collaborators_module = protocols['SponsorCollaboratorsModule']
+    return unless sponsor_collaborators_module
+
+    collaborators = sponsor_collaborators_module.dig('CollaboratorList', 'Collaborator')
+    lead_sponsor = sponsor_collaborators_module['LeadSponsor']
+    
+    return unless collaborators || lead_sponsor
+    
+    collection = []
+    collection.push(sponsor_info(lead_sponsor, 'LeadSponsor')) if lead_sponsor
+    next unless collaborators
 
     collaborators.each do |collaborator|
       info = sponsor_info(collaborator, 'Collaborator')
-      collection.push(info) unless info.nil?
+      collection.push(info) if info
     end
 
     collection
   end
 
   def sponsor_info(sponsor_hash, sponsor_type='LeadSponsor')
-    type_of_sponsor = sponsor_type =~ /Lead/i ? 'lead' : 'collaborator'
-    return nil if sponsor_hash.empty?
+    return if sponsor_hash.empty?
 
+    type_of_sponsor = sponsor_type =~ /Lead/i ? 'lead' : 'collaborator'
     {
       nct_id: nct_id,
       agency_class: sponsor_hash["#{sponsor_type}Class"],
