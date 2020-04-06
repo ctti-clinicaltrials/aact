@@ -278,27 +278,27 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def protocol_section
-    key_check(content['Study']['ProtocolSection'])
+    @protocol_section ||= content['Study']['ProtocolSection']
   end
 
   def results_section
-    key_check(content['Study']['ResultsSection'])
+    @results_section ||= content['Study']['ResultsSection']
   end
 
   def derived_section
-    key_check(content['Study']['DerivedSection'])
+    @derived_section ||= content['Study']['DerivedSection']
   end
 
   def annotation_section
-    key_check(content['Study']['AnnotationSection'])
+   @annotation_section ||= content['Study']['AnnotationSection']
   end
 
   def document_section
-    key_check(content['Study']['DocumentSection'])
+    @document_section ||= content['Study']['DocumentSection'])
   end
 
   def contacts_location_module
-    key_check(protocol_section['ContactsLocationsModule'])
+    @contacts_location_module ||= protocol_section['ContactsLocationsModule'] if protocol_section
   end
 
   def locations_array
