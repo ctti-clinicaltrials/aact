@@ -294,7 +294,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def document_section
-    @document_section ||= content['Study']['DocumentSection'])
+    @document_section ||= content['Study']['DocumentSection']
   end
 
   def contacts_location_module
@@ -304,7 +304,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def locations_array
     return unless contacts_location_module
     
-    contacts_location_module.dig('LocationList', 'Location')  
+    @locations ||= contacts_location_module.dig('LocationList', 'Location')  
   end
   
   def study_data 
@@ -711,13 +711,15 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def countries_data
-    misc_module = key_check(derived_section['MiscInfoModule'])
-    removed_country_list = key_check(misc_module['RemovedCountryList'])
-    removed_countries = removed_country_list['RemovedCountry'] || []
-    collection = []
-    return nil unless !locations_array.empty? || !removed_countries.empty?
+    derived = derived_section
+    return unless derived
 
-    locations_array.each do |location|
+    removed_countries = derived.dig('MiscInfoModule', 'RemovedCountryList', 'RemovedCountry') || []
+    locations = locations_array || []
+    return if locations.empty? && removed_countries.empty?
+    
+    collection = []
+    locations.each do |location|
       collection.push(nct_id: nct_id, name: location['LocationCountry'], removed: false)
     end
 
