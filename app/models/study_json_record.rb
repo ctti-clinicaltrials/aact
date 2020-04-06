@@ -1207,10 +1207,10 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def events_data(event_type='Serious', results=results_section)
     adverse_events_module = results.dig('AdverseEventsModule')
-    return unless adverse_events_module
+    return [] unless adverse_events_module
 
     events = adverse_events_module.dig("#{event_type}EventList", "#{event_type}Event")
-    return unless events
+    return [] unless events
 
     collection = []
     events.each do |event|
@@ -1249,11 +1249,11 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def responsible_party_data
-    # https://clinicaltrials.gov/api/query/full_studies?expr=NCT04053270&fmt=json
-    # https://clinicaltrials.gov/api/query/full_studies?expr=NCT04076787&fmt=json
-    sponsor_collaborators_module = key_check(protocol_section['SponsorCollaboratorsModule'])
-    responsible_party = key_check(sponsor_collaborators_module['ResponsibleParty'])
-    return nil if responsible_party.empty?
+    protocols = protocol_section
+    return unless protocols
+
+    responsible_party = protocols.dig('SponsorCollaboratorsModule', 'ResponsibleParty')
+    return unless responsible_party
 
     {
       nct_id: nct_id,
