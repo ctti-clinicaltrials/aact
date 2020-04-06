@@ -1334,7 +1334,7 @@ class StudyJsonRecord < ActiveRecord::Base
     
     collection = []
     collection.push(sponsor_info(lead_sponsor, 'LeadSponsor')) if lead_sponsor
-    next unless collaborators
+    return collection unless collaborators
 
     collaborators.each do |collaborator|
       info = sponsor_info(collaborator, 'Collaborator')
