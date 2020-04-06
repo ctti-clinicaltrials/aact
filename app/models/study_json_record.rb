@@ -1121,7 +1121,8 @@ class StudyJsonRecord < ActiveRecord::Base
     other_outcomes = outcome_list('Other')
     primary_outcomes ||= []
     secondary_outcomes ||= []
-    total = primary_outcomes + secondary_outcomes
+    other_outcomes ||= []
+    total = primary_outcomes + secondary_outcomes + other_outcomes
     return nil if total.empty?
 
     total
