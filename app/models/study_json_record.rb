@@ -728,12 +728,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def documents_data
-    reference_module = key_check(protocol_section['ReferencesModule'])
-    avail_ipd_list = key_check(reference_module['AvailIPDList'])
-    avail_ipds = avail_ipd_list['AvailIPD'] || []
-    collection = []
-    return nil if avail_ipds.empty?
+    protocols = protocol_section
+    return unless protocols
 
+    avail_ipds = protocols.dig('ReferencesModule', 'AvailIPDList', 'AvailIPD')
+    return unless avail_ipds
+
+    collection = []
     avail_ipds.each do |item|
       collection.push(
                         nct_id: nct_id,
