@@ -818,12 +818,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def ipd_information_types_data
-    ipd_sharing_statement_module = key_check(protocol_section['IPDSharingStatementModule'])
-    ipd_sharing_info_type_list = key_check(ipd_sharing_statement_module['IPDSharingInfoTypeList'])
-    ipd_sharing_info_types = ipd_sharing_info_type_list['IPDSharingInfoType'] || []
-    collection = []
-    return nil if ipd_sharing_info_types.empty?
+    protocols = protocol_section
+    return unless protocols
 
+    ipd_sharing_info_types = protocols.dig('IPDSharingStatementModule', 'IPDSharingInfoTypeList', 'IPDSharingInfoType')
+    return unless ipd_sharing_info_types
+
+    collection = []
     ipd_sharing_info_types.each do |info|
       collection.push(nct_id: nct_id, name: info)
     end
