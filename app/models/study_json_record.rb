@@ -998,18 +998,19 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def outcome_measurements_data(outcome_measure)
-    outcome_class_list = key_check(outcome_measure['OutcomeClassList'])
-    outcome_classes = outcome_class_list['OutcomeClass'] || []
-    collection = []
-    return nil if outcome_classes.empty?
+    return unless outcome_measure
 
+    outcome_classes = outcome_measure.dig('OutcomeClassList', 'OutcomeClass')
+    return unless outcome_classes
+
+    collection = []
     outcome_classes.each do |outcome_class|
-    outcome_category_list = key_check(outcome_class['OutcomeCategoryList'])
-    outcome_categories = outcome_category_list['OutcomeCategory'] || []
+      outcome_categories = outcome_class.dig('OutcomeCategoryList', 'OutcomeCategory')
+      next unless outcome_categories
 
       outcome_categories.each do |category|
-        outcome_measurement_list = key_check(category['OutcomeMeasurementList'])
-        measurements = outcome_measurement_list['OutcomeMeasurement'] || []
+        measurements = category.dig('OutcomeMeasurementList', 'OutcomeMeasurement')
+        next unless measurements
 
         measurements.each do |measure|
             collection.push(
