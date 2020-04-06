@@ -2,15 +2,15 @@ require 'open-uri'
 require 'fileutils'
 require 'logger'
 require 'benchmark'
+SaveTime = Logger.new('log/save_time.log')
+ErrorLog = Logger.new('log/error.log')
+MethodTime = Logger.new('log/method_time.log')
 # require 'zip'
 # run incremental load with: bundle exec rake db:beta_load[1,incremental]
 # run full load with: bundle exec rake db:beta_loadload[1,full]
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'ctgov_beta.study_json_records'
-  @save_time = Logger.new('save_time.txt')
-  @error_log = Logger.new('error.txt')
-  @method_time = Logger.new('method_time.txt')
 
   def self.db_mgr
     @db_mgr ||= Util::DbManager.new({search_path: 'ctgov_beta'})
@@ -99,7 +99,7 @@ class StudyJsonRecord < ActiveRecord::Base
     study_jsons.each do |study_json|
       stime=Time.zone.now
       study_json.build_study
-      @save_time.info("took #{Time.zone.now - stime}--#{study_json.nct_id}") 
+      SaveTime.info("took #{Time.zone.now - stime}--#{study_json.nct_id}") 
     end
     add_indexes_and_constraints
   end
@@ -131,7 +131,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
         save_single_study(study)
         nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-        @save_time.info "added NCTId #{nct_id}, #{count_down} left out of #{original_count}"
+        SaveTime.info "added NCTId #{nct_id}, #{count_down} left out of #{original_count}"
         count_down -= 1
       end  
     end
@@ -575,7 +575,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
     baseline_measure_list = key_check(baseline_characteristics_module['BaselineMeasureList'])
     baseline_measures = baseline_measure_list['BaselineMeasure'] || []
-    # collection = {result_groups: baseline_result_groups_data, baseline_counts: baseline_counts_data, measurements: []}
     collection = { baseline_counts: baseline_counts_data, measurements: []}
     return if baseline_measures.empty?
 
@@ -621,11 +620,10 @@ class StudyJsonRecord < ActiveRecord::Base
     Float(string) rescue nil
   end
 
-  def baseline_result_groups_data
-    results = results_section
-    baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
-    baseline_group_list = key_check(baseline_characteristics_module['BaselineGroupList'])
-    baseline_group = baseline_group_list['BaselineGroup'] || []
+  def baseline_result_groups_data(results = results_section)
+    baseline_group = results.dig('BaselineCharacteristicsModule', 'BaselineGroupList','BaselineGroup')
+    return [] unless baseline_group
+
     StudyJsonRecord.result_groups(baseline_group, 'Baseline', 'Baseline', nct_id)
   end
 
@@ -863,7 +861,6 @@ class StudyJsonRecord < ActiveRecord::Base
     participant_flow_module = key_check(results_section['ParticipantFlowModule'])
     flow_period_list = key_check(participant_flow_module['FlowPeriodList'])
     flow_periods = flow_period_list['FlowPeriod'] || []
-    # collection = {result_groups: flow_result_groups_data, milestones: []}
     collection = []
     return nil if flow_periods.empty?
 
@@ -895,10 +892,10 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def flow_result_groups_data
-    participant_flow_module = key_check(results_section['ParticipantFlowModule'])
-    flow_group_list = key_check(participant_flow_module['FlowGroupList'])
-    flow_groups = flow_group_list['FlowGroup'] || []
+  def flow_result_groups_data(results = results_section)
+    flow_groups = results.dig('ParticipantFlowModule', 'FlowGroupList', 'FlowGroup')
+    return [] unless flow_groups
+
     StudyJsonRecord.result_groups(flow_groups, 'Flow', 'Participant Flow', nct_id)
   end
 
@@ -906,7 +903,6 @@ class StudyJsonRecord < ActiveRecord::Base
     outcomes_module = key_check(results_section['OutcomeMeasuresModule'])
     outcome_measure_list = key_check(outcomes_module['OutcomeMeasureList'])
     outcome_measures = outcome_measure_list['OutcomeMeasure'] || []
-    # collection = {result_groups: outcome_result_groups_data, outcome_measures: []}
     collection = []
     return nil if outcome_measures.empty?
 
@@ -936,10 +932,10 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def outcome_result_groups_data
-    outcomes_module = key_check(results_section['OutcomeMeasuresModule'])
-    outcome_measure_list = key_check(outcomes_module['OutcomeMeasureList'])
-    outcome_measures = outcome_measure_list['OutcomeMeasure'] || []
+  def outcome_result_groups_data(results = results_section)
+    outcome_measures = results.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
+    return [] unless outcome_measures
+
     collection = []
 
     outcome_measures.each do |measure|
@@ -969,7 +965,10 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def all_result_groups
-    baseline_result_groups_data | flow_result_groups_data | outcome_result_groups_data | reported_events_result_groups_data
+    results =  results_section
+    return [] unless results
+
+    baseline_result_groups_data(results) | flow_result_groups_data(results) | outcome_result_groups_data(results) | reported_events_result_groups_data(results)
   end
 
   def outcome_counts_data(outcome_measure)
@@ -1227,10 +1226,10 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def reported_events_result_groups_data
-    adverse_events_module = key_check(results_section['AdverseEventsModule'])
-    event_group_list = key_check(adverse_events_module['EventGroupList'])
-    event_groups = event_group_list['EventGroup'] || []
+  def reported_events_result_groups_data(results = results_section)
+    event_groups = results.dig('AdverseEventsModule', 'EventGroupList', 'EventGroup')
+    return [] unless event_groups
+
     StudyJsonRecord.result_groups(event_groups, 'Event', 'Reported Event', nct_id)
   end
 
@@ -1337,7 +1336,6 @@ class StudyJsonRecord < ActiveRecord::Base
     participant_flow_module = key_check(results_section['ParticipantFlowModule'])
     flow_period_list = key_check(participant_flow_module['FlowPeriodList'])
     flow_periods = flow_period_list['FlowPeriod'] || []
-    # collection = {result_groups: flow_result_groups_data, drop_withdrawals: []}
     collection = []
     return nil if flow_periods.empty?
 
@@ -1411,7 +1409,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def build_study
     begin
-      @method_time ||= Logger.new('method_time.txt')
       data = data_collection
       Study.create(data[:study]) if data[:study]
 
@@ -1421,9 +1418,17 @@ class StudyJsonRecord < ActiveRecord::Base
       # save_outcomes maybe
      
       # byebug
-      result_groups = data[:result_groups]
-      @study_result_groups = save_result_groups(result_groups)
-      @study_result_groups = @study_result_groups.index_by(&:ctgov_beta_group_code) if @study_result_groups
+      # MethodTime.info(
+      #   Benchmark.measure('save_facilities') {
+      # save_facilities(data[:facilities])
+      #   })
+      MethodTime.info(
+        Benchmark.measure {
+          result_groups = data[:result_groups]
+          @study_result_groups = save_result_groups(result_groups).index_by(&:ctgov_beta_group_code) unless result_groups.empty?
+        }
+      )
+      
       
       # saving design_groups, and associated objects
       save_interventions(data[:interventions])
@@ -1448,7 +1453,7 @@ class StudyJsonRecord < ActiveRecord::Base
       Document.create(data[:documents]) if data[:documents]
 
       # saving facilities and related objects
-      # @method_time.info(
+      # MethodTime.info(
       #   Benchmark.measure('save_facilities') {
       # save_facilities(data[:facilities])
       #   })
@@ -1486,8 +1491,7 @@ class StudyJsonRecord < ActiveRecord::Base
       puts "~~~~~~~~~~~~#{nct_id} done"
     rescue => error
       # byebug
-      @error_log ||= Logger.new('error.txt')
-      @error_log.error(error)
+      ErrorLog.error(error)
       @study_build_failures ||= []
       @study_build_failures << id
     end
