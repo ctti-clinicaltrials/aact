@@ -1131,7 +1131,7 @@ class StudyJsonRecord < ActiveRecord::Base
     total
   end
 
-  def outcome_list(outcome_type='Primary', protocols = protocol_section)
+  def outcome_list(outcome_type='Primary', protocols=protocol_section)
     outcomes = protocols.dig('OutcomesModule', "#{outcome_type}OutcomeList", "#{outcome_type}Outcome")
     return unless outcomes
 
@@ -1196,21 +1196,27 @@ class StudyJsonRecord < ActiveRecord::Base
   end
  
   def reported_events_data
-    events = events_data('Serious') + events_data('Other')
-    return nil if events.empty?
+    results = results_section
+    return unless results
+
+    events = events_data('Serious', results) + events_data('Other', results)
+    return if events.empty?
 
     events 
   end
 
-  def events_data(event_type='Serious')
-    adverse_events_module = key_check(results_section['AdverseEventsModule'])
-    event_list = key_check(adverse_events_module["#{event_type}EventList"])
-    events = event_list["#{event_type}Event"] || []
-    collection = []
+  def events_data(event_type='Serious', results=results_section)
+    adverse_events_module = results.dig('AdverseEventsModule')
+    return unless adverse_events_module
 
+    events = adverse_events_module.dig("#{event_type}EventList", "#{event_type}Event")
+    return unless events
+
+    collection = []
     events.each do |event|
-      event_stat_list = key_check(event["#{event_type}EventStatsList"])
-      event_stats = event_stat_list["#{event_type}EventStats"] || []
+      event_stats = event.dig("#{event_type}EventStatsList", "#{event_type}EventStats")
+      next unless event_stats
+
       event_stats.each do |event_stat|
         collection.push(
                         nct_id: nct_id,
