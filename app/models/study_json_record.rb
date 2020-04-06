@@ -1301,18 +1301,18 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def study_references_data
-    reference_module = key_check(protocol_section['ReferencesModule'])
-    reference_list = key_check(reference_module['ReferenceList'])
-    references = reference_list['Reference'] || []
-    collection = []
-    return nil if references.empty?
+    protocols = protocol_section
+    return unless protocols
 
+    references = protocols.dig('ReferencesModule', 'ReferenceList', 'Reference')
+    return unless references
+
+    collection = []
     references.each do |reference|
       collection.push(
                       nct_id: nct_id,
                       pmid: reference['ReferencePMID'],
                       reference_type: reference['ReferenceType'],
-                      # results_reference - old data format
                       citation: reference['ReferenceCitation']
 
                       )
