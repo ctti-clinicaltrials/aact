@@ -845,12 +845,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def links_data
-    references_module = key_check(protocol_section['ReferencesModule'])
-    see_also_link_list = key_check(references_module['SeeAlsoLinkList'])
-    see_also_links = see_also_link_list['SeeAlsoLink'] || []
-    collection = []
-    return nil if see_also_links.empty?
+    protocols = protocol_section
+    return unless protocols
 
+    see_also_links = protocols.dig('ReferencesModule', 'SeeAlsoLinkList', 'SeeAlsoLink')
+    return unless see_also_links
+
+    collection = []
     see_also_links.each do |link|
       collection.push(nct_id: nct_id, url: link['SeeAlsoLinkURL'], description: link['SeeAlsoLinkLabel'])
     end
