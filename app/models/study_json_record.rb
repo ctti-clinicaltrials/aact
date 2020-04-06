@@ -1357,22 +1357,23 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def drop_withdrawals_data
-    participant_flow_module = key_check(results_section['ParticipantFlowModule'])
-    flow_period_list = key_check(participant_flow_module['FlowPeriodList'])
-    flow_periods = flow_period_list['FlowPeriod'] || []
-    collection = []
-    return nil if flow_periods.empty?
+    results = results_section
+    return unless results
 
+    flow_periods = results.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
+    return unless flow_periods
+
+    collection = []
     flow_periods.each do |period|
 
       flow_period = period['FlowPeriodTitle']
-      flow_drop_withdrawal_list = key_check(period['FlowDropWithdrawList'])
-      flow_drop_withdrawals = flow_drop_withdrawal_list['FlowDropWithdraw'] || []
+      flow_drop_withdrawals = period.dig('FlowDropWithdrawList', 'FlowDropWithdraw')
+      next unless flow_drop_withdrawals
 
       flow_drop_withdrawals.each do |drop_withdrawal|
         reason = drop_withdrawal['FlowDropWithdrawType']
-        flow_reason_list = key_check(drop_withdrawal['FlowReasonList'])
-        flow_reasons = flow_reason_list['FlowReason'] || []
+        flow_reasons = drop_withdrawal.dig('FlowReasonList', 'FlowReason')
+        next unless flow_reasons
 
         flow_reasons.each do |flow_reason|
             collection.push(
@@ -1384,7 +1385,6 @@ class StudyJsonRecord < ActiveRecord::Base
                             count: flow_reason['FlowReasonNumSubjects']
                           )
         end
-
       end
     end
     return nil if collection.empty?
