@@ -900,12 +900,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def outcomes_data
-    outcomes_module = key_check(results_section['OutcomeMeasuresModule'])
-    outcome_measure_list = key_check(outcomes_module['OutcomeMeasureList'])
-    outcome_measures = outcome_measure_list['OutcomeMeasure'] || []
-    collection = []
-    return nil if outcome_measures.empty?
+    results = results_section
+    return unless results
 
+    outcome_measures = results.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
+    return unless outcome_measures
+
+    collection = []
     outcome_measures.each do |outcome_measure|
       collection.push(
                       outcome_measure: {
@@ -1387,7 +1388,7 @@ class StudyJsonRecord < ActiveRecord::Base
         end
       end
     end
-    return nil if collection.empty?
+    return if collection.empty?
     
     collection
   end
