@@ -972,14 +972,15 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def outcome_counts_data(outcome_measure)
-    outcome_denom_list = key_check(outcome_measure['OutcomeDenomList'])
-    outcome_denoms = outcome_denom_list['OutcomeDenom'] || []
-    collection = []
-    return nil if outcome_denoms.empty?
+    return unless outcome_measure
 
+    outcome_denoms = outcome_measure.dig('OutcomeDenomList', 'OutcomeDenom')
+    return unless outcome_denoms
+
+    collection = []
     outcome_denoms.each do |denom|
-      outcome_denom_count_list = key_check(denom['OutcomeDenomCountList'])
-      outcome_denom_count = outcome_denom_count_list['OutcomeDenomCount'] || []
+      outcome_denom_count = denom.dig('OutcomeDenomCountList', 'OutcomeDenomCount')
+      next unless outcome_denom_count
 
       outcome_denom_count.each do |denom_count|
         collection.push(
