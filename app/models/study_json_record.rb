@@ -503,17 +503,16 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def designs_data 
-    protocol = protocol_section
-    design = key_check(protocol['DesignModule'])
-    info = key_check(design['DesignInfo'])
+    protocols = protocol_section
+    return unless protocols
+    
+    info = protocols.dig('DesignModule', 'DesignInfo')
+    return unless info
+
     masking = key_check(info['DesignMaskingInfo'])
-    masked_list = key_check(masking['DesignWhoMaskedList'])
-    who_masked = masked_list['DesignWhoMasked'] || []
-    observation_list = key_check(info['DesignObservationalModelList'])
-    observations = observation_list['DesignObservationalModel'] || []
-    time_perspective_list = key_check(info['DesignTimePerspectiveList'])
-    time_perspectives = time_perspective_list['DesignTimePerspective'] || []
-    return nil if info.empty?
+    who_masked = masking.dig('DesignWhoMaskedList', 'DesignWhoMasked') || []
+    observations = info.dig('DesignObservationalModelList', 'DesignObservationalModel') || []
+    time_perspectives = info.dig('DesignTimePerspectiveList', 'DesignTimePerspective') || []
 
     {
       nct_id: nct_id,
