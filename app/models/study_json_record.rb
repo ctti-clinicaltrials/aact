@@ -498,10 +498,6 @@ class StudyJsonRecord < ActiveRecord::Base
     { nct_id: nct_id, description: description }
   end
 
-  def self.make_list(array)
-    array.join(', ')
-  end
-
   def designs_data 
     protocols = protocol_section
     return unless protocols
@@ -517,11 +513,11 @@ class StudyJsonRecord < ActiveRecord::Base
     {
       nct_id: nct_id,
       allocation: info['DesignAllocation'],
-      observational_model: StudyJsonRecord.make_list(observations),
+      observational_model: observations.join(', '),
       intervention_model: info['DesignInterventionModel'],
       intervention_model_description: info['DesignInterventionModelDescription'],
       primary_purpose: info['DesignPrimaryPurpose'],
-      time_perspective: StudyJsonRecord.make_list(time_perspectives),
+      time_perspective: time_perspectives.join(', '),
       masking: masking['DesignMasking'],
       masking_description: masking['DesignMaskingDescription'],
       subject_masked: is_masked?(who_masked, ['Subject','Participant']),
@@ -534,7 +530,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def is_masked?(who_masked_array, query_array)
      # example who_masked array ["Participant", "Care Provider", "Investigator", "Outcomes Assessor"]
     return unless query_array
-    
+
     query_array.each do |term|
       return true if who_masked_array.try(:include?, term)
     end
