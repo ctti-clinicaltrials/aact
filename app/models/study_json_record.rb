@@ -573,23 +573,24 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def baseline_measurements_data
     results = results_section
-    baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
-    return nil if baseline_characteristics_module.empty?
+    return unless results
 
-    baseline_measure_list = key_check(baseline_characteristics_module['BaselineMeasureList'])
-    baseline_measures = baseline_measure_list['BaselineMeasure'] || []
+    baseline_measures = results.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
+    return unless baseline_measures
+
     collection = { baseline_counts: baseline_counts_data, measurements: []}
-    return if baseline_measures.empty?
-
     baseline_measures.each do |measure|
-      baseline_class_list = key_check(measure['BaselineClassList'])
-      baseline_classes = baseline_class_list['BaselineClass'] || []
+      baseline_classes = measure.dig('BaselineClassList', 'BaselineClass')
+      next unless baseline_classes
+
       baseline_classes.each do |baseline_class|
-        baseline_category_list = key_check(baseline_class['BaselineCategoryList'])
-        baseline_categories = baseline_category_list['BaselineCategory'] || []
+        baseline_categories = baseline_class.dig('BaselineCategoryList', 'BaselineCategory')
+        next unless baseline_categories
+
         baseline_categories.each do |baseline_category|
-          measurement_list = key_check(baseline_category['BaselineMeasurementList'])
-          measurements = measurement_list['BaselineMeasurement'] || []
+          measurements = baseline_category.dig('BaselineMeasurementList', 'BaselineMeasurement')
+          next unless measurements
+          
           measurements.each do |measurement|
             param_value = measurement['BaselineMeasurementValue']
             dispersion_value = measurement['BaselineMeasurementSpread']
@@ -625,7 +626,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def baseline_result_groups_data(results = results_section)
     return unless results
-    
+
     baseline_group = results.dig('BaselineCharacteristicsModule', 'BaselineGroupList','BaselineGroup')
     return [] unless baseline_group
 
