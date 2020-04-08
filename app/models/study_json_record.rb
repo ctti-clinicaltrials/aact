@@ -311,7 +311,7 @@ class StudyJsonRecord < ActiveRecord::Base
   
   def study_data 
     protocol = protocol_section
-    return nil if protocol.empty?
+    return unless protocol
 
     status = protocol['StatusModule']
     ident = protocol['IdentificationModule']
