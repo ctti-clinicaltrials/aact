@@ -451,12 +451,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def interventions_data
-    arms_intervention = key_check(protocol_section['ArmsInterventionsModule'])
-    intervention_list = key_check(arms_intervention['InterventionList'])
-    interventions = intervention_list['Intervention'] || []
-    collection = []
-    return nil if interventions.empty?
+    protocols = protocol_section
+    return unless protocols
 
+    interventions = protocols.dig('ArmsInterventionsModule', 'InterventionList', 'Intervention')
+    return unless interventions
+
+    collection = []
     interventions.each do |intervention|
       collection.push(
                       intervention: {
