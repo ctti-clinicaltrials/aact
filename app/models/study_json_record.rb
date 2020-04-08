@@ -666,12 +666,12 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def browse(type='Condition')
     derived = derived_section
-    browse_module = key_check(derived["#{type}BrowseModule"])
-    mesh_list = key_check(browse_module["#{type}MeshList"])
-    meshes = mesh_list["#{type}Mesh"] || []
-    collection = []
-    return nil if meshes.empty?
+    return unless derived
 
+    meshes = derived.dig("#{type}BrowseModule", "#{type}MeshList", "#{type}Mesh")
+    return unless meshes
+
+    collection = []
     meshes.each do |mesh|
       collection.push(
                         nct_id: nct_id, mesh_term: mesh["#{type}MeshTerm"], downcase_mesh_term: mesh["#{type}MeshTerm"].try(:downcase)
