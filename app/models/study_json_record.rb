@@ -677,10 +677,10 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def browse(type='Condition')
-    @derived ||= derived_section
-    return unless @derived
+    derived = derived_section
+    return unless derived
 
-    meshes = @derived.dig("#{type}BrowseModule", "#{type}MeshList", "#{type}Mesh")
+    meshes = derived.dig("#{type}BrowseModule", "#{type}MeshList", "#{type}Mesh")
     return unless meshes
 
     collection = []
@@ -777,7 +777,7 @@ class StudyJsonRecord < ActiveRecord::Base
     locations.each do |location|
       location_contacts = location.dig('LocationContactList', 'LocationContact')
       next unless location_contacts
-
+      
       facility_contacts = []
       facility_investigators = []
       location_contacts.each_with_index do |contact, index|
