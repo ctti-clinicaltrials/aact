@@ -406,12 +406,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def design_groups_data
-    arms_intervention = key_check(protocol_section['ArmsInterventionsModule'])
-    arms_group_list = key_check(arms_intervention['ArmGroupList'])
-    arms_groups = arms_group_list['ArmGroup'] || []
-    collection = []
-    return nil if arms_groups.empty?
+    protocols = protocol_section
+    return unless protocols
 
+    arms_groups = protocols.dig('ArmsInterventionsModule', 'ArmGroupList', 'ArmGroup')
+    return unless arms_groups
+
+    collection = []
     arms_groups.each do |group|
       collection.push( 
                       design_group: {
