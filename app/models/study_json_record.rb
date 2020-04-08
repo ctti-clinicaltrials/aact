@@ -533,6 +533,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def is_masked?(who_masked_array, query_array)
      # example who_masked array ["Participant", "Care Provider", "Investigator", "Outcomes Assessor"]
+    return unless query_array
+    
     query_array.each do |term|
       return true if who_masked_array.try(:include?, term)
     end
