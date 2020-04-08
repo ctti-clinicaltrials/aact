@@ -624,6 +624,8 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def baseline_result_groups_data(results = results_section)
+    return unless results
+    
     baseline_group = results.dig('BaselineCharacteristicsModule', 'BaselineGroupList','BaselineGroup')
     return [] unless baseline_group
 
@@ -641,7 +643,7 @@ class StudyJsonRecord < ActiveRecord::Base
     baseline_denoms.each do |denom|
       baseline_denom_count = denom.dig('BaselineDenomCountList', 'BaselineDenomCount')
       next unless baseline_denom_count
-      
+
       baseline_denom_count.each do |count|
         collection.push(
                           nct_id: nct_id,
