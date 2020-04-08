@@ -472,11 +472,12 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def intervention_other_names_data(intervention)
-    other_name_list = key_check(intervention['InterventionOtherNameList'])
-    collection = []
-    other_names = other_name_list['InterventionOtherName'] || []
-    return nil if other_names.empty?
+    return unless intervention
 
+    other_names = intervention.dig('InterventionOtherNameList', 'InterventionOtherName')
+    return unless other_names
+
+    collection = []
     other_names.each do |name|
       collection.push(nct_id: nct_id, intervention_id: nil, name: name)
     end
@@ -484,9 +485,12 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def detailed_description_data
-    protocol = protocol_section 
-    description = key_check(protocol['DescriptionModule'])['DetailedDescription']
-    return nil unless description
+    protocols = protocol_section 
+    return unless protocols
+
+    description = protocols.dig('DescriptionModule', 'DetailedDescription')
+    return unless description
+
     { nct_id: nct_id, description: description }
   end
 
