@@ -427,15 +427,14 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def design_group_interventions_data(arms_group)
-    collection = []
-    intervention_list = key_check(arms_group['ArmGroupInterventionList'])
-    intervention_names = intervention_list['ArmGroupInterventionName'] || []
-    return nil if intervention_names.empty?
+    return unless arms_group
 
+    intervention_names = arms_group.dig('ArmGroupInterventionList', 'ArmGroupInterventionName')
+    return unless intervention_names
+
+    collection = []
     intervention_names.each do |name|
-      # I collect the info I need to do queries later so I can create or find the links
-      # between design groups and interventions in the database
-      # Foo.where("bar LIKE ?", "%#{query}%")
+      # I collect the info I need to do queries later so I can create the links table objects
       divide = name.split(': ')
       intervention_type = divide[0]
       divide.shift if divide.count > 1
