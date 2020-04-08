@@ -632,15 +632,16 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def baseline_counts_data
     results = results_section
-    baseline_characteristics_module = key_check(results['BaselineCharacteristicsModule'])
-    baseline_denom_list = key_check(baseline_characteristics_module['BaselineDenomList'])
-    baseline_denoms = key_check(baseline_denom_list['BaselineDenom'])
-    collection = []
-    return nil if baseline_denoms.empty?
+    return unless results
 
+    baseline_denoms = results.dig('BaselineCharacteristicsModule', 'BaselineDenomList', 'BaselineDenom')
+    return unless baseline_denoms
+
+    collection = []
     baseline_denoms.each do |denom|
-      baseline_denom_count_list = denom['BaselineDenomCountList']
-      baseline_denom_count = baseline_denom_count_list['BaselineDenomCount'] || []
+      baseline_denom_count = denom.dig('BaselineDenomCountList', 'BaselineDenomCount')
+      next unless baseline_denom_count
+      
       baseline_denom_count.each do |count|
         collection.push(
                           nct_id: nct_id,
