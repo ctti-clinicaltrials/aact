@@ -278,26 +278,28 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def protocol_section
-    @protocol_section ||= content['Study']['ProtocolSection']
+    @protocol_section ||= content.dig('Study', 'ProtocolSection')
   end
 
   def results_section
-    @results_section ||= content['Study']['ResultsSection']
+    @results_section ||= content.dig('Study', 'ResultsSection')
   end
 
   def derived_section
-    @derived_section ||= content['Study']['DerivedSection']
+    @derived_section ||= content.dig('Study', 'DerivedSection')
   end
 
   def annotation_section
-   @annotation_section ||= content['Study']['AnnotationSection']
+   @annotation_section ||= content.dig('Study', 'AnnotationSection')
   end
 
   def document_section
-    @document_section ||= content['Study']['DocumentSection']
+    @document_section ||= content.dig('Study', 'DocumentSection')
   end
 
   def contacts_location_module
+    return unless protocol_section
+
     @contacts_location_module ||= protocol_section['ContactsLocationsModule'] if protocol_section
   end
 
@@ -680,11 +682,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def central_contacts_data
-    central_contacts_list = key_check(contacts_location_module['CentralContactList'])
-    central_contacts = central_contacts_list['CentralContact'] || []
-    collection = []
-    return nil if central_contacts.empty?
+    contacts_locations = contacts_location_module
+    return unless contacts_locations
     
+    central_contacts = contacts_locations.dig('CentralContactList', 'CentralContact')
+    return unless central_contacts
+    
+    collection = []
     central_contacts.each_with_index do |contact, index|
       collection.push(
                         nct_id: nct_id,
@@ -698,12 +702,16 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def conditions_data
-    conditions_module = key_check(protocol_section['ConditionsModule'])
-    conditions_list = key_check(conditions_module['ConditionList'])
-    conditions = conditions_list['Condition'] || []
-    collection = []
-    return nil if conditions.empty?
+    protocols = protocol_section
+    return unless protocols
 
+    conditions_module = protocols['ConditionsModule']
+    return unless conditions_module
+
+    conditions = conditions_module.dig('ConditionList', 'Condition')
+    return unless conditions
+
+    collection = []
     conditions.each do |condition|
       collection.push(nct_id: nct_id, name: condition, downcase_name: condition.try(:downcase))
     end
