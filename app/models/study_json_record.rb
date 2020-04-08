@@ -776,6 +776,8 @@ class StudyJsonRecord < ActiveRecord::Base
     collection = []
     locations.each do |location|
       location_contacts = location.dig('LocationContactList', 'LocationContact')
+      next unless location_contacts
+      
       facility_contacts = []
       facility_investigators = []
       location_contacts.each_with_index do |contact, index|
