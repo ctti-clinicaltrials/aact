@@ -560,9 +560,11 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def participant_flow_data
-    results = key_check(results_section)
-    participant_flow = key_check(results['ParticipantFlowModule'])
-    return nil if participant_flow.empty?
+    results = results_section
+    return unless results
+
+    participant_flow = results['ParticipantFlowModule']
+    return unless participant_flow
 
     {
       nct_id: nct_id,
@@ -590,7 +592,7 @@ class StudyJsonRecord < ActiveRecord::Base
         baseline_categories.each do |baseline_category|
           measurements = baseline_category.dig('BaselineMeasurementList', 'BaselineMeasurement')
           next unless measurements
-          
+
           measurements.each do |measurement|
             param_value = measurement['BaselineMeasurementValue']
             dispersion_value = measurement['BaselineMeasurementSpread']
