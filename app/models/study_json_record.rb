@@ -491,9 +491,11 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def brief_summary_data
-    protocol = protocol_section
-    description = key_check(protocol['DescriptionModule'])['BriefSummary']
-    return nil unless description
+    protocols = protocol_section
+    return unless protocols
+
+    description = protocols.dig('DescriptionModule', 'BriefSummary')
+    return unless description
 
     { nct_id: nct_id, description: description }
   end
