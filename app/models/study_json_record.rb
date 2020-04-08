@@ -541,9 +541,11 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def eligibility_data
-    protocol = protocol_section
-    eligibility =  key_check(protocol['EligibilityModule'])
-    return nil if eligibility.empty?
+    protocols = protocol_section
+    return unless protocols
+
+    eligibility =  protocols['EligibilityModule']
+    return unless eligibility
 
     {
       nct_id: nct_id,
