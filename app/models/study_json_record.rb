@@ -278,46 +278,45 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def protocol_section
-    @protocol_section ||= content.dig('Study', 'ProtocolSection')
+    content.dig('Study', 'ProtocolSection')
   end
 
   def results_section
-    @results_section ||= content.dig('Study', 'ResultsSection')
+    content.dig('Study', 'ResultsSection')
   end
 
   def derived_section
-    @derived_section ||= content.dig('Study', 'DerivedSection')
+    content.dig('Study', 'DerivedSection')
   end
 
   def annotation_section
-   @annotation_section ||= content.dig('Study', 'AnnotationSection')
+   content.dig('Study', 'AnnotationSection')
   end
 
   def document_section
-    @document_section ||= content.dig('Study', 'DocumentSection')
+    content.dig('Study', 'DocumentSection')
   end
 
   def contacts_location_module
     return unless protocol_section
 
-    @contacts_location_module ||= protocol_section['ContactsLocationsModule'] if protocol_section
+    protocol_section['ContactsLocationsModule'] if protocol_section
   end
 
   def locations_array
     return unless contacts_location_module
     
-    @locations ||= contacts_location_module.dig('LocationList', 'Location')  
+    contacts_location_module.dig('LocationList', 'Location')  
   end
   
   def study_data 
-    protocol = protocol_section
-    return unless protocol
+    return unless @protocol_section
 
-    status = protocol['StatusModule']
-    ident = protocol['IdentificationModule']
-    design = key_check(protocol['DesignModule'])
-    oversight = key_check(protocol['OversightModule'])
-    ipd_sharing = key_check(protocol['IPDSharingStatementModule'])
+    status = @protocol_section['StatusModule']
+    ident = @protocol_section['IdentificationModule']
+    design = key_check(@protocol_section['DesignModule'])
+    oversight = key_check(@protocol_section['OversightModule'])
+    ipd_sharing = key_check(@protocol_section['IPDSharingStatementModule'])
     study_posted = status['StudyFirstPostDateStruct']
     results_posted = key_check(status['ResultsFirstPostDateStruct'])
     disp_posted = key_check(status['DispFirstPostDateStruct'])
@@ -325,13 +324,13 @@ class StudyJsonRecord < ActiveRecord::Base
     start_date = key_check(status['StartDateStruct'])
     completion_date = key_check(status['CompletionDateStruct'])
     primary_completion_date = key_check(status['PrimaryCompletionDateStruct'])
-    results = key_check(content['Study']['ResultsSection'])
+    results = @results_section || {}
     baseline = key_check(results['BaselineCharacteristicsModule'])
     enrollment = key_check(design['EnrollmentInfo'])
     expanded_access = status.dig('ExpandedAccessInfo', 'HasExpandedAccess')
     expanded = key_check(design['ExpandedAccessTypes'])
     biospec = key_check(design['BioSpec'])
-    arms_intervention = key_check(protocol['ArmsInterventionsModule'])
+    arms_intervention = key_check(@protocol_section['ArmsInterventionsModule'])
     study_type = design['StudyType']
     group_list = key_check(arms_intervention['ArmGroupList'])
     groups = group_list['ArmGroup'] || []
@@ -406,10 +405,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def design_groups_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    arms_groups = protocols.dig('ArmsInterventionsModule', 'ArmGroupList', 'ArmGroup')
+    arms_groups = @protocol_section.dig('ArmsInterventionsModule', 'ArmGroupList', 'ArmGroup')
     return unless arms_groups
 
     collection = []
@@ -451,10 +449,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def interventions_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    interventions = protocols.dig('ArmsInterventionsModule', 'InterventionList', 'Intervention')
+    interventions = @protocol_section.dig('ArmsInterventionsModule', 'InterventionList', 'Intervention')
     return unless interventions
 
     collection = []
@@ -486,30 +483,27 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def detailed_description_data
-    protocols = protocol_section 
-    return unless protocols
+    return unless @protocol_section
 
-    description = protocols.dig('DescriptionModule', 'DetailedDescription')
+    description = @protocol_section.dig('DescriptionModule', 'DetailedDescription')
     return unless description
 
     { nct_id: nct_id, description: description }
   end
 
   def brief_summary_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    description = protocols.dig('DescriptionModule', 'BriefSummary')
+    description = @protocol_section.dig('DescriptionModule', 'BriefSummary')
     return unless description
 
     { nct_id: nct_id, description: description }
   end
 
   def designs_data 
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
     
-    info = protocols.dig('DesignModule', 'DesignInfo')
+    info = @protocol_section.dig('DesignModule', 'DesignInfo')
     return unless info
 
     masking = key_check(info['DesignMaskingInfo'])
@@ -545,10 +539,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def eligibility_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    eligibility =  protocols['EligibilityModule']
+    eligibility =  @protocol_section['EligibilityModule']
     return unless eligibility
 
     {
@@ -566,10 +559,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def participant_flow_data
-    results = results_section
-    return unless results
+    return unless @results_section
 
-    participant_flow = results['ParticipantFlowModule']
+    participant_flow = @results_section['ParticipantFlowModule']
     return unless participant_flow
 
     {
@@ -580,10 +572,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def baseline_measurements_data
-    results = results_section
-    return unless results
+    return unless @results_section
 
-    baseline_measures = results.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
+    baseline_measures = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
     return unless baseline_measures
 
     collection = { baseline_counts: baseline_counts_data, measurements: []}
@@ -632,20 +623,19 @@ class StudyJsonRecord < ActiveRecord::Base
     Float(string) rescue nil
   end
 
-  def baseline_result_groups_data(results = results_section)
-    return unless results
+  def baseline_result_groups_data
+    return unless @results_section
 
-    baseline_group = results.dig('BaselineCharacteristicsModule', 'BaselineGroupList','BaselineGroup')
+    baseline_group = @results_section.dig('BaselineCharacteristicsModule', 'BaselineGroupList','BaselineGroup')
     return [] unless baseline_group
 
     StudyJsonRecord.result_groups(baseline_group, 'Baseline', 'Baseline', nct_id)
   end
 
   def baseline_counts_data
-    results = results_section
-    return unless results
+    return unless @results_section
 
-    baseline_denoms = results.dig('BaselineCharacteristicsModule', 'BaselineDenomList', 'BaselineDenom')
+    baseline_denoms = @results_section.dig('BaselineCharacteristicsModule', 'BaselineDenomList', 'BaselineDenom')
     return unless baseline_denoms
 
     collection = []
@@ -677,10 +667,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def browse(type='Condition')
-    derived = derived_section
-    return unless derived
+    return unless @derived_section
 
-    meshes = derived.dig("#{type}BrowseModule", "#{type}MeshList", "#{type}Mesh")
+    meshes = @derived_section.dig("#{type}BrowseModule", "#{type}MeshList", "#{type}Mesh")
     return unless meshes
 
     collection = []
@@ -694,10 +683,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def central_contacts_data
-    contacts_locations = contacts_location_module
-    return unless contacts_locations
+    return unless @contacts_location_module
     
-    central_contacts = contacts_locations.dig('CentralContactList', 'CentralContact')
+    central_contacts = @contacts_location_module.dig('CentralContactList', 'CentralContact')
     return unless central_contacts
     
     collection = []
@@ -714,10 +702,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def conditions_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    conditions_module = protocols['ConditionsModule']
+    conditions_module = @protocol_section['ConditionsModule']
     return unless conditions_module
 
     conditions = conditions_module.dig('ConditionList', 'Condition')
@@ -731,11 +718,10 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def countries_data
-    derived = derived_section
-    return unless derived
+    return unless @derived_section
 
-    removed_countries = derived.dig('MiscInfoModule', 'RemovedCountryList', 'RemovedCountry') || []
-    locations = locations_array || []
+    removed_countries = @derived_section.dig('MiscInfoModule', 'RemovedCountryList', 'RemovedCountry') || []
+    locations = @locations_array || []
     return if locations.empty? && removed_countries.empty?
     
     collection = []
@@ -750,10 +736,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def documents_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    avail_ipds = protocols.dig('ReferencesModule', 'AvailIPDList', 'AvailIPD')
+    avail_ipds = @protocol_section.dig('ReferencesModule', 'AvailIPDList', 'AvailIPD')
     return unless avail_ipds
 
     collection = []
@@ -770,14 +755,13 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def facilities_data
-    locations =  locations_array
-    return unless locations
+    return unless @locations_array
 
     collection = []
-    locations.each do |location|
+    @locations_array.each do |location|
       location_contacts = location.dig('LocationContactList', 'LocationContact')
       next unless location_contacts
-      
+
       facility_contacts = []
       facility_investigators = []
       location_contacts.each_with_index do |contact, index|
@@ -819,10 +803,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def id_information_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    identification_module = protocols['IdentificationModule']
+    identification_module = @protocol_section['IdentificationModule']
     return unless identification_module
     
     nct_id_alias = identification_module.dig('NCTIdAliasList', 'NCTIdAlias') || []
@@ -846,10 +829,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def ipd_information_types_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    ipd_sharing_info_types = protocols.dig('IPDSharingStatementModule', 'IPDSharingInfoTypeList', 'IPDSharingInfoType')
+    ipd_sharing_info_types = @protocol_section.dig('IPDSharingStatementModule', 'IPDSharingInfoTypeList', 'IPDSharingInfoType')
     return unless ipd_sharing_info_types
 
     collection = []
@@ -861,10 +843,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def keywords_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    keywords = protocols.dig('ConditionsModule', 'KeywordList', 'Keyword')
+    keywords = @protocol_section.dig('ConditionsModule', 'KeywordList', 'Keyword')
     return unless keywords
 
     collection = []
@@ -875,10 +856,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def links_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    see_also_links = protocols.dig('ReferencesModule', 'SeeAlsoLinkList', 'SeeAlsoLink')
+    see_also_links = @protocol_section.dig('ReferencesModule', 'SeeAlsoLinkList', 'SeeAlsoLink')
     return unless see_also_links
 
     collection = []
@@ -889,10 +869,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def milestones_data
-    results = results_section
-    return unless results
+    return unless @results_section
 
-    flow_periods = results.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
+    flow_periods = @results_section.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
     return unless flow_periods
 
     collection = []
@@ -924,18 +903,17 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def flow_result_groups_data(results = results_section)
-    flow_groups = results.dig('ParticipantFlowModule', 'FlowGroupList', 'FlowGroup')
+  def flow_result_groups_data
+    flow_groups = @results_section.dig('ParticipantFlowModule', 'FlowGroupList', 'FlowGroup')
     return [] unless flow_groups
 
     StudyJsonRecord.result_groups(flow_groups, 'Flow', 'Participant Flow', nct_id)
   end
 
   def outcomes_data
-    results = results_section
-    return unless results
+    return unless @results_section
 
-    outcome_measures = results.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
+    outcome_measures = @results_section.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
     return unless outcome_measures
 
     collection = []
@@ -965,8 +943,8 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def outcome_result_groups_data(results = results_section)
-    outcome_measures = results.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
+  def outcome_result_groups_data
+    outcome_measures = @results_section.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
     return [] unless outcome_measures
 
     collection = []
@@ -998,10 +976,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def all_result_groups
-    results =  results_section
-    return [] unless results
+    return [] unless @results_section
 
-    baseline_result_groups_data(results) | flow_result_groups_data(results) | outcome_result_groups_data(results) | reported_events_result_groups_data(results)
+    baseline_result_groups_data | flow_result_groups_data | outcome_result_groups_data | reported_events_result_groups_data
   end
 
   def outcome_counts_data(outcome_measure)
@@ -1130,10 +1107,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def overall_officials_data
-    contact_module = contacts_location_module
-    return unless contact_module
+    return unless @contacts_location_module
 
-    overall_officials = contact_module.dig('OverallOfficialList', 'OverallOfficial')
+    overall_officials = @contacts_location_module.dig('OverallOfficialList', 'OverallOfficial')
     return unless overall_officials
 
     collection = []
@@ -1149,12 +1125,11 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def design_outcomes_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    primary_outcomes = outcome_list('Primary', protocols)
-    secondary_outcomes = outcome_list('Secondary', protocols)
-    other_outcomes = outcome_list('Other', protocols)
+    primary_outcomes = outcome_list('Primary')
+    secondary_outcomes = outcome_list('Secondary')
+    other_outcomes = outcome_list('Other')
     primary_outcomes ||= []
     secondary_outcomes ||= []
     other_outcomes ||= []
@@ -1164,8 +1139,8 @@ class StudyJsonRecord < ActiveRecord::Base
     total
   end
 
-  def outcome_list(outcome_type='Primary', protocols=protocol_section)
-    outcomes = protocols.dig('OutcomesModule', "#{outcome_type}OutcomeList", "#{outcome_type}Outcome")
+  def outcome_list(outcome_type='Primary')
+    outcomes = @protocol_section.dig('OutcomesModule', "#{outcome_type}OutcomeList", "#{outcome_type}Outcome")
     return unless outcomes
 
     collection = []
@@ -1183,10 +1158,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def pending_results_data
-    annotations = annotation_section
-    return unless annotations
+    return unless @annotation_section
 
-    unposted_events = annotations.dig('AnnotationModule', 'UnpostedAnnotation', 'UnpostedEventList', 'UnpostedEvent')
+    unposted_events = @annotation_section.dig('AnnotationModule', 'UnpostedAnnotation', 'UnpostedEventList', 'UnpostedEvent')
     return unless unposted_events
 
     collection = []
@@ -1202,10 +1176,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def provided_documents_data
-    documents = document_section
-    return unless documents
+    return unless @document_section
 
-    large_docs = documents.dig('LargeDocumentModule', 'LargeDocList', 'LargeDoc')
+    large_docs = @document_section.dig('LargeDocumentModule', 'LargeDocList', 'LargeDoc')
     return unless large_docs
 
     collection = []
@@ -1229,17 +1202,16 @@ class StudyJsonRecord < ActiveRecord::Base
   end
  
   def reported_events_data
-    results = results_section
-    return unless results
+    return unless @results_section
 
-    events = events_data('Serious', results) + events_data('Other', results)
+    events = events_data('Serious') + events_data('Other')
     return if events.empty?
 
     events 
   end
 
-  def events_data(event_type='Serious', results=results_section)
-    adverse_events_module = results.dig('AdverseEventsModule')
+  def events_data(event_type='Serious')
+    adverse_events_module = @results_section.dig('AdverseEventsModule')
     return [] unless adverse_events_module
 
     events = adverse_events_module.dig("#{event_type}EventList", "#{event_type}Event")
@@ -1274,18 +1246,17 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def reported_events_result_groups_data(results = results_section)
-    event_groups = results.dig('AdverseEventsModule', 'EventGroupList', 'EventGroup')
+  def reported_events_result_groups_data
+    event_groups = @results_section.dig('AdverseEventsModule', 'EventGroupList', 'EventGroup')
     return [] unless event_groups
 
     StudyJsonRecord.result_groups(event_groups, 'Event', 'Reported Event', nct_id)
   end
 
   def responsible_party_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    responsible_party = protocols.dig('SponsorCollaboratorsModule', 'ResponsibleParty')
+    responsible_party = @protocol_section.dig('SponsorCollaboratorsModule', 'ResponsibleParty')
     return unless responsible_party
 
     {
@@ -1299,10 +1270,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def result_agreement_data
-    results = results_section
-    return unless results
+    return unless @results_section
 
-    certain_agreement = results.dig('MoreInfoModule', 'CertainAgreement')
+    certain_agreement = @results_section.dig('MoreInfoModule', 'CertainAgreement')
     return unless certain_agreement
 
     {
@@ -1315,10 +1285,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def result_contact_data
-    results = results_section
-    return unless results
+    return unless @results_section
 
-    point_of_contact = results.dig('MoreInfoModule', 'PointOfContact')
+    point_of_contact = @results_section.dig('MoreInfoModule', 'PointOfContact')
     return unless point_of_contact
 
     ext = point_of_contact['PointOfContactPhoneExt']
@@ -1334,10 +1303,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def study_references_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    references = protocols.dig('ReferencesModule', 'ReferenceList', 'Reference')
+    references = @protocol_section.dig('ReferencesModule', 'ReferenceList', 'Reference')
     return unless references
 
     collection = []
@@ -1354,10 +1322,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def sponsors_data
-    protocols = protocol_section
-    return unless protocols
+    return unless @protocol_section
 
-    sponsor_collaborators_module = protocols['SponsorCollaboratorsModule']
+    sponsor_collaborators_module = @protocol_section['SponsorCollaboratorsModule']
     return unless sponsor_collaborators_module
 
     collaborators = sponsor_collaborators_module.dig('CollaboratorList', 'Collaborator')
@@ -1390,10 +1357,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def drop_withdrawals_data
-    results = results_section
-    return unless results
+    return unless @results_section
 
-    flow_periods = results.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
+    flow_periods = @results_section.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
     return unless flow_periods
 
     collection = []
@@ -1466,26 +1432,18 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def build_study
     begin
+      @protocol_section = protocol_section
+      @results_section = results_section
+      @derived_section = derived_section
+      @annotation_section = annotation_section
+      @document_section = document_section
+      @contacts_location_module = contacts_location_module
+      @locations_array = locations_array
       data = data_collection
       Study.create(data[:study]) if data[:study]
-
-      # gathering_results
-      # combining_results
-      # save_facilities
-      # save_outcomes maybe
-     
-      # byebug
-      # MethodTime.info(
-      #   Benchmark.measure('save_facilities') {
-      # save_facilities(data[:facilities])
-      #   })
-      MethodTime.info(
-        Benchmark.measure {
-          result_groups = data[:result_groups]
-          @study_result_groups = save_result_groups(result_groups).index_by(&:ctgov_beta_group_code) unless result_groups.empty?
-        }
-      )
-      
+    
+      result_groups = data[:result_groups]
+      @study_result_groups = save_result_groups(result_groups).index_by(&:ctgov_beta_group_code) unless result_groups.empty?
       
       # saving design_groups, and associated objects
       save_interventions(data[:interventions])
@@ -1508,12 +1466,6 @@ class StudyJsonRecord < ActiveRecord::Base
       Condition.create(data[:conditions]) if data[:conditions]
       Country.create(data[:countries]) if data[:countries]
       Document.create(data[:documents]) if data[:documents]
-
-      # saving facilities and related objects
-      # MethodTime.info(
-      #   Benchmark.measure('save_facilities') {
-      # save_facilities(data[:facilities])
-      #   })
       save_facilities(data[:facilities]) if data[:facilities]
       IdInformation.create(data[:id_information]) if data[:id_information]
       IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
@@ -1547,7 +1499,6 @@ class StudyJsonRecord < ActiveRecord::Base
       update(saved_study_at: Time.now)
       puts "~~~~~~~~~~~~#{nct_id} done"
     rescue => error
-      # byebug
       ErrorLog.error(error)
       @study_build_failures ||= []
       @study_build_failures << id
