@@ -131,7 +131,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
         save_single_study(study)
         nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-        SaveTime.info "added NCTId #{nct_id}, #{count_down} left out of #{original_count}"
+        # SaveTime.info "added NCTId #{nct_id}, #{count_down} left out of #{original_count}"
         count_down -= 1
       end  
     end
@@ -207,7 +207,9 @@ class StudyJsonRecord < ActiveRecord::Base
     record.saved_study_at = nil
     record.download_date = Time.current
     if record.save
+      stime=Time.zone.now
       record.build_study
+      SaveTime.info("took #{Time.zone.now - stime}--#{nct_id}")
     end
   end
 
