@@ -87,12 +87,16 @@ class StudyJsonRecord < ActiveRecord::Base
     set_table_schema('ctgov_beta')
     remove_indexes_and_constraints
     nct_ids = %w[
-      NCT00003139
-      NCT00000479
-      NCT00000575
-      NCT00001137
-      NCT00003224
+      NCT02194738
+      NCT02927249
+      NCT02193282
+      NCT01776424
+      NCT03793179
     ]
+
+    # NCT03414970
+    # NCT03233711
+    # NCT02669017
     study_jsons = StudyJsonRecord.where(nct_id: nct_ids)
     db_mgr.clear_out_data_for(nct_ids)
 
@@ -131,7 +135,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
         save_single_study(study)
         nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-        # SaveTime.info "added NCTId #{nct_id}, #{count_down} left out of #{original_count}"
         count_down -= 1
       end  
     end
@@ -1085,7 +1088,7 @@ class StudyJsonRecord < ActiveRecord::Base
                                           groups_description: analysis['OutcomeAnalysisGroupDescription'],
                                           other_analysis_description: analysis['OutcomeAnalysisOtherAnalysisDescription']
                                         },
-                      outcome_analysis_group_ids: outcome_analysis_groups_data(analysis)  
+                      outcome_analysis_groups: outcome_analysis_groups_data(analysis)  
                     )
     end
     collection
@@ -1106,6 +1109,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       ctgov_beta_group_code: group_id
                     )
     end
+    collection
   end
 
   def overall_officials_data
@@ -1406,7 +1410,7 @@ class StudyJsonRecord < ActiveRecord::Base
       baseline_measurements: baseline_measurements_data,
       browse_conditions: browse_conditions_data,
       browse_interventions: browse_interventions_data,
-      central_contacts_list: central_contacts_data,
+      central_contacts: central_contacts_data,
       conditions: conditions_data,
       countries: countries_data,
       documents: documents_data,
@@ -1443,10 +1447,9 @@ class StudyJsonRecord < ActiveRecord::Base
       @locations_array = locations_array
       data = data_collection
       Study.create(data[:study]) if data[:study]
-    
-      result_groups = data[:result_groups]
-      @study_result_groups = save_result_groups(result_groups).index_by(&:ctgov_beta_group_code) unless result_groups.empty?
-      
+      saved_result_groups = save_result_groups(data[:result_groups])
+      @study_result_groups = saved_result_groups.index_by(&:ctgov_beta_group_code) if saved_result_groups
+
       # saving design_groups, and associated objects
       save_interventions(data[:interventions])
       save_design_groups(data[:design_groups])
@@ -1462,17 +1465,17 @@ class StudyJsonRecord < ActiveRecord::Base
       save_with_result_group(baseline_info[:baseline_counts], 'BaselineCount') if baseline_info[:baseline_counts]
       save_with_result_group(baseline_info[:measurements], 'BaselineMeasurement') if baseline_info[:measurements]
         
-      BrowseCondition.create(data[:browse_conditions]) if data[:browse_conditions]
-      BrowseIntervention.create(data[:browse_interventions]) if data[:browse_interventions]
-      CentralContact.create(data[:central_contacts_list]) if data[:central_contacts_list]
-      Condition.create(data[:conditions]) if data[:conditions]
-      Country.create(data[:countries]) if data[:countries]
-      Document.create(data[:documents]) if data[:documents]
+      BrowseCondition.import(data[:browse_conditions]) if data[:browse_conditions]
+      BrowseIntervention.import(data[:browse_interventions]) if data[:browse_interventions]
+      CentralContact.import(data[:central_contacts]) if data[:central_contacts]
+      Condition.import(data[:conditions]) if data[:conditions]
+      Country.import(data[:countries]) if data[:countries]
+      Document.import(data[:documents]) if data[:documents]
       save_facilities(data[:facilities]) if data[:facilities]
-      IdInformation.create(data[:id_information]) if data[:id_information]
-      IpdInformationType.create(data[:ipd_information_type]) if data[:ipd_information_type]
-      Keyword.create(data[:keywords]) if data[:keywords]
-      Link.create(data[:links]) if data[:links]
+      IdInformation.import(data[:id_information]) if data[:id_information]
+      IpdInformationType.import(data[:ipd_information_type]) if data[:ipd_information_type]
+      Keyword.import(data[:keywords]) if data[:keywords]
+      Link.import(data[:links]) if data[:links]
 
       # saving milestones and associated objects
       save_with_result_group(data[:milestones], 'Milestone') if data[:milestones]
@@ -1480,10 +1483,10 @@ class StudyJsonRecord < ActiveRecord::Base
       # saving outcomes and associated objects
       save_outcomes(data[:outcomes]) if data[:outcomes]
 
-      OverallOfficial.create(data[:overall_officials]) if data[:overall_officials]
-      DesignOutcome.create(data[:design_outcomes]) if data[:design_outcomes]
-      PendingResult.create(data[:pending_results]) if data[:pending_results]
-      ProvidedDocument.create(data[:provided_documents]) if data[:provided_documents]
+      OverallOfficial.import(data[:overall_officials]) if data[:overall_officials]
+      DesignOutcome.import(data[:design_outcomes]) if data[:design_outcomes]
+      PendingResult.import(data[:pending_results]) if data[:pending_results]
+      ProvidedDocument.import(data[:provided_documents]) if data[:provided_documents]
 
       # saving reported events and associated objects
       save_with_result_group(data[:reported_events], 'ReportedEvent') if data[:reported_events]
@@ -1491,8 +1494,8 @@ class StudyJsonRecord < ActiveRecord::Base
       ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
       ResultAgreement.create(data[:result_agreement]) if data[:result_agreement]
       ResultContact.create(data[:result_contact]) if data[:result_contact]
-      Reference.create(data[:study_references]) if data[:study_references]
-      Sponsor.create(data[:sponsors]) if data[:sponsors]
+      Reference.import(data[:study_references]) if data[:study_references]
+      Sponsor.import(data[:sponsors]) if data[:sponsors]
       
       # saving drop_withdrawals
       save_with_result_group(data[:drop_withdrawals], 'DropWithdrawal') if data[:drop_withdrawals]
@@ -1682,23 +1685,12 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def save_baseline_counts(counts)
-    return unless counts
-
-    counts.each do |count|
-      result_group = @study_result_groups[count[:ctgov_beta_group_code]]
-      next unless result_group
-
-      count[:result_group_id] = result_group.id
-      BaselineCount.create(count)
-    end
-  end
-
   def save_with_result_group(group, model_name='BaselineMeasurement')
     return unless group
 
     group.each{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_beta_group_code]]}
-    model_name.safe_constantize.create(group)
+    # model_name.safe_constantize.create(group)
+    model_name.safe_constantize.import(group)
   end
 
   def save_facilities(facilities)
@@ -1710,8 +1702,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
       facility_info[:facility_contacts].each{|h| h[:facility_id] = facility.id}
       facility_info[:facility_investigators].each{|h| h[:facility_id] = facility.id}
-      FacilityContact.create(facility_info[:facility_contacts]) if facility_info[:facility_contacts]
-      FacilityInvestigator.create(facility_info[:facility_investigators]) if facility_info[:facility_investigators]
+      FacilityContact.import(facility_info[:facility_contacts]) if facility_info[:facility_contacts]
+      FacilityInvestigator.import(facility_info[:facility_investigators]) if facility_info[:facility_investigators]
     end
   end
 
@@ -1732,19 +1724,9 @@ class StudyJsonRecord < ActiveRecord::Base
       
       outcome_analyses.each do |analysis_info|
         outcome_analysis = OutcomeAnalysis.create(analysis_info[:outcome_analysis])
-        outcome_analysis_group_ids = analysis_info[:outcome_analysis_group_ids] || []
-        outcome_analysis_group_ids.each do |group_id|
-          result_group = @study_result_groups[group_id]
-          next unless result_group && outcome_analysis
-
-          OutcomeAnalysisGroup.create(
-                                      nct_id: nct_id,
-                                      outcome_analysis_id: outcome_analysis.id,
-                                      result_group_id: result_group.id,
-                                      ctgov_beta_group_code: group_id
-                                      )
-        end
-
+        outcome_analysis_groups = analysis_info[:outcome_analysis_groups] || []
+        outcome_analysis_groups.each{ |h| h[:outcome_analysis_id] = outcome_analysis.id }
+        save_with_result_group(outcome_analysis_groups, 'OutcomeAnalysisGroup')
       end
     end
   end
