@@ -731,7 +731,9 @@ class StudyJsonRecord < ActiveRecord::Base
     
     collection = []
     locations.each do |location|
-      collection.push(nct_id: nct_id, name: location['LocationCountry'], removed: false)
+      unless removed_countries.include?(location['LocationCountry'])
+        collection.push(nct_id: nct_id, name: location['LocationCountry'], removed: false)
+      end
     end
 
     removed_countries.each do |country|
