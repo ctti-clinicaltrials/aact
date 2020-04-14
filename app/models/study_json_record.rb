@@ -1465,17 +1465,17 @@ class StudyJsonRecord < ActiveRecord::Base
       save_with_result_group(baseline_info[:baseline_counts], 'BaselineCount') if baseline_info[:baseline_counts]
       save_with_result_group(baseline_info[:measurements], 'BaselineMeasurement') if baseline_info[:measurements]
         
-      BrowseCondition.import(data[:browse_conditions]) if data[:browse_conditions]
-      BrowseIntervention.import(data[:browse_interventions]) if data[:browse_interventions]
-      CentralContact.import(data[:central_contacts]) if data[:central_contacts]
-      Condition.import(data[:conditions]) if data[:conditions]
-      Country.import(data[:countries]) if data[:countries]
-      Document.import(data[:documents]) if data[:documents]
+      BrowseCondition.import(data[:browse_conditions], validate: false) if data[:browse_conditions]
+      BrowseIntervention.import(data[:browse_interventions], validate: false) if data[:browse_interventions]
+      CentralContact.import(data[:central_contacts], validate: false) if data[:central_contacts]
+      Condition.import(data[:conditions], validate: false) if data[:conditions]
+      Country.import(data[:countries], validate: false) if data[:countries]
+      Document.import(data[:documents], validate: false) if data[:documents]
       save_facilities(data[:facilities]) if data[:facilities]
-      IdInformation.import(data[:id_information]) if data[:id_information]
-      IpdInformationType.import(data[:ipd_information_type]) if data[:ipd_information_type]
-      Keyword.import(data[:keywords]) if data[:keywords]
-      Link.import(data[:links]) if data[:links]
+      IdInformation.import(data[:id_information], validate: false) if data[:id_information]
+      IpdInformationType.import(data[:ipd_information_type], validate: false) if data[:ipd_information_type]
+      Keyword.import(data[:keywords], validate: false) if data[:keywords]
+      Link.import(data[:links], validate: false) if data[:links]
 
       # saving milestones and associated objects
       save_with_result_group(data[:milestones], 'Milestone') if data[:milestones]
@@ -1483,10 +1483,10 @@ class StudyJsonRecord < ActiveRecord::Base
       # saving outcomes and associated objects
       save_outcomes(data[:outcomes]) if data[:outcomes]
 
-      OverallOfficial.import(data[:overall_officials]) if data[:overall_officials]
-      DesignOutcome.import(data[:design_outcomes]) if data[:design_outcomes]
-      PendingResult.import(data[:pending_results]) if data[:pending_results]
-      ProvidedDocument.import(data[:provided_documents]) if data[:provided_documents]
+      OverallOfficial.import(data[:overall_officials], validate: false) if data[:overall_officials]
+      DesignOutcome.import(data[:design_outcomes], validate: false) if data[:design_outcomes]
+      PendingResult.import(data[:pending_results], validate: false) if data[:pending_results]
+      ProvidedDocument.import(data[:provided_documents], validate: false) if data[:provided_documents]
 
       # saving reported events and associated objects
       save_with_result_group(data[:reported_events], 'ReportedEvent') if data[:reported_events]
@@ -1494,8 +1494,8 @@ class StudyJsonRecord < ActiveRecord::Base
       ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
       ResultAgreement.create(data[:result_agreement]) if data[:result_agreement]
       ResultContact.create(data[:result_contact]) if data[:result_contact]
-      Reference.import(data[:study_references]) if data[:study_references]
-      Sponsor.import(data[:sponsors]) if data[:sponsors]
+      Reference.import(data[:study_references], validate: false) if data[:study_references]
+      Sponsor.import(data[:sponsors], validate: false) if data[:sponsors]
       
       # saving drop_withdrawals
       save_with_result_group(data[:drop_withdrawals], 'DropWithdrawal') if data[:drop_withdrawals]
@@ -1690,7 +1690,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     group.each{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_beta_group_code]]}
     # model_name.safe_constantize.create(group)
-    model_name.safe_constantize.import(group)
+    model_name.safe_constantize.import(group, validate: false)
   end
 
   def save_facilities(facilities)
@@ -1702,8 +1702,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
       facility_info[:facility_contacts].each{|h| h[:facility_id] = facility.id}
       facility_info[:facility_investigators].each{|h| h[:facility_id] = facility.id}
-      FacilityContact.import(facility_info[:facility_contacts]) if facility_info[:facility_contacts]
-      FacilityInvestigator.import(facility_info[:facility_investigators]) if facility_info[:facility_investigators]
+      FacilityContact.import(facility_info[:facility_contacts], validate: false) if facility_info[:facility_contacts]
+      FacilityInvestigator.import(facility_info[:facility_investigators], validate: false) if facility_info[:facility_investigators]
     end
   end
 
