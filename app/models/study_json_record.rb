@@ -158,7 +158,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
     for x in 1..limit
       puts "batch #{x + 1} of #{limit}"
-      sleep 5
       fetch_studies(min, max)
       min += 100
       max += 100
