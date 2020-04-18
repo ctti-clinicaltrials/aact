@@ -266,14 +266,21 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def get_date(str)
-    Date.parse(str) if str
+    begin
+      str.try(:to_date)
+    rescue
+      nil
+    end
   end
 
   def convert_date(str)
-    return nil unless str
-    return str.to_date.end_of_month if is_missing_the_day?(str)
+    return unless str
+
+    converted_date = get_date(str)
+    return unless converted_date
+    return converted_date.end_of_month if is_missing_the_day?(str)
     
-    get_date(str)
+    converted_date
   end
 
   def is_missing_the_day?(str)
@@ -1176,7 +1183,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       nct_id: nct_id,
                       event: event['UnpostedEventType'],
                       event_date_description: event['UnpostedEventDate'],
-                      event_date: event['UnpostedEventDate'].try(:to_date)
+                      event_date: get_date(event['UnpostedEventDate'])
                     )
     end
     collection
@@ -1200,7 +1207,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       has_protocol: get_boolean(doc['LargeDocHasProtocol']),
                       has_icf: get_boolean(doc['LargeDocHasICF']),
                       has_sap: get_boolean(doc['LargeDocHasSAP']),
-                      document_date: doc['LargeDocDate'].try(:to_date),
+                      document_date: get_date(doc['LargeDocDate']),
                       url: full_url
                       )
                     
