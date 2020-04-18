@@ -7,8 +7,8 @@ namespace :db do
     Util::Updater.new(args).run
   end
   task :beta_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
-    StudyJsonRecord.too_long
-    # StudyJsonRecord.run(args)
+    # StudyJsonRecord.too_long
+    StudyJsonRecord.run(args)
   end
   task :both_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
     Util::Updater.new(args).run
