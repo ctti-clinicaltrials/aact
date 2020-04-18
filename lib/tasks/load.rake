@@ -8,6 +8,7 @@ namespace :db do
   end
   task :beta_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
     # StudyJsonRecord.too_long
+    `bundle exec rake log:clear`
     StudyJsonRecord.run(args)
   end
   task :both_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
