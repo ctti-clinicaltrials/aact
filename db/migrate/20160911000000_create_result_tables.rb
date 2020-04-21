@@ -1,4 +1,4 @@
-class CreateResultTables < ActiveRecord::Migration
+class CreateResultTables < ActiveRecord::Migration[5.2]
 
   def change
 

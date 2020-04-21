@@ -8,9 +8,9 @@ gem "rubyzip", "< 2.0.0"
 
 gem 'nokogiri'
 gem 'loofah'
-gem 'rails', '5.0.0'
-gem 'activesupport', '5.0.0'
-gem 'actionpack', '5.0.0'
+gem 'rails', '5.2.3'
+gem 'activesupport', '5.2.3'
+gem 'actionpack', '5.2.3'
 gem 'rails-html-sanitizer'
 gem "rack-timeout"
 gem "faraday"

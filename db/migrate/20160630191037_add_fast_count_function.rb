@@ -1,4 +1,4 @@
-class AddFastCountFunction < ActiveRecord::Migration
+class AddFastCountFunction < ActiveRecord::Migration[5.2]
   def up
     execute <<-SQL
       CREATE OR REPLACE FUNCTION count_estimate(query text) RETURNS INTEGER AS

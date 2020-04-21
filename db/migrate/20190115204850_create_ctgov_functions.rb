@@ -1,4 +1,4 @@
-class CreateCtgovFunctions < ActiveRecord::Migration
+class CreateCtgovFunctions < ActiveRecord::Migration[5.2]
 
   def up
     execute <<-SQL

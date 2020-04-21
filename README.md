@@ -119,6 +119,7 @@ If you intend to send email notifications to yourself or others whenever a datab
 *  `bundle install`
 *  `bundle exec rake db:create`   (create the database)
 *  `bundle exec rake db:migrate`  (create tables, indexes, views, etc. in the database)
+*  `bundle exec rake db:create RAILS_ENV=test (create tables, indexes, views, etc. in the test database)
 *  `bundle exec rake db:seed`     (Populate with sample data to verify it all works.)
 
 ## Import studies from clinicaltrials.gov

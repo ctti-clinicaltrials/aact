@@ -12,6 +12,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+    byebug
     @dbconfig = YAML.load(File.read('config/database.yml'))
     # backend db
     ActiveRecord::Base.establish_connection @dbconfig[:test]
