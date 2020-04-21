@@ -7,7 +7,8 @@ ErrorLog = Logger.new('log/error.log')
 MethodTime = Logger.new('log/method_time.log')
 # require 'zip'
 # run incremental load with: bundle exec rake db:beta_load[1,incremental]
-# run full load with: bundle exec rake db:beta_loadload[1,full]
+# run full load \]]\
+with: bundle exec rake db:beta_loadload[1,full]
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'ctgov_beta.study_json_records'
@@ -111,12 +112,9 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.full
     start_time = Time.current
     study_download = download_all_studies
-    # finshed in about 12 hours
-    # total number we have 326614
-    
-    # finshed in about 1 hour
-    # total number we should have 3131
-    # total number we have 1578
+    # finshed in 3 days and failed to build
+    # total number of studies 336443
+    # started 3:49pm April 18th finished 11:10am April 21st
     nct_ids = StudyJsonRecord.all.map(&:nct_id)
     clear_out_data_for(nct_ids)
     Zip::File.open(study_download.path) do |unzipped_folders|
