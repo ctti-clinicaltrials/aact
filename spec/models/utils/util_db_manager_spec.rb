@@ -60,12 +60,14 @@ describe Util::DbManager do
       fm.save_static_copy
       dm.refresh_public_db
 
-      back_con = ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL).connection
+      ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL)
+      back_con = ActiveRecord::Base.connection
       back_tables=back_con.execute("select * from information_schema.tables where table_schema='ctgov'")
       back_table_count=back_con.execute("select count(*) from information_schema.tables where table_schema='ctgov'").first['count'].to_i
 
       #reset pub connection
-      pub_con = ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection
+      ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL)
+      pub_con = ActiveRecord::Base.connection
 
       pub_table_count=pub_con.execute("select count(*) from information_schema.tables where table_schema='ctgov'").first['count'].to_i
       pub_tables=pub_con.execute("select * from information_schema.tables where table_schema='ctgov'")
@@ -79,7 +81,8 @@ describe Util::DbManager do
       pub_sponsor_count=pub_con.execute('select count(*) from sponsors').first['count'].to_i
       pub_outcome_count=pub_con.execute('select count(*) from outcomes').first['count'].to_i
 
-      con = ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL).connection
+      ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL)
+      con = ActiveRecord::Base.connection
       back_browse_condition_count=con.execute('select count(*) from browse_conditions').first['count'].to_i
       back_country_count=con.execute('select count(*) from countries').first['count'].to_i
       back_design_count=con.execute('select count(*) from designs').first['count'].to_i
