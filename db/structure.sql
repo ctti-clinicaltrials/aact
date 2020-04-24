@@ -837,7 +837,7 @@ ALTER SEQUENCE ctgov.calculated_values_id_seq OWNED BY ctgov.calculated_values.i
 
 CREATE TABLE ctgov.categories (
     id integer NOT NULL,
-    nct_id integer NOT NULL,
+    nct_id character varying NOT NULL,
     name character varying NOT NULL,
     last_modified timestamp without time zone NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -3703,5 +3703,5 @@ INSERT INTO schema_migrations (version) VALUES ('20190115204850');
 
 INSERT INTO schema_migrations (version) VALUES ('20190301204850');
 
-INSERT INTO schema_migrations (version) VALUES ('20200424162431');
+INSERT INTO schema_migrations (version) VALUES ('20200424180206');
 
