@@ -24,7 +24,7 @@ class Category < ActiveRecord::Base
     end
   end
 
-  def self.run(params={})
+  def self.load_update(params={})
     @days_back = params[:days_back] ? params[:days_back] : 14
     @condition = params[:condition] ? params[:condition] : 'COVID-19'
     covid_nct_ids = fetch_study_ids
