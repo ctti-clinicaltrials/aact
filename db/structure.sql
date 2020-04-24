@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.4
--- Dumped by pg_dump version 11.4
+-- Dumped from database version 12.1
+-- Dumped by pg_dump version 12.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -274,7 +274,7 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: browse_conditions; Type: TABLE; Schema: ctgov; Owner: -
@@ -829,6 +829,40 @@ CREATE SEQUENCE ctgov.calculated_values_id_seq
 --
 
 ALTER SEQUENCE ctgov.calculated_values_id_seq OWNED BY ctgov.calculated_values.id;
+
+
+--
+-- Name: categories; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.categories (
+    id integer NOT NULL,
+    nct_id integer NOT NULL,
+    name character varying NOT NULL,
+    last_modified timestamp without time zone NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.categories_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.categories_id_seq OWNED BY ctgov.categories.id;
 
 
 --
@@ -2300,6 +2334,13 @@ ALTER TABLE ONLY ctgov.calculated_values ALTER COLUMN id SET DEFAULT nextval('ct
 
 
 --
+-- Name: categories id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.categories ALTER COLUMN id SET DEFAULT nextval('ctgov.categories_id_seq'::regclass);
+
+
+--
 -- Name: central_contacts id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2639,6 +2680,14 @@ ALTER TABLE ONLY ctgov.browse_interventions
 
 ALTER TABLE ONLY ctgov.calculated_values
     ADD CONSTRAINT calculated_values_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
 
 
 --
@@ -3653,4 +3702,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190115184850');
 INSERT INTO schema_migrations (version) VALUES ('20190115204850');
 
 INSERT INTO schema_migrations (version) VALUES ('20190301204850');
+
+INSERT INTO schema_migrations (version) VALUES ('20200424162431');
 
