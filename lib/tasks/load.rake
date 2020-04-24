@@ -5,5 +5,9 @@ namespace :db do
     # The updater will default the params to run a relativey quick load:
     # incremental, not full featured, just a couple days
     Util::Updater.new(args).run
+    Category.run(args)
+  end
+  task :load_categories, [:days_back, :condition] => :environment do |t, args|
+    Category.run(args)
   end
 end

@@ -24,15 +24,15 @@ class Category < ActiveRecord::Base
     end
   end
 
-  def self.run(days_back=14, condition='COVID-19')
-    @days_back = days_back ? days_back : 14
-    @condition = condition ? condition : 'COVID-19'
+  def self.run(params={})
+    @days_back = params[:days_back] ? params[:days_back] : 14
+    @condition = params[:condition] ? params[:condition] : 'COVID-19'
     covid_nct_ids = fetch_study_ids
     
     
     covid_nct_ids.each do |covid_nct_id|
       begin
-        category = Category.find_by(nct_id: covid_nct_id)
+        category = Category.find_by(nct_id: covid_nct_id, name: 'COVID-19')
         category ||= Category.new(nct_id: covid_nct_id)
         category.name = 'COVID-19'
         category.last_modified = Time.zone.now
