@@ -385,6 +385,7 @@ class StudyJsonRecord < ActiveRecord::Base
       official_title: ident['OfficialTitle'],
       overall_status: status['OverallStatus'],
       last_known_status: status['LastKnownStatus'],
+      # check what phase is supposed to look like
       phase: key_check(design['PhaseList'])['Phase'],
       enrollment: enrollment['EnrollmentCount'],
       enrollment_type: enrollment['EnrollmentType'],
