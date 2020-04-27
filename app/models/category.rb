@@ -44,5 +44,33 @@ class Category < ActiveRecord::Base
       end
     end
   end
+
+  def self.study_values(study)
+    id_values = study.id_information.pluck(:id_values).join('|')
+    study_nct_id = study.nct_id
+    [
+      study_nct_id, #nct_id
+      study.brief_title, #title
+      study.acronym, #acronym
+      id_values, #other_ids
+      "https://ClinicalTrials.gov/show/#{study_nct_id}", #url
+      "https://ClinicalTrials.gov/show/#{study_nct_id}", #Hyperlink
+      study.overall_status, #status
+      study.why_stopped, #why_stopped
+      , #hqc
+    ]
+    
+  end
+
+  def self.hqc_query(study)
+    terms = [
+              'hydroxychloroquine',
+              'plaquenil',
+              'hidroxicloroquina',
+              'quineprox'
+            ]
+
+    
+  end
 end
 
