@@ -114,7 +114,6 @@ class Category < ActiveRecord::Base
     umbrella_protocol = single_term_query('umbrella', study) ? 1 : 0
     basket_protocol = single_term_query('basket', study) ? 1 : 0
 
-    
     # "11Apr2016"
     # byebug 
     [
@@ -188,6 +187,95 @@ class Category < ActiveRecord::Base
       study_documents(study), #study_documents
     ]
     
+  end
+
+  def self.column_names
+    %w[
+      nct_id
+      title
+      acronym
+      other_ids
+      url
+      status
+      why_stopped
+      hqc
+      has_dmc
+      funded_bys
+      sponsor_collaborators
+      lead_sponsor
+      collaborators
+      study_type
+      phases
+      enrollment
+      brief_summary
+      detailed_description
+      conditions
+      keywords
+      interventions
+      intervention_details
+      arm_datails
+      arm_intervention_details
+      outcome_measures
+      start_date
+      primary_completion_date
+      completion_date 
+      first_posted
+      results_first_posted
+      last_update_posted
+      nlm_download_date
+      study_first_submitted_date
+      has_expanded_access
+      is_fda_regulated_drug
+      is_fda_regulated_device
+      is_unapproved_device
+      locations
+      number_of_facilities
+      has_us_facility
+      has_single_facility
+      study_design
+      number_of_arms
+      number_of_groups
+      primary_purpose
+      intervention_model
+      observational_model
+      allocation
+      masking
+      subject_masked
+      caregiver_masked
+      investigator_masked
+      outcomes_assessor_masked
+      adaptive_protocol
+      master_protocol
+      platform_protocol
+      umbrella_protocol
+      basket_protocol
+      minimum_agey
+      maximum_agey
+      gender
+      gender_based
+      gender_description
+      healthy_volunteers
+      population
+      criteria
+      study_results
+      study_documents
+    ]
+  end
+
+  def self.save_excel
+    wb = xlsx_package.workbook
+
+    nct_ids = Category.where(name: 'COVID-19').pluck(:nct_id)
+    studies = Study.where(nct_id: nct_ids)
+
+    wb.add_worksheet(name: "/public/static/categories/covid_19/covid_19#{Time.zone.now}") do |sheet|
+      # Create the header row
+      sheet.add_row column_names
+      # Create entries for each item
+      studies.each do |study|
+        sheet.add_row study_values(study)
+      end
+    end
   end
 
   def self.test
