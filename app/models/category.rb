@@ -184,6 +184,7 @@ class Category < ActiveRecord::Base
       healthy_volunteers, #healthy_volunteers
       population, #population
       @criteria, #criteria
+      study.calculated_value.try(:were_results_reported) ? 1 : 0, #study_results
       study_documents(study), #study_documents
     ]
     
