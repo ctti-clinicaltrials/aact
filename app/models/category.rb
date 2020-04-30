@@ -47,7 +47,6 @@ class Category < ActiveRecord::Base
   end
 
   def self.study_values(study)
-    # sleep 3
     study_nct_id = study.nct_id
     id_values = study.id_information.pluck(:id_value).join('|')
     sponsors = study.sponsors
@@ -115,8 +114,6 @@ class Category < ActiveRecord::Base
     umbrella_protocol = single_term_query('umbrella', study) ? 'Yes' : 'No'
     basket_protocol = single_term_query('basket', study) ? 'Yes' : 'No'
 
-    # "11Apr2016"
-    # byebug 
     [
       study_nct_id, #nct_id
       study.brief_title, #title
@@ -271,32 +268,16 @@ class Category < ActiveRecord::Base
     Axlsx::Package.new do |p|
       p.workbook.add_worksheet(:name => "covid_19_#{current_datetime}") do |sheet|
         sheet.add_row excel_column_names
-        studies.each { |study| sheet.add_row study_values(study) }
-        # sheet.add_chart(Axlsx::Pie3DChart, :start_at => [0,5], :end_at => [10, 20], :title => "example 3: Pie Chart") do |chart|
-        #   chart.add_series :data => sheet["B2:B4"], :labels => sheet["A2:A4"],  :colors => ['FF0000', '00FF00', '0000FF']
-        # end
+        studies.each do |study|
+          begin
+            sheet.add_row study_values(study)
+          rescue Exception => e
+            puts "Failed: #{covid_nct_id}"
+            puts "Error: #{e}"
+            next
+          end
       end
-
       p.serialize("./public/static/exported_files/#{condition}/#{condition}_#{current_datetime}.xlsx")
-    end
-    # end
-
-    Axlsx::Package.new do |p|
-      p.workbook.add_worksheet(:name => "Pie Chart") do |sheet|
-        sheet.add_row ["Simple Pie Chart"]
-        %w(first second third).each { |label| sheet.add_row [label, rand(24)+1] }
-        sheet.add_chart(Axlsx::Pie3DChart, :start_at => [0,5], :end_at => [10, 20], :title => "example 3: Pie Chart") do |chart|
-          chart.add_series :data => sheet["B2:B4"], :labels => sheet["A2:A4"],  :colors => ['FF0000', '00FF00', '0000FF']
-        end
-      end
-      p.serialize('simple.xlsx')
-    end
-  end
-
-  def self.test
-    studies = Study.all
-    studies.each do |study| 
-      puts study_values(study)
     end
   end
 
