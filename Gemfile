@@ -37,7 +37,6 @@ gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
 gem 'caxlsx'
-gem 'caxlsx_rails'
 
 # deployment to server
 gem 'capistrano', '~> 3.8'

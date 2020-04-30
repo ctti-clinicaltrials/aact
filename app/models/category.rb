@@ -1,11 +1,11 @@
 require 'rss'
 require 'uri'
+require 'axlsx'
 class Category < ActiveRecord::Base
-
 
   def self.fetch_study_ids
     @days_back ||= 14
-    @condition ||= 'COVID-19'
+    @condition ||= 'covid_19'
 
     begin
       retries ||= 0
@@ -26,15 +26,15 @@ class Category < ActiveRecord::Base
 
   def self.load_update(params={})
     @days_back = params[:days_back] ? params[:days_back] : 14
-    @condition = params[:condition] ? params[:condition] : 'COVID-19'
+    @condition = params[:condition] ? params[:condition] : 'covid_19'
     covid_nct_ids = fetch_study_ids
     
     
     covid_nct_ids.each do |covid_nct_id|
       begin
-        category = Category.find_by(nct_id: covid_nct_id, name: 'COVID-19')
+        category = Category.find_by(nct_id: covid_nct_id, name: @condition)
         category ||= Category.new(nct_id: covid_nct_id)
-        category.name = 'COVID-19'
+        category.name = @condition
         category.last_modified = Time.zone.now
         category.save
       rescue Exception => e
@@ -43,6 +43,7 @@ class Category < ActiveRecord::Base
         next
       end
     end
+    save_excel(@condition)
   end
 
   def self.study_values(study)
@@ -90,10 +91,10 @@ class Category < ActiveRecord::Base
       observational_model = design.observational_model 
       allocation = design.allocation 
       masking = design.masking
-      subject_masked = design.subject_masked ? 1 : 0 
-      caregiver_masked = design.caregiver_masked ? 1 : 0
-      investigator_masked = design.investigator_masked ? 1 : 0 
-      outcomes_assessor_masked = design.outcomes_assessor_masked ? 1 : 0
+      subject_masked = design.subject_masked ? 'Yes' : 'No' 
+      caregiver_masked = design.caregiver_masked ? 'Yes' : 'No'
+      investigator_masked = design.investigator_masked ? 'Yes' : 'No' 
+      outcomes_assessor_masked = design.outcomes_assessor_masked ? 'Yes' : 'No'
     end
 
     eligibility = study.eligibility
@@ -108,11 +109,11 @@ class Category < ActiveRecord::Base
       @criteria = eligibility.criteria
     end
 
-    adaptive_protocol = single_term_query('adaptive', study) ? 1 : 0
-    master_protocol = single_term_query('master', study) ? 1 : 0
-    platform_protocol = single_term_query('platform', study) ? 1 : 0
-    umbrella_protocol = single_term_query('umbrella', study) ? 1 : 0
-    basket_protocol = single_term_query('basket', study) ? 1 : 0
+    adaptive_protocol = single_term_query('adaptive', study) ? 'Yes' : 'No'
+    master_protocol = single_term_query('master', study) ? 'Yes' : 'No'
+    platform_protocol = single_term_query('platform', study) ? 'Yes' : 'No'
+    umbrella_protocol = single_term_query('umbrella', study) ? 'Yes' : 'No'
+    basket_protocol = single_term_query('basket', study) ? 'Yes' : 'No'
 
     # "11Apr2016"
     # byebug 
@@ -124,8 +125,8 @@ class Category < ActiveRecord::Base
       "https://ClinicalTrials.gov/show/#{study_nct_id}", #url
       study.overall_status, #status
       study.why_stopped, #why_stopped
-      hqc_query(study) ? 1 : 0, #hqc
-      study.has_dmc ? 1 : 0, #has_dmc
+      hqc_query(study) ? 'Yes' : 'No', #hqc
+      study.has_dmc ? 'Yes' : 'No', #has_dmc
       sponsors.pluck(:agency_class).uniq.join('|'), #funded_bys
       sponsors.pluck(:name).join('|'), #sponsor_collaborators
       lead ? "#{lead.name}[#{lead.agency_class}]" : nil, #lead_sponsor
@@ -150,14 +151,14 @@ class Category < ActiveRecord::Base
       study.last_update_posted_date, #last_update_posted
       study.nlm_download_date_description, #nlm_download_date
       study.study_first_submitted_date, #study_first_submitted_date
-      study.has_expanded_access ? 1 : 0, #has_expanded_access
-      study.is_fda_regulated_drug ? 1 : 0, #is_fda_regulated_drug
-      study.is_fda_regulated_device ? 1 : 0, #is_fda_regulated_device
-      study.is_unapproved_device ? 1 : 0, #is_unapproved_device
+      study.has_expanded_access ? 'Yes' : 'No', #has_expanded_access
+      study.is_fda_regulated_drug ? 'Yes' : 'No', #is_fda_regulated_drug
+      study.is_fda_regulated_device ? 'Yes' : 'No', #is_fda_regulated_device
+      study.is_unapproved_device ? 'Yes' : 'No', #is_unapproved_device
       locations(facilities), #locations
       facilities.count, #number_of_facilities
-      us_facility ? 1 : 0, #has_us_facility
-      facilities.count == 1 ? 1 : 0, #has_single_facility
+      us_facility ? 'Yes' : 'No', #has_us_facility
+      facilities.count == 1 ? 'Yes' : 'No', #has_single_facility
       study_design(design), #study_design
       study.number_of_arms, #number_of_arms
       study.number_of_groups, #number_of_groups
@@ -183,13 +184,13 @@ class Category < ActiveRecord::Base
       healthy_volunteers, #healthy_volunteers
       population, #population
       @criteria, #criteria
-      study.calculated_value.try(:were_results_reported) ? 1 : 0, #study_results
+      study.calculated_value.try(:were_results_reported) ? 'Yes' : 'No', #study_results
       study_documents(study), #study_documents
     ]
     
   end
 
-  def self.column_names
+  def self.excel_column_names
     %w[
       nct_id
       title
@@ -262,19 +263,33 @@ class Category < ActiveRecord::Base
     ]
   end
 
-  def self.save_excel
-    wb = xlsx_package.workbook
-
-    nct_ids = Category.where(name: 'COVID-19').pluck(:nct_id)
+  def self.save_excel(condition = 'covid_19')
+    nct_ids = Category.where(name: condition).pluck(:nct_id)
     studies = Study.where(nct_id: nct_ids)
-
-    wb.add_worksheet(name: "/public/static/categories/covid_19/covid_19#{Time.zone.now}") do |sheet|
-      # Create the header row
-      sheet.add_row column_names
-      # Create entries for each item
-      studies.each do |study|
-        sheet.add_row study_values(study)
+    current_datetime = Time.zone.now.strftime('%e_%b_%Y')
+    # current_datetime = Time.zone.now.strftime('%H:%M:%S%p_%e_%b_%Y')
+    Axlsx::Package.new do |p|
+      p.workbook.add_worksheet(:name => "covid_19_#{current_datetime}") do |sheet|
+        sheet.add_row excel_column_names
+        studies.each { |study| sheet.add_row study_values(study) }
+        # sheet.add_chart(Axlsx::Pie3DChart, :start_at => [0,5], :end_at => [10, 20], :title => "example 3: Pie Chart") do |chart|
+        #   chart.add_series :data => sheet["B2:B4"], :labels => sheet["A2:A4"],  :colors => ['FF0000', '00FF00', '0000FF']
+        # end
       end
+
+      p.serialize("./public/static/exported_files/#{condition}/#{condition}_#{current_datetime}.xlsx")
+    end
+    # end
+
+    Axlsx::Package.new do |p|
+      p.workbook.add_worksheet(:name => "Pie Chart") do |sheet|
+        sheet.add_row ["Simple Pie Chart"]
+        %w(first second third).each { |label| sheet.add_row [label, rand(24)+1] }
+        sheet.add_chart(Axlsx::Pie3DChart, :start_at => [0,5], :end_at => [10, 20], :title => "example 3: Pie Chart") do |chart|
+          chart.add_series :data => sheet["B2:B4"], :labels => sheet["A2:A4"],  :colors => ['FF0000', '00FF00', '0000FF']
+        end
+      end
+      p.serialize('simple.xlsx')
     end
   end
 
