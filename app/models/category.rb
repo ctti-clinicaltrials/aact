@@ -272,7 +272,7 @@ class Category < ActiveRecord::Base
           begin
             sheet.add_row study_values(study)
           rescue Exception => e
-            puts "Failed: #{covid_nct_id}"
+            puts "Failed: #{study.nct_id}"
             puts "Error: #{e}"
             next
           end
