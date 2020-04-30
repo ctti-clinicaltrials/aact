@@ -276,6 +276,7 @@ class Category < ActiveRecord::Base
             puts "Error: #{e}"
             next
           end
+        end
       end
       p.serialize("./public/static/exported_files/#{condition}/#{condition}_#{current_datetime}.xlsx")
     end
