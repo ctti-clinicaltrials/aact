@@ -29,6 +29,7 @@ class StudyJsonRecord < ActiveRecord::Base
     @type = params[:event_type] ? params[:event_type] : 'incremental'
     @days_back = (params[:days_back] ? params[:days_back] : 2)
     remove_indexes_and_constraints
+    @data_store = []
 
     puts "now running #{@type}, #{@days_back} days back"
     begin
@@ -37,6 +38,9 @@ class StudyJsonRecord < ActiveRecord::Base
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       puts"#{@type} load failed in run: #{msg}"
     end
+
+    puts "saveing StudyJsonRecord and Studies now"
+    save_all_study_data
 
     add_indexes_and_constraints
     CalculatedValue.populate
@@ -129,7 +133,8 @@ class StudyJsonRecord < ActiveRecord::Base
         study = json['FullStudy']
         next unless study
 
-        save_single_study(study)
+        store_study_data(study_data)
+        # save_single_study(study)
         nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
         count_down -= 1
       end  
@@ -144,7 +149,8 @@ class StudyJsonRecord < ActiveRecord::Base
     total_number = first_batch['FullStudiesResponse']['NStudiesFound']
     limit = (total_number/100.0).ceil
     puts "batch 1 of #{limit}"
-    save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
+    store_study_records(first_batch['FullStudiesResponse']['FullStudies'])
+    # save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
     
     # since I already saved the first hundred studies I start the loop after that point
     # studies must be retrieved in batches of 99,
@@ -168,7 +174,8 @@ class StudyJsonRecord < ActiveRecord::Base
       url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
       data = json_data(url) || {}
       data = data.dig('FullStudiesResponse', 'FullStudies')
-      save_study_records(data) if data
+      store_study_records(data) if data
+      # save_study_records(data) if data
     rescue
       retry if (retries += 1) < 6
       if retries >= 6
@@ -187,7 +194,38 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def self.save_study_records(study_batch)
+  def self.store_study_records(study_batch)
+    return unless study_batch
+
+    nct_id_array = study_batch.map{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
+    clear_out_data_for(nct_id_array)
+    # byebug
+    study_batch.each{|study_data| store_study_data(study_data)}
+  end
+
+  def self.store_study_data(study_data)
+    @data_store ||= []
+    nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
+
+    @data_store << {
+                    nct_id: nct_id,
+                    content: study_data,
+                    saved_study_at: nil,
+                    download_date: Time.zone.now
+                      }
+                      # byebug
+  end
+
+  def self.save_all_study_data
+    stime=Time.zone.now
+    study_json_records = StudyJsonRecord.create(@data_store)
+    # byebug
+    SaveTime.info("took #{Time.zone.now - stime} to save StudyJsonRecords")
+    study_json_records.each{|record| record.build_study}
+    SaveTime.info("took #{Time.zone.now - stime} to save studies")
+  end
+
+  def self.x_save_study_records(study_batch)
     return unless study_batch
 
     nct_id_array = study_batch.map{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
@@ -198,7 +236,7 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def self.save_single_study(study_data)
+  def self.x_save_single_study(study_data)
     nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
     record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.new(nct_id: nct_id)
     record.content = study_data
