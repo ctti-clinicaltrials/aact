@@ -5,7 +5,6 @@ require 'benchmark'
 SaveTime = Logger.new('log/save_time.log')
 ErrorLog = Logger.new('log/error.log')
 MethodTime = Logger.new('log/method_time.log')
-# require 'zip'
 # run incremental load with: bundle exec rake db:beta_load[1,incremental]
 # run full load with: bundle exec rake db:beta_loadload[1,full]
 include ActionView::Helpers::DateHelper
