@@ -7,8 +7,7 @@ ErrorLog = Logger.new('log/error.log')
 MethodTime = Logger.new('log/method_time.log')
 # require 'zip'
 # run incremental load with: bundle exec rake db:beta_load[1,incremental]
-# run full load \]]\
-with: bundle exec rake db:beta_loadload[1,full]
+# run full load with: bundle exec rake db:beta_loadload[1,full]
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'ctgov_beta.study_json_records'
@@ -346,6 +345,8 @@ class StudyJsonRecord < ActiveRecord::Base
     num_of_groups = groups.count == 0 ? nil : groups.count
     arms_count = study_type =~ /Interventional/i ? num_of_groups : nil
     groups_count = arms_count ? nil : num_of_groups 
+    phase_list = key_check(design['PhaseList'])['Phase']
+    phase_list = phase_list.join('/') if phase_list
 
     { 
       nct_id: nct_id,
@@ -385,8 +386,7 @@ class StudyJsonRecord < ActiveRecord::Base
       official_title: ident['OfficialTitle'],
       overall_status: status['OverallStatus'],
       last_known_status: status['LastKnownStatus'],
-      # check what phase is supposed to look like
-      phase: key_check(design['PhaseList'])['Phase'],
+      phase: phase_list,
       enrollment: enrollment['EnrollmentCount'],
       enrollment_type: enrollment['EnrollmentType'],
       source: ident.dig('Organization', 'OrgFullName'),
@@ -1242,8 +1242,8 @@ class StudyJsonRecord < ActiveRecord::Base
                         ctgov_beta_group_code: event_stat["#{event_type}EventStatsGroupId"],
                         time_frame: adverse_events_module['EventsTimeFrame'],
                         event_type: event_type.downcase,
-                        default_vocab: event["#{event_type}EventSourceVocabulary"],
-                        default_assessment: event["#{event_type}EventAssessmentType"],
+                        default_vocab: nil,
+                        default_assessment: nil,
                         subjects_affected: event_stat["#{event_type}EventStatsNumAffected"],
                         subjects_at_risk: event_stat["#{event_type}EventStatsNumAtRisk"],
                         description: adverse_events_module['EventsDescription'],
@@ -1251,7 +1251,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         organ_system: event["#{event_type}EventOrganSystem"],
                         adverse_event_term: event["#{event_type}EventTerm"],
                         frequency_threshold: adverse_events_module['EventsFrequencyThreshold'],
-                        vocab: nil,
+                        vocab: event["#{event_type}EventSourceVocabulary"],
                         assessment: event["#{event_type}EventAssessmentType"]
         )
       end
