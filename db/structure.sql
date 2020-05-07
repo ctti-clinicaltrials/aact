@@ -3118,6 +3118,13 @@ CREATE INDEX index_calculated_values_on_number_of_facilities ON ctgov.calculated
 
 
 --
+-- Name: index_categories_on_nct_id_and_name; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_categories_on_nct_id_and_name ON ctgov.categories USING btree (nct_id, name);
+
+
+--
 -- Name: index_central_contacts_on_contact_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
