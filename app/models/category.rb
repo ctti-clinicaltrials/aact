@@ -267,10 +267,12 @@ class Category < ActiveRecord::Base
     name="#{current_datetime}_#{condition}"
     Axlsx::Package.new do |p|
       p.workbook.add_worksheet(:name => name) do |sheet|
-        sheet.add_row excel_column_names
+        wrap = sheet.styles.add_style(alignmenet: { wrap_text: true })
+        cols = excel_column_names.length
+        sheet.add_row excel_column_names, widths: [5] * cols 
         studies.each do |study|
           begin
-            sheet.add_row study_values(study), :types => [:string]
+            sheet.add_row study_values(study), :types => [:string], widths: [8.43] * cols, height: 15, styles: [wrap] * cols
           rescue Exception => e
             puts "Failed: #{study.nct_id}"
             puts "Error: #{e}"
@@ -278,7 +280,7 @@ class Category < ActiveRecord::Base
           end
         end
       end
-      p.serialize("./public/static/exported_files/#{condition}/#{name}.xlsx")
+      p.serialize("./public/static/exported_files/#{condition}/#{name}_test.xlsx")
     end
   end
 
