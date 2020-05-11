@@ -4,7 +4,7 @@ require 'axlsx'
 class Category < ActiveRecord::Base
 
   def self.fetch_study_ids
-    @days_back ||= 14
+    @days_back ||= 1000
     @condition ||= 'covid_19'
 
     begin
@@ -25,7 +25,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.load_update(params={})
-    @days_back = params[:days_back] ? params[:days_back] : 14
+    @days_back = params[:days_back] ? params[:days_back] : 1000
     @condition = params[:condition] ? params[:condition] : 'covid_19'
     covid_nct_ids = fetch_study_ids
     
@@ -270,7 +270,7 @@ class Category < ActiveRecord::Base
         sheet.add_row excel_column_names
         studies.each do |study|
           begin
-            sheet.add_row study_values(study)
+            sheet.add_row study_values(study), :types => [:string]
           rescue Exception => e
             puts "Failed: #{study.nct_id}"
             puts "Error: #{e}"
