@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
 
   def self.fetch_study_ids
     @days_back ||= 1000
-    @condition ||= 'covid_19'
+    @condition ||= 'covid-19'
 
     begin
       retries ||= 0
@@ -26,7 +26,7 @@ class Category < ActiveRecord::Base
 
   def self.load_update(params={})
     @days_back = params[:days_back] ? params[:days_back] : 1000
-    @condition = params[:condition] ? params[:condition] : 'covid_19'
+    @condition = params[:condition] ? params[:condition] : 'covid-19'
     covid_nct_ids = fetch_study_ids
     
     
@@ -260,17 +260,20 @@ class Category < ActiveRecord::Base
     ]
   end
 
-  def self.save_excel(condition = 'covid_19')
+  def self.save_excel(condition = 'covid-19')
     nct_ids = Category.where(name: condition).pluck(:nct_id)
     studies = Study.where(nct_id: nct_ids)
-    current_datetime = Time.zone.now.strftime('%e_%b_%Y')
+    # current_datetime = Time.zone.now.strftime('%e_%b_%Y')
+    # %m/%d/%Y
+    current_datetime = Time.zone.now.strftime('%Y%m%d')
+    name="#{current_datetime}_#{condition}"
     # current_datetime = Time.zone.now.strftime('%H:%M:%S%p_%e_%b_%Y')
     Axlsx::Package.new do |p|
-      p.workbook.add_worksheet(:name => "covid_19_#{current_datetime}") do |sheet|
+      p.workbook.add_worksheet(:name => name) do |sheet|
         sheet.add_row excel_column_names
         studies.each do |study|
           begin
-            sheet.add_row study_values(study), :types => [:string], :height => 0.19, :width => 1.31
+            sheet.add_row study_values(study), :types => [:string], :width => 1.31, :height => 0.31
           rescue Exception => e
             puts "Failed: #{study.nct_id}"
             puts "Error: #{e}"
@@ -278,7 +281,7 @@ class Category < ActiveRecord::Base
           end
         end
       end
-      p.serialize("./public/static/exported_files/#{condition}/#{condition}_#{current_datetime}.xlsx")
+      p.serialize("./public/static/exported_files/#{condition}/#{name}.xlsx")
     end
   end
 

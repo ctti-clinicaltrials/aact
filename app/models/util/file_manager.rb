@@ -21,7 +21,7 @@ module Util
         FileUtils.mkdir_p "#{root_dir}/tmp"
         FileUtils.mkdir_p "#{root_dir}/other"
         FileUtils.mkdir_p "#{root_dir}/xml_downloads"
-        FileUtils.mkdir_p "#{root_dir}/exported_files/covid_19"
+        FileUtils.mkdir_p "#{root_dir}/exported_files/covid-19"
       end
     end
 
@@ -66,7 +66,7 @@ module Util
     end
 
     def covid_file_directory
-      "#{root_dir}/exported_files/covid_19"
+      "#{root_dir}/exported_files/covid-19"
     end
 
     def admin_schema_diagram
