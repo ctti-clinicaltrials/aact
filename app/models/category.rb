@@ -263,11 +263,8 @@ class Category < ActiveRecord::Base
   def self.save_excel(condition = 'covid-19')
     nct_ids = Category.where(name: condition).pluck(:nct_id)
     studies = Study.where(nct_id: nct_ids)
-    # current_datetime = Time.zone.now.strftime('%e_%b_%Y')
-    # %m/%d/%Y
     current_datetime = Time.zone.now.strftime('%Y%m%d')
     name="#{current_datetime}_#{condition}"
-    # current_datetime = Time.zone.now.strftime('%H:%M:%S%p_%e_%b_%Y')
     Axlsx::Package.new do |p|
       p.workbook.add_worksheet(:name => name) do |sheet|
         sheet.add_row excel_column_names
