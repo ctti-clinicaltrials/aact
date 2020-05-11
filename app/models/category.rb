@@ -280,7 +280,7 @@ class Category < ActiveRecord::Base
           end
         end
       end
-      p.serialize("./public/static/exported_files/#{condition}/#{name}_test.xlsx")
+      p.serialize("./public/static/exported_files/#{condition}/#{name}.xlsx")
     end
   end
 
