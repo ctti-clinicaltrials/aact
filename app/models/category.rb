@@ -196,7 +196,7 @@ class Category < ActiveRecord::Base
       url
       status
       why_stopped
-      hqc
+      hcq
       has_dmc
       funded_bys
       sponsor_collaborators
