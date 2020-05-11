@@ -66,17 +66,7 @@ class StudyRelationship < ActiveRecord::Base
     @xml = opts[:xml] || opts
     self.nct_id=opts[:nct_id]
     a=attribs
-##    byebug if opts[:nct_id] == 'NCT03688763'
-##    byebug if opts[:nct_id] == "NCT03815240" && a.values.include?("NA")
-#    self.class.columns_hash.keys.each do |key|
-##      byebug if opts[:nct_id] == "NCT03815240" && a.values.include?("NA")
-#      if [:integer, :numeric, :double, :decimal].include?(self.class.columns_hash[key].type) && a.present?
-##        byebug if opts[:nct_id] == "NCT03815240" && a.values.include?("NA")
-##        a[:"#{key}"] = nil if a[:"#{key}"].class == String
-#        a[:"#{key}"] = nil if a[:"#{key}"] == 'NA'
-#      end
-##      byebug
-#    end
+    a = fix_na_values(a)
     if a.nil?
       return nil
     else
@@ -85,6 +75,15 @@ class StudyRelationship < ActiveRecord::Base
     self
   end
 
+  def fix_na_values(attributes)
+    self.class.columns_hash.keys.each do |key|
+      if [:integer, :numeric, :double, :decimal].include?(self.class.columns_hash[key].type) && attributes.present?
+        attributes[:"#{key}"] = nil if attributes[:"#{key}"] == 'NA'
+      end
+    end
+    return attributes
+  end
+  
   def get(label)
     value=(xml.xpath("#{label}").text).strip
     value=='' ? nil : value
