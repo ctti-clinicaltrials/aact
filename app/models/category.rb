@@ -273,7 +273,7 @@ class Category < ActiveRecord::Base
         sheet.add_row excel_column_names
         studies.each do |study|
           begin
-            sheet.add_row study_values(study), :types => [:string], :width => 1.31, :height => 0.19
+            sheet.add_row study_values(study), :types => [:string]
           rescue Exception => e
             puts "Failed: #{study.nct_id}"
             puts "Error: #{e}"
