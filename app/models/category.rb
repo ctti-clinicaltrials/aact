@@ -6,22 +6,7 @@ class Category < ActiveRecord::Base
   def self.fetch_study_ids
     @days_back ||= 1000
     @condition ||= 'covid_19'
-
-    begin
-      retries ||= 0
-      puts "try ##{ retries }"
-      url = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=&lup_d=#{@days_back}&sel_rss=mod14&cond=#{@condition}&count=10000"
-      feed = RSS::Parser.parse(url, false)
-      feed.items.map(&:guid).map(&:content)
-    rescue Exception => e
-      if (retries += 1) < 6
-        puts "Failed: #{url}.  trying again..."
-        puts "Error: #{e}"
-        retry
-      else #give up & return empty array
-        []
-      end
-    end
+    Util::RssReader.new(days_back: @days_back, condition: @condition).get_changed_nct_ids
   end
 
   def self.load_update(params={})
