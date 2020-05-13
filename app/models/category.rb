@@ -5,34 +5,19 @@ class Category < ActiveRecord::Base
 
   def self.fetch_study_ids
     @days_back ||= 1000
-    @condition ||= 'covid_19'
-
-    begin
-      retries ||= 0
-      puts "try ##{ retries }"
-      url = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=&lup_d=#{@days_back}&sel_rss=mod14&cond=#{@condition}&count=10000"
-      feed = RSS::Parser.parse(url, false)
-      feed.items.map(&:guid).map(&:content)
-    rescue Exception => e
-      if (retries += 1) < 6
-        puts "Failed: #{url}.  trying again..."
-        puts "Error: #{e}"
-        retry
-      else #give up & return empty array
-        []
-      end
-    end
+    @condition ||= 'covid-19'
+    Util::RssReader.new(days_back: @days_back, condition: @condition).get_changed_nct_ids
   end
 
   def self.load_update(params={})
     @days_back = params[:days_back] ? params[:days_back] : 1000
-    @condition = params[:condition] ? params[:condition] : 'covid_19'
+    @condition = params[:condition] ? params[:condition] : 'covid-19'
     covid_nct_ids = fetch_study_ids
     
     
     covid_nct_ids.each do |covid_nct_id|
       begin
-        category = Category.find_by(nct_id: covid_nct_id, name: @condition)
+        category = Category.find_by(nct_id: covid_nct_id, name: [@condition, @condition.underscore])
         category ||= Category.new(nct_id: covid_nct_id)
         category.name = @condition
         category.last_modified = Time.zone.now
@@ -196,7 +181,7 @@ class Category < ActiveRecord::Base
       url
       status
       why_stopped
-      hqc
+      hcq
       has_dmc
       funded_bys
       sponsor_collaborators
@@ -260,17 +245,19 @@ class Category < ActiveRecord::Base
     ]
   end
 
-  def self.save_excel(condition = 'covid_19')
-    nct_ids = Category.where(name: condition).pluck(:nct_id)
+  def self.save_excel(condition = 'covid-19')
+    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
     studies = Study.where(nct_id: nct_ids)
-    current_datetime = Time.zone.now.strftime('%e_%b_%Y')
-    # current_datetime = Time.zone.now.strftime('%H:%M:%S%p_%e_%b_%Y')
+    current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
+    name="#{current_datetime}_#{condition}"
     Axlsx::Package.new do |p|
-      p.workbook.add_worksheet(:name => "covid_19_#{current_datetime}") do |sheet|
-        sheet.add_row excel_column_names
+      p.workbook.add_worksheet(:name => name) do |sheet|
+        wrap = sheet.styles.add_style(alignmenet: { wrap_text: true })
+        cols = excel_column_names.length
+        sheet.add_row excel_column_names, widths: [5] * cols 
         studies.each do |study|
           begin
-            sheet.add_row study_values(study), :types => [:string]
+            sheet.add_row study_values(study), :types => [:string], widths: [8.43] * cols, height: 15, styles: [wrap] * cols
           rescue Exception => e
             puts "Failed: #{study.nct_id}"
             puts "Error: #{e}"
@@ -278,7 +265,7 @@ class Category < ActiveRecord::Base
           end
         end
       end
-      p.serialize("./public/static/exported_files/#{condition}/#{condition}_#{current_datetime}.xlsx")
+      p.serialize("./public/static/exported_files/#{condition}/#{name}.xlsx")
     end
   end
 
