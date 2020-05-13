@@ -107,7 +107,7 @@ class Category < ActiveRecord::Base
       "https://ClinicalTrials.gov/show/#{study_nct_id}", #url
       study.overall_status, #status
       study.why_stopped, #why_stopped
-      hqc_query(study) ? 'Yes' : 'No', #hqc
+      hcq_query(study) ? 'Yes' : 'No', #hcq
       study.has_dmc ? 'Yes' : 'No', #has_dmc
       sponsors.pluck(:agency_class).uniq.join('|'), #funded_bys
       sponsors.pluck(:name).join('|'), #sponsor_collaborators
@@ -269,7 +269,7 @@ class Category < ActiveRecord::Base
     end
   end
 
-  def self.hqc_query(study)
+  def self.hcq_query(study)
     terms = %w[ hydroxychloroquine plaquenil hidroxicloroquina quineprox ]
     official_title = study.official_title =~ /#{terms.join('|')}/i
     return true if official_title
