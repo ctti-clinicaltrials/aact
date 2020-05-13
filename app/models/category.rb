@@ -256,8 +256,10 @@ class Category < ActiveRecord::Base
         cols = excel_column_names.length
         sheet.add_row excel_column_names, widths: [5] * cols 
         studies.each do |study|
+          widths = [8.43] * cols
+          styles = [wrap] * cols
           begin
-            sheet.add_row study_values(study), :types => [:string], widths: [8.43] * cols, height: 15, styles: [wrap] * cols
+            sheet.add_row study_values(study), types: [:string], widths: widths, height: 15, styles: styles
           rescue Exception => e
             puts "Failed: #{study.nct_id}"
             puts "Error: #{e}"
