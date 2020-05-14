@@ -107,7 +107,7 @@ class Category < ActiveRecord::Base
       "https://ClinicalTrials.gov/show/#{study_nct_id}", #url
       study.overall_status, #status
       study.why_stopped, #why_stopped
-      hqc_query(study) ? 'Yes' : 'No', #hqc
+      hcq_query(study) ? 'Yes' : 'No', #hcq
       study.has_dmc ? 'Yes' : 'No', #has_dmc
       sponsors.pluck(:agency_class).uniq.join('|'), #funded_bys
       sponsors.pluck(:name).join('|'), #sponsor_collaborators
@@ -256,8 +256,11 @@ class Category < ActiveRecord::Base
         cols = excel_column_names.length
         sheet.add_row excel_column_names, widths: [5] * cols 
         studies.each do |study|
+          widths = [8.43] * cols
+          styles = [wrap] * cols
+          types = [:string] * cols
           begin
-            sheet.add_row study_values(study), :types => [:string], widths: [8.43] * cols, height: 15, styles: [wrap] * cols
+            sheet.add_row study_values(study), types: types, widths: widths, height: 15, styles: styles
           rescue Exception => e
             puts "Failed: #{study.nct_id}"
             puts "Error: #{e}"
@@ -269,7 +272,7 @@ class Category < ActiveRecord::Base
     end
   end
 
-  def self.hqc_query(study)
+  def self.hcq_query(study)
     terms = %w[ hydroxychloroquine plaquenil hidroxicloroquina quineprox ]
     official_title = study.official_title =~ /#{terms.join('|')}/i
     return true if official_title
