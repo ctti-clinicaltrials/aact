@@ -78,7 +78,7 @@ class StudyRelationship < ActiveRecord::Base
   def fix_na_values(attributes)
     self.class.columns_hash.keys.each do |key|
       if [:integer, :numeric, :double, :decimal].include?(self.class.columns_hash[key].type) && attributes.present?
-        attributes[:"#{key}"] = nil if attributes[:"#{key}"] == 'NA'
+        attributes[:"#{key}"] = "" if attributes[:"#{key}"] == 'NA'
       end
     end
     return attributes
