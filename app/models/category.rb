@@ -28,7 +28,8 @@ class Category < ActiveRecord::Base
         next
       end
     end
-    save_excel(@condition)
+    save_xlsx(@condition)
+    save_csv(@condition)
   end
 
   def self.study_values(study)
@@ -245,7 +246,58 @@ class Category < ActiveRecord::Base
     ]
   end
 
-  def self.save_excel(condition = 'covid-19')
+  def self.save_csv(condition = 'covid-19')
+    headers = excel_column_names
+    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
+    studies = Study.where(nct_id: nct_ids)
+    current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
+    name="#{current_datetime}_#{condition}"
+    file = "./public/static/exported_files/#{condition}/#{name}.csv"
+
+
+    CSV.open(file, 'w', write_headers: true, headers: headers) do |row|
+      studies.each do |study|
+        row << study_values(study)
+      end
+    end
+    # join("\t")
+    # CSV.generate(headers: true) do |csv|
+    #   cvs << column_headings
+
+    #   studies.each do |study|
+    #     csv << study_values(study)
+    #   end
+    # end
+
+  end
+
+  def self.x
+    file = "#{Rails.root}/public/user_data.csv"
+
+    products = Product.order(:first_name)
+
+    headers = ["Product ID", "Name", "Price", "Description"]
+
+    CSV.open(file, 'w', write_headers: true, headers: headers) do |writer|
+      products.each do |product|
+        writer << [product.id, product.name, product.price, product.description]
+      end
+    end
+  end
+
+  def self.to_csv
+    attributes = %w{id email name}
+    
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map{ |attr| user.send(attr) }
+      end
+    end
+  end
+
+  def self.save_xlsx(condition = 'covid-19')
     nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
     studies = Study.where(nct_id: nct_ids)
     current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
