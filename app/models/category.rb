@@ -251,24 +251,16 @@ class Category < ActiveRecord::Base
     nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
     studies = Study.where(nct_id: nct_ids)
     current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
-    name="#{current_datetime}_#{condition}"
+    name="#{current_datetime}_#{condition}_tab"
     file = "./public/static/exported_files/#{condition}/#{name}.csv"
 
-
-    CSV.open(file, 'w', write_headers: true, headers: headers) do |row|
+    CSV.open(file, 'w', write_headers: true, headers: headers, col_sep: "\t") do |row|
       studies.each do |study|
-        row << study_values(study)
+        content = study_values(study)
+        # content = content.map{|i| i.to_s.gsub("\n", ' ').gsub("\t", ' ').gsub("\r", ' ') unless i.nil?}
+        row << content
       end
     end
-    # join("\t")
-    # CSV.generate(headers: true) do |csv|
-    #   cvs << column_headings
-
-    #   studies.each do |study|
-    #     csv << study_values(study)
-    #   end
-    # end
-
   end
 
   def self.x
