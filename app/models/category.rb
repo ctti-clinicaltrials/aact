@@ -257,7 +257,10 @@ class Category < ActiveRecord::Base
     CSV.open(file, 'w', write_headers: true, headers: headers, col_sep: "\t") do |row|
       studies.each do |study|
         content = study_values(study)
-        # content = content.map{|i| i.to_s.gsub("\n", ' ').gsub("\t", ' ').gsub("\r", ' ') unless i.nil?}
+        content = content.map do |item|
+         item ||= ''
+         item.to_s.squish
+        end
         row << content
       end
     end
