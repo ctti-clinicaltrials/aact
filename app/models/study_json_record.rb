@@ -213,61 +213,15 @@ class StudyJsonRecord < ActiveRecord::Base
                     saved_study_at: nil,
                     download_date: Time.zone.now
                       }
-                      # byebug
   end
 
   def self.save_all_study_data
     begin
     stime=Time.zone.now
-
-    # version 1
-    # study_json_records = StudyJsonRecord.create(@data_store)
-    # SaveTime.info("took #{Time.zone.now - stime} to save StudyJsonRecords")
-    # study_json_records.each{|record| record.build_study}
-    # SaveTime.info("took #{Time.zone.now - stime} to save everything")
-
-    # version 2
-    # StudyJsonRecord.import(@data_store)
-    # SaveTime.info("took #{Time.zone.now - stime} to save StudyJsonRecords")
-    # study_json_records = StudyJsonRecord.where(saved_study_at: nil)
-    # study_json_records.each{|record| record.build_study}
-    # SaveTime.info("took #{Time.zone.now - stime} to save everything")
-
-    # version 3
-    # StudyJsonRecord.import(@data_store)
-    # SaveTime.info("took #{Time.zone.now - stime} to save StudyJsonRecords")
-    # nct_ids = @data_store.map{|data| data[:nct_id]}
-    # study_json_records = StudyJsonRecord.where(nct_id: nct_ids)
-    # study_json_records.each{|record| record.build_study}
-    # SaveTime.info("took #{Time.zone.now - stime} to save everything")
-
-    # version 4
-    StudyJsonRecord.import(@data_store)
+    study_json_records = StudyJsonRecord.create(@data_store)
     SaveTime.info("took #{Time.zone.now - stime} to save StudyJsonRecords")
-    study_json_records = StudyJsonRecord.where(saved_study_at: nil)
-    study_json_records.find_in_batches do |batch|
-      Thread.new{batch.each{|record| record.build_study}}
-    end
+    study_json_records.each{|record| record.build_study}
     SaveTime.info("took #{Time.zone.now - stime} to save everything")
-
-    # version 5
-    # study_json_records = StudyJsonRecord.create(@data_store)
-    # SaveTime.info("took #{Time.zone.now - stime} to save StudyJsonRecords")
-    # study_json_records.find_in_batches do |batch|
-    #   Thread.new{batch.each{|record| record.build_study}}
-    # end
-    # SaveTime.info("took #{Time.zone.now - stime} to save everything")
-
-    # StudyJsonRecord.import(@data_store)
-    # study_json_records = StudyJsonRecord.where(saved_study_at: nil)
-    # byebug
-    # SaveTime.info("took #{Time.zone.now - stime} to save StudyJsonRecords")
-    # study_json_records.all?(&:build_study)
-    # study_json_records.each{|record| record.build_study}
-    # study_json_records.find_in_batches do |batch|
-    #   Thread.new{batch.each{|record| record.build_study}}
-    # end
-    # SaveTime.info("took #{Time.zone.now - stime} to save studies")
     rescue Exception => error
       ErrorLog.error(error)
     end
