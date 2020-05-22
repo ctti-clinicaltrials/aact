@@ -5,6 +5,7 @@ describe Study do
     nct_id='NCT02591940'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     expect(study.last_known_status).to eq('Enrolling by invitation')
   end
 
@@ -12,6 +13,7 @@ describe Study do
     nct_id='NCT03133988'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     expect(study.expanded_access_type_individual).to be true
     expect(study.expanded_access_type_intermediate).to be nil
     expect(study.expanded_access_type_treatment).to be nil
@@ -19,6 +21,7 @@ describe Study do
     nct_id='NCT03147742'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     expect(study.expanded_access_type_individual).to be nil
     expect(study.expanded_access_type_intermediate).to be true
     expect(study.expanded_access_type_treatment).to be nil
@@ -26,6 +29,7 @@ describe Study do
     nct_id='NCT03245528'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     expect(study.expanded_access_type_individual).to be nil
     expect(study.expanded_access_type_intermediate).to be nil
     expect(study.expanded_access_type_treatment).to be true
@@ -36,6 +40,7 @@ describe Study do
     nct_id='NCT01220531'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     expect(study.study_type).to eq('Expanded Access')
     expect(study.expanded_access_type_intermediate).to eq(true)
     expect(study.expanded_access_type_treatment).to eq(true)
@@ -46,6 +51,7 @@ describe Study do
     nct_id='NCT02654730'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     expect(study.source).to eq('London School of Hygiene and Tropical Medicine')
     expect(study.overall_status).to eq('Terminated')
   end
@@ -54,6 +60,7 @@ describe Study do
     nct_id='NCT02988895'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     expect(study.is_unapproved_device).to be(false)
     expect(study.is_ppsd).to be(false)
     expect(study.is_us_export).to be(false)
@@ -63,6 +70,7 @@ describe Study do
     nct_id='NCT02970669'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     expect(study.has_expanded_access).to be(true)
     #  These tags were released 1/11/17, but as of 8/9/17, no studies have this info.  Sent email to NLM asking if these tags are actie.
 #    expect(study.expanded_access_type_individual).to be(true)
@@ -74,6 +82,7 @@ describe Study do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     CalculatedValue.new.create_from(study).save!
     expect(study.start_month_year).to eq('July 2001')
     expect(study.start_date.strftime('%m/%d/%Y')).to eq('07/31/2001')
@@ -128,6 +137,7 @@ describe Study do
     nct_id='NCT01642004'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     expect(study.disposition_first_submitted_qc_date).to eq('November 17, 2015'.to_date)
     expect(study.disposition_first_posted_date).to eq('December 16, 2015'.to_date)
 
@@ -137,13 +147,17 @@ describe Study do
     nct_id='NCT02260193'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
     expect(study.disposition_first_submitted_date).to eq('October 23, 2015'.to_date)
   end
 
   context 'when loading a study' do
+    s = Study.find_by(nct_id: 'NCT02830269')
+    s.delete if s.present?
     nct_id='NCT02830269'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
 
     it 'should have expected start date values' do
       expect(study.start_date.strftime('%m/%d/%Y')).to eq('08/18/2016')
@@ -152,9 +166,12 @@ describe Study do
   end
 
   context 'study has limitations and caveats' do
+    s = Study.find_by(nct_id: 'NCT00023673')
+    s.delete if s.present?
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
 
     it 'should have expected limitations and caveats value' do
       expect(study.limitations_and_caveats).to eq('This study was originally designed to escalate 3DRT via increasing doses per fraction. However, due to excessive toxicity at dose level 1 (75.25 Gy, 2.15 Gy/fraction), the protocol was amended in January 2003 to de-escalate 3DRT dose.')
@@ -166,9 +183,12 @@ describe Study do
   end
 
   context 'when patient data section does not exist' do
+    s = Study.find_by(nct_id: 'NCT02260193')
+    s.delete if s.present?
     nct_id='NCT02260193'
     xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
     study=Study.new({xml: xml, nct_id: nct_id}).create
+#    study.save
 
     it 'should return empty string for sharing ipd value' do
       expect(study.plan_to_share_ipd).to eq(nil)

@@ -30,7 +30,8 @@ describe IpdInformationType do
   context 'when patient data section does not exist' do
     nct_id='NCT02260193'
     xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
-    study=Study.new({xml: xml, nct_id: nct_id}).create
+    study=Study.new({xml: xml, nct_id: nct_id})
+    study.save
 
     it 'should return empty string for sharing ipd value' do
       expect(study.plan_to_share_ipd).to eq(nil)

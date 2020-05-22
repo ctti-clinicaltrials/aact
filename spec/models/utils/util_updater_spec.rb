@@ -4,7 +4,7 @@ require 'rss'
 describe Util::Updater do
 
   it "doesn't abort when it encouters a net timeout or doesn't retrieve xml from ct.gov" do
-
+    puts ("line 7")
     stub_request(:get, "https://clinicaltrials.gov/show/NCT02028676?resultsxml=true").
       to_return(:status => 200, :body => File.read("spec/support/xml_data/NCT02028676.xml"), :headers => {})
 
@@ -29,6 +29,7 @@ describe Util::Updater do
   end
 
   it "continues on if there's a timeout error when attempting to retrieve data from clinicaltrials.gov for one of the studies"do
+    puts("line 32")
     allow(RSS::Parser).to receive(:parse).and_raise(Net::ReadTimeout)
     updater=Util::Updater.new
     # Should try 5 times for both changed and added rss calls.
@@ -41,6 +42,7 @@ describe Util::Updater do
   end
 
   it "aborts incremental load when number of studies exceeds 10000" do
+    puts("line 45")
     allow_any_instance_of(Util::RssReader).to receive(:get_added_nct_ids).and_return( [*1..10000] )
     allow_any_instance_of(Util::RssReader).to receive(:get_changed_nct_ids).and_return( [*1..10000] )
     updater=Util::Updater.new
@@ -52,9 +54,12 @@ describe Util::Updater do
   end
 
   it "aborts incremental load when number of studies in refreshed (background) db is less than number of studies in public db" do
+    puts("line 57")
+    byebug
     allow_any_instance_of(Util::DbManager).to receive(:public_study_count).and_return(5)
     allow_any_instance_of(Util::DbManager).to receive(:background_study_count).and_return(1)
     updater=Util::Updater.new
+    byebug
     allow(updater).to receive(:sanity_checks_ok?).and_return(false)
     expect(updater.db_mgr).to receive(:refresh_public_db).never
     expect(updater).to receive(:send_notification).once
@@ -62,6 +67,7 @@ describe Util::Updater do
   end
 
   it "correctly updates study relationships with incremental update" do
+    puts("line 70")
     nct_id='NCT02028676'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
@@ -145,6 +151,7 @@ describe Util::Updater do
   end
 
   it "should have correct date attribs" do
+    puts("line 154")
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
@@ -183,11 +190,15 @@ describe Util::Updater do
   end
 
   context 'when patient data section exists' do
+    puts("line 193")
+    s = Study.find_by(nct_id: 'NCT02708238')
+    s.delete if s.present?
     nct_id='NCT02708238'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     it 'should have expected sharing ipd values' do
+      puts("line 200")
       expect(study.plan_to_share_ipd).to eq('Yes')
       expect(study.plan_to_share_ipd_description).to eq('Publication')
     end
@@ -195,42 +206,56 @@ describe Util::Updater do
   end
 
   context 'study has fda regulated drug/device info' do
+    puts("line 209")
+    s = Study.find_by(nct_id: 'NCT03204344')
+    s.delete if s.present?
     nct_id='NCT03204344'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     it 'should have expected fed regulation values' do
+      puts("line 217")
       expect(study.is_fda_regulated_drug).to eq(false)
       expect(study.is_fda_regulated_device).to eq(false)
     end
   end
 
   context 'study has limitations and caveats' do
+    puts("line 224")
+    s = Study.find_by(nct_id: 'NCT00023673')
+    s.delete if s.present?
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
 
     it 'should have expected limitations and caveats value' do
+      puts("line 232")
       expect(study.limitations_and_caveats).to eq('This study was originally designed to escalate 3DRT via increasing doses per fraction. However, due to excessive toxicity at dose level 1 (75.25 Gy, 2.15 Gy/fraction), the protocol was amended in January 2003 to de-escalate 3DRT dose.')
     end
 
   end
 
   context 'when patient data section does not exist' do
+    puts("line 239")
+    s = Study.find_by(nct_id: 'NCT02260193')
+    s.delete if s.present?
     xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
     study=Study.new({xml: xml, nct_id: 'NCT02260193'}).create
 
     it 'should return empty string for sharing ipd value' do
+      puts("line 246")
       expect(study.plan_to_share_ipd).to eq(nil)
     end
 
     it 'should return empty string for ipd description value' do
+      puts("line 251")
       expect(study.plan_to_share_ipd_description).to eq(nil)
     end
   end
 
   context 'when something went wrong with the loads' do
     it 'should log errors, send notification with apprpriate subject line & not refresh the public db' do
+      puts("line 258")
       allow_any_instance_of(Util::RssReader).to receive(:get_added_nct_ids).and_raise(NoMethodError)
       updater=Util::Updater.new
       expect(updater).to receive(:send_notification).once

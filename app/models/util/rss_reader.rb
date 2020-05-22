@@ -10,11 +10,13 @@ module Util
     attr_reader :changed_url, :added_url
 
     def initialize(days_back: 1)
+      byebug
       @changed_url = "#{BASE_URL}/ct2/results/rss.xml?lup_d=#{days_back}&count=#{PAGE_SIZE}"
       @added_url   = "#{BASE_URL}/ct2/results/rss.xml?rcv_d=#{days_back}&count=#{PAGE_SIZE}"
     end
 
     def get_changed_nct_ids
+      byebug
       list = []
       start = 0
       loop do
@@ -27,6 +29,7 @@ module Util
     end
 
     def get_added_nct_ids
+      byebug
       list = []
       start = 0
       loop do
@@ -40,12 +43,13 @@ module Util
 
     def get_changed_nct_ids_batch(start)
       tries ||= 5
+      byebug
       begin
         feed = RSS::Parser.parse("#{@changed_url}&start=#{start}", false)
         feed.items.map(&:guid).map(&:content)
       rescue  Exception => e
         if (tries -=1) > 0
-          puts "Failed: #{@added_url}.  trying again..."
+          puts "Failed: #{@changed_url}.  trying again..."
           puts "Error: #{e}"
           retry
         else #give up & return empty array
@@ -56,6 +60,7 @@ module Util
 
     def get_added_nct_ids_batch(start)
       tries ||= 5
+      byebug
       begin
         feed = RSS::Parser.parse("#{@added_url}&start=#{start}", false)
         feed.items.map(&:guid).map(&:content)
