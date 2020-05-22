@@ -39,9 +39,15 @@ class StudyJsonRecord < ActiveRecord::Base
       puts"#{@type} load failed in run: #{msg}"
     end
 
+    byebug
     puts "saving StudyJsonRecord and Studies now"
     save_all_study_data
 
+    if @type -- 'full'
+      MeshTerm.populate_from_file
+      MeshHeading.populate_from_file
+    end
+    
     add_indexes_and_constraints
     CalculatedValue.populate
 
@@ -113,7 +119,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.full
     start_time = Time.current
-    study_download = download_all_studies
+    # study_download = download_all_studies
+    study_download = File.open('./public/static/json_downloads/20200519-22.zip')
     # finshed in 3 days and failed to build
     # total number of studies 336443
     # started 3:49pm April 18th finished 11:10am April 21st
@@ -123,24 +130,22 @@ class StudyJsonRecord < ActiveRecord::Base
       original_count = unzipped_folders.size
       count_down = original_count
       unzipped_folders.each do |file|
-        begin 
+        begin  
         contents = file.get_input_stream.read
         json = JSON.parse(contents)
-        rescue 
+        rescue Exception => error
           next unless json
+          ErrorLog.error(error)
         end
 
         study = json['FullStudy']
         next unless study
-
-        store_study_data(study_data)
-        # save_single_study(study)
-        nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-        count_down -= 1
+          store_study_data(study)
+          # save_single_study(study)
+          nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
+          count_down -= 1
       end  
     end
-    MeshTerm.populate_from_file
-    MeshHeading.populate_from_file
   end
 
   def self.incremental
@@ -199,7 +204,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     nct_id_array = study_batch.map{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
     clear_out_data_for(nct_id_array)
-    # byebug
+    
     study_batch.each{|study_data| store_study_data(study_data)}
   end
 
