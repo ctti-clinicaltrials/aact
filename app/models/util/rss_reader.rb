@@ -9,9 +9,9 @@ module Util
 
     attr_reader :changed_url, :added_url
 
-    def initialize(days_back: 1)
-      @changed_url = "#{BASE_URL}/ct2/results/rss.xml?lup_d=#{days_back}&count=#{PAGE_SIZE}"
-      @added_url   = "#{BASE_URL}/ct2/results/rss.xml?rcv_d=#{days_back}&count=#{PAGE_SIZE}"
+    def initialize(days_back: 1, condition: '' )
+      @changed_url = "#{BASE_URL}/ct2/results/rss.xml?lup_d=#{days_back}&cond=#{condition}&count=#{PAGE_SIZE}"
+      @added_url   = "#{BASE_URL}/ct2/results/rss.xml?rcv_d=#{days_back}&cond=#{condition}&count=#{PAGE_SIZE}"
     end
 
     def get_changed_nct_ids

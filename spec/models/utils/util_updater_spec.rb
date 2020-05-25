@@ -182,8 +182,6 @@ describe Util::Updater do
   end
 
   context 'when patient data section exists' do
-#    s = Study.find_by(nct_id: 'NCT02708238')
-#    s.delete if s.present?
     nct_id='NCT02708238'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
@@ -196,8 +194,6 @@ describe Util::Updater do
   end
 
   context 'study has fda regulated drug/device info' do
-#    s = Study.find_by(nct_id: 'NCT03204344')
-#    s.delete if s.present?
     nct_id='NCT03204344'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
@@ -209,8 +205,6 @@ describe Util::Updater do
   end
 
   context 'study has limitations and caveats' do
-#    s = Study.find_by(nct_id: 'NCT00023673')
-#    s.delete if s.present?
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
@@ -222,8 +216,6 @@ describe Util::Updater do
   end
 
   context 'when patient data section does not exist' do
-#    s = Study.find_by(nct_id: 'NCT02260193')
-#    s.delete if s.present?
     xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
     study=Study.new({xml: xml, nct_id: 'NCT02260193'}).create
 

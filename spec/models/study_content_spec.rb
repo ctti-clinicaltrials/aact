@@ -141,8 +141,6 @@ describe Study do
   end
 
   context 'when loading a study' do
-#    s = Study.find_by(nct_id: 'NCT02830269')
-#    s.delete if s.present?
     nct_id='NCT02830269'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
@@ -154,8 +152,6 @@ describe Study do
   end
 
   context 'study has limitations and caveats' do
-#    s = Study.find_by(nct_id: 'NCT00023673')
-#    s.delete if s.present?
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
@@ -170,8 +166,6 @@ describe Study do
   end
 
   context 'when patient data section does not exist' do
-#    s = Study.find_by(nct_id: 'NCT02260193')
-#    s.delete if s.present?
     nct_id='NCT02260193'
     xml=Nokogiri::XML(File.read('spec/support/xml_data/example_study.xml'))
     study=Study.new({xml: xml, nct_id: nct_id}).create
