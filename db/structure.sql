@@ -1,10 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 12.1
--- Dumped by pg_dump version 12.1
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -264,7 +257,7 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
 
 SET default_tablespace = '';
 
-SET default_table_access_method = heap;
+SET default_with_oids = false;
 
 --
 -- Name: browse_conditions; Type: TABLE; Schema: ctgov; Owner: -
@@ -832,12 +825,12 @@ ALTER SEQUENCE ctgov.calculated_values_id_seq OWNED BY ctgov.calculated_values.i
 --
 
 CREATE TABLE ctgov.categories (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying NOT NULL,
     name character varying NOT NULL,
     last_modified timestamp without time zone NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -846,7 +839,6 @@ CREATE TABLE ctgov.categories (
 --
 
 CREATE SEQUENCE ctgov.categories_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -3663,8 +3655,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181212000000'),
 ('20190115184850'),
 ('20190115204850'),
-('20190301204850');
+('20190301204850'),
+('20200424180206');
 
-
-INSERT INTO schema_migrations (version) VALUES ('20200424180206');
 
