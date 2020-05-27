@@ -28,7 +28,6 @@ class Category < ActiveRecord::Base
         next
       end
     end
-    save_xlsx(@condition)
     save_tsv(@condition)
   end
 
