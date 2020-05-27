@@ -143,6 +143,7 @@ class StudyJsonRecord < ActiveRecord::Base
           store_study_data(study)
           # save_single_study(study)
           nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
+          puts "Stored: #{nct_id} - #{count_down}"
           count_down -= 1
       end  
     end
@@ -225,7 +226,12 @@ class StudyJsonRecord < ActiveRecord::Base
     stime=Time.zone.now
     study_json_records = StudyJsonRecord.create(@data_store)
     SaveTime.info("took #{Time.zone.now - stime} to save StudyJsonRecords")
-    study_json_records.each{|record| record.build_study}
+    countdown = store_study_records.count
+    study_json_records.each do |record|
+      record.build_study
+      puts puts "Saved: #{record.nct_id} - #{count_down}"
+      count_down -= 1
+    end
     SaveTime.info("took #{Time.zone.now - stime} to save everything")
     rescue Exception => error
       ErrorLog.error(error)
