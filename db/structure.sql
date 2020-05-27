@@ -1,10 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 12.1
--- Dumped by pg_dump version 12.1
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -76,7 +69,6 @@ CREATE FUNCTION ctgov.ids_for_org(character varying) RETURNS TABLE(nct_id charac
 CREATE FUNCTION ctgov.ids_for_term(character varying) RETURNS TABLE(nct_id character varying)
     LANGUAGE sql
     AS $_$
-
         SELECT DISTINCT nct_id FROM browse_conditions WHERE downcase_mesh_term like lower($1)
         UNION
         SELECT DISTINCT nct_id FROM browse_interventions WHERE downcase_mesh_term like lower($1)
@@ -95,7 +87,6 @@ CREATE FUNCTION ctgov.ids_for_term(character varying) RETURNS TABLE(nct_id chara
 CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS TABLE(nct_id character varying, title text, recruitment character varying, were_results_reported boolean, conditions text, interventions text, gender character varying, age text, phase character varying, enrollment integer, study_type character varying, sponsors text, other_ids text, study_first_submitted_date date, start_date date, completion_month_year character varying, last_update_submitted_date date, verification_month_year character varying, results_first_submitted_date date, acronym character varying, primary_completion_month_year character varying, outcome_measures text, disposition_first_submitted_date date, allocation character varying, intervention_model character varying, observational_model character varying, primary_purpose character varying, time_perspective character varying, masking character varying, masking_description text, intervention_model_description text, subject_masked boolean, caregiver_masked boolean, investigator_masked boolean, outcomes_assessor_masked boolean, number_of_facilities integer)
     LANGUAGE sql
     AS $_$
-
       SELECT DISTINCT s.nct_id,
           s.brief_title,
           s.overall_status,
@@ -140,7 +131,6 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
           d.investigator_masked,
           d.outcomes_assessor_masked,
           cv.number_of_facilities
-
       FROM studies s
         INNER JOIN browse_conditions         bc ON s.nct_id = bc.nct_id and bc.downcase_mesh_term  like lower($1)
         LEFT OUTER JOIN calculated_values    cv ON s.nct_id = cv.nct_id
@@ -151,9 +141,7 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
         LEFT OUTER JOIN all_id_information   id ON s.nct_id = id.nct_id
         LEFT OUTER JOIN all_design_outcomes  o  ON s.nct_id = o.nct_id
         LEFT OUTER JOIN designs              d  ON s.nct_id = d.nct_id
-
      UNION
-
       SELECT DISTINCT s.nct_id,
           s.brief_title,
           s.overall_status,
@@ -198,7 +186,6 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
           d.investigator_masked,
           d.outcomes_assessor_masked,
           cv.number_of_facilities
-
       FROM studies s
         INNER JOIN conditions                bc ON s.nct_id = bc.nct_id and bc.downcase_name like lower($1)
         LEFT OUTER JOIN calculated_values    cv ON s.nct_id = cv.nct_id
@@ -209,9 +196,7 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
         LEFT OUTER JOIN all_id_information   id ON s.nct_id = id.nct_id
         LEFT OUTER JOIN all_design_outcomes  o  ON s.nct_id = o.nct_id
         LEFT OUTER JOIN designs              d  ON s.nct_id = d.nct_id
-
      UNION
-
       SELECT DISTINCT s.nct_id,
           s.brief_title,
           s.overall_status,
@@ -256,7 +241,6 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
           d.investigator_masked,
           d.outcomes_assessor_masked,
           cv.number_of_facilities
-
       FROM studies s
         INNER JOIN keywords k ON s.nct_id = k.nct_id and k.downcase_name like lower($1)
         LEFT OUTER JOIN calculated_values   cv ON s.nct_id = cv.nct_id
@@ -267,21 +251,20 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
         LEFT OUTER JOIN all_id_information  id ON s.nct_id = id.nct_id
         LEFT OUTER JOIN all_design_outcomes o  ON s.nct_id = o.nct_id
         LEFT OUTER JOIN designs             d  ON s.nct_id = d.nct_id
-
         ;
         $_$;
 
 
 SET default_tablespace = '';
 
-SET default_table_access_method = heap;
+SET default_with_oids = false;
 
 --
 -- Name: browse_conditions; Type: TABLE; Schema: ctgov; Owner: -
 --
 
 CREATE TABLE ctgov.browse_conditions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     mesh_term character varying,
     downcase_mesh_term character varying
@@ -304,7 +287,7 @@ CREATE VIEW ctgov.all_browse_conditions AS
 --
 
 CREATE TABLE ctgov.browse_interventions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     mesh_term character varying,
     downcase_mesh_term character varying
@@ -327,7 +310,7 @@ CREATE VIEW ctgov.all_browse_interventions AS
 --
 
 CREATE TABLE ctgov.facilities (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     status character varying,
     name character varying,
@@ -354,7 +337,7 @@ CREATE VIEW ctgov.all_cities AS
 --
 
 CREATE TABLE ctgov.conditions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     name character varying,
     downcase_name character varying
@@ -377,7 +360,7 @@ CREATE VIEW ctgov.all_conditions AS
 --
 
 CREATE TABLE ctgov.countries (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     name character varying,
     removed boolean
@@ -401,7 +384,7 @@ CREATE VIEW ctgov.all_countries AS
 --
 
 CREATE TABLE ctgov.design_outcomes (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     outcome_type character varying,
     measure text,
@@ -438,7 +421,7 @@ CREATE VIEW ctgov.all_facilities AS
 --
 
 CREATE TABLE ctgov.design_groups (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     group_type character varying,
     title character varying,
@@ -462,7 +445,7 @@ CREATE VIEW ctgov.all_group_types AS
 --
 
 CREATE TABLE ctgov.id_information (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     id_type character varying,
     id_value character varying
@@ -485,7 +468,7 @@ CREATE VIEW ctgov.all_id_information AS
 --
 
 CREATE TABLE ctgov.interventions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     intervention_type character varying,
     name character varying,
@@ -520,7 +503,7 @@ CREATE VIEW ctgov.all_interventions AS
 --
 
 CREATE TABLE ctgov.keywords (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     name character varying,
     downcase_name character varying
@@ -543,7 +526,7 @@ CREATE VIEW ctgov.all_keywords AS
 --
 
 CREATE TABLE ctgov.overall_officials (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     role character varying,
     name character varying,
@@ -602,7 +585,7 @@ CREATE VIEW ctgov.all_secondary_outcome_measures AS
 --
 
 CREATE TABLE ctgov.sponsors (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     agency_class character varying,
     lead_or_collaborator character varying,
@@ -633,11 +616,23 @@ CREATE VIEW ctgov.all_states AS
 
 
 --
+-- Name: ar_internal_metadata; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: baseline_counts; Type: TABLE; Schema: ctgov; Owner: -
 --
 
 CREATE TABLE ctgov.baseline_counts (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     result_group_id integer,
     ctgov_group_code character varying,
@@ -652,7 +647,6 @@ CREATE TABLE ctgov.baseline_counts (
 --
 
 CREATE SEQUENCE ctgov.baseline_counts_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -672,7 +666,7 @@ ALTER SEQUENCE ctgov.baseline_counts_id_seq OWNED BY ctgov.baseline_counts.id;
 --
 
 CREATE TABLE ctgov.baseline_measurements (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     result_group_id integer,
     ctgov_group_code character varying,
@@ -698,7 +692,6 @@ CREATE TABLE ctgov.baseline_measurements (
 --
 
 CREATE SEQUENCE ctgov.baseline_measurements_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -718,7 +711,7 @@ ALTER SEQUENCE ctgov.baseline_measurements_id_seq OWNED BY ctgov.baseline_measur
 --
 
 CREATE TABLE ctgov.brief_summaries (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     description text
 );
@@ -729,7 +722,6 @@ CREATE TABLE ctgov.brief_summaries (
 --
 
 CREATE SEQUENCE ctgov.brief_summaries_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -749,7 +741,6 @@ ALTER SEQUENCE ctgov.brief_summaries_id_seq OWNED BY ctgov.brief_summaries.id;
 --
 
 CREATE SEQUENCE ctgov.browse_conditions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -769,7 +760,6 @@ ALTER SEQUENCE ctgov.browse_conditions_id_seq OWNED BY ctgov.browse_conditions.i
 --
 
 CREATE SEQUENCE ctgov.browse_interventions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -789,7 +779,7 @@ ALTER SEQUENCE ctgov.browse_interventions_id_seq OWNED BY ctgov.browse_intervent
 --
 
 CREATE TABLE ctgov.calculated_values (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     number_of_facilities integer,
     number_of_nsae_subjects integer,
@@ -816,7 +806,6 @@ CREATE TABLE ctgov.calculated_values (
 --
 
 CREATE SEQUENCE ctgov.calculated_values_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -836,12 +825,12 @@ ALTER SEQUENCE ctgov.calculated_values_id_seq OWNED BY ctgov.calculated_values.i
 --
 
 CREATE TABLE ctgov.categories (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying NOT NULL,
     name character varying NOT NULL,
     last_modified timestamp without time zone NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -850,7 +839,6 @@ CREATE TABLE ctgov.categories (
 --
 
 CREATE SEQUENCE ctgov.categories_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -870,7 +858,7 @@ ALTER SEQUENCE ctgov.categories_id_seq OWNED BY ctgov.categories.id;
 --
 
 CREATE TABLE ctgov.central_contacts (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     contact_type character varying,
     name character varying,
@@ -884,7 +872,6 @@ CREATE TABLE ctgov.central_contacts (
 --
 
 CREATE SEQUENCE ctgov.central_contacts_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -904,7 +891,6 @@ ALTER SEQUENCE ctgov.central_contacts_id_seq OWNED BY ctgov.central_contacts.id;
 --
 
 CREATE SEQUENCE ctgov.conditions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -924,7 +910,6 @@ ALTER SEQUENCE ctgov.conditions_id_seq OWNED BY ctgov.conditions.id;
 --
 
 CREATE SEQUENCE ctgov.countries_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -944,7 +929,7 @@ ALTER SEQUENCE ctgov.countries_id_seq OWNED BY ctgov.countries.id;
 --
 
 CREATE TABLE ctgov.design_group_interventions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     design_group_id integer,
     intervention_id integer
@@ -956,7 +941,6 @@ CREATE TABLE ctgov.design_group_interventions (
 --
 
 CREATE SEQUENCE ctgov.design_group_interventions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -976,7 +960,6 @@ ALTER SEQUENCE ctgov.design_group_interventions_id_seq OWNED BY ctgov.design_gro
 --
 
 CREATE SEQUENCE ctgov.design_groups_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -996,7 +979,6 @@ ALTER SEQUENCE ctgov.design_groups_id_seq OWNED BY ctgov.design_groups.id;
 --
 
 CREATE SEQUENCE ctgov.design_outcomes_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1016,7 +998,7 @@ ALTER SEQUENCE ctgov.design_outcomes_id_seq OWNED BY ctgov.design_outcomes.id;
 --
 
 CREATE TABLE ctgov.designs (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     allocation character varying,
     intervention_model character varying,
@@ -1038,7 +1020,6 @@ CREATE TABLE ctgov.designs (
 --
 
 CREATE SEQUENCE ctgov.designs_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1058,7 +1039,7 @@ ALTER SEQUENCE ctgov.designs_id_seq OWNED BY ctgov.designs.id;
 --
 
 CREATE TABLE ctgov.detailed_descriptions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     description text
 );
@@ -1069,7 +1050,6 @@ CREATE TABLE ctgov.detailed_descriptions (
 --
 
 CREATE SEQUENCE ctgov.detailed_descriptions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1089,7 +1069,7 @@ ALTER SEQUENCE ctgov.detailed_descriptions_id_seq OWNED BY ctgov.detailed_descri
 --
 
 CREATE TABLE ctgov.documents (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     document_id character varying,
     document_type character varying,
@@ -1103,7 +1083,6 @@ CREATE TABLE ctgov.documents (
 --
 
 CREATE SEQUENCE ctgov.documents_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1123,7 +1102,7 @@ ALTER SEQUENCE ctgov.documents_id_seq OWNED BY ctgov.documents.id;
 --
 
 CREATE TABLE ctgov.drop_withdrawals (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     result_group_id integer,
     ctgov_group_code character varying,
@@ -1138,7 +1117,6 @@ CREATE TABLE ctgov.drop_withdrawals (
 --
 
 CREATE SEQUENCE ctgov.drop_withdrawals_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1158,7 +1136,7 @@ ALTER SEQUENCE ctgov.drop_withdrawals_id_seq OWNED BY ctgov.drop_withdrawals.id;
 --
 
 CREATE TABLE ctgov.eligibilities (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     sampling_method character varying,
     gender character varying,
@@ -1177,7 +1155,6 @@ CREATE TABLE ctgov.eligibilities (
 --
 
 CREATE SEQUENCE ctgov.eligibilities_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1197,7 +1174,6 @@ ALTER SEQUENCE ctgov.eligibilities_id_seq OWNED BY ctgov.eligibilities.id;
 --
 
 CREATE SEQUENCE ctgov.facilities_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1217,7 +1193,7 @@ ALTER SEQUENCE ctgov.facilities_id_seq OWNED BY ctgov.facilities.id;
 --
 
 CREATE TABLE ctgov.facility_contacts (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     facility_id integer,
     contact_type character varying,
@@ -1232,7 +1208,6 @@ CREATE TABLE ctgov.facility_contacts (
 --
 
 CREATE SEQUENCE ctgov.facility_contacts_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1252,7 +1227,7 @@ ALTER SEQUENCE ctgov.facility_contacts_id_seq OWNED BY ctgov.facility_contacts.i
 --
 
 CREATE TABLE ctgov.facility_investigators (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     facility_id integer,
     role character varying,
@@ -1265,7 +1240,6 @@ CREATE TABLE ctgov.facility_investigators (
 --
 
 CREATE SEQUENCE ctgov.facility_investigators_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1285,7 +1259,6 @@ ALTER SEQUENCE ctgov.facility_investigators_id_seq OWNED BY ctgov.facility_inves
 --
 
 CREATE SEQUENCE ctgov.id_information_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1305,7 +1278,7 @@ ALTER SEQUENCE ctgov.id_information_id_seq OWNED BY ctgov.id_information.id;
 --
 
 CREATE TABLE ctgov.intervention_other_names (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     intervention_id integer,
     name character varying
@@ -1317,7 +1290,6 @@ CREATE TABLE ctgov.intervention_other_names (
 --
 
 CREATE SEQUENCE ctgov.intervention_other_names_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1337,7 +1309,6 @@ ALTER SEQUENCE ctgov.intervention_other_names_id_seq OWNED BY ctgov.intervention
 --
 
 CREATE SEQUENCE ctgov.interventions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1357,7 +1328,7 @@ ALTER SEQUENCE ctgov.interventions_id_seq OWNED BY ctgov.interventions.id;
 --
 
 CREATE TABLE ctgov.ipd_information_types (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     name character varying
 );
@@ -1368,7 +1339,6 @@ CREATE TABLE ctgov.ipd_information_types (
 --
 
 CREATE SEQUENCE ctgov.ipd_information_types_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1388,7 +1358,6 @@ ALTER SEQUENCE ctgov.ipd_information_types_id_seq OWNED BY ctgov.ipd_information
 --
 
 CREATE SEQUENCE ctgov.keywords_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1408,7 +1377,7 @@ ALTER SEQUENCE ctgov.keywords_id_seq OWNED BY ctgov.keywords.id;
 --
 
 CREATE TABLE ctgov.links (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     url character varying,
     description text
@@ -1420,7 +1389,6 @@ CREATE TABLE ctgov.links (
 --
 
 CREATE SEQUENCE ctgov.links_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1440,7 +1408,7 @@ ALTER SEQUENCE ctgov.links_id_seq OWNED BY ctgov.links.id;
 --
 
 CREATE TABLE ctgov.mesh_headings (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     qualifier character varying,
     heading character varying,
     subcategory character varying
@@ -1452,7 +1420,6 @@ CREATE TABLE ctgov.mesh_headings (
 --
 
 CREATE SEQUENCE ctgov.mesh_headings_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1472,7 +1439,7 @@ ALTER SEQUENCE ctgov.mesh_headings_id_seq OWNED BY ctgov.mesh_headings.id;
 --
 
 CREATE TABLE ctgov.mesh_terms (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     qualifier character varying,
     tree_number character varying,
     description character varying,
@@ -1486,7 +1453,6 @@ CREATE TABLE ctgov.mesh_terms (
 --
 
 CREATE SEQUENCE ctgov.mesh_terms_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1506,7 +1472,7 @@ ALTER SEQUENCE ctgov.mesh_terms_id_seq OWNED BY ctgov.mesh_terms.id;
 --
 
 CREATE TABLE ctgov.milestones (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     result_group_id integer,
     ctgov_group_code character varying,
@@ -1522,7 +1488,6 @@ CREATE TABLE ctgov.milestones (
 --
 
 CREATE SEQUENCE ctgov.milestones_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1542,7 +1507,7 @@ ALTER SEQUENCE ctgov.milestones_id_seq OWNED BY ctgov.milestones.id;
 --
 
 CREATE TABLE ctgov.outcome_analyses (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     outcome_id integer,
     non_inferiority_type character varying,
@@ -1572,7 +1537,6 @@ CREATE TABLE ctgov.outcome_analyses (
 --
 
 CREATE SEQUENCE ctgov.outcome_analyses_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1592,7 +1556,7 @@ ALTER SEQUENCE ctgov.outcome_analyses_id_seq OWNED BY ctgov.outcome_analyses.id;
 --
 
 CREATE TABLE ctgov.outcome_analysis_groups (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     outcome_analysis_id integer,
     result_group_id integer,
@@ -1605,7 +1569,6 @@ CREATE TABLE ctgov.outcome_analysis_groups (
 --
 
 CREATE SEQUENCE ctgov.outcome_analysis_groups_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1625,7 +1588,7 @@ ALTER SEQUENCE ctgov.outcome_analysis_groups_id_seq OWNED BY ctgov.outcome_analy
 --
 
 CREATE TABLE ctgov.outcome_counts (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     outcome_id integer,
     result_group_id integer,
@@ -1641,7 +1604,6 @@ CREATE TABLE ctgov.outcome_counts (
 --
 
 CREATE SEQUENCE ctgov.outcome_counts_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1661,7 +1623,7 @@ ALTER SEQUENCE ctgov.outcome_counts_id_seq OWNED BY ctgov.outcome_counts.id;
 --
 
 CREATE TABLE ctgov.outcome_measurements (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     outcome_id integer,
     result_group_id integer,
@@ -1688,7 +1650,6 @@ CREATE TABLE ctgov.outcome_measurements (
 --
 
 CREATE SEQUENCE ctgov.outcome_measurements_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1708,7 +1669,7 @@ ALTER SEQUENCE ctgov.outcome_measurements_id_seq OWNED BY ctgov.outcome_measurem
 --
 
 CREATE TABLE ctgov.outcomes (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     outcome_type character varying,
     title text,
@@ -1729,7 +1690,6 @@ CREATE TABLE ctgov.outcomes (
 --
 
 CREATE SEQUENCE ctgov.outcomes_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1749,7 +1709,6 @@ ALTER SEQUENCE ctgov.outcomes_id_seq OWNED BY ctgov.outcomes.id;
 --
 
 CREATE SEQUENCE ctgov.overall_officials_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1769,7 +1728,7 @@ ALTER SEQUENCE ctgov.overall_officials_id_seq OWNED BY ctgov.overall_officials.i
 --
 
 CREATE TABLE ctgov.participant_flows (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     recruitment_details text,
     pre_assignment_details text
@@ -1781,7 +1740,6 @@ CREATE TABLE ctgov.participant_flows (
 --
 
 CREATE SEQUENCE ctgov.participant_flows_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1801,7 +1759,7 @@ ALTER SEQUENCE ctgov.participant_flows_id_seq OWNED BY ctgov.participant_flows.i
 --
 
 CREATE TABLE ctgov.pending_results (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     event character varying,
     event_date_description character varying,
@@ -1814,7 +1772,6 @@ CREATE TABLE ctgov.pending_results (
 --
 
 CREATE SEQUENCE ctgov.pending_results_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1834,7 +1791,7 @@ ALTER SEQUENCE ctgov.pending_results_id_seq OWNED BY ctgov.pending_results.id;
 --
 
 CREATE TABLE ctgov.provided_documents (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     document_type character varying,
     has_protocol boolean,
@@ -1850,7 +1807,6 @@ CREATE TABLE ctgov.provided_documents (
 --
 
 CREATE SEQUENCE ctgov.provided_documents_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1870,7 +1826,7 @@ ALTER SEQUENCE ctgov.provided_documents_id_seq OWNED BY ctgov.provided_documents
 --
 
 CREATE TABLE ctgov.reported_events (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     result_group_id integer,
     ctgov_group_code character varying,
@@ -1895,7 +1851,6 @@ CREATE TABLE ctgov.reported_events (
 --
 
 CREATE SEQUENCE ctgov.reported_events_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1915,7 +1870,7 @@ ALTER SEQUENCE ctgov.reported_events_id_seq OWNED BY ctgov.reported_events.id;
 --
 
 CREATE TABLE ctgov.responsible_parties (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     responsible_party_type character varying,
     name character varying,
@@ -1930,7 +1885,6 @@ CREATE TABLE ctgov.responsible_parties (
 --
 
 CREATE SEQUENCE ctgov.responsible_parties_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1950,7 +1904,7 @@ ALTER SEQUENCE ctgov.responsible_parties_id_seq OWNED BY ctgov.responsible_parti
 --
 
 CREATE TABLE ctgov.result_agreements (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     pi_employee character varying,
     agreement text
@@ -1962,7 +1916,6 @@ CREATE TABLE ctgov.result_agreements (
 --
 
 CREATE SEQUENCE ctgov.result_agreements_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1982,7 +1935,7 @@ ALTER SEQUENCE ctgov.result_agreements_id_seq OWNED BY ctgov.result_agreements.i
 --
 
 CREATE TABLE ctgov.result_contacts (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     organization character varying,
     name character varying,
@@ -1996,7 +1949,6 @@ CREATE TABLE ctgov.result_contacts (
 --
 
 CREATE SEQUENCE ctgov.result_contacts_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2016,7 +1968,7 @@ ALTER SEQUENCE ctgov.result_contacts_id_seq OWNED BY ctgov.result_contacts.id;
 --
 
 CREATE TABLE ctgov.result_groups (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     ctgov_group_code character varying,
     result_type character varying,
@@ -2030,7 +1982,6 @@ CREATE TABLE ctgov.result_groups (
 --
 
 CREATE SEQUENCE ctgov.result_groups_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2059,7 +2010,6 @@ CREATE TABLE ctgov.schema_migrations (
 --
 
 CREATE SEQUENCE ctgov.sponsors_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2141,8 +2091,8 @@ CREATE TABLE ctgov.studies (
     ipd_url character varying,
     plan_to_share_ipd character varying,
     plan_to_share_ipd_description character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -2151,7 +2101,7 @@ CREATE TABLE ctgov.studies (
 --
 
 CREATE TABLE ctgov.study_references (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     pmid character varying,
     reference_type character varying,
@@ -2164,7 +2114,6 @@ CREATE TABLE ctgov.study_references (
 --
 
 CREATE SEQUENCE ctgov.study_references_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2184,7 +2133,7 @@ ALTER SEQUENCE ctgov.study_references_id_seq OWNED BY ctgov.study_references.id;
 --
 
 CREATE TABLE support.load_events (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     event_type character varying,
     status character varying,
     description text,
@@ -2194,8 +2143,8 @@ CREATE TABLE support.load_events (
     processed integer,
     load_time character varying,
     completed_at timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -2204,7 +2153,6 @@ CREATE TABLE support.load_events (
 --
 
 CREATE SEQUENCE support.load_events_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2224,7 +2172,7 @@ ALTER SEQUENCE support.load_events_id_seq OWNED BY support.load_events.id;
 --
 
 CREATE TABLE support.sanity_checks (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     table_name character varying,
     nct_id character varying,
     column_name character varying,
@@ -2232,8 +2180,8 @@ CREATE TABLE support.sanity_checks (
     row_count integer,
     description text,
     most_current boolean,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -2242,7 +2190,6 @@ CREATE TABLE support.sanity_checks (
 --
 
 CREATE SEQUENCE support.sanity_checks_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2262,12 +2209,12 @@ ALTER SEQUENCE support.sanity_checks_id_seq OWNED BY support.sanity_checks.id;
 --
 
 CREATE TABLE support.study_xml_records (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     nct_id character varying,
     content xml,
     created_study_at timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -2276,7 +2223,6 @@ CREATE TABLE support.study_xml_records (
 --
 
 CREATE SEQUENCE support.study_xml_records_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2635,6 +2581,14 @@ ALTER TABLE ONLY support.study_xml_records ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
 -- Name: baseline_counts baseline_counts_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -2984,6 +2938,14 @@ ALTER TABLE ONLY ctgov.result_contacts
 
 ALTER TABLE ONLY ctgov.result_groups
     ADD CONSTRAINT result_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
 
 
 --
@@ -3622,13 +3584,6 @@ CREATE INDEX index_study_references_on_reference_type ON ctgov.study_references 
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
-
-
---
 -- Name: index_support.load_events_on_event_type; Type: INDEX; Schema: support; Owner: -
 --
 
@@ -3690,25 +3645,17 @@ CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_re
 
 SET search_path TO ctgov, support, public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160630191037');
+INSERT INTO "schema_migrations" (version) VALUES
+('20160630191037'),
+('20160910000000'),
+('20160911000000'),
+('20161011000000'),
+('20161030000000'),
+('20170411000122'),
+('20181212000000'),
+('20190115184850'),
+('20190115204850'),
+('20190301204850'),
+('20200424180206');
 
-INSERT INTO schema_migrations (version) VALUES ('20160910000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20160911000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20161011000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20161030000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20170411000122');
-
-INSERT INTO schema_migrations (version) VALUES ('20181212000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20190115184850');
-
-INSERT INTO schema_migrations (version) VALUES ('20190115204850');
-
-INSERT INTO schema_migrations (version) VALUES ('20190301204850');
-
-INSERT INTO schema_migrations (version) VALUES ('20200424180206');
 

@@ -387,21 +387,24 @@ module Util
 
     def public_con
       return @public_con if @public_con and @public_con.active?
-      @public_con = PublicBase.establish_connection(public_db_url).connection
+      PublicBase.establish_connection(public_db_url)
+      @public_con = PublicBase.connection
       @public_con.schema_search_path='ctgov'
       return @public_con
     end
 
     def public_alt_con
       return @public_alt_con if @public_alt_con and @public_alt_con.active?
-      @public_alt_con = PublicBase.establish_connection(alt_db_url).connection
+      PublicBase.establish_connection(alt_db_url)
+      @public_alt_con = PublicBase.connection
       @public_alt_con.schema_search_path='ctgov'
       return @public_alt_con
     end
 
     def con
       return @con if @con and @con.active?
-      @con = ActiveRecord::Base.establish_connection(back_db_url).connection
+      ActiveRecord::Base.establish_connection(back_db_url)
+      @con = ActiveRecord::Base.connection
       @con.schema_search_path='ctgov'
       return @con
     end

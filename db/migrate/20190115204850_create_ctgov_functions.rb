@@ -1,11 +1,10 @@
-class CreateCtgovFunctions < ActiveRecord::Migration
+class CreateCtgovFunctions < ActiveRecord::Migration[6.0]
 
   def up
     execute <<-SQL
       CREATE OR REPLACE FUNCTION ctgov.ids_for_term(character varying) RETURNS TABLE(nct_id character varying)
         LANGUAGE sql
         AS $_$
-
         SELECT DISTINCT nct_id FROM browse_conditions WHERE downcase_mesh_term like lower($1)
         UNION
         SELECT DISTINCT nct_id FROM browse_interventions WHERE downcase_mesh_term like lower($1)
@@ -15,9 +14,7 @@ class CreateCtgovFunctions < ActiveRecord::Migration
         SELECT DISTINCT nct_id FROM keywords WHERE lower(name) like lower($1)
         ;
         $_$;
-
       GRANT EXECUTE ON FUNCTION ctgov.ids_for_term(VARCHAR) TO read_only;
-
       CREATE OR REPLACE FUNCTION ctgov.ids_for_org(character varying) RETURNS TABLE(nct_id character varying)
         LANGUAGE sql
       AS $$
@@ -30,9 +27,7 @@ class CreateCtgovFunctions < ActiveRecord::Migration
       SELECT DISTINCT nct_id FROM result_contacts WHERE lower(organization) like lower($1)
       ;
       $$;
-
       GRANT EXECUTE ON FUNCTION ctgov.ids_for_org(VARCHAR) TO read_only;
-
       CREATE OR REPLACE FUNCTION ctgov.study_summaries_for_condition(varchar)
       RETURNS table (nct_id                varchar,
                      title                 text,
@@ -71,7 +66,6 @@ class CreateCtgovFunctions < ActiveRecord::Migration
                      outcomes_assessor_masked boolean,
                      number_of_facilities  integer)
       AS $$
-
       SELECT DISTINCT s.nct_id,
           s.brief_title,
           s.overall_status,
@@ -116,7 +110,6 @@ class CreateCtgovFunctions < ActiveRecord::Migration
           d.investigator_masked,
           d.outcomes_assessor_masked,
           cv.number_of_facilities
-
       FROM studies s
         INNER JOIN browse_conditions         bc ON s.nct_id = bc.nct_id and bc.downcase_mesh_term  like lower($1)
         LEFT OUTER JOIN calculated_values    cv ON s.nct_id = cv.nct_id
@@ -127,9 +120,7 @@ class CreateCtgovFunctions < ActiveRecord::Migration
         LEFT OUTER JOIN all_id_information   id ON s.nct_id = id.nct_id
         LEFT OUTER JOIN all_design_outcomes  o  ON s.nct_id = o.nct_id
         LEFT OUTER JOIN designs              d  ON s.nct_id = d.nct_id
-
      UNION
-
       SELECT DISTINCT s.nct_id,
           s.brief_title,
           s.overall_status,
@@ -174,7 +165,6 @@ class CreateCtgovFunctions < ActiveRecord::Migration
           d.investigator_masked,
           d.outcomes_assessor_masked,
           cv.number_of_facilities
-
       FROM studies s
         INNER JOIN conditions                bc ON s.nct_id = bc.nct_id and bc.downcase_name like lower($1)
         LEFT OUTER JOIN calculated_values    cv ON s.nct_id = cv.nct_id
@@ -185,9 +175,7 @@ class CreateCtgovFunctions < ActiveRecord::Migration
         LEFT OUTER JOIN all_id_information   id ON s.nct_id = id.nct_id
         LEFT OUTER JOIN all_design_outcomes  o  ON s.nct_id = o.nct_id
         LEFT OUTER JOIN designs              d  ON s.nct_id = d.nct_id
-
      UNION
-
       SELECT DISTINCT s.nct_id,
           s.brief_title,
           s.overall_status,
@@ -232,7 +220,6 @@ class CreateCtgovFunctions < ActiveRecord::Migration
           d.investigator_masked,
           d.outcomes_assessor_masked,
           cv.number_of_facilities
-
       FROM studies s
         INNER JOIN keywords k ON s.nct_id = k.nct_id and k.downcase_name like lower($1)
         LEFT OUTER JOIN calculated_values   cv ON s.nct_id = cv.nct_id
@@ -243,13 +230,10 @@ class CreateCtgovFunctions < ActiveRecord::Migration
         LEFT OUTER JOIN all_id_information  id ON s.nct_id = id.nct_id
         LEFT OUTER JOIN all_design_outcomes o  ON s.nct_id = o.nct_id
         LEFT OUTER JOIN designs             d  ON s.nct_id = d.nct_id
-
         ;
         $$
        LANGUAGE 'sql' VOLATILE;
-
       GRANT EXECUTE ON FUNCTION ctgov.study_summaries_for_condition(VARCHAR) TO read_only;
-
     SQL
   end
 
@@ -262,4 +246,3 @@ class CreateCtgovFunctions < ActiveRecord::Migration
   end
 
 end
-

@@ -1,4 +1,4 @@
-class CreateCtgovViews < ActiveRecord::Migration
+class CreateCtgovViews < ActiveRecord::Migration[6.0]
 
   def up
     execute <<-SQL
@@ -119,24 +119,24 @@ class CreateCtgovViews < ActiveRecord::Migration
 
   def down
     execute <<-SQL
-      DROP VIEW ctgov.all_browse_conditions;
-      DROP VIEW ctgov.all_browse_interventions;
-      DROP VIEW ctgov.all_cities;
-      DROP VIEW ctgov.all_conditions;
-      DROP VIEW ctgov.all_countries;
-      DROP VIEW ctgov.all_design_outcomes;
-      DROP VIEW ctgov.all_facilities;
-      DROP VIEW ctgov.all_group_types;
-      DROP VIEW ctgov.all_id_information;
-      DROP VIEW ctgov.all_interventions;
-      DROP VIEW ctgov.all_intervention_types;
-      DROP VIEW ctgov.all_keywords;
-      DROP VIEW ctgov.all_overall_officials;
-      DROP VIEW ctgov.all_overall_official_affiliations;
-      DROP VIEW ctgov.all_primary_outcome_measures;
-      DROP VIEW ctgov.all_secondary_outcome_measures;
-      DROP VIEW ctgov.all_sponsors;
-      DROP VIEW ctgov.all_states;
+      DROP VIEW all_browse_conditions;
+      DROP VIEW all_browse_interventions;
+      DROP VIEW all_cities;
+      DROP VIEW all_conditions;
+      DROP VIEW all_countries;
+      DROP VIEW all_design_outcomes;
+      DROP VIEW all_facilities;
+      DROP VIEW all_group_types;
+      DROP VIEW all_id_information;
+      DROP VIEW all_interventions;
+      DROP VIEW all_intervention_types;
+      DROP VIEW all_keywords;
+      DROP VIEW all_overall_officials;
+      DROP VIEW all_overall_official_affiliations;
+      DROP VIEW all_primary_outcome_measures;
+      DROP VIEW all_secondary_outcome_measures;
+      DROP VIEW all_sponsors;
+      DROP VIEW all_states;
     SQL
   end
 

@@ -24,13 +24,13 @@ describe Util::DbManager do
 
       design_indexes=mgr.indexes_for('designs')
       design_id_index=design_indexes.select{|di| di['column_name']=='id'}.first
-      expect(design_id_index['is_primary']).to eq('t')
+      expect(design_id_index['is_primary']).to eq(true)
 
       mgr.one_to_one_related_tables.each {|table_name|
         this_tables_indexes=mgr.indexes_for(table_name)
         nct_id_indexes = this_tables_indexes.select{ |i| i['column_name']== 'nct_id' }
         sz=nct_id_indexes.size
-        expect(nct_id_indexes.first['is_unique']).to eq('t') if sz = 1
+        expect(nct_id_indexes.first['is_unique']).to eq(true) if sz = 1
       }
     end
   end
@@ -60,12 +60,14 @@ describe Util::DbManager do
       fm.save_static_copy
       dm.refresh_public_db
 
-      back_con = ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL).connection
+      ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL)
+      back_con = ActiveRecord::Base.connection
       back_tables=back_con.execute("select * from information_schema.tables where table_schema='ctgov'")
       back_table_count=back_con.execute("select count(*) from information_schema.tables where table_schema='ctgov'").first['count'].to_i
 
       #reset pub connection
-      pub_con = ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection
+      ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL)
+      pub_con = ActiveRecord::Base.connection
 
       pub_table_count=pub_con.execute("select count(*) from information_schema.tables where table_schema='ctgov'").first['count'].to_i
       pub_tables=pub_con.execute("select * from information_schema.tables where table_schema='ctgov'")
@@ -79,7 +81,8 @@ describe Util::DbManager do
       pub_sponsor_count=pub_con.execute('select count(*) from sponsors').first['count'].to_i
       pub_outcome_count=pub_con.execute('select count(*) from outcomes').first['count'].to_i
 
-      con = ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL).connection
+      ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL)
+      con = ActiveRecord::Base.connection
       back_browse_condition_count=con.execute('select count(*) from browse_conditions').first['count'].to_i
       back_country_count=con.execute('select count(*) from countries').first['count'].to_i
       back_design_count=con.execute('select count(*) from designs').first['count'].to_i

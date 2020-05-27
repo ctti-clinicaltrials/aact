@@ -1,4 +1,4 @@
-class CreateCalcValColumns < ActiveRecord::Migration
+class CreateCalcValColumns < ActiveRecord::Migration[6.0]
 
   def up
     add_column 'ctgov.calculated_values', :number_of_primary_outcomes_to_measure, :integer
