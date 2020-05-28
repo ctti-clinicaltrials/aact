@@ -196,7 +196,7 @@ class Category < ActiveRecord::Base
       keywords
       interventions
       intervention_details
-      arm_datails
+      arm_details
       arm_intervention_details
       outcome_measures
       start_date
