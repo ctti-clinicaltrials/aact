@@ -28,7 +28,7 @@ class Category < ActiveRecord::Base
         next
       end
     end
-    save_excel(@condition)
+    save_tsv(@condition)
   end
 
   def self.study_values(study)
@@ -245,7 +245,27 @@ class Category < ActiveRecord::Base
     ]
   end
 
-  def self.save_excel(condition = 'covid-19')
+  def self.save_tsv(condition = 'covid-19')
+    headers = excel_column_names
+    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
+    studies = Study.where(nct_id: nct_ids)
+    current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
+    name="#{current_datetime}_#{condition}"
+    file = "./public/static/exported_files/#{condition}/#{name}.tsv"
+
+    CSV.open(file, 'w', write_headers: true, headers: headers, col_sep: "\t") do |row|
+      studies.each do |study|
+        content = study_values(study)
+        content = content.map do |item|
+         item ||= ''
+         item.to_s.squish
+        end
+        row << content
+      end
+    end
+  end
+
+  def self.save_xlsx(condition = 'covid-19')
     nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
     studies = Study.where(nct_id: nct_ids)
     current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
