@@ -1,12 +1,8 @@
 require 'open-uri'
-require 'fileutils'
+# require 'fileutils'
 require 'logger'
-require 'benchmark'
 SaveTime = Logger.new('log/save_time.log')
 ErrorLog = Logger.new('log/error.log')
-MethodTime = Logger.new('log/method_time.log')
-# run incremental load with: bundle exec rake db:beta_load[1,incremental]
-# run full load with: bundle exec rake db:beta_loadload[1,full]
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'ctgov_beta.study_json_records'
@@ -39,11 +35,10 @@ class StudyJsonRecord < ActiveRecord::Base
       puts"#{@type} load failed in run: #{msg}"
     end
 
-    byebug
     puts "saving StudyJsonRecord and Studies now"
     save_all_study_data
 
-    if @type -- 'full'
+    if @type == 'full'
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
     end
@@ -92,40 +87,12 @@ class StudyJsonRecord < ActiveRecord::Base
     file
   end
 
-  def self.too_long
-    set_table_schema('ctgov_beta')
-    remove_indexes_and_constraints
-    nct_ids = %w[
-      NCT02194738
-      NCT02927249
-      NCT02193282
-      NCT01776424
-      NCT03793179
-    ]
-
-    # NCT03414970
-    # NCT03233711
-    # NCT02669017
-    study_jsons = StudyJsonRecord.where(nct_id: nct_ids)
-    db_mgr.clear_out_data_for(nct_ids)
-
-    study_jsons.each do |study_json|
-      stime=Time.zone.now
-      study_json.build_study
-      SaveTime.info("took #{Time.zone.now - stime}--#{study_json.nct_id}") 
-    end
-    add_indexes_and_constraints
-  end
-
   def self.full
     start_time = Time.current
-    # study_download = download_all_studies
-    study_download = File.open('./public/static/json_downloads/20200519-22.zip')
-    # finshed in 3 days and failed to build
-    # total number of studies 336443
-    # started 3:49pm April 18th finished 11:10am April 21st
+    study_download = download_all_studies
     nct_ids = StudyJsonRecord.all.map(&:nct_id)
     clear_out_data_for(nct_ids)
+
     Zip::File.open(study_download.path) do |unzipped_folders|
       original_count = unzipped_folders.size
       count_down = original_count
@@ -141,7 +108,6 @@ class StudyJsonRecord < ActiveRecord::Base
         study = json['FullStudy']
         next unless study
           store_study_data(study)
-          # save_single_study(study)
           nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
           puts "Stored: #{nct_id} - #{count_down}"
           count_down -= 1
@@ -156,7 +122,6 @@ class StudyJsonRecord < ActiveRecord::Base
     limit = (total_number/100.0).ceil
     puts "batch 1 of #{limit}"
     store_study_records(first_batch['FullStudiesResponse']['FullStudies'])
-    # save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
     
     # since I already saved the first hundred studies I start the loop after that point
     # studies must be retrieved in batches of 99,
@@ -176,12 +141,10 @@ class StudyJsonRecord < ActiveRecord::Base
     begin
       retries ||= 0
       puts "try ##{ retries }"
-      #   "https://clinicaltrials.gov/api/query/full_studies?expr=AREA[LastUpdatePostDate]RANGE[01/01/2020,%20MAX]&fmt=json"
       url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
       data = json_data(url) || {}
       data = data.dig('FullStudiesResponse', 'FullStudies')
       store_study_records(data) if data
-      # save_study_records(data) if data
     rescue
       retry if (retries += 1) < 6
       if retries >= 6
@@ -226,11 +189,12 @@ class StudyJsonRecord < ActiveRecord::Base
     stime=Time.zone.now
     study_json_records = StudyJsonRecord.create(@data_store)
     SaveTime.info("took #{Time.zone.now - stime} to save StudyJsonRecords")
-    countdown = store_study_records.count
+    countdown = study_json_records.count
     study_json_records.each do |record|
+      record_time = Time.zone.now
       record.build_study
-      puts puts "Saved: #{record.nct_id} - #{count_down}"
-      count_down -= 1
+      puts "#{Time.zone.now}:  saved #{Time.zone.now - record_time}: #{record.nct_id} - #{countdown}"
+      countdown -= 1
     end
     SaveTime.info("took #{Time.zone.now - stime} to save everything")
     rescue Exception => error
