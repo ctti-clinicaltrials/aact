@@ -1,5 +1,5 @@
 require 'open-uri'
-# require 'fileutils'
+require 'fileutils'
 require 'logger'
 SaveTime = Logger.new('log/save_time.log')
 ErrorLog = Logger.new('log/error.log')
@@ -27,15 +27,13 @@ class StudyJsonRecord < ActiveRecord::Base
     remove_indexes_and_constraints
     @data_store = []
 
-    puts "now running #{@type}, #{@days_back} days back"
     begin
      @type == 'full' ? full : incremental
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
-      puts"#{@type} load failed in run: #{msg}"
+      ErrorLog.error(msg)
     end
 
-    puts "saving StudyJsonRecord and Studies now"
     save_all_study_data
 
     if @type == 'full'
@@ -43,18 +41,17 @@ class StudyJsonRecord < ActiveRecord::Base
       MeshHeading.populate_from_file
     end
     
+    if @type == 'incremental' && !@broken_batch.empty?
+      rerun_batches(@broken_batch)
+      ErrorLog.error("broken----- #{@broken_batch}")
+    end
+
     add_indexes_and_constraints
     CalculatedValue.populate
 
-    if @type == 'incremental' && !@broken_batch.empty?
-      puts "about to rerun #{@broken_batch}"
-      rerun_batches(@broken_batch)
-      puts "still broken----- #{@broken_batch}"
-    end
-
     puts comparison
     set_table_schema('ctgov')
-    puts "finshed in #{time_ago_in_words(start_time)} and failed to build #{@study_build_failures.uniq}"
+    SaveTime.info("finshed in #{time_ago_in_words(start_time)} and failed to build #{@study_build_failures.uniq}")
   end
 
   def self.root_dir
@@ -158,7 +155,6 @@ class StudyJsonRecord < ActiveRecord::Base
     @broken_batch = {}
     set_table_schema('ctgov_beta')
     url_hash.each do |url, min_max|
-      puts "running #{url}"
       fetch_studies(min_max[:min], min_max[:max])
     end
   end
@@ -202,15 +198,6 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def self.check_batch
-    study_json_records = StudyJsonRecord.all
-    study_json_records.find_in_batches do |batch|
-      puts "batch start"
-      puts batch.count
-      puts "batch end"
-    end
-  end
-
   def self.x_save_study_records(study_batch)
     return unless study_batch
 
@@ -238,10 +225,8 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.clear_out_data_for(nct_ids)
     return if nct_ids.nil? || nct_ids.empty?
 
-    # db_mgr.remove_indexes_and_constraints  # Index significantly slow the load process.
     db_mgr.clear_out_data_for(nct_ids)
     delete_json_records(nct_ids)
-    # db_mgr.add_indexes_and_constraints
   end
 
   def self.remove_indexes_and_constraints
@@ -562,7 +547,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def is_masked?(who_masked_array, query_array)
-     # example who_masked array ["Participant", "Care Provider", "Investigator", "Outcomes Assessor"]
+    # example who_masked array ["Participant", "Care Provider", "Investigator", "Outcomes Assessor"]
     return unless query_array
 
     query_array.each do |term|
@@ -1529,10 +1514,8 @@ class StudyJsonRecord < ActiveRecord::Base
       
       # saving drop_withdrawals
       save_with_result_group(data[:drop_withdrawals], 'DropWithdrawal') if data[:drop_withdrawals]
-    
 
       update(saved_study_at: Time.now)
-      puts "~~~~~~~~~~~~#{nct_id} done"
     rescue => error
       ErrorLog.error(error)
       @study_build_failures ||= []
@@ -1616,54 +1599,6 @@ class StudyJsonRecord < ActiveRecord::Base
     end
 
     count_array.push({inconsistencies: dif})
-  end
-
-  def self.new_check
-
-    # data issues
-    # result_groups
-    # design_outcome
-    # reported_events
-    # drop_withdrawals
-    set_table_schema('ctgov_beta')
-    nct = %w[
-      NCT04316403
-    ]
-    x_nct = %w[
-      NCT04292080
-      NCT04050527
-      NCT00530010
-      NCT04144088
-      NCT04053270
-      NCT03897712
-      NCT03845673
-      NCT04245423
-      NCT03519243
-      NCT03034044
-      NCT03496987
-      NCT04204200
-      NCT04182217
-      NCT04167644
-      NCT04214080
-      NCT02982187
-      NCT04027218
-      NCT03811093
-      NCT04109703
-      NCT03763058
-      NCT00489281
-      NCT04076787
-      NCT00725621
-      NCT02222493
-      NCT04014062
-    ]
-    
-    
-    StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.interventions_data }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.study_data }
-    # StudyJsonRecord.where(nct_id: nct).each{ |i| puts i.data_collection }
-    # StudyJsonRecord.all.order(:id).each{ |i| puts i.data_collection }
-    # record = StudyJsonRecord.find_by(nct_id: 'NCT04072432')
-    []
   end
 
   def save_result_groups(groups)
