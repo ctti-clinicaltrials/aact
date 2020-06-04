@@ -1704,29 +1704,39 @@ class StudyJsonRecord < ActiveRecord::Base
     hash_array
   end
 
-  def self.verfy
-  end
+  def self.data_verification
+    dif = Hash.new { |h, k| h[k] = [] }
+    beta_counts = count_collection('ctgov_beta')
+    reg_counts = count_collection('ctgov')
 
-  def comparison
-    count_array = []
-    dif = []
-    StudyJsonRecord.set_table_schema('ctgov_beta')
-    beta_counts = object_counts
-    StudyJsonRecord.set_table_schema('ctgov')
-    reg_counts = object_counts
+    beta_counts.each do |nct_id_key, beta_obj_counts|
+      reg_obj_counts = reg_counts[nct_id_key]
 
-    beta_counts.each do |model_name, object_count|
-      count_hash = { beta: object_count, reg: reg_counts[:"#{model_name}"]}
-      dif.push({ "#{model_name}": count_hash }) if object_count != reg_counts[:"#{model_name}"]
-      count_array.push({ "#{model_name}": count_hash })
+      unless reg_obj_counts == beta_obj_counts
+        beta_obj_counts.each do |model_name, obj_count|
+            other_count = reg_obj_counts[model_name]
+            if other_count != obj_count
+              dif["#{nct_id_key}"] << {"#{model_name}": {beta: obj_count, reg: other_count} }
+            end
+        end
+      end
     end
-
-    count_array.push({inconsistencies: dif})
+    dif
   end
 
-  def object_counts(study)
+  def self.count_collection(schema_name='ctgov_beta')
+    StudyJsonRecord.set_table_schema(schema_name)
+    studies = Study.all
+    collection = {}
+    studies.each do |study|
+      collection[study.nct_id] = data_counts(study)
+    end
+    collection
+  end
+
+  def self.data_counts(study)
     {
-      nct_id: nct_id,
+      nct_id: study.nct_id,
       intervention: study.interventions.count,
       intervention_other_name: study.intervention_other_names.count,
       design_group: study.design_groups.count,
