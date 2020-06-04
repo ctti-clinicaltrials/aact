@@ -1703,4 +1703,76 @@ class StudyJsonRecord < ActiveRecord::Base
     hash_array.each{ |h| h[key] = value }
     hash_array
   end
+
+  def self.verfy
+  end
+
+  def comparison
+    count_array = []
+    dif = []
+    StudyJsonRecord.set_table_schema('ctgov_beta')
+    beta_counts = object_counts
+    StudyJsonRecord.set_table_schema('ctgov')
+    reg_counts = object_counts
+
+    beta_counts.each do |model_name, object_count|
+      count_hash = { beta: object_count, reg: reg_counts[:"#{model_name}"]}
+      dif.push({ "#{model_name}": count_hash }) if object_count != reg_counts[:"#{model_name}"]
+      count_array.push({ "#{model_name}": count_hash })
+    end
+
+    count_array.push({inconsistencies: dif})
+  end
+
+  def object_counts(study)
+    {
+      nct_id: nct_id,
+      intervention: study.interventions.count,
+      intervention_other_name: study.intervention_other_names.count,
+      design_group: study.design_groups.count,
+      design_group_intervention: study.design_group_interventions.count,
+      detailed_description: !study.detailed_description.nil?,
+      brief_summary: !study.brief_summary.nil?,
+      design: !study.design.nil?,
+      eligibility: !study.eligibility.nil?,
+      participant_flow: !study.participant_flow.nil?,
+      result_groups: study.result_groups.count,
+      baseline_count: study.baseline_counts.count,
+      baseline_measurement: study.baseline_measurements.count,
+      browse_condition: study.browse_conditions.count,
+      browse_intervention: study.browse_interventions.count,
+      central_contact: study.central_contacts.count,
+      condition: study.conditions.count,
+      country: study.countries.count,
+      document: study.documents.count,
+      facility: study.facilities.count,
+      facility_contact: study.facility_contacts.count,
+      facility_investigator: study.facility_investigators.count,
+      id_information: study.id_information.count,
+      ipd_information_type: study.ipd_information_types.count,
+      keyword: study.keywords.count,
+      link: study.links.count,
+      milestone: study.milestones.count,
+      outcome: study.outcomes.count,
+      outcome_count: study.outcome_counts.count,
+      outcome_measurement: study.outcome_measurements.count,
+      outcome_analysis: study.outcome_analyses.count,
+      outcome_analysis_group: study.outcome_analysis_groups.count,
+      overall_official: study.overall_officials.count,
+      design_outcome: study.design_outcomes.count,
+      pending_result: study.pending_results.count,
+      provided_document: study.provided_documents.count,
+      reported_event: study.reported_events.count,
+      responsible_party: study.responsible_parties.count,
+      result_agreement: study.result_agreements.count,
+      result_contact: study.result_contacts.count,
+      study_reference: study.study_references.count,
+      sponsor: study.sponsors.count,
+      drop_withdrawal: study.drop_withdrawals.count,
+      # mesh_term: MeshTerm.count,
+      # mesh_heading: MeshHeading.count,
+      calculated_value: !study.calculated_value.nil?,
+      categories: study.categories.count,
+    }
+  end
 end

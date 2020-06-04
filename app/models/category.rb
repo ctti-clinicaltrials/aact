@@ -2,6 +2,7 @@ require 'rss'
 require 'uri'
 require 'axlsx'
 class Category < ActiveRecord::Base
+  belongs_to :study, foreign_key: 'nct_id'
 
   def self.fetch_study_ids
     @days_back ||= 1000
