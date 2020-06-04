@@ -1571,6 +1571,7 @@ class StudyJsonRecord < ActiveRecord::Base
       mesh_term: MeshTerm.count,
       mesh_heading: MeshHeading.count,
       calculated_value: CalculatedValue.count,
+      categories: Category.count,
     }
   end
 
