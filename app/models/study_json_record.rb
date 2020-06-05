@@ -50,6 +50,7 @@ class StudyJsonRecord < ActiveRecord::Base
     CalculatedValue.populate
 
     puts comparison
+    # puts data_count_verification
     set_table_schema('ctgov')
     SaveTime.info("finshed in #{time_ago_in_words(start_time)} and failed to build #{@study_build_failures.uniq}")
   end
@@ -1578,10 +1579,10 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.set_table_schema(schema = 'ctgov')
     return unless schema == 'ctgov' || schema == 'ctgov_beta'   
     
-    table_names = Util::DbManager.new.loadable_tables
-    table_names.each do |name|
-      model_name = name.singularize.camelize.safe_constantize
-      model_name.table_name = schema + ".#{name}" if model_name
+    name_of_tables = Util::DbManager.new.loadable_tables
+    name_of_tables.each do |name|
+      name_of_model = name.singularize.camelize.safe_constantize
+      name_of_model.table_name = schema + ".#{name}" if name_of_model
     end
   end
 
@@ -1593,10 +1594,10 @@ class StudyJsonRecord < ActiveRecord::Base
     set_table_schema('ctgov')
     reg_counts = object_counts
 
-    beta_counts.each do |model_name, object_count|
-      count_hash = { beta: object_count, reg: reg_counts[:"#{model_name}"]}
-      dif.push({ "#{model_name}": count_hash }) if object_count != reg_counts[:"#{model_name}"]
-      count_array.push({ "#{model_name}": count_hash })
+    beta_counts.each do |name_of_model, object_count|
+      count_hash = { beta: object_count, reg: reg_counts[:"#{name_of_model}"]}
+      dif.push({ "#{name_of_model}": count_hash }) if object_count != reg_counts[:"#{name_of_model}"]
+      count_array.push({ "#{name_of_model}": count_hash })
     end
 
     count_array.push({inconsistencies: dif})
@@ -1651,12 +1652,11 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def save_with_result_group(group, model_name='BaselineMeasurement')
+  def save_with_result_group(group, name_of_model='BaselineMeasurement')
     return unless group
 
     group.each{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_beta_group_code]]}
-    # model_name.safe_constantize.create(group)
-    model_name.safe_constantize.import(group, validate: false)
+    name_of_model.safe_constantize.import(group, validate: false)
   end
 
   def save_facilities(facilities)
@@ -1704,7 +1704,17 @@ class StudyJsonRecord < ActiveRecord::Base
     hash_array
   end
 
-  def self.data_verification
+  def self.data_comparison(nct_id='NCT04419805', name_of_model)
+    StudyJsonRecord.set_table_schema('ctgov_beta')
+    beta_study = Study.find_by(nct_id: nct_id)
+    beta_objects = beta_study."#{name_of_model}"
+    StudyJsonRecord.set_table_schema('ctgov')
+    reg_study = Study.find_by(nct_id: nct_id)
+    reg_objects = beta_study."#{name_of_model}"
+    
+  end
+
+  def self.data_count_verification
     dif = Hash.new { |h, k| h[k] = [] }
     beta_counts = count_collection('ctgov_beta')
     reg_counts = count_collection('ctgov')
@@ -1713,10 +1723,10 @@ class StudyJsonRecord < ActiveRecord::Base
       reg_obj_counts = reg_counts[nct_id_key]
 
       unless reg_obj_counts == beta_obj_counts
-        beta_obj_counts.each do |model_name, obj_count|
-            other_count = reg_obj_counts[model_name]
+        beta_obj_counts.each do |name_of_model, obj_count|
+            other_count = reg_obj_counts[name_of_model]
             if other_count != obj_count
-              dif["#{nct_id_key}"] << {"#{model_name}": {beta: obj_count, reg: other_count} }
+              dif["#{nct_id_key}"] << {"#{name_of_model}": {beta: obj_count, reg: other_count} }
             end
         end
       end
