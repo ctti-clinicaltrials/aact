@@ -1704,15 +1704,15 @@ class StudyJsonRecord < ActiveRecord::Base
     hash_array
   end
 
-  def self.data_comparison(nct_id='NCT04419805', name_of_model)
-    StudyJsonRecord.set_table_schema('ctgov_beta')
-    beta_study = Study.find_by(nct_id: nct_id)
-    beta_objects = beta_study."#{name_of_model}"
-    StudyJsonRecord.set_table_schema('ctgov')
-    reg_study = Study.find_by(nct_id: nct_id)
-    reg_objects = beta_study."#{name_of_model}"
-    
-  end
+  # def self.data_comparison(nct_id='NCT04419805', name_of_model)
+  #   StudyJsonRecord.set_table_schema('ctgov_beta')
+  #   beta_study = Study.find_by(nct_id: nct_id)
+  #   beta_objects = beta_study."#{name_of_model}"
+  #   StudyJsonRecord.set_table_schema('ctgov')
+  #   reg_study = Study.find_by(nct_id: nct_id)
+  #   reg_objects = beta_study."#{name_of_model}"
+
+  # end
 
   def self.data_count_verification
     dif = Hash.new { |h, k| h[k] = [] }
@@ -1793,6 +1793,88 @@ class StudyJsonRecord < ActiveRecord::Base
       # mesh_heading: MeshHeading.count,
       calculated_value: !study.calculated_value.nil?,
       categories: study.categories.count,
+    }
+  end
+
+  def self.data_verification
+    dif = Hash.new { |h, k| h[k] = [] }
+    beta_counts = all_data_collection('ctgov_beta')
+    reg_counts = all_data_collection('ctgov')
+
+    beta_counts.each do |nct_id_key, beta_obj_counts|
+      reg_obj_counts = reg_counts[nct_id_key]
+
+      unless reg_obj_counts == beta_obj_counts
+        beta_obj_counts.each do |name_of_model, obj_count|
+            other_count = reg_obj_counts[name_of_model]
+            if other_count != obj_count
+              dif["#{nct_id_key}"] << {"#{name_of_model}": {beta: obj_count, reg: other_count} }
+            end
+        end
+      end
+    end
+    dif
+  end
+
+  def self.all_data_collection(schema_name='ctgov_beta')
+    StudyJsonRecord.set_table_schema(schema_name)
+    studies = Study.all
+    collection = {}
+    studies.each do |study|
+      collection[study.nct_id] = data_hash(study)
+    end
+    collection
+  end
+
+  def self.data_hash(study)
+    {
+      nct_id: study.nct_id,
+      intervention: study.interventions,
+      intervention_other_name: study.intervention_other_names,
+      design_group: study.design_groups,
+      design_group_intervention: study.design_group_interventions,
+      detailed_description: study.detailed_description,
+      brief_summary: study.brief_summary,
+      design: study.design,
+      eligibility: study.eligibility,
+      participant_flow: study.participant_flow,
+      result_groups: study.result_groups,
+      baseline_count: study.baseline_counts,
+      baseline_measurement: study.baseline_measurements,
+      browse_condition: study.browse_conditions,
+      browse_intervention: study.browse_interventions,
+      central_contact: study.central_contacts,
+      condition: study.conditions,
+      country: study.countries,
+      document: study.documents,
+      facility: study.facilities,
+      facility_contact: study.facility_contacts,
+      facility_investigator: study.facility_investigators,
+      id_information: study.id_information,
+      ipd_information_type: study.ipd_information_types,
+      keyword: study.keywords,
+      link: study.links,
+      milestone: study.milestones,
+      outcome: study.outcomes,
+      outcome_count: study.outcome_counts,
+      outcome_measurement: study.outcome_measurements,
+      outcome_analysis: study.outcome_analyses,
+      outcome_analysis_group: study.outcome_analysis_groups,
+      overall_official: study.overall_officials,
+      design_outcome: study.design_outcomes,
+      pending_result: study.pending_results,
+      provided_document: study.provided_documents,
+      reported_event: study.reported_events,
+      responsible_party: study.responsible_parties,
+      result_agreement: study.result_agreements,
+      result_contact: study.result_contacts,
+      study_reference: study.study_references,
+      sponsor: study.sponsors,
+      drop_withdrawal: study.drop_withdrawals,
+      # mesh_term: MeshTerm.count,
+      # mesh_heading: MeshHeading.count,
+      calculated_value: study.calculated_value,
+      categories: study.categories,
     }
   end
 end
