@@ -15,7 +15,7 @@ describe Util::Updater do
 
     stub_request(:get, "https://clinicaltrials.gov/show/invalid-nct-id?resultsxml=true").
       with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v0.12.2'}).
-      to_return(:status => 200, :body => File.read("spec/support/xml_data/invalid-nct-id.html"), :headers => {})
+      to_return(:status => 200, :body => File.read("spec/support/xml_data/Invalid-nct-id.html"), :headers => {})
 
     stub_request(:get, "https://clinicaltrials.gov/show/timeout?resultsxml=true").and_raise(Net::OpenTimeout)
 
