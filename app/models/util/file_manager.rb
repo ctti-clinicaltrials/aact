@@ -172,7 +172,7 @@ module Util
       return day == '01'
     end
 
-    def save_static_copy
+    def save_static_copy(schema_name='ctgov')
       nlm_protocol_file         = make_file_from_website("nlm_protocol_definitions.html", nlm_protocol_data_url)
       nlm_results_file          = make_file_from_website("nlm_results_definitions.html", nlm_results_data_url)
 
@@ -185,7 +185,8 @@ module Util
       files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
       files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
 
-      zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
+      zip_file_name="#{static_copies_directory}/"
+      zip_file_name= schema_name == 'ctgov_beta' ? "#{date_stamp}_clinical_trials.zip" : "#{date_stamp}_clinical_trials_beta.zip"
       File.delete(zip_file_name) if File.exist?(zip_file_name)
         Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
           files_to_zip.each { |entry|

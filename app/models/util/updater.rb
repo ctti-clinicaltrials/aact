@@ -219,8 +219,11 @@ module Util
     def take_snapshot
       log("creating downloadable versions of the database...")
       begin
+        byebug
         db_mgr.dump_database
+        db_mgr.dump_database('ctgov_beta')
         Util::FileManager.new.save_static_copy
+        Util::FileManager.new.save_static_copy('ctgov_beta')
       rescue => error
         load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
       end
