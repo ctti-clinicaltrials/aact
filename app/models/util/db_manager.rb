@@ -419,6 +419,22 @@ module Util
       run_command_line(cmd)
     end
 
+    def beta_schema(schema_name)
+      # this is an ad hoc method that I sometimes use at the command line
+      file_name="#{fm.pg_dump_file}_#{schema_name}"
+      File.delete(file_name) if File.exist?(file_name)
+
+      cmd="pg_dump aact -v -h localhost -p 5432 -U #{super_username} --clean --no-owner --no-acl --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
+      run_command_line(cmd)
+    end
+
+    def beta_dump_database
+      File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
+      cmd="pg_dump #{background_db_name} -v -h localhost -p 5432 -U #{super_username} --clean --no-owner --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema ctgov_beta -b -c -C -Fc -f #{fm.pg_dump_file}_ctgov_beta"
+      run_command_line(cmd)
+      # copy_dump_file_to_public_server
+    end
+
     def public_host_name
       AACT::Application::AACT_PUBLIC_HOSTNAME
     end
