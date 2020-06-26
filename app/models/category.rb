@@ -6,22 +6,7 @@ class Category < ActiveRecord::Base
   def self.fetch_study_ids
     @days_back ||= 1000
     @condition ||= 'covid-19'
-
-    begin
-      retries ||= 0
-      puts "try ##{ retries }"
-      url = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=&lup_d=#{@days_back}&sel_rss=mod14&cond=#{@condition}&count=10000"
-      feed = RSS::Parser.parse(url, false)
-      feed.items.map(&:guid).map(&:content)
-    rescue Exception => e
-      if (retries += 1) < 6
-        puts "Failed: #{url}.  trying again..."
-        puts "Error: #{e}"
-        retry
-      else #give up & return empty array
-        []
-      end
-    end
+    Util::RssReader.new(days_back: @days_back, condition: @condition).get_changed_nct_ids
   end
 
   def self.load_update(params={})
@@ -32,7 +17,7 @@ class Category < ActiveRecord::Base
     
     covid_nct_ids.each do |covid_nct_id|
       begin
-        category = Category.find_by(nct_id: covid_nct_id, name: @condition)
+        category = Category.find_by(nct_id: covid_nct_id, name: [@condition, @condition.underscore])
         category ||= Category.new(nct_id: covid_nct_id)
         category.name = @condition
         category.last_modified = Time.zone.now
@@ -43,7 +28,7 @@ class Category < ActiveRecord::Base
         next
       end
     end
-    save_excel(@condition)
+    save_tsv(@condition)
   end
 
   def self.study_values(study)
@@ -122,7 +107,7 @@ class Category < ActiveRecord::Base
       "https://ClinicalTrials.gov/show/#{study_nct_id}", #url
       study.overall_status, #status
       study.why_stopped, #why_stopped
-      hqc_query(study) ? 'Yes' : 'No', #hqc
+      hcq_query(study) ? 'Yes' : 'No', #hcq
       study.has_dmc ? 'Yes' : 'No', #has_dmc
       sponsors.pluck(:agency_class).uniq.join('|'), #funded_bys
       sponsors.pluck(:name).join('|'), #sponsor_collaborators
@@ -211,7 +196,7 @@ class Category < ActiveRecord::Base
       keywords
       interventions
       intervention_details
-      arm_datails
+      arm_details
       arm_intervention_details
       outcome_measures
       start_date
@@ -260,10 +245,30 @@ class Category < ActiveRecord::Base
     ]
   end
 
-  def self.save_excel(condition = 'covid-19')
-    nct_ids = Category.where(name: condition).pluck(:nct_id)
+  def self.save_tsv(condition = 'covid-19')
+    headers = excel_column_names
+    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
     studies = Study.where(nct_id: nct_ids)
-    current_datetime = Time.zone.now.strftime('%Y%m%d')
+    current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
+    name="#{current_datetime}_#{condition}"
+    file = "./public/static/exported_files/#{condition}/#{name}.tsv"
+
+    CSV.open(file, 'w', write_headers: true, headers: headers, col_sep: "\t") do |row|
+      studies.each do |study|
+        content = study_values(study)
+        content = content.map do |item|
+         item ||= ''
+         item.to_s.squish
+        end
+        row << content
+      end
+    end
+  end
+
+  def self.save_xlsx(condition = 'covid-19')
+    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
+    studies = Study.where(nct_id: nct_ids)
+    current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
     name="#{current_datetime}_#{condition}"
     Axlsx::Package.new do |p|
       p.workbook.add_worksheet(:name => name) do |sheet|
@@ -271,8 +276,11 @@ class Category < ActiveRecord::Base
         cols = excel_column_names.length
         sheet.add_row excel_column_names, widths: [5] * cols 
         studies.each do |study|
+          widths = [8.43] * cols
+          styles = [wrap] * cols
+          types = [:string] * cols
           begin
-            sheet.add_row study_values(study), :types => [:string], widths: [8.43] * cols, height: 15, styles: [wrap] * cols
+            sheet.add_row study_values(study), types: types, widths: widths, height: 15, styles: styles
           rescue Exception => e
             puts "Failed: #{study.nct_id}"
             puts "Error: #{e}"
@@ -284,7 +292,7 @@ class Category < ActiveRecord::Base
     end
   end
 
-  def self.hqc_query(study)
+  def self.hcq_query(study)
     terms = %w[ hydroxychloroquine plaquenil hidroxicloroquina quineprox ]
     official_title = study.official_title =~ /#{terms.join('|')}/i
     return true if official_title
