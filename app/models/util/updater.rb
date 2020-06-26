@@ -219,7 +219,6 @@ module Util
     def take_snapshot
       log("creating downloadable versions of the database...")
       begin
-        byebug
         db_mgr.dump_database
         db_mgr.dump_database('ctgov_beta')
         Util::FileManager.new.save_static_copy
