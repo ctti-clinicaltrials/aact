@@ -58,7 +58,7 @@ module Util
     end
 
     def export_table_to_csv(file, file_name, path, delimiter)
-      # byebug
+      @schema_name ||= 'ctgov'
       table = File.basename(file_name, delimiter == ',' ? '.csv' : '.txt')
       table = "#{@schema_name}.#{table}"
       @connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
