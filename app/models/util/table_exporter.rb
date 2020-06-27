@@ -13,9 +13,6 @@ module Util
       create_temp_dir_if_none_exists!
     end
 
-    # def zipfile_name(schema_name='ctgov')
-
-
     def run(delimiter: '|', should_archive: true)
       load_event = Support::LoadEvent.create({:event_type=>'table_export',:status=>'running',:description=>'',:problems=>''})
       File.delete(@zipfile_name) if File.exist?(@zipfile_name)
