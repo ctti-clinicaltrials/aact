@@ -2,13 +2,19 @@ module Util
   class TableExporter
     attr_reader :zipfile_name, :table_names
 
-    def initialize(tables=[])
+    def initialize(tables=[], schema_name='ctgov')
+      @schema_name = schema_name
+      StudyJsonRecord.set_table_schema(@schema_name)
       @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
-      @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export.zip"
+      @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export"
+      @zipfile_name += @schema_name == 'ctgov_beta' ? '_beta.zip' : '.zip'
       @connection   = ActiveRecord::Base.connection.raw_connection
       @table_names  = tables
       create_temp_dir_if_none_exists!
     end
+
+    # def zipfile_name(schema_name='ctgov')
+
 
     def run(delimiter: '|', should_archive: true)
       load_event = Support::LoadEvent.create({:event_type=>'table_export',:status=>'running',:description=>'',:problems=>''})
@@ -52,7 +58,9 @@ module Util
     end
 
     def export_table_to_csv(file, file_name, path, delimiter)
+      # byebug
       table = File.basename(file_name, delimiter == ',' ? '.csv' : '.txt')
+      table = "#{@schema_name}.#{table}"
       @connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
         while row = @connection.get_copy_data
           # convert all \n to ~.  Then when you write to the file, convert last ~ back to \n
@@ -77,13 +85,15 @@ module Util
     end
 
     def archive(delimiter)
+      @schema_name ||= 'ctgov'
       file_type = if delimiter == ','
                        "csv-export"
                      elsif delimiter == '|'
                        "pipe-delimited-export"
                      end
 
-      archive_file_name="#{Util::FileManager.new.flat_files_directory}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}.zip"
+      archive_file_name="#{Util::FileManager.new.flat_files_directory}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}"
+      archive_file_name += @schema_name == 'ctgov_beta' ? '_beta.zip' : '.zip'
       FileUtils.mv(@zipfile_name, archive_file_name)
     end
   end

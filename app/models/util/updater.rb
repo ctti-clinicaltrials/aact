@@ -111,6 +111,7 @@ module Util
       db_mgr.grant_db_privs
       load_event.complete({:study_counts=>study_counts})
       create_flat_files
+      create_flat_files('ctgov_beta')
       Admin::PublicAnnouncement.clear_load_message
     end
 
@@ -235,9 +236,9 @@ module Util
       end
     end
 
-    def create_flat_files
+    def create_flat_files(schema_name='ctgov')
       log("exporting tables as flat files...")
-      Util::TableExporter.new.run(delimiter: '|', should_archive: true)
+      Util::TableExporter.new([],schema_name).run(delimiter: '|', should_archive: true)
     end
 
     def truncate_tables
