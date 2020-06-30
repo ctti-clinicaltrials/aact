@@ -53,6 +53,10 @@ module Util
       "#{root_dir}/tmp/postgres.dmp"
     end
 
+    def beta_pg_dump_file
+      "#{root_dir}/tmp/beta_postgres.dmp"
+    end
+
     def dump_directory
       "#{root_dir}/tmp"
     end
@@ -172,20 +176,22 @@ module Util
       return day == '01'
     end
 
-    def save_static_copy
+    def save_static_copy(schema_name='ctgov')
       nlm_protocol_file         = make_file_from_website("nlm_protocol_definitions.html", nlm_protocol_data_url)
       nlm_results_file          = make_file_from_website("nlm_results_definitions.html", nlm_results_data_url)
 
       date_stamp=Time.zone.now.strftime('%Y%m%d')
+      file_name = pick_dump_file_name(schema_name)
       files_to_zip = {}
       files_to_zip['schema_diagram.png']            = File.open(schema_diagram)       if File.exists?(schema_diagram)
       files_to_zip['admin_schema_diagram.png']      = File.open(admin_schema_diagram) if File.exists?(admin_schema_diagram)
       files_to_zip['data_dictionary.xlsx']          = File.open(data_dictionary)      if File.exists?(data_dictionary)
-      files_to_zip['postgres_data.dmp']             = File.open(pg_dump_file)         if File.exists?(pg_dump_file)
+      files_to_zip['postgres_data.dmp']             = File.open(file_name)         if File.exists?(file_name)
       files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
       files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
 
-      zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
+      zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials"
+      zip_file_name += schema_name == 'ctgov_beta' ? "_beta.zip" : ".zip"
       File.delete(zip_file_name) if File.exist?(zip_file_name)
         Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
           files_to_zip.each { |entry|
@@ -193,6 +199,12 @@ module Util
         }
       }
       zip_file_name
+    end
+
+    def pick_dump_file_name(schema_name='ctgov')
+      return beta_pg_dump_file if schema_name == 'ctgov_beta'
+  
+      pg_dump_file
     end
 
   end
