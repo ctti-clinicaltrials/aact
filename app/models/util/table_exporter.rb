@@ -82,7 +82,6 @@ module Util
     end
 
     def archive(delimiter)
-      # byebug
       @schema_name ||= 'ctgov'
       file_type = if delimiter == ','
                        "csv-export"
