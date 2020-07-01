@@ -82,6 +82,7 @@ module Util
     end
 
     def archive(delimiter)
+      # byebug
       @schema_name ||= 'ctgov'
       file_type = if delimiter == ','
                        "csv-export"
@@ -89,8 +90,11 @@ module Util
                        "pipe-delimited-export"
                      end
 
-      archive_file_name="#{Util::FileManager.new.flat_files_directory}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}"
-      archive_file_name += @schema_name == 'ctgov_beta' ? '_beta.zip' : '.zip'
+      if @schema_name == 'ctgov_beta'
+        archive_file_name="#{Util::FileManager.new.beta_flat_files_directory}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}_beta.zip"
+      else
+        archive_file_name="#{Util::FileManager.new.flat_files_directory}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}.zip"
+      end
       FileUtils.mv(@zipfile_name, archive_file_name)
     end
   end
