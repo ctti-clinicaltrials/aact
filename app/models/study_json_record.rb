@@ -1796,6 +1796,35 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
+  def self.fix_inconsistency(nct_id='NCT04452825')
+    # dif = Hash.new { |h, k| h[k] = [] }
+    inconsistencies = {}
+    everything = {}
+    reg_hash = self.data_hash('ctgov', nct_id)
+    byebug
+    beta_hash = self.data_hash('ctgov_beta', nct_id)
+    
+    # count = 0
+    # puts "beta facilities #{beta_hash[:facility].inspect}, regular facilities #{reg_hash[:facility].inspect}"
+    # beta_hash.each do |name, objects|
+    #   count += 1
+    #   # byebug
+    #   # everything[name] = {beta: objects, reg: reg_hash[name]}
+
+    #   puts "#{name}, number: #{count}"
+    #   if beta_hash[name] != reg_hash[name]
+    #     inconsistencies[name] = {beta: beta_hash[name], reg: reg_hash[name]}
+    #   end
+    # end
+    puts "done"
+    # puts reg_hash
+    # if beta_hash != reg_hash
+    #   dif["#{nct_id}"] << {"#{name_of_model}": {beta: obj_count, reg: other_count} }
+    # end
+    # everything
+    # inconsistencies
+  end
+
   def self.data_verification
     dif = Hash.new { |h, k| h[k] = [] }
     beta_counts = all_data_collection('ctgov_beta')
@@ -1821,14 +1850,16 @@ class StudyJsonRecord < ActiveRecord::Base
     studies = Study.all
     collection = {}
     studies.each do |study|
-      collection[study.nct_id] = data_hash(study)
+      collection[study.nct_id] = data_counts(study)
     end
     collection
   end
 
-  def self.data_hash(study)
+  def self.data_hash(schema_name='ctgov', nct_id)
+    set_table_schema(schema_name)
+    study = Study.find_by(nct_id: nct_id)
     {
-      nct_id: study.nct_id,
+      nct_id: nct_id,
       intervention: study.interventions,
       intervention_other_name: study.intervention_other_names,
       design_group: study.design_groups,
