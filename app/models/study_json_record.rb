@@ -739,20 +739,32 @@ class StudyJsonRecord < ActiveRecord::Base
   def countries_data
     return unless @derived_section
 
+    # ContactsLocationsModule
     removed_countries = @derived_section.dig('MiscInfoModule', 'RemovedCountryList', 'RemovedCountry') || []
     locations = @locations_array || []
     return if locations.empty? && removed_countries.empty?
     
+    countries = []
     collection = []
+
     locations.each do |location|
-      unless removed_countries.include?(location['LocationCountry'])
-        collection.push(nct_id: nct_id, name: location['LocationCountry'], removed: false)
-      end
+      countries << location['LocationCountry']
+      # unless removed_countries.include?(location['LocationCountry'])
+      #   collection.push(nct_id: nct_id, name: location['LocationCountry'], removed: false)
+      # end
     end
 
-    removed_countries.each do |country|
-      collection.push(nct_id: nct_id, name: country, removed: true)
+    removed_countries = removed_countries.uniq
+    countries = countries.uniq
+    
+    countries.each do |country|
+      collection << {nct_id: nct_id, name: country, removed: false}
     end
+    
+    removed_countries.each do |country|
+      collection << {nct_id: nct_id, name: country, removed: true}
+    end
+    
     collection
   end
 
@@ -781,7 +793,7 @@ class StudyJsonRecord < ActiveRecord::Base
     collection = []
     @locations_array.each do |location|
       location_contacts = location.dig('LocationContactList', 'LocationContact')
-      next unless location_contacts
+      location_contacts ||= []
 
       facility_contacts = []
       facility_investigators = []
@@ -1796,22 +1808,23 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
-  def self.fix_inconsistency(nct_id='NCT04452825')
+  def self.fix_inconsistency(nct_id='NCT04456686')
     # dif = Hash.new { |h, k| h[k] = [] }
     inconsistencies = {}
     everything = {}
     reg_hash = self.data_hash('ctgov', nct_id)
-    byebug
+    # reload
     beta_hash = self.data_hash('ctgov_beta', nct_id)
     
-    # count = 0
-    # puts "beta facilities #{beta_hash[:facility].inspect}, regular facilities #{reg_hash[:facility].inspect}"
+    count = 0
+    puts "beta facilities #{beta_hash[:facility].inspect}, regular facilities #{reg_hash[:facility].inspect}"
     # beta_hash.each do |name, objects|
     #   count += 1
     #   # byebug
     #   # everything[name] = {beta: objects, reg: reg_hash[name]}
 
-    #   puts "#{name}, number: #{count}"
+    #   puts "Beta: #{name}, number: #{beta_hash[name].count if beta_hash[name].kind_of?(Array)}"
+    #   puts "Reg: #{name}, number: #{reg_hash[name].count if reg_hash[name].kind_of?(Array)}"
     #   if beta_hash[name] != reg_hash[name]
     #     inconsistencies[name] = {beta: beta_hash[name], reg: reg_hash[name]}
     #   end
@@ -1822,7 +1835,7 @@ class StudyJsonRecord < ActiveRecord::Base
     #   dif["#{nct_id}"] << {"#{name_of_model}": {beta: obj_count, reg: other_count} }
     # end
     # everything
-    # inconsistencies
+    inconsistencies
   end
 
   def self.data_verification
