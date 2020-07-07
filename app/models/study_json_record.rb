@@ -423,7 +423,21 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
+  def self.design_test 
+    ints = Study.find_by(nct_id: 'NCT04029480').design_group_interventions
+    hash = []
+    hash1 = []
+    ints.each do |int|
+      hash1 << "intervention--#{int.intervention.inspect} || design_group--#{int.design_group.inspect} ||"
+    end
+
+
+    pp hash1
+  end
+
   def design_groups_data
+    @protocol_section = protocol_section
+    byebug
     return unless @protocol_section
 
     arms_groups = @protocol_section.dig('ArmsInterventionsModule', 'ArmGroupList', 'ArmGroup')
@@ -739,7 +753,6 @@ class StudyJsonRecord < ActiveRecord::Base
   def countries_data
     return unless @derived_section
 
-    # ContactsLocationsModule
     removed_countries = @derived_section.dig('MiscInfoModule', 'RemovedCountryList', 'RemovedCountry') || []
     locations = @locations_array || []
     return if locations.empty? && removed_countries.empty?
@@ -749,9 +762,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
     locations.each do |location|
       countries << location['LocationCountry']
-      # unless removed_countries.include?(location['LocationCountry'])
-      #   collection.push(nct_id: nct_id, name: location['LocationCountry'], removed: false)
-      # end
     end
 
     removed_countries = removed_countries.uniq
@@ -1808,7 +1818,7 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
-  def self.fix_inconsistency(nct_id='NCT04456686')
+  def self.fix_inconsistency(nct_id='NCT04029480')
     # dif = Hash.new { |h, k| h[k] = [] }
     inconsistencies = {}
     everything = {}
@@ -1817,7 +1827,7 @@ class StudyJsonRecord < ActiveRecord::Base
     beta_hash = self.data_hash('ctgov_beta', nct_id)
     
     count = 0
-    puts "beta facilities #{beta_hash[:facility].inspect}, regular facilities #{reg_hash[:facility].inspect}"
+    puts "beta facilities #{beta_hash[:design_group_intervention].inspect}, regular facilities #{reg_hash[:design_group_intervention].inspect}"
     # beta_hash.each do |name, objects|
     #   count += 1
     #   # byebug
