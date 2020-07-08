@@ -175,7 +175,7 @@ Open a new terminal
 
 Log back into psql and grant permissions:
 
-* `psql -d template1`
+* `psql -U <your_aact_pg_user> -d template1`
 * `GRANT USAGE ON SCHEMA ctgov TO read_only;`
 * `GRANT SELECT ON ctgov.studies TO read_only;`
 * `\q`
