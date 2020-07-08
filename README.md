@@ -27,12 +27,13 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 
 ###  ruby
 *  We recommend you use a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight. (`brew install chruby`)
-*  **ruby 2.4.5**  If using chruby, you can get it with the command: `ruby-install ruby 2.4.5`
+*  **ruby 2.6.2**  If using chruby, you can get it with the command: `ruby-install ruby 2.6.2`
 
 ### Environment variables
 
 Add the following to your shell profile (for example .bash_profile):
 
+```bash
 ## aact Rails.env != 'test'
 #export AACT_DB_SUPER_USERNAME=*<your_pg_superuser_name>*  (The postgres superuser account you created in previous step.)
 #export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
@@ -93,6 +94,7 @@ Add the following to your shell profile (for example .bash_profile):
 #export AACT_BACK_DATABASE_URL="postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"
 #export AACT_ADMIN_DATABASE_URL="postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
 #export AACT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_PUBLIC_DATABASE_NAME"
+```
 
 If you intend to populate a 'public' database on a different server from the one that performs the loads:
 * export AACT_PUBLIC_HOSTNAME=*domain name of server*   (Set this to the domain name of the server that will host the database available to users.)
