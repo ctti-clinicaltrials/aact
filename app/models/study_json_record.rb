@@ -438,7 +438,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.hashbrown(schema_name='ctgov')
     byebug
     set_table_schema(schema_name)
-    ints = Study.find_by(nct_id: 'NCT04029480').design_group_interventions
+    ints = Study.find_by(nct_id: 'NCT04456920').design_group_interventions
     hash = []
     ints.each do |int|
       int_att = int.intervention.attributes
@@ -450,13 +450,13 @@ class StudyJsonRecord < ActiveRecord::Base
                   "name" => int_att["name"],
                   "description" => int_att["description"]
                 },
-              # design_group: 
-              #   {
-              #     "nct_id" => des_grp_att["nct_id"],
-              #     "group_type" => des_grp_att["group_type"],
-              #     "title" => des_grp_att["title"],
-              #     "description" => des_grp_att["description"]
-              #   }
+              design_group: 
+                {
+                  "nct_id" => des_grp_att["nct_id"],
+                  "group_type" => des_grp_att["group_type"],
+                  "title" => des_grp_att["title"],
+                  "description" => des_grp_att["description"]
+                }
             }
     end
     hash
@@ -1880,7 +1880,7 @@ class StudyJsonRecord < ActiveRecord::Base
     reg_counts = all_data_collection('ctgov')
 
     beta_counts.each do |nct_id_key, beta_obj_counts|
-      reg_obj_counts = reg_counts[nct_id_key]
+      reg_obj_counts = reg_counts[nct_id_key] || {}
 
       unless reg_obj_counts == beta_obj_counts
         beta_obj_counts.each do |name_of_model, obj_count|
