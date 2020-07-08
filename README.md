@@ -173,6 +173,22 @@ Open a new terminal
 *  `bundle exec rake db:create RAILS_ENV=test`   (create the database)
 *  `bundle exec rake db:migrate RAILS_ENV=test`  (create tables, indexes, views, etc. in the database)
 
+Log back into psql and grant permissions:
+
+* `psql -d template1`
+* `GRANT USAGE ON SCHEMA ctgov TO read_only;`
+* `GRANT SELECT ON ctgov.studies TO read_only;`
+* `\q`
+
+Back in the command line:
+
+* `service postgresql stop`
+* `service postgresql start`
+
+Now run the test suite to make sure you're all set
+
+* `bundle exec rspec`
+
 ## Import studies from clinicaltrials.gov
 
 ### Full import
