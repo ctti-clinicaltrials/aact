@@ -424,20 +424,46 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.design_test 
+    hash = hashbrown
+    hash1 = hashbrown('ctgov_beta')
+
+    puts "Reg: #{hash.count}"
+    pp hash
+    puts "~~~"
+    puts "Beta: #{hash1.count}"
+    pp hash1
+    []
+  end
+
+  def self.hashbrown(schema_name='ctgov')
+    byebug
+    set_table_schema(schema_name)
     ints = Study.find_by(nct_id: 'NCT04029480').design_group_interventions
     hash = []
-    hash1 = []
     ints.each do |int|
-      hash1 << "intervention--#{int.intervention.inspect} || design_group--#{int.design_group.inspect} ||"
+      int_att = int.intervention.attributes
+      des_grp_att = int.design_group.attributes
+      hash << {intervention: 
+                {
+                  "nct_id" => int_att["nct_id"],
+                  "intervention_type" => int_att["intervention_type"],
+                  "name" => int_att["name"],
+                  "description" => int_att["description"]
+                },
+              # design_group: 
+              #   {
+              #     "nct_id" => des_grp_att["nct_id"],
+              #     "group_type" => des_grp_att["group_type"],
+              #     "title" => des_grp_att["title"],
+              #     "description" => des_grp_att["description"]
+              #   }
+            }
     end
-
-
-    pp hash1
+    hash
   end
 
   def design_groups_data
     @protocol_section = protocol_section
-    byebug
     return unless @protocol_section
 
     arms_groups = @protocol_section.dig('ArmsInterventionsModule', 'ArmGroupList', 'ArmGroup')
