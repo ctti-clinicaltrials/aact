@@ -423,45 +423,6 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
-  def self.design_test 
-    hash = hashbrown
-    hash1 = hashbrown('ctgov_beta')
-
-    puts "Reg: #{hash.count}"
-    pp hash
-    puts "~~~"
-    puts "Beta: #{hash1.count}"
-    pp hash1
-    []
-  end
-
-  def self.hashbrown(schema_name='ctgov')
-    byebug
-    set_table_schema(schema_name)
-    ints = Study.find_by(nct_id: 'NCT04456920').design_group_interventions
-    hash = []
-    ints.each do |int|
-      int_att = int.intervention.attributes
-      des_grp_att = int.design_group.attributes
-      hash << {intervention: 
-                {
-                  "nct_id" => int_att["nct_id"],
-                  "intervention_type" => int_att["intervention_type"],
-                  "name" => int_att["name"],
-                  "description" => int_att["description"]
-                },
-              design_group: 
-                {
-                  "nct_id" => des_grp_att["nct_id"],
-                  "group_type" => des_grp_att["group_type"],
-                  "title" => des_grp_att["title"],
-                  "description" => des_grp_att["description"]
-                }
-            }
-    end
-    hash
-  end
-
   def design_groups_data
     @protocol_section = protocol_section
     return unless @protocol_section
@@ -480,29 +441,6 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     collection
   end
-
-  # def design_group_interventions_data(arms_group)
-  #   return unless arms_group
-
-  #   intervention_names = arms_group.dig('ArmGroupInterventionList', 'ArmGroupInterventionName')
-  #   return unless intervention_names
-
-  #   collection = []
-  #   intervention_names.each do |name|
-  #     # I collect the info I need to do queries later so I can create the links table objects
-  #     divide = name.split(': ')
-  #     intervention_type = divide[0]
-  #     divide.shift if divide.count > 1
-  #     intervention_name = divide.join(': ')
-  #     collection.push(
-  #                     nct_id: nct_id,
-  #                     name: intervention_name,
-  #                     type: intervention_type,
-  #                     design_group: arms_group['ArmGroupLabel']
-  #                   )
-  #   end
-  #   collection
-  # end
 
   def interventions_data
     return unless @protocol_section
@@ -561,7 +499,7 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless @protocol_section
     
     info = @protocol_section.dig('DesignModule', 'DesignInfo')
-    return unless info
+    return {nct_id: nct_id} unless info
 
     masking = key_check(info['DesignMaskingInfo'])
     who_masked = masking.dig('DesignWhoMaskedList', 'DesignWhoMasked') || []
@@ -1268,6 +1206,39 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     collection
   end
+
+  def self.test_reported_events
+    {:reported_event=>{:beta=>455, :reg=>494}}
+    nct_id = 'NCT03627494'
+    array1 = StudyJsonRecord.compare_reported_events('ctgov')
+    reload!
+    StudyJsonRecord.set_table_schema('ctgov_beta')
+    array2 = StudyJsonRecord.compare_reported_events('ctgov_beta')
+    array1 - array2
+  end
+
+  def self.compare_reported_events(schema_name='ctgov')
+    collection = []
+    events = Study.find_by(nct_id: 'NCT03627494').reported_events
+     events.each do |event|
+      collection << {
+        time_frame: event.time_frame,
+        event_type: event.event_type,
+        default_vocab: event.default_vocab,
+        default_assessment: event.default_assessment,
+        subjects_affected: event.subjects_affected,
+        subjects_at_risk: event.subjects_at_risk,
+        description: event.description,
+        event_count: event.event_count,
+        organ_system: event.organ_system,
+        adverse_event_term: event.adverse_event_term,
+        frequency_threshold: event.frequency_threshold,
+        vocab: event.vocab,
+        assessment: event.assessment
+      }
+    end
+    collection
+  end
  
   def reported_events_data
     return unless @results_section
@@ -1787,11 +1758,11 @@ class StudyJsonRecord < ActiveRecord::Base
       intervention_other_name: study.intervention_other_names.count,
       design_group: study.design_groups.count,
       design_group_intervention: study.design_group_interventions.count,
-      detailed_description: !study.detailed_description.nil?,
-      brief_summary: !study.brief_summary.nil?,
-      design: !study.design.nil?,
-      eligibility: !study.eligibility.nil?,
-      participant_flow: !study.participant_flow.nil?,
+      detailed_description: study.detailed_description.nil? ? 0 : 1,
+      brief_summary: study.brief_summary.nil? ? 0 : 1,
+      design: study.design.nil? ? 0 : 1,
+      eligibility: study.eligibility.nil? ? 0 : 1,
+      participant_flow: study.participant_flow.nil? ? 0 : 1,
       result_groups: study.result_groups.count,
       baseline_count: study.baseline_counts.count,
       baseline_measurement: study.baseline_measurements.count,
@@ -1825,41 +1796,9 @@ class StudyJsonRecord < ActiveRecord::Base
       study_reference: study.study_references.count,
       sponsor: study.sponsors.count,
       drop_withdrawal: study.drop_withdrawals.count,
-      # mesh_term: MeshTerm.count,
-      # mesh_heading: MeshHeading.count,
       calculated_value: !study.calculated_value.nil?,
       categories: study.categories.count,
     }
-  end
-
-  def self.fix_inconsistency(nct_id='NCT04029480')
-    # dif = Hash.new { |h, k| h[k] = [] }
-    inconsistencies = {}
-    everything = {}
-    reg_hash = self.data_hash('ctgov', nct_id)
-    # reload
-    beta_hash = self.data_hash('ctgov_beta', nct_id)
-    
-    count = 0
-    puts "beta facilities #{beta_hash[:design_group_intervention].inspect}, regular facilities #{reg_hash[:design_group_intervention].inspect}"
-    # beta_hash.each do |name, objects|
-    #   count += 1
-    #   # byebug
-    #   # everything[name] = {beta: objects, reg: reg_hash[name]}
-
-    #   puts "Beta: #{name}, number: #{beta_hash[name].count if beta_hash[name].kind_of?(Array)}"
-    #   puts "Reg: #{name}, number: #{reg_hash[name].count if reg_hash[name].kind_of?(Array)}"
-    #   if beta_hash[name] != reg_hash[name]
-    #     inconsistencies[name] = {beta: beta_hash[name], reg: reg_hash[name]}
-    #   end
-    # end
-    puts "done"
-    # puts reg_hash
-    # if beta_hash != reg_hash
-    #   dif["#{nct_id}"] << {"#{name_of_model}": {beta: obj_count, reg: other_count} }
-    # end
-    # everything
-    inconsistencies
   end
 
   def self.data_verification
