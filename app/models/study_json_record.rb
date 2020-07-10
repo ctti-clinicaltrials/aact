@@ -223,11 +223,11 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def self.clear_out_data_for(nct_ids)
+  def self.clear_out_data_for(nct_ids, records_too=true)
     return if nct_ids.nil? || nct_ids.empty?
 
     db_mgr.clear_out_data_for(nct_ids)
-    delete_json_records(nct_ids)
+    delete_json_records(nct_ids) if records_too
   end
 
   def self.remove_indexes_and_constraints
@@ -472,40 +472,37 @@ class StudyJsonRecord < ActiveRecord::Base
     collection = []
     arms_groups.each do |group|
       collection.push( 
-                      design_group: {
-                                      nct_id: nct_id,
-                                      group_type: group['ArmGroupType'],
-                                      title: group['ArmGroupLabel'],
-                                      description: group['ArmGroupDescription']
-                                    },
-                      design_group_interventions: design_group_interventions_data(group)
+                      nct_id: nct_id,
+                      group_type: group['ArmGroupType'],
+                      title: group['ArmGroupLabel'],
+                      description: group['ArmGroupDescription']
                       )
     end
     collection
   end
 
-  def design_group_interventions_data(arms_group)
-    return unless arms_group
+  # def design_group_interventions_data(arms_group)
+  #   return unless arms_group
 
-    intervention_names = arms_group.dig('ArmGroupInterventionList', 'ArmGroupInterventionName')
-    return unless intervention_names
+  #   intervention_names = arms_group.dig('ArmGroupInterventionList', 'ArmGroupInterventionName')
+  #   return unless intervention_names
 
-    collection = []
-    intervention_names.each do |name|
-      # I collect the info I need to do queries later so I can create the links table objects
-      divide = name.split(': ')
-      intervention_type = divide[0]
-      divide.shift if divide.count > 1
-      intervention_name = divide.join(': ')
-      collection.push(
-                      nct_id: nct_id,
-                      name: intervention_name,
-                      type: intervention_type,
-                      design_group: arms_group['ArmGroupLabel']
-                    )
-    end
-    collection
-  end
+  #   collection = []
+  #   intervention_names.each do |name|
+  #     # I collect the info I need to do queries later so I can create the links table objects
+  #     divide = name.split(': ')
+  #     intervention_type = divide[0]
+  #     divide.shift if divide.count > 1
+  #     intervention_name = divide.join(': ')
+  #     collection.push(
+  #                     nct_id: nct_id,
+  #                     name: intervention_name,
+  #                     type: intervention_type,
+  #                     design_group: arms_group['ArmGroupLabel']
+  #                   )
+  #   end
+  #   collection
+  # end
 
   def interventions_data
     return unless @protocol_section
@@ -522,7 +519,8 @@ class StudyJsonRecord < ActiveRecord::Base
                                       name: intervention['InterventionName'],
                                       description: intervention['InterventionDescription']
                                     },
-                      intervention_other_names: intervention_other_names_data(intervention)
+                      intervention_other_names: intervention_other_names_data(intervention),
+                      design_groups: intervention.dig('InterventionArmGroupLabelList', 'InterventionArmGroupLabel')
                     )
     end
     collection
@@ -1515,8 +1513,8 @@ class StudyJsonRecord < ActiveRecord::Base
       @study_result_groups = saved_result_groups.index_by(&:ctgov_beta_group_code) if saved_result_groups
 
       # saving design_groups, and associated objects
-      save_interventions(data[:interventions])
       save_design_groups(data[:design_groups])
+      save_interventions(data[:interventions])
 
       DetailedDescription.create(data[:detailed_description]) if data[:detailed_description]
       BriefSummary.create(data[:brief_summary]) if data[:brief_summary]
@@ -1664,6 +1662,17 @@ class StudyJsonRecord < ActiveRecord::Base
       info = intervention_info[:intervention]
       intervention = Intervention.create(info)
       intervention_other_names = intervention_info[:intervention_other_names]
+      arm_groups = intervention_info[:design_groups] || []
+
+      arm_groups.each do |arm_name|
+        arm_group = DesignGroup.find_by(nct_id: nct_id, title: arm_name)
+
+        DesignGroupIntervention.create(
+          nct_id: nct_id,
+          design_group_id: arm_group.id,
+          intervention_id: intervention.id
+        )
+      end
       next unless intervention_other_names
 
       intervention_other_names.each do |name_info|
@@ -1676,28 +1685,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def save_design_groups(design_groups)
     return unless design_groups
 
-    design_groups.each do |group|
-      design_info = group[:design_group]
-      design_group = DesignGroup.create(design_info)
-
-      interventions = group[:design_group_interventions]
-      next unless interventions
-
-      interventions.each do |intervention_info|
-        intervention = Intervention.find_by(
-                                            nct_id: nct_id,
-                                            name: intervention_info[:name],
-                                            intervention_type: intervention_info[:type]
-                                            )
-        next unless intervention
-
-        DesignGroupIntervention.create(
-                                        nct_id: nct_id,
-                                        design_group_id: design_group.id,
-                                        intervention_id: intervention.id
-                                      )
-      end
-    end
+    design_group = DesignGroup.create(design_groups)
   end
 
   def save_with_result_group(group, name_of_model='BaselineMeasurement')
@@ -1956,5 +1944,14 @@ class StudyJsonRecord < ActiveRecord::Base
       calculated_value: study.calculated_value,
       categories: study.categories,
     }
+  end
+
+  def self.clean_up(nct_id= 'NCT04456920')
+    set_table_schema('ctgov_beta')
+    remove_indexes_and_constraints
+    clear_out_data_for([nct_id], false)
+    study_record = find_by(nct_id: nct_id)
+    study_record.build_study
+    add_indexes_and_constraints
   end
 end
