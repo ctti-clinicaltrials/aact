@@ -495,11 +495,11 @@ class StudyJsonRecord < ActiveRecord::Base
     { nct_id: nct_id, description: description }
   end
 
-  def designs_data 
+  def design_data 
     return unless @protocol_section
     
     info = @protocol_section.dig('DesignModule', 'DesignInfo')
-    return {nct_id: nct_id} unless info
+    return { nct_id: nct_id } unless info
 
     masking = key_check(info['DesignMaskingInfo'])
     who_masked = masking.dig('DesignWhoMaskedList', 'DesignWhoMasked') || []
@@ -537,7 +537,7 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless @protocol_section
 
     eligibility =  @protocol_section['EligibilityModule']
-    return unless eligibility
+    return { nct_id: nct_id } unless eligibility
 
     {
       nct_id: nct_id,
@@ -1437,7 +1437,7 @@ class StudyJsonRecord < ActiveRecord::Base
       interventions: interventions_data,
       detailed_description: detailed_description_data,
       brief_summary: brief_summary_data,
-      design: designs_data,
+      design: design_data,
       eligibility: eligibility_data,
       participant_flow: participant_flow_data,
       baseline_measurements: baseline_measurements_data,
