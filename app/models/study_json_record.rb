@@ -1011,6 +1011,12 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     collection
   end
+  # NCT03530917
+  # {:outcome_measurement=>{:beta=>239, :reg=>249}}
+  # "NCT03530917"=>
+  # [{:result_groups=>{:beta=>39, :reg=>99}},
+  #  {:outcome_measurement=>{:beta=>239, :reg=>249}},
+  #  {:reported_event=>{:beta=>448, :reg=>472}}]
 
   def outcome_measurements_data(outcome_measure)
     return unless outcome_measure
