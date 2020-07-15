@@ -1011,12 +1011,38 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     collection
   end
-  # NCT03530917
-  # {:outcome_measurement=>{:beta=>239, :reg=>249}}
-  # "NCT03530917"=>
-  # [{:result_groups=>{:beta=>39, :reg=>99}},
-  #  {:outcome_measurement=>{:beta=>239, :reg=>249}},
-  #  {:reported_event=>{:beta=>448, :reg=>472}}]
+  
+  def self.comparison_hash(schema_name='ctgov')
+    #comebackhome
+    set_table_schema(schema_name)
+    outcome_measurements = Study.find_by(nct_id: 'NCT03530917').outcome_measurements
+    collection = []
+    outcome_measurements.each do |outcome_measure|
+      collection <<    {
+                          nct_id: outcome_measure.nct_id || '',
+                          classification: outcome_measure.classification || '',
+                          category: outcome_measure.category || '',
+                          title: outcome_measure.title || '',
+                          description: outcome_measure.description || '',
+                          units: outcome_measure.units || '',
+                          param_type: outcome_measure.param_type || '',
+                          param_value: outcome_measure.param_value || '',
+                          param_value_num: outcome_measure.param_value_num || '',
+                          dispersion_type: outcome_measure.dispersion_type || '',
+                          dispersion_value: outcome_measure.dispersion_value || '',
+                          dispersion_value_num: outcome_measure.dispersion_value_num || '',
+                          dispersion_lower_limit: outcome_measure.dispersion_lower_limit || '',
+                          dispersion_upper_limit: outcome_measure.dispersion_upper_limit || '',
+                          explanation_of_na: outcome_measure.explanation_of_na || ''
+                        }
+    end
+    collection
+  end
+
+  def self.compare_arrays(bigger, smaller)
+    #comebackhome
+    bigger - smaller
+  end
 
   def outcome_measurements_data(outcome_measure)
     return unless outcome_measure
@@ -1027,6 +1053,7 @@ class StudyJsonRecord < ActiveRecord::Base
     collection = []
     outcome_classes.each do |outcome_class|
       outcome_categories = outcome_class.dig('OutcomeCategoryList', 'OutcomeCategory')
+      outcome_categories ||= [{ "OutcomeMeasurementList" => { "OutcomeMeasurement" => [{}] } }]
       next unless outcome_categories
 
       outcome_categories.each do |category|
