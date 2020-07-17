@@ -13,6 +13,10 @@ module Util
         FileUtils.mkdir root_dir
         FileUtils.mkdir_p "#{root_dir}/static_db_copies/daily"
         FileUtils.mkdir_p "#{root_dir}/static_db_copies/monthly"
+        FileUtils.mkdir_p "#{root_dir}/static_db_copies/beta/daily"
+        FileUtils.mkdir_p "#{root_dir}/static_db_copies/beta/monthly"
+        FileUtils.mkdir_p "#{root_dir}/exported_files/beta/daily"
+        FileUtils.mkdir_p "#{root_dir}/exported_files/beta/monthly"
         FileUtils.mkdir_p "#{root_dir}/exported_files/daily"
         FileUtils.mkdir_p "#{root_dir}/exported_files/monthly"
         FileUtils.mkdir_p "#{root_dir}/db_backups"
@@ -41,11 +45,27 @@ module Util
       end
     end
 
+    def beta_static_copies_directory
+      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
+        "#{root_dir}/static_db_copies/beta/monthly"
+      else
+        "#{root_dir}/static_db_copies/beta/daily"
+      end
+    end
+
     def flat_files_directory
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
         "#{root_dir}/exported_files/monthly"
       else
         "#{root_dir}/exported_files/daily"
+      end
+    end
+
+    def beta_flat_files_directory
+      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
+        "#{root_dir}/exported_files/beta/monthly"
+      else
+        "#{root_dir}/exported_files/beta/daily"
       end
     end
 
@@ -190,8 +210,11 @@ module Util
       files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
       files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
 
-      zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials"
-      zip_file_name += schema_name == 'ctgov_beta' ? "_beta.zip" : ".zip"
+      if schema_name == 'ctgov_beta'
+        zip_file_name="#{beta_static_copies_directory}/#{date_stamp}_clinical_trials_beta.zip"
+      else
+        zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
+      end
       File.delete(zip_file_name) if File.exist?(zip_file_name)
         Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
           files_to_zip.each { |entry|
