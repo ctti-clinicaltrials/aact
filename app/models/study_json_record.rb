@@ -1011,38 +1011,6 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     collection
   end
-  
-  def self.comparison_hash(schema_name='ctgov')
-    #comebackhome
-    set_table_schema(schema_name)
-    outcome_measurements = Study.find_by(nct_id: 'NCT03530917').outcome_measurements
-    collection = []
-    outcome_measurements.each do |outcome_measure|
-      collection <<    {
-                          nct_id: outcome_measure.nct_id || '',
-                          classification: outcome_measure.classification || '',
-                          category: outcome_measure.category || '',
-                          title: outcome_measure.title || '',
-                          description: outcome_measure.description || '',
-                          units: outcome_measure.units || '',
-                          param_type: outcome_measure.param_type || '',
-                          param_value: outcome_measure.param_value || '',
-                          param_value_num: outcome_measure.param_value_num || '',
-                          dispersion_type: outcome_measure.dispersion_type || '',
-                          dispersion_value: outcome_measure.dispersion_value || '',
-                          dispersion_value_num: outcome_measure.dispersion_value_num || '',
-                          dispersion_lower_limit: outcome_measure.dispersion_lower_limit || '',
-                          dispersion_upper_limit: outcome_measure.dispersion_upper_limit || '',
-                          explanation_of_na: outcome_measure.explanation_of_na || ''
-                        }
-    end
-    collection
-  end
-
-  def self.compare_arrays(bigger, smaller)
-    #comebackhome
-    bigger - smaller
-  end
 
   def outcome_measurements_data(outcome_measure)
     return unless outcome_measure
@@ -1240,37 +1208,44 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def self.test_reported_events
-    {:reported_event=>{:beta=>455, :reg=>494}}
-    nct_id = 'NCT03627494'
-    array1 = StudyJsonRecord.compare_reported_events('ctgov')
-    reload!
-    StudyJsonRecord.set_table_schema('ctgov_beta')
-    array2 = StudyJsonRecord.compare_reported_events('ctgov_beta')
-    array1 - array2
-  end
-
-  def self.compare_reported_events(schema_name='ctgov')
+  # {"NCT04238429"=>
+  # [{:result_groups=>{:beta=>9, :reg=>19}},
+  #  {:reported_event=>{:beta=>0, :reg=>6}}]
+  # "NCT04041037"=>
+  # [{:result_groups=>{:beta=>4, :reg=>7}},
+  #  {:reported_event=>{:beta=>1, :reg=>4}}],
+  
+  def self.comparison_hash(schema_name='ctgov')
+    #comebackhome
+    set_table_schema(schema_name)
+    reported_events = Study.find_by(nct_id: 'NCT04238429').reported_events
     collection = []
-    events = Study.find_by(nct_id: 'NCT03627494').reported_events
-     events.each do |event|
-      collection << {
-        time_frame: event.time_frame,
-        event_type: event.event_type,
-        default_vocab: event.default_vocab,
-        default_assessment: event.default_assessment,
-        subjects_affected: event.subjects_affected,
-        subjects_at_risk: event.subjects_at_risk,
-        description: event.description,
-        event_count: event.event_count,
-        organ_system: event.organ_system,
-        adverse_event_term: event.adverse_event_term,
-        frequency_threshold: event.frequency_threshold,
-        vocab: event.vocab,
-        assessment: event.assessment
-      }
+    reported_events.each do |reported_event|
+      collection <<    {
+        nct_id: reported_event.nct_id,
+        result_group_id: reported_event.result_group_id,
+        ctgov_group_code: reported_event.ctgov_group_code,
+        time_frame: reported_event.time_frame,
+        event_type: reported_event.event_type,
+        default_vocab: reported_event.default_vocab,
+        default_assessment: reported_event.default_assessment,
+        subjects_affected: reported_event.subjects_affected,
+        subjects_at_risk: reported_event.subjects_at_risk,
+        description: reported_event.description,
+        event_count: reported_event.event_count,
+        organ_system: reported_event.organ_system,
+        adverse_event_term: reported_event.adverse_event_term,
+        frequency_threshold: reported_event.frequency_threshold,
+        vocab: reported_event.vocab,
+        assessment: reported_event.assessment
+                        }
     end
     collection
+  end
+
+  def self.compare_arrays(bigger, smaller)
+    #comebackhome
+    bigger - smaller
   end
  
   def reported_events_data
