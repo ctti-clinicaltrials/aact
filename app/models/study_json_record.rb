@@ -423,7 +423,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def design_groups_data
-    @protocol_section = protocol_section
     return unless @protocol_section
 
     arms_groups = @protocol_section.dig('ArmsInterventionsModule', 'ArmGroupList', 'ArmGroup')
