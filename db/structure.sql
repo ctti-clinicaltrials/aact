@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.1
--- Dumped by pg_dump version 12.1
+-- Dumped from database version 11.8 (Ubuntu 11.8-1.pgdg18.04+1)
+-- Dumped by pg_dump version 11.8 (Ubuntu 11.8-1.pgdg18.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -274,7 +274,7 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
 
 SET default_tablespace = '';
 
-SET default_table_access_method = heap;
+SET default_with_oids = false;
 
 --
 -- Name: browse_conditions; Type: TABLE; Schema: ctgov; Owner: -

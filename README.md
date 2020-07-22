@@ -130,9 +130,9 @@ In short, if you're installing on a Mac, basic steps to get started can be:
 *  template1=# `create role read_only;`
 *  template1=# `create database aact;`
 *  template1=# `create database aact_alt;`
-*  template1=# `\q`  (quite out of postgres)
+*  template1=# `\q`  (quit out of psql)
 *  Verify your new user can login to postgres with command: `psql -U <your_aact_pg_user> -d template1`
-
+*  template1=# \q (quit psql))
 *  Clone this repo: `git clone git@github.com:ctti-clinicaltrials/aact.git`
 *  Change into the AACT directory: `cd aact` and run the following commands:
 
@@ -175,7 +175,10 @@ Open a new terminal
 
 Log back into psql and grant permissions:
 
-* `psql -U <your_aact_pg_user> -d template1`
+* `psql -U <your_aact_pg_user> -d aact`
+* `GRANT USAGE ON SCHEMA ctgov TO read_only;`
+* `GRANT SELECT ON ctgov.studies TO read_only;`
+* `\c aact_test`
 * `GRANT USAGE ON SCHEMA ctgov TO read_only;`
 * `GRANT SELECT ON ctgov.studies TO read_only;`
 * `\q`
