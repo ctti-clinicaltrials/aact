@@ -16,3 +16,4 @@ server.env
 /tmp/*
 .env
 *.secret
+.byebug_history
