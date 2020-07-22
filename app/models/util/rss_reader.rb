@@ -45,7 +45,7 @@ module Util
         feed.items.map(&:guid).map(&:content)
       rescue  Exception => e
         if (tries -=1) > 0
-          puts "Failed: #{@added_url}.  trying again..."
+          puts "Failed: #{@changed_url}.  trying again..."
           puts "Error: #{e}"
           retry
         else #give up & return empty array
