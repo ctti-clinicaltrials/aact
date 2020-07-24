@@ -16,9 +16,8 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.run(params={})
-    start_time = Time.current
+    @start_time = Time.current
     set_table_schema('ctgov_beta')
-    @broken_batch = {}
     @study_build_failures = []
     @full_featured = params[:full_featured] || false
     @params = params
@@ -34,16 +33,11 @@ class StudyJsonRecord < ActiveRecord::Base
       ErrorLog.error(msg)
     end
 
-    save_all_study_data
+    # save_all_study_data
 
     if @type == 'full'
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
-    end
-    
-    if @type == 'incremental' && !@broken_batch.empty?
-      rerun_batches(@broken_batch)
-      ErrorLog.error("broken----- #{@broken_batch}")
     end
 
     add_indexes_and_constraints
@@ -51,7 +45,9 @@ class StudyJsonRecord < ActiveRecord::Base
 
     puts comparison
     set_table_schema('ctgov')
-    SaveTime.info("finshed in #{time_ago_in_words(start_time)} and failed to build #{@study_build_failures.uniq}")
+    msg ="finshed in #{time_ago_in_words(@start_time)} and failed to build #{@study_build_failures.uniq}"
+    SaveTime.info(msg)
+    puts msg
   end
 
   def self.root_dir
@@ -92,7 +88,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     Zip::File.open(study_download.path) do |unzipped_folders|
       original_count = unzipped_folders.size
-      count_down = original_count
+      @count_down = original_count
       unzipped_folders.each do |file|
         begin  
         contents = file.get_input_stream.read
@@ -104,10 +100,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
         study = json['FullStudy']
         next unless study
-          store_study_data(study)
-          nct_id = study['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-          puts "Stored: #{nct_id} - #{count_down}"
-          count_down -= 1
+          save_single_study(study)
       end  
     end
   end
@@ -115,10 +108,10 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.incremental
     first_batch = json_data
     # total_number is the number of studies available, meaning the total number in their database
-    total_number = first_batch['FullStudiesResponse']['NStudiesFound']
-    limit = (total_number/100.0).ceil
+    @count_down = first_batch['FullStudiesResponse']['NStudiesFound']
+    limit = (@count_down/100.0).ceil
     puts "batch 1 of #{limit}"
-    store_study_records(first_batch['FullStudiesResponse']['FullStudies'])
+    save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
     
     # since I already saved the first hundred studies I start the loop after that point
     # studies must be retrieved in batches of 99,
@@ -141,25 +134,13 @@ class StudyJsonRecord < ActiveRecord::Base
       url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
       data = json_data(url) || {}
       data = data.dig('FullStudiesResponse', 'FullStudies')
-      store_study_records(data) if data
+      save_study_records(data) if data
     rescue
       retry if (retries += 1) < 6
-      if retries >= 6
-        @broken_batch ||= {}
-        @broken_batch[url] = { min: min, max: max }
-      end
     end
   end
 
-  def self.rerun_batches(url_hash)
-    @broken_batch = {}
-    set_table_schema('ctgov_beta')
-    url_hash.each do |url, min_max|
-      fetch_studies(min_max[:min], min_max[:max])
-    end
-  end
-
-  def self.store_study_records(study_batch)
+  def self.x_store_study_records(study_batch)
     return unless study_batch
 
     nct_id_array = study_batch.map{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
@@ -168,7 +149,7 @@ class StudyJsonRecord < ActiveRecord::Base
     study_batch.each{|study_data| store_study_data(study_data)}
   end
 
-  def self.store_study_data(study_data)
+  def self.x_store_study_data(study_data)
     @data_store ||= []
     nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
 
@@ -180,7 +161,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       }
   end
 
-  def self.save_all_study_data
+  def self.x_save_all_study_data
     begin
     stime=Time.zone.now
     study_json_records = StudyJsonRecord.create(@data_store)
@@ -189,7 +170,7 @@ class StudyJsonRecord < ActiveRecord::Base
     study_json_records.each do |record|
       record_time = Time.zone.now
       record.build_study
-      puts "#{Time.zone.now}:  saved #{Time.zone.now - record_time}: #{record.nct_id} - #{countdown}"
+      puts "#{Time.zone.now}:  saved #{Time.zone.now - record_time}: #{record.nct_id} - #{@countdown}"
       countdown -= 1
     end
     SaveTime.info("took #{Time.zone.now - stime} to save everything")
@@ -198,27 +179,28 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def self.x_save_study_records(study_batch)
+  def self.save_study_records(study_batch)
     return unless study_batch
 
     nct_id_array = study_batch.map{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
     clear_out_data_for(nct_id_array)
 
     study_batch.each do |study_data|
+      record_time = Time.zone.now
+      nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
       save_single_study(study_data)
+      msg = "#{Time.zone.now}:  saved #{Time.zone.now - record_time}: #{nct_id} - #{@count_down}"
+      @count_down -= 1
+      SaveTime.info(msg)
+      puts msg
     end
   end
 
-  def self.x_save_single_study(study_data)
+  def self.save_single_study(study_data)
     nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-    record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.new(nct_id: nct_id)
-    record.content = study_data
-    record.saved_study_at = nil
-    record.download_date = Time.current
+    record = StudyJsonRecord.new(nct_id: nct_id, content: study_data, saved_study_at: nil, download_date: @start_time)
     if record.save
-      stime=Time.zone.now
       record.build_study
-      SaveTime.info("took #{Time.zone.now - stime}--#{nct_id}")
     end
   end
 
@@ -245,7 +227,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.json_data(url="https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=1&max_rnk=100&fmt=json")
-    puts url
     page = open(url)
     JSON.parse(page.read)
   end
