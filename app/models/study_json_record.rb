@@ -140,45 +140,6 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def self.x_store_study_records(study_batch)
-    return unless study_batch
-
-    nct_id_array = study_batch.map{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
-    clear_out_data_for(nct_id_array)
-    
-    study_batch.each{|study_data| store_study_data(study_data)}
-  end
-
-  def self.x_store_study_data(study_data)
-    @data_store ||= []
-    nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-
-    @data_store << {
-                    nct_id: nct_id,
-                    content: study_data,
-                    saved_study_at: nil,
-                    download_date: Time.zone.now
-                      }
-  end
-
-  def self.x_save_all_study_data
-    begin
-    stime=Time.zone.now
-    study_json_records = StudyJsonRecord.create(@data_store)
-    SaveTime.info("took #{Time.zone.now - stime} to save StudyJsonRecords")
-    countdown = study_json_records.count
-    study_json_records.each do |record|
-      record_time = Time.zone.now
-      record.build_study
-      puts "#{Time.zone.now}:  saved #{Time.zone.now - record_time}: #{record.nct_id} - #{@countdown}"
-      countdown -= 1
-    end
-    SaveTime.info("took #{Time.zone.now - stime} to save everything")
-    rescue Exception => error
-      ErrorLog.error(error)
-    end
-  end
-
   def self.save_study_records(study_batch)
     return unless study_batch
 
