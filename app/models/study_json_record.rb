@@ -33,8 +33,6 @@ class StudyJsonRecord < ActiveRecord::Base
       ErrorLog.error(msg)
     end
 
-    # save_all_study_data
-
     if @type == 'full'
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
@@ -45,9 +43,10 @@ class StudyJsonRecord < ActiveRecord::Base
 
     puts comparison
     set_table_schema('ctgov')
-    msg ="finshed in #{time_ago_in_words(@start_time)} and failed to build #{@study_build_failures.uniq}"
+    msg = "Took: #{time_ago_in_words(@start_time)} -- #{Time.now - @start_time}, Failed: #{@study_build_failures.uniq}, Current Time: #{Time.now}, Start Time: #{@start_time}"
     SaveTime.info(msg)
     puts msg
+
   end
 
   def self.root_dir
@@ -372,12 +371,12 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     arms_groups.each do |group|
-      collection.push( 
+      collection << {
                       nct_id: nct_id,
                       group_type: group['ArmGroupType'],
                       title: group['ArmGroupLabel'],
                       description: group['ArmGroupDescription']
-                      )
+                    }
     end
     collection
   end
@@ -390,7 +389,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     interventions.each do |intervention|
-      collection.push(
+      collection << {
                       intervention: {
                                       nct_id: nct_id,
                                       intervention_type: intervention['InterventionType'],
@@ -399,7 +398,7 @@ class StudyJsonRecord < ActiveRecord::Base
                                     },
                       intervention_other_names: intervention_other_names_data(intervention),
                       design_groups: intervention.dig('InterventionArmGroupLabelList', 'InterventionArmGroupLabel')
-                    )
+                     }
     end
     collection
   end
@@ -412,7 +411,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     other_names.each do |name|
-      collection.push(nct_id: nct_id, intervention_id: nil, name: name)
+      collection << { nct_id: nct_id, intervention_id: nil, name: name }
     end
     collection
   end
@@ -512,7 +511,7 @@ class StudyJsonRecord < ActiveRecord::Base
     baseline_measures = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
     return unless baseline_measures
 
-    collection = { baseline_counts: baseline_counts_data, measurements: []}
+    collection = { baseline_counts: baseline_counts_data, measurements: [] }
     baseline_measures.each do |measure|
       baseline_classes = measure.dig('BaselineClassList', 'BaselineClass')
       next unless baseline_classes
@@ -528,7 +527,7 @@ class StudyJsonRecord < ActiveRecord::Base
           measurements.each do |measurement|
             param_value = measurement['BaselineMeasurementValue']
             dispersion_value = measurement['BaselineMeasurementSpread']
-            collection[:measurements].push(
+            collection[:measurements] << {
                                             nct_id: nct_id,
                                             result_group_id: nil,
                                             ctgov_beta_group_code: measurement['BaselineMeasurementGroupId'],
@@ -546,7 +545,7 @@ class StudyJsonRecord < ActiveRecord::Base
                                             dispersion_lower_limit: StudyJsonRecord.float(measurement['BaselineMeasurementLowerLimit']),
                                             dispersion_upper_limit: StudyJsonRecord.float(measurement['BaselineMeasurementUpperLimit']),
                                             explanation_of_na: measurement['BaselineMeasurementComment']
-                                          )
+                                          }
           end
         end
       end
@@ -579,15 +578,15 @@ class StudyJsonRecord < ActiveRecord::Base
       next unless baseline_denom_count
 
       baseline_denom_count.each do |count|
-        collection.push(
-                          nct_id: nct_id,
-                          result_group_id: nil,
-                          ctgov_beta_group_code: count['BaselineDenomCountGroupId'],
-                          units: denom['BaselineDenomUnits'],
-                          scope: 'overall',
-                          count: count['BaselineDenomCountValue']
+        collection << {
+                        nct_id: nct_id,
+                        result_group_id: nil,
+                        ctgov_beta_group_code: count['BaselineDenomCountGroupId'],
+                        units: denom['BaselineDenomUnits'],
+                        scope: 'overall',
+                        count: count['BaselineDenomCountValue']
 
-                        )
+                      }
       end
     end
     collection
@@ -609,10 +608,9 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     meshes.each do |mesh|
-      collection.push(
-                        nct_id: nct_id, mesh_term: mesh["#{type}MeshTerm"], downcase_mesh_term: mesh["#{type}MeshTerm"].try(:downcase)
-
-                      )
+      collection << {
+                      nct_id: nct_id, mesh_term: mesh["#{type}MeshTerm"], downcase_mesh_term: mesh["#{type}MeshTerm"].try(:downcase)
+                    }
     end
     collection
   end
@@ -625,13 +623,13 @@ class StudyJsonRecord < ActiveRecord::Base
     
     collection = []
     central_contacts.each_with_index do |contact, index|
-      collection.push(
-                        nct_id: nct_id,
-                        contact_type: index == 0 ? 'primary' : 'backup',
-                        name: contact['CentralContactName'],
-                        phone: contact['CentralContactPhone'],
-                        email: contact['CentralContactEMail']
-                      )
+      collection << {
+                      nct_id: nct_id,
+                      contact_type: index == 0 ? 'primary' : 'backup',
+                      name: contact['CentralContactName'],
+                      phone: contact['CentralContactPhone'],
+                      email: contact['CentralContactEMail']
+                     }
     end
     collection
   end
@@ -647,7 +645,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     conditions.each do |condition|
-      collection.push(nct_id: nct_id, name: condition, downcase_name: condition.try(:downcase))
+      collection << { nct_id: nct_id, name: condition, downcase_name: condition.try(:downcase) }
     end
     collection
   end
@@ -670,11 +668,11 @@ class StudyJsonRecord < ActiveRecord::Base
     countries = countries.uniq
     
     countries.each do |country|
-      collection << {nct_id: nct_id, name: country, removed: false}
+      collection << { nct_id: nct_id, name: country, removed: false }
     end
     
     removed_countries.each do |country|
-      collection << {nct_id: nct_id, name: country, removed: true}
+      collection << { nct_id: nct_id, name: country, removed: true }
     end
     
     collection
@@ -688,13 +686,13 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     avail_ipds.each do |item|
-      collection.push(
-                        nct_id: nct_id,
-                        document_id: item['AvailIPDId'],
-                        document_type: item['AvailIPDType'],
-                        url: item['AvailIPDURL'],
-                        comment: item['AvailIPDComment']
-                      )
+      collection << {
+                      nct_id: nct_id,
+                      document_id: item['AvailIPDId'],
+                      document_type: item['AvailIPDType'],
+                      url: item['AvailIPDURL'],
+                      comment: item['AvailIPDComment']
+                    }
     end
     collection
   end
@@ -712,25 +710,25 @@ class StudyJsonRecord < ActiveRecord::Base
       location_contacts.each_with_index do |contact, index|
         contact_role = contact['LocationContactRole']
         if contact_role =~ /Investigator|Study Chair/i
-          facility_investigators.push(
+          facility_investigators << {
                                       nct_id: nct_id,
                                       facility_id: nil,
                                       role: contact_role,
                                       name: contact['LocationContactName']
-                                    )
+                                    }
         else
-          facility_contacts.push(
+          facility_contacts << {
                                   nct_id: nct_id,
                                   facility_id: nil,
                                   contact_type: index == 0 ? 'primary' : 'backup',
                                   name: contact['LocationContactName'],
                                   email: contact['LocationContactEMail'],
                                   phone: contact['LocationContactPhone']
-                                )
+                               }
         end
       end
 
-      collection.push(
+      collection << {
                       facility: {
                                     nct_id: nct_id,
                                     status: location['LocationStatus'],
@@ -742,7 +740,7 @@ class StudyJsonRecord < ActiveRecord::Base
                                   },
                       facility_contacts: facility_contacts,
                       facility_investigators: facility_investigators
-                    )
+                     }
     end
     collection
   end
@@ -757,18 +755,14 @@ class StudyJsonRecord < ActiveRecord::Base
     secondary_info = identification_module.dig('SecondaryIdInfoList', 'SecondaryIdInfo') || []
     org_study_info = identification_module['OrgStudyIdInfo']
     collection = []
-    collection.push({nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId']}) if org_study_info
+    collection << { nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId'] } if org_study_info
 
     
     nct_id_alias.each do |nct_alias|
-      collection.push(
-        nct_id: nct_id, id_type: 'nct_alias', id_value: nct_alias
-      )
+      collection << { nct_id: nct_id, id_type: 'nct_alias', id_value: nct_alias }
     end
     secondary_info.each do |info|
-      collection.push(
-        nct_id: nct_id, id_type: 'secondary_id', id_value: info['SecondaryId']
-      )
+      collection << { nct_id: nct_id, id_type: 'secondary_id', id_value: info['SecondaryId'] }
     end
     collection
   end
@@ -781,7 +775,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     ipd_sharing_info_types.each do |info|
-      collection.push(nct_id: nct_id, name: info)
+      collection << { nct_id: nct_id, name: info }
     end
 
     collection
@@ -795,7 +789,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     keywords.each do |keyword|
-      collection.push(nct_id: nct_id, name: keyword, downcase_name: keyword.downcase)
+      collection << { nct_id: nct_id, name: keyword, downcase_name: keyword.downcase }
     end
     collection
   end
@@ -808,7 +802,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     see_also_links.each do |link|
-      collection.push(nct_id: nct_id, url: link['SeeAlsoLinkURL'], description: link['SeeAlsoLinkLabel'])
+      collection << { nct_id: nct_id, url: link['SeeAlsoLinkURL'], description: link['SeeAlsoLinkLabel'] }
     end
     collection
   end
@@ -831,7 +825,7 @@ class StudyJsonRecord < ActiveRecord::Base
         next unless flow_achievements
 
         flow_achievements.each do |achievement|
-          collection.push(
+          collection << {
                           nct_id: nct_id,
                           result_group_id: nil,
                           ctgov_beta_group_code: achievement['FlowAchievementGroupId'],
@@ -839,7 +833,7 @@ class StudyJsonRecord < ActiveRecord::Base
                           period: period['FlowPeriodTitle'],
                           description: achievement['FlowAchievementComment'],
                           count: achievement['FlowAchievementNumSubjects']
-                          )
+                        }
         end
       end
     end
@@ -863,7 +857,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     outcome_measures.each do |outcome_measure|
-      collection.push(
+      collection << {
                       outcome_measure: {
                                         nct_id: nct_id,
                                         outcome_type: outcome_measure['OutcomeMeasureType'],
@@ -881,7 +875,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       outcome_counts: outcome_counts_data(outcome_measure),
                       outcome_measurements: outcome_measurements_data(outcome_measure),
                       outcome_analyses: outcome_analyses_data(outcome_measure)
-                      )
+                    }
     end
     return if collection.empty?
 
@@ -897,9 +891,9 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_measures.each do |measure|
       outcome_group_list = key_check(measure['OutcomeGroupList'])
       outcome_groups = outcome_group_list['OutcomeGroup'] || []
-      collection.push(
+      collection << {
                       StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
-                      )
+                    }
     end
     collection.flatten.uniq
   end
@@ -909,13 +903,13 @@ class StudyJsonRecord < ActiveRecord::Base
     return collection if  groups.nil? || groups.empty?
 
     groups.each do |group|
-      collection.push(
-                        nct_id: nct_id,
-                        ctgov_beta_group_code: group["#{key_name}GroupId"],
-                        result_type: type,
-                        title: group["#{key_name}GroupTitle"],
-                        description: group["#{key_name}GroupDescription"]
-                      )
+      collection << {
+                      nct_id: nct_id,
+                      ctgov_beta_group_code: group["#{key_name}GroupId"],
+                      result_type: type,
+                      title: group["#{key_name}GroupTitle"],
+                      description: group["#{key_name}GroupDescription"]
+                    }
     end
     collection
   end
@@ -938,7 +932,7 @@ class StudyJsonRecord < ActiveRecord::Base
       next unless outcome_denom_count
 
       outcome_denom_count.each do |denom_count|
-        collection.push(
+        collection << {
                         nct_id: nct_id,
                         outcome_id: nil,
                         result_group_id: nil,
@@ -946,7 +940,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         scope: 'Measure',
                         units: denom['OutcomeDenomUnits'],
                         count: denom_count['OutcomeDenomCountValue']
-                        )
+                      }
       end
     end
     collection
@@ -969,7 +963,7 @@ class StudyJsonRecord < ActiveRecord::Base
         next unless measurements
 
         measurements.each do |measure|
-            collection.push(
+            collection << {
                             nct_id: nct_id,
                             outcome_id: nil,
                             result_group_id: nil,
@@ -988,7 +982,7 @@ class StudyJsonRecord < ActiveRecord::Base
                             dispersion_lower_limit: StudyJsonRecord.float(measure['OutcomeMeasurementLowerLimit']),
                             dispersion_upper_limit: StudyJsonRecord.float(measure['OutcomeMeasurementUpperLimit']),
                             explanation_of_na: measure['OutcomeMeasurementComment']
-                          )
+                          }
         end
       end
     end
@@ -1004,7 +998,7 @@ class StudyJsonRecord < ActiveRecord::Base
     collection = []
     outcome_analyses.each do |analysis|
       raw_value = analysis['OutcomeAnalysisPValue'] || ''
-      collection.push( 
+      collection << {
                       outcome_analysis: {
                                           nct_id: nct_id,
                                           outcome_id: nil,
@@ -1030,7 +1024,7 @@ class StudyJsonRecord < ActiveRecord::Base
                                           other_analysis_description: analysis['OutcomeAnalysisOtherAnalysisDescription']
                                         },
                       outcome_analysis_groups: outcome_analysis_groups_data(analysis)  
-                    )
+                    }
     end
     collection
   end
@@ -1043,12 +1037,12 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     outcome_analysis_group_ids.each do |group_id|
-      collection.push(
+      collection << {
                       nct_id: nct_id,
                       outcome_analysis_id: nil,
                       result_group_id: nil,
                       ctgov_beta_group_code: group_id
-                    )
+                    }
     end
     collection
   end
@@ -1061,12 +1055,12 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     overall_officials.each do |overall_official|
-      collection.push(
+      collection << {
                       nct_id: nct_id,
                       role: overall_official['OverallOfficialRole'],
                       name: overall_official['OverallOfficialName'],
                       affiliation: overall_official['OverallOfficialAffiliation']
-                      )
+                    }
     end
     collection
   end
@@ -1092,14 +1086,14 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     outcomes.each do |outcome|
-      collection.push(
+      collection << {
                       nct_id: nct_id,
                       outcome_type: outcome_type.downcase,
                       measure: outcome["#{outcome_type}OutcomeMeasure"],
                       time_frame: outcome["#{outcome_type}OutcomeTimeFrame"],
                       population: nil,
                       description: outcome["#{outcome_type}OutcomeDescription"]
-                      )
+                    }
     end
     collection
   end
@@ -1112,12 +1106,12 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     unposted_events.each do |event|
-      collection.push(
+      collection << {
                       nct_id: nct_id,
                       event: event['UnpostedEventType'],
                       event_date_description: event['UnpostedEventDate'],
                       event_date: get_date(event['UnpostedEventDate'])
-                    )
+                    }
     end
     collection
   end
@@ -1134,7 +1128,7 @@ class StudyJsonRecord < ActiveRecord::Base
       number = "#{nct_id[-2]}#{nct_id[-1]}/#{nct_id}"
       full_url = base_url + number + "/#{doc['LargeDocFilename']}" if doc['LargeDocFilename']
 
-      collection.push(
+      collection << {
                       nct_id: nct_id,
                       document_type: doc['LargeDocLabel'],
                       has_protocol: get_boolean(doc['LargeDocHasProtocol']),
@@ -1142,7 +1136,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       has_sap: get_boolean(doc['LargeDocHasSAP']),
                       document_date: get_date(doc['LargeDocDate']),
                       url: full_url
-                      )
+                    }
                     
     end
     collection
@@ -1170,7 +1164,7 @@ class StudyJsonRecord < ActiveRecord::Base
       next unless event_stats
 
       event_stats.each do |event_stat|
-        collection.push(
+        collection << {
                         nct_id: nct_id,
                         result_group_id: nil,
                         ctgov_beta_group_code: event_stat["#{event_type}EventStatsGroupId"],
@@ -1187,7 +1181,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         frequency_threshold: adverse_events_module['EventsFrequencyThreshold'],
                         vocab: event["#{event_type}EventSourceVocabulary"],
                         assessment: event["#{event_type}EventAssessmentType"]
-        )
+                      }
       end
     end
     collection
@@ -1257,13 +1251,13 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     references.each do |reference|
-      collection.push(
+      collection << {
                       nct_id: nct_id,
                       pmid: reference['ReferencePMID'],
                       reference_type: reference['ReferenceType'],
                       citation: reference['ReferenceCitation']
 
-                      )
+                    }
     end
     collection
   end
@@ -1280,12 +1274,12 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless collaborators || lead_sponsor
     
     collection = []
-    collection.push(sponsor_info(lead_sponsor, 'LeadSponsor')) if lead_sponsor
+    collection << sponsor_info(lead_sponsor, 'LeadSponsor') if lead_sponsor
     return collection unless collaborators
 
     collaborators.each do |collaborator|
       info = sponsor_info(collaborator, 'Collaborator')
-      collection.push(info) if info
+      collection << info if info
     end
 
     collection
@@ -1322,14 +1316,14 @@ class StudyJsonRecord < ActiveRecord::Base
         next unless flow_reasons
 
         flow_reasons.each do |flow_reason|
-            collection.push(
+            collection << {
                             nct_id: nct_id,
                             result_group_id: nil,
                             ctgov_beta_group_code: flow_reason['FlowReasonGroupId'],
                             period: flow_period,
                             reason: reason,
                             count: flow_reason['FlowReasonNumSubjects']
-                          )
+                          }
         end
       end
     end
@@ -1521,11 +1515,11 @@ class StudyJsonRecord < ActiveRecord::Base
 
     beta_counts.each do |name_of_model, object_count|
       count_hash = { beta: object_count, reg: reg_counts[:"#{name_of_model}"]}
-      dif.push({ "#{name_of_model}": count_hash }) if object_count != reg_counts[:"#{name_of_model}"]
-      count_array.push({ "#{name_of_model}": count_hash })
+      dif << { "#{name_of_model}": count_hash }  if object_count != reg_counts[:"#{name_of_model}"]
+      count_array << { "#{name_of_model}": count_hash }
     end
 
-    count_array.push({inconsistencies: dif})
+    count_array << {inconsistencies: dif}
   end
 
   def save_result_groups(groups)
