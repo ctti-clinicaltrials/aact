@@ -891,9 +891,7 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_measures.each do |measure|
       outcome_group_list = key_check(measure['OutcomeGroupList'])
       outcome_groups = outcome_group_list['OutcomeGroup'] || []
-      collection << {
-                      StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
-                    }
+      collection << StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
     end
     collection.flatten.uniq
   end
@@ -1233,12 +1231,14 @@ class StudyJsonRecord < ActiveRecord::Base
 
     ext = point_of_contact['PointOfContactPhoneExt']
     phone = point_of_contact['PointOfContactPhone']
-
+    if phone && ext
+      phone = phone + " ext #{ext}"
+    end
     {
       nct_id: nct_id,
       organization: point_of_contact['PointOfContactOrganization'], 
       name: point_of_contact['PointOfContactTitle'], 
-      phone: ext ? (phone + " ext #{ext}") : phone, 
+      phone: phone, 
       email: point_of_contact['PointOfContactEMail']
     }
   end
