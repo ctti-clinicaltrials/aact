@@ -74,7 +74,6 @@ class StudyJsonRecord < ActiveRecord::Base
       end
     end
     file.binmode
-    file.size
     file
   end
 
