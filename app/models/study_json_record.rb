@@ -41,7 +41,6 @@ class StudyJsonRecord < ActiveRecord::Base
     add_indexes_and_constraints
     CalculatedValue.populate
 
-    puts comparison
     set_table_schema('ctgov')
     msg = "Took: #{time_ago_in_words(@start_time)} -- #{Time.now - @start_time}, Failed: #{@study_build_failures.uniq}, Current Time: #{Time.now}, Start Time: #{@start_time}"
     SaveTime.info(msg)
@@ -109,7 +108,6 @@ class StudyJsonRecord < ActiveRecord::Base
     # total_number is the number of studies available, meaning the total number in their database
     @count_down = first_batch['FullStudiesResponse']['NStudiesFound']
     limit = (@count_down/100.0).ceil
-    puts "batch 1 of #{limit}"
     save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
     
     # since I already saved the first hundred studies I start the loop after that point
@@ -119,7 +117,6 @@ class StudyJsonRecord < ActiveRecord::Base
     max = 200
 
     for x in 1..limit
-      puts "batch #{x + 1} of #{limit}"
       fetch_studies(min, max)
       min += 100
       max += 100
@@ -129,7 +126,6 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.fetch_studies(min=1, max=100)
     begin
       retries ||= 0
-      puts "try ##{ retries }"
       url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
       data = json_data(url) || {}
       data = data.dig('FullStudiesResponse', 'FullStudies')
@@ -1238,7 +1234,7 @@ class StudyJsonRecord < ActiveRecord::Base
       nct_id: nct_id,
       organization: point_of_contact['PointOfContactOrganization'], 
       name: point_of_contact['PointOfContactTitle'], 
-      phone: phone, 
+      phone: phone,
       email: point_of_contact['PointOfContactEMail']
     }
   end
