@@ -41,7 +41,8 @@ class StudyJsonRecord < ActiveRecord::Base
     add_indexes_and_constraints
     CalculatedValue.populate
 
-    msg = "Took: #{time_ago_in_words(@start_time)} -- #{Time.now - @start_time}, Failed: #{@study_build_failures.uniq}, Current Time: #{Time.now}, Start Time: #{@start_time}"
+    time = Time.now
+    msg = "Took: #{time_ago_in_words(@start_time)} -- #{time - @start_time}, Failed: #{@study_build_failures.uniq}, Current Time: #{time}, Start Time: #{@start_time}"
     SaveTime.info(msg)
     puts msg
 
