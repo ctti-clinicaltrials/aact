@@ -145,9 +145,8 @@ class StudyJsonRecord < ActiveRecord::Base
       nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
       save_single_study(study_data)
       time = Time.zone.now
-      msg = "#{time}:  saved #{time - record_time}: #{nct_id} - #{@count_down}"
+      puts "#{time}:  saved #{time - record_time}: #{nct_id} - #{@count_down}"
       @count_down -= 1
-      puts msg
     end
   end
 
@@ -182,8 +181,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.json_data(url="https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=1&max_rnk=100&fmt=json")
-    page = open(url)
-    JSON.parse(page.read)
+    JSON.parse(open(url).read)
   end
 
   
@@ -658,15 +656,12 @@ class StudyJsonRecord < ActiveRecord::Base
     locations.each do |location|
       countries << location['LocationCountry']
     end
-
-    removed_countries = removed_countries.uniq
-    countries = countries.uniq
     
-    countries.each do |country|
+    countries.uniq.each do |country|
       collection << { nct_id: nct_id, name: country, removed: false }
     end
     
-    removed_countries.each do |country|
+    removed_countries.uniq.each do |country|
       collection << { nct_id: nct_id, name: country, removed: true }
     end
     
@@ -1282,12 +1277,11 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def sponsor_info(sponsor_hash, sponsor_type='LeadSponsor')
     return if sponsor_hash.empty?
-
-    type_of_sponsor = sponsor_type =~ /Lead/i ? 'lead' : 'collaborator'
+    
     {
       nct_id: nct_id,
       agency_class: sponsor_hash["#{sponsor_type}Class"],
-      lead_or_collaborator: type_of_sponsor,
+      lead_or_collaborator: sponsor_type =~ /Lead/i ? 'lead' : 'collaborator',
       name: sponsor_hash["#{sponsor_type}Name"]
     }
   end
