@@ -137,16 +137,16 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.save_study_records(study_batch)
     return unless study_batch
 
-    nct_id_array = study_batch.map{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
+    nct_id_array = study_batch.collect{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
     clear_out_data_for(nct_id_array)
 
     study_batch.each do |study_data|
       record_time = Time.zone.now
       nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
       save_single_study(study_data)
-      msg = "#{Time.zone.now}:  saved #{Time.zone.now - record_time}: #{nct_id} - #{@count_down}"
+      time = Time.zone.now
+      msg = "#{time}:  saved #{time - record_time}: #{nct_id} - #{@count_down}"
       @count_down -= 1
-      SaveTime.info(msg)
       puts msg
     end
   end
