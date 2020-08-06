@@ -45,7 +45,6 @@ class StudyJsonRecord < ActiveRecord::Base
     msg = "Took: #{time_ago_in_words(@start_time)} -- #{time - @start_time}, Failed: #{@study_build_failures.uniq}, Current Time: #{time}, Start Time: #{@start_time}"
     SaveTime.info(msg)
     puts msg
-
   end
 
   def self.root_dir
