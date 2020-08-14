@@ -1866,6 +1866,43 @@ ALTER SEQUENCE ctgov.provided_documents_id_seq OWNED BY ctgov.provided_documents
 
 
 --
+-- Name: reported_event_totals; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.reported_event_totals (
+    id integer NOT NULL,
+    nct_id character varying NOT NULL,
+    ctgov_group_code character varying NOT NULL,
+    event_type character varying,
+    classification character varying NOT NULL,
+    subjects_affected integer,
+    subjects_at_risk integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: reported_event_totals_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.reported_event_totals_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reported_event_totals_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.reported_event_totals_id_seq OWNED BY ctgov.reported_event_totals.id;
+
+
+--
 -- Name: reported_events; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -2565,6 +2602,13 @@ ALTER TABLE ONLY ctgov.provided_documents ALTER COLUMN id SET DEFAULT nextval('c
 
 
 --
+-- Name: reported_event_totals id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.reported_event_totals ALTER COLUMN id SET DEFAULT nextval('ctgov.reported_event_totals_id_seq'::regclass);
+
+
+--
 -- Name: reported_events id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2944,6 +2988,14 @@ ALTER TABLE ONLY ctgov.pending_results
 
 ALTER TABLE ONLY ctgov.provided_documents
     ADD CONSTRAINT provided_documents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reported_event_totals reported_event_totals_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.reported_event_totals
+    ADD CONSTRAINT reported_event_totals_pkey PRIMARY KEY (id);
 
 
 --
@@ -3711,4 +3763,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190115204850');
 INSERT INTO schema_migrations (version) VALUES ('20190301204850');
 
 INSERT INTO schema_migrations (version) VALUES ('20200424180206');
+
+INSERT INTO schema_migrations (version) VALUES ('20200814211239');
 

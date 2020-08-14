@@ -64,6 +64,7 @@ class ReportedEvent < StudyRelationship
     other_totals=event_data[:totals]
     
     import((serious + other).flatten)
+    ReportedEventTotal.import((serious_totals + other_totals).flatten)
   end
 
   # TODO  this can and should be refactored in 100 different ways, but it works for now.
