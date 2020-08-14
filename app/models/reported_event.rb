@@ -54,14 +54,15 @@ class ReportedEvent < StudyRelationship
       end
     }
     opts[:type]='serious'
-    serious_data=get_events(opts)
-    serious=serious_data[:events]
-    serious_totals=serious_data[:totals]
+    event_data=get_events(opts)
+    serious=event_data[:events]
+    serious_totals=event_data[:totals]
+   
     opts[:type]='other'
-    other_data=get_events(opts)
-    other=other_data[:events]
-    other_totals=other_data[:totals]
-
+    event_data=get_events(opts)
+    other=event_data[:events]
+    other_totals=event_data[:totals]
+    
     import((serious + other).flatten)
   end
 
@@ -89,14 +90,17 @@ class ReportedEvent < StudyRelationship
             while e_xml
               sub_title=e_xml.xpath('sub_title')
               if opts[:category] == 'Total'
-                collection[:totals] << {
+                count_xmls=e_xml.xpath("counts")
+                 count_xmls.each do |count_xml|
+                  collection[:totals] << {
                                                 nct_id: opts[:nct_id],
-                                                ctgov_group_code: e_xml.attribute('group_id').try(:value),
+                                                ctgov_group_code: count_xml.attribute('group_id').try(:value),
                                                 event_type: event_type,
-                                                classification: sub_title,
-                                                subjects_affected: e_xml.attribute('subjects_affected').try(:value),
-                                                subjects_at_risk: o_xml.attribute('subjects_at_risk').try(:value)
+                                                classification: sub_title.text,
+                                                subjects_affected: count_xml.attribute('subjects_affected').try(:value),
+                                                subjects_at_risk: count_xml.attribute('subjects_at_risk').try(:value)
                                               }
+                end
               else
                 if !sub_title.blank?
                   opts[:adverse_event_term]=sub_title.text
