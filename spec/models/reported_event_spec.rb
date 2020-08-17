@@ -14,20 +14,16 @@ describe ReportedEvent do
 
     e1=study.reported_events.select{|x|x.ctgov_group_code=='E1'}
     e2=study.reported_events.select{|x|x.ctgov_group_code=='E2'}
-    expect(e1.size).to eq(166)
-    expect(e2.size).to eq(166)
+    expect(e1.size).to eq(164)
+    expect(e2.size).to eq(164)
 
-    serious=study.reported_events.select{|x|x.ctgov_group_code=='E2' and x.organ_system=='Total' and x.event_type=='serious'}
+    serious=study.reported_event_totals.select{|x|x.ctgov_group_code=='E2' and x.event_type=='serious'}
     expect(serious.size).to eq(1)
     e2_serious=serious.first
     expect(e2_serious.subjects_affected).to eq(36)
     expect(e2_serious.subjects_at_risk).to eq(53)
-    expect(e2_serious.result_group.result_type).to eq('Reported Event')
-    expect(e2_serious.default_vocab).to eq('CTCAE (2.0)')
-    expect(e2_serious.default_assessment).to eq('Non-systematic Assessment')
-    expect(e2_serious.adverse_event_term).to eq('Total, serious adverse events')
-    expect(e2_serious.result_group.ctgov_group_code).to eq(e2_serious.ctgov_group_code)
-
+    expect(e2_serious.classification).to eq('Total, serious adverse events')
+    
     e1_serious_cardiac_array=e1.select{|x|x.event_type=='serious' and x.organ_system=='Cardiac disorders'}
     expect(e1_serious_cardiac_array.size).to eq(3)
     e1_serious_cardiac=e1_serious_cardiac_array.select{|x|x.adverse_event_term=='Arrhythmia NOS'}.first
@@ -49,10 +45,10 @@ describe ReportedEvent do
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     other_events=study.reported_events.select{|x|x.event_type=='other'}
-    expect(other_events.size).to eq(36)
-    expect(other_events.select{|x|x.frequency_threshold==5}.size).to eq(36)
-    expect(other_events.select{|x|x.default_vocab=='Trial-specific'}.size).to eq(36)
-    expect(other_events.select{|x|x.default_assessment=='Systematic Assessment'}.size).to eq(36)
+    expect(other_events.size).to eq(27)
+    expect(other_events.select{|x|x.frequency_threshold==5}.size).to eq(27)
+    expect(other_events.select{|x|x.default_vocab=='Trial-specific'}.size).to eq(27)
+    expect(other_events.select{|x|x.default_assessment=='Systematic Assessment'}.size).to eq(27)
 
   end
 end

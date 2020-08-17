@@ -5,8 +5,8 @@ describe Util::RssReader do
 
     context 'without a specified days_back arg' do
       it 'should generate the correct url' do
-        changed_url = "https://clinicaltrials.gov/ct2/results/rss.xml?lup_d=1&count=1000"
-        added_url   = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=1&count=1000"
+        changed_url = "https://clinicaltrials.gov/ct2/results/rss.xml?lup_d=1&cond=&count=1000"
+        added_url   = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=1&cond=&count=1000"
 
         reader = described_class.new
 
@@ -17,8 +17,8 @@ describe Util::RssReader do
 
     context 'with a specified days_back arg' do
       it 'should generate the correct url' do
-        changed_url = "https://clinicaltrials.gov/ct2/results/rss.xml?lup_d=14&count=1000"
-        added_url   = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=14&count=1000"
+        changed_url = "https://clinicaltrials.gov/ct2/results/rss.xml?lup_d=14&cond=&count=1000"
+        added_url   = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=14&cond=&count=1000"
 
         reader = described_class.new(days_back: 14)
 
