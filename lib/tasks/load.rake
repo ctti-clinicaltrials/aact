@@ -11,12 +11,13 @@ namespace :db do
     Category.load_update(args)
   end
   task :beta_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
-    # StudyJsonRecord.too_long
     `bundle exec rake log:clear`
     StudyJsonRecord.run(args)
+    puts StudyJsonRecord.comparison
   end
   task :both_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
     Util::Updater.new(args).run
     StudyJsonRecord.run(args)
+    puts StudyJsonRecord.comparison
   end
 end
