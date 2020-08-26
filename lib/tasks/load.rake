@@ -16,6 +16,7 @@ namespace :db do
     puts StudyJsonRecord.comparison
   end
   task :both_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
+    `bundle exec rake log:clear`
     Util::Updater.new(args).run
     StudyJsonRecord.run(args)
     puts StudyJsonRecord.comparison
