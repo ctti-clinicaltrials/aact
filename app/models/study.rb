@@ -73,6 +73,7 @@ class Study < ActiveRecord::Base
   has_many :provided_documents,    :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :references,            :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :reported_events,       :foreign_key => 'nct_id', :dependent => :delete_all
+  has_many :reported_event_totals, :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :responsible_parties,   :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :result_agreements,     :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :result_contacts,       :foreign_key => 'nct_id', :dependent => :delete_all

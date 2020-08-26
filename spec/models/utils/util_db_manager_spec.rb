@@ -30,7 +30,7 @@ describe Util::DbManager do
         this_tables_indexes=mgr.indexes_for(table_name)
         nct_id_indexes = this_tables_indexes.select{ |i| i['column_name']== 'nct_id' }
         sz=nct_id_indexes.size
-        expect(nct_id_indexes.first['is_unique']).to eq('t') if sz = 1
+        expect(nct_id_indexes.first['is_unique']).to eq('t') if sz == 1
       }
     end
   end

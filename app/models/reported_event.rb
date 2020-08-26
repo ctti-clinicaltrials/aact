@@ -54,18 +54,24 @@ class ReportedEvent < StudyRelationship
       end
     }
     opts[:type]='serious'
-    serious=get_events(opts)
+    event_data=get_events(opts)
+    serious=event_data[:events]
+    serious_totals=event_data[:totals]
+   
     opts[:type]='other'
-    other=get_events(opts)
-
+    event_data=get_events(opts)
+    other=event_data[:events]
+    other_totals=event_data[:totals]
+    
     import((serious + other).flatten)
+    ReportedEventTotal.import((serious_totals + other_totals).flatten)
   end
 
   # TODO  this can and should be refactored in 100 different ways, but it works for now.
   def self.get_events(opts)
     event_type=opts[:type]
     outter_xml=opts[:xml].xpath("//#{event_type}_events")
-    event_collection=[]
+    collection = {totals: [], events: []}
     outter_xml.collect{|xml|
       opts[:frequency_threshold]=xml.xpath('frequency_threshold').text
       opts[:default_vocab]=xml.xpath('default_vocab').text
@@ -84,24 +90,38 @@ class ReportedEvent < StudyRelationship
           else
             while e_xml
               sub_title=e_xml.xpath('sub_title')
-              if !sub_title.blank?
-                opts[:adverse_event_term]=sub_title.text
-                opts[:vocab]=sub_title.attribute('vocab').try(:value)
-              end
-              opts[:assessment]=e_xml.xpath('assessment').text
-              count_xmls=e_xml.xpath("counts")
-              o_xml=count_xmls.pop
-              if o_xml.nil?
-                puts "TODO  need to account for no counts"
-              else
-                while o_xml
-                  opts[:group_id]=o_xml.attribute('group_id').try(:value)
-                  opts[:event_count]=o_xml.attribute('events').try(:value)
-                  opts[:subjects_affected]=o_xml.attribute('subjects_affected').try(:value)
-                  opts[:subjects_at_risk]=o_xml.attribute('subjects_at_risk').try(:value)
-                  event_collection << self.new.create_from(opts)
-                  o_xml=count_xmls.pop
+              if opts[:category] == 'Total'
+                count_xmls=e_xml.xpath("counts")
+                 count_xmls.each do |count_xml|
+                  collection[:totals] << {
+                                                nct_id: opts[:nct_id],
+                                                ctgov_group_code: count_xml.attribute('group_id').try(:value),
+                                                event_type: event_type,
+                                                classification: sub_title.text,
+                                                subjects_affected: count_xml.attribute('subjects_affected').try(:value),
+                                                subjects_at_risk: count_xml.attribute('subjects_at_risk').try(:value)
+                                              }
                 end
+              else
+                if !sub_title.blank?
+                  opts[:adverse_event_term]=sub_title.text
+                  opts[:vocab]=sub_title.attribute('vocab').try(:value)
+                end
+                opts[:assessment]=e_xml.xpath('assessment').text
+                count_xmls=e_xml.xpath("counts")
+                o_xml=count_xmls.pop
+                if o_xml.nil?
+                  puts "TODO  need to account for no counts"
+                else
+                  while o_xml
+                    opts[:group_id]=o_xml.attribute('group_id').try(:value)
+                    opts[:event_count]=o_xml.attribute('events').try(:value)
+                    opts[:subjects_affected]=o_xml.attribute('subjects_affected').try(:value)
+                    opts[:subjects_at_risk]=o_xml.attribute('subjects_at_risk').try(:value)
+                    collection[:events] << self.new.create_from(opts)
+                    o_xml=count_xmls.pop
+                  end
+                end 
               end
               e_xml=event_xmls.pop
             end
@@ -110,7 +130,7 @@ class ReportedEvent < StudyRelationship
         end
       end
     }
-    event_collection
+    collection
   end
 
   def attribs
