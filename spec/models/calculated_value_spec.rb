@@ -111,8 +111,8 @@ describe CalculatedValue do
     expect(cv.has_single_facility).to eq(false)
     expect(cv.actual_duration).to eq(60)
     expect(cv.months_to_report_results).to eq(21)
-    expect(cv.number_of_sae_subjects).to eq(1458)
-    expect(cv.number_of_nsae_subjects).to eq(1889)
+    expect(cv.number_of_sae_subjects).to eq(773)
+    expect(cv.number_of_nsae_subjects).to eq(991)
 
   end
 
