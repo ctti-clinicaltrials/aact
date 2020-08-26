@@ -250,8 +250,6 @@ class StudyJsonRecord < ActiveRecord::Base
     JSON.parse(page.read)
   end
 
-  
-
   def self.time_range
     return nil if @type == 'full'
     return nil unless @days_back != 'nil'
@@ -316,13 +314,19 @@ class StudyJsonRecord < ActiveRecord::Base
   def contacts_location_module
     return unless protocol_section
 
-    protocol_section['ContactsLocationsModule'] if protocol_section
+    protocol_section['ContactsLocationsModule']
   end
 
   def locations_array
     return unless contacts_location_module
     
     contacts_location_module.dig('LocationList', 'Location')  
+  end
+
+  def adverse_events_module
+    return unless results_section
+
+    results_section['AdverseEventsModule']
   end
   
   def study_data 
@@ -1205,6 +1209,43 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     collection
   end
+
+
+  def reported_event_totals_data
+    return [] unless @adverse_events_module
+    
+    collection = []
+    event_groups = @adverse_events_module.dig('EventGroupList', 'EventGroup')
+    return [] unless event_groups
+
+    event_groups.each do |event_group|
+      collection << event_totals('Serious', event_group)
+      collection << event_totals('Other', event_group)
+      collection << event_totals('Deaths', event_group)
+    end
+  end
+
+  def event_totals(event_type='Serious', event_hash={})
+    return {} if event_hash.empty?
+
+    if event_type == 'Serious'
+      classification = 'Total, serious adverse events'
+    elsif event_type == 'Other'
+      classification = 'Total, other adverse events'
+    elsif event_type == 'Deaths'
+      classification = 'Total, all-cause mortality'
+    else
+      classification = ''
+    end
+    {
+      nct_id: nct_id,
+      ctgov_group_code: event_hash['EventGroupId'],
+      event_type: event_type.downcase,
+      classification: classification,
+      subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
+      subjects_at_risk: event_hash["EventGroup#{event_type}NumAtRisk"]
+    }   
+  end
  
   def reported_events_data
     return unless @results_section
@@ -1216,10 +1257,9 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def events_data(event_type='Serious')
-    adverse_events_module = @results_section.dig('AdverseEventsModule')
-    return [] unless adverse_events_module
+    return [] unless @adverse_events_module
 
-    events = adverse_events_module.dig("#{event_type}EventList", "#{event_type}Event")
+    events = @adverse_events_module.dig("#{event_type}EventList", "#{event_type}Event")
     return [] unless events
 
     collection = []
@@ -1425,6 +1465,7 @@ class StudyJsonRecord < ActiveRecord::Base
       pending_results: pending_results_data,
       provided_documents: provided_documents_data,
       reported_events: reported_events_data,
+      reported_event_totals: reported_event_totals_data,
       responsible_party: responsible_party_data,
       result_agreement: result_agreement_data,
       result_contact: result_contact_data,
@@ -1444,6 +1485,7 @@ class StudyJsonRecord < ActiveRecord::Base
       @document_section = document_section
       @contacts_location_module = contacts_location_module
       @locations_array = locations_array
+      @adverse_events_module = adverse_events_module
       data = data_collection
       Study.create(data[:study]) if data[:study]
       saved_result_groups = save_result_groups(data[:result_groups])
@@ -1489,6 +1531,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
       # saving reported events and associated objects
       save_with_result_group(data[:reported_events], 'ReportedEvent') if data[:reported_events]
+      ReportedEventTotal.import(data[:reported_event_totals], validate: false) if data[:reported_event_totals]
 
       ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
       ResultAgreement.create(data[:result_agreement]) if data[:result_agreement]
