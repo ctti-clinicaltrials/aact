@@ -947,6 +947,202 @@ ALTER SEQUENCE ctgov.countries_id_seq OWNED BY ctgov.countries.id;
 
 
 --
+-- Name: designs; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.designs (
+    id integer NOT NULL,
+    nct_id character varying,
+    allocation character varying,
+    intervention_model character varying,
+    observational_model character varying,
+    primary_purpose character varying,
+    time_perspective character varying,
+    masking character varying,
+    masking_description text,
+    intervention_model_description text,
+    subject_masked boolean,
+    caregiver_masked boolean,
+    investigator_masked boolean,
+    outcomes_assessor_masked boolean
+);
+
+
+--
+-- Name: detailed_descriptions; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.detailed_descriptions (
+    id integer NOT NULL,
+    nct_id character varying,
+    description text
+);
+
+
+--
+-- Name: eligibilities; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.eligibilities (
+    id integer NOT NULL,
+    nct_id character varying,
+    sampling_method character varying,
+    gender character varying,
+    minimum_age character varying,
+    maximum_age character varying,
+    healthy_volunteers character varying,
+    population text,
+    criteria text,
+    gender_description text,
+    gender_based boolean
+);
+
+
+--
+-- Name: studies; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.studies (
+    nct_id character varying,
+    nlm_download_date_description character varying,
+    study_first_submitted_date date,
+    results_first_submitted_date date,
+    disposition_first_submitted_date date,
+    last_update_submitted_date date,
+    study_first_submitted_qc_date date,
+    study_first_posted_date date,
+    study_first_posted_date_type character varying,
+    results_first_submitted_qc_date date,
+    results_first_posted_date date,
+    results_first_posted_date_type character varying,
+    disposition_first_submitted_qc_date date,
+    disposition_first_posted_date date,
+    disposition_first_posted_date_type character varying,
+    last_update_submitted_qc_date date,
+    last_update_posted_date date,
+    last_update_posted_date_type character varying,
+    start_month_year character varying,
+    start_date_type character varying,
+    start_date date,
+    verification_month_year character varying,
+    verification_date date,
+    completion_month_year character varying,
+    completion_date_type character varying,
+    completion_date date,
+    primary_completion_month_year character varying,
+    primary_completion_date_type character varying,
+    primary_completion_date date,
+    target_duration character varying,
+    study_type character varying,
+    acronym character varying,
+    baseline_population text,
+    brief_title text,
+    official_title text,
+    overall_status character varying,
+    last_known_status character varying,
+    phase character varying,
+    enrollment integer,
+    enrollment_type character varying,
+    source character varying,
+    limitations_and_caveats character varying,
+    number_of_arms integer,
+    number_of_groups integer,
+    why_stopped character varying,
+    has_expanded_access boolean,
+    expanded_access_type_individual boolean,
+    expanded_access_type_intermediate boolean,
+    expanded_access_type_treatment boolean,
+    has_dmc boolean,
+    is_fda_regulated_drug boolean,
+    is_fda_regulated_device boolean,
+    is_unapproved_device boolean,
+    is_ppsd boolean,
+    is_us_export boolean,
+    biospec_retention character varying,
+    biospec_description text,
+    ipd_time_frame character varying,
+    ipd_access_criteria character varying,
+    ipd_url character varying,
+    plan_to_share_ipd character varying,
+    plan_to_share_ipd_description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: covid_19_studies; Type: VIEW; Schema: ctgov; Owner: -
+--
+
+CREATE VIEW ctgov.covid_19_studies AS
+ SELECT s.nct_id,
+    s.overall_status,
+    s.study_type,
+    s.official_title,
+    s.acronym,
+    s.phase,
+    s.why_stopped,
+    s.has_dmc,
+    s.enrollment,
+    s.is_fda_regulated_device,
+    s.is_fda_regulated_drug,
+    s.is_unapproved_device,
+    s.has_expanded_access,
+    s.study_first_submitted_date,
+    s.last_update_posted_date,
+    s.results_first_posted_date,
+    s.start_date,
+    s.primary_completion_date,
+    s.completion_date,
+    s.study_first_posted_date,
+    cv.number_of_facilities,
+    cv.has_single_facility,
+    cv.nlm_download_date,
+    s.number_of_arms,
+    s.number_of_groups,
+    sp.name AS lead_sponsor,
+    aid.names AS other_ids,
+    e.gender,
+    e.gender_based,
+    e.gender_description,
+    e.population,
+    e.minimum_age,
+    e.maximum_age,
+    e.criteria,
+    e.healthy_volunteers,
+    ak.names AS keywords,
+    ai.names AS interventions,
+    ac.names AS conditions,
+    d.primary_purpose,
+    d.allocation,
+    d.observational_model,
+    d.intervention_model,
+    d.masking,
+    d.subject_masked,
+    d.caregiver_masked,
+    d.investigator_masked,
+    d.outcomes_assessor_masked,
+    ado.names AS design_outcomes,
+    bs.description AS brief_summary,
+    dd.description AS detailed_description
+   FROM (((((((((((ctgov.studies s
+     FULL JOIN ctgov.all_conditions ac ON (((s.nct_id)::text = (ac.nct_id)::text)))
+     FULL JOIN ctgov.all_id_information aid ON (((s.nct_id)::text = (aid.nct_id)::text)))
+     FULL JOIN ctgov.all_design_outcomes ado ON (((s.nct_id)::text = (ado.nct_id)::text)))
+     FULL JOIN ctgov.all_keywords ak ON (((s.nct_id)::text = (ak.nct_id)::text)))
+     FULL JOIN ctgov.all_interventions ai ON (((s.nct_id)::text = (ai.nct_id)::text)))
+     FULL JOIN ctgov.sponsors sp ON (((s.nct_id)::text = (sp.nct_id)::text)))
+     FULL JOIN ctgov.calculated_values cv ON (((s.nct_id)::text = (cv.nct_id)::text)))
+     FULL JOIN ctgov.designs d ON (((s.nct_id)::text = (d.nct_id)::text)))
+     FULL JOIN ctgov.eligibilities e ON (((s.nct_id)::text = (e.nct_id)::text)))
+     FULL JOIN ctgov.brief_summaries bs ON (((s.nct_id)::text = (bs.nct_id)::text)))
+     FULL JOIN ctgov.detailed_descriptions dd ON (((s.nct_id)::text = (dd.nct_id)::text)))
+  WHERE (((sp.lead_or_collaborator)::text = 'lead'::text) AND ((s.nct_id)::text IN ( SELECT categories.nct_id
+           FROM ctgov.categories
+          WHERE ((categories.name)::text = 'covid-19'::text))));
+
+
+--
 -- Name: design_group_interventions; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1019,28 +1215,6 @@ ALTER SEQUENCE ctgov.design_outcomes_id_seq OWNED BY ctgov.design_outcomes.id;
 
 
 --
--- Name: designs; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.designs (
-    id integer NOT NULL,
-    nct_id character varying,
-    allocation character varying,
-    intervention_model character varying,
-    observational_model character varying,
-    primary_purpose character varying,
-    time_perspective character varying,
-    masking character varying,
-    masking_description text,
-    intervention_model_description text,
-    subject_masked boolean,
-    caregiver_masked boolean,
-    investigator_masked boolean,
-    outcomes_assessor_masked boolean
-);
-
-
---
 -- Name: designs_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -1058,17 +1232,6 @@ CREATE SEQUENCE ctgov.designs_id_seq
 --
 
 ALTER SEQUENCE ctgov.designs_id_seq OWNED BY ctgov.designs.id;
-
-
---
--- Name: detailed_descriptions; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.detailed_descriptions (
-    id integer NOT NULL,
-    nct_id character varying,
-    description text
-);
 
 
 --
@@ -1158,25 +1321,6 @@ CREATE SEQUENCE ctgov.drop_withdrawals_id_seq
 --
 
 ALTER SEQUENCE ctgov.drop_withdrawals_id_seq OWNED BY ctgov.drop_withdrawals.id;
-
-
---
--- Name: eligibilities; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.eligibilities (
-    id integer NOT NULL,
-    nct_id character varying,
-    sampling_method character varying,
-    gender character varying,
-    minimum_age character varying,
-    maximum_age character varying,
-    healthy_volunteers character varying,
-    population text,
-    criteria text,
-    gender_description text,
-    gender_based boolean
-);
 
 
 --
@@ -1873,6 +2017,43 @@ ALTER SEQUENCE ctgov.provided_documents_id_seq OWNED BY ctgov.provided_documents
 
 
 --
+-- Name: reported_event_totals; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.reported_event_totals (
+    id integer NOT NULL,
+    nct_id character varying NOT NULL,
+    ctgov_group_code character varying NOT NULL,
+    event_type character varying,
+    classification character varying NOT NULL,
+    subjects_affected integer,
+    subjects_at_risk integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: reported_event_totals_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.reported_event_totals_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reported_event_totals_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.reported_event_totals_id_seq OWNED BY ctgov.reported_event_totals.id;
+
+
+--
 -- Name: reported_events; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -2085,6 +2266,7 @@ ALTER SEQUENCE ctgov.sponsors_id_seq OWNED BY ctgov.sponsors.id;
 
 
 --
+<<<<<<< HEAD
 -- Name: studies; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -2192,6 +2374,8 @@ ALTER SEQUENCE ctgov.study_json_records_id_seq OWNED BY ctgov.study_json_records
 
 
 --
+=======
+>>>>>>> master
 -- Name: study_references; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -2610,6 +2794,13 @@ ALTER TABLE ONLY ctgov.provided_documents ALTER COLUMN id SET DEFAULT nextval('c
 
 
 --
+-- Name: reported_event_totals id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.reported_event_totals ALTER COLUMN id SET DEFAULT nextval('ctgov.reported_event_totals_id_seq'::regclass);
+
+
+--
 -- Name: reported_events id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2996,6 +3187,14 @@ ALTER TABLE ONLY ctgov.pending_results
 
 ALTER TABLE ONLY ctgov.provided_documents
     ADD CONSTRAINT provided_documents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reported_event_totals reported_event_totals_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.reported_event_totals
+    ADD CONSTRAINT reported_event_totals_pkey PRIMARY KEY (id);
 
 
 --
@@ -3777,4 +3976,8 @@ INSERT INTO schema_migrations (version) VALUES ('20200217214455');
 INSERT INTO schema_migrations (version) VALUES ('20200217220919');
 
 INSERT INTO schema_migrations (version) VALUES ('20200424180206');
+
+INSERT INTO schema_migrations (version) VALUES ('20200622225910');
+
+INSERT INTO schema_migrations (version) VALUES ('20200814211239');
 
