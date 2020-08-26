@@ -1146,6 +1146,7 @@ class StudyJsonRecord < ActiveRecord::Base
       collection << event_totals('Other', event_group)
       collection << event_totals('Deaths', event_group)
     end
+    collection
   end
 
   def event_totals(event_type='Serious', event_hash={})
@@ -1162,7 +1163,7 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     {
       nct_id: nct_id,
-      ctgov_group_code: event_hash['EventGroupId'],
+      ctgov_beta_group_code: event_hash['EventGroupId'],
       event_type: event_type.downcase,
       classification: classification,
       subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
