@@ -1589,6 +1589,7 @@ class StudyJsonRecord < ActiveRecord::Base
       pending_result: PendingResult.count,
       provided_document: ProvidedDocument.count,
       reported_event: ReportedEvent.count,
+      reported_event_total: ReportedEventTotal.count,
       responsible_party: ResponsibleParty.count,
       result_agreement: ResultAgreement.count,
       result_contact: ResultContact.count,
