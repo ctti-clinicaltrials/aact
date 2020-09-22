@@ -377,7 +377,7 @@ class Category < ActiveRecord::Base
     provided_documents.map{|provided_document| "#{provided_document.document_type}, #{provided_document.url}"}.join('|')
   end
 
-  def self.category_search
+  def self.execute_search
     queries = Search.all
     if  queries.empty?
       Search.populate_database
