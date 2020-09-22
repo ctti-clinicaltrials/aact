@@ -1,0 +1,247 @@
+COD_group,icd10rule,I10Code,Description
+Malignant Neoplasms,C00-C97,C00,Malignant neoplasm of lip
+Malignant Neoplasms,C00-C97,C01,Malignant neoplasm of base of tongue
+Malignant Neoplasms,C00-C97,C02,Malignant neoplasm of other and unspecified parts of tongue
+Malignant Neoplasms,C00-C97,C03,Malignant neoplasm of gum
+Malignant Neoplasms,C00-C97,C04,Malignant neoplasm of floor of mouth
+Malignant Neoplasms,C00-C97,C05,Malignant neoplasm of palate
+Malignant Neoplasms,C00-C97,C06,Malignant neoplasm of other and unspecified parts of mouth
+Malignant Neoplasms,C00-C97,C07,Malignant neoplasm of parotid gland
+Malignant Neoplasms,C00-C97,C08,Malignant neoplasm of other and unspecified major salivary glands
+Malignant Neoplasms,C00-C97,C09,Malignant neoplasm of tonsil
+Malignant Neoplasms,C00-C97,C10,Malignant neoplasm of oropharynx
+Malignant Neoplasms,C00-C97,C11,Malignant neoplasm of nasopharynx
+Malignant Neoplasms,C00-C97,C12,Malignant neoplasm of pyriform sinus
+Malignant Neoplasms,C00-C97,C13,Malignant neoplasm of hypopharynx
+Malignant Neoplasms,C00-C97,C14,"Malignant neoplasm of other and ill-defined sites in the lip, oral cavity and pharynx"
+Malignant Neoplasms,C00-C97,C15,Malignant neoplasm of esophagus
+Malignant Neoplasms,C00-C97,C16,Malignant neoplasm of stomach
+Malignant Neoplasms,C00-C97,C17,Malignant neoplasm of small intestine
+Malignant Neoplasms,C00-C97,C18,Malignant neoplasm of colon
+Malignant Neoplasms,C00-C97,C19,Malignant neoplasm of rectosigmoid junction
+Malignant Neoplasms,C00-C97,C20,Malignant neoplasm of rectum
+Malignant Neoplasms,C00-C97,C21,Malignant neoplasm of anus and anal canal
+Malignant Neoplasms,C00-C97,C22,Malignant neoplasm of liver and intrahepatic bile ducts
+Malignant Neoplasms,C00-C97,C23,Malignant neoplasm of gallbladder
+Malignant Neoplasms,C00-C97,C24,Malignant neoplasm of other and unspecified parts of biliary tract
+Malignant Neoplasms,C00-C97,C25,Malignant neoplasm of pancreas
+Malignant Neoplasms,C00-C97,C26,Malignant neoplasm of other and ill-defined digestive organs
+Malignant Neoplasms,C00-C97,C30,Malignant neoplasm of nasal cavity and middle ear
+Malignant Neoplasms,C00-C97,C31,Malignant neoplasm of accessory sinuses
+Malignant Neoplasms,C00-C97,C32,Malignant neoplasm of larynx
+Malignant Neoplasms,C00-C97,C33,Malignant neoplasm of trachea
+Malignant Neoplasms,C00-C97,C34,Malignant neoplasm of bronchus and lung
+Malignant Neoplasms,C00-C97,C37,Malignant neoplasm of thymus
+Malignant Neoplasms,C00-C97,C38,"Malignant neoplasm of heart, mediastinum and pleura"
+Malignant Neoplasms,C00-C97,C39,Malignant neoplasm of other and ill-defined sites in the respiratory system and intrathora
+Malignant Neoplasms,C00-C97,C40,Malignant neoplasm of bone and articular cartilage of limbs
+Malignant Neoplasms,C00-C97,C41,Malignant neoplasm of bone and articular cartilage of other and unspecified sites
+Malignant Neoplasms,C00-C97,C43,Malignant melanoma of skin
+Malignant Neoplasms,C00-C97,C4A,Merkel cell carcinoma
+Malignant Neoplasms,C00-C97,C44,Other and unspecified malignant neoplasm of skin
+Malignant Neoplasms,C00-C97,C45,Mesothelioma
+Malignant Neoplasms,C00-C97,C46,Kaposi's sarcoma
+Malignant Neoplasms,C00-C97,C47,Malignant neoplasm of peripheral nerves and autonomic nervous system
+Malignant Neoplasms,C00-C97,C48,Malignant neoplasm of retroperitoneum and peritoneum
+Malignant Neoplasms,C00-C97,C49,Malignant neoplasm of other connective and soft tissue
+Malignant Neoplasms,C00-C97,C50,Malignant neoplasm of breast
+Malignant Neoplasms,C00-C97,C51,Malignant neoplasm of vulva
+Malignant Neoplasms,C00-C97,C52,Malignant neoplasm of vagina
+Malignant Neoplasms,C00-C97,C53,Malignant neoplasm of cervix uteri
+Malignant Neoplasms,C00-C97,C54,Malignant neoplasm of corpus uteri
+Malignant Neoplasms,C00-C97,C55,"Malignant neoplasm of uterus, part unspecified"
+Malignant Neoplasms,C00-C97,C56,Malignant neoplasm of ovary
+Malignant Neoplasms,C00-C97,C57,Malignant neoplasm of other and unspecified female genital organs
+Malignant Neoplasms,C00-C97,C58,Malignant neoplasm of placenta
+Malignant Neoplasms,C00-C97,C60,Malignant neoplasm of penis
+Malignant Neoplasms,C00-C97,C61,Malignant neoplasm of prostate
+Malignant Neoplasms,C00-C97,C62,Malignant neoplasm of testis
+Malignant Neoplasms,C00-C97,C63,Malignant neoplasm of other and unspecified male genital organs
+Malignant Neoplasms,C00-C97,C64,"Malignant neoplasm of kidney, except renal pelvis"
+Malignant Neoplasms,C00-C97,C65,Malignant neoplasm of renal pelvis
+Malignant Neoplasms,C00-C97,C66,Malignant neoplasm of ureter
+Malignant Neoplasms,C00-C97,C67,Malignant neoplasm of bladder
+Malignant Neoplasms,C00-C97,C68,Malignant neoplasm of other and unspecified urinary organs
+Malignant Neoplasms,C00-C97,C69,Malignant neoplasm of eye and adnexa
+Malignant Neoplasms,C00-C97,C70,Malignant neoplasm of meninges
+Malignant Neoplasms,C00-C97,C71,Malignant neoplasm of brain
+Malignant Neoplasms,C00-C97,C72,"Malignant neoplasm of spinal cord, cranial nerves and other parts of central nervous syste"
+Malignant Neoplasms,C00-C97,C73,Malignant neoplasm of thyroid gland
+Malignant Neoplasms,C00-C97,C74,Malignant neoplasm of adrenal gland
+Malignant Neoplasms,C00-C97,C75,Malignant neoplasm of other endocrine glands and related structures
+Malignant Neoplasms,C00-C97,C7A,Malignant neuroendocrine tumors
+Malignant Neoplasms,C00-C97,C7B,Secondary neuroendocrine tumors
+Malignant Neoplasms,C00-C97,C76,Malignant neoplasm of other and ill-defined sites
+Malignant Neoplasms,C00-C97,C77,Secondary and unspecified malignant neoplasm of lymph nodes
+Malignant Neoplasms,C00-C97,C78,Secondary malignant neoplasm of respiratory and digestive organs
+Malignant Neoplasms,C00-C97,C79,Secondary malignant neoplasm of other and unspecified sites
+Malignant Neoplasms,C00-C97,C80,Malignant neoplasm without specification of site
+Malignant Neoplasms,C00-C97,C81,Hodgkin lymphoma
+Malignant Neoplasms,C00-C97,C82,Follicular lymphoma
+Malignant Neoplasms,C00-C97,C83,Non-follicular lymphoma
+Malignant Neoplasms,C00-C97,C84,Mature T/NK-cell lymphomas
+Malignant Neoplasms,C00-C97,C85,Other specified and unspecified types of non-Hodgkin lymphoma
+Malignant Neoplasms,C00-C97,C86,Other specified types of T/NK-cell lymphoma
+Malignant Neoplasms,C00-C97,C88,Malignant immunoproliferative diseases and certain other B-cell lymphomas
+Malignant Neoplasms,C00-C97,C90,Multiple myeloma and malignant plasma cell neoplasms
+Malignant Neoplasms,C00-C97,C91,Lymphoid leukemia
+Malignant Neoplasms,C00-C97,C92,Myeloid leukemia
+Malignant Neoplasms,C00-C97,C93,Monocytic leukemia
+Malignant Neoplasms,C00-C97,C94,Other leukemias of specified cell type
+Malignant Neoplasms,C00-C97,C95,Leukemia of unspecified cell type
+Malignant Neoplasms,C00-C97,C96,"Other and unspecified malignant neoplasms of lymphoid, hematopoietic and related tissue"
+Diabetes mellitus,E10-E14,E10,Type 1 diabetes mellitus
+Diabetes mellitus,E10-E14,E11,Type 2 diabetes mellitus
+Diabetes mellitus,E10-E14,E13,Other specified diabetes mellitus
+Alzheimer's disease,G30,G30,Alzheimer's disease
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I00,Rheumatic fever without heart involvement
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I01,Rheumatic fever with heart involvement
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I02,Rheumatic chorea
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I05,Rheumatic mitral valve diseases
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I06,Rheumatic aortic valve diseases
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I07,Rheumatic tricuspid valve diseases
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I08,Multiple valve diseases
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I09,Other rheumatic heart diseases
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I11,Hypertensive heart disease
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I13,Hypertensive heart and chronic kidney disease
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I20,Angina pectoris
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I21,Acute myocardial infarction
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I22,Subsequent ST elevation (STEMI) and non-ST elevation (NSTEMI) myocardial infarction
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I23,Certain current complications following ST elevation (STEMI) and non-ST elevation (NSTEMI)
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I24,Other acute ischemic heart diseases
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I25,Chronic ischemic heart disease
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I26,Pulmonary embolism
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I27,Other pulmonary heart diseases
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I28,Other diseases of pulmonary vessels
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I30,Acute pericarditis
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I31,Other diseases of pericardium
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I32,Pericarditis in diseases classified elsewhere
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I33,Acute and subacute endocarditis
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I34,Nonrheumatic mitral valve disorders
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I35,Nonrheumatic aortic valve disorders
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I36,Nonrheumatic tricuspid valve disorders
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I37,Nonrheumatic pulmonary valve disorders
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I38,"Endocarditis, valve unspecified"
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I39,Endocarditis and heart valve disorders in diseases classified elsewhere
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I40,Acute myocarditis
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I41,Myocarditis in diseases classified elsewhere
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I42,Cardiomyopathy
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I43,Cardiomyopathy in diseases classified elsewhere
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I44,Atrioventricular and left bundle-branch block
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I45,Other conduction disorders
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I46,Cardiac arrest
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I47,Paroxysmal tachycardia
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I48,Atrial fibrillation and flutter
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I49,Other cardiac arrhythmias
+Diseases of the Heart,"I00-I09,I11,I13,I20-I51",I51,Complications and ill-defined descriptions of heart disease
+Stroke (cerebrovascular disease),I60-I69,I60,Nontraumatic subarachnoid hemorrhage
+Stroke (cerebrovascular disease),I60-I69,I61,Nontraumatic intracerebral hemorrhage
+Stroke (cerebrovascular disease),I60-I69,I62,Other and unspecified nontraumatic intracranial hemorrhage
+Stroke (cerebrovascular disease),I60-I69,I63,Cerebral infarction
+Stroke (cerebrovascular disease),I60-I69,I65,"Occlusion and stenosis of precerebral arteries, not resulting in cerebral infarction"
+Stroke (cerebrovascular disease),I60-I69,I66,"Occlusion and stenosis of cerebral arteries, not resulting in cerebral infarction"
+Stroke (cerebrovascular disease),I60-I69,I67,Other cerebrovascular diseases
+Stroke (cerebrovascular disease),I60-I69,I68,Cerebrovascular disorders in diseases classified elsewhere
+Stroke (cerebrovascular disease),I60-I69,I69,Sequelae of cerebrovascular disease
+Influenza and pneumonia,J09-J18,J09,Influenza due to certain identified influenza viruses
+Influenza and pneumonia,J09-J18,J10,Influenza due to other identified influenza virus
+Influenza and pneumonia,J09-J18,J11,Influenza due to unidentified influenza virus
+Influenza and pneumonia,J09-J18,J12,"Viral pneumonia, not elsewhere classified"
+Influenza and pneumonia,J09-J18,J13,Pneumonia due to Streptococcus pneumoniae
+Influenza and pneumonia,J09-J18,J14,Pneumonia due to Hemophilus influenzae
+Influenza and pneumonia,J09-J18,J15,"Bacterial pneumonia, not elsewhere classified"
+Influenza and pneumonia,J09-J18,J16,"Pneumonia due to other infectious organisms, not elsewhere classified"
+Influenza and pneumonia,J09-J18,J17,Pneumonia in diseases classified elsewhere
+Influenza and pneumonia,J09-J18,J18,"Pneumonia, unspecified organism"
+Chronic lower respiratory diseases,J40-J47,J40,"Bronchitis, not specified as acute or chronic"
+Chronic lower respiratory diseases,J40-J47,J41,Simple and mucopurulent chronic bronchitis
+Chronic lower respiratory diseases,J40-J47,J42,Unspecified chronic bronchitis
+Chronic lower respiratory diseases,J40-J47,J43,Emphysema
+Chronic lower respiratory diseases,J40-J47,J44,Other chronic obstructive pulmonary disease
+Chronic lower respiratory diseases,J40-J47,J45,Asthma
+Chronic lower respiratory diseases,J40-J47,J47,Bronchiectasis
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N00,Acute nephritic syndrome
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N01,Rapidly progressive nephritic syndrome
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N02,Recurrent and persistent hematuria
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N03,Chronic nephritic syndrome
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N04,Nephrotic syndrome
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N05,Unspecified nephritic syndrome
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N06,Isolated proteinuria with specified morphological lesion
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N07,"Hereditary nephropathy, not elsewhere classified"
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N17,Acute kidney failure
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N18,Chronic kidney disease (CKD)
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N19,Unspecified kidney failure
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N25,Disorders resulting from impaired renal tubular function
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N26,Unspecified contracted kidney
+"Kidney disease Nephritis, nephrotic syndrome and nephrosis","N00-N07, N17-N19, N25-N27",N27,Small kidney of unknown cause
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V00,Pedestrian conveyance accident
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V01,Pedestrian injured in collision with pedal cycle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V02,Pedestrian injured in collision with two- or three-wheeled motor vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V03,"Pedestrian injured in collision with car, pick-up truck or van"
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V04,Pedestrian injured in collision with heavy transport vehicle or bus
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V05,Pedestrian injured in collision with railway train or railway vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V06,Pedestrian injured in collision with other nonmotor vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V09,Pedestrian injured in other and unspecified transport accidents
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V10,Pedal cycle rider injured in collision with pedestrian or animal
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V11,Pedal cycle rider injured in collision with other pedal cycle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V12,Pedal cycle rider injured in collision with two- or three-wheeled motor vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V13,"Pedal cycle rider injured in collision with car, pick-up truck or van"
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V14,Pedal cycle rider injured in collision with heavy transport vehicle or bus
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V15,Pedal cycle rider injured in collision with railway train or railway vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V16,Pedal cycle rider injured in collision with other nonmotor vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V17,Pedal cycle rider injured in collision with fixed or stationary object
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V18,Pedal cycle rider injured in noncollision transport accident
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V19,Pedal cycle rider injured in other and unspecified transport accidents
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V20,Motorcycle rider injured in collision with pedestrian or animal
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V21,Motorcycle rider injured in collision with pedal cycle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V22,Motorcycle rider injured in collision with two- or three-wheeled motor vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V23,"Motorcycle rider injured in collision with car, pick-up truck or van"
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V24,Motorcycle rider injured in collision with heavy transport vehicle or bus
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V25,Motorcycle rider injured in collision with railway train or railway vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V26,Motorcycle rider injured in collision with other nonmotor vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V27,Motorcycle rider injured in collision with fixed or stationary object
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V28,Motorcycle rider injured in noncollision transport accident
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V29,Motorcycle rider injured in other and unspecified transport accidents
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V30,Occupant of three-wheeled motor vehicle injured in collision with pedestrian or animal
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V31,Occupant of three-wheeled motor vehicle injured in collision with pedal cycle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V32,Occupant of three-wheeled motor vehicle injured in collision with two- or three-wheeled mo
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V33,"Occupant of three-wheeled motor vehicle injured in collision with car, pick-up truck or va"
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V34,Occupant of three-wheeled motor vehicle injured in collision with heavy transport vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V35,Occupant of three-wheeled motor vehicle injured in collision with railway train or railway
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V36,Occupant of three-wheeled motor vehicle injured in collision with other nonmotor vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V37,Occupant of three-wheeled motor vehicle injured in collision with fixed or stationary obje
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V38,Occupant of three-wheeled motor vehicle injured in noncollision transport accident
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V39,Occupant of three-wheeled motor vehicle injured in other and unspecified transport acciden
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V40,Car occupant injured in collision with pedestrian or animal
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V41,Car occupant injured in collision with pedal cycle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V42,Car occupant injured in collision with two- or three-wheeled motor vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V43,"Car occupant injured in collision with car, pick-up truck or van"
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V44,Car occupant injured in collision with heavy transport vehicle or bus
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V45,Car occupant injured in collision with railway train or railway vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V46,Car occupant injured in collision with other nonmotor vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V47,Car occupant injured in collision with fixed or stationary object
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V48,Car occupant injured in noncollision transport accident
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V49,Car occupant injured in other and unspecified transport accidents
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V50,Occupant of pick-up truck or van injured in collision with pedestrian or animal
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V51,Occupant of pick-up truck or van injured in collision with pedal cycle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V52,Occupant of pick-up truck or van injured in collision with two- or three-wheeled motor veh
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V53,"Occupant of pick-up truck or van injured in collision with car, pick-up truck or van"
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V54,Occupant of pick-up truck or van injured in collision with heavy transport vehicle or bus
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V55,Occupant of pick-up truck or van injured in collision with railway train or railway vehicl
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V56,Occupant of pick-up truck or van injured in collision with other nonmotor vehicle
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V57,Occupant of pick-up truck or van injured in collision with fixed or stationary object
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V58,Occupant of pick-up truck or van injured in noncollision transport accident
+Accidents (Unintentional Injuries),"V01-X59, Y85-Y86",V59,Occupant of pick-up truck or van injured in other and unspecified transport accidents
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X71,Intentional self-harm by drowning and submersion
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X72,Intentional self-harm by handgun discharge
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X73,"Intentional self-harm by rifle, shotgun and larger firearm discharge"
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X74,Intentional self-harm by other and unspecified firearm and gun discharge
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X75,Intentional self-harm by explosive material
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X76,"Intentional self-harm by smoke, fire and flames"
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X77,"Intentional self-harm by steam, hot vapors and hot objects"
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X78,Intentional self-harm by sharp object
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X79,Intentional self-harm by blunt object
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X80,Intentional self-harm by jumping from a high place
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X81,Intentional self-harm by jumping or lying in front of moving object
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X82,Intentional self-harm by crashing of motor vehicle
+Intentional self-harm (suicide),"*X60–X84,Y87.0",X83,Intentional self-harm by other specified means
