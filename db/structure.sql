@@ -3278,6 +3278,13 @@ CREATE INDEX index_categories_on_nct_id ON ctgov.categories USING btree (nct_id)
 
 
 --
+-- Name: index_categories_on_nct_id_and_name_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_categories_on_nct_id_and_name_and_grouping ON ctgov.categories USING btree (nct_id, name, "grouping");
+
+
+--
 -- Name: index_central_contacts_on_contact_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4618,4 +4625,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200622225910');
 INSERT INTO schema_migrations (version) VALUES ('20200814211239');
 
 INSERT INTO schema_migrations (version) VALUES ('20200922153536');
+
+INSERT INTO schema_migrations (version) VALUES ('20200922175002');
 
