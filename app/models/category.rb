@@ -12,23 +12,28 @@ class Category < ActiveRecord::Base
   def self.load_update(params={})
     @days_back = params[:days_back] ? params[:days_back] : 1000
     @condition = params[:condition] ? params[:condition] : 'covid-19'
-    covid_nct_ids = fetch_study_ids
+    grouping = params[:grouping] || @condition
+    make_tsv = params[:tsv]
+    collected_nct_ids = fetch_study_ids
     
     
-    covid_nct_ids.each do |covid_nct_id|
+    collected_nct_ids.each do |collected_nct_id|
       begin
-        category = Category.find_by(nct_id: covid_nct_id, name: [@condition, @condition.underscore])
-        category ||= Category.new(nct_id: covid_nct_id)
-        category.name = @condition
-        category.last_modified = Time.zone.now
-        category.save
+        category = Category.find_by(nct_id: collected_nct_id, name: [@condition, @condition.underscore], grouping: [grouping, ''])
+        category.update(grouping: @condition.underscore) if category && category.grouping.empty?
+        category.update(last_modified: Time.zone.now) if category
+        category ||= Category.create(
+                                      nct_id: collected_nct_id,
+                                      name: @condition,
+                                      grouping: grouping,
+                                      last_modified: Time.zone.now)
       rescue Exception => e
-        puts "Failed: #{covid_nct_id}"
+        puts "Failed: #{collected_nct_id}"
         puts "Error: #{e}"
         next
       end
     end
-    save_tsv(@condition)
+    save_tsv(@condition) if make_tsv
   end
 
   def self.study_values(study)
