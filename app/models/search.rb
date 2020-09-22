@@ -1,6 +1,12 @@
+require 'csv'
 class Search < ActiveRecord::Base
   def self.populate_database
-    find_or_create_by(save_tsv: false, grouping: 'Malignant Neoplasms', query: 'Malignant neoplasm of lip')
     find_or_create_by(save_tsv: true, grouping: 'covid-19', query: 'covid-19')
+    path = "#{Rails.public_path}/static/other/LeadingCausesDeath_terms.csv"
+    file =  open(path, "r") { |io| io.read.encode("UTF-8", invalid: :replace) }
+    query_data = CSV.parse(file, headers: true)
+    query_data.each do |line|
+      find_or_create_by(save_tsv: false, grouping: line[0], query: line[3])
+    end
   end
 end
