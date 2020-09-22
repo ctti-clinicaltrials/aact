@@ -152,6 +152,7 @@ module Util
         mesh_terms
         mesh_headings
         sanity_checks
+        searches
         statistics
         study_xml_records
         use_cases
