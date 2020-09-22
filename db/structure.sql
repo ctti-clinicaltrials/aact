@@ -3327,13 +3327,6 @@ CREATE INDEX index_categories_on_nct_id ON ctgov.categories USING btree (nct_id)
 
 
 --
--- Name: index_categories_on_nct_id_and_name_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_categories_on_nct_id_and_name_and_grouping ON ctgov.categories USING btree (nct_id, name, "grouping");
-
-
---
 -- Name: index_central_contacts_on_contact_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3936,6 +3929,13 @@ CREATE INDEX index_result_groups_on_result_type ON ctgov.result_groups USING btr
 
 
 --
+-- Name: index_searches_on_query_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_searches_on_query_and_grouping ON ctgov.searches USING btree (query, "grouping");
+
+
+--
 -- Name: index_sponsors_on_agency_class; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4207,14 +4207,6 @@ ALTER TABLE ONLY ctgov.browse_interventions
 
 ALTER TABLE ONLY ctgov.calculated_values
     ADD CONSTRAINT calculated_values_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: categories categories_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.categories
-    ADD CONSTRAINT categories_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
 
 
 --

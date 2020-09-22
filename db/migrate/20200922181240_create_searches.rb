@@ -7,5 +7,6 @@ class CreateSearches < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :searches, [:query, :grouping], unique: true
   end
 end

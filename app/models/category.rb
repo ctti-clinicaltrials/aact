@@ -376,5 +376,17 @@ class Category < ActiveRecord::Base
     provided_documents = study.provided_documents
     provided_documents.map{|provided_document| "#{provided_document.document_type}, #{provided_document.url}"}.join('|')
   end
+
+  def self.category_search
+    queries = Search.all
+    if  queries.empty?
+      Search.populate_database
+      queries = Search.all
+    end
+    
+    queries.each do |query|
+      load_update({tsv: query.save_tsv, condition: query.query, grouping: query.grouping})
+    end
+  end
 end
 
