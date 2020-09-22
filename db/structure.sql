@@ -2237,6 +2237,40 @@ CREATE TABLE ctgov.schema_migrations (
 
 
 --
+-- Name: searches; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.searches (
+    id integer NOT NULL,
+    save_tsv boolean DEFAULT false NOT NULL,
+    query character varying NOT NULL,
+    "grouping" character varying DEFAULT ''::character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: searches_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.searches_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: searches_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.searches_id_seq OWNED BY ctgov.searches.id;
+
+
+--
 -- Name: sponsors_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -2717,6 +2751,13 @@ ALTER TABLE ONLY ctgov.result_groups ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
+-- Name: searches id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.searches ALTER COLUMN id SET DEFAULT nextval('ctgov.searches_id_seq'::regclass);
+
+
+--
 -- Name: sponsors id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3109,6 +3150,14 @@ ALTER TABLE ONLY ctgov.result_contacts
 
 ALTER TABLE ONLY ctgov.result_groups
     ADD CONSTRAINT result_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: searches searches_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.searches
+    ADD CONSTRAINT searches_pkey PRIMARY KEY (id);
 
 
 --
@@ -4627,4 +4676,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200814211239');
 INSERT INTO schema_migrations (version) VALUES ('20200922153536');
 
 INSERT INTO schema_migrations (version) VALUES ('20200922175002');
+
+INSERT INTO schema_migrations (version) VALUES ('20200922181240');
 

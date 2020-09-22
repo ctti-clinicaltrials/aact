@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :search do
+    save_tsv false
+    query "MyString"
+    grouping "MyString"
+  end
   factory :reported_event_total do
     nct_id "MyString"
     ctgov_group_code "MyString"
