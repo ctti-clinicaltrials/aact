@@ -2,7 +2,8 @@ require 'rss'
 require 'uri'
 require 'axlsx'
 class Category < ActiveRecord::Base
-
+  validates :nct_id, uniqueness: {scope: [:name, :grouping]}
+  
   def self.fetch_study_ids
     @days_back ||= 1000
     @condition ||= 'covid-19'
