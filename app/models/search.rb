@@ -1,5 +1,7 @@
 require 'csv'
 class Search < ActiveRecord::Base
+  validates :grouping, uniqueness: {scope: :query}
+  
   def self.populate_database
     find_or_create_by(save_tsv: true, grouping: 'covid-19', query: 'covid-19')
     path = "#{Rails.root}/app/documents/LeadingCausesDeath_terms.csv"
