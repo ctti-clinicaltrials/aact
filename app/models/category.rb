@@ -4,28 +4,26 @@ require 'axlsx'
 class Category < ActiveRecord::Base
   validates :nct_id, uniqueness: {scope: [:name, :grouping]}
   
-  def self.fetch_study_ids
-    @days_back ||= 1000
-    @condition ||= 'covid-19'
-    Util::RssReader.new(days_back: @days_back, condition: @condition).get_changed_nct_ids
+  def self.fetch_study_ids(condition='covid-19', days_back=1000)
+    Util::RssReader.new(days_back: days_back, condition: condition).get_changed_nct_ids
   end
 
   def self.load_update(params={})
-    @days_back = params[:days_back] ? params[:days_back] : 1000
-    @condition = params[:condition] ? params[:condition] : 'covid-19'
+    days_back = params[:days_back] ? params[:days_back] : 1000
+    condition = params[:condition] ? params[:condition] : 'covid-19'
     grouping = params[:grouping] || @condition
     make_tsv = params[:tsv]
-    collected_nct_ids = fetch_study_ids
+    collected_nct_ids = fetch_study_ids(condition, days_back)
     
     
     collected_nct_ids.each do |collected_nct_id|
       begin
-        category = Category.find_by(nct_id: collected_nct_id, name: [@condition, @condition.underscore], grouping: [grouping, ''])
-        category.update(grouping: @condition.underscore) if category && category.grouping.empty?
+        category = Category.find_by(nct_id: collected_nct_id, name: [condition, condition.underscore], grouping: [grouping, ''])
+        category.update(grouping: condition.underscore) if category && category.grouping.empty?
         category.update(last_modified: Time.zone.now) if category
         category ||= Category.create(
                                       nct_id: collected_nct_id,
-                                      name: @condition,
+                                      name: condition,
                                       grouping: grouping,
                                       last_modified: Time.zone.now)
       rescue Exception => e
@@ -34,7 +32,7 @@ class Category < ActiveRecord::Base
         next
       end
     end
-    save_tsv(@condition) if make_tsv
+    save_tsv(condition) if make_tsv
   end
 
   def self.study_values(study)
