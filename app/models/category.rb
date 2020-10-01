@@ -19,7 +19,7 @@ class Category < ActiveRecord::Base
     collected_nct_ids.each do |collected_nct_id|
       begin
         category = Category.find_by(nct_id: collected_nct_id, name: [condition, condition.underscore], grouping: [grouping, ''])
-        category.update(grouping: condition.underscore) if category && category.grouping.empty?
+        category.update(grouping: condition) if category && category.grouping.empty?
         category.update(last_modified: Time.zone.now) if category
         category ||= Category.create(
                                       nct_id: collected_nct_id,
