@@ -40,7 +40,6 @@ class Category < ActiveRecord::Base
     id_values = study.id_information.pluck(:id_value).join('|')
     sponsors = study.sponsors
     grouped = sponsors.group_by(&:lead_or_collaborator)
-    puts grouped
     lead = grouped['lead'].first
     collaborators = grouped['collaborator']
     collab_names = collaborators.map{|collab| "#{collab.name}[#{collab.agency_class}]"}.join('|') if collaborators
@@ -251,8 +250,8 @@ class Category < ActiveRecord::Base
 
   def self.save_tsv(condition = 'covid-19')
     headers = excel_column_names
-    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
-    studies = Study.where(nct_id: nct_ids)
+    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id).uniq
+    studies = Study.where(nct_id: nct_ids).uniq
     current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
     name="#{current_datetime}_#{condition}"
     file = "./public/static/exported_files/#{condition}/#{name}.tsv"
