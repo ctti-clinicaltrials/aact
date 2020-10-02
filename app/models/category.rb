@@ -11,7 +11,7 @@ class Category < ActiveRecord::Base
   def self.load_update(params={})
     days_back = params[:days_back] ? params[:days_back] : 1000
     condition = params[:condition] ? params[:condition] : 'covid-19'
-    grouping = params[:grouping] || @condition
+    grouping = params[:grouping] || condition
     make_tsv = params[:tsv]
     collected_nct_ids = fetch_study_ids(condition, days_back)
     
