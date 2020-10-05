@@ -841,7 +841,8 @@ CREATE TABLE ctgov.categories (
     name character varying NOT NULL,
     last_modified timestamp without time zone NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    "grouping" character varying DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -2236,6 +2237,40 @@ CREATE TABLE ctgov.schema_migrations (
 
 
 --
+-- Name: searches; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.searches (
+    id integer NOT NULL,
+    save_tsv boolean DEFAULT false NOT NULL,
+    query character varying NOT NULL,
+    "grouping" character varying DEFAULT ''::character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: searches_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.searches_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: searches_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.searches_id_seq OWNED BY ctgov.searches.id;
+
+
+--
 -- Name: sponsors_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -2716,6 +2751,13 @@ ALTER TABLE ONLY ctgov.result_groups ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
+-- Name: searches id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.searches ALTER COLUMN id SET DEFAULT nextval('ctgov.searches_id_seq'::regclass);
+
+
+--
 -- Name: sponsors id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3111,6 +3153,14 @@ ALTER TABLE ONLY ctgov.result_groups
 
 
 --
+-- Name: searches searches_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.searches
+    ADD CONSTRAINT searches_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sponsors sponsors_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3246,6 +3296,13 @@ CREATE INDEX index_calculated_values_on_number_of_facilities ON ctgov.calculated
 --
 
 CREATE UNIQUE INDEX index_categories_on_nct_id_and_name ON ctgov.categories USING btree (nct_id, name);
+
+
+--
+-- Name: index_categories_on_nct_id_and_name_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_categories_on_nct_id_and_name_and_grouping ON ctgov.categories USING btree (nct_id, name, "grouping");
 
 
 --
@@ -3613,6 +3670,13 @@ CREATE INDEX index_result_groups_on_result_type ON ctgov.result_groups USING btr
 
 
 --
+-- Name: index_searches_on_query_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_searches_on_query_and_grouping ON ctgov.searches USING btree (query, "grouping");
+
+
+--
 -- Name: index_sponsors_on_agency_class; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3839,4 +3903,10 @@ INSERT INTO schema_migrations (version) VALUES ('20200424180206');
 INSERT INTO schema_migrations (version) VALUES ('20200622225910');
 
 INSERT INTO schema_migrations (version) VALUES ('20200814211239');
+
+INSERT INTO schema_migrations (version) VALUES ('20200922153536');
+
+INSERT INTO schema_migrations (version) VALUES ('20200922175002');
+
+INSERT INTO schema_migrations (version) VALUES ('20200922181240');
 
