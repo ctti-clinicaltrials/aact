@@ -11,7 +11,7 @@ class Category < ActiveRecord::Base
   def self.load_update(params={})
     days_back = params[:days_back] ? params[:days_back] : 1000
     condition = params[:condition] ? params[:condition] : 'covid-19'
-    grouping = params[:grouping] || @condition
+    grouping = params[:grouping] || condition
     make_tsv = params[:tsv]
     collected_nct_ids = fetch_study_ids(condition, days_back)
     
@@ -19,7 +19,7 @@ class Category < ActiveRecord::Base
     collected_nct_ids.each do |collected_nct_id|
       begin
         category = Category.find_by(nct_id: collected_nct_id, name: [condition, condition.underscore], grouping: [grouping, ''])
-        category.update(grouping: condition.underscore) if category && category.grouping.empty?
+        category.update(grouping: condition) if category && category.grouping.empty?
         category.update(last_modified: Time.zone.now) if category
         category ||= Category.create(
                                       nct_id: collected_nct_id,
@@ -40,7 +40,6 @@ class Category < ActiveRecord::Base
     id_values = study.id_information.pluck(:id_value).join('|')
     sponsors = study.sponsors
     grouped = sponsors.group_by(&:lead_or_collaborator)
-    puts grouped
     lead = grouped['lead'].first
     collaborators = grouped['collaborator']
     collab_names = collaborators.map{|collab| "#{collab.name}[#{collab.agency_class}]"}.join('|') if collaborators
@@ -251,8 +250,8 @@ class Category < ActiveRecord::Base
 
   def self.save_tsv(condition = 'covid-19')
     headers = excel_column_names
-    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
-    studies = Study.where(nct_id: nct_ids)
+    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id).uniq
+    studies = Study.where(nct_id: nct_ids).uniq
     current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
     name="#{current_datetime}_#{condition}"
     file = "./public/static/exported_files/#{condition}/#{name}.tsv"
