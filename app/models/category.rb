@@ -3,33 +3,37 @@ require 'uri'
 require 'axlsx'
 class Category < ActiveRecord::Base
   belongs_to :study, foreign_key: 'nct_id'
-
-  def self.fetch_study_ids
-    @days_back ||= 1000
-    @condition ||= 'covid-19'
-    Util::RssReader.new(days_back: @days_back, condition: @condition).get_changed_nct_ids
+  validates :nct_id, uniqueness: {scope: [:name, :grouping]}
+  
+  def self.fetch_study_ids(condition='covid-19', days_back=1000)
+    Util::RssReader.new(days_back: days_back, condition: condition).get_changed_nct_ids
   end
 
   def self.load_update(params={})
-    @days_back = params[:days_back] ? params[:days_back] : 1000
-    @condition = params[:condition] ? params[:condition] : 'covid-19'
-    covid_nct_ids = fetch_study_ids
+    days_back = params[:days_back] ? params[:days_back] : 1000
+    condition = params[:condition] ? params[:condition] : 'covid-19'
+    grouping = params[:grouping] || condition
+    make_tsv = params[:tsv]
+    collected_nct_ids = fetch_study_ids(condition, days_back)
     
     
-    covid_nct_ids.each do |covid_nct_id|
+    collected_nct_ids.each do |collected_nct_id|
       begin
-        category = Category.find_by(nct_id: covid_nct_id, name: [@condition, @condition.underscore])
-        category ||= Category.new(nct_id: covid_nct_id)
-        category.name = @condition
-        category.last_modified = Time.zone.now
-        category.save
+        category = Category.find_by(nct_id: collected_nct_id, name: [condition, condition.underscore], grouping: [grouping, ''])
+        category.update(grouping: condition) if category && category.grouping.empty?
+        category.update(last_modified: Time.zone.now) if category
+        category ||= Category.create(
+                                      nct_id: collected_nct_id,
+                                      name: condition,
+                                      grouping: grouping,
+                                      last_modified: Time.zone.now)
       rescue Exception => e
-        puts "Failed: #{covid_nct_id}"
+        puts "Failed: #{collected_nct_id}"
         puts "Error: #{e}"
         next
       end
     end
-    save_tsv(@condition)
+    save_tsv(condition) if make_tsv
   end
 
   def self.study_values(study)
@@ -37,7 +41,6 @@ class Category < ActiveRecord::Base
     id_values = study.id_information.pluck(:id_value).join('|')
     sponsors = study.sponsors
     grouped = sponsors.group_by(&:lead_or_collaborator)
-    puts grouped
     lead = grouped['lead'].first
     collaborators = grouped['collaborator']
     collab_names = collaborators.map{|collab| "#{collab.name}[#{collab.agency_class}]"}.join('|') if collaborators
@@ -248,8 +251,8 @@ class Category < ActiveRecord::Base
 
   def self.save_tsv(condition = 'covid-19')
     headers = excel_column_names
-    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
-    studies = Study.where(nct_id: nct_ids)
+    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id).uniq
+    studies = Study.where(nct_id: nct_ids).uniq
     current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
     name="#{current_datetime}_#{condition}"
     file = "./public/static/exported_files/#{condition}/#{name}.tsv"
@@ -371,6 +374,18 @@ class Category < ActiveRecord::Base
   def self.study_documents(study)
     provided_documents = study.provided_documents
     provided_documents.map{|provided_document| "#{provided_document.document_type}, #{provided_document.url}"}.join('|')
+  end
+
+  def self.execute_search
+    queries = Search.all
+    if  queries.empty?
+      Search.populate_database
+      queries = Search.all
+    end
+    
+    queries.each do |query|
+      load_update({tsv: query.save_tsv, condition: query.query, grouping: query.grouping})
+    end
   end
 end
 

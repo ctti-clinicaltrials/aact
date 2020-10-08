@@ -151,6 +151,7 @@ module Util
         mesh_terms
         load_events
         sanity_checks
+        searches
         statistics
         study_xml_records
         use_cases

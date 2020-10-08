@@ -3,6 +3,11 @@ FactoryGirl.define do
     study_batch ""
     studies_saved_at "2019-11-25 15:52:10"
   end
+  factory :search do
+    save_tsv false
+    query "MyString"
+    grouping "MyString"
+  end
   factory :reported_event_total do
     nct_id "MyString"
     ctgov_group_code "MyString"
