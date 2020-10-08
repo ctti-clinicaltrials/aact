@@ -2237,40 +2237,6 @@ CREATE TABLE ctgov.schema_migrations (
 
 
 --
--- Name: searches; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.searches (
-    id integer NOT NULL,
-    save_tsv boolean DEFAULT false NOT NULL,
-    query character varying NOT NULL,
-    "grouping" character varying DEFAULT ''::character varying NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: searches_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.searches_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: searches_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.searches_id_seq OWNED BY ctgov.searches.id;
-
-
---
 -- Name: sponsors_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -2399,6 +2365,40 @@ CREATE SEQUENCE support.sanity_checks_id_seq
 --
 
 ALTER SEQUENCE support.sanity_checks_id_seq OWNED BY support.sanity_checks.id;
+
+
+--
+-- Name: searches; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.searches (
+    id integer NOT NULL,
+    save_tsv boolean DEFAULT false NOT NULL,
+    query character varying NOT NULL,
+    "grouping" character varying DEFAULT ''::character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: searches_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.searches_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: searches_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.searches_id_seq OWNED BY support.searches.id;
 
 
 --
@@ -2751,13 +2751,6 @@ ALTER TABLE ONLY ctgov.result_groups ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
--- Name: searches id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.searches ALTER COLUMN id SET DEFAULT nextval('ctgov.searches_id_seq'::regclass);
-
-
---
 -- Name: sponsors id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2783,6 +2776,13 @@ ALTER TABLE ONLY support.load_events ALTER COLUMN id SET DEFAULT nextval('suppor
 --
 
 ALTER TABLE ONLY support.sanity_checks ALTER COLUMN id SET DEFAULT nextval('support.sanity_checks_id_seq'::regclass);
+
+
+--
+-- Name: searches id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.searches ALTER COLUMN id SET DEFAULT nextval('support.searches_id_seq'::regclass);
 
 
 --
@@ -3153,14 +3153,6 @@ ALTER TABLE ONLY ctgov.result_groups
 
 
 --
--- Name: searches searches_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.searches
-    ADD CONSTRAINT searches_pkey PRIMARY KEY (id);
-
-
---
 -- Name: sponsors sponsors_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3190,6 +3182,14 @@ ALTER TABLE ONLY support.load_events
 
 ALTER TABLE ONLY support.sanity_checks
     ADD CONSTRAINT sanity_checks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: searches searches_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.searches
+    ADD CONSTRAINT searches_pkey PRIMARY KEY (id);
 
 
 --
@@ -3929,13 +3929,6 @@ CREATE INDEX index_result_groups_on_result_type ON ctgov.result_groups USING btr
 
 
 --
--- Name: index_searches_on_query_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_searches_on_query_and_grouping ON ctgov.searches USING btree (query, "grouping");
-
-
---
 -- Name: index_sponsors_on_agency_class; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4087,6 +4080,13 @@ CREATE INDEX index_study_references_on_reference_type ON ctgov.study_references 
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
+
+
+--
+-- Name: index_searches_on_query_and_grouping; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE UNIQUE INDEX index_searches_on_query_and_grouping ON support.searches USING btree (query, "grouping");
 
 
 --

@@ -377,10 +377,10 @@ class Category < ActiveRecord::Base
 
   def self.execute_search
     queries = Search.all
-    if  queries.empty?
-      Search.populate_database
-      queries = Search.all
-    end
+    # if  queries.empty?
+    #   Search.populate_database
+    #   queries = Search.all
+    # end
     
     queries.each do |query|
       load_update({tsv: query.save_tsv, condition: query.query, grouping: query.grouping})
