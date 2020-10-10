@@ -5,7 +5,7 @@ SaveTime = Logger.new('log/save_time.log')
 ErrorLog = Logger.new('log/error.log')
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
-  self.table_name = 'ctgov_beta.study_json_records'
+  self.table_name = 'support.study_json_records'
 
   def self.db_mgr
     @db_mgr ||= Util::DbManager.new({search_path: 'ctgov_beta'})
