@@ -111,7 +111,7 @@ module Util
       db_mgr.grant_db_privs
       load_event.complete({:study_counts=>study_counts})
       create_flat_files
-      create_flat_files('ctgov_beta')
+      # create_flat_files('ctgov_beta')
       Admin::PublicAnnouncement.clear_load_message
     end
 
@@ -222,9 +222,9 @@ module Util
       log("creating downloadable versions of the database...")
       begin
         db_mgr.dump_database
-        db_mgr.dump_database('ctgov_beta')
+        # db_mgr.dump_database('ctgov_beta')
         Util::FileManager.new.save_static_copy
-        Util::FileManager.new.save_static_copy('ctgov_beta')
+        # Util::FileManager.new.save_static_copy('ctgov_beta')
       rescue => error
         load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
       end
