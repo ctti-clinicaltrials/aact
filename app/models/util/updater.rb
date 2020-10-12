@@ -2,6 +2,10 @@ module Util
  class Updater
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured
 
+    # days_back:     number of days 
+    # full_featured: restore public db if true
+    # event_type:    type of load 'full' or 'incremental'
+    # restart:       restart an existing load
     def initialize(params={})
       @full_featured = params[:full_featured] || false
       @params=params
@@ -98,6 +102,7 @@ module Util
     def finalize_load
       log('finalizing load...')
       add_indexes_and_constraints
+      Category.execute_search
       create_calculated_values
       populate_admin_tables
       run_sanity_checks
