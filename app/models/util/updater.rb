@@ -107,13 +107,13 @@ module Util
       populate_admin_tables
       run_sanity_checks
       return unless full_featured  # no need to continue unless configured as a fully featured implementation of AACT
-      study_counts[:processed]=db_mgr.background_study_count
+      study_counts[:processed]=Study.count
       take_snapshot
       if refresh_public_db != true
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
         load_event.save!
       end
-      db_mgr.grant_db_privs
+      #db_mgr.grant_db_privs
       load_event.complete({:study_counts=>study_counts})
       create_flat_files
       Admin::PublicAnnouncement.clear_load_message
@@ -205,8 +205,8 @@ module Util
       log "  sanity checks ok?...."
       Support::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Support::SanityCheck.where('most_current is true')
-      load_event.add_problem("Fewer sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size < 44
-      load_event.add_problem("More sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size > 45
+      load_event.add_problem("Fewer sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size < 46
+      load_event.add_problem("More sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size > 46
       load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
       # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
       # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to ct.gov having deleted studies.

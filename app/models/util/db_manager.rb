@@ -73,7 +73,7 @@ module Util
       log "  verifying #{host}:#{port}/#{database} database..."
       study_count = connection.execute('select count(*) from studies;').first['count'].to_i
       if study_count != Study.count
-        raise "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{alt_db_name}.  Study count is #{public_study_count}. Should be #{background_study_count}"
+        raise "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{host}:#{port}/#{database}.  Study count is #{study_count}. Should be #{Study.count}"
       end
 
       # allow users to access database again
