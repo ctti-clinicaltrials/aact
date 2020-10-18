@@ -378,7 +378,7 @@ class Category < ActiveRecord::Base
   def self.execute_search
     queries = Search.all
     if  queries.empty?
-      Search.populate_database
+      Search.make_covid_search
       queries = Search.all
     end
     
