@@ -13,86 +13,88 @@ module Util
         @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
       @fm = Util::FileManager.new
+
+      # load configuration file
+      @config = YAML.load(File.read("#{Rails.root}/config/connections.yml")).deep_symbolize_keys
       @search_path = params[:search_path] ? params[:search_path] : 'ctgov'
     end
 
+    # generate a db dump file
     def dump_database(schema_name='ctgov')
-      file_name = fm.pick_dump_file_name(schema_name)
-      File.delete(file_name) if File.exist?(file_name)
-      cmd="pg_dump #{background_db_name} -v -h localhost -p 5432 -U #{super_username} --clean --no-owner --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
+      File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
+      config = Study.connection.instance_variable_get('@config')
+      host, port, username, database = config[:host], config[:port], config[:username], config[:database]
+      host ||= 'localhost'
+      port ||= 5432
+
+      cmd = "
+        pg_dump  -v -h #{host} -p #{port} -U #{username} \
+        --clean --no-owner -b -c -C -Fc \
+        --exclude-table ar_internal_metadata \
+        --exclude-table schema_migrations \
+        --schema #{schema_name}  \
+        -f #{fm.pg_dump_file} \
+        #{database} \
+      "
+      puts cmd
       run_command_line(cmd)
-      copy_dump_file_to_public_server(schema_name)
+      return fm.pg_dump_file
     end
 
-    def copy_dump_file_to_public_server(schema_name='ctgov')
-      # copy the dump file to the public server. It's much faster to load public db from its own server.
-      # If this load fails, the file is over there for a quick load by hand if necessary.
-      # We should reconfigure to just use that file & run pg_restore on the public server rather than here. How to do that, tho?
-      file_name = fm.pick_dump_file_name(schema_name)
-      cmd="scp #{file_name} ctti@#{public_host_name}:/#{static_file_dir}/dump_files"
-      system(cmd)
-    end
+    # Restoring a database
+    # 1. prevent new connections and disconnect current connections
+    # 2. recreate the ctgov schema in the db
+    # 3. restore teh db from file
+    # 4. verify the study count (permissions are not granted again to prevent bad data from being used)
+    # 5. grant connection permissions again
+    def restore_database(connection, filename)
+      config = connection.instance_variable_get('@config')
+      host, port, username, database = config[:host], config[:port], config[:username], config[:database]
 
-    def refresh_public_db
-      dump_file_name=fm.pg_dump_file
-      return nil if dump_file_name.nil?
+      # prevent new connections and drop current connections
+      connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 0;")
+      connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{database}' AND usename <> '#{username}'")
+
+      # drop the schema
+      log "  dropping ctgov schema in #{host}:#{port}/#{database} database..."
       begin
-        success_code=true
-        revoke_db_privs   # Prevent users from logging in while db restore is running.
-
-        # Refresh the aact_alt database first.  If something goes wrong, don't restore aact.
-        terminate_db_sessions(alt_db_name)
-
-        begin
-          #  Drop the existing ctgov schema with cascade. If dependencies exist on anything in ctgov, the restore won't be able to
-          #  drop before replacing - resulting in a db of duplicate data. So get rid of it using CASCADE'.
-          #  Wrap in begin/rescue/end in case we're running this on a db tht doesn't yet have the ctgov schem
-          log "  dropping ctgov schema in alt public database..."
-          public_alt_con.execute("DROP SCHEMA ctgov CASCADE;")
-          public_alt_con.execute("CREATE SCHEMA ctgov;")
-          public_alt_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
-        rescue
-        end
-        log "  restoring alterntive public database..."
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{super_username}  -d #{alt_db_name} #{dump_file_name}"
-        run_restore_command_line(cmd)
-
-        log "  verifying alt public database..."
-
-        if public_study_count != background_study_count
-          success_code = false
-          msg = "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{alt_db_name}.  Study count is #{public_study_count}. Should be #{background_study_count}"
-          event.add_problem(msg)
-          log msg
-          grant_db_privs
-          return false
-        end
-        log "  all systems go... we can update primary public database...."
-
-        # If all goes well with AACT_ALT DB, proceed with regular AACT
-
-        terminate_db_sessions(db_name)
-        begin
-          log "  dropping ctgov schema in main public database..."
-          public_con.execute('DROP SCHEMA ctgov CASCADE;')
-          public_con.execute('CREATE SCHEMA ctgov;')
-          public_con.execute('GRANT USAGE ON SCHEMA ctgov TO read_only;')
-        rescue
-        end
-        log "  restoring main public database..."
-        cmd="pg_restore -c -j 5 -v -h #{public_host_name} -p 5432 -U #{super_username} -d #{db_name} #{dump_file_name}"
-        run_restore_command_line(cmd)
-        grant_db_privs
-        return success_code
-      rescue => error
-        msg="#{error.message} (#{error.class} #{error.backtrace}"
-        event.add_problem(msg)
-        log msg
-        grant_db_privs
-        return false
+        connection.execute("DROP SCHEMA ctgov CASCADE;")
+      rescue ActiveRecord::StatementInvalid => e
+        log(e.message)
       end
+      connection.execute("CREATE SCHEMA ctgov;")
+      connection.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+
+      # restore database
+      log "  restoring #{host}:#{port}/#{database} database..."
+      cmd = "pg_restore -c -j 5 -v -h #{host} -p #{port} -U #{username}  -d #{database} #{filename}"
+      run_restore_command_line(cmd)
+
+      # verify that the database was correctly restored
+      log "  verifying #{host}:#{port}/#{database} database..."
+      study_count = connection.execute('select count(*) from studies;').first['count'].to_i
+      if study_count != Study.count
+        raise "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{host}:#{port}/#{database}.  Study count is #{study_count}. Should be #{Study.count}"
+      end
+
+      # allow users to access database again
+      connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 200;")
+      connection.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      connection.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
+
+      return true
     end
 
+    # process for deploying database to digital ocean
+    # 1. try restoring to staging db
+    # 2. if successful restore to public db
+    def refresh_public_db
+      success = restore_database(staging_connection, fm.pg_dump_file)
+      return unless success
+
+      restore_database(public_connection, fm.pg_dump_file)
+    end
+      
     def clear_out_data_for(nct_ids)
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       loadable_tables.each { |table|
@@ -105,11 +107,6 @@ module Util
 
     def delete_xml_records(ids)
       con.execute("DELETE FROM support.study_xml_records WHERE nct_id IN (#{ids})")
-    end
-
-    def background_study_count
-      # created method to stub for tests
-      Study.count
     end
 
     def public_study_count
@@ -143,8 +140,9 @@ module Util
     def run_command_line(cmd)
       stdout, stderr, status = Open3.capture3(cmd)
       if status.exitstatus != 0
+        log stderr
         event.add_problem("#{Time.zone.now}: #{stderr}")
-        success_code=false
+        success_code = false
       end
     end
 
@@ -390,22 +388,30 @@ module Util
 
     def public_con
       return @public_con if @public_con and @public_con.active?
-      @public_con = PublicBase.establish_connection(public_db_url).connection
+      PublicBase.establish_connection(public_db_url)
+      @public_con = PublicBase.connection
       @public_con.schema_search_path='ctgov'
       return @public_con
     end
 
     def public_alt_con
       return @public_alt_con if @public_alt_con and @public_alt_con.active?
-      @public_alt_con = PublicBase.establish_connection(alt_db_url).connection
+      PublicBase.establish_connection(alt_db_url)
+      @public_alt_con = PublicBase.connection
       @public_alt_con.schema_search_path='ctgov'
       return @public_alt_con
     end
 
     def con
       return @con if @con and @con.active?
+<<<<<<< HEAD
       @con = ActiveRecord::Base.establish_connection(back_db_url).connection
       @con.schema_search_path = @search_path
+=======
+      ActiveRecord::Base.establish_connection(back_db_url)
+      @con = ActiveRecord::Base.connection
+      @con.schema_search_path='ctgov'
+>>>>>>> master
       return @con
     end
 
@@ -413,6 +419,7 @@ module Util
       @migration_object ||= ActiveRecord::Migration.new
     end
 
+<<<<<<< HEAD
     def dump_schema(schema_name='ctgov')
       # this is an ad hoc method that I sometimes use at the command line
       file_name= fm.pick_dump_file_name(schema_name)
@@ -422,6 +429,8 @@ module Util
       run_command_line(cmd)
     end
 
+=======
+>>>>>>> master
     def public_host_name
       AACT::Application::AACT_PUBLIC_HOSTNAME
     end
@@ -457,6 +466,22 @@ module Util
     def static_file_dir
       AACT::Application::AACT_STATIC_FILE_DIR
     end
-  end
 
+
+    def public_connection
+      db = @config[:public]
+      return unless db
+      connection = PublicBase.establish_connection(db).connection
+      connection.schema_search_path = 'ctgov'
+      return connection
+    end
+
+    def staging_connection
+      db = @config[:staging]
+      return unless db
+      connection = PublicBase.establish_connection(db).connection
+      connection.schema_search_path = 'ctgov'
+      return connection
+    end
+  end
 end

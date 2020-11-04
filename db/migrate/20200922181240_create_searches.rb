@@ -1,6 +1,6 @@
 class CreateSearches < ActiveRecord::Migration
   def change
-    create_table :searches do |t|
+    create_table 'support.searches' do |t|
       t.boolean :save_tsv, null: false, default: false
       t.string :query, null: false
       t.string :grouping, null: false, default: ''

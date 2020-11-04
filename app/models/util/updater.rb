@@ -1,7 +1,11 @@
 module Util
  class Updater
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured
-       
+
+    # days_back:     number of days 
+    # full_featured: restore public db if true
+    # event_type:    type of load 'full' or 'incremental'
+    # restart:       restart an existing load
     def initialize(params={})
       @full_featured = params[:full_featured] || false
       @params=params
@@ -98,17 +102,21 @@ module Util
     def finalize_load
       log('finalizing load...')
       add_indexes_and_constraints
+      if event_type == 'full'
+        days_back = (Date.today - Date.parse('2013-01-01')).to_i
+      end
+      Category.execute_search(days_back)
       create_calculated_values
       populate_admin_tables
       run_sanity_checks
       return unless full_featured  # no need to continue unless configured as a fully featured implementation of AACT
-      study_counts[:processed]=db_mgr.background_study_count
+      study_counts[:processed]=Study.count
       take_snapshot
       if refresh_public_db != true
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
         load_event.save!
       end
-      db_mgr.grant_db_privs
+      #db_mgr.grant_db_privs
       load_event.complete({:study_counts=>study_counts})
       create_flat_files
       # create_flat_files('ctgov_beta')
@@ -199,8 +207,8 @@ module Util
       log "  sanity checks ok?...."
       Support::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
       sanity_set=Support::SanityCheck.where('most_current is true')
-      load_event.add_problem("Fewer sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size < 44
-      load_event.add_problem("More sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size > 45
+      load_event.add_problem("Fewer sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size < 46
+      load_event.add_problem("More sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size > 46
       load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
       # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
       # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to ct.gov having deleted studies.

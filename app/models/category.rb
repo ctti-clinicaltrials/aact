@@ -5,12 +5,12 @@ class Category < ActiveRecord::Base
   belongs_to :study, foreign_key: 'nct_id'
   validates :nct_id, uniqueness: {scope: [:name, :grouping]}
   
-  def self.fetch_study_ids(condition='covid-19', days_back=1000)
+  def self.fetch_study_ids(condition='covid-19', days_back)
     Util::RssReader.new(days_back: days_back, condition: condition).get_changed_nct_ids
   end
 
   def self.load_update(params={})
-    days_back = params[:days_back] ? params[:days_back] : 1000
+    days_back = params[:days_back] ? params[:days_back] : (Date.today - Date.parse('2013-01-01')).to_i
     condition = params[:condition] ? params[:condition] : 'covid-19'
     grouping = params[:grouping] || condition
     make_tsv = params[:tsv]
@@ -376,15 +376,16 @@ class Category < ActiveRecord::Base
     provided_documents.map{|provided_document| "#{provided_document.document_type}, #{provided_document.url}"}.join('|')
   end
 
-  def self.execute_search
+  def self.execute_search(days_back=nil)
+    days_back = days_back || (Date.today - Date.parse('2013-01-01')).to_i
     queries = Search.all
     if  queries.empty?
-      Search.populate_database
+      Search.make_covid_search
       queries = Search.all
     end
     
     queries.each do |query|
-      load_update({tsv: query.save_tsv, condition: query.query, grouping: query.grouping})
+      load_update({days_back: days_back, tsv: query.save_tsv, condition: query.query, grouping: query.grouping})
     end
   end
 end
