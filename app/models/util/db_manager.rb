@@ -404,14 +404,9 @@ module Util
 
     def con
       return @con if @con and @con.active?
-<<<<<<< HEAD
-      @con = ActiveRecord::Base.establish_connection(back_db_url).connection
-      @con.schema_search_path = @search_path
-=======
       ActiveRecord::Base.establish_connection(back_db_url)
       @con = ActiveRecord::Base.connection
-      @con.schema_search_path='ctgov'
->>>>>>> master
+      @con.schema_search_path=@search_path
       return @con
     end
 
@@ -419,18 +414,6 @@ module Util
       @migration_object ||= ActiveRecord::Migration.new
     end
 
-<<<<<<< HEAD
-    def dump_schema(schema_name='ctgov')
-      # this is an ad hoc method that I sometimes use at the command line
-      file_name= fm.pick_dump_file_name(schema_name)
-      File.delete(file_name) if File.exist?(file_name)
-
-      cmd="pg_dump aact -v -h localhost -p 5432 -U #{super_username} --clean --no-owner --no-acl --exclude-table ar_internal_metadata --exclude-table schema_migrations --schema #{schema_name} -b -c -C -Fc -f #{file_name}"
-      run_command_line(cmd)
-    end
-
-=======
->>>>>>> master
     def public_host_name
       AACT::Application::AACT_PUBLIC_HOSTNAME
     end
