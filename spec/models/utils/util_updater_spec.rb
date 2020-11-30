@@ -54,7 +54,6 @@ describe Util::Updater do
 
   it "aborts incremental load when number of studies in refreshed (background) db is less than number of studies in public db" do
     allow_any_instance_of(Util::DbManager).to receive(:public_study_count).and_return(5)
-    allow_any_instance_of(Util::DbManager).to receive(:background_study_count).and_return(1)
     updater=Util::Updater.new
     allow(updater).to receive(:sanity_checks_ok?).and_return(false)
     expect(updater.db_mgr).to receive(:refresh_public_db).never
