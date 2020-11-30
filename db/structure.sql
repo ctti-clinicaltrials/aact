@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.19
--- Dumped by pg_dump version 13.0
+-- Dumped from database version 13.1
+-- Dumped by pg_dump version 13.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -280,6 +280,8 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
 
 
 SET default_tablespace = '';
+
+SET default_table_access_method = heap;
 
 --
 -- Name: browse_conditions; Type: TABLE; Schema: ctgov; Owner: -
@@ -657,6 +659,7 @@ CREATE TABLE ctgov.baseline_counts (
 --
 
 CREATE SEQUENCE ctgov.baseline_counts_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -702,6 +705,7 @@ CREATE TABLE ctgov.baseline_measurements (
 --
 
 CREATE SEQUENCE ctgov.baseline_measurements_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -732,6 +736,7 @@ CREATE TABLE ctgov.brief_summaries (
 --
 
 CREATE SEQUENCE ctgov.brief_summaries_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -751,6 +756,7 @@ ALTER SEQUENCE ctgov.brief_summaries_id_seq OWNED BY ctgov.brief_summaries.id;
 --
 
 CREATE SEQUENCE ctgov.browse_conditions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -770,6 +776,7 @@ ALTER SEQUENCE ctgov.browse_conditions_id_seq OWNED BY ctgov.browse_conditions.i
 --
 
 CREATE SEQUENCE ctgov.browse_interventions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -816,6 +823,7 @@ CREATE TABLE ctgov.calculated_values (
 --
 
 CREATE SEQUENCE ctgov.calculated_values_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -850,6 +858,7 @@ CREATE TABLE ctgov.categories (
 --
 
 CREATE SEQUENCE ctgov.categories_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -883,6 +892,7 @@ CREATE TABLE ctgov.central_contacts (
 --
 
 CREATE SEQUENCE ctgov.central_contacts_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -902,6 +912,7 @@ ALTER SEQUENCE ctgov.central_contacts_id_seq OWNED BY ctgov.central_contacts.id;
 --
 
 CREATE SEQUENCE ctgov.conditions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -921,6 +932,7 @@ ALTER SEQUENCE ctgov.conditions_id_seq OWNED BY ctgov.conditions.id;
 --
 
 CREATE SEQUENCE ctgov.countries_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1148,6 +1160,7 @@ CREATE TABLE ctgov.design_group_interventions (
 --
 
 CREATE SEQUENCE ctgov.design_group_interventions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1167,6 +1180,7 @@ ALTER SEQUENCE ctgov.design_group_interventions_id_seq OWNED BY ctgov.design_gro
 --
 
 CREATE SEQUENCE ctgov.design_groups_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1186,6 +1200,7 @@ ALTER SEQUENCE ctgov.design_groups_id_seq OWNED BY ctgov.design_groups.id;
 --
 
 CREATE SEQUENCE ctgov.design_outcomes_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1205,6 +1220,7 @@ ALTER SEQUENCE ctgov.design_outcomes_id_seq OWNED BY ctgov.design_outcomes.id;
 --
 
 CREATE SEQUENCE ctgov.designs_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1224,6 +1240,7 @@ ALTER SEQUENCE ctgov.designs_id_seq OWNED BY ctgov.designs.id;
 --
 
 CREATE SEQUENCE ctgov.detailed_descriptions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1257,6 +1274,7 @@ CREATE TABLE ctgov.documents (
 --
 
 CREATE SEQUENCE ctgov.documents_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1291,6 +1309,7 @@ CREATE TABLE ctgov.drop_withdrawals (
 --
 
 CREATE SEQUENCE ctgov.drop_withdrawals_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1310,6 +1329,7 @@ ALTER SEQUENCE ctgov.drop_withdrawals_id_seq OWNED BY ctgov.drop_withdrawals.id;
 --
 
 CREATE SEQUENCE ctgov.eligibilities_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1329,6 +1349,7 @@ ALTER SEQUENCE ctgov.eligibilities_id_seq OWNED BY ctgov.eligibilities.id;
 --
 
 CREATE SEQUENCE ctgov.facilities_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1363,6 +1384,7 @@ CREATE TABLE ctgov.facility_contacts (
 --
 
 CREATE SEQUENCE ctgov.facility_contacts_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1395,6 +1417,7 @@ CREATE TABLE ctgov.facility_investigators (
 --
 
 CREATE SEQUENCE ctgov.facility_investigators_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1414,6 +1437,7 @@ ALTER SEQUENCE ctgov.facility_investigators_id_seq OWNED BY ctgov.facility_inves
 --
 
 CREATE SEQUENCE ctgov.id_information_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1445,6 +1469,7 @@ CREATE TABLE ctgov.intervention_other_names (
 --
 
 CREATE SEQUENCE ctgov.intervention_other_names_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1464,6 +1489,7 @@ ALTER SEQUENCE ctgov.intervention_other_names_id_seq OWNED BY ctgov.intervention
 --
 
 CREATE SEQUENCE ctgov.interventions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1494,6 +1520,7 @@ CREATE TABLE ctgov.ipd_information_types (
 --
 
 CREATE SEQUENCE ctgov.ipd_information_types_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1513,6 +1540,7 @@ ALTER SEQUENCE ctgov.ipd_information_types_id_seq OWNED BY ctgov.ipd_information
 --
 
 CREATE SEQUENCE ctgov.keywords_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1544,6 +1572,7 @@ CREATE TABLE ctgov.links (
 --
 
 CREATE SEQUENCE ctgov.links_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1575,6 +1604,7 @@ CREATE TABLE ctgov.mesh_headings (
 --
 
 CREATE SEQUENCE ctgov.mesh_headings_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1608,6 +1638,7 @@ CREATE TABLE ctgov.mesh_terms (
 --
 
 CREATE SEQUENCE ctgov.mesh_terms_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1643,6 +1674,7 @@ CREATE TABLE ctgov.milestones (
 --
 
 CREATE SEQUENCE ctgov.milestones_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1692,6 +1724,7 @@ CREATE TABLE ctgov.outcome_analyses (
 --
 
 CREATE SEQUENCE ctgov.outcome_analyses_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1724,6 +1757,7 @@ CREATE TABLE ctgov.outcome_analysis_groups (
 --
 
 CREATE SEQUENCE ctgov.outcome_analysis_groups_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1759,6 +1793,7 @@ CREATE TABLE ctgov.outcome_counts (
 --
 
 CREATE SEQUENCE ctgov.outcome_counts_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1805,6 +1840,7 @@ CREATE TABLE ctgov.outcome_measurements (
 --
 
 CREATE SEQUENCE ctgov.outcome_measurements_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1845,6 +1881,7 @@ CREATE TABLE ctgov.outcomes (
 --
 
 CREATE SEQUENCE ctgov.outcomes_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1864,6 +1901,7 @@ ALTER SEQUENCE ctgov.outcomes_id_seq OWNED BY ctgov.outcomes.id;
 --
 
 CREATE SEQUENCE ctgov.overall_officials_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1895,6 +1933,7 @@ CREATE TABLE ctgov.participant_flows (
 --
 
 CREATE SEQUENCE ctgov.participant_flows_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1927,6 +1966,7 @@ CREATE TABLE ctgov.pending_results (
 --
 
 CREATE SEQUENCE ctgov.pending_results_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1962,6 +2002,7 @@ CREATE TABLE ctgov.provided_documents (
 --
 
 CREATE SEQUENCE ctgov.provided_documents_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1998,6 +2039,7 @@ CREATE TABLE ctgov.reported_event_totals (
 --
 
 CREATE SEQUENCE ctgov.reported_event_totals_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2042,6 +2084,7 @@ CREATE TABLE ctgov.reported_events (
 --
 
 CREATE SEQUENCE ctgov.reported_events_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2076,6 +2119,7 @@ CREATE TABLE ctgov.responsible_parties (
 --
 
 CREATE SEQUENCE ctgov.responsible_parties_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2110,6 +2154,7 @@ CREATE TABLE ctgov.result_agreements (
 --
 
 CREATE SEQUENCE ctgov.result_agreements_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2143,6 +2188,7 @@ CREATE TABLE ctgov.result_contacts (
 --
 
 CREATE SEQUENCE ctgov.result_contacts_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2176,6 +2222,7 @@ CREATE TABLE ctgov.result_groups (
 --
 
 CREATE SEQUENCE ctgov.result_groups_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2204,6 +2251,7 @@ CREATE TABLE ctgov.schema_migrations (
 --
 
 CREATE SEQUENCE ctgov.sponsors_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2236,6 +2284,7 @@ CREATE TABLE ctgov.study_references (
 --
 
 CREATE SEQUENCE ctgov.study_references_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2275,6 +2324,7 @@ CREATE TABLE support.load_events (
 --
 
 CREATE SEQUENCE support.load_events_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2312,6 +2362,7 @@ CREATE TABLE support.sanity_checks (
 --
 
 CREATE SEQUENCE support.sanity_checks_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2345,6 +2396,7 @@ CREATE TABLE support.searches (
 --
 
 CREATE SEQUENCE support.searches_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2379,6 +2431,7 @@ CREATE TABLE support.study_json_records (
 --
 
 CREATE SEQUENCE support.study_json_records_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2412,6 +2465,7 @@ CREATE TABLE support.study_xml_records (
 --
 
 CREATE SEQUENCE support.study_xml_records_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
