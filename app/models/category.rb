@@ -5,7 +5,8 @@ class Category < ActiveRecord::Base
   validates :nct_id, uniqueness: {scope: [:name, :grouping]}
   
   def self.fetch_study_ids(condition='covid-19', days_back)
-    Util::RssReader.new(days_back: days_back, condition: condition).get_changed_nct_ids
+    # Util::RssReader.new(days_back: days_back, condition: condition).get_changed_nct_ids
+    Search.collected_nct_ids(condition)
   end
 
   def self.load_update(params={})

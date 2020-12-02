@@ -839,7 +839,6 @@ CREATE TABLE ctgov.categories (
     id integer NOT NULL,
     nct_id character varying NOT NULL,
     name character varying NOT NULL,
-    last_modified timestamp without time zone NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     "grouping" character varying DEFAULT ''::character varying NOT NULL
@@ -2377,7 +2376,8 @@ CREATE TABLE support.searches (
     query character varying NOT NULL,
     "grouping" character varying DEFAULT ''::character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    name character varying DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -4678,4 +4678,8 @@ INSERT INTO schema_migrations (version) VALUES ('20200922153536');
 INSERT INTO schema_migrations (version) VALUES ('20200922175002');
 
 INSERT INTO schema_migrations (version) VALUES ('20200922181240');
+
+INSERT INTO schema_migrations (version) VALUES ('20201201210834');
+
+INSERT INTO schema_migrations (version) VALUES ('20201201235004');
 
