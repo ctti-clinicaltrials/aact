@@ -105,7 +105,7 @@ module Util
       if event_type == 'full'
         days_back = (Date.today - Date.parse('2013-01-01')).to_i
       end
-      Search.execute_search(@days_back)
+      Search.execute_search(days_back)
       create_calculated_values
       populate_admin_tables
       run_sanity_checks

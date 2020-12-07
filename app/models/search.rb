@@ -1,5 +1,4 @@
 require 'csv'
-# require 'uri'
 require 'open-uri'
 class Search < ActiveRecord::Base
   self.table_name = 'support.searches'
