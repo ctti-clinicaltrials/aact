@@ -6,7 +6,4 @@ namespace :db do
     # incremental, not full featured, just a couple days
     Util::Updater.new(args).run
   end
-  task :load_categories, [:days_back, :condition] => :environment do |t, args|
-    Category.load_update(args)
-  end
 end
