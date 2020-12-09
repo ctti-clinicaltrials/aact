@@ -36,6 +36,14 @@ namespace :db do
     con.execute("GRANT ALL ON ALL TABLES IN SCHEMA support TO #{aact_superuser};")
     con.execute("ALTER ROLE #{aact_superuser} WITH CREATEROLE;")
     con.execute("ALTER ROLE #{aact_superuser} IN DATABASE #{aact_back_db} SET SEARCH_PATH TO ctgov, support, public;")
+
+    con = ActiveRecord::Base.establish_connection(ENV['AACT_ALT_PUBLIC_DATABASE_URL']).connection
+    con.execute("CREATE SCHEMA ctgov;")
+    con.execute("CREATE SCHEMA support;")
+    con.execute("GRANT ALL ON ALL TABLES IN SCHEMA ctgov TO #{aact_superuser};")
+    con.execute("GRANT ALL ON ALL TABLES IN SCHEMA support TO #{aact_superuser};")
+    con.execute("ALTER ROLE #{aact_superuser} WITH CREATEROLE;")
+    con.execute("ALTER ROLE #{aact_superuser} IN DATABASE #{aact_back_db} SET SEARCH_PATH TO ctgov, support, public;")
   end
 
 end

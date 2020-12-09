@@ -1,14 +1,16 @@
 source "https://rubygems.org"
 
-ruby "2.4.5"
+ruby "2.6.2"
 
-gem "sprockets", ">= 3.7.2"
+gem "sprockets"
 gem "rubyzip", ">= 1.2.2"
 
 gem 'nokogiri'
-gem 'loofah', '~> 2.2.3'
-gem 'rails'
-gem 'rails-html-sanitizer', '~> 1.0.4'
+gem 'loofah'
+gem 'rails', '6.0.0'
+gem 'activesupport', '6.0.0'
+gem 'actionpack', '6.0.0'
+gem 'rails-html-sanitizer'
 gem "rack-timeout"
 gem "faraday"
 gem "autoprefixer-rails"
@@ -16,7 +18,7 @@ gem "flutie"
 gem "high_voltage"
 gem "jquery-rails"
 gem "normalize-rails"
-gem "pg"
+gem "pg", '~> 0.18'
 gem 'rails_12factor'
 gem "coderay"
 gem "recipient_interceptor"
@@ -24,10 +26,9 @@ gem 'rest-client'
 gem 'enumerize'
 gem 'bulk_insert'
 gem 'activerecord-import'
-gem 'activesupport', '~> 4.2.9'
 gem 'sinatra', :require => nil
 gem 'font-awesome-rails'
-gem 'roo', '~> 2.4.0'
+gem 'roo'
 gem 'string-similarity'
 gem 'gon'
 gem 'execjs'
@@ -42,7 +43,7 @@ gem 'capistrano-rails', '~> 1.2'
 #gem 'capistrano-chruby'
 
 group :development do
-  gem "quiet_assets"
+  # gem "quiet_assets"
   gem 'letter_opener'
 end
 
