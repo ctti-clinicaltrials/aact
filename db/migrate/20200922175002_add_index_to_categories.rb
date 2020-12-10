@@ -5,7 +5,7 @@ class AddIndexToCategories < ActiveRecord::Migration
   end
 
   def down
-    remove_index :categories, [:nct_id, :name, :grouping] if index_exists?(:nct_id, :name, :grouping)
+    remove_index :categories, [:nct_id, :name, :grouping] if index_exists?(:nct_id, [:name, :grouping])
     add_index :categories, [:nct_id, :name], unique: true
   end
 end
