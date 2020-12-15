@@ -230,9 +230,7 @@ module Util
       log("creating downloadable versions of the database...")
       begin
         db_mgr.dump_database
-        # db_mgr.dump_database('ctgov_beta')
         Util::FileManager.new.save_static_copy
-        # Util::FileManager.new.save_static_copy('ctgov_beta')
       rescue => error
         load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
       end
@@ -245,9 +243,9 @@ module Util
       end
     end
 
-    def create_flat_files(schema_name='ctgov')
+    def create_flat_files
       log("exporting tables as flat files...")
-      Util::TableExporter.new([],schema_name).run(delimiter: '|', should_archive: true)
+      Util::TableExporter.new.run(delimiter: '|', should_archive: true)
     end
 
     def truncate_tables
