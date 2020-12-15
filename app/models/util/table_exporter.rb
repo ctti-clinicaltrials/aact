@@ -82,6 +82,7 @@ module Util
                      elsif delimiter == '|'
                        "pipe-delimited-export"
                      end
+      
       archive_file_name="#{Util::FileManager.new.flat_files_directory}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}.zip"
       FileUtils.mv(@zipfile_name, archive_file_name)
     end

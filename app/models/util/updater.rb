@@ -119,7 +119,6 @@ module Util
       #db_mgr.grant_db_privs
       load_event.complete({:study_counts=>study_counts})
       create_flat_files
-      # create_flat_files('ctgov_beta')
       Admin::PublicAnnouncement.clear_load_message
     end
 

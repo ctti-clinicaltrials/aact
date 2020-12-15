@@ -20,7 +20,7 @@ module Util
     end
 
     # generate a db dump file
-    def dump_database(schema_name='ctgov')
+    def dump_database
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
       config = Study.connection.instance_variable_get('@config')
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
@@ -32,7 +32,7 @@ module Util
         --clean --no-owner -b -c -C -Fc \
         --exclude-table ar_internal_metadata \
         --exclude-table schema_migrations \
-        --schema #{schema_name}  \
+        --schema ctgov \
         -f #{fm.pg_dump_file} \
         #{database} \
       "

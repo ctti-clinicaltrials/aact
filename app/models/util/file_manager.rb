@@ -184,7 +184,6 @@ module Util
       files_to_zip['postgres_data.dmp']             = File.open(pg_dump_file)         if File.exists?(pg_dump_file)
       files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
       files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
-
     
       zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
       File.delete(zip_file_name) if File.exist?(zip_file_name)
@@ -195,5 +194,6 @@ module Util
       }
       zip_file_name
     end
+
   end
 end
