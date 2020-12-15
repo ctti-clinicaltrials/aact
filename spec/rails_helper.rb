@@ -55,7 +55,6 @@ RSpec.configure do |config|
     unit_test = ![:feature, :request].include?(example.metadata[:type])
     strategy = unit_test ? :transaction : :truncation
     allow_any_instance_of( Util::DbManager ).to receive(:add_indexes_and_constraints).and_return(nil)
-    allow_any_instance_of( Util::DbManager ).to receive(:copy_dump_file_to_public_server).and_return(nil)
 
     DatabaseCleaner.strategy = strategy
     DatabaseCleaner[:active_record, { model: Support::LoadEvent }].strategy = strategy
