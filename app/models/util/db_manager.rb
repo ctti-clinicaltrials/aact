@@ -32,7 +32,7 @@ module Util
         --clean --no-owner -b -c -C -Fc \
         --exclude-table ar_internal_metadata \
         --exclude-table schema_migrations \
-        --schema ctgov \
+        --schema ctgov  \
         -f #{fm.pg_dump_file} \
         #{database} \
       "
