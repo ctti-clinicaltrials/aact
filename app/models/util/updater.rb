@@ -102,7 +102,7 @@ module Util
     def finalize_load
       log('finalizing load...')
       add_indexes_and_constraints
-      if event_type == 'full'
+      if load_event.event_type == 'full'
         days_back = (Date.today - Date.parse('2013-01-01')).to_i
       end
       Category.execute_search(days_back)
