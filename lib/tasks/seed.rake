@@ -11,4 +11,7 @@ namespace :build do
     task all_searches: :environment do
         StudySearch.populate_database
     end
+    task :categories, [:days_back] => [ :environment ] do |t,args|
+        StudySearch.execute(args[:days_back])
+    end
 end
