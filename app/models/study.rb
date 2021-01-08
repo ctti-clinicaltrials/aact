@@ -41,6 +41,7 @@ class Study < ActiveRecord::Base
   has_one  :calculated_value,      :foreign_key => 'nct_id', :dependent => :delete
   has_one  :study_xml_record,      class_name: Support::StudyXmlRecord, :foreign_key => 'nct_id'
 
+  has_many :categories,            :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :baseline_measurements, :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :baseline_counts,       :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :browse_conditions,     :foreign_key => 'nct_id', :dependent => :delete_all
