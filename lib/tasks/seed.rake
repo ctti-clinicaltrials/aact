@@ -1,14 +1,14 @@
 namespace :build do
-    task :covid_search do
+    task covid_search: :environment do
         StudySearch.make_covid_search
     end
-    task :funder_type_search do
+    task funder_type_search: :environment do
         StudySearch.make_funder_search
     end
-    task :causes_of_death_search do
+    task causes_of_death_search: :environment do
         StudySearch.make_causes_of_death_search
     end
-    task :all_searches do
+    task all_searches: :environment do
         StudySearch.populate_database
     end
 end
