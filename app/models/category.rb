@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
   belongs_to :study, foreign_key: 'nct_id'
   validates :nct_id, uniqueness: {scope: [:name, :grouping]}
 
-  def self.save_tsv(condition = 'covid-19')
+  def self.make_tsv(condition = 'covid-19')
     headers = excel_column_names
     nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id).uniq
     studies = Study.where(nct_id: nct_ids).uniq

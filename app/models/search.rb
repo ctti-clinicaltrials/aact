@@ -42,17 +42,12 @@ class Search < ActiveRecord::Base
         next
       end
     end
-    Category.save_tsv(name) if save_tsv
+    Category.make_tsv(name) if save_tsv
   end
 
-  def self.execute_search(days_back=2)
+  def self.execute(days_back=2)
     # days_back = days_back || (Date.today - Date.parse('2013-01-01')).to_i
     queries = all
-    if  queries.empty?
-      make_covid_search
-      queries = all
-    end
-    
     queries.each do |query|
       query.load_update(days_back)
     end
