@@ -2,6 +2,7 @@ require 'rss'
 require 'uri'
 require 'axlsx'
 class Category < ActiveRecord::Base
+  belongs_to :study, foreign_key: 'nct_id'
   validates :nct_id, uniqueness: {scope: [:name, :grouping]}
 
   def self.save_tsv(condition = 'covid-19')
