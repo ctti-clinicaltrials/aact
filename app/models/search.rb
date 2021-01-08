@@ -2,6 +2,7 @@ require 'csv'
 require 'open-uri'
 class Search < ActiveRecord::Base
   self.table_name = 'support.searches'
+  has_many :categories, dependent: :destroy
   validates :grouping, uniqueness: {scope: :query}
   
   def self.populate_database
@@ -29,9 +30,10 @@ class Search < ActiveRecord::Base
     
     collected_nct_ids.each do |collected_nct_id|
       begin
-        category = Category.find_by(nct_id: collected_nct_id, name: [name, name.underscore], grouping: [grouping, ''])
-        category.update(grouping: name) if category && category.grouping.empty?
-        category ||= Category.create(
+        found_category = Category.find_by(nct_id: collected_nct_id, name: [name, name.underscore], grouping: [grouping, ''])
+        found_category.update(grouping: name) if found_category && found_category.grouping.empty?
+        found_category.update(search_id: id) if found_category && found_category.search_id.nil?
+        found_category ||= categories.create(
                                       nct_id: collected_nct_id,
                                       name: name,
                                       grouping: grouping,

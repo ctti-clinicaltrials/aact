@@ -3,6 +3,7 @@ require 'uri'
 require 'axlsx'
 class Category < ActiveRecord::Base
   belongs_to :study, foreign_key: 'nct_id'
+  belongs_to :searches
   validates :nct_id, uniqueness: {scope: [:name, :grouping]}
 
   def self.make_tsv(condition = 'covid-19')
