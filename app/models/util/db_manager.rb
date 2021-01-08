@@ -252,7 +252,7 @@ module Util
         mesh_terms
         load_events
         sanity_checks
-        searches
+        study_searches
         statistics
         study_xml_records
         study_json_records

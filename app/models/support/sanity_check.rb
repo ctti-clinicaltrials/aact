@@ -124,7 +124,6 @@ module Support
           load_events
           sanity_checks
           statistics
-          study_xml_records
           use_cases
           use_case_attachments
         )
