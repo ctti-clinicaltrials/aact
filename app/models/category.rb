@@ -2,37 +2,28 @@ require 'rss'
 require 'uri'
 require 'axlsx'
 class Category < ActiveRecord::Base
+  belongs_to :study, foreign_key: 'nct_id'
+  belongs_to :study_searches
   validates :nct_id, uniqueness: {scope: [:name, :grouping]}
-  
-  def self.fetch_study_ids(condition='covid-19', days_back)
-    Util::RssReader.new(days_back: days_back, condition: condition).get_changed_nct_ids
-  end
 
-  def self.load_update(params={})
-    days_back = params[:days_back] ? params[:days_back] : (Date.today - Date.parse('2013-01-01')).to_i
-    condition = params[:condition] ? params[:condition] : 'covid-19'
-    grouping = params[:grouping] || condition
-    make_tsv = params[:tsv]
-    collected_nct_ids = fetch_study_ids(condition, days_back)
-    
-    
-    collected_nct_ids.each do |collected_nct_id|
-      begin
-        category = Category.find_by(nct_id: collected_nct_id, name: [condition, condition.underscore], grouping: [grouping, ''])
-        category.update(grouping: condition) if category && category.grouping.empty?
-        category.update(last_modified: Time.zone.now) if category
-        category ||= Category.create(
-                                      nct_id: collected_nct_id,
-                                      name: condition,
-                                      grouping: grouping,
-                                      last_modified: Time.zone.now)
-      rescue Exception => e
-        puts "Failed: #{collected_nct_id}"
-        puts "Error: #{e}"
-        next
+  def self.make_tsv(condition = 'covid-19')
+    headers = excel_column_names
+    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id).uniq
+    studies = Study.where(nct_id: nct_ids).uniq
+    current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
+    name="#{current_datetime}_#{condition}"
+    file = "./public/static/exported_files/#{condition}/#{name}.tsv"
+
+    CSV.open(file, 'w', write_headers: true, headers: headers, col_sep: "\t") do |row|
+      studies.each do |study|
+        content = study_values(study)
+        content = content.map do |item|
+         item ||= ''
+         item.to_s.squish
+        end
+        row << content
       end
     end
-    save_tsv(condition) if make_tsv
   end
 
   def self.study_values(study)
@@ -248,26 +239,7 @@ class Category < ActiveRecord::Base
     ]
   end
 
-  def self.save_tsv(condition = 'covid-19')
-    headers = excel_column_names
-    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id).uniq
-    studies = Study.where(nct_id: nct_ids).uniq
-    current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
-    name="#{current_datetime}_#{condition}"
-    file = "./public/static/exported_files/#{condition}/#{name}.tsv"
-
-    CSV.open(file, 'w', write_headers: true, headers: headers, col_sep: "\t") do |row|
-      studies.each do |study|
-        content = study_values(study)
-        content = content.map do |item|
-         item ||= ''
-         item.to_s.squish
-        end
-        row << content
-      end
-    end
-  end
-
+  
   def self.save_xlsx(condition = 'covid-19')
     nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
     studies = Study.where(nct_id: nct_ids)
@@ -373,19 +345,6 @@ class Category < ActiveRecord::Base
   def self.study_documents(study)
     provided_documents = study.provided_documents
     provided_documents.map{|provided_document| "#{provided_document.document_type}, #{provided_document.url}"}.join('|')
-  end
-
-  def self.execute_search(days_back=nil)
-    days_back = days_back || (Date.today - Date.parse('2013-01-01')).to_i
-    queries = Search.all
-    if  queries.empty?
-      Search.make_covid_search
-      queries = Search.all
-    end
-    
-    queries.each do |query|
-      load_update({days_back: days_back, tsv: query.save_tsv, condition: query.query, grouping: query.grouping})
-    end
   end
 end
 

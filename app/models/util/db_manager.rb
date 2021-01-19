@@ -16,6 +16,7 @@ module Util
 
       # load configuration file
       @config = YAML.load(File.read("#{Rails.root}/config/connections.yml")).deep_symbolize_keys
+      @search_path = params[:search_path] ? params[:search_path] : 'ctgov'
     end
 
     # generate a db dump file
@@ -98,10 +99,10 @@ module Util
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       loadable_tables.each { |table|
         stime=Time.zone.now
-        con.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
-        log("deleted studies from #{table}   #{Time.zone.now - stime}")
+        con.execute("DELETE FROM #{@search_path}.#{table} WHERE nct_id IN (#{ids})")
+        log("deleted studies from #{@search_path}.#{table}   #{Time.zone.now - stime}")
       }
-      delete_xml_records(ids)
+      delete_xml_records(ids) if @search_path == 'ctgov'
     end
 
     def delete_xml_records(ids)
@@ -250,12 +251,11 @@ module Util
         mesh_headings
         mesh_terms
         load_events
-        mesh_terms
-        mesh_headings
         sanity_checks
-        searches
+        study_searches
         statistics
         study_xml_records
+        study_json_records
         use_cases
         use_case_attachments
       )
@@ -406,7 +406,7 @@ module Util
       return @con if @con and @con.active?
       ActiveRecord::Base.establish_connection(back_db_url)
       @con = ActiveRecord::Base.connection
-      @con.schema_search_path='ctgov'
+      @con.schema_search_path=@search_path
       return @con
     end
 

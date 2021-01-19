@@ -30,20 +30,21 @@ namespace :db do
     end
     Rake::Task["db:create"].invoke
     con=ActiveRecord::Base.connection
-    con.execute("CREATE SCHEMA ctgov;")
-    con.execute("CREATE SCHEMA support;")
+    con.execute("CREATE SCHEMA IF NOT EXISTS ctgov;")
+    con.execute("CREATE SCHEMA IF NOT EXISTS support;")
+    con.execute("CREATE SCHEMA IF NOT EXISTS ctgov_beta;")
+    con.execute("GRANT ALL ON ALL TABLES IN SCHEMA ctgov_beta TO #{aact_superuser};")
     con.execute("GRANT ALL ON ALL TABLES IN SCHEMA ctgov TO #{aact_superuser};")
     con.execute("GRANT ALL ON ALL TABLES IN SCHEMA support TO #{aact_superuser};")
     con.execute("ALTER ROLE #{aact_superuser} WITH CREATEROLE;")
-    con.execute("ALTER ROLE #{aact_superuser} IN DATABASE #{aact_back_db} SET SEARCH_PATH TO ctgov, support, public;")
+    con.execute("ALTER ROLE #{aact_superuser} IN DATABASE #{aact_back_db} SET SEARCH_PATH TO ctgov, support, public, ctgov_beta;")
+  end
 
-    con = ActiveRecord::Base.establish_connection(ENV['AACT_ALT_PUBLIC_DATABASE_URL']).connection
-    con.execute("CREATE SCHEMA ctgov;")
-    con.execute("CREATE SCHEMA support;")
-    con.execute("GRANT ALL ON ALL TABLES IN SCHEMA ctgov TO #{aact_superuser};")
-    con.execute("GRANT ALL ON ALL TABLES IN SCHEMA support TO #{aact_superuser};")
-    con.execute("ALTER ROLE #{aact_superuser} WITH CREATEROLE;")
-    con.execute("ALTER ROLE #{aact_superuser} IN DATABASE #{aact_back_db} SET SEARCH_PATH TO ctgov, support, public;")
+  task copy_schema: [:environment] do
+    aact_superuser = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'
+    aact_back_db = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
+    extra = "-h #{ENV['AACT_HOST'] || 'localhost'} -p #{ENV['AACT_PORT'] || '5432'}"
+    `pg_dump -U #{aact_superuser} --schema='ctgov' --schema-only #{aact_back_db} #{extra} | sed 's/ctgov/ctgov_beta/g' | psql -U #{aact_superuser} -d #{aact_back_db} #{extra}`
   end
 
 end

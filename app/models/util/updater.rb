@@ -102,10 +102,10 @@ module Util
     def finalize_load
       log('finalizing load...')
       add_indexes_and_constraints
-      if event_type == 'full'
+      if load_event.event_type == 'full'
         days_back = (Date.today - Date.parse('2013-01-01')).to_i
       end
-      Category.execute_search(days_back)
+      StudySearch.execute(days_back)
       create_calculated_values
       populate_admin_tables
       run_sanity_checks
@@ -157,10 +157,8 @@ module Util
         mesh_headings
         mesh_terms
         load_events
-        mesh_terms
-        mesh_headings
         sanity_checks
-        searches
+        study_searches
         statistics
         study_xml_records
         use_cases
