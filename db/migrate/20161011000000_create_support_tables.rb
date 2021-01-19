@@ -1,4 +1,4 @@
-class CreateSupportTables < ActiveRecord::Migration[6.0]
+class CreateSupportTables < ActiveRecord::Migration[4.2]
 
   def up
 

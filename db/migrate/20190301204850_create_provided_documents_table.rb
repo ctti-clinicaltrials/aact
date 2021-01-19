@@ -1,4 +1,4 @@
-class CreateProvidedDocumentsTable < ActiveRecord::Migration[6.0]
+class CreateProvidedDocumentsTable < ActiveRecord::Migration[4.2]
 
   def change
 

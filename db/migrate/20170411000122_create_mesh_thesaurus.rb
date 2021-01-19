@@ -1,4 +1,4 @@
-class CreateMeshThesaurus < ActiveRecord::Migration[6.0]
+class CreateMeshThesaurus < ActiveRecord::Migration[4.2]
   def change
 
     create_table :mesh_terms do |t|
