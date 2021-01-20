@@ -66,7 +66,7 @@ class StudyRelationship < ActiveRecord::Base
     @xml = opts[:xml] || opts
     self.nct_id=opts[:nct_id]
     a=attribs
-    a = fix_na_values(a)
+    # a = fix_na_values(a)
     if a.nil?
       return nil
     else
