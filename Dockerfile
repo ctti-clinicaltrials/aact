@@ -1,4 +1,4 @@
-FROM ruby:2.4.5
+FROM ruby:2.6.2
 
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client telnet vim zip
 
