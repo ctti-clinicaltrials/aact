@@ -27,7 +27,6 @@ class StudyJsonRecord < ActiveRecord::Base
     @data_store = []
 
     begin
-      byebug
      @type == 'full' ? full : incremental
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
