@@ -45,7 +45,7 @@ GEM
     activerecord (6.0.0)
       activemodel (= 6.0.0)
       activesupport (= 6.0.0)
-    activerecord-import (1.0.7)
+    activerecord-import (0.19.1)
       activerecord (>= 3.2)
     activestorage (6.0.0)
       actionpack (= 6.0.0)
@@ -304,7 +304,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack (= 6.0.0)
-  activerecord-import
+  activerecord-import (<= 0.19.1)
   activesupport (= 6.0.0)
   autoprefixer-rails
   awesome_print
