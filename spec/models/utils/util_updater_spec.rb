@@ -8,11 +8,9 @@ describe Util::Updater do
       to_return(:status => 200, :body => File.read("spec/support/xml_data/NCT02028676.xml"), :headers => {})
 
     stub_request(:get, "https://clinicaltrials.gov/show/NCT00023673?resultsxml=true").
-      with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v1.0.1'}).
       to_return(:status => 200, :body => File.read("spec/support/xml_data/NCT00023673.xml"), :headers => {})
 
     stub_request(:get, "https://clinicaltrials.gov/show/invalid-nct-id?resultsxml=true").
-      with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v1.0.1'}).
       to_return(:status => 200, :body => File.read("spec/support/xml_data/Invalid-nct-id.html"), :headers => {})
 
     stub_request(:get, "https://clinicaltrials.gov/show/timeout?resultsxml=true").and_raise(Net::OpenTimeout)
@@ -101,7 +99,6 @@ describe Util::Updater do
 
     incoming=File.read("spec/support/xml_data/#{nct_id}_modified.xml")
     stub_request(:get, "https://clinicaltrials.gov/show/#{nct_id}?resultsxml=true").
-         with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v1.0.1'}).
          to_return(:status => 200, :body => incoming, :headers => {})
 
     Util::Updater.new.update_studies([nct_id])
