@@ -1,5 +1,8 @@
 module Support
   class StudyXmlRecord < Support::SupportBase
+    BASE_URL = 'https://clinicaltrials.gov'
+    POOL_SIZE = 30
+
     belongs_to :study, foreign_key: "nct_id"
 
     def self.not_yet_loaded(study_filter=nil)
@@ -10,5 +13,129 @@ module Support
       end
     end
 
+    def self.download_all_studies
+      `wget --header="Content-Type: application/zip" -O public/static/xml_downloads/studies.zip "https://clinicaltrials.gov/search?term=&resultsxml=true"`
+      `unzip public/static/xml_downloads/studies.zip -d public/static/xml_downloads`
+    end
+
+    def self.update_studies(days_back: 1)
+      logger = ActiveRecord::Base.logger
+      ActiveRecord::Base.logger = nil
+      reader = Util::RssReader.new(days_back: days_back)
+      ids = (reader.get_changed_nct_ids + reader.get_added_nct_ids).uniq
+      total = ids.length
+      total_time = 0
+      stime = Time.now
+
+      ids.each_with_index do |id, idx|
+        t = update_study(id)
+        total_time += t
+        avg_time = total_time / (idx + 1)
+        remaining = (total - idx - 1) * avg_time
+        puts "#{total - idx} #{id} #{t} #{total_time} #{remaining}"
+      end
+
+      time = Time.now - stime
+      ActiveRecord::Base.logger = logger
+      puts "Time: #{time} avg: #{time / total}"
+
+      return ids
+    end
+
+    def self.htime(seconds)
+      seconds = seconds.to_i
+      hours = seconds / 3600
+      seconds -= hours * 3600
+      minutes = seconds / 60
+      seconds -= minutes * 60
+      "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
+    end
+
+    def self.import_files(base: "public/static/xml_downloads")
+      logger = ActiveRecord::Base.logger
+      ActiveRecord::Base.logger = nil
+
+      ids = Dir["#{base}/*.xml"].map{|k| k[/NCT\d+/] }
+
+      total = ids.length
+      total_time = 0
+      stime = Time.now
+
+      ids.each_with_index do |id, idx|
+        t = update_study(id, api: false)
+        total_time += t
+        avg_time = total_time / (idx + 1)
+        remaining = (total - idx - 1) * avg_time
+        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
+      end
+
+      time = Time.now - stime
+      ActiveRecord::Base.logger = logger
+      puts "Time: #{time} avg: #{time / total}"
+    end
+
+    def self.update_study(id, api: true)
+      stime = Time.now
+      record = find_or_create_by(nct_id: id)
+      if api
+        changed = record.update_xml_from_api
+      else
+        changed = record.update_xml_from_file
+      end
+      if changed
+        record.create_or_update_study
+      end
+      time = Time.now - stime
+    end
+
+    # 1. make api call
+    # 2. verify response is xml and contains <clinical_study>
+    def update_xml_from_api(tries: 5)
+      url = "#{BASE_URL}/show/#{nct_id}?resultsxml=true"
+      attempts = 0
+      content = nil
+      begin
+        attempts += 1
+        content = Faraday.get(url).body
+      rescue Faraday::ConnectionFailed
+        return false if attempts > 5
+        retry
+      end
+      xml = Nokogiri::XML(content)
+      if xml.xpath('//clinical_study').length > 0
+        self.content = content
+        return false unless changed?
+        return update content: content
+      else
+        # add error
+      end
+    end
+
+    # 1. load xml file from disk
+    # 2. verify file is xml and contains <clinical_study
+    def update_xml_from_file(base='public/static/xml_downloads')
+      filename = "#{base}/#{nct_id}.xml"
+      if !File.exists?(filename)
+        # update error
+        return
+      end
+
+      content = File.read(filename)
+
+      xml = Nokogiri::XML(content)
+      if xml.xpath('//clinical_study').length > 0
+        self.content = content
+        return false unless changed?
+        return update content: content
+      else
+        # add error
+      end
+    end
+
+    def create_or_update_study
+      study = Study.find_by(nct_id: nct_id)
+      study.remove_study_data if study
+      Study.new({ xml: Nokogiri::XML(content), nct_id: nct_id }).create
+    end
   end
 end

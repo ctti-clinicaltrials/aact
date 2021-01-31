@@ -82,6 +82,16 @@ class Study < ActiveRecord::Base
   has_many :sponsors,              :foreign_key => 'nct_id', :dependent => :delete_all
   accepts_nested_attributes_for :outcomes
 
+  def remove_study_data
+    StudyRelationship.study_models.each do |model|
+      model.where(nct_id: nct_id).delete_all
+    end
+  end
+
+  def self.study_difference
+    ClinicalTrialsApi.number_of_studies - Study.count
+  end
+
   def initialize(hash)
     super
     @xml=hash[:xml]
