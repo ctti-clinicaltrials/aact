@@ -86,14 +86,11 @@ class StudyJsonRecord < ActiveRecord::Base
         begin  
         contents = file.get_input_stream.read
         json = JSON.parse(contents)
-        rescue Exception => error
-          next unless json
-          ErrorLog.error(error)
-        end
-
         study = json['FullStudy']
-        next unless study
-          save_single_study(study)
+        save_single_study(study)
+        rescue Exception => error
+          ErrorLog.error(error)
+        end  
       end  
     end
   end
