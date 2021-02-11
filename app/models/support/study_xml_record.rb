@@ -18,7 +18,65 @@ module Support
       `unzip public/static/xml_downloads/studies.zip -d public/static/xml_downloads`
     end
 
-    def self.update_studies(days_back: 1)
+    def self.download_xml_files(days_back: 1)
+      reader = Util::RssReader.new(days_back: days_back)
+      ids = (reader.get_changed_nct_ids + reader.get_added_nct_ids).uniq
+      threads = []
+      ids.each_slice(ids.length / POOL_SIZE) do |group|
+        threads << Thread.new(group) do |g|
+          g.each do |nct_id|
+            url = "#{BASE_URL}/show/#{nct_id}?resultsxml=true"
+            content = Faraday.get(url).body
+            filename = "public/static/xml_downloads/#{nct_id}.xml"
+            FileUtils.rm_f(filename)
+            File.write(filename, content.force_encoding("UTF-8"))
+            puts "complete #{nct_id}"
+          end
+        end
+      end
+      threads.map{|t| t.join }
+
+      total = ids.length
+      total_time = 0
+      stime = Time.now
+
+      ids.each_with_index do |id, idx|
+        t = update_study(id, api: false)
+        total_time += t
+        avg_time = total_time / (idx + 1)
+        remaining = (total - idx - 1) * avg_time
+        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
+      end
+
+      time = Time.now - stime
+      ActiveRecord::Base.logger = logger
+      puts "Time: #{time} avg: #{time / total}"
+    end
+
+    def self.remove_missing_studies(base: "public/static/xml_downloads")
+      ids = Dir["#{base}/*.xml"].map{|k| k[/NCT\d+/] }
+      to_remove = Study.pluck(:nct_id) - ids
+
+      to_remove.each do |nct_id|
+        study = Study.find_by(nct_id: nct_id)
+        study.remove_study_data if study
+      end
+    end
+
+    def self.add_missing_studies(base: "public/static/xml_downloads")
+      ids = Dir["#{base}/*.xml"].map{|k| k[/NCT\d+/] }
+      to_add = ids - Study.pluck(:nct_id)
+      total = to_add.length
+
+      to_add.each_with_index do |nct_id, idx|
+        study = Study.find_by(nct_id: nct_id)
+        study.remove_study_data if study
+        t = update_study(nct_id, api: false)
+        puts "#{total - idx} #{nct_id} #{t}"
+      end
+    end
+
+    def self.update_studies(days_back: 1, api: true)
       logger = ActiveRecord::Base.logger
       ActiveRecord::Base.logger = nil
       reader = Util::RssReader.new(days_back: days_back)
@@ -28,11 +86,11 @@ module Support
       stime = Time.now
 
       ids.each_with_index do |id, idx|
-        t = update_study(id)
+        t = update_study(id, api: api)
         total_time += t
         avg_time = total_time / (idx + 1)
         remaining = (total - idx - 1) * avg_time
-        puts "#{total - idx} #{id} #{t} #{total_time} #{remaining}"
+        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
       end
 
       time = Time.now - stime
@@ -96,7 +154,9 @@ module Support
       content = nil
       begin
         attempts += 1
+        s = Time.now
         content = Faraday.get(url).body
+        puts "  fetch #{Time.now - s}"
       rescue Faraday::ConnectionFailed
         return false if attempts > 5
         retry
@@ -135,7 +195,9 @@ module Support
     def create_or_update_study
       study = Study.find_by(nct_id: nct_id)
       study.remove_study_data if study
+      s = Time.now
       Study.new({ xml: Nokogiri::XML(content), nct_id: nct_id }).create
+      puts "  insert-study #{Time.now - s}"
     end
   end
 end

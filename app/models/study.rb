@@ -83,9 +83,12 @@ class Study < ActiveRecord::Base
   accepts_nested_attributes_for :outcomes
 
   def remove_study_data
+    s = Time.now
     StudyRelationship.study_models.each do |model|
       model.where(nct_id: nct_id).delete_all
     end
+    time = Time.now - s
+    puts "  remove-study #{time}"
   end
 
   def self.study_difference

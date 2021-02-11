@@ -181,7 +181,7 @@ module Util
 
     def run_sanity_checks
       log("running sanity checks...")
-      Support::SanityCheck.new.run(params[:event_type])
+      Support::SanityCheck.new.run
     end
 
     # 1. adding all the sanity check issues to the load event
@@ -271,7 +271,7 @@ module Util
       # recreate public db from back-end db
       if sanity_checks_ok?
         submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
-        # db_mgr.refresh_public_db
+        db_mgr.refresh_public_db
         return true
       else
         load_event.save!
