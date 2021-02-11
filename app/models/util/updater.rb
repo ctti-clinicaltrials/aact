@@ -202,18 +202,25 @@ module Util
       Support::SanityCheck.new.run(params[:event_type])
     end
 
+    # 1. adding all the sanity check issues to the load event
+    # 2. Verify that the sanity checks ran no more than 2 hours ago
+    # 3. Verify that the number of studies in the alt database differs by at most 10 studies
     def sanity_checks_ok?
       log "  sanity checks ok?...."
+
+      # add all issues to the load event
       Support::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
-      sanity_set=Support::SanityCheck.where('most_current is true')
-      load_event.add_problem("Fewer sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size < 46
-      load_event.add_problem("More sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size > 46
+
+      # load all the sanity checks
+      sanity_set = Support::SanityCheck.where(most_current: true)
       load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
+
       # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
       # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to ct.gov having deleted studies.
-      old_count=(db_mgr.public_study_count - 10)
-      new_count=Study.count
+      old_count = db_mgr.public_study_count - 10
+      new_count = Study.count
       load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
+
       log(load_event.problems) if !load_event.problems.blank?
       return load_event.problems.blank?
     end
