@@ -1,4 +1,4 @@
-class AddGroupingToCategories < ActiveRecord::Migration
+class AddGroupingToCategories < ActiveRecord::Migration[4.2]
   def up
     add_column :categories, :grouping, :string, null: false, default: ''
   end

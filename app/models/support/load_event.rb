@@ -73,7 +73,7 @@ module Support
           subject="#{title}. Added: #{should_add} Updated: #{should_change} Total: #{processed}"
         end
       end
-      subject
+      subject.squish
     end
 
     def backup_subject_line

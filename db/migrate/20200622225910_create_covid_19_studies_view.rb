@@ -1,4 +1,4 @@
-class CreateCovid19StudiesView < ActiveRecord::Migration
+class CreateCovid19StudiesView < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       create or replace view covid_19_studies as select

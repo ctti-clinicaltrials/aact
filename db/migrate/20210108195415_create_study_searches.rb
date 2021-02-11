@@ -1,4 +1,4 @@
-class CreateStudySearches < ActiveRecord::Migration
+class CreateStudySearches < ActiveRecord::Migration[4.2]
   def change
     create_table :study_searches do |t|
       t.boolean :save_tsv, null: false, default: false
