@@ -43,7 +43,11 @@ class StudyRelationship < ActiveRecord::Base
     )
     tables = connection.tables - blacklist
     tables.each do |table|
-      connection.execute("CREATE INDEX #{table}_nct_idx ON #{table}(nct_id)")
+      begin
+        connection.execute("CREATE INDEX #{table}_nct_idx ON #{table}(nct_id)")
+      rescue
+        puts "DONT CREATE #{table}"
+      end
     end
   end
 
