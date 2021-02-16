@@ -47,4 +47,17 @@ namespace :db do
     `pg_dump -U #{aact_superuser} --schema='ctgov' --schema-only #{aact_back_db} #{extra} | sed 's/ctgov/ctgov_beta/g' | psql -U #{aact_superuser} -d #{aact_back_db} #{extra}`
   end
 
+  task migrate_beta: [:environment] do
+    # only use this method if you've already copied ctgov to ctgov_beta using the copy_schema method
+    # this method will run further migrations if edits have been made to the ctgov schema
+    # begin
+
+      StudyJsonRecord.set_table_schema('ctgov_beta')
+      Rake::Task["db:migrate"].invoke
+      StudyJsonRecord.set_table_schema('ctgov')
+    # rescue
+    # end
+     
+  end
+
 end
