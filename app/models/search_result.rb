@@ -1,14 +1,14 @@
 require 'rss'
 require 'uri'
 require 'axlsx'
-class Category < ActiveRecord::Base
+class SearchResult < ActiveRecord::Base
   belongs_to :study, foreign_key: 'nct_id'
   belongs_to :study_searches
   validates :nct_id, uniqueness: {scope: [:name, :grouping]}
 
   def self.make_tsv(condition = 'covid-19')
     headers = excel_column_names
-    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id).uniq
+    nct_ids = SearchResult.where(name: [condition, condition.underscore]).pluck(:nct_id).uniq
     studies = Study.where(nct_id: nct_ids).uniq
     current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
     name="#{current_datetime}_#{condition}"
@@ -241,7 +241,7 @@ class Category < ActiveRecord::Base
 
   
   def self.save_xlsx(condition = 'covid-19')
-    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
+    nct_ids = SearchResult.where(name: [condition, condition.underscore]).pluck(:nct_id)
     studies = Study.where(nct_id: nct_ids)
     current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
     name="#{current_datetime}_#{condition}"

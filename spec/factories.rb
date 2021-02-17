@@ -19,7 +19,7 @@ FactoryGirl.define do
     subjects_affected 1
     subjects_at_risk 1
   end
-  factory :category do
+  factory :search_result do
     nct_id "MyString"
     name "MyString"
     grouping "MyString"

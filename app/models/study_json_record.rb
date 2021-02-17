@@ -1526,7 +1526,7 @@ class StudyJsonRecord < ActiveRecord::Base
       mesh_term: MeshTerm.count,
       mesh_heading: MeshHeading.count,
       calculated_value: CalculatedValue.count,
-      categories: Category.count,
+      search_results: SearchResult.count,
     }
   end
 
@@ -1695,7 +1695,7 @@ class StudyJsonRecord < ActiveRecord::Base
       sponsor: study.sponsors.count,
       drop_withdrawal: study.drop_withdrawals.count,
       calculated_value: !study.calculated_value.nil?,
-      categories: study.categories.count,
+      search_results: study.search_results.count,
     }
   end
 

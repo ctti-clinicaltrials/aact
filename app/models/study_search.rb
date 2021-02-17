@@ -1,7 +1,7 @@
 require 'csv'
 require 'open-uri'
 class StudySearch < ActiveRecord::Base
-  has_many :categories, dependent: :destroy
+  has_many :search_results, dependent: :destroy
   validates :grouping, uniqueness: {scope: :query}
   
   def self.populate_database
@@ -33,10 +33,10 @@ class StudySearch < ActiveRecord::Base
     
     collected_nct_ids.each do |collected_nct_id|
       begin
-        found_category = Category.find_by(nct_id: collected_nct_id, name: [name, name.underscore], grouping: [grouping, ''])
-        found_category.update(grouping: name) if found_category && found_category.grouping.empty?
-        found_category.update(study_search_id: id) if found_category && found_category.study_search_id.nil?
-        found_category ||= categories.create(
+        found_search_result = SearchResult.find_by(nct_id: collected_nct_id, name: [name, name.underscore], grouping: [grouping, ''])
+        found_search_result.update(grouping: name) if found_search_result && found_search_result.grouping.empty?
+        found_search_result.update(study_search_id: id) if found_search_result && found_search_result.study_search_id.nil?
+        found_search_result ||= search_results.create(
                                       nct_id: collected_nct_id,
                                       name: name,
                                       grouping: grouping,
@@ -47,7 +47,7 @@ class StudySearch < ActiveRecord::Base
         next
       end
     end
-    Category.make_tsv(name) if save_tsv
+    SearchResult.make_tsv(name) if save_tsv
   end
 
   def self.execute(days_back=2)
