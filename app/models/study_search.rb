@@ -29,20 +29,20 @@ class StudySearch < ActiveRecord::Base
   end
 
   def load_update(days_back=2)
-    collected_nct_ids = fetch_study_ids(days_back)
-    byebug
-    collected_nct_ids.each do |collected_nct_id|
+    fetch_study_ids(days_back).each do |study_nct_id|
+      next unless Study.find_by(nct_id: study_nct_id)
+      
       begin
-        found_search_result = SearchResult.find_by(nct_id: collected_nct_id, name: [name, name.underscore], grouping: [grouping, ''])
+        found_search_result = SearchResult.find_by(nct_id: study_nct_id, name: [name, name.underscore], grouping: [grouping, ''])
         found_search_result.update(grouping: name) if found_search_result && found_search_result.grouping.empty?
         found_search_result.update(study_search_id: id) if found_search_result && found_search_result.study_search_id.nil?
         found_search_result ||= search_results.create(
-                                      nct_id: collected_nct_id,
+                                      nct_id: study_nct_id,
                                       name: name,
                                       grouping: grouping,
                                     )
       rescue Exception => e
-        puts "Failed: #{collected_nct_id}"
+        puts "Failed: #{study_nct_id}"
         puts "Error: #{e}"
         next
       end
@@ -54,7 +54,6 @@ class StudySearch < ActiveRecord::Base
     # days_back = days_back || (Date.today - Date.parse('2013-01-01')).to_i
     queries = all
     queries.each do |query|
-      byebug
       query.load_update(days_back)
     end
   end
