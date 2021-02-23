@@ -67,6 +67,9 @@ RSpec.describe StudySearch, type: :model do
         with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
         to_return(:status => 200, :body => batch1, :headers => {})
     end
+    after do
+      Util::DbManager.new.remove_indexes_and_constraints
+    end
     it 'updates search_results' do
       expect {@covid_search.load_update}.to change(SearchResult, :count).by 1
     end
@@ -75,5 +78,8 @@ RSpec.describe StudySearch, type: :model do
       expect(SearchResult.find_by(nct_id: 'NCT04452435')).to be_truthy
       expect(SearchResult.find_by(nct_id: 'NCT02798588')).to be_nil
     end
+  end
+  describe ':execute' do
+
   end
 end
