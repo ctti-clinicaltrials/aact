@@ -30,7 +30,7 @@ class StudySearch < ActiveRecord::Base
 
   def load_update(days_back=2)
     collected_nct_ids = fetch_study_ids(days_back)
-    print "collected: #{collected_nct_ids}..."
+    byebug
     collected_nct_ids.each do |collected_nct_id|
       begin
         found_search_result = SearchResult.find_by(nct_id: collected_nct_id, name: [name, name.underscore], grouping: [grouping, ''])
@@ -51,14 +51,12 @@ class StudySearch < ActiveRecord::Base
   end
 
   def self.execute(days_back=2)
-    print 'executing search...'
     # days_back = days_back || (Date.today - Date.parse('2013-01-01')).to_i
     queries = all
     queries.each do |query|
-      print "#{query.name}"
+      byebug
       query.load_update(days_back)
     end
-    puts 'done'
   end
 
   def fetch_study_ids(days_back=2)

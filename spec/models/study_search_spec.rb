@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe StudySearch, type: :model do
+  let(:stub_request_headers) { {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'} }
   describe ':populate_database' do
     it 'makes the correct number of searches' do
       expect{ StudySearch.populate_database}.to change(StudySearch, :count).by 248
@@ -59,6 +60,11 @@ RSpec.describe StudySearch, type: :model do
       xml=Nokogiri::XML(File.read("spec/support/xml_data/NCT02798588.xml"))
       @etic_study=Study.new({xml: xml, nct_id: 'NCT02798588'}).create
       @covid_search = StudySearch.find_by(name: 'covid-19')
+      batch1 = File.read('spec/support/xml_data/covid_search_batch1.xml')
+      expected_url = 'https://clinicaltrials.gov/ct2/results/rss.xml?cond=covid-19&count=1000&lup_d=2&start=0'
+        stub_request(:get, expected_url).
+        with(:headers => stub_request_headers).
+        to_return(:status => 200, :body => batch1, :headers => {})
     end
     # after do
     #   SearchResult.destroy_all
