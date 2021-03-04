@@ -51,7 +51,6 @@ RSpec.describe StudySearch, type: :model do
     end
     it 'makes searches that have the right data' do
       string = 'AREA[LocationCountry] EXPAND[None] COVER[FullMatch] "United States" AND AREA[LeadSponsorClass] EXPAND[None] COVER[FullMatch] "OTHER" AND AREA[FunderTypeSearch] EXPAND[None] NOT ( RANGE[AMBIG, NIH] OR RANGE[OTHER_GOV, UNKNOWN] )'
-    # find_or_create_by(save_tsv: false, grouping: 'funder_type', query: string, name: 'US no external funding', beta_api: true)
       StudySearch.make_funder_search
       search = StudySearch.find_by(grouping: 'funder_type')
       expect(search.save_tsv).to be false
@@ -139,7 +138,6 @@ RSpec.describe StudySearch, type: :model do
         results_2 = File.read('spec/support/json_data/results_2.json')
         @first_url = 'https://clinicaltrials.gov/api/query/full_studies?expr=&min_rnk=1&max_rnk=100&fmt=json'
         second_url = 'https://clinicaltrials.gov/api/query/full_studies?expr=&min_rnk=101&max_rnk=200&fmt=json'
-
         stub_request(:get, @first_url).with(headers: stub_request_headers).to_return(:status => 200, :body => results_1, :headers => {})
         stub_request(:get, second_url).with(headers: stub_request_headers).to_return(:status => 200, :body => results_2, :headers => {})
       end

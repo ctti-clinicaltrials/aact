@@ -12,7 +12,9 @@ class SearchResult < ActiveRecord::Base
     studies = Study.where(nct_id: nct_ids).uniq
     current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
     name="#{current_datetime}_#{condition}"
-    file = "./public/static/exported_files/#{condition}/#{name}.tsv"
+    folder = "./public/static/exported_files/#{condition}"
+    FileUtils.mkdir_p folder
+    file = "#{folder}/#{name}.tsv"
 
     CSV.open(file, 'w', write_headers: true, headers: headers, col_sep: "\t") do |row|
       studies.each do |study|
