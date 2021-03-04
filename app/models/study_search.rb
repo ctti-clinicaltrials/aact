@@ -66,15 +66,20 @@ class StudySearch < ActiveRecord::Base
 
   def self.json_data(url)
     # "https://clinicaltrials.gov/api/query/full_studies?expr=#{query}&min_rnk=1&max_rnk=100&fmt=json"
+    begin
     url = URI.escape(url)
     JSON.parse(open(url).read)
+    rescue
+      nil
+    end
   end
   
 
   def self.time_range(days_back)
-    return '' unless days_back
+    number_of_days = days_back.try(:to_i)
+    number_of_days = 0 unless number_of_days
 
-    date = (Date.current - days_back.to_i).strftime('%m/%d/%Y')
+    date = (Date.current - number_of_days).strftime('%m/%d/%Y')
     "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
   end
 
@@ -87,7 +92,7 @@ class StudySearch < ActiveRecord::Base
     # studies must be retrieved in batches of 99,
     min = 1
     max = 100
-    
+   
     for x in 1..limit
       collection += fetch_beta_nct_ids(search_constraints, min, max)
       puts collection.size

@@ -7,6 +7,10 @@ RSpec.describe StudySearch, type: :model do
   let(:covid_url) { 'https://clinicaltrials.gov/ct2/results/rss.xml?cond=covid-19&count=1000&lup_d=2&start=0' }
   let(:covid_stub) { stub_request(:get, covid_url).with(headers: stub_request_headers).to_return(:status => 200, :body => covid_batch, :headers => {}) }
   let(:empty_search_stub) { stub_request(:get, covid_url).with(headers: stub_request_headers).to_return(:status => 200, :body => empty_batch, :headers => {}) }
+  let(:json_study) { File.read('spec/support/json_data/NCT04780763.json') }
+  let(:json_url) { 'https://clinicaltrials.gov/api/query/full_studies?expr=NCT04780763&min_rnk=1&max_rnk=100&fmt=json' }
+  let(:json_stub) { stub_request(:get, json_url).with(headers: stub_request_headers).to_return(:status => 200, :body => json_study, :headers => {}) }
+  
   describe ':populate_database' do
     it 'makes the correct number of searches' do
       expect{ StudySearch.populate_database}.to change(StudySearch, :count).by 248
@@ -98,6 +102,72 @@ RSpec.describe StudySearch, type: :model do
       end
     end
     describe ':json_data' do
+      it 'returns json when given a url with json parseable data' do
+        json_stub
+        collection = StudySearch.json_data(json_url)
+        nct_id = collection['FullStudiesResponse']['FullStudies'].first['Study']['ProtocolSection']['IdentificationModule']['NCTId']
+        expect(collection.kind_of?(Hash)).to be true
+        expect(collection['FullStudiesResponse']['FullStudies'].kind_of?(Array)).to be true
+        expect(nct_id).to eq 'NCT04780763'
+      end
+      it 'returns nothing when given a url without json parseable data' do
+        covid_stub
+        expect(StudySearch.json_data(covid_url)).to eq nil
+      end
+    end
+    describe ':time_range' do
+      it 'returns a date range when given a date' do
+        date = (Date.current - 3).strftime('%m/%d/%Y')
+        expect(StudySearch.time_range(3)).to eq "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
+      end
+      it 'returns current day when given nil' do
+        date = Date.current.strftime('%m/%d/%Y')
+        expect(StudySearch.time_range(nil)).to eq "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
+      end
+      it 'returns current day when given an empty date' do
+        date = Date.current.strftime('%m/%d/%Y')
+        expect(StudySearch.time_range('')).to eq "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
+      end
+      it 'returns current day when given a non string object' do
+        date = Date.current.strftime('%m/%d/%Y')
+        expect(StudySearch.time_range([1,2])).to eq "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
+      end
+    end
+    context 'when collecting nct_ids' do
+      before do
+        results_1 = File.read('spec/support/json_data/results_1.json')
+        results_2 = File.read('spec/support/json_data/results_2.json')
+        @first_url = 'https://clinicaltrials.gov/api/query/full_studies?expr=&min_rnk=1&max_rnk=100&fmt=json'
+        second_url = 'https://clinicaltrials.gov/api/query/full_studies?expr=&min_rnk=101&max_rnk=200&fmt=json'
+
+        stub_request(:get, @first_url).with(headers: stub_request_headers).to_return(:status => 200, :body => results_1, :headers => {})
+        stub_request(:get, second_url).with(headers: stub_request_headers).to_return(:status => 200, :body => results_2, :headers => {})
+      end
+      describe ':collected_nct_ids' do
+        it 'returns all nct_ids found' do
+          collection = StudySearch.collected_nct_ids('')
+          expect(collection.count).to eq 103
+          expect(collection).to include('NCT04780763', 'NCT04780750', 'NCT04779463')
+        end
+      end
+      describe ':fetch_beta_nct_ids' do
+        it 'returns nct_ids from one batch' do
+          collection = StudySearch.fetch_beta_nct_ids('', min=1, max=100)
+          expect(collection.count).to eq 100
+          expect(collection).to include('NCT04780763')
+          expect(collection).to_not include('NCT04779463')
+        end
+      end
+      describe ':parse_ids' do
+        it 'returns nct_ids from one batch' do
+          data = StudySearch.json_data(@first_url)
+          data = data.dig('FullStudiesResponse', 'FullStudies')
+          collection = StudySearch.parse_ids(data)
+          expect(collection.count).to eq 100
+          expect(collection).to include('NCT04780763')
+          expect(collection).to_not include('NCT04779463')
+        end
+      end
     end
   end
 end
