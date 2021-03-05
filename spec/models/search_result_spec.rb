@@ -183,6 +183,82 @@ RSpec.describe SearchResult, type: :model do
       end
     end
     describe ':excel_column_names' do
+      it 'has the right column names' do
+        columns =  %w[
+          nct_id
+          title
+          acronym
+          other_ids
+          url
+          status
+          why_stopped
+          hcq
+          has_dmc
+          funded_bys
+          sponsor_collaborators
+          lead_sponsor
+          collaborators
+          study_type
+          phases
+          enrollment
+          brief_summary
+          detailed_description
+          conditions
+          keywords
+          interventions
+          intervention_details
+          arm_details
+          arm_intervention_details
+          outcome_measures
+          start_date
+          primary_completion_date
+          completion_date 
+          first_posted
+          results_first_posted
+          last_update_posted
+          nlm_download_date
+          study_first_submitted_date
+          has_expanded_access
+          is_fda_regulated_drug
+          is_fda_regulated_device
+          is_unapproved_device
+          locations
+          number_of_facilities
+          has_us_facility
+          has_single_facility
+          study_design
+          number_of_arms
+          number_of_groups
+          primary_purpose
+          intervention_model
+          observational_model
+          allocation
+          masking
+          subject_masked
+          caregiver_masked
+          investigator_masked
+          outcomes_assessor_masked
+          adaptive_protocol
+          master_protocol
+          platform_protocol
+          umbrella_protocol
+          basket_protocol
+          minimum_agey
+          maximum_agey
+          gender
+          gender_based
+          gender_description
+          healthy_volunteers
+          population
+          criteria
+          study_results
+          study_documents
+        ]
+        expect(SearchResult.excel_column_names).to eq columns
+      end
+      it 'has the right number of columns' do
+        expect(SearchResult.excel_column_names.count).to eq 68
+      end
     end
     describe ':save_xlsx' do
     end

@@ -241,34 +241,6 @@ class SearchResult < ActiveRecord::Base
     ]
   end
 
-  
-  def self.save_xlsx(condition = 'covid-19')
-    nct_ids = SearchResult.where(name: [condition, condition.underscore]).pluck(:nct_id)
-    studies = Study.where(nct_id: nct_ids)
-    current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
-    name="#{current_datetime}_#{condition}"
-    Axlsx::Package.new do |p|
-      p.workbook.add_worksheet(:name => name) do |sheet|
-        wrap = sheet.styles.add_style(alignmenet: { wrap_text: true })
-        cols = excel_column_names.length
-        sheet.add_row excel_column_names, widths: [5] * cols 
-        studies.each do |study|
-          widths = [8.43] * cols
-          styles = [wrap] * cols
-          types = [:string] * cols
-          begin
-            sheet.add_row study_values(study), types: types, widths: widths, height: 15, styles: styles
-          rescue Exception => e
-            puts "Failed: #{study.nct_id}"
-            puts "Error: #{e}"
-            next
-          end
-        end
-      end
-      p.serialize("./public/static/exported_files/#{condition}/#{name}.xlsx")
-    end
-  end
-
   def self.hcq_query(study)
     terms = %w[ hydroxychloroquine plaquenil hidroxicloroquina quineprox ]
     official_title = study.official_title =~ /#{terms.join('|')}/i
