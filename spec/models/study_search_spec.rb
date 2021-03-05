@@ -5,12 +5,14 @@ RSpec.describe StudySearch, type: :model do
   let(:covid_batch) { File.read('spec/support/xml_data/covid_search.xml') }
   let(:empty_batch) { File.read('spec/support/xml_data/empty_search.xml') }
   let(:covid_url) { 'https://clinicaltrials.gov/ct2/results/rss.xml?cond=covid-19&count=1000&lup_d=2&start=0' }
+  let(:covid_last_url) { 'https://clinicaltrials.gov/ct2/results/rss.xml?cond=covid-19&count=1000&lup_d=2&start=1000' }
   let(:covid_stub) { stub_request(:get, covid_url).with(headers: stub_request_headers).to_return(:status => 200, :body => covid_batch, :headers => {}) }
   let(:empty_search_stub) { stub_request(:get, covid_url).with(headers: stub_request_headers).to_return(:status => 200, :body => empty_batch, :headers => {}) }
   let(:json_study) { File.read('spec/support/json_data/NCT04780763.json') }
   let(:json_url) { 'https://clinicaltrials.gov/api/query/full_studies?expr=NCT04780763&min_rnk=1&max_rnk=100&fmt=json' }
   let(:json_stub) { stub_request(:get, json_url).with(headers: stub_request_headers).to_return(:status => 200, :body => json_study, :headers => {}) }
-  
+  let(:covid_last_stub) { stub_request(:get, covid_last_url).with(headers: stub_request_headers).to_return(:status => 200, :body => empty_batch, :headers => {}) }
+
   describe ':populate_database' do
     it 'makes the correct number of searches' do
       expect{ StudySearch.populate_database}.to change(StudySearch, :count).by 248
@@ -70,6 +72,7 @@ RSpec.describe StudySearch, type: :model do
       @etic_study=Study.new({xml: xml, nct_id: 'NCT02798588'}).create
       @covid_search = StudySearch.find_by(name: 'covid-19')
       covid_stub
+      covid_last_stub
     end
     after do
       Util::DbManager.new.remove_indexes_and_constraints
@@ -93,6 +96,7 @@ RSpec.describe StudySearch, type: :model do
       end
       it 'returns the nct_ids' do
         covid_stub
+        covid_last_stub
         expect(@covid_search.fetch_study_ids.count).to eq 5
       end
       it 'returns an empty array if there are no nct_ids' do
@@ -111,6 +115,7 @@ RSpec.describe StudySearch, type: :model do
       end
       it 'returns nothing when given a url without json parseable data' do
         covid_stub
+        covid_last_stub
         expect(StudySearch.json_data(covid_url)).to eq nil
       end
     end

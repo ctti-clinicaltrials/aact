@@ -4,21 +4,23 @@ RSpec.describe SearchResult, type: :model do
   let(:stub_request_headers) { {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'} }
   let(:covid_batch) { File.read('spec/support/xml_data/covid_search.xml') }
   let(:empty_batch) { File.read('spec/support/xml_data/empty_search.xml') }
+  let(:covid_last_url) { 'https://clinicaltrials.gov/ct2/results/rss.xml?cond=covid-19&count=1000&lup_d=2&start=1000' }
   let(:covid_url) { 'https://clinicaltrials.gov/ct2/results/rss.xml?cond=covid-19&count=1000&lup_d=2&start=0' }
   let(:covid_stub) { stub_request(:get, covid_url).with(headers: stub_request_headers).to_return(:status => 200, :body => covid_batch, :headers => {}) }
   let(:empty_search_stub) { stub_request(:get, covid_url).with(headers: stub_request_headers).to_return(:status => 200, :body => empty_batch, :headers => {}) }
-  
+  let(:covid_last_stub) { stub_request(:get, covid_last_url).with(headers: stub_request_headers).to_return(:status => 200, :body => empty_batch, :headers => {}) }
   context 'when there are search_results' do
     before do
       covid_stub
+      covid_last_stub
       Util::DbManager.new.add_indexes_and_constraints
       covid_search = StudySearch.make_covid_search
-      xml=Nokogiri::XML(File.read("spec/support/xml_data/NCT04452435_covid_19.xml"))
+      xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT04452435_covid_19.xml'))
       @covid_study=Study.new({xml: xml, nct_id: 'NCT04452435'}).create
-      xml=Nokogiri::XML(File.read("spec/support/xml_data/NCT02798588.xml"))
+      xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02798588.xml'))
       @etic_study=Study.new({xml: xml, nct_id: 'NCT02798588'}).create
       covid_search.load_update
-      @folder = "./public/static/exported_files/covid-19"
+      @folder = './public/static/exported_files/covid-19'
     end
     after do
       `rm -r #{@folder}`
@@ -260,15 +262,64 @@ RSpec.describe SearchResult, type: :model do
         expect(SearchResult.excel_column_names.count).to eq 68
       end
     end
-    describe ':save_xlsx' do
-    end
     describe ':hcq_query' do
+      it 'returns false if none of the terms are found' do
+        expect(SearchResult.hcq_query(@covid_study)).to be false
+      end
+      it 'returns true if any of the terms are found' do
+        xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT04349592_covid_19_hcq.xml'))
+        hcq_study=Study.new({xml: xml, nct_id: 'NCT04349592'}).create
+        expect(SearchResult.hcq_query(hcq_study)).to be true
+      end
     end
     describe ':locations' do
+      it 'returns the locations in the correct format' do
+        facilities = @covid_study.facilities.order(:name)
+        formated_facilities = 'Clinical Research Department, Basement, Unity Trauma Centre and ICU (Unity Hospital, Surat, Gujarat, India|Department of Medicine, Civil Hospital and B J Medical College, Ahmadabad, Gujarat, India|Department of Medicine, Government Medical College and Hospital, Nagpur, Maharashtra, India|Department of Medicine, Noble Hospitals Pvt. Ltd, Pune, Maharashtra, India|First Floor Clinical Research Department Rhythm Heart Institute, Vadodara, Gujarat, India|Infectious Disease, Metas Adventist Hospital, Surat, Gujarat, India|Internal Medicine S.L. Raheja Hospital, Mumbai, Maharashtra, India|Neuro Critical Care, Grant Medical Foundation Ruby Hall Clinic, Pune, Maharashtra, India|Respiratory Medicine, University College Hospital, London, United Kingdom'
+        expect(SearchResult.locations(facilities)).to eq formated_facilities
+      end
     end
     describe ':study_design' do
+      it 'returns the formatted design' do
+        formated_design  = 'Allocation: Randomized|Intervention Model: Parallel Assignment|Primary Purpose: Treatment|Masked: Triple (Participant, Caregiver, Investigator)'
+        expect(SearchResult.study_design(@covid_study.design)).to eq formated_design
+      end
     end
     describe ':single_term_query' do
+      before do
+        xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT04710303_covid_19_all_protocols.xml'))
+        @protocol_study=Study.new({xml: xml, nct_id: 'NCT04710303'}).create
+      end
+      it 'returns true if adaptive is found' do
+        expect(SearchResult.single_term_query('adaptive', @protocol_study)).to be true
+      end
+      it 'returns false if adaptive is not found' do
+        expect(SearchResult.single_term_query('adaptive', @covid_study)).to be false
+      end
+      it 'returns true if master is found' do
+        expect(SearchResult.single_term_query('master', @protocol_study)).to be true
+      end
+      it 'returns false if master is not found' do
+        expect(SearchResult.single_term_query('master', @covid_study)).to be false
+      end
+      it 'returns true if platform is found' do
+        expect(SearchResult.single_term_query('platform', @protocol_study)).to be true
+      end
+      it 'returns false if platform is not found' do
+        expect(SearchResult.single_term_query('platform', @covid_study)).to be false
+      end
+      it 'returns true if umbrella is found' do
+        expect(SearchResult.single_term_query('umbrella', @protocol_study)).to be true
+      end
+      it 'returns false if umbrella is not found' do
+        expect(SearchResult.single_term_query('umbrella', @covid_study)).to be false
+      end
+      it 'returns true if basket is found' do
+        expect(SearchResult.single_term_query('basket', @protocol_study)).to be true
+      end
+      it 'returns false if basket is not found' do
+        expect(SearchResult.single_term_query('basket', @covid_study)).to be false
+      end
     end
     describe ':study_documents' do
     end

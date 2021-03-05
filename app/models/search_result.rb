@@ -86,7 +86,7 @@ class SearchResult < ActiveRecord::Base
       gender_description = eligibility.gender_description
       healthy_volunteers = eligibility.healthy_volunteers
       population = eligibility.population
-      @criteria = eligibility.criteria
+      criteria = eligibility.criteria
     end
 
     adaptive_protocol = single_term_query('adaptive', study) ? 'Yes' : 'No'
@@ -161,7 +161,7 @@ class SearchResult < ActiveRecord::Base
       gender_description, #gender_description
       healthy_volunteers, #healthy_volunteers
       population, #population
-      @criteria, #criteria
+      criteria, #criteria
       study.calculated_value.try(:were_results_reported) ? 'Yes' : 'No', #study_results
       study_documents(study), #study_documents
     ]
@@ -303,7 +303,7 @@ class SearchResult < ActiveRecord::Base
     official_title = study.official_title =~ /#{term}/i
     return true if official_title
 
-    brief_title = study.brief_title =~ /#{term}/
+    brief_title = study.brief_title =~ /#{term}/i
     return true if brief_title
 
     brief_summary = study.brief_summary.try(:description) =~ /#{term}/i
@@ -312,8 +312,14 @@ class SearchResult < ActiveRecord::Base
     detailed_description = study.detailed_description.try(:description) =~ /#{term}/i
     return true if detailed_description
 
-    eligibility_criteria = @criteria =~ /#{term}/i if @criteria
+    criteria = ''
+    eligibility = study.eligibility
+    criteria = eligibility.criteria if eligibility
+  
+    eligibility_criteria = criteria =~ /#{term}/i
     return true if eligibility_criteria
+
+    return false
   end
 
   def self.study_documents(study)
