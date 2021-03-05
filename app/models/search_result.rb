@@ -323,7 +323,7 @@ class SearchResult < ActiveRecord::Base
   end
 
   def self.study_documents(study)
-    provided_documents = study.provided_documents
+    provided_documents = study.provided_documents.order(:url)
     provided_documents.map{|provided_document| "#{provided_document.document_type}, #{provided_document.url}"}.join('|')
   end
 end

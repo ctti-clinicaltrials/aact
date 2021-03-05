@@ -275,14 +275,14 @@ RSpec.describe SearchResult, type: :model do
     describe ':locations' do
       it 'returns the locations in the correct format' do
         facilities = @covid_study.facilities.order(:name)
-        formated_facilities = 'Clinical Research Department, Basement, Unity Trauma Centre and ICU (Unity Hospital, Surat, Gujarat, India|Department of Medicine, Civil Hospital and B J Medical College, Ahmadabad, Gujarat, India|Department of Medicine, Government Medical College and Hospital, Nagpur, Maharashtra, India|Department of Medicine, Noble Hospitals Pvt. Ltd, Pune, Maharashtra, India|First Floor Clinical Research Department Rhythm Heart Institute, Vadodara, Gujarat, India|Infectious Disease, Metas Adventist Hospital, Surat, Gujarat, India|Internal Medicine S.L. Raheja Hospital, Mumbai, Maharashtra, India|Neuro Critical Care, Grant Medical Foundation Ruby Hall Clinic, Pune, Maharashtra, India|Respiratory Medicine, University College Hospital, London, United Kingdom'
-        expect(SearchResult.locations(facilities)).to eq formated_facilities
+        formatted_facilities = 'Clinical Research Department, Basement, Unity Trauma Centre and ICU (Unity Hospital, Surat, Gujarat, India|Department of Medicine, Civil Hospital and B J Medical College, Ahmadabad, Gujarat, India|Department of Medicine, Government Medical College and Hospital, Nagpur, Maharashtra, India|Department of Medicine, Noble Hospitals Pvt. Ltd, Pune, Maharashtra, India|First Floor Clinical Research Department Rhythm Heart Institute, Vadodara, Gujarat, India|Infectious Disease, Metas Adventist Hospital, Surat, Gujarat, India|Internal Medicine S.L. Raheja Hospital, Mumbai, Maharashtra, India|Neuro Critical Care, Grant Medical Foundation Ruby Hall Clinic, Pune, Maharashtra, India|Respiratory Medicine, University College Hospital, London, United Kingdom'
+        expect(SearchResult.locations(facilities)).to eq formatted_facilities
       end
     end
     describe ':study_design' do
       it 'returns the formatted design' do
-        formated_design  = 'Allocation: Randomized|Intervention Model: Parallel Assignment|Primary Purpose: Treatment|Masked: Triple (Participant, Caregiver, Investigator)'
-        expect(SearchResult.study_design(@covid_study.design)).to eq formated_design
+        formatted_design  = 'Allocation: Randomized|Intervention Model: Parallel Assignment|Primary Purpose: Treatment|Masked: Triple (Participant, Caregiver, Investigator)'
+        expect(SearchResult.study_design(@covid_study.design)).to eq formatted_design
       end
     end
     describe ':single_term_query' do
@@ -322,6 +322,15 @@ RSpec.describe SearchResult, type: :model do
       end
     end
     describe ':study_documents' do
+      it 'returns the formatted documents information if there is any' do
+        xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT01298141.xml'))
+        study=Study.new({xml: xml, nct_id: 'NCT01298141'}).create
+        formatted_documents = 'Study Protocol: Original Protocol, https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_000.pdf|Study Protocol: Amendment 1, https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_001.pdf|Study Protocol: Amendment 2, https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_002.pdf|Study Protocol: Amendment 3, https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_003.pdf|Study Protocol: Amendment 4, https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_004.pdf|Study Protocol: Amendment 5, https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/Prot_005.pdf|Statistical Analysis Plan, https://ClinicalTrials.gov/ProvidedDocs/41/NCT01298141/SAP_006.pdf'
+        expect(SearchResult.study_documents(study)).to eq formatted_documents
+      end
+      it 'returns the an empty string if there are no provided documents' do
+        expect(SearchResult.study_documents(@covid_study)).to eq ''
+      end
     end
   end
 end
