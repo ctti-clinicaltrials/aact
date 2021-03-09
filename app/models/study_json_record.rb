@@ -27,7 +27,6 @@ class StudyJsonRecord < ActiveRecord::Base
     @data_store = []
 
     begin
-      byebug
      @type == 'full' ? full : incremental
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
@@ -59,16 +58,10 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.download_all_studies(url='https://ClinicalTrials.gov/AllAPIJSON.zip')
     tries ||= 5
-    byebug
     file_name="#{json_file_directory}/#{Time.zone.now.strftime("%Y%m%d-%H")}.zip"
     file = File.new file_name, 'w'
     begin
-      if tries < 5
-        `curl -o #{file.path} #{url}`
-      else
-        `curl -o #{file.path} #{url}`
-        byebug
-      end
+      `curl -o #{file.path} #{url}`
     rescue Errno::ECONNRESET => e
       if (tries -=1) > 0
         retry

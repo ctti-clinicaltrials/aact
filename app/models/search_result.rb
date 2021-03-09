@@ -267,9 +267,9 @@ class SearchResult < ActiveRecord::Base
     locations = []
     facilities.each do |facility|
       string = "#{facility.name}"
-      string += ", #{facility.city}" unless facility.city.empty? || facility.city.nil?
-      string += ", #{facility.state}" unless facility.state.empty? || facility.state.nil?
-      string += ", #{facility.country}" unless facility.country.empty? || facility.country.nil?
+      string += ", #{facility.city}" unless facility.city.nil? || facility.city.empty?
+      string += ", #{facility.state}" unless facility.state.nil? || facility.state.empty?
+      string += ", #{facility.country}" unless facility.country.nil? || facility.country.empty?
 
       locations << string
     end
