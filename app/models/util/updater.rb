@@ -200,7 +200,6 @@ module Util
     def run_sanity_checks
       log("running sanity checks...")
       Support::SanityCheck.new.run
-      # Support::SanityCheck.new.run(params[:event_type])
     end
 
     # 1. adding all the sanity check issues to the load event
