@@ -1,6 +1,6 @@
 FROM ruby:2.4.5
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client telnet vim zip
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client telnet vim zip cron
 
 RUN mkdir /app
 WORKDIR /app

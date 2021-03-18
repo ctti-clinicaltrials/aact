@@ -70,7 +70,8 @@ module Support
         if processed.nil? or processed == 0
           subject="AACT #{Rails.env.capitalize} #{event_type.try(:capitalize)} Load Notification. Nothing to load."
         else
-          subject="#{title}. Added: #{should_add} Updated: #{should_change} Total: #{processed}"
+
+          subject="#{title}. Added: #{should_add} Updated: #{should_change} Total: #{processed} Existing: #{ClinicalTrialsApi.number_of_studies}"
         end
       end
       subject
