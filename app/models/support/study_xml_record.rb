@@ -5,6 +5,31 @@ module Support
 
     belongs_to :study, foreign_key: "nct_id"
 
+    def self.incremental
+      t = Time.now
+      studies = ClinicalTrialsApi.all.map{|k| k[:id] }
+      print "GET all studies #{Time.now - t}"
+
+      current = Study.pluck(:nct_id)
+      to_add = studies - current
+
+      total = to_add.length
+      total_time = 0
+      stime = Time.now
+
+      to_add.each_with_index do |id, idx|
+        t = update_study(id)
+        total_time += t
+        avg_time = total_time / (idx + 1)
+        remaining = (total - idx - 1) * avg_time
+        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
+      end
+
+      time = Time.now - stime
+      ActiveRecord::Base.logger = logger
+      puts "Time: #{time} avg: #{time / total}"
+    end
+
     def self.not_yet_loaded(study_filter=nil)
       if study_filter
         where('created_study_at is null and nct_id like ?',"%#{study_filter}")
@@ -76,11 +101,22 @@ module Support
       end
     end
 
+    def self.to_update
+      studies = ClinicalTrialsApi.all
+      current = Hash[Study.pluck(:nct_id, :last_update_posted_date)]
+      ids = studies.select do |entry|
+        current_date = current[entry[:id]]
+        current_date.nil? || entry[:updated] > current_date
+      end
+      ids.map{|k| k[:id] }
+    end
+
     def self.update_studies(days_back: 1, api: true)
       logger = ActiveRecord::Base.logger
       ActiveRecord::Base.logger = nil
-      reader = Util::RssReader.new(days_back: days_back)
-      ids = (reader.get_changed_nct_ids + reader.get_added_nct_ids).uniq
+      # reader = Util::RssReader.new(days_back: days_back)
+      # ids = (reader.get_changed_nct_ids + reader.get_added_nct_ids).uniq
+      ids = to_update
       total = ids.length
       total_time = 0
       stime = Time.now

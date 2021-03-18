@@ -66,6 +66,10 @@ module Util
       MeshHeading.populate_from_file
     end
 
+    # incremental steps
+    # 1. update studies
+    # 2. update calculated values
+    # 3. run saved searches
     def incremental
       log("begin incremental load...")
       log("finding studies changed in past #{@days_back} days...")
@@ -81,13 +85,24 @@ module Util
       @client.save_file_contents(@client.download_xml_files)
     end
 
+    # Steps:
+    # 1. add indexes and constraints
+    # 2. execute saved search
+    # 3. create calculated values
+    # 4. populate admin tables
+    # 5. run sanity checks
+    # 6. take snapshot
+    # 7. refreh public db
+    # 8. create flat files
     def finalize_load
       log('finalizing load...')
       add_indexes_and_constraints
+
       if load_event.event_type == 'full'
         days_back = (Date.today - Date.parse('2013-01-01')).to_i
       end
       StudySearch.execute(days_back)
+
       create_calculated_values
       populate_admin_tables
       run_sanity_checks
