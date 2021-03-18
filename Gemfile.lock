@@ -80,6 +80,8 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
+    css_parser (1.9.0)
+      addressable
     database_cleaner (1.6.1)
     diff-lcs (1.3)
     docile (1.1.5)
@@ -103,6 +105,7 @@ GEM
       activesupport
       capybara
       i18n
+    foundation_emails (2.2.1.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     gon (6.1.0)
@@ -147,6 +150,13 @@ GEM
       mini_portile2 (~> 2.3.0)
     normalize-rails (4.1.1)
     pg (0.21.0)
+    premailer (1.12.1)
+      addressable
+      css_parser (>= 1.6.0)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.11.1)
+      actionmailer (>= 3)
+      premailer (~> 1.7, >= 1.7.9)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -292,6 +302,7 @@ DEPENDENCIES
   flutie
   font-awesome-rails
   formulaic
+  foundation_emails
   gon
   high_voltage
   jquery-rails
@@ -301,6 +312,7 @@ DEPENDENCIES
   nokogiri
   normalize-rails
   pg
+  premailer-rails
   pry-byebug
   pry-rails
   quiet_assets
@@ -326,3 +338,9 @@ DEPENDENCIES
   timecop
   vcr
   webmock
+
+RUBY VERSION
+   ruby 2.4.5p335
+
+BUNDLED WITH
+   1.17.3
