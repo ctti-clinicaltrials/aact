@@ -5,6 +5,10 @@ ruby "2.6.2"
 gem "sprockets"
 gem "rubyzip", ">= 1.2.2"
 
+# gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
+gem 'foundation_emails'
+
 gem 'nokogiri'
 gem 'loofah'
 gem 'rails', '6.0.0'

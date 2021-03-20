@@ -86,9 +86,12 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings =  {
-    :address => '127.0.0.1',
-    :port    => '25',
-    :domain  => host
+    address: ENV['EMAIL_SERVER'],
+    port: ENV['EMAIL_PORT'],
+    user_name: ENV['EMAIL_USERNAME'],
+    password: ENV['EMAIL_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
   }
   config.action_mailer.default_url_options = { host: host }
   

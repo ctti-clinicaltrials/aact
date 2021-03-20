@@ -2,35 +2,41 @@ module Support
   class SanityCheck < Support::SupportBase
 
     def save_row_counts
-      Support::SupportBase.connection.execute('UPDATE sanity_checks SET most_current=false')
-      Util::Updater.loadable_tables.each{|table_name|
-        table_name='references' if table_name=='study_references'
-        cnt=table_name.singularize.camelize.constantize.count
-        Support::SanityCheck.new({
-          :table_name=>table_name,
-          :row_count=>cnt,
-          :check_type=>'row count',
-          :most_current=>true}).save!
-      }
+      Util::Updater.loadable_tables.each do |table_name|
+        table_name = 'references' if table_name == 'study_references'
+
+        count = table_name.singularize.camelize.constantize.count
+
+        Support::SanityCheck.create(
+          table_name: table_name,
+          row_count: count,
+          check_type: 'row count',
+          most_current: true
+        )
+      end
     end
 
+    # find all the studies which are orphaned
     def check_for_orphans
-      parent_children_relationships.each{|r|
+      parent_children_relationships.each do |r|
         parent = r.first
         child = r.last
-        query=self.orphan_check_sql(parent,child)
-        cntr=0
-        ActiveRecord::Base.connection.execute(query).each{|orphan|
-          cntr=cntr+1
-          Support::SanityCheck.new({
-            :nct_id=>orphan['nct_id'],
-            :table_name=>child,
-            :check_type=>'orphan',
-            :description=>"Orphaned from #{parent}",
-            :most_current=>true}).save
+        query = self.orphan_check_sql(parent,child)
+        counter = 0
+        ActiveRecord::Base.connection.execute(query).each do |orphan|
+          counter += 1
+
+          Support::SanityCheck.create(
+            nct_id: orphan['nct_id'],
+            table_name: child,
+            check_type: 'orphan',
+            description: "Orphaned from #{parent}",
+            most_current: true
+          )
+
           return if cntr > 100  # if a widespread problem, we just need to see some examples
-        }
-      }
+        end
+      end
     end
 
     def orphan_check_sql(parent,child)
@@ -51,22 +57,26 @@ module Support
       ]
     end
 
+    # find all the duplicated entries in tables which should have only
+    # one row per study
     def check_for_duplicates
-      Util::Updater.single_study_tables.each{|table_name|
-        results=ActiveRecord::Base.connection.execute("
+      Util::Updater.single_study_tables.each do |table_name|
+        results = ActiveRecord::Base.connection.execute("
            SELECT nct_id, count(*)
              FROM #{table_name}
              GROUP BY nct_id
              HAVING COUNT(*) > 1")
-        results.values.each{|row|
-          Support::SanityCheck.new({
-            :table_name=>"#{table_name} duplicate",
-            :nct_id=>row.first,
-            :row_count=>row.last,
-            :check_type=>'duplicate',
-            :most_current=>true}).save!
-        }
-      }
+
+        results.values.each do |row|
+          Support::SanityCheck.create(
+            table_name: "#{table_name} duplicate",
+            nct_id: row.first,
+            row_count: row.last,
+            check_type: 'duplicate',
+            most_current: true
+          )
+        end
+      end
     end
 
     def check_enumerations
@@ -94,55 +104,21 @@ module Support
       }
     end
 
+    # return all sanity checks not of type 'row count'
     def self.current_issues
-      col=[]
-      Support::SanityCheck.where('most_current=? and check_type != ?',true,'row count').each{|issue|
-        col << "#{issue.check_type}: #{issue.table_name} #{ issue.row_count} #{issue.column_name} #{issue.description}"
-      }
-      return col
+      Support::SanityCheck.where(most_current: true).where.not(check_type: 'row count').map do |issue|
+        "#{issue.check_type}: #{issue.table_name} #{ issue.row_count} #{issue.column_name} #{issue.description}"
+      end
     end
 
-    def run(event_type=nil)
+    # not currently using for anything might stop doing this at some point
+    def run
+      # prepare the sanity checks table so that nothing is the most current
+      Support::SanityCheck.update_all(most_current: false)
+
       save_row_counts
       check_for_orphans
       check_for_duplicates
-    end
-
-    def generate_report
-      Util::Updater.loadable_tables.inject({}) do |hash, table_name|
-        hash[table_name] = {
-          row_count: @connection.execute("select count(*) from #{table_name}").values.flatten.first.to_i,
-          column_stats: generate_column_width_stats(table_name)
-        }
-        hash
-      end.to_json
-    end
-
-    def generate_column_width_stats(table_name)
-      blacklist = %w(
-          schema_migrations
-          load_events
-          sanity_checks
-          statistics
-          use_cases
-          use_case_attachments
-        )
-      return if blacklist.include?(table_name)
-
-      column_names = @connection.execute("select column_name from information_schema.columns where table_name = '#{table_name}'")
-                                .values.flatten
-
-      column_counts = column_names.inject({}) do |column_hash, column|
-        column_hash[column] = {}
-        %w(max min avg).each do |operation|
-          column_hash[column]["#{operation}_length"] = @connection.execute("select #{operation}(length(#{column}::text)) from \"#{table_name}\"")
-                                                      .values.flatten.first.to_i
-        end
-        column_hash[column][:frequent_values] = @connection.execute("select left(#{column}::text, 30) from #{table_name} group by #{column} limit 10").values.flatten
-
-        column_hash
-      end
-
     end
   end
 end

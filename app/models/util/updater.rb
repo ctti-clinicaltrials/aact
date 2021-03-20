@@ -29,9 +29,9 @@ module Util
         ActiveRecord::Base.logger=nil
         case params[:event_type]
         when 'full'
-          status=full
+          status = full
         else
-          status=incremental
+          status = incremental
         end
         finalize_load if status != false
       rescue => error
@@ -66,31 +66,17 @@ module Util
       MeshHeading.populate_from_file
     end
 
+    # incremental steps
+    # 1. update studies
+    # 2. update calculated values
+    # 3. run saved searches
     def incremental
       log("begin incremental load...")
       log("finding studies changed in past #{@days_back} days...")
-      added_ids = @rss_reader.get_added_nct_ids
-      changed_ids = @rss_reader.get_changed_nct_ids
-      log("#{added_ids.size} added studies: #{@rss_reader.added_url}")
-      log("#{changed_ids.size} changed studies: #{@rss_reader.changed_url}")
-      study_counts[:should_add]=added_ids.size
-      study_counts[:should_change]=changed_ids.size
-      ids=(changed_ids + added_ids).uniq
-      log("total #{ids.size} studies combined (having removed dups)")
-      case ids.size
-      when 0
-        load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'no studies'})
-        return false
-      when 10000..(1.0/0.0)
-        log("Incremental load size is suspiciously large. Aborting load.")
-        load_event.complete({:new_studies=> 0, :changed_studies => 0, :status=>'too many studies'})
-        return false
-      end
       remove_indexes_and_constraints  # Index significantly slow the load process.
-      update_studies(ids)
-      log('updating load_event record...')
-      load_event.save_id_info(added_ids, changed_ids)
+      ids = Support::StudyXmlRecord.update_studies(days_back: @days_back)
       log('end of incremental load method')
+      return true
     end
 
     def retrieve_xml_from_ctgov
@@ -99,13 +85,24 @@ module Util
       @client.save_file_contents(@client.download_xml_files)
     end
 
+    # Steps:
+    # 1. add indexes and constraints
+    # 2. execute saved search
+    # 3. create calculated values
+    # 4. populate admin tables
+    # 5. run sanity checks
+    # 6. take snapshot
+    # 7. refreh public db
+    # 8. create flat files
     def finalize_load
       log('finalizing load...')
       add_indexes_and_constraints
+
       if load_event.event_type == 'full'
         days_back = (Date.today - Date.parse('2013-01-01')).to_i
       end
       StudySearch.execute(days_back)
+
       create_calculated_values
       populate_admin_tables
       run_sanity_checks
@@ -199,21 +196,28 @@ module Util
 
     def run_sanity_checks
       log("running sanity checks...")
-      Support::SanityCheck.new.run(params[:event_type])
+      Support::SanityCheck.new.run
     end
 
+    # 1. adding all the sanity check issues to the load event
+    # 2. Verify that the sanity checks ran no more than 2 hours ago
+    # 3. Verify that the number of studies in the alt database differs by at most 10 studies
     def sanity_checks_ok?
       log "  sanity checks ok?...."
+
+      # add all issues to the load event
       Support::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
-      sanity_set=Support::SanityCheck.where('most_current is true')
-      load_event.add_problem("Fewer sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size < 46
-      load_event.add_problem("More sanity check rows than expected (44): #{sanity_set.size}.") if sanity_set.size > 46
+
+      # load all the sanity checks
+      sanity_set = Support::SanityCheck.where(most_current: true)
       load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
+
       # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
       # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to ct.gov having deleted studies.
-      old_count=(db_mgr.public_study_count - 10)
-      new_count=Study.count
+      old_count = db_mgr.public_study_count - 10
+      new_count = Study.count
       load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
+
       log(load_event.problems) if !load_event.problems.blank?
       return load_event.problems.blank?
     end

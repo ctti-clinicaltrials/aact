@@ -5,6 +5,52 @@ class StudyRelationship < ActiveRecord::Base
   attr_accessor :xml, :opts
   belongs_to :study, :foreign_key=> 'nct_id'
 
+  def self.study_models
+    return @models if @models
+    blacklist = %w(
+      ar_internal_metadata
+      schema_migrations
+      data_definitions
+      mesh_headings
+      mesh_terms
+      load_events
+      sanity_checks
+      study_searches
+      statistics
+      study_xml_records
+      study_json_records
+      use_cases
+      use_case_attachments
+    )
+    @models = (connection.tables - blacklist).map{|k| k.singularize.camelize.constantize }
+  end
+
+  def self.create_nct_indexes
+    blacklist = %w(
+      ar_internal_metadata
+      schema_migrations
+      data_definitions
+      mesh_headings
+      mesh_terms
+      load_events
+      sanity_checks
+      study_searches
+      statistics
+      study_xml_records
+      study_json_records
+      use_cases
+      use_case_attachments
+    )
+    tables = connection.tables - blacklist
+    tables.each do |table|
+      begin
+        connection.execute("CREATE INDEX #{table}_nct_idx ON #{table}(nct_id)")
+      rescue
+        puts "DONT CREATE #{table}"
+      end
+    end
+  end
+
   def self.create_all_from(opts)
     objects=xml_entries(opts).collect{|xml|
       opts[:xml]=xml

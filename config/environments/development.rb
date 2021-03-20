@@ -55,10 +55,18 @@ Rails.application.configure do
   host = ENV.fetch('APPLICATION_HOST','localhost')
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings =  {
+  #   :address => '127.0.0.1',
+  #   :port    => '25',
+  #   :domain  => host
+  # }
   config.action_mailer.smtp_settings =  {
-    :address => '127.0.0.1',
-    :port    => '25',
-    :domain  => host
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: ENV['EMAIL_USERNAME'],
+    password: ENV['EMAIL_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
   }
   config.assets.digest = true
   config.assets.raise_runtime_errors = true
