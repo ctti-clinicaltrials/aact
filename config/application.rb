@@ -1,16 +1,18 @@
-require File.expand_path('../boot', __FILE__)
-require "rails"
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "action_mailer/railtie"
-require "sprockets/railtie"
+require_relative 'boot'
+
+require 'rails/all'
 require 'zip'
 require 'csv'
 
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
 module AACT
   class Application < Rails::Application
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'Eastern Time (US & Canada)'
     config.quiet_assets = true
     config.generators do |generate|
@@ -23,7 +25,6 @@ module AACT
       generate.view_specs false
     end
     config.active_record.schema_format = :sql
-    config.active_record.raise_in_transactional_callbacks = true
 
     # Note:  You must define the AACT DB superuser's password in the .pgpass file that needs to be in the root directory of the user who runs
     # the rails app.  We don't save passwords in Env Vars because they can be to easily exposed that way.
@@ -72,7 +73,7 @@ module AACT
     cors_origins = '*'
     cors_origins = ENV['CORS_ORIGINS'].split(',') if ENV['CORS_ORIGINS']
 
-    config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
+    config.middleware.insert_before 0, Rack::Cors, :debug => true, :logger => (-> { Rails.logger }) do
       allow do
         origins cors_origins
 

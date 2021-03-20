@@ -112,12 +112,22 @@ class StudyRelationship < ActiveRecord::Base
     @xml = opts[:xml] || opts
     self.nct_id=opts[:nct_id]
     a=attribs
+    a = fix_na_values(a)
     if a.nil?
       return nil
     else
       assign_attributes(a)
     end
     self
+  end
+
+  def fix_na_values(attributes)
+    self.class.columns_hash.keys.each do |key|
+      if [:integer, :numeric, :double, :decimal].include?(self.class.columns_hash[key].type) && attributes.present?
+        attributes[:"#{key}"] = "" if attributes[:"#{key}"] == 'NA'
+      end
+    end
+    return attributes
   end
 
   def get(label)

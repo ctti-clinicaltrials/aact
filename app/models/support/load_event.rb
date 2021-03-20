@@ -74,7 +74,7 @@ module Support
           subject="#{title}. Added: #{should_add} Updated: #{should_change} Total: #{processed} Existing: #{ClinicalTrialsApi.number_of_studies}"
         end
       end
-      subject
+      subject.squish
     end
 
     def backup_subject_line

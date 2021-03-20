@@ -16,13 +16,14 @@ RSpec.configure do |config|
     # backend db
     ActiveRecord::Base.establish_connection @dbconfig[:test]
     # and public db
-    con=PublicBase.establish_connection(
+    PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
       hostname: 'localhost',
       database: 'aact_pub_test',
       username: ENV["AACT_DB_SUPER_USERNAME"] || 'aact'
-    ).connection
+    )
+    con = PublicBase.connection
     DatabaseCleaner.start
   end
 
@@ -31,13 +32,14 @@ RSpec.configure do |config|
     # backend db
     ActiveRecord::Base.establish_connection @dbconfig[:test]
     # and public db
-    con=PublicBase.establish_connection(
+    PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
       hostname: 'localhost',
       database: 'aact_pub_test',
       username: ENV["AACT_DB_SUPER_USERNAME"] || 'aact'
-    ).connection
+    )
+    con = PublicBase.connection
     DatabaseCleaner.clean
   end
 end
