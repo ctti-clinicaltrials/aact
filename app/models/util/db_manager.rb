@@ -10,7 +10,7 @@ module Util
       if params[:event]
         @event = params[:event]
       else
-        @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
+        # @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
       end
       @fm = Util::FileManager.new
 
@@ -231,6 +231,29 @@ module Util
         }
       }
       # Remove foreign Key constraints
+      foreign_key_constraints.each { |constraint|
+        table = constraint[:child_table]
+        column = constraint[:child_column]
+        begin
+          con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
+        end
+      }
+    end
+
+    def remove_constrains
+      loadable_tables.each {|table_name|
+        # remove foreign key that links most tables to Studies table via the NCT ID
+        begin
+          con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
+        rescue => e
+          log(e)
+          event.add_problem("#{Time.zone.now}: #{e}")
+        end
+      }
+
       foreign_key_constraints.each { |constraint|
         table = constraint[:child_table]
         column = constraint[:child_column]
