@@ -39,7 +39,7 @@ class Study < ActiveRecord::Base
   has_one  :eligibility,           :foreign_key => 'nct_id', :dependent => :delete
   has_one  :participant_flow,      :foreign_key => 'nct_id', :dependent => :delete
   has_one  :calculated_value,      :foreign_key => 'nct_id', :dependent => :delete
-  has_one  :study_xml_record,      class_name: Support::StudyXmlRecord, :foreign_key => 'nct_id'
+  has_one  :study_xml_record,      class_name: "Support::StudyXmlRecord", :foreign_key => 'nct_id'
 
   has_many :categories,            :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :baseline_measurements, :foreign_key => 'nct_id', :dependent => :delete_all
@@ -81,6 +81,19 @@ class Study < ActiveRecord::Base
   has_many :result_groups,         :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :sponsors,              :foreign_key => 'nct_id', :dependent => :delete_all
   accepts_nested_attributes_for :outcomes
+
+  def remove_study_data
+    s = Time.now
+    StudyRelationship.study_models.each do |model|
+      model.where(nct_id: nct_id).delete_all
+    end
+    time = Time.now - s
+    puts "  remove-study #{time}"
+  end
+
+  def self.study_difference
+    ClinicalTrialsApi.number_of_studies - Study.count
+  end
 
   def initialize(hash)
     super

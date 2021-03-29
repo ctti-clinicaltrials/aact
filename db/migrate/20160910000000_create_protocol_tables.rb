@@ -1,4 +1,4 @@
-class CreateProtocolTables < ActiveRecord::Migration
+class CreateProtocolTables < ActiveRecord::Migration[4.2]
 
   def change
 

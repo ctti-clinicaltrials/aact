@@ -1,5 +1,6 @@
 Util::Updater.new.run
-pub_con=ActiveRecord::Base.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+ActiveRecord::Base.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"])
+pub_con = ActiveRecord::Base.connection
 pub_con.execute("
     DO
     $do$

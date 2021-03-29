@@ -18,7 +18,7 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 ### git
 *  <a href='https://git-scm.com/book/en/v2/Getting-Started-Installing-Git' target='_blank'>git</a> to clone the AACT application.
 *  We recommend a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight.
-*  **ruby 2.4.5**  If using chruby, you can get this version with the command: `ruby-install 2.4.5`
+*  **ruby 2.6.2**  If using chruby, you can get this version with the command: `ruby-install 2.6.2`
 *  **postgres 11.1** `brew install postgresql`  You could use other versions of postgres or a different relational database such as mysql, but if so, you might need to make changes to files in db/migrate & will probably need to make a few changes to *app/models/util/db_manager.db* since it drops/creates indexes thinking it's dealing with postgres 11.1.
 *  Create a postgres superuser account/password for the AACT database.  Grant this user permission to create a database. You will also need to create environment variables that define the username password for this account. (See required variables below.)
 *  ** create user *<your_pg_superuser_name>* with password '*<a-secure-password>*';
@@ -27,24 +27,126 @@ These instructions assume you're on a Mac. Linux users will need to use yum or a
 
 ###  ruby
 *  We recommend you use a ruby version manager. Popular ones are: <a href='http://rvm.io/' target='_blank'>rvm</a> & <a href='https://github.com/rbenv/rbenv' target='_blank'>rbenv</a>. We use <a href='https://github.com/postmodern/chruby' target='_blank'>chruby</a> because it is lightweight. (`brew install chruby`)
-*  **ruby 2.4.5**  If using chruby, you can get it with the command: `ruby-install ruby 2.4.5`
+*  **ruby 2.6.2**  If using chruby, you can get it with the command: `ruby-install ruby 2.6.2`
+
+### Environment variables
 
 Add the following to your shell profile (for example .bash_profile):
 
-**Required variables:**
-* export AACT_DB_SUPER_USERNAME=*<your_pg_superuser_name>*  (The postgres superuser account you created in previous step.)
+```bash
+## aact Rails.env != 'test'
+#export AACT_DB_SUPER_USERNAME='chuck_aact'
+#export AACT_ADMIN_EMAILS="charlesvincentanderson@gmail.com"
+#export AACT_STATIC_FILE_DIR='~/aact/public/static'
+#export RACK_TIMEOUT=10
+#export APPLICATION_HOST='localhost'
+#export AACT_PUBLIC_HOSTNAME='localhost'
+#export AACT_BACK_DATABASE_NAME='aact'
+#export AACT_ADMIN_DATABASE_NAME='aact_admin'
+#export AACT_PUBLIC_DATABASE_NAME='aact'
+#export AACT_ALT_PUBLIC_DATABASE_NAME='aact_alt'
+#export AACT_BACK_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$APPLICATION_HOST:5432/$AACT_BACK_DATABASE_NAME"
+#export AACT_ADMIN_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$APPLICATION_HOST:5432/$AACT_ADMIN_DATABASE_NAME"
+#export AACT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_PUBLIC_DATABASE_NAME"
+#export AACT_ALT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_ALT_PUBLIC_DATABASE_NAME"
+
+
+## aact Rails.env = 'test'
+#export AACT_DB_SUPER_USERNAME='chuck_aact'
+#export AACT_ADMIN_EMAILS="charlesvincentanderson@gmail.com"
+#export AACT_STATIC_FILE_DIR='~/aact/public/static'
+#export RACK_TIMEOUT=10
+#export APPLICATION_HOST='localhost'
+#export AACT_PUBLIC_HOSTNAME='localhost'
+#export AACT_BACK_DATABASE_NAME='aact_test'
+#export AACT_ADMIN_DATABASE_NAME='aact_admin_test'
+#export AACT_PUBLIC_DATABASE_NAME='aact_pub_test'
+#export AACT_ALT_PUBLIC_DATABASE_NAME='aact_alt_test'
+#export AACT_BACK_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$APPLICATION_HOST:5432/$AACT_BACK_DATABASE_NAME"
+#export AACT_ADMIN_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$APPLICATION_HOST:5432/$AACT_ADMIN_DATABASE_NAME"
+#export AACT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_PUBLIC_DATABASE_NAME"
+#export AACT_ALT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_ALT_PUBLIC_DATABASE_NAME"
+
+
+## aact_admin Rails.env != 'test'
+#export AACT_DB_SUPER_USERNAME='chuck_aact'
+#export AACT_STATIC_FILE_DIR='~/aact/public/static'
+#export AACT_ADMIN_USERNAMES='chuck'
+#export RACK_TIMEOUT=10
+#export APPLICATION_HOST='localhost'
+#export AACT_PUBLIC_HOSTNAME='localhost'
+#export AACT_BACK_DATABASE_NAME='aact_back'
+#export AACT_ADMIN_DATABASE_NAME='aact_admin'
+#export AACT_PUBLIC_DATABASE_NAME='aact'
+#export AACT_BACK_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$APPLICATION_HOST:5432/$AACT_BACK_DATABASE_NAME"
+#export AACT_ADMIN_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$APPLICATION_HOST:5432/$AACT_ADMIN_DATABASE_NAME"
+#export AACT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_PUBLIC_DATABASE_NAME"
+
+
+## aact_admin Rails.env = 'test'
+#export AACT_DB_SUPER_USERNAME='chuck_aact'
+#export RAILS_SERVE_STATIC_FILES=false
+#export AACT_STATIC_FILE_DIR=~/aact/public/static/
+#export AACT_ADMIN_USERNAMES='chuck'
+#export RACK_TIMEOUT=10
+#export APPLICATION_HOST='localhost'
+#export AACT_PUBLIC_HOSTNAME='localhost'
+#export AACT_BACK_DATABASE_NAME='aact_back_test'
+#export AACT_ADMIN_DATABASE_NAME='aact_admin_test'
+#export AACT_PUBLIC_DATABASE_NAME='aact_test'
+#export AACT_BACK_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$APPLICATION_HOST:5432/$AACT_BACK_DATABASE_NAME"
+#export AACT_ADMIN_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME$@$APPLICATION_HOST:5432/$AACT_ADMIN_DATABASE_NAME"
+#export AACT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_PUBLIC_DATABASE_NAME"
+
+
+##aact-proj Rails.env = 'test'
+#export AACT_DB_SUPER_USERNAME='chuck_aact'
+#export AACT_PROJ_DB_SUPER_USERNAME="chuck_aact"
+#export AACT_STATIC_FILE_DIR='~/aact/public/static/'
+#export APPLICATION_HOST='localhost'
+#export AACT_PUBLIC_HOSTNAME='localhost'
+#export AACT_BACK_DATABASE_NAME='aact_back_test'
+#export AACT_PUBLIC_DATABASE_NAME='aact_test'
+#export AACT_PROJ_DATABASE_NAME='aact_proj_test'
+#export AACT_ALT_PUBLIC_DATABASE_NAME='aact_alt_test'
+#export AACT_ADMIN_DATABASE_NAME='aact_admin_test'
+#export AACT_PROJ_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_PROJ_DATABASE_NAME"
+#export AACT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_PUBLIC_DATABASE_NAME"
+#export AACT_ALT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_ALT_PUBLIC_DATABASE_NAME"
+#export AACT_ADMIN_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$APPLICATION_HOST:5432/$AACT_ADMIN_DATABASE_NAME"
+
+
+##aact-proj Rails.env != 'test'
+#export AACT_DB_SUPER_USERNAME='chuck_aact'
+#export AACT_PROJ_DB_SUPER_USERNAME="chuck_aact"
+#export AACT_STATIC_FILE_DIR='~/aact/public/static/'
+#export APPLICATION_HOST='localhost'
+#export AACT_PUBLIC_HOSTNAME='localhost'
+#export AACT_BACK_DATABASE_NAME='aact_back'
+#export AACT_PUBLIC_DATABASE_NAME='aact'
+#export AACT_ALT_PUBLIC_DATABASE_NAME='aact_alt'
+#export AACT_PROJ_DATABASE_NAME='aact_proj'
+#export AACT_ADMIN_DATABASE_NAME='aact_admin'
+#export AACT_PROJ_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_PROJ_DATABASE_NAME"
+#export AACT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_PUBLIC_DATABASE_NAME" #aact-db.ctti-clinicaltrials.org
+#export AACT_ALT_PUBLIC_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$AACT_PUBLIC_HOSTNAME:5432/$AACT_ALT_PUBLIC_DATABASE_NAME"
+#export AACT_ADMIN_DATABASE_URL="postgres://$AACT_DB_SUPER_USERNAME@$APPLICATION_HOST:5432/$AACT_ADMIN_DATABASE_NAME"
+
+```
+
+If you intend to populate a 'public' database on a different server from the one that performs the loads:
+* export AACT_PUBLIC_HOSTNAME=*domain name of server*   (Set this to the domain name of the server that will host the database available to users.)
+
+If you intend to send email notifications to yourself or others whenever a database load completes, you will need to set these variables:
+* export AACT_OWNER_EMAIL=*<aact-sys@email.addr>*
 * export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
 
-Create .pgpass file in the root directory of your database server that includes the line:  localhost:5432:*:<your_pg_superuser_name>:<your_superuser_password>
+Create .pgpass file in the root directory of your database server that includes the line:  localhost:5432:*:<your_pg_superuser_name>:<your_superuser_password>*
 
-**Optional variables:**  (These default to the given value if you don't set them to something different.)
-* export APPLICATION_HOST=*localhost*
-* export AACT_PUBLIC_HOSTNAME=*localhost*   (Set this to the ip addr or domain name of the server that will host the database available to users.)
-* export AACT_PUBLIC_DATABASE_NAME=*aact*   (Set this to the name of the database that will be the database available to users.)
-* export AACT_BACK_DATABASE_NAME=*aact_back*  (Set this to the name of the database that does all the work to load data from ClinicalTrials.gov.)
-* export AACT_ADMIN_DATABASE_NAME=*aact_admin*  (This database can contain anncillary tables such as users, public_announcements, etc. This is primarily to support the AACT website, but is also referred to by the load process, so we include it here.)
-* export RACK_TIMEOUT=*20*
-* export RAILS_SERVE_STATIC_FILES=*false*
+In the command line:
+*  `chmod 0600 .pgpass`  (set restrictive permissions on this file)
+
+You may need to open your pg_hba.conf file (often this is located at ~/../../etc/postgresql/11/main/pg_hba.conf) and change all md5 values to trust if your pgpass file is not working
 
 ### postgreSQL (supported: version 11.1)
 If you don't already have postgreSQL, you'll need to know a bit about setting up & administering it, particularly with respect to security. At the time of this writing, a good site for postgreSQL instructions for the Mac: https://gist.github.com/ibraheem4/ce5ccd3e4d7a65589ce84f2a3b7c23a3.  
@@ -65,12 +167,10 @@ In short, if you're installing on a Mac, basic steps to get started can be:
 *  template1=# `alter user <your_aact_pg_user> with superuser;`
 *  template1=# `create role read_only;`
 *  template1=# `create database aact;`
-*  template1=# `\q`  (quite out of postgres)
-
-*  Create *.pgpass* in your root directory that contains line: `localhost:5432:*:<your_aact_pg_user>:<your_pg_password>`
-*  `chmod 0600 .pgpass`  (set restrictive permissions on this file)
+*  template1=# `create database aact_alt;`
+*  template1=# `\q`  (quit out of psql)
 *  Verify your new user can login to postgres with command: `psql -U <your_aact_pg_user> -d template1`
-
+*  template1=# \q (quit psql))
 *  Clone this repo: `git clone git@github.com:ctti-clinicaltrials/aact.git`
 *  Change into the AACT directory: `cd aact` and run the following commands:
 
@@ -88,28 +188,6 @@ By default, AACT saves the downloaded xml file in a directory under /aact-files.
 *  `chgrp <your-system-account> /aact-files`
 *  `exit`                 # exit the superuser login
 
-### Environment variables
-
-Add the following to your shell profile (for example .bash_profile):
-
- | env var | default value | description |
- |---|:---:|---|
- |AACT_DB_SUPER_USERNAME | aact | Database user name responsible for creating and populating the AACT DB. Must have rights to create db. |
- |APPLICATION_HOST | localhost | Server where the system runs to load the database. |
- | AACT_PUBLIC_DATABASE_NAME | aact | Name of the database that will be available to users. |
- | AACT_BACK_DATABASE_NAME | aact | Name of the database that is the target for initially loading data from ClinicalTrials.gov |
- | AACT_ADMIN_DATABASE_NAME | aact_admin | Name of the database that contains admin info such as users, public announcements, etc.  This is primarily to support the AACT website, but is also referred to by the load process, so we include it here. |
- | RACK_TIMEOUT | 10 | Number of seconds to wait before aborting requests that take too long. |
- | AACT_STATIC_FILE_DIR | /aact-files | Directory containing AACT static files such as the downloadable db snapshots. |
-
-If you intend to populate a 'public' database on a different server from the one that performs the loads:
-* export AACT_PUBLIC_HOSTNAME=*domain name of server*   (Set this to the domain name of the server that will host the database available to users.)
-
-If you intend to send email notifications to yourself or others whenever a database load completes, you will need to set these variables:
-* export AACT_OWNER_EMAIL=*<aact-sys@email.addr>*
-* export AACT_ADMIN_EMAILS=*<your@email.addr>,<another-admin@email.addr>*
-
-`source ~/.bash_profile` (Make these new environment variables available in your current session.)
 
 ## Install AACT
 
@@ -117,9 +195,40 @@ If you intend to send email notifications to yourself or others whenever a datab
 *  Change into the AACT directory you just created: `cd aact`
 *  `gem install bundler -v 1.9.0`
 *  `bundle install`
+
+Go into your .bash_profile and uncomment only the section for aact Rails.env != test
+
+Open a new terminal
+
 *  `bundle exec rake db:create`   (create the database)
 *  `bundle exec rake db:migrate`  (create tables, indexes, views, etc. in the database)
 *  `bundle exec rake db:seed`     (Populate with sample data to verify it all works.)
+
+Go into your .bash_profile and uncomment only the section for aact Rails.env = test
+
+Open a new terminal
+
+*  `bundle exec rake db:create RAILS_ENV=test`   (create the database)
+*  `bundle exec rake db:migrate RAILS_ENV=test`  (create tables, indexes, views, etc. in the database)
+
+Log back into psql and grant permissions:
+
+* `psql -U <your_aact_pg_user> -d aact`
+* `GRANT USAGE ON SCHEMA ctgov TO read_only;`
+* `GRANT SELECT ON ctgov.studies TO read_only;`
+* `\c aact_test`
+* `GRANT USAGE ON SCHEMA ctgov TO read_only;`
+* `GRANT SELECT ON ctgov.studies TO read_only;`
+* `\q`
+
+Back in the command line:
+
+* `service postgresql stop`
+* `service postgresql start`
+
+Now run the test suite to make sure you're all set
+
+* `bundle exec rspec`
 
 ## Import studies from clinicaltrials.gov
 
