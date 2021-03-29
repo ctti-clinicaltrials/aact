@@ -1,4 +1,4 @@
-class AddSynonymViewForSearchResults < ActiveRecord::Migration
+class AddSynonymViewForSearchResults < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       create or replace view ctgov.categories 
