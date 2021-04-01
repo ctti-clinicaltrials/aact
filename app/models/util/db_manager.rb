@@ -491,25 +491,39 @@ module Util
     end
 
     def restore_from_file(params={path_to_file: '~/Downloads/postgres_data.dmp', database: 'aact'})
-      # warning, it's best to setup your test environment first, sometimes it gives you trouble migrating if done afterwards
+      # you can use this method to setup your database but make sure you have a postgres dump file path to give to it
       path_to_file = params[:path_to_file] || '~/Downloads/postgres_data.dmp'
       database = params[:database] || 'aact'
 
-      print "dropping #{database}..."
-      run_command_line("dropdb #{database} --if-exists")
-      puts "done"
+      print 'dropping databases...'
+      run_command_line("bin/rake db:drop")
+      puts 'done'
 
-      print "creating #{database} with owner #{super_username}..."
-      run_command_line("createdb -O #{super_username} #{database}")
-      puts "done"
+      print 'recreating databases...'
+      run_command_line("bin/rake db:create")
+      run_command_line("bin/rake db:create RAILS_ENV=test")
+      puts 'done'
 
-      print "restoring the database..."
-      run_command_line("pg_restore -e -v -O -x -d #{database} #{path_to_file}")
-      puts "done"
+      print 'running migrations...'
+      run_command_line("bin/rake db:migrate")
+      run_command_line("bin/rake db:migrate RAILS_ENV=test")
+      puts 'done'
 
-      print'setting search paths...'
-      ActiveRecord::Base.connection.execute("alter role #{super_username} in database #{database} set search_path = ctgov, public, support, ctgov_beta;")
-      puts "done"
+      print 'restoring the database...'
+      # run_command_line("pg_restore -e -v -O -x -d #{database} #{path_to_file}")
+      run_command_line("pg_restore -e -v -d #{database} --data-only #{path_to_file}")
+      puts 'done'
+      print 'removing indexes and contraints for safety...'
+      remove_indexes_and_constraints
+      puts 'done'
+
+      print 'adding indexes and contraints...'
+      add_indexes_and_constraints
+      puts 'done'
+
+      # print'setting search paths...'
+      # ActiveRecord::Base.connection.execute("alter role #{super_username} in database #{database} set search_path = ctgov, public, support, ctgov_beta;")
+      # puts "done"
     end
   end
 end
