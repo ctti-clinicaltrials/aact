@@ -489,5 +489,27 @@ module Util
       connection.schema_search_path = 'ctgov'
       return connection
     end
+
+    def restore_from_file(params={path_to_file: '~/Downloads/postgres_data.dmp', database: 'aact'})
+      # warning, it's best to setup your test environment first, sometimes it gives you trouble migrating if done afterwards
+      path_to_file = params[:path_to_file] || '~/Downloads/postgres_data.dmp'
+      database = params[:database] || 'aact'
+
+      print "dropping #{database}..."
+      run_command_line("dropdb #{database} --if-exists")
+      puts "done"
+
+      print "creating #{database} with owner #{super_username}..."
+      run_command_line("createdb -O #{super_username} #{database}")
+      puts "done"
+
+      print "restoring the database..."
+      run_command_line("pg_restore -e -v -O -x -d #{database} #{path_to_file}")
+      puts "done"
+
+      print'setting search paths...'
+      ActiveRecord::Base.connection.execute("alter role #{super_username} in database #{database} set search_path = ctgov, public, support, ctgov_beta;")
+      puts "done"
+    end
   end
 end

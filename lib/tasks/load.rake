@@ -17,4 +17,7 @@ namespace :db do
     StudyJsonRecord.run(args)
     puts StudyJsonRecord.comparison
   end
+  task :restore_file, [:path_to_file, :database_name] => :environment do |t, args|
+    Util::DbManager.new.restore_from_file(args)
+  end
 end
