@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on March 05, 2021</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT04710303</url>
+  </required_header>
+  <id_info>
+    <org_study_id>AW_001_ProVIVA-SA-1</org_study_id>
+    <nct_id>NCT04710303</nct_id>
+  </id_info>
+  <brief_title>COVID-19 Vaccination Using a 2nd Generation (E1/E2B/E3-Deleted) Adenoviral Platform in Healthy South African Adults</brief_title>
+  <official_title>Phase 1b Open-Label Study of the Safety, Reactogenicity, and Immunogenicity of a City of a Prophylactiv COVID-19 Vaccination Using a 2nd Generation (E1/E2b/E3-Deleted) Adenoviral Basket in Healthy South African Adults (ProVIVA-SA-1)</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>ImmunityBio, Inc.</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>ImmunityBio, Inc.</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+    <is_fda_regulated_drug>Yes</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      This is a phase 1b, adaptive, open-label study in adult healthy participants. This clinical trial is&#xD;
+      designed to assess the safety, reactogenicity, and immunogenicity of the hAd5-S-Fusion+N-ETSD&#xD;
+      vaccine and select a dose for future studies.&#xD;
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Reducing viral load is potentially key to reducing viral transmission between humans.&#xD;
+      Observational data suggests HC and AZ may reduce the viral load. In this study we will&#xD;
+      use a master protocol to randomise ambulatory patients with Covid 19 (confirmed by PCR in combination with clinical&#xD;
+      symptoms) to receive HC/AZ or HC/placebo or placebo for 7 days. On days 2-14, participants&#xD;
+      will be reviewed by a member of the research team and samples will be obtained for viral&#xD;
+      load, an ECG recorded and physical examination performed. On days 15-20, participants will be&#xD;
+      reviewed by telephone using a semi structured questionnaire. On day 21 participants will be&#xD;
+      examined in person and an oronasopharyngeal swabs obtained for PCR analysis. Participants&#xD;
+      will be followed for 6 months via their medical records.&#xD;
+    </textblock>
+  </detailed_description>
+  <overall_status>Recruiting</overall_status>
+  <start_date type="Actual">March 2, 2021</start_date>
+  <completion_date type="Anticipated">April 2022</completion_date>
+  <primary_completion_date type="Anticipated">April 2022</primary_completion_date>
+  <phase>Phase 1</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Non-Randomized</allocation>
+    <intervention_model>Sequential Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>None (Open Label)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Incidence of MAAEs and SAEs</measure>
+    <time_frame>1 week post final vaccine administration</time_frame>
+    <description>Incidence of MAAEs and SAEs through 1 week post final vaccine administration</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Incidence and severity of solicited local reactogenicity AEs</measure>
+    <time_frame>1 week post final vaccine administration</time_frame>
+    <description>Incidence and severity of solicited local reactogenicity AEs through 1 week post final vaccine administration</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Incidence and severity of solicited systemic reactogenicity AEs</measure>
+    <time_frame>1 week post final vaccine administration</time_frame>
+    <description>Incidence and severity of solicited systemic reactogenicity AEs through 1 week post final vaccine administration</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Incidence and severity of unsolicited AEs</measure>
+    <time_frame>1 week post final vaccine administration</time_frame>
+    <description>Incidence and severity of unsolicited AEs through 1 week post final vaccine administration</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Incidence of MAAEs and SAEs</measure>
+    <time_frame>30 days and 6 months post final vaccine administration</time_frame>
+    <description>Incidence of MAAEs and SAEs through 30 days and 6 months post final vaccine administration</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Incidence and severity of unsolicited AEs</measure>
+    <time_frame>30 days and 6 months post final vaccine administration</time_frame>
+    <description>Incidence and severity of unsolicited AEs through 30 days and 6 months post final vaccine administration</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Incidence of changes of laboratory safety examinations</measure>
+    <time_frame>Day 387</time_frame>
+    <description>Incidence of abnormal changes of laboratory safety examinations</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Vital Sign - Temperature</measure>
+    <time_frame>Day 387</time_frame>
+    <description>Changes in vital signs from Grades 1-4:&#xD;
+Temperature - measured in (°C) or (°F)</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Vital Sign - Heart rate</measure>
+    <time_frame>Day 387</time_frame>
+    <description>Changes in vital signs from Grades 1-4:&#xD;
+Heart rate - measured by how many heart beats per minute</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Vital Sign - Blood Pressure</measure>
+    <time_frame>Day 387</time_frame>
+    <description>Changes in vital signs from Grades 1-4:&#xD;
+Systolic/Diastolic - measured in mm Hg</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Vital Sign - Respiratory Rate</measure>
+    <time_frame>Day 387</time_frame>
+    <description>Changes in vital signs from Grades 1-4:&#xD;
+Respiratory Rate - measured in how many breaths per minute</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>GMFR in IgG titer</measure>
+    <time_frame>Day 387</time_frame>
+    <description>GMFR in IgG titer to S, RBD and N , in the absence of evidence of incident natural infection</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>GMT of S-specific, RBD-specific, and N-specific antibodies</measure>
+    <time_frame>Day 387</time_frame>
+    <description>GMT of S-specific, RBD-specific, and N-specific antibodies against 2019 novel coronavirus tested by ELISA in serum , in the absence of evidence of incident natural infection</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Percentage of participants who seroconverted</measure>
+    <time_frame>Day 387</time_frame>
+    <description>Percentage of participants who seroconverted (as defined as 4-fold change in antibody titer relative to baseline) , in the absence of evidence of incident natural infection</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>GMFR in neutralizing antibody</measure>
+    <time_frame>Day 387</time_frame>
+    <description>GMFR in neutralizing antibody, in the absence of evidence of incident natural infection</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>GMT of neutralizing antibody</measure>
+    <time_frame>Day 387</time_frame>
+    <description>GMT of neutralizing antibody, in the absence of evidence of incident natural infection</description>
+  </primary_outcome>
+  <primary_outcome>
+    <measure>Seroconversion rate of neutralizing antibody</measure>
+    <time_frame>Day 387</time_frame>
+    <description>Seroconversion rate of neutralizing antibody (as defined as 4-fold change in antibody titer relative to baseline) , in the absence of evidence of incident natural infection</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>New HIV infections in vaccine recipients</measure>
+    <time_frame>12 months post final vaccine administration</time_frame>
+    <description>New HIV infections in vaccine recipients by either two, different locally approved rapid antibody tests or by ELISA</description>
+  </secondary_outcome>
+  <number_of_arms>3</number_of_arms>
+  <enrollment type="Anticipated">35</enrollment>
+  <condition>Covid19</condition>
+  <arm_group>
+    <arm_group_label>Cohort 1 (n = 10): hAd5-S-Fusion+N-ETSD at 5 × 10e10 Viral Particles (VP) per dose</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>hAd5-S-Fusion+N-ETSD at 5 × 10e10 Viral Particles (VP) per dose on Days 1 and 22</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Cohort 2 (n = 10): hAd5-S-Fusion+N-ETSD at 1 × 10e11 VP per dose</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>hAd5-S-Fusion+N-ETSD at 1 × 10e11 VP per dose on Days 1 and 22</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Cohort 3 (n = 15): hAd5-S-Fusion+N-ETSD at 1 × 10e11 VP per dose</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>hAd5-S-Fusion+N-ETSD at 1 × 10e11 VP per dose (or 5 × 10e10 VP per dose if safety concerns identified at higher dose) on Days 1 and 22</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Biological</intervention_type>
+    <intervention_name>hAd5-S-Fusion+N-ETSD vaccine</intervention_name>
+    <description>The hAd5-S-Fusion+N-ETSD vaccine is a hAd5 [E1-, E2b-, E3-] vector-based targeting vaccine encoding the SARS-CoV-2 S and N proteins. The hAd5-S-Fusion+N-ETSD vaccine is designed to induce both humoral and cellular responses even in individuals with pre-existing adenoviral immunity.</description>
+    <arm_group_label>Cohort 1 (n = 10): hAd5-S-Fusion+N-ETSD at 5 × 10e10 Viral Particles (VP) per dose</arm_group_label>
+    <arm_group_label>Cohort 2 (n = 10): hAd5-S-Fusion+N-ETSD at 1 × 10e11 VP per dose</arm_group_label>
+    <arm_group_label>Cohort 3 (n = 15): hAd5-S-Fusion+N-ETSD at 1 × 10e11 VP per dose</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria&#xD;
+&#xD;
+          1. Adults, age 18 - 50 years, inclusive umbrella, at time of first study vaccination.&#xD;
+&#xD;
+          2. Able to understand and provide a signed informed consent that fulfils the relevant&#xD;
+             Institutional Review Board (IRB) or Independent Ethics Committee (IEC) guidelines.&#xD;
+&#xD;
+          3. Agrees to the collection of biospecimens (e.g. nasopharyngeal [NP] swabs) and venous&#xD;
+             blood per protocol.&#xD;
+&#xD;
+          4. Ability to attend required study visits and return for adequate follow-up, as required&#xD;
+             by this protocol.&#xD;
+&#xD;
+          5. Body mass index (BMI) &lt; 30.00 kg/m2&#xD;
+&#xD;
+          6. Temperature &lt; 38.0°C on day of first study vaccination.&#xD;
+&#xD;
+          7. Good general health as shown by medical history, physical exam, and screening&#xD;
+             laboratory tests&#xD;
+&#xD;
+          8. Screen negative for Tuberculosis per local screening guidelines&#xD;
+&#xD;
+          9. Male participants should all be at low risk of HIV acquisition based on pre-specified,&#xD;
+             validated criteria(Laher 2014) i.e. answering YES to any of the following questions:&#xD;
+&#xD;
+        1. Are you sexually abstinent? 2. Are you in a mutually monogamous relationship with a&#xD;
+        known HIV-uninfected partner? 3. Have you had only one partner in the preceding 12 months&#xD;
+        who is believed to be HIV-uninfected and with whom condoms were used regularly?&#xD;
+&#xD;
+        Laboratory Inclusion Values/ Results:&#xD;
+&#xD;
+        10. Alanine aminotransferase (ALT) &lt;1.1 times the upper limit of normal 11. Serum&#xD;
+        Creatinine &lt;80 umol/L in females and &lt;106 umol/L in males 12. Haemoglobin &gt;12.0g/dL in&#xD;
+        females and &gt;13.5g/dL in males 13. Platelets &gt;150 x 109/L in all participants 14. No&#xD;
+        serological evidence of chronic infection with Hepatitis B (hepatitis B surface antigen&#xD;
+        (HepBSAg) negative by a locally approved assay) done during the screening period 15. No&#xD;
+        serological evidence of chronic infection with Hepatitis C (hepatitis C antibody(anti-HCV)&#xD;
+        negative by a locally approved assay) done during the screening period 16. Negative for&#xD;
+        SARS-CoV-2 (qPCR test) on NP swab(or other appropriate respiratory specimen) within 3 days&#xD;
+        prior to the first study vaccination 17. No serological evidence of prior infection with&#xD;
+        SARS-CoV-2 (by a locally approved assay) done during the screening period 18. A negative&#xD;
+        serum or urine pregnancy test during screening and on the day of and prior to each dose&#xD;
+        must be documented before the vaccine is administered to a female participant.&#xD;
+&#xD;
+        19. Negative for HIV-1 and -2 on blood test(by either 2 rapid tests or an ELISA, both must&#xD;
+        be locally approved assays) done during the screening period.&#xD;
+&#xD;
+        Reproductive Status:&#xD;
+&#xD;
+        20. Female participants of childbearing potential must agree to use effective contraception&#xD;
+        for sexual activity that may lead to pregnancy while on study until at least 30 days after&#xD;
+        the last dose of the study vaccine. Effective contraception for female participants&#xD;
+        includes:&#xD;
+&#xD;
+          -  Intrauterine device (IUD), or&#xD;
+&#xD;
+          -  Hormonal contraception (oral/ injectable/ implant/ transdermal etc.) Or; 21.&#xD;
+             Non-sterile male participants must agree to use a condom while on study until at least&#xD;
+             30 days after the last dose of the study vaccine.&#xD;
+&#xD;
+        Or; 22. Participant must not be of reproductive potential or sterile(as verified by medical&#xD;
+        records), such as:&#xD;
+&#xD;
+          -  Having been diagnosed with menopause(with no menses for 1 year)&#xD;
+&#xD;
+          -  Having undergone hysterectomy, bilateral oophorectomy or orchidectomy&#xD;
+&#xD;
+          -  Having undergone surgical sterilization (e.g., vasectomy, tubal ligation)&#xD;
+&#xD;
+        Exclusion Criteria:&#xD;
+&#xD;
+          1. A history of illness compatible with COVID-19 disease since March 2020.&#xD;
+&#xD;
+          2. Serious adverse reaction to any vaccine, any unrelated medication or any component of&#xD;
+             the investigational vaccine, including a history of anaphylaxis and symptoms of a&#xD;
+             severe allergic reaction and history of allergies in the past.&#xD;
+&#xD;
+          3. Pregnant or breastfeeding women.&#xD;
+&#xD;
+          4. Live in a nursing home or long-term care facility.&#xD;
+&#xD;
+          5. Chronic lung disease or moderate to severe asthma.&#xD;
+&#xD;
+          6. Bone marrow or organ transplantation recipients.&#xD;
+&#xD;
+          7. Diabetes.&#xD;
+&#xD;
+          8. Chronic kidney disease undergoing dialysis.&#xD;
+&#xD;
+          9. Liver disease.&#xD;
+&#xD;
+         10. Any disease associated with acute fever, or any infection.&#xD;
+&#xD;
+         11. Self-reported history of severe acute respiratory syndrome (SARS).&#xD;
+&#xD;
+         12. Chronic hepatitis B or hepatitis C infection.&#xD;
+&#xD;
+         13. HIV positive or other acquired or hereditary immunodeficiency.&#xD;
+&#xD;
+         14. Serious cardiovascular diseases, such as arrhythmia, conduction block, myocardial&#xD;
+             infarction, severe hypertension without controllable drugs, etc.&#xD;
+&#xD;
+         15. History of hereditary, idiopathic or acquired angioedema.&#xD;
+&#xD;
+         16. Urticaria in the last 12 months prior to screening.&#xD;
+&#xD;
+         17. No spleen or functional asplenia.&#xD;
+&#xD;
+         18. Platelet disorder or other bleeding disorder that may cause injection&#xD;
+             contraindication.&#xD;
+&#xD;
+         19. Chronic use (more than 14 continuous days) of any medications that may be associated&#xD;
+             with impaired immune responsiveness. (Including, but not limited to, systemic&#xD;
+             corticosteroids exceeding 10 mg/day of prednisone equivalent, allergy injections,&#xD;
+             immunoglobulin, interferon, immunomodulators. The use of low dose topical, ophthalmic,&#xD;
+             inhaled and intranasal steroid preparations will be permitted.)&#xD;
+&#xD;
+         20. Prior administration of blood products within 120 days before first study vaccination.&#xD;
+&#xD;
+         21. Prior administration of other research medicines or investigational product within 30&#xD;
+             days before first study vaccination.&#xD;
+&#xD;
+         22. Prior administration of attenuated vaccine within 30 days before first study&#xD;
+             vaccination..&#xD;
+&#xD;
+         23. Prior administration of inactivated vaccine within 14 days before first study&#xD;
+             vaccination.&#xD;
+&#xD;
+         24. Current treatment with investigational agents for prophylaxis of COVID-19.&#xD;
+&#xD;
+         25. Have a household contact that has been diagnosed with COVID-19 within 14 days before&#xD;
+             fist study vaccine.&#xD;
+&#xD;
+         26. Current anti-tuberculosis prophylaxis or therapy.&#xD;
+&#xD;
+         27. Currently receiving treatment for cancer or history of cancer in the last five years&#xD;
+             (except basal cell carcinoma of the skin and cervical carcinoma in situ).&#xD;
+&#xD;
+         28. According to the judgement of investigator any medical, psychiatric, psychological,&#xD;
+             social, occupational or other conditions that could affect the participants ability to&#xD;
+             sign informed consent, provide safety assessment data or comply with the requirements&#xD;
+             of the study protocol.&#xD;
+&#xD;
+         29. Assessed by the Investigator to be unable or unwilling to comply with the requirements&#xD;
+             of the protocol.&#xD;
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>50 Years</maximum_age>
+    <healthy_volunteers>Accepts Healthy Volunteers</healthy_volunteers>
+  </eligibility>
+  <overall_contact>
+    <last_name>Amy Ward, MD</last_name>
+    <phone>27829403456</phone>
+    <email>amyward41@gmail.com</email>
+  </overall_contact>
+  <location>
+    <facility>
+      <name>Khayelitsha Clinical Research Site</name>
+      <address>
+        <city>Khayelitsha</city>
+        <zip>7784</zip>
+        <country>South Africa</country>
+      </address>
+    </facility>
+    <status>Recruiting</status>
+    <contact>
+      <last_name>Amy Ward, MD</last_name>
+      <phone>+27 021 650 5252</phone>
+      <email>amyward41@gmail.com</email>
+    </contact>
+    <investigator>
+      <last_name>Amy Ward, MD</last_name>
+      <role>Principal Investigator</role>
+    </investigator>
+  </location>
+  <location_countries>
+    <country>South Africa</country>
+  </location_countries>
+  <verification_date>January 2021</verification_date>
+  <study_first_submitted>January 13, 2021</study_first_submitted>
+  <study_first_submitted_qc>January 13, 2021</study_first_submitted_qc>
+  <study_first_posted type="Actual">January 14, 2021</study_first_posted>
+  <last_update_submitted>March 3, 2021</last_update_submitted>
+  <last_update_submitted_qc>March 3, 2021</last_update_submitted_qc>
+  <last_update_posted type="Estimate">March 5, 2021</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
