@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-=======
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 12.5
--- Dumped by pg_dump version 12.5
-
->>>>>>> master
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -86,6 +76,7 @@ CREATE FUNCTION ctgov.ids_for_org(character varying) RETURNS TABLE(nct_id charac
 CREATE FUNCTION ctgov.ids_for_term(character varying) RETURNS TABLE(nct_id character varying)
     LANGUAGE sql
     AS $_$
+
         SELECT DISTINCT nct_id FROM browse_conditions WHERE downcase_mesh_term like lower($1)
         UNION
         SELECT DISTINCT nct_id FROM browse_interventions WHERE downcase_mesh_term like lower($1)
@@ -104,6 +95,7 @@ CREATE FUNCTION ctgov.ids_for_term(character varying) RETURNS TABLE(nct_id chara
 CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS TABLE(nct_id character varying, title text, recruitment character varying, were_results_reported boolean, conditions text, interventions text, gender character varying, age text, phase character varying, enrollment integer, study_type character varying, sponsors text, other_ids text, study_first_submitted_date date, start_date date, completion_month_year character varying, last_update_submitted_date date, verification_month_year character varying, results_first_submitted_date date, acronym character varying, primary_completion_month_year character varying, outcome_measures text, disposition_first_submitted_date date, allocation character varying, intervention_model character varying, observational_model character varying, primary_purpose character varying, time_perspective character varying, masking character varying, masking_description text, intervention_model_description text, subject_masked boolean, caregiver_masked boolean, investigator_masked boolean, outcomes_assessor_masked boolean, number_of_facilities integer)
     LANGUAGE sql
     AS $_$
+
       SELECT DISTINCT s.nct_id,
           s.brief_title,
           s.overall_status,
@@ -148,6 +140,7 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
           d.investigator_masked,
           d.outcomes_assessor_masked,
           cv.number_of_facilities
+
       FROM studies s
         INNER JOIN browse_conditions         bc ON s.nct_id = bc.nct_id and bc.downcase_mesh_term  like lower($1)
         LEFT OUTER JOIN calculated_values    cv ON s.nct_id = cv.nct_id
@@ -158,7 +151,9 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
         LEFT OUTER JOIN all_id_information   id ON s.nct_id = id.nct_id
         LEFT OUTER JOIN all_design_outcomes  o  ON s.nct_id = o.nct_id
         LEFT OUTER JOIN designs              d  ON s.nct_id = d.nct_id
+
      UNION
+
       SELECT DISTINCT s.nct_id,
           s.brief_title,
           s.overall_status,
@@ -203,6 +198,7 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
           d.investigator_masked,
           d.outcomes_assessor_masked,
           cv.number_of_facilities
+
       FROM studies s
         INNER JOIN conditions                bc ON s.nct_id = bc.nct_id and bc.downcase_name like lower($1)
         LEFT OUTER JOIN calculated_values    cv ON s.nct_id = cv.nct_id
@@ -213,7 +209,9 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
         LEFT OUTER JOIN all_id_information   id ON s.nct_id = id.nct_id
         LEFT OUTER JOIN all_design_outcomes  o  ON s.nct_id = o.nct_id
         LEFT OUTER JOIN designs              d  ON s.nct_id = d.nct_id
+
      UNION
+
       SELECT DISTINCT s.nct_id,
           s.brief_title,
           s.overall_status,
@@ -258,6 +256,7 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
           d.investigator_masked,
           d.outcomes_assessor_masked,
           cv.number_of_facilities
+
       FROM studies s
         INNER JOIN keywords k ON s.nct_id = k.nct_id and k.downcase_name like lower($1)
         LEFT OUTER JOIN calculated_values   cv ON s.nct_id = cv.nct_id
@@ -268,6 +267,7 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
         LEFT OUTER JOIN all_id_information  id ON s.nct_id = id.nct_id
         LEFT OUTER JOIN all_design_outcomes o  ON s.nct_id = o.nct_id
         LEFT OUTER JOIN designs             d  ON s.nct_id = d.nct_id
+
         ;
         $_$;
 
@@ -844,10 +844,10 @@ ALTER SEQUENCE ctgov.calculated_values_id_seq OWNED BY ctgov.calculated_values.i
 
 
 --
--- Name: categories; Type: TABLE; Schema: ctgov; Owner: -
+-- Name: search_results; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE ctgov.categories (
+CREATE TABLE ctgov.search_results (
     id integer NOT NULL,
     nct_id character varying NOT NULL,
     name character varying NOT NULL,
@@ -859,23 +859,18 @@ CREATE TABLE ctgov.categories (
 
 
 --
--- Name: categories_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+-- Name: categories; Type: VIEW; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE ctgov.categories_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.categories_id_seq OWNED BY ctgov.categories.id;
+CREATE VIEW ctgov.categories AS
+ SELECT search_results.id,
+    search_results.nct_id,
+    search_results.name,
+    search_results.created_at,
+    search_results.updated_at,
+    search_results."grouping",
+    search_results.study_search_id
+   FROM ctgov.search_results;
 
 
 --
@@ -1143,9 +1138,9 @@ CREATE VIEW ctgov.covid_19_studies AS
      FULL JOIN ctgov.eligibilities e ON (((s.nct_id)::text = (e.nct_id)::text)))
      FULL JOIN ctgov.brief_summaries bs ON (((s.nct_id)::text = (bs.nct_id)::text)))
      FULL JOIN ctgov.detailed_descriptions dd ON (((s.nct_id)::text = (dd.nct_id)::text)))
-  WHERE (((sp.lead_or_collaborator)::text = 'lead'::text) AND ((s.nct_id)::text IN ( SELECT categories.nct_id
-           FROM ctgov.categories
-          WHERE ((categories.name)::text = 'covid-19'::text))));
+  WHERE (((sp.lead_or_collaborator)::text = 'lead'::text) AND ((s.nct_id)::text IN ( SELECT search_results.nct_id
+           FROM ctgov.search_results
+          WHERE ((search_results.name)::text = 'covid-19'::text))));
 
 
 --
@@ -2252,6 +2247,26 @@ CREATE TABLE ctgov.schema_migrations (
 
 
 --
+-- Name: search_results_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.search_results_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: search_results_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.search_results_id_seq OWNED BY ctgov.search_results.id;
+
+
+--
 -- Name: sponsors_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -2530,13 +2545,6 @@ ALTER TABLE ONLY ctgov.calculated_values ALTER COLUMN id SET DEFAULT nextval('ct
 
 
 --
--- Name: categories id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.categories ALTER COLUMN id SET DEFAULT nextval('ctgov.categories_id_seq'::regclass);
-
-
---
 -- Name: central_contacts id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2803,6 +2811,13 @@ ALTER TABLE ONLY ctgov.result_groups ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
+-- Name: search_results id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.search_results ALTER COLUMN id SET DEFAULT nextval('ctgov.search_results_id_seq'::regclass);
+
+
+--
 -- Name: sponsors id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2839,6 +2854,13 @@ ALTER TABLE ONLY support.sanity_checks ALTER COLUMN id SET DEFAULT nextval('supp
 
 --
 -- Name: study_json_records id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.study_json_records ALTER COLUMN id SET DEFAULT nextval('support.study_json_records_id_seq'::regclass);
+
+
+--
+-- Name: study_xml_records id; Type: DEFAULT; Schema: support; Owner: -
 --
 
 ALTER TABLE ONLY support.study_xml_records ALTER COLUMN id SET DEFAULT nextval('support.study_xml_records_id_seq'::regclass);
@@ -2898,14 +2920,6 @@ ALTER TABLE ONLY ctgov.browse_interventions
 
 ALTER TABLE ONLY ctgov.calculated_values
     ADD CONSTRAINT calculated_values_pkey PRIMARY KEY (id);
-
-
---
--- Name: categories categories_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.categories
-    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
 
 
 --
@@ -3213,11 +3227,11 @@ ALTER TABLE ONLY ctgov.result_groups
 
 
 --
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+-- Name: search_results search_results_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY ctgov.schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+ALTER TABLE ONLY ctgov.search_results
+    ADD CONSTRAINT search_results_pkey PRIMARY KEY (id);
 
 
 --
@@ -3365,20 +3379,6 @@ CREATE INDEX index_calculated_values_on_months_to_report_results ON ctgov.calcul
 --
 
 CREATE INDEX index_calculated_values_on_number_of_facilities ON ctgov.calculated_values USING btree (number_of_facilities);
-
-
---
--- Name: index_categories_on_nct_id_and_name; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_categories_on_nct_id_and_name ON ctgov.categories USING btree (nct_id, name);
-
-
---
--- Name: index_categories_on_nct_id_and_name_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_categories_on_nct_id_and_name_and_grouping ON ctgov.categories USING btree (nct_id, name, "grouping");
 
 
 --
@@ -3595,35 +3595,35 @@ CREATE INDEX index_keywords_on_name ON ctgov.keywords USING btree (name);
 -- Name: index_mesh_headings_on_qualifier; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_baseline_counts_on_nct_id ON ctgov.baseline_counts USING btree (nct_id);
+CREATE INDEX index_mesh_headings_on_qualifier ON ctgov.mesh_headings USING btree (qualifier);
 
 
 --
--- Name: index_baseline_measurements_on_category; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_mesh_terms_on_description; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_baseline_measurements_on_category ON ctgov.baseline_measurements USING btree (category);
-
-
---
--- Name: index_baseline_measurements_on_classification; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_baseline_measurements_on_classification ON ctgov.baseline_measurements USING btree (classification);
+CREATE INDEX index_mesh_terms_on_description ON ctgov.mesh_terms USING btree (description);
 
 
 --
--- Name: index_baseline_measurements_on_dispersion_type; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_mesh_terms_on_downcase_mesh_term; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_baseline_measurements_on_dispersion_type ON ctgov.baseline_measurements USING btree (dispersion_type);
+CREATE INDEX index_mesh_terms_on_downcase_mesh_term ON ctgov.mesh_terms USING btree (downcase_mesh_term);
 
 
 --
--- Name: index_baseline_measurements_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_mesh_terms_on_mesh_term; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_baseline_measurements_on_nct_id ON ctgov.baseline_measurements USING btree (nct_id);
+CREATE INDEX index_mesh_terms_on_mesh_term ON ctgov.mesh_terms USING btree (mesh_term);
+
+
+--
+-- Name: index_mesh_terms_on_qualifier; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_mesh_terms_on_qualifier ON ctgov.mesh_terms USING btree (qualifier);
 
 
 --
@@ -3746,6 +3746,20 @@ CREATE INDEX index_result_groups_on_result_type ON ctgov.result_groups USING btr
 
 
 --
+-- Name: index_search_results_on_nct_id_and_name; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_search_results_on_nct_id_and_name ON ctgov.search_results USING btree (nct_id, name);
+
+
+--
+-- Name: index_search_results_on_nct_id_and_name_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_search_results_on_nct_id_and_name_and_grouping ON ctgov.search_results USING btree (nct_id, name, "grouping");
+
+
+--
 -- Name: index_sponsors_on_agency_class; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3798,7 +3812,7 @@ CREATE INDEX index_studies_on_last_update_submitted_date ON ctgov.studies USING 
 -- Name: index_studies_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_baseline_measurements_on_param_type ON ctgov.baseline_measurements USING btree (param_type);
+CREATE UNIQUE INDEX index_studies_on_nct_id ON ctgov.studies USING btree (nct_id);
 
 
 --
@@ -3893,308 +3907,90 @@ CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING bt
 
 
 --
--- Name: index_browse_conditions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_support.load_events_on_event_type; Type: INDEX; Schema: support; Owner: -
 --
 
-CREATE INDEX index_browse_conditions_on_nct_id ON ctgov.browse_conditions USING btree (nct_id);
+CREATE INDEX "index_support.load_events_on_event_type" ON support.load_events USING btree (event_type);
 
 
 --
--- Name: index_browse_interventions_on_downcase_mesh_term; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_support.load_events_on_status; Type: INDEX; Schema: support; Owner: -
 --
 
-CREATE INDEX index_browse_interventions_on_downcase_mesh_term ON ctgov.browse_interventions USING btree (downcase_mesh_term);
+CREATE INDEX "index_support.load_events_on_status" ON support.load_events USING btree (status);
 
 
 --
--- Name: index_browse_interventions_on_mesh_term; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_support.sanity_checks_on_check_type; Type: INDEX; Schema: support; Owner: -
 --
 
-CREATE INDEX index_browse_interventions_on_mesh_term ON ctgov.browse_interventions USING btree (mesh_term);
+CREATE INDEX "index_support.sanity_checks_on_check_type" ON support.sanity_checks USING btree (check_type);
 
 
 --
--- Name: index_browse_interventions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_support.sanity_checks_on_column_name; Type: INDEX; Schema: support; Owner: -
 --
 
-CREATE INDEX index_browse_interventions_on_nct_id ON ctgov.browse_interventions USING btree (nct_id);
+CREATE INDEX "index_support.sanity_checks_on_column_name" ON support.sanity_checks USING btree (column_name);
 
 
 --
--- Name: index_calculated_values_on_actual_duration; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_support.sanity_checks_on_nct_id; Type: INDEX; Schema: support; Owner: -
 --
 
-CREATE INDEX index_calculated_values_on_actual_duration ON ctgov.calculated_values USING btree (actual_duration);
+CREATE INDEX "index_support.sanity_checks_on_nct_id" ON support.sanity_checks USING btree (nct_id);
 
 
 --
--- Name: index_calculated_values_on_months_to_report_results; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_support.sanity_checks_on_table_name; Type: INDEX; Schema: support; Owner: -
 --
 
-CREATE INDEX index_calculated_values_on_months_to_report_results ON ctgov.calculated_values USING btree (months_to_report_results);
+CREATE INDEX "index_support.sanity_checks_on_table_name" ON support.sanity_checks USING btree (table_name);
 
 
 --
--- Name: index_calculated_values_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_support.study_xml_records_on_created_study_at; Type: INDEX; Schema: support; Owner: -
 --
 
-CREATE UNIQUE INDEX index_calculated_values_on_nct_id ON ctgov.calculated_values USING btree (nct_id);
+CREATE INDEX "index_support.study_xml_records_on_created_study_at" ON support.study_xml_records USING btree (created_study_at);
 
 
 --
--- Name: index_calculated_values_on_number_of_facilities; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_support.study_xml_records_on_nct_id; Type: INDEX; Schema: support; Owner: -
 --
 
-CREATE INDEX index_calculated_values_on_number_of_facilities ON ctgov.calculated_values USING btree (number_of_facilities);
+CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_records USING btree (nct_id);
 
 
 --
--- Name: index_categories_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- PostgreSQL database dump complete
 --
 
-CREATE INDEX index_categories_on_nct_id ON ctgov.categories USING btree (nct_id);
+SET search_path TO ctgov, support, public, ctgov_beta;
 
-
---
--- Name: index_categories_on_nct_id_and_name; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_categories_on_nct_id_and_name ON ctgov.categories USING btree (nct_id, name);
-
-
---
--- Name: index_categories_on_nct_id_and_name_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_categories_on_nct_id_and_name_and_grouping ON ctgov.categories USING btree (nct_id, name, "grouping");
-
-
---
--- Name: index_central_contacts_on_contact_type; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_central_contacts_on_contact_type ON ctgov.central_contacts USING btree (contact_type);
-
-
---
--- Name: index_central_contacts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_central_contacts_on_nct_id ON ctgov.central_contacts USING btree (nct_id);
-
-
---
--- Name: index_conditions_on_downcase_name; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_conditions_on_downcase_name ON ctgov.conditions USING btree (downcase_name);
-
-
---
--- Name: index_conditions_on_name; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_conditions_on_name ON ctgov.conditions USING btree (name);
-
-
---
--- Name: index_conditions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_conditions_on_nct_id ON ctgov.conditions USING btree (nct_id);
-
-
---
--- Name: index_countries_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_countries_on_nct_id ON ctgov.countries USING btree (nct_id);
-
-
---
--- Name: index_design_group_interventions_on_design_group_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_group_interventions_on_design_group_id ON ctgov.design_group_interventions USING btree (design_group_id);
-
-
---
--- Name: index_design_group_interventions_on_intervention_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_group_interventions_on_intervention_id ON ctgov.design_group_interventions USING btree (intervention_id);
-
-
---
--- Name: index_design_group_interventions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_group_interventions_on_nct_id ON ctgov.design_group_interventions USING btree (nct_id);
-
-
---
--- Name: index_design_groups_on_group_type; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_groups_on_group_type ON ctgov.design_groups USING btree (group_type);
-
-
---
--- Name: index_design_groups_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_groups_on_nct_id ON ctgov.design_groups USING btree (nct_id);
-
-
---
--- Name: index_design_outcomes_on_measure; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_outcomes_on_measure ON ctgov.design_outcomes USING btree (measure);
-
-
---
--- Name: index_design_outcomes_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_outcomes_on_nct_id ON ctgov.design_outcomes USING btree (nct_id);
-
-
---
--- Name: index_design_outcomes_on_outcome_type; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_outcomes_on_outcome_type ON ctgov.design_outcomes USING btree (outcome_type);
-
-
---
--- Name: index_designs_on_caregiver_masked; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_designs_on_caregiver_masked ON ctgov.designs USING btree (caregiver_masked);
-
-
---
--- Name: index_designs_on_investigator_masked; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_designs_on_investigator_masked ON ctgov.designs USING btree (investigator_masked);
-
-
---
--- Name: index_designs_on_masking; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_designs_on_masking ON ctgov.designs USING btree (masking);
-
-
---
--- Name: index_designs_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_designs_on_nct_id ON ctgov.designs USING btree (nct_id);
-
-
---
--- Name: index_designs_on_outcomes_assessor_masked; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_designs_on_outcomes_assessor_masked ON ctgov.designs USING btree (outcomes_assessor_masked);
-
-
---
--- Name: index_designs_on_subject_masked; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_designs_on_subject_masked ON ctgov.designs USING btree (subject_masked);
-
-
---
--- Name: index_detailed_descriptions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_detailed_descriptions_on_nct_id ON ctgov.detailed_descriptions USING btree (nct_id);
-
-
---
--- Name: index_documents_on_document_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_documents_on_document_id ON ctgov.documents USING btree (document_id);
-
-
---
--- Name: index_documents_on_document_type; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_documents_on_document_type ON ctgov.documents USING btree (document_type);
-
-
---
--- Name: index_documents_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_documents_on_nct_id ON ctgov.documents USING btree (nct_id);
-
-
---
--- Name: index_drop_withdrawals_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_drop_withdrawals_on_nct_id ON ctgov.drop_withdrawals USING btree (nct_id);
-
-
---
--- Name: index_drop_withdrawals_on_period; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_drop_withdrawals_on_period ON ctgov.drop_withdrawals USING btree (period);
-
-
---
--- Name: index_eligibilities_on_gender; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_eligibilities_on_gender ON ctgov.eligibilities USING btree (gender);
-
-
---
--- Name: index_eligibilities_on_healthy_volunteers; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_eligibilities_on_healthy_volunteers ON ctgov.eligibilities USING btree (healthy_volunteers);
-
-
---
--- Name: index_eligibilities_on_maximum_age; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_eligibilities_on_maximum_age ON ctgov.eligibilities USING btree (maximum_age);
-
-
---
--- Name: index_eligibilities_on_minimum_age; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_eligibilities_on_minimum_age ON ctgov.eligibilities USING btree (minimum_age);
-
-
---
--- Name: index_eligibilities_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_eligibilities_on_nct_id ON ctgov.eligibilities USING btree (nct_id);
-
-
---
--- Name: index_facilities_on_city; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_facilities_on_city ON ctgov.facilities USING btree (city);
-
-
-INSERT INTO schema_migrations (version) VALUES ('20201201210834');
-
-INSERT INTO schema_migrations (version) VALUES ('20210108195415');
+INSERT INTO "schema_migrations" (version) VALUES
+('20160630191037'),
+('20160910000000'),
+('20160911000000'),
+('20161011000000'),
+('20161030000000'),
+('20170411000122'),
+('20181212000000'),
+('20190115184850'),
+('20190115204850'),
+('20190301204850'),
+('20191125205210'),
+('20200217214455'),
+('20200217220919'),
+('20200424180206'),
+('20200622225910'),
+('20200814211239'),
+('20200922153536'),
+('20200922175002'),
+('20201201210834'),
+('20210108195415'),
+('20210108200600'),
+('20210216235354'),
+('20210308235723');
 
 

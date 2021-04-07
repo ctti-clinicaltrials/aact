@@ -1,18 +1,20 @@
 require 'rss'
 require 'uri'
 require 'axlsx'
-class Category < ActiveRecord::Base
+class SearchResult < ActiveRecord::Base
   belongs_to :study, foreign_key: 'nct_id'
   belongs_to :study_searches
   validates :nct_id, uniqueness: {scope: [:name, :grouping]}
 
   def self.make_tsv(condition = 'covid-19')
     headers = excel_column_names
-    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id).uniq
+    nct_ids = SearchResult.where(name: [condition, condition.underscore]).pluck(:nct_id).uniq
     studies = Study.where(nct_id: nct_ids).uniq
     current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
     name="#{current_datetime}_#{condition}"
-    file = "./public/static/exported_files/#{condition}/#{name}.tsv"
+    folder = "./public/static/exported_files/#{condition}"
+    FileUtils.mkdir_p folder
+    file = "#{folder}/#{name}.tsv"
 
     CSV.open(file, 'w', write_headers: true, headers: headers, col_sep: "\t") do |row|
       studies.each do |study|
@@ -84,7 +86,7 @@ class Category < ActiveRecord::Base
       gender_description = eligibility.gender_description
       healthy_volunteers = eligibility.healthy_volunteers
       population = eligibility.population
-      @criteria = eligibility.criteria
+      criteria = eligibility.criteria
     end
 
     adaptive_protocol = single_term_query('adaptive', study) ? 'Yes' : 'No'
@@ -159,7 +161,7 @@ class Category < ActiveRecord::Base
       gender_description, #gender_description
       healthy_volunteers, #healthy_volunteers
       population, #population
-      @criteria, #criteria
+      criteria, #criteria
       study.calculated_value.try(:were_results_reported) ? 'Yes' : 'No', #study_results
       study_documents(study), #study_documents
     ]
@@ -239,34 +241,6 @@ class Category < ActiveRecord::Base
     ]
   end
 
-  
-  def self.save_xlsx(condition = 'covid-19')
-    nct_ids = Category.where(name: [condition, condition.underscore]).pluck(:nct_id)
-    studies = Study.where(nct_id: nct_ids)
-    current_datetime = Time.zone.now.strftime('%Y%m%d%H%M%S')
-    name="#{current_datetime}_#{condition}"
-    Axlsx::Package.new do |p|
-      p.workbook.add_worksheet(:name => name) do |sheet|
-        wrap = sheet.styles.add_style(alignmenet: { wrap_text: true })
-        cols = excel_column_names.length
-        sheet.add_row excel_column_names, widths: [5] * cols 
-        studies.each do |study|
-          widths = [8.43] * cols
-          styles = [wrap] * cols
-          types = [:string] * cols
-          begin
-            sheet.add_row study_values(study), types: types, widths: widths, height: 15, styles: styles
-          rescue Exception => e
-            puts "Failed: #{study.nct_id}"
-            puts "Error: #{e}"
-            next
-          end
-        end
-      end
-      p.serialize("./public/static/exported_files/#{condition}/#{name}.xlsx")
-    end
-  end
-
   def self.hcq_query(study)
     terms = %w[ hydroxychloroquine plaquenil hidroxicloroquina quineprox ]
     official_title = study.official_title =~ /#{terms.join('|')}/i
@@ -293,9 +267,9 @@ class Category < ActiveRecord::Base
     locations = []
     facilities.each do |facility|
       string = "#{facility.name}"
-      string += ", #{facility.city}" unless facility.city.empty? || facility.city.nil?
-      string += ", #{facility.state}" unless facility.state.empty? || facility.state.nil?
-      string += ", #{facility.country}" unless facility.country.empty? || facility.country.nil?
+      string += ", #{facility.city}" unless facility.city.nil? || facility.city.empty?
+      string += ", #{facility.state}" unless facility.state.nil? || facility.state.empty?
+      string += ", #{facility.country}" unless facility.country.nil? || facility.country.empty?
 
       locations << string
     end
@@ -329,7 +303,7 @@ class Category < ActiveRecord::Base
     official_title = study.official_title =~ /#{term}/i
     return true if official_title
 
-    brief_title = study.brief_title =~ /#{term}/
+    brief_title = study.brief_title =~ /#{term}/i
     return true if brief_title
 
     brief_summary = study.brief_summary.try(:description) =~ /#{term}/i
@@ -338,12 +312,18 @@ class Category < ActiveRecord::Base
     detailed_description = study.detailed_description.try(:description) =~ /#{term}/i
     return true if detailed_description
 
-    eligibility_criteria = @criteria =~ /#{term}/i if @criteria
+    criteria = ''
+    eligibility = study.eligibility
+    criteria = eligibility.criteria if eligibility
+  
+    eligibility_criteria = criteria =~ /#{term}/i
     return true if eligibility_criteria
+
+    return false
   end
 
   def self.study_documents(study)
-    provided_documents = study.provided_documents
+    provided_documents = study.provided_documents.order(:url)
     provided_documents.map{|provided_document| "#{provided_document.document_type}, #{provided_document.url}"}.join('|')
   end
 end

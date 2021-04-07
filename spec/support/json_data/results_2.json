@@ -1,0 +1,931 @@
+{
+  "FullStudiesResponse":{
+    "APIVrs":"1.01.02",
+    "DataVrs":"2021:03:02 22:19:02.771",
+    "Expression":"ALL",
+    "NStudiesAvail":369328,
+    "NStudiesFound":103,
+    "MinRank":101,
+    "MaxRank":103,
+    "NStudiesReturned":3,
+    "FullStudies":[
+      {
+        "Rank":101,
+        "Study":{
+          "ProtocolSection":{
+            "IdentificationModule":{
+              "NCTId":"NCT04779463",
+              "OrgStudyIdInfo":{
+                "OrgStudyId":"Parasternal Intercostals US"
+              },
+              "Organization":{
+                "OrgFullName":"Menoufia University",
+                "OrgClass":"OTHER"
+              },
+              "BriefTitle":"Role of Ultrasound Assessment of Parasternal Intercostal Muscle Thickness During Weaning From Mechanical Ventilation",
+              "OfficialTitle":"Role of Ultrasound Assessment of Parasternal Intercostal Muscle Thickness During Weaning From Mechanical Ventilation"
+            },
+            "StatusModule":{
+              "StatusVerifiedDate":"February 2021",
+              "OverallStatus":"Recruiting",
+              "ExpandedAccessInfo":{
+                "HasExpandedAccess":"No"
+              },
+              "StartDateStruct":{
+                "StartDate":"June 1, 2020",
+                "StartDateType":"Actual"
+              },
+              "PrimaryCompletionDateStruct":{
+                "PrimaryCompletionDate":"March 1, 2021",
+                "PrimaryCompletionDateType":"Anticipated"
+              },
+              "CompletionDateStruct":{
+                "CompletionDate":"April 1, 2021",
+                "CompletionDateType":"Anticipated"
+              },
+              "StudyFirstSubmitDate":"February 27, 2021",
+              "StudyFirstSubmitQCDate":"February 27, 2021",
+              "StudyFirstPostDateStruct":{
+                "StudyFirstPostDate":"March 3, 2021",
+                "StudyFirstPostDateType":"Estimate"
+              },
+              "LastUpdateSubmitDate":"February 27, 2021",
+              "LastUpdatePostDateStruct":{
+                "LastUpdatePostDate":"March 3, 2021",
+                "LastUpdatePostDateType":"Estimate"
+              }
+            },
+            "SponsorCollaboratorsModule":{
+              "ResponsibleParty":{
+                "ResponsiblePartyType":"Sponsor-Investigator",
+                "ResponsiblePartyInvestigatorFullName":"Wesameldin Abelrahman Soltan",
+                "ResponsiblePartyInvestigatorTitle":"Associate Professor",
+                "ResponsiblePartyInvestigatorAffiliation":"Menoufia University"
+              },
+              "LeadSponsor":{
+                "LeadSponsorName":"Wesameldin Abelrahman Soltan",
+                "LeadSponsorClass":"OTHER"
+              }
+            },
+            "OversightModule":{
+              "OversightHasDMC":"No",
+              "IsFDARegulatedDrug":"No",
+              "IsFDARegulatedDevice":"No"
+            },
+            "DescriptionModule":{
+              "BriefSummary":"Assessment of the the parasternal intercostal muscles thickness by the ultrasonography as a weaning predictor of the mechanically ventilated patients",
+              "DetailedDescription":"impact of parasternal muscle thickness on the weaning process of the mechanically ventilated patients in ICU"
+            },
+            "ConditionsModule":{
+              "ConditionList":{
+                "Condition":[
+                  "Parasternal Intercostal Muscle Thickness",
+                  "Weaning From Mechanical Ventilation"
+                ]
+              },
+              "KeywordList":{
+                "Keyword":[
+                  "mechanical ventilation, parasternal muscle thickness"
+                ]
+              }
+            },
+            "DesignModule":{
+              "StudyType":"Observational",
+              "PatientRegistry":"No",
+              "DesignInfo":{
+                "DesignObservationalModelList":{
+                  "DesignObservationalModel":[
+                    "Cohort"
+                  ]
+                },
+                "DesignTimePerspectiveList":{
+                  "DesignTimePerspective":[
+                    "Prospective"
+                  ]
+                }
+              },
+              "EnrollmentInfo":{
+                "EnrollmentCount":"40",
+                "EnrollmentType":"Anticipated"
+              }
+            },
+            "ArmsInterventionsModule":{
+              "ArmGroupList":{
+                "ArmGroup":[
+                  {
+                    "ArmGroupLabel":"Mechanical Ventilated patients",
+                    "ArmGroupDescription":"All patients are invasively mechanically ventilated at least 24 hours, and are clinically stable as ready to undergo a spontaneous breathing trial.",
+                    "ArmGroupInterventionList":{
+                      "ArmGroupInterventionName":[
+                        "Diagnostic Test: Parasternal intercostal muscles thickness ultrasound indicies"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "InterventionList":{
+                "Intervention":[
+                  {
+                    "InterventionType":"Diagnostic Test",
+                    "InterventionName":"Parasternal intercostal muscles thickness ultrasound indicies",
+                    "InterventionDescription":"Parasternal intercostal muscles thickness ultrasound indicies includes:\n\nParasternal Intercostals Thickness Fraction.\nParasternal Intercostals Thickness at the End of Inspiration.\nParasternal Intercostals thickness at the End of Expiration.",
+                    "InterventionArmGroupLabelList":{
+                      "InterventionArmGroupLabel":[
+                        "Mechanical Ventilated patients"
+                      ]
+                    },
+                    "InterventionOtherNameList":{
+                      "InterventionOtherName":[
+                        "Diaphragmatic thickness"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "OutcomesModule":{
+              "PrimaryOutcomeList":{
+                "PrimaryOutcome":[
+                  {
+                    "PrimaryOutcomeMeasure":"the thickness fraction of the parasternal intercostal muscle as a predictor of successful spontaneous breathing trials",
+                    "PrimaryOutcomeDescription":"The primary outcome is to assess the change of the parasternal intercostal muscles thickness at end of expiration and end of inspiration to verify the thickness fraction of the parasternal intercostal muscle as a predictor of successful spontaneous breathing trials.",
+                    "PrimaryOutcomeTimeFrame":"Before the start spontaneous breathing trial"
+                  }
+                ]
+              }
+            },
+            "EligibilityModule":{
+              "EligibilityCriteria":"Inclusion Criteria:\n\nAny patient invasively mechanically ventilated at least 24 hours on a pressure support mode who is clinically stable and ready to undergo a spontaneous breathing trial.\n\nAll patients will be:\n\nAlert.\nAfebrile.\nAdequate cough with absence of excessive tracheobronchial secretion.\nFraction of inspired oxygen (FIO2) of <50%.\nPEEP ≤8 cmH2O.\nPaO2/FiO2 > 150.\npH ≥7.35 and ≤7.45.\nRespiratory rate (RR) ≤35 breaths/min.\nHemodynamically stable in the absence of vasopressors.\nStable metabolic and endocrinal status.\nEuglycemic state.\nAdequate mentation (no sedation or stable neurologic patient).\n\nExclusion Criteria:\n\nDiaphragmatic paralysis (detected by ultrasonography).Patients&Methods. 6\n\nPregnant women.\nAge: >= 18 years.\nSurgical dressings over measurement point which would preclude ultrasound exam.\nUnderweight patients (Body mass index <18.5 kg/m2).\nMorbidly obese patient (Body mass index ≥ 40 kg/m2).\nPrimary neuro-muscular diseases.\nCentral coditions with depressed central respiratory drive (encephalitis, and brainstem haemorrhage/ischaemia).\nRepiratory conditions with reduced pulmonary compliance (interstitial lung disease, pulmonary hemorrhage, and diffuse pulmonary infiltrates) or reduced chest wall compliance (kyphoscoliosis).\nCardiac conditions with high risk of weaning induced pulmonary edema (congestive heart failure, cyanotic heart diease, pulmonary hypertension, and ischemic heart diease).\nAddict patients.\nPatients with psychiatric disease.",
+              "HealthyVolunteers":"No",
+              "Gender":"All",
+              "MinimumAge":"18 Years",
+              "MaximumAge":"80 Years",
+              "StdAgeList":{
+                "StdAge":[
+                  "Adult",
+                  "Older Adult"
+                ]
+              },
+              "StudyPopulation":"All patients are invasively mechanically ventilated at least 24 hours, and are clinically stable as ready to undergo a spontaneous breathing trial (SBT).",
+              "SamplingMethod":"Probability Sample"
+            },
+            "ContactsLocationsModule":{
+              "CentralContactList":{
+                "CentralContact":[
+                  {
+                    "CentralContactName":"Wesameldin A Soltan, M.D.",
+                    "CentralContactRole":"Contact",
+                    "CentralContactPhone":"0020101012215",
+                    "CentralContactEMail":"wesamsultan1@gmail.com"
+                  }
+                ]
+              },
+              "OverallOfficialList":{
+                "OverallOfficial":[
+                  {
+                    "OverallOfficialName":"Wesameldin A Soltan, M.D.",
+                    "OverallOfficialAffiliation":"faculty of medicine, Menoufia University",
+                    "OverallOfficialRole":"Study Director"
+                  }
+                ]
+              },
+              "LocationList":{
+                "Location":[
+                  {
+                    "LocationFacility":"Faculty of Medicine - Menoufia University",
+                    "LocationStatus":"Recruiting",
+                    "LocationCity":"Shibīn Al Kawm",
+                    "LocationState":"Menoufia",
+                    "LocationZip":"32511",
+                    "LocationCountry":"Egypt",
+                    "LocationContactList":{
+                      "LocationContact":[
+                        {
+                          "LocationContactName":"Muhammad A AlGhorayeb, MD",
+                          "LocationContactRole":"Contact",
+                          "LocationContactPhone":"+201000203165",
+                          "LocationContactEMail":"drmsebaey@yahoo.com"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "IPDSharingStatementModule":{
+              "IPDSharing":"Undecided"
+            }
+          },
+          "DerivedSection":{
+            "MiscInfoModule":{
+              "VersionHolder":"March 03, 2021"
+            }
+          }
+        }
+      },{
+        "Rank":102,
+        "Study":{
+          "ProtocolSection":{
+            "IdentificationModule":{
+              "NCTId":"NCT04779450",
+              "OrgStudyIdInfo":{
+                "OrgStudyId":"Telemonitoring BCS"
+              },
+              "Organization":{
+                "OrgFullName":"University of the State of Santa Catarina",
+                "OrgClass":"OTHER"
+              },
+              "BriefTitle":"Effect of Telemonitoring on Upper Limb Function, Quality of Life and Risk of Lymphedema During and After Pandemic COVID-19 in Women Submitted to Treatment for Breast Cancer",
+              "OfficialTitle":"The Effect of Telemonitoring on Upper Limb Function, Quality of Life and Risk of Lymphedema During and After Pandemic COVID-19 in Women Submitted to Treatment for Breast Cancer: A Randomized Controlled Trial"
+            },
+            "StatusModule":{
+              "StatusVerifiedDate":"March 2021",
+              "OverallStatus":"Recruiting",
+              "ExpandedAccessInfo":{
+                "HasExpandedAccess":"No"
+              },
+              "StartDateStruct":{
+                "StartDate":"March 2021",
+                "StartDateType":"Anticipated"
+              },
+              "PrimaryCompletionDateStruct":{
+                "PrimaryCompletionDate":"August 2021",
+                "PrimaryCompletionDateType":"Anticipated"
+              },
+              "CompletionDateStruct":{
+                "CompletionDate":"December 2021",
+                "CompletionDateType":"Anticipated"
+              },
+              "StudyFirstSubmitDate":"March 1, 2021",
+              "StudyFirstSubmitQCDate":"March 1, 2021",
+              "StudyFirstPostDateStruct":{
+                "StudyFirstPostDate":"March 3, 2021",
+                "StudyFirstPostDateType":"Estimate"
+              },
+              "LastUpdateSubmitDate":"March 1, 2021",
+              "LastUpdatePostDateStruct":{
+                "LastUpdatePostDate":"March 3, 2021",
+                "LastUpdatePostDateType":"Estimate"
+              }
+            },
+            "SponsorCollaboratorsModule":{
+              "ResponsibleParty":{
+                "ResponsiblePartyType":"Principal Investigator",
+                "ResponsiblePartyInvestigatorFullName":"Gilmar Moraes Santos, PT",
+                "ResponsiblePartyInvestigatorTitle":"Clinical Teacher",
+                "ResponsiblePartyInvestigatorAffiliation":"University of the State of Santa Catarina"
+              },
+              "LeadSponsor":{
+                "LeadSponsorName":"University of the State of Santa Catarina",
+                "LeadSponsorClass":"OTHER"
+              }
+            },
+            "OversightModule":{
+              "OversightHasDMC":"No",
+              "IsFDARegulatedDrug":"No",
+              "IsFDARegulatedDevice":"No"
+            },
+            "DescriptionModule":{
+              "BriefSummary":"The objective of the study is to evaluate the effectiveness of telemonitoring in the dysfunctions of the upper limbs in activities of daily living, quality of life and prevention of lymphedema in women undergoing treatment for breast cancer. Secondarily, to analyze the degree of satisfaction in the proposed treatment modality. This is a randomized controlled trial, double blind (evaluator and patient), parallel in three groups (synchronous telemonitoring group, asynchronous telemonitoring group and control group). The protocol will last six weeks, and quality of life, upper limb functionality, and risk of lymphedema will be evaluated. Both intervention groups will be submitted to a kinesiotherapy program three times a week, with synchronous and asynchronous monitoring, while the control group will receive usual post cancer orientations. Kinesiotherapy protocol in synchronous form compared to the usual recommendations in remote form is expected to show superior result in upper limb function and quality of life of women after breast cancer.",
+              "DetailedDescription":"This is a randomized, double blind (evaluator and patient), parallel control trial in three groups (synchronous telemonitoring group, asynchronous telemonitoring group, and control group). The allocation of the participants will be done by an external member, through a masked draw, the name of each participant will be in numbered opaque envelopes, which will only be opened after the initial evaluation, to blind the evaluating therapist, a second therapist will be responsible for the application of the interventions. The protocol for the intervention groups will last 6 weeks, and the exercises will basically consist of active stretching, mobilization and scapular stabilization, and active shoulder exercises with gradual range of motion. The intervention was based on previous studies that used standard kinesiotherapy in their outcomes.\n\nThe sessions for the synchronous telemonitoring group will be supervised and conducted via video call using the WhatsApp® application, lasting 50 minutes, 3 times a week.\n\nFor the asynchronous telemonitoring group, an explanatory schedule with the exercises to be performed during the week will be delivered weekly via e-mail and WhatsApp®. The exercises will be the same as those performed by the previous group, and the participant will be free to ask any questions about the protocol with the therapist at any time via text message or e-mail. The control group will receive only the usual orientation booklet for post-breast cancer women. The participants who agree to participate in the research will sign the Informed Consent Form, and may withdraw from the research at any stage of the study. Assessment and intervention collection will take place via video call. The personal identification data of the participants will be preserved in accordance with the resolution of the national health council, taking into account the possibility of scientific dissemination of the results obtained. The selection method adopted will be non-probability sampling, convenience sampling. The participants of the study will be recruited in the reference hospital for oncologic care in Florianópolis- State of Santa Catarina/Brazil, the Oncology Research Center, through a retrospective and active search in the medical records, in order to recover clinical data and contact of the participants with up to 24 months after the curative surgical intervention. There will also be recruitment through dissemination of the study via media and social networks, folders and messages, so that women voluntarily apply for the research. The sample will consist of women diagnosed with breast cancer and undergoing surgical treatment, with up to 24 months postoperatively, present functional disability and impaired quality of life, able to understand and access mobile applications or live with someone who helps them, have access to the internet and telephone for contact."
+            },
+            "ConditionsModule":{
+              "ConditionList":{
+                "Condition":[
+                  "Breast Cancer"
+                ]
+              }
+            },
+            "DesignModule":{
+              "StudyType":"Interventional",
+              "PhaseList":{
+                "Phase":[
+                  "Not Applicable"
+                ]
+              },
+              "DesignInfo":{
+                "DesignAllocation":"Randomized",
+                "DesignInterventionModel":"Parallel Assignment",
+                "DesignPrimaryPurpose":"Treatment",
+                "DesignMaskingInfo":{
+                  "DesignMasking":"Double",
+                  "DesignWhoMaskedList":{
+                    "DesignWhoMasked":[
+                      "Participant",
+                      "Investigator"
+                    ]
+                  }
+                }
+              },
+              "EnrollmentInfo":{
+                "EnrollmentCount":"30",
+                "EnrollmentType":"Anticipated"
+              }
+            },
+            "ArmsInterventionsModule":{
+              "ArmGroupList":{
+                "ArmGroup":[
+                  {
+                    "ArmGroupLabel":"Synchronous Telemonitoring",
+                    "ArmGroupType":"Experimental",
+                    "ArmGroupDescription":"The sessions will be supervised by a therapist and conducted via video call using the WhatsApp® application, lasting 50 minutes, 3 times a week, for 6 consecutive weeks, the exercises will basically consist of active stretching, mobilization and scapular stabilization, and active shoulder exercises with gradual range of motion.",
+                    "ArmGroupInterventionList":{
+                      "ArmGroupInterventionName":[
+                        "Other: Kinesiotherapy protocol"
+                      ]
+                    }
+                  },{
+                    "ArmGroupLabel":"Asynchronous Telemonitoring",
+                    "ArmGroupType":"Experimental",
+                    "ArmGroupDescription":"An explicative schedule with the exercises to be performed asynchronously during the week will be delivered weekly via e-mail and WhatsApp®. The exercises will be the same as those performed by the synchronous telemonitoring group, and the participant will be free to ask any questions about the protocol to the therapist at any time via text message or e-mail.",
+                    "ArmGroupInterventionList":{
+                      "ArmGroupInterventionName":[
+                        "Other: Kinesiotherapy protocol"
+                      ]
+                    }
+                  },{
+                    "ArmGroupLabel":"Control Group",
+                    "ArmGroupType":"Active Comparator",
+                    "ArmGroupDescription":"Will receive only a booklet of usual guidelines for women after breast cancer, such as skin care, return to activities, upper limb functionality, self-care, lymphedema and physical activity practice.",
+                    "ArmGroupInterventionList":{
+                      "ArmGroupInterventionName":[
+                        "Other: Usual orientations"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "InterventionList":{
+                "Intervention":[
+                  {
+                    "InterventionType":"Other",
+                    "InterventionName":"Kinesiotherapy protocol",
+                    "InterventionDescription":"The kinesiotherapy protocol is an exercise-based treatment designed to gain upper limb range of motion and muscle strengthening.",
+                    "InterventionArmGroupLabelList":{
+                      "InterventionArmGroupLabel":[
+                        "Asynchronous Telemonitoring",
+                        "Synchronous Telemonitoring"
+                      ]
+                    }
+                  },{
+                    "InterventionType":"Other",
+                    "InterventionName":"Usual orientations",
+                    "InterventionDescription":"Usual orientations for post-breast cancer women, such as skin care, return to activities, upper limb functionality, self-care, lymphedema, and physical activity practice.",
+                    "InterventionArmGroupLabelList":{
+                      "InterventionArmGroupLabel":[
+                        "Control Group"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "OutcomesModule":{
+              "PrimaryOutcomeList":{
+                "PrimaryOutcome":[
+                  {
+                    "PrimaryOutcomeMeasure":"Upper Limb Functionality",
+                    "PrimaryOutcomeDescription":"Quick Disabilities of the Arm, Shoulder and Hand (DASH) is an 11-item questionnaire designed to assess the physical disability and symptoms of the upper limbs during activities of daily living, during the week prior to the assessment. The questions are scored from 1 to 5, where 1 corresponds to \"no difficulty\" and 5 \"could not do\", and the higher the score, the higher the level of disability. The total score is 100 points, is calculated by adding the first total of answers, then dividing that number by the total number of items answered, this value is subtracted by 1 and multiplied by 25.",
+                    "PrimaryOutcomeTimeFrame":"Change in Quick DASH total score Pre-intervention at 6 weeks Post-intervention"
+                  },{
+                    "PrimaryOutcomeMeasure":"Assessment of quality of life",
+                    "PrimaryOutcomeDescription":"European Organization for Research and Treatment of Cancer Breast Cancer-Specific Quality of Life Questionnaire BR-23 was developed in 1996 by the European Organization for Research and Treatment of Cancer (EORTC) specifically to assess quality of life in patients with breast cancer. The EORTC QLQ-BR-23 comprises 23 questions and assesses the symptoms experienced in the last week, and has two domains (functional and symptoms). The answers are displayed on a Likert scale, with values from 1 to 4, in which case the higher the final score, the better the quality of life.",
+                    "PrimaryOutcomeTimeFrame":"Change in EORTC QLQ BR-23 total score Pre-intervention at 6 weeks Post-intervention"
+                  }
+                ]
+              },
+              "SecondaryOutcomeList":{
+                "SecondaryOutcome":[
+                  {
+                    "SecondaryOutcomeMeasure":"Arm circumference",
+                    "SecondaryOutcomeDescription":"The circumference of the arm will be evaluated by the perimeter.",
+                    "SecondaryOutcomeTimeFrame":"Change from Pre Intervention Circumference of the arm at 6 weeks Post Intervention"
+                  },{
+                    "SecondaryOutcomeMeasure":"Level of satisfaction",
+                    "SecondaryOutcomeDescription":"Evaluated qualitatively and quantitatively, addressed only at the re-evaluation period questions such as, \" How was your experience with this treatment modality?\", \"From zero to ten, how much would you recommend this treatment modality?\", \"From zero to ten, how satisfied were you with this intervention?\"",
+                    "SecondaryOutcomeTimeFrame":"6 weeks Post Intervention"
+                  }
+                ]
+              }
+            },
+            "EligibilityModule":{
+              "EligibilityCriteria":"Inclusion Criteria:\n\nAge over 18;\nDiagnosed with breast cancer and submitted to surgical treatment, regardless of the type of surgery;\nWith up to 24 months post-operatively, already completed cycles of adjuvant therapies (radiotherapy and/or chemotherapy);\nModerate functional disability with a minimum score of 30% QuickDash questionnaire;\nImpaired quality of life;\nAble to understand and access mobile applications or live with someone who assists, has internet access and telephone contact.\n\nExclusion Criteria:\n\nopen lesions;\nacquired infections;\nchronic disease or previous motor sequelae that would interfere with participation in the study;\nwomen who have difficulty understanding the questions or questionnaires applied or proposed activities;\ndiagnosis of lymphedema;\nhave no functional alterations in the upper limbs or quality of life.",
+              "HealthyVolunteers":"No",
+              "Gender":"Female",
+              "MinimumAge":"18 Years",
+              "StdAgeList":{
+                "StdAge":[
+                  "Adult",
+                  "Older Adult"
+                ]
+              }
+            },
+            "ContactsLocationsModule":{
+              "CentralContactList":{
+                "CentralContact":[
+                  {
+                    "CentralContactName":"Maria Luiza Pereira, PT",
+                    "CentralContactRole":"Contact",
+                    "CentralContactPhone":"+55 (48) 99818-3165",
+                    "CentralContactEMail":"mluiza.pereira@outlook.com"
+                  }
+                ]
+              },
+              "OverallOfficialList":{
+                "OverallOfficial":[
+                  {
+                    "OverallOfficialName":"Gilmar M Santos, PhD",
+                    "OverallOfficialAffiliation":"university of santa catarina state",
+                    "OverallOfficialRole":"Study Chair"
+                  }
+                ]
+              },
+              "LocationList":{
+                "Location":[
+                  {
+                    "LocationFacility":"Santa Catarina State University",
+                    "LocationStatus":"Recruiting",
+                    "LocationCity":"Florianópolis",
+                    "LocationState":"Santa Catarina",
+                    "LocationZip":"88080350",
+                    "LocationCountry":"Brazil",
+                    "LocationContactList":{
+                      "LocationContact":[
+                        {
+                          "LocationContactName":"Gilmar M Santos, PhD",
+                          "LocationContactRole":"Contact",
+                          "LocationContactPhone":"+55 (48) 99909-9459",
+                          "LocationContactEMail":"gilmar.santos@udesc.br"
+                        },{
+                          "LocationContactName":"Gilmar M Santos, PhD",
+                          "LocationContactRole":"Principal Investigator"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "DerivedSection":{
+            "MiscInfoModule":{
+              "VersionHolder":"March 03, 2021"
+            },
+            "ConditionBrowseModule":{
+              "ConditionMeshList":{
+                "ConditionMesh":[
+                  {
+                    "ConditionMeshId":"D000001943",
+                    "ConditionMeshTerm":"Breast Neoplasms"
+                  },{
+                    "ConditionMeshId":"D000008209",
+                    "ConditionMeshTerm":"Lymphedema"
+                  }
+                ]
+              },
+              "ConditionAncestorList":{
+                "ConditionAncestor":[
+                  {
+                    "ConditionAncestorId":"D000009371",
+                    "ConditionAncestorTerm":"Neoplasms by Site"
+                  },{
+                    "ConditionAncestorId":"D000009369",
+                    "ConditionAncestorTerm":"Neoplasms"
+                  },{
+                    "ConditionAncestorId":"D000001941",
+                    "ConditionAncestorTerm":"Breast Diseases"
+                  },{
+                    "ConditionAncestorId":"D000012871",
+                    "ConditionAncestorTerm":"Skin Diseases"
+                  },{
+                    "ConditionAncestorId":"D000008206",
+                    "ConditionAncestorTerm":"Lymphatic Diseases"
+                  }
+                ]
+              },
+              "ConditionBrowseLeafList":{
+                "ConditionBrowseLeaf":[
+                  {
+                    "ConditionBrowseLeafId":"M3802",
+                    "ConditionBrowseLeafName":"Breast Neoplasms",
+                    "ConditionBrowseLeafAsFound":"Breast Cancer",
+                    "ConditionBrowseLeafRelevance":"high"
+                  },{
+                    "ConditionBrowseLeafId":"M9789",
+                    "ConditionBrowseLeafName":"Lymphedema",
+                    "ConditionBrowseLeafAsFound":"Lymphedema",
+                    "ConditionBrowseLeafRelevance":"high"
+                  },{
+                    "ConditionBrowseLeafId":"M3800",
+                    "ConditionBrowseLeafName":"Breast Diseases",
+                    "ConditionBrowseLeafRelevance":"low"
+                  },{
+                    "ConditionBrowseLeafId":"M14257",
+                    "ConditionBrowseLeafName":"Skin Diseases",
+                    "ConditionBrowseLeafRelevance":"low"
+                  },{
+                    "ConditionBrowseLeafId":"M9786",
+                    "ConditionBrowseLeafName":"Lymphatic Diseases",
+                    "ConditionBrowseLeafRelevance":"low"
+                  },{
+                    "ConditionBrowseLeafId":"T6034",
+                    "ConditionBrowseLeafName":"Quality of Life",
+                    "ConditionBrowseLeafAsFound":"Quality of Life",
+                    "ConditionBrowseLeafRelevance":"high"
+                  }
+                ]
+              },
+              "ConditionBrowseBranchList":{
+                "ConditionBrowseBranch":[
+                  {
+                    "ConditionBrowseBranchAbbrev":"BC04",
+                    "ConditionBrowseBranchName":"Cancers and Other Neoplasms"
+                  },{
+                    "ConditionBrowseBranchAbbrev":"BC17",
+                    "ConditionBrowseBranchName":"Skin and Connective Tissue Diseases"
+                  },{
+                    "ConditionBrowseBranchAbbrev":"All",
+                    "ConditionBrowseBranchName":"All Conditions"
+                  },{
+                    "ConditionBrowseBranchAbbrev":"BC15",
+                    "ConditionBrowseBranchName":"Blood and Lymph Conditions"
+                  },{
+                    "ConditionBrowseBranchAbbrev":"BXM",
+                    "ConditionBrowseBranchName":"Behaviors and Mental Disorders"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },{
+        "Rank":103,
+        "Study":{
+          "ProtocolSection":{
+            "IdentificationModule":{
+              "NCTId":"NCT04779437",
+              "OrgStudyIdInfo":{
+                "OrgStudyId":"650"
+              },
+              "Organization":{
+                "OrgFullName":"Ruhr University of Bochum",
+                "OrgClass":"OTHER"
+              },
+              "BriefTitle":"Using Bayesian Sequential Single Case Methodology to Personalize Low-Intensity Psychological Interventions for Depression: Initial Pilot Work",
+              "OfficialTitle":"Using Bayesian Sequential Single Case Methodology to Personalize Low-Intensity Psychological Interventions for Depression: Initial Pilot Work"
+            },
+            "StatusModule":{
+              "StatusVerifiedDate":"February 2021",
+              "OverallStatus":"Not yet recruiting",
+              "ExpandedAccessInfo":{
+                "HasExpandedAccess":"No"
+              },
+              "StartDateStruct":{
+                "StartDate":"March 2021",
+                "StartDateType":"Anticipated"
+              },
+              "PrimaryCompletionDateStruct":{
+                "PrimaryCompletionDate":"October 2021",
+                "PrimaryCompletionDateType":"Anticipated"
+              },
+              "CompletionDateStruct":{
+                "CompletionDate":"October 2021",
+                "CompletionDateType":"Anticipated"
+              },
+              "StudyFirstSubmitDate":"February 28, 2021",
+              "StudyFirstSubmitQCDate":"February 28, 2021",
+              "StudyFirstPostDateStruct":{
+                "StudyFirstPostDate":"March 3, 2021",
+                "StudyFirstPostDateType":"Estimate"
+              },
+              "LastUpdateSubmitDate":"February 28, 2021",
+              "LastUpdatePostDateStruct":{
+                "LastUpdatePostDate":"March 3, 2021",
+                "LastUpdatePostDateType":"Estimate"
+              }
+            },
+            "SponsorCollaboratorsModule":{
+              "ResponsibleParty":{
+                "ResponsiblePartyType":"Principal Investigator",
+                "ResponsiblePartyInvestigatorFullName":"Simon Blackwell",
+                "ResponsiblePartyInvestigatorTitle":"Postdoctoral Researcher",
+                "ResponsiblePartyInvestigatorAffiliation":"Ruhr University of Bochum"
+              },
+              "LeadSponsor":{
+                "LeadSponsorName":"Ruhr University of Bochum",
+                "LeadSponsorClass":"OTHER"
+              }
+            },
+            "OversightModule":{
+              "OversightHasDMC":"No",
+              "IsFDARegulatedDrug":"No",
+              "IsFDARegulatedDevice":"No"
+            },
+            "DescriptionModule":{
+              "BriefSummary":"The study is an initial investigation of the feasibility of applying Bayesian sequential analyses to individual participant single-case data for rapid detection of whether or not the individual is benefitting from a low-intensity computerized cognitive training intervention for depression. Patients waiting for, or in follow-up from, outpatient psychological therapy will complete first a two-week period of daily symptom monitoring, followed by two different two-week cognitive training interventions. Data collected will be used to assess feasibility of a future formal case series using Bayesian sequential analyses to determine switching of interventions, and inform the analysis parameters for such a future study."
+            },
+            "ConditionsModule":{
+              "ConditionList":{
+                "Condition":[
+                  "Depression"
+                ]
+              },
+              "KeywordList":{
+                "Keyword":[
+                  "Depression",
+                  "Anhedonia",
+                  "Cognitive Bias Modification",
+                  "Cognitive Control Training",
+                  "Bayesian sequential analyses",
+                  "Single case series"
+                ]
+              }
+            },
+            "DesignModule":{
+              "StudyType":"Interventional",
+              "PhaseList":{
+                "Phase":[
+                  "Not Applicable"
+                ]
+              },
+              "DesignInfo":{
+                "DesignAllocation":"Randomized",
+                "DesignInterventionModel":"Crossover Assignment",
+                "DesignInterventionModelDescription":"The study is an exploratory single-case series using a within-subject ABC design, with a baseline phase (A) followed by two intervention phases (B) and (C). Participants are randomly assigned to the order in which they complete the two different interventions.",
+                "DesignPrimaryPurpose":"Treatment",
+                "DesignMaskingInfo":{
+                  "DesignMasking":"None (Open Label)",
+                  "DesignMaskingDescription":"Two active interventions are used, and both participants and researchers are aware of which intervention participants are completing."
+                }
+              },
+              "EnrollmentInfo":{
+                "EnrollmentCount":"12",
+                "EnrollmentType":"Anticipated"
+              }
+            },
+            "ArmsInterventionsModule":{
+              "ArmGroupList":{
+                "ArmGroup":[
+                  {
+                    "ArmGroupLabel":"Imagery Cognitive Bias Modification First",
+                    "ArmGroupType":"Experimental",
+                    "ArmGroupDescription":"After completing two weeks of daily QIDS (baseline phase), participants randomly allocated to this arm will complete two weeks of imagery cognitive bias modification followed by two weeks of cognitive control training. Daily QIDS will be completed throughout the intervention phases.",
+                    "ArmGroupInterventionList":{
+                      "ArmGroupInterventionName":[
+                        "Behavioral: Imagery Cognitive Bias Modification",
+                        "Behavioral: Cognitive Control Training"
+                      ]
+                    }
+                  },{
+                    "ArmGroupLabel":"Cognitive Control Training First",
+                    "ArmGroupType":"Experimental",
+                    "ArmGroupDescription":"After completing two weeks of daily QIDS (baseline phase), participants randomly allocated to this arm will complete two weeks of cognitive control training followed by two weeks of imagery cognitive bias modification. Daily QIDS will be completed throughout the intervention phases.",
+                    "ArmGroupInterventionList":{
+                      "ArmGroupInterventionName":[
+                        "Behavioral: Imagery Cognitive Bias Modification",
+                        "Behavioral: Cognitive Control Training"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "InterventionList":{
+                "Intervention":[
+                  {
+                    "InterventionType":"Behavioral",
+                    "InterventionName":"Imagery Cognitive Bias Modification",
+                    "InterventionDescription":"The imagery cognitive bias modification intervention is derived from that developed via experimental psychopathology research (e.g. Holmes et al., 2009) and adapted for clinical applications in the context of depression (e.g. Blackwell & Holmes, 2020; Blackwell et al., 2015). The intervention is a series of training sessions in which participants listen to training scenarios consisting of descriptions of everyday situations, structured so that they start ambiguously but always end positively. Participants are instructed to imagine themselves in the situations described as the scenarios unfold. The training aims to train a bias to automatically imagine positive resolutions for ambiguous situations encountered in daily life.\n\nParticipants will complete one introductory session of the training with the researcher present (in the outpatient center, or via videoconferencing software), then 8 sessions over two weeks completed from home via the study website.",
+                    "InterventionArmGroupLabelList":{
+                      "InterventionArmGroupLabel":[
+                        "Cognitive Control Training First",
+                        "Imagery Cognitive Bias Modification First"
+                      ]
+                    }
+                  },{
+                    "InterventionType":"Behavioral",
+                    "InterventionName":"Cognitive Control Training",
+                    "InterventionDescription":"The cognitive control training is an adaptive Paced Auditory Serial Addition Task (PASAT), adapted from that applied in previous studies (e.g. Siegle et al., 2007; Hoorelbeke et al., 2015; Blackwell et al., 2018). Participants will complete one introductory session of the training with the researcher present (in the outpatient center, or via videoconferencing software), then 8 sessions over two weeks completed from home via the study website.",
+                    "InterventionArmGroupLabelList":{
+                      "InterventionArmGroupLabel":[
+                        "Cognitive Control Training First",
+                        "Imagery Cognitive Bias Modification First"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "OutcomesModule":{
+              "PrimaryOutcomeList":{
+                "PrimaryOutcome":[
+                  {
+                    "PrimaryOutcomeMeasure":"Quick Inventory of Depressive Symptomatology - Self Report Daily Version (QIDS-daily)",
+                    "PrimaryOutcomeDescription":"The QIDS-daily is an adapted version of the QIDS-SR (Rush et al., 2003), which asks about symptoms over the past day and does not include the weight gain/loss items (as used by Holmes et al., 2016).",
+                    "PrimaryOutcomeTimeFrame":"Daily throughout the six-week study period"
+                  }
+                ]
+              },
+              "SecondaryOutcomeList":{
+                "SecondaryOutcome":[
+                  {
+                    "SecondaryOutcomeMeasure":"Quick Inventory of Depressive Symptomatology - Self Report (QIDS)",
+                    "SecondaryOutcomeDescription":"The standard QIDS-SR (Rush et al., 2003) is a measure of depression symptoms asking about symptoms over the past seven days.",
+                    "SecondaryOutcomeTimeFrame":"Baseline, pre-intervention (2 weeks post-baseline), between interventions (4 weeks post-baseline), end of study (6 weeks post-baseline)"
+                  },{
+                    "SecondaryOutcomeMeasure":"Dimensional Anhedonia Rating Scale (DARS)",
+                    "SecondaryOutcomeDescription":"The DARS (Rizvi et al., 2015) is a 17-item self-report measure of different facets of anhedonia (desire, motivation, effort and consummatory pleasure) across different hedonic domains (hobbies/past-times, food/drinks, social activities, and sensory experiences).",
+                    "SecondaryOutcomeTimeFrame":"Baseline, pre-intervention (2 weeks post-baseline), between interventions (4 weeks post-baseline), end of study (6 weeks post-baseline)"
+                  },{
+                    "SecondaryOutcomeMeasure":"Positive and Negative Affect Schedule - Positive subscale (PANAS-P)",
+                    "SecondaryOutcomeDescription":"This 18-item positive subscale comprises the Joviality, Self-Assurance, and Attentiveness subscales of the extended PANAS (PANAS-X; Watson & Clark, 1994), and in the current study asks about experience of positive emotions over the past week.",
+                    "SecondaryOutcomeTimeFrame":"Baseline, pre-intervention (2 weeks post-baseline), between interventions (4 weeks post-baseline), end of study (6 weeks post-baseline)"
+                  },{
+                    "SecondaryOutcomeMeasure":"GAD-7",
+                    "SecondaryOutcomeDescription":"The GAD-7 (Spitzer et al., 2006) is a brief (7 items) self-report anxiety questionnaire designed as a screener for Generalized Anxiety Disorder in primary care.",
+                    "SecondaryOutcomeTimeFrame":"Baseline, pre-intervention (2 weeks post-baseline), between interventions (4 weeks post-baseline), end of study (6 weeks post-baseline)"
+                  },{
+                    "SecondaryOutcomeMeasure":"Positive Mental Health Scale (PMH)",
+                    "SecondaryOutcomeDescription":"The PMH (Lukat et al., 2016) consists of 9 items designed to assess positive mental health.",
+                    "SecondaryOutcomeTimeFrame":"Baseline, pre-intervention (2 weeks post-baseline), between interventions (4 weeks post-baseline), end of study (6 weeks post-baseline)"
+                  },{
+                    "SecondaryOutcomeMeasure":"Prospective Imagery Test (PIT)",
+                    "SecondaryOutcomeDescription":"The PIT (Stöber, 2000) is a measure of the vividness with which participants can imagine positive events in their future. In the current study, two 10-item (5 positive and 5 negative) versions are used, with the order counterbalanced across participants.",
+                    "SecondaryOutcomeTimeFrame":"Baseline, end of study (6 weeks post-baseline)"
+                  }
+                ]
+              },
+              "OtherOutcomeList":{
+                "OtherOutcome":[
+                  {
+                    "OtherOutcomeMeasure":"Feedback questionnaires",
+                    "OtherOutcomeDescription":"Feedback questionnaires will be used at the end of each intervention phase, asking about the intervention just completed. Further feedback about the study as a whole will be collected on study completion.",
+                    "OtherOutcomeTimeFrame":"Between interventions (4 weeks post-baseline), end of study (6 weeks post-baseline)"
+                  },{
+                    "OtherOutcomeMeasure":"Negative Effects Questionnaire (NEQ)",
+                    "OtherOutcomeDescription":"The NEQ (Rozental et al., 2019) asks about potential negative effects of psychological interventions. The short (20-item) version is used, adapted to ask about the cognitive training interventions.",
+                    "OtherOutcomeTimeFrame":"Between interventions (4 weeks post-baseline), end of study (6 weeks post-baseline)"
+                  },{
+                    "OtherOutcomeMeasure":"Credibility / Expectancy Questionnaires (CEQ)",
+                    "OtherOutcomeDescription":"The CEQ (Devilly & Borkovec, 2000) asks participants' assessment of the credibility of the intervention they are about to receive, and their expectation of improvement in symptoms over the course of the intervention. In this study it will be administered before each phase: prior to baseline phase (about completing daily questionnaires), and prior to each intervention phase, about the imagery CBM and Cognitive Control Training as appropriate.",
+                    "OtherOutcomeTimeFrame":"Baseline, pre-intervention (2 weeks post-baseline), between interventions (4 weeks post-baseline)"
+                  }
+                ]
+              }
+            },
+            "EligibilityModule":{
+              "EligibilityCriteria":"Inclusion Criteria:\n\nPatient registered at the Ruhr University of Bochum Outpatient Psychotherapy Center (\"Zentrum für Psychotherapie\", ZPT) in an appropriate phase of treatment (on waiting list/ in follow-up)\nAged 18 years or above\nOwning a technical device (e.g. a laptop, computer) that is compatible with the computerized training\nScoring ≥ 6 on the QIDS (indicating at least mild levels of depressive symptoms)\nWilling and able to complete all study procedures\n\nExclusion Criteria:\n\nExistence of a condition or circumstances that would interfere with completion of the study procedures (e.g. severe visual impairment, neurological problem, acute psychosis, or substance withdrawal symptoms)\nAcute crisis with high levels of suicidal ideations or high levels of self-harm, identified either through therapist's assessment or score >1 on item 12 of the QIDS",
+              "HealthyVolunteers":"No",
+              "Gender":"All",
+              "MinimumAge":"18 Years",
+              "StdAgeList":{
+                "StdAge":[
+                  "Adult",
+                  "Older Adult"
+                ]
+              }
+            },
+            "ContactsLocationsModule":{
+              "CentralContactList":{
+                "CentralContact":[
+                  {
+                    "CentralContactName":"Simon E Blackwell, Dr. phil.",
+                    "CentralContactRole":"Contact",
+                    "CentralContactPhone":"+49 (0) 234 32-21503",
+                    "CentralContactEMail":"simon.blackwell@rub.de"
+                  }
+                ]
+              },
+              "OverallOfficialList":{
+                "OverallOfficial":[
+                  {
+                    "OverallOfficialName":"Simon E Blackwell, Dr. phil.",
+                    "OverallOfficialAffiliation":"Ruhr-Universität Bochum",
+                    "OverallOfficialRole":"Principal Investigator"
+                  }
+                ]
+              },
+              "LocationList":{
+                "Location":[
+                  {
+                    "LocationFacility":"Zentrum für Psychotherapie [Center for Psychotherapy], Mental Health Research and Treatment Center, Ruhr University of Bochum",
+                    "LocationCity":"Bochum",
+                    "LocationState":"Nordrhein-Westfalen",
+                    "LocationZip":"44787",
+                    "LocationCountry":"Germany",
+                    "LocationContactList":{
+                      "LocationContact":[
+                        {
+                          "LocationContactName":"Simon E Blackwell, Dr. phil.",
+                          "LocationContactRole":"Contact",
+                          "LocationContactPhone":"+49 (0)234 32 - 21503",
+                          "LocationContactEMail":"simon.blackwell@rub.de"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "IPDSharingStatementModule":{
+              "IPDSharing":"Yes",
+              "IPDSharingDescription":"Anonymised data will be made available on publication via a suitable repository such as the Open Science Framework, and will be made available to reviewers at the time of submission (or publicly with a pre-print version of the manuscript). Data made available will be the research data reported in the publication, with the exception of any data that could compromise participant anonymity.",
+              "IPDSharingInfoTypeList":{
+                "IPDSharingInfoType":[
+                  "Study Protocol",
+                  "Informed Consent Form (ICF)",
+                  "Analytic Code"
+                ]
+              },
+              "IPDSharingTimeFrame":"Supporting information will be made available on publication via a suitable repository such as the Open Science Framework, and will be made available to reviewers at the time of submission (or publically with a pre-print version of the manuscript).",
+              "IPDSharingURL":"https://osf.io/qcwfx/"
+            }
+          },
+          "DerivedSection":{
+            "MiscInfoModule":{
+              "VersionHolder":"March 03, 2021"
+            },
+            "ConditionBrowseModule":{
+              "ConditionMeshList":{
+                "ConditionMesh":[
+                  {
+                    "ConditionMeshId":"D000003863",
+                    "ConditionMeshTerm":"Depression"
+                  },{
+                    "ConditionMeshId":"D000003866",
+                    "ConditionMeshTerm":"Depressive Disorder"
+                  }
+                ]
+              },
+              "ConditionAncestorList":{
+                "ConditionAncestor":[
+                  {
+                    "ConditionAncestorId":"D000001526",
+                    "ConditionAncestorTerm":"Behavioral Symptoms"
+                  },{
+                    "ConditionAncestorId":"D000019964",
+                    "ConditionAncestorTerm":"Mood Disorders"
+                  },{
+                    "ConditionAncestorId":"D000001523",
+                    "ConditionAncestorTerm":"Mental Disorders"
+                  }
+                ]
+              },
+              "ConditionBrowseLeafList":{
+                "ConditionBrowseLeaf":[
+                  {
+                    "ConditionBrowseLeafId":"M5641",
+                    "ConditionBrowseLeafName":"Depression",
+                    "ConditionBrowseLeafAsFound":"Depression",
+                    "ConditionBrowseLeafRelevance":"high"
+                  },{
+                    "ConditionBrowseLeafId":"M5644",
+                    "ConditionBrowseLeafName":"Depressive Disorder",
+                    "ConditionBrowseLeafAsFound":"Depression",
+                    "ConditionBrowseLeafRelevance":"high"
+                  },{
+                    "ConditionBrowseLeafId":"M28054",
+                    "ConditionBrowseLeafName":"Anhedonia",
+                    "ConditionBrowseLeafRelevance":"low"
+                  },{
+                    "ConditionBrowseLeafId":"M3399",
+                    "ConditionBrowseLeafName":"Behavioral Symptoms",
+                    "ConditionBrowseLeafRelevance":"low"
+                  },{
+                    "ConditionBrowseLeafId":"M20419",
+                    "ConditionBrowseLeafName":"Mood Disorders",
+                    "ConditionBrowseLeafRelevance":"low"
+                  },{
+                    "ConditionBrowseLeafId":"M13056",
+                    "ConditionBrowseLeafName":"Psychotic Disorders",
+                    "ConditionBrowseLeafRelevance":"low"
+                  },{
+                    "ConditionBrowseLeafId":"M3396",
+                    "ConditionBrowseLeafName":"Mental Disorders",
+                    "ConditionBrowseLeafRelevance":"low"
+                  }
+                ]
+              },
+              "ConditionBrowseBranchList":{
+                "ConditionBrowseBranch":[
+                  {
+                    "ConditionBrowseBranchAbbrev":"BXM",
+                    "ConditionBrowseBranchName":"Behaviors and Mental Disorders"
+                  },{
+                    "ConditionBrowseBranchAbbrev":"All",
+                    "ConditionBrowseBranchName":"All Conditions"
+                  },{
+                    "ConditionBrowseBranchAbbrev":"BC10",
+                    "ConditionBrowseBranchName":"Nervous System Diseases"
+                  },{
+                    "ConditionBrowseBranchAbbrev":"BC23",
+                    "ConditionBrowseBranchName":"Symptoms and General Pathology"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>ClinicalTrials.gov: covid-19 | Last update posted in the last 2 days</title>
+    <link>https://clinicaltrials.gov/ct2/results/rss.xml?cond=covid-19&amp;amp;lupd_s=02%2F20%2F2021&amp;amp;lupd_d=2&amp;amp;count=1000</link>
+    <description>Studies found on ClinicalTrials.gov by a search of: covid-19 | Last update posted in the last 2 days</description>
+    <language>en-us</language>
+    <pubDate>Sun, 21 Feb 2021 10:18:50 EST</pubDate>
+    <ttl>1440</ttl>
+    <item>
+      <title>Safety, Tolerability, and Efficacy of Anti-Spike (S) SARS-CoV-2 Monoclonal Antibodies for the Treatment of Ambulatory Adult and Pediatric Patients With COVID-19</title>
+      <link>https://clinicaltrials.gov/ct2/show/NCT04425629?cond=covid-19&amp;amp;lupd_s=02%2F20%2F2021&amp;amp;lupd_d=2</link>
+      <description>&lt;b&gt;Condition&lt;/b&gt;:    COVID-19&lt;br/&gt;&lt;b&gt;Interventions&lt;/b&gt;:    Drug: REGN10933+REGN10987 combination therapy;   Drug: Placebo&lt;br/&gt;&lt;b&gt;Sponsor&lt;/b&gt;:    Regeneron Pharmaceuticals&lt;br/&gt;&lt;b&gt;Recruiting&lt;/b&gt;</description>
+      <guid isPermaLink="false">NCT04425629</guid>
+      <pubDate>Thu, 11 Jun 2020 12:00:00 EDT</pubDate>
+    </item>
+    <item>
+      <title>Study to Evaluate the Safety and Efficacy of Prolastin in Hospitalized Subjects With COVID-19</title>
+      <link>https://clinicaltrials.gov/ct2/show/NCT04495101?cond=covid-19&amp;amp;lupd_s=02%2F20%2F2021&amp;amp;lupd_d=2</link>
+      <description>&lt;b&gt;Condition&lt;/b&gt;:    COVID-19&lt;br/&gt;&lt;b&gt;Interventions&lt;/b&gt;:    Biological: Prolastin;   Drug: Standard Medical Treatment&lt;br/&gt;&lt;b&gt;Sponsor&lt;/b&gt;:    Instituto Grifols, S.A.&lt;br/&gt;&lt;b&gt;Recruiting&lt;/b&gt;</description>
+      <guid isPermaLink="false">NCT04495101</guid>
+      <pubDate>Fri, 31 Jul 2020 12:00:00 EDT</pubDate>
+    </item>
+    <item>
+      <title>Safety and Efficacy of C21 in Subjects With COVID-19</title>
+      <link>https://clinicaltrials.gov/ct2/show/NCT04452435?cond=covid-19&amp;amp;lupd_s=02%2F20%2F2021&amp;amp;lupd_d=2</link>
+      <description>&lt;b&gt;Condition&lt;/b&gt;:    COVID-19&lt;br/&gt;&lt;b&gt;Interventions&lt;/b&gt;:    Drug: C21;   Drug: Placebo&lt;br/&gt;&lt;b&gt;Sponsors&lt;/b&gt;:    Vicore Pharma AB;   Orphan Reach&lt;br/&gt;&lt;b&gt;Completed&lt;/b&gt;</description>
+      <guid isPermaLink="false">NCT04452435</guid>
+      <pubDate>Tue, 30 Jun 2020 12:00:00 EDT</pubDate>
+    </item>
+    <item>
+      <title>Favipiravir Therapy in Adults With Mild COVID-19</title>
+      <link>https://clinicaltrials.gov/ct2/show/NCT04464408?cond=covid-19&amp;amp;lupd_s=02%2F20%2F2021&amp;amp;lupd_d=2</link>
+      <description>&lt;b&gt;Condition&lt;/b&gt;:    COVID-19&lt;br/&gt;&lt;b&gt;Interventions&lt;/b&gt;:    Drug: Favipiravir;   Drug: Placebo&lt;br/&gt;&lt;b&gt;Sponsors&lt;/b&gt;:    King Abdullah International Medical Research Center;   Ministry of Health, Saudi Arabia&lt;br/&gt;&lt;b&gt;Recruiting&lt;/b&gt;</description>
+      <guid isPermaLink="false">NCT04464408</guid>
+      <pubDate>Thu, 09 Jul 2020 12:00:00 EDT</pubDate>
+    </item>
+    <item>
+      <title>Mindfulness-SOS: Stress Reduction for Refugees</title>
+      <link>https://clinicaltrials.gov/ct2/show/NCT04761510?cond=covid-19&amp;amp;lupd_s=02%2F20%2F2021&amp;amp;lupd_d=2</link>
+      <description>&lt;b&gt;Conditions&lt;/b&gt;:    Stress Disorders, Post-Traumatic;   Stress Related Disorder&lt;br/&gt;&lt;b&gt;Intervention&lt;/b&gt;:    Behavioral: Mindfulness-SOS for Refugees&lt;br/&gt;&lt;b&gt;Sponsor&lt;/b&gt;:    University of Haifa&lt;br/&gt;&lt;b&gt;Completed&lt;/b&gt;</description>
+      <guid isPermaLink="false">NCT04761510</guid>
+      <pubDate>Sun, 21 Feb 2021 12:00:00 EST</pubDate>
+    </item>
+  </channel>
+</rss>

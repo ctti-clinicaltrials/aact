@@ -1,7 +1,7 @@
 require 'csv'
 require 'open-uri'
 class StudySearch < ActiveRecord::Base
-  has_many :categories, dependent: :destroy
+  has_many :search_results, dependent: :destroy
   validates :grouping, uniqueness: {scope: :query}
   
   def self.populate_database
@@ -29,25 +29,25 @@ class StudySearch < ActiveRecord::Base
   end
 
   def load_update(days_back=2)
-    collected_nct_ids = fetch_study_ids(days_back)
-    
-    collected_nct_ids.each do |collected_nct_id|
+    fetch_study_ids(days_back).each do |study_nct_id|
+      next unless Study.find_by(nct_id: study_nct_id)
+      
       begin
-        found_category = Category.find_by(nct_id: collected_nct_id, name: [name, name.underscore], grouping: [grouping, ''])
-        found_category.update(grouping: name) if found_category && found_category.grouping.empty?
-        found_category.update(study_search_id: id) if found_category && found_category.study_search_id.nil?
-        found_category ||= categories.create(
-                                      nct_id: collected_nct_id,
+        found_search_result = SearchResult.find_by(nct_id: study_nct_id, name: [name, name.underscore], grouping: [grouping, ''])
+        found_search_result.update(grouping: name) if found_search_result && found_search_result.grouping.empty?
+        found_search_result.update(study_search_id: id) if found_search_result && found_search_result.study_search_id.nil?
+        found_search_result ||= search_results.create(
+                                      nct_id: study_nct_id,
                                       name: name,
                                       grouping: grouping,
                                     )
       rescue Exception => e
-        puts "Failed: #{collected_nct_id}"
+        puts "Failed: #{study_nct_id}"
         puts "Error: #{e}"
         next
       end
     end
-    Category.make_tsv(name) if save_tsv
+    SearchResult.make_tsv(name) if save_tsv
   end
 
   def self.execute(days_back=2)
@@ -66,15 +66,20 @@ class StudySearch < ActiveRecord::Base
 
   def self.json_data(url)
     # "https://clinicaltrials.gov/api/query/full_studies?expr=#{query}&min_rnk=1&max_rnk=100&fmt=json"
+    begin
     url = URI.escape(url)
     JSON.parse(open(url).read)
+    rescue
+      nil
+    end
   end
   
 
   def self.time_range(days_back)
-    return '' unless days_back
+    number_of_days = days_back.try(:to_i)
+    number_of_days = 0 unless number_of_days
 
-    date = (Date.current - days_back.to_i).strftime('%m/%d/%Y')
+    date = (Date.current - number_of_days).strftime('%m/%d/%Y')
     "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
   end
 
@@ -87,7 +92,7 @@ class StudySearch < ActiveRecord::Base
     # studies must be retrieved in batches of 99,
     min = 1
     max = 100
-    
+   
     for x in 1..limit
       collection += fetch_beta_nct_ids(search_constraints, min, max)
       puts collection.size
