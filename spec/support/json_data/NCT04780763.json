@@ -1,0 +1,334 @@
+{
+  "FullStudiesResponse":{
+    "APIVrs":"1.01.02",
+    "DataVrs":"2021:03:02 22:19:02.771",
+    "Expression":"NCT04780763",
+    "NStudiesAvail":369328,
+    "NStudiesFound":1,
+    "MinRank":1,
+    "MaxRank":1,
+    "NStudiesReturned":1,
+    "FullStudies":[
+      {
+        "Rank":1,
+        "Study":{
+          "ProtocolSection":{
+            "IdentificationModule":{
+              "NCTId":"NCT04780763",
+              "OrgStudyIdInfo":{
+                "OrgStudyId":"NU391"
+              },
+              "SecondaryIdInfoList":{
+                "SecondaryIdInfo":[
+                  {
+                    "SecondaryId":"S64737",
+                    "SecondaryIdType":"Other Identifier",
+                    "SecondaryIdDomain":"Ethische Commissie Onderzoek UZ/KU Leuven"
+                  }
+                ]
+              },
+              "Organization":{
+                "OrgFullName":"Danone Research",
+                "OrgClass":"INDUSTRY"
+              },
+              "BriefTitle":"Effect of 4-week Oral Administration of a Fermented Dairy Product Containing Lactobacillus Rhamnosus CNCM I-3690, on Subjective State Anxiety Levels in Healthy Women Undergoing Academic Stress.",
+              "OfficialTitle":"Effect of 4-week Oral Administration of a Fermented Dairy Product Containing Lactobacillus Rhamnosus CNCM I-3690, on Subjective State Anxiety Levels in Healthy Women Undergoing Academic Stress. A Proof-of-efficacy, Randomized, Controlled, Double-blind, Monocentric, Parallel Arms Design Study.",
+              "Acronym":"Tara"
+            },
+            "StatusModule":{
+              "StatusVerifiedDate":"February 2021",
+              "OverallStatus":"Not yet recruiting",
+              "ExpandedAccessInfo":{
+                "HasExpandedAccess":"No"
+              },
+              "StartDateStruct":{
+                "StartDate":"March 4, 2021",
+                "StartDateType":"Anticipated"
+              },
+              "PrimaryCompletionDateStruct":{
+                "PrimaryCompletionDate":"July 31, 2021",
+                "PrimaryCompletionDateType":"Anticipated"
+              },
+              "CompletionDateStruct":{
+                "CompletionDate":"July 31, 2021",
+                "CompletionDateType":"Anticipated"
+              },
+              "StudyFirstSubmitDate":"March 1, 2021",
+              "StudyFirstSubmitQCDate":"March 1, 2021",
+              "StudyFirstPostDateStruct":{
+                "StudyFirstPostDate":"March 3, 2021",
+                "StudyFirstPostDateType":"Estimate"
+              },
+              "LastUpdateSubmitDate":"March 1, 2021",
+              "LastUpdatePostDateStruct":{
+                "LastUpdatePostDate":"March 3, 2021",
+                "LastUpdatePostDateType":"Estimate"
+              }
+            },
+            "SponsorCollaboratorsModule":{
+              "ResponsibleParty":{
+                "ResponsiblePartyType":"Sponsor"
+              },
+              "LeadSponsor":{
+                "LeadSponsorName":"Danone Research",
+                "LeadSponsorClass":"INDUSTRY"
+              }
+            },
+            "OversightModule":{
+              "OversightHasDMC":"No",
+              "IsFDARegulatedDrug":"No",
+              "IsFDARegulatedDevice":"No"
+            },
+            "DescriptionModule":{
+              "BriefSummary":"The purpose of this study is to assess the effect of Lactobacillus rhamnosus CNCM I-3690 consumption on subjective anxiety levels in healthy subjects undergoing academic stress."
+            },
+            "ConditionsModule":{
+              "ConditionList":{
+                "Condition":[
+                  "Anxious Healthy Subjects"
+                ]
+              },
+              "KeywordList":{
+                "Keyword":[
+                  "anxiety, academic stress, healthy women, fermented diary product, randomized controlled trial"
+                ]
+              }
+            },
+            "DesignModule":{
+              "StudyType":"Interventional",
+              "PhaseList":{
+                "Phase":[
+                  "Not Applicable"
+                ]
+              },
+              "DesignInfo":{
+                "DesignAllocation":"Randomized",
+                "DesignInterventionModel":"Parallel Assignment",
+                "DesignInterventionModelDescription":"A proof-of-efficacy, randomized, controlled, double-blind, monocentric, parallel arms design",
+                "DesignPrimaryPurpose":"Supportive Care",
+                "DesignMaskingInfo":{
+                  "DesignMasking":"Quadruple",
+                  "DesignMaskingDescription":"The study Test and Control products have been developed in order to guarantee the blinding, they will be similar by their taste, texture, color, packaging, nutritional content and flavor.\n\nThe blinding of study products will be performed by assigning a study product number corresponding to the randomization list. Then blinded study product packages will then be carried to the investigational site for assignment to the subject.\n\nProduct allocation will be performed by randomized method (IWRS validated system) as a Randomized Controlled Trial. The participants are thus assigned to intervention groups randomly.",
+                  "DesignWhoMaskedList":{
+                    "DesignWhoMasked":[
+                      "Participant",
+                      "Care Provider",
+                      "Investigator",
+                      "Outcomes Assessor"
+                    ]
+                  }
+                }
+              },
+              "EnrollmentInfo":{
+                "EnrollmentCount":"168",
+                "EnrollmentType":"Anticipated"
+              }
+            },
+            "ArmsInterventionsModule":{
+              "ArmGroupList":{
+                "ArmGroup":[
+                  {
+                    "ArmGroupLabel":"Arm 1, Test: Fermented milk product containing probiotics L. rhamnosus CNCM I-3690",
+                    "ArmGroupType":"Active Comparator",
+                    "ArmGroupInterventionList":{
+                      "ArmGroupInterventionName":[
+                        "Other: Milk product fermented by lactic bacteria or not fermented"
+                      ]
+                    }
+                  },{
+                    "ArmGroupLabel":"Arm 2, Control: Milk-based non-fermented dairy product",
+                    "ArmGroupType":"Placebo Comparator",
+                    "ArmGroupInterventionList":{
+                      "ArmGroupInterventionName":[
+                        "Other: Milk product fermented by lactic bacteria or not fermented"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "InterventionList":{
+                "Intervention":[
+                  {
+                    "InterventionType":"Other",
+                    "InterventionName":"Milk product fermented by lactic bacteria or not fermented",
+                    "InterventionDescription":"2 bottles of 100g consumed daily during 28 days",
+                    "InterventionArmGroupLabelList":{
+                      "InterventionArmGroupLabel":[
+                        "Arm 1, Test: Fermented milk product containing probiotics L. rhamnosus CNCM I-3690",
+                        "Arm 2, Control: Milk-based non-fermented dairy product"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "OutcomesModule":{
+              "PrimaryOutcomeList":{
+                "PrimaryOutcome":[
+                  {
+                    "PrimaryOutcomeMeasure":"Comparison between groups of the State-Trait Anxiety Inventory (STAI)-state questionnaire score during 4 weeks of investigational product consumption.",
+                    "PrimaryOutcomeTimeFrame":"At Baseline and after stress challenge (4 weeks after baseline)."
+                  }
+                ]
+              },
+              "SecondaryOutcomeList":{
+                "SecondaryOutcome":[
+                  {
+                    "SecondaryOutcomeMeasure":"Comparison between groups of cortisol level in saliva, Perceived Stress Scale (PSS) questionnaire score and Heart Rate Variability (HRV) during 4 weeks of investigational product consumption.",
+                    "SecondaryOutcomeTimeFrame":"At Baseline and after stress challenge (4 weeks from baseline)."
+                  },{
+                    "SecondaryOutcomeMeasure":"Comparison between groups of sleep efficiency, total sleep time, and deep sleep (Non-REM 3 sleep cycle) duration, during 4 weeks of investigational product consumption.",
+                    "SecondaryOutcomeTimeFrame":"At Baseline and at stress challenge (4 weeks from baseline)."
+                  },{
+                    "SecondaryOutcomeMeasure":"Comparison between groups of Bond-Lader visual analogue scale (VAS) score during 4 weeks of investigational product consumption.",
+                    "SecondaryOutcomeTimeFrame":"At Baseline and at stress challenge (4 weeks from baseline)."
+                  },{
+                    "SecondaryOutcomeMeasure":"Comparison between groups of cortisol levels in saliva after 4 weeks of investigational product consumption.",
+                    "SecondaryOutcomeTimeFrame":"Time course of cortisol secretion on the day of the stress challenge (5 timepoints)."
+                  }
+                ]
+              }
+            },
+            "EligibilityModule":{
+              "EligibilityCriteria":"Inclusion Criteria:\n\nSI01: Free-living Participant who fully understands and agree to the objectives of the study, who gave signed and dated informed consent\nSI02: Women of 20 to 30 years of age inclusive\nSI03: Participants who are healthy as determined by medical evaluation including medical and surgical history and full physical examination.\nSI04: Body mass index (BMI) within the range 18 and 30 kg/m2 (bounds included).\nSI05: Woman participants.\nSI06: Student defending a bachelor's or master's thesis in front of a jury\nSI07: Subject who regularly consumes dairy fermented products containing live bacteria and willing to consume 2 units of investigational product per day during the study.\nSI08: Subject willing to strictly follow instructions on diet, medication and substance use for the entire duration of the study.\n\nExclusion Criteria:\n\nSE01: subject with chronic gastrointestinal disorders or symptoms, with celiac disease, diagnosed type 1 or type 2 diabetes mellitus, with psychiatric disease including but not limited to depression and general anxiety disorder\nSE03: subject with food allergy, history of atopic conditions (eczema, allergic asthma, allergic rhino conjunctivitis) requiring active treatment, with first degree relatives with coeliac disease, inflammatory bowel disease (IBD) or type 1 diabetes, with known or suspected lactose intolerance\nSE4: Subject with eating disorders, chronic or iatrogenic immunodeficiency (e.g. Chemotherapy, HIV), presenting a severe evolutive or chronic pathology (e.g. cancer, tuberculosis, Crohn's disease, cirrhosis, multiple sclerosis)\nSE5: Subject with cardiac, respiratory (including asthma) or renal insufficiency, cardiomyopathy, valvulopathy and medical history of rheumatic fever and/or with a positive test for COVID-19 infection or presenting any symptoms of COVID infection in the past 2 weeks\nSE6: Subject receiving systemic treatment or topical treatment likely to interfere with evaluation of the study parameters (antibiotics, intestinal or respiratory antiseptics, anti-rheumatics, and steroids prescribed in chronic inflammatory diseases, antiphlogistic, anti-inflammatory and PPIs)\nSE7: Subject who has planned to participate in another investigational study OR subject involved in any other clinical study within the preceding month\nSE8: Subjects planning to significantly change their diet during the period of the study or who have changed his/her dietary habits within the 4 weeks preceding the study (e.g. start of a diet high in fibres)\nSE9: Pregnant woman or woman planning to become pregnant during the study; breast-feeding woman.",
+              "HealthyVolunteers":"Accepts Healthy Volunteers",
+              "Gender":"Female",
+              "GenderBased":"Yes",
+              "GenderDescription":"This study is reproducing a previous study with interesting results seen in women participants.",
+              "MinimumAge":"20 Years",
+              "MaximumAge":"30 Years",
+              "StdAgeList":{
+                "StdAge":[
+                  "Adult"
+                ]
+              }
+            },
+            "ContactsLocationsModule":{
+              "CentralContactList":{
+                "CentralContact":[
+                  {
+                    "CentralContactName":"Silvia MIRET-CATALAN",
+                    "CentralContactRole":"Contact",
+                    "CentralContactPhone":"+33 (0)6 15 37 21 02",
+                    "CentralContactEMail":"silvia.miret-catalan@danone.com"
+                  },{
+                    "CentralContactName":"Jennifer LOURENCO",
+                    "CentralContactRole":"Contact",
+                    "CentralContactPhone":"+33 (0)6 29 22 03 68",
+                    "CentralContactEMail":"Jennifer.lourenco@danone.com"
+                  }
+                ]
+              },
+              "OverallOfficialList":{
+                "OverallOfficial":[
+                  {
+                    "OverallOfficialName":"Rim HASSOUNA, PhD",
+                    "OverallOfficialAffiliation":"DANONE RESEARCH, PALAISEAU, FRANCE",
+                    "OverallOfficialRole":"Study Chair"
+                  }
+                ]
+              },
+              "LocationList":{
+                "Location":[
+                  {
+                    "LocationFacility":"UZ/KU Leuven",
+                    "LocationCity":"Leuven",
+                    "LocationZip":"3000",
+                    "LocationCountry":"Belgium",
+                    "LocationContactList":{
+                      "LocationContact":[
+                        {
+                          "LocationContactName":"Karlien Geboers",
+                          "LocationContactRole":"Contact",
+                          "LocationContactPhone":"+32 16 34 52 82",
+                          "LocationContactEMail":"karlien.geboers@uzleuven.be"
+                        },{
+                          "LocationContactName":"Tim Vanuytsel, MD Prof.",
+                          "LocationContactRole":"Principal Investigator"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "DerivedSection":{
+            "MiscInfoModule":{
+              "VersionHolder":"March 03, 2021"
+            },
+            "ConditionBrowseModule":{
+              "ConditionMeshList":{
+                "ConditionMesh":[
+                  {
+                    "ConditionMeshId":"D000001008",
+                    "ConditionMeshTerm":"Anxiety Disorders"
+                  }
+                ]
+              },
+              "ConditionAncestorList":{
+                "ConditionAncestor":[
+                  {
+                    "ConditionAncestorId":"D000001523",
+                    "ConditionAncestorTerm":"Mental Disorders"
+                  }
+                ]
+              },
+              "ConditionBrowseLeafList":{
+                "ConditionBrowseLeaf":[
+                  {
+                    "ConditionBrowseLeafId":"M2905",
+                    "ConditionBrowseLeafName":"Anxiety Disorders",
+                    "ConditionBrowseLeafAsFound":"Anxiety",
+                    "ConditionBrowseLeafRelevance":"high"
+                  },{
+                    "ConditionBrowseLeafId":"M13056",
+                    "ConditionBrowseLeafName":"Psychotic Disorders",
+                    "ConditionBrowseLeafRelevance":"low"
+                  },{
+                    "ConditionBrowseLeafId":"M3396",
+                    "ConditionBrowseLeafName":"Mental Disorders",
+                    "ConditionBrowseLeafRelevance":"low"
+                  }
+                ]
+              },
+              "ConditionBrowseBranchList":{
+                "ConditionBrowseBranch":[
+                  {
+                    "ConditionBrowseBranchAbbrev":"BXM",
+                    "ConditionBrowseBranchName":"Behaviors and Mental Disorders"
+                  },{
+                    "ConditionBrowseBranchAbbrev":"All",
+                    "ConditionBrowseBranchName":"All Conditions"
+                  }
+                ]
+              }
+            },
+            "InterventionBrowseModule":{
+              "InterventionBrowseLeafList":{
+                "InterventionBrowseLeaf":[
+                  {
+                    "InterventionBrowseLeafId":"T355",
+                    "InterventionBrowseLeafName":"Acidophilus",
+                    "InterventionBrowseLeafRelevance":"low"
+                  }
+                ]
+              },
+              "InterventionBrowseBranchList":{
+                "InterventionBrowseBranch":[
+                  {
+                    "InterventionBrowseBranchAbbrev":"Ot",
+                    "InterventionBrowseBranchName":"Other Dietary Supplements"
+                  },{
+                    "InterventionBrowseBranchAbbrev":"All",
+                    "InterventionBrowseBranchName":"All Drugs and Chemicals"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

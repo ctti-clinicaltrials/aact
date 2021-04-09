@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on February 23, 2021</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT04452435</url>
+  </required_header>
+  <id_info>
+    <org_study_id>VP-C21-006</org_study_id>
+    <secondary_id>2020-001502-38</secondary_id>
+    <nct_id>NCT04452435</nct_id>
+  </id_info>
+  <brief_title>Safety and Efficacy of C21 in Subjects With COVID-19</brief_title>
+  <official_title>A Randomised, Double-blind, Placebo-controlled, Phase 2 Trial Investigating the Safety and Efficacy of C21 in Hospitalised Subjects With COVID-19 Infection Not Requiring Mechanical Ventilation</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Vicore Pharma AB</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+    <collaborator>
+      <agency>Orphan Reach</agency>
+      <agency_class>Other</agency_class>
+    </collaborator>
+  </sponsors>
+  <source>Vicore Pharma AB</source>
+  <oversight_info>
+    <has_dmc>No</has_dmc>
+    <is_fda_regulated_drug>No</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      This is a randomised, double-blind, placebo-controlled phase 2 trial investigating the safety&#xD;
+      and efficacy of C21 in subjects who are hospitalised with COVID-19 infection, but not in need&#xD;
+      of mechanical invasive or non-invasive ventilation.&#xD;
+&#xD;
+      In total, approximately 100 subjects will be enrolled and randomised to receive twice daily&#xD;
+      oral administration of either standard of care (SoC) + placebo (N=50) or SoC + C21 (N=50).&#xD;
+      Subjects will be treated for 7 days.&#xD;
+    </textblock>
+  </brief_summary>
+  <overall_status>Completed</overall_status>
+  <start_date type="Actual">July 21, 2020</start_date>
+  <completion_date type="Actual">October 13, 2020</completion_date>
+  <primary_completion_date type="Actual">October 13, 2020</primary_completion_date>
+  <phase>Phase 2</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Triple (Participant, Care Provider, Investigator)</masking>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Change from baseline in C-reactive protein (CRP) after treatment with C21 200 mg daily dose (100 mg b.i.d.)</measure>
+    <time_frame>Treatment period of 7 days</time_frame>
+    <description>Primary endpoint</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline in Body temperature</measure>
+    <time_frame>Treatment period of 7 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline in IL-6</measure>
+    <time_frame>Treatment perriod of 7 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline in IL-10</measure>
+    <time_frame>Treatment perriod of 7 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline in TNF</measure>
+    <time_frame>Treatment perriod of 7 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline in CA125</measure>
+    <time_frame>Treatment perriod of 7 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Change from baseline in Ferritin</measure>
+    <time_frame>Treatment perriod of 7 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of subjects not in need of oxygen supply</measure>
+    <time_frame>Treatment period of 7 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Number of subjects not in need of mechanical invasive or non-invasive ventilation</measure>
+    <time_frame>Treatment period of 7 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Time to need of mechanical invasive or non-invasive ventilation</measure>
+    <time_frame>Treatment period of 7 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Time on oxygen supply (for those not needing mechanical invasive or non-invasive ventilation)</measure>
+    <time_frame>Treatment period of 7 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>Adverse events</measure>
+    <time_frame>Trial period of 14 days</time_frame>
+    <description>Secondary endpoint</description>
+  </secondary_outcome>
+  <number_of_arms>2</number_of_arms>
+  <enrollment type="Actual">106</enrollment>
+  <condition>COVID-19</condition>
+  <arm_group>
+    <arm_group_label>C21</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Placebo</arm_group_label>
+    <arm_group_type>Placebo Comparator</arm_group_type>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>C21</intervention_name>
+    <description>C21</description>
+    <arm_group_label>C21</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Placebo</intervention_name>
+    <description>Placebo</description>
+    <arm_group_label>Placebo</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:&#xD;
+&#xD;
+          1. Written informed consent, consistent with ICH-GCP R2 and local laws, obtained before&#xD;
+             the initiation of any trial related procedure&#xD;
+&#xD;
+          2. Diagnosis of coronavirus (SARS-CoV)-2 infection confirmed by polymerase chain reaction&#xD;
+             (PCR) test &lt; 4 days before Visit 1 with signs of an acute respiratory infection&#xD;
+&#xD;
+          3. Age &gt; 18 and &lt; 70 years&#xD;
+&#xD;
+          4. CRP &gt; 50 and &lt; 150 mg/l&#xD;
+&#xD;
+          5. Admitted to a hospital or controlled facility (home quarantine is not sufficient)&#xD;
+&#xD;
+          6. In the opinion of the Investigator, the subject will be able to comply with the&#xD;
+             requirements of the protocol&#xD;
+&#xD;
+        Exclusion Criteria:&#xD;
+&#xD;
+          1. Any previous experimental treatment for COVID-19&#xD;
+&#xD;
+          2. Need for mechanical invasive or non-invasive ventilation&#xD;
+&#xD;
+          3. Concurrent respiratory disease such as COPD (chronic obstructive pulmonary disease),&#xD;
+             IPF and/or intermittent, persistent or more severe asthma requiring daily therapy or&#xD;
+             any subjects that have had an asthma flare requiring corticosteroids in the 4 weeks&#xD;
+             (28 days) prior to COVID-19 diagnosis&#xD;
+&#xD;
+          4. Participation in any other interventional trial within 3 months prior to Visit 1&#xD;
+&#xD;
+          5. Any of the following findings at Visit 1:&#xD;
+&#xD;
+               -  Positive results for hepatitis B surface antigen (HBsAg), hepatitis C virus&#xD;
+                  antibody (HCVAb) or human immunodeficiency virus 1+2 antigen/antibody (HIV 1+2&#xD;
+                  Ag/Ab&#xD;
+&#xD;
+               -  Positive pregnancy test (see Section 8.2.3)&#xD;
+&#xD;
+          6. Clinically significant abnormal laboratory value at Visit 1 indicating a potential&#xD;
+             risk for the subject if enrolled in the trial as evaluated by the Investigator&#xD;
+&#xD;
+          7. Concurrent serious medical condition with special attention to cardiac or ophthalmic&#xD;
+             conditions (e.g. contraindications to cataract surgery), which in the opinion of the&#xD;
+             Investigator makes the subject inappropriate for this trial&#xD;
+&#xD;
+          8. Malignancy within the past 3 years with the exception of in situ removal of basal cell&#xD;
+             carcinoma and cervical intraepithelial neoplasia grade I&#xD;
+&#xD;
+          9. Treatment with any of the medications listed below within 1 week prior to Visit 1:&#xD;
+&#xD;
+               1. Strong Cytochrome p450 (CYP) 3A4 inducers (e.g. rifampicin, phenytoin, St. John's&#xD;
+                  Wort, phenobarbital, rifabutin, carbamazepine, anti HIV drugs, barbituates)&#xD;
+&#xD;
+               2. Warfarin&#xD;
+&#xD;
+         10. Pregnant or breast-feeding female subjects&#xD;
+&#xD;
+         11. Female subjects of childbearing potential not willing to use contraceptive methods as&#xD;
+             described in Section 5.3.1&#xD;
+&#xD;
+         12. Male subjects not willing to use contraceptive methods as described in Section 5.3.1&#xD;
+&#xD;
+         13. Subjects known or suspected of not being able to comply with this trial protocol (e.g.&#xD;
+             due to alcoholism, drug dependency or psychological disorder)&#xD;
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>70 Years</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Joanna Porter, MD</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Respiratory Medicine, University College Hospital</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Department of Medicine, Civil Hospital and B J Medical College</name>
+      <address>
+        <city>Ahmadabad</city>
+        <state>Gujarat</state>
+        <zip>380016</zip>
+        <country>India</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Infectious Disease, Metas Adventist Hospital</name>
+      <address>
+        <city>Surat</city>
+        <state>Gujarat</state>
+        <zip>395001</zip>
+        <country>India</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Clinical Research Department, Basement, Unity Trauma Centre and ICU (Unity Hospital</name>
+      <address>
+        <city>Surat</city>
+        <state>Gujarat</state>
+        <zip>395010</zip>
+        <country>India</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>First Floor Clinical Research Department Rhythm Heart Institute</name>
+      <address>
+        <city>Vadodara</city>
+        <state>Gujarat</state>
+        <zip>290022</zip>
+        <country>India</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Internal Medicine S.L. Raheja Hospital</name>
+      <address>
+        <city>Mumbai</city>
+        <state>Maharashtra</state>
+        <zip>400016</zip>
+        <country>India</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Department of Medicine, Government Medical College and Hospital</name>
+      <address>
+        <city>Nagpur</city>
+        <state>Maharashtra</state>
+        <zip>440003</zip>
+        <country>India</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Neuro Critical Care, Grant Medical Foundation Ruby Hall Clinic</name>
+      <address>
+        <city>Pune</city>
+        <state>Maharashtra</state>
+        <zip>411001</zip>
+        <country>India</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Department of Medicine, Noble Hospitals Pvt. Ltd</name>
+      <address>
+        <city>Pune</city>
+        <state>Maharashtra</state>
+        <country>India</country>
+      </address>
+    </facility>
+  </location>
+  <location>
+    <facility>
+      <name>Respiratory Medicine, University College Hospital</name>
+      <address>
+        <city>London</city>
+        <zip>WC1E 6BT</zip>
+        <country>United Kingdom</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>India</country>
+    <country>United Kingdom</country>
+  </location_countries>
+  <verification_date>February 2021</verification_date>
+  <study_first_submitted>June 29, 2020</study_first_submitted>
+  <study_first_submitted_qc>June 29, 2020</study_first_submitted_qc>
+  <study_first_posted type="Actual">June 30, 2020</study_first_posted>
+  <last_update_submitted>February 18, 2021</last_update_submitted>
+  <last_update_submitted_qc>February 18, 2021</last_update_submitted_qc>
+  <last_update_posted type="Actual">February 21, 2021</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Sponsor</responsible_party_type>
+  </responsible_party>
+  <keyword>COVID-19</keyword>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>

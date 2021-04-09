@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clinical_study>
+  <!-- This xml conforms to an XML Schema at:
+    https://clinicaltrials.gov/ct2/html/images/info/public.xsd -->
+  <required_header>
+    <download_date>ClinicalTrials.gov processed this data on March 05, 2021</download_date>
+    <link_text>Link to the current ClinicalTrials.gov record.</link_text>
+    <url>https://clinicaltrials.gov/show/NCT04349592</url>
+  </required_header>
+  <id_info>
+    <org_study_id>MRC-05-001</org_study_id>
+    <nct_id>NCT04349592</nct_id>
+  </id_info>
+  <brief_title>Hydroxychloroquine With or Without Azithromycin for Virologic Cure of COVID-19</brief_title>
+  <official_title>Randomized Placebo-controlled Trial of Hydroxychloroquine With or Without Azithromycin for Virologic Cure of COVID-19</official_title>
+  <sponsors>
+    <lead_sponsor>
+      <agency>Hamad Medical Corporation</agency>
+      <agency_class>Industry</agency_class>
+    </lead_sponsor>
+  </sponsors>
+  <source>Hamad Medical Corporation</source>
+  <oversight_info>
+    <has_dmc>Yes</has_dmc>
+    <is_fda_regulated_drug>No</is_fda_regulated_drug>
+    <is_fda_regulated_device>No</is_fda_regulated_device>
+    <is_us_export>No</is_us_export>
+  </oversight_info>
+  <brief_summary>
+    <textblock>
+      Q-PROTECT is a placebo controlled randomized trial (RCT) to ascertain the efficacy of&#xD;
+      hydroxychloroquine (HC) alone or, in combination with azithromycin (AZ), in reducing viral&#xD;
+      load in patients with COVID 19.&#xD;
+    </textblock>
+  </brief_summary>
+  <detailed_description>
+    <textblock>
+      Reducing viral load is potentially key to reducing viral transmission between humans.&#xD;
+      Observational data suggests HC and AZ may reduce the viral load. In this study we will&#xD;
+      randomise ambulatory patients with Covid 19 (confirmed by PCR in combination with clinical&#xD;
+      symptoms) to receive HC/AZ or HC/placebo or placebo for 7 days. On days 2-14, participants&#xD;
+      will be reviewed by a member of the research team and samples will be obtained for viral&#xD;
+      load, an ECG recorded and physical examination performed. On days 15-20, participants will be&#xD;
+      reviewed by telephone using a semi structured questionnaire. On day 21 participants will be&#xD;
+      examined in person and an oronasopharyngeal swabs obtained for PCR analysis. Participants&#xD;
+      will be followed for 6 months via their medical records.&#xD;
+    </textblock>
+  </detailed_description>
+  <overall_status>Completed</overall_status>
+  <start_date type="Actual">April 14, 2020</start_date>
+  <completion_date type="Actual">August 30, 2020</completion_date>
+  <primary_completion_date type="Actual">August 14, 2020</primary_completion_date>
+  <phase>N/A</phase>
+  <study_type>Interventional</study_type>
+  <has_expanded_access>No</has_expanded_access>
+  <study_design_info>
+    <allocation>Randomized</allocation>
+    <intervention_model>Parallel Assignment</intervention_model>
+    <primary_purpose>Treatment</primary_purpose>
+    <masking>Quadruple (Participant, Care Provider, Investigator, Outcomes Assessor)</masking>
+    <masking_description>Double-blinded trial</masking_description>
+  </study_design_info>
+  <primary_outcome>
+    <measure>Proportion of virologically cured (PCR-negative status) as assessed on day six</measure>
+    <time_frame>Day 6</time_frame>
+    <description>Days</description>
+  </primary_outcome>
+  <secondary_outcome>
+    <measure>virologic cure on other study days</measure>
+    <time_frame>Day14 and Day 21</time_frame>
+    <description>Days</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>virologic semiquantitative analysis of changing viral load</measure>
+    <time_frame>Day 1 to Day 21</time_frame>
+    <description>Days</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>proportion of initially symtomatic subjects with disappearance of clinical symptoms</measure>
+    <time_frame>Day14 and Day 21</time_frame>
+    <description>Days</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>proportion of initially asymtomatic subjects with appearance of new clinical symptoms</measure>
+    <time_frame>Day14 and Day 21</time_frame>
+    <description>Days</description>
+  </secondary_outcome>
+  <secondary_outcome>
+    <measure>proportions of subjects with potentially medication- related adverse events</measure>
+    <time_frame>7 day</time_frame>
+    <description>grades</description>
+  </secondary_outcome>
+  <number_of_arms>3</number_of_arms>
+  <enrollment type="Actual">456</enrollment>
+  <condition>Covid19</condition>
+  <arm_group>
+    <arm_group_label>Combination therapy group</arm_group_label>
+    <arm_group_type>Experimental</arm_group_type>
+    <description>hydroxychloroquine 200mg TID for 7 days plus Azithromycin 500mg OD 1st day and 250 from day 2 to 5</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Monotherapy therapy group</arm_group_label>
+    <arm_group_type>Active Comparator</arm_group_type>
+    <description>hydroxychloroquine 200mg TID for 7 days plus Placebo 1 tab OD 1st day and 1 tab from day 2 to 5</description>
+  </arm_group>
+  <arm_group>
+    <arm_group_label>Control group</arm_group_label>
+    <arm_group_type>Placebo Comparator</arm_group_type>
+    <description>Placebo Cap TID for 7 days plus Placebo 1 tab OD 1st day and 1 tab from day 2 to 5</description>
+  </arm_group>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Hydroxychloroquine</intervention_name>
+    <description>Hydroxychloroquine 200 mg tablet oral, one tablet three times a day for 7 days</description>
+    <arm_group_label>Combination therapy group</arm_group_label>
+    <arm_group_label>Monotherapy therapy group</arm_group_label>
+    <other_name>Plaquenil,</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Drug</intervention_type>
+    <intervention_name>Azithromycin</intervention_name>
+    <description>Azithromycin 250 mg capsules oral, 2 capsules on day one, followed by 1 capsule once a day for days 2-5.</description>
+    <arm_group_label>Combination therapy group</arm_group_label>
+    <other_name>Zithromax, Azithrocin</other_name>
+  </intervention>
+  <intervention>
+    <intervention_type>Other</intervention_type>
+    <intervention_name>Placebo Tablet</intervention_name>
+    <description>Oral, one tablet three times a day for 7 days</description>
+    <arm_group_label>Control group</arm_group_label>
+  </intervention>
+  <intervention>
+    <intervention_type>Other</intervention_type>
+    <intervention_name>Placebo capsules</intervention_name>
+    <description>Oral 2 capsules on day one, followed by 1 capsule once a day for days 2-5.</description>
+    <arm_group_label>Control group</arm_group_label>
+    <arm_group_label>Monotherapy therapy group</arm_group_label>
+  </intervention>
+  <eligibility>
+    <criteria>
+      <textblock>
+        Inclusion Criteria:&#xD;
+&#xD;
+          -  Patient is in HMC facility for low-acuity, Covid-positive patients being quarantined.&#xD;
+&#xD;
+          -  Positive Covid test on qualitative assay used during routine care (i.e. not as part of&#xD;
+             Q-PROTECT)&#xD;
+&#xD;
+          -  Age at least 18&#xD;
+&#xD;
+        Exclusion Criteria:&#xD;
+&#xD;
+          -  Treating physician judges patient not appropriate for study participation for any&#xD;
+             reason&#xD;
+&#xD;
+          -  Age &lt;18&#xD;
+&#xD;
+          -  Breastfeeding or pregnancy (patient-reported pregnancy status is sufficient)&#xD;
+&#xD;
+          -  Hypersensitivity to chloroquine or HC or AZ&#xD;
+&#xD;
+          -  History of or known QT prolongation&#xD;
+&#xD;
+               -  EKG required before study entry and on each visit during the subject's first&#xD;
+                  seven days on pro-tocol, during the time period HC is being taken&#xD;
+&#xD;
+               -  Baseline QTc &gt;480 if QRS width normal; QTc &gt;510 if QRS &gt;120&#xD;
+&#xD;
+          -  Known G6PD deficiency, porphyria, or retinopathy (eye exam prior to study entry)&#xD;
+&#xD;
+          -  Known hepatic or renal disease (or abnormality on liver or renal function testing at&#xD;
+             study day 1)&#xD;
+&#xD;
+          -  Low magnesium or low potassium (by testing on day 1)&#xD;
+&#xD;
+          -  Current (pre-study) therapy with antimalarial or dapsone&#xD;
+&#xD;
+          -  Current (pre-study) therapy with antiviral agents (e.g. oseltamivir)&#xD;
+&#xD;
+          -  Tisdale36 score exceeding 6 as tallied below (based on ACC recommendations)*&#xD;
+&#xD;
+               -  1 point each: age&gt;67, female sex, or being on loop diuretic&#xD;
+&#xD;
+               -  2 points each: serum potassium &lt;3.6, QTc&gt;449, acute myocardial infarction&#xD;
+&#xD;
+               -  3 points each: sepsis, heart failure, QT-prolonging drugs&#xD;
+      </textblock>
+    </criteria>
+    <gender>All</gender>
+    <minimum_age>18 Years</minimum_age>
+    <maximum_age>N/A</maximum_age>
+    <healthy_volunteers>No</healthy_volunteers>
+  </eligibility>
+  <overall_official>
+    <last_name>Tim R Harris</last_name>
+    <role>Principal Investigator</role>
+    <affiliation>Hamad Medical Corporation</affiliation>
+  </overall_official>
+  <location>
+    <facility>
+      <name>Hamad Medical Corporation</name>
+      <address>
+        <city>Doha</city>
+        <zip>3050</zip>
+        <country>Qatar</country>
+      </address>
+    </facility>
+  </location>
+  <location_countries>
+    <country>Qatar</country>
+  </location_countries>
+  <reference>
+    <citation>Zhu N, Zhang D, Wang W, Li X, Yang B, Song J, Zhao X, Huang B, Shi W, Lu R, Niu P, Zhan F, Ma X, Wang D, Xu W, Wu G, Gao GF, Tan W; China Novel Coronavirus Investigating and Research Team. A Novel Coronavirus from Patients with Pneumonia in China, 2019. N Engl J Med. 2020 Feb 20;382(8):727-733. doi: 10.1056/NEJMoa2001017. Epub 2020 Jan 24.</citation>
+    <PMID>31978945</PMID>
+  </reference>
+  <reference>
+    <citation>Chen N, Zhou M, Dong X, Qu J, Gong F, Han Y, Qiu Y, Wang J, Liu Y, Wei Y, Xia J, Yu T, Zhang X, Zhang L. Epidemiological and clinical characteristics of 99 cases of 2019 novel coronavirus pneumonia in Wuhan, China: a descriptive study. Lancet. 2020 Feb 15;395(10223):507-513. doi: 10.1016/S0140-6736(20)30211-7. Epub 2020 Jan 30.</citation>
+    <PMID>32007143</PMID>
+  </reference>
+  <reference>
+    <citation>Xu Z, Li S, Tian S, Li H, Kong LQ. Full spectrum of COVID-19 severity still being depicted. Lancet. 2020 Mar 21;395(10228):947-948. doi: 10.1016/S0140-6736(20)30308-1. Epub 2020 Feb 14.</citation>
+    <PMID>32066525</PMID>
+  </reference>
+  <reference>
+    <citation>Xu Z, Shi L, Wang Y, Zhang J, Huang L, Zhang C, Liu S, Zhao P, Liu H, Zhu L, Tai Y, Bai C, Gao T, Song J, Xia P, Dong J, Zhao J, Wang FS. Pathological findings of COVID-19 associated with acute respiratory distress syndrome. Lancet Respir Med. 2020 Apr;8(4):420-422. doi: 10.1016/S2213-2600(20)30076-X. Epub 2020 Feb 18. Erratum in: Lancet Respir Med. 2020 Feb 25;:.</citation>
+    <PMID>32085846</PMID>
+  </reference>
+  <reference>
+    <citation>Xu XW, Wu XX, Jiang XG, Xu KJ, Ying LJ, Ma CL, Li SB, Wang HY, Zhang S, Gao HN, Sheng JF, Cai HL, Qiu YQ, Li LJ. Clinical findings in a group of patients infected with the 2019 novel coronavirus (SARS-Cov-2) outside of Wuhan, China: retrospective case series. BMJ. 2020 Feb 19;368:m606. doi: 10.1136/bmj.m606. Erratum in: BMJ. 2020 Feb 27;368:m792.</citation>
+    <PMID>32075786</PMID>
+  </reference>
+  <reference>
+    <citation>Van Cuong L, Giang HTN, Linh LK, Shah J, Van Sy L, Hung TH, Reda A, Truong LN, Tien DX, Huy NT. The first Vietnamese case of COVID-19 acquired from China. Lancet Infect Dis. 2020 Apr;20(4):408-409. doi: 10.1016/S1473-3099(20)30111-0. Epub 2020 Feb 19. Erratum in: Lancet Infect Dis. 2020 Feb 24;:.</citation>
+    <PMID>32085849</PMID>
+  </reference>
+  <reference>
+    <citation>Wang CJ, Ng CY, Brook RH. Response to COVID-19 in Taiwan: Big Data Analytics, New Technology, and Proactive Testing. JAMA. 2020 Apr 14;323(14):1341-1342. doi: 10.1001/jama.2020.3151.</citation>
+    <PMID>32125371</PMID>
+  </reference>
+  <reference>
+    <citation>Adalja AA, Toner E, Inglesby TV. Priorities for the US Health Community Responding to COVID-19. JAMA. 2020 Apr 14;323(14):1343-1344. doi: 10.1001/jama.2020.3413.</citation>
+    <PMID>32125355</PMID>
+  </reference>
+  <reference>
+    <citation>Anderson M, Mckee M, Mossialos E. Covid-19 exposes weaknesses in European response to outbreaks. BMJ. 2020 Mar 18;368:m1075. doi: 10.1136/bmj.m1075.</citation>
+    <PMID>32188590</PMID>
+  </reference>
+  <reference>
+    <citation>Chatterjee P. Indian pharma threatened by COVID-19 shutdowns in China. Lancet. 2020 Feb 29;395(10225):675. doi: 10.1016/S0140-6736(20)30459-1.</citation>
+    <PMID>32113494</PMID>
+  </reference>
+  <reference>
+    <citation>Mahase E. Covid-19: WHO declares pandemic because of &quot;alarming levels&quot; of spread, severity, and inaction. BMJ. 2020 Mar 12;368:m1036. doi: 10.1136/bmj.m1036.</citation>
+    <PMID>32165426</PMID>
+  </reference>
+  <reference>
+    <citation>Wong JEL, Leo YS, Tan CC. COVID-19 in Singapore-Current Experience: Critical Global Issues That Require Attention and Action. JAMA. 2020 Apr 7;323(13):1243-1244. doi: 10.1001/jama.2020.2467.</citation>
+    <PMID>32077901</PMID>
+  </reference>
+  <reference>
+    <citation>Holshue ML, DeBolt C, Lindquist S, Lofy KH, Wiesman J, Bruce H, Spitters C, Ericson K, Wilkerson S, Tural A, Diaz G, Cohn A, Fox L, Patel A, Gerber SI, Kim L, Tong S, Lu X, Lindstrom S, Pallansch MA, Weldon WC, Biggs HM, Uyeki TM, Pillai SK; Washington State 2019-nCoV Case Investigation Team. First Case of 2019 Novel Coronavirus in the United States. N Engl J Med. 2020 Mar 5;382(10):929-936. doi: 10.1056/NEJMoa2001191. Epub 2020 Jan 31.</citation>
+    <PMID>32004427</PMID>
+  </reference>
+  <reference>
+    <citation>Mahase E. Covid-19: UK starts social distancing after new model points to 260 000 potential deaths. BMJ. 2020 Mar 17;368:m1089. doi: 10.1136/bmj.m1089.</citation>
+    <PMID>32184205</PMID>
+  </reference>
+  <reference>
+    <citation>Duan L, Zhu G. Psychological interventions for people affected by the COVID-19 epidemic. Lancet Psychiatry. 2020 Apr;7(4):300-302. doi: 10.1016/S2215-0366(20)30073-0. Epub 2020 Feb 19.</citation>
+    <PMID>32085840</PMID>
+  </reference>
+  <reference>
+    <citation>Baud D, Qi X, Nielsen-Saines K, Musso D, Pomar L, Favre G. Real estimates of mortality following COVID-19 infection. Lancet Infect Dis. 2020 Jul;20(7):773. doi: 10.1016/S1473-3099(20)30195-X. Epub 2020 Mar 12.</citation>
+    <PMID>32171390</PMID>
+  </reference>
+  <reference>
+    <citation>Huang C, Wang Y, Li X, Ren L, Zhao J, Hu Y, Zhang L, Fan G, Xu J, Gu X, Cheng Z, Yu T, Xia J, Wei Y, Wu W, Xie X, Yin W, Li H, Liu M, Xiao Y, Gao H, Guo L, Xie J, Wang G, Jiang R, Gao Z, Jin Q, Wang J, Cao B. Clinical features of patients infected with 2019 novel coronavirus in Wuhan, China. Lancet. 2020 Feb 15;395(10223):497-506. doi: 10.1016/S0140-6736(20)30183-5. Epub 2020 Jan 24. Erratum in: Lancet. 2020 Jan 30;:.</citation>
+    <PMID>31986264</PMID>
+  </reference>
+  <reference>
+    <citation>Zhou F, Yu T, Du R, Fan G, Liu Y, Liu Z, Xiang J, Wang Y, Song B, Gu X, Guan L, Wei Y, Li H, Wu X, Xu J, Tu S, Zhang Y, Chen H, Cao B. Clinical course and risk factors for mortality of adult inpatients with COVID-19 in Wuhan, China: a retrospective cohort study. Lancet. 2020 Mar 28;395(10229):1054-1062. doi: 10.1016/S0140-6736(20)30566-3. Epub 2020 Mar 11. Erratum in: Lancet. 2020 Mar 28;395(10229):1038. Lancet. 2020 Mar 28;395(10229):1038.</citation>
+    <PMID>32171076</PMID>
+  </reference>
+  <reference>
+    <citation>Chan JF, Yuan S, Kok KH, To KK, Chu H, Yang J, Xing F, Liu J, Yip CC, Poon RW, Tsoi HW, Lo SK, Chan KH, Poon VK, Chan WM, Ip JD, Cai JP, Cheng VC, Chen H, Hui CK, Yuen KY. A familial cluster of pneumonia associated with the 2019 novel coronavirus indicating person-to-person transmission: a study of a family cluster. Lancet. 2020 Feb 15;395(10223):514-523. doi: 10.1016/S0140-6736(20)30154-9. Epub 2020 Jan 24.</citation>
+    <PMID>31986261</PMID>
+  </reference>
+  <reference>
+    <citation>Ebrahim SH, Memish ZA. COVID-19: preparing for superspreader potential among Umrah pilgrims to Saudi Arabia. Lancet. 2020 Mar 14;395(10227):e48. doi: 10.1016/S0140-6736(20)30466-9. Epub 2020 Feb 27.</citation>
+    <PMID>32113506</PMID>
+  </reference>
+  <reference>
+    <citation>Baden LR, Rubin EJ. Covid-19 - The Search for Effective Therapy. N Engl J Med. 2020 May 7;382(19):1851-1852. doi: 10.1056/NEJMe2005477. Epub 2020 Mar 18.</citation>
+    <PMID>32187463</PMID>
+  </reference>
+  <reference>
+    <citation>Cao B, Wang Y, Wen D, Liu W, Wang J, Fan G, Ruan L, Song B, Cai Y, Wei M, Li X, Xia J, Chen N, Xiang J, Yu T, Bai T, Xie X, Zhang L, Li C, Yuan Y, Chen H, Li H, Huang H, Tu S, Gong F, Liu Y, Wei Y, Dong C, Zhou F, Gu X, Xu J, Liu Z, Zhang Y, Li H, Shang L, Wang K, Li K, Zhou X, Dong X, Qu Z, Lu S, Hu X, Ruan S, Luo S, Wu J, Peng L, Cheng F, Pan L, Zou J, Jia C, Wang J, Liu X, Wang S, Wu X, Ge Q, He J, Zhan H, Qiu F, Guo L, Huang C, Jaki T, Hayden FG, Horby PW, Zhang D, Wang C. A Trial of Lopinavir-Ritonavir in Adults Hospitalized with Severe Covid-19. N Engl J Med. 2020 May 7;382(19):1787-1799. doi: 10.1056/NEJMoa2001282. Epub 2020 Mar 18.</citation>
+    <PMID>32187464</PMID>
+  </reference>
+  <reference>
+    <citation>Russell CD, Millar JE, Baillie JK. Clinical evidence does not support corticosteroid treatment for 2019-nCoV lung injury. Lancet. 2020 Feb 15;395(10223):473-475. doi: 10.1016/S0140-6736(20)30317-2. Epub 2020 Feb 7.</citation>
+    <PMID>32043983</PMID>
+  </reference>
+  <reference>
+    <citation>Li Q, Guan X, Wu P, Wang X, Zhou L, Tong Y, Ren R, Leung KSM, Lau EHY, Wong JY, Xing X, Xiang N, Wu Y, Li C, Chen Q, Li D, Liu T, Zhao J, Liu M, Tu W, Chen C, Jin L, Yang R, Wang Q, Zhou S, Wang R, Liu H, Luo Y, Liu Y, Shao G, Li H, Tao Z, Yang Y, Deng Z, Liu B, Ma Z, Zhang Y, Shi G, Lam TTY, Wu JT, Gao GF, Cowling BJ, Yang B, Leung GM, Feng Z. Early Transmission Dynamics in Wuhan, China, of Novel Coronavirus-Infected Pneumonia. N Engl J Med. 2020 Mar 26;382(13):1199-1207. doi: 10.1056/NEJMoa2001316. Epub 2020 Jan 29.</citation>
+    <PMID>31995857</PMID>
+  </reference>
+  <reference>
+    <citation>Hellewell J, Abbott S, Gimma A, Bosse NI, Jarvis CI, Russell TW, Munday JD, Kucharski AJ, Edmunds WJ; Centre for the Mathematical Modelling of Infectious Diseases COVID-19 Working Group, Funk S, Eggo RM. Feasibility of controlling COVID-19 outbreaks by isolation of cases and contacts. Lancet Glob Health. 2020 Apr;8(4):e488-e496. doi: 10.1016/S2214-109X(20)30074-7. Epub 2020 Feb 28. Erratum in: Lancet Glob Health. 2020 Mar 5;:.</citation>
+    <PMID>32119825</PMID>
+  </reference>
+  <reference>
+    <citation>Vincent MJ, Bergeron E, Benjannet S, Erickson BR, Rollin PE, Ksiazek TG, Seidah NG, Nichol ST. Chloroquine is a potent inhibitor of SARS coronavirus infection and spread. Virol J. 2005 Aug 22;2:69.</citation>
+    <PMID>16115318</PMID>
+  </reference>
+  <reference>
+    <citation>Gautret P, Lagier JC, Parola P, Hoang VT, Meddeb L, Mailhe M, Doudier B, Courjon J, Giordanengo V, Vieira VE, Tissot Dupont H, Honoré S, Colson P, Chabrière E, La Scola B, Rolain JM, Brouqui P, Raoult D. Hydroxychloroquine and azithromycin as a treatment of COVID-19: results of an open-label non-randomized clinical trial. Int J Antimicrob Agents. 2020 Jul;56(1):105949. doi: 10.1016/j.ijantimicag.2020.105949. Epub 2020 Mar 20.</citation>
+    <PMID>32205204</PMID>
+  </reference>
+  <reference>
+    <citation>Wang M, Cao R, Zhang L, Yang X, Liu J, Xu M, Shi Z, Hu Z, Zhong W, Xiao G. Remdesivir and chloroquine effectively inhibit the recently emerged novel coronavirus (2019-nCoV) in vitro. Cell Res. 2020 Mar;30(3):269-271. doi: 10.1038/s41422-020-0282-0. Epub 2020 Feb 4.</citation>
+    <PMID>32020029</PMID>
+  </reference>
+  <reference>
+    <citation>Gao J, Tian Z, Yang X. Breakthrough: Chloroquine phosphate has shown apparent efficacy in treatment of COVID-19 associated pneumonia in clinical studies. Biosci Trends. 2020 Mar 16;14(1):72-73. doi: 10.5582/bst.2020.01047. Epub 2020 Feb 19.</citation>
+    <PMID>32074550</PMID>
+  </reference>
+  <reference>
+    <citation>Bacharier LB, Guilbert TW, Mauger DT, Boehmer S, Beigelman A, Fitzpatrick AM, Jackson DJ, Baxi SN, Benson M, Burnham CD, Cabana M, Castro M, Chmiel JF, Covar R, Daines M, Gaffin JM, Gentile DA, Holguin F, Israel E, Kelly HW, Lazarus SC, Lemanske RF Jr, Ly N, Meade K, Morgan W, Moy J, Olin T, Peters SP, Phipatanakul W, Pongracic JA, Raissy HH, Ross K, Sheehan WJ, Sorkness C, Szefler SJ, Teague WG, Thyne S, Martinez FD. Early Administration of Azithromycin and Prevention of Severe Lower Respiratory Tract Illnesses in Preschool Children With a History of Such Illnesses: A Randomized Clinical Trial. JAMA. 2015 Nov 17;314(19):2034-2044. doi: 10.1001/jama.2015.13896. Erratum in: JAMA. 2016 Jan 12;315(2):204. JAMA. 2016 Jan 26;315(4):419.</citation>
+    <PMID>26575060</PMID>
+  </reference>
+  <reference>
+    <citation>Hulswit RJ, de Haan CA, Bosch BJ. Coronavirus Spike Protein and Tropism Changes. Adv Virus Res. 2016;96:29-57. doi: 10.1016/bs.aivir.2016.08.004. Epub 2016 Sep 13. Review.</citation>
+    <PMID>27712627</PMID>
+  </reference>
+  <reference>
+    <citation>Arabi YM, Deeb AM, Al-Hameed F, Mandourah Y, Almekhlafi GA, Sindi AA, Al-Omari A, Shalhoub S, Mady A, Alraddadi B, Almotairi A, Al Khatib K, Abdulmomen A, Qushmaq I, Solaiman O, Al-Aithan AM, Al-Raddadi R, Ragab A, Al Harthy A, Kharaba A, Jose J, Dabbagh T, Fowler RA, Balkhy HH, Merson L, Hayden FG; Saudi Critical Care Trials group. Macrolides in critically ill patients with Middle East Respiratory Syndrome. Int J Infect Dis. 2019 Apr;81:184-190. doi: 10.1016/j.ijid.2019.01.041. Epub 2019 Jan 25.</citation>
+    <PMID>30690213</PMID>
+  </reference>
+  <reference>
+    <citation>Retallack H, Di Lullo E, Arias C, Knopp KA, Laurie MT, Sandoval-Espinosa C, Mancia Leon WR, Krencik R, Ullian EM, Spatazza J, Pollen AA, Mandel-Brehm C, Nowakowski TJ, Kriegstein AR, DeRisi JL. Zika virus cell tropism in the developing human brain and inhibition by azithromycin. Proc Natl Acad Sci U S A. 2016 Dec 13;113(50):14408-14413. Epub 2016 Nov 29.</citation>
+    <PMID>27911847</PMID>
+  </reference>
+  <reference>
+    <citation>To KK, Tsang OT, Leung WS, Tam AR, Wu TC, Lung DC, Yip CC, Cai JP, Chan JM, Chik TS, Lau DP, Choi CY, Chen LL, Chan WM, Chan KH, Ip JD, Ng AC, Poon RW, Luo CT, Cheng VC, Chan JF, Hung IF, Chen Z, Chen H, Yuen KY. Temporal profiles of viral load in posterior oropharyngeal saliva samples and serum antibody responses during infection by SARS-CoV-2: an observational cohort study. Lancet Infect Dis. 2020 May;20(5):565-574. doi: 10.1016/S1473-3099(20)30196-1. Epub 2020 Mar 23.</citation>
+    <PMID>32213337</PMID>
+  </reference>
+  <reference>
+    <citation>Zou L, Ruan F, Huang M, Liang L, Huang H, Hong Z, Yu J, Kang M, Song Y, Xia J, Guo Q, Song T, He J, Yen HL, Peiris M, Wu J. SARS-CoV-2 Viral Load in Upper Respiratory Specimens of Infected Patients. N Engl J Med. 2020 Mar 19;382(12):1177-1179. doi: 10.1056/NEJMc2001737. Epub 2020 Feb 19.</citation>
+    <PMID>32074444</PMID>
+  </reference>
+  <reference>
+    <citation>Tisdale JE, Jaynes HA, Kingery JR, Mourad NA, Trujillo TN, Overholser BR, Kovacs RJ. Development and validation of a risk score to predict QT interval prolongation in hospitalized patients. Circ Cardiovasc Qual Outcomes. 2013 Jul;6(4):479-87. doi: 10.1161/CIRCOUTCOMES.113.000152. Epub 2013 May 28. Erratum in: Circ Cardiovasc Qual Outcomes. 2013 Nov;6(6):e57.</citation>
+    <PMID>23716032</PMID>
+  </reference>
+  <verification_date>February 2021</verification_date>
+  <study_first_submitted>April 12, 2020</study_first_submitted>
+  <study_first_submitted_qc>April 14, 2020</study_first_submitted_qc>
+  <study_first_posted type="Actual">April 16, 2020</study_first_posted>
+  <last_update_submitted>February 21, 2021</last_update_submitted>
+  <last_update_submitted_qc>February 21, 2021</last_update_submitted_qc>
+  <last_update_posted type="Actual">February 23, 2021</last_update_posted>
+  <responsible_party>
+    <responsible_party_type>Principal Investigator</responsible_party_type>
+    <investigator_affiliation>Hamad Medical Corporation</investigator_affiliation>
+    <investigator_full_name>Tim Richard Edmund Harris</investigator_full_name>
+    <investigator_title>Professor Tim Richard Edmund Harris</investigator_title>
+  </responsible_party>
+  <keyword>Covid19</keyword>
+  <keyword>Qatar</keyword>
+  <keyword>Coronavirus</keyword>
+  <keyword>Hydroxychloroquine</keyword>
+  <keyword>Respiratory disease</keyword>
+  <keyword>Pandemic</keyword>
+  <keyword>Azithromycin</keyword>
+  <keyword>Viral Load</keyword>
+  <keyword>Emergency Department</keyword>
+  <keyword>SARS-CoV-2</keyword>
+  <intervention_browse>
+    <!-- CAUTION:  The following MeSH terms are assigned with an imperfect algorithm            -->
+    <mesh_term>Azithromycin</mesh_term>
+    <mesh_term>Hydroxychloroquine</mesh_term>
+  </intervention_browse>
+  <patient_data>
+    <sharing_ipd>No</sharing_ipd>
+  </patient_data>
+  <!-- Results have not yet been posted for this study                                          -->
+</clinical_study>
