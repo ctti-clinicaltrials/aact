@@ -1,4 +1,5 @@
 require 'open3'
+require 'open-uri'
 module Util
   class DbManager
 
@@ -510,7 +511,6 @@ module Util
       puts 'done'
 
       print 'restoring the database...'
-      # run_command_line("pg_restore -e -v -O -x -d #{database} #{path_to_file}")
       run_command_line("pg_restore -e -v -d #{database} --data-only #{path_to_file}")
       puts 'done'
       print 'removing indexes and contraints for safety...'
@@ -520,10 +520,45 @@ module Util
       print 'adding indexes and contraints...'
       add_indexes_and_constraints
       puts 'done'
+    end
+    
+    def restore_from_url(params={url: 'https://aact.ctti-clinicaltrials.org/static/static_db_copies/daily/20210407_clinical_trials.zip'})
+      url = params[:url]
+      tries ||= 5
+      file_path = "#{Rails.public_path}/tmp_downloads"
+      FileUtils.rm_rf(file_path)
+      FileUtils.mkdir_p file_path
+      file_name = "#{file_path}/snapshot.zip"
+      file = File.new file_name, 'w'
 
-      # print'setting search paths...'
-      # ActiveRecord::Base.connection.execute("alter role #{super_username} in database #{database} set search_path = ctgov, public, support, ctgov_beta;")
-      # puts "done"
+      print 'downloading file...'
+      begin
+        `curl -o #{file.path} #{url}`
+      rescue Errno::ECONNRESET => e
+        if (tries -=1) > 0
+          retry
+        end
+      end
+      puts 'done'
+
+      file.binmode
+
+      print 'extracting postgres_data.dmp...'
+      Zip::File.open(file) do |zip_file|
+        zip_file.each do |f|
+          if f.name == 'postgres_data.dmp'
+            fpath = File.join(file_path, f.name)
+            zip_file.extract(f, fpath) unless File.exist?(fpath)
+          end
+        end
+      end
+      puts 'done'
+
+      restore_from_file({path_to_file: "#{file_path}/postgres_data.dmp", database: 'aact'})
+      
+      print 'removing temp folder...'
+      FileUtils.rm_rf(file_path)
+      puts 'done'
     end
   end
 end
