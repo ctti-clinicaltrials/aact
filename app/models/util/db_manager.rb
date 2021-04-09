@@ -1,5 +1,4 @@
 require 'open3'
-require 'open-uri'
 module Util
   class DbManager
 
