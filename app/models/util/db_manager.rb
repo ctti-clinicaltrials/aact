@@ -521,8 +521,11 @@ module Util
       puts 'done'
     end
     
-    def restore_from_url(params={url: 'https://aact.ctti-clinicaltrials.org/static/static_db_copies/daily/20210407_clinical_trials.zip'})
+    def restore_from_url(params={})
       url = params[:url]
+      database_name = params[:database_name] || 'aact'
+      return unless url
+      
       tries ||= 5
       file_path = "#{Rails.public_path}/tmp_downloads"
       FileUtils.rm_rf(file_path)
@@ -553,7 +556,7 @@ module Util
       end
       puts 'done'
 
-      restore_from_file({path_to_file: "#{file_path}/postgres_data.dmp", database: 'aact'})
+      restore_from_file({path_to_file: "#{file_path}/postgres_data.dmp", database: database_name})
       
       print 'removing temp folder...'
       FileUtils.rm_rf(file_path)
