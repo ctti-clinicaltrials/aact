@@ -512,13 +512,13 @@ module Util
       print 'restoring the database...'
       run_command_line("pg_restore -e -v -d #{database} --data-only #{path_to_file}")
       puts 'done'
-      print 'removing indexes and contraints for safety...'
-      remove_indexes_and_constraints
-      puts 'done'
+      # print 'removing indexes and contraints for safety...'
+      # remove_indexes_and_constraints
+      # puts 'done'
 
-      print 'adding indexes and contraints...'
-      add_indexes_and_constraints
-      puts 'done'
+      # print 'adding indexes and contraints...'
+      # add_indexes_and_constraints
+      # puts 'done'
     end
     
     def restore_from_url(params={})
