@@ -31,6 +31,22 @@ CREATE SCHEMA support;
 
 
 --
+-- Name: category_insert_function(); Type: FUNCTION; Schema: ctgov; Owner: -
+--
+
+CREATE FUNCTION ctgov.category_insert_function() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+        BEGIN
+          INSERT INTO ctgov.search_results (id, nct_id, name, created_at, updated_at, grouping, study_search_id)
+
+          VALUES (NEW.id, NEW.nct_id, NEW.name, NEW.created_at, NEW.updated_at, NEW.grouping, NEW.study_search_id);
+          RETURN NEW;
+        END;
+        $$;
+
+
+--
 -- Name: count_estimate(text); Type: FUNCTION; Schema: ctgov; Owner: -
 --
 
@@ -3954,6 +3970,13 @@ CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_re
 
 
 --
+-- Name: categories category_insert_trigger; Type: TRIGGER; Schema: ctgov; Owner: -
+--
+
+CREATE TRIGGER category_insert_trigger INSTEAD OF INSERT ON ctgov.categories FOR EACH ROW EXECUTE FUNCTION ctgov.category_insert_function();
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -3982,6 +4005,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210108195415'),
 ('20210108200600'),
 ('20210216235354'),
-('20210308235723');
+('20210308235723'),
+('20210414222919');
 
 
