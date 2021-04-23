@@ -880,6 +880,18 @@ CREATE VIEW ctgov.categories AS
 
 
 --
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: central_contacts; Type: TABLE; Schema: ctgov; Owner: -
 --
 
