@@ -8,11 +8,11 @@ module Util
     # restart:       restart an existing load
     def initialize(params={})
       @full_featured = params[:full_featured] || false
-      @params=params
-      type=(params[:event_type] ? params[:event_type] : 'incremental')
+      @params = params
+      type = (params[:event_type] ? params[:event_type] : 'incremental')
       if params[:restart]
         log("Starting the #{type} load...")
-        type='restart'
+        type = 'restart'
       end
       @client = Util::Client.new
       @days_back=(params[:days_back] ? params[:days_back] : 2)
@@ -72,9 +72,10 @@ module Util
     # 3. run saved searches
     def incremental
       log("begin incremental load...")
-      log("finding studies changed in past #{@days_back} days...")
-      remove_indexes_and_constraints  # Index significantly slow the load process.
-      ids = Support::StudyXmlRecord.update_studies(days_back: @days_back)
+
+      remove_indexes_and_constraints
+      ids = Support::StudyXmlRecord.update_studies
+
       log('end of incremental load method')
       return true
     end
@@ -96,27 +97,44 @@ module Util
     # 8. create flat files
     def finalize_load
       log('finalizing load...')
+
+
+      load_event.log('add indexes and constraints..')
       add_indexes_and_constraints
 
+      load_event.log('execute study search...')
       if load_event.event_type == 'full'
         days_back = (Date.today - Date.parse('2013-01-01')).to_i
       end
       StudySearch.execute(days_back)
 
+      load_event.log('create calculated values...')
       create_calculated_values
-      populate_admin_tables
+
+      load_event.log('populate admin tables...')
+      # populate_admin_tables
+
+      load_event.log('run sanity checks...')
       run_sanity_checks
+
       return unless full_featured  # no need to continue unless configured as a fully featured implementation of AACT
       study_counts[:processed]=Study.count
+
+      load_event.log('taking snapshot...')
       take_snapshot
+
+      load_event.log('refreshing public db...')
       if refresh_public_db != true
         load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
         load_event.save!
       end
-      #db_mgr.grant_db_privs
+
       load_event.complete({:study_counts=>study_counts})
+
+      load_event.log('create flat files...')
       create_flat_files
-      Admin::PublicAnnouncement.clear_load_message
+
+      # Admin::PublicAnnouncement.clear_load_message
     end
 
     def remove_indexes_and_constraints
@@ -177,7 +195,7 @@ module Util
     end
 
     def log(msg)
-      puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
+      puts "#{Time.zone.now}: #{msg}"
     end
 
     def show_progress(nct_id,action)
@@ -265,7 +283,7 @@ module Util
       #  Call to ct.gov API has been known to timeout.  Catch it rather than abort the rest of the load
       #  Also, if a study is not found for the NCT ID we have, don't save an empty study
       begin
-        new_xml=@client.get_xml_for(nct_id)
+        new_xml = @client.get_xml_for(nct_id)
         Support::StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
         stime=Time.zone.now
         verify_xml=(new_xml.xpath('//clinical_study').xpath('source').text).strip

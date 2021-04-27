@@ -111,11 +111,10 @@ module Support
       ids.map{|k| k[:id] }
     end
 
-    def self.update_studies(days_back: 1, api: true)
+    def self.update_studies(api: true)
       logger = ActiveRecord::Base.logger
       ActiveRecord::Base.logger = nil
-      # reader = Util::RssReader.new(days_back: days_back)
-      # ids = (reader.get_changed_nct_ids + reader.get_added_nct_ids).uniq
+
       ids = to_update
       total = ids.length
       total_time = 0
@@ -233,6 +232,7 @@ module Support
       study.remove_study_data if study
       s = Time.now
       Study.new({ xml: Nokogiri::XML(content), nct_id: nct_id }).create
+      CalculatedValue.new.create_from(self).save
       puts "  insert-study #{Time.now - s}"
     end
   end

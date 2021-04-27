@@ -55,6 +55,9 @@ class ClinicalTrialsApi
       rescue Faraday::ConnectionFailed
         attempts += 1
         retry
+      rescue JSON::ParserError
+        attempts += 1
+        retry
       end
       found = json['StudyFieldsResponse']['NStudiesFound']
       puts "current: #{items.length} found: #{found}, min: #{offset} max: #{offset + 1000}"

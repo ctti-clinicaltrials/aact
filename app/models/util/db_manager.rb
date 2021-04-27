@@ -41,6 +41,27 @@ module Util
       return fm.pg_dump_file
     end
 
+    def dump_beta_database
+      File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
+      config = Study.connection.instance_variable_get('@config')
+      host, port, username, database = config[:host], config[:port], config[:username], config[:database]
+      host ||= 'localhost'
+      port ||= 5432
+
+      cmd = "
+        pg_dump  -v -h #{host} -p #{port} -U #{username} \
+        --clean --no-owner -b -c -C -Fc \
+        --exclude-table ar_internal_metadata \
+        --exclude-table schema_migrations \
+        --schema ctgov_beta  \
+        -f #{fm.pg_dump_file} \
+        #{database} \
+      "
+      puts cmd
+      run_command_line(cmd)
+      return fm.pg_dump_file
+    end
+
     # Restoring a database
     # 1. prevent new connections and disconnect current connections
     # 2. recreate the ctgov schema in the db
@@ -93,6 +114,13 @@ module Util
       return unless success
 
       restore_database(public_connection, fm.pg_dump_file)
+    end
+
+    def refresh_beta_public_db
+      # success = restore_database(beta_staging_connection, fm.pg_beta_dump_file)
+      # return unless success
+
+      restore_database(beta_public_connection, fm.pg_beta_dump_file)
     end
       
     def clear_out_data_for(nct_ids)
@@ -191,7 +219,7 @@ module Util
           end
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
       }
     end
@@ -479,6 +507,14 @@ module Util
       return unless db
       connection = PublicBase.establish_connection(db).connection
       connection.schema_search_path = 'ctgov'
+      return connection
+    end
+
+    def beta_public_connection
+      db = @config[:beta_public]
+      return unless db
+      connection = PublicBase.establish_connection(db).connection
+      connection.schema_search_path = 'ctgov_beta'
       return connection
     end
 

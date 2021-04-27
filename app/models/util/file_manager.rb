@@ -53,6 +53,10 @@ module Util
       "#{root_dir}/tmp/postgres.dmp"
     end
 
+    def pg_beta_dump_file
+      "#{root_dir}/tmp/beta_postgres.dmp"
+    end
+
     def dump_directory
       "#{root_dir}/tmp"
     end

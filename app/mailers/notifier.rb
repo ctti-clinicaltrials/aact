@@ -7,6 +7,7 @@ class Notifier < ApplicationMailer
   end
 
   def send_msg(email_addr, subject, body)
+    @body = body
     mail(to: email_addr, subject: subject, from: 'ctti@duke.edu')
   end
 
