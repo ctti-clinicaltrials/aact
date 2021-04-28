@@ -8,7 +8,7 @@ class AddSynonymViewForSearchResults < ActiveRecord::Migration[4.2]
   end
   def down
     execute <<-SQL
-      DROP VIEW ctgov.categories;
+      DROP VIEW IF EXISTS ctgov.categories CASCADE;
     SQL
   end
 end
