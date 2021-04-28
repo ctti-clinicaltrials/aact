@@ -503,16 +503,5 @@ module Util
       connection.schema_search_path = 'ctgov'
       return connection
     end
-
-    def grant_privs_read_only
-      public_con.execute("grant connect on database #{db_name} to read_only;")
-      public_con.execute('grant usage on schema ctgov to read_only;')
-      public_con.execute('grant select on all tables in schema ctgov to read_only;')
-      public_con.execute('alter default privileges in schema ctgov grant select on tables to read_only;')
-      beta_con.execute("grant connect on database #{beta_db_name} to read_only;")
-      beta_con.execute('grant usage on schema ctgov_beta to read_only;')
-      beta_con.execute('grant select on all tables in schema ctgov_beta to read_only;')
-      beta_con.execute('alter default privileges in schema ctgov_beta grant select on tables to read_only;')
-    end
   end
 end
