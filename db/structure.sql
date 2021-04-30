@@ -3317,13 +3317,6 @@ CREATE INDEX index_baseline_measurements_on_param_type ON ctgov.baseline_measure
 
 
 --
--- Name: index_brief_summaries_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_brief_summaries_on_nct_id ON ctgov.brief_summaries USING btree (nct_id);
-
-
---
 -- Name: index_browse_conditions_on_downcase_mesh_term; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3814,13 +3807,6 @@ CREATE INDEX index_studies_on_last_update_submitted_date ON ctgov.studies USING 
 
 
 --
--- Name: index_studies_on_last_update_submitted_qc_date; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_studies_on_last_update_submitted_qc_date ON ctgov.studies USING btree (last_update_submitted_qc_date);
-
-
---
 -- Name: index_studies_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3863,13 +3849,6 @@ CREATE INDEX index_studies_on_results_first_submitted_date ON ctgov.studies USIN
 
 
 --
--- Name: index_studies_on_results_first_submitted_qc_date; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_studies_on_results_first_submitted_qc_date ON ctgov.studies USING btree (results_first_submitted_qc_date);
-
-
---
 -- Name: index_studies_on_source; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3898,24 +3877,10 @@ CREATE INDEX index_studies_on_study_first_submitted_date ON ctgov.studies USING 
 
 
 --
--- Name: index_studies_on_study_first_submitted_qc_date; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_studies_on_study_first_submitted_qc_date ON ctgov.studies USING btree (study_first_submitted_qc_date);
-
-
---
 -- Name: index_studies_on_study_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_studies_on_study_type ON ctgov.studies USING btree (study_type);
-
-
---
--- Name: index_study_references_on_pmid; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_study_references_on_pmid ON ctgov.study_references USING btree (pmid);
 
 
 --
@@ -3986,14 +3951,6 @@ CREATE INDEX "index_support.study_xml_records_on_created_study_at" ON support.st
 --
 
 CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_records USING btree (nct_id);
-
-
---
--- Name: brief_summaries brief_summaries_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.brief_summaries
-    ADD CONSTRAINT brief_summaries_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
 
 
 --
