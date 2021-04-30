@@ -42,7 +42,11 @@ namespace :db do
 
   task copy_schema: [:environment] do
     aact_superuser = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'
-    aact_back_db = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
+    if ENV['RAILS_ENV'] == 'test'
+      aact_back_db = 'aact_test'
+    else
+      aact_back_db = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
+    end
     extra = "-h #{ENV['AACT_HOST'] || 'localhost'} -p #{ENV['AACT_PORT'] || '5432'}"
     `pg_dump -U #{aact_superuser} --schema='ctgov' --schema-only #{aact_back_db} #{extra} | sed 's/ctgov/ctgov_beta/g' | psql -U #{aact_superuser} -d #{aact_back_db} #{extra}`
   end

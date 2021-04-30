@@ -7,6 +7,9 @@ This is a ruby on rails application that retreives the content of ClinicalTrials
 
 If you need a copy of the database, but don't want to bother installing & running this app, copies of the database are available for download from the <a href='https://aact.ctti-clinicaltrials.org/snapshots' target='_blank'>AACT website (Download page).</a> We use pg_dump to create a snapshot of the database after each nightly update, so a version is always available with the most current info from ClinicalTrials.gov.
 
+Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describes their purposes.
+![Visualization of the database arrangment for AACT(backend) and AACT-Admin(frontend)](public/aact_architecture.png "AACT Database Visualization")
+
 ## Getting Started
 
 These instructions assume you're on a Mac. Linux users will need to use yum or apt-get to install tools. (Apologies to Windows users.)
