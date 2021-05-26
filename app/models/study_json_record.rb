@@ -277,6 +277,8 @@ class StudyJsonRecord < ActiveRecord::Base
     biospec = key_check(design['BioSpec'])
     arms_intervention = key_check(@protocol_section['ArmsInterventionsModule'])
     study_type = design['StudyType']
+    patient_registry = design['PatientRegistry'] || ''
+    study_type = "#{study_type} [Patient Registry]" if patient_registry =~ /Yes/i
     group_list = key_check(arms_intervention['ArmGroupList'])
     groups = group_list['ArmGroup'] || []
     num_of_groups = groups.count == 0 ? nil : groups.count
