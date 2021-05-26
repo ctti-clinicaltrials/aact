@@ -3989,6 +3989,7 @@ CREATE TRIGGER category_insert_trigger INSTEAD OF INSERT ON ctgov.categories FOR
 
 
 --
+
 -- PostgreSQL database dump complete
 --
 
