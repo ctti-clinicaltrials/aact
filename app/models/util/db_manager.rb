@@ -440,7 +440,7 @@ module Util
     end
 
     def public_beta_con
-      return @bpublic_beta_con if @public_beta_con and @public_beta_con.active?
+      return @public_beta_con if @public_beta_con and @public_beta_con.active?
       @public_beta_con ||= ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_BETA_DATABASE_URL).connection
       @public_beta_con.schema_search_path='ctgov_beta'
       return @public_beta_con
