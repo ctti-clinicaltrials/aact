@@ -440,7 +440,7 @@ module Util
 
     def beta_con
       return @beta_con if @beta_con and @beta_con.active?
-      @beta_con ||= ActiveRecord::Base.establish_connection(AACT::Application::AACT_BETA_DATABASE_URL).connection
+      @beta_con ||= ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_BETA_DATABASE_URL).connection
       @beta_con.schema_search_path='ctgov_beta'
       return @beta_con
     end
