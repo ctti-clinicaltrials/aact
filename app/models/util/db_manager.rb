@@ -130,11 +130,11 @@ module Util
       public_alt_con.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 200;")
       public_alt_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
       public_alt_con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
-      beta_con.execute("ALTER DATABASE #{beta_db_name} CONNECTION LIMIT 200;")
-      beta_con.execute("grant connect on database #{beta_db_name} to read_only;")
-      beta_con.execute('grant usage on schema ctgov_beta to read_only;')
-      beta_con.execute('grant select on all tables in schema ctgov_beta to read_only;')
-      beta_con.execute('alter default privileges in schema ctgov_beta grant select on tables to read_only;')
+      public_beta_con.execute("ALTER DATABASE #{public_beta_db_name} CONNECTION LIMIT 200;")
+      public_beta_con.execute("grant connect on database #{public_beta_db_name} to read_only;")
+      public_beta_con.execute('grant usage on schema ctgov_beta to read_only;')
+      public_beta_con.execute('grant select on all tables in schema ctgov_beta to read_only;')
+      public_beta_con.execute('alter default privileges in schema ctgov_beta grant select on tables to read_only;')
     end
 
     def public_db_accessible?
@@ -438,11 +438,11 @@ module Util
       return @con
     end
 
-    def beta_con
-      return @beta_con if @beta_con and @beta_con.active?
-      @beta_con ||= ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_BETA_DATABASE_URL).connection
-      @beta_con.schema_search_path='ctgov_beta'
-      return @beta_con
+    def public_beta_con
+      return @bpublic_beta_con if @public_beta_con and @public_beta_con.active?
+      @public_beta_con ||= ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_BETA_DATABASE_URL).connection
+      @public_beta_con.schema_search_path='ctgov_beta'
+      return @public_beta_con
     end
 
     def migration
@@ -477,8 +477,8 @@ module Util
       AACT::Application::AACT_PUBLIC_DATABASE_NAME
     end
 
-    def beta_db_name
-      AACT::Application::AACT_BETA_DATABASE_NAME
+    def public_beta_db_name
+      AACT::Application::AACT_PUBLIC_BETA_DATABASE_NAME
     end
 
     def super_username
