@@ -121,6 +121,7 @@ module Util
       log "  db_manager: set connection limit so only db owner can login..."
       public_con.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 0;")
       public_alt_con.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 0;")
+      public_beta_con.execute("ALTER DATABASE #{public_beta_db_name} CONNECTION LIMIT 0;")
     end
 
     def grant_db_privs
