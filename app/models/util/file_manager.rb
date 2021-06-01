@@ -49,8 +49,12 @@ module Util
       end
     end
 
-    def pg_dump_file
-      "#{root_dir}/tmp/postgres.dmp"
+    def pg_dump_file(schema='')
+      if schema == 'beta'
+        "#{root_dir}/tmp/beta_postgres.dmp"
+      else
+        "#{root_dir}/tmp/postgres.dmp"
+      end
     end
 
     def pg_beta_dump_file

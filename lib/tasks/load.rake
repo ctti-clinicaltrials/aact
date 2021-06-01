@@ -17,4 +17,8 @@ namespace :db do
     StudyJsonRecord.run(args)
     puts StudyJsonRecord.comparison
   end
+
+  task :load2, [:schema, :search_days_back] => :environment do |t, args|
+    Util::Updater.new(args).execute
+  end
 end

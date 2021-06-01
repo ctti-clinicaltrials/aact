@@ -20,7 +20,7 @@ module Util
     end
 
     # generate a db dump file
-    def dump_database
+    def dump_database(schema='ctgov')
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
       config = Study.connection.instance_variable_get('@config')
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
@@ -32,8 +32,8 @@ module Util
         --clean --no-owner -b -c -C -Fc \
         --exclude-table ar_internal_metadata \
         --exclude-table schema_migrations \
-        --schema ctgov  \
-        -f #{fm.pg_dump_file} \
+        --schema #{schema == 'beta' ? 'ctgov_beta' : 'ctgov'}  \
+        -f #{fm.pg_dump_file(schema)} \
         #{database} \
       "
       puts cmd
@@ -68,23 +68,24 @@ module Util
     # 3. restore teh db from file
     # 4. verify the study count (permissions are not granted again to prevent bad data from being used)
     # 5. grant connection permissions again
-    def restore_database(connection, filename)
+    def restore_database(schema_type, connection, filename)
       config = connection.instance_variable_get('@config')
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
+      schema = schema_type == 'beta' ? 'ctgov_beta' : 'ctgov'
 
       # prevent new connections and drop current connections
       connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 0;")
       connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{database}' AND usename <> '#{username}'")
 
       # drop the schema
-      log "  dropping ctgov schema in #{host}:#{port}/#{database} database..."
+      log "  dropping #{schema} schema in #{host}:#{port}/#{database} database..."
       begin
-        connection.execute("DROP SCHEMA ctgov CASCADE;")
+        connection.execute("DROP SCHEMA #{schema} CASCADE;")
       rescue ActiveRecord::StatementInvalid => e
         log(e.message)
       end
-      connection.execute("CREATE SCHEMA ctgov;")
-      connection.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      connection.execute("CREATE SCHEMA #{schema};")
+      connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
 
       # restore database
       log "  restoring #{host}:#{port}/#{database} database..."
@@ -100,8 +101,8 @@ module Util
 
       # allow users to access database again
       connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 200;")
-      connection.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
-      connection.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
+      connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
+      connection.execute("GRANT SELECT ON ALL TABLES IN SCHEMA #{schema} TO READ_ONLY;")
 
       return true
     end
@@ -109,11 +110,11 @@ module Util
     # process for deploying database to digital ocean
     # 1. try restoring to staging db
     # 2. if successful restore to public db
-    def refresh_public_db
-      success = restore_database(staging_connection, fm.pg_dump_file)
+    def refresh_public_db(schema)
+      success = restore_database(schema, staging_connection(schema), fm.pg_dump_file(schema))
       return unless success
 
-      restore_database(public_connection, fm.pg_dump_file)
+      restore_database(schema, public_connection(schema), fm.pg_dump_file(schema))
     end
 
     def refresh_beta_public_db
@@ -139,7 +140,7 @@ module Util
 
     def public_study_count
       begin
-        public_alt_con.execute('select count(*) from studies;').first['count'].to_i
+        public_connection.execute('select count(*) from studies;').first['count'].to_i
       rescue
         return 0
       end
@@ -421,6 +422,38 @@ module Util
       ]
     end
 
+    def schema_image
+      models = loadable_tables.map{|k| k.singularize.camelize.constantize }
+      nodes = models.map{|k| table_dot(k)}.join("\n\n")
+      edges = foreign_key_constraints.map{|k| "#{k[:child_table].singularize.camelize} -> #{k[:parent_table].singularize.camelize}"}.join("\n")
+      edges2 = StudyRelationship.study_models.map{|k| "#{k.name} -> Study"}.join("\n")
+    graph = <<-END
+    digraph {
+      graph [pad="0.5", splines=true, nodesep="5", ranksep="2", overlap=false];
+      node [shape=plain]
+      /*rankdir=LR;*/
+
+      #{nodes}
+
+      #{edges}
+      #{edges2}
+    }
+    END
+    File.write("schema.dot", graph)
+    `neato -Tpng schema.dot -o schema.png`
+    end
+
+    def table_dot(model)
+      attributes = model.columns_hash.map{|k,v| "<tr><td>#{k}</td><td>#{v.type}</td></tr>" }.join("\n")
+      code = <<-END
+        #{model.name} [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>#{model.name}</b></td></tr>
+          #{attributes}
+        </table>>];
+      END
+    end
+
     def one_to_one_related_tables
       [ 'brief_summaries', 'designs','detailed_descriptions', 'eligibilities', 'participant_flows', 'calculated_values' ]
     end
@@ -457,7 +490,7 @@ module Util
       return @con if @con and @con.active?
       ActiveRecord::Base.establish_connection(back_db_url)
       @con = ActiveRecord::Base.connection
-      @con.schema_search_path=@search_path
+      # @con.schema_search_path=@search_path
       return @con
     end
 
@@ -502,11 +535,15 @@ module Util
     end
 
 
-    def public_connection
+    def public_connection(schema)
       db = @config[:public]
       return unless db
       connection = PublicBase.establish_connection(db).connection
-      connection.schema_search_path = 'ctgov'
+      if schema == 'beta'
+        connection.schema_search_path = 'ctgov_beta'
+      else
+        connection.schema_search_path = 'ctgov'
+      end
       return connection
     end
 
@@ -518,11 +555,15 @@ module Util
       return connection
     end
 
-    def staging_connection
+    def staging_connection(schema)
       db = @config[:staging]
       return unless db
       connection = PublicBase.establish_connection(db).connection
-      connection.schema_search_path = 'ctgov'
+      if schema == 'beta'
+        connection.schema_search_path = 'ctgov_beta'
+      else
+        connection.schema_search_path = 'ctgov'
+      end
       return connection
     end
   end
