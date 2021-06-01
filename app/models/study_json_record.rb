@@ -183,6 +183,43 @@ class StudyJsonRecord < ActiveRecord::Base
     "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
   end
 
+  def create_or_update_study
+    study = Study.find_by(nct_id: nct_id)
+    study.remove_study_data if study
+    s = Time.now
+    build_study
+    # CalculatedValue.new.create_from(self).save
+    puts "  insert-study #{Time.now - s}"
+  end
+
+  def update_from_api
+    url = "https://clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5D#{nct_id}&min_rnk=1&max_rnk=&fmt=json"
+    attempts = 0
+    content = nil
+    response = nil
+    begin
+      attempts += 1
+      s = Time.now
+      content = Faraday.get(url).body
+      response = JSON.parse(content)
+      puts "  fetch #{Time.now - s}"
+    rescue Faraday::ConnectionFailed
+      return false if attempts > 5
+      retry
+    rescue JSON::ParserError
+      return false if attempts > 5
+      retry
+    end
+    content = response.dig('FullStudiesResponse', 'FullStudies').first
+    if content
+      self.content = content
+      return false unless changed?
+      return update content: content, download_date: Time.now
+    else
+      # add error
+    end
+  end
+
   def key_check(key)
     key ||= {}
   end

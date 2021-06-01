@@ -5,7 +5,8 @@ ruby "2.6.2"
 gem "sprockets"
 gem "rubyzip", ">= 1.2.2"
 
-# gem 'inky-rb', require: 'inky'
+gem 'inky-rb', require: 'inky'
+gem 'haml'
 gem 'premailer-rails'
 gem 'foundation_emails'
 

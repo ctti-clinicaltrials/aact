@@ -1,0 +1,7 @@
+%container
+  %row
+    %columns
+      %h5 ClinicalTrials: #{@ctgov_count}
+    %columns
+      %h5 DigitalOcean: #{@public_study_count}
+#{raw @body.gsub("\n", "<br/>")}

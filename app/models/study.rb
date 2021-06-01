@@ -151,7 +151,7 @@ class Study < ActiveRecord::Base
     Sponsor.create_all_from(opts)
     # During full load, indexes are dropped. Populating CalculatedValues requires several db queries - so they're scanned and very slow.
     # Populate the CalculatedValues after the indexes have been recreated after the full load completes.
-    #CalculatedValue.new.create_from(self).save
+    CalculatedValue.new.create_from(self).save if ENV['load_type'] == 'incremental'
     self
   end
 
@@ -392,5 +392,4 @@ class Study < ActiveRecord::Base
       + where('source like ?',"%#{org}%").pluck(:nct_id)).flatten.uniq
     where(nct_id: ids).includes(:sponsors).includes(:facilities).includes(:brief_summary).includes(:detailed_description).includes(:design).includes(:eligibility).includes(:overall_officials).includes(:responsible_parties)
   end
-
 end
