@@ -566,5 +566,71 @@ module Util
       end
       return connection
     end
+
+    def restore_from_file(params={path_to_file: '~/Downloads/postgres_data.dmp', database: 'aact'})
+      # you can use this method to setup your database but make sure you have a postgres dump file path to give to it
+      path_to_file = params[:path_to_file] || '~/Downloads/postgres_data.dmp'
+      database = params[:database] || 'aact'
+
+      print 'dropping databases...'
+      run_command_line("bin/rake db:drop")
+      puts 'done'
+
+      print 'recreating databases...'
+      run_command_line("bin/rake db:create")
+      run_command_line("bin/rake db:create RAILS_ENV=test")
+      puts 'done'
+
+      print 'running migrations...'
+      run_command_line("bin/rake db:migrate")
+      run_command_line("bin/rake db:migrate RAILS_ENV=test")
+      puts 'done'
+
+      print 'restoring the database...'
+      run_command_line("pg_restore -e -v -d #{database} --data-only #{path_to_file}")
+      puts 'done'
+    end
+    
+    def restore_from_url(params={})
+      url = params[:url]
+      database_name = params[:database_name] || 'aact'
+      return unless url
+      
+      tries ||= 5
+      file_path = "#{Rails.public_path}/tmp_downloads"
+      FileUtils.rm_rf(file_path)
+      FileUtils.mkdir_p file_path
+      file_name = "#{file_path}/snapshot.zip"
+      file = File.new file_name, 'w'
+
+      print 'downloading file...'
+      begin
+        `curl -o #{file.path} #{url}`
+      rescue Errno::ECONNRESET => e
+        if (tries -=1) > 0
+          retry
+        end
+      end
+      puts 'done'
+
+      file.binmode
+
+      print 'extracting postgres_data.dmp...'
+      Zip::File.open(file) do |zip_file|
+        zip_file.each do |f|
+          if f.name == 'postgres_data.dmp'
+            fpath = File.join(file_path, f.name)
+            zip_file.extract(f, fpath) unless File.exist?(fpath)
+          end
+        end
+      end
+      puts 'done'
+
+      restore_from_file({path_to_file: "#{file_path}/postgres_data.dmp", database: database_name})
+      
+      print 'removing temp folder...'
+      FileUtils.rm_rf(file_path)
+      puts 'done'
+    end
   end
 end
