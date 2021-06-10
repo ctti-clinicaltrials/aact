@@ -12,8 +12,8 @@ module Util
       @full_featured = params[:full_featured] || false
       @params = params
       type = (params[:event_type] || 'incremental')
-      @schema = params.schema
-      @search_days_back = params.search_days_back
+      @schema = params[:schema]
+      @search_days_back = params[:search_days_back]
       ENV['load_type'] = type
       if params[:restart]
         log("Starting the #{type} load...")
@@ -63,21 +63,23 @@ module Util
       CalculatedValue.populate
 
       # 6. run sanity checks
-      # still waiting...
+      load_event.run_sanity_checks
 
-      # 7. take snapshot
-      log("#{schema} take snapshot...")
-      take_snapshot(schema)
+      if load_event.sanity_checks.count == 0
+        # 7. take snapshot
+        log("#{schema} take snapshot...")
+        take_snapshot(schema)
 
-      # 8. refresh public db
-      log("#{schema} refresh public db...")
-      db_mgr.refresh_public_db(schema)
+        # 8. refresh public db
+        log("#{schema} refresh public db...")
+        db_mgr.refresh_public_db(schema)
 
-      # 9. create flat files
-      if schema == 'beta'
-      else
-        log("#{schema} creating flat files...")
-        create_flat_files(schema)
+        # 9. create flat files
+        if schema == 'beta'
+        else
+          log("#{schema} creating flat files...")
+          create_flat_files(schema)
+        end
       end
 
       # 10. send email
@@ -189,7 +191,7 @@ module Util
       log('begin incremental load...')
 
       db_mgr.remove_constrains
-      ids = Support::StudyXmlRecord.update_studies
+      Support::StudyXmlRecord.update_studies
       db_mgr.add_constraints
 
       log('end of incremental load method')
@@ -200,57 +202,6 @@ module Util
       log('retrieving xml from clinicaltrials.gov...')
       Support::SupportBase.connection.execute('TRUNCATE TABLE study_xml_records CASCADE')
       @client.save_file_contents(@client.download_xml_files)
-    end
-
-    # Steps:
-    # 1. add indexes and constraints
-    # 2. execute saved search
-    # 3. create calculated values
-    # 4. populate admin tables
-    # 5. run sanity checks
-    # 6. take snapshot
-    # 7. refreh public db
-    # 8. create flat files
-    def finalize_load
-      log('finalizing load...')
-
-      load_event.log('add indexes and constraints..')
-      add_indexes_and_constraints if params[:event_type] == 'full'
-
-      load_event.log('execute study search...')
-      days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
-      StudySearch.execute(days_back)
-
-      if load_event.event_type == 'full'
-        load_event.log('create calculated values...')
-        create_calculated_values
-      end
-
-      load_event.log('populate admin tables...')
-      # populate_admin_tables
-
-      load_event.log('run sanity checks...')
-      run_sanity_checks
-
-      return unless full_featured # no need to continue unless configured as a fully featured implementation of AACT
-
-      study_counts[:processed] = Study.count
-
-      load_event.log('taking snapshot...')
-      take_snapshot
-
-      load_event.log('refreshing public db...')
-      if refresh_public_db != true
-        load_event.problems = 'DID NOT UPDATE PUBLIC DATABASE.' + load_event.problems
-        load_event.save!
-      end
-
-      load_event.complete({ study_counts: study_counts })
-
-      load_event.log('create flat files...')
-      create_flat_files
-
-      # Admin::PublicAnnouncement.clear_load_message
     end
 
     def remove_indexes_and_constraints
@@ -266,24 +217,6 @@ module Util
     def create_calculated_values
       log('creating calculated values...')
       CalculatedValue.populate
-    end
-
-    def self.loadable_tables
-      blacklist = %w[
-        ar_internal_metadata
-        schema_migrations
-        data_definitions
-        mesh_headings
-        mesh_terms
-        load_events
-        sanity_checks
-        study_searches
-        statistics
-        study_xml_records
-        use_cases
-        use_case_attachments
-      ]
-      table_names = ActiveRecord::Base.connection.tables.reject { |table| blacklist.include?(table) }
     end
 
     def log(msg)
@@ -308,35 +241,6 @@ module Util
     def run_sanity_checks
       log('running sanity checks...')
       Support::SanityCheck.new.run
-    end
-
-    # 1. adding all the sanity check issues to the load event
-    # 2. Verify that the sanity checks ran no more than 2 hours ago
-    # 3. Verify that the number of studies in the alt database differs by at most 10 studies
-    def sanity_checks_ok?
-      log '  sanity checks ok?....'
-
-      # add all issues to the load event
-      Support::SanityCheck.current_issues.each { |issue| load_event.add_problem(issue) }
-
-      # load all the sanity checks
-      sanity_set = Support::SanityCheck.where(most_current: true)
-      if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
-        load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.")
-      end
-
-      # because ct.gov cleans up and removes duplicate studies,
-      # sometimes the new count is a bit less then the old count.
-      # Fudge up by 10 studies to avoid incorrectly preventing a
-      # refresh due to ct.gov having deleted studies.
-      old_count = db_mgr.public_study_count - 10
-      new_count = Study.count
-      if old_count > new_count
-        load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})")
-      end
-
-      log(load_event.problems) unless load_event.problems.blank?
-      load_event.problems.blank?
     end
 
     def refresh_data_definitions(data = Util::FileManager.new.default_data_definitions)
@@ -372,7 +276,7 @@ module Util
 
     def truncate_tables
       log('truncating tables...')
-      Util::Updater.loadable_tables.each do |table|
+      Util::DbManager.loadable_tables.each do |table|
         ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} CASCADE")
       end
     end

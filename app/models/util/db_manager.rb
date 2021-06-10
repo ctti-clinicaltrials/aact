@@ -126,7 +126,7 @@ module Util
       
     def clear_out_data_for(nct_ids)
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
-      loadable_tables.each { |table|
+      Util::DbManager.loadable_tables.each { |table|
         stime=Time.zone.now
         con.execute("DELETE FROM #{@search_path}.#{table} WHERE nct_id IN (#{ids})")
         log("deleted studies from #{@search_path}.#{table}   #{Time.zone.now - stime}")
@@ -205,7 +205,7 @@ module Util
     def add_indexes
       indexes.each{|index| migration.add_index index.first, index.last  if !migration.index_exists?(index.first, index.last)}
       #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
-      loadable_tables.each {|table_name|
+      Util::DbManager.loadable_tables.each {|table_name|
         begin
           if table_name != 'studies'  # studies.nct_id unique index persists.  Don't add/remove it.
             if one_to_one_related_tables.include? table_name
@@ -241,7 +241,7 @@ module Util
     end
 
     def remove_indexes_and_constraints
-      loadable_tables.each {|table_name|
+      Util::DbManager.loadable_tables.each {|table_name|
         # remove foreign key that links most tables to Studies table via the NCT ID
         begin
           con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
@@ -273,7 +273,7 @@ module Util
     end
 
     def remove_constrains
-      loadable_tables.each {|table_name|
+      Util::DbManager.loadable_tables.each {|table_name|
         # remove foreign key that links most tables to Studies table via the NCT ID
         begin
           con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
@@ -295,7 +295,7 @@ module Util
       }
     end
 
-    def loadable_tables
+    def self.loadable_tables
       blacklist = %w(
         ar_internal_metadata
         schema_migrations
@@ -423,7 +423,7 @@ module Util
     end
 
     def schema_image
-      models = loadable_tables.map{|k| k.singularize.camelize.constantize }
+      models = Util::DbManager.loadable_tables.map{|k| k.singularize.camelize.constantize }
       nodes = models.map{|k| table_dot(k)}.join("\n\n")
       edges = foreign_key_constraints.map{|k| "#{k[:child_table].singularize.camelize} -> #{k[:parent_table].singularize.camelize}"}.join("\n")
       edges2 = StudyRelationship.study_models.map{|k| "#{k.name} -> Study"}.join("\n")

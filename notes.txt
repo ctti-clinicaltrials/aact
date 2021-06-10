@@ -1,0 +1,29 @@
+sudo docker run 
+--network host
+-it
+-e RAILS_ENV=production 
+
+# backend server
+-e AACT_HOST=localhost
+-e AACT_PORT=5432 
+-e AACT_DB_SUPER_USERNAME=ctti 
+-e AACT_PASSWORD=g0t0Eswatini! 
+
+# frontend server
+-e AACT_PUBLIC_HOSTNAME=aact-db.ctti-clinicaltrials.org 
+-e PGPASSWORD=g0t0Eswatini! 
+
+# email credentials
+-e EMAIL_USERNAME=ramiro@codethedream.org 
+-e EMAIL_PASSWORD="\$f)\$C9xAQ9o-7b<<szoc\`nEQU" 
+
+# email stuff
+-e AACT_ADMIN_EMAILS=ramiro@codethedream.org 
+-e AACT_OWNER_EMAIL=ramiro@codethedream.org 
+
+# config mount
+-v /home/ctti-aact/config-test:/config:z 
+
+# mount 1
+-v /aact-files:/app/public/static 
+aact/core:4.5.3 bash
