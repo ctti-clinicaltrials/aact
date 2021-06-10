@@ -268,18 +268,6 @@ module Util
       CalculatedValue.populate
     end
 
-    def self.single_study_tables
-      %w[
-        brief_summaries
-        designs
-        detailed_descriptions
-        eligibilities
-        participant_flows
-        calculated_values
-        studies
-      ]
-    end
-
     def self.loadable_tables
       blacklist = %w[
         ar_internal_metadata

@@ -440,7 +440,7 @@ module Util
     }
     END
     File.write("schema.dot", graph)
-    `neato -Tpng schema.dot -o schema.png`
+    `dot -Tpng schema.dot -o schema.png`
     end
 
     def table_dot(model)
