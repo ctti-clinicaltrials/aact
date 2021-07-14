@@ -144,12 +144,11 @@ module Util
         ActiveRecord::Base.logger = nil
         status = case params[:event_type]
                  when 'full'
-                  #  full
+                   full
                  else
-                  #  incremental
+                   incremental
                  end
         finalize_load if status != false
-        byebug
       rescue StandardError => e
         begin
           status = false
