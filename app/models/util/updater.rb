@@ -1,50 +1,165 @@
-module Util
- class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :db_mgr, :full_featured
+# frozen_string_literal: true
 
-    # days_back:     number of days 
+module Util
+  class Updater
+    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :full_featured, :schema, :search_days_back
+
+    # days_back:     number of days
     # full_featured: restore public db if true
     # event_type:    type of load 'full' or 'incremental'
     # restart:       restart an existing load
-    def initialize(params={})
+    def initialize(params = {})
       @full_featured = params[:full_featured] || false
-      @params=params
-      type=(params[:event_type] ? params[:event_type] : 'incremental')
+      @params = params
+      type = (params[:event_type] || 'incremental')
+      @schema = params.schema
+      @search_days_back = params.search_days_back
+      ENV['load_type'] = type
       if params[:restart]
         log("Starting the #{type} load...")
-        type='restart'
+        type = 'restart'
       end
       @client = Util::Client.new
-      @days_back=(params[:days_back] ? params[:days_back] : 2)
+      @days_back = (params[:days_back] || 4)
       @rss_reader = Util::RssReader.new(days_back: @days_back)
-      @load_event = Support::LoadEvent.create({:event_type=>type,:status=>'running',:description=>'',:problems=>''})
-      @load_event.save!  # Save to timestamp created_at
-      @study_counts={:should_add=>0,:should_change=>0,:processed=>0,:count_down=>0}
+      @load_event = Support::LoadEvent.create({ event_type: type, status: 'running', description: '', problems: '' })
+      @load_event.save! # Save to timestamp created_at
+      @study_counts = { should_add: 0, should_change: 0, processed: 0, count_down: 0 }
       self
     end
 
+    def execute
+      # TODO: need to extract this into a connection method
+      con = ActiveRecord::Base.connection
+      username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
+      db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
+      if schema == 'beta'
+        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
+      else
+        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
+      end
+      ActiveRecord::Base.remove_connection
+      ActiveRecord::Base.establish_connection
+      ActiveRecord::Base.logger = nil
+
+      # 1. remove constraings
+      log("#{schema} remove constraints...")
+      db_mgr.remove_constrains
+
+      # 2. update studies
+      log("#{schema} updating studies...")
+      update_studies
+
+      # 3. add constraints
+      log("#{schema} adding constraints...")
+      db_mgr.add_constraints
+
+      # 4. run study searches
+      log("#{schema} execute study search...")
+      StudySearch.execute(search_days_back)
+
+      # 5. update calculated values
+      log("#{schema} update calculated values...")
+      CalculatedValue.populate
+
+      # 6. run sanity checks
+      # still waiting...
+
+      # 7. take snapshot
+      log("#{schema} take snapshot...")
+      take_snapshot(schema)
+
+      # 8. refresh public db
+      log("#{schema} refresh public db...")
+      db_mgr.refresh_public_db(schema)
+
+      # 9. create flat files
+      if schema == 'beta'
+      else
+        log("#{schema} creating flat files...")
+        create_flat_files(schema)
+      end
+
+      # 10. send email
+      send_notification(schema)
+    end
+
+    def studies_to_update
+      puts "studies: #{Study.count}"
+      studies = ClinicalTrialsApi.all
+      puts "studies: #{Study.count}"
+      current = Hash[Study.pluck(:nct_id, :last_update_posted_date)]
+      ids = studies.select do |entry|
+        current_date = current[entry[:id]]
+        current_date.nil? || entry[:updated] > current_date
+      end
+      ids.map { |k| k[:id] }
+    end
+
+    def update_studies
+      ids = studies_to_update
+      log("#{schema} updating #{ids.length} studies")
+      total = ids.length
+      total_time = 0
+      stime = Time.now
+
+      ids.each_with_index do |id, idx|
+        t = update_study(id)
+        total_time += t
+        avg_time = total_time / (idx + 1)
+        remaining = (total - idx - 1) * avg_time
+        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
+      end
+
+      time = Time.now - stime
+      puts "Time: #{time} avg: #{time / total}"
+    end
+
+    def htime(seconds)
+      seconds = seconds.to_i
+      hours = seconds / 3600
+      seconds -= hours * 3600
+      minutes = seconds / 60
+      seconds -= minutes * 60
+      "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
+    end
+
+    def update_study(id)
+      stime = Time.now
+      if schema == 'beta'
+        record = StudyJsonRecord.find_or_create_by(nct_id: id)
+        changed = record.update_from_api
+        record.create_or_update_study
+      else
+        record = Support::StudyXmlRecord.find_or_create_by(nct_id: id)
+        changed = record.update_xml_from_api
+        record.create_or_update_study
+      end
+      Time.now - stime
+    end
+
     def run
-      status=true
+      status = true
       begin
-        ActiveRecord::Base.logger=nil
-        case params[:event_type]
-        when 'full'
-          status = full
-        else
-          status = incremental
-        end
+        ActiveRecord::Base.logger = nil
+        status = case params[:event_type]
+                 when 'full'
+                   full
+                 else
+                   incremental
+                 end
         finalize_load if status != false
-      rescue => error
+      rescue StandardError => e
         begin
-          status=false
-          msg="#{error.message} (#{error.class} #{error.backtrace}"
+          status = false
+          msg = "#{e.message} (#{e.class} #{e.backtrace}"
           log("#{@load_event.event_type} load failed in run: #{msg}")
           load_event.add_problem(msg)
-          load_event.complete({:status=>'failed', :study_counts=> study_counts})
+          load_event.complete({ status: 'failed', study_counts: study_counts })
           db_mgr.grant_db_privs
-          Admin::PublicAnnouncement.clear_load_message if full_featured and Admin::AdminBase.database_exists?
-        rescue
-          load_event.complete({:status=>'failed', :study_counts=> study_counts})
+          Admin::PublicAnnouncement.clear_load_message if full_featured && Admin::AdminBase.database_exists?
+        rescue StandardError
+          load_event.complete({ status: 'failed', study_counts: study_counts })
         end
       end
       send_notification
@@ -52,15 +167,15 @@ module Util
 
     def full
       if should_restart?
-        log("restarting full load...")
+        log('restarting full load...')
       else
         log('begin full load ...')
         retrieve_xml_from_ctgov
       end
-      truncate_tables if !should_restart?
-      remove_indexes_and_constraints  # Index significantly slow the load process. Will be re-created after data loaded.
-      study_counts[:should_add]=Support::StudyXmlRecord.not_yet_loaded.count
-      study_counts[:should_change]=0
+      truncate_tables unless should_restart?
+      remove_indexes_and_constraints # Index significantly slow the load process. Will be re-created after data loaded.
+      study_counts[:should_add] = Support::StudyXmlRecord.not_yet_loaded.count
+      study_counts[:should_change] = 0
       @client.populate_studies
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
@@ -71,16 +186,18 @@ module Util
     # 2. update calculated values
     # 3. run saved searches
     def incremental
-      log("begin incremental load...")
-      log("finding studies changed in past #{@days_back} days...")
-      remove_indexes_and_constraints  # Index significantly slow the load process.
-      ids = Support::StudyXmlRecord.update_studies(days_back: @days_back)
+      log('begin incremental load...')
+
+      db_mgr.remove_constrains
+      ids = Support::StudyXmlRecord.update_studies
+      db_mgr.add_constraints
+
       log('end of incremental load method')
-      return true
+      true
     end
 
     def retrieve_xml_from_ctgov
-      log("retrieving xml from clinicaltrials.gov...")
+      log('retrieving xml from clinicaltrials.gov...')
       Support::SupportBase.connection.execute('TRUNCATE TABLE study_xml_records CASCADE')
       @client.save_file_contents(@client.download_xml_files)
     end
@@ -96,27 +213,44 @@ module Util
     # 8. create flat files
     def finalize_load
       log('finalizing load...')
-      add_indexes_and_constraints
 
-      if load_event.event_type == 'full'
-        days_back = (Date.today - Date.parse('2013-01-01')).to_i
-      end
+      load_event.log('add indexes and constraints..')
+      add_indexes_and_constraints if params[:event_type] == 'full'
+
+      load_event.log('execute study search...')
+      days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
       StudySearch.execute(days_back)
 
-      create_calculated_values
-      populate_admin_tables
+      if load_event.event_type == 'full'
+        load_event.log('create calculated values...')
+        create_calculated_values
+      end
+
+      load_event.log('populate admin tables...')
+      # populate_admin_tables
+
+      load_event.log('run sanity checks...')
       run_sanity_checks
-      return unless full_featured  # no need to continue unless configured as a fully featured implementation of AACT
-      study_counts[:processed]=Study.count
+
+      return unless full_featured # no need to continue unless configured as a fully featured implementation of AACT
+
+      study_counts[:processed] = Study.count
+
+      load_event.log('taking snapshot...')
       take_snapshot
+
+      load_event.log('refreshing public db...')
       if refresh_public_db != true
-        load_event.problems="DID NOT UPDATE PUBLIC DATABASE." + load_event.problems
+        load_event.problems = 'DID NOT UPDATE PUBLIC DATABASE.' + load_event.problems
         load_event.save!
       end
-      #db_mgr.grant_db_privs
-      load_event.complete({:study_counts=>study_counts})
+
+      load_event.complete({ study_counts: study_counts })
+
+      load_event.log('create flat files...')
       create_flat_files
-      Admin::PublicAnnouncement.clear_load_message
+
+      # Admin::PublicAnnouncement.clear_load_message
     end
 
     def remove_indexes_and_constraints
@@ -135,19 +269,19 @@ module Util
     end
 
     def self.single_study_tables
-      [
-        'brief_summaries',
-        'designs',
-        'detailed_descriptions',
-        'eligibilities',
-        'participant_flows',
-        'calculated_values',
-        'studies'
+      %w[
+        brief_summaries
+        designs
+        detailed_descriptions
+        eligibilities
+        participant_flows
+        calculated_values
+        studies
       ]
     end
 
     def self.loadable_tables
-      blacklist = %w(
+      blacklist = %w[
         ar_internal_metadata
         schema_migrations
         data_definitions
@@ -160,42 +294,31 @@ module Util
         study_xml_records
         use_cases
         use_case_attachments
-      )
-      table_names=ActiveRecord::Base.connection.tables.reject{|table|blacklist.include?(table)}
-    end
-
-    def update_studies(nct_ids)
-      log("updating the set of studies (#{nct_ids.size})...")
-      study_counts[:count_down]=nct_ids.size
-        db_mgr.clear_out_data_for(nct_ids)
-        nct_ids.each {|nct_id|
-          refresh_study(nct_id)
-          decrement_count_down
-        }
-      log("finished iterating over #{nct_ids.size} studies")
-      self
+      ]
+      table_names = ActiveRecord::Base.connection.tables.reject { |table| blacklist.include?(table) }
     end
 
     def log(msg)
-      puts "#{Time.zone.now}: #{msg}"  # log to STDOUT
+      puts "#{Time.zone.now}: #{msg}"
     end
 
-    def show_progress(nct_id,action)
+    def show_progress(nct_id, action)
       log("#{action}: #{nct_id} - #{study_counts[:count_down]}")
     end
 
     def decrement_count_down
-      study_counts[:count_down]-=1
+      study_counts[:count_down] -= 1
     end
 
     def populate_admin_tables
       return unless full_featured
+
       log('populating admin tables...')
       refresh_data_definitions
     end
 
     def run_sanity_checks
-      log("running sanity checks...")
+      log('running sanity checks...')
       Support::SanityCheck.new.run
     end
 
@@ -203,112 +326,96 @@ module Util
     # 2. Verify that the sanity checks ran no more than 2 hours ago
     # 3. Verify that the number of studies in the alt database differs by at most 10 studies
     def sanity_checks_ok?
-      log "  sanity checks ok?...."
+      log '  sanity checks ok?....'
 
       # add all issues to the load event
-      Support::SanityCheck.current_issues.each{|issue| load_event.add_problem(issue) }
+      Support::SanityCheck.current_issues.each { |issue| load_event.add_problem(issue) }
 
       # load all the sanity checks
       sanity_set = Support::SanityCheck.where(most_current: true)
-      load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.") if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
+      if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
+        load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.")
+      end
 
-      # because ct.gov cleans up and removes duplicate studies, sometimes the new count is a bit less then the old count.
-      # Fudge up by 10 studies to avoid incorrectly preventing a refresh due to ct.gov having deleted studies.
+      # because ct.gov cleans up and removes duplicate studies,
+      # sometimes the new count is a bit less then the old count.
+      # Fudge up by 10 studies to avoid incorrectly preventing a
+      # refresh due to ct.gov having deleted studies.
       old_count = db_mgr.public_study_count - 10
       new_count = Study.count
-      load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})") if old_count > new_count
-
-      log(load_event.problems) if !load_event.problems.blank?
-      return load_event.problems.blank?
-    end
-
-    def refresh_data_definitions(data=Util::FileManager.new.default_data_definitions)
-      if Admin::AdminBase.database_exists?
-        log("refreshing data definitions...")
-        Admin::DataDefinition.populate(data)
+      if old_count > new_count
+        load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})")
       end
+
+      log(load_event.problems) unless load_event.problems.blank?
+      load_event.problems.blank?
     end
 
-    def take_snapshot
-      log("creating downloadable versions of the database...")
-      begin
-        db_mgr.dump_database
+    def refresh_data_definitions(data = Util::FileManager.new.default_data_definitions)
+      return unless Admin::AdminBase.database_exists?
+
+      log('refreshing data definitions...')
+      Admin::DataDefinition.populate(data)
+    end
+
+    def take_snapshot(schema)
+      log('dumping database...')
+      db_mgr.dump_database(schema)
+
+      if schema != 'beta'
+        log('creating zipfile of database...')
         Util::FileManager.new.save_static_copy
-      rescue => error
-        load_event.add_problem("#{error.message} (#{error.class} #{error.backtrace}")
       end
+    rescue StandardError => e
+      load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
     end
 
-    def send_notification
-      if !AACT::Application::AACT_OWNER_EMAIL.nil?
-        log("sending email notification...")
-        Notifier.report_load_event(load_event)
-      end
+    def send_notification(schema)
+      return unless AACT::Application::AACT_OWNER_EMAIL
+
+      log('sending email notification...')
+      Notifier.report_load_event(schema, load_event)
     end
 
     def create_flat_files
-      log("exporting tables as flat files...")
+      log('exporting tables as flat files...')
       Util::TableExporter.new.run(delimiter: '|', should_archive: true)
     end
 
     def truncate_tables
       log('truncating tables...')
-      Util::Updater.loadable_tables.each { |table| ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} CASCADE") }
+      Util::Updater.loadable_tables.each do |table|
+        ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} CASCADE")
+      end
     end
 
     def should_restart?
-      @params[:restart]==true && Support::StudyXmlRecord.not_yet_loaded.size > 0
-    end
-
-    def refresh_study(nct_id)
-      stime=Time.zone.now
-      #  Call to ct.gov API has been known to timeout.  Catch it rather than abort the rest of the load
-      #  Also, if a study is not found for the NCT ID we have, don't save an empty study
-      begin
-        new_xml=@client.get_xml_for(nct_id)
-        Support::StudyXmlRecord.create(:nct_id=>nct_id,:content=>new_xml)
-        stime=Time.zone.now
-        verify_xml=(new_xml.xpath('//clinical_study').xpath('source').text).strip
-        if verify_xml.size > 1
-          Study.new({ xml: new_xml, nct_id: nct_id }).create
-          study_counts[:processed]+=1
-          show_progress(nct_id, " refreshed #{Time.zone.now - stime}")
-        else
-          log("no data found for #{nct_id}")
-        end
-      rescue => error
-        log("unable to refresh #{nct_id}: #{error.message} (#{error.class} #{error.backtrace}")
-      end
+      @params[:restart] && !Support::StudyXmlRecord.not_yet_loaded.empty?
     end
 
     def refresh_public_db
+      return unless full_featured
+
       log('refreshing public db...')
       # recreate public db from back-end db
       if sanity_checks_ok?
-        submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
+        # submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
         db_mgr.refresh_public_db
-        return true
+        true
       else
         load_event.save!
-        return false
+        false
       end
     end
 
-    def log_actual_counts
-      log("studies added/changed: #{study_counts[:processed]}\n")
-    end
-
     def db_mgr
-      @db_mgr ||= Util::DbManager.new({:event=>self.load_event})
+      @db_mgr ||= Util::DbManager.new(event: load_event)
     end
 
-    def db_name
-      ActiveRecord::Base.connection.current_database
-    end
+    # Admin Database
 
     def submit_public_announcement(announcement)
-      Admin::PublicAnnouncement.populate(announcement) if full_featured and Admin::AdminBase.database_exists?
+      Admin::PublicAnnouncement.populate(announcement) if full_featured && Admin::AdminBase.database_exists?
     end
-
   end
 end

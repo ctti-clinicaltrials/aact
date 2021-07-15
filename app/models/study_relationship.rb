@@ -45,7 +45,8 @@ class StudyRelationship < ActiveRecord::Base
     tables.each do |table|
       begin
         connection.execute("CREATE INDEX #{table}_nct_idx ON #{table}(nct_id)")
-      rescue
+      rescue => e
+        puts "#{e.message}"
         puts "DONT CREATE #{table}"
       end
     end
