@@ -221,10 +221,8 @@ module Util
       days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
       StudySearch.execute(days_back)
 
-      if load_event.event_type == 'full'
-        load_event.log('create calculated values...')
-        create_calculated_values
-      end
+      load_event.log('create calculated values...')
+      create_calculated_values
 
       load_event.log('populate admin tables...')
       # populate_admin_tables
