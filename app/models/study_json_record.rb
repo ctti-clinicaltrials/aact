@@ -338,7 +338,7 @@ class StudyJsonRecord < ActiveRecord::Base
       disposition_first_submitted_qc_date: status['DispFirstSubmitQCDate'],
       disposition_first_posted_date: disp_posted['DispFirstPostDate'],
       disposition_first_posted_date_type: disp_posted['DispFirstPostDateType'],
-      last_update_submitted_qc_date: status['LastUpdateSubmitDate'],
+      last_update_submitted_qc_date: status['LastUpdateSubmitDate'], # this should not go here
       last_update_posted_date: last_posted['LastUpdatePostDate'],
       last_update_posted_date_type: last_posted['LastUpdatePostDateType'],
       start_month_year: start_date['StartDate'],

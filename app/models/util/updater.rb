@@ -31,15 +31,20 @@ module Util
     def execute
       # TODO: need to extract this into a connection method
       con = ActiveRecord::Base.connection
-      username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-      db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
+      # username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
+      # db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
+      # if schema == 'beta'
+      #   con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
+      # else
+      #   con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
+      # end
+      # ActiveRecord::Base.remove_connection
+      # ActiveRecord::Base.establish_connection
       if schema == 'beta'
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
+        con.schema_search_path = 'ctgov_beta'
       else
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
+        con.schema_search_path = 'ctgov'
       end
-      ActiveRecord::Base.remove_connection
-      ActiveRecord::Base.establish_connection
       ActiveRecord::Base.logger = nil
 
       # 1. remove constraings
@@ -105,6 +110,8 @@ module Util
       total_time = 0
       stime = Time.now
 
+      # ids = ids[0..100]
+
       ids.each_with_index do |id, idx|
         t = update_study(id)
         total_time += t
@@ -141,7 +148,6 @@ module Util
     end
 
     def run
-      status = true
       begin
         ActiveRecord::Base.logger = nil
         status = case params[:event_type]
@@ -153,7 +159,6 @@ module Util
         finalize_load if status != false
       rescue StandardError => e
         begin
-          status = false
           msg = "#{e.message} (#{e.class} #{e.backtrace}"
           log("#{@load_event.event_type} load failed in run: #{msg}")
           load_event.add_problem(msg)
@@ -269,7 +274,7 @@ module Util
       Notifier.report_load_event(schema, load_event)
     end
 
-    def create_flat_files
+    def create_flat_files(schema)
       log('exporting tables as flat files...')
       Util::TableExporter.new.run(delimiter: '|', should_archive: true)
     end

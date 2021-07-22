@@ -71,7 +71,12 @@ module Util
     def restore_database(schema_type, connection, filename)
       config = connection.instance_variable_get('@config')
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
-      schema = schema_type == 'beta' ? 'ctgov_beta' : 'ctgov'
+      if schema_type == 'beta'
+        schema = ActiveRecord::Base.connection.schema_search_path = 'ctgov_beta'
+      else
+        schema = ActiveRecord::Base.connection.schema_search_path = 'ctgov'
+      end
+
 
       # prevent new connections and drop current connections
       connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 0;")
@@ -138,9 +143,9 @@ module Util
       con.execute("DELETE FROM support.study_xml_records WHERE nct_id IN (#{ids})")
     end
 
-    def public_study_count
+    def public_study_count(schema)
       begin
-        public_connection.execute('select count(*) from studies;').first['count'].to_i
+        public_connection(schema).execute('select count(*) from studies;').first['count'].to_i
       rescue
         return 0
       end
@@ -494,6 +499,15 @@ module Util
       return @con
     end
 
+    def self.con
+      return @con if @con and @con.active?
+      db_url = AACT::Application::AACT_BACK_DATABASE_URL
+      ActiveRecord::Base.establish_connection(db_url)
+      @con = ActiveRecord::Base.connection
+      # @con.schema_search_path=@search_path
+      return @con
+    end
+
     def migration
       @migration_object ||= ActiveRecord::Migration.new
     end
@@ -536,7 +550,11 @@ module Util
 
 
     def public_connection(schema)
-      db = @config[:public]
+      if schema == 'beta'
+        db = @config[:beta_public]
+      else
+        db = @config[:public]
+      end
       return unless db
       connection = PublicBase.establish_connection(db).connection
       if schema == 'beta'
@@ -556,7 +574,11 @@ module Util
     end
 
     def staging_connection(schema)
-      db = @config[:staging]
+      if schema == 'beta'
+        db = @config[:beta_staging]
+      else
+        db = @config[:staging]
+      end
       return unless db
       connection = PublicBase.establish_connection(db).connection
       if schema == 'beta'
