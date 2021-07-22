@@ -18,3 +18,4 @@ server.env
 *.secret
 .byebug_history
 /config/connections.yml
+data
