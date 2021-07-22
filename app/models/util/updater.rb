@@ -209,6 +209,55 @@ module Util
       @client.save_file_contents(@client.download_xml_files)
     end
 
+    # Steps:
+    # 1. add indexes and constraints
+    # 2. execute saved search
+    # 3. create calculated values
+    # 4. populate admin tables
+    # 5. run sanity checks
+    # 6. take snapshot
+    # 7. refreh public db
+    # 8. create flat files
+    def finalize_load
+      log('finalizing load...')
+
+      load_event.log('add indexes and constraints..')
+      add_indexes_and_constraints if params[:event_type] == 'full'
+
+      load_event.log('execute study search...')
+      days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
+      StudySearch.execute(days_back)
+
+      load_event.log('create calculated values...')
+      create_calculated_values
+
+      load_event.log('populate admin tables...')
+      # populate_admin_tables
+
+      load_event.log('run sanity checks...')
+      run_sanity_checks
+
+      return unless full_featured # no need to continue unless configured as a fully featured implementation of AACT
+
+      study_counts[:processed] = Study.count
+
+      load_event.log('taking snapshot...')
+      take_snapshot
+
+      load_event.log('refreshing public db...')
+      if refresh_public_db != true
+        load_event.problems = 'DID NOT UPDATE PUBLIC DATABASE.' + load_event.problems
+        load_event.save!
+      end
+
+      load_event.complete({ study_counts: study_counts })
+
+      load_event.log('create flat files...')
+      create_flat_files
+
+      # Admin::PublicAnnouncement.clear_load_message
+    end
+
     def remove_indexes_and_constraints
       log('removing indexes...')
       db_mgr.remove_indexes_and_constraints
