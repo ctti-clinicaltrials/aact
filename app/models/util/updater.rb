@@ -83,6 +83,11 @@ module Util
         if schema == 'beta'
         else
           log("#{schema} creating flat files...")
+          begin
+            create_flat_files(schema)
+          rescue Exception => e
+            Airbrake.notify(e)
+          end
           create_flat_files(schema)
         end
       end
@@ -91,37 +96,59 @@ module Util
       send_notification(schema)
     end
 
-    def studies_to_update
-      puts "studies: #{Study.count}"
+    def current_study_differences
       studies = ClinicalTrialsApi.all
-      puts "studies: #{Study.count}"
+      puts "aact  study count: #{Study.count}"
+      puts "ctgov study count: #{studies.count}"
+
+      # find all the studies that need to be updated
       current = Hash[Study.pluck(:nct_id, :last_update_posted_date)]
       ids = studies.select do |entry|
         current_date = current[entry[:id]]
         current_date.nil? || entry[:updated] > current_date
       end
-      ids.map { |k| k[:id] }
+      to_update = ids.map {|k| k[:id] }
+
+      # find all the studies that need to be removed
+      current = current.keys
+      studies = studies.map{|k| k[:id] }
+      to_remove = current - studies
+
+      return to_update, to_remove
     end
 
     def update_studies
-      ids = studies_to_update
-      log("#{schema} updating #{ids.length} studies")
-      total = ids.length
+      to_update, to_remove = current_study_differences
+      raise "Removing too many studies" if ClinicalTrialsApi.number_of_studies > Study.count - to_remove.count
+
+      log("#{schema} updating #{to_update.length} studies")
+      log("#{schema} removing #{to_remove.length} studies")
+
+      # update studies
+      total = to_update.length
       total_time = 0
       stime = Time.now
-
-      # ids = ids[0..100]
-
-      ids.each_with_index do |id, idx|
+      to_update.each_with_index do |id, idx|
         t = update_study(id)
         total_time += t
         avg_time = total_time / (idx + 1)
         remaining = (total - idx - 1) * avg_time
         puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
       end
-
       time = Time.now - stime
       puts "Time: #{time} avg: #{time / total}"
+
+      # remove studies
+      total = to_remove.length
+      total_time = 0
+      stime = Time.now
+      to_remove.each_with_index do |id, idx|
+        t = remove_study(id)
+        total_time += t
+        avg_time = total_time / (idx + 1)
+        remaining = (total - idx - 1) * avg_time
+        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
+      end
     end
 
     def htime(seconds)
@@ -144,6 +171,13 @@ module Util
         changed = record.update_xml_from_api
         record.create_or_update_study
       end
+      Time.now - stime
+    end
+
+    def remove_study(id)
+      stime = Time.now
+      study = Study.find_by(nct_id: id)
+      study.remove_study_data if study
       Time.now - stime
     end
 
