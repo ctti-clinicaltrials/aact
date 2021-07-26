@@ -70,7 +70,7 @@ module Util
     # 5. grant connection permissions again
     def restore_database(schema_type, connection, filename)
       config = connection.instance_variable_get('@config')
-      host, port, username, database = config[:host], config[:port], config[:username], config[:database]
+      host, port, username, database, password = config[:host], config[:port], config[:username], config[:database], config[:password]
       if schema_type == 'beta'
         schema = ActiveRecord::Base.connection.schema_search_path = 'ctgov_beta'
       else
@@ -93,8 +93,8 @@ module Util
       connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
 
       # restore database
-      log "  restoring #{host}:#{port}/#{database} database..."
-      cmd = "pg_restore -c -j 5 -v -h #{host} -p #{port} -U #{username}  -d #{database} #{filename}"
+      log "  restoring to #{host}:#{port}/#{database} database..."
+      cmd = "PGPASSWORD=#{password} pg_restore -c -j 5 -v -h #{host} -p #{port} -U #{username}  -d #{database} #{filename}"
       run_restore_command_line(cmd)
 
       # verify that the database was correctly restored
@@ -589,27 +589,9 @@ module Util
       return connection
     end
 
-    def restore_from_file(params={path_to_file: '~/Downloads/postgres_data.dmp', database: 'aact'})
-      # you can use this method to setup your database but make sure you have a postgres dump file path to give to it
-      path_to_file = params[:path_to_file] || '~/Downloads/postgres_data.dmp'
-      database = params[:database] || 'aact'
-
-      print 'dropping databases...'
-      run_command_line("bin/rake db:drop")
-      puts 'done'
-
-      print 'recreating databases...'
-      run_command_line("bin/rake db:create")
-      run_command_line("bin/rake db:create RAILS_ENV=test")
-      puts 'done'
-
-      print 'running migrations...'
-      run_command_line("bin/rake db:migrate")
-      run_command_line("bin/rake db:migrate RAILS_ENV=test")
-      puts 'done'
-
+    def restore_from_file(path_to_file: "#{Rails.root}/tmp/postgres_data.dmp", database: 'aact')
       print 'restoring the database...'
-      run_command_line("pg_restore -e -v -d #{database} --data-only #{path_to_file}")
+      restore_database('normal', ActiveRecord::Base.connection, path_to_file)
       puts 'done'
     end
     
@@ -619,7 +601,7 @@ module Util
       return unless url
       
       tries ||= 5
-      file_path = "#{Rails.public_path}/tmp_downloads"
+      file_path = "#{Rails.root}/tmp/snapshots"
       FileUtils.rm_rf(file_path)
       FileUtils.mkdir_p file_path
       file_name = "#{file_path}/snapshot.zip"

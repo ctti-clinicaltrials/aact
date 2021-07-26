@@ -44,6 +44,7 @@ namespace :db do
     Util::DbManager.new.restore_from_file(args)
   end
   
+  desc 'load database into a specific database from a url'
   task :restore_from_url, [:url, :database_name] => :environment do |t, args|
     Util::DbManager.new.restore_from_url(args)
   end
