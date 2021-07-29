@@ -31,20 +31,15 @@ module Util
     def execute
       # TODO: need to extract this into a connection method
       con = ActiveRecord::Base.connection
-      # username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-      # db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-      # if schema == 'beta'
-      #   con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
-      # else
-      #   con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
-      # end
-      # ActiveRecord::Base.remove_connection
-      # ActiveRecord::Base.establish_connection
+      username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
+      db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
       if schema == 'beta'
-        con.schema_search_path = 'ctgov_beta'
+        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
       else
-        con.schema_search_path = 'ctgov'
+        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
       end
+      ActiveRecord::Base.remove_connection
+      ActiveRecord::Base.establish_connection
       ActiveRecord::Base.logger = nil
 
       # 1. remove constraings
@@ -114,12 +109,11 @@ module Util
       studies = studies.map{|k| k[:id] }
       to_remove = current - studies
 
-      return to_update, to_remove
+      return studies, to_update, to_remove
     end
 
     def update_studies
-      to_update, to_remove = current_study_differences
-      raise "Removing too many studies" if ClinicalTrialsApi.number_of_studies > Study.count - to_remove.count
+      studies, to_update, to_remove = current_study_differences
 
       log("#{schema} updating #{to_update.length} studies")
       log("#{schema} removing #{to_remove.length} studies")
@@ -139,6 +133,7 @@ module Util
       puts "Time: #{time} avg: #{time / total}"
 
       # remove studies
+      raise "Removing too many studies #{to_remove.count}" if studies.count > Study.count - to_remove.count
       total = to_remove.length
       total_time = 0
       stime = Time.now
