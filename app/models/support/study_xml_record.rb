@@ -111,18 +111,20 @@ module Support
       ids.map{|k| k[:id] }
     end
 
-    def self.update_studies(days_back: 1, api: true)
+    def self.update_studies(api: true, beta: false)
       logger = ActiveRecord::Base.logger
       ActiveRecord::Base.logger = nil
-      # reader = Util::RssReader.new(days_back: days_back)
-      # ids = (reader.get_changed_nct_ids + reader.get_added_nct_ids).uniq
+      if beta
+        StudyJsonRecord.set_table_schema('ctgov_beta')
+      end
+
       ids = to_update
       total = ids.length
       total_time = 0
       stime = Time.now
 
       ids.each_with_index do |id, idx|
-        t = update_study(id, api: api)
+        t = update_study(id, api: api, beta: beta)
         total_time += t
         avg_time = total_time / (idx + 1)
         remaining = (total - idx - 1) * avg_time
@@ -168,17 +170,26 @@ module Support
       puts "Time: #{time} avg: #{time / total}"
     end
 
-    def self.update_study(id, api: true)
+    def self.update_study(id, api: true, beta: false)
       stime = Time.now
-      record = find_or_create_by(nct_id: id)
-      if api
-        changed = record.update_xml_from_api
-      else
-        changed = record.update_xml_from_file
-      end
-      if changed
+      # update from api or file
+      if beta
+        record = StudyJsonRecord.find_or_create_by(nct_id: id)
+        changed = record.update_from_api
         record.create_or_update_study
+      else
+        record = Support::StudyXmlRecord.find_or_create_by(nct_id: id)
+        if api
+          changed = record.update_xml_from_api
+        else
+          changed = record.update_xml_from_file
+        end
+        if changed
+          record.create_or_update_study
+        end
       end
+      
+      
       time = Time.now - stime
     end
 
@@ -233,7 +244,10 @@ module Support
       study.remove_study_data if study
       s = Time.now
       Study.new({ xml: Nokogiri::XML(content), nct_id: nct_id }).create
+      # CalculatedValue.new.create_from(self).save
       puts "  insert-study #{Time.now - s}"
     end
   end
 end
+
+# NCT04698993, NCT04370834

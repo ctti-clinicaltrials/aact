@@ -2427,7 +2427,8 @@ CREATE TABLE support.sanity_checks (
     description text,
     most_current boolean,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    load_event_id bigint
 );
 
 
@@ -3954,6 +3955,13 @@ CREATE INDEX "index_support.sanity_checks_on_column_name" ON support.sanity_chec
 
 
 --
+-- Name: index_support.sanity_checks_on_load_event_id; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.sanity_checks_on_load_event_id" ON support.sanity_checks USING btree (load_event_id);
+
+
+--
 -- Name: index_support.sanity_checks_on_nct_id; Type: INDEX; Schema: support; Owner: -
 --
 
@@ -3989,7 +3997,14 @@ CREATE TRIGGER category_insert_trigger INSTEAD OF INSERT ON ctgov.categories FOR
 
 
 --
+-- Name: sanity_checks fk_rails_9d86ec7e91; Type: FK CONSTRAINT; Schema: support; Owner: -
+--
 
+ALTER TABLE ONLY support.sanity_checks
+    ADD CONSTRAINT fk_rails_9d86ec7e91 FOREIGN KEY (load_event_id) REFERENCES support.load_events(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -4019,6 +4034,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210108200600'),
 ('20210216235354'),
 ('20210308235723'),
-('20210414222919');
+('20210414222919'),
+('20210601063550');
 
 

@@ -20,7 +20,7 @@ module Util
     end
 
     # generate a db dump file
-    def dump_database
+    def dump_database(schema='ctgov')
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
       config = Study.connection.instance_variable_get('@config')
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
@@ -32,7 +32,28 @@ module Util
         --clean --no-owner -b -c -C -Fc \
         --exclude-table ar_internal_metadata \
         --exclude-table schema_migrations \
-        --schema ctgov  \
+        --schema #{schema == 'beta' ? 'ctgov_beta' : 'ctgov'}  \
+        -f #{fm.pg_dump_file(schema)} \
+        #{database} \
+      "
+      puts cmd
+      run_command_line(cmd)
+      return fm.pg_dump_file
+    end
+
+    def dump_beta_database
+      File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
+      config = Study.connection.instance_variable_get('@config')
+      host, port, username, database = config[:host], config[:port], config[:username], config[:database]
+      host ||= 'localhost'
+      port ||= 5432
+
+      cmd = "
+        pg_dump  -v -h #{host} -p #{port} -U #{username} \
+        --clean --no-owner -b -c -C -Fc \
+        --exclude-table ar_internal_metadata \
+        --exclude-table schema_migrations \
+        --schema ctgov_beta  \
         -f #{fm.pg_dump_file} \
         #{database} \
       "
@@ -47,27 +68,33 @@ module Util
     # 3. restore teh db from file
     # 4. verify the study count (permissions are not granted again to prevent bad data from being used)
     # 5. grant connection permissions again
-    def restore_database(connection, filename)
+    def restore_database(schema_type, connection, filename)
       config = connection.instance_variable_get('@config')
-      host, port, username, database = config[:host], config[:port], config[:username], config[:database]
+      host, port, username, database, password = config[:host], config[:port], config[:username], config[:database], config[:password]
+      if schema_type == 'beta'
+        schema = ActiveRecord::Base.connection.schema_search_path = 'ctgov_beta'
+      else
+        schema = ActiveRecord::Base.connection.schema_search_path = 'ctgov'
+      end
+
 
       # prevent new connections and drop current connections
       connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 0;")
       connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{database}' AND usename <> '#{username}'")
 
       # drop the schema
-      log "  dropping ctgov schema in #{host}:#{port}/#{database} database..."
+      log "  dropping #{schema} schema in #{host}:#{port}/#{database} database..."
       begin
-        connection.execute("DROP SCHEMA ctgov CASCADE;")
+        connection.execute("DROP SCHEMA #{schema} CASCADE;")
       rescue ActiveRecord::StatementInvalid => e
         log(e.message)
       end
-      connection.execute("CREATE SCHEMA ctgov;")
-      connection.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      connection.execute("CREATE SCHEMA #{schema};")
+      connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
 
       # restore database
-      log "  restoring #{host}:#{port}/#{database} database..."
-      cmd = "pg_restore -c -j 5 -v -h #{host} -p #{port} -U #{username}  -d #{database} #{filename}"
+      log "  restoring to #{host}:#{port}/#{database} database..."
+      cmd = "PGPASSWORD=#{password} pg_restore -c -j 5 -v -h #{host} -p #{port} -U #{username}  -d #{database} #{filename}"
       run_restore_command_line(cmd)
 
       # verify that the database was correctly restored
@@ -79,8 +106,8 @@ module Util
 
       # allow users to access database again
       connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 200;")
-      connection.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
-      connection.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
+      connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
+      connection.execute("GRANT SELECT ON ALL TABLES IN SCHEMA #{schema} TO READ_ONLY;")
 
       return true
     end
@@ -88,16 +115,23 @@ module Util
     # process for deploying database to digital ocean
     # 1. try restoring to staging db
     # 2. if successful restore to public db
-    def refresh_public_db
-      success = restore_database(staging_connection, fm.pg_dump_file)
+    def refresh_public_db(schema)
+      success = restore_database(schema, staging_connection(schema), fm.pg_dump_file(schema))
       return unless success
 
-      restore_database(public_connection, fm.pg_dump_file)
+      restore_database(schema, public_connection(schema), fm.pg_dump_file(schema))
+    end
+
+    def refresh_beta_public_db
+      # success = restore_database(beta_staging_connection, fm.pg_beta_dump_file)
+      # return unless success
+
+      restore_database(beta_public_connection, fm.pg_beta_dump_file)
     end
       
     def clear_out_data_for(nct_ids)
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
-      loadable_tables.each { |table|
+      Util::DbManager.loadable_tables.each { |table|
         stime=Time.zone.now
         con.execute("DELETE FROM #{@search_path}.#{table} WHERE nct_id IN (#{ids})")
         log("deleted studies from #{@search_path}.#{table}   #{Time.zone.now - stime}")
@@ -109,9 +143,9 @@ module Util
       con.execute("DELETE FROM support.study_xml_records WHERE nct_id IN (#{ids})")
     end
 
-    def public_study_count
+    def public_study_count(schema)
       begin
-        public_alt_con.execute('select count(*) from studies;').first['count'].to_i
+        public_connection(schema).execute('select count(*) from studies;').first['count'].to_i
       rescue
         return 0
       end
@@ -182,7 +216,7 @@ module Util
     def add_indexes
       indexes.each{|index| migration.add_index index.first, index.last  if !migration.index_exists?(index.first, index.last)}
       #  Add indexes for all the nct_id columns.  If error raised cuz nct_id doesn't exist for the table, skip it.
-      loadable_tables.each {|table_name|
+      Util::DbManager.loadable_tables.each {|table_name|
         begin
           if table_name != 'studies'  # studies.nct_id unique index persists.  Don't add/remove it.
             if one_to_one_related_tables.include? table_name
@@ -197,7 +231,7 @@ module Util
           end
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
       }
     end
@@ -218,7 +252,7 @@ module Util
     end
 
     def remove_indexes_and_constraints
-      loadable_tables.each {|table_name|
+      Util::DbManager.loadable_tables.each {|table_name|
         # remove foreign key that links most tables to Studies table via the NCT ID
         begin
           con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
@@ -250,7 +284,7 @@ module Util
     end
 
     def remove_constrains
-      loadable_tables.each {|table_name|
+      Util::DbManager.loadable_tables.each {|table_name|
         # remove foreign key that links most tables to Studies table via the NCT ID
         begin
           con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
@@ -272,7 +306,7 @@ module Util
       }
     end
 
-    def loadable_tables
+    def self.loadable_tables
       blacklist = %w(
         ar_internal_metadata
         schema_migrations
@@ -399,6 +433,38 @@ module Util
       ]
     end
 
+    def schema_image
+      models = Util::DbManager.loadable_tables.map{|k| k.singularize.camelize.constantize }
+      nodes = models.map{|k| table_dot(k)}.join("\n\n")
+      edges = foreign_key_constraints.map{|k| "#{k[:child_table].singularize.camelize} -> #{k[:parent_table].singularize.camelize}"}.join("\n")
+      edges2 = StudyRelationship.study_models.map{|k| "#{k.name} -> Study"}.join("\n")
+    graph = <<-END
+    digraph {
+      graph [pad="0.5", splines=true, nodesep="5", ranksep="2", overlap=false];
+      node [shape=plain]
+      /*rankdir=LR;*/
+
+      #{nodes}
+
+      #{edges}
+      #{edges2}
+    }
+    END
+    File.write("schema.dot", graph)
+    `dot -Tpng schema.dot -o schema.png`
+    end
+
+    def table_dot(model)
+      attributes = model.columns_hash.map{|k,v| "<tr><td>#{k}</td><td>#{v.type}</td></tr>" }.join("\n")
+      code = <<-END
+        #{model.name} [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>#{model.name}</b></td></tr>
+          #{attributes}
+        </table>>];
+      END
+    end
+
     def one_to_one_related_tables
       [ 'brief_summaries', 'designs','detailed_descriptions', 'eligibilities', 'participant_flows', 'calculated_values' ]
     end
@@ -435,7 +501,16 @@ module Util
       return @con if @con and @con.active?
       ActiveRecord::Base.establish_connection(back_db_url)
       @con = ActiveRecord::Base.connection
-      @con.schema_search_path=@search_path
+      # @con.schema_search_path=@search_path
+      return @con
+    end
+
+    def self.con
+      return @con if @con and @con.active?
+      db_url = AACT::Application::AACT_BACK_DATABASE_URL
+      ActiveRecord::Base.establish_connection(db_url)
+      @con = ActiveRecord::Base.connection
+      # @con.schema_search_path=@search_path
       return @con
     end
 
@@ -491,43 +566,49 @@ module Util
     end
 
 
-    def public_connection
-      db = @config[:public]
+    def public_connection(schema)
+      if schema == 'beta'
+        db = @config[:beta_public]
+      else
+        db = @config[:public]
+      end
       return unless db
       connection = PublicBase.establish_connection(db).connection
-      connection.schema_search_path = 'ctgov'
+      if schema == 'beta'
+        connection.schema_search_path = 'ctgov_beta'
+      else
+        connection.schema_search_path = 'ctgov'
+      end
       return connection
     end
 
-    def staging_connection
-      db = @config[:staging]
+    def beta_public_connection
+      db = @config[:beta_public]
       return unless db
       connection = PublicBase.establish_connection(db).connection
-      connection.schema_search_path = 'ctgov'
+      connection.schema_search_path = 'ctgov_beta'
       return connection
     end
 
-    def restore_from_file(params={path_to_file: '~/Downloads/postgres_data.dmp', database: 'aact'})
-      # you can use this method to setup your database but make sure you have a postgres dump file path to give to it
-      path_to_file = params[:path_to_file] || '~/Downloads/postgres_data.dmp'
-      database = params[:database] || 'aact'
+    def staging_connection(schema)
+      if schema == 'beta'
+        db = @config[:beta_staging]
+      else
+        db = @config[:staging]
+      end
+      return unless db
+      connection = PublicBase.establish_connection(db).connection
+      if schema == 'beta'
+        connection.schema_search_path = 'ctgov_beta'
+      else
+        connection.schema_search_path = 'ctgov'
+      end
+      return connection
+    end
 
-      print 'dropping databases...'
-      run_command_line("bin/rake db:drop")
-      puts 'done'
-
-      print 'recreating databases...'
-      run_command_line("bin/rake db:create")
-      run_command_line("bin/rake db:create RAILS_ENV=test")
-      puts 'done'
-
-      print 'running migrations...'
-      run_command_line("bin/rake db:migrate")
-      run_command_line("bin/rake db:migrate RAILS_ENV=test")
-      puts 'done'
-
+    def restore_from_file(path_to_file: "#{Rails.root}/tmp/postgres_data.dmp", database: 'aact')
       print 'restoring the database...'
-      run_command_line("pg_restore -e -v -d #{database} --data-only #{path_to_file}")
+      restore_database('normal', ActiveRecord::Base.connection, path_to_file)
       puts 'done'
     end
     
@@ -537,7 +618,7 @@ module Util
       return unless url
       
       tries ||= 5
-      file_path = "#{Rails.public_path}/tmp_downloads"
+      file_path = "#{Rails.root}/tmp/snapshots"
       FileUtils.rm_rf(file_path)
       FileUtils.mkdir_p file_path
       file_name = "#{file_path}/snapshot.zip"
