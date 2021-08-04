@@ -630,13 +630,27 @@ class StudyJsonRecord < ActiveRecord::Base
   def browse(type='Condition')
     return unless @derived_section
 
-    meshes = @derived_section.dig("#{type}BrowseModule", "#{type}MeshList", "#{type}Mesh")
+    meshes = mesh_loop(type,'Mesh')
     return unless meshes
+
+    ancestors = mesh_loop(type,'Ancestor')
+    return meshes unless ancestors
+
+    meshes + ancestors
+  end
+
+  def mesh_loop(type='Condition', section='Mesh')
+    meshes = @derived_section.dig("#{type}BrowseModule", "#{type}#{section}List", "#{type}#{section}")
+    return unless meshes 
 
     collection = []
     meshes.each do |mesh|
+      term = mesh["#{type}#{section}Term"]
       collection << {
-                      nct_id: nct_id, mesh_term: mesh["#{type}MeshTerm"], downcase_mesh_term: mesh["#{type}MeshTerm"].try(:downcase)
+                      nct_id: nct_id,
+                      mesh_term: term,
+                      downcase_mesh_term: term.try(:downcase),
+                      mesh_type: section == 'Mesh' ? 'mesh-list' : 'mesh-ancestor'
                     }
     end
     collection

@@ -290,7 +290,8 @@ CREATE TABLE ctgov.browse_conditions (
     id integer NOT NULL,
     nct_id character varying,
     mesh_term character varying,
-    downcase_mesh_term character varying
+    downcase_mesh_term character varying,
+    mesh_type character varying
 );
 
 
@@ -313,7 +314,8 @@ CREATE TABLE ctgov.browse_interventions (
     id integer NOT NULL,
     nct_id character varying,
     mesh_term character varying,
-    downcase_mesh_term character varying
+    downcase_mesh_term character varying,
+    mesh_type character varying
 );
 
 
@@ -4035,6 +4037,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210216235354'),
 ('20210308235723'),
 ('20210414222919'),
+('20210526192648'),
+('20210526192804'),
 ('20210601063550');
 
 
