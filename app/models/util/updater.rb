@@ -12,8 +12,8 @@ module Util
       @full_featured = params[:full_featured] || false
       @params = params
       type = (params[:event_type] || 'incremental')
-      @schema = params.schema
-      @search_days_back = params.search_days_back
+      @schema = params[:schema]
+      @search_days_back = params[:search_days_back]
       ENV['load_type'] = type
       if params[:restart]
         log("Starting the #{type} load...")
@@ -63,56 +63,87 @@ module Util
       CalculatedValue.populate
 
       # 6. run sanity checks
-      # still waiting...
+      load_event.run_sanity_checks
 
-      # 7. take snapshot
-      log("#{schema} take snapshot...")
-      take_snapshot(schema)
+      if load_event.sanity_checks.count == 0
+        # 7. take snapshot
+        log("#{schema} take snapshot...")
+        take_snapshot(schema)
 
-      # 8. refresh public db
-      log("#{schema} refresh public db...")
-      db_mgr.refresh_public_db(schema)
+        # 8. refresh public db
+        log("#{schema} refresh public db...")
+        db_mgr.refresh_public_db(schema)
 
-      # 9. create flat files
-      if schema == 'beta'
-      else
-        log("#{schema} creating flat files...")
-        create_flat_files(schema)
+        # 9. create flat files
+        if schema == 'beta'
+        else
+          log("#{schema} creating flat files...")
+          begin
+            create_flat_files(schema)
+          rescue Exception => e
+            Airbrake.notify(e)
+          end
+          create_flat_files(schema)
+        end
       end
 
       # 10. send email
       send_notification(schema)
     end
 
-    def studies_to_update
-      puts "studies: #{Study.count}"
+    def current_study_differences
       studies = ClinicalTrialsApi.all
-      puts "studies: #{Study.count}"
+      puts "aact  study count: #{Study.count}"
+      puts "ctgov study count: #{studies.count}"
+
+      # find all the studies that need to be updated
       current = Hash[Study.pluck(:nct_id, :last_update_posted_date)]
       ids = studies.select do |entry|
         current_date = current[entry[:id]]
         current_date.nil? || entry[:updated] > current_date
       end
-      ids.map { |k| k[:id] }
+      to_update = ids.map {|k| k[:id] }
+
+      # find all the studies that need to be removed
+      current = current.keys
+      studies = studies.map{|k| k[:id] }
+      to_remove = current - studies
+
+      return studies, to_update, to_remove
     end
 
     def update_studies
-      ids = studies_to_update
-      log("#{schema} updating #{ids.length} studies")
-      total = ids.length
+      studies, to_update, to_remove = current_study_differences
+
+      log("#{schema} updating #{to_update.length} studies")
+      log("#{schema} removing #{to_remove.length} studies")
+
+      # update studies
+      total = to_update.length
       total_time = 0
       stime = Time.now
-
-      ids.each_with_index do |id, idx|
+      to_update.each_with_index do |id, idx|
         t = update_study(id)
         total_time += t
         avg_time = total_time / (idx + 1)
         remaining = (total - idx - 1) * avg_time
         puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
       end
-
       time = Time.now - stime
       puts "Time: #{time} avg: #{time / total}"
+
+      # remove studies
+      raise "Removing too many studies #{to_remove.count}" if studies.count > Study.count - to_remove.count
+      total = to_remove.length
+      total_time = 0
+      stime = Time.now
+      to_remove.each_with_index do |id, idx|
+        t = remove_study(id)
+        total_time += t
+        avg_time = total_time / (idx + 1)
+        remaining = (total - idx - 1) * avg_time
+        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
+      end
     end
 
     def htime(seconds)
@@ -138,8 +169,14 @@ module Util
       Time.now - stime
     end
 
+    def remove_study(id)
+      stime = Time.now
+      study = Study.find_by(nct_id: id)
+      study.remove_study_data if study
+      Time.now - stime
+    end
+
     def run
-      status = true
       begin
         ActiveRecord::Base.logger = nil
         status = case params[:event_type]
@@ -151,7 +188,6 @@ module Util
         finalize_load if status != false
       rescue StandardError => e
         begin
-          status = false
           msg = "#{e.message} (#{e.class} #{e.backtrace}"
           log("#{@load_event.event_type} load failed in run: #{msg}")
           load_event.add_problem(msg)
@@ -189,7 +225,7 @@ module Util
       log('begin incremental load...')
 
       db_mgr.remove_constrains
-      ids = Support::StudyXmlRecord.update_studies
+      Support::StudyXmlRecord.update_studies
       db_mgr.add_constraints
 
       log('end of incremental load method')
@@ -221,10 +257,8 @@ module Util
       days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
       StudySearch.execute(days_back)
 
-      if load_event.event_type == 'full'
-        load_event.log('create calculated values...')
-        create_calculated_values
-      end
+      load_event.log('create calculated values...')
+      create_calculated_values
 
       load_event.log('populate admin tables...')
       # populate_admin_tables
@@ -268,36 +302,6 @@ module Util
       CalculatedValue.populate
     end
 
-    def self.single_study_tables
-      %w[
-        brief_summaries
-        designs
-        detailed_descriptions
-        eligibilities
-        participant_flows
-        calculated_values
-        studies
-      ]
-    end
-
-    def self.loadable_tables
-      blacklist = %w[
-        ar_internal_metadata
-        schema_migrations
-        data_definitions
-        mesh_headings
-        mesh_terms
-        load_events
-        sanity_checks
-        study_searches
-        statistics
-        study_xml_records
-        use_cases
-        use_case_attachments
-      ]
-      table_names = ActiveRecord::Base.connection.tables.reject { |table| blacklist.include?(table) }
-    end
-
     def log(msg)
       puts "#{Time.zone.now}: #{msg}"
     end
@@ -320,35 +324,6 @@ module Util
     def run_sanity_checks
       log('running sanity checks...')
       Support::SanityCheck.new.run
-    end
-
-    # 1. adding all the sanity check issues to the load event
-    # 2. Verify that the sanity checks ran no more than 2 hours ago
-    # 3. Verify that the number of studies in the alt database differs by at most 10 studies
-    def sanity_checks_ok?
-      log '  sanity checks ok?....'
-
-      # add all issues to the load event
-      Support::SanityCheck.current_issues.each { |issue| load_event.add_problem(issue) }
-
-      # load all the sanity checks
-      sanity_set = Support::SanityCheck.where(most_current: true)
-      if sanity_set.max_by(&:created_at).created_at < (Time.zone.now - 2.hours)
-        load_event.add_problem("Sanity checks ran more than 2 hours ago: #{sanity_set.max_by(&:created_at)}.")
-      end
-
-      # because ct.gov cleans up and removes duplicate studies,
-      # sometimes the new count is a bit less then the old count.
-      # Fudge up by 10 studies to avoid incorrectly preventing a
-      # refresh due to ct.gov having deleted studies.
-      old_count = db_mgr.public_study_count - 10
-      new_count = Study.count
-      if old_count > new_count
-        load_event.add_problem("New db has fewer studies (#{new_count}) than current public db (#{old_count})")
-      end
-
-      log(load_event.problems) unless load_event.problems.blank?
-      load_event.problems.blank?
     end
 
     def refresh_data_definitions(data = Util::FileManager.new.default_data_definitions)
@@ -377,14 +352,14 @@ module Util
       Notifier.report_load_event(schema, load_event)
     end
 
-    def create_flat_files
+    def create_flat_files(schema)
       log('exporting tables as flat files...')
       Util::TableExporter.new.run(delimiter: '|', should_archive: true)
     end
 
     def truncate_tables
       log('truncating tables...')
-      Util::Updater.loadable_tables.each do |table|
+      Util::DbManager.loadable_tables.each do |table|
         ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} CASCADE")
       end
     end

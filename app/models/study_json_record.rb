@@ -340,7 +340,7 @@ class StudyJsonRecord < ActiveRecord::Base
       disposition_first_submitted_qc_date: status['DispFirstSubmitQCDate'],
       disposition_first_posted_date: disp_posted['DispFirstPostDate'],
       disposition_first_posted_date_type: disp_posted['DispFirstPostDateType'],
-      last_update_submitted_qc_date: status['LastUpdateSubmitDate'],
+      last_update_submitted_qc_date: status['LastUpdateSubmitDate'], # this should not go here
       last_update_posted_date: last_posted['LastUpdatePostDate'],
       last_update_posted_date_type: last_posted['LastUpdatePostDateType'],
       start_month_year: start_date['StartDate'],
@@ -1576,7 +1576,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.set_table_schema(schema = 'ctgov')
     return unless schema == 'ctgov' || schema == 'ctgov_beta'   
     
-    name_of_tables = Util::DbManager.new.loadable_tables
+    name_of_tables = Util::DbManager.loadable_tables
     name_of_tables.each do |name|
       name_of_model = name.singularize.camelize.safe_constantize
       name_of_model.table_name = schema + ".#{name}" if name_of_model

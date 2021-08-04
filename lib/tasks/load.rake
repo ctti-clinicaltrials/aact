@@ -6,16 +6,34 @@ namespace :db do
     # incremental, not full featured, just a couple days
     Util::Updater.new(args).run
   end
+
   task :beta_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
     `bundle exec rake log:clear`
-    StudyJsonRecord.run(args)
-    puts StudyJsonRecord.comparison
+    updater = Util::Updater.new(args.to_h.merge(schema: 'beta'))
+    updater.execute
+    # puts StudyJsonRecord.comparison
   end
+
   task :both_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
     `bundle exec rake log:clear`
-    Util::Updater.new(args).run
-    StudyJsonRecord.run(args)
-    puts StudyJsonRecord.comparison
+    updater = Util::Updater.new(schema: 'normal')
+    updater.execute
+
+    updater = Util::Updater.new(schema: 'beta')
+    updater.execute
+  end
+
+  task :loop do 
+    loop do
+      if Time.now.hour == 4
+        updater = Util::Updater.new(schema: 'normal')
+        updater.execute
+
+        updater = Util::Updater.new(schema: 'beta')
+        updater.execute
+      end
+      sleep 60
+    end
   end
 
   task :load2, [:schema, :search_days_back] => :environment do |t, args|
@@ -26,6 +44,7 @@ namespace :db do
     Util::DbManager.new.restore_from_file(args)
   end
   
+  desc 'load database into a specific database from a url'
   task :restore_from_url, [:url, :database_name] => :environment do |t, args|
     Util::DbManager.new.restore_from_url(args)
   end
