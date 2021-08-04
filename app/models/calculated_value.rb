@@ -23,16 +23,7 @@ class CalculatedValue < ActiveRecord::Base
       cmd='UPDATE calculated_values '+ CalculatedValue.send(method)
       con.execute(cmd)
     }
-    self.save_downcased_mesh_terms(con)
     con.execute("GRANT SELECT ON TABLE calculated_values TO read_only")
-  end
-
-  def self.save_downcased_mesh_terms(con)
-    #  save a lowercase version of MeSH terms so they can be found without worrying about case
-    con.execute("UPDATE browse_conditions SET downcase_mesh_term=lower(mesh_term);")
-    con.execute("UPDATE browse_interventions SET downcase_mesh_term=lower(mesh_term);")
-    con.execute("UPDATE keywords SET downcase_name=lower(name);")
-    con.execute("UPDATE conditions SET downcase_name=lower(name);")
   end
 
   def self.sql_methods
