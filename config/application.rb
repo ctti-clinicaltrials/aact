@@ -42,21 +42,22 @@ module AACT
       AACT_ADMIN_DATABASE_NAME  =  ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin' # Name of database used to support the AACT website
       AACT_PUBLIC_DATABASE_NAME =  ENV['AACT_PUBLIC_DATABASE_NAME'] || 'aact'  # Name of database available to the public
       AACT_ALT_PUBLIC_DATABASE_NAME = ENV['AACT_ALT_PUBLIC_DATABASE_NAME'] || 'aact_alt' # Name of alternate database available to the public
+      AACT_PUBLIC_BETA_DATABASE_NAME   = ENV['AACT_PUBLIC_BETA_DATABASE_NAME'] || 'aact_beta'
     else
       AACT_PUBLIC_HOSTNAME      = 'localhost'
       AACT_BACK_DATABASE_NAME   = 'aact_test'
       AACT_ADMIN_DATABASE_NAME  = 'aact_admin_test'
       AACT_PUBLIC_DATABASE_NAME = 'aact_pub_test'
       AACT_ALT_PUBLIC_DATABASE_NAME = 'aact_alt_test'
+      AACT_PUBLIC_BETA_DATABASE_NAME   = 'aact_test'
     end
     AACT_PORT = ENV['AACT_PORT'] || 5432
     AACT_PASS = ENV['AACT_PASSWORD'] || ''
     AACT_BACK_DATABASE_URL       = "postgres://#{AACT_DB_SUPER_USERNAME}:#{AACT_PASS}@#{AACT_HOST}:#{AACT_PORT}/#{AACT_BACK_DATABASE_NAME}"
-    puts AACT_BACK_DATABASE_URL
     AACT_ADMIN_DATABASE_URL      = "postgres://#{AACT_DB_SUPER_USERNAME}:#{AACT_PASS}@#{AACT_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
     AACT_PUBLIC_DATABASE_URL     = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_PUBLIC_DATABASE_NAME}"
     AACT_ALT_PUBLIC_DATABASE_URL = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_ALT_PUBLIC_DATABASE_NAME}"
-
+    AACT_PUBLIC_BETA_DATABASE_URL       = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_PUBLIC_BETA_DATABASE_NAME}"
     # If you deploy to a server, you need the following env variables defined for capistrano:
     # AACT_DEPLOY_TO
     AACT_PROD_REPO_URL="git@github.com:ctti-clinicaltrials/aact.git"

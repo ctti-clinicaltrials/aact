@@ -155,6 +155,7 @@ module Util
       log "  db_manager: set connection limit so only db owner can login..."
       public_con.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 0;")
       public_alt_con.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 0;")
+      public_beta_con.execute("ALTER DATABASE #{public_beta_db_name} CONNECTION LIMIT 0;")
     end
 
     def grant_db_privs
@@ -164,6 +165,11 @@ module Util
       public_alt_con.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 200;")
       public_alt_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
       public_alt_con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
+      public_beta_con.execute("ALTER DATABASE #{public_beta_db_name} CONNECTION LIMIT 200;")
+      public_beta_con.execute("grant connect on database #{public_beta_db_name} to read_only;")
+      public_beta_con.execute('grant usage on schema ctgov_beta to read_only;')
+      public_beta_con.execute('grant select on all tables in schema ctgov_beta to read_only;')
+      public_beta_con.execute('alter default privileges in schema ctgov_beta grant select on tables to read_only;')
     end
 
     def public_db_accessible?
@@ -508,6 +514,13 @@ module Util
       return @con
     end
 
+    def public_beta_con
+      return @public_beta_con if @public_beta_con and @public_beta_con.active?
+      @public_beta_con ||= ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_BETA_DATABASE_URL).connection
+      @public_beta_con.schema_search_path='ctgov_beta'
+      return @public_beta_con
+    end
+
     def migration
       @migration_object ||= ActiveRecord::Migration.new
     end
@@ -538,6 +551,10 @@ module Util
 
     def db_name
       AACT::Application::AACT_PUBLIC_DATABASE_NAME
+    end
+
+    def public_beta_db_name
+      AACT::Application::AACT_PUBLIC_BETA_DATABASE_NAME
     end
 
     def super_username
