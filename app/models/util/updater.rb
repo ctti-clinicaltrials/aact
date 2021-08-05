@@ -198,7 +198,7 @@ module Util
           load_event.complete({ status: 'failed', study_counts: study_counts })
         end
       end
-      send_notification
+      send_notification(schema)
     end
 
     def full

@@ -157,6 +157,7 @@ class Study < ActiveRecord::Base
   end
 
   def set_downcase
+    con=ActiveRecord::Base.connection
     con.execute("UPDATE browse_conditions SET downcase_mesh_term=lower(mesh_term) where nct_id = '#{nct_id}';")
     con.execute("UPDATE browse_interventions SET downcase_mesh_term=lower(mesh_term) where nct_id = '#{nct_id}';")
     con.execute("UPDATE keywords SET downcase_name=lower(name) where nct_id = '#{nct_id}';")
