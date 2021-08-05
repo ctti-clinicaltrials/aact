@@ -261,7 +261,7 @@ module Util
         load_event.log('create calculated values...')
         create_calculated_values
         load_event.log('set downcase mesh terms...')
-        create_downcase_mesh_terms
+        set_downcase_mesh_terms
       end
 
       load_event.log('populate admin tables...')
@@ -306,7 +306,7 @@ module Util
       CalculatedValue.populate
     end
 
-    def create_downcase_mesh_terms
+    def set_downcase_mesh_terms
       log('setting downcase mesh terms...')
       con=ActiveRecord::Base.connection
       #  save a lowercase version of MeSH terms so they can be found without worrying about case
