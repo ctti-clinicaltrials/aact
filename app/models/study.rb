@@ -401,7 +401,4 @@ class Study < ActiveRecord::Base
       + where('source like ?',"%#{org}%").pluck(:nct_id)).flatten.uniq
     where(nct_id: ids).includes(:sponsors).includes(:facilities).includes(:brief_summary).includes(:detailed_description).includes(:design).includes(:eligibility).includes(:overall_officials).includes(:responsible_parties)
   end
-
-  
-
 end
