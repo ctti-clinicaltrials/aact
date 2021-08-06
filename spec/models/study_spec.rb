@@ -60,6 +60,7 @@ describe Study do
   describe '.create_calculated_values' do
     before do
       expect(subject).to be_persisted
+      CalculatedValue.destroy_all
       CalculatedValue.new.create_from(subject).save!
     end
 
