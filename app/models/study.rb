@@ -152,7 +152,16 @@ class Study < ActiveRecord::Base
     # During full load, indexes are dropped. Populating CalculatedValues requires several db queries - so they're scanned and very slow.
     # Populate the CalculatedValues after the indexes have been recreated after the full load completes.
     CalculatedValue.new.create_from(self).save if ENV['load_type'] == 'incremental'
+    self.set_downcase if ENV['load_type'] == 'incremental'
     self
+  end
+
+  def set_downcase
+    con=ActiveRecord::Base.connection
+    con.execute("UPDATE browse_conditions SET downcase_mesh_term=lower(mesh_term) where nct_id = '#{nct_id}';")
+    con.execute("UPDATE browse_interventions SET downcase_mesh_term=lower(mesh_term) where nct_id = '#{nct_id}';")
+    con.execute("UPDATE keywords SET downcase_name=lower(name) where nct_id = '#{nct_id}';")
+    con.execute("UPDATE conditions SET downcase_name=lower(name) where nct_id = '#{nct_id}';")
   end
 
   def summary

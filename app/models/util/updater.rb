@@ -198,7 +198,7 @@ module Util
           load_event.complete({ status: 'failed', study_counts: study_counts })
         end
       end
-      send_notification
+      send_notification(schema)
     end
 
     def full
@@ -257,8 +257,12 @@ module Util
       days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
       StudySearch.execute(days_back)
 
-      load_event.log('create calculated values...')
-      create_calculated_values
+      if params[:event_type] == 'full'
+        load_event.log('create calculated values...')
+        create_calculated_values
+        load_event.log('set downcase mesh terms...')
+        set_downcase_terms
+      end
 
       load_event.log('populate admin tables...')
       # populate_admin_tables
@@ -300,6 +304,16 @@ module Util
     def create_calculated_values
       log('creating calculated values...')
       CalculatedValue.populate
+    end
+
+    def set_downcase_terms
+      log('setting downcase mesh terms...')
+      con=ActiveRecord::Base.connection
+      #  save a lowercase version of MeSH terms so they can be found without worrying about case
+      con.execute("UPDATE browse_conditions SET downcase_mesh_term=lower(mesh_term);")
+      con.execute("UPDATE browse_interventions SET downcase_mesh_term=lower(mesh_term);")
+      con.execute("UPDATE keywords SET downcase_name=lower(name);")
+      con.execute("UPDATE conditions SET downcase_name=lower(name);")
     end
 
     def log(msg)

@@ -326,7 +326,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     { 
       nct_id: nct_id,
-      nlm_download_date_description: download_date,
+      nlm_download_date_description: nil,
       study_first_submitted_date: get_date(status['StudyFirstSubmitDate']),
       results_first_submitted_date: get_date(status['ResultsFirstSubmitDate']),
       disposition_first_submitted_date: get_date(status['DispFirstSubmitDate']),
