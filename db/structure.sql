@@ -47,27 +47,6 @@ CREATE FUNCTION ctgov.category_insert_function() RETURNS trigger
 
 
 --
--- Name: count_estimate(text); Type: FUNCTION; Schema: ctgov; Owner: -
---
-
-CREATE FUNCTION ctgov.count_estimate(query text) RETURNS integer
-    LANGUAGE plpgsql
-    AS $$
-      DECLARE
-        rec   record;
-        ROWS  INTEGER;
-      BEGIN
-        FOR rec IN EXECUTE 'EXPLAIN ' || query LOOP
-          ROWS := SUBSTRING(rec."QUERY PLAN" FROM ' rows=([[:digit:]]+)');
-          EXIT WHEN ROWS IS NOT NULL;
-      END LOOP;
-
-      RETURN ROWS;
-      END
-      $$;
-
-
---
 -- Name: ids_for_org(character varying); Type: FUNCTION; Schema: ctgov; Owner: -
 --
 
@@ -276,6 +255,27 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
         LEFT OUTER JOIN designs             d  ON s.nct_id = d.nct_id
         ;
         $_$;
+
+
+--
+-- Name: count_estimate(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.count_estimate(query text) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        rec   record;
+        ROWS  INTEGER;
+      BEGIN
+        FOR rec IN EXECUTE 'EXPLAIN ' || query LOOP
+          ROWS := SUBSTRING(rec."QUERY PLAN" FROM ' rows=([[:digit:]]+)');
+          EXIT WHEN ROWS IS NOT NULL;
+      END LOOP;
+
+      RETURN ROWS;
+      END
+      $$;
 
 
 SET default_tablespace = '';
@@ -638,18 +638,6 @@ CREATE VIEW ctgov.all_states AS
     array_to_string(array_agg(DISTINCT facilities.state), '|'::text) AS names
    FROM ctgov.facilities
   GROUP BY facilities.nct_id;
-
-
---
--- Name: ar_internal_metadata; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.ar_internal_metadata (
-    key character varying NOT NULL,
-    value character varying,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
 
 
 --
@@ -2258,15 +2246,6 @@ ALTER SEQUENCE ctgov.result_groups_id_seq OWNED BY ctgov.result_groups.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.schema_migrations (
-    version character varying NOT NULL
-);
-
-
---
 -- Name: search_results_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -2373,6 +2352,27 @@ CREATE SEQUENCE ctgov.study_searches_id_seq
 --
 
 ALTER SEQUENCE ctgov.study_searches_id_seq OWNED BY ctgov.study_searches.id;
+
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.schema_migrations (
+    version character varying NOT NULL
+);
 
 
 --
@@ -2888,14 +2888,6 @@ ALTER TABLE ONLY support.study_xml_records ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
--- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.ar_internal_metadata
-    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
-
-
---
 -- Name: baseline_counts baseline_counts_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3248,14 +3240,6 @@ ALTER TABLE ONLY ctgov.result_groups
 
 
 --
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
-
-
---
 -- Name: search_results search_results_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3285,6 +3269,22 @@ ALTER TABLE ONLY ctgov.study_references
 
 ALTER TABLE ONLY ctgov.study_searches
     ADD CONSTRAINT study_searches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
 
 
 --
