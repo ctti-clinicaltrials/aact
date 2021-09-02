@@ -40,6 +40,18 @@ namespace :db do
     con.execute("ALTER ROLE #{aact_superuser} IN DATABASE #{aact_back_db} SET SEARCH_PATH TO ctgov, support, public, ctgov_beta;")
   end
 
+
+  task rename_columns: [:environment] do
+    find_columns = ActiveRecord::Base.connection.execute("SELECT information_schema.tables.table_schema, information_schema.tables.table_name, c.column_name
+                                                          FROM information_schema.tables
+                                                          INNER JOIN information_schema.columns c ON c.table_name = information_schema.tables.table_name
+                                                                                                  AND c.table_schema = information_schema.tables.table_schema
+                                                          WHERE c.column_name = 'ctgov_beta_group_code' AND information_schema.tables.table_schema= 'ctgov_beta' ;")
+    find_columns.each do |result|
+      ActiveRecord::Base.connection.execute("ALTER TABLE information_schema.tables.table_name RENAME COLUMN ctgov_beta_group_code TO ctgov_group_code;")
+    end
+  end
+
   task copy_schema: [:environment] do
     aact_superuser = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'
     if ENV['RAILS_ENV'] == 'test'
