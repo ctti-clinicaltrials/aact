@@ -42,13 +42,20 @@ namespace :db do
 
 
   task rename_columns: [:environment] do
-    find_columns = ActiveRecord::Base.connection.execute("SELECT information_schema.tables.table_schema, information_schema.tables.table_name, c.column_name
-                                                          FROM information_schema.tables
-                                                          INNER JOIN information_schema.columns c ON c.table_name = information_schema.tables.table_name
-                                                                                                  AND c.table_schema = information_schema.tables.table_schema
-                                                          WHERE c.column_name = 'ctgov_beta_group_code' AND information_schema.tables.table_schema= 'ctgov_beta' ;")
-    find_columns.each do |result|
-      ActiveRecord::Base.connection.execute("ALTER TABLE information_schema.tables.table_name RENAME COLUMN ctgov_beta_group_code TO ctgov_group_code;")
+
+    sql_one= "SELECT t.table_schema,
+                t.table_name,
+	              c.column_name
+          FROM information_schema.tables t
+          INNER JOIN information_schema.columns AS c on c.table_name = t.table_name
+                                AND c.table_schema = t.table_schema
+          WHERE c.column_name = 'ctgov_beta_group_code' AND t.table_schema= 'ctgov_beta'";
+
+    find_columns= ActiveRecord::Base.connection.execute(sql_one).to_a
+
+    find_columns.each do|r|
+      sql_two= "ALTER TABLE #{r['table_schema']}.#{r['table_name']} RENAME COLUMN ctgov_beta_group_code TO ctgov_group_code;"
+      ActiveRecord::Base.connection.execute(sql_two)
     end
   end
 
