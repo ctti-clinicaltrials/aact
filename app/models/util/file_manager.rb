@@ -9,20 +9,19 @@ module Util
 
     def initialize
       @root_dir = "#{Rails.public_path}/static"
-      if ! File.exists?(root_dir)
-        FileUtils.mkdir root_dir
-        FileUtils.mkdir_p "#{root_dir}/static_db_copies/daily"
-        FileUtils.mkdir_p "#{root_dir}/static_db_copies/monthly"
-        FileUtils.mkdir_p "#{root_dir}/exported_files/daily"
-        FileUtils.mkdir_p "#{root_dir}/exported_files/monthly"
-        FileUtils.mkdir_p "#{root_dir}/db_backups"
-        FileUtils.mkdir_p "#{root_dir}/documentation"
-        FileUtils.mkdir_p "#{root_dir}/logs"
-        FileUtils.mkdir_p "#{root_dir}/tmp"
-        FileUtils.mkdir_p "#{root_dir}/other"
-        FileUtils.mkdir_p "#{root_dir}/xml_downloads"
-        FileUtils.mkdir_p "#{root_dir}/exported_files/covid-19"
-      end
+      FileUtils.mkdir_p root_dir
+      FileUtils.mkdir_p "#{root_dir}/static_db_copies/daily"
+      FileUtils.mkdir_p "#{root_dir}/static_db_copies/monthly"
+      FileUtils.mkdir_p "#{root_dir}/exported_files/daily"
+      FileUtils.mkdir_p "#{root_dir}/exported_files/monthly"
+      FileUtils.mkdir_p "#{root_dir}/db_backups"
+      FileUtils.mkdir_p "#{root_dir}/documentation"
+      FileUtils.mkdir_p "#{root_dir}/logs"
+      FileUtils.mkdir_p "#{root_dir}/tmp"
+      FileUtils.mkdir_p "#{root_dir}/other"
+      FileUtils.mkdir_p "#{root_dir}/xml_downloads"
+      FileUtils.mkdir_p "#{root_dir}/exported_files/covid-19"
+      FileUtils.mkdir_p "#{root_dir}/object_counts"
     end
 
     def nlm_protocol_data_url
@@ -75,6 +74,10 @@ module Util
 
     def covid_file_directory
       "#{root_dir}/exported_files/covid-19"
+    end
+
+    def object_counts_directory
+      "#{root_dir}/object_counts"
     end
 
     def admin_schema_diagram

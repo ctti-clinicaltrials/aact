@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'fileutils'
 require 'logger'
+require 'csv'
 SaveTime = Logger.new('log/save_time.log')
 ErrorLog = Logger.new('log/error.log')
 include ActionView::Helpers::DateHelper
@@ -81,15 +82,15 @@ class StudyJsonRecord < ActiveRecord::Base
       original_count = unzipped_folders.size
       @count_down = original_count
       unzipped_folders.each do |file|
-        begin  
+        begin
         contents = file.get_input_stream.read
         json = JSON.parse(contents)
         study = json['FullStudy']
         save_single_study(study)
         rescue Exception => error
           ErrorLog.error(error)
-        end  
-      end  
+        end
+      end
     end
   end
 
@@ -99,7 +100,7 @@ class StudyJsonRecord < ActiveRecord::Base
     @count_down = first_batch['FullStudiesResponse']['NStudiesFound']
     limit = (@count_down/100.0).ceil
     save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
-    
+
     # since I already saved the first hundred studies I start the loop after that point
     # studies must be retrieved in batches of 99,
     # using min and max to determine the study to start with and the study to end with respectively (in that batch)
@@ -244,7 +245,7 @@ class StudyJsonRecord < ActiveRecord::Base
     converted_date = get_date(str)
     return unless converted_date
     return converted_date.end_of_month if is_missing_the_day?(str)
-    
+
     converted_date
   end
 
@@ -281,8 +282,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def locations_array
     return unless contacts_location_module
-    
-    contacts_location_module.dig('LocationList', 'Location')  
+
+    contacts_location_module.dig('LocationList', 'Location')
   end
 
   def adverse_events_module
@@ -290,8 +291,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
     results_section['AdverseEventsModule']
   end
-  
-  def study_data 
+
+  def study_data
     return unless @protocol_section
 
     status = @protocol_section['StatusModule']
@@ -320,11 +321,11 @@ class StudyJsonRecord < ActiveRecord::Base
     groups = group_list['ArmGroup'] || []
     num_of_groups = groups.count == 0 ? nil : groups.count
     arms_count = study_type =~ /Interventional/i ? num_of_groups : nil
-    groups_count = arms_count ? nil : num_of_groups 
+    groups_count = arms_count ? nil : num_of_groups
     phase_list = key_check(design['PhaseList'])['Phase']
     phase_list = phase_list.join('/') if phase_list
 
-    { 
+    {
       nct_id: nct_id,
       nlm_download_date_description: nil,
       study_first_submitted_date: get_date(status['StudyFirstSubmitDate']),
@@ -461,9 +462,9 @@ class StudyJsonRecord < ActiveRecord::Base
     { nct_id: nct_id, description: description }
   end
 
-  def design_data 
+  def design_data
     return unless @protocol_section
-    
+
     info = @protocol_section.dig('DesignModule', 'DesignInfo')
     return unless info
 
@@ -641,7 +642,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def mesh_loop(type='Condition', section='Mesh')
     meshes = @derived_section.dig("#{type}BrowseModule", "#{type}#{section}List", "#{type}#{section}")
-    return unless meshes 
+    return unless meshes
 
     collection = []
     meshes.each do |mesh|
@@ -658,10 +659,10 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def central_contacts_data
     return unless @contacts_location_module
-    
+
     central_contacts = @contacts_location_module.dig('CentralContactList', 'CentralContact')
     return unless central_contacts
-    
+
     collection = []
     central_contacts.each_with_index do |contact, index|
       collection << {
@@ -697,22 +698,22 @@ class StudyJsonRecord < ActiveRecord::Base
     removed_countries = @derived_section.dig('MiscInfoModule', 'RemovedCountryList', 'RemovedCountry') || []
     locations = @locations_array || []
     return if locations.empty? && removed_countries.empty?
-    
+
     countries = []
     collection = []
 
     locations.each do |location|
       countries << location['LocationCountry']
     end
-    
+
     countries.uniq.each do |country|
       collection << { nct_id: nct_id, name: country, removed: false }
     end
-    
+
     removed_countries.uniq.each do |country|
       collection << { nct_id: nct_id, name: country, removed: true }
     end
-    
+
     collection
   end
 
@@ -788,14 +789,14 @@ class StudyJsonRecord < ActiveRecord::Base
 
     identification_module = @protocol_section['IdentificationModule']
     return unless identification_module
-    
+
     nct_id_alias = identification_module.dig('NCTIdAliasList', 'NCTIdAlias') || []
     secondary_info = identification_module.dig('SecondaryIdInfoList', 'SecondaryIdInfo') || []
     org_study_info = identification_module['OrgStudyIdInfo']
     collection = []
     collection << { nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId'] } if org_study_info
 
-    
+
     nct_id_alias.each do |nct_alias|
       collection << { nct_id: nct_id, id_type: 'nct_alias', id_value: nct_alias }
     end
@@ -1052,14 +1053,14 @@ class StudyJsonRecord < ActiveRecord::Base
                                           ci_lower_limit: analysis['OutcomeAnalysisCILowerLimit'],
                                           ci_upper_limit: analysis['OutcomeAnalysisCIUpperLimit'],
                                           ci_upper_limit_na_comment: analysis['OutcomeAnalysisCIUpperLimitComment'],
-                                          
+
                                           method: analysis['OutcomeAnalysisStatisticalMethod'],
                                           method_description: analysis['OutcomeAnalysisStatisticalComment'],
                                           estimate_description: analysis['OutcomeAnalysisEstimateComment'],
                                           groups_description: analysis['OutcomeAnalysisGroupDescription'],
                                           other_analysis_description: analysis['OutcomeAnalysisOtherAnalysisDescription']
                                         },
-                      outcome_analysis_groups: outcome_analysis_groups_data(analysis)  
+                      outcome_analysis_groups: outcome_analysis_groups_data(analysis)
                     }
     end
     collection
@@ -1173,7 +1174,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       document_date: get_date(doc['LargeDocDate']),
                       url: full_url
                     }
-                    
+
     end
     collection
   end
@@ -1181,7 +1182,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def reported_event_totals_data
     return [] unless @adverse_events_module
-    
+
     collection = []
     event_groups = @adverse_events_module.dig('EventGroupList', 'EventGroup')
     return [] unless event_groups
@@ -1213,16 +1214,16 @@ class StudyJsonRecord < ActiveRecord::Base
       classification: classification,
       subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
       subjects_at_risk: event_hash["EventGroup#{event_type}NumAtRisk"]
-    }   
+    }
   end
- 
+
   def reported_events_data
     return unless @results_section
 
     events = events_data('Serious') + events_data('Other')
     return if events.empty?
 
-    events 
+    events
   end
 
   def events_data(event_type='Serious')
@@ -1311,8 +1312,8 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     {
       nct_id: nct_id,
-      organization: point_of_contact['PointOfContactOrganization'], 
-      name: point_of_contact['PointOfContactTitle'], 
+      organization: point_of_contact['PointOfContactOrganization'],
+      name: point_of_contact['PointOfContactTitle'],
       phone: phone,
       email: point_of_contact['PointOfContactEMail']
     }
@@ -1345,9 +1346,9 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collaborators = sponsor_collaborators_module.dig('CollaboratorList', 'Collaborator')
     lead_sponsor = sponsor_collaborators_module['LeadSponsor']
-    
+
     return unless collaborators || lead_sponsor
-    
+
     collection = []
     collection << sponsor_info(lead_sponsor, 'LeadSponsor') if lead_sponsor
     return collection unless collaborators
@@ -1362,7 +1363,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def sponsor_info(sponsor_hash, sponsor_type='LeadSponsor')
     return if sponsor_hash.empty?
-    
+
     {
       nct_id: nct_id,
       agency_class: sponsor_hash["#{sponsor_type}Class"],
@@ -1402,7 +1403,7 @@ class StudyJsonRecord < ActiveRecord::Base
       end
     end
     return if collection.empty?
-    
+
     collection
   end
 
@@ -1470,12 +1471,12 @@ class StudyJsonRecord < ActiveRecord::Base
       Design.create(data[:design]) if data[:design]
       Eligibility.create(data[:eligibility]) if data[:eligibility]
       ParticipantFlow.create(data[:participant_flow]) if data[:participant_flow]
-      
+
       # saving baseline_measurements and associated objects
       baseline_info = data[:baseline_measurements] || {}
       save_with_result_group(baseline_info[:baseline_counts], 'BaselineCount') if baseline_info[:baseline_counts]
       save_with_result_group(baseline_info[:measurements], 'BaselineMeasurement') if baseline_info[:measurements]
-        
+
       BrowseCondition.import(data[:browse_conditions], validate: false) if data[:browse_conditions]
       BrowseIntervention.import(data[:browse_interventions], validate: false) if data[:browse_interventions]
       CentralContact.import(data[:central_contacts], validate: false) if data[:central_contacts]
@@ -1508,7 +1509,7 @@ class StudyJsonRecord < ActiveRecord::Base
       ResultContact.create(data[:result_contact]) if data[:result_contact]
       Reference.import(data[:study_references], validate: false) if data[:study_references]
       Sponsor.import(data[:sponsors], validate: false) if data[:sponsors]
-      
+
       # saving drop_withdrawals
       save_with_result_group(data[:drop_withdrawals], 'DropWithdrawal') if data[:drop_withdrawals]
 
@@ -1574,8 +1575,8 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.set_table_schema(schema = 'ctgov')
-    return unless schema == 'ctgov' || schema == 'ctgov_beta'   
-    
+    return unless schema == 'ctgov' || schema == 'ctgov_beta'
+
     name_of_tables = Util::DbManager.loadable_tables
     name_of_tables.each do |name|
       name_of_model = name.singularize.camelize.safe_constantize
@@ -1671,10 +1672,10 @@ class StudyJsonRecord < ActiveRecord::Base
       outcome_measurements = StudyJsonRecord.set_key_value(outcome_measure[:outcome_measurements], :outcome_id, outcome.id)
       save_with_result_group(outcome_counts, 'OutcomeCount') if outcome_counts
       save_with_result_group(outcome_measurements, 'OutcomeMeasurement') if outcome_measurements
-      
+
       outcome_analyses = outcome_measure[:outcome_analyses] || []
       outcome_analyses.each{ |h| h[:outcome_analysis][:outcome_id] = outcome.id } unless outcome_analyses.empty?
-      
+
       outcome_analyses.each do |analysis_info|
         outcome_analysis = OutcomeAnalysis.create(analysis_info[:outcome_analysis])
         outcome_analysis_groups = analysis_info[:outcome_analysis_groups] || []
@@ -1686,7 +1687,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.set_key_value(hash_array, key, value)
     return unless hash_array
-    
+
     hash_array.each{ |h| h[key] = value }
     hash_array
   end
@@ -1779,5 +1780,18 @@ class StudyJsonRecord < ActiveRecord::Base
     study_record = find_by(nct_id: nct_id)
     study_record.build_study
     add_indexes_and_constraints
+  end
+
+  def self.data_verification_csv
+    file = "#{Util::FileManager.new.object_counts_directory}/models_counts.csv"
+    headers = ["NCT_ID", "Model", "Beta Count", "Regular Count"]
+
+    CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|
+      data_verification.each do |nct_number, study_objects|
+        study_objects.each do |object_model, object_differences|
+          csv << [nct_number, object_model, object_differences[:beta], object_differences[:reg]]
+        end
+      end
+    end
   end
 end
