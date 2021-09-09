@@ -1,3 +1,5 @@
+require 'roo'
+
 namespace :db do
 
   task drop: [:environment] do
@@ -39,6 +41,20 @@ namespace :db do
     con.execute("ALTER ROLE #{aact_superuser} WITH CREATEROLE;")
     con.execute("ALTER ROLE #{aact_superuser} IN DATABASE #{aact_back_db} SET SEARCH_PATH TO ctgov, support, public, ctgov_beta;")
   end
+
+  task single_row_comparison: [:environment] do
+    workbook = Roo::Spreadsheet.open 'https://aact.ctti-clinicaltrials.org/static/documentation/aact_tables.xlsx'
+    file_table_names=[]
+    for i in (2..45) do
+      file_table_names << workbook.cell(i, 2)
+    end
+    puts file_table_names
+
+  end
+
+
+
+
 
   task copy_schema: [:environment] do
     aact_superuser = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'
