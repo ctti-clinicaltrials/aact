@@ -43,18 +43,27 @@ namespace :db do
   end
 
   task single_row_comparison: [:environment] do
+
     workbook = Roo::Spreadsheet.open 'https://aact.ctti-clinicaltrials.org/static/documentation/aact_tables.xlsx'
+    # collects table names from the excel
     file_table_names=[]
     for i in (2..45) do
       file_table_names << workbook.cell(i, 2)
     end
-    puts file_table_names
+    # to find tables and their columns corresponding to tables in excel
+    sql = "SELECT t.table_schema,
+                  t.table_name,
+                  c.column_name
+          FROM information_schema.tables AS t
+          INNER JOIN information_schema.columns AS c on c.table_name = t.table_name
+                                                  AND c.table_schema = t.table_schema
+          WHERE t.table_schema= 'ctgov' AND c.table_name IN (#{file_table_names.map { |e| "'#{e}'" }.join(', ')});"
+
+    all_columns=ActiveRecord::Base.connection.execute(sql).to_a
+
+    puts all_columns.first(4).class
 
   end
-
-
-
-
 
   task copy_schema: [:environment] do
     aact_superuser = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'
