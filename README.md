@@ -50,7 +50,7 @@ If you need a copy of the database, but don't want to bother installing & runnin
     Verify your new user can login to psql with command: `psql -U <your_aact_superuser> -d template1`  
     You can exit the shell once you see you can log in.  
 
-4.  Now we want to store the environmental variables for the superuser that you created in the previous step. That is the user you will be using within AACT to    make database changes.  
+4.  Now we want to store the environmental variables for the superuser that you created in the previous step. That is the user you will be using within AACT to make database changes.  
     `vim ~/.bash_profile` You can switch out bash_profile for your usual file for storing environmental variables, such as an zshrc file.  
     `i` Enter insert mode and add the following to the file  
     `export AACT_DB_SUPER_USERNAME=<your_aact_superuser>`  
