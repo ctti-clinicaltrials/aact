@@ -1,4 +1,5 @@
 require 'roo'
+require 'csv'
 
 namespace :db do
 
@@ -51,17 +52,41 @@ namespace :db do
       file_table_names << workbook.cell(i, 2)
     end
     # to find tables and their columns corresponding to tables in excel
-    sql = "SELECT t.table_schema,
-                  t.table_name,
-                  c.column_name
+    sql = "SELECT t.table_name,
+                    string_agg(c.column_name ,', ') as table_columns
           FROM information_schema.tables AS t
           INNER JOIN information_schema.columns AS c on c.table_name = t.table_name
                                                   AND c.table_schema = t.table_schema
-          WHERE t.table_schema= 'ctgov' AND c.table_name IN (#{file_table_names.map { |e| "'#{e}'" }.join(', ')});"
+          WHERE t.table_schema= 'ctgov' AND c.table_name IN (#{file_table_names.map { |e| "'#{e}'" }.join(', ')})
+          group by t.table_name;"
 
-    all_columns=ActiveRecord::Base.connection.execute(sql).to_a
+          all_columns=ActiveRecord::Base.connection.execute(sql).to_a
 
-    puts all_columns.first(4).class
+    # # puts all_columns.first(4).inspect
+    #
+    # all_columns.each do |column|
+    #   query = "SELECT T.nct_id,
+    #                 T.#{column["column_name"]},
+    #                 BT.#{column["column_name"]}
+    #         FROM ctgov.#{column["table_name"]} T
+    #         LEFT JOIN ctgov_beta.#{column["table_name"]} BT ON T.nct_id = BT.nct_id
+    #         WHERE T.#{column["column_name"]} != BS.#{column["column_name"]};"
+
+
+    all_columns.each do |table_name|
+      query = "SELECT  a.*, b.*
+    FROM ctgov.#{table_name['table_name']} a
+    FULL OUTER JOIN ctgov_beta.#{table_name['table_name']} b
+        USING (i#{table_name['table_columns']})
+    WHERE  a.id IS NULL ;"
+       # puts query
+
+      if ActiveRecord::Base.connection.execute(query).present?
+        #adsd it to file
+      end
+
+    end
+
 
   end
 
