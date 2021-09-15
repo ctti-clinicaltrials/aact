@@ -1,18 +1,34 @@
 # AACT
 
+### What it is:  
 Database for Aggregated Analysis of ClinicalTrials.gov  
-<br>
-<br>
-
-***
 
 <br>
 
-## Purpose
-
+### Purpose:  
 This is a ruby on rails application that retreives the content of <a href="clinicaltrials.gov" target="_blank">clinicaltrials.gov</a> (via their API) and makes the information available in a relational database.  We do this to make this valuable body of information accessible to the public as a complete aggregated set of data.
 
 If you need a copy of the database, but don't want to bother installing & running this app, copies of the database are available for download from the <a href='https://aact.ctti-clinicaltrials.org/snapshots' target='_blank'>AACT website (Download page).</a> We use pg_dump to create a snapshot of the database after each nightly update, so a version is always available with the most current info from clinicaltrials.gov.  
+
+<br>
+
+### Database explanation:  
+
+Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describes their purposes.
+![Visualization of the database arrangment for AACT(backend) and AACT-Admin(frontend)](public/aact_architecture.png "AACT Database Visualization")   
+
+<br>
+
+### Data Source:  
+
+AACT downloads the complete set of studies from ClinicalTrials.gov as a zipfile that contains an xml file for each study https://clinicaltrials.gov/search/resultsxml=true.  Until recently, the ClinicalTrials.gov API only provided this info in XML format.  
+
+In June, 2019, an improved API was deployed in beta which provides a far more flexible way to retrieve studies from ClinicalTrials.gov and also lets you retrieve it as json. We have setup AACT to also retrieve data from the beta API. That data is stored in the `ctgov_beta` schema.
+
+You can find information about the ClinicalTrials.gov beta API here: https://clinicaltrials.gov/api/gui
+
+
+
 <br>
 <br>
 
@@ -168,28 +184,3 @@ Treat dev as the main branch. Only branch off of master if you need to do a hotf
 6.  Merge PR to master  
 7.  Deploy master to production  
 8.  Bring changes into dev (once things stabilize)  
-
-<br>
-<br>
-
-***
-
-<br>
-
-## Database explanation
-
-Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describes their purposes.
-![Visualization of the database arrangment for AACT(backend) and AACT-Admin(frontend)](public/aact_architecture.png "AACT Database Visualization")   
-
-<br>
-<br>
-
-***
-
-<br>
-
-## Data Source
-
-AACT downloads the complete set of studies from ClinicalTrials.gov as a zipfile that contains an xml file for each study [[https://clinicaltrials.gov/search/resultsxml=true]].  Until recently, the ClinicalTrials.gov API only provided this info in XML format.  In June, 2019, an improved API was deployed in beta which provides a far more flexible way to retrieve studies from ClinicalTrials.gov and also lets you retrieve it as json.  [[https://clinicaltrials.gov/ct2/about-site/new]]
-<br>
-<br>
