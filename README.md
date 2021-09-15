@@ -109,6 +109,7 @@ If you need a copy of the database, but don't want to bother installing & runnin
 
 <br>
 <br>
+
 ***
 
 <br>
@@ -187,7 +188,7 @@ Below you'll find an image that illustrates the different AACT databases and sch
 
 <br>
 
-## Where the data comes from
+## Data Source
 
 AACT downloads the complete set of studies from ClinicalTrials.gov as a zipfile that contains an xml file for each study [[https://clinicaltrials.gov/search/resultsxml=true]].  Until recently, the ClinicalTrials.gov API only provided this info in XML format.  In June, 2019, an improved API was deployed in beta which provides a far more flexible way to retrieve studies from ClinicalTrials.gov and also lets you retrieve it as json.  [[https://clinicaltrials.gov/ct2/about-site/new]]
 <br>
