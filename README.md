@@ -73,7 +73,7 @@ If you need a copy of the database, but don't want to bother installing & runnin
     You can add `your_aact_superuser` to the “.pgpass” file to save yourself having to type the password when logging into the shell. Add `hostname:port:database:<superuser_name>:<superuser_password>` to your pgpass file. If you aren’t sure how to do it follow the guidance in step 2.  
 
 5.  Clone this repo: `git clone git@github.com:ctti-clinicaltrials/aact.git`  
-    Note: Cloning with ssh url requires that you have your ssh key for the computer you are using saved to git. It allows you to not have to login. If you haven't saved your ssh key to github use the html url instead when cloning.  
+    Note: Cloning with a ssh url requires that your local ssh key is saved to Github. The key verifies your permission to push and pull so you won't have to log in. If you haven't saved your ssh key to Github use the html url instead when cloning.  
 
 6.  `cd aact` to enter the directory  
 
