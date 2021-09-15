@@ -109,17 +109,6 @@ If you need a copy of the database, but don't want to bother installing & runnin
 
 <br>
 <br>
-
-***
-
-<br>
-
-## Database explanation
-
-Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describes their purposes.
-![Visualization of the database arrangment for AACT(backend) and AACT-Admin(frontend)](public/aact_architecture.png "AACT Database Visualization")   
-<br>
-<br>
 ***
 
 <br>
@@ -178,6 +167,18 @@ Treat dev as the main branch. Only branch off of master if you need to do a hotf
 6.  Merge PR to master  
 7.  Deploy master to production  
 8.  Bring changes into dev (once things stabilize)  
+
+<br>
+<br>
+
+***
+
+<br>
+
+## Database explanation
+
+Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describes their purposes.
+![Visualization of the database arrangment for AACT(backend) and AACT-Admin(frontend)](public/aact_architecture.png "AACT Database Visualization")   
 
 <br>
 <br>
