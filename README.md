@@ -14,7 +14,7 @@ If you need a copy of the database, but don't want to bother installing & runnin
 
 ### Database explanation:  
 
-Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describes their purposes.
+Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describing their purposes.
 ![Visualization of the database arrangment for AACT(backend) and AACT-Admin(frontend)](public/aact_architecture.png "AACT Database Visualization")   
 
 <br>
@@ -75,7 +75,7 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `export AACT_BETA_DATABASE_NAME=aact`  
     <br>
     By default, AACT saves files it creates in a directory under /aact-files. (Note, this is in the server root directory, not the root of the AACT application.)  To override this, use the AACT_STATIC_FILE_DIR environment variable to define a different directory.  Otherwise, you will need to create /aact-files at the server root directory and change permissions on it so that the rails application owner has permission to read/write to that directory.  
-    `export AACT_STATIC_FILE_DIR=public/static` *we are removing the need to add this variable*  
+    `export AACT_STATIC_FILE_DIR=public/static` *we are working towards removing the need to add this variable*  
     <br>
     The pg gem (used by AACT) will need to know where to find your PostgreSQL installation. For Mac you can direct it to that location by adding  
     `export PATH=$PATH:/Library/PostgreSQL/x.y/bin` *change x.y to the version number of your PostgreSQL installation, like: `export PATH=$PATH:/Library/PostgreSQL/13/bin`*  
