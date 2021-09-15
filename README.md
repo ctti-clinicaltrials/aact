@@ -106,13 +106,44 @@ If you need a copy of the database, but don't want to bother installing & runnin
     `bin/rake db:migrate`  
     `bin/rake db:migrate RAILS_ENV=test`  
     `bin/rake db:copy_schema` this copies the structure (tables, columns and rows) of the ctgov schema over to the ctgov_beta schema.  
+<br>
+<br>
+***
 
-11. Currently we use a workflow where you fork the original repository and have two remotes connected to your local workspace. I named the original repository “original” instead of origin.  
-    `git remote rename origin original`  
-    Then I added the connection to my forked repo and call it origin  
-    `git remote add origin <forked_repo_url>`  
-    Check out the remotes you’ve added  
-    `git remote -v` 
+<br>
+
+## Workflow
+### Branches:
+- master - This is the stable production branch, anything merged to master is meant to be propagated to production. Hot fixes will be merged directly to master, then pulled into dev. All other Pull Requests (PRs) will be merged into dev first.  
+- dev - This branch contains the changes for the sprint. It is an accumulation of everything that we believe is working and ready for the next release.  
+- feat/AACT-NUM-description - "AACT-Num" refers to the number of the card on Jira. Description is the name of the feature. This is the naming conventions for a feature that you are working on that eventually will be merged to dev once the PR is approved.  
+- fix/AACT-NUM-description - This is the naming conventions for a bug fix. The PR will be merged into dev when approved.  
+- hotfix/AACT-220-description - This is the naming conventions for an emergency fix. This branches off of master and gets merged into master when the PR is approved because it is a fix that needs to be deployed ASAP.  
+
+Treat dev as the main branch. Only branch off of master if you need to do a hotfix.
+
+### Normal Process
+1.  Pick a ticket to work on  
+2.  Branch off of dev using the naming convention mentioned above to name your branch  
+3.  Work on the feature or bug fix  
+4.  Run tests and make sure they pass before creating a PR  
+5.  Once complete create a PR to dev  
+6.  Request review for the PR from two people  
+7.  If there are change requests, makes the changes, run tests and request a review. If not continue to the next step.   
+8.  The PR will be approved and merged to dev  
+9.  At the end of the sprint the dev will be merged to master (we will add a semantic tag, this is where we will decide which version number to pick)  
+10.  Deploy master to production  
+
+### Hotfix Process
+1.  Branch off of master using the naming convention mentioned above to name your branch   
+2.  Work on the bug fix  
+3.  Run tests and make sure they pass
+4.  Create PR to master  
+5.  Request review for the PR from two people. PR review could be expedited depending on the emergency  
+6.  Merge PR to master  
+7.  Deploy master to production  
+8.  Bring changes into dev (once things stabilize)  
+
 <br>
 <br>
 ***
@@ -151,7 +182,7 @@ These are your options:
 
 <br>
 
-## Create directory for static files
+## Where the data comes from
 
 AACT downloads the complete set of studies from ClinicalTrials.gov as a zipfile that contains an xml file for each study [[https://clinicaltrials.gov/search/resultsxml=true]].  Until recently, the ClinicalTrials.gov API only provided this info in XML format.  In June, 2019, an improved API was deployed in beta which provides a far more flexible way to retrieve studies from ClinicalTrials.gov and also lets you retrieve it as json.  [[https://clinicaltrials.gov/ct2/about-site/new]]
 <br>
