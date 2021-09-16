@@ -172,7 +172,7 @@ module Util
     def update_study(id)
       stime = Time.now
       if schema == 'beta'
-        record = StudyJsonRecord.find_or_create_by(nct_id: id)
+        record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
         changed = record.update_from_api
         record.create_or_update_study
       else

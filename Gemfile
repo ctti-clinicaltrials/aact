@@ -24,7 +24,7 @@ gem "high_voltage"
 gem "jquery-rails"
 gem "normalize-rails"
 gem "pg", '~> 0.18'
-gem 'rails_12factor'
+# gem 'rails_12factor'
 gem "coderay"
 gem "recipient_interceptor"
 gem 'rest-client'
@@ -41,6 +41,7 @@ gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
 gem 'caxlsx'
+gem 'airbrake'
 
 # deployment to server
 gem 'capistrano', '~> 3.8'
@@ -56,7 +57,7 @@ group :development, :test do
   gem "rack-mini-profiler", require: false
   gem "awesome_print"
   gem "bullet"
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "pry-byebug"
   gem "pry-rails"
   gem 'rspec-rails'
