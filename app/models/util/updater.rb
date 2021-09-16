@@ -28,6 +28,20 @@ module Util
       self
     end
 
+    def set_schema
+      con = ActiveRecord::Base.connection
+      username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
+      db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
+      if schema == 'beta'
+        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
+      else
+        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
+      end
+      ActiveRecord::Base.remove_connection
+      ActiveRecord::Base.establish_connection
+      ActiveRecord::Base.logger = nil
+    end
+
     def execute
       # TODO: need to extract this into a connection method
       con = ActiveRecord::Base.connection
@@ -174,6 +188,17 @@ module Util
       study = Study.find_by(nct_id: id)
       study.remove_study_data if study
       Time.now - stime
+    end
+
+    def load_study(id)
+      set_schema
+      # 1. remove constraings
+      log("#{schema} remove constraints...")
+      db_mgr.remove_constrains
+      update_study(id)
+      # 2. add constraints
+      log("#{schema} adding constraints...")
+      db_mgr.add_constraints
     end
 
     def run
