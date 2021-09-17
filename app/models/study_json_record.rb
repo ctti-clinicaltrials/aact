@@ -1785,18 +1785,19 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.data_verification_csv
     file = "#{Util::FileManager.new.beta_differences_directory}/nct_id_count_differences.csv"
     headers = ["NCT_ID", "Model", "Beta Count", "Regular Count"]
-
-    CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|
-      data_verification.each do |nct_number, study_objects|
-        puts "study objects:#{study_objects.inspect}"
-        study_objects.each do |object_hash|
-          object_hash.each do |object_model, object_differences|
-            puts "object model:#{object_model.inspect}"
-            puts "object differences:#{object_differences.inspect}"
-            csv << [nct_number, object_model, object_differences[:beta], object_differences[:reg]]
+    begin
+      CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|
+        data_verification.each do |nct_number, study_objects|
+          study_objects.each do |object_hash|
+            object_hash.each do |object_model, object_differences|
+              csv << [nct_number, object_model, object_differences[:beta], object_differences[:reg]]
+            end
           end
         end
       end
+    rescue => error
+      msg="#{error.message} (#{error.class} #{error.backtrace}"
+      ErrorLog.error(msg)
     end
   end
 end
