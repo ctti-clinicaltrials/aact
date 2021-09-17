@@ -1783,7 +1783,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.data_verification_csv
-    file = "#{Util::FileManager.new.object_counts_directory}/models_counts.csv"
+    file = "#{Util::FileManager.new.beta_differences_directory}/nct_id_count_differences.csv"
     headers = ["NCT_ID", "Model", "Beta Count", "Regular Count"]
 
     CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|

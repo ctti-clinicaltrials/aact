@@ -21,7 +21,7 @@ module Util
       FileUtils.mkdir_p "#{root_dir}/other"
       FileUtils.mkdir_p "#{root_dir}/xml_downloads"
       FileUtils.mkdir_p "#{root_dir}/exported_files/covid-19"
-      FileUtils.mkdir_p "#{root_dir}/object_counts"
+      FileUtils.mkdir_p "#{root_dir}/beta_differences"
     end
 
     def nlm_protocol_data_url
@@ -76,8 +76,8 @@ module Util
       "#{root_dir}/exported_files/covid-19"
     end
 
-    def object_counts_directory
-      "#{root_dir}/object_counts"
+    def beta_differences_directory
+      "#{root_dir}/beta_differences"
     end
 
     def admin_schema_diagram
