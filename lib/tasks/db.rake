@@ -44,7 +44,7 @@ namespace :db do
   end
 
   task single_row_comparison: [:environment] do
-
+    # hardcoded table names with one row per study from excel file
     file_table_names=['brief_summaries', 'calculated_values', 'categories',
                       'designs', 'detailed_descriptions', 'eligibilities',
                       'participant_flows', 'studies']
@@ -77,6 +77,24 @@ namespace :db do
           writer << result[0].values
         end
       end
+    end
+  end
+
+  task rename_columns: [:environment] do
+
+    sql_one= "SELECT t.table_schema,
+                t.table_name,
+	              c.column_name
+              FROM information_schema.tables t
+              INNER JOIN information_schema.columns AS c on c.table_name = t.table_name
+                                AND c.table_schema = t.table_schema
+              WHERE c.column_name = 'ctgov_beta_group_code' AND t.table_schema= 'ctgov_beta'";
+
+    find_columns= ActiveRecord::Base.connection.execute(sql_one).to_a
+
+    find_columns.each do|r|
+      sql_two= "ALTER TABLE #{r['table_schema']}.#{r['table_name']} RENAME COLUMN ctgov_beta_group_code TO ctgov_group_code;"
+      ActiveRecord::Base.connection.execute(sql_two)
     end
   end
 
