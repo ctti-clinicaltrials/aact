@@ -558,7 +558,7 @@ class StudyJsonRecord < ActiveRecord::Base
             collection[:measurements] << {
                                             nct_id: nct_id,
                                             result_group_id: nil,
-                                            ctgov_beta_group_code: measurement['BaselineMeasurementGroupId'],
+                                            ctgov_group_code: measurement['BaselineMeasurementGroupId'],
                                             classification: baseline_class['BaselineClassTitle'],
                                             category: baseline_category['BaselineCategoryTitle'],
                                             title: measure['BaselineMeasureTitle'],
@@ -609,7 +609,7 @@ class StudyJsonRecord < ActiveRecord::Base
         collection << {
                         nct_id: nct_id,
                         result_group_id: nil,
-                        ctgov_beta_group_code: count['BaselineDenomCountGroupId'],
+                        ctgov_group_code: count['BaselineDenomCountGroupId'],
                         units: denom['BaselineDenomUnits'],
                         scope: 'overall',
                         count: count['BaselineDenomCountValue']
@@ -867,7 +867,7 @@ class StudyJsonRecord < ActiveRecord::Base
           collection << {
                           nct_id: nct_id,
                           result_group_id: nil,
-                          ctgov_beta_group_code: achievement['FlowAchievementGroupId'],
+                          ctgov_group_code: achievement['FlowAchievementGroupId'],
                           title: milestone['FlowMilestoneType'],
                           period: period['FlowPeriodTitle'],
                           description: achievement['FlowAchievementComment'],
@@ -942,7 +942,7 @@ class StudyJsonRecord < ActiveRecord::Base
     groups.each do |group|
       collection << {
                       nct_id: nct_id,
-                      ctgov_beta_group_code: group["#{key_name}GroupId"],
+                      ctgov_group_code: group["#{key_name}GroupId"],
                       result_type: type,
                       title: group["#{key_name}GroupTitle"],
                       description: group["#{key_name}GroupDescription"]
@@ -973,7 +973,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         nct_id: nct_id,
                         outcome_id: nil,
                         result_group_id: nil,
-                        ctgov_beta_group_code: denom_count['OutcomeDenomCountGroupId'],
+                        ctgov_group_code: denom_count['OutcomeDenomCountGroupId'],
                         scope: 'Measure',
                         units: denom['OutcomeDenomUnits'],
                         count: denom_count['OutcomeDenomCountValue']
@@ -1004,7 +1004,7 @@ class StudyJsonRecord < ActiveRecord::Base
                             nct_id: nct_id,
                             outcome_id: nil,
                             result_group_id: nil,
-                            ctgov_beta_group_code: measure['OutcomeMeasurementGroupId'],
+                            ctgov_group_code: measure['OutcomeMeasurementGroupId'],
                             classification: outcome_class['OutcomeClassTitle'],
                             category: category['OutcomeCategoryTitle'],
                             title: outcome_measure['OutcomeMeasureTitle'],
@@ -1078,7 +1078,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       nct_id: nct_id,
                       outcome_analysis_id: nil,
                       result_group_id: nil,
-                      ctgov_beta_group_code: group_id
+                      ctgov_group_code: group_id
                     }
     end
     collection
@@ -1209,7 +1209,7 @@ class StudyJsonRecord < ActiveRecord::Base
     end
     {
       nct_id: nct_id,
-      ctgov_beta_group_code: event_hash['EventGroupId'],
+      ctgov_group_code: event_hash['EventGroupId'],
       event_type: event_type.downcase,
       classification: classification,
       subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
@@ -1241,7 +1241,7 @@ class StudyJsonRecord < ActiveRecord::Base
         collection << {
                         nct_id: nct_id,
                         result_group_id: nil,
-                        ctgov_beta_group_code: event_stat["#{event_type}EventStatsGroupId"],
+                        ctgov_group_code: event_stat["#{event_type}EventStatsGroupId"],
                         time_frame: adverse_events_module['EventsTimeFrame'],
                         event_type: event_type.downcase,
                         default_vocab: nil,
@@ -1394,7 +1394,7 @@ class StudyJsonRecord < ActiveRecord::Base
             collection << {
                             nct_id: nct_id,
                             result_group_id: nil,
-                            ctgov_beta_group_code: flow_reason['FlowReasonGroupId'],
+                            ctgov_group_code: flow_reason['FlowReasonGroupId'],
                             period: flow_period,
                             reason: reason,
                             count: flow_reason['FlowReasonNumSubjects']
@@ -1460,7 +1460,7 @@ class StudyJsonRecord < ActiveRecord::Base
       data = data_collection
       Study.create(data[:study]) if data[:study]
       saved_result_groups = save_result_groups(data[:result_groups])
-      @study_result_groups = saved_result_groups.index_by(&:ctgov_beta_group_code) if saved_result_groups
+      @study_result_groups = saved_result_groups.index_by(&:ctgov_group_code) if saved_result_groups
 
       # saving design_groups, and associated objects
       save_design_groups(data[:design_groups])
@@ -1643,7 +1643,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def save_with_result_group(group, name_of_model='BaselineMeasurement')
     return unless group
 
-    group.each{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_beta_group_code]]}
+    group.each{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_group_code]]}
     name_of_model.safe_constantize.import(group, validate: false)
   end
 
