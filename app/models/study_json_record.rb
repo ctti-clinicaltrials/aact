@@ -1788,8 +1788,13 @@ class StudyJsonRecord < ActiveRecord::Base
 
     CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|
       data_verification.each do |nct_number, study_objects|
-        study_objects.each do |object_model, object_differences|
-          csv << [nct_number, object_model, object_differences[:beta], object_differences[:reg]]
+        puts "study objects:#{study_objects.inspect}"
+        study_objects.each do |object_hash|
+          object_hash.each do |object_model, object_differences|
+            puts "object model:#{object_model.inspect}"
+            puts "object differences:#{object_differences.inspect}"
+            csv << [nct_number, object_model, object_differences[:beta], object_differences[:reg]]
+          end
         end
       end
     end

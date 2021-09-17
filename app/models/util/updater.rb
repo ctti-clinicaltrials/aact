@@ -190,12 +190,26 @@ module Util
       Time.now - stime
     end
 
-    def load_study(id)
+    def load_study(study_id)
       set_schema
       # 1. remove constraings
       log("#{schema} remove constraints...")
       db_mgr.remove_constrains
-      update_study(id)
+      update_study(study_id)
+      # 2. add constraints
+      log("#{schema} adding constraints...")
+      db_mgr.add_constraints
+    end
+
+    def load_multiple_studies(string_nct_ids)
+      # string_nct_ids looks like 'NCT00700336 NCT00772330 NCT00845871 NCT00852124 NCT01178814'
+      # here I'm turning the string into an array
+      array_nctids = string_nct_ids.split(' ')
+      set_schema
+      # 1. remove constraings
+      log("#{schema} remove constraints...")
+      db_mgr.remove_constrains
+      array_nctids.each{|nctid|update_study(nctid)}
       # 2. add constraints
       log("#{schema} adding constraints...")
       db_mgr.add_constraints
