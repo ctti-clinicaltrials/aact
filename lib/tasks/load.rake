@@ -23,7 +23,7 @@ namespace :db do
     updater.execute
   end
 
-  task :loop do 
+  task :loop do
     loop do
       if Time.now.hour == 4
         updater = Util::Updater.new(schema: 'normal')
@@ -43,9 +43,21 @@ namespace :db do
   task :restore_from_file, [:path_to_file, :database_name] => :environment do |t, args|
     Util::DbManager.new.restore_from_file(args)
   end
-  
+
   desc 'load database into a specific database from a url'
   task :restore_from_url, [:url, :database_name] => :environment do |t, args|
     Util::DbManager.new.restore_from_url(args)
+  end
+
+  desc 'update a single nct id'
+  task :load_study, [:nct_id, :schema] => :environment do |t, args|
+    # the schema options are either ctgov or beta
+    Util::Updater.new(schema: args[:schema]).load_study(args[:nct_id])
+  end
+
+  desc 'update a multiple nct ids'
+  task :load_multiple_studies, [:nct_id, :schema] => :environment do |t, args|
+    # the schema options are either ctgov or beta
+    Util::Updater.new(schema: args[:schema]).load_multiple_studies(args[:nct_id])
   end
 end

@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'fileutils'
 require 'logger'
+require 'csv'
 SaveTime = Logger.new('log/save_time.log')
 ErrorLog = Logger.new('log/error.log')
 include ActionView::Helpers::DateHelper
@@ -1779,5 +1780,24 @@ class StudyJsonRecord < ActiveRecord::Base
     study_record = find_by(nct_id: nct_id)
     study_record.build_study
     add_indexes_and_constraints
+  end
+
+  def self.data_verification_csv
+    file = "#{Util::FileManager.new.beta_differences_directory}/nct_id_count_differences.csv"
+    headers = ["NCT_ID", "Model", "Beta Count", "Regular Count"]
+    begin
+      CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|
+        data_verification.each do |nct_number, study_objects|
+          study_objects.each do |object_hash|
+            object_hash.each do |object_model, object_differences|
+              csv << [nct_number, object_model, object_differences[:beta], object_differences[:reg]]
+            end
+          end
+        end
+      end
+    rescue => error
+      msg="#{error.message} (#{error.class} #{error.backtrace}"
+      ErrorLog.error(msg)
+    end
   end
 end

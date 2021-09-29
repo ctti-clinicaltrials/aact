@@ -40,7 +40,7 @@ class SearchResult < ActiveRecord::Base
     intervention_name_type = []
     intervention_details = []
 
-    interventions.each do |intervention| 
+    interventions.each do |intervention|
       intervention_name_type << "#{intervention.intervention_type || 'N/A'}: #{intervention.name}"
       intervention_details << "#{intervention.intervention_type || 'N/A'}:#{intervention.name}:#{intervention.description}"
     end
@@ -50,14 +50,14 @@ class SearchResult < ActiveRecord::Base
     design_groups = study.design_groups
     arm_details = []
     arm_intervention_details = []
-    design_groups.each do |design_group| 
+    design_groups.each do |design_group|
       arm_details << "#{design_group.group_type || 'N/A'}:#{design_group.title}:#{design_group.description}"
       interventions = design_group.interventions
       interventions.each do |intervention|
         arm_intervention_details << "#{design_group.group_type || 'N/A'}[#{design_group.title}]:#{intervention.intervention_type}[#{intervention.name}]"
       end
     end
-      
+
     arm_details = arm_details.join('|')
     arm_intervention_details = arm_intervention_details.join('|')
 
@@ -68,12 +68,12 @@ class SearchResult < ActiveRecord::Base
     if design
       primary_purpose = design.primary_purpose
       intervention_model = design.intervention_model
-      observational_model = design.observational_model 
-      allocation = design.allocation 
+      observational_model = design.observational_model
+      allocation = design.allocation
       masking = design.masking
-      subject_masked = design.subject_masked ? 'Yes' : 'No' 
+      subject_masked = design.subject_masked ? 'Yes' : 'No'
       caregiver_masked = design.caregiver_masked ? 'Yes' : 'No'
-      investigator_masked = design.investigator_masked ? 'Yes' : 'No' 
+      investigator_masked = design.investigator_masked ? 'Yes' : 'No'
       outcomes_assessor_masked = design.outcomes_assessor_masked ? 'Yes' : 'No'
     end
 
@@ -123,7 +123,7 @@ class SearchResult < ActiveRecord::Base
       study.design_outcomes.pluck(:measure).join('|'), #outcome_measures
       study.start_date, #start_date
       study.primary_completion_date, #primary_completion_date
-      study.completion_date, #completion_date 
+      study.completion_date, #completion_date
       study.study_first_posted_date, #first_posted
       study.results_first_posted_date, #results_first_posted
       study.last_update_posted_date, #last_update_posted
@@ -165,7 +165,7 @@ class SearchResult < ActiveRecord::Base
       study.calculated_value.try(:were_results_reported) ? 'Yes' : 'No', #study_results
       study_documents(study), #study_documents
     ]
-    
+
   end
 
   def self.excel_column_names
@@ -197,7 +197,7 @@ class SearchResult < ActiveRecord::Base
       outcome_measures
       start_date
       primary_completion_date
-      completion_date 
+      completion_date
       first_posted
       results_first_posted
       last_update_posted
@@ -315,7 +315,7 @@ class SearchResult < ActiveRecord::Base
     criteria = ''
     eligibility = study.eligibility
     criteria = eligibility.criteria if eligibility
-  
+
     eligibility_criteria = criteria =~ /#{term}/i
     return true if eligibility_criteria
 
@@ -327,4 +327,3 @@ class SearchResult < ActiveRecord::Base
     provided_documents.map{|provided_document| "#{provided_document.document_type}, #{provided_document.url}"}.join('|')
   end
 end
-
