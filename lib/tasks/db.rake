@@ -60,21 +60,26 @@ namespace :db do
 
     # comparing data in each column and adding it to a csv file if there's data mismatching
     all_columns.each do |column|
-      query = "SELECT T.nct_id,
-                      T.#{column["column_name"]} as ctgov_#{column["column_name"]},
-                      BT.#{column["column_name"]} as ctgov_beta_#{column["column_name"]}
-              FROM ctgov.#{column["table_name"]} T
-              JOIN ctgov_beta.#{column["table_name"]} BT ON T.nct_id = BT.nct_id
-              WHERE T.#{column["column_name"]} != BT.#{column["column_name"]}
-              OR (T.#{column["column_name"]} IS NOT NULL AND BT.#{column["column_name"]} IS NULL)
-              OR (T.#{column["column_name"]} IS NULL AND BT.#{column["column_name"]} IS NOT NULL);"
-      result =ActiveRecord::Base.connection.execute(query).to_a
 
-      if result.count > 0
-        file = "./public/static/beta_comparison/#{column['table_name']}-#{column["column_name"]}.csv"
-        headers = ['nct_id', 'ctgov column', 'ctgov_beta column']
-        CSV.open(file, 'w', write_headers: true, headers: headers) do |writer|
-          writer << result[0].values
+      if column['column_name'].in?(["id", "created_at", "updated_at"])
+        next
+      else
+        query = "SELECT T.nct_id,
+                        T.#{column["column_name"]} as ctgov_#{column["column_name"]},
+                        BT.#{column["column_name"]} as ctgov_beta_#{column["column_name"]}
+                FROM ctgov.#{column["table_name"]} T
+                JOIN ctgov_beta.#{column["table_name"]} BT ON T.nct_id = BT.nct_id
+                WHERE T.#{column["column_name"]} != BT.#{column["column_name"]}
+                OR (T.#{column["column_name"]} IS NOT NULL AND BT.#{column["column_name"]} IS NULL)
+                OR (T.#{column["column_name"]} IS NULL AND BT.#{column["column_name"]} IS NOT NULL);"
+        result =ActiveRecord::Base.connection.execute(query).to_a
+          # byebug
+        if result.count > 0
+          file = "#{Util::FileManager.new.beta_differences_directory}/single-row/#{column['table_name']}-#{column["column_name"]}.csv"
+          headers = ['nct_id', 'ctgov column', 'ctgov_beta column']
+          CSV.open(file, 'w', write_headers: true, headers: headers) do |writer|
+            writer << result[0].values
+          end
         end
       end
     end
