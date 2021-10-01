@@ -60,7 +60,6 @@ namespace :db do
 
     # comparing data in each column and adding it to a csv file if there's data mismatching
     all_columns.each do |column|
-
       if column['column_name'].in?(["id", "created_at", "updated_at"])
         next
       else
@@ -73,9 +72,8 @@ namespace :db do
                 OR (T.#{column["column_name"]} IS NOT NULL AND BT.#{column["column_name"]} IS NULL)
                 OR (T.#{column["column_name"]} IS NULL AND BT.#{column["column_name"]} IS NOT NULL);"
         result =ActiveRecord::Base.connection.execute(query).to_a
-          # byebug
         if result.count > 0
-          file = "#{Util::FileManager.new.beta_differences_directory}/single-row/#{column['table_name']}-#{column["column_name"]}.csv"
+          file = "#{Util::FileManager.new.beta_differences_directory}/#{column['table_name']}-#{column["column_name"]}.csv"
           headers = ['nct_id', 'ctgov column', 'ctgov_beta column']
           CSV.open(file, 'w', write_headers: true, headers: headers) do |writer|
             writer << result[0].values
