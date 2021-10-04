@@ -72,7 +72,7 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `echo 'export AACT_BETA_DATABASE_NAME=aact'  >> ~/.zshrc`  
     `source ~/.zshrc` to load the variables into the terminal session.  
     
-    Depending on where you store the variables you may need to call `source ~/.zshrc` each time you open a new terminal. This is not necessary for “.zshrc”.  
+    Depending on where you store the variables you may need to call `source` on that file each time you open a new terminal. This is not necessary for “.zshrc”.  
     <br>
     By default, AACT saves files it creates in a directory under /aact-files. (Note, this is in the server root directory, not the root of the AACT application.)  To override this, use the AACT_STATIC_FILE_DIR environment variable to define a different directory.  Otherwise, you will need to create /aact-files at the server root directory and change permissions on it so that the rails application owner has permission to read/write to that directory.  
     `export AACT_STATIC_FILE_DIR=public/static` *we are working towards removing the need to add this variable*  
