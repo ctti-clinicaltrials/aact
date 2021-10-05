@@ -70,6 +70,8 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `echo 'export AACT_PASSWORD=<your_superuser_password>'  >> ~/.zshrc`  
     `echo 'export AACT_PUBLIC_BETA_DATABASE_NAME=aact'  >> ~/.zshrc`  
     `echo 'export AACT_BETA_DATABASE_NAME=aact'  >> ~/.zshrc`  
+    `echo 'export AACT_ALT_PUBLIC_DATABASE_NAME=aact'  >> ~/.zshrc`  
+  
     `source ~/.zshrc` to load the variables into the terminal session.  
     
     Depending on where you store the variables you may need to call `source` on that file each time you open a new terminal. This is not necessary for “.zshrc”.  
@@ -115,8 +117,11 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `bin/rake db:create RAILS_ENV=test`  
     `bin/rake db:migrate`  
     `bin/rake db:migrate RAILS_ENV=test`  
-    `bin/rake db:copy_schema` this copies the structure (tables, columns and rows) of the ctgov schema over to the ctgov_beta schema.  
-
+    copy the structure (tables, columns and rows) of the ctgov schema over to the ctgov_beta schema.  
+    `bin/rake db:copy_schema`  
+    `bin/rake db:copy_schema RAILS_ENV=test`  
+    grant read_only privileges  
+    `bin/rake grant:db_privs:run`  
 <br>
 <br>
 
