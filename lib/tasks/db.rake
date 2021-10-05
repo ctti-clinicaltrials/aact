@@ -45,7 +45,7 @@ namespace :db do
 
   task single_row_comparison: [:environment] do
     # hardcoded table names with one row per study from excel file
-    file_table_names=['brief_summaries', 'calculated_values', 'categories',
+    file_table_names=['brief_summaries', 'calculated_values', 'search_results',
                       'designs', 'detailed_descriptions', 'eligibilities',
                       'participant_flows', 'studies']
 
