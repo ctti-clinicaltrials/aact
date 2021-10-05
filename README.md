@@ -51,6 +51,7 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `postgres=# create role <your_aact_superuser> login password '<your_superuser_password>’;`  
     `postgres=# alter user <your_aact_superuser> with superuser;`  
     `postgres=# create role read_only;`  
+    `postgres=# create database aact_alt;`  
     `postgres=# \q` this exits out of psql  
     Verify your new user can login to psql with command: `psql -U <your_aact_superuser> -d postgres`  
     You can exit the shell once you see you can log in.
@@ -69,8 +70,8 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `echo 'export AACT_DB_SUPER_USERNAME=<your_aact_superuser>' >> ~/.zshrc`  
     `echo 'export AACT_PASSWORD=<your_superuser_password>'  >> ~/.zshrc`  
     `echo 'export AACT_PUBLIC_BETA_DATABASE_NAME=aact'  >> ~/.zshrc`  
-    `echo 'export AACT_BETA_DATABASE_NAME=aact'  >> ~/.zshrc`  
-    `echo 'export AACT_ALT_PUBLIC_DATABASE_NAME=aact'  >> ~/.zshrc`  
+    `echo 'export AACT_PUBLIC_DATABASE_NAME=aact'  >> ~/.zshrc`  
+    `echo 'export AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt'  >> ~/.zshrc`  
   
     `source ~/.zshrc` to load the variables into the terminal session.  
     

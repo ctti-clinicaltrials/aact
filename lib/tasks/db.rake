@@ -63,11 +63,14 @@ namespace :db do
     aact_superuser = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'
     if ENV['RAILS_ENV'] == 'test'
       aact_back_db = 'aact_test'
+      aact_alt_db = 'aact_alt_test'
     else
       aact_back_db = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
+      aact_alt_db = ENV['AACT_ALT_PUBLIC_DATABASE_NAME'] || 'aact_alt'
     end
-    extra = "-h #{ENV['AACT_HOST'] || 'localhost'} -p #{ENV['AACT_PORT'] || '5432'}"
-    puts "pg_dump -U #{aact_superuser} --schema='ctgov' --schema-only #{aact_back_db} #{extra} | sed 's/ctgov/ctgov_beta/g; s/ctgov_beta_group_code/ctgov_group_code/g' | psql -U #{aact_superuser} -d #{aact_back_db} #{extra}"
-    `pg_dump -U #{aact_superuser} --schema='ctgov' --schema-only #{aact_back_db} #{extra} | sed 's/ctgov/ctgov_beta/g; s/ctgov_beta_group_code/ctgov_group_code/g' | psql -U #{aact_superuser} -d #{aact_back_db} #{extra}`
+
+    connection = "-h #{ENV['AACT_HOST'] || 'localhost'} -p #{ENV['AACT_PORT'] || '5432'}"
+    `pg_dump -U #{aact_superuser} --schema='ctgov' --schema-only #{aact_back_db} #{connection} | sed 's/ctgov/ctgov_beta/g; s/ctgov_beta_group_code/ctgov_group_code/g' | psql -U #{aact_superuser} -d #{aact_back_db} #{connection}`
+    `pg_dump -U #{aact_superuser} --schema='ctgov' --schema-only #{aact_back_db} #{connection} | psql -U #{aact_superuser} -d #{aact_alt_db} #{connection}`
   end
 end
