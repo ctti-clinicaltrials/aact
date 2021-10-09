@@ -190,7 +190,7 @@ class StudyJsonRecord < ActiveRecord::Base
     s = Time.now
     build_study
     # CalculatedValue.new.create_from(self).save
-    puts "  insert-study #{Time.now - s}"
+    puts "  insert-study #{Time.now - s}" if ENV['VERBOSE']
   end
 
   def update_from_api
@@ -203,7 +203,7 @@ class StudyJsonRecord < ActiveRecord::Base
       s = Time.now
       content = Faraday.get(url).body
       response = JSON.parse(content)
-      puts "  fetch #{Time.now - s}"
+      puts "  fetch #{Time.now - s}" if ENV['VERBOSE']
     rescue Faraday::ConnectionFailed
       return false if attempts > 5
       retry

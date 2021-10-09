@@ -21,7 +21,6 @@ module Util
       end
       @client = Util::Client.new
       @days_back = (params[:days_back] || 4)
-      @rss_reader = Util::RssReader.new(days_back: @days_back)
       @load_event = Support::LoadEvent.create({ event_type: type, status: 'running', description: '', problems: '' })
       @load_event.save! # Save to timestamp created_at
       @study_counts = { should_add: 0, should_change: 0, processed: 0, count_down: 0 }
@@ -124,6 +123,15 @@ module Util
       to_remove = current - studies
 
       return studies, to_update, to_remove
+    end
+
+    def update_studies_parallel
+      studies, to_update, to_remove = current_study_differences
+
+      ActiveRecord::Base.logger = nil
+      Parallel.map(to_update, in_threads: 32, progress: 'Updating') do |id|
+        update_study(id)
+      end
     end
 
     def update_studies
