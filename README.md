@@ -119,10 +119,11 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `bin/rake db:migrate`  
     `bin/rake db:migrate RAILS_ENV=test`  
     copy the structure (tables, columns and rows) of the ctgov schema over to the ctgov_beta schema.  
-    `bin/rake db:copy_schema`  
-    `bin/rake db:copy_schema RAILS_ENV=test`  
+    `bin/rake db:copy_schema`    
     grant read_only privileges  
     `bin/rake grant:db_privs:run`  
+    `bin/rake grant:db_privs:run RAILS_ENV=test`  
+
 <br>
 <br>
 
