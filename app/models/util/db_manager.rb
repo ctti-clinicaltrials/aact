@@ -159,21 +159,30 @@ module Util
     end
 
     def grant_db_privs
-      public_con.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 200;")
-      public_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
-      public_con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
+      begin
+        public_con.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 200;")
+        public_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+        public_con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
+      rescue => e
+        log("#{db_name}: #{e}")
+      end
+      begin
+        public_beta_con.execute("ALTER DATABASE #{public_beta_db_name} CONNECTION LIMIT 200;")
+        public_beta_con.execute("grant connect on database #{public_beta_db_name} to read_only;")
+        public_beta_con.execute('grant usage on schema ctgov_beta to read_only;')
+        public_beta_con.execute('grant select on all tables in schema ctgov_beta to read_only;')
+        public_beta_con.execute('alter default privileges in schema ctgov_beta grant select on tables to read_only;')
+      rescue => e
+        log("#{public_beta_db_name}: #{e}")
+      end
       begin
         public_alt_con.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 200;")
         public_alt_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
         public_alt_con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
       rescue => e
-        log(e)
+        log("#{alt_db_name}: #{e}")
       end
-      public_beta_con.execute("ALTER DATABASE #{public_beta_db_name} CONNECTION LIMIT 200;")
-      public_beta_con.execute("grant connect on database #{public_beta_db_name} to read_only;")
-      public_beta_con.execute('grant usage on schema ctgov_beta to read_only;')
-      public_beta_con.execute('grant select on all tables in schema ctgov_beta to read_only;')
-      public_beta_con.execute('alter default privileges in schema ctgov_beta grant select on tables to read_only;')
+      
     end
 
     def public_db_accessible?
