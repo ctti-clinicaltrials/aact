@@ -72,6 +72,8 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `echo 'export AACT_PUBLIC_BETA_DATABASE_NAME=aact'  >> ~/.zshrc`  
     `echo 'export AACT_PUBLIC_DATABASE_NAME=aact'  >> ~/.zshrc`  
     `echo 'export AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt'  >> ~/.zshrc`  
+    `echo 'export PUBLIC_DB_USER=<your_aact_superuser>'  >> ~/.zshrc`  
+    `echo 'export PUBLIC_DB_PASS=<your_superuser_password>'  >> ~/.zshrc`    
   
     `source ~/.zshrc` to load the variables into the terminal session.  
     
