@@ -167,6 +167,7 @@ module Util
         public_alt_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
         public_alt_con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
       rescue => e
+        log(e)
       end
       public_beta_con.execute("ALTER DATABASE #{public_beta_db_name} CONNECTION LIMIT 200;")
       public_beta_con.execute("grant connect on database #{public_beta_db_name} to read_only;")
@@ -268,7 +269,6 @@ module Util
           begin
             migration.remove_index(index.table, index.columns) if !should_keep_index?(index) and migration.index_exists?(index.table, index.columns)
           rescue => e
-            byebug
             log(e)
             event.add_problem("#{Time.zone.now}: #{e}")
           end
