@@ -1745,10 +1745,18 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.data_verification
     dif = Hash.new { |h, k| h[k] = [] }
+    # print message before starting all_data_collection for ctgov_beta and the start time
+    start_time = Time.zone.now
+    puts '**********   starting all_data_collection for ctgov_beta:   **********'
+    puts "Start Time: #{start_time}"
     beta_counts = all_data_collection('ctgov_beta')
+    # print message before starting all_data_collection for ctgov
+    puts '**********   starting all_data_collection for ctgov:   **********'
     reg_counts = all_data_collection('ctgov')
 
-    beta_counts.each do |nct_id_key, beta_obj_counts|
+    beta_counts.each_with_index do |(nct_id_key, beta_obj_counts), index|
+      # print message showing a countdown of studies left to go when looping through beta_counts
+      puts "**********   countdown of total studies left to go: #{beta_counts.size-index}\n"
       reg_obj_counts = reg_counts[nct_id_key] || {}
 
       unless reg_obj_counts == beta_obj_counts
@@ -1761,6 +1769,10 @@ class StudyJsonRecord < ActiveRecord::Base
       end
     end
     dif
+    # print message showing the end time and total time elapsed for all_data_collection for ctgov_beta and ctgov
+    end_time = Time.zone.now
+    puts "End Time: #{end_time}"
+    puts "Total Time Elapsed: #{end_time - start_time} seconds"
   end
 
   def self.all_data_collection(schema_name='ctgov_beta')
