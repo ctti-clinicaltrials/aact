@@ -44,6 +44,7 @@ gem 'caxlsx'
 gem 'airbrake'
 gem 'parallel'
 gem 'ruby-progressbar'
+gem 'fast_jsonparser'
 
 # deployment to server
 gem 'capistrano', '~> 3.8'
