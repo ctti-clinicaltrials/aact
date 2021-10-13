@@ -21,7 +21,7 @@ module Util
 
     # generate a db dump file
     def dump_database(schema='ctgov')
-      File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
+      File.delete(fm.pg_dump_file(schema)) if File.exist?(fm.pg_dump_file(schema))
       config = Study.connection.instance_variable_get('@config')
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
       host ||= 'localhost'
@@ -38,7 +38,7 @@ module Util
       "
       puts cmd
       run_command_line(cmd)
-      return fm.pg_dump_file
+      return fm.pg_dump_file(schema)
     end
 
     def dump_beta_database

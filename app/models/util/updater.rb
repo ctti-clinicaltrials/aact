@@ -322,7 +322,7 @@ module Util
       study_counts[:processed] = Study.count
 
       load_event.log('taking snapshot...')
-      take_snapshot
+      take_snapshot(schema)
 
       load_event.log('refreshing public db...')
       if refresh_public_db != true
@@ -398,12 +398,10 @@ module Util
       log('dumping database...')
       db_mgr.dump_database(schema)
 
-      if schema != 'beta'
-        log('creating zipfile of database...')
-        Util::FileManager.new.save_static_copy
-      end
-    rescue StandardError => e
-      load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
+      log('creating zipfile of database...')
+      Util::FileManager.new.save_static_copy(schema)
+      rescue StandardError => e
+        load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
     end
 
     def send_notification(schema)
