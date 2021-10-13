@@ -27,7 +27,7 @@ module Util
       self
     end
 
-    def set_schema
+    def set_schema(schema = self.schema)
       con = ActiveRecord::Base.connection
       username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
       db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
@@ -42,18 +42,7 @@ module Util
     end
 
     def execute
-      # TODO: need to extract this into a connection method
-      con = ActiveRecord::Base.connection
-      username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-      db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-      if schema == 'beta'
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
-      else
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
-      end
-      ActiveRecord::Base.remove_connection
-      ActiveRecord::Base.establish_connection
-      ActiveRecord::Base.logger = nil
+      set_schema
 
       # 1. remove constraings
       log("#{schema} remove constraints...")
@@ -130,7 +119,11 @@ module Util
 
       ActiveRecord::Base.logger = nil
       Parallel.map(to_update, in_threads: 32, progress: 'Updating') do |id|
-        update_study(id)
+        t = Time.now
+        ActiveRecord::Base.connection_pool.with_connection do |con|
+          update_study(id)
+        end
+        puts "#{Time.now - t}"
       end
     end
 
@@ -221,6 +214,36 @@ module Util
       # 2. add constraints
       log("#{schema} adding constraints...")
       db_mgr.add_constraints
+    end
+
+    def load_studies_both_schemas(nct_ids)
+      log("#{schema} remove constraints...")
+      set_schema('normal')
+      db_mgr.remove_constrains
+      set_schema('beta')
+      db_mgr.remove_constrains
+
+      nct_ids.each do |id|
+        # download xml
+        set_schema('normal')
+        record = Support::StudyXmlRecord.find_or_create_by(nct_id: id)
+        record.update_xml_from_api
+        record.create_or_update_study
+
+        # download json
+        set_schema('beta')
+        record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
+        record.update_from_api
+        record.create_or_update_study
+      end
+
+      log("#{schema} adding constraints...")
+      set_schema('normal')
+      db_mgr.add_constraints
+      CalculatedValue.populate
+      set_schema('beta')
+      db_mgr.add_constraints
+      CalculatedValue.populate
     end
 
     def run
@@ -452,6 +475,57 @@ module Util
 
     def submit_public_announcement(announcement)
       Admin::PublicAnnouncement.populate(announcement) if full_featured && Admin::AdminBase.database_exists?
+    end
+
+    # load all the studies into the beta api
+    def import_json
+      # 1. download zip file
+      # 2. unzip file
+      
+      # 3. set schema to beta
+      set_schema('beta')
+
+      # 4. truncate records
+      ActiveRecord::Base.connection.execute('TRUNCATE TABLE study_json_records CASCADE')
+
+      # 5. load all files into study json record
+      ActiveRecord::Base.logger = nil
+      directories = Dir["foo/NCT*"]
+      total = directories.length
+      total_time = 0
+      stime = Time.now
+      directories.each_with_index do |dir, idx|
+        sstime = Time.now
+        files = Dir["#{dir}/*.json"]
+        records = files.map do |file|
+          StudyJsonRecord.new(
+            nct_id: file[/NCT\d+.json/][/NCT\d+/],
+            content: FastJsonparser.load(file)[:FullStudy]
+          )
+        end
+        StudyJsonRecord.import records
+
+        t = Time.now - sstime
+        total_time += t
+        avg_time = total_time / (idx + 1)
+        remaining = (total - idx - 1) * avg_time
+        puts "#{total - idx} #{dir} #{t} #{htime(total_time)} #{htime(remaining)}"
+      end
+      time = Time.now - stime
+      puts "Time: #{time} avg: #{time / total}"
+    end
+
+    def beta_process
+      set_schema('beta')
+      ActiveRecord::Base.logger = nil
+      truncate_tables
+      nct_ids = StudyJsonRecord.pluck(:nct_id)
+      Parallel.map(nct_ids, progress: 'Updating') do |id|
+        ActiveRecord::Base.connection_pool.with_connection do
+          record = StudyJsonRecord.find_by(nct_id: id)
+          record.build_study
+        end
+      end
     end
   end
 end

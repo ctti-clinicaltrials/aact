@@ -22,7 +22,15 @@ class StudyRelationship < ActiveRecord::Base
       use_cases
       use_case_attachments
     )
-    @models = (connection.tables - blacklist).map{|k| k.singularize.camelize.constantize }
+    @models = (connection.tables - blacklist).map do |k|
+      begin
+        k.singularize.camelize.constantize
+      rescue NameError
+        nil
+      end
+    end
+    @models.compact!
+    return @models
   end
 
   def self.create_nct_indexes

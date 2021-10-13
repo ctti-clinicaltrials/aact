@@ -88,7 +88,7 @@ class Study < ActiveRecord::Base
       model.where(nct_id: nct_id).delete_all
     end
     time = Time.now - s
-    puts "  remove-study #{time}"
+    puts "  remove-study #{time}" if ENV['VERBOSE']
   end
 
   def self.study_difference
@@ -97,6 +97,7 @@ class Study < ActiveRecord::Base
 
   def initialize(hash)
     super
+    return unless hash
     @xml=hash[:xml]
     self.nct_id=hash[:nct_id]
   end

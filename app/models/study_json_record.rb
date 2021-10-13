@@ -193,6 +193,14 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "  insert-study #{Time.now - s}" if ENV['VERBOSE']
   end
 
+  def self.create_study(nct_id)
+    t = Time.now
+    ActiveRecord::Base.logger = nil
+    record = find_by(nct_id: nct_id)
+    record.build_study
+    puts "process: #{Time.now - t}"
+  end
+
   def update_from_api
     url = "https://clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5D#{nct_id}&min_rnk=1&max_rnk=&fmt=json"
     attempts = 0
@@ -1447,6 +1455,17 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
+  def load_sections
+    @protocol_section = protocol_section
+    @results_section = results_section
+    @derived_section = derived_section
+    @annotation_section = annotation_section
+    @document_section = document_section
+    @contacts_location_module = contacts_location_module
+    @locations_array = locations_array
+    @adverse_events_module = adverse_events_module
+  end
+
   def build_study
     begin
       @protocol_section = protocol_section
@@ -1458,7 +1477,7 @@ class StudyJsonRecord < ActiveRecord::Base
       @locations_array = locations_array
       @adverse_events_module = adverse_events_module
       data = data_collection
-      Study.create(data[:study]) if data[:study]
+      study = Study.create(data[:study]) if data[:study]
       saved_result_groups = save_result_groups(data[:result_groups])
       @study_result_groups = saved_result_groups.index_by(&:ctgov_group_code) if saved_result_groups
 
@@ -1514,8 +1533,11 @@ class StudyJsonRecord < ActiveRecord::Base
       save_with_result_group(data[:drop_withdrawals], 'DropWithdrawal') if data[:drop_withdrawals]
 
       update(saved_study_at: Time.now)
+      
+      return study
     rescue => error
       ErrorLog.error(error)
+      raise error
       @study_build_failures ||= []
       @study_build_failures << id
     end
