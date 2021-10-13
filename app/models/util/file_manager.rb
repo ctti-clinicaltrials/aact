@@ -206,11 +206,10 @@ module Util
       files_to_zip['postgres_data.dmp']             = File.open(pg_dump_file(schema))         if File.exists?(pg_dump_file(schema))
       files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
       files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
-      if schema == 'beta'
-        zip_file_name="#{beta_static_copies_directory}/#{date_stamp}_clinical_trials.zip"
-      else
-        zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
-      end
+      
+      folders = schema == 'beta' ? beta_static_copies_directory : static_copies_directory
+      zip_file_name="#{folders}/#{date_stamp}_clinical_trials.zip"
+     
       File.delete(zip_file_name) if File.exist?(zip_file_name)
         Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
           files_to_zip.each { |entry|
