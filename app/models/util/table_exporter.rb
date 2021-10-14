@@ -2,9 +2,11 @@ module Util
   class TableExporter
     attr_reader :zipfile_name, :table_names
 
-    def initialize(tables=[])
-      @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
-      @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export.zip"
+    def initialize(tables=[],schema='')
+      @schema = schema
+      @temp_dir     = "#{Util::FileManager.new.dump_directory}/export#{schema}"
+      @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export.zip" unless schema == 'beta'
+      @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_beta_export.zip" if schema == 'beta'
       @connection   = ActiveRecord::Base.connection.raw_connection
       @table_names  = tables
       create_temp_dir_if_none_exists!
@@ -83,7 +85,8 @@ module Util
                        "pipe-delimited-export"
                      end
 
-      archive_file_name="#{Util::FileManager.new.flat_files_directory}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}.zip"
+      folder = schema == 'beta' ? Util::FileManager.new.beta_flat_files_directory : Util::FileManager.new.flat_files_directory
+      archive_file_name="#{folder}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}.zip"
       FileUtils.mv(@zipfile_name, archive_file_name)
     end
   end

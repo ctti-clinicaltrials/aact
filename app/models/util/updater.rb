@@ -88,15 +88,11 @@ module Util
         db_mgr.refresh_public_db(schema)
 
         # 9. create flat files
-        if schema == 'beta'
-        else
-          log("#{schema} creating flat files...")
-          begin
-            create_flat_files(schema)
-          rescue Exception => e
-            Airbrake.notify(e)
-          end
+        log("#{schema} creating flat files...")
+        begin
           create_flat_files(schema)
+        rescue Exception => e
+          Airbrake.notify(e)
         end
       end
 
@@ -333,7 +329,7 @@ module Util
       load_event.complete({ study_counts: study_counts })
 
       load_event.log('create flat files...')
-      create_flat_files
+      create_flat_files(schema)
 
       # Admin::PublicAnnouncement.clear_load_message
     end
@@ -415,7 +411,7 @@ module Util
 
     def create_flat_files(schema)
       log('exporting tables as flat files...')
-      Util::TableExporter.new.run(delimiter: '|', should_archive: true)
+      Util::TableExporter.new([],schema).run(delimiter: '|', should_archive: true, schema: schema)
     end
 
     def truncate_tables

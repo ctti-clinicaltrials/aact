@@ -14,6 +14,8 @@ module Util
       FileUtils.mkdir_p "#{root_dir}/static_db_copies/monthly"
       FileUtils.mkdir_p "#{root_dir}/exported_files/daily"
       FileUtils.mkdir_p "#{root_dir}/exported_files/monthly"
+      FileUtils.mkdir_p "#{root_dir}/beta_exported_files/daily"
+      FileUtils.mkdir_p "#{root_dir}/beta_exported_files/monthly"
       FileUtils.mkdir_p "#{root_dir}/db_backups"
       FileUtils.mkdir_p "#{root_dir}/documentation"
       FileUtils.mkdir_p "#{root_dir}/logs"
@@ -45,6 +47,14 @@ module Util
         "#{root_dir}/exported_files/monthly"
       else
         "#{root_dir}/exported_files/daily"
+      end
+    end
+
+    def beta_flat_files_directory
+      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
+        "#{root_dir}/beta_exported_files/monthly"
+      else
+        "#{root_dir}/beta_exported_files/daily"
       end
     end
 
