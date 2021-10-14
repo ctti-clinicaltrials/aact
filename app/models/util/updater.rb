@@ -411,7 +411,7 @@ module Util
 
     def create_flat_files(schema)
       log('exporting tables as flat files...')
-      Util::TableExporter.new([],schema).run(delimiter: '|', should_archive: true, schema: schema)
+      Util::TableExporter.new([],schema).run(delimiter: '|', should_archive: true)
     end
 
     def truncate_tables
