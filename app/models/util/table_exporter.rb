@@ -16,7 +16,6 @@ module Util
     def run(delimiter: '|', should_archive: true)
       load_event = Support::LoadEvent.create({:event_type=>'table_export',:status=>'running',:description=>'',:problems=>''})
       File.delete(@zipfile_name) if File.exist?(@zipfile_name)
-    
       begin
         tempfiles = create_tempfiles(delimiter)
         if delimiter == ','
@@ -28,7 +27,6 @@ module Util
         if should_archive
           archive(delimiter)
         end
-        
       ensure
         cleanup_tempfiles!
       end
