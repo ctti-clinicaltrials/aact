@@ -24,7 +24,7 @@ describe Util::Updater do
     Study.destroy_all
     updater=Util::Updater.new
     ids=['NCT02028676','timeout','invalid-nct-id','NCT00023673']
-    updater.update_studies()
+    updater.update_studies
     expect(Study.count).to eq(2)
     expect(Study.where('nct_id=?','NCT02028676').size).to eq(1)
     expect(Study.where('nct_id=?','NCT00023673').size).to eq(1)
