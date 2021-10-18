@@ -99,7 +99,7 @@ describe Util::Updater do
     stub_request(:get, "https://clinicaltrials.gov/show/#{nct_id}?resultsxml=true").
          to_return(:status => 200, :body => incoming, :headers => {})
 
-    Util::Updater.new.update_studies([nct_id])
+    Util::Updater.new.update_studies
     study=Study.where('nct_id=?',nct_id).first
 
     expect(study.baseline_measurements.size).to eq(380)
