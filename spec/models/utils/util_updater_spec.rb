@@ -2,10 +2,14 @@ require 'rails_helper'
 require 'rss'
 
 describe Util::Updater do
-
-  it "doesn't abort when it encouters a net timeout or doesn't retrieve xml from ct.gov" do
+  let(:stub_request_headers) { {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v1.1.0' } }
+  let(:ctg_api_body) {File.read('spec/support/json_data/ctg_api_all.json') }
+  let(:api_url) { 'https://clinicaltrials.gov/api/query/study_fields?fields=NCTId,StudyFirstPostDate,LastUpdatePostDate&fmt=json&max_rnk=1000&min_rnk=1'}
+  before do
+    stub_request(:get, api_url).with(headers: stub_request_headers).to_return(:status => 200, :body => ctg_api_body, :headers => {})
+    
     stub_request(:get, "https://clinicaltrials.gov/show/NCT02028676?resultsxml=true").
-      to_return(:status => 200, :body => File.read("spec/support/xml_data/NCT02028676.xml"), :headers => {})
+     to_return(:status => 200, :body => File.read("spec/support/xml_data/NCT02028676.xml"), :headers => {})
 
     stub_request(:get, "https://clinicaltrials.gov/show/NCT00023673?resultsxml=true").
       to_return(:status => 200, :body => File.read("spec/support/xml_data/NCT00023673.xml"), :headers => {})
@@ -14,11 +18,13 @@ describe Util::Updater do
       to_return(:status => 200, :body => File.read("spec/support/xml_data/Invalid-nct-id.html"), :headers => {})
 
     stub_request(:get, "https://clinicaltrials.gov/show/timeout?resultsxml=true").and_raise(Net::OpenTimeout)
+  end
 
+  it "doesn't abort when it encouters a net timeout or doesn't retrieve xml from ct.gov" do
     Study.destroy_all
     updater=Util::Updater.new
     ids=['NCT02028676','timeout','invalid-nct-id','NCT00023673']
-    updater.update_studies(ids)
+    updater.update_studies()
     expect(Study.count).to eq(2)
     expect(Study.where('nct_id=?','NCT02028676').size).to eq(1)
     expect(Study.where('nct_id=?','NCT00023673').size).to eq(1)
@@ -26,11 +32,7 @@ describe Util::Updater do
   end
 
   it "continues on if there's a timeout error when attempting to retrieve data from clinicaltrials.gov for one of the studies"do
-    allow(RSS::Parser).to receive(:parse).and_raise(Net::ReadTimeout)
     updater=Util::Updater.new
-    # Should try 5 times for both changed and added rss calls.
-    expect(RSS::Parser).to receive(:parse).exactly(10).times
-    # Should proceed and finish up by sending a notification
     if AACT::Application::AACT_OWNER_EMAIL
       expect { updater.send_notification }.to change { ActionMailer::Base.deliveries.count }.by(AACT::Application::AACT_ADMIN_EMAILS.split(',').size)
     end
@@ -38,8 +40,6 @@ describe Util::Updater do
   end
 
   it "aborts incremental load when number of studies exceeds 10000" do
-    allow_any_instance_of(Util::RssReader).to receive(:get_added_nct_ids).and_return( [*1..10000] )
-    allow_any_instance_of(Util::RssReader).to receive(:get_changed_nct_ids).and_return( [*1..10000] )
     updater=Util::Updater.new
     expect(updater).to receive(:update_studies).never
     expect(updater).to receive(:finalize_load).never
@@ -49,9 +49,7 @@ describe Util::Updater do
   end
 
   it "aborts incremental load when number of studies in refreshed (background) db is less than number of studies in public db" do
-    allow_any_instance_of(Util::DbManager).to receive(:public_study_count).and_return(5)
-    updater=Util::Updater.new
-    allow(updater).to receive(:sanity_checks_ok?).and_return(false)
+    updater=Util::Updater.new  
     expect(updater.db_mgr).to receive(:refresh_public_db).never
     expect(updater).to receive(:send_notification).once
     updater.run
@@ -228,7 +226,6 @@ describe Util::Updater do
 
   context 'when something went wrong with the loads' do
     it 'should log errors, send notification with apprpriate subject line & not refresh the public db' do
-      allow_any_instance_of(Util::RssReader).to receive(:get_added_nct_ids).and_raise(NoMethodError)
       updater=Util::Updater.new
       expect(updater).to receive(:send_notification).once
       expect(updater.db_mgr).to receive(:refresh_public_db).never

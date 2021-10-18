@@ -1,0 +1,53 @@
+{
+  "StudyFieldsResponse":{
+    "APIVrs":"1.01.03",
+    "DataVrs":"2021:08:02 22:24:55.147",
+    "Expression":"ALL",
+    "NStudiesAvail":3,
+    "NStudiesFound":3,
+    "MinRank":1,
+    "MaxRank":1000,
+    "NStudiesReturned":1000,
+    "FieldList":[
+      "NCTId",
+      "StudyFirstPostDate",
+      "LastUpdatePostDate"
+    ],
+    "StudyFields":[
+      {
+        "Rank":1,
+        "NCTId":[
+          "NCT02028676"
+        ],
+        "StudyFirstPostDate":[
+          "August 3, 2021"
+        ],
+        "LastUpdatePostDate":[
+          "August 3, 2021"
+        ]
+      },{
+        "Rank":2,
+        "NCTId":[
+          "NCT00023673"
+        ],
+        "StudyFirstPostDate":[
+          "August 3, 2021"
+        ],
+        "LastUpdatePostDate":[
+          "August 3, 2021"
+        ]
+      },{
+        "Rank":3,
+        "NCTId":[
+          "invalid-nct-id"
+        ],
+        "StudyFirstPostDate":[
+          "August 3, 2021"
+        ],
+        "LastUpdatePostDate":[
+          "August 3, 2021"
+        ]
+      }
+    ]
+  }
+}
