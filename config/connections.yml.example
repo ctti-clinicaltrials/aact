@@ -1,7 +1,7 @@
 public:
   encoding: utf8
   adapter: postgresql
-  host: 159.203.80.25
+  host: localhost
   port: 5432
   database: aact
   username:
@@ -9,7 +9,7 @@ public:
 staging:
   encoding: utf8
   adapter: postgresql
-  host: 159.203.80.25
+  host: localhost
   port: 5432
   database: aact_alt
   username:
