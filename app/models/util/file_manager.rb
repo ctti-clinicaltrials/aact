@@ -42,19 +42,13 @@ module Util
       end
     end
 
-    def flat_files_directory
+    def flat_files_directory(schema='')
+      base_folder = schema == 'beta' ? "#{root_dir}/beta_exported_files" : "#{root_dir}/exported_files"
+      
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{root_dir}/exported_files/monthly"
+        "#{base_folder}/monthly"
       else
-        "#{root_dir}/exported_files/daily"
-      end
-    end
-
-    def beta_flat_files_directory
-      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{root_dir}/beta_exported_files/monthly"
-      else
-        "#{root_dir}/beta_exported_files/daily"
+        "#{base_folder}/daily"
       end
     end
 

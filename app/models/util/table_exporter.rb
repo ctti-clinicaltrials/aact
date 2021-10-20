@@ -86,7 +86,7 @@ module Util
                        "pipe-delimited-export"
                      end
 
-      folder = @schema == 'beta' ? Util::FileManager.new.beta_flat_files_directory : Util::FileManager.new.flat_files_directory
+      folder =  Util::FileManager.new.flat_files_directory(@schema)
       archive_file_name="#{folder}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}.zip"
       FileUtils.mv(@zipfile_name, archive_file_name)
     end
