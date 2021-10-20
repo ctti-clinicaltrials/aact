@@ -34,19 +34,12 @@ module Util
       "https://prsinfo.clinicaltrials.gov/results_definitions.html"
     end
 
-    def static_copies_directory
+    def static_copies_directory(schema = '')
+      base_folder = schema == 'beta' ? "#{root_dir}/beta_static_db_copies" : "#{root_dir}/static_db_copies"
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{root_dir}/static_db_copies/monthly"
+        "#{base_folder}/monthly"
       else
-        "#{root_dir}/static_db_copies/daily"
-      end
-    end
-
-    def beta_static_copies_directory
-      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{root_dir}/beta_static_db_copies/monthly"
-      else
-        "#{root_dir}/beta_static_db_copies/daily"
+        "#{base_folder}/daily"
       end
     end
 
@@ -207,7 +200,7 @@ module Util
       files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
       files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
       
-      folders = schema == 'beta' ? beta_static_copies_directory : static_copies_directory
+      folders = static_copies_directory(schema)
       zip_file_name="#{folders}/#{date_stamp}_clinical_trials.zip"
      
       File.delete(zip_file_name) if File.exist?(zip_file_name)

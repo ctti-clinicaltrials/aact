@@ -21,7 +21,8 @@ module Util
 
     # generate a db dump file
     def dump_database(schema='ctgov')
-      File.delete(fm.pg_dump_file(schema)) if File.exist?(fm.pg_dump_file(schema))
+      dump_file_location = fm.pg_dump_file(schema)
+      File.delete(dump_file_location) if File.exist?(dump_file_location)
       config = Study.connection.instance_variable_get('@config')
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
       host ||= 'localhost'
@@ -33,12 +34,12 @@ module Util
         --exclude-table ar_internal_metadata \
         --exclude-table schema_migrations \
         --schema #{schema == 'beta' ? 'ctgov_beta' : 'ctgov'}  \
-        -f #{fm.pg_dump_file(schema)} \
+        -f #{dump_file_location} \
         #{database} \
       "
       puts cmd
       run_command_line(cmd)
-      return fm.pg_dump_file(schema)
+      return dump_file_location
     end
 
     def dump_beta_database
