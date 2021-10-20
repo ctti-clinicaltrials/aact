@@ -394,7 +394,7 @@ module Util
       Admin::DataDefinition.populate(data)
     end
 
-    def take_snapshot(schema)
+    def take_snapshot(schema='')
       log('dumping database...')
       db_mgr.dump_database(schema)
 
