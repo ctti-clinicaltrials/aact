@@ -12,6 +12,8 @@ module Util
       FileUtils.mkdir_p root_dir
       FileUtils.mkdir_p "#{root_dir}/static_db_copies/daily"
       FileUtils.mkdir_p "#{root_dir}/static_db_copies/monthly"
+      FileUtils.mkdir_p "#{root_dir}/beta_static_db_copies/daily"
+      FileUtils.mkdir_p "#{root_dir}/beta_static_db_copies/monthly"
       FileUtils.mkdir_p "#{root_dir}/exported_files/daily"
       FileUtils.mkdir_p "#{root_dir}/exported_files/monthly"
       FileUtils.mkdir_p "#{root_dir}/db_backups"
@@ -32,11 +34,12 @@ module Util
       "https://prsinfo.clinicaltrials.gov/results_definitions.html"
     end
 
-    def static_copies_directory
+    def static_copies_directory(schema = '')
+      base_folder = schema == 'beta' ? "#{root_dir}/beta_static_db_copies" : "#{root_dir}/static_db_copies"
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{root_dir}/static_db_copies/monthly"
+        "#{base_folder}/monthly"
       else
-        "#{root_dir}/static_db_copies/daily"
+        "#{base_folder}/daily"
       end
     end
 
@@ -183,7 +186,8 @@ module Util
       return day == '01'
     end
 
-    def save_static_copy
+    def save_static_copy(schema='')
+
       nlm_protocol_file         = make_file_from_website("nlm_protocol_definitions.html", nlm_protocol_data_url)
       nlm_results_file          = make_file_from_website("nlm_results_definitions.html", nlm_results_data_url)
 
@@ -192,11 +196,13 @@ module Util
       files_to_zip['schema_diagram.png']            = File.open(schema_diagram)       if File.exists?(schema_diagram)
       files_to_zip['admin_schema_diagram.png']      = File.open(admin_schema_diagram) if File.exists?(admin_schema_diagram)
       files_to_zip['data_dictionary.xlsx']          = File.open(data_dictionary)      if File.exists?(data_dictionary)
-      files_to_zip['postgres_data.dmp']             = File.open(pg_dump_file)         if File.exists?(pg_dump_file)
+      files_to_zip['postgres_data.dmp']             = File.open(pg_dump_file(schema))         if File.exists?(pg_dump_file(schema))
       files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
       files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
-
-      zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
+      
+      folders = static_copies_directory(schema)
+      zip_file_name="#{folders}/#{date_stamp}_clinical_trials.zip"
+     
       File.delete(zip_file_name) if File.exist?(zip_file_name)
         Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
           files_to_zip.each { |entry|
