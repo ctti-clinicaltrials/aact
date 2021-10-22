@@ -38,15 +38,6 @@ describe Util::Updater do
     updater.run
   end
 
-  it "aborts incremental load when number of studies exceeds 10000" do
-    updater=Util::Updater.new
-    expect(updater).to receive(:update_studies).never
-    expect(updater).to receive(:finalize_load).never
-    expect(updater).to receive(:send_notification).once
-    expect(updater.db_mgr).to receive(:refresh_public_db).never
-    updater.run
-  end
-
   it "aborts incremental load when number of studies in refreshed (background) db is less than number of studies in public db" do
     updater=Util::Updater.new  
     expect(updater.db_mgr).to receive(:refresh_public_db).never
