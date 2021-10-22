@@ -23,7 +23,6 @@ describe Util::Updater do
   it "doesn't abort when it encouters a net timeout or doesn't retrieve xml from ct.gov" do
     Study.destroy_all
     updater=Util::Updater.new
-    ids=['NCT02028676','timeout','invalid-nct-id','NCT00023673']
     updater.update_studies
     expect(Study.count).to eq(2)
     expect(Study.where('nct_id=?','NCT02028676').size).to eq(1)
