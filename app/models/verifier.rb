@@ -74,6 +74,7 @@ class Verifier < ActiveRecord::Base
 
   def all_locations
     id_module_hash.merge!(status_module_hash)
+                  .merge!(sponsor_collaborator_module)
   end
 
   def get_counts(location)
@@ -112,32 +113,50 @@ class Verifier < ActiveRecord::Base
   def status_module_hash
     status_module = 'ProtocolSection|StatusModule'
     {
-    "#{status_module}|StatusVerifiedDate" => "studies#verification_date",
-    "#{status_module}|OverallStatus" => "studies#overall_status",
-    "#{status_module}|LastKnownStatus" => "studies#last_known_status",
-    "#{status_module}|WhyStopped" => "studies#why_stopped",
-    "#{status_module}|ExpandedAccessInfo|HasExpandedAccess" => "studies#has_expanded_access",
-    "#{status_module}|StartDateStruct|StartDate" => "studies#start_date",
-    "#{status_module}|StartDateStruct|StartDateType" => "studies#start_date_type",
-    "#{status_module}|PrimaryCompletionDateStruct|PrimaryCompletionDate" => "studies#primary_completion_date",
-    "#{status_module}|PrimaryCompletionDateStruct|PrimaryCompletionDateType" => "studies#primary_completion_date_type",
-    "#{status_module}|CompletionDateStruct|CompletionDate" => "studies#completion_date",
-    "#{status_module}|CompletionDateStruct|CompletionDateType" => "studies#completion_date_type",
-    "#{status_module}|StudyFirstSubmitDate" => "studies#study_first_submitted_date",
-    "#{status_module}|StudyFirstSubmitQCDate" => "studies#study_first_submitted_qc_date",
-    "#{status_module}|StudyFirstPostDateStruct|StudyFirstPostDate" => "studies#study_first_post_date",
-    "#{status_module}|StudyFirstPostDateStruct|StudyFirstPostDateType" => "studies#study_first_post_date_type",
-    "#{status_module}|ResultsFirstSubmitDate" => "studies#results_first_submitted_date",
-    "#{status_module}|ResultsFirstSubmitQCDate" => "studies#results_first_submitted_rc_date",
-    "#{status_module}|ResultsFirstPostDateStruct|ResultsFirstPostDate" => "studies#results_first_posted_date",
-    "#{status_module}|ResultsFirstPostDateStruct|ResultsFirstPostDateType" => "studies#results_first_posted_date_type",
-
-    "#{status_module}|ResultsFirstPostedQCCommentsDateStruct|ResultsFirstPostedQCCommentsDate" => "studies#results_first_posted_date",
-    "#{status_module}|ResultsFirstPostedQCCommentsDateStruct|ResultsFirstPostedQCCommentsDateType" => "studies#results_first_posted_date_type",
-
-
+    # "#{status_module}|StatusVerifiedDate" => "studies#verification_date",
+    # "#{status_module}|OverallStatus" => "studies#overall_status",
+    # "#{status_module}|LastKnownStatus" => "studies#last_known_status",
+    # "#{status_module}|WhyStopped" => "studies#why_stopped",
+    # "#{status_module}|ExpandedAccessInfo|HasExpandedAccess" => "studies#has_expanded_access",
+    # "#{status_module}|StartDateStruct|StartDate" => "studies#start_date",
+    # "#{status_module}|StartDateStruct|StartDateType" => "studies#start_date_type",
+    # "#{status_module}|PrimaryCompletionDateStruct|PrimaryCompletionDate" => "studies#primary_completion_date",
+    # "#{status_module}|PrimaryCompletionDateStruct|PrimaryCompletionDateType" => "studies#primary_completion_date_type",
+    # "#{status_module}|CompletionDateStruct|CompletionDate" => "studies#completion_date",
+    # "#{status_module}|CompletionDateStruct|CompletionDateType" => "studies#completion_date_type",
+    # "#{status_module}|StudyFirstSubmitDate" => "studies#study_first_submitted_date",
+    # "#{status_module}|StudyFirstSubmitQCDate" => "studies#study_first_submitted_qc_date",
+    # "#{status_module}|StudyFirstPostDateStruct|StudyFirstPostDate" => "studies#study_first_posted_date",
+    # "#{status_module}|StudyFirstPostDateStruct|StudyFirstPostDateType" => "studies#study_first_posted_date_type",
+    # "#{status_module}|ResultsFirstSubmitDate" => "studies#results_first_submitted_date",
+    # "#{status_module}|ResultsFirstSubmitQCDate" => "studies#results_first_submitted_qc_date",
+    # "#{status_module}|ResultsFirstPostDateStruct|ResultsFirstPostDate" => "studies#results_first_posted_date",
+    # "#{status_module}|ResultsFirstPostDateStruct|ResultsFirstPostDateType" => "studies#results_first_posted_date_type",
+    # "#{status_module}|DispFirstSubmitDate" => "studies#disposition_first_submitted_date",
+    # "#{status_module}|DispFirstSubmitQCDate" => "studies#disposition_first_submitted_qc_date",
+    # "#{status_module}|DispFirstPostDateStruct|DispFirstPostDate" => "studies#disposition_first_posted_date",
+    # "#{status_module}|DispFirstPostDateStruct|DispFirstPostDateType" => "studies#disposition_first_posted_date_type",
+    # "#{status_module}|LastUpdateSubmitDate" => "studies#last_update_submitted_qc_date",
+    # "#{status_module}|LastUpdatePostDateStruct|LastUpdatePostDate" => "studies#last_update_posted_date",
+    # "#{status_module}|LastUpdatePostDateStruct|LastUpdatePostDateType" => "studies#last_update_posted_date_type",
     }
   end
+
+  def sponsor_collaborator_module
+    sc_module = 'ProtocolSection|SponsorCollaboratorsModule'
+    {
+      # "#{sc_module}|ResponsibleParty|ResponsiblePartyType" => "responsible_parties#responsible_party_type",
+      # "#{sc_module}|ResponsibleParty|ResponsiblePartyInvestigatorFullName" => "responsible_parties#name",
+      # "#{sc_module}|ResponsibleParty|ResponsiblePartyInvestigatorTitle" => "responsible_parties#title",
+      # "#{sc_module}|ResponsibleParty|ResponsiblePartyInvestigatorAffiliation" => "responsible_parties#affiliation",
+      # "#{sc_module}|ResponsibleParty|ResponsiblePartyOldOrganization" => "responsible_parties#organization",
+      # "#{sc_module}|LeadSponsor|LeadSponsorName" => "sponsors#name#where lead_or_collaborator='lead'",
+      # "#{sc_module}|LeadSponsor|LeadSponsorClass" => "sponsors#agency_class#where lead_or_collaborator='lead'",
+      # "#{sc_module}|CollaboratorList|Collaborator|CollaboratorName" => "sponsors#name#where lead_or_collaborator='collaborator'",
+      # "#{sc_module}|CollaboratorList|Collaborator|CollaboratorClass" => "sponsors#agency_class#where lead_or_collaborator='collaborator'",
+    }
+  end
+  
 
   
   # selectors that aren't in the database
@@ -148,8 +167,11 @@ class Verifier < ActiveRecord::Base
   # #{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdDomain
   # #{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdLink
   # #{id_module}|Organization|OrgClass
-  # {status_module}|DelayedPosting
-  # {status_module}|ExpandedAccessInfo|ExpandedAccessNCTId
-  # {status_module}|ExpandedAccessInfo|ExpandedAccessStatusForNCTId
+  # #{status_module}|DelayedPosting
+  # #{status_module}|ExpandedAccessInfo|ExpandedAccessNCTId
+  # #{status_module}|ExpandedAccessInfo|ExpandedAccessStatusForNCTId
+  # #{status_module}|ResultsFirstPostedQCCommentsDateStruct|ResultsFirstPostedQCCommentsDate
+  # #{status_module}|ResultsFirstPostedQCCommentsDateStruct|ResultsFirstPostedQCCommentsDateType
+  # #{sc_module}|ResponsibleParty|ResponsiblePartyOldNameTitle
   
 end
