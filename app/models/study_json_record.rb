@@ -3,7 +3,6 @@ require 'fileutils'
 require 'logger'
 require 'csv'
 SaveTime = Logger.new('log/save_time.log')
-ErrorLog = Logger.new('log/error.log')
 include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'support.study_json_records'
@@ -29,9 +28,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
     begin
      @type == 'full' ? full : incremental
-    rescue => error
-      msg="#{error.message} (#{error.class} #{error.backtrace}"
-      ErrorLog.error(msg)
+    rescue Exception => e
+      Airbrake.notify(e)
     end
 
     if @type == 'full'
@@ -87,8 +85,8 @@ class StudyJsonRecord < ActiveRecord::Base
         json = JSON.parse(contents)
         study = json['FullStudy']
         save_single_study(study)
-        rescue Exception => error
-          ErrorLog.error(error)
+        rescue Exception => e
+          Airbrake.notify(e)
         end
       end
     end
@@ -1514,8 +1512,8 @@ class StudyJsonRecord < ActiveRecord::Base
       save_with_result_group(data[:drop_withdrawals], 'DropWithdrawal') if data[:drop_withdrawals]
 
       update(saved_study_at: Time.now)
-    rescue => error
-      ErrorLog.error(error)
+    rescue Exception => e
+      Airbrake.notify(e)
       @study_build_failures ||= []
       @study_build_failures << id
     end
@@ -1807,9 +1805,8 @@ class StudyJsonRecord < ActiveRecord::Base
           end
         end
       end
-    rescue => error
-      msg="#{error.message} (#{error.class} #{error.backtrace}"
-      ErrorLog.error(msg)
+    rescue Exception => e
+      Airbrake.notify(e)
     end
   end
 end
