@@ -127,6 +127,14 @@ class Verifier < ActiveRecord::Base
     "#{status_module}|StudyFirstSubmitQCDate" => "studies#study_first_submitted_qc_date",
     "#{status_module}|StudyFirstPostDateStruct|StudyFirstPostDate" => "studies#study_first_post_date",
     "#{status_module}|StudyFirstPostDateStruct|StudyFirstPostDateType" => "studies#study_first_post_date_type",
+    "#{status_module}|ResultsFirstSubmitDate" => "studies#results_first_submitted_date",
+    "#{status_module}|ResultsFirstSubmitQCDate" => "studies#results_first_submitted_rc_date",
+    "#{status_module}|ResultsFirstPostDateStruct|ResultsFirstPostDate" => "studies#results_first_posted_date",
+    "#{status_module}|ResultsFirstPostDateStruct|ResultsFirstPostDateType" => "studies#results_first_posted_date_type",
+
+    "#{status_module}|ResultsFirstPostedQCCommentsDateStruct|ResultsFirstPostedQCCommentsDate" => "studies#results_first_posted_date",
+    "#{status_module}|ResultsFirstPostedQCCommentsDateStruct|ResultsFirstPostedQCCommentsDateType" => "studies#results_first_posted_date_type",
+
 
     }
   end
