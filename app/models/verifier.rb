@@ -1,15 +1,41 @@
 class Verifier < ActiveRecord::Base
+
+  def initializer(schema='ctgov')
+    set_schema(schema)
+  end
+
+  def self.refresh(schema='ctgov')
+    Verifier.destroy_all
+    Verifier.new(schema).verify
+  end
+
+  def set_schema(schema)
+    con = ActiveRecord::Base.connection
+    username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
+    db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
+    if schema == 'beta'
+      con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
+    else
+      con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
+    end
+    ActiveRecord::Base.remove_connection
+    ActiveRecord::Base.establish_connection
+    ActiveRecord::Base.logger = nil
+  end
+  
   def verify
     study_statistics = ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study")
     return unless study_statistics
 
-    update(differences: [])
+    differences = []
     all_locations.each do |key,value|
       found = diff_hash(study_statistics, key, value)
       differences << found unless found.blank?
     end
 
+    last_run = Time.now
     self.save
+
     return differences
   end
 
@@ -85,6 +111,7 @@ class Verifier < ActiveRecord::Base
   def status_module
     'ProtocolSection|StatusModule'
   end
+
   
   # aren't saving
   # ProtocolSection|IdentificationModule|OrgStudyIdInfo|OrgStudyIdType
