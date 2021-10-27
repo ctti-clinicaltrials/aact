@@ -161,7 +161,12 @@ class Verifier < ActiveRecord::Base
   def oversight_module_hash
     om_module = 'ProtocolSection|OversightModule'
     {
-      "#{om_module}|OversightHasDMC" => 'studies#has_dmc'
+      "#{om_module}|OversightHasDMC" => 'studies#has_dmc',
+      "#{om_module}|IsFDARegulatedDrug" => 'studies#is_fda_regulated_drug',
+      "#{om_module}|IsFDARegulatedDevice" => 'studies#is_fda_regulated_device',
+      "#{om_module}|IsUnapprovedDevice" => 'studies#is_unapproved_device',
+      "#{om_module}|IsPPSD" => 'studies#is_ppsd',
+      "#{om_module}|IsUSExport" => 'studies#is_us_export',
     }
   end
 
@@ -180,5 +185,6 @@ class Verifier < ActiveRecord::Base
   # #{status_module}|ResultsFirstPostedQCCommentsDateStruct|ResultsFirstPostedQCCommentsDate
   # #{status_module}|ResultsFirstPostedQCCommentsDateStruct|ResultsFirstPostedQCCommentsDateType
   # #{sc_module}|ResponsibleParty|ResponsiblePartyOldNameTitle
+  # #{om_module}|FDAAA801Violation
   
 end
