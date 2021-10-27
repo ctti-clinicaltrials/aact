@@ -1,29 +1,24 @@
 class Verifier < ActiveRecord::Base
 
-  def initializer(schema='ctgov')
-    set_schema(schema)
-  end
-
-  def self.refresh(schema='ctgov')
+  def self.refresh(params={schema: 'ctgov'})
     Verifier.destroy_all
-    Verifier.new(schema).verify
+    Verifier.new.verify(params)
   end
 
   def set_schema(schema)
+    # expects the schema to be either ctgov or ctgov_beta
     con = ActiveRecord::Base.connection
     username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
     db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-    if schema == 'beta'
-      con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
-    else
-      con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
-    end
+    con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO #{schema}, support, public;")
+    
     ActiveRecord::Base.remove_connection
     ActiveRecord::Base.establish_connection
     ActiveRecord::Base.logger = nil
   end
   
-  def verify
+  def verify(params={schema: 'ctgov'})
+    set_schema(params[:schema])
     study_statistics = ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study")
     return unless study_statistics
 
