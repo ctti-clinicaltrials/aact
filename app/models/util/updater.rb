@@ -151,7 +151,7 @@ module Util
       puts "Time: #{time} avg: #{time / total}"
 
       # remove studies
-      raise "Removing too many studies #{to_remove.count}" if studies.count > Study.count - to_remove.count
+      raise "Removing too many studies #{to_remove.count}" if  Study.count <= to_remove.count 
       total = to_remove.length
       total_time = 0
       stime = Time.now
@@ -174,14 +174,21 @@ module Util
     end
 
     def update_study(id)
-      stime = Time.now
+      stime = Time.now 
+      record = nil
       if schema == 'beta'
         record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
         changed = record.update_from_api
-        record.create_or_update_study
+       
       else
         record = Support::StudyXmlRecord.find_or_create_by(nct_id: id)
         changed = record.update_xml_from_api
+        
+      end
+
+      if record.blank? || record.content.blank? 
+        record.destroy
+      else 
         record.create_or_update_study
       end
       Time.now - stime
