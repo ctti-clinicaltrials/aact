@@ -23,6 +23,12 @@ class Verifier < ActiveRecord::Base
     return unless study_statistics
 
     differences = []
+    # I first add the count so that we can know if the differences might be caused by having a different amount of studies
+    source_study_counts = study_statistics.dig('nInstances')
+    db_study_counts = Study.count
+    differences<< {source_study_count: source_study_counts, db_study_count:  db_study_counts} unless same?(source_study_counts,  db_study_counts)
+    
+    # Now I add the differences for each selector
     all_locations.each do |key,value|
       found = diff_hash(study_statistics, key, value)
       differences << found unless found.blank?
@@ -68,15 +74,20 @@ class Verifier < ActiveRecord::Base
 
   def all_locations
     {
-      "#{id_module}|NCTId" => "studies#nct_id",
-      "#{id_module}|NCTIdAliasList|NCTIdAlias" => "id_information#id_value#where id_type='nct_alias'",
-      "#{id_module}|OrgStudyIdInfo|OrgStudyId" => "id_information#id_value#where id_type='org_study_id'",
-      "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryId" => "id_information#id_value#where id_type='secondary_id'",
-      "#{id_module}|Organization|OrgFullName" => "studies#source",
-      "#{id_module}|BriefTitle" => "studies#brief_title",
-      "#{id_module}|OfficialTitle" => "studies#official_title",
-      "#{id_module}|Acronym" => "studies#acronym",
-      "#{status_module}|StatusVerifiedDate" => "studies#verification_date"
+      # "#{id_module}|NCTId" => "studies#nct_id",
+      # "#{id_module}|NCTIdAliasList|NCTIdAlias" => "id_information#id_value#where id_type='nct_alias'",
+      # "#{id_module}|OrgStudyIdInfo|OrgStudyId" => "id_information#id_value#where id_type='org_study_id'",
+      # "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryId" => "id_information#id_value#where id_type='secondary_id'",
+      # "#{id_module}|Organization|OrgFullName" => "studies#source",
+      # "#{id_module}|BriefTitle" => "studies#brief_title",
+      # "#{id_module}|OfficialTitle" => "studies#official_title",
+      # "#{id_module}|Acronym" => "studies#acronym",
+      "#{status_module}|StatusVerifiedDate" => "studies#verification_date",
+      "#{status_module}|OverallStatus" => "studies#overall_status",
+      "#{status_module}|LastKnownStatus" => "studies#last_known_status",
+      "#{status_module}|WhyStopped" => "studies#why_stopped",
+      "#{status_module}|ExpandedAccessInfo|HasExpandedAccess" => "studies#has_expanded_access",
+
     }
   end
 
@@ -116,4 +127,5 @@ class Verifier < ActiveRecord::Base
   # ProtocolSection|IdentificationModule|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdDomain
   # ProtocolSection|IdentificationModule|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdLink
   # ProtocolSection|IdentificationModule|Organization|OrgClass
+  # ProtocolSection|StatusModule|DelayedPosting
 end
