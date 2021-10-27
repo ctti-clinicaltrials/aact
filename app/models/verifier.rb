@@ -73,22 +73,7 @@ class Verifier < ActiveRecord::Base
   end
 
   def all_locations
-    {
-      # "#{id_module}|NCTId" => "studies#nct_id",
-      # "#{id_module}|NCTIdAliasList|NCTIdAlias" => "id_information#id_value#where id_type='nct_alias'",
-      # "#{id_module}|OrgStudyIdInfo|OrgStudyId" => "id_information#id_value#where id_type='org_study_id'",
-      # "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryId" => "id_information#id_value#where id_type='secondary_id'",
-      # "#{id_module}|Organization|OrgFullName" => "studies#source",
-      # "#{id_module}|BriefTitle" => "studies#brief_title",
-      # "#{id_module}|OfficialTitle" => "studies#official_title",
-      # "#{id_module}|Acronym" => "studies#acronym",
-      "#{status_module}|StatusVerifiedDate" => "studies#verification_date",
-      "#{status_module}|OverallStatus" => "studies#overall_status",
-      "#{status_module}|LastKnownStatus" => "studies#last_known_status",
-      "#{status_module}|WhyStopped" => "studies#why_stopped",
-      "#{status_module}|ExpandedAccessInfo|HasExpandedAccess" => "studies#has_expanded_access",
-
-    }
+    id_module_hash.merge!(status_module_hash)
   end
 
   def get_counts(location)
@@ -111,21 +96,52 @@ class Verifier < ActiveRecord::Base
     return all_counts, uniq_counts
   end
 
-  def id_module
-    'ProtocolSection|IdentificationModule'
+  def id_module_hash
+    id_module ='ProtocolSection|IdentificationModule'
+    {
+    # "#{id_module}|NCTId" => "studies#nct_id",
+    # "#{id_module}|NCTIdAliasList|NCTIdAlias" => "id_information#id_value#where id_type='nct_alias'",
+    # "#{id_module}|OrgStudyIdInfo|OrgStudyId" => "id_information#id_value#where id_type='org_study_id'",
+    # "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryId" => "id_information#id_value#where id_type='secondary_id'",
+    # "#{id_module}|Organization|OrgFullName" => "studies#source",
+    # "#{id_module}|BriefTitle" => "studies#brief_title",
+    # "#{id_module}|OfficialTitle" => "studies#official_title",
+    # "#{id_module}|Acronym" => "studies#acronym",
+    }
   end
-  def status_module
-    'ProtocolSection|StatusModule'
+  def status_module_hash
+    status_module = 'ProtocolSection|StatusModule'
+    {
+    "#{status_module}|StatusVerifiedDate" => "studies#verification_date",
+    "#{status_module}|OverallStatus" => "studies#overall_status",
+    "#{status_module}|LastKnownStatus" => "studies#last_known_status",
+    "#{status_module}|WhyStopped" => "studies#why_stopped",
+    "#{status_module}|ExpandedAccessInfo|HasExpandedAccess" => "studies#has_expanded_access",
+    "#{status_module}|StartDateStruct|StartDate" => "studies#start_date",
+    "#{status_module}|StartDateStruct|StartDateType" => "studies#start_date_type",
+    "#{status_module}|PrimaryCompletionDateStruct|PrimaryCompletionDate" => "studies#primary_completion_date",
+    "#{status_module}|PrimaryCompletionDateStruct|PrimaryCompletionDateType" => "studies#primary_completion_date_type",
+    "#{status_module}|CompletionDateStruct|CompletionDate" => "studies#completion_date",
+    "#{status_module}|CompletionDateStruct|CompletionDateType" => "studies#completion_date_type",
+    "#{status_module}|StudyFirstSubmitDate" => "studies#study_first_submitted_date",
+    "#{status_module}|StudyFirstSubmitQCDate" => "studies#study_first_submitted_qc_date",
+    "#{status_module}|StudyFirstPostDateStruct|StudyFirstPostDate" => "studies#study_first_post_date",
+    "#{status_module}|StudyFirstPostDateStruct|StudyFirstPostDateType" => "studies#study_first_post_date_type",
+
+    }
   end
 
   
-  # aren't saving
-  # ProtocolSection|IdentificationModule|OrgStudyIdInfo|OrgStudyIdType
-  # ProtocolSection|IdentificationModule|OrgStudyIdInfo|OrgStudyIdDomain
-  # ProtocolSection|IdentificationModule|OrgStudyIdInfo|OrgStudyIdLink
-  # ProtocolSection|IdentificationModule|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdType
-  # ProtocolSection|IdentificationModule|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdDomain
-  # ProtocolSection|IdentificationModule|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdLink
-  # ProtocolSection|IdentificationModule|Organization|OrgClass
-  # ProtocolSection|StatusModule|DelayedPosting
+  # selectors that aren't in the database
+  # #{id_module}|OrgStudyIdInfo|OrgStudyIdType
+  # #{id_module}|OrgStudyIdInfo|OrgStudyIdDomain
+  # #{id_module}|OrgStudyIdInfo|OrgStudyIdLink
+  # #{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdType
+  # #{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdDomain
+  # #{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdLink
+  # #{id_module}|Organization|OrgClass
+  # {status_module}|DelayedPosting
+  # {status_module}|ExpandedAccessInfo|ExpandedAccessNCTId
+  # {status_module}|ExpandedAccessInfo|ExpandedAccessStatusForNCTId
+  
 end
