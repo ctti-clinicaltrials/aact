@@ -2376,6 +2376,38 @@ ALTER SEQUENCE ctgov.study_searches_id_seq OWNED BY ctgov.study_searches.id;
 
 
 --
+-- Name: verifiers; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.verifiers (
+    id bigint NOT NULL,
+    differences json DEFAULT '[]'::json NOT NULL,
+    last_run timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: verifiers_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.verifiers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: verifiers_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.verifiers_id_seq OWNED BY ctgov.verifiers.id;
+
+
+--
 -- Name: load_events; Type: TABLE; Schema: support; Owner: -
 --
 
@@ -2860,6 +2892,13 @@ ALTER TABLE ONLY ctgov.study_searches ALTER COLUMN id SET DEFAULT nextval('ctgov
 
 
 --
+-- Name: verifiers id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.verifiers ALTER COLUMN id SET DEFAULT nextval('ctgov.verifiers_id_seq'::regclass);
+
+
+--
 -- Name: load_events id; Type: DEFAULT; Schema: support; Owner: -
 --
 
@@ -3285,6 +3324,14 @@ ALTER TABLE ONLY ctgov.study_references
 
 ALTER TABLE ONLY ctgov.study_searches
     ADD CONSTRAINT study_searches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: verifiers verifiers_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.verifiers
+    ADD CONSTRAINT verifiers_pkey PRIMARY KEY (id);
 
 
 --
@@ -4039,6 +4086,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210414222919'),
 ('20210526192648'),
 ('20210526192804'),
-('20210601063550');
+('20210601063550'),
+('20211027133828');
 
 
