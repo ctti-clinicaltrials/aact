@@ -32,7 +32,7 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
 <br>
 <br>
 
-*** 
+***
 
 <br>
 
@@ -97,24 +97,9 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
 
 8.  Bundle install  
 
-9.  You'll need to add a file called "connections.yml" to your config folder if it doesn't already exist. Inside of it paste the following code:  
-    public:  
-      encoding: utf8  
-      adapter: postgresql  
-      host: 159.203.80.25  
-      port: 5432  
-      database: aact  
-      username:  
-      password:  
-    staging:  
-      encoding: utf8  
-      adapter: postgresql  
-      host: 159.203.80.25  
-      port: 5432  
-      database: aact_alt  
-      username:  
-      password:  
-    This file is mainly for running a docker container but it's called on by the Util::DbManager model when it initializes so you will get an error if it's not there when the model is called. That model manages database changes.  
+9.  Use the "connections.yml.example" file and copy it to the file "connnections.yml" and just update what needs to be updated for the local environment.
+    In the terminal, type `cp connections.yml.example connections.yml`.
+    The file called "connections.yml" is mainly for running a docker container but it's called on by the Util::DbManager model when it initializes so you will get an error if it's not there when the model is called. That model manages database changes.  
 
 10. Create databases and run migrations  
     `bin/rake db:create`  
@@ -133,7 +118,7 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
 ## Populating the Database
 
 The seed files are out of date so **DO NOT** call `db:seed`. Instead use the custom rake tasks.
-These are your options: 
+These are your options:
 * `bin/rake db:restore_from_file[<path_to_file>,<database_name>]` *this method is currently not working*   
   For this option go to https://aact.ctti-clinicaltrials.org/snapshots and download a copy of the database. Give this task the path to the file you downloaded and it will upzip it before using it to populate the database.  
 * `bin/rake db:restore_from_url[<url>,<database_name>]`  

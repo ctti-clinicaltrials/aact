@@ -88,15 +88,11 @@ module Util
         db_mgr.refresh_public_db(schema)
 
         # 9. create flat files
-        if schema == 'beta'
-        else
-          log("#{schema} creating flat files...")
-          begin
-            create_flat_files(schema)
-          rescue Exception => e
-            Airbrake.notify(e)
-          end
+        log("#{schema} creating flat files...")
+        begin
           create_flat_files(schema)
+        rescue Exception => e
+          Airbrake.notify(e)
         end
       end
 
@@ -155,7 +151,7 @@ module Util
       puts "Time: #{time} avg: #{time / total}"
 
       # remove studies
-      raise "Removing too many studies #{to_remove.count}" if studies.count > Study.count - to_remove.count
+      raise "Removing too many studies #{to_remove.count}" if  Study.count <= to_remove.count 
       total = to_remove.length
       total_time = 0
       stime = Time.now
@@ -178,14 +174,21 @@ module Util
     end
 
     def update_study(id)
-      stime = Time.now
+      stime = Time.now 
+      record = nil
       if schema == 'beta'
         record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
         changed = record.update_from_api
-        record.create_or_update_study
+       
       else
         record = Support::StudyXmlRecord.find_or_create_by(nct_id: id)
         changed = record.update_xml_from_api
+        
+      end
+
+      if record.blank? || record.content.blank? 
+        record.destroy
+      else 
         record.create_or_update_study
       end
       Time.now - stime
@@ -322,7 +325,7 @@ module Util
       study_counts[:processed] = Study.count
 
       load_event.log('taking snapshot...')
-      take_snapshot
+      take_snapshot(schema)
 
       load_event.log('refreshing public db...')
       if refresh_public_db != true
@@ -333,7 +336,7 @@ module Util
       load_event.complete({ study_counts: study_counts })
 
       load_event.log('create flat files...')
-      create_flat_files
+      create_flat_files(schema)
 
       # Admin::PublicAnnouncement.clear_load_message
     end
@@ -394,16 +397,14 @@ module Util
       Admin::DataDefinition.populate(data)
     end
 
-    def take_snapshot(schema)
+    def take_snapshot(schema='')
       log('dumping database...')
       db_mgr.dump_database(schema)
 
-      if schema != 'beta'
-        log('creating zipfile of database...')
-        Util::FileManager.new.save_static_copy
-      end
-    rescue StandardError => e
-      load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
+      log('creating zipfile of database...')
+      Util::FileManager.new.save_static_copy(schema)
+      rescue StandardError => e
+        load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
     end
 
     def send_notification(schema)
@@ -415,7 +416,7 @@ module Util
 
     def create_flat_files(schema)
       log('exporting tables as flat files...')
-      Util::TableExporter.new.run(delimiter: '|', should_archive: true)
+      Util::TableExporter.new([],schema).run(delimiter: '|', should_archive: true)
     end
 
     def truncate_tables

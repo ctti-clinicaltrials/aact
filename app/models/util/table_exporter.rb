@@ -2,9 +2,15 @@ module Util
   class TableExporter
     attr_reader :zipfile_name, :table_names
 
-    def initialize(tables=[])
-      @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
-      @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export.zip"
+    def initialize(tables=[],schema='')
+      @schema = schema
+      if @schema == 'beta'
+        @temp_dir     = "#{Util::FileManager.new.dump_directory}/export_beta"
+        @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_beta_export.zip"
+      else
+        @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
+        @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export.zip"
+      end
       @connection   = ActiveRecord::Base.connection.raw_connection
       @table_names  = tables
       create_temp_dir_if_none_exists!
@@ -13,10 +19,8 @@ module Util
     def run(delimiter: '|', should_archive: true)
       load_event = Support::LoadEvent.create({:event_type=>'table_export',:status=>'running',:description=>'',:problems=>''})
       File.delete(@zipfile_name) if File.exist?(@zipfile_name)
-
       begin
         tempfiles = create_tempfiles(delimiter)
-
         if delimiter == ','
           system("zip -j -q #{@zipfile_name} #{@temp_dir}/*.csv")
         else
@@ -26,7 +30,6 @@ module Util
         if should_archive
           archive(delimiter)
         end
-
       ensure
         cleanup_tempfiles!
       end
@@ -83,7 +86,8 @@ module Util
                        "pipe-delimited-export"
                      end
 
-      archive_file_name="#{Util::FileManager.new.flat_files_directory}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}.zip"
+      folder =  Util::FileManager.new.flat_files_directory(@schema)
+      archive_file_name="#{folder}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}.zip"
       FileUtils.mv(@zipfile_name, archive_file_name)
     end
   end
