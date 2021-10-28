@@ -76,6 +76,9 @@ class Verifier < ActiveRecord::Base
     id_module_hash.merge!(status_module_hash)
                   .merge!(sponsor_collaborator_module_hash)
                   .merge!(oversight_module_hash)
+                  .merge!(description_module_hash)
+                  .merge!(conditions_module_hash)
+                  .merge!(design_module_hash)
   end
 
   def get_counts(location)
@@ -161,15 +164,56 @@ class Verifier < ActiveRecord::Base
   def oversight_module_hash
     om_module = 'ProtocolSection|OversightModule'
     {
-      "#{om_module}|OversightHasDMC" => 'studies#has_dmc',
-      "#{om_module}|IsFDARegulatedDrug" => 'studies#is_fda_regulated_drug',
-      "#{om_module}|IsFDARegulatedDevice" => 'studies#is_fda_regulated_device',
-      "#{om_module}|IsUnapprovedDevice" => 'studies#is_unapproved_device',
-      "#{om_module}|IsPPSD" => 'studies#is_ppsd',
-      "#{om_module}|IsUSExport" => 'studies#is_us_export',
+      # "#{om_module}|OversightHasDMC" => 'studies#has_dmc',
+      # "#{om_module}|IsFDARegulatedDrug" => 'studies#is_fda_regulated_drug',
+      # "#{om_module}|IsFDARegulatedDevice" => 'studies#is_fda_regulated_device',
+      # "#{om_module}|IsUnapprovedDevice" => 'studies#is_unapproved_device',
+      # "#{om_module}|IsPPSD" => 'studies#is_ppsd',
+      # "#{om_module}|IsUSExport" => 'studies#is_us_export',
     }
   end
 
+  def description_module_hash
+    description_module = 'ProtocolSection|DescriptionModule'
+    {
+      # "#{description_module}|BriefSummary" => 'brief_summaries#description',
+      # "#{description_module}|DetailedDescription" => 'detailed_descriptions#description',
+    }
+  end
+
+  def conditions_module_hash
+    conditions_module = 'ProtocolSection|ConditionsModule'
+    {
+      # "#{conditions_module}|ConditionList|Condition" => 'conditions#name',
+      # "#{conditions_module}|KeywordList|Keyword" => 'keywords#name',
+    }
+  end
+
+  def design_module_hash
+    design_module = 'ProtocolSection|DesignModule'
+    {
+      "#{design_module}|StudyType" => 'studies#study_type',
+      "#{design_module}|ExpandedAccessTypes|ExpAccTypeIndividual" => 'studies#expanded_access_type_individual',
+      "#{design_module}|ExpandedAccessTypes|ExpAccTypeIntermediate" => 'studies#expanded_access_type_intermediate',
+      "#{design_module}|ExpandedAccessTypes|ExpAccTypeTreatment" => 'studies#expanded_access_type_treatment',
+      "#{design_module}|PatientRegistry" => "studies#study_type#where study_type iLIKE '%Patient Registry%'",
+      "#{design_module}|TargetDuration" => "studies#target_duration",
+      "#{design_module}|PhaseList|Phase" => "studies#phase",
+      "#{design_module}|DesignInfo|DesignAllocation" => "designs#allocation",
+      "#{design_module}|DesignInfo|DesignInterventionModel" => "designs#intervention_model",
+      "#{design_module}|DesignInfo|DesignInterventionModelDescription" => "designs#intervention_model_description",
+      "#{design_module}|DesignInfo|DesignPrimaryPurpose" => "designs#primary_purpose",
+      "#{design_module}|DesignInfo|DesignObservationalModelList|DesignObservationalModel" => "designs#observational_model",
+      "#{design_module}|DesignInfo|DesignTimePerspectiveList|DesignTimePerspective" => "designs#time_perspective",
+      "#{design_module}|DesignInfo|DesignMaskingInfo|DesignMasking" => "designs#masking",
+      "#{design_module}|DesignInfo|DesignMaskingInfo|DesignMaskingDescription" => "designs#masking_description",
+      # "#{design_module}|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked" => "designs#subject_masked, caregiver_masked, investigator_masked, outcomes_assesor_masked",
+      "#{design_module}|BioSpec|BioSpecRetention" => "studies#biospec_retention",
+      "#{design_module}|BioSpec|BioSpecDescription" => "studies#biospec_description",
+      "#{design_module}|EnrollmentInfo|EnrollmentCount" => "studies#enrollment",
+      "#{design_module}|EnrollmentInfo|EnrollmentType" => "studies#enrollment_type",
+    }
+  end
   
   # selectors that aren't in the database
   # #{id_module}|OrgStudyIdInfo|OrgStudyIdType
