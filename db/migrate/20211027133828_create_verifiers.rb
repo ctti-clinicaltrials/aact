@@ -3,6 +3,7 @@ class CreateVerifiers < ActiveRecord::Migration[6.0]
     create_table :verifiers do |t|
       t.json :differences, null: false, default: []
       t.timestamp :last_run
+      t.json :source
 
       t.timestamps
     end

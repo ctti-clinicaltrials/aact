@@ -1,8 +1,10 @@
 class Verifier < ActiveRecord::Base
+  APIJSON =  ClinicalTrialsApi.study_statistics
 
   def self.refresh(params={schema: 'ctgov'})
-    Verifier.destroy_all
-    Verifier.new.verify(params)
+    # Verifier.destroy_all
+    found = Verifier.last || Verifier.create
+    found.set_source.verify(params)
   end
 
   def set_schema(schema)
@@ -17,10 +19,14 @@ class Verifier < ActiveRecord::Base
     ActiveRecord::Base.logger = nil
   end
   
+  def set_source
+    update(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"))
+  end
+
   def verify(params={schema: 'ctgov'})
     set_schema(params[:schema])
-    study_statistics = ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study")
-    return unless study_statistics
+    
+    return if source.blank?
 
     differences = []
     # I first add the count so that we can know if the differences might be caused by having a different amount of studies
@@ -192,28 +198,55 @@ class Verifier < ActiveRecord::Base
   def design_module_hash
     design_module = 'ProtocolSection|DesignModule'
     {
-      "#{design_module}|StudyType" => 'studies#study_type',
-      "#{design_module}|ExpandedAccessTypes|ExpAccTypeIndividual" => 'studies#expanded_access_type_individual',
-      "#{design_module}|ExpandedAccessTypes|ExpAccTypeIntermediate" => 'studies#expanded_access_type_intermediate',
-      "#{design_module}|ExpandedAccessTypes|ExpAccTypeTreatment" => 'studies#expanded_access_type_treatment',
-      "#{design_module}|PatientRegistry" => "studies#study_type#where study_type iLIKE '%Patient Registry%'",
-      "#{design_module}|TargetDuration" => "studies#target_duration",
-      "#{design_module}|PhaseList|Phase" => "studies#phase",
-      "#{design_module}|DesignInfo|DesignAllocation" => "designs#allocation",
-      "#{design_module}|DesignInfo|DesignInterventionModel" => "designs#intervention_model",
-      "#{design_module}|DesignInfo|DesignInterventionModelDescription" => "designs#intervention_model_description",
-      "#{design_module}|DesignInfo|DesignPrimaryPurpose" => "designs#primary_purpose",
-      "#{design_module}|DesignInfo|DesignObservationalModelList|DesignObservationalModel" => "designs#observational_model",
-      "#{design_module}|DesignInfo|DesignTimePerspectiveList|DesignTimePerspective" => "designs#time_perspective",
-      "#{design_module}|DesignInfo|DesignMaskingInfo|DesignMasking" => "designs#masking",
-      "#{design_module}|DesignInfo|DesignMaskingInfo|DesignMaskingDescription" => "designs#masking_description",
-      # "#{design_module}|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked" => "designs#subject_masked, caregiver_masked, investigator_masked, outcomes_assesor_masked",
-      "#{design_module}|BioSpec|BioSpecRetention" => "studies#biospec_retention",
-      "#{design_module}|BioSpec|BioSpecDescription" => "studies#biospec_description",
-      "#{design_module}|EnrollmentInfo|EnrollmentCount" => "studies#enrollment",
-      "#{design_module}|EnrollmentInfo|EnrollmentType" => "studies#enrollment_type",
+      # "#{design_module}|StudyType" => 'studies#study_type',
+      # "#{design_module}|ExpandedAccessTypes|ExpAccTypeIndividual" => 'studies#expanded_access_type_individual',
+      # "#{design_module}|ExpandedAccessTypes|ExpAccTypeIntermediate" => 'studies#expanded_access_type_intermediate',
+      # "#{design_module}|ExpandedAccessTypes|ExpAccTypeTreatment" => 'studies#expanded_access_type_treatment',
+      # "#{design_module}|PatientRegistry" => "studies#study_type#where study_type iLIKE '%Patient Registry%'",
+      # "#{design_module}|TargetDuration" => "studies#target_duration",
+      # "#{design_module}|PhaseList|Phase" => "studies#phase",
+      # "#{design_module}|DesignInfo|DesignAllocation" => "designs#allocation",
+      # "#{design_module}|DesignInfo|DesignInterventionModel" => "designs#intervention_model",
+      # "#{design_module}|DesignInfo|DesignInterventionModelDescription" => "designs#intervention_model_description",
+      # "#{design_module}|DesignInfo|DesignPrimaryPurpose" => "designs#primary_purpose",
+      # "#{design_module}|DesignInfo|DesignObservationalModelList|DesignObservationalModel" => "designs#observational_model",
+      # "#{design_module}|DesignInfo|DesignTimePerspectiveList|DesignTimePerspective" => "designs#time_perspective",
+      # "#{design_module}|DesignInfo|DesignMaskingInfo|DesignMasking" => "designs#masking",
+      # "#{design_module}|DesignInfo|DesignMaskingInfo|DesignMaskingDescription" => "designs#masking_description",
+      "#{design_module}|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked" => "designs#CONCAT(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked)# where COALESCE(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked) is not null",
+      # "#{design_module}|BioSpec|BioSpecRetention" => "studies#biospec_retention",
+      # "#{design_module}|BioSpec|BioSpecDescription" => "studies#biospec_description",
+      # "#{design_module}|EnrollmentInfo|EnrollmentCount" => "studies#enrollment",
+      # "#{design_module}|EnrollmentInfo|EnrollmentType" => "studies#enrollment_type",
     }
   end
+
+#   [{:source_study_count=>393739, :db_study_count=>393436},
+#  {:source=>"ProtocolSection|DesignModule|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked",
+#   :destination=>"designs#CONCAT(subject_masked,caregiver_masked, investigator_masked, outcomes_assessor_masked)",
+#   :source_instances=>286512,
+#   :destination_instances=>393436,
+#   :source_unique_values=>4,
+#   :destination_unique_values=>5}]
+
+# {:source_study_count=>393739, :db_study_count=>393436},
+#  {:source=>"ProtocolSection|DesignModule|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked",
+#   :destination=>
+#    "designs#CONCAT(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked)# where COALESCE(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked) is not null",
+#   :source_instances=>286512,
+#   :destination_instances=>124195,
+#   :source_unique_values=>4,
+#   :destination_unique_values=>4}]
+
+# [{:source_study_count=>393739, :db_study_count=>393436},
+#  {:source=>"ProtocolSection|DesignModule|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked",
+#   :destination=>
+#    "designs#CONCAT(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked)# where subject_masked is not null and caregiver_masked is not null and investigator_masked is not null and outcomes_assessor_masked is not null",
+#   :source_instances=>286512,
+#   :destination_instances=>28677,
+#   :source_unique_values=>4,
+#   :destination_unique_values=>1}]
+
   
   # selectors that aren't in the database
   # #{id_module}|OrgStudyIdInfo|OrgStudyIdType

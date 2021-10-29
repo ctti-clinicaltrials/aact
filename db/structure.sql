@@ -2383,6 +2383,7 @@ CREATE TABLE ctgov.verifiers (
     id bigint NOT NULL,
     differences json DEFAULT '[]'::json NOT NULL,
     last_run timestamp without time zone,
+    source json,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
