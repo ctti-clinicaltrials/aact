@@ -1872,6 +1872,11 @@ class StudyJsonRecord < ActiveRecord::Base
           end
         end
       end
+    # Log any errors and notify airbrake
+    rescue Exception => error
+          msg="#{error.message} (#{error.class} #{error.backtrace}"
+          ErrorLog.error(msg)
+          Airbrake.notify(error)
     end
     # Print messages showing the end time and total time elapsed for data_differences of ctgov_beta and ctgov counts
     end_time = Time.zone.now
