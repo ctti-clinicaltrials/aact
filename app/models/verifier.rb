@@ -85,28 +85,19 @@ class Verifier < ActiveRecord::Base
         return false
       end
   end
-  #  id_module_hash.merge!(status_module_hash)
-                  # .merge!(sponsor_collaborator_module_hash)
-                  # .merge!(oversight_module_hash)
-                  # .merge!(description_module_hash)
-                  # .merge!(conditions_module_hash)
-                  # .merge!(design_module_hash)
-                  # .merge!(arms_interventions_module_hash)
-                  # .merge!(outcomes_module_hash) 
-                  # .merge!(eligibility_module_hash)
-                  # .merge!(contacts_location_module_hash)
+
   def all_locations
-    id_module_hash.merge!(status_module_hash)
-                  .merge!(sponsor_collaborator_module_hash)
-                  .merge!(oversight_module_hash)
-                  .merge!(description_module_hash)
-                  .merge!(conditions_module_hash)
-                  .merge!(design_module_hash)
-                  .merge!(arms_interventions_module_hash)
-                  .merge!(outcomes_module_hash) 
-                  .merge!(eligibility_module_hash)
-                  .merge!(contacts_location_module_hash)
-    # contacts_location_module_hash                
+    # id_module_hash.merge!(status_module_hash)
+    #               .merge!(sponsor_collaborator_module_hash)
+    #               .merge!(oversight_module_hash)
+    #               .merge!(description_module_hash)
+    #               .merge!(conditions_module_hash)
+    #               .merge!(design_module_hash)
+    #               .merge!(arms_interventions_module_hash)
+    #               .merge!(outcomes_module_hash) 
+    #               .merge!(eligibility_module_hash)
+    #               .merge!(contacts_location_module_hash)
+    contacts_location_module_hash                
   end
 
   def get_counts(location)
@@ -239,7 +230,7 @@ class Verifier < ActiveRecord::Base
       "#{design_module}|ExpandedAccessTypes|ExpAccTypeIntermediate"                       => 'studies#expanded_access_type_intermediate#where expanded_access_type_intermediate is not null',
       "#{design_module}|ExpandedAccessTypes|ExpAccTypeTreatment"                          => 'studies#expanded_access_type_treatment#where expanded_access_type_treatment is not null',
       
-      "#{design_module}|PatientRegistry"                                                  => "studies#study_type#where study_type iLIKE '%Patient Registry%'",
+      "#{design_module}|PatientRegistry"                                                  => "studies#study_type#where study_type iLIKE '%Patient Registry%' or iLIKE '%PatientRegistry%'",
       "#{design_module}|TargetDuration"                                                   => "studies#target_duration#where target_duration is not null and target_duration <>''",
       "#{design_module}|PhaseList|Phase"                                                  => "studies#phase#where phase is not null and phase <>''",
       
@@ -311,35 +302,29 @@ class Verifier < ActiveRecord::Base
   def contacts_location_module_hash
     cl_module = 'ProtocolSection|ContactsLocationsModule'
     {
-      "#{cl_module}|CentralContactList|CentralContactName" => "central_contacts#name#where name is not null and name <> ''"
+      "#{cl_module}|CentralContactList|CentralContact|CentralContactName"                              => "central_contacts#name#where name is not null and name <> ''",
+      "#{cl_module}|CentralContactList|CentralContact|CentralContactPhone"                             => "central_contacts#phone#where phone is not null and phone <> ''",
+      "#{cl_module}|CentralContactList|CentralContact|CentralContactPhoneExt"                          => "central_contacts#phone#where phone ilike '% ext %' ",
+      "#{cl_module}|CentralContactList|CentralContact|CentralContactEMail"                             => "central_contacts#email#where email is not null and email <> ''",
+
+      "#{cl_module}|OverallOfficialList|OverallOfficial|OverallOfficialName"                           => "overall_officials#name#where name is not null and name <> ''",
+      "#{cl_module}|OverallOfficialList|OverallOfficial|OverallOfficialAffiliation"                    => "overall_officials#affiliation#where affiliation is not null and affiliation <> ''",
+      "#{cl_module}|OverallOfficialList|OverallOfficial|OverallOfficialRole"                           => "overall_officials#role#where role is not null and role <> ''",
+
+      "#{cl_module}|LocationList|Location|LocationFacility"                                            => "facilities#name#where name is not null and name <> ''",
+      "#{cl_module}|LocationList|Location|LocationStatus"                                              => "facilities#status#where status is not null and status <> ''",
+      "#{cl_module}|LocationList|Location|LocationCity"                                                => "facilities#city#where city is not null and city <> ''",
+      "#{cl_module}|LocationList|Location|LocationState"                                               => "facilities#state#where state is not null and state <> ''",
+      "#{cl_module}|LocationList|Location|LocationZip"                                                 => "facilities#zip#where zip is not null and zip <> ''",
+      "#{cl_module}|LocationList|Location|LocationCountry"                                             => "facilities#country#where country is not null and country <> ''",
+      
+      "#{cl_module}|LocationList|Location|LocationContactList|LocationContact|LocationContactName"     => "facility_contacts#name#where name is not null and name <> ''",
+      "#{cl_module}|LocationList|Location|LocationContactList|LocationContact|LocationContactRole"     => "facility_contacts#contact_type#where contact_type is not null and contact_type <> ''",
+      "#{cl_module}|LocationList|Location|LocationContactList|LocationContact|LocationContactPhone"    => "facility_contacts#phone#where phone is not null and phone <> ''",
+      "#{cl_module}|LocationList|Location|LocationContactList|LocationContact|LocationContactPhoneExt" => "facility_contacts#phone#phone#where phone ilike '% ext %'",
+      "#{cl_module}|LocationList|Location|LocationContactList|LocationContact|LocationContactEMail"    => "facility_contacts#email#where email is not null and email <> ''",
     }
   end
-
-#   [{:source_study_count=>393739, :db_study_count=>393436},
-#  {:source=>"ProtocolSection|DesignModule|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked",
-#   :destination=>"designs#CONCAT(subject_masked,caregiver_masked, investigator_masked, outcomes_assessor_masked)",
-#   :source_instances=>286512,
-#   :destination_instances=>393436,
-#   :source_unique_values=>4,
-#   :destination_unique_values=>5}]
-
-# {:source_study_count=>393739, :db_study_count=>393436},
-#  {:source=>"ProtocolSection|DesignModule|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked",
-#   :destination=>
-#    "designs#CONCAT(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked)# where COALESCE(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked) is not null",
-#   :source_instances=>286512,
-#   :destination_instances=>124195,
-#   :source_unique_values=>4,
-#   :destination_unique_values=>4}]
-
-# [{:source_study_count=>393739, :db_study_count=>393436},
-#  {:source=>"ProtocolSection|DesignModule|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked",
-#   :destination=>
-#    "designs#CONCAT(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked)# where subject_masked is not null and caregiver_masked is not null and investigator_masked is not null and outcomes_assessor_masked is not null",
-#   :source_instances=>286512,
-#   :destination_instances=>28677,
-#   :source_unique_values=>4,
-#   :destination_unique_values=>1}]
 
   
   # selectors that aren't in the database
@@ -359,5 +344,6 @@ class Verifier < ActiveRecord::Base
   # "#{om_module}|FDAAA801Violation"
   # "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupInterventionList|ArmGroupInterventionName"
   # "#{e_module}|StdAgeList"
+  # "#{cl_module}|CentralContactList|CentralContactRole"
   
 end
