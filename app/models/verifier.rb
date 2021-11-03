@@ -97,7 +97,9 @@ class Verifier < ActiveRecord::Base
     #               .merge!(outcomes_module_hash) 
     #               .merge!(eligibility_module_hash)
     #               .merge!(contacts_location_module_hash)
-    contacts_location_module_hash                
+    #               .merge!(references_module_hash)
+    #               .merge!(ipd_sharing_module_hash)
+    ipd_sharing_module_hash                
   end
 
   def get_counts(location)
@@ -119,6 +121,8 @@ class Verifier < ActiveRecord::Base
     
     return all_counts, uniq_counts
   end
+
+  # Protcol section___________________________________________________________
 
   def id_module_hash
     id_module ='ProtocolSection|IdentificationModule'
@@ -326,6 +330,59 @@ class Verifier < ActiveRecord::Base
     }
   end
 
+  def references_module_hash
+    ref_module = 'ProtocolSection|ReferencesModule'
+    {
+      "#{ref_module}|ReferenceList|Reference|ReferencePMID"        => "study_references#pmid#where pmid is not null and pmid <> ''",
+      "#{ref_module}|ReferenceList|Reference|ReferenceType"        => "study_references#reference_type#where reference_type is not null and reference_type <> ''",
+      "#{ref_module}|ReferenceList|Reference|ReferenceCitation"    => "study_references#citation#where citation is not null and citation <> ''",
+      
+      "#{ref_module}|SeeAlsoLinkList|SeeAlsoLink|SeeAlsoLinkLabel" => "links#description#where description is not null and description <> ''",
+      "#{ref_module}|SeeAlsoLinkList|SeeAlsoLink|SeeAlsoLinkURL"   => "links#url#where url is not null and url <> ''",
+
+      "#{ref_module}|AvailIPDList|AvailIPD|AvailIPDId"             => "documents#document_id#where document_id is not null and document_id <> ''",
+      "#{ref_module}|AvailIPDList|AvailIPD|AvailIPDType"           => "documents#document_type#where document_type is not null and document_type <> ''",
+      "#{ref_module}|AvailIPDList|AvailIPD|AvailIPDURL"            => "documents#url#where url is not null and url <> ''",
+      "#{ref_module}|AvailIPDList|AvailIPD|AvailIPDComment"        => "documents#comment#where comment is not null and comment <> ''",
+    }
+  end
+
+  def ipd_sharing_module_hash
+    ipd_module= 'ProtocolSection|IPDSharingStatementModule'
+    {
+      "#{ipd_module}|IPDSharing"                                => "studies#plan_to_share_ipd#where plan_to_share_ipd is not null and plan_to_share_ipd <> ''",
+      "#{ipd_module}|IPDSharingDescription"                     => "studies#plan_to_share_ipd_description#where plan_to_share_ipd_description is not null and plan_to_share_ipd_description <> ''",
+      "#{ipd_module}|IPDSharingInfoTypeList|IPDSharingInfoType" => "ipd_information_types#name#where name is not null and name <> ''",
+      "#{ipd_module}|IPDSharingTimeFrame"                       => "studies#ipd_time_frame#where ipd_time_frame is not null and ipd_time_frame <> ''",
+      "#{ipd_module}|IPDSharingAccessCriteria"                  => "studies#ipd_access_criteria#where ipd_access_criteria is not null and ipd_access_criteria <> ''",
+      "#{ipd_module}|IPDSharingURL"                             => "studies#ipd_url#where ipd_url is not null and ipd_url <> ''",
+    }
+  end
+
+  # Results section___________________________________________________________
+  
+  def participant_flow_module_hash
+    pf_module = 'ResultsSection|ParticipantFlowModule'
+    {
+      "#{pf_module}|FlowPreAssignmentDetails"                     => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
+      "#{pf_module}|FlowRecruitmentDetails"                       => "participant_flows#recruitment_details#where recruitment_details is not null and recruitment_details <> ''",
+      "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupId"          => "result_groups#ctgov_beta_group_code#where ctgov_beta_group_code is not null and ctgov_beta_group_code <> ''",
+      "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupTitle"       => "result_groups#title#where title is not null and title <> ''",
+      "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupDescription" => "result_groups#description#where description is not null and description <> ''",
+      "#{pf_module}|FlowPreAssignmentDetails"                     => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
+      "#{pf_module}|FlowPreAssignmentDetails"                     => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
+
+
+      "#{pf_module}|FlowPreAssignmentDetails" => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
+      "#{pf_module}|FlowPreAssignmentDetails" => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
+      "#{pf_module}|FlowPreAssignmentDetails" => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
+      "#{pf_module}|FlowPreAssignmentDetails" => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
+      "#{pf_module}|FlowPreAssignmentDetails" => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
+    }
+  end
+
+
+  
   
   # selectors that aren't in the database
   # "#{id_module}|OrgStudyIdInfo|OrgStudyIdType"
@@ -345,5 +402,7 @@ class Verifier < ActiveRecord::Base
   # "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupInterventionList|ArmGroupInterventionName"
   # "#{e_module}|StdAgeList"
   # "#{cl_module}|CentralContactList|CentralContactRole"
-  
+  # "#{ref_module}|ReferenceList|Reference|RetractionList|Retraction|RetractionPMID"
+  # "#{ref_module}|ReferenceList|Reference|RetractionList|Retraction|RetractionSource" 
+  # "#{pf_module}|FlowTypeUnitsAnalyzed"
 end
