@@ -1,20 +1,34 @@
+ErrorLog = Logger.new('log/error.log')
 class Verifier < ActiveRecord::Base
   APIJSON =  ClinicalTrialsApi.study_statistics
 
-  def self.tester
-    found = Verifier.last 
-    unless found
-     Verifier.new.(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study")).save
-     found = Verifier.last 
-    end
-    diff = found.verify({schema: 'ctgov'})
-    found.write_source_to_file(diff, 'ctgov')
-  end
-
-  def write_source_to_file(differences=[], schema='ctgov')
+  def write_data_to_file(differences=[], schema='ctgov')
     folder = Util::FileManager.new.study_statistics_directory
     # File.write("#{folder}/verifier_source_#{schema}.json", JSON.dump(self.source))
+    # save json with differences
     File.write("#{folder}/verifier_differences_#{schema}.json", JSON.dump(differences))
+    
+    # save csv with differences
+    headers = %w[
+                source
+                destination
+                source_instances
+                destination_instances
+                source_unique_values
+                destination_unique_values
+              ]
+    CSV.open("#{folder}/verifier_differences_#{schema}.csv", 'w', write_headers: true, headers: headers) do |row|
+      differences.each do |hash|
+        row << [
+                hash[:source],
+                hash[:destination],
+                hash[:source_instances],
+                hash[:destination_instances],
+                hash[:source_unique_values],
+                hash[:destination_unique_values],
+              ]
+      end
+    end
   end
 
   def get_source_from_file(file_path="#{Util::FileManager.new.study_statistics_directory}/verifier_source_ctgov.json")
@@ -23,9 +37,18 @@ class Verifier < ActiveRecord::Base
   end
 
   def self.refresh(params={schema: 'ctgov'})
+    begin
     Verifier.destroy_all
-    Verifier.new(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study")).save
-    Verifier.last.verify(params)
+    Verifier.new.get_source_from_file
+    # Verifier.new(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study")).save
+    found = Verifier.last 
+    # found.write_data_to_file(found.verify(params), params[:schema])
+    found.write_data_to_file(found.verify(params), 'ctgov_beta')
+    rescue => error
+      msg="#{error.message} (#{error.class} #{error.backtrace}"
+      ErrorLog.error(msg)
+      Airbrake.notify(error)
+    end
   end
 
   def set_schema(schema)
@@ -52,9 +75,20 @@ class Verifier < ActiveRecord::Base
     differences<< {source_study_count: source_study_counts, db_study_count:  db_study_counts} unless same?(source_study_counts,  db_study_counts)
     
     # Now I add the differences for each selector
-    all_locations.each do |key,value|
-      found = diff_hash(key, value)
-      differences << found unless found.blank?
+    places = all_locations
+    total = places.count
+    places.each do |key,value|
+      begin
+        puts "countdown: #{total} --#{key}_________"
+        found = diff_hash(key, value)
+        differences << found unless found.blank?
+        total -= 1
+      rescue => error
+        msg="#{error.message} (#{error.class} #{error.backtrace}"
+        ErrorLog.error(msg)
+        Airbrake.notify(error)
+        next
+      end
     end
 
     last_run = Time.now
@@ -69,7 +103,6 @@ class Verifier < ActiveRecord::Base
   end
 
   def diff_hash(selector, location)
-    puts "selector~~~~~~~~~~~#{selector}"
     hash = self.source
     selector.split('|').each do |selector_part|
       hash = hash.dig(selector_part)
@@ -82,7 +115,6 @@ class Verifier < ActiveRecord::Base
     uniq_instances = hash.dig("nUniqueValues")
     
     all_counts, uniq_counts = get_counts(location)
-
       unless same?(all_counts, all_instances) && same?(uniq_counts, uniq_instances)
         return {
                     source: selector,
