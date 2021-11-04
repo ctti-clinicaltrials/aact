@@ -4,14 +4,16 @@ class Verifier < ActiveRecord::Base
   def self.tester
     found = Verifier.last 
     unless found
-      found = Verifier.new.set_source
+     Verifier.new.(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study")).save
+     found = Verifier.last 
     end
     found.verify({schema: 'ctgov'})
   end
 
   def self.refresh(params={schema: 'ctgov'})
     Verifier.destroy_all
-    Verifier.new.set_source.verify(params)
+    Verifier.new(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study")).save
+    Verifier.last.verify(params)
   end
 
   def set_schema(schema)
@@ -24,10 +26,6 @@ class Verifier < ActiveRecord::Base
     ActiveRecord::Base.remove_connection
     ActiveRecord::Base.establish_connection
     ActiveRecord::Base.logger = nil
-  end
-  
-  def set_source
-    source = APIJSON.dig('StudyStatistics', "ElmtDefs", "Study")
   end
 
   def verify(params={schema: 'ctgov'})
@@ -59,6 +57,7 @@ class Verifier < ActiveRecord::Base
   end
 
   def diff_hash(selector, location)
+    puts "selector~~~~~~~~~~~#{selector}"
     hash = self.source
     selector.split('|').each do |selector_part|
       hash = hash.dig(selector_part)
@@ -99,7 +98,14 @@ class Verifier < ActiveRecord::Base
     #               .merge!(contacts_location_module_hash)
     #               .merge!(references_module_hash)
     #               .merge!(ipd_sharing_module_hash)
-    ipd_sharing_module_hash                
+    #               .merge!(participant_flow_module_hash)
+    #               .merge!(baseline_characterisitics_module_hash)
+    #               .merge!(outcome_measures_module_hash)
+    #               .merge!(adverse_events_module_hash)
+    #               .merge!(more_info_module_hash)
+    #               .merge!(annotation_module_hash)
+    #               .merge!(large_document_module_hash)
+    large_document_module_hash        
   end
 
   def get_counts(location)
@@ -228,15 +234,15 @@ class Verifier < ActiveRecord::Base
   def design_module_hash
     design_module = 'ProtocolSection|DesignModule'
     {
-      "#{design_module}|StudyType"                                                        => "studies#study_type#where study_type is not null and study_type <>''",
+      "#{design_module}|StudyType" => "studies#study_type#where study_type is not null and study_type <>''",
       
-      "#{design_module}|ExpandedAccessTypes|ExpAccTypeIndividual"                         => 'studies#expanded_access_type_individual#where expanded_access_type_individual is not null',
-      "#{design_module}|ExpandedAccessTypes|ExpAccTypeIntermediate"                       => 'studies#expanded_access_type_intermediate#where expanded_access_type_intermediate is not null',
-      "#{design_module}|ExpandedAccessTypes|ExpAccTypeTreatment"                          => 'studies#expanded_access_type_treatment#where expanded_access_type_treatment is not null',
+      "#{design_module}|ExpandedAccessTypes|ExpAccTypeIndividual"   => 'studies#expanded_access_type_individual#where expanded_access_type_individual is not null',
+      "#{design_module}|ExpandedAccessTypes|ExpAccTypeIntermediate" => 'studies#expanded_access_type_intermediate#where expanded_access_type_intermediate is not null',
+      "#{design_module}|ExpandedAccessTypes|ExpAccTypeTreatment"    => 'studies#expanded_access_type_treatment#where expanded_access_type_treatment is not null',
       
-      "#{design_module}|PatientRegistry"                                                  => "studies#study_type#where study_type iLIKE '%Patient Registry%' or iLIKE '%PatientRegistry%'",
-      "#{design_module}|TargetDuration"                                                   => "studies#target_duration#where target_duration is not null and target_duration <>''",
-      "#{design_module}|PhaseList|Phase"                                                  => "studies#phase#where phase is not null and phase <>''",
+      "#{design_module}|PatientRegistry" => "studies#study_type#where study_type iLIKE '%Patient Registry%' or iLIKE '%PatientRegistry%'",
+      "#{design_module}|TargetDuration"  => "studies#target_duration#where target_duration is not null and target_duration <>''",
+      "#{design_module}|PhaseList|Phase" => "studies#phase#where phase is not null and phase <>''",
       
       "#{design_module}|DesignInfo|DesignAllocation"                                      => "designs#allocation#where allocation is not null and allocation <>''",
       "#{design_module}|DesignInfo|DesignInterventionModel"                               => "designs#intervention_model#where intervention_model is not null and intervention_model <>''",
@@ -248,20 +254,20 @@ class Verifier < ActiveRecord::Base
       "#{design_module}|DesignInfo|DesignMaskingInfo|DesignMaskingDescription"            => "designs#masking_description#where masking_description is not null and masking_description <>''",
       "#{design_module}|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked" => 'designs#CONCAT(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked)# where COALESCE(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked) is not null',
       
-      "#{design_module}|BioSpec|BioSpecRetention"                                         => "studies#biospec_retention#where biospec_retention is not null and biospec_retention <>''",
-      "#{design_module}|BioSpec|BioSpecDescription"                                       => "studies#biospec_description#where biospec_description is not null and biospec_description <>''",
+      "#{design_module}|BioSpec|BioSpecRetention"   => "studies#biospec_retention#where biospec_retention is not null and biospec_retention <>''",
+      "#{design_module}|BioSpec|BioSpecDescription" => "studies#biospec_description#where biospec_description is not null and biospec_description <>''",
       
-      "#{design_module}|EnrollmentInfo|EnrollmentCount"                                   => 'studies#enrollment#where enrollment is not null',
-      "#{design_module}|EnrollmentInfo|EnrollmentType"                                    => "studies#enrollment_type#where enrollment_type is not null and enrollment_type <>''",
+      "#{design_module}|EnrollmentInfo|EnrollmentCount" => 'studies#enrollment#where enrollment is not null',
+      "#{design_module}|EnrollmentInfo|EnrollmentType"  => "studies#enrollment_type#where enrollment_type is not null and enrollment_type <>''",
     }
   end
 
   def arms_interventions_module_hash
     ai_module = 'ProtocolSection|ArmsInterventionsModule'
     {
-      "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupLabel"                                                   => "design_groups#title#where title is not null and title <>''",
-      "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupType"                                                    => "design_groups#group_type#where group_type is not null and group_type <>''",
-      "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupDescription"                                             => "design_groups#description#where description is not null and description <>''",
+      "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupLabel"       => "design_groups#title#where title is not null and title <>''",
+      "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupType"        => "design_groups#group_type#where group_type is not null and group_type <>''",
+      "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupDescription" => "design_groups#description#where description is not null and description <>''",
       
       "#{ai_module}|InterventionList|Intervention|InterventionType"                                        => "interventions#intervention_type#where intervention_type is not null and intervention_type <>''",
       "#{ai_module}|InterventionList|Intervention|InterventionName"                                        => "interventions#name#where name is not null and name <>''",
@@ -366,21 +372,188 @@ class Verifier < ActiveRecord::Base
     {
       "#{pf_module}|FlowPreAssignmentDetails"                     => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
       "#{pf_module}|FlowRecruitmentDetails"                       => "participant_flows#recruitment_details#where recruitment_details is not null and recruitment_details <> ''",
-      "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupId"          => "result_groups#ctgov_beta_group_code#where ctgov_beta_group_code is not null and ctgov_beta_group_code <> ''",
-      "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupTitle"       => "result_groups#title#where title is not null and title <> ''",
-      "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupDescription" => "result_groups#description#where description is not null and description <> ''",
-      "#{pf_module}|FlowPreAssignmentDetails"                     => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
-      "#{pf_module}|FlowPreAssignmentDetails"                     => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
+      "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupId"          => "result_groups#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> '' and result_type = 'Participant Flow'",
+      "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupTitle"       => "result_groups#title#where title is not null and title <> '' and result_type = 'Participant Flow'",
+      "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupDescription" => "result_groups#description#where description is not null and description <> '' and result_type = 'Participant Flow'",
+      
+      "#{pf_module}|FlowPeriodList|FlowPeriod|FlowPeriodTitle"                                                                                 => "milestones#period#where period is not null and period <> ''",
+      "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowMilestoneType"                                               => "milestones#title#where title is not null and title <> ''",
+      "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementGroupId"      => "milestones#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
+      "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementComment"      => "milestones#description#where description is not null and description <> ''",
+      "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementNumSubjects"  => "milestones#count#where count is not null",
+      
 
-
-      "#{pf_module}|FlowPreAssignmentDetails" => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
-      "#{pf_module}|FlowPreAssignmentDetails" => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
-      "#{pf_module}|FlowPreAssignmentDetails" => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
-      "#{pf_module}|FlowPreAssignmentDetails" => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
-      "#{pf_module}|FlowPreAssignmentDetails" => "participant_flows#pre_assignment_details#where pre_assignment_details is not null and pre_assignment_details <> ''",
+      "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowDropWithdrawType"                                      => "drop_withdrawals#reason#where reason is not null and reason <> ''",
+      "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonGroupId"               => "drop_withdrawals#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
+      "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonNumSubjects"           => "drop_withdrawals#count#where count is not null",
     }
   end
 
+  def baseline_characterisitics_module_hash
+    bc_module = 'ResultsSection|BaselineCharacteristicsModule'
+    {
+      "#{bc_module}|BaselinePopulationDescription"                            => "studies#baseline_population#where baseline_population is not null and baseline_population <> ''",
+      "#{bc_module}|BaselineGroupList|BaselineGroup|BaselineGroupId"          => "result_groups#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> '' and result_type= 'Baseline'",
+      "#{bc_module}|BaselineGroupList|BaselineGroup|BaselineGroupTitle"       => "result_groups#title#where title is not null and title <> '' and result_type= 'Baseline'",
+      "#{bc_module}|BaselineGroupList|BaselineGroup|BaselineGroupDescription" => "result_groups#description#where description is not null and description <> '' and result_type= 'Baseline'",
+
+      "#{bc_module}|BaselineDenomList|BaselineDenom|BaselineDenomUnits"                                                  => "baseline_counts#units#where units is not null and units <> ''",
+      "#{bc_module}|BaselineDenomList|BaselineDenom|BaselineDenomCountList|BaselineDenomCount|BaselineDenomCountGroupId" => "baseline_counts#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
+      "#{bc_module}|BaselineDenomList|BaselineDenom|BaselineDenomCountList|BaselineDenomCount|BaselineDenomCountValue"   => "baseline_counts#count#where count is not null",
+
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureTitle"          => "baseline_measurements#title#where title is not null and title <> ''",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureDescription"    => "baseline_measurements#description#where description is not null and description <> ''",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureParamType"      => "baseline_measurements#param_type#where param_type is not null and param_type <> ''",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureDispersionType" => "baseline_measurements#dispersion_type#where dispersion_type is not null and dispersion_type <> ''",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureUnitOfMeasure"  => "baseline_measurements#units#where units is not null and units <> ''",
+      
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassTitle"                                                                                              => "baseline_measurements#classification#where classification is not null and classification <> ''",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineCategoryTitle"                                                     => "baseline_measurements#category#where category is not null and category <> ''",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementGroupId"    => "baseline_measurements#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementValue"      => "baseline_measurements#param_value#where param_value is not null and param_value <> ''",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementSpread"     => "baseline_measurements#dispersion_value#where dispersion_value is not null and dispersion_value <> ''",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementLowerLimit" => "baseline_measurements#dispersion_lower_limit#where dispersion_lower_limit is not null",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementUpperLimit" => "baseline_measurements#dispersion_upper_limit#where dispersion_upper_limit is not null",
+      "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementComment"    => "baseline_measurements#explanation_of_na#where explanation_of_na is not null and explanation_of_na <> ''",
+    }
+  end
+
+  def outcome_measures_module_hash
+    om_module = "ResultsSection|OutcomeMeasuresModule"
+    {
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureType"                  => "outcomes#outcome_type#where outcome_type is not null and outcome_type <> ''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureTitle"                 => "outcomes#title#where title is not null and title <> ''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureDescription"           => "outcomes#description#where title is not null and title <> ''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasurePopulationDescription" => "outcomes#population#where title is not null and title <> ''",
+
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureAnticipatedPostingDate" => "outcomes#anticipated_posting_date#where anticipated_posting_date is not null",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureParamType"              => "outcomes#param_type#where param_type is not null and param_type <> ''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureDispersionType"         => "outcomes#dispersion_type#where dispersion_type is not null and dispersion_type <> ''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureUnitOfMeasure"          => "outcomes#units#where units is not null and units <> ''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureTimeFrame"              => "outcomes#time_frame#where time_frame is not null and time_frame <> ''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureTypeUnitsAnalyzed"      => "outcomes#units_analyzed#where units_analyzed is not null and units_analyzed <> ''",
+      
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeGroupList|OutcomeGroup|OutcomeGroupId"          => "result_groups#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> '' and result_type= 'Outcome'",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeGroupList|OutcomeGroup|OutcomeGroupTitle"       => "result_groups#title#where title is not null and title <> '' and result_type= 'Outcome'",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeGroupList|OutcomeGroup|OutcomeGroupDescription" => "result_groups#description#where title is not null and description <> '' and result_type= 'Outcome'",
+
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeDenomList|OutcomeDenom|OutcomeDenomUnits"                                                                  => "outcome_counts#units#where units is not null and units <> ''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeDenomList|OutcomeDenom|OutcomeDenomCountList|OutcomeDenomCount|OutcomeDenomCountGroupId" => "outcome_counts#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeDenomList|OutcomeDenom|OutcomeDenomCountList|OutcomeDenomCount|OutcomeDenomCountValue"   => "outcome_counts#count#where count is not null",
+      
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassTitle" => "outcome_measurements#classification#where classification is not null and classification <> ''",
+      
+      
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeCategoryTitle"                                                   => "outcome_measurements#category#where category is not null and category <> ''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementGroupId"    => "outcome_measurements#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementValue"      => "outcome_measurements#param_value#where param_value is not null and param_value <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementSpread"     => "outcome_measurements#dispersion_value#where dispersion_value is not null and dispersion_value <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementLowerLimit" => "outcome_measurements#dispersion_lower_limit#where dispersion_lower_limit is not null",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementUpperLimit" => "outcome_measurements#dispersion_upper_limit#where dispersion_upper_limit is not null ",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementComment"    => "outcome_measurements#explanation_of_na#where explanation_of_na is not null and explanation_of_na <>''",
+      
+      
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisGroupIdList|OutcomeAnalysisGroupId" => "outcome_analysis_groups#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisGroupDescription"                   => "outcome_analyses#groups_description#where groups_description is not null and groups_description <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisNonInferiorityType"                 => "outcome_analyses#non_inferiority_type#where non_inferiority_type is not null and non_inferiority_type <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisNonInferiorityComment"              => "outcome_analyses#non_inferiority_description#where non_inferiority_description is not null and non_inferiority_description <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisPValue"                             => "outcome_analyses#p_value_modifier#where p_value_modifier is not null and p_value_modifier <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisPValueComment"                      => "outcome_analyses#p_value_description#where p_value_description is not null and p_value_description <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisStatisticalMethod"                  => "outcome_analyses#method#where method is not null and method <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisStatisticalComment"                 => "outcome_analyses#method_description#where method_description is not null and method_description <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisParamType"                          => "outcome_analyses#param_type#where param_type is not null and param_type <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisParamValue"                         => "outcome_analyses#param_value#where param_value is not null",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCIPctValue"                         => "outcome_analyses#ci_percent#where ci_percent is not null",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCINumSides"                         => "outcome_analyses#ci_n_sides#where ci_n_sides is not null and ci_n_sides <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCILowerLimit"                       => "outcome_analyses#ci_lower_limit#where ci_lower_limit is not null",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCIUpperLimit"                       => "outcome_analyses#ci_upper_limit#where ci_upper_limit is not null",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCIUpperLimitComment"                => "outcome_analyses#ci_upper_limit_na_comment#where ci_upper_limit_na_comment is not null and ci_upper_limit_na_comment <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisDispersionType"                     => "outcome_analyses#dispersion_type#where dispersion_type is not null and dispersion_type <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisDispersionValue"                    => "outcome_analyses#dispersion_value#where dispersion_value is not null",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisEstimateComment"                    => "outcome_analyses#estimate_description#where estimate_description is not null and estimate_description <>''",
+      "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisOtherAnalysisDescription"           => "outcome_analyses#other_analysis_description#where other_analysis_description is not null and other_analysis_description <>''",
+    }
+  end
+
+  def adverse_events_module_hash
+    ae_module = 'ResultsSection|AdverseEventsModule'
+    {
+      "#{ae_module}|EventsFrequencyThreshold" => "reported_events#frequency_threshold#where frequency_threshold is not null",
+      "#{ae_module}|EventsTimeFrame"          => "reported_events#time_frame#where time_frame is not null and time_frame <> ''",
+      "#{ae_module}|EventsDescription"        => "reported_events#description#where description is not null and description <> ''",
+      
+      "#{ae_module}|EventGroupList|EventGroup|EventGroupId"                 => "reported_event_totals#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
+      "#{ae_module}|EventGroupList|EventGroup|EventGroupDeathsNumAffected"  => "reported_event_totals#subjects_affected#where subjects_affected is not null and classification = 'Total, all-cause mortality'",
+      "#{ae_module}|EventGroupList|EventGroup|EventGroupDeathsNumAtRisk"    => "reported_event_totals#subjects_at_risk#where subjects_at_risk is not null and classification = 'Total, all-cause mortality'",
+      "#{ae_module}|EventGroupList|EventGroup|EventGroupSeriousNumAffected" => "reported_event_totals#subjects_affected#where subjects_affected is not null and event_type ilike 'serious'",
+      "#{ae_module}|EventGroupList|EventGroup|EventGroupSeriousNumAtRisk"   => "reported_event_totals#subjects_at_risk#where subjects_at_risk is not null and event_type ilike 'serious'",
+      "#{ae_module}|EventGroupList|EventGroup|EventGroupOtherNumAffected"   => "reported_event_totals#subjects_affected#where subjects_affected is not null and event_type ilike 'other'",
+      "#{ae_module}|EventGroupList|EventGroup|EventGroupOtherNumAtRisk"     => "reported_event_totals#subjects_at_risk#where subjects_at_risk is not null and event_type ilike 'other'",
+
+      "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventTerm"                => "reported_events#adverse_event_term#where adverse_event_term is not null and adverse_event_term <> '' and event_type ilike 'serious'",
+      "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventOrganSystem"         => "reported_events#organ_system#where organ_system is not null and organ_system <> '' and event_type ilike 'serious'",
+      "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventSourceVocabulary"    => "reported_events#vocab#where vocab is not null and vocab <> '' and event_type ilike 'serious'",
+      "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventAssessmentType"      => "reported_events#assessment#where assessment is not null and assessment <> '' and event_type ilike 'serious'",
+
+      "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventStatsList|SeriousEventStats|SeriousEventStatsGroupId"     => "reported_events#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> '' and event_type ilike 'serious'",
+      "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventStatsList|SeriousEventStats|SeriousEventStatsNumEvents"   => "reported_events#event_count#where event_count is not null and event_type ilike 'serious'",
+      "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventStatsList|SeriousEventStats|SeriousEventStatsNumAffected" => "reported_events#subjects_affected#where subjects_affected is not null and event_type ilike 'serious'",
+      "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventStatsList|SeriousEventStats|SeriousEventStatsNumAtRisk"   => "reported_events#subjects_at_risk#where subjects_at_risk is not null and event_type ilike 'serious'",
+
+     
+      "#{ae_module}|OtherEventList|OtherEvent|OtherEventTerm"                => "reported_events#adverse_event_term#where adverse_event_term is not null and adverse_event_term <> '' and event_type ilike 'other'",
+      "#{ae_module}|OtherEventList|OtherEvent|OtherEventOrganSystem"         => "reported_events#organ_system#where organ_system is not null and organ_system <> '' and event_type ilike 'other'",
+      "#{ae_module}|OtherEventList|OtherEvent|OtherEventSourceVocabulary"    => "reported_events#vocab#where vocab is not null and vocab <> '' and event_type ilike 'other'",
+      "#{ae_module}|OtherEventList|OtherEvent|OtherEventAssessmentType"      => "reported_events#assessment#where assessment is not null and assessment <> '' and event_type ilike 'other'",
+
+      "#{ae_module}|OtherEventList|OtherEvent|OtherEventStatsList|OtherEventStats|OtherEventStatsGroupId"     => "reported_events#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> '' and event_type ilike 'other'",
+      "#{ae_module}|OtherEventList|OtherEvent|OtherEventStatsList|OtherEventStats|OtherEventStatsNumEvents"   => "reported_events#event_count#where event_count is not null and event_type ilike 'other'",
+      "#{ae_module}|OtherEventList|OtherEvent|OtherEventStatsList|OtherEventStats|OtherEventStatsNumAffected" => "reported_events#subjects_affected#where subjects_affected is not null and event_type ilike 'other'",
+      "#{ae_module}|OtherEventList|OtherEvent|OtherEventStatsList|OtherEventStats|OtherEventStatsNumAtRisk"   => "reported_events#subjects_at_risk#where subjects_at_risk is not null and event_type ilike 'other'",
+    }
+  end
+
+  def more_info_module_hash
+    mi_module = 'ResultsSection|MoreInfoModule'
+    {
+      "#{mi_module}|CertainAgreement|AgreementPISponsorEmployee" => "result_agreements#pi_employee#where pi_employee is not null and pi_employee <> ''",
+      "#{mi_module}|CertainAgreement|AgreementRestrictionType" => "result_agreements#restriction_type#where restriction_type is not null and restriction_type <> ''",
+      "#{mi_module}|CertainAgreement|AgreementRestrictiveAgreement" => "result_agreements#restrictive_agreement#where restrictive_agreement is not null and restrictive_agreement <> ''",
+      "#{mi_module}|CertainAgreement|AgreementOtherDetails" => "result_agreements#other_details#where other_details is not null and other_details <> ''",
+
+      "#{mi_module}|PointOfContact|PointOfContactTitle" => "result_contacts#name#where name is not null and name <> ''",
+      "#{mi_module}|PointOfContact|PointOfContactOrganization" => "result_contacts#organization#where organization is not null and organization <> ''",
+      "#{mi_module}|PointOfContact|PointOfContactEMail" => "result_contacts#email#where email is not null and email <> ''",
+      "#{mi_module}|PointOfContact|PointOfContactPhone" => "result_contacts#phone#where phone is not null and phone <> ''",
+      "#{mi_module}|PointOfContact|PointOfContactPhoneExt" => "result_contacts#phone#where phone is not null and phone <> '' and phone ilike '%ext%'",
+    }
+  end
+
+  # Annotation section___________________________________________________________
+
+  def annotation_module_hash
+    a_module = 'AnnotationSection|AnnotationModule'
+    {
+      "#{a_module}|UnpostedAnnotation|UnpostedEventList|UnpostedEvent|UnpostedEventType" => "pending_results#event#where event is not null and event <> ''",
+      "#{a_module}|UnpostedAnnotation|UnpostedEventList|UnpostedEvent|UnpostedEventDate" => "pending_results#event_date_description#where event_date_description is not null and event_date_description <> ''",
+    }
+  end
+
+  # Document section___________________________________________________________
+
+  def large_document_module_hash
+    ld_module = 'DocumentSection|LargeDocumentModule'
+    {
+      "#{ld_module}|LargeDocList|LargeDoc|LargeDocHasProtocol" => "provided_documents#has_protocol#where has_protocol is not null",
+      "#{ld_module}|LargeDocList|LargeDoc|LargeDocHasSAP" => "provided_documents#has_sap#where has_sap is not null",
+      "#{ld_module}|LargeDocList|LargeDoc|LargeDocHasICF" => "provided_documents#has_icf#where has_icf is not null",
+      "#{ld_module}|LargeDocList|LargeDoc|LargeDocLabel" => "provided_documents#document_type#where document_type is not null and document_type <> ''",
+      "#{ld_module}|LargeDocList|LargeDoc|LargeDocDate" => "provided_documents#document_date#where document_date is not null",
+    }
+  end
+
+# ResultGroup.all.pluck(:result_type).uniq
+# ["Baseline", "Outcome", "Participant Flow", "Reported Event"]
 
   
   
@@ -405,4 +578,36 @@ class Verifier < ActiveRecord::Base
   # "#{ref_module}|ReferenceList|Reference|RetractionList|Retraction|RetractionPMID"
   # "#{ref_module}|ReferenceList|Reference|RetractionList|Retraction|RetractionSource" 
   # "#{pf_module}|FlowTypeUnitsAnalyzed"
+  # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowMilestoneComment"
+  # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementNumUnits" 
+  # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowDropWithdrawComment"
+  # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonComment"
+  # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonNumUnits"
+  # "#{bc_module}|BaselineTypeUnitsAnalyzed"
+  # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasurePopulationDescription"
+  # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureCalculatePct"
+  # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureDenomUnitsSelected"
+  # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureDenomList|BaselineMeasureDenom|BaselineMeasureDenomUnits"
+  # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureDenomList|BaselineMeasureDenom|BaselineMeasureDenomCountList|BaselineMeasureDenomCount|BaselineMeasureDenomCountGroupId"
+  # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureDenomList|BaselineMeasureDenom|BaselineMeasureDenomCountList|BaselineMeasureDenomCount|BaselineMeasureDenomCountValue"
+  # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassDenomList|BaselineClassDenom|BaselineClassDenomUnits"
+  # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassDenomList|BaselineClassDenom|BaselineClassDenomCountList|BaselineClassDenomCount|BaselineClassDenomCountGroupId"
+  # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassDenomList|BaselineClassDenom|BaselineClassDenomCountList|BaselineClassDenomCount|BaselineClassDenomCountValue"
+  # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureReportingStatus"
+  # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureCalculatePct"
+  # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureDenomUnitsSelected"
+  # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassDenomList|OutcomeClassDenom|OutcomeClassDenomUnits"
+  # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassDenomList|OutcomeClassDenom|OutcomeClassDenomCountList|OutcomeClassDenomCount|OutcomeClassDenomCountGroupId"
+  # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassDenomList|OutcomeClassDenom|OutcomeClassDenomCountList|OutcomeClassDenomCount|OutcomeClassDenomCountValue" 
+  # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisTestedNonInferiority"
+  # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCILowerLimitComment"
+  # "#{ae_module}|EventGroupList|EventGroup|EventGroupTitle"
+  # "#{ae_module}|EventGroupList|EventGroup|EventGroupDescription"
+  # "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventNotes"
+  # "#{ae_module}|OtherEventList|OtherEvent|OtherEventNotes"
+  # "#{mi_module}|LimitationsAndCaveatsDescription"
+  # "#{a_module}|UnpostedAnnotation|UnpostedResponsibleParty"
+  # "#{ld_module}|LargeDocList|LargeDoc|LargeDocTypeAbbrev"
+  # "#{ld_module}|LargeDocList|LargeDoc|LargeDocUploadDate"
+  # "#{ld_module}|LargeDocList|LargeDoc|LargeDocFilename"
 end
