@@ -2,11 +2,13 @@ ErrorLog = Logger.new('log/error.log')
 class Verifier < ActiveRecord::Base
   APIJSON =  ClinicalTrialsApi.study_statistics
 
-  def write_data_to_file(differences=[], schema='ctgov')
+  def write_data_to_file(schema='ctgov')
     folder = Util::FileManager.new.study_statistics_directory
-    # File.write("#{folder}/verifier_source_#{schema}.json", JSON.dump(self.source))
+    # save the data from the study statistics endpoint for reference
+    File.write("#{folder}/verifier_source_#{schema}.json".remove('\''), JSON.dump(self.source))
     # save json with differences
-    File.write("#{folder}/verifier_differences_#{schema}.json", JSON.dump(differences))
+    diff_file = "#{folder}/verifier_differences_#{schema}".remove('\'')
+    File.write("#{diff_file}.json", JSON.dump(self.differences))
     
     # save csv with differences
     headers = %w[
@@ -17,8 +19,8 @@ class Verifier < ActiveRecord::Base
                 source_unique_values
                 destination_unique_values
               ]
-    CSV.open("#{folder}/verifier_differences_#{schema}.csv", 'w', write_headers: true, headers: headers) do |row|
-      differences.each do |hash|
+    CSV.open("#{diff_file}.csv", 'w', write_headers: true, headers: headers) do |row|
+      self.differences.each do |hash|
         row << [
                 hash[:source],
                 hash[:destination],
@@ -37,13 +39,11 @@ class Verifier < ActiveRecord::Base
   end
 
   def self.refresh(params={schema: 'ctgov'})
+  Verifier.destroy_all
     begin
-    Verifier.destroy_all
-    Verifier.new.get_source_from_file
-    # Verifier.new(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study")).save
-    found = Verifier.last 
-    # found.write_data_to_file(found.verify(params), params[:schema])
-    found.write_data_to_file(found.verify(params), 'ctgov_beta')
+      verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"))
+      verifier.verify(params)
+      verifier.write_data_to_file(params[:schema])
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
@@ -68,11 +68,11 @@ class Verifier < ActiveRecord::Base
     
     return if self.source.blank?
 
-    differences = []
+    diff = []
     # I first add the count so that we can know if the differences might be caused by having a different amount of studies
     source_study_counts = self.source.dig('nInstances')
     db_study_counts = Study.count
-    differences<< {source_study_count: source_study_counts, db_study_count:  db_study_counts} unless same?(source_study_counts,  db_study_counts)
+    diff<< {source_study_count: source_study_counts, db_study_count:  db_study_counts} unless same?(source_study_counts,  db_study_counts)
     
     # Now I add the differences for each selector
     places = all_locations
@@ -81,7 +81,7 @@ class Verifier < ActiveRecord::Base
       begin
         puts "countdown: #{total} --#{key}_________"
         found = diff_hash(key, value)
-        differences << found unless found.blank?
+        diff << found unless found.blank?
         total -= 1
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
@@ -91,10 +91,12 @@ class Verifier < ActiveRecord::Base
       end
     end
 
-    last_run = Time.now
+    self.last_run = Time.now
+    self.differences = diff
+
     self.save
 
-    return differences
+    return diff
   end
 
   def same?(int1,int2)
@@ -157,8 +159,7 @@ class Verifier < ActiveRecord::Base
   def get_counts(location)
     return unless location && location.kind_of?(String)
 
-   
-    # location example "studies#nct_id"
+    # location example "studies#nct_id#where nct_id is not null and nct_id <> ''"
     array = location.split('#')
     additional_info = ''
     additional_info = array[2] if array.length > 2
@@ -622,15 +623,11 @@ class Verifier < ActiveRecord::Base
       "#{ib_module}|InterventionAncestorList|InterventionAncestor|InterventionAncestorTerm" => "browse_interventions#mesh_term#where mesh_term is not null and mesh_term <>'' and mesh_type = 'mesh-ancestor'",
     }
   end
-
-
   
   # for result_groups you should filter by result_type
   #  result_types = ["Baseline", "Outcome", "Participant Flow", "Reported Event"]
-
-    
   
-  # selectors that aren't in the database
+  # listed below are selectors that don't point to any tables/columns in our database
 
   # ID Module__________________________________
   # "#{id_module}|OrgStudyIdInfo|OrgStudyIdType"
