@@ -7,7 +7,19 @@ class Verifier < ActiveRecord::Base
      Verifier.new.(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study")).save
      found = Verifier.last 
     end
-    found.verify({schema: 'ctgov'})
+    diff = found.verify({schema: 'ctgov'})
+    found.write_source_to_file(diff, 'ctgov')
+  end
+
+  def write_source_to_file(differences=[], schema='ctgov')
+    folder = Util::FileManager.new.study_statistics_directory
+    # File.write("#{folder}/verifier_source_#{schema}.json", JSON.dump(self.source))
+    File.write("#{folder}/verifier_differences_#{schema}.json", JSON.dump(differences))
+  end
+
+  def get_source_from_file(file_path="#{Util::FileManager.new.study_statistics_directory}/verifier_source_ctgov.json")
+    file = File.read(file_path)
+    self.update(source: JSON.parse(file))
   end
 
   def self.refresh(params={schema: 'ctgov'})
@@ -86,26 +98,28 @@ class Verifier < ActiveRecord::Base
   end
 
   def all_locations
-    # id_module_hash.merge!(status_module_hash)
-    #               .merge!(sponsor_collaborator_module_hash)
-    #               .merge!(oversight_module_hash)
-    #               .merge!(description_module_hash)
-    #               .merge!(conditions_module_hash)
-    #               .merge!(design_module_hash)
-    #               .merge!(arms_interventions_module_hash)
-    #               .merge!(outcomes_module_hash) 
-    #               .merge!(eligibility_module_hash)
-    #               .merge!(contacts_location_module_hash)
-    #               .merge!(references_module_hash)
-    #               .merge!(ipd_sharing_module_hash)
-    #               .merge!(participant_flow_module_hash)
-    #               .merge!(baseline_characterisitics_module_hash)
-    #               .merge!(outcome_measures_module_hash)
-    #               .merge!(adverse_events_module_hash)
-    #               .merge!(more_info_module_hash)
-    #               .merge!(annotation_module_hash)
-    #               .merge!(large_document_module_hash)
-    large_document_module_hash        
+    id_module_hash.merge!(status_module_hash)
+                  .merge!(sponsor_collaborator_module_hash)
+                  .merge!(oversight_module_hash)
+                  .merge!(description_module_hash)
+                  .merge!(conditions_module_hash)
+                  .merge!(design_module_hash)
+                  .merge!(arms_interventions_module_hash)
+                  .merge!(outcomes_module_hash) 
+                  .merge!(eligibility_module_hash)
+                  .merge!(contacts_location_module_hash)
+                  .merge!(references_module_hash)
+                  .merge!(ipd_sharing_module_hash)
+                  .merge!(participant_flow_module_hash)
+                  .merge!(baseline_characteristics_module_hash)
+                  .merge!(outcome_measures_module_hash)
+                  .merge!(adverse_events_module_hash)
+                  .merge!(more_info_module_hash)
+                  .merge!(annotation_module_hash)
+                  .merge!(large_document_module_hash)
+                  .merge!(misc_info_module_hash)
+                  .merge!(condition_browse_module_hash)
+                  .merge!(intervention_browse_module_hash)   
   end
 
   def get_counts(location)
@@ -204,14 +218,14 @@ class Verifier < ActiveRecord::Base
   end
 
   def oversight_module_hash
-    om_module = 'ProtocolSection|OversightModule'
+    over_module = 'ProtocolSection|OversightModule'
     {
-      "#{om_module}|OversightHasDMC"      => 'studies#has_dmc#where has_dmc is not null',
-      "#{om_module}|IsFDARegulatedDrug"   => 'studies#is_fda_regulated_drug#where is_fda_regulated_drug is not null',
-      "#{om_module}|IsFDARegulatedDevice" => 'studies#is_fda_regulated_device#where is_fda_regulated_device is not null',
-      "#{om_module}|IsUnapprovedDevice"   => 'studies#is_unapproved_device#where is_unapproved_device is not null',
-      "#{om_module}|IsPPSD"               => 'studies#is_ppsd#where is_ppsd is not null',
-      "#{om_module}|IsUSExport"           => 'studies#is_us_export#where is_us_export is not null',
+      "#{over_module}|OversightHasDMC"      => 'studies#has_dmc#where has_dmc is not null',
+      "#{over_module}|IsFDARegulatedDrug"   => 'studies#is_fda_regulated_drug#where is_fda_regulated_drug is not null',
+      "#{over_module}|IsFDARegulatedDevice" => 'studies#is_fda_regulated_device#where is_fda_regulated_device is not null',
+      "#{over_module}|IsUnapprovedDevice"   => 'studies#is_unapproved_device#where is_unapproved_device is not null',
+      "#{over_module}|IsPPSD"               => 'studies#is_ppsd#where is_ppsd is not null',
+      "#{over_module}|IsUSExport"           => 'studies#is_us_export#where is_us_export is not null',
     }
   end
 
@@ -240,7 +254,7 @@ class Verifier < ActiveRecord::Base
       "#{design_module}|ExpandedAccessTypes|ExpAccTypeIntermediate" => 'studies#expanded_access_type_intermediate#where expanded_access_type_intermediate is not null',
       "#{design_module}|ExpandedAccessTypes|ExpAccTypeTreatment"    => 'studies#expanded_access_type_treatment#where expanded_access_type_treatment is not null',
       
-      "#{design_module}|PatientRegistry" => "studies#study_type#where study_type iLIKE '%Patient Registry%' or iLIKE '%PatientRegistry%'",
+      "#{design_module}|PatientRegistry" => "studies#study_type#where study_type iLIKE '%Patient Registry%' or study_type iLIKE '%PatientRegistry%'",
       "#{design_module}|TargetDuration"  => "studies#target_duration#where target_duration is not null and target_duration <>''",
       "#{design_module}|PhaseList|Phase" => "studies#phase#where phase is not null and phase <>''",
       
@@ -389,7 +403,7 @@ class Verifier < ActiveRecord::Base
     }
   end
 
-  def baseline_characterisitics_module_hash
+  def baseline_characteristics_module_hash
     bc_module = 'ResultsSection|BaselineCharacteristicsModule'
     {
       "#{bc_module}|BaselinePopulationDescription"                            => "studies#baseline_population#where baseline_population is not null and baseline_population <> ''",
@@ -552,12 +566,41 @@ class Verifier < ActiveRecord::Base
     }
   end
 
-# ResultGroup.all.pluck(:result_type).uniq
-# ["Baseline", "Outcome", "Participant Flow", "Reported Event"]
+  # Derived section___________________________________________________________
+
+  def misc_info_module_hash
+    misc_module = 'DerivedSection|MiscInfoModule'
+    {
+      "#{misc_module}|RemovedCountryList|RemovedCountry" => "countries#name#where removed = true",
+    }
+  end
+
+  def condition_browse_module_hash
+    cb_module = 'DerivedSection|ConditionBrowseModule'
+    {
+      "#{cb_module}|ConditionMeshList|ConditionMesh|ConditionMeshTerm" => "browse_conditions#mesh_term#where mesh_term is not null and mesh_term <>'' and mesh_type = 'mesh-list'",
+      "#{cb_module}|ConditionAncestorList|ConditionAncestor|ConditionAncestorTerm" => "browse_conditions#mesh_term#where mesh_term is not null and mesh_term <>'' and mesh_type = 'mesh-ancestor'",
+    }
+  end
+
+  def intervention_browse_module_hash
+    ib_module = 'DerivedSection|InterventionBrowseModule'
+    {
+      "#{ib_module}|InterventionMeshList|InterventionMesh|InterventionMeshTerm" => "browse_interventions#mesh_term#where mesh_term is not null and mesh_term <>'' and mesh_type = 'mesh-list'",
+      "#{ib_module}|InterventionAncestorList|InterventionAncestor|InterventionAncestorTerm" => "browse_interventions#mesh_term#where mesh_term is not null and mesh_term <>'' and mesh_type = 'mesh-ancestor'",
+    }
+  end
+
 
   
+  # for result_groups you should filter by result_type
+  #  result_types = ["Baseline", "Outcome", "Participant Flow", "Reported Event"]
+
+    
   
   # selectors that aren't in the database
+
+  # ID Module__________________________________
   # "#{id_module}|OrgStudyIdInfo|OrgStudyIdType"
   # "#{id_module}|OrgStudyIdInfo|OrgStudyIdDomain"
   # "#{id_module}|OrgStudyIdInfo|OrgStudyIdLink"
@@ -565,24 +608,42 @@ class Verifier < ActiveRecord::Base
   # "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdDomain"
   # "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdLink"
   # "#{id_module}|Organization|OrgClass"
+
+  # Status Module__________________________________ 
   # "#{status_module}|DelayedPosting"
   # "#{status_module}|ExpandedAccessInfo|ExpandedAccessNCTId"
   # "#{status_module}|ExpandedAccessInfo|ExpandedAccessStatusForNCTId"
   # "#{status_module}|ResultsFirstPostedQCCommentsDateStruct|ResultsFirstPostedQCCommentsDate"
   # "#{status_module}|ResultsFirstPostedQCCommentsDateStruct|ResultsFirstPostedQCCommentsDateType"
+
+  # Sponsor Collaborator Module__________________________________
   # "#{sc_module}|ResponsibleParty|ResponsiblePartyOldNameTitle"
-  # "#{om_module}|FDAAA801Violation"
+
+  # Oversight Module__________________________________
+  # "#{over_module}|FDAAA801Violation"
+
+  # Arms Interventions Module__________________________________
   # "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupInterventionList|ArmGroupInterventionName"
+
+  # Eligibility Module__________________________________
   # "#{e_module}|StdAgeList"
+
+  # Contacts Location Module__________________________________
   # "#{cl_module}|CentralContactList|CentralContactRole"
+
+  # References Module__________________________________
   # "#{ref_module}|ReferenceList|Reference|RetractionList|Retraction|RetractionPMID"
   # "#{ref_module}|ReferenceList|Reference|RetractionList|Retraction|RetractionSource" 
+
+  # Participant Flow Module__________________________________
   # "#{pf_module}|FlowTypeUnitsAnalyzed"
   # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowMilestoneComment"
   # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementNumUnits" 
   # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowDropWithdrawComment"
   # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonComment"
   # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonNumUnits"
+
+  # Baseline Characteristics Module__________________________________
   # "#{bc_module}|BaselineTypeUnitsAnalyzed"
   # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasurePopulationDescription"
   # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureCalculatePct"
@@ -593,6 +654,8 @@ class Verifier < ActiveRecord::Base
   # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassDenomList|BaselineClassDenom|BaselineClassDenomUnits"
   # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassDenomList|BaselineClassDenom|BaselineClassDenomCountList|BaselineClassDenomCount|BaselineClassDenomCountGroupId"
   # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassDenomList|BaselineClassDenom|BaselineClassDenomCountList|BaselineClassDenomCount|BaselineClassDenomCountValue"
+  
+  # Outcome Measures Module__________________________________
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureReportingStatus"
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureCalculatePct"
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureDenomUnitsSelected"
@@ -601,13 +664,45 @@ class Verifier < ActiveRecord::Base
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassDenomList|OutcomeClassDenom|OutcomeClassDenomCountList|OutcomeClassDenomCount|OutcomeClassDenomCountValue" 
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisTestedNonInferiority"
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCILowerLimitComment"
+  
+  # Adverse Events Module__________________________________
   # "#{ae_module}|EventGroupList|EventGroup|EventGroupTitle"
   # "#{ae_module}|EventGroupList|EventGroup|EventGroupDescription"
   # "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventNotes"
   # "#{ae_module}|OtherEventList|OtherEvent|OtherEventNotes"
+
+  # More Information Module__________________________________
   # "#{mi_module}|LimitationsAndCaveatsDescription"
+
+  # Annotation Module__________________________________
   # "#{a_module}|UnpostedAnnotation|UnpostedResponsibleParty"
+
+  # Large Documents Module__________________________________
   # "#{ld_module}|LargeDocList|LargeDoc|LargeDocTypeAbbrev"
   # "#{ld_module}|LargeDocList|LargeDoc|LargeDocUploadDate"
   # "#{ld_module}|LargeDocList|LargeDoc|LargeDocFilename"
+
+  # Misc Info Module__________________________________
+  # "#{misc_module}|VersionHolder"
+
+  # Condition Browse Module__________________________________
+  # "#{cb_module}|ConditionMeshList|ConditionMesh|ConditionMeshId"
+  # "#{cb_module}|ConditionAncestorList|ConditionAncestor|ConditionAncestorId"
+  # "#{cb_module}|ConditionBrowseLeafList|ConditionBrowseLeaf|ConditionBrowseLeafId"
+  # "#{cb_module}|ConditionBrowseLeafList|ConditionBrowseLeaf|ConditionBrowseLeafName"
+  # "#{cb_module}|ConditionBrowseLeafList|ConditionBrowseLeaf|ConditionBrowseLeafAsFound"
+  # "#{cb_module}|ConditionBrowseLeafList|ConditionBrowseLeaf|ConditionBrowseLeafRelevance"
+  # "#{cb_module}|ConditionBrowseBranchList|ConditionBrowseBranch|ConditionBrowseBranchAbbrev"
+  # "#{cb_module}|ConditionBrowseBranchList|ConditionBrowseBranch|ConditionBrowseBranchName"
+
+  # Intervention Browse Module__________________________________
+  # "#{ib_module}|InterventionMeshList|InterventionMesh|InterventionMeshId"
+  # "#{ib_module}|InterventionAncestorList|InterventionAncestor|InterventionAncestorId"
+  # "#{ib_module}|InterventionBrowseLeafList|InterventionBrowseLeaf|InterventionBrowseLeafId"
+  # "#{ib_module}|InterventionBrowseLeafList|InterventionBrowseLeaf|InterventionBrowseLeafName"
+  # "#{ib_module}|InterventionBrowseLeafList|InterventionBrowseLeaf|InterventionBrowseLeafAsFound"
+  # "#{ib_module}|InterventionBrowseLeafList|InterventionBrowseLeaf|InterventionBrowseLeafRelevance"
+  # "#{ib_module}|InterventionBrowseBranchList|InterventionBrowseBranch|InterventionBrowseBranchAbbrev"
+  # "#{ib_module}|InterventionBrowseBranchList|InterventionBrowseBranch|InterventionBrowseBranchName"
+
 end
