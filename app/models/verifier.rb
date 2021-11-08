@@ -39,7 +39,6 @@ class Verifier < ActiveRecord::Base
   end
 
   def self.refresh(params={schema: 'ctgov'})
-  Verifier.destroy_all
     begin
       verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"))
       verifier.verify(params)
@@ -51,6 +50,7 @@ class Verifier < ActiveRecord::Base
     end
   end
 
+  # BETA MIGRATION
   def set_schema(schema)
     # expects the schema to be either ctgov or ctgov_beta
     con = ActiveRecord::Base.connection
