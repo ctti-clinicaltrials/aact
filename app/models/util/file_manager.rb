@@ -26,6 +26,7 @@ module Util
       FileUtils.mkdir_p "#{root_dir}/xml_downloads"
       FileUtils.mkdir_p "#{root_dir}/exported_files/covid-19"
       FileUtils.mkdir_p "#{root_dir}/beta_differences/single-row"
+      FileUtils.mkdir_p "#{root_dir}/beta_differences/study_statistics"
     end
 
     def nlm_protocol_data_url
@@ -109,6 +110,10 @@ module Util
 
     def default_mesh_headings
       "#{Rails.public_path}/mesh/mesh_headings.txt"
+    end
+
+    def study_statistics_directory
+      "#{root_dir}/beta_differences/study_statistics"
     end
 
     def default_data_definitions
