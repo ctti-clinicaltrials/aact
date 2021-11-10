@@ -19,8 +19,11 @@ class Verifier < ActiveRecord::Base
                 source_unique_values
                 destination_unique_values
               ]
+
+              byebug
     CSV.open("#{diff_file}.csv", 'w', write_headers: true, headers: headers) do |row|
       self.differences.each do |hash|
+        byebug
         row << [
                 hash[:source],
                 hash[:destination],
@@ -39,14 +42,14 @@ class Verifier < ActiveRecord::Base
   end
 
   def self.return_correct_schema(name = 'ctgov')
-    return 'ctgov_beta' if name =~ 'beta'
+    return 'ctgov_beta' if name =~ /beta/
        
     'ctgov'
   end
 
   def self.refresh(params={schema: 'ctgov'})
     # this is a safety messure to make sure the correct schema name is used
-    schema = return_correct_schema(params[:schema])
+    schema = self.return_correct_schema(params[:schema])
     begin
       verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"))
       verifier.verify(schema)
@@ -61,7 +64,7 @@ class Verifier < ActiveRecord::Base
   # BETA MIGRATION
   def set_schema(schema)
     # this is a safety messure to make sure the correct schema name is used
-    schema = return_correct_schema(schema)
+    schema = Verifier.return_correct_schema(schema)
     # expects the schema to be either ctgov or ctgov_beta
     con = ActiveRecord::Base.connection
     username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
@@ -75,7 +78,7 @@ class Verifier < ActiveRecord::Base
 
   def verify(schema ='ctgov')
     # this is a safety messure to make sure the correct schema name is used
-    schema = return_correct_schema(schema)
+    schema = Verifier.return_correct_schema(schema)
     set_schema(schema)
     
     return if self.source.blank?

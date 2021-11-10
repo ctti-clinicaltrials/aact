@@ -326,7 +326,7 @@ module Util
       # populate_admin_tables
 
       load_event.log('run sanity checks...')
-      run_sanity_checks
+      load_event.run_sanity_checks
 
       return unless full_featured # no need to continue unless configured as a fully featured implementation of AACT
 
