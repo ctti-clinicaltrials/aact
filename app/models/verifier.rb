@@ -1,4 +1,3 @@
-# ErrorLog = Logger.new('log/error.log')
 class Verifier < ActiveRecord::Base
   APIJSON =  ClinicalTrialsApi.study_statistics
 
