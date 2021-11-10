@@ -70,7 +70,7 @@ module Util
       # 4. comparing the counts from CT.gov to our database
       log("#{schema} comparing counts...")
       begin
-        Verifier.refesh({schema: schema})
+        Verifier.refresh({schema: schema})
       rescue => e
         Airbrake.notify(e)
       end
