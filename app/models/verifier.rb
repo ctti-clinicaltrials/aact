@@ -38,11 +38,19 @@ class Verifier < ActiveRecord::Base
     self.update(source: JSON.parse(file))
   end
 
+  def self.return_correct_schema(name = 'ctgov')
+    return 'ctgov_beta' if name =~ 'beta'
+       
+    'ctgov'
+  end
+
   def self.refresh(params={schema: 'ctgov'})
+    # this is a safety messure to make sure the correct schema name is used
+    schema = return_correct_schema(params[:schema])
     begin
       verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"))
-      verifier.verify(params)
-      verifier.write_data_to_file(params[:schema])
+      verifier.verify(schema)
+      verifier.write_data_to_file(schema)
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
@@ -52,6 +60,8 @@ class Verifier < ActiveRecord::Base
 
   # BETA MIGRATION
   def set_schema(schema)
+    # this is a safety messure to make sure the correct schema name is used
+    schema = return_correct_schema(schema)
     # expects the schema to be either ctgov or ctgov_beta
     con = ActiveRecord::Base.connection
     username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
@@ -63,8 +73,10 @@ class Verifier < ActiveRecord::Base
     ActiveRecord::Base.logger = nil
   end
 
-  def verify(params={schema: 'ctgov'})
-    set_schema(params[:schema])
+  def verify(schema ='ctgov')
+    # this is a safety messure to make sure the correct schema name is used
+    schema = return_correct_schema(schema)
+    set_schema(schema)
     
     return if self.source.blank?
 
