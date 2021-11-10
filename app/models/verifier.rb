@@ -20,10 +20,8 @@ class Verifier < ActiveRecord::Base
                 destination_unique_values
               ]
 
-              byebug
     CSV.open("#{diff_file}.csv", 'w', write_headers: true, headers: headers) do |row|
       self.differences.each do |hash|
-        byebug
         row << [
                 hash[:source],
                 hash[:destination],
