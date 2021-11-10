@@ -1,4 +1,4 @@
-ErrorLog = Logger.new('log/error.log')
+# ErrorLog = Logger.new('log/error.log')
 class Verifier < ActiveRecord::Base
   APIJSON =  ClinicalTrialsApi.study_statistics
 
@@ -23,12 +23,12 @@ class Verifier < ActiveRecord::Base
     CSV.open("#{diff_file}.csv", 'w', write_headers: true, headers: headers) do |row|
       self.differences.each do |hash|
         row << [
-                hash[:source],
-                hash[:destination],
-                hash[:source_instances],
-                hash[:destination_instances],
-                hash[:source_unique_values],
-                hash[:destination_unique_values],
+                hash["source"],
+                hash["destination"],
+                hash["source_instances"],
+                hash["destination_instances"],
+                hash["source_unique_values"],
+                hash["destination_unique_values"],
               ]
       end
     end
