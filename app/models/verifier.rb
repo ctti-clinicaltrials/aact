@@ -51,7 +51,7 @@ class Verifier < ActiveRecord::Base
     end
   end
 
-  def self.testing(file_path="#{Util::FileManager.new.study_statistics_directory}/verifier_source_ctgov.json", schema: 'ctgov_beta')
+  def self.testing(file_path="#{Util::FileManager.new.study_statistics_directory}/verifier_source_ctgov_beta.json", schema: 'ctgov_beta')
     begin
       verifier = Verifier.last
       unless verifier
