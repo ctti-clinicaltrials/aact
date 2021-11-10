@@ -5,7 +5,8 @@ class Verifier < ActiveRecord::Base
   def write_data_to_file(schema='ctgov')
     folder = Util::FileManager.new.study_statistics_directory
     # save the data from the study statistics endpoint for reference
-    File.write("#{folder}/verifier_source_#{schema}.json".remove('\''), JSON.dump(self.source))
+    # uncomment when done testing
+    # File.write("#{folder}/verifier_source_#{schema}.json".remove('\''), JSON.dump(self.source))
     # save json with differences
     diff_file = "#{folder}/verifier_differences_#{schema}".remove('\'')
     File.write("#{diff_file}.json", JSON.dump(self.differences))
@@ -43,6 +44,22 @@ class Verifier < ActiveRecord::Base
       verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"))
       verifier.verify(params)
       verifier.write_data_to_file(params[:schema])
+    rescue => error
+      msg="#{error.message} (#{error.class} #{error.backtrace}"
+      ErrorLog.error(msg)
+      Airbrake.notify(error)
+    end
+  end
+
+  def self.testing(file_path="#{Util::FileManager.new.study_statistics_directory}/verifier_source_ctgov.json", schema: 'ctgov_beta')
+    begin
+      verifier = Verifier.last
+      unless verifier
+        Verifier.new.get_source_from_file(file_path)
+        Verifier.last 
+      end
+      verifier.verify({schema: schema})
+      verifier.write_data_to_file(schema)
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
