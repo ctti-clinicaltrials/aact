@@ -9,7 +9,7 @@ class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'support.study_json_records'
 
   def self.db_mgr
-    @db_mgr ||= Util::DbManager.new({search_path: 'ctgov_beta'})
+    @db_mgr ||= Util::DbManager.new({search_path: 'ctgov'})
   end
 
   def self.updater(params={})
@@ -18,7 +18,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.run(params={})
     @start_time = Time.current
-    set_table_schema('ctgov_beta')
     @study_build_failures = []
     @full_featured = params[:full_featured] || false
     @params = params
@@ -1575,8 +1574,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.set_table_schema(schema = 'ctgov')
-    return unless schema == 'ctgov' || schema == 'ctgov_beta'
-
     name_of_tables = Util::DbManager.loadable_tables
     name_of_tables.each do |name|
       name_of_model = name.singularize.camelize.safe_constantize
@@ -1786,7 +1783,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.clean_up(nct_id= 'NCT04456920')
-    set_table_schema('ctgov_beta')
     remove_indexes_and_constraints
     clear_out_data_for([nct_id], false)
     study_record = find_by(nct_id: nct_id)
