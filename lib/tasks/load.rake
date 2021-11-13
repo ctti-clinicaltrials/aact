@@ -31,14 +31,12 @@ namespace :db do
   end
 
   desc 'update a single nct id'
-  task :load_study, [:nct_id, :schema] => :environment do |t, args|
-    # the schema options are either ctgov or beta
-    Util::Updater.new(schema: args[:schema]).load_study(args[:nct_id])
+  task :load_study, [:nct_id] => :environment do |t, args|
+    Util::Updater.new.load_study(args[:nct_id])
   end
 
   desc 'update a multiple nct ids'
-  task :load_multiple_studies, [:nct_id, :schema] => :environment do |t, args|
-    # the schema options are either ctgov or beta
-    Util::Updater.new(schema: args[:schema]).load_multiple_studies(args[:nct_id])
+  task :load_multiple_studies, [:nct_id] => :environment do |t, args|
+    Util::Updater.new.load_multiple_studies(args[:nct_id])
   end
 end
