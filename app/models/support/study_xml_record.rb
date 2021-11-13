@@ -111,12 +111,9 @@ module Support
       ids.map{|k| k[:id] }
     end
 
-    def self.update_studies(api: true, beta: false)
+    def self.update_studies(api: true, beta: true)
       logger = ActiveRecord::Base.logger
       ActiveRecord::Base.logger = nil
-      if beta
-        StudyJsonRecord.set_table_schema('ctgov_beta')
-      end
 
       ids = to_update
       total = ids.length
@@ -170,7 +167,7 @@ module Support
       puts "Time: #{time} avg: #{time / total}"
     end
 
-    def self.update_study(id, api: true, beta: false)
+    def self.update_study(id, api: true, beta: true)
       stime = Time.now
       # update from api or file
       if beta

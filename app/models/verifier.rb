@@ -50,9 +50,7 @@ class Verifier < ActiveRecord::Base
     end
   end
 
-  # BETA MIGRATION
-  def set_schema(schema)
-    # expects the schema to be either ctgov or ctgov_beta
+  def set_schema(schema='ctgov')
     con = ActiveRecord::Base.connection
     username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
     db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
