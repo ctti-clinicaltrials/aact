@@ -123,12 +123,6 @@ module Util
       restore_database(schema, public_connection(schema), fm.pg_dump_file(schema))
     end
 
-    def refresh_beta_public_db
-      # success = restore_database(beta_staging_connection, fm.pg_beta_dump_file)
-      # return unless success
-
-      restore_database(beta_public_connection, fm.pg_beta_dump_file)
-    end
       
     def clear_out_data_for(nct_ids)
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")

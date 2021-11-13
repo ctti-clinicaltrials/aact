@@ -380,7 +380,7 @@ module Util
       Admin::DataDefinition.populate(data)
     end
 
-    def take_snapshot(schema='')
+    def take_snapshot(schema='ctgov')
       log('dumping database...')
       db_mgr.dump_database(schema)
 

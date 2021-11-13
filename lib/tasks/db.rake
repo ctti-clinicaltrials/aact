@@ -73,7 +73,7 @@ namespace :db do
                 OR (T.#{column["column_name"]} IS NULL AND BT.#{column["column_name"]} IS NOT NULL);"
         result =ActiveRecord::Base.connection.execute(query).to_a
         if result.count > 0
-          file = "#{Util::FileManager.new.beta_differences_directory}/#{column['table_name']}-#{column["column_name"]}.csv"
+          file = "#{Util::FileManager.new.differences_directory}/#{column['table_name']}-#{column["column_name"]}.csv"
           headers = ['nct_id', 'ctgov column', 'ctgov_beta column']
           CSV.open(file, 'w', write_headers: true, headers: headers) do |writer|
             writer << result[0].values
