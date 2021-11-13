@@ -15,12 +15,12 @@ class StudySearch < ActiveRecord::Base
     file =  open(path, "r") { |io| io.read.encode("UTF-8", invalid: :replace) }
     query_data = CSV.parse(file, headers: true)
     query_data.each do |line|
-      find_or_create_by(save_tsv: false, grouping: line[0], query: line[3], name: line[3], beta_api: false)
+      find_or_create_by(save_tsv: false, grouping: line[0], query: line[3], name: line[3], beta_api: true)
     end
   end
 
   def self.make_covid_search
-    find_or_create_by(save_tsv: true, grouping: 'covid-19', query: 'covid-19', name: 'covid-19', beta_api: false)
+    find_or_create_by(save_tsv: true, grouping: 'covid-19', query: 'covid-19', name: 'covid-19', beta_api: true)
   end
 
   def self.make_funder_search
