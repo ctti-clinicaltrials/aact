@@ -204,7 +204,7 @@ module Util
       return day == '01'
     end
 
-    def save_static_copy(schema='')
+    def save_static_copy(schema='ctgov')
 
       nlm_protocol_file         = make_file_from_website("nlm_protocol_definitions.html", nlm_protocol_data_url)
       nlm_results_file          = make_file_from_website("nlm_results_definitions.html", nlm_results_data_url)
