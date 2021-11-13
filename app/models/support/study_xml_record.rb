@@ -66,7 +66,7 @@ module Support
       stime = Time.now
 
       ids.each_with_index do |id, idx|
-        t = update_study(id, api: false)
+        t = update_study(id)
         total_time += t
         avg_time = total_time / (idx + 1)
         remaining = (total - idx - 1) * avg_time
@@ -96,7 +96,7 @@ module Support
       to_add.each_with_index do |nct_id, idx|
         study = Study.find_by(nct_id: nct_id)
         study.remove_study_data if study
-        t = update_study(nct_id, api: false)
+        t = update_study(nct_id)
         puts "#{total - idx} #{nct_id} #{t}"
       end
     end
@@ -111,7 +111,7 @@ module Support
       ids.map{|k| k[:id] }
     end
 
-    def self.update_studies(api: true, beta: true)
+    def self.update_studies
       logger = ActiveRecord::Base.logger
       ActiveRecord::Base.logger = nil
 
@@ -121,7 +121,7 @@ module Support
       stime = Time.now
 
       ids.each_with_index do |id, idx|
-        t = update_study(id, api: api, beta: beta)
+        t = update_study(id)
         total_time += t
         avg_time = total_time / (idx + 1)
         remaining = (total - idx - 1) * avg_time
@@ -155,7 +155,7 @@ module Support
       stime = Time.now
 
       ids.each_with_index do |id, idx|
-        t = update_study(id, api: false)
+        t = update_study(id)
         total_time += t
         avg_time = total_time / (idx + 1)
         remaining = (total - idx - 1) * avg_time
@@ -167,25 +167,11 @@ module Support
       puts "Time: #{time} avg: #{time / total}"
     end
 
-    def self.update_study(id, api: true, beta: true)
+    def self.update_study(id)
       stime = Time.now
-      # update from api or file
-      if beta
-        record = StudyJsonRecord.find_or_create_by(nct_id: id)
-        changed = record.update_from_api
-        record.create_or_update_study
-      else
-        record = Support::StudyXmlRecord.find_or_create_by(nct_id: id)
-        if api
-          changed = record.update_xml_from_api
-        else
-          changed = record.update_xml_from_file
-        end
-        if changed
-          record.create_or_update_study
-        end
-      end
-      
+      record = StudyJsonRecord.find_or_create_by(nct_id: id)
+      changed = record.update_from_api
+      record.create_or_update_study
       
       time = Time.now - stime
     end
