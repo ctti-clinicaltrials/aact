@@ -12,7 +12,7 @@ module Util
       @full_featured = params[:full_featured] || false
       @params = params
       type = (params[:event_type] || 'incremental')
-      @schema = params[:schema]
+      @schema = params[:schema] || 'ctgov'
       @search_days_back = params[:search_days_back]
       ENV['load_type'] = type
       if params[:restart]
@@ -31,11 +31,7 @@ module Util
       con = ActiveRecord::Base.connection
       username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
       db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-      if schema == 'beta'
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
-      else
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
-      end
+      con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
       ActiveRecord::Base.remove_connection
       ActiveRecord::Base.establish_connection
       ActiveRecord::Base.logger = nil
@@ -46,11 +42,7 @@ module Util
       con = ActiveRecord::Base.connection
       username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
       db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-      if schema == 'beta'
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
-      else
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
-      end
+      con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
       ActiveRecord::Base.remove_connection
       ActiveRecord::Base.establish_connection
       ActiveRecord::Base.logger = nil
@@ -176,15 +168,8 @@ module Util
     def update_study(id)
       stime = Time.now 
       record = nil
-      if schema == 'beta'
-        record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
-        changed = record.update_from_api
-       
-      else
-        record = Support::StudyXmlRecord.find_or_create_by(nct_id: id)
-        changed = record.update_xml_from_api
-        
-      end
+      record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
+      changed = record.update_from_api
 
       if record.blank? || record.content.blank? 
         record.destroy
@@ -202,7 +187,6 @@ module Util
     end
 
     def load_study(study_id)
-      set_schema
       # 1. remove constraings
       log("#{schema} remove constraints...")
       db_mgr.remove_constrains
@@ -216,7 +200,6 @@ module Util
       # string_nct_ids looks like 'NCT00700336 NCT00772330 NCT00845871 NCT00852124 NCT01178814'
       # here I'm turning the string into an array
       array_nctids = string_nct_ids.split(' ')
-      set_schema
       # 1. remove constraings
       log("#{schema} remove constraints...")
       db_mgr.remove_constrains
