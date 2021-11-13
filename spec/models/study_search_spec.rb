@@ -90,20 +90,6 @@ RSpec.describe StudySearch, type: :model do
         expect {StudySearch.execute}.to change(SearchResult, :count).by 1
       end
     end
-    describe ':fetch_study_ids' do
-      before do
-        @covid_search = StudySearch.make_covid_search
-      end
-      it 'returns the nct_ids' do
-        covid_stub
-        covid_last_stub
-        expect(@covid_search.fetch_study_ids.count).to eq 5
-      end
-      it 'returns an empty array if there are no nct_ids' do
-        empty_search_stub
-        expect(@covid_search.fetch_study_ids.count).to eq 0
-      end
-    end
     describe ':json_data' do
       it 'returns json when given a url with json parseable data' do
         json_stub

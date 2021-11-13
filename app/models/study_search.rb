@@ -29,7 +29,8 @@ class StudySearch < ActiveRecord::Base
   end
 
   def load_update(days_back=2)
-    fetch_study_ids(days_back).each do |study_nct_id|
+    collection = StudySearch.collected_nct_ids(query) 
+    collection.each do |study_nct_id|
       next unless Study.find_by(nct_id: study_nct_id)
       
       begin
@@ -58,12 +59,6 @@ class StudySearch < ActiveRecord::Base
     end
   end
 
-  def fetch_study_ids(days_back=2)
-    return StudySearch.collected_nct_ids(query) if beta_api
-
-    Util::RssReader.new(days_back: days_back, condition: query).get_changed_nct_ids
-  end
-
   def self.json_data(url)
     # "https://clinicaltrials.gov/api/query/full_studies?expr=#{query}&min_rnk=1&max_rnk=100&fmt=json"
     begin
@@ -86,7 +81,6 @@ class StudySearch < ActiveRecord::Base
   def self.collected_nct_ids(search_constraints='covid-19')
     collection = []
     first_batch = json_data("https://clinicaltrials.gov/api/query/full_studies?expr=#{search_constraints}&min_rnk=1&max_rnk=100&fmt=json")
-    # collection << parse_ids(first_batch.dig('FullStudiesResponse', 'FullStudies'))
     total_studies_found = first_batch['FullStudiesResponse']['NStudiesFound']
     limit = (total_studies_found/100.0).ceil
     # studies must be retrieved in batches of 99,
