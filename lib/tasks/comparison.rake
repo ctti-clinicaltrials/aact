@@ -8,7 +8,9 @@ namespace :compare do
     Verifier.refresh(args)
   end
 
-  task :single_rows, [:first_schema,:second_schema] [:environment] do
+  task :single_rows, [:first_schema,:second_schema] => [:environment] do |t, args|
+    first_schema = args[:first_schema]
+    second_schema = args[:second_schema]
     # hardcoded table names with one row per study from excel file
     file_table_names=['brief_summaries', 'calculated_values', 'search_results',
                       'designs', 'detailed_descriptions', 'eligibilities',
