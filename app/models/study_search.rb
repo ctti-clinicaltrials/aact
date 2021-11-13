@@ -88,7 +88,7 @@ class StudySearch < ActiveRecord::Base
     max = 100
    
     for x in 1..limit
-      collection += fetch_beta_nct_ids(search_constraints, min, max)
+      collection += fetch_nct_ids(search_constraints, min, max)
       puts collection.size
       min += 100
       max += 100
@@ -96,7 +96,7 @@ class StudySearch < ActiveRecord::Base
     collection
   end
 
-  def self.fetch_beta_nct_ids(search_constraints, min=1, max=100)
+  def self.fetch_nct_ids(search_constraints, min=1, max=100)
     begin
       retries ||= 0
       url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{search_constraints}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
