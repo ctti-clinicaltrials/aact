@@ -26,7 +26,7 @@ RSpec.describe StudySearch, type: :model do
       StudySearch.make_causes_of_death_search
       search = StudySearch.last
       expect(search.save_tsv).to be false
-      expect(search.beta_api).to be false
+      expect(search.beta_api).to be true
       expect(search.grouping).to_not eq nil
       expect(search.grouping).to_not eq ''
       expect(search.query).to_not eq nil
@@ -42,7 +42,7 @@ RSpec.describe StudySearch, type: :model do
       StudySearch.make_covid_search
       search = StudySearch.find_by(name: 'covid-19')
       expect(search.save_tsv).to be true
-      expect(search.beta_api).to be false
+      expect(search.beta_api).to be true
       expect(search.grouping).to eq 'covid-19'
       expect(search.query).to eq 'covid-19'
     end
@@ -139,9 +139,9 @@ RSpec.describe StudySearch, type: :model do
           expect(collection).to include('NCT04780763', 'NCT04780750', 'NCT04779463')
         end
       end
-      describe ':fetch_beta_nct_ids' do
+      describe ':fetch_nct_ids' do
         it 'returns nct_ids from one batch' do
-          collection = StudySearch.fetch_beta_nct_ids('', min=1, max=100)
+          collection = StudySearch.fetch_nct_ids('', min=1, max=100)
           expect(collection.count).to eq 100
           expect(collection).to include('NCT04780763')
           expect(collection).to_not include('NCT04779463')
