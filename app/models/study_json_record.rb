@@ -193,7 +193,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def update_from_api
-    puts "update_from_api#{nct_id}"
     url = "https://clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5D#{nct_id}&min_rnk=1&max_rnk=&fmt=json"
     attempts = 0
     data = nil

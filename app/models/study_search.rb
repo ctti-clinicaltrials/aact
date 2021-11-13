@@ -29,7 +29,8 @@ class StudySearch < ActiveRecord::Base
   end
 
   def load_update(days_back=2)
-    collection = StudySearch.collected_nct_ids(query) 
+    date_ranged_query = query + StudySearch.time_range(days_back)
+    collection = StudySearch.collected_nct_ids(date_ranged_query) 
     collection.each do |study_nct_id|
       next unless Study.find_by(nct_id: study_nct_id)
       
@@ -52,7 +53,6 @@ class StudySearch < ActiveRecord::Base
   end
 
   def self.execute(days_back=2)
-    # days_back = days_back || (Date.today - Date.parse('2013-01-01')).to_i
     queries = all
     queries.each do |query|
       query.load_update(days_back)

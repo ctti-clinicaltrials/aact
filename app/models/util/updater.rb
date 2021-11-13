@@ -165,16 +165,15 @@ module Util
       "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
     end
 
-    def update_study(id)
+    def update_study(nct_id)
       begin
         stime = Time.now 
-        record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
+        record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.create(nct_id: nct_id, content: {})
         changed = record.update_from_api
 
         if record.blank? || record.content.blank? 
           record.destroy
         else 
-          puts "create of update study #{nct_id}"
           record.create_or_update_study
         end
       rescue => e
