@@ -10,7 +10,7 @@ namespace :db do
   task :loop do
     loop do
       if Time.now.hour == 4
-        updater = Util::Updater.new(schema: 'normal')
+        updater = Util::Updater.new(schema: 'ctgov')
         updater.execute
       end
       sleep 60

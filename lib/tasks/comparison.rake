@@ -1,6 +1,6 @@
 namespace :compare do
-  task nct_ids: [:environment] do
-    StudyJsonRecord.data_verification_csv
+  task :nct_ids, [:first_schema,:second_schema] => :environment do |t, args|
+    StudyJsonRecord.data_verification_csv(args)
   end
 
   desc 'get the difference between our database and the Clinical Trials Study Statistics API endpoint'
@@ -8,7 +8,7 @@ namespace :compare do
     Verifier.refresh(args)
   end
 
-  task :single_rows, [:first_schema,:second_schema] => [:environment] do |t, args|
+  task :single_rows, [:first_schema,:second_schema] => :environment do |t, args|
     first_schema = args[:first_schema]
     second_schema = args[:second_schema]
     # hardcoded table names with one row per study from excel file

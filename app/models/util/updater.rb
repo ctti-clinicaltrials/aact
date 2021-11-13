@@ -166,15 +166,20 @@ module Util
     end
 
     def update_study(id)
-      stime = Time.now 
-      record = nil
-      record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
-      changed = record.update_from_api
+      begin
+        stime = Time.now 
+        record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
+        changed = record.update_from_api
 
-      if record.blank? || record.content.blank? 
-        record.destroy
-      else 
-        record.create_or_update_study
+        if record.blank? || record.content.blank? 
+          record.destroy
+        else 
+          puts "create of update study #{nct_id}"
+          record.create_or_update_study
+        end
+      rescue => e
+        ErrorLog.error(e)
+        Airbrake.notify(e)
       end
       Time.now - stime
     end

@@ -193,15 +193,16 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def update_from_api
+    puts "update_from_api#{nct_id}"
     url = "https://clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5D#{nct_id}&min_rnk=1&max_rnk=&fmt=json"
     attempts = 0
-    content = nil
+    data = nil
     response = nil
     begin
       attempts += 1
       s = Time.now
-      content = Faraday.get(url).body
-      response = JSON.parse(content)
+      response = Faraday.get(url).body
+      data = JSON.parse(response)
       puts "  fetch #{Time.now - s}" if ENV['VERBOSE']
     rescue Faraday::ConnectionFailed
       return false if attempts > 5
@@ -210,13 +211,16 @@ class StudyJsonRecord < ActiveRecord::Base
       return false if attempts > 5
       retry
     end
-    content = response.dig('FullStudiesResponse', 'FullStudies').first
-    if content
-      self.content = content
-      return false unless changed?
-      return update content: content, download_date: Time.now
-    else
-      # add error
+    data = data.dig('FullStudiesResponse', 'FullStudies').first
+    begin
+      if data
+        self.content = data
+        return false unless changed?
+        return update content: data, download_date: Time.now
+      end
+    rescue => e
+      ErrorLog.error(e)
+      Airbrake.notify(e)
     end
   end
 

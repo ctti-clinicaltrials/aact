@@ -168,12 +168,22 @@ module Support
     end
 
     def self.update_study(id)
-      stime = Time.now
-      record = StudyJsonRecord.find_or_create_by(nct_id: id)
-      changed = record.update_from_api
-      record.create_or_update_study
-      
-      time = Time.now - stime
+      begin
+        stime = Time.now 
+        record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
+        changed = record.update_from_api
+
+        if record.blank? || record.content.blank? 
+          record.destroy
+        else 
+          puts "create of update study #{nct_id}"
+          record.create_or_update_study
+        end
+      rescue => e
+        ErrorLog.error(e)
+        Airbrake.notify(e)
+      end
+      Time.now - stime
     end
 
     # 1. make api call
