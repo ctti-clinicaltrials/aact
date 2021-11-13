@@ -7,29 +7,10 @@ namespace :db do
     Util::Updater.new(args).run
   end
 
-  task :beta_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
-    `bundle exec rake log:clear`
-    updater = Util::Updater.new(args.to_h.merge(schema: 'beta'))
-    updater.execute
-    # puts StudyJsonRecord.comparison
-  end
-
-  task :both_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
-    `bundle exec rake log:clear`
-    updater = Util::Updater.new(schema: 'normal')
-    updater.execute
-
-    updater = Util::Updater.new(schema: 'beta')
-    updater.execute
-  end
-
   task :loop do
     loop do
       if Time.now.hour == 4
         updater = Util::Updater.new(schema: 'normal')
-        updater.execute
-
-        updater = Util::Updater.new(schema: 'beta')
         updater.execute
       end
       sleep 60
