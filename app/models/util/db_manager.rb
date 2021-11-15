@@ -21,7 +21,7 @@ module Util
 
     # generate a db dump file
     def dump_database
-      dump_file_location = fm.pg_dump_file('ctgov')
+      dump_file_location = fm.pg_dump_file
       File.delete(dump_file_location) if File.exist?(dump_file_location)
       config = Study.connection.instance_variable_get('@config')
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
@@ -90,10 +90,10 @@ module Util
     # 1. try restoring to staging db
     # 2. if successful restore to public db
     def refresh_public_db(schema='ctgov')
-      success = restore_database(schema, staging_connection, fm.pg_dump_file(schema))
+      success = restore_database(schema, staging_connection, fm.pg_dump_file)
       return unless success
 
-      restore_database(schema, public_connection, fm.pg_dump_file(schema))
+      restore_database(schema, public_connection, fm.pg_dump_file)
     end
 
       

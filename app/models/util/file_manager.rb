@@ -62,7 +62,7 @@ module Util
       end
     end
 
-    def pg_dump_file(schema='')
+    def pg_dump_file
       "#{root_dir}/tmp/postgres.dmp"
     end
 
@@ -203,7 +203,7 @@ module Util
       files_to_zip['schema_diagram.png']            = File.open(schema_diagram)       if File.exists?(schema_diagram)
       files_to_zip['admin_schema_diagram.png']      = File.open(admin_schema_diagram) if File.exists?(admin_schema_diagram)
       files_to_zip['data_dictionary.xlsx']          = File.open(data_dictionary)      if File.exists?(data_dictionary)
-      files_to_zip['postgres_data.dmp']             = File.open(pg_dump_file(schema))         if File.exists?(pg_dump_file(schema))
+      files_to_zip['postgres_data.dmp']             = File.open(pg_dump_file)         if File.exists?(pg_dump_file)
       files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
       files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
       
