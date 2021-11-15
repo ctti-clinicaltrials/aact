@@ -1,4 +1,3 @@
-ErrorLog = Logger.new('log/error.log')
 class Verifier < ActiveRecord::Base
   APIJSON =  ClinicalTrialsApi.study_statistics
 
@@ -19,15 +18,16 @@ class Verifier < ActiveRecord::Base
                 source_unique_values
                 destination_unique_values
               ]
+
     CSV.open("#{diff_file}.csv", 'w', write_headers: true, headers: headers) do |row|
       self.differences.each do |hash|
         row << [
-                hash[:source],
-                hash[:destination],
-                hash[:source_instances],
-                hash[:destination_instances],
-                hash[:source_unique_values],
-                hash[:destination_unique_values],
+                hash["source"],
+                hash["destination"],
+                hash["source_instances"],
+                hash["destination_instances"],
+                hash["source_unique_values"],
+                hash["destination_unique_values"],
               ]
       end
     end
@@ -38,11 +38,19 @@ class Verifier < ActiveRecord::Base
     self.update(source: JSON.parse(file))
   end
 
+  def self.return_correct_schema(name = 'ctgov')
+    return 'ctgov_beta' if name =~ /beta/
+       
+    'ctgov'
+  end
+
   def self.refresh(params={schema: 'ctgov'})
+    # this is a safety messure to make sure the correct schema name is used
+    schema = self.return_correct_schema(params[:schema])
     begin
       verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"))
-      verifier.verify(params)
-      verifier.write_data_to_file(params[:schema])
+      verifier.verify(schema)
+      verifier.write_data_to_file(schema)
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
@@ -61,8 +69,10 @@ class Verifier < ActiveRecord::Base
     ActiveRecord::Base.logger = nil
   end
 
-  def verify(params={schema: 'ctgov'})
-    set_schema(params[:schema])
+  def verify(schema ='ctgov')
+    # this is a safety messure to make sure the correct schema name is used
+    schema = Verifier.return_correct_schema(schema)
+    set_schema(schema)
     
     return if self.source.blank?
 

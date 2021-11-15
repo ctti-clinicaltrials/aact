@@ -50,36 +50,44 @@ module Util
       # 1. remove constraings
       log("#{schema} remove constraints...")
       db_mgr.remove_constrains
-
+      
       # 2. update studies
       log("#{schema} updating studies...")
       update_studies
-
+      
       # 3. add constraints
       log("#{schema} adding constraints...")
       db_mgr.add_constraints
 
-      # 4. run study searches
+      # 4. comparing the counts from CT.gov to our database
+      log("#{schema} comparing counts...")
+      begin
+        Verifier.refresh({schema: schema})
+      rescue => e
+        Airbrake.notify(e)
+      end
+
+      # 5. run study searches
       log("#{schema} execute study search...")
       StudySearch.execute(search_days_back)
 
-      # 5. update calculated values
+      # 6. update calculated values
       log("#{schema} update calculated values...")
       CalculatedValue.populate
 
-      # 6. run sanity checks
+      # 7. run sanity checks
       load_event.run_sanity_checks
 
       if load_event.sanity_checks.count == 0
-        # 7. take snapshot
+        # 8. take snapshot
         log("#{schema} take snapshot...")
         take_snapshot(schema)
 
-        # 8. refresh public db
+        # 9. refresh public db
         log("#{schema} refresh public db...")
         db_mgr.refresh_public_db(schema)
 
-        # 9. create flat files
+        # 10. create flat files
         log("#{schema} creating flat files...")
         begin
           create_flat_files(schema)
@@ -88,7 +96,7 @@ module Util
         end
       end
 
-      # 10. send email
+      # 11. send email
       send_notification(schema)
     end
 
@@ -305,7 +313,7 @@ module Util
       # populate_admin_tables
 
       load_event.log('run sanity checks...')
-      run_sanity_checks
+      load_event.run_sanity_checks
 
       return unless full_featured # no need to continue unless configured as a fully featured implementation of AACT
 
