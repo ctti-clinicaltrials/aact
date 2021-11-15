@@ -243,7 +243,7 @@ module Util
         log('restarting full load...')
       else
         log('begin full load ...')
-        retrieve_xml_from_ctgov
+        StudyJsonRecord.full
       end
       truncate_tables unless should_restart?
       remove_indexes_and_constraints # Index significantly slow the load process. Will be re-created after data loaded.
