@@ -28,9 +28,10 @@ class StudyJsonRecord < ActiveRecord::Base
 
     begin
      @type == 'full' ? full : incremental
-    rescue => error
+    rescue Exception => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
+      Airbrake.notify(error)
     end
 
     if @type == 'full'
@@ -87,8 +88,10 @@ class StudyJsonRecord < ActiveRecord::Base
         study = json['FullStudy']
         save_single_study(study)
         rescue Exception => error
-          ErrorLog.error(error)
-        end
+          msg="#{error.message} (#{error.class} #{error.backtrace}"
+          ErrorLog.error(msg)
+          Airbrake.notify(error)
+        end  
       end
     end
   end
@@ -1516,8 +1519,10 @@ class StudyJsonRecord < ActiveRecord::Base
       save_with_result_group(data[:drop_withdrawals], 'DropWithdrawal') if data[:drop_withdrawals]
 
       update(saved_study_at: Time.now)
-    rescue => error
-      ErrorLog.error(error)
+    rescue Exception => error
+      msg="#{error.message} (#{error.class} #{error.backtrace}"
+      ErrorLog.error(msg)
+      Airbrake.notify(error)
       @study_build_failures ||= []
       @study_build_failures << id
     end
@@ -1802,9 +1807,10 @@ class StudyJsonRecord < ActiveRecord::Base
           end
         end
       end
-    rescue => error
+    rescue Exception => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
+      Airbrake.notify(error)
     end
   end
 end
