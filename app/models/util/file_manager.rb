@@ -23,11 +23,6 @@ module Util
       FileUtils.mkdir_p "#{root_dir}/exported_files/covid-19"
       FileUtils.mkdir_p "#{root_dir}/differences/single-row"
       FileUtils.mkdir_p "#{root_dir}/differences/study_statistics"
-       # beta folders
-       FileUtils.mkdir_p "#{root_dir}/beta_static_db_copies/daily"
-       FileUtils.mkdir_p "#{root_dir}/beta_static_db_copies/monthly"
-       FileUtils.mkdir_p "#{root_dir}/beta_exported_files/daily"
-       FileUtils.mkdir_p "#{root_dir}/beta_exported_files/monthly"
        #archive folders
        FileUtils.mkdir_p "#{root_dir}/ctgov_archive_static_db_copies/daily"
        FileUtils.mkdir_p "#{root_dir}/ctgov_archive_static_db_copies/monthly"
@@ -45,8 +40,6 @@ module Util
 
     def base_folder(schema = 'ctgov')
       return"#{root_dir}/ctgov_archive_" if schema =~ /archive/
-        
-      return "#{root_dir}/beta_" if schema =~ /beta/
         
       return "#{root_dir}/"
     end
@@ -70,11 +63,7 @@ module Util
     end
 
     def pg_dump_file(schema='')
-      if schema == 'beta'
-        "#{root_dir}/tmp/beta_postgres.dmp"
-      else
-        "#{root_dir}/tmp/postgres.dmp"
-      end
+      "#{root_dir}/tmp/postgres.dmp"
     end
 
     def dump_directory
