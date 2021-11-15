@@ -20,8 +20,8 @@ module Util
     end
 
     # generate a db dump file
-    def dump_database(schema='ctgov')
-      dump_file_location = fm.pg_dump_file(schema)
+    def dump_database
+      dump_file_location = fm.pg_dump_file
       File.delete(dump_file_location) if File.exist?(dump_file_location)
       config = Study.connection.instance_variable_get('@config')
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
@@ -33,34 +33,13 @@ module Util
         --clean --no-owner -b -c -C -Fc \
         --exclude-table ar_internal_metadata \
         --exclude-table schema_migrations \
-        --schema #{schema == 'beta' ? 'ctgov_beta' : 'ctgov'}  \
+        --schema 'ctgov'  \
         -f #{dump_file_location} \
         #{database} \
       "
       puts cmd
       run_command_line(cmd)
       return dump_file_location
-    end
-
-    def dump_beta_database
-      File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)
-      config = Study.connection.instance_variable_get('@config')
-      host, port, username, database = config[:host], config[:port], config[:username], config[:database]
-      host ||= 'localhost'
-      port ||= 5432
-
-      cmd = "
-        pg_dump  -v -h #{host} -p #{port} -U #{username} \
-        --clean --no-owner -b -c -C -Fc \
-        --exclude-table ar_internal_metadata \
-        --exclude-table schema_migrations \
-        --schema ctgov_beta  \
-        -f #{fm.pg_dump_file} \
-        #{database} \
-      "
-      puts cmd
-      run_command_line(cmd)
-      return fm.pg_dump_file
     end
 
     # Restoring a database
@@ -72,12 +51,6 @@ module Util
     def restore_database(schema_type, connection, filename)
       config = connection.instance_variable_get('@config')
       host, port, username, database, password = config[:host], config[:port], config[:username], config[:database], config[:password]
-      if schema_type == 'beta'
-        schema = ActiveRecord::Base.connection.schema_search_path = 'ctgov_beta'
-      else
-        schema = ActiveRecord::Base.connection.schema_search_path = 'ctgov'
-      end
-
 
       # prevent new connections and drop current connections
       connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 0;")
@@ -116,19 +89,13 @@ module Util
     # process for deploying database to digital ocean
     # 1. try restoring to staging db
     # 2. if successful restore to public db
-    def refresh_public_db(schema)
-      success = restore_database(schema, staging_connection(schema), fm.pg_dump_file(schema))
+    def refresh_public_db(schema='ctgov')
+      success = restore_database(schema, staging_connection, fm.pg_dump_file)
       return unless success
 
-      restore_database(schema, public_connection(schema), fm.pg_dump_file(schema))
+      restore_database(schema, public_connection, fm.pg_dump_file)
     end
 
-    def refresh_beta_public_db
-      # success = restore_database(beta_staging_connection, fm.pg_beta_dump_file)
-      # return unless success
-
-      restore_database(beta_public_connection, fm.pg_beta_dump_file)
-    end
       
     def clear_out_data_for(nct_ids)
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
@@ -156,7 +123,6 @@ module Util
       log "  db_manager: set connection limit so only db owner can login..."
       public_con.execute("ALTER DATABASE #{db_name} CONNECTION LIMIT 0;")
       public_alt_con.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 0;")
-      public_beta_con.execute("ALTER DATABASE #{public_beta_db_name} CONNECTION LIMIT 0;")
     end
 
     def grant_db_privs
@@ -166,11 +132,6 @@ module Util
       public_alt_con.execute("ALTER DATABASE #{alt_db_name} CONNECTION LIMIT 200;")
       public_alt_con.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
       public_alt_con.execute("GRANT SELECT ON ALL TABLES IN SCHEMA CTGOV TO READ_ONLY;")
-      public_beta_con.execute("ALTER DATABASE #{public_beta_db_name} CONNECTION LIMIT 200;")
-      public_beta_con.execute("grant connect on database #{public_beta_db_name} to read_only;")
-      public_beta_con.execute('grant usage on schema ctgov_beta to read_only;')
-      public_beta_con.execute('grant select on all tables in schema ctgov_beta to read_only;')
-      public_beta_con.execute('alter default privileges in schema ctgov_beta grant select on tables to read_only;')
     end
 
     def public_db_accessible?
@@ -515,13 +476,6 @@ module Util
       return @con
     end
 
-    def public_beta_con
-      return @public_beta_con if @public_beta_con and @public_beta_con.active?
-      @public_beta_con ||= ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_BETA_DATABASE_URL).connection
-      @public_beta_con.schema_search_path='ctgov_beta'
-      return @public_beta_con
-    end
-
     def migration
       @migration_object ||= ActiveRecord::Migration.new
     end
@@ -554,10 +508,6 @@ module Util
       AACT::Application::AACT_PUBLIC_DATABASE_NAME
     end
 
-    def public_beta_db_name
-      AACT::Application::AACT_PUBLIC_BETA_DATABASE_NAME
-    end
-
     def super_username
       AACT::Application::AACT_DB_SUPER_USERNAME
     end
@@ -567,43 +517,21 @@ module Util
     end
 
 
-    def public_connection(schema)
-      if schema == 'beta'
-        db = @config[:beta_public]
-      else
-        db = @config[:public]
-      end
+    def public_connection
+      db = @config[:public]
       return unless db
+
       connection = PublicBase.establish_connection(db).connection
-      if schema == 'beta'
-        connection.schema_search_path = 'ctgov_beta'
-      else
-        connection.schema_search_path = 'ctgov'
-      end
+      connection.schema_search_path = 'ctgov'
       return connection
     end
 
-    def beta_public_connection
-      db = @config[:beta_public]
+    def staging_connection
+      db = @config[:staging]
       return unless db
-      connection = PublicBase.establish_connection(db).connection
-      connection.schema_search_path = 'ctgov_beta'
-      return connection
-    end
 
-    def staging_connection(schema)
-      if schema == 'beta'
-        db = @config[:beta_staging]
-      else
-        db = @config[:staging]
-      end
-      return unless db
       connection = PublicBase.establish_connection(db).connection
-      if schema == 'beta'
-        connection.schema_search_path = 'ctgov_beta'
-      else
-        connection.schema_search_path = 'ctgov'
-      end
+      connection.schema_search_path = 'ctgov'
       return connection
     end
 

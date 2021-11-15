@@ -21,6 +21,7 @@ class StudyRelationship < ActiveRecord::Base
       study_json_records
       use_cases
       use_case_attachments
+      verifiers
     )
     @models = (connection.tables - blacklist).map{|k| k.singularize.camelize.constantize }
   end
@@ -40,6 +41,7 @@ class StudyRelationship < ActiveRecord::Base
       study_json_records
       use_cases
       use_case_attachments
+      verifiers
     )
     tables = connection.tables - blacklist
     tables.each do |table|
