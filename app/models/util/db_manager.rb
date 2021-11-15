@@ -51,8 +51,6 @@ module Util
     def restore_database(schema_type, connection, filename)
       config = connection.instance_variable_get('@config')
       host, port, username, database, password = config[:host], config[:port], config[:username], config[:database], config[:password]
-      schema = ActiveRecord::Base.connection.schema_search_path = 'ctgov'
-
 
       # prevent new connections and drop current connections
       connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 0;")
