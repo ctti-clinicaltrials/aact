@@ -57,7 +57,7 @@ module Util
       connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{database}' AND usename <> '#{username}'")
 
       # drop the schema
-      log "  dropping #{schema} schema in #{host}:#{port}/#{database} database..."
+      log "  dropping in #{host}:#{port}/#{database} database..."
       begin
         connection.execute("DROP SCHEMA #{schema} CASCADE;")
       rescue ActiveRecord::StatementInvalid => e

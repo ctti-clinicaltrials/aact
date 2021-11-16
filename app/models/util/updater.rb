@@ -394,7 +394,7 @@ module Util
 
     def take_snapshot(schema='ctgov')
       log('dumping database...')
-      db_mgr.dump_database(schema)
+      db_mgr.dump_database
 
       log('creating zipfile of database...')
       Util::FileManager.new.save_static_copy(schema)
