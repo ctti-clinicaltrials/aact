@@ -112,9 +112,9 @@ module Util
       con.execute("DELETE FROM support.study_xml_records WHERE nct_id IN (#{ids})")
     end
 
-    def public_study_count(schema)
+    def public_study_count
       begin
-        public_connection(schema).execute('select count(*) from studies;').first['count'].to_i
+        public_connection.execute('select count(*) from studies;').first['count'].to_i
       rescue
         return 0
       end
