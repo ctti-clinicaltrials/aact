@@ -12,7 +12,7 @@ module Util
       @full_featured = params[:full_featured] || false
       @params = params
       type = (params[:event_type] || 'incremental')
-      @schema = params[:schema]
+      @schema = params[:schema] || 'ctgov'
       @search_days_back = params[:search_days_back]
       ENV['load_type'] = type
       if params[:restart]
@@ -31,11 +31,7 @@ module Util
       con = ActiveRecord::Base.connection
       username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
       db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-      if schema == 'beta'
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
-      else
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
-      end
+      con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
       ActiveRecord::Base.remove_connection
       ActiveRecord::Base.establish_connection
       ActiveRecord::Base.logger = nil
@@ -46,11 +42,7 @@ module Util
       con = ActiveRecord::Base.connection
       username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
       db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-      if schema == 'beta'
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov_beta, support, public;")
-      else
-        con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
-      end
+      con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
       ActiveRecord::Base.remove_connection
       ActiveRecord::Base.establish_connection
       ActiveRecord::Base.logger = nil
@@ -58,36 +50,44 @@ module Util
       # 1. remove constraings
       log("#{schema} remove constraints...")
       db_mgr.remove_constrains
-
+      
       # 2. update studies
       log("#{schema} updating studies...")
       update_studies
-
+      
       # 3. add constraints
       log("#{schema} adding constraints...")
       db_mgr.add_constraints
 
-      # 4. run study searches
+      # 4. comparing the counts from CT.gov to our database
+      log("#{schema} comparing counts...")
+      begin
+        Verifier.refresh({schema: schema})
+      rescue => e
+        Airbrake.notify(e)
+      end
+
+      # 5. run study searches
       log("#{schema} execute study search...")
       StudySearch.execute(search_days_back)
 
-      # 5. update calculated values
+      # 6. update calculated values
       log("#{schema} update calculated values...")
       CalculatedValue.populate
 
-      # 6. run sanity checks
+      # 7. run sanity checks
       load_event.run_sanity_checks
 
       if load_event.sanity_checks.count == 0
-        # 7. take snapshot
+        # 8. take snapshot
         log("#{schema} take snapshot...")
         take_snapshot(schema)
 
-        # 8. refresh public db
+        # 9. refresh public db
         log("#{schema} refresh public db...")
         db_mgr.refresh_public_db(schema)
 
-        # 9. create flat files
+        # 10. create flat files
         log("#{schema} creating flat files...")
         begin
           create_flat_files(schema)
@@ -96,7 +96,7 @@ module Util
         end
       end
 
-      # 10. send email
+      # 11. send email
       send_notification(schema)
     end
 
@@ -173,23 +173,20 @@ module Util
       "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
     end
 
-    def update_study(id)
-      stime = Time.now 
-      record = nil
-      if schema == 'beta'
-        record = StudyJsonRecord.find_by(nct_id: id) || StudyJsonRecord.create(nct_id: id, content: {})
+    def update_study(nct_id)
+      begin
+        stime = Time.now 
+        record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.create(nct_id: nct_id, content: {})
         changed = record.update_from_api
-       
-      else
-        record = Support::StudyXmlRecord.find_or_create_by(nct_id: id)
-        changed = record.update_xml_from_api
-        
-      end
 
-      if record.blank? || record.content.blank? 
-        record.destroy
-      else 
-        record.create_or_update_study
+        if record.blank? || record.content.blank? 
+          record.destroy
+        else 
+          record.create_or_update_study
+        end
+      rescue => e
+        ErrorLog.error(e)
+        Airbrake.notify(e)
       end
       Time.now - stime
     end
@@ -202,7 +199,6 @@ module Util
     end
 
     def load_study(study_id)
-      set_schema
       # 1. remove constraings
       log("#{schema} remove constraints...")
       db_mgr.remove_constrains
@@ -216,7 +212,6 @@ module Util
       # string_nct_ids looks like 'NCT00700336 NCT00772330 NCT00845871 NCT00852124 NCT01178814'
       # here I'm turning the string into an array
       array_nctids = string_nct_ids.split(' ')
-      set_schema
       # 1. remove constraings
       log("#{schema} remove constraints...")
       db_mgr.remove_constrains
@@ -256,7 +251,7 @@ module Util
         log('restarting full load...')
       else
         log('begin full load ...')
-        retrieve_xml_from_ctgov
+        StudyJsonRecord.full
       end
       truncate_tables unless should_restart?
       remove_indexes_and_constraints # Index significantly slow the load process. Will be re-created after data loaded.
@@ -318,7 +313,7 @@ module Util
       # populate_admin_tables
 
       load_event.log('run sanity checks...')
-      run_sanity_checks
+      load_event.run_sanity_checks
 
       return unless full_featured # no need to continue unless configured as a fully featured implementation of AACT
 
@@ -397,7 +392,7 @@ module Util
       Admin::DataDefinition.populate(data)
     end
 
-    def take_snapshot(schema='')
+    def take_snapshot(schema='ctgov')
       log('dumping database...')
       db_mgr.dump_database(schema)
 

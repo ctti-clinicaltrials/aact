@@ -1,6 +1,21 @@
-ErrorLog = Logger.new('log/error.log')
 class Verifier < ActiveRecord::Base
   APIJSON =  ClinicalTrialsApi.study_statistics
+
+  def self.testing(file_path="#{Util::FileManager.new.study_statistics_directory}/verifier_source_ctgov_beta.json", schema: 'ctgov_beta')
+    begin
+      verifier = Verifier.last
+      unless verifier
+        Verifier.new.get_source_from_file(file_path)
+        Verifier.last 
+      end
+      verifier.verify({schema: schema})
+      verifier.write_data_to_file(schema)
+    rescue => error
+      msg="#{error.message} (#{error.class} #{error.backtrace}"
+      ErrorLog.error(msg)
+      Airbrake.notify(error)
+    end
+  end
 
   def write_data_to_file(schema='ctgov')
     folder = Util::FileManager.new.study_statistics_directory
@@ -20,15 +35,16 @@ class Verifier < ActiveRecord::Base
                 source_unique_values
                 destination_unique_values
               ]
+
     CSV.open("#{diff_file}.csv", 'w', write_headers: true, headers: headers) do |row|
       self.differences.each do |hash|
         row << [
-                hash[:source],
-                hash[:destination],
-                hash[:source_instances],
-                hash[:destination_instances],
-                hash[:source_unique_values],
-                hash[:destination_unique_values],
+                hash["source"],
+                hash["destination"],
+                hash["source_instances"],
+                hash["destination_instances"],
+                hash["source_unique_values"],
+                hash["destination_unique_values"],
               ]
       end
     end
@@ -39,26 +55,18 @@ class Verifier < ActiveRecord::Base
     self.update(source: JSON.parse(file))
   end
 
-  def self.refresh(params={schema: 'ctgov'})
-    begin
-      verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"))
-      verifier.verify(params)
-      verifier.write_data_to_file(params[:schema])
-    rescue => error
-      msg="#{error.message} (#{error.class} #{error.backtrace}"
-      ErrorLog.error(msg)
-      Airbrake.notify(error)
-    end
+  def self.return_correct_schema(name = 'ctgov')
+    return 'ctgov_beta' if name =~ /beta/
+       
+    'ctgov'
   end
 
-  def self.testing(file_path="#{Util::FileManager.new.study_statistics_directory}/verifier_source_ctgov_beta.json", schema: 'ctgov_beta')
+  def self.refresh(params={schema: 'ctgov'})
+    # this is a safety messure to make sure the correct schema name is used
+    schema = self.return_correct_schema(params[:schema])
     begin
-      verifier = Verifier.last
-      unless verifier
-        Verifier.new.get_source_from_file(file_path)
-        Verifier.last 
-      end
-      verifier.verify({schema: schema})
+      verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"))
+      verifier.verify(schema)
       verifier.write_data_to_file(schema)
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
@@ -67,9 +75,7 @@ class Verifier < ActiveRecord::Base
     end
   end
 
-  # BETA MIGRATION
-  def set_schema(schema)
-    # expects the schema to be either ctgov or ctgov_beta
+  def set_schema(schema='ctgov')
     con = ActiveRecord::Base.connection
     username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
     db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
@@ -80,8 +86,10 @@ class Verifier < ActiveRecord::Base
     ActiveRecord::Base.logger = nil
   end
 
-  def verify(params={schema: 'ctgov'})
-    set_schema(params[:schema])
+  def verify(schema ='ctgov')
+    # this is a safety messure to make sure the correct schema name is used
+    schema = Verifier.return_correct_schema(schema)
+    set_schema(schema)
     
     return if self.source.blank?
 
