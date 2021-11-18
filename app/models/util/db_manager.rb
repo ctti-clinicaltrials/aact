@@ -48,7 +48,7 @@ module Util
     # 3. restore teh db from file
     # 4. verify the study count (permissions are not granted again to prevent bad data from being used)
     # 5. grant connection permissions again
-    def restore_database(schema_type, connection, filename)
+    def restore_database(schema, connection, filename)
       config = connection.instance_variable_get('@config')
       host, port, username, database, password = config[:host], config[:port], config[:username], config[:database], config[:password]
 
@@ -537,7 +537,7 @@ module Util
 
     def restore_from_file(path_to_file: "#{Rails.root}/tmp/postgres_data.dmp", database: 'aact')
       print 'restoring the database...'
-      restore_database('normal', ActiveRecord::Base.connection, path_to_file)
+      restore_database('ctgov', ActiveRecord::Base.connection, path_to_file)
       puts 'done'
     end
     

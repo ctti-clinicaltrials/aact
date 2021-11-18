@@ -21,7 +21,7 @@ class Verifier < ActiveRecord::Base
     folder = Util::FileManager.new.study_statistics_directory
     # save the data from the study statistics endpoint for reference
     # uncomment when done testing
-    # File.write("#{folder}/verifier_source_#{schema}.json".remove('\''), JSON.dump(self.source))
+    File.write("#{folder}/verifier_source_#{schema}.json".remove('\''), JSON.dump(self.source))
     # save json with differences
     diff_file = "#{folder}/verifier_differences_#{schema}".remove('\'')
     File.write("#{diff_file}.json", JSON.dump(self.differences))
