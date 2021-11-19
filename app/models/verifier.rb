@@ -17,6 +17,11 @@ class Verifier < ActiveRecord::Base
     end
   end
 
+  def self.compare_contents(field='NCTIdAlias', destination_array)
+    source_array = ClinicalTrialsApi.get_field_values(field)
+    {subtract_from_source: source_array - destination_array, subtract_from_destination: destination_array - source_array}
+  end
+
   def write_data_to_file(schema='ctgov')
     folder = Util::FileManager.new.study_statistics_directory
     # save the data from the study statistics endpoint for reference

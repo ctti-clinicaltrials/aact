@@ -74,4 +74,14 @@ class ClinicalTrialsApi
     end
     return items
   end
+
+  def self.get_field_values(field='NCTIdAlias')
+    collection = []
+    body = Faraday.get("https://clinicaltrials.gov/api/query/field_values?expr=&field=#{field}&fmt=json").body
+    json = JSON.parse(body)
+
+    json = json.dig("FieldValuesResponse", "FieldValues")
+    json.try(:each){|hash| collection.push hash["FieldValue"]}
+    return collection
+  end
 end
