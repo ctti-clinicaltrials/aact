@@ -1437,12 +1437,15 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
+  def study_result_groups
+    @study_result_groups ||= ResultGroup.where(nct_id: nct_id).index_by(&:ctgov_group_code)
+  end
+
   def build_study
     begin
       data = data_collection
       Study.create(data[:study]) if data[:study]
-      saved_result_groups = save_result_groups(data[:result_groups])
-      @study_result_groups = saved_result_groups.index_by(&:ctgov_group_code) if saved_result_groups
+      save_result_groups(data[:result_groups])
 
       # saving design_groups, and associated objects
       save_design_groups(data[:design_groups])
@@ -1625,7 +1628,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def save_with_result_group(group, name_of_model='BaselineMeasurement')
     return unless group
 
-    group.each{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_group_code]]}
+    group.each{|i| i[:result_group_id] = study_result_groups[i[:ctgov_group_code]][:id]}
     name_of_model.safe_constantize.import(group, validate: false)
   end
 
@@ -1652,6 +1655,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
       outcome_counts = StudyJsonRecord.set_key_value(outcome_measure[:outcome_counts], :outcome_id, outcome.id)
       outcome_measurements = StudyJsonRecord.set_key_value(outcome_measure[:outcome_measurements], :outcome_id, outcome.id)
+
       save_with_result_group(outcome_counts, 'OutcomeCount') if outcome_counts
       save_with_result_group(outcome_measurements, 'OutcomeMeasurement') if outcome_measurements
 
