@@ -772,9 +772,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def id_information_data
-    # home
-    # missing alias
-    # {:subtract_from_source=>["NCT04789109", "NCT04952311", "NCT04961671", "NCT05018442", "NCT05061927"], :subtract_from_destination=>[]}
     return unless protocol_section
 
     identification_module = protocol_section['IdentificationModule']

@@ -3,4 +3,6 @@ select distinct(result_group_id) from ctgov.outcome_counts;
 "NCT00331136"
 
   # missing alias
+  {:subtract_from_source=>["NCT04789109", "NCT04952311", "NCT04961671", "NCT05018442", "NCT05061927"],
+ :subtract_from_destination=>[]}
    # {:subtract_from_source=>["NCT04789109", "NCT04952311", "NCT04961671", "NCT05018442", "NCT05061927"], :subtract_from_destination=>[]}

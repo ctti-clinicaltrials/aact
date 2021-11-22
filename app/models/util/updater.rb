@@ -299,16 +299,16 @@ module Util
       add_indexes_and_constraints if params[:event_type] == 'full'
 
        #uncomment the below before merging
-      # log("#{schema} comparing counts...")
-      # begin
-      #   Verifier.refresh({schema: schema})
-      # rescue => e
-      #   Airbrake.notify(e)
-      # end
+      log("#{schema} comparing counts...")
+      begin
+        Verifier.refresh({schema: schema})
+      rescue => e
+        Airbrake.notify(e)
+      end
      
-      # load_event.log('execute study search...')
-      # days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
-      # StudySearch.execute(days_back)
+      load_event.log('execute study search...')
+      days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
+      StudySearch.execute(days_back)
 
       if params[:event_type] == 'full'
         load_event.log('create calculated values...')
