@@ -1648,7 +1648,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def save_with_result_group(group, name_of_model='BaselineMeasurement')
     return unless group
 
-    group.each{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_group_code]]}
+    group.each{|i| i[:result_group_id] = @study_result_groups[i[:ctgov_group_code]][:id]}
     name_of_model.safe_constantize.import(group, validate: false)
   end
 
