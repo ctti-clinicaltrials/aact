@@ -1,0 +1,4 @@
+select distinct(result_group_id) from ctgov.outcome_counts;
+ We observed that the column ’results_group_id’ is being populated as null in the ‘outcome_counts’ and ‘outcome_measurements’ table.
+
+  # missing alias
