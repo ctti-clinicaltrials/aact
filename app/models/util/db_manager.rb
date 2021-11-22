@@ -49,6 +49,7 @@ module Util
     # 4. verify the study count (permissions are not granted again to prevent bad data from being used)
     # 5. grant connection permissions again
     def restore_database(schema_type, connection, filename)
+      schema = "ctgov"
       config = connection.instance_variable_get('@config')
       host, port, username, database, password = config[:host], config[:port], config[:username], config[:database], config[:password]
 

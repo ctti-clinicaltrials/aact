@@ -253,8 +253,6 @@ module Util
         log('begin full load ...')
         StudyJsonRecord.full
       end
-      truncate_tables unless should_restart?
-      remove_indexes_and_constraints # Index significantly slow the load process. Will be re-created after data loaded.
       study_counts[:should_add] = Support::StudyXmlRecord.not_yet_loaded.count
       study_counts[:should_change] = 0
       @client.populate_studies
@@ -298,6 +296,9 @@ module Util
       load_event.log('add indexes and constraints..')
       add_indexes_and_constraints if params[:event_type] == 'full'
 
+      load_event.log('execute data count verification...')
+      Verifier.refresh
+      
       load_event.log('execute study search...')
       days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
       StudySearch.execute(days_back)

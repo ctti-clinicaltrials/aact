@@ -75,8 +75,9 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.full
     start_time = Time.current
     study_download = download_all_studies
-    nct_ids = StudyJsonRecord.all.map(&:nct_id)
-    clear_out_data_for(nct_ids)
+    Support::SupportBase.connection.execute('TRUNCATE TABLE study_json_records CASCADE')
+    # nct_ids = StudyJsonRecord.all.map(&:nct_id)
+    # clear_out_data_for(nct_ids)
 
     Zip::File.open(study_download.path) do |unzipped_folders|
       original_count = unzipped_folders.size
