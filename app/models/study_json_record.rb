@@ -12,42 +12,6 @@ class StudyJsonRecord < ActiveRecord::Base
     @db_mgr ||= Util::DbManager.new({search_path: 'ctgov'})
   end
 
-  def self.updater(params={})
-    @updater ||= Util::Updater.new(params)
-  end
-
-  def self.run(params={})
-    @start_time = Time.current
-    @study_build_failures = []
-    @full_featured = params[:full_featured] || false
-    @params = params
-    @type = params[:event_type] ? params[:event_type] : 'incremental'
-    @days_back = (params[:days_back] ? params[:days_back] : 2)
-    remove_indexes_and_constraints
-    @data_store = []
-
-    begin
-     @type == 'full' ? full : incremental
-    rescue Exception => error
-      msg="#{error.message} (#{error.class} #{error.backtrace}"
-      ErrorLog.error(msg)
-      Airbrake.notify(error)
-    end
-
-    if @type == 'full'
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
-    end
-
-    add_indexes_and_constraints
-    CalculatedValue.populate
-
-    time = Time.now
-    msg = "Took: #{time_ago_in_words(@start_time)} -- #{time - @start_time}, Failed: #{@study_build_failures.uniq}, Current Time: #{time}, Start Time: #{@start_time}"
-    SaveTime.info(msg)
-    puts msg
-  end
-
   def self.root_dir
     "#{Rails.public_path}/static"
   end
@@ -96,53 +60,6 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def self.incremental
-    first_batch = json_data
-    # total_number is the number of studies available, meaning the total number in their database
-    @count_down = first_batch['FullStudiesResponse']['NStudiesFound']
-    limit = (@count_down/100.0).ceil
-    save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
-
-    # since I already saved the first hundred studies I start the loop after that point
-    # studies must be retrieved in batches of 99,
-    # using min and max to determine the study to start with and the study to end with respectively (in that batch)
-    min = 101
-    max = 200
-
-    for x in 1..limit
-      fetch_studies(min, max)
-      min += 100
-      max += 100
-    end
-  end
-
-  def self.fetch_studies(min=1, max=100)
-    begin
-      retries ||= 0
-      url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
-      data = json_data(url) || {}
-      data = data.dig('FullStudiesResponse', 'FullStudies')
-      save_study_records(data) if data
-    rescue
-      retry if (retries += 1) < 6
-    end
-  end
-
-  def self.save_study_records(study_batch)
-    return unless study_batch
-
-    nct_id_array = study_batch.collect{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
-    clear_out_data_for(nct_id_array)
-
-    study_batch.each do |study_data|
-      record_time = Time.zone.now
-      nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-      save_single_study(study_data)
-      time = Time.zone.now
-      puts "#{time}:  saved #{time - record_time}: #{nct_id} - #{@count_down}"
-      @count_down -= 1
-    end
-  end
 
   def self.save_single_study(study_data)
     nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
@@ -186,6 +103,8 @@ class StudyJsonRecord < ActiveRecord::Base
     "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
   end
 
+   # use this for the incremental load
+
   def create_or_update_study
     study = Study.find_by(nct_id: nct_id)
     study.remove_study_data if study
@@ -224,6 +143,69 @@ class StudyJsonRecord < ActiveRecord::Base
       ErrorLog.error(e)
       Airbrake.notify(e)
     end
+  end
+
+ 
+
+  def self.update_studies
+    logger = ActiveRecord::Base.logger
+    ActiveRecord::Base.logger = nil
+
+    ids = to_update
+    total = ids.length
+    total_time = 0
+    stime = Time.now
+
+    ids.each_with_index do |id, idx|
+      t = update_study(id)
+      total_time += t
+      avg_time = total_time / (idx + 1)
+      remaining = (total - idx - 1) * avg_time
+      puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
+    end
+
+    time = Time.now - stime
+    ActiveRecord::Base.logger = logger
+    puts "Time: #{time} avg: #{time / total}"
+
+    return ids
+  end
+
+  def self.to_update
+    studies = ClinicalTrialsApi.all
+    current = Hash[Study.pluck(:nct_id, :last_update_posted_date)]
+    ids = studies.select do |entry|
+      current_date = current[entry[:id]]
+      current_date.nil? || entry[:updated] > current_date
+    end
+    ids.map{|k| k[:id] }
+  end
+
+  def self.htime(seconds)
+    seconds = seconds.to_i
+    hours = seconds / 3600
+    seconds -= hours * 3600
+    minutes = seconds / 60
+    seconds -= minutes * 60
+    "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
+  end
+
+  def self.update_study(nct_id)
+    begin
+      stime = Time.now 
+      record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.create(nct_id: nct_id, content: {})
+      changed = record.update_from_api
+
+      if record.blank? || record.content.blank? 
+        record.destroy
+      else 
+        record.create_or_update_study
+      end
+    rescue => e
+      ErrorLog.error(e)
+      Airbrake.notify(e)
+    end
+    Time.now - stime
   end
 
   def key_check(key)

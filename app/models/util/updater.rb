@@ -270,7 +270,7 @@ module Util
       log('begin incremental load...')
 
       db_mgr.remove_constrains
-      Support::StudyXmlRecord.update_studies
+      StudyJsonRecord.update_studies
       db_mgr.add_constraints
 
       log('end of incremental load method')
