@@ -270,6 +270,9 @@ module Util
     # 2. update calculated values
     # 3. run saved searches
     def incremental
+      log('storing study statistics data...')
+      verifier = Verifier.create(source: ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study"))
+          
       log('begin incremental load...')
 
       db_mgr.remove_constrains
@@ -277,6 +280,9 @@ module Util
       db_mgr.add_constraints
 
       log('end of incremental load method')
+      load_event.log('execute study statistics verification...')
+      verifier.verify('ctgov')
+      verifier.write_data_to_file('ctgov')
       true
     end
 
