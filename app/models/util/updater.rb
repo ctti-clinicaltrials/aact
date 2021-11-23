@@ -247,15 +247,20 @@ module Util
     end
 
     def full
-      if should_restart?
-        log('restarting full load...')
-      else
-        log('begin full load ...')
-        StudyJsonRecord.full
-      end
-      study_counts[:should_add] = Support::StudyXmlRecord.not_yet_loaded.count
-      study_counts[:should_change] = 0
-      @client.populate_studies
+        begin
+          log('storying study statistics data...')
+          verifier = Verifier.create(source: ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study"))
+          
+          log('begin full load ...')
+          StudyJsonRecord.full
+
+          load_event.log('execute study statistics verification...')
+          verifier.verify('ctgov')
+          verifier.write_data_to_file('ctgov')
+        rescue => error
+          msg="#{error.message} (#{error.class} #{error.backtrace}"
+          Airbrake.notify(error)
+        end
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
     end
