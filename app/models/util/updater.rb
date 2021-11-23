@@ -248,7 +248,7 @@ module Util
 
     def full
         begin
-          log('storying study statistics data...')
+          log('storing study statistics data...')
           verifier = Verifier.create(source: ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study"))
           
           log('begin full load ...')
@@ -301,7 +301,7 @@ module Util
       load_event.log('add indexes and constraints..')
       add_indexes_and_constraints if params[:event_type] == 'full'
 
-      load_event.log('execute data count verification...')
+      load_event.log('execute study statistics verification...')
       Verifier.refresh
       
       load_event.log('execute study search...')
