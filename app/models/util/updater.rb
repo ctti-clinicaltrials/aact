@@ -303,11 +303,6 @@ module Util
     # 8. create flat files
     def finalize_load
       log('finalizing load...')
-
-      unless params[:event_type] == 'full'
-        load_event.log('execute study statistics verification...')
-        Verifier.refresh
-      end
       
       load_event.log('execute study search...')
       days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
