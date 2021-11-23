@@ -85,10 +85,16 @@ class StudyJsonRecord < ActiveRecord::Base
       @count_down = original_count
       unzipped_folders.each do |file|
         begin
-        contents = file.get_input_stream.read
-        json = JSON.parse(contents)
-        study = json['FullStudy']
-        save_single_study(study)
+          if file.path ~= /Contents/
+            next
+          else
+            contents = file.get_input_stream.read
+            json = JSON.parse(contents)
+            study = json['FullStudy']
+            save_single_study(study)
+            @countdown -= 1
+            puts "#{@count_down} left to save"
+          end
         rescue Exception => error
           msg="#{error.message} (#{error.class} #{error.backtrace}"
           ErrorLog.error(msg)
