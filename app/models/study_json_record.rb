@@ -95,6 +95,7 @@ class StudyJsonRecord < ActiveRecord::Base
         end  
       end
     end
+    add_indexes_and_constraints
   end
 
   def self.incremental

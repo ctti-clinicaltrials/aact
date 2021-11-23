@@ -298,11 +298,10 @@ module Util
     def finalize_load
       log('finalizing load...')
 
-      load_event.log('add indexes and constraints..')
-      add_indexes_and_constraints if params[:event_type] == 'full'
-
-      load_event.log('execute study statistics verification...')
-      Verifier.refresh
+      unless params[:event_type] == 'full'
+        load_event.log('execute study statistics verification...')
+        Verifier.refresh
+      end
       
       load_event.log('execute study search...')
       days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
@@ -314,9 +313,6 @@ module Util
         load_event.log('set downcase mesh terms...')
         set_downcase_terms
       end
-
-      load_event.log('populate admin tables...')
-      # populate_admin_tables
 
       load_event.log('run sanity checks...')
       load_event.run_sanity_checks
