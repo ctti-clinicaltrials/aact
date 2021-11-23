@@ -57,7 +57,7 @@ module Util
 
       # 1. remove constraings
       log("#{schema} remove constraints...")
-      db_mgr.remove_constrains
+      db_mgr.remove_constraints
 
       # 2. update studies
       log("#{schema} updating studies...")
@@ -205,7 +205,7 @@ module Util
       set_schema
       # 1. remove constraings
       log("#{schema} remove constraints...")
-      db_mgr.remove_constrains
+      db_mgr.remove_constraints
       update_study(study_id)
       # 2. add constraints
       log("#{schema} adding constraints...")
@@ -219,7 +219,7 @@ module Util
       set_schema
       # 1. remove constraings
       log("#{schema} remove constraints...")
-      db_mgr.remove_constrains
+      db_mgr.remove_constraints
       array_nctids.each{|nctid|update_study(nctid)}
       # 2. add constraints
       log("#{schema} adding constraints...")
@@ -274,7 +274,7 @@ module Util
     def incremental
       log('begin incremental load...')
 
-      db_mgr.remove_constrains
+      db_mgr.remove_constraints
       Support::StudyXmlRecord.update_studies
       db_mgr.add_constraints
 
