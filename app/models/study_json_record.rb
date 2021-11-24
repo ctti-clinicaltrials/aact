@@ -85,9 +85,7 @@ class StudyJsonRecord < ActiveRecord::Base
       @count_down = original_count
       unzipped_folders.each do |file|
         begin
-          if file.path ~= /Contents/
-            next
-          else
+          unless file.path =~ /Contents/
             contents = file.get_input_stream.read
             json = JSON.parse(contents)
             study = json['FullStudy']
