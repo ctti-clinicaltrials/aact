@@ -75,8 +75,8 @@ class StudyJsonRecord < ActiveRecord::Base
   def self.full
     start_time = Time.current
     study_download = download_all_studies
-    remove_indexes_and_constraints
     nct_ids = Study.all.pluck(:nct_id).uniq
+    remove_indexes_and_constraints
     clear_out_data_for(nct_ids)
     StudyJsonRecord.destroy_all
 
