@@ -29,8 +29,9 @@ class StudySearch < ActiveRecord::Base
   end
 
   def load_update(days_back=2)
-    date_ranged_query = query + StudySearch.time_range(days_back)
-    collection = StudySearch.collected_nct_ids(date_ranged_query) 
+    # date_ranged_query = query + StudySearch.time_range(days_back)
+    # collection = StudySearch.collected_nct_ids(date_ranged_query) 
+    collection = StudySearch.collected_nct_ids(query) 
     total = collection.count
     collection.each do |study_nct_id|
       next unless Study.find_by(nct_id: study_nct_id)

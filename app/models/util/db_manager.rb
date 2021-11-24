@@ -49,7 +49,7 @@ module Util
     # 4. verify the study count (permissions are not granted again to prevent bad data from being used)
     # 5. grant connection permissions again
     def restore_database(schema_type, connection, filename)
-      schema = "ctgov"
+      schema = 'ctgov'
       config = connection.instance_variable_get('@config')
       host, port, username, database, password = config[:host], config[:port], config[:username], config[:database], config[:password]
 
@@ -58,7 +58,7 @@ module Util
       connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{database}' AND usename <> '#{username}'")
 
       # drop the schema
-      log "  dropping #{schema} schema in #{host}:#{port}/#{database} database..."
+      log "  dropping in #{host}:#{port}/#{database} database..."
       begin
         connection.execute("DROP SCHEMA #{schema} CASCADE;")
       rescue ActiveRecord::StatementInvalid => e
@@ -112,9 +112,9 @@ module Util
       con.execute("DELETE FROM support.study_xml_records WHERE nct_id IN (#{ids})")
     end
 
-    def public_study_count(schema)
+    def public_study_count
       begin
-        public_connection(schema).execute('select count(*) from studies;').first['count'].to_i
+        public_connection.execute('select count(*) from studies;').first['count'].to_i
       rescue
         return 0
       end
