@@ -8,44 +8,16 @@ include ActionView::Helpers::DateHelper
 class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'support.study_json_records'
 
+  def self.log(msg)
+    stamped_message = "\n#{Time.zone.now} #{msg}"
+    self.description << stamped_message
+    save!
+    $stdout.puts stamped_message
+    $stdout.flush
+  end
+
   def self.db_mgr
     @db_mgr ||= Util::DbManager.new({search_path: 'ctgov'})
-  end
-
-  def self.updater(params={})
-    @updater ||= Util::Updater.new(params)
-  end
-
-  def self.run(params={})
-    @start_time = Time.current
-    @study_build_failures = []
-    @full_featured = params[:full_featured] || false
-    @params = params
-    @type = params[:event_type] ? params[:event_type] : 'incremental'
-    @days_back = (params[:days_back] ? params[:days_back] : 2)
-    remove_indexes_and_constraints
-    @data_store = []
-
-    begin
-     @type == 'full' ? full : incremental
-    rescue Exception => error
-      msg="#{error.message} (#{error.class} #{error.backtrace}"
-      ErrorLog.error(msg)
-      Airbrake.notify(error)
-    end
-
-    if @type == 'full'
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
-    end
-
-    add_indexes_and_constraints
-    CalculatedValue.populate
-
-    time = Time.now
-    msg = "Took: #{time_ago_in_words(@start_time)} -- #{time - @start_time}, Failed: #{@study_build_failures.uniq}, Current Time: #{time}, Start Time: #{@start_time}"
-    SaveTime.info(msg)
-    puts msg
   end
 
   def self.root_dir
@@ -72,83 +44,49 @@ class StudyJsonRecord < ActiveRecord::Base
     file
   end
 
+  def self.upzip_folders(zip_path, destination_path)
+    Zip::File.open(zip_path) do |zip_file|
+      zip_file.each do |f|
+        f_path = File.join(destination_path, f.name)
+        FileUtils.mkdir_p(File.dirname(f_path))
+        zip_file.extract(f, f_path) unless File.exist?(f_path)
+      end
+    end
+  end
+
+  def self.store_folder_contents(folder_path)
+    Dir.foreach(folder_path).each do |file|
+      unless file == '.' || file == '..' || file =~ /Contents/
+        contents = File.read("#{folder_path}/#{file}")
+        study_data = JSON.parse(contents)['FullStudy']
+        save_single_study(study_data)
+      end
+    end
+  end
+
   def self.full
     start_time = Time.current
-    study_download = download_all_studies
+    extracted_directory = "#{json_file_directory}/extracted"
+    # study_download = download_all_studies
+    # unzip_folders(study_download.path, extracted_directory)
     nct_ids = Study.all.pluck(:nct_id).uniq
     remove_indexes_and_constraints
     clear_out_data_for(nct_ids)
     StudyJsonRecord.destroy_all
 
-    Zip::File.open(study_download.path) do |unzipped_folders|
-      original_count = unzipped_folders.size
-      @count_down = original_count
-      unzipped_folders.each do |file|
-        begin
-          unless file.path =~ /Contents/
-            contents = file.get_input_stream.read
-            json = JSON.parse(contents)
-            study = json['FullStudy']
-            save_single_study(study)
-            @countdown -= 1
-            puts "#{@count_down} left to save"
-          end
-        rescue Exception => error
-          msg="#{error.message} (#{error.class} #{error.backtrace}"
-          ErrorLog.error(msg)
-          Airbrake.notify(error)
-        end  
+    # Zip::File.open(study_download.path) do |unzipped_folders|
+    folders = Dir.entries("/Users/crystalwilliams-brown/Downloads/AllAPIJSON")
+    count = folders.length
+    folders.each do |folder|
+      unless folder == '.' || folder == '..' || folder =~ /Contents/
+        self.store_folder_contents("/Users/crystalwilliams-brown/Downloads/AllAPIJSON/#{folder}")
+        # self.store_folder_contents("#{extracted_directory}/#{folder}")
+        count -= 1
+        log("#{count} folders left")
       end
     end
+    FileUtils.rm_rf(extracted_folders)
     add_indexes_and_constraints
-  end
-
-  def self.incremental
-    first_batch = json_data
-    # total_number is the number of studies available, meaning the total number in their database
-    @count_down = first_batch['FullStudiesResponse']['NStudiesFound']
-    limit = (@count_down/100.0).ceil
-    save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
-
-    # since I already saved the first hundred studies I start the loop after that point
-    # studies must be retrieved in batches of 99,
-    # using min and max to determine the study to start with and the study to end with respectively (in that batch)
-    min = 101
-    max = 200
-
-    for x in 1..limit
-      fetch_studies(min, max)
-      min += 100
-      max += 100
-    end
-  end
-
-  def self.fetch_studies(min=1, max=100)
-    begin
-      retries ||= 0
-      url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
-      data = json_data(url) || {}
-      data = data.dig('FullStudiesResponse', 'FullStudies')
-      save_study_records(data) if data
-    rescue
-      retry if (retries += 1) < 6
-    end
-  end
-
-  def self.save_study_records(study_batch)
-    return unless study_batch
-
-    nct_id_array = study_batch.collect{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
-    clear_out_data_for(nct_id_array)
-
-    study_batch.each do |study_data|
-      record_time = Time.zone.now
-      nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-      save_single_study(study_data)
-      time = Time.zone.now
-      puts "#{time}:  saved #{time - record_time}: #{nct_id} - #{@count_down}"
-      @count_down -= 1
-    end
   end
 
   def self.save_single_study(study_data)

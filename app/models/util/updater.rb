@@ -230,7 +230,7 @@ module Util
                  else
                    incremental
                  end
-        finalize_load if status != false
+        # finalize_load if status != false
       rescue StandardError => e
         begin
           msg = "#{e.message} (#{e.class} #{e.backtrace}"
@@ -254,15 +254,15 @@ module Util
           log('begin full load ...')
           StudyJsonRecord.full
 
-          load_event.log('execute study statistics verification...')
-          verifier.verify('ctgov')
-          verifier.write_data_to_file('ctgov')
+          # load_event.log('execute study statistics verification...')
+          # verifier.verify('ctgov')
+          # verifier.write_data_to_file('ctgov')
         rescue => error
           msg="#{error.message} (#{error.class} #{error.backtrace}"
           Airbrake.notify(error)
         end
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
+      # MeshTerm.populate_from_file
+      # MeshHeading.populate_from_file
     end
 
     # incremental steps
