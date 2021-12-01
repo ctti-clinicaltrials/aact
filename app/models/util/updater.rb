@@ -251,7 +251,7 @@ module Util
       log("begin full load, Start Time.....#{start_time}...")
       StudyJsonRecord.full
       log("took #{time_ago_in_words(start_time)}")
-      
+
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
     end
@@ -290,7 +290,6 @@ module Util
       log('finalizing load...')
 
       load_event.log('add indexes and constraints..')
-      add_indexes_and_constraints if params[:event_type] == 'full'
 
       load_event.log('execute study search...')
       days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
