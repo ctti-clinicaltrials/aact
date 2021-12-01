@@ -290,7 +290,7 @@ module Util
         study_json_records
         use_cases
         use_case_attachments
-        verifier
+        verifiers
       )
       table_names=con.tables.reject{|table|blacklist.include?(table)}
     end
