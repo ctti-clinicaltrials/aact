@@ -95,7 +95,7 @@ class StudyJsonRecord < ActiveRecord::Base
             duration = start - Time.now
             total_time += duration
             
-            puts "#{@count_down -= 1}, took #{htime(duration)}, total time so far #{htime(total_time)}"
+            puts "#{@count_down -= 1}, took #{htime(duration)}, total time so far #{htime(total_time)}, Study Count: #{Study.count}"
           end
         rescue Exception => error
           msg="#{error.message} (#{error.class} #{error.backtrace}"
@@ -1669,7 +1669,7 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless group
 
     group.map do |i| 
-      i[:result_group_id] = @study_result_groups.dig(i[:ctgov_group_code], :id)
+      i[:result_group_id] = @study_result_groups[i[:ctgov_group_code]].try(:id)
     end
     name_of_model.safe_constantize.import(group, validate: false)
   end
