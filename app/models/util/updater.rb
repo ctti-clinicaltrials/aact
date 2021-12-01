@@ -232,6 +232,7 @@ module Util
                  end
         finalize_load if status != false
       rescue StandardError => e
+        Airbrake.notify(e)
         begin
           msg = "#{e.message} (#{e.class} #{e.backtrace}"
           log("#{@load_event.event_type} load failed in run: #{msg}")
@@ -248,9 +249,16 @@ module Util
 
     def full
       start_time=Time.zone.now
+      log("storing study statistics data from ClinicalTrials.gov...")
+      verifier = Verifier.create(source: ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study"))
+      
       log("begin full load, Start Time.....#{start_time}...")
       StudyJsonRecord.full
       log("took #{time_ago_in_words(start_time)}")
+      
+      log("verififing study statistics match the aact database...")
+      verifier.verify(schema)
+      verifier.write_data_to_file(schema)
 
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
