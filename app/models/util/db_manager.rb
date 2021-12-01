@@ -215,7 +215,7 @@ module Util
           migration.add_foreign_key child_table,  parent_table, column: child_column, primary_key: parent_column, name: "#{child_table}_#{child_column}_fkey"
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
       }
     end
@@ -227,7 +227,7 @@ module Util
           con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
 
         con.indexes(table_name).each{|index|
@@ -235,7 +235,7 @@ module Util
             migration.remove_index(index.table, index.columns) if !should_keep_index?(index) and migration.index_exists?(index.table, index.columns)
           rescue => e
             log(e)
-            event.add_problem("#{Time.zone.now}: #{e}")
+            event.add_problem("#{Time.zone.now}: #{e}") if event
           end
         }
       }
@@ -247,7 +247,7 @@ module Util
           con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
       }
     end
@@ -259,7 +259,7 @@ module Util
           con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
       }
 
@@ -270,7 +270,7 @@ module Util
           con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
       }
     end
