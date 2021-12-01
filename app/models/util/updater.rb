@@ -247,17 +247,11 @@ module Util
     end
 
     def full
-      if should_restart?
-        log('restarting full load...')
-      else
-        log('begin full load ...')
-        StudyJsonRecord.full
-      end
-      truncate_tables unless should_restart?
-      remove_indexes_and_constraints # Index significantly slow the load process. Will be re-created after data loaded.
-      study_counts[:should_add] = Support::StudyXmlRecord.not_yet_loaded.count
-      study_counts[:should_change] = 0
-      @client.populate_studies
+      start_time=Time.zone.now
+      log("begin full load, Start Time.....#{start_time}...")
+      StudyJsonRecord.full
+      log("took #{time_ago_in_words(start_time)}")
+      
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
     end
