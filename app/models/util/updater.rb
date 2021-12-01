@@ -252,7 +252,7 @@ module Util
       log("storing study statistics data from ClinicalTrials.gov...")
       verifier = Verifier.create(source: ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study"))
       
-      log("begin full load, Start Time.....#{start_time}...")
+      log("begin full load, Start Time: #{start_time}...")
       StudyJsonRecord.full
       log("took #{time_ago_in_words(start_time)}")
       
