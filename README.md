@@ -23,7 +23,7 @@ Below you'll find an image that illustrates the different AACT databases and sch
 
 AACT downloads the complete set of studies from ClinicalTrials.gov as a zipfile that contains an xml file for each study https://clinicaltrials.gov/search/resultsxml=true.  Until recently, the ClinicalTrials.gov API only provided this info in XML format.  
 
-In June, 2019, an improved API was deployed in beta which provides a far more flexible way to retrieve studies from ClinicalTrials.gov and also lets you retrieve it as json. We have setup AACT to also retrieve data from the beta API. That data is stored in the `ctgov_beta` schema.
+In June, 2019, an improved API was deployed in beta which provides a far more flexible way to retrieve studies from ClinicalTrials.gov and also lets you retrieve it as json. We have setup AACT to also retrieve data from the beta API.
 
 You can find information about the ClinicalTrials.gov beta API here: https://clinicaltrials.gov/api/gui
 
@@ -71,8 +71,6 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `i` Enter insert mode and add the following to the file  
     `export AACT_DB_SUPER_USERNAME=<your_aact_superuser>`  
     `export AACT_PASSWORD=<your_superuser_password>`  
-    `export AACT_PUBLIC_BETA_DATABASE_NAME=aact`  
-    `export AACT_BETA_DATABASE_NAME=aact`  
     <br>
     By default, AACT saves files it creates in a directory under /aact-files. (Note, this is in the server root directory, not the root of the AACT application.)  To override this, use the AACT_STATIC_FILE_DIR environment variable to define a different directory.  Otherwise, you will need to create /aact-files at the server root directory and change permissions on it so that the rails application owner has permission to read/write to that directory.  
     `export AACT_STATIC_FILE_DIR=public/static` *we are working towards removing the need to add this variable*  
@@ -106,7 +104,6 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `bin/rake db:create RAILS_ENV=test`  
     `bin/rake db:migrate`  
     `bin/rake db:migrate RAILS_ENV=test`  
-    `bin/rake db:copy_schema` this copies the structure (tables, columns and rows) of the ctgov schema over to the ctgov_beta schema.  
 
 <br>
 <br>
@@ -126,10 +123,6 @@ These are your options:
     *Note: the following rake tasks take a very long time to run*  
 * `bin/rake db:load[<days_back>,<event_type>,<full_featured>]`  
   The days back is an integer, the event_type only takes "full" or "incremental", full_featured is a boolean. You do not have to give it any parameters. If you have no studies it will populate your database with all the studies.  
-* `bin/rake db:beta_load[<days_back>,<event_type>,<full_featured>]`  
-  this works like the regular load but adds the data to `ctgov_beta` schema instead of the `ctgov` schema.  
-* `bin/rake db:both_load[<days_back>,<event_type>,<full_featured>]`  
-  this populates the `ctgov` schema and then the `ctgov_beta` schema  
 
 <br>
 <br>

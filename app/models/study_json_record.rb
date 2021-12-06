@@ -9,7 +9,7 @@ class StudyJsonRecord < ActiveRecord::Base
   self.table_name = 'support.study_json_records'
 
   def self.db_mgr
-    @db_mgr ||= Util::DbManager.new({search_path: 'ctgov_beta'})
+    @db_mgr ||= Util::DbManager.new({search_path: 'ctgov'})
   end
 
   def self.updater(params={})
@@ -18,7 +18,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def self.run(params={})
     @start_time = Time.current
-    set_table_schema('ctgov_beta')
     @study_build_failures = []
     @full_featured = params[:full_featured] || false
     @params = params
@@ -29,9 +28,10 @@ class StudyJsonRecord < ActiveRecord::Base
 
     begin
      @type == 'full' ? full : incremental
-    rescue => error
+    rescue Exception => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
+      Airbrake.notify(error)
     end
 
     if @type == 'full'
@@ -88,8 +88,10 @@ class StudyJsonRecord < ActiveRecord::Base
         study = json['FullStudy']
         save_single_study(study)
         rescue Exception => error
-          ErrorLog.error(error)
-        end
+          msg="#{error.message} (#{error.class} #{error.backtrace}"
+          ErrorLog.error(msg)
+          Airbrake.notify(error)
+        end  
       end
     end
   end
@@ -196,13 +198,13 @@ class StudyJsonRecord < ActiveRecord::Base
   def update_from_api
     url = "https://clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5D#{nct_id}&min_rnk=1&max_rnk=&fmt=json"
     attempts = 0
-    content = nil
+    data = nil
     response = nil
     begin
       attempts += 1
       s = Time.now
-      content = Faraday.get(url).body
-      response = JSON.parse(content)
+      response = Faraday.get(url).body
+      data = JSON.parse(response)
       puts "  fetch #{Time.now - s}" if ENV['VERBOSE']
     rescue Faraday::ConnectionFailed
       return false if attempts > 5
@@ -211,13 +213,16 @@ class StudyJsonRecord < ActiveRecord::Base
       return false if attempts > 5
       retry
     end
-    content = response.dig('FullStudiesResponse', 'FullStudies').first
-    if content
-      self.content = content
-      return false unless changed?
-      return update content: content, download_date: Time.now
-    else
-      # add error
+    data = data.dig('FullStudiesResponse', 'FullStudies').first
+    begin
+      if data
+        self.content = data
+        return false unless changed?
+        return update content: data, download_date: Time.now
+      end
+    rescue => e
+      ErrorLog.error(e)
+      Airbrake.notify(e)
     end
   end
 
@@ -1514,8 +1519,10 @@ class StudyJsonRecord < ActiveRecord::Base
       save_with_result_group(data[:drop_withdrawals], 'DropWithdrawal') if data[:drop_withdrawals]
 
       update(saved_study_at: Time.now)
-    rescue => error
-      ErrorLog.error(error)
+    rescue Exception => error
+      msg="#{error.message} (#{error.class} #{error.backtrace}"
+      ErrorLog.error(msg)
+      Airbrake.notify(error)
       @study_build_failures ||= []
       @study_build_failures << id
     end
@@ -1575,8 +1582,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.set_table_schema(schema = 'ctgov')
-    return unless schema == 'ctgov' || schema == 'ctgov_beta'
-
     name_of_tables = Util::DbManager.loadable_tables
     name_of_tables.each do |name|
       name_of_model = name.singularize.camelize.safe_constantize
@@ -1584,17 +1589,17 @@ class StudyJsonRecord < ActiveRecord::Base
     end
   end
 
-  def self.comparison
+  def self.comparison(schema1='ctgov', schema2)
     count_array = []
     dif = []
-    set_table_schema('ctgov_beta')
-    beta_counts = object_counts
-    set_table_schema('ctgov')
-    reg_counts = object_counts
+    set_table_schema(schema1)
+    first_counts = object_counts
+    set_table_schema(schema2)
+    second_counts = object_counts
 
-    beta_counts.each do |name_of_model, object_count|
-      count_hash = { beta: object_count, reg: reg_counts[:"#{name_of_model}"]}
-      dif << { "#{name_of_model}": count_hash }  if object_count != reg_counts[:"#{name_of_model}"]
+    first_counts.each do |name_of_model, object_count|
+      count_hash = { "#{schema1}": object_count, "#{schema2}": second_counts[:"#{name_of_model}"]}
+      dif << { "#{name_of_model}": count_hash }  if object_count != second_counts[:"#{name_of_model}"]
       count_array << { "#{name_of_model}": count_hash }
     end
 
@@ -1743,39 +1748,35 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
-  def self.data_verification
+  def self.data_verification(schema1='ctgov', schema2)
     dif = Hash.new { |h, k| h[k] = [] }
-    # print message before starting all_data_collection for ctgov_beta and the start time
     start_time = Time.zone.now
-    puts '**********   starting all_data_collection for ctgov_beta:   **********'
+    puts "**********   starting all_data_collection for #{schema1}:   **********"
     puts "Start Time: #{start_time}"
-    beta_counts = all_data_collection('ctgov_beta')
-    # print message before starting all_data_collection for ctgov
-    puts '**********   starting all_data_collection for ctgov:   **********'
-    reg_counts = all_data_collection('ctgov')
+    first_counts = all_data_collection(schema1)
+    puts "**********   starting all_data_collection for #{schema2}:   **********"
+    second_counts = all_data_collection(schema2)
 
-    beta_counts.each_with_index do |(nct_id_key, beta_obj_counts), index|
-      # print message showing a countdown of studies left to go when looping through beta_counts
-      puts "**********   countdown of total studies left to go: #{beta_counts.size-index}\n"
-      reg_obj_counts = reg_counts[nct_id_key] || {}
+    first_counts.each_with_index do |(nct_id_key, first_obj_counts), index|
+      puts "**********   countdown of total studies left to go: #{first_counts.size-index}\n"
+      second_obj_counts = second_counts[nct_id_key] || {}
 
-      unless reg_obj_counts == beta_obj_counts
-        beta_obj_counts.each do |name_of_model, obj_count|
-            other_count = reg_obj_counts[name_of_model]
+      unless second_obj_counts == first_obj_counts
+        first_obj_counts.each do |name_of_model, obj_count|
+            other_count = second_obj_counts[name_of_model]
             if other_count != obj_count
-              dif["#{nct_id_key}"] << {"#{name_of_model}": {beta: obj_count, reg: other_count} }
+              dif["#{nct_id_key}"] << {"#{name_of_model}": {"#{schema1}": obj_count, "#{schema2}": other_count} }
             end
         end
       end
     end
-    dif
-    # print message showing the end time and total time elapsed for all_data_collection for ctgov_beta and ctgov
     end_time = Time.zone.now
     puts "End Time: #{end_time}"
     puts "Total Time Elapsed: #{end_time - start_time} seconds"
+    return dif
   end
 
-  def self.all_data_collection(schema_name='ctgov_beta')
+  def self.all_data_collection(schema_name='ctgov')
     StudyJsonRecord.set_table_schema(schema_name)
     studies = Study.all
     collection = {}
@@ -1786,7 +1787,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.clean_up(nct_id= 'NCT04456920')
-    set_table_schema('ctgov_beta')
     remove_indexes_and_constraints
     clear_out_data_for([nct_id], false)
     study_record = find_by(nct_id: nct_id)
@@ -1794,22 +1794,94 @@ class StudyJsonRecord < ActiveRecord::Base
     add_indexes_and_constraints
   end
 
-  def self.data_verification_csv
-    file = "#{Util::FileManager.new.beta_differences_directory}/nct_id_count_differences.csv"
-    headers = ["NCT_ID", "Model", "Beta Count", "Regular Count"]
+  def self.data_verification_csv(schema1='ctgov', schema2)
+    file = "#{Util::FileManager.new.differences_directory}/nct_id_count_differences.csv"
+    headers = ["NCT_ID", "Model", "#{schema1} Count", "#{schema1} Count"]
     begin
       CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|
-        data_verification.each do |nct_number, study_objects|
+        data_verification(schema1,schema2).each do |nct_number, study_objects|
           study_objects.each do |object_hash|
             object_hash.each do |object_model, object_differences|
-              csv << [nct_number, object_model, object_differences[:beta], object_differences[:reg]]
+              csv << [nct_number, object_model, object_differences[:"#{schema1}"], object_differences[:"#{schema2}"]]
             end
           end
         end
       end
-    rescue => error
+    rescue Exception => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
+      Airbrake.notify(error)
     end
+  end
+
+  def self.studies_batch_counts
+    # Set the schema to ctgov
+    StudyJsonRecord.set_table_schema('ctgov')
+    ctgov_collection = Hash.new {}
+
+    # Call find in batches on all the Study (group of 1000 studies)
+    ctgov_studies = Study.all.find_in_batches do |studies|
+      # Start a loop to collect the counts for each of the 1000 studies from ctgov
+      studies.each do |study|
+        ctgov_collection[study.nct_id] = data_counts(study)
+      end
+
+      # Switch the schema to ctgov_beta
+      StudyJsonRecord.set_table_schema('ctgov_beta')
+
+      # Use the nct_ids from the 1000 ctgov studies to find the matching studies in ctgov_beta
+      ctgov_beta_studies = Study.where(nct_id: studies.pluck(:nct_id))
+      ctgov_beta_collection = Hash.new {}
+
+      # Start a loop to collect the counts for each of the 1000 studies from ctgov_beta
+      ctgov_beta_studies.each do |study|
+        ctgov_beta_collection[study.nct_id] = data_counts(study)
+      end
+
+      # Call data_differences to compare the study count differences of ctgov and ctgov_beta
+      data_differences(ctgov_collection, ctgov_beta_collection)
+
+      # Switch the schema back to ctgov to compare the next 1000 studies
+      StudyJsonRecord.set_table_schema('ctgov')
+    end
+  end
+
+  def self.data_differences(ctgov_hash, ctgov_beta_hash)
+    differences = Hash.new {}
+    start_time = Time.zone.now
+    # Print messages before starting data_differences of ctgov and ctgov_beta along with the start time
+    puts '**********   Starting data_differences for ctgov and ctgov_beta   **********'
+    puts "Start Time: #{start_time}"
+
+    # Create CSV directory and file to store ctgov and ctgov_beta count differences
+    file = "#{Util::FileManager.new.beta_differences_directory}/nct_id_count_differences.csv"
+    headers = ["NCT_ID", "Model", "Beta Count", "Regular Count"]
+    begin
+      CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|
+        # Loop though the ctgov hash and use the key (like 'NCT123') to find the corresponding study in the ctgov_beta hash
+        ctgov_hash.each_with_index do |(nct_id_key, counts_value), index|
+          # Print message showing a countdown of studies left to go when looping through ctgov and ctgov_beta hashes
+          puts "**********   Countdown of total studies left to go: #{ctgov_hash.size-index}\n"
+          # Loop through each study data counts and compare the differences of the two collections
+          counts_value.each do |study_name, regular_counts|
+            # find the corresponding ctgov beta count from the ctgov_beta hash
+            ctgov_beta_counts = ctgov_beta_hash.dig(nct_id_key, study_name)
+            # if there is a difference between the two studies counts, save it to the CSV file
+            if regular_counts != ctgov_beta_counts
+              csv <<  [nct_id_key, study_name, ctgov_beta_counts, regular_counts]
+            end
+          end
+        end
+      end
+    # Log any errors and notify airbrake
+    rescue Exception => error
+          msg="#{error.message} (#{error.class} #{error.backtrace}"
+          ErrorLog.error(msg)
+          Airbrake.notify(error)
+    end
+    # Print messages showing the end time and total time elapsed for data_differences of ctgov_beta and ctgov counts
+    end_time = Time.zone.now
+    puts "End Time: #{end_time}"
+    puts "**********   Total Time elapsed for data_differences: #{end_time - start_time} seconds   **********"
   end
 end

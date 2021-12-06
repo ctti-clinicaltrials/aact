@@ -4,13 +4,8 @@ module Util
 
     def initialize(tables=[],schema='')
       @schema = schema
-      if @schema == 'beta'
-        @temp_dir     = "#{Util::FileManager.new.dump_directory}/export_beta"
-        @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_beta_export.zip"
-      else
-        @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
-        @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export.zip"
-      end
+      @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
+      @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export.zip"
       @connection   = ActiveRecord::Base.connection.raw_connection
       @table_names  = tables
       create_temp_dir_if_none_exists!
