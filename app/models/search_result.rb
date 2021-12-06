@@ -109,7 +109,7 @@ class SearchResult < ActiveRecord::Base
       study.has_dmc ? 'Yes' : 'No', #has_dmc
       sponsors.blank? ? '' : sponsors.pluck(:agency_class).uniq.join('|'), #funded_bys
       sponsors.blank? ? '' : sponsors.pluck(:name).join('|'), #sponsor_collaborators
-      lead.blank? ? "#{lead.name}[#{lead.agency_class}]" : nil, #lead_sponsor
+      lead.blank? ? nil : "#{lead.name}[#{lead.agency_class}]", #lead_sponsor
       collab_names, #collaborators
       study.study_type, #study_type
       study.phase.try(:split, '/').try(:join, '|'), #phases
