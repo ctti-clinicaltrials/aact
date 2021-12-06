@@ -310,9 +310,6 @@ module Util
         set_downcase_terms
       end
 
-      load_event.log('populate admin tables...')
-      # populate_admin_tables
-
       load_event.log('run sanity checks...')
       load_event.run_sanity_checks
 
@@ -333,8 +330,6 @@ module Util
 
       load_event.log('create flat files...')
       create_flat_files(schema)
-
-      # Admin::PublicAnnouncement.clear_load_message
     end
 
     def remove_indexes_and_constraints
