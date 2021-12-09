@@ -73,9 +73,10 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def self.full
-    start_time = Time.current
+    total_time = 0
     study_download = download_all_studies
     nct_ids = StudyJsonRecord.all.map(&:nct_id)
+    remove_indexes_and_constraints
     clear_out_data_for(nct_ids)
 
     Zip::File.open(study_download.path) do |unzipped_folders|
@@ -83,10 +84,19 @@ class StudyJsonRecord < ActiveRecord::Base
       @count_down = original_count
       unzipped_folders.each do |file|
         begin
-        contents = file.get_input_stream.read
-        json = JSON.parse(contents)
-        study = json['FullStudy']
-        save_single_study(study)
+          unless file.name =~/contents/i
+            start = Time.now
+
+            contents = file.get_input_stream.read
+            json = JSON.parse(contents)
+            study = json['FullStudy']
+            save_single_study(study)
+
+            duration = start - Time.now
+            total_time += duration
+            
+            puts "#{@count_down -= 1}, took #{htime(duration)}, total time so far #{htime(total_time)}, Study Count: #{Study.count}"
+          end
         rescue Exception => error
           msg="#{error.message} (#{error.class} #{error.backtrace}"
           ErrorLog.error(msg)
@@ -94,6 +104,16 @@ class StudyJsonRecord < ActiveRecord::Base
         end  
       end
     end
+    add_indexes_and_constraints
+  end
+
+  def self.htime(seconds)
+    seconds = seconds.to_i
+    hours = seconds / 3600
+    seconds -= hours * 3600
+    minutes = seconds / 60
+    seconds -= minutes * 60
+    "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
   end
 
   def self.incremental
@@ -1649,7 +1669,7 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless group
 
     group.map do |i| 
-      i[:result_group_id] = @study_result_groups.dig(i[:ctgov_group_code], :id)
+      i[:result_group_id] = @study_result_groups[i[:ctgov_group_code]].try(:id)
     end
     name_of_model.safe_constantize.import(group, validate: false)
   end
