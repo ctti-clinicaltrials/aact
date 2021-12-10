@@ -32,10 +32,12 @@ class SearchResult < ActiveRecord::Base
     study_nct_id = study.nct_id
     id_values = study.id_information.pluck(:id_value).join('|')
     sponsors = study.sponsors
-    grouped = sponsors.group_by(&:lead_or_collaborator)
-    lead = grouped['lead'].first
-    collaborators = grouped['collaborator']
-    collab_names = collaborators.map{|collab| "#{collab.name}[#{collab.agency_class}]"}.join('|') if collaborators
+    unless sponsors.blank?
+      grouped = sponsors.group_by(&:lead_or_collaborator)
+      lead = grouped['lead'].first
+      collaborators = grouped['collaborator']
+      collab_names = collaborators.map{|collab| "#{collab.name}[#{collab.agency_class}]"}.join('|') if collaborators
+    end
     interventions = study.interventions
     intervention_name_type = []
     intervention_details = []
@@ -105,9 +107,9 @@ class SearchResult < ActiveRecord::Base
       study.why_stopped, #why_stopped
       hcq_query(study) ? 'Yes' : 'No', #hcq
       study.has_dmc ? 'Yes' : 'No', #has_dmc
-      sponsors.pluck(:agency_class).uniq.join('|'), #funded_bys
-      sponsors.pluck(:name).join('|'), #sponsor_collaborators
-      lead ? "#{lead.name}[#{lead.agency_class}]" : nil, #lead_sponsor
+      sponsors.blank? ? '' : sponsors.pluck(:agency_class).uniq.join('|'), #funded_bys
+      sponsors.blank? ? '' : sponsors.pluck(:name).join('|'), #sponsor_collaborators
+      lead.blank? ? nil : "#{lead.name}[#{lead.agency_class}]", #lead_sponsor
       collab_names, #collaborators
       study.study_type, #study_type
       study.phase.try(:split, '/').try(:join, '|'), #phases
