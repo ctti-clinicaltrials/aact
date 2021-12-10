@@ -101,7 +101,8 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `bin/rake db:create RAILS_ENV=test`  
     `bin/rake db:migrate`  
     `bin/rake db:migrate RAILS_ENV=test`  
-    grant read_only privileges  
+
+11. Grant read_only privileges  
     `bin/rake grant:db_privs:run`  
     `bin/rake grant:db_privs:run RAILS_ENV=test`  
 
@@ -118,8 +119,8 @@ The seed files are out of date so **DO NOT** call `db:seed`. Instead use the cus
 These are your options: 
 * `bin/rake db:restore_from_file[<path_to_file>,<database_name>]`   
   For this option go to https://aact.ctti-clinicaltrials.org/snapshots and download a copy of the database. Unzip the snapshot folder.  
-  The file path will likely look like: "~/Downloads/<unzipped_snapshot_folder>/postgres_data.dmp"  
-  Example: "~/Downloads/20210906_clinical_trials/postgres_data.dmp".  
+  The file path will likely look like: `~/Downloads/<unzipped_snapshot_folder>/postgres_data.dmp`  
+  Example: `~/Downloads/20210906_clinical_trials/postgres_data.dmp`.  
   Give this task the path to the postgres_data.dmp file and it will use it to populate the database.  
   Example: `bin/rake "db:restore_from_file[~/Downloads/20210906_clinical_trials/postgres_data.dmp,aact]"`  
 * `bin/rake db:restore_from_url[<url>,<database_name>]`  
