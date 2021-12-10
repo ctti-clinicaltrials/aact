@@ -38,7 +38,7 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
 
 ## Getting Started
 
-1.  Install PostgreSQL 13. If you have a Mac you can user brew to install PostgreSQL.  
+1.  Install PostgreSQL 13. If you have a Mac you can use brew to install PostgreSQL.  
     `brew install postgresql`  
 
     Here are some links that could help you setup  
