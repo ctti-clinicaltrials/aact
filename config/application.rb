@@ -46,7 +46,7 @@ module AACT
       AACT_PUBLIC_HOSTNAME      = 'localhost'
       AACT_BACK_DATABASE_NAME   = 'aact_test'
       AACT_ADMIN_DATABASE_NAME  = 'aact_admin_test'
-      AACT_PUBLIC_DATABASE_NAME = 'aact_pub_test'
+      AACT_PUBLIC_DATABASE_NAME = 'aact_test'
       AACT_ALT_PUBLIC_DATABASE_NAME = 'aact_alt_test'
     end
     AACT_PORT = ENV['AACT_PORT'] || 5432

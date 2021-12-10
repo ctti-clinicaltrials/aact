@@ -38,53 +38,45 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
 
 ## Getting Started
 
-1.  Install PostgreSQL 13.
+1.  Install PostgreSQL 13. If you have a Mac you can use brew to install PostgreSQL.  
+    `brew install postgresql`  
+
     Here are some links that could help you setup  
     https://www.postgresql.org/download/linux/ubuntu/  
     https://www.postgresql.org/download/macosx/  
     Note: do not delete the template databases, meaning template0 and template1. They are what PostgreSQL uses to create all other databases. If you remove them you will no longer be able to make new databases.  
 
-2.  Now we will focus on the “.pgpass” file for storing your connection info. Here is a document about the “.pgpass” file  
-    https://www.postgresql.org/docs/current/libpq-pgpass.html  
-    The “.pgpass” should be at your root. You can edit it using Vim or your preferred editor that lets you edit from the terminal. I will explain editing it using Vim commands.  
-    `vim ~/.pgpass` this directs vim to open the file you want to edit. It will create that file if it does not already exist.  
-    `i` this triggers insert mode (it will say insert at the bottom) so you can edit the file.  
-    Add “hostname:port:database:username:password” to the file but fill in the words with your info.  
-    Example: `localhost:5432:*:postgres:pg_password`  
-    Press the `esc` button to leave insert mode.  
-    `:xa` will save and close the file.  
+2.  Now we will create the roles you need for running AACT.  
+    `psql postgres` this allows you to enter the postgres database that comes with PostgreSQL.  
+    `postgres=# create role <your_aact_superuser> login password '<your_superuser_password>’;`  
+    `postgres=# alter user <your_aact_superuser> with superuser;`  
+    `postgres=# create role read_only;`  
+    `postgres=# create database aact_alt;`  
+    `postgres=# \q` this exits out of psql  
+    Verify your new user can login to psql with command: `psql -U <your_aact_superuser> -d postgres`  
+    You can exit the shell once you see you can log in.
+
+3.  If your terminal asks for a password when logging in to psql you can give it the password automatically by adding it to the “.pgpass” file. If you haven’t been asked for a password, you can skip this step.
+    The “.pgpass” should be at your root.  
+    `echo 'localhost:5432:aact:<superuser_name>:<superuser_password>'  >> ~/.pgpass`  
     Now check that you can login to psql without giving a password  
-    `psql -U postgres -d template1`  
-    Look here for more Vim commands https://www.linux.com/training-tutorials/vim-101-beginners-guide-vim/  
+    `psql -U aact_pg_user -d postgres`
+    You can exit the shell once you see you can log in without a password.
 
-3.  Now we will create the roles you need for running AACT.  
-    `psql -U postgres -d template1` this allows you to enter the template1 database that comes with PostgreSQL.  
-    `template1=# create role <your_aact_superuser> login password '<your_superuser_password>’;`  
-    `template1=# alter user <your_aact_superuser> with superuser;`  
-    `template1=# create role read_only;`  
-    `template1=# \q` this exits out of psql  
-    Verify your new user can login to psql with command: `psql -U <your_aact_superuser> -d template1`  
-    You can exit the shell once you see you can log in.  
+    Here is a document about the “.pgpass” file https://www.postgresql.org/docs/current/libpq-pgpass.html.   
 
-4.  Now we want to store the environmental variables for the superuser that you created in the previous step. That is the user you will be using within AACT to make database changes.  
-    `vim ~/.bash_profile` You can switch out bash_profile for your usual file for storing environmental variables, such as an zshrc file.  
-    `i` Enter insert mode and add the following to the file  
-    `export AACT_DB_SUPER_USERNAME=<your_aact_superuser>`  
-    `export AACT_PASSWORD=<your_superuser_password>`  
-    <br>
-    By default, AACT saves files it creates in a directory under /aact-files. (Note, this is in the server root directory, not the root of the AACT application.)  To override this, use the AACT_STATIC_FILE_DIR environment variable to define a different directory.  Otherwise, you will need to create /aact-files at the server root directory and change permissions on it so that the rails application owner has permission to read/write to that directory.  
-    `export AACT_STATIC_FILE_DIR=public/static` *we are working towards removing the need to add this variable*  
-    <br>
-    The pg gem (used by AACT) will need to know where to find your PostgreSQL installation. For Mac you can direct it to that location by adding  
-    `export PATH=$PATH:/Library/PostgreSQL/x.y/bin` *change x.y to the version number of your PostgreSQL installation, like: `export PATH=$PATH:/Library/PostgreSQL/13/bin`*  
-    https://wikimatze.de/installing-postgresql-gem-under-ubuntu-and-mac/  
-    <br>
-    Press the `esc` button to leave insert mode, then `:xa` to save and close the file.  
-    <br>
-    `source ~/.bash_profile` refreshes/establishes the terminals connection to the file so it will pick up the variables you added.  
-    *Note: you will need to use the source command whenever you edit the “.bash_profile” or open a new terminal.*  
-    <br>
-    You can add `your_aact_superuser` to the “.pgpass” file to save yourself having to type the password when logging into the shell. Add `hostname:port:database:<superuser_name>:<superuser_password>` to your pgpass file. If you aren’t sure how to do it follow the guidance in step 2.  
+4.  Now we want to store the environmental variables for the superuser that you created in the previous step.     That is the user you will be using within AACT to make database changes. You can store these wherever is appropriate for your system. On a Mac you can store it in your “.zshrc”. On all systems you can also store it in your “.bash_profile” or “.bashrc”.  
+    For the following commands I’m storing variables in the “.zshrc” file, change out that file in the commands for the one you use for storing variables.  
+    `echo 'export AACT_DB_SUPER_USERNAME=<your_aact_superuser>' >> ~/.zshrc`  
+    `echo 'export AACT_PASSWORD=<your_superuser_password>'  >> ~/.zshrc`   
+    `echo 'export AACT_PUBLIC_DATABASE_NAME=aact'  >> ~/.zshrc`  
+    `echo 'export AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt'  >> ~/.zshrc`  
+    `echo 'export PUBLIC_DB_USER=<your_aact_superuser>'  >> ~/.zshrc`  
+    `echo 'export PUBLIC_DB_PASS=<your_superuser_password>'  >> ~/.zshrc`    
+  
+    `source ~/.zshrc` to load the variables into the terminal session.  
+    
+    Depending on where you store the variables you may need to call `source` on that file each time you open a new terminal. This is not necessary for “.zshrc”.   
 
 5.  Clone this repo: `git clone git@github.com:ctti-clinicaltrials/aact.git`  
     Note: Cloning with a ssh url requires that your local ssh key is saved to Github. The key verifies your permission to push and pull so you won't have to log in. If you haven't saved your ssh key to Github use the html url instead when cloning.  
@@ -94,6 +86,11 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
 7.  Install a ruby version manager like rbenv, then install Ruby 2.6.2  
 
 8.  Bundle install  
+    The pg gem (used by AACT) may have trouble finding your PostgreSQL installation. If not, skip this step.  
+    For Mac you can direct it to the right location location by adding  
+    `echo ‘export PATH=$PATH:/Library/PostgreSQL/x.y/bin’  >> ~/.zshrc` change x.y to the version number of your PostgreSQL installation.  
+    Example: `export PATH=$PATH:/Library/PostgreSQL/13/bin`  
+    https://wikimatze.de/installing-postgresql-gem-under-ubuntu-and-mac/  
 
 9.  Use the "connections.yml.example" file and copy it to the file "connnections.yml" and just update what needs to be updated for the local environment.
     In the terminal, type `cp connections.yml.example connections.yml`.
@@ -105,6 +102,10 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     `bin/rake db:migrate`  
     `bin/rake db:migrate RAILS_ENV=test`  
 
+11. Grant read_only privileges  
+    `bin/rake grant:db_privs:run`  
+    `bin/rake grant:db_privs:run RAILS_ENV=test`  
+
 <br>
 <br>
 
@@ -115,12 +116,16 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
 ## Populating the Database
 
 The seed files are out of date so **DO NOT** call `db:seed`. Instead use the custom rake tasks.
-These are your options:
-* `bin/rake db:restore_from_file[<path_to_file>,<database_name>]` *this method is currently not working*   
-  For this option go to https://aact.ctti-clinicaltrials.org/snapshots and download a copy of the database. Give this task the path to the file you downloaded and it will upzip it before using it to populate the database.  
+These are your options: 
+* `bin/rake db:restore_from_file[<path_to_file>,<database_name>]`   
+  For this option go to https://aact.ctti-clinicaltrials.org/snapshots and download a copy of the database. Unzip the snapshot folder.  
+  The file path will likely look like: `~/Downloads/<unzipped_snapshot_folder>/postgres_data.dmp`  
+  Example: `~/Downloads/20210906_clinical_trials/postgres_data.dmp`.  
+  Give this task the path to the postgres_data.dmp file and it will use it to populate the database.  
+  Example: `bin/rake "db:restore_from_file[~/Downloads/20210906_clinical_trials/postgres_data.dmp,aact]"`  
 * `bin/rake db:restore_from_url[<url>,<database_name>]`  
-  For this option go to https://aact.ctti-clinicaltrials.org/snapshots and copy the link for one of the database copies. Give this task the url you copied and it will download the file, upzip it, and use it to populate the database.  
-    *Note: the following rake tasks take a very long time to run*  
+  For this option go to https://aact.ctti-clinicaltrials.org/snapshots and copy the link for one of the database copies. Give this task the url you copied and it will download the file, unzip it, and use it to populate the database.  
+    *Note: the rake tasks below take a very long time to run. You should not set full_featured to true if working locally.*  
 * `bin/rake db:load[<days_back>,<event_type>,<full_featured>]`  
   The days back is an integer, the event_type only takes "full" or "incremental", full_featured is a boolean. You do not have to give it any parameters. If you have no studies it will populate your database with all the studies.  
 
