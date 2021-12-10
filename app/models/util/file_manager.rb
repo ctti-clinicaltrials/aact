@@ -21,7 +21,13 @@ module Util
       FileUtils.mkdir_p "#{root_dir}/other"
       FileUtils.mkdir_p "#{root_dir}/xml_downloads"
       FileUtils.mkdir_p "#{root_dir}/exported_files/covid-19"
-      FileUtils.mkdir_p "#{root_dir}/beta_differences"
+      FileUtils.mkdir_p "#{root_dir}/differences/single-row"
+      FileUtils.mkdir_p "#{root_dir}/differences/study_statistics"
+       #archive folders
+       FileUtils.mkdir_p "#{root_dir}/ctgov_archive_static_db_copies/daily"
+       FileUtils.mkdir_p "#{root_dir}/ctgov_archive_static_db_copies/monthly"
+       FileUtils.mkdir_p "#{root_dir}/ctgov_archive_exported_files/daily"
+       FileUtils.mkdir_p "#{root_dir}/ctgov_archive_exported_files/monthly"
     end
 
     def nlm_protocol_data_url
@@ -32,32 +38,32 @@ module Util
       "https://prsinfo.clinicaltrials.gov/results_definitions.html"
     end
 
-    def static_copies_directory
+    def base_folder(schema = 'ctgov')
+      return"#{root_dir}/ctgov_archive_" if schema =~ /archive/
+        
+      return "#{root_dir}/"
+    end
+
+    def static_copies_directory(schema = 'ctgov')
+      folder = "#{base_folder(schema)}static_db_copies" 
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{root_dir}/static_db_copies/monthly"
+        "#{folder}/monthly"
       else
-        "#{root_dir}/static_db_copies/daily"
+        "#{folder}/daily"
       end
     end
 
-    def flat_files_directory
+    def flat_files_directory(schema='')
+      folder = "#{base_folder(schema)}exported_files" 
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{root_dir}/exported_files/monthly"
+        "#{folder}/monthly"
       else
-        "#{root_dir}/exported_files/daily"
+        "#{folder}/daily"
       end
     end
 
-    def pg_dump_file(schema='')
-      if schema == 'beta'
-        "#{root_dir}/tmp/beta_postgres.dmp"
-      else
-        "#{root_dir}/tmp/postgres.dmp"
-      end
-    end
-
-    def pg_beta_dump_file
-      "#{root_dir}/tmp/beta_postgres.dmp"
+    def pg_dump_file
+      "#{root_dir}/tmp/postgres.dmp"
     end
 
     def dump_directory
@@ -76,8 +82,8 @@ module Util
       "#{root_dir}/exported_files/covid-19"
     end
 
-    def beta_differences_directory
-      "#{root_dir}/beta_differences"
+    def differences_directory
+      "#{root_dir}/differences/single-row"
     end
 
     def admin_schema_diagram
@@ -102,6 +108,10 @@ module Util
 
     def default_mesh_headings
       "#{Rails.public_path}/mesh/mesh_headings.txt"
+    end
+
+    def study_statistics_directory
+      "#{root_dir}/differences/study_statistics"
     end
 
     def default_data_definitions
@@ -183,7 +193,8 @@ module Util
       return day == '01'
     end
 
-    def save_static_copy
+    def save_static_copy(schema='ctgov')
+
       nlm_protocol_file         = make_file_from_website("nlm_protocol_definitions.html", nlm_protocol_data_url)
       nlm_results_file          = make_file_from_website("nlm_results_definitions.html", nlm_results_data_url)
 
@@ -195,8 +206,10 @@ module Util
       files_to_zip['postgres_data.dmp']             = File.open(pg_dump_file)         if File.exists?(pg_dump_file)
       files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
       files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
-
-      zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
+      
+      folders = static_copies_directory(schema)
+      zip_file_name="#{folders}/#{date_stamp}_clinical_trials.zip"
+     
       File.delete(zip_file_name) if File.exist?(zip_file_name)
         Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
           files_to_zip.each { |entry|

@@ -7,29 +7,10 @@ namespace :db do
     Util::Updater.new(args).run
   end
 
-  task :beta_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
-    `bundle exec rake log:clear`
-    updater = Util::Updater.new(args.to_h.merge(schema: 'beta'))
-    updater.execute
-    # puts StudyJsonRecord.comparison
-  end
-
-  task :both_load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
-    `bundle exec rake log:clear`
-    updater = Util::Updater.new(schema: 'normal')
-    updater.execute
-
-    updater = Util::Updater.new(schema: 'beta')
-    updater.execute
-  end
-
   task :loop do
     loop do
       if Time.now.hour == 4
-        updater = Util::Updater.new(schema: 'normal')
-        updater.execute
-
-        updater = Util::Updater.new(schema: 'beta')
+        updater = Util::Updater.new(schema: 'ctgov')
         updater.execute
       end
       sleep 60
@@ -50,14 +31,12 @@ namespace :db do
   end
 
   desc 'update a single nct id'
-  task :load_study, [:nct_id, :schema] => :environment do |t, args|
-    # the schema options are either ctgov or beta
-    Util::Updater.new(schema: args[:schema]).load_study(args[:nct_id])
+  task :load_study, [:nct_id] => :environment do |t, args|
+    Util::Updater.new.load_study(args[:nct_id])
   end
 
   desc 'update a multiple nct ids'
-  task :load_multiple_studies, [:nct_id, :schema] => :environment do |t, args|
-    # the schema options are either ctgov or beta
-    Util::Updater.new(schema: args[:schema]).load_multiple_studies(args[:nct_id])
+  task :load_multiple_studies, [:nct_id] => :environment do |t, args|
+    Util::Updater.new.load_multiple_studies(args[:nct_id])
   end
 end

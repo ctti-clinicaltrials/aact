@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :verifier do
+    
+  end
+
   factory :study_search do
 
   end
