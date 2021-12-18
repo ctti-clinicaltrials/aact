@@ -252,7 +252,7 @@ module Util
       }
     end
 
-    def remove_constrains
+    def remove_constraints
       Util::DbManager.loadable_tables.each {|table_name|
         # remove foreign key that links most tables to Studies table via the NCT ID
         begin
