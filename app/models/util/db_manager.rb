@@ -48,7 +48,14 @@ module Util
     # 3. restore teh db from file
     # 4. verify the study count (permissions are not granted again to prevent bad data from being used)
     # 5. grant connection permissions again
-    def restore_database(schema_type, connection, filename)
+    def restore_database(schema, connection, filename)
+      if schema =~ /beta/
+        schema = 'ctgov_beta'
+      elsif schema =~ /archive/
+        schema = 'ctgov_archive'
+      else
+        schema = 'ctgov'
+      end
       config = connection.instance_variable_get('@config')
       host, port, username, database, password = config[:host], config[:port], config[:username], config[:database], config[:password]
 
@@ -57,7 +64,7 @@ module Util
       connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{database}' AND usename <> '#{username}'")
 
       # drop the schema
-      log "  dropping #{schema} schema in #{host}:#{port}/#{database} database..."
+      log "  dropping in #{host}:#{port}/#{database} database..."
       begin
         connection.execute("DROP SCHEMA #{schema} CASCADE;")
       rescue ActiveRecord::StatementInvalid => e
@@ -111,9 +118,9 @@ module Util
       con.execute("DELETE FROM support.study_xml_records WHERE nct_id IN (#{ids})")
     end
 
-    def public_study_count(schema)
+    def public_study_count
       begin
-        public_connection(schema).execute('select count(*) from studies;').first['count'].to_i
+        public_connection.execute('select count(*) from studies;').first['count'].to_i
       rescue
         return 0
       end
@@ -208,7 +215,7 @@ module Util
           migration.add_foreign_key child_table,  parent_table, column: child_column, primary_key: parent_column, name: "#{child_table}_#{child_column}_fkey"
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
       }
     end
@@ -220,7 +227,7 @@ module Util
           con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
 
         con.indexes(table_name).each{|index|
@@ -228,7 +235,7 @@ module Util
             migration.remove_index(index.table, index.columns) if !should_keep_index?(index) and migration.index_exists?(index.table, index.columns)
           rescue => e
             log(e)
-            event.add_problem("#{Time.zone.now}: #{e}")
+            event.add_problem("#{Time.zone.now}: #{e}") if event
           end
         }
       }
@@ -240,7 +247,7 @@ module Util
           con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
       }
     end
@@ -252,7 +259,7 @@ module Util
           con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
       }
 
@@ -263,7 +270,7 @@ module Util
           con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
         rescue => e
           log(e)
-          event.add_problem("#{Time.zone.now}: #{e}")
+          event.add_problem("#{Time.zone.now}: #{e}") if event
         end
       }
     end
@@ -283,6 +290,7 @@ module Util
         study_json_records
         use_cases
         use_case_attachments
+        verifiers
       )
       table_names=con.tables.reject{|table|blacklist.include?(table)}
     end

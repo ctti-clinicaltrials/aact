@@ -232,6 +232,7 @@ module Util
                  end
         finalize_load if status != false
       rescue StandardError => e
+        Airbrake.notify(e)
         begin
           msg = "#{e.message} (#{e.class} #{e.backtrace}"
           log("#{@load_event.event_type} load failed in run: #{msg}")
@@ -247,17 +248,18 @@ module Util
     end
 
     def full
-      if should_restart?
-        log('restarting full load...')
-      else
-        log('begin full load ...')
-        StudyJsonRecord.full
-      end
-      truncate_tables unless should_restart?
-      remove_indexes_and_constraints # Index significantly slow the load process. Will be re-created after data loaded.
-      study_counts[:should_add] = Support::StudyXmlRecord.not_yet_loaded.count
-      study_counts[:should_change] = 0
-      @client.populate_studies
+      start_time=Time.zone.now
+      log("storing study statistics data from ClinicalTrials.gov...")
+      verifier = Verifier.create(source: ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study"))
+      
+      log("begin full load, Start Time: #{start_time}...")
+      StudyJsonRecord.full
+      log("took #{time_ago_in_words(start_time)}")
+      
+      log("verififing study statistics match the aact database...")
+      verifier.verify(schema)
+      verifier.write_data_to_file(schema)
+
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
     end
@@ -296,7 +298,6 @@ module Util
       log('finalizing load...')
 
       load_event.log('add indexes and constraints..')
-      add_indexes_and_constraints if params[:event_type] == 'full'
 
       load_event.log('execute study search...')
       days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
@@ -308,9 +309,6 @@ module Util
         load_event.log('set downcase mesh terms...')
         set_downcase_terms
       end
-
-      load_event.log('populate admin tables...')
-      # populate_admin_tables
 
       load_event.log('run sanity checks...')
       load_event.run_sanity_checks
@@ -332,8 +330,6 @@ module Util
 
       load_event.log('create flat files...')
       create_flat_files(schema)
-
-      # Admin::PublicAnnouncement.clear_load_message
     end
 
     def remove_indexes_and_constraints
@@ -394,7 +390,7 @@ module Util
 
     def take_snapshot(schema='ctgov')
       log('dumping database...')
-      db_mgr.dump_database(schema)
+      db_mgr.dump_database
 
       log('creating zipfile of database...')
       Util::FileManager.new.save_static_copy(schema)

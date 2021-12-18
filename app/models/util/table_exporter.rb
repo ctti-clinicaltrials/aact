@@ -6,7 +6,6 @@ module Util
       @schema = schema
       @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
       @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export.zip"
-      @connection   = ActiveRecord::Base.connection.raw_connection
       @table_names  = tables
       create_temp_dir_if_none_exists!
     end
@@ -51,8 +50,9 @@ module Util
 
     def export_table_to_csv(file, file_name, path, delimiter)
       table = File.basename(file_name, delimiter == ',' ? '.csv' : '.txt')
-      @connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
-        while row = @connection.get_copy_data
+      connection  = ActiveRecord::Base.connection.raw_connection
+      connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
+        while row = connection.get_copy_data
           # convert all \n to ~.  Then when you write to the file, convert last ~ back to \n
           # to prevent it from concatenating all rows into one big long string
           fixed_row=row.gsub(/\"\"/, '').gsub(/\n\s/, '~').gsub(/\n/, '~')
