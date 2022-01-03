@@ -59,10 +59,14 @@ class StudySearch < ActiveRecord::Base
 
   def self.execute(days_back=2)
     queries = all
-    queries.each do |query|
-      print "running query group: #{query.grouping}..."
-      query.load_update(days_back)
-      puts "group is done"
+    begin
+      queries.each do |query|
+        print "running query group: #{query.grouping}..."
+        query.load_update(days_back)
+        puts "group is done"
+      end
+    rescue => e
+      Airbrake.notify(e)
     end
   end
 
