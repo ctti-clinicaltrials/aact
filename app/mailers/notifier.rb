@@ -5,12 +5,12 @@ class Notifier < ApplicationMailer
     }
   end
 
-  def send_msg(schema, email_addr, subject, body)
+     def send_msg(schema, email_addr, subject, event)
     db = Util::DbManager.new
     @ctgov_count = ClinicalTrialsApi.number_of_studies
-    @public_study_count = db.public_study_count
-    @body = body
+    @event = event
     @schema = schema
+    @body = event.email_message
     mail(to: email_addr, subject: subject, from: 'ctti@duke.edu')
   end
 end
