@@ -914,6 +914,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def outcomes_data
+    #back
     return unless @results_section
 
     outcome_measures = @results_section.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
@@ -921,6 +922,9 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     outcome_measures.each do |outcome_measure|
+      outcome_group_list = key_check(outcome_measure['OutcomeGroupList'])
+      outcome_groups = outcome_group_list['OutcomeGroup'] || []
+      outcome_result_groups = StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
       collection << {
                       outcome_measure: {
                                         nct_id: nct_id,
@@ -938,7 +942,8 @@ class StudyJsonRecord < ActiveRecord::Base
                                         },
                       outcome_counts: outcome_counts_data(outcome_measure),
                       outcome_measurements: outcome_measurements_data(outcome_measure),
-                      outcome_analyses: outcome_analyses_data(outcome_measure)
+                      outcome_analyses: outcome_analyses_data(outcome_measure),
+                      result_groups: outcome_result_groups
                     }
     end
     return if collection.empty?
@@ -946,19 +951,19 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def outcome_result_groups_data
-    outcome_measures = @results_section.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
-    return [] unless outcome_measures
+  # def outcome_result_groups_data
+  #   outcome_measures = @results_section.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
+  #   return [] unless outcome_measures
 
-    collection = []
+  #   collection = []
 
-    outcome_measures.each do |measure|
-      outcome_group_list = key_check(measure['OutcomeGroupList'])
-      outcome_groups = outcome_group_list['OutcomeGroup'] || []
-      collection << StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
-    end
-    collection.flatten.uniq
-  end
+  #   outcome_measures.each do |measure|
+  #     outcome_group_list = key_check(measure['OutcomeGroupList'])
+  #     outcome_groups = outcome_group_list['OutcomeGroup'] || []
+  #     collection << StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
+  #   end
+  #   collection.flatten.uniq
+  # end
 
   def self.result_groups(groups, key_name='Flow', type='Participant Flow', nct_id)
     collection = []
@@ -979,7 +984,8 @@ class StudyJsonRecord < ActiveRecord::Base
   def all_result_groups
     return [] unless @results_section
 
-    baseline_result_groups_data | flow_result_groups_data | outcome_result_groups_data | reported_events_result_groups_data
+    baseline_result_groups_data | flow_result_groups_data | reported_events_result_groups_data
+    # baseline_result_groups_data | flow_result_groups_data | outcome_result_groups_data | reported_events_result_groups_data
   end
 
   def outcome_counts_data(outcome_measure)
@@ -1674,6 +1680,12 @@ class StudyJsonRecord < ActiveRecord::Base
     name_of_model.safe_constantize.import(group, validate: false)
   end
 
+  def match_result_group(result_groups, )
+    #back
+    saved_result_groups = save_result_groups(groups)
+    indexed =  saved_result_groups.index_by(&:ctgov_group_code) if saved_result_groups
+  end
+
   def save_facilities(facilities)
     return unless facilities
 
@@ -1834,5 +1846,76 @@ class StudyJsonRecord < ActiveRecord::Base
       ErrorLog.error(msg)
       Airbrake.notify(error)
     end
+  end
+
+  def self.studies_batch_counts
+    # Set the schema to ctgov
+    StudyJsonRecord.set_table_schema('ctgov')
+    ctgov_collection = Hash.new {}
+
+    # Call find in batches on all the Study (group of 1000 studies)
+    ctgov_studies = Study.all.find_in_batches do |studies|
+      # Start a loop to collect the counts for each of the 1000 studies from ctgov
+      studies.each do |study|
+        ctgov_collection[study.nct_id] = data_counts(study)
+      end
+
+      # Switch the schema to ctgov_beta
+      StudyJsonRecord.set_table_schema('ctgov_beta')
+
+      # Use the nct_ids from the 1000 ctgov studies to find the matching studies in ctgov_beta
+      ctgov_beta_studies = Study.where(nct_id: studies.pluck(:nct_id))
+      ctgov_beta_collection = Hash.new {}
+
+      # Start a loop to collect the counts for each of the 1000 studies from ctgov_beta
+      ctgov_beta_studies.each do |study|
+        ctgov_beta_collection[study.nct_id] = data_counts(study)
+      end
+
+      # Call data_differences to compare the study count differences of ctgov and ctgov_beta
+      data_differences(ctgov_collection, ctgov_beta_collection)
+
+      # Switch the schema back to ctgov to compare the next 1000 studies
+      StudyJsonRecord.set_table_schema('ctgov')
+    end
+  end
+
+  def self.data_differences(ctgov_hash, ctgov_beta_hash)
+    differences = Hash.new {}
+    start_time = Time.zone.now
+    # Print messages before starting data_differences of ctgov and ctgov_beta along with the start time
+    puts '**********   Starting data_differences for ctgov and ctgov_beta   **********'
+    puts "Start Time: #{start_time}"
+
+    # Create CSV directory and file to store ctgov and ctgov_beta count differences
+    file = "#{Util::FileManager.new.beta_differences_directory}/nct_id_count_differences.csv"
+    headers = ["NCT_ID", "Model", "Beta Count", "Regular Count"]
+    begin
+      CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|
+        # Loop though the ctgov hash and use the key (like 'NCT123') to find the corresponding study in the ctgov_beta hash
+        ctgov_hash.each_with_index do |(nct_id_key, counts_value), index|
+          # Print message showing a countdown of studies left to go when looping through ctgov and ctgov_beta hashes
+          puts "**********   Countdown of total studies left to go: #{ctgov_hash.size-index}\n"
+          # Loop through each study data counts and compare the differences of the two collections
+          counts_value.each do |study_name, regular_counts|
+            # find the corresponding ctgov beta count from the ctgov_beta hash
+            ctgov_beta_counts = ctgov_beta_hash.dig(nct_id_key, study_name)
+            # if there is a difference between the two studies counts, save it to the CSV file
+            if regular_counts != ctgov_beta_counts
+              csv <<  [nct_id_key, study_name, ctgov_beta_counts, regular_counts]
+            end
+          end
+        end
+      end
+    # Log any errors and notify airbrake
+    rescue Exception => error
+          msg="#{error.message} (#{error.class} #{error.backtrace}"
+          ErrorLog.error(msg)
+          Airbrake.notify(error)
+    end
+    # Print messages showing the end time and total time elapsed for data_differences of ctgov_beta and ctgov counts
+    end_time = Time.zone.now
+    puts "End Time: #{end_time}"
+    puts "**********   Total Time elapsed for data_differences: #{end_time - start_time} seconds   **********"
   end
 end

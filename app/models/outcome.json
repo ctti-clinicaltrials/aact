@@ -1,0 +1,531 @@
+{"OutcomeMeasuresModule":{
+  "OutcomeMeasureList":{
+    "OutcomeMeasure":[
+      {
+        "OutcomeMeasureType":"Primary",
+        "OutcomeMeasureTitle":"First Occurrence of a Major Cardiovascular Event (MCE); Specifically Nonfatal Heart Attack, Nonfatal Stroke, or Cardiovascular Death (Measured Throughout the Study) in the Glycemia Trial.",
+        "OutcomeMeasureDescription":"Time to first occurrence of nonfatal myocardial infarction, nonfatal stroke, or cardiovascular death. This was the primary outcome measure in all three trials: Glycemia (all participants), Blood Pressure (subgroup of participants not in Lipid Trial), and Lipid (subgroup of participants not in Blood Pressure Trial).\n\nIn the Glycemia Trial, a finding of higher mortality in the intensive arm group led to an early discontinuation of therapy after a mean of 3.5 years of follow-up. Intensive arm participants were transitioned to standard arm strategy over a period of 0.2 year and followed for an additional 1.2 years to the planned end of the Glycemia Trial while participating in one of the other sub-trials (BP or Lipid) to their planned completion.",
+        "OutcomeMeasurePopulationDescription":"The population analyzed included all participants randomized and was performed by intention to treat with right-censoring of participants who did not complete follow-up prior to occurrence of MCE.",
+        "OutcomeMeasureReportingStatus":"Posted",
+        "OutcomeMeasureParamType":"Number",
+        "OutcomeMeasureUnitOfMeasure":"participants",
+        "OutcomeMeasureTimeFrame":"4.9 years",
+        "OutcomeGroupList":{
+          "OutcomeGroup":[
+            {
+              "OutcomeGroupId":"OG000",
+              "OutcomeGroupTitle":"Glycemia Trial: Intensive Control",
+              "OutcomeGroupDescription":"Open label administration of oral anti-hyperglycemic agents and/or insulin in combination with dietary/lifestyle advice as needed to achieve glycated hemoglobin (HbA1c) levels <6.0%. Anti-hyperglycemic agents include multiple drugs including insulins and oral anti-hyperglycemic agents as needed to reach Glycemia Trial arm-specific goals."
+            },{
+              "OutcomeGroupId":"OG001",
+              "OutcomeGroupTitle":"Glycemia Trial: Standard Control",
+              "OutcomeGroupDescription":"Open label administration of oral anti-hyperglycemic agents and/or insulin in combination with dietary/lifestyle advice as needed to achieve glycated hemoglobin (HbA1c) levels of 7.0 to 7.9%. Anti-hyperglycemic agents include multiple drugs including insulins and oral anti-hyperglycemic agents as needed to reach Glycemia Trial arm-specific goals."
+            }
+          ]
+        },
+        "OutcomeDenomList":{
+          "OutcomeDenom":[
+            {
+              "OutcomeDenomUnits":"Participants",
+              "OutcomeDenomCountList":{
+                "OutcomeDenomCount":[
+                  {
+                    "OutcomeDenomCountGroupId":"OG000",
+                    "OutcomeDenomCountValue":"5128"
+                  },{
+                    "OutcomeDenomCountGroupId":"OG001",
+                    "OutcomeDenomCountValue":"5123"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeClassList":{
+          "OutcomeClass":[
+            {
+              "OutcomeCategoryList":{
+                "OutcomeCategory":[
+                  {
+                    "OutcomeMeasurementList":{
+                      "OutcomeMeasurement":[
+                        {
+                          "OutcomeMeasurementGroupId":"OG000",
+                          "OutcomeMeasurementValue":"503"
+                        },{
+                          "OutcomeMeasurementGroupId":"OG001",
+                          "OutcomeMeasurementValue":"543"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeAnalysisList":{
+          "OutcomeAnalysis":[
+            {
+              "OutcomeAnalysisGroupIdList":{
+                "OutcomeAnalysisGroupId":[
+                  "OG000",
+                  "OG001"
+                ]
+              },
+              "OutcomeAnalysisGroupDescription":"Adjustment performed for the following pre-specified factors: sub-trial assignment (Blood Pressure Trial or Lipid Trial), assignment to intensive BP group in BP Trial, assignment to fenofibrate group in Lipid Trial, the seven clinical center networks, and presence of clinical cardiovascular disease at baseline.",
+              "OutcomeAnalysisTestedNonInferiority":"No",
+              "OutcomeAnalysisNonInferiorityType":"Superiority or Other",
+              "OutcomeAnalysisPValue":"0.12",
+              "OutcomeAnalysisPValueComment":"P-value presented is not adjusted for multiple comparisons. A priori significance level was 0.05.",
+              "OutcomeAnalysisStatisticalMethod":"Regression, Cox",
+              "OutcomeAnalysisParamType":"Hazard Ratio (HR)",
+              "OutcomeAnalysisParamValue":"0.91",
+              "OutcomeAnalysisCIPctValue":"95",
+              "OutcomeAnalysisCINumSides":"2-Sided",
+              "OutcomeAnalysisCILowerLimit":"0.81",
+              "OutcomeAnalysisCIUpperLimit":"1.03"
+            }
+          ]
+        }
+      },{
+        "OutcomeMeasureType":"Secondary",
+        "OutcomeMeasureTitle":"Death From Any Cause in the Glycemia Trial.",
+        "OutcomeMeasureDescription":"Time to death from any cause. Secondary measure for Glycemia Trial.\n\nA finding of higher mortality in the intensive-therapy group led to an early discontinuation of therapy after a mean of 3.5 years of follow-up. Intensive arm participants were transitioned to standard arm strategy over a period of 0.2 year and followed for an additional 1.2 years to the planned end of the Glycemia Trial while participating in one of the other sub-trials (BP or Lipid).",
+        "OutcomeMeasurePopulationDescription":"The population analyzed included all participants randomized and was performed by intention to treat with right-censoring of participants who did not complete follow-up prior to death.",
+        "OutcomeMeasureReportingStatus":"Posted",
+        "OutcomeMeasureParamType":"Number",
+        "OutcomeMeasureUnitOfMeasure":"participants",
+        "OutcomeMeasureTimeFrame":"4.9 years",
+        "OutcomeGroupList":{
+          "OutcomeGroup":[
+            {
+              "OutcomeGroupId":"OG000",
+              "OutcomeGroupTitle":"Glycemia Trial: Intensive Control",
+              "OutcomeGroupDescription":"Open label administration of oral anti-hyperglycemic agents and/or insulin in combination with dietary/lifestyle advice as needed to achieve glycated hemoglobin (HbA1c) levels <6.0%. Anti-hyperglycemic agents include multiple drugs including insulins and oral anti-hyperglycemic agents as needed to reach Glycemia Trial arm-specific goals."
+            },{
+              "OutcomeGroupId":"OG001",
+              "OutcomeGroupTitle":"Glycemia Trial: Standard Control",
+              "OutcomeGroupDescription":"Open label administration of oral anti-hyperglycemic agents and/or insulin in combination with dietary/lifestyle advice as needed to achieve glycated hemoglobin (HbA1c) levels of 7.0 to 7.9%. Anti-hyperglycemic agents include multiple drugs including insulins and oral anti-hyperglycemic agents as needed to reach Glycemia Trial arm-specific goals."
+            }
+          ]
+        },
+        "OutcomeDenomList":{
+          "OutcomeDenom":[
+            {
+              "OutcomeDenomUnits":"Participants",
+              "OutcomeDenomCountList":{
+                "OutcomeDenomCount":[
+                  {
+                    "OutcomeDenomCountGroupId":"OG000",
+                    "OutcomeDenomCountValue":"5128"
+                  },{
+                    "OutcomeDenomCountGroupId":"OG001",
+                    "OutcomeDenomCountValue":"5123"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeClassList":{
+          "OutcomeClass":[
+            {
+              "OutcomeCategoryList":{
+                "OutcomeCategory":[
+                  {
+                    "OutcomeMeasurementList":{
+                      "OutcomeMeasurement":[
+                        {
+                          "OutcomeMeasurementGroupId":"OG000",
+                          "OutcomeMeasurementValue":"391"
+                        },{
+                          "OutcomeMeasurementGroupId":"OG001",
+                          "OutcomeMeasurementValue":"327"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeAnalysisList":{
+          "OutcomeAnalysis":[
+            {
+              "OutcomeAnalysisGroupIdList":{
+                "OutcomeAnalysisGroupId":[
+                  "OG000",
+                  "OG001"
+                ]
+              },
+              "OutcomeAnalysisGroupDescription":"Adjustment performed for the following pre-specified factors: sub-trial assignment (Blood Pressure Trial or Lipid Trial), assignment to intensive BP group in BP Trial, assignment to fenofibrate group in Lipid Trial, the seven clinical center networks, and presence of clinical cardiovascular disease at baseline.",
+              "OutcomeAnalysisTestedNonInferiority":"No",
+              "OutcomeAnalysisNonInferiorityType":"Superiority or Other",
+              "OutcomeAnalysisPValue":"0.02",
+              "OutcomeAnalysisPValueComment":"P-value presented is not adjusted for multiple comparisons. A priori significance level was 0.05.",
+              "OutcomeAnalysisStatisticalMethod":"Regression, Cox",
+              "OutcomeAnalysisParamType":"Hazard Ratio (HR)",
+              "OutcomeAnalysisParamValue":"1.19",
+              "OutcomeAnalysisCIPctValue":"95",
+              "OutcomeAnalysisCINumSides":"2-Sided",
+              "OutcomeAnalysisCILowerLimit":"1.03",
+              "OutcomeAnalysisCIUpperLimit":"1.38"
+            }
+          ]
+        }
+      },{
+        "OutcomeMeasureType":"Primary",
+        "OutcomeMeasureTitle":"First Occurrence of Major Cardiovascular Event (MCE) in the Blood Pressure Trial.",
+        "OutcomeMeasureDescription":"Time to first occurrence of nonfatal myocardial infarction, nonfatal stroke, or cardiovascular death. Primary outcome for Blood Pressure Trial.",
+        "OutcomeMeasurePopulationDescription":"The population analyzed included all participants randomized and was performed by intention to treat with right-censoring of participants who did not complete follow-up prior to occurrence of MCE.",
+        "OutcomeMeasureReportingStatus":"Posted",
+        "OutcomeMeasureParamType":"Number",
+        "OutcomeMeasureUnitOfMeasure":"participants",
+        "OutcomeMeasureTimeFrame":"4.7 years",
+        "OutcomeGroupList":{
+          "OutcomeGroup":[
+            {
+              "OutcomeGroupId":"OG000",
+              "OutcomeGroupTitle":"BP Trial: Intensive Control",
+              "OutcomeGroupDescription":"Open label administration of anti-hypertensive agents to reduce and maintain systolic blood pressure (SBP) level to <120 mmHg. Anti-hypertensive agents include multiple anti-hypertensive agents as needed to reach Blood Pressure Trial arm-specific goals."
+            },{
+              "OutcomeGroupId":"OG001",
+              "OutcomeGroupTitle":"BP Trial: Standard Control",
+              "OutcomeGroupDescription":"Open label administration of multiple anti-hypertensive agents to maintain SBP level <140 mm Hg. Anti-hypertensive agents multiple anti-hypertensive agents as needed to reach Blood Pressure Trial arm-specific goals."
+            }
+          ]
+        },
+        "OutcomeDenomList":{
+          "OutcomeDenom":[
+            {
+              "OutcomeDenomUnits":"Participants",
+              "OutcomeDenomCountList":{
+                "OutcomeDenomCount":[
+                  {
+                    "OutcomeDenomCountGroupId":"OG000",
+                    "OutcomeDenomCountValue":"2363"
+                  },{
+                    "OutcomeDenomCountGroupId":"OG001",
+                    "OutcomeDenomCountValue":"2371"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeClassList":{
+          "OutcomeClass":[
+            {
+              "OutcomeCategoryList":{
+                "OutcomeCategory":[
+                  {
+                    "OutcomeMeasurementList":{
+                      "OutcomeMeasurement":[
+                        {
+                          "OutcomeMeasurementGroupId":"OG000",
+                          "OutcomeMeasurementValue":"208"
+                        },{
+                          "OutcomeMeasurementGroupId":"OG001",
+                          "OutcomeMeasurementValue":"237"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeAnalysisList":{
+          "OutcomeAnalysis":[
+            {
+              "OutcomeAnalysisGroupIdList":{
+                "OutcomeAnalysisGroupId":[
+                  "OG000",
+                  "OG001"
+                ]
+              },
+              "OutcomeAnalysisGroupDescription":"Recruitment for the Blood PressureTrial was designed to enroll 4200 participant to have 94% power to detect a 20% reduction in the rate of MCE for patients in the intensive-therapy group as compared with the standard-therapy group, assuming a two-sided alpha level of 0.05, a primary-outcome rate of 4% per year in the standard-therapy group, and a planned average follow-up of approximately 5.6 years.",
+              "OutcomeAnalysisTestedNonInferiority":"No",
+              "OutcomeAnalysisNonInferiorityType":"Superiority or Other",
+              "OutcomeAnalysisPValue":"0.20",
+              "OutcomeAnalysisPValueComment":"P-value is adjusted for interim monitoring. A priori significance level was 0.05.",
+              "OutcomeAnalysisStatisticalMethod":"Regression, Cox",
+              "OutcomeAnalysisStatisticalComment":"Adjustment for the seven clinical center networks and presence of clinical cardiovascular disease at baseline as pre-specified in the study protocol.",
+              "OutcomeAnalysisParamType":"Hazard Ratio (HR)",
+              "OutcomeAnalysisParamValue":"0.88",
+              "OutcomeAnalysisCIPctValue":"95",
+              "OutcomeAnalysisCINumSides":"2-Sided",
+              "OutcomeAnalysisCILowerLimit":"0.73",
+              "OutcomeAnalysisCIUpperLimit":"1.06"
+            }
+          ]
+        }
+      },{
+        "OutcomeMeasureType":"Secondary",
+        "OutcomeMeasureTitle":"Stroke in the Blood Pressure Trial.",
+        "OutcomeMeasureDescription":"Time to first occurrence of nonfatal or fatal stroke among participants in the BP Trial.",
+        "OutcomeMeasurePopulationDescription":"The population analyzed included all participants randomized and was performed by intention to treat with right-censoring of participants who did not complete follow-up prior to occurrence of stroke.",
+        "OutcomeMeasureReportingStatus":"Posted",
+        "OutcomeMeasureParamType":"Number",
+        "OutcomeMeasureUnitOfMeasure":"participants",
+        "OutcomeMeasureTimeFrame":"4.7 years",
+        "OutcomeGroupList":{
+          "OutcomeGroup":[
+            {
+              "OutcomeGroupId":"OG000",
+              "OutcomeGroupTitle":"BP Trial: Intensive Control",
+              "OutcomeGroupDescription":"Open label administration of anti-hypertensive agents to reduce and maintain systolic blood pressure (SBP) level to <120 mmHg. Anti-hypertensive agents include multiple anti-hypertensive medications as needed to reach Blood Pressure Trial arm-specific goals."
+            },{
+              "OutcomeGroupId":"OG001",
+              "OutcomeGroupTitle":"BP Trial: Standard Control",
+              "OutcomeGroupDescription":"Open label administration of multiple anti-hypertensive agents to maintain SBP level to <140 mm Hg. Anti-hypertensive agents include multiple anti-hypertensive medications as needed to reach Blood Pressure Trial arm-specific goals."
+            }
+          ]
+        },
+        "OutcomeDenomList":{
+          "OutcomeDenom":[
+            {
+              "OutcomeDenomUnits":"Participants",
+              "OutcomeDenomCountList":{
+                "OutcomeDenomCount":[
+                  {
+                    "OutcomeDenomCountGroupId":"OG000",
+                    "OutcomeDenomCountValue":"2363"
+                  },{
+                    "OutcomeDenomCountGroupId":"OG001",
+                    "OutcomeDenomCountValue":"2371"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeClassList":{
+          "OutcomeClass":[
+            {
+              "OutcomeCategoryList":{
+                "OutcomeCategory":[
+                  {
+                    "OutcomeMeasurementList":{
+                      "OutcomeMeasurement":[
+                        {
+                          "OutcomeMeasurementGroupId":"OG000",
+                          "OutcomeMeasurementValue":"36"
+                        },{
+                          "OutcomeMeasurementGroupId":"OG001",
+                          "OutcomeMeasurementValue":"62"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeAnalysisList":{
+          "OutcomeAnalysis":[
+            {
+              "OutcomeAnalysisGroupIdList":{
+                "OutcomeAnalysisGroupId":[
+                  "OG000",
+                  "OG001"
+                ]
+              },
+              "OutcomeAnalysisTestedNonInferiority":"No",
+              "OutcomeAnalysisNonInferiorityType":"Superiority or Other",
+              "OutcomeAnalysisPValue":"0.01",
+              "OutcomeAnalysisPValueComment":"P-value presented is not adjusted for multiple comparisons. A priori significance level was 0.05.",
+              "OutcomeAnalysisStatisticalMethod":"Regression, Cox",
+              "OutcomeAnalysisStatisticalComment":"Adjustment for the seven clinical center networks and presence of clinical cardiovascular disease at baseline as pre-specified in the study protocol.",
+              "OutcomeAnalysisParamType":"Hazard Ratio (HR)",
+              "OutcomeAnalysisParamValue":"0.59",
+              "OutcomeAnalysisCIPctValue":"95",
+              "OutcomeAnalysisCINumSides":"2-Sided",
+              "OutcomeAnalysisCILowerLimit":"0.39",
+              "OutcomeAnalysisCIUpperLimit":"0.89"
+            }
+          ]
+        }
+      },{
+        "OutcomeMeasureType":"Primary",
+        "OutcomeMeasureTitle":"First Occurrence of Major Cardiovascular Event (MCE) in the Lipid Trial.",
+        "OutcomeMeasureDescription":"Time to first occurrence of nonfatal myocardial infarction, nonfatal stroke, or cardiovascular death in Lipid Trial participants.",
+        "OutcomeMeasurePopulationDescription":"The population analyzed included all participants randomized and was performed by intention to treat with right-censoring of participants who did not complete follow-up prior to occurrence of MCE.",
+        "OutcomeMeasureReportingStatus":"Posted",
+        "OutcomeMeasureParamType":"Number",
+        "OutcomeMeasureUnitOfMeasure":"participants",
+        "OutcomeMeasureTimeFrame":"4.7 years",
+        "OutcomeGroupList":{
+          "OutcomeGroup":[
+            {
+              "OutcomeGroupId":"OG000",
+              "OutcomeGroupTitle":"Lipid Trial: Fenofibrate",
+              "OutcomeGroupDescription":"Double blind administration of 160 mg/day of fenofibrate in participants with estimated glomerular filtration rate (eGFR) ≥50 mL/min/1.73m^2 or 54 mg/day in patients with eGFR <50 mL/min/1.73m^2, in combination with open label simvastatin 20 - 40 mg/day."
+            },{
+              "OutcomeGroupId":"OG001",
+              "OutcomeGroupTitle":"Lipid Trial: Placebo",
+              "OutcomeGroupDescription":"Double blind administration of placebo matching either 160 mg/day in participants with eGFR ≥50 mL/min/1.73m^2 or 54 mg/day in participants with eGFR <50 mL/min/1.73m^2, in combination with open label simvastatin 20 - 40 mg/day."
+            }
+          ]
+        },
+        "OutcomeDenomList":{
+          "OutcomeDenom":[
+            {
+              "OutcomeDenomUnits":"Participants",
+              "OutcomeDenomCountList":{
+                "OutcomeDenomCount":[
+                  {
+                    "OutcomeDenomCountGroupId":"OG000",
+                    "OutcomeDenomCountValue":"2765"
+                  },{
+                    "OutcomeDenomCountGroupId":"OG001",
+                    "OutcomeDenomCountValue":"2753"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeClassList":{
+          "OutcomeClass":[
+            {
+              "OutcomeCategoryList":{
+                "OutcomeCategory":[
+                  {
+                    "OutcomeMeasurementList":{
+                      "OutcomeMeasurement":[
+                        {
+                          "OutcomeMeasurementGroupId":"OG000",
+                          "OutcomeMeasurementValue":"291"
+                        },{
+                          "OutcomeMeasurementGroupId":"OG001",
+                          "OutcomeMeasurementValue":"310"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeAnalysisList":{
+          "OutcomeAnalysis":[
+            {
+              "OutcomeAnalysisGroupIdList":{
+                "OutcomeAnalysisGroupId":[
+                  "OG000",
+                  "OG001"
+                ]
+              },
+              "OutcomeAnalysisGroupDescription":"Recruitment for the Glycemia Trial was designed to enroll 5800 participant to have 87% power to detect a 20% reduction in the rate of MCE for patients in the fenofibrate group as compared with the placebo group, assuming a two-sided alpha level of 0.05, a primary-outcome rate of 2.4% per year in the placebo group, and a planned average follow-up of approximately 5.6 years.",
+              "OutcomeAnalysisTestedNonInferiority":"No",
+              "OutcomeAnalysisNonInferiorityType":"Superiority or Other",
+              "OutcomeAnalysisPValue":"0.32",
+              "OutcomeAnalysisPValueComment":"P-value is adjusted for interim monitoring. A priori significance level was 0.05.",
+              "OutcomeAnalysisStatisticalMethod":"Regression, Cox",
+              "OutcomeAnalysisStatisticalComment":"Adjustment for the seven clinical center networks and presence of clinical cardiovascular disease at baseline as pre-specified in the study protocol.",
+              "OutcomeAnalysisParamType":"Hazard Ratio (HR)",
+              "OutcomeAnalysisParamValue":"0.92",
+              "OutcomeAnalysisCIPctValue":"95",
+              "OutcomeAnalysisCINumSides":"2-Sided",
+              "OutcomeAnalysisCILowerLimit":"0.79",
+              "OutcomeAnalysisCIUpperLimit":"1.08"
+            }
+          ]
+        }
+      },{
+        "OutcomeMeasureType":"Secondary",
+        "OutcomeMeasureTitle":"First Occurrence of MCE or Revascularization or Hospitalization for Congestive Heart Failure (CHF) in Lipid Trial.",
+        "OutcomeMeasureDescription":"Time to first occurrence of nonfatal myocardial infarction, nonfatal stroke, cardiovascular death, revascularization procedure or hospitalization for CHF in Lipid Trial participants.",
+        "OutcomeMeasurePopulationDescription":"The population analyzed included all participants randomized and was performed by intention to treat with right-censoring of participants who did not complete follow-up prior occurrence of event.",
+        "OutcomeMeasureReportingStatus":"Posted",
+        "OutcomeMeasureParamType":"Number",
+        "OutcomeMeasureUnitOfMeasure":"participants",
+        "OutcomeMeasureTimeFrame":"4.7 years",
+        "OutcomeGroupList":{
+          "OutcomeGroup":[
+            {
+              "OutcomeGroupId":"OG000",
+              "OutcomeGroupTitle":"Lipid Trial: Fenofibrate",
+              "OutcomeGroupDescription":"Double blind administration of 160 mg/day of fenofibrate in participants with estimated glomerular filtration rate (eGFR) ≥50 mL/min/1.73m^2 or 54 mg/day in patients with eGFR <50 mL/min/1.73m^2, in combination with open label simvastatin 20 - 40 mg/day."
+            },{
+              "OutcomeGroupId":"OG001",
+              "OutcomeGroupTitle":"Lipid Trial: Placebo",
+              "OutcomeGroupDescription":"Double blind administration of placebo matching either 160 mg/day in participants with eGFR ≥50 mL/min/1.73m^2 or 54 mg/day in participants with eGFR <50 mL/min/1.73m^2, in combination with open label simvastatin 20 - 40 mg/day."
+            }
+          ]
+        },
+        "OutcomeDenomList":{
+          "OutcomeDenom":[
+            {
+              "OutcomeDenomUnits":"Participants",
+              "OutcomeDenomCountList":{
+                "OutcomeDenomCount":[
+                  {
+                    "OutcomeDenomCountGroupId":"OG000",
+                    "OutcomeDenomCountValue":"2765"
+                  },{
+                    "OutcomeDenomCountGroupId":"OG001",
+                    "OutcomeDenomCountValue":"2753"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeClassList":{
+          "OutcomeClass":[
+            {
+              "OutcomeCategoryList":{
+                "OutcomeCategory":[
+                  {
+                    "OutcomeMeasurementList":{
+                      "OutcomeMeasurement":[
+                        {
+                          "OutcomeMeasurementGroupId":"OG000",
+                          "OutcomeMeasurementValue":"641"
+                        },{
+                          "OutcomeMeasurementGroupId":"OG001",
+                          "OutcomeMeasurementValue":"667"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "OutcomeAnalysisList":{
+          "OutcomeAnalysis":[
+            {
+              "OutcomeAnalysisGroupIdList":{
+                "OutcomeAnalysisGroupId":[
+                  "OG000",
+                  "OG001"
+                ]
+              },
+              "OutcomeAnalysisTestedNonInferiority":"No",
+              "OutcomeAnalysisNonInferiorityType":"Superiority or Other",
+              "OutcomeAnalysisPValue":"0.30",
+              "OutcomeAnalysisPValueComment":"P-value presented is not adjusted for multiple comparisons. A priori significance level was 0.05.",
+              "OutcomeAnalysisStatisticalMethod":"Regression, Cox",
+              "OutcomeAnalysisStatisticalComment":"Adjustment for the seven clinical center networks and presence of clinical cardiovascular disease at baseline as pre-specified in the study protocol.",
+              "OutcomeAnalysisParamType":"Hazard Ratio (HR)",
+              "OutcomeAnalysisParamValue":"0.94",
+              "OutcomeAnalysisCIPctValue":"95",
+              "OutcomeAnalysisCINumSides":"2-Sided",
+              "OutcomeAnalysisCILowerLimit":"0.85",
+              "OutcomeAnalysisCIUpperLimit":"1.05"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}}
