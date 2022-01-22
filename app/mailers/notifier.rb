@@ -13,4 +13,11 @@ class Notifier < ApplicationMailer
     @schema = schema
     mail(to: email_addr, subject: subject, from: 'ctti@duke.edu')
   end
+
+  def report_diff(email, link)
+    link = https://aact.ctti-clinicaltrials.org/static/differences/study_statistics/verifier_differences_ctgov.csv
+    
+    subj="Differences between ClinicalTrials.gov and AACT"
+    mail(to: email, subject: subj)
+  end
 end
