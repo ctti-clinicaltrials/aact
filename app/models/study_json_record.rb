@@ -1096,7 +1096,7 @@ class StudyJsonRecord < ActiveRecord::Base
                                           groups_description: analysis['OutcomeAnalysisGroupDescription'],
                                           other_analysis_description: analysis['OutcomeAnalysisOtherAnalysisDescription']
                                         },
-                      outcome_analysis_groups: outcome_analysis_groups_data(analysis)
+                      outcome_analysis_groups: outcome_analysis_groups_data(analysis, result_groups)
                     }
     end
     collection
@@ -1113,7 +1113,6 @@ class StudyJsonRecord < ActiveRecord::Base
       collection << {
                       nct_id: nct_id,
                       outcome_analysis_id: nil,
-                      result_group_id: nil,
                       result_group_id: result_groups[group_id].try(:id),
                       ctgov_group_code: group_id
                     }
