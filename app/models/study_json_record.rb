@@ -924,7 +924,9 @@ class StudyJsonRecord < ActiveRecord::Base
     outcome_measures.each do |outcome_measure|
       outcome_group_list = key_check(outcome_measure['OutcomeGroupList'])
       outcome_groups = outcome_group_list['OutcomeGroup'] || []
-      outcome_result_groups = StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
+      groups_data = StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
+      result_groups = ResultGroup.create(groups_data).index_by(&:ctgov_group_code) if groups_data
+
       collection << {
                       outcome_measure: {
                                         nct_id: nct_id,
@@ -940,10 +942,10 @@ class StudyJsonRecord < ActiveRecord::Base
                                         dispersion_type: outcome_measure['OutcomeMeasureDispersionType'],
                                         param_type: outcome_measure['OutcomeMeasureParamType']
                                         },
-                      outcome_counts: outcome_counts_data(outcome_measure),
-                      outcome_measurements: outcome_measurements_data(outcome_measure),
-                      outcome_analyses: outcome_analyses_data(outcome_measure),
-                      result_groups: outcome_result_groups
+                      outcome_counts: outcome_counts_data(outcome_measure, result_groups),
+                      outcome_measurements: outcome_measurements_data(outcome_measure, result_groups),
+                      outcome_analyses: outcome_analyses_data(outcome_measure,result_groups),
+                      result_groups: groups_data
                     }
     end
     return if collection.empty?
@@ -951,20 +953,20 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  # def outcome_result_groups_data
-  #   outcome_measures = @results_section.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
-  #   return [] unless outcome_measures
+  def outcome_result_groups_data
+    outcome_measures = @results_section.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
+    return [] unless outcome_measures
 
-  #   collection = []
+    collection = []
 
-  #   outcome_measures.each do |measure|
-  #     outcome_group_list = key_check(measure['OutcomeGroupList'])
-  #     outcome_groups = outcome_group_list['OutcomeGroup'] || []
-  #     collection << StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
-  #   end
-  #   collection.flatten.uniq
-  # end
-
+    outcome_measures.each do |measure|
+      outcome_group_list = key_check(measure['OutcomeGroupList'])
+      outcome_groups = outcome_group_list['OutcomeGroup'] || []
+      collection << StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
+    end
+    collection.flatten.uniq
+  end
+  
   def self.result_groups(groups, key_name='Flow', type='Participant Flow', nct_id)
     collection = []
     return collection if  groups.nil? || groups.empty?
@@ -988,7 +990,7 @@ class StudyJsonRecord < ActiveRecord::Base
     # baseline_result_groups_data | flow_result_groups_data | outcome_result_groups_data | reported_events_result_groups_data
   end
 
-  def outcome_counts_data(outcome_measure)
+  def outcome_counts_data(outcome_measure, result_groups)
     return unless outcome_measure
 
     outcome_denoms = outcome_measure.dig('OutcomeDenomList', 'OutcomeDenom')
@@ -1000,11 +1002,13 @@ class StudyJsonRecord < ActiveRecord::Base
       next unless outcome_denom_count
 
       outcome_denom_count.each do |denom_count|
+        ctgov_group_code = denom_count['OutcomeDenomCountGroupId']
+  
         collection << {
                         nct_id: nct_id,
                         outcome_id: nil,
-                        result_group_id: nil,
-                        ctgov_group_code: denom_count['OutcomeDenomCountGroupId'],
+                        result_group_id: result_groups[ctgov_group_code].try(:id),
+                        ctgov_group_code: ctgov_group_code,
                         scope: 'Measure',
                         units: denom['OutcomeDenomUnits'],
                         count: denom_count['OutcomeDenomCountValue']
@@ -1014,7 +1018,7 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def outcome_measurements_data(outcome_measure)
+  def outcome_measurements_data(outcome_measure, result_groups)
     return unless outcome_measure
 
     outcome_classes = outcome_measure.dig('OutcomeClassList', 'OutcomeClass')
@@ -1029,13 +1033,14 @@ class StudyJsonRecord < ActiveRecord::Base
       outcome_categories.each do |category|
         measurements = category.dig('OutcomeMeasurementList', 'OutcomeMeasurement')
         next unless measurements
-
+        
         measurements.each do |measure|
+            ctgov_group_code = measure['OutcomeMeasurementGroupId']
             collection << {
                             nct_id: nct_id,
                             outcome_id: nil,
-                            result_group_id: nil,
-                            ctgov_group_code: measure['OutcomeMeasurementGroupId'],
+                            result_group_id: result_groups[ctgov_group_code].try(:id),
+                            ctgov_group_code: ctgov_group_code,
                             classification: outcome_class['OutcomeClassTitle'],
                             category: category['OutcomeCategoryTitle'],
                             title: outcome_measure['OutcomeMeasureTitle'],
@@ -1057,7 +1062,7 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def outcome_analyses_data(outcome_measure)
+  def outcome_analyses_data(outcome_measure, result_groups)
     return unless outcome_measure
 
     outcome_analyses = outcome_measure.dig('OutcomeAnalysisList', 'OutcomeAnalysis')
@@ -1097,7 +1102,7 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def outcome_analysis_groups_data(outcome_analysis)
+  def outcome_analysis_groups_data(outcome_analysis, result_groups)
     return unless outcome_analysis
 
     outcome_analysis_group_ids = outcome_analysis.dig('OutcomeAnalysisGroupIdList', 'OutcomeAnalysisGroupId')
@@ -1109,6 +1114,7 @@ class StudyJsonRecord < ActiveRecord::Base
                       nct_id: nct_id,
                       outcome_analysis_id: nil,
                       result_group_id: nil,
+                      result_group_id: result_groups[group_id].try(:id),
                       ctgov_group_code: group_id
                     }
     end
@@ -1680,11 +1686,6 @@ class StudyJsonRecord < ActiveRecord::Base
     name_of_model.safe_constantize.import(group, validate: false)
   end
 
-  def match_result_group(result_groups, )
-    #back
-    saved_result_groups = save_result_groups(groups)
-    indexed =  saved_result_groups.index_by(&:ctgov_group_code) if saved_result_groups
-  end
 
   def save_facilities(facilities)
     return unless facilities
@@ -1709,8 +1710,8 @@ class StudyJsonRecord < ActiveRecord::Base
 
       outcome_counts = StudyJsonRecord.set_key_value(outcome_measure[:outcome_counts], :outcome_id, outcome.id)
       outcome_measurements = StudyJsonRecord.set_key_value(outcome_measure[:outcome_measurements], :outcome_id, outcome.id)
-      save_with_result_group(outcome_counts, 'OutcomeCount') if outcome_counts
-      save_with_result_group(outcome_measurements, 'OutcomeMeasurement') if outcome_measurements
+      OutcomeCount.create(outcome_counts) if outcome_counts
+      OutcomeMeasurement.create(outcome_measurements) if outcome_measurements
 
       outcome_analyses = outcome_measure[:outcome_analyses] || []
       outcome_analyses.each{ |h| h[:outcome_analysis][:outcome_id] = outcome.id } unless outcome_analyses.empty?
@@ -1719,7 +1720,7 @@ class StudyJsonRecord < ActiveRecord::Base
         outcome_analysis = OutcomeAnalysis.create(analysis_info[:outcome_analysis])
         outcome_analysis_groups = analysis_info[:outcome_analysis_groups] || []
         outcome_analysis_groups.each{ |h| h[:outcome_analysis_id] = outcome_analysis.id }
-        save_with_result_group(outcome_analysis_groups, 'OutcomeAnalysisGroup')
+        OutcomeAnalysisGroup.create(outcome_analysis_groups)
       end
     end
   end
