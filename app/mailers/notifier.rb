@@ -14,10 +14,8 @@ class Notifier < ApplicationMailer
     mail(to: email_addr, subject: subject, from: 'ctti@duke.edu')
   end
 
-  def report_diff(email, link)
-    link = https://aact.ctti-clinicaltrials.org/static/differences/study_statistics/verifier_differences_ctgov.csv
-    
+  def report_diff(email)
     subj="Differences between ClinicalTrials.gov and AACT"
-    mail(to: email, subject: subj)
+    mail(to: email, subject: subj, from: 'ctti@duke.edu')
   end
 end
