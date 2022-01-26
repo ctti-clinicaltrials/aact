@@ -925,8 +925,10 @@ class StudyJsonRecord < ActiveRecord::Base
       outcome_group_list = key_check(outcome_measure['OutcomeGroupList'])
       outcome_groups = outcome_group_list['OutcomeGroup'] || []
       groups_data = StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
-      result_groups = ResultGroup.create(groups_data).index_by(&:ctgov_group_code) if groups_data
-
+      result_groups = {}
+      groups_data.each do |group|
+        result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group) 
+      end
       collection << {
                       outcome_measure: {
                                         nct_id: nct_id,
