@@ -562,6 +562,8 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless @results_section
 
     baseline_measures = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
+    baseline_group = @results_section.dig('BaselineCharacteristicsModule', 'BaselineGroupList', 'BaselineGroup')
+    result_groups = syntactic_sugar(baseline_group, 'Baseline', 'Baseline')
     return unless baseline_measures
 
     collection = { baseline_counts: baseline_counts_data, measurements: [] }
@@ -580,10 +582,11 @@ class StudyJsonRecord < ActiveRecord::Base
           measurements.each do |measurement|
             param_value = measurement['BaselineMeasurementValue']
             dispersion_value = measurement['BaselineMeasurementSpread']
+            ctgov_group_code =  measurement['BaselineMeasurementGroupId']
             collection[:measurements] << {
                                             nct_id: nct_id,
-                                            result_group_id: nil,
-                                            ctgov_group_code: measurement['BaselineMeasurementGroupId'],
+                                            result_group_id: result_groups[ctgov_group_code].try(:id),
+                                            ctgov_group_code: ctgov_group_code,
                                             classification: baseline_class['BaselineClassTitle'],
                                             category: baseline_category['BaselineCategoryTitle'],
                                             title: measure['BaselineMeasureTitle'],
@@ -613,6 +616,8 @@ class StudyJsonRecord < ActiveRecord::Base
   def baseline_result_groups_data
     return unless @results_section
 
+    
+
     baseline_group = @results_section.dig('BaselineCharacteristicsModule', 'BaselineGroupList','BaselineGroup')
     return [] unless baseline_group
 
@@ -623,18 +628,21 @@ class StudyJsonRecord < ActiveRecord::Base
     return unless @results_section
 
     baseline_denoms = @results_section.dig('BaselineCharacteristicsModule', 'BaselineDenomList', 'BaselineDenom')
+    baseline_group = @results_section.dig('BaselineCharacteristicsModule', 'BaselineGroupList', 'BaselineGroup')
+    result_groups = syntactic_sugar(baseline_group, 'Baseline', 'Baseline')
     return unless baseline_denoms
 
     collection = []
     baseline_denoms.each do |denom|
+      ctgov_group_code =  count['BaselineDenomCountGroupId']
       baseline_denom_count = denom.dig('BaselineDenomCountList', 'BaselineDenomCount')
       next unless baseline_denom_count
 
       baseline_denom_count.each do |count|
         collection << {
                         nct_id: nct_id,
-                        result_group_id: nil,
-                        ctgov_group_code: count['BaselineDenomCountGroupId'],
+                        result_group_id: result_groups[ctgov_group_code].try(:id),
+                        ctgov_group_code: ctgov_group_code,
                         units: denom['BaselineDenomUnits'],
                         scope: 'overall',
                         count: count['BaselineDenomCountValue']
@@ -922,13 +930,14 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     outcome_measures.each do |outcome_measure|
-      outcome_group_list = key_check(outcome_measure['OutcomeGroupList'])
-      outcome_groups = outcome_group_list['OutcomeGroup'] || []
-      groups_data = StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
-      result_groups = {}
-      groups_data.each do |group|
-        result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group) 
-      end
+      result_groups = syntactic_sugar(outcome_measure, 'Outcome', 'Outcome')
+      # outcome_group_list = key_check(outcome_measure['OutcomeGroupList'])
+      # outcome_groups = outcome_group_list['OutcomeGroup'] || []
+      # groups_data = StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
+      # result_groups = {}
+      # groups_data.each do |group|
+      #   result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group) 
+      # end
       collection << {
                       outcome_measure: {
                                         nct_id: nct_id,
@@ -946,8 +955,7 @@ class StudyJsonRecord < ActiveRecord::Base
                                         },
                       outcome_counts: outcome_counts_data(outcome_measure, result_groups),
                       outcome_measurements: outcome_measurements_data(outcome_measure, result_groups),
-                      outcome_analyses: outcome_analyses_data(outcome_measure,result_groups),
-                      result_groups: groups_data
+                      outcome_analyses: outcome_analyses_data(outcome_measure,result_groups)
                     }
     end
     return if collection.empty?
@@ -983,6 +991,18 @@ class StudyJsonRecord < ActiveRecord::Base
                     }
     end
     collection
+  end
+
+  def syntactic_sugar(section, selector='Outcome', result_type='Outcome')
+    group_list = key_check(section["#{selector}GroupList"])
+    groups = group_list["#{selector}Group"] || []
+    groups_data = StudyJsonRecord.result_groups(groups, selector, result_type, nct_id)
+    result_groups = {}
+    groups_data.each do |group|
+      result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group) 
+    end
+
+    return result_groups
   end
 
   def all_result_groups
