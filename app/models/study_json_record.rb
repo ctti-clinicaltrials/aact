@@ -563,7 +563,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     baseline_measures = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
     baseline_group = @results_section.dig('BaselineCharacteristicsModule')
-    result_groups = syntactic_sugar(baseline_group, 'Baseline', 'Baseline')
+    result_groups = group_result_groups(baseline_group, 'Baseline', 'Baseline')
     return unless baseline_measures
 
     collection = { baseline_counts: baseline_counts_data, measurements: [] }
@@ -629,7 +629,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     baseline_denoms = @results_section.dig('BaselineCharacteristicsModule', 'BaselineDenomList', 'BaselineDenom')
     baseline_group = @results_section.dig('BaselineCharacteristicsModule')
-    result_groups = syntactic_sugar(baseline_group, 'Baseline', 'Baseline')
+    result_groups = group_result_groups(baseline_group, 'Baseline', 'Baseline')
     return unless baseline_denoms
 
     collection = []
@@ -884,7 +884,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     flow_periods = @results_section.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
     flow_groups =  @results_section.dig('ParticipantFlowModule')
-    result_groups = syntactic_sugar(flow_groups, 'Flow', 'Participant Flow')
+    result_groups = group_result_groups(flow_groups, 'Flow', 'Participant Flow')
     return unless flow_periods
 
     collection = []
@@ -925,7 +925,6 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def outcomes_data
-    #back
     return unless @results_section
 
     outcome_measures = @results_section.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
@@ -933,14 +932,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     outcome_measures.each do |outcome_measure|
-      result_groups = syntactic_sugar(outcome_measure, 'Outcome', 'Outcome')
-      # outcome_group_list = key_check(outcome_measure['OutcomeGroupList'])
-      # outcome_groups = outcome_group_list['OutcomeGroup'] || []
-      # groups_data = StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
-      # result_groups = {}
-      # groups_data.each do |group|
-      #   result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group) 
-      # end
+      result_groups = group_result_groups(outcome_measure, 'Outcome', 'Outcome')
       collection << {
                       outcome_measure: {
                                         nct_id: nct_id,
@@ -996,10 +988,8 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def syntactic_sugar(section, selector='Outcome', result_type='Outcome')
-    # byebug
-    group_list = key_check(section["#{selector}GroupList"])
-    groups = group_list["#{selector}Group"] || []
+  def group_result_groups(section, selector='Outcome', result_type='Outcome')
+    groups = section.dig("#{selector}GroupList", "#{selector}Group") || []
     groups_data = StudyJsonRecord.result_groups(groups, selector, result_type, nct_id)
     result_groups = {}
     groups_data.each do |group|
@@ -1007,13 +997,6 @@ class StudyJsonRecord < ActiveRecord::Base
     end
 
     return result_groups
-  end
-
-  def all_result_groups
-    return [] unless @results_section
-
-    # baseline_result_groups_data | flow_result_groups_data | reported_events_result_groups_data
-    # baseline_result_groups_data | flow_result_groups_data | outcome_result_groups_data | reported_events_result_groups_data
   end
 
   def outcome_counts_data(outcome_measure, result_groups)
@@ -1282,7 +1265,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def reported_events_data
     return unless @results_section
 
-    result_groups = syntactic_sugar(@adverse_events_module, 'Event', 'Reported Event')
+    result_groups = group_result_groups(@adverse_events_module, 'Event', 'Reported Event')
     events = events_data('Serious', result_groups) + events_data('Other', result_groups)
     return if events.empty?
 
@@ -1441,7 +1424,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     flow_periods = @results_section.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
     flow_groups =  @results_section.dig('ParticipantFlowModule')
-    result_groups = syntactic_sugar(flow_groups, 'Flow', 'Participant Flow')
+    result_groups = group_result_groups(flow_groups, 'Flow', 'Participant Flow')
     return unless flow_periods
 
     collection = []
@@ -1510,7 +1493,6 @@ class StudyJsonRecord < ActiveRecord::Base
       study_references: study_references_data,
       sponsors: sponsors_data,
       drop_withdrawals: drop_withdrawals_data,
-      # result_groups: all_result_groups,
     }
   end
 
@@ -1526,8 +1508,6 @@ class StudyJsonRecord < ActiveRecord::Base
       @adverse_events_module = adverse_events_module
       data = data_collection
       Study.create(data[:study]) if data[:study]
-      # saved_result_groups = save_result_groups(data[:result_groups])
-      # @study_result_groups = saved_result_groups.index_by(&:ctgov_group_code) if saved_result_groups
 
       # saving design_groups, and associated objects
       save_design_groups(data[:design_groups])
@@ -1541,7 +1521,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
       # saving baseline_measurements and associated objects
       baseline_info = data[:baseline_measurements] || {}
-      BaslineCount.import(baseline_info[:baseline_counts], validate: false) if baseline_info[:baseline_counts]
+      BaselineCount.import(baseline_info[:baseline_counts], validate: false) if baseline_info[:baseline_counts]
       BaselineMeasurement.import(baseline_info[:measurements], validate: false) if baseline_info[:measurements]
      
       BrowseCondition.import(data[:browse_conditions], validate: false) if data[:browse_conditions]
@@ -1706,16 +1686,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
     design_group = DesignGroup.import(design_groups, validate: false)
   end
-
-  # def save_with_result_group(group, name_of_model='BaselineMeasurement')
-  #   return unless group
-
-  #   group.map do |i| 
-  #     i[:result_group_id] = @study_result_groups[i[:ctgov_group_code]].try(:id)
-  #   end
-  #   name_of_model.safe_constantize.import(group, validate: false)
-  # end
-
 
   def save_facilities(facilities)
     return unless facilities
