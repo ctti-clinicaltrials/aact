@@ -563,7 +563,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     baseline_measures = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
     baseline_group = @results_section.dig('BaselineCharacteristicsModule')
-    result_groups = group_result_groups(baseline_group, 'Baseline', 'Baseline')
+    result_groups = create_and_group_results(baseline_group, 'Baseline', 'Baseline')
     return unless baseline_measures
 
     collection = { baseline_counts: baseline_counts_data, measurements: [] }
@@ -629,7 +629,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     baseline_denoms = @results_section.dig('BaselineCharacteristicsModule', 'BaselineDenomList', 'BaselineDenom')
     baseline_group = @results_section.dig('BaselineCharacteristicsModule')
-    result_groups = group_result_groups(baseline_group, 'Baseline', 'Baseline')
+    result_groups = create_and_group_results(baseline_group, 'Baseline', 'Baseline')
     return unless baseline_denoms
 
     collection = []
@@ -884,7 +884,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     flow_periods = @results_section.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
     flow_groups =  @results_section.dig('ParticipantFlowModule')
-    result_groups = group_result_groups(flow_groups, 'Flow', 'Participant Flow')
+    result_groups = create_and_group_results(flow_groups, 'Flow', 'Participant Flow')
     return unless flow_periods
 
     collection = []
@@ -932,7 +932,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     outcome_measures.each do |outcome_measure|
-      result_groups = group_result_groups(outcome_measure, 'Outcome', 'Outcome')
+      result_groups = create_and_group_results(outcome_measure, 'Outcome', 'Outcome')
       collection << {
                       outcome_measure: {
                                         nct_id: nct_id,
@@ -988,7 +988,7 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def group_result_groups(section, selector='Outcome', result_type='Outcome')
+  def create_and_group_results(section, selector='Outcome', result_type='Outcome')
     groups = section.dig("#{selector}GroupList", "#{selector}Group") || []
     groups_data = StudyJsonRecord.result_groups(groups, selector, result_type, nct_id)
     result_groups = {}
@@ -1265,7 +1265,7 @@ class StudyJsonRecord < ActiveRecord::Base
   def reported_events_data
     return unless @results_section
 
-    result_groups = group_result_groups(@adverse_events_module, 'Event', 'Reported Event')
+    result_groups = create_and_group_results(@adverse_events_module, 'Event', 'Reported Event')
     events = events_data('Serious', result_groups) + events_data('Other', result_groups)
     return if events.empty?
 
@@ -1424,7 +1424,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     flow_periods = @results_section.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
     flow_groups =  @results_section.dig('ParticipantFlowModule')
-    result_groups = group_result_groups(flow_groups, 'Flow', 'Participant Flow')
+    result_groups = create_and_group_results(flow_groups, 'Flow', 'Participant Flow')
     return unless flow_periods
 
     collection = []
