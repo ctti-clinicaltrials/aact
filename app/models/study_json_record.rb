@@ -1609,12 +1609,6 @@ class StudyJsonRecord < ActiveRecord::Base
     count_array << {inconsistencies: dif}
   end
 
-  # def save_result_groups(groups)
-  #   return if groups.nil? || groups.empty?
-
-  #   ResultGroup.create(groups)
-  # end
-
   def save_interventions(interventions)
     return unless interventions
 
