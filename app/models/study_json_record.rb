@@ -613,17 +613,6 @@ class StudyJsonRecord < ActiveRecord::Base
     Float(string) rescue nil
   end
 
-  def baseline_result_groups_data
-    return unless @results_section
-
-    
-
-    baseline_group = @results_section.dig('BaselineCharacteristicsModule')
-    return [] unless baseline_group
-
-    StudyJsonRecord.result_groups(baseline_group, 'Baseline', 'Baseline', nct_id)
-  end
-
   def baseline_counts_data
     return unless @results_section
 
@@ -917,13 +906,6 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
-  def flow_result_groups_data
-    flow_groups = @results_section.dig('ParticipantFlowModule', 'FlowGroupList', 'FlowGroup')
-    return [] unless flow_groups
-
-    StudyJsonRecord.result_groups(flow_groups, 'Flow', 'Participant Flow', nct_id)
-  end
-
   def outcomes_data
     return unless @results_section
 
@@ -956,20 +938,6 @@ class StudyJsonRecord < ActiveRecord::Base
     return if collection.empty?
 
     collection
-  end
-
-  def outcome_result_groups_data
-    outcome_measures = @results_section.dig('OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
-    return [] unless outcome_measures
-
-    collection = []
-
-    outcome_measures.each do |measure|
-      outcome_group_list = key_check(measure['OutcomeGroupList'])
-      outcome_groups = outcome_group_list['OutcomeGroup'] || []
-      collection << StudyJsonRecord.result_groups(outcome_groups, 'Outcome', 'Outcome', nct_id)
-    end
-    collection.flatten.uniq
   end
   
   def self.result_groups(groups, key_name='Flow', type='Participant Flow', nct_id)
@@ -1306,13 +1274,6 @@ class StudyJsonRecord < ActiveRecord::Base
       end
     end
     collection
-  end
-
-  def reported_events_result_groups_data
-    event_groups = @results_section.dig('AdverseEventsModule', 'EventGroupList', 'EventGroup')
-    return [] unless event_groups
-
-    StudyJsonRecord.result_groups(event_groups, 'Event', 'Reported Event', nct_id)
   end
 
   def responsible_party_data
