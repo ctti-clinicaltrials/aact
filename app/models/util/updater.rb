@@ -21,10 +21,31 @@ module Util
       end
       @client = Util::Client.new
       @days_back = (params[:days_back] || 4)
-      @load_event = Support::LoadEvent.create({ event_type: type, status: 'running', description: '', problems: '' })
-      @load_event.save! # Save to timestamp created_at
       @study_counts = { should_add: 0, should_change: 0, processed: 0, count_down: 0 }
       self
+    end
+
+    def start
+      loop do
+        if Support::LoadEvent.where('created_at > ?',Time.now.beginning_of_day).count == 0
+          execute
+        else
+          ActiveRecord::Base.logger = nil
+          db_mgr.remove_constrains
+          update_old_studies
+        end
+      end
+    end
+
+    # updates the oldest studies
+    def update_old_studies(count=100)
+      # ids = Study.where('updated_at < ?',Time.now-24.hours).order(updated_at: :asc).limit(count)
+      studies = Study.order(updated_at: :asc).limit(count)
+      puts "refreshing #{studies.count} studies"
+      studies.each do |study|
+        puts "refresh #{study.nct_id} #{study.updated_at}"
+        update_study(study.nct_id)
+      end
     end
 
     def set_schema
@@ -38,6 +59,7 @@ module Util
     end
 
     def execute
+      @load_event = Support::LoadEvent.create({ event_type: type, status: 'running', description: '', problems: '' })
       # TODO: need to extract this into a connection method
       con = ActiveRecord::Base.connection
       username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
