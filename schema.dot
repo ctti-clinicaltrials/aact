@@ -1,0 +1,1472 @@
+    digraph {
+      graph [layout=twopi, splines=true, overlap=false];
+      node [shape=plain]
+      /*rankdir=LR;*/
+
+              Facility [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Facility</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>status</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>city</td><td>string</td></tr>
+<tr><td>state</td><td>string</td></tr>
+<tr><td>zip</td><td>string</td></tr>
+<tr><td>country</td><td>string</td></tr>
+        </table>>];
+
+
+        OutcomeMeasurement [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>OutcomeMeasurement</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_id</td><td>integer</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>classification</td><td>string</td></tr>
+<tr><td>category</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+<tr><td>units</td><td>string</td></tr>
+<tr><td>param_type</td><td>string</td></tr>
+<tr><td>param_value</td><td>string</td></tr>
+<tr><td>param_value_num</td><td>decimal</td></tr>
+<tr><td>dispersion_type</td><td>string</td></tr>
+<tr><td>dispersion_value</td><td>string</td></tr>
+<tr><td>dispersion_value_num</td><td>decimal</td></tr>
+<tr><td>dispersion_lower_limit</td><td>decimal</td></tr>
+<tr><td>dispersion_upper_limit</td><td>decimal</td></tr>
+<tr><td>explanation_of_na</td><td>text</td></tr>
+        </table>>];
+
+
+        FacilityContact [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>FacilityContact</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>facility_id</td><td>integer</td></tr>
+<tr><td>contact_type</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>email</td><td>string</td></tr>
+<tr><td>phone</td><td>string</td></tr>
+        </table>>];
+
+
+        Design [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Design</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>allocation</td><td>string</td></tr>
+<tr><td>intervention_model</td><td>string</td></tr>
+<tr><td>observational_model</td><td>string</td></tr>
+<tr><td>primary_purpose</td><td>string</td></tr>
+<tr><td>time_perspective</td><td>string</td></tr>
+<tr><td>masking</td><td>string</td></tr>
+<tr><td>masking_description</td><td>text</td></tr>
+<tr><td>intervention_model_description</td><td>text</td></tr>
+<tr><td>subject_masked</td><td>boolean</td></tr>
+<tr><td>caregiver_masked</td><td>boolean</td></tr>
+<tr><td>investigator_masked</td><td>boolean</td></tr>
+<tr><td>outcomes_assessor_masked</td><td>boolean</td></tr>
+        </table>>];
+
+
+        DropWithdrawal [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>DropWithdrawal</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>period</td><td>string</td></tr>
+<tr><td>reason</td><td>string</td></tr>
+<tr><td>count</td><td>integer</td></tr>
+        </table>>];
+
+
+        IpdInformationType [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>IpdInformationType</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+        </table>>];
+
+
+        Milestone [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Milestone</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>period</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+<tr><td>count</td><td>integer</td></tr>
+        </table>>];
+
+
+        OutcomeAnalysisGroup [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>OutcomeAnalysisGroup</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_analysis_id</td><td>integer</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+        </table>>];
+
+
+        ParticipantFlow [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ParticipantFlow</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>recruitment_details</td><td>text</td></tr>
+<tr><td>pre_assignment_details</td><td>text</td></tr>
+        </table>>];
+
+
+        ProvidedDocument [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ProvidedDocument</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>document_type</td><td>string</td></tr>
+<tr><td>has_protocol</td><td>boolean</td></tr>
+<tr><td>has_icf</td><td>boolean</td></tr>
+<tr><td>has_sap</td><td>boolean</td></tr>
+<tr><td>document_date</td><td>date</td></tr>
+<tr><td>url</td><td>string</td></tr>
+        </table>>];
+
+
+        ReportedEvent [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ReportedEvent</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>time_frame</td><td>text</td></tr>
+<tr><td>event_type</td><td>string</td></tr>
+<tr><td>default_vocab</td><td>string</td></tr>
+<tr><td>default_assessment</td><td>string</td></tr>
+<tr><td>subjects_affected</td><td>integer</td></tr>
+<tr><td>subjects_at_risk</td><td>integer</td></tr>
+<tr><td>description</td><td>text</td></tr>
+<tr><td>event_count</td><td>integer</td></tr>
+<tr><td>organ_system</td><td>string</td></tr>
+<tr><td>adverse_event_term</td><td>string</td></tr>
+<tr><td>frequency_threshold</td><td>integer</td></tr>
+<tr><td>vocab</td><td>string</td></tr>
+<tr><td>assessment</td><td>string</td></tr>
+        </table>>];
+
+
+        ResultAgreement [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ResultAgreement</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>pi_employee</td><td>string</td></tr>
+<tr><td>agreement</td><td>text</td></tr>
+<tr><td>restriction_type</td><td>string</td></tr>
+<tr><td>other_details</td><td>text</td></tr>
+<tr><td>restrictive_agreement</td><td>string</td></tr>
+        </table>>];
+
+
+        ResultGroup [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ResultGroup</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>result_type</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        DesignGroupIntervention [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>DesignGroupIntervention</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>design_group_id</td><td>integer</td></tr>
+<tr><td>intervention_id</td><td>integer</td></tr>
+        </table>>];
+
+
+        OutcomeAnalysis [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>OutcomeAnalysis</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_id</td><td>integer</td></tr>
+<tr><td>non_inferiority_type</td><td>string</td></tr>
+<tr><td>non_inferiority_description</td><td>text</td></tr>
+<tr><td>param_type</td><td>string</td></tr>
+<tr><td>param_value</td><td>decimal</td></tr>
+<tr><td>dispersion_type</td><td>string</td></tr>
+<tr><td>dispersion_value</td><td>decimal</td></tr>
+<tr><td>p_value_modifier</td><td>string</td></tr>
+<tr><td>p_value</td><td>float</td></tr>
+<tr><td>ci_n_sides</td><td>string</td></tr>
+<tr><td>ci_percent</td><td>decimal</td></tr>
+<tr><td>ci_lower_limit</td><td>decimal</td></tr>
+<tr><td>ci_upper_limit</td><td>decimal</td></tr>
+<tr><td>ci_upper_limit_na_comment</td><td>string</td></tr>
+<tr><td>p_value_description</td><td>string</td></tr>
+<tr><td>method</td><td>string</td></tr>
+<tr><td>method_description</td><td>text</td></tr>
+<tr><td>estimate_description</td><td>text</td></tr>
+<tr><td>groups_description</td><td>text</td></tr>
+<tr><td>other_analysis_description</td><td>text</td></tr>
+        </table>>];
+
+
+        OutcomeCount [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>OutcomeCount</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_id</td><td>integer</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>scope</td><td>string</td></tr>
+<tr><td>units</td><td>string</td></tr>
+<tr><td>count</td><td>integer</td></tr>
+        </table>>];
+
+
+        Outcome [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Outcome</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_type</td><td>string</td></tr>
+<tr><td>title</td><td>text</td></tr>
+<tr><td>description</td><td>text</td></tr>
+<tr><td>time_frame</td><td>text</td></tr>
+<tr><td>population</td><td>text</td></tr>
+<tr><td>anticipated_posting_date</td><td>date</td></tr>
+<tr><td>anticipated_posting_month_year</td><td>string</td></tr>
+<tr><td>units</td><td>string</td></tr>
+<tr><td>units_analyzed</td><td>string</td></tr>
+<tr><td>dispersion_type</td><td>string</td></tr>
+<tr><td>param_type</td><td>string</td></tr>
+        </table>>];
+
+
+        PendingResult [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>PendingResult</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>event</td><td>string</td></tr>
+<tr><td>event_date_description</td><td>string</td></tr>
+<tr><td>event_date</td><td>date</td></tr>
+        </table>>];
+
+
+        ReportedEventTotal [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ReportedEventTotal</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>event_type</td><td>string</td></tr>
+<tr><td>classification</td><td>string</td></tr>
+<tr><td>subjects_affected</td><td>integer</td></tr>
+<tr><td>subjects_at_risk</td><td>integer</td></tr>
+<tr><td>created_at</td><td>datetime</td></tr>
+<tr><td>updated_at</td><td>datetime</td></tr>
+        </table>>];
+
+
+        ResponsibleParty [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ResponsibleParty</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>responsible_party_type</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>organization</td><td>string</td></tr>
+<tr><td>affiliation</td><td>text</td></tr>
+        </table>>];
+
+
+        ResultContact [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ResultContact</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>organization</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>phone</td><td>string</td></tr>
+<tr><td>email</td><td>string</td></tr>
+        </table>>];
+
+
+        StudyReference [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>StudyReference</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>pmid</td><td>string</td></tr>
+<tr><td>reference_type</td><td>string</td></tr>
+<tr><td>citation</td><td>text</td></tr>
+        </table>>];
+
+
+        Condition [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Condition</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>downcase_name</td><td>string</td></tr>
+        </table>>];
+
+
+        Country [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Country</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>removed</td><td>boolean</td></tr>
+        </table>>];
+
+
+        DesignOutcome [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>DesignOutcome</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_type</td><td>string</td></tr>
+<tr><td>measure</td><td>text</td></tr>
+<tr><td>time_frame</td><td>text</td></tr>
+<tr><td>population</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        Keyword [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Keyword</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>downcase_name</td><td>string</td></tr>
+        </table>>];
+
+
+        OverallOfficial [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>OverallOfficial</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>role</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>affiliation</td><td>string</td></tr>
+        </table>>];
+
+
+        BaselineCount [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>BaselineCount</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>units</td><td>string</td></tr>
+<tr><td>scope</td><td>string</td></tr>
+<tr><td>count</td><td>integer</td></tr>
+        </table>>];
+
+
+        BriefSummary [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>BriefSummary</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        SearchResult [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>SearchResult</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>created_at</td><td>datetime</td></tr>
+<tr><td>updated_at</td><td>datetime</td></tr>
+<tr><td>grouping</td><td>string</td></tr>
+<tr><td>study_search_id</td><td>integer</td></tr>
+        </table>>];
+
+
+        DesignGroup [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>DesignGroup</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>group_type</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        IdInformation [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>IdInformation</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>id_type</td><td>string</td></tr>
+<tr><td>id_value</td><td>string</td></tr>
+        </table>>];
+
+
+        Intervention [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Intervention</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>intervention_type</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        Sponsor [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Sponsor</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>agency_class</td><td>string</td></tr>
+<tr><td>lead_or_collaborator</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+        </table>>];
+
+
+        BaselineMeasurement [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>BaselineMeasurement</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>classification</td><td>string</td></tr>
+<tr><td>category</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+<tr><td>units</td><td>string</td></tr>
+<tr><td>param_type</td><td>string</td></tr>
+<tr><td>param_value</td><td>string</td></tr>
+<tr><td>param_value_num</td><td>decimal</td></tr>
+<tr><td>dispersion_type</td><td>string</td></tr>
+<tr><td>dispersion_value</td><td>string</td></tr>
+<tr><td>dispersion_value_num</td><td>decimal</td></tr>
+<tr><td>dispersion_lower_limit</td><td>decimal</td></tr>
+<tr><td>dispersion_upper_limit</td><td>decimal</td></tr>
+<tr><td>explanation_of_na</td><td>string</td></tr>
+        </table>>];
+
+
+        CalculatedValue [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>CalculatedValue</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>number_of_facilities</td><td>integer</td></tr>
+<tr><td>number_of_nsae_subjects</td><td>integer</td></tr>
+<tr><td>number_of_sae_subjects</td><td>integer</td></tr>
+<tr><td>registered_in_calendar_year</td><td>integer</td></tr>
+<tr><td>nlm_download_date</td><td>date</td></tr>
+<tr><td>actual_duration</td><td>integer</td></tr>
+<tr><td>were_results_reported</td><td>boolean</td></tr>
+<tr><td>months_to_report_results</td><td>integer</td></tr>
+<tr><td>has_us_facility</td><td>boolean</td></tr>
+<tr><td>has_single_facility</td><td>boolean</td></tr>
+<tr><td>minimum_age_num</td><td>integer</td></tr>
+<tr><td>maximum_age_num</td><td>integer</td></tr>
+<tr><td>minimum_age_unit</td><td>string</td></tr>
+<tr><td>maximum_age_unit</td><td>string</td></tr>
+<tr><td>number_of_primary_outcomes_to_measure</td><td>integer</td></tr>
+<tr><td>number_of_secondary_outcomes_to_measure</td><td>integer</td></tr>
+<tr><td>number_of_other_outcomes_to_measure</td><td>integer</td></tr>
+        </table>>];
+
+
+        CentralContact [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>CentralContact</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>contact_type</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>phone</td><td>string</td></tr>
+<tr><td>email</td><td>string</td></tr>
+        </table>>];
+
+
+        DetailedDescription [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>DetailedDescription</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        Document [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Document</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>document_id</td><td>string</td></tr>
+<tr><td>document_type</td><td>string</td></tr>
+<tr><td>url</td><td>string</td></tr>
+<tr><td>comment</td><td>text</td></tr>
+        </table>>];
+
+
+        FacilityInvestigator [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>FacilityInvestigator</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>facility_id</td><td>integer</td></tr>
+<tr><td>role</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+        </table>>];
+
+
+        InterventionOtherName [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>InterventionOtherName</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>intervention_id</td><td>integer</td></tr>
+<tr><td>name</td><td>string</td></tr>
+        </table>>];
+
+
+        BrowseCondition [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>BrowseCondition</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>mesh_term</td><td>string</td></tr>
+<tr><td>downcase_mesh_term</td><td>string</td></tr>
+<tr><td>mesh_type</td><td>string</td></tr>
+        </table>>];
+
+
+        BrowseIntervention [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>BrowseIntervention</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>mesh_term</td><td>string</td></tr>
+<tr><td>downcase_mesh_term</td><td>string</td></tr>
+<tr><td>mesh_type</td><td>string</td></tr>
+        </table>>];
+
+
+        DesignOutcome [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>DesignOutcome</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_type</td><td>string</td></tr>
+<tr><td>measure</td><td>text</td></tr>
+<tr><td>time_frame</td><td>text</td></tr>
+<tr><td>population</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        Condition [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Condition</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>downcase_name</td><td>string</td></tr>
+        </table>>];
+
+
+        Keyword [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Keyword</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>downcase_name</td><td>string</td></tr>
+        </table>>];
+
+
+        BaselineCount [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>BaselineCount</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>units</td><td>string</td></tr>
+<tr><td>scope</td><td>string</td></tr>
+<tr><td>count</td><td>integer</td></tr>
+        </table>>];
+
+
+        IdInformation [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>IdInformation</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>id_type</td><td>string</td></tr>
+<tr><td>id_value</td><td>string</td></tr>
+        </table>>];
+
+
+        Intervention [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Intervention</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>intervention_type</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        DetailedDescription [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>DetailedDescription</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        CentralContact [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>CentralContact</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>contact_type</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>phone</td><td>string</td></tr>
+<tr><td>email</td><td>string</td></tr>
+        </table>>];
+
+
+        Eligibility [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Eligibility</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>sampling_method</td><td>string</td></tr>
+<tr><td>gender</td><td>string</td></tr>
+<tr><td>minimum_age</td><td>string</td></tr>
+<tr><td>maximum_age</td><td>string</td></tr>
+<tr><td>healthy_volunteers</td><td>string</td></tr>
+<tr><td>population</td><td>text</td></tr>
+<tr><td>criteria</td><td>text</td></tr>
+<tr><td>gender_description</td><td>text</td></tr>
+<tr><td>gender_based</td><td>boolean</td></tr>
+        </table>>];
+
+
+        InterventionOtherName [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>InterventionOtherName</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>intervention_id</td><td>integer</td></tr>
+<tr><td>name</td><td>string</td></tr>
+        </table>>];
+
+
+        Link [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Link</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>url</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        ParticipantFlow [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ParticipantFlow</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>recruitment_details</td><td>text</td></tr>
+<tr><td>pre_assignment_details</td><td>text</td></tr>
+        </table>>];
+
+
+        ProvidedDocument [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ProvidedDocument</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>document_type</td><td>string</td></tr>
+<tr><td>has_protocol</td><td>boolean</td></tr>
+<tr><td>has_icf</td><td>boolean</td></tr>
+<tr><td>has_sap</td><td>boolean</td></tr>
+<tr><td>document_date</td><td>date</td></tr>
+<tr><td>url</td><td>string</td></tr>
+        </table>>];
+
+
+        ReportedEventTotal [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ReportedEventTotal</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>event_type</td><td>string</td></tr>
+<tr><td>classification</td><td>string</td></tr>
+<tr><td>subjects_affected</td><td>integer</td></tr>
+<tr><td>subjects_at_risk</td><td>integer</td></tr>
+<tr><td>created_at</td><td>datetime</td></tr>
+<tr><td>updated_at</td><td>datetime</td></tr>
+        </table>>];
+
+
+        StudyReference [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>StudyReference</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>pmid</td><td>string</td></tr>
+<tr><td>reference_type</td><td>string</td></tr>
+<tr><td>citation</td><td>text</td></tr>
+        </table>>];
+
+
+        Facility [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Facility</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>status</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>city</td><td>string</td></tr>
+<tr><td>state</td><td>string</td></tr>
+<tr><td>zip</td><td>string</td></tr>
+<tr><td>country</td><td>string</td></tr>
+        </table>>];
+
+
+        Country [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Country</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>removed</td><td>boolean</td></tr>
+        </table>>];
+
+
+        DesignGroup [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>DesignGroup</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>group_type</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        BaselineMeasurement [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>BaselineMeasurement</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>classification</td><td>string</td></tr>
+<tr><td>category</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+<tr><td>units</td><td>string</td></tr>
+<tr><td>param_type</td><td>string</td></tr>
+<tr><td>param_value</td><td>string</td></tr>
+<tr><td>param_value_num</td><td>decimal</td></tr>
+<tr><td>dispersion_type</td><td>string</td></tr>
+<tr><td>dispersion_value</td><td>string</td></tr>
+<tr><td>dispersion_value_num</td><td>decimal</td></tr>
+<tr><td>dispersion_lower_limit</td><td>decimal</td></tr>
+<tr><td>dispersion_upper_limit</td><td>decimal</td></tr>
+<tr><td>explanation_of_na</td><td>string</td></tr>
+        </table>>];
+
+
+        Sponsor [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Sponsor</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>agency_class</td><td>string</td></tr>
+<tr><td>lead_or_collaborator</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+        </table>>];
+
+
+        DesignGroupIntervention [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>DesignGroupIntervention</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>design_group_id</td><td>integer</td></tr>
+<tr><td>intervention_id</td><td>integer</td></tr>
+        </table>>];
+
+
+        DropWithdrawal [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>DropWithdrawal</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>period</td><td>string</td></tr>
+<tr><td>reason</td><td>string</td></tr>
+<tr><td>count</td><td>integer</td></tr>
+        </table>>];
+
+
+        Milestone [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Milestone</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>period</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+<tr><td>count</td><td>integer</td></tr>
+        </table>>];
+
+
+        OutcomeAnalysis [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>OutcomeAnalysis</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_id</td><td>integer</td></tr>
+<tr><td>non_inferiority_type</td><td>string</td></tr>
+<tr><td>non_inferiority_description</td><td>text</td></tr>
+<tr><td>param_type</td><td>string</td></tr>
+<tr><td>param_value</td><td>decimal</td></tr>
+<tr><td>dispersion_type</td><td>string</td></tr>
+<tr><td>dispersion_value</td><td>decimal</td></tr>
+<tr><td>p_value_modifier</td><td>string</td></tr>
+<tr><td>p_value</td><td>float</td></tr>
+<tr><td>ci_n_sides</td><td>string</td></tr>
+<tr><td>ci_percent</td><td>decimal</td></tr>
+<tr><td>ci_lower_limit</td><td>decimal</td></tr>
+<tr><td>ci_upper_limit</td><td>decimal</td></tr>
+<tr><td>ci_upper_limit_na_comment</td><td>string</td></tr>
+<tr><td>p_value_description</td><td>string</td></tr>
+<tr><td>method</td><td>string</td></tr>
+<tr><td>method_description</td><td>text</td></tr>
+<tr><td>estimate_description</td><td>text</td></tr>
+<tr><td>groups_description</td><td>text</td></tr>
+<tr><td>other_analysis_description</td><td>text</td></tr>
+        </table>>];
+
+
+        ResponsibleParty [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ResponsibleParty</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>responsible_party_type</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>organization</td><td>string</td></tr>
+<tr><td>affiliation</td><td>text</td></tr>
+        </table>>];
+
+
+        ResultAgreement [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ResultAgreement</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>pi_employee</td><td>string</td></tr>
+<tr><td>agreement</td><td>text</td></tr>
+<tr><td>restriction_type</td><td>string</td></tr>
+<tr><td>other_details</td><td>text</td></tr>
+<tr><td>restrictive_agreement</td><td>string</td></tr>
+        </table>>];
+
+
+        OverallOfficial [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>OverallOfficial</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>role</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>affiliation</td><td>string</td></tr>
+        </table>>];
+
+
+        BriefSummary [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>BriefSummary</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        CalculatedValue [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>CalculatedValue</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>number_of_facilities</td><td>integer</td></tr>
+<tr><td>number_of_nsae_subjects</td><td>integer</td></tr>
+<tr><td>number_of_sae_subjects</td><td>integer</td></tr>
+<tr><td>registered_in_calendar_year</td><td>integer</td></tr>
+<tr><td>nlm_download_date</td><td>date</td></tr>
+<tr><td>actual_duration</td><td>integer</td></tr>
+<tr><td>were_results_reported</td><td>boolean</td></tr>
+<tr><td>months_to_report_results</td><td>integer</td></tr>
+<tr><td>has_us_facility</td><td>boolean</td></tr>
+<tr><td>has_single_facility</td><td>boolean</td></tr>
+<tr><td>minimum_age_num</td><td>integer</td></tr>
+<tr><td>maximum_age_num</td><td>integer</td></tr>
+<tr><td>minimum_age_unit</td><td>string</td></tr>
+<tr><td>maximum_age_unit</td><td>string</td></tr>
+<tr><td>number_of_primary_outcomes_to_measure</td><td>integer</td></tr>
+<tr><td>number_of_secondary_outcomes_to_measure</td><td>integer</td></tr>
+<tr><td>number_of_other_outcomes_to_measure</td><td>integer</td></tr>
+        </table>>];
+
+
+        SearchResult [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>SearchResult</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>created_at</td><td>datetime</td></tr>
+<tr><td>updated_at</td><td>datetime</td></tr>
+<tr><td>grouping</td><td>string</td></tr>
+<tr><td>study_search_id</td><td>integer</td></tr>
+        </table>>];
+
+
+        Design [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Design</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>allocation</td><td>string</td></tr>
+<tr><td>intervention_model</td><td>string</td></tr>
+<tr><td>observational_model</td><td>string</td></tr>
+<tr><td>primary_purpose</td><td>string</td></tr>
+<tr><td>time_perspective</td><td>string</td></tr>
+<tr><td>masking</td><td>string</td></tr>
+<tr><td>masking_description</td><td>text</td></tr>
+<tr><td>intervention_model_description</td><td>text</td></tr>
+<tr><td>subject_masked</td><td>boolean</td></tr>
+<tr><td>caregiver_masked</td><td>boolean</td></tr>
+<tr><td>investigator_masked</td><td>boolean</td></tr>
+<tr><td>outcomes_assessor_masked</td><td>boolean</td></tr>
+        </table>>];
+
+
+        Study [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Study</b></td></tr>
+          <tr><td>nct_id</td><td>string</td></tr>
+<tr><td>nlm_download_date_description</td><td>string</td></tr>
+<tr><td>study_first_submitted_date</td><td>date</td></tr>
+<tr><td>results_first_submitted_date</td><td>date</td></tr>
+<tr><td>disposition_first_submitted_date</td><td>date</td></tr>
+<tr><td>last_update_submitted_date</td><td>date</td></tr>
+<tr><td>study_first_submitted_qc_date</td><td>date</td></tr>
+<tr><td>study_first_posted_date</td><td>date</td></tr>
+<tr><td>study_first_posted_date_type</td><td>string</td></tr>
+<tr><td>results_first_submitted_qc_date</td><td>date</td></tr>
+<tr><td>results_first_posted_date</td><td>date</td></tr>
+<tr><td>results_first_posted_date_type</td><td>string</td></tr>
+<tr><td>disposition_first_submitted_qc_date</td><td>date</td></tr>
+<tr><td>disposition_first_posted_date</td><td>date</td></tr>
+<tr><td>disposition_first_posted_date_type</td><td>string</td></tr>
+<tr><td>last_update_submitted_qc_date</td><td>date</td></tr>
+<tr><td>last_update_posted_date</td><td>date</td></tr>
+<tr><td>last_update_posted_date_type</td><td>string</td></tr>
+<tr><td>start_month_year</td><td>string</td></tr>
+<tr><td>start_date_type</td><td>string</td></tr>
+<tr><td>start_date</td><td>date</td></tr>
+<tr><td>verification_month_year</td><td>string</td></tr>
+<tr><td>verification_date</td><td>date</td></tr>
+<tr><td>completion_month_year</td><td>string</td></tr>
+<tr><td>completion_date_type</td><td>string</td></tr>
+<tr><td>completion_date</td><td>date</td></tr>
+<tr><td>primary_completion_month_year</td><td>string</td></tr>
+<tr><td>primary_completion_date_type</td><td>string</td></tr>
+<tr><td>primary_completion_date</td><td>date</td></tr>
+<tr><td>target_duration</td><td>string</td></tr>
+<tr><td>study_type</td><td>string</td></tr>
+<tr><td>acronym</td><td>string</td></tr>
+<tr><td>baseline_population</td><td>text</td></tr>
+<tr><td>brief_title</td><td>text</td></tr>
+<tr><td>official_title</td><td>text</td></tr>
+<tr><td>overall_status</td><td>string</td></tr>
+<tr><td>last_known_status</td><td>string</td></tr>
+<tr><td>phase</td><td>string</td></tr>
+<tr><td>enrollment</td><td>integer</td></tr>
+<tr><td>enrollment_type</td><td>string</td></tr>
+<tr><td>source</td><td>string</td></tr>
+<tr><td>limitations_and_caveats</td><td>string</td></tr>
+<tr><td>number_of_arms</td><td>integer</td></tr>
+<tr><td>number_of_groups</td><td>integer</td></tr>
+<tr><td>why_stopped</td><td>string</td></tr>
+<tr><td>has_expanded_access</td><td>boolean</td></tr>
+<tr><td>expanded_access_type_individual</td><td>boolean</td></tr>
+<tr><td>expanded_access_type_intermediate</td><td>boolean</td></tr>
+<tr><td>expanded_access_type_treatment</td><td>boolean</td></tr>
+<tr><td>has_dmc</td><td>boolean</td></tr>
+<tr><td>is_fda_regulated_drug</td><td>boolean</td></tr>
+<tr><td>is_fda_regulated_device</td><td>boolean</td></tr>
+<tr><td>is_unapproved_device</td><td>boolean</td></tr>
+<tr><td>is_ppsd</td><td>boolean</td></tr>
+<tr><td>is_us_export</td><td>boolean</td></tr>
+<tr><td>biospec_retention</td><td>string</td></tr>
+<tr><td>biospec_description</td><td>text</td></tr>
+<tr><td>ipd_time_frame</td><td>string</td></tr>
+<tr><td>ipd_access_criteria</td><td>string</td></tr>
+<tr><td>ipd_url</td><td>string</td></tr>
+<tr><td>plan_to_share_ipd</td><td>string</td></tr>
+<tr><td>plan_to_share_ipd_description</td><td>string</td></tr>
+<tr><td>created_at</td><td>datetime</td></tr>
+<tr><td>updated_at</td><td>datetime</td></tr>
+        </table>>];
+
+
+        Document [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Document</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>document_id</td><td>string</td></tr>
+<tr><td>document_type</td><td>string</td></tr>
+<tr><td>url</td><td>string</td></tr>
+<tr><td>comment</td><td>text</td></tr>
+        </table>>];
+
+
+        FacilityContact [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>FacilityContact</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>facility_id</td><td>integer</td></tr>
+<tr><td>contact_type</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>email</td><td>string</td></tr>
+<tr><td>phone</td><td>string</td></tr>
+        </table>>];
+
+
+        FacilityInvestigator [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>FacilityInvestigator</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>facility_id</td><td>integer</td></tr>
+<tr><td>role</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+        </table>>];
+
+
+        IpdInformationType [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>IpdInformationType</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+        </table>>];
+
+
+        OutcomeAnalysisGroup [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>OutcomeAnalysisGroup</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_analysis_id</td><td>integer</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+        </table>>];
+
+
+        OutcomeCount [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>OutcomeCount</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_id</td><td>integer</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>scope</td><td>string</td></tr>
+<tr><td>units</td><td>string</td></tr>
+<tr><td>count</td><td>integer</td></tr>
+        </table>>];
+
+
+        OutcomeMeasurement [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>OutcomeMeasurement</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_id</td><td>integer</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>classification</td><td>string</td></tr>
+<tr><td>category</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+<tr><td>units</td><td>string</td></tr>
+<tr><td>param_type</td><td>string</td></tr>
+<tr><td>param_value</td><td>string</td></tr>
+<tr><td>param_value_num</td><td>decimal</td></tr>
+<tr><td>dispersion_type</td><td>string</td></tr>
+<tr><td>dispersion_value</td><td>string</td></tr>
+<tr><td>dispersion_value_num</td><td>decimal</td></tr>
+<tr><td>dispersion_lower_limit</td><td>decimal</td></tr>
+<tr><td>dispersion_upper_limit</td><td>decimal</td></tr>
+<tr><td>explanation_of_na</td><td>text</td></tr>
+        </table>>];
+
+
+        Outcome [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Outcome</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>outcome_type</td><td>string</td></tr>
+<tr><td>title</td><td>text</td></tr>
+<tr><td>description</td><td>text</td></tr>
+<tr><td>time_frame</td><td>text</td></tr>
+<tr><td>population</td><td>text</td></tr>
+<tr><td>anticipated_posting_date</td><td>date</td></tr>
+<tr><td>anticipated_posting_month_year</td><td>string</td></tr>
+<tr><td>units</td><td>string</td></tr>
+<tr><td>units_analyzed</td><td>string</td></tr>
+<tr><td>dispersion_type</td><td>string</td></tr>
+<tr><td>param_type</td><td>string</td></tr>
+        </table>>];
+
+
+        PendingResult [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>PendingResult</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>event</td><td>string</td></tr>
+<tr><td>event_date_description</td><td>string</td></tr>
+<tr><td>event_date</td><td>date</td></tr>
+        </table>>];
+
+
+        ReportedEvent [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ReportedEvent</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>result_group_id</td><td>integer</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>time_frame</td><td>text</td></tr>
+<tr><td>event_type</td><td>string</td></tr>
+<tr><td>default_vocab</td><td>string</td></tr>
+<tr><td>default_assessment</td><td>string</td></tr>
+<tr><td>subjects_affected</td><td>integer</td></tr>
+<tr><td>subjects_at_risk</td><td>integer</td></tr>
+<tr><td>description</td><td>text</td></tr>
+<tr><td>event_count</td><td>integer</td></tr>
+<tr><td>organ_system</td><td>string</td></tr>
+<tr><td>adverse_event_term</td><td>string</td></tr>
+<tr><td>frequency_threshold</td><td>integer</td></tr>
+<tr><td>vocab</td><td>string</td></tr>
+<tr><td>assessment</td><td>string</td></tr>
+        </table>>];
+
+
+        ResultContact [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ResultContact</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>organization</td><td>string</td></tr>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>phone</td><td>string</td></tr>
+<tr><td>email</td><td>string</td></tr>
+        </table>>];
+
+
+        ResultGroup [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>ResultGroup</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>ctgov_group_code</td><td>string</td></tr>
+<tr><td>result_type</td><td>string</td></tr>
+<tr><td>title</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+        BrowseCondition [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>BrowseCondition</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>mesh_term</td><td>string</td></tr>
+<tr><td>downcase_mesh_term</td><td>string</td></tr>
+<tr><td>mesh_type</td><td>string</td></tr>
+        </table>>];
+
+
+        BrowseIntervention [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>BrowseIntervention</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>mesh_term</td><td>string</td></tr>
+<tr><td>downcase_mesh_term</td><td>string</td></tr>
+<tr><td>mesh_type</td><td>string</td></tr>
+        </table>>];
+
+
+        Eligibility [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Eligibility</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>sampling_method</td><td>string</td></tr>
+<tr><td>gender</td><td>string</td></tr>
+<tr><td>minimum_age</td><td>string</td></tr>
+<tr><td>maximum_age</td><td>string</td></tr>
+<tr><td>healthy_volunteers</td><td>string</td></tr>
+<tr><td>population</td><td>text</td></tr>
+<tr><td>criteria</td><td>text</td></tr>
+<tr><td>gender_description</td><td>text</td></tr>
+<tr><td>gender_based</td><td>boolean</td></tr>
+        </table>>];
+
+
+        Study [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Study</b></td></tr>
+          <tr><td>nct_id</td><td>string</td></tr>
+<tr><td>nlm_download_date_description</td><td>string</td></tr>
+<tr><td>study_first_submitted_date</td><td>date</td></tr>
+<tr><td>results_first_submitted_date</td><td>date</td></tr>
+<tr><td>disposition_first_submitted_date</td><td>date</td></tr>
+<tr><td>last_update_submitted_date</td><td>date</td></tr>
+<tr><td>study_first_submitted_qc_date</td><td>date</td></tr>
+<tr><td>study_first_posted_date</td><td>date</td></tr>
+<tr><td>study_first_posted_date_type</td><td>string</td></tr>
+<tr><td>results_first_submitted_qc_date</td><td>date</td></tr>
+<tr><td>results_first_posted_date</td><td>date</td></tr>
+<tr><td>results_first_posted_date_type</td><td>string</td></tr>
+<tr><td>disposition_first_submitted_qc_date</td><td>date</td></tr>
+<tr><td>disposition_first_posted_date</td><td>date</td></tr>
+<tr><td>disposition_first_posted_date_type</td><td>string</td></tr>
+<tr><td>last_update_submitted_qc_date</td><td>date</td></tr>
+<tr><td>last_update_posted_date</td><td>date</td></tr>
+<tr><td>last_update_posted_date_type</td><td>string</td></tr>
+<tr><td>start_month_year</td><td>string</td></tr>
+<tr><td>start_date_type</td><td>string</td></tr>
+<tr><td>start_date</td><td>date</td></tr>
+<tr><td>verification_month_year</td><td>string</td></tr>
+<tr><td>verification_date</td><td>date</td></tr>
+<tr><td>completion_month_year</td><td>string</td></tr>
+<tr><td>completion_date_type</td><td>string</td></tr>
+<tr><td>completion_date</td><td>date</td></tr>
+<tr><td>primary_completion_month_year</td><td>string</td></tr>
+<tr><td>primary_completion_date_type</td><td>string</td></tr>
+<tr><td>primary_completion_date</td><td>date</td></tr>
+<tr><td>target_duration</td><td>string</td></tr>
+<tr><td>study_type</td><td>string</td></tr>
+<tr><td>acronym</td><td>string</td></tr>
+<tr><td>baseline_population</td><td>text</td></tr>
+<tr><td>brief_title</td><td>text</td></tr>
+<tr><td>official_title</td><td>text</td></tr>
+<tr><td>overall_status</td><td>string</td></tr>
+<tr><td>last_known_status</td><td>string</td></tr>
+<tr><td>phase</td><td>string</td></tr>
+<tr><td>enrollment</td><td>integer</td></tr>
+<tr><td>enrollment_type</td><td>string</td></tr>
+<tr><td>source</td><td>string</td></tr>
+<tr><td>limitations_and_caveats</td><td>string</td></tr>
+<tr><td>number_of_arms</td><td>integer</td></tr>
+<tr><td>number_of_groups</td><td>integer</td></tr>
+<tr><td>why_stopped</td><td>string</td></tr>
+<tr><td>has_expanded_access</td><td>boolean</td></tr>
+<tr><td>expanded_access_type_individual</td><td>boolean</td></tr>
+<tr><td>expanded_access_type_intermediate</td><td>boolean</td></tr>
+<tr><td>expanded_access_type_treatment</td><td>boolean</td></tr>
+<tr><td>has_dmc</td><td>boolean</td></tr>
+<tr><td>is_fda_regulated_drug</td><td>boolean</td></tr>
+<tr><td>is_fda_regulated_device</td><td>boolean</td></tr>
+<tr><td>is_unapproved_device</td><td>boolean</td></tr>
+<tr><td>is_ppsd</td><td>boolean</td></tr>
+<tr><td>is_us_export</td><td>boolean</td></tr>
+<tr><td>biospec_retention</td><td>string</td></tr>
+<tr><td>biospec_description</td><td>text</td></tr>
+<tr><td>ipd_time_frame</td><td>string</td></tr>
+<tr><td>ipd_access_criteria</td><td>string</td></tr>
+<tr><td>ipd_url</td><td>string</td></tr>
+<tr><td>plan_to_share_ipd</td><td>string</td></tr>
+<tr><td>plan_to_share_ipd_description</td><td>string</td></tr>
+<tr><td>created_at</td><td>datetime</td></tr>
+<tr><td>updated_at</td><td>datetime</td></tr>
+        </table>>];
+
+
+        Link [label=<
+        <table border="0" cellborder="1" cellspacing="0">
+          <tr><td colspan="2"><b>Link</b></td></tr>
+          <tr><td>id</td><td>integer</td></tr>
+<tr><td>nct_id</td><td>string</td></tr>
+<tr><td>url</td><td>string</td></tr>
+<tr><td>description</td><td>text</td></tr>
+        </table>>];
+
+
+      BaselineCount -> ResultGroup
+BaselineMeasurement -> ResultGroup
+DesignGroupIntervention -> Intervention
+DesignGroupIntervention -> DesignGroup
+DropWithdrawal -> ResultGroup
+ReportedEvent -> ResultGroup
+FacilityContact -> Facility
+FacilityInvestigator -> Facility
+InterventionOtherName -> Intervention
+Milestone -> ResultGroup
+OutcomeAnalysis -> Outcome
+OutcomeAnalysisGroup -> ResultGroup
+OutcomeAnalysisGroup -> OutcomeAnalysis
+OutcomeCount -> Outcome
+OutcomeCount -> ResultGroup
+OutcomeMeasurement -> Outcome
+OutcomeMeasurement -> ResultGroup
+      Facility -> Study
+OutcomeMeasurement -> Study
+FacilityContact -> Study
+Design -> Study
+DropWithdrawal -> Study
+IpdInformationType -> Study
+Milestone -> Study
+OutcomeAnalysisGroup -> Study
+ParticipantFlow -> Study
+ProvidedDocument -> Study
+ReportedEvent -> Study
+ResultAgreement -> Study
+ResultGroup -> Study
+DesignGroupIntervention -> Study
+OutcomeAnalysis -> Study
+OutcomeCount -> Study
+Outcome -> Study
+PendingResult -> Study
+ReportedEventTotal -> Study
+ResponsibleParty -> Study
+ResultContact -> Study
+StudyReference -> Study
+Condition -> Study
+Country -> Study
+DesignOutcome -> Study
+Keyword -> Study
+OverallOfficial -> Study
+BaselineCount -> Study
+BriefSummary -> Study
+SearchResult -> Study
+DesignGroup -> Study
+IdInformation -> Study
+Intervention -> Study
+Sponsor -> Study
+BaselineMeasurement -> Study
+CalculatedValue -> Study
+CentralContact -> Study
+DetailedDescription -> Study
+Document -> Study
+FacilityInvestigator -> Study
+InterventionOtherName -> Study
+BrowseCondition -> Study
+BrowseIntervention -> Study
+DesignOutcome -> Study
+Condition -> Study
+Keyword -> Study
+BaselineCount -> Study
+IdInformation -> Study
+Intervention -> Study
+DetailedDescription -> Study
+CentralContact -> Study
+Eligibility -> Study
+InterventionOtherName -> Study
+Link -> Study
+ParticipantFlow -> Study
+ProvidedDocument -> Study
+ReportedEventTotal -> Study
+StudyReference -> Study
+Facility -> Study
+Country -> Study
+DesignGroup -> Study
+BaselineMeasurement -> Study
+Sponsor -> Study
+DesignGroupIntervention -> Study
+DropWithdrawal -> Study
+Milestone -> Study
+OutcomeAnalysis -> Study
+ResponsibleParty -> Study
+ResultAgreement -> Study
+OverallOfficial -> Study
+BriefSummary -> Study
+CalculatedValue -> Study
+SearchResult -> Study
+Design -> Study
+Study -> Study
+Document -> Study
+FacilityContact -> Study
+FacilityInvestigator -> Study
+IpdInformationType -> Study
+OutcomeAnalysisGroup -> Study
+OutcomeCount -> Study
+OutcomeMeasurement -> Study
+Outcome -> Study
+PendingResult -> Study
+ReportedEvent -> Study
+ResultContact -> Study
+ResultGroup -> Study
+BrowseCondition -> Study
+BrowseIntervention -> Study
+Eligibility -> Study
+Study -> Study
+Link -> Study
+    }
+
