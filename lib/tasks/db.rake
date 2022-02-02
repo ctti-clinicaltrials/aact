@@ -72,4 +72,10 @@ namespace :db do
     connection = "-h #{ENV['AACT_HOST'] || 'localhost'} -p #{ENV['AACT_PORT'] || '5432'}"
     `pg_dump -U #{aact_superuser} --schema='ctgov' --schema-only #{aact_back_db} #{connection} | sed 's/ctgov/ctgov_beta/g; s/ctgov_beta_group_code/ctgov_group_code/g' | psql -U #{aact_superuser} -d #{aact_back_db} #{connection}`
   end
+
+  task generate_schema_png: [:environment] do
+    Util::DbManager.new.schema_image
+  end
+
+
 end

@@ -412,18 +412,21 @@ module Util
     graph = <<-END
     digraph {
       graph [layout=twopi, splines=true, overlap=false];
+      #graph [pad="0.5", splines=true, nodesep="5", ranksep="2", overlap=false];
+
       node [shape=plain]
       /*rankdir=LR;*/
 
       #{nodes}
-
-      #{edges}
+      #{edges2}
       #{edges2}
     }
 
     END
-    File.write("schema.dot", graph)
-    `dot -Tpng schema.dot -o schema.png`
+    Dir.chdir("./public/static/documentation") do
+      File.write("schema.dot", graph)
+      `dot -Tpng schema.dot -o aact_schema.png`
+    end
     end
 
     def table_dot(model)
