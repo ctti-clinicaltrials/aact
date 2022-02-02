@@ -2199,7 +2199,8 @@ CREATE TABLE ctgov.result_contacts (
     organization character varying,
     name character varying,
     phone character varying,
-    email character varying
+    email character varying,
+    extension character varying
 );
 
 
@@ -4088,6 +4089,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210526192648'),
 ('20210526192804'),
 ('20210601063550'),
-('20211027133828');
+('20211027133828'),
+('20220202152642');
 
 
