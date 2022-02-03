@@ -5,7 +5,7 @@ describe Notifier, type: :mailer do
   let(:stub_request_headers) { {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v1.1.0' } }
   let(:study_statistics_body) {File.read('spec/support/json_data/study_statistics.json') }
   let(:mailer_stub) { stub_request(:get, 'https://clinicaltrials.gov/api/info/study_statistics?fmt=json').with(headers: stub_request_headers).to_return(:status => 200, :body => study_statistics_body, :headers => {}) }
-  let(:msg) { described_class.send_msg('ctgov', 'test@gmail.com',event.subject_line, event.email_message) }
+  let(:msg) { described_class.send_msg('test@gmail.com',event.subject_line, event.email_message) }
 
   before do
     mailer_stub
