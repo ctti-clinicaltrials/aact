@@ -252,7 +252,7 @@ module Util
       }
     end
 
-    def remove_constrains
+    def remove_constraints
       Util::DbManager.loadable_tables.each {|table_name|
         # remove foreign key that links most tables to Studies table via the NCT ID
         begin
@@ -403,6 +403,7 @@ module Util
       ]
     end
 
+
     def schema_image
       models = Util::DbManager.loadable_tables.map{|k| k.singularize.camelize.constantize }
       nodes = models.map{|k| table_dot(k)}.join("\n\n")
@@ -410,7 +411,7 @@ module Util
       edges2 = StudyRelationship.study_models.map{|k| "#{k.name} -> Study"}.join("\n")
     graph = <<-END
     digraph {
-      graph [pad="0.5", splines=true, nodesep="5", ranksep="2", overlap=false];
+      graph [layout=twopi, splines=true, overlap=false];
       node [shape=plain]
       /*rankdir=LR;*/
 
@@ -419,6 +420,7 @@ module Util
       #{edges}
       #{edges2}
     }
+
     END
     File.write("schema.dot", graph)
     `dot -Tpng schema.dot -o schema.png`
