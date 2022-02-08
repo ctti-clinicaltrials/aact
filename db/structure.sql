@@ -2307,6 +2307,39 @@ ALTER SEQUENCE ctgov.sponsors_id_seq OWNED BY ctgov.sponsors.id;
 
 
 --
+-- Name: study_records; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.study_records (
+    id bigint NOT NULL,
+    nct_id character varying,
+    content character varying,
+    sha character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: study_records_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.study_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: study_records_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.study_records_id_seq OWNED BY ctgov.study_records.id;
+
+
+--
 -- Name: study_references; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -2879,6 +2912,13 @@ ALTER TABLE ONLY ctgov.sponsors ALTER COLUMN id SET DEFAULT nextval('ctgov.spons
 
 
 --
+-- Name: study_records id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.study_records ALTER COLUMN id SET DEFAULT nextval('ctgov.study_records_id_seq'::regclass);
+
+
+--
 -- Name: study_references id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3309,6 +3349,14 @@ ALTER TABLE ONLY ctgov.search_results
 
 ALTER TABLE ONLY ctgov.sponsors
     ADD CONSTRAINT sponsors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: study_records study_records_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.study_records
+    ADD CONSTRAINT study_records_pkey PRIMARY KEY (id);
 
 
 --
@@ -3963,6 +4011,13 @@ CREATE INDEX index_studies_on_study_type ON ctgov.studies USING btree (study_typ
 
 
 --
+-- Name: index_study_records_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_study_records_on_nct_id ON ctgov.study_records USING btree (nct_id);
+
+
+--
 -- Name: index_study_references_on_reference_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4058,7 +4113,7 @@ ALTER TABLE ONLY support.sanity_checks
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov, support, public, ctgov_beta;
+SET search_path TO ctgov, support, public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20160630191037'),
@@ -4088,6 +4143,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210526192648'),
 ('20210526192804'),
 ('20210601063550'),
-('20211027133828');
+('20211027133828'),
+('20220207182529');
 
 
