@@ -19,3 +19,4 @@ server.env
 .byebug_history
 /config/connections.yml
 data
+/public/static/documentation/schema.dot
