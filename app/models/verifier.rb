@@ -31,6 +31,12 @@ class Verifier < ActiveRecord::Base
               ]
       end
     end
+    Verifier.alert_admins_about_differences
+  end
+
+  def self.alert_admins_about_differences
+    admin_emails = ENV.fetch("AACT_ADMIN_EMAILS", "").split(",")
+    admin_emails.each {|admin_email| Notifier.report_diff(admin_email).deliver_now}
   end
 
   def get_source_from_file(file_path="#{Util::FileManager.new.study_statistics_directory}/verifier_source_ctgov.json")
