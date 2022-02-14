@@ -100,6 +100,7 @@ GEM
       nokogiri (~> 1.10, >= 1.10.4)
       rubyzip (>= 1.3.0, < 3)
     coderay (1.1.3)
+    colorize (0.8.1)
     concurrent-ruby (1.1.7)
     crack (0.4.4)
     crass (1.0.6)
@@ -339,6 +340,7 @@ DEPENDENCIES
   capistrano-rails (~> 1.2)
   caxlsx
   coderay
+  colorize
   database_cleaner
   enumerize
   execjs

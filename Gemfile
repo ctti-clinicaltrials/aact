@@ -32,6 +32,7 @@ gem 'enumerize'
 gem 'bulk_insert'
 gem 'activerecord-import', '<= 0.19.1' #for some reason more updated versions slow down the loads
 gem 'sinatra', :require => nil
+gem 'colorize'
 gem 'font-awesome-rails'
 gem 'roo'
 gem 'string-similarity'
