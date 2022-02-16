@@ -4,4 +4,19 @@
       %h5 ClinicalTrials: #{@ctgov_count}
     %columns
       %h5 DigitalOcean: #{@public_study_count}
+  %row
+    %columns
+      %h5 Description: #{@event.description}
+  %row
+    %columns
+      %h5 Problems: #{@event.problems}
+    %columns
+      %h5 Should add: #{@event.should_add}
+  %row
+    %columns
+      %h5 Processed: #{@event.processed}
+    %columns
+      %h5 Load Time: #{@event.load_time}
+    %columns
+      %h5 Completed at: #{@event.completed_at}
 #{raw @body.gsub("\n", "<br/>")}
