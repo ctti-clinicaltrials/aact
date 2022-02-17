@@ -1453,6 +1453,39 @@ ALTER SEQUENCE ctgov.facility_investigators_id_seq OWNED BY ctgov.facility_inves
 
 
 --
+-- Name: file_records; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.file_records (
+    id bigint NOT NULL,
+    filename character varying,
+    file_size bigint,
+    file_type character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: file_records_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.file_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: file_records_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.file_records_id_seq OWNED BY ctgov.file_records.id;
+
+
+--
 -- Name: id_information_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -2698,6 +2731,13 @@ ALTER TABLE ONLY ctgov.facility_investigators ALTER COLUMN id SET DEFAULT nextva
 
 
 --
+-- Name: file_records id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_records ALTER COLUMN id SET DEFAULT nextval('ctgov.file_records_id_seq'::regclass);
+
+
+--
 -- Name: id_information id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3094,6 +3134,14 @@ ALTER TABLE ONLY ctgov.facility_contacts
 
 ALTER TABLE ONLY ctgov.facility_investigators
     ADD CONSTRAINT facility_investigators_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: file_records file_records_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_records
+    ADD CONSTRAINT file_records_pkey PRIMARY KEY (id);
 
 
 --
@@ -4090,6 +4138,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210526192804'),
 ('20210601063550'),
 ('20211027133828'),
-('20220202152642');
+('20220202152642'),
+('20220212033048');
 
 

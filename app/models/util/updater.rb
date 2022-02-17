@@ -119,7 +119,7 @@ module Util
       end
 
       # 11. send email
-      send_notification(schema)
+      send_notification()
     end
 
     def current_study_differences
@@ -266,7 +266,7 @@ module Util
           load_event.complete({ status: 'failed', study_counts: study_counts })
         end
       end
-      send_notification(schema)
+      send_notification()
     end
 
     def full
@@ -420,11 +420,11 @@ module Util
         load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
     end
 
-    def send_notification(schema)
+    def send_notification()
       return unless AACT::Application::AACT_OWNER_EMAIL
 
       log('sending email notification...')
-      Notifier.report_load_event(schema, load_event)
+      Notifier.report_load_event(load_event)
     end
 
     def create_flat_files(schema)

@@ -1,4 +1,11 @@
 FactoryBot.define do
+  factory :file_record do
+    filename { "MyString" }
+    file_size { "" }
+    file_type { "MyString" }
+    string { "MyString" }
+  end
+
   factory :verifier do
     
   end

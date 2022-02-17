@@ -408,7 +408,7 @@ module Util
       models = Util::DbManager.loadable_tables.map{|k| k.singularize.camelize.constantize }
       nodes = models.map{|k| table_dot(k)}.join("\n\n")
       edges = foreign_key_constraints.map{|k| "#{k[:child_table].singularize.camelize} -> #{k[:parent_table].singularize.camelize}"}.join("\n")
-      edges2 = StudyRelationship.study_models.map{|k| "#{k.name} -> Study"}.join("\n")
+      edges2 = StudyRelationship.study_models.uniq.map{|k| "#{k.name} -> Study"}.join("\n")
     graph = <<-END
     digraph {
       graph [layout=twopi, splines=true, overlap=false];
@@ -416,14 +416,14 @@ module Util
       /*rankdir=LR;*/
 
       #{nodes}
-
       #{edges}
       #{edges2}
     }
 
     END
-    File.write("schema.dot", graph)
-    `dot -Tpng schema.dot -o schema.png`
+  
+    File.write("./public/static/documentation/schema.dot", graph)
+    `dot -Tpng ./public/static/documentation/schema.dot -o ./public/static/documentation/aact_schema.png`
     end
 
     def table_dot(model)
