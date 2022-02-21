@@ -11,7 +11,7 @@ class Notifier < ApplicationMailer
     @ctgov_count = ClinicalTrialsApi.number_of_studies
     @event = event
     @body = event.email_message
-    mail(to: email_addr, subject: event.subject, from: 'ctti@duke.edu')
+    mail(to: email_addr, subject: event.subject_line, from: 'ctti@duke.edu')
   end
 
   def report_diff(email)
