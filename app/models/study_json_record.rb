@@ -957,7 +957,7 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def create_and_group_results(section, selector='Outcome', result_type='Outcome')
-    groups = section.dig("#{selector}GroupList", "#{selector}Group") || []
+    groups = (section || {}).dig("#{selector}GroupList", "#{selector}Group") || []
     groups_data = StudyJsonRecord.result_groups(groups, selector, result_type, nct_id)
     result_groups = {}
     groups_data.each do |group|
