@@ -11,13 +11,13 @@ module Util
     def initialize(params = {})
       @full_featured = params[:full_featured] || false
       @params = params
-      type = (params[:event_type] || 'incremental')
+      @type = (params[:event_type] || 'incremental')
       @schema = params[:schema] || 'ctgov'
       @search_days_back = params[:search_days_back]
-      ENV['load_type'] = type
+      ENV['load_type'] = @type
       if params[:restart]
-        log("Starting the #{type} load...")
-        type = 'restart'
+        log("Starting the #{@type} load...")
+        @type = 'restart'
       end
       @client = Util::Client.new
       @days_back = (params[:days_back] || 4)
@@ -27,7 +27,7 @@ module Util
 
     def start
       loop do
-        if Support::LoadEvent.where('created_at > ?',Time.now.beginning_of_day).count == 0
+        if Support::LoadEvent.where('created_at > ?',(Time.now - 1.day).beginning_of_day + 5.hours).count == 0
           execute
         else
           ActiveRecord::Base.logger = nil
@@ -59,7 +59,7 @@ module Util
     end
 
     def execute
-      @load_event = Support::LoadEvent.create({ event_type: type, status: 'running', description: '', problems: '' })
+      @load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: '', problems: '' })
       # TODO: need to extract this into a connection method
       con = ActiveRecord::Base.connection
       username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
