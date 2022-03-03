@@ -2313,7 +2313,8 @@ ALTER SEQUENCE ctgov.sponsors_id_seq OWNED BY ctgov.sponsors.id;
 CREATE TABLE ctgov.study_records (
     id bigint NOT NULL,
     nct_id character varying,
-    content character varying,
+    type character varying,
+    content json,
     sha character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
@@ -4011,10 +4012,10 @@ CREATE INDEX index_studies_on_study_type ON ctgov.studies USING btree (study_typ
 
 
 --
--- Name: index_study_records_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_study_records_on_nct_id_and_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE UNIQUE INDEX index_study_records_on_nct_id ON ctgov.study_records USING btree (nct_id);
+CREATE UNIQUE INDEX index_study_records_on_nct_id_and_type ON ctgov.study_records USING btree (nct_id, type);
 
 
 --
