@@ -21,7 +21,7 @@ namespace :db do
     Util::Updater.new(args).execute
   end
 
-  task :restore_from_file, [:path_to_file, :database_name] => :environment do |t, args|
+  task :restore_from_file, [:path_to_file, :database] => :environment do |t, args|
     Util::DbManager.new.restore_from_file(args)
   end
 

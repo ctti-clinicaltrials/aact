@@ -29,8 +29,9 @@ class StudySearch < ActiveRecord::Base
   end
 
   def load_update(days_back=2)
-    date_ranged_query = query + StudySearch.time_range(days_back)
-    collection = StudySearch.collected_nct_ids(date_ranged_query) 
+    # date_ranged_query = query + StudySearch.time_range(days_back)
+    # collection = StudySearch.collected_nct_ids(date_ranged_query) 
+    collection = StudySearch.collected_nct_ids(query) 
     total = collection.count
     collection.each do |study_nct_id|
       next unless Study.find_by(nct_id: study_nct_id)
@@ -58,10 +59,14 @@ class StudySearch < ActiveRecord::Base
 
   def self.execute(days_back=2)
     queries = all
-    queries.each do |query|
-      print "running query group: #{query.grouping}..."
-      query.load_update(days_back)
-      puts "group is done"
+    begin
+      queries.each do |query|
+        print "running query group: #{query.grouping}..."
+        query.load_update(days_back)
+        puts "group is done"
+      end
+    rescue => e
+      Airbrake.notify(e)
     end
   end
 

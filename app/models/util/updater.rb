@@ -11,20 +11,42 @@ module Util
     def initialize(params = {})
       @full_featured = params[:full_featured] || false
       @params = params
-      type = (params[:event_type] || 'incremental')
+      @type = (params[:event_type] || 'incremental')
       @schema = params[:schema] || 'ctgov'
       @search_days_back = params[:search_days_back]
-      ENV['load_type'] = type
+      ENV['load_type'] = @type
       if params[:restart]
-        log("Starting the #{type} load...")
-        type = 'restart'
+        log("Starting the #{@type} load...")
+        @type = 'restart'
       end
       @client = Util::Client.new
       @days_back = (params[:days_back] || 4)
-      @load_event = Support::LoadEvent.create({ event_type: type, status: 'running', description: '', problems: '' })
-      @load_event.save! # Save to timestamp created_at
       @study_counts = { should_add: 0, should_change: 0, processed: 0, count_down: 0 }
       self
+    end
+
+    def start
+      loop do
+        now = TZInfo::Timezone.get('America/New_York').now
+        if Support::LoadEvent.where('created_at > ?',now.beginning_of_day).count == 0
+          execute
+        else
+          ActiveRecord::Base.logger = nil
+          db_mgr.remove_constraints
+          update_old_studies
+        end
+      end
+    end
+
+    # updates the oldest studies
+    def update_old_studies(count=100)
+      # ids = Study.where('updated_at < ?',Time.now-24.hours).order(updated_at: :asc).limit(count)
+      studies = Study.order(updated_at: :asc).limit(count)
+      puts "refreshing #{studies.count} studies"
+      studies.each do |study|
+        puts "refresh #{study.nct_id} #{study.updated_at}"
+        update_study(study.nct_id)
+      end
     end
 
     def set_schema
@@ -38,6 +60,7 @@ module Util
     end
 
     def execute
+      @load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: '', problems: '' })
       # TODO: need to extract this into a connection method
       con = ActiveRecord::Base.connection
       username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
@@ -49,7 +72,7 @@ module Util
 
       # 1. remove constraings
       log("#{schema} remove constraints...")
-      db_mgr.remove_constrains
+      db_mgr.remove_constraints
       
       # 2. update studies
       log("#{schema} updating studies...")
@@ -97,7 +120,7 @@ module Util
       end
 
       # 11. send email
-      send_notification(schema)
+      send_notification()
     end
 
     def current_study_differences
@@ -201,7 +224,7 @@ module Util
     def load_study(study_id)
       # 1. remove constraings
       log("#{schema} remove constraints...")
-      db_mgr.remove_constrains
+      db_mgr.remove_constraints
       update_study(study_id)
       # 2. add constraints
       log("#{schema} adding constraints...")
@@ -214,7 +237,7 @@ module Util
       array_nctids = string_nct_ids.split(' ')
       # 1. remove constraings
       log("#{schema} remove constraints...")
-      db_mgr.remove_constrains
+      db_mgr.remove_constraints
       array_nctids.each{|nctid|update_study(nctid)}
       # 2. add constraints
       log("#{schema} adding constraints...")
@@ -232,6 +255,7 @@ module Util
                  end
         finalize_load if status != false
       rescue StandardError => e
+        Airbrake.notify(e)
         begin
           msg = "#{e.message} (#{e.class} #{e.backtrace}"
           log("#{@load_event.event_type} load failed in run: #{msg}")
@@ -243,21 +267,22 @@ module Util
           load_event.complete({ status: 'failed', study_counts: study_counts })
         end
       end
-      send_notification(schema)
+      send_notification()
     end
 
     def full
-      if should_restart?
-        log('restarting full load...')
-      else
-        log('begin full load ...')
-        StudyJsonRecord.full
-      end
-      truncate_tables unless should_restart?
-      remove_indexes_and_constraints # Index significantly slow the load process. Will be re-created after data loaded.
-      study_counts[:should_add] = Support::StudyXmlRecord.not_yet_loaded.count
-      study_counts[:should_change] = 0
-      @client.populate_studies
+      start_time=Time.zone.now
+      log("storing study statistics data from ClinicalTrials.gov...")
+      verifier = Verifier.create(source: ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study"))
+      
+      log("begin full load, Start Time: #{start_time}...")
+      StudyJsonRecord.full
+      log("took #{time_ago_in_words(start_time)}")
+      
+      log("verififing study statistics match the aact database...")
+      verifier.verify(schema)
+      verifier.write_data_to_file(schema)
+
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
     end
@@ -269,7 +294,7 @@ module Util
     def incremental
       log('begin incremental load...')
 
-      db_mgr.remove_constrains
+      db_mgr.remove_constraints
       Support::StudyXmlRecord.update_studies
       db_mgr.add_constraints
 
@@ -296,7 +321,6 @@ module Util
       log('finalizing load...')
 
       load_event.log('add indexes and constraints..')
-      add_indexes_and_constraints if params[:event_type] == 'full'
 
       load_event.log('execute study search...')
       days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
@@ -308,9 +332,6 @@ module Util
         load_event.log('set downcase mesh terms...')
         set_downcase_terms
       end
-
-      load_event.log('populate admin tables...')
-      # populate_admin_tables
 
       load_event.log('run sanity checks...')
       load_event.run_sanity_checks
@@ -332,8 +353,6 @@ module Util
 
       load_event.log('create flat files...')
       create_flat_files(schema)
-
-      # Admin::PublicAnnouncement.clear_load_message
     end
 
     def remove_indexes_and_constraints
@@ -394,7 +413,7 @@ module Util
 
     def take_snapshot(schema='ctgov')
       log('dumping database...')
-      db_mgr.dump_database(schema)
+      db_mgr.dump_database
 
       log('creating zipfile of database...')
       Util::FileManager.new.save_static_copy(schema)
@@ -402,11 +421,11 @@ module Util
         load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
     end
 
-    def send_notification(schema)
+    def send_notification()
       return unless AACT::Application::AACT_OWNER_EMAIL
 
       log('sending email notification...')
-      Notifier.report_load_event(schema, load_event)
+      Notifier.report_load_event(load_event)
     end
 
     def create_flat_files(schema)
