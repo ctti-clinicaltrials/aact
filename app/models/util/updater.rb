@@ -32,7 +32,7 @@ module Util
           execute
         else
           ActiveRecord::Base.logger = nil
-          db_mgr.remove_constrains
+          db_mgr.remove_constraints
           update_old_studies
         end
       end
