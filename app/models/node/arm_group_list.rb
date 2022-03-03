@@ -9,6 +9,8 @@ module Node
       else
         root.study.number_of_groups = arm_groups.length
       end
+
+      arm_groups.each{|i| i.process(root) }
     end
   end
 end

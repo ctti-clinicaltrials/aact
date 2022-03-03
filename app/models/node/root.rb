@@ -30,11 +30,16 @@ module Node
       @model_collections
     end
 
+    def self.attribute_list
+      @attribute_list ||= []
+    end
+
     attr_accessor :protocol_section, :derived_section, :results_section
     attr_accessor :errors
 
     models :study, :detailed_description, :brief_summary, :design, :eligibility, :participant_flow
-    model_collections :result_groups, :browse_conditions, :central_contacts
+    model_collections :result_groups, :browse_conditions, :central_contacts, :browse_interventions,
+                      :conditions, :countries, :design_groups
 
     def initialize(data)
       self.errors = []

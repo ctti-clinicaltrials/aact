@@ -2,6 +2,15 @@ module Node
   class Base
     attr_reader :raw
 
+    def self.attribute(*attribute_names)
+      class_eval do
+        attribute_names.each do |key|
+          Node::Root.attribute_list << key
+          attr_accessor key
+        end
+      end
+    end
+
     def initialize(data, root)
       @raw = data
       data.each do |key, val|
@@ -29,7 +38,7 @@ module Node
             item = "Node::#{key}".constantize.new(val, root)
             instance_variable_set("@#{key.underscore}", item)
           rescue => e
-            puts e.message.red
+            # puts e.message.red
             root.errors << "Node::#{key} not found"
           end
         end
@@ -37,13 +46,13 @@ module Node
     end
 
     def process(root)
-      puts self.class.to_s.underscore
+      # puts self.class.to_s.underscore
       instance_variables.each do |var|
         next if var == :@raw
         val = instance_variable_get(var)
         case val
         when String
-          puts "missing #{var}"
+          # puts "missing #{var}"
         when Array
           val.each do |item|
             item.process(root)
