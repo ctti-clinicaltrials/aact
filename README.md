@@ -48,7 +48,7 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
 
 2.  Now we will create the roles you need for running AACT.  
     `psql postgres` this allows you to enter the postgres database that comes with PostgreSQL.  
-    `postgres=# create role <your_aact_superuser> login password '<your_superuser_password>’;`  
+    `postgres=# create role <your_aact_superuser> login password '<your_superuser_password>';`  
     `postgres=# alter user <your_aact_superuser> with superuser;`  
     `postgres=# create role read_only;`  
     `postgres=# create database aact_alt;`  
