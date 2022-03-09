@@ -26,6 +26,7 @@ class SearchResult < ActiveRecord::Base
         row << content
       end
     end
+    File.attach(io: File.open(folder), content_type: 'application/condition', filename: name)
   end
 
   def self.study_values(study)

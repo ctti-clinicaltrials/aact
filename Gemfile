@@ -44,6 +44,8 @@ gem 'caxlsx'
 gem 'airbrake'
 gem 'parallel'
 gem 'ruby-progressbar'
+gem "aws-sdk-s3", require: false
+
 
 # deployment to server
 gem 'capistrano', '~> 3.8'

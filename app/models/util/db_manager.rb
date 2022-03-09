@@ -39,6 +39,7 @@ module Util
       "
       puts cmd
       run_command_line(cmd)
+      File.attach(io: File.open(dump_file_location), content_type: 'application/snapshot', filename: 'snapshot')
       return dump_file_location
     end
 
