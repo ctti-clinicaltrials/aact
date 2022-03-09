@@ -39,7 +39,10 @@ module Util
       "
       puts cmd
       run_command_line(cmd)
-      File.attach(io: File.open(dump_file_location), content_type: 'application/snapshot', filename: 'snapshot')
+
+      record = FileRecord.create(file_type: snapshot, filename: "" ) # where i can get a file name from
+      record.file.attach(io: File.open(dump_file_location), filename: "")
+
       return dump_file_location
     end
 

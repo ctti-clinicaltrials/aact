@@ -20,8 +20,8 @@ module Util
         else
           system("zip -j -q #{@zipfile_name} #{@temp_dir}/*.txt")
         end
-        File.attach(io: File.open(@temp_dir), content_type: 'application/pipefiles', filename: @zipfile_name)
-
+        record = FileRecord.create(file_type: pipefiles, filename: @zipfile_name)
+        record.file.attach(io: File.open(@temp_dir, filename: @zipfile_name)
         if should_archive
           archive(delimiter)
         end
