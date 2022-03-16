@@ -26,6 +26,9 @@ class SearchResult < ActiveRecord::Base
         row << content
       end
     end
+    filename = "#{name}.tsv"
+    record = FileRecord.create(file_type: condition, filename: filename)
+    record.file.attach(io: File.open(file_path),  filename: "#{name}.tsv")
   end
 
   def self.study_values(study)
