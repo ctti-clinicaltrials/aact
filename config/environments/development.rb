@@ -60,4 +60,8 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
   config.action_mailer.default_url_options = { host: host }
   config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 50.megabytes)
+
+  # Store files locally.
+  config.active_storage.service = :local
+
 end
