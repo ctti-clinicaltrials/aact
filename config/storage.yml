@@ -11,4 +11,4 @@ digitalocean:
   endpoint: https://nyc3.digitaloceanspaces.com
   access_key_id: <%= ENV["DIGITALOCEAN_ACCESS_KEY_ID"] %>
   secret_access_key: <%= ENV["DIGITALOCEAN_SECRET_ACCESS_KEY"] %>
-  # ...and other options
+  bucket: ctti-aact
