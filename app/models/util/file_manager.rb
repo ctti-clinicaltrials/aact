@@ -216,7 +216,7 @@ module Util
             zipfile.add(entry.first, entry.last)
         }
       }
-      record = FileRecord.create(file_type: "snapshot", filename: "#{zip_file_name}" ) 
+      record = FileRecord.create(file_type: "snapshot", filename: "#{zip_file_name}") 
       record.file.attach(io: File.open(folders), filename: "#{zip_file_name}")
       zip_file_name
     end
