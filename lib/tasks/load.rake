@@ -7,16 +7,6 @@ namespace :db do
     Util::Updater.new(args).run
   end
 
-  task :loop, [] => :environment do
-    loop do
-      if Time.now.hour == 4
-        updater = Util::Updater.new
-        updater.execute
-      end
-      sleep 60
-    end
-  end
-
   task :load2, [:schema, :search_days_back] => :environment do |t, args|
     Util::Updater.new(args).execute
   end
