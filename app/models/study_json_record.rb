@@ -392,7 +392,7 @@ class StudyJsonRecord < ActiveRecord::Base
       enrollment: enrollment['EnrollmentCount'],
       enrollment_type: enrollment['EnrollmentType'],
       source: ident.dig('Organization', 'OrgFullName'),
-      limitations_and_caveats: key_check(results['MoreInfoModule'])['LimitationsAndCaveats'],
+      limitations_and_caveats: key_check(results['MoreInfoModule'])['LimitationsAndCaveatsDescription'],
       number_of_arms: arms_count,
       number_of_groups: groups_count,
       why_stopped: status['WhyStopped'],
