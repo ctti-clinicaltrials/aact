@@ -22,6 +22,9 @@ class StudyRelationship < ActiveRecord::Base
       use_cases
       use_case_attachments
       verifiers
+      active_storage_variant_records
+      active_storage_blobs
+      active_storage_attachments
     )
     @models = (connection.tables - blacklist).map{|k| k.singularize.camelize.constantize }
   end
