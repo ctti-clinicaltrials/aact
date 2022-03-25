@@ -25,6 +25,7 @@ class StudyRelationship < ActiveRecord::Base
       active_storage_variant_records
       active_storage_blobs
       active_storage_attachments
+      file_records
     )
     @models = (connection.tables - blacklist).map{|k| k.singularize.camelize.constantize }
   end
