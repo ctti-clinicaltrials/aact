@@ -20,3 +20,4 @@ server.env
 /config/connections.yml
 data
 /public/static/documentation/schema.dot
+/storage
