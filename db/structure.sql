@@ -283,6 +283,74 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: active_storage_attachments; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.active_storage_attachments (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    record_type character varying NOT NULL,
+    record_id bigint NOT NULL,
+    blob_id bigint NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.active_storage_attachments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.active_storage_attachments_id_seq OWNED BY ctgov.active_storage_attachments.id;
+
+
+--
+-- Name: active_storage_blobs; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.active_storage_blobs (
+    id bigint NOT NULL,
+    key character varying NOT NULL,
+    filename character varying NOT NULL,
+    content_type character varying,
+    metadata text,
+    byte_size bigint NOT NULL,
+    checksum character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.active_storage_blobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.active_storage_blobs_id_seq OWNED BY ctgov.active_storage_blobs.id;
+
+
+--
 -- Name: browse_conditions; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1462,7 +1530,8 @@ CREATE TABLE ctgov.file_records (
     file_size bigint,
     file_type character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    url character varying
 );
 
 
@@ -2591,6 +2660,20 @@ ALTER SEQUENCE support.study_xml_records_id_seq OWNED BY support.study_xml_recor
 
 
 --
+-- Name: active_storage_attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_attachments ALTER COLUMN id SET DEFAULT nextval('ctgov.active_storage_attachments_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_blobs id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('ctgov.active_storage_blobs_id_seq'::regclass);
+
+
+--
 -- Name: baseline_counts id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2966,6 +3049,22 @@ ALTER TABLE ONLY support.study_json_records ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY support.study_xml_records ALTER COLUMN id SET DEFAULT nextval('support.study_xml_records_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_attachments active_storage_attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_attachments
+    ADD CONSTRAINT active_storage_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: active_storage_blobs active_storage_blobs_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_blobs
+    ADD CONSTRAINT active_storage_blobs_pkey PRIMARY KEY (id);
 
 
 --
@@ -3414,6 +3513,27 @@ ALTER TABLE ONLY support.study_json_records
 
 ALTER TABLE ONLY support.study_xml_records
     ADD CONSTRAINT study_xml_records_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_active_storage_attachments_on_blob_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_active_storage_attachments_on_blob_id ON ctgov.active_storage_attachments USING btree (blob_id);
+
+
+--
+-- Name: index_active_storage_attachments_uniqueness; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON ctgov.active_storage_attachments USING btree (record_type, record_id, name, blob_id);
+
+
+--
+-- Name: index_active_storage_blobs_on_key; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON ctgov.active_storage_blobs USING btree (key);
 
 
 --
@@ -4096,6 +4216,14 @@ CREATE TRIGGER category_insert_trigger INSTEAD OF INSERT ON ctgov.categories FOR
 
 
 --
+-- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_attachments
+    ADD CONSTRAINT fk_rails_c3b3935057 FOREIGN KEY (blob_id) REFERENCES ctgov.active_storage_blobs(id);
+
+
+--
 -- Name: sanity_checks fk_rails_9d86ec7e91; Type: FK CONSTRAINT; Schema: support; Owner: -
 --
 
@@ -4139,6 +4267,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210601063550'),
 ('20211027133828'),
 ('20220202152642'),
-('20220212033048');
+('20220212033048'),
+('20220308030627'),
+('20220329173304');
 
 
