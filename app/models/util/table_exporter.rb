@@ -22,6 +22,7 @@ module Util
         end
         record = FileRecord.create(file_type: "pipefiles", filename: @zipfile_name)
         record.file.attach(io: File.open(@zipfile_name), filename: @zipfile_name)
+        record.update(url: Rails.application.routes.url_helpers.rails_blob_path(file.file, only_path: true))
         if should_archive
           archive(delimiter)
         end

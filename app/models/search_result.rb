@@ -29,7 +29,6 @@ class SearchResult < ActiveRecord::Base
     filename = "#{name}.tsv"
     record = FileRecord.create(file_type: condition, filename: filename)
     record.file.attach(io: File.open(file),  filename: "#{name}.tsv")
-    record.update(url: Rails.application.routes.url_helpers.rails_blob_path(file.file, only_path: true))
   end
 
   def self.study_values(study)
