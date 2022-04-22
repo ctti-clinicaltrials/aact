@@ -29,6 +29,7 @@ class SearchResult < ActiveRecord::Base
     filename = "#{name}.tsv"
     record = FileRecord.create(file_type: condition, filename: filename)
     record.file.attach(io: File.open(file),  filename: "#{name}.tsv")
+    service_url(expires_in: ActiveStorage.service_urls_expire_in, disposition: :inline, filename: "#{name}.tsv") public
   end
 
   def self.study_values(study)

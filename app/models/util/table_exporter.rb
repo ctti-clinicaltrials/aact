@@ -22,6 +22,8 @@ module Util
         end
         record = FileRecord.create(file_type: "pipefiles", filename: @zipfile_name)
         record.file.attach(io: File.open(@zipfile_name), filename: @zipfile_name)
+        service_url(expires_in: ActiveStorage.service_urls_expire_in, disposition: :inline, filename: @zipfile_name) public
+
         if should_archive
           archive(delimiter)
         end
