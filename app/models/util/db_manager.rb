@@ -41,9 +41,9 @@ module Util
       run_command_line(cmd)
 
       filename = File.basename(dump_file_location)
-      record = FileRecord.create(file_type: "snapshot", filename: "#{filename}" ) 
-      record.file.attach(io: File.open(dump_file_location), filename: "#{filename}")
-      service_url(expires_in: ActiveStorage.service_urls_expire_in, disposition: :inline, filename: "#{filename}") public
+      record = FileRecord.create(file_type: "snapshot", filename: filename ) 
+      record.file.attach(io: File.open(dump_file_location), filename: filename)
+      record.update(url: record.file.service_url(filename: filename))
 
       return dump_file_location
     end
