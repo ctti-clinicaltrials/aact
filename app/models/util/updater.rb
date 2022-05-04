@@ -119,7 +119,10 @@ module Util
         end
       end
 
-      # 11. send email
+      # 11. change the state of the load event from “running” to “complete”
+      @load_event.update({ status:'complete'})
+
+      # 12. send email
       send_notification()
     end
 
