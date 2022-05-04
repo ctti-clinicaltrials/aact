@@ -120,7 +120,7 @@ module Util
       end
 
       # 11. change the state of the load event from “running” to “complete”
-      @load_event = Support::LoadEvent.update({ status:'complete'})
+      @load_event.update({ status:'complete'})
 
       # 12. send email
       send_notification()
