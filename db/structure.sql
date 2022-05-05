@@ -2488,7 +2488,8 @@ CREATE TABLE ctgov.verifiers (
     last_run timestamp without time zone,
     source json,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    load_event_id integer
 );
 
 
@@ -4269,6 +4270,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220202152642'),
 ('20220212033048'),
 ('20220308030627'),
-('20220329173304');
+('20220329173304'),
+('20220429175157');
 
 

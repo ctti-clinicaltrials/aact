@@ -73,11 +73,11 @@ module Util
       # 1. remove constraings
       log("#{schema} remove constraints...")
       db_mgr.remove_constraints
-      
+
       # 2. update studies
       log("#{schema} updating studies...")
       update_studies
-      
+
       # 3. add constraints
       log("#{schema} adding constraints...")
       db_mgr.add_constraints
@@ -85,7 +85,7 @@ module Util
       # 4. comparing the counts from CT.gov to our database
       log("#{schema} comparing counts...")
       begin
-        Verifier.refresh({schema: schema})
+        Verifier.refresh({schema: schema, load_event_id: params[:load_event_id]})
       rescue => e
         Airbrake.notify(e)
       end
@@ -177,7 +177,7 @@ module Util
       puts "Time: #{time} avg: #{time / total}"
 
       # remove studies
-      raise "Removing too many studies #{to_remove.count}" if  Study.count <= to_remove.count 
+      raise "Removing too many studies #{to_remove.count}" if  Study.count <= to_remove.count
       total = to_remove.length
       total_time = 0
       stime = Time.now
@@ -201,13 +201,13 @@ module Util
 
     def update_study(nct_id)
       begin
-        stime = Time.now 
+        stime = Time.now
         record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.create(nct_id: nct_id, content: {})
         changed = record.update_from_api
 
-        if record.blank? || record.content.blank? 
+        if record.blank? || record.content.blank?
           record.destroy
-        else 
+        else
           record.create_or_update_study
         end
       rescue => e
@@ -277,11 +277,11 @@ module Util
       start_time=Time.zone.now
       log("storing study statistics data from ClinicalTrials.gov...")
       verifier = Verifier.create(source: ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study"))
-      
+
       log("begin full load, Start Time: #{start_time}...")
       StudyJsonRecord.full
       log("took #{time_ago_in_words(start_time)}")
-      
+
       log("verififing study statistics match the aact database...")
       verifier.verify(schema)
       verifier.write_data_to_file(schema)

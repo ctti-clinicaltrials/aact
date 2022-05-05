@@ -21,6 +21,7 @@ module Support
     extend Enumerize
 
     has_many :sanity_checks
+    has_one  :verfier
 
     def complete(params = {})
       return if completed_at.present?
