@@ -85,7 +85,7 @@ module Util
       # 4. comparing the counts from CT.gov to our database
       log("#{schema} comparing counts...")
       begin
-        Verifier.refresh({schema: schema, load_event_id: params[:load_event_id]})
+        Verifier.refresh({schema: schema, load_event_id: @load_event.id})
       rescue => e
         Airbrake.notify(e)
       end
