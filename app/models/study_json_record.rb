@@ -555,6 +555,7 @@ class StudyJsonRecord < ActiveRecord::Base
       nct_id: nct_id,
       recruitment_details: participant_flow['FlowRecruitmentDetails'],
       pre_assignment_details: participant_flow['FlowPreAssignmentDetails'],
+      units_analyzed: participant_flow['FlowTypeUnitsAnalyzed']
     }
   end
 
@@ -692,7 +693,9 @@ class StudyJsonRecord < ActiveRecord::Base
                       contact_type: index == 0 ? 'primary' : 'backup',
                       name: contact['CentralContactName'],
                       phone: contact['CentralContactPhone'],
-                      email: contact['CentralContactEMail']
+                      email: contact['CentralContactEMail'],
+                      phone_extension: contact['CentralContactPhoneExt'],
+                      role: contact["CentralContactRole"]
                      }
     end
     collection
@@ -784,7 +787,8 @@ class StudyJsonRecord < ActiveRecord::Base
                                   contact_type: index == 0 ? 'primary' : 'backup',
                                   name: contact['LocationContactName'],
                                   email: contact['LocationContactEMail'],
-                                  phone: contact['LocationContactPhone']
+                                  phone: contact['LocationContactPhone'],
+                                  phone_extension: contact['LocationContactPhoneExt']
                                }
         end
       end
