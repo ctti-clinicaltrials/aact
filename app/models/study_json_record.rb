@@ -555,6 +555,7 @@ class StudyJsonRecord < ActiveRecord::Base
       nct_id: nct_id,
       recruitment_details: participant_flow['FlowRecruitmentDetails'],
       pre_assignment_details: participant_flow['FlowPreAssignmentDetails'],
+      units_analyzed: participant_flow['FlowTypeUnitsAnalyzed']
     }
   end
 
@@ -692,7 +693,9 @@ class StudyJsonRecord < ActiveRecord::Base
                       contact_type: index == 0 ? 'primary' : 'backup',
                       name: contact['CentralContactName'],
                       phone: contact['CentralContactPhone'],
-                      email: contact['CentralContactEMail']
+                      email: contact['CentralContactEMail'],
+                      phone_extension: contact['CentralContactPhoneExt'],
+                      role: contact["CentralContactRole"]
                      }
     end
     collection
@@ -784,7 +787,8 @@ class StudyJsonRecord < ActiveRecord::Base
                                   contact_type: index == 0 ? 'primary' : 'backup',
                                   name: contact['LocationContactName'],
                                   email: contact['LocationContactEMail'],
-                                  phone: contact['LocationContactPhone']
+                                  phone: contact['LocationContactPhone'],
+                                  phone_extension: contact['LocationContactPhoneExt']
                                }
         end
       end
@@ -1059,7 +1063,7 @@ class StudyJsonRecord < ActiveRecord::Base
                                           dispersion_type: analysis['OutcomeAnalysisDispersionType'],
                                           dispersion_value: analysis['OutcomeAnalysisDispersionValue'],
                                           p_value_modifier: raw_value.gsub(/\d+/, "").gsub('.','').gsub('-','').strip,
-                                          p_value: raw_value.gsub(/</, '').gsub(/>/, '').gsub(/ /, '').strip,
+                                          p_value: raw_value.gsub(/</, '').gsub(/>/, '').gsub(/ /, '').gsub(/=/, '').strip,
                                           p_value_description: analysis['OutcomeAnalysisPValueComment'],
                                           ci_n_sides: analysis['OutcomeAnalysisCINumSides'],
                                           ci_percent: StudyJsonRecord.float(analysis['OutcomeAnalysisCIPctValue']),
