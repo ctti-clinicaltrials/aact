@@ -34,7 +34,6 @@ module AACT
     AACT_STATIC_FILE_DIR   = ENV['AACT_STATIC_FILE_DIR'] || '~/aact-files'  # directory containing AACT static files such as the downloadable db snapshots
     RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
 
-    APPLICATION_HOST          = 'localhost'
     AACT_HOST = ENV['AACT_HOST'] || 'localhost'
     if Rails.env != 'test'
       AACT_PUBLIC_HOSTNAME      =  ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'#Server on which the publicly accessible database resides
