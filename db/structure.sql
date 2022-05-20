@@ -540,8 +540,11 @@ CREATE VIEW ctgov.all_group_types AS
 CREATE TABLE ctgov.id_information (
     id integer NOT NULL,
     nct_id character varying,
+    id_source character varying,
+    id_value character varying,
     id_type character varying,
-    id_value character varying
+    id_type_description character varying,
+    id_link character varying
 );
 
 
@@ -3815,10 +3818,10 @@ CREATE INDEX index_facility_contacts_on_contact_type ON ctgov.facility_contacts 
 
 
 --
--- Name: index_id_information_on_id_type; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_id_information_on_id_source; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_id_information_on_id_type ON ctgov.id_information USING btree (id_type);
+CREATE INDEX index_id_information_on_id_source ON ctgov.id_information USING btree (id_source);
 
 
 --
@@ -4278,6 +4281,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220429175157'),
 ('20220512025646'),
 ('20220512030503'),
-('20220512030831');
+('20220512030831'),
+('20220520124716');
 
 
