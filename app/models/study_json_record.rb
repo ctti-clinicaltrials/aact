@@ -94,14 +94,14 @@ class StudyJsonRecord < ActiveRecord::Base
 
             duration = start - Time.now
             total_time += duration
-            
+
             puts "#{@count_down -= 1}, took #{htime(duration)}, total time so far #{htime(total_time)}, Study Count: #{Study.count}"
           end
         rescue Exception => error
           msg="#{error.message} (#{error.class} #{error.backtrace}"
           ErrorLog.error(msg)
           Airbrake.notify(error)
-        end  
+        end
       end
     end
     add_indexes_and_constraints
@@ -369,6 +369,7 @@ class StudyJsonRecord < ActiveRecord::Base
       last_update_submitted_qc_date: status['LastUpdateSubmitDate'], # this should not go here
       last_update_posted_date: last_posted['LastUpdatePostDate'],
       last_update_posted_date_type: last_posted['LastUpdatePostDateType'],
+      delayed_posting: status['DelayedPosting'],
       start_month_year: start_date['StartDate'],
       start_date_type: start_date['StartDateType'],
       start_date: convert_date(start_date['StartDate']),
@@ -392,11 +393,14 @@ class StudyJsonRecord < ActiveRecord::Base
       enrollment: enrollment['EnrollmentCount'],
       enrollment_type: enrollment['EnrollmentType'],
       source: ident.dig('Organization', 'OrgFullName'),
+      source_class: ident.dig('Organization', 'OrgClass'),
       limitations_and_caveats: key_check(results['MoreInfoModule'])['LimitationsAndCaveatsDescription'],
       number_of_arms: arms_count,
       number_of_groups: groups_count,
       why_stopped: status['WhyStopped'],
       has_expanded_access: get_boolean(expanded_access),
+      expanded_access_nctid: status.dig('ExpandedAccessInfo', 'ExpandedAccessNCTId'),
+      expanded_access_status_for_nctid: status.dig('ExpandedAccessInfo', 'ExpandedAccessStatusForNCTId'),
       expanded_access_type_individual: get_boolean(expanded['ExpAccTypeIndividual']),
       expanded_access_type_intermediate: get_boolean(expanded['ExpAccTypeIntermediate']),
       expanded_access_type_treatment: get_boolean(expanded['ExpAccTypeTreatment']),
@@ -406,6 +410,7 @@ class StudyJsonRecord < ActiveRecord::Base
       is_unapproved_device: get_boolean(oversight['IsUnapprovedDevice']),
       is_ppsd: get_boolean(oversight['IsPPSD']),
       is_us_export: get_boolean(oversight['IsUSExport']),
+      fdaaa801_violation: get_boolean(oversight['FDAAA801Violation']),
       biospec_retention: biospec['BioSpecRetention'],
       biospec_description: biospec['BioSpecDescription'],
       ipd_time_frame: ipd_sharing['IPDSharingTimeFrame'],
@@ -943,7 +948,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection
   end
-  
+
   def self.result_groups(groups, key_name='Flow', type='Participant Flow', nct_id)
     collection = []
     return collection if  groups.nil? || groups.empty?
@@ -965,7 +970,7 @@ class StudyJsonRecord < ActiveRecord::Base
     groups_data = StudyJsonRecord.result_groups(groups, selector, result_type, nct_id)
     result_groups = {}
     groups_data.each do |group|
-      result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group) 
+      result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group)
     end
 
     return result_groups
@@ -984,7 +989,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
       outcome_denom_count.each do |denom_count|
         ctgov_group_code = denom_count['OutcomeDenomCountGroupId']
-  
+
         collection << {
                         nct_id: nct_id,
                         outcome_id: nil,
@@ -1014,7 +1019,7 @@ class StudyJsonRecord < ActiveRecord::Base
       outcome_categories.each do |category|
         measurements = category.dig('OutcomeMeasurementList', 'OutcomeMeasurement')
         next unless measurements
-        
+
         measurements.each do |measure|
             ctgov_group_code = measure['OutcomeMeasurementGroupId']
             collection << {
@@ -1319,7 +1324,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
     ext = point_of_contact['PointOfContactPhoneExt']
     phone = point_of_contact['PointOfContactPhone']
-    
+
     {
       nct_id: nct_id,
       organization: point_of_contact['PointOfContactOrganization'],
@@ -1487,7 +1492,7 @@ class StudyJsonRecord < ActiveRecord::Base
       baseline_info = data[:baseline_measurements] || {}
       BaselineCount.import(baseline_info[:baseline_counts], validate: false) if baseline_info[:baseline_counts]
       BaselineMeasurement.import(baseline_info[:measurements], validate: false) if baseline_info[:measurements]
-     
+
       BrowseCondition.import(data[:browse_conditions], validate: false) if data[:browse_conditions]
       BrowseIntervention.import(data[:browse_interventions], validate: false) if data[:browse_interventions]
       CentralContact.import(data[:central_contacts], validate: false) if data[:central_contacts]
@@ -1502,7 +1507,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
       # saving milestones and associated objects
       Milestone.import(data[:milestones], validate: false) if data[:milestones]
-      
+
       # saving outcomes and associated objects
       save_outcomes(data[:outcomes]) if data[:outcomes]
 
