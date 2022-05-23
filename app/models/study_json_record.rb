@@ -541,7 +541,10 @@ class StudyJsonRecord < ActiveRecord::Base
       gender_based: get_boolean(eligibility['GenderBased']),
       gender_description: eligibility['GenderDescription'],
       healthy_volunteers: eligibility['HealthyVolunteers'],
-      criteria: eligibility['EligibilityCriteria']
+      criteria: eligibility['EligibilityCriteria'],
+      adult: eligibility.dig('StdAgeList', 'StdAge').include?('Adult'),
+      child: eligibility.dig('StdAgeList', 'StdAge').include?('Child'),
+      older_adult: eligibility.dig('StdAgeList', 'StdAge').include?('Older Adult')
     }
   end
 
