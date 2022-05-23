@@ -819,18 +819,32 @@ class StudyJsonRecord < ActiveRecord::Base
     nct_id_alias = identification_module.dig('NCTIdAliasList', 'NCTIdAlias') || []
     secondary_info = identification_module.dig('SecondaryIdInfoList', 'SecondaryIdInfo') || []
     org_study_info = identification_module['OrgStudyIdInfo']
-    id_type = identification_module['OrgStudyIdInfo', "OrgStudyIdDomain"] || identification_module.dig['SecondaryIdInfoList', 'SecondaryIdInfo', "SecondaryIdDomain"]
-    id_type_description = identification_module['OrgStudyIdInfo', "OrgStudyIdType"] || identification_module.dig['SecondaryIdInfoList', 'SecondaryIdInfo', "SecondaryIdType"]
-    id_link = identification_module['OrgStudyIdInfo', "OrgStudyIdLink"] || identification_module.dig['SecondaryIdInfoList', 'SecondaryIdInfo', "SecondaryIdLink"]
+    id_link = identification_module.dig('OrgStudyIdInfo', "OrgStudyIdLink")
     collection = []
-    collection << { nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId'] } if org_study_info
+    collection << {
+      nct_id: nct_id,
+      id_source: 'org_study_id',
+      id_type: identification_module.dig('OrgStudyIdInfo', "OrgStudyIdType"),
+      id_type_description = identification_module.dig('OrgStudyIdInfo', "OrgStudyIdDomain"),
+      id_link = identification_module.dig('OrgStudyIdInfo', "OrgStudyIdLink"),
+      id_value: org_study_info['OrgStudyId'] 
+      } if org_study_info
 
+    .Study.ProtocolSection.id.OrgStudyIdInfo.OrgStudyIdType && 
+    .Study.ProtocolSection.IdentificationModule.SecondaryIdInfoList.SecondaryIdInfo.SecondaryIdType
 
     nct_id_alias.each do |nct_alias|
-      collection << { nct_id: nct_id, id_type: 'nct_alias', id_value: nct_alias }
+      collection << { nct_id: nct_id, id_source: 'nct_alias', id_value: nct_alias }
     end
     secondary_info.each do |info|
-      collection << { nct_id: nct_id, id_type: 'secondary_id', id_value: info['SecondaryId'] }
+      collection << { 
+        nct_id: nct_id,
+        id_source: 'secondary_id',
+        id_type: info['SecondaryIdType'],
+        id_type_description: info['SecondaryIdDomain'],
+        id_value: info['SecondaryId'],
+        id_link: info['SecondaryIdLink'] 
+      }
     end
     collection
   end
