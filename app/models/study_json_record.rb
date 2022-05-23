@@ -542,9 +542,9 @@ class StudyJsonRecord < ActiveRecord::Base
       gender_description: eligibility['GenderDescription'],
       healthy_volunteers: eligibility['HealthyVolunteers'],
       criteria: eligibility['EligibilityCriteria'],
-      adult: eligibility.dig('StdAgeList', 'StdAge').include?('Adult'),
-      child: eligibility.dig('StdAgeList', 'StdAge').include?('Child'),
-      older_adult: eligibility.dig('StdAgeList', 'StdAge').include?('Older Adult')
+      adult: eligibility.dig('StdAgeList', 'StdAge')&.include?('Adult'),
+      child: eligibility.dig('StdAgeList', 'StdAge')&.include?('Child'),
+      older_adult: eligibility.dig('StdAgeList', 'StdAge')&.include?('Older Adult')
     }
   end
 
