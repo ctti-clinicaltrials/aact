@@ -819,6 +819,9 @@ class StudyJsonRecord < ActiveRecord::Base
     nct_id_alias = identification_module.dig('NCTIdAliasList', 'NCTIdAlias') || []
     secondary_info = identification_module.dig('SecondaryIdInfoList', 'SecondaryIdInfo') || []
     org_study_info = identification_module['OrgStudyIdInfo']
+    id_type = identification_module['OrgStudyIdInfo', "OrgStudyIdDomain"] || identification_module.dig['SecondaryIdInfoList', 'SecondaryIdInfo', "SecondaryIdDomain"]
+    id_type_description = identification_module['OrgStudyIdInfo', "OrgStudyIdType"] || identification_module.dig['SecondaryIdInfoList', 'SecondaryIdInfo', "SecondaryIdType"]
+    id_link = identification_module['OrgStudyIdInfo', "OrgStudyIdLink"] || identification_module.dig['SecondaryIdInfoList', 'SecondaryIdInfo', "SecondaryIdLink"]
     collection = []
     collection << { nct_id: nct_id, id_type: 'org_study_id', id_value: org_study_info['OrgStudyId'] } if org_study_info
 
