@@ -540,8 +540,11 @@ CREATE VIEW ctgov.all_group_types AS
 CREATE TABLE ctgov.id_information (
     id integer NOT NULL,
     nct_id character varying,
+    id_source character varying,
+    id_value character varying,
     id_type character varying,
-    id_value character varying
+    id_type_description character varying,
+    id_link character varying
 );
 
 
@@ -1085,7 +1088,10 @@ CREATE TABLE ctgov.eligibilities (
     population text,
     criteria text,
     gender_description text,
-    gender_based boolean
+    gender_based boolean,
+    adult boolean,
+    child boolean,
+    older_adult boolean
 );
 
 
@@ -2236,7 +2242,8 @@ CREATE TABLE ctgov.responsible_parties (
     name character varying,
     title character varying,
     organization character varying,
-    affiliation text
+    affiliation text,
+    old_name_title character varying
 );
 
 
@@ -2480,6 +2487,37 @@ CREATE SEQUENCE ctgov.study_searches_id_seq
 --
 
 ALTER SEQUENCE ctgov.study_searches_id_seq OWNED BY ctgov.study_searches.id;
+
+
+--
+-- Name: table_retractions; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.table_retractions (
+    id bigint NOT NULL,
+    reference_id integer,
+    pmid integer,
+    source character varying
+);
+
+
+--
+-- Name: table_retractions_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.table_retractions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: table_retractions_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.table_retractions_id_seq OWNED BY ctgov.table_retractions.id;
 
 
 --
@@ -3022,6 +3060,13 @@ ALTER TABLE ONLY ctgov.study_searches ALTER COLUMN id SET DEFAULT nextval('ctgov
 
 
 --
+-- Name: table_retractions id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.table_retractions ALTER COLUMN id SET DEFAULT nextval('ctgov.table_retractions_id_seq'::regclass);
+
+
+--
 -- Name: verifiers id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3481,6 +3526,14 @@ ALTER TABLE ONLY ctgov.study_searches
 
 
 --
+-- Name: table_retractions table_retractions_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.table_retractions
+    ADD CONSTRAINT table_retractions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: verifiers verifiers_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3815,10 +3868,10 @@ CREATE INDEX index_facility_contacts_on_contact_type ON ctgov.facility_contacts 
 
 
 --
--- Name: index_id_information_on_id_type; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_id_information_on_id_source; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_id_information_on_id_type ON ctgov.id_information USING btree (id_type);
+CREATE INDEX index_id_information_on_id_source ON ctgov.id_information USING btree (id_source);
 
 
 --
@@ -4221,147 +4274,11 @@ CREATE TRIGGER category_insert_trigger INSTEAD OF INSERT ON ctgov.categories FOR
 
 
 --
--- Name: baseline_counts baseline_counts_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.baseline_counts
-    ADD CONSTRAINT baseline_counts_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: baseline_measurements baseline_measurements_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.baseline_measurements
-    ADD CONSTRAINT baseline_measurements_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: design_group_interventions design_group_interventions_design_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.design_group_interventions
-    ADD CONSTRAINT design_group_interventions_design_group_id_fkey FOREIGN KEY (design_group_id) REFERENCES ctgov.design_groups(id);
-
-
---
--- Name: design_group_interventions design_group_interventions_intervention_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.design_group_interventions
-    ADD CONSTRAINT design_group_interventions_intervention_id_fkey FOREIGN KEY (intervention_id) REFERENCES ctgov.interventions(id);
-
-
---
--- Name: drop_withdrawals drop_withdrawals_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.drop_withdrawals
-    ADD CONSTRAINT drop_withdrawals_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: facility_contacts facility_contacts_facility_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.facility_contacts
-    ADD CONSTRAINT facility_contacts_facility_id_fkey FOREIGN KEY (facility_id) REFERENCES ctgov.facilities(id);
-
-
---
--- Name: facility_investigators facility_investigators_facility_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.facility_investigators
-    ADD CONSTRAINT facility_investigators_facility_id_fkey FOREIGN KEY (facility_id) REFERENCES ctgov.facilities(id);
-
-
---
 -- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
 --
 
 ALTER TABLE ONLY ctgov.active_storage_attachments
     ADD CONSTRAINT fk_rails_c3b3935057 FOREIGN KEY (blob_id) REFERENCES ctgov.active_storage_blobs(id);
-
-
---
--- Name: intervention_other_names intervention_other_names_intervention_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.intervention_other_names
-    ADD CONSTRAINT intervention_other_names_intervention_id_fkey FOREIGN KEY (intervention_id) REFERENCES ctgov.interventions(id);
-
-
---
--- Name: milestones milestones_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.milestones
-    ADD CONSTRAINT milestones_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: outcome_analyses outcome_analyses_outcome_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_analyses
-    ADD CONSTRAINT outcome_analyses_outcome_id_fkey FOREIGN KEY (outcome_id) REFERENCES ctgov.outcomes(id);
-
-
---
--- Name: outcome_analysis_groups outcome_analysis_groups_outcome_analysis_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_analysis_groups
-    ADD CONSTRAINT outcome_analysis_groups_outcome_analysis_id_fkey FOREIGN KEY (outcome_analysis_id) REFERENCES ctgov.outcome_analyses(id);
-
-
---
--- Name: outcome_analysis_groups outcome_analysis_groups_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_analysis_groups
-    ADD CONSTRAINT outcome_analysis_groups_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: outcome_counts outcome_counts_outcome_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_counts
-    ADD CONSTRAINT outcome_counts_outcome_id_fkey FOREIGN KEY (outcome_id) REFERENCES ctgov.outcomes(id);
-
-
---
--- Name: outcome_counts outcome_counts_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_counts
-    ADD CONSTRAINT outcome_counts_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: outcome_measurements outcome_measurements_outcome_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_measurements
-    ADD CONSTRAINT outcome_measurements_outcome_id_fkey FOREIGN KEY (outcome_id) REFERENCES ctgov.outcomes(id);
-
-
---
--- Name: outcome_measurements outcome_measurements_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_measurements
-    ADD CONSTRAINT outcome_measurements_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: reported_events reported_events_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.reported_events
-    ADD CONSTRAINT reported_events_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
 
 
 --
@@ -4414,6 +4331,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220429175157'),
 ('20220512025646'),
 ('20220512030503'),
-('20220512030831');
+('20220512030831'),
+('20220520124716'),
+('20220520133313'),
+('20220523123928'),
+('20220524004300');
 
 
