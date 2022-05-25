@@ -36,6 +36,16 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
 
 <br>
 
+## Requireqments
+
+- Install zip  
+    - For mac `brew install zip`
+    - For windows `gem install rubyzip` 
+    - For linux `sudo apt install ruby-zip`
+- Install [graphviz](https://graphviz.org/download/)
+
+<br>
+
 ## Getting Started
 
 1.  Install PostgreSQL 13. If you have a Mac you can use brew to install PostgreSQL.  

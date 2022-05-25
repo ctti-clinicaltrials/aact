@@ -1088,7 +1088,10 @@ CREATE TABLE ctgov.eligibilities (
     population text,
     criteria text,
     gender_description text,
-    gender_based boolean
+    gender_based boolean,
+    adult boolean,
+    child boolean,
+    older_adult boolean
 );
 
 
@@ -4284,6 +4287,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220512030503'),
 ('20220512030831'),
 ('20220520124716'),
-('20220520133313');
-
-
+('20220520133313'),
+('20220523123928');
