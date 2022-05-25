@@ -1349,6 +1349,24 @@ class StudyJsonRecord < ActiveRecord::Base
     collection
   end
 
+  def study_retractions_data
+    return unless @protocol_section
+
+    retractions = @protocol_section.dig('ReferencesModule', 'RetractionList', 'Retraction')
+    return unless retractions
+
+    collection = []
+    retractions.each do |retraction|
+      collection << {
+                      nct_id: nct_id,
+                      reference_id: retraction['something here']
+                      pmid: retraction['RetractionPMID'],
+                      source: retraction['RetractionSource'],
+                    }
+    end
+    collection
+  end
+
   def sponsors_data
     return unless @protocol_section
 
