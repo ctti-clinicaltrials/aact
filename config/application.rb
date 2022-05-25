@@ -33,7 +33,6 @@ module AACT
     AACT_ADMIN_EMAILS      = ENV['AACT_ADMIN_EMAILS'] || "aact@your-org.org,admin@your-org.org" # Identifes who will receive load notifications
     RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
 
-    APPLICATION_HOST          = 'localhost'
     AACT_HOST = ENV['AACT_HOST'] || 'localhost'
     if Rails.env != 'test'
       AACT_PUBLIC_HOSTNAME      =  ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'#Server on which the publicly accessible database resides
