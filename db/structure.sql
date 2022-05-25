@@ -1088,7 +1088,10 @@ CREATE TABLE ctgov.eligibilities (
     population text,
     criteria text,
     gender_description text,
-    gender_based boolean
+    gender_based boolean,
+    adult boolean,
+    child boolean,
+    older_adult boolean
 );
 
 
@@ -2239,7 +2242,8 @@ CREATE TABLE ctgov.responsible_parties (
     name character varying,
     title character varying,
     organization character varying,
-    affiliation text
+    affiliation text,
+    old_name_title character varying
 );
 
 
@@ -4282,6 +4286,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220512025646'),
 ('20220512030503'),
 ('20220512030831'),
-('20220520124716');
+('20220520124716'),
+('20220520133313'),
+('20220523123928');
+
 
 
