@@ -31,7 +31,6 @@ module AACT
     AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'   # Name of postgres superuser that has permission to create a database.
     AACT_OWNER_EMAIL       = ENV['AACT_OWNER_EMAIL']                   # Don't define this if your email service is not setup
     AACT_ADMIN_EMAILS      = ENV['AACT_ADMIN_EMAILS'] || "aact@your-org.org,admin@your-org.org" # Identifes who will receive load notifications
-    RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
 
     AACT_HOST = ENV['AACT_HOST'] || 'localhost'
     if Rails.env != 'test'
