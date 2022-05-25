@@ -1311,7 +1311,8 @@ class StudyJsonRecord < ActiveRecord::Base
       name: responsible_party['ResponsiblePartyInvestigatorFullName'],
       title: responsible_party['ResponsiblePartyInvestigatorTitle'],
       organization: responsible_party['ResponsiblePartyOldOrganization'],
-      affiliation: responsible_party['ResponsiblePartyInvestigatorAffiliation']
+      affiliation: responsible_party['ResponsiblePartyInvestigatorAffiliation'],
+      old_name_title: responsible_party['ResponsiblePartyOldNameTitle']
     }
   end
 
