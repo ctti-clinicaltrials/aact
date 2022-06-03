@@ -425,7 +425,8 @@ module Util
     end
 
     def send_notification()
-      return unless AACT::Application::AACT_OWNER_EMAIL
+      return unless ENV['AACT_OWNER_EMAIL']
+      # line up
 
       log('sending email notification...')
       Notifier.report_load_event(load_event)
