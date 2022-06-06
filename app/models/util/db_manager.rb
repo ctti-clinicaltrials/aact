@@ -180,7 +180,7 @@ module Util
     end
 
     def terminate_db_sessions(db_name)
-      public_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{db_name}' AND usename <> '#{AACT_DB_SUPER_USERNAME}'")
+      public_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{db_name}' AND usename <> '#{ENV['AACT_DB_SUPER_USERNAME']}'")
     end
 
     def add_indexes_and_constraints
