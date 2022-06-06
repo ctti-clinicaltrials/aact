@@ -1338,32 +1338,22 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     references.each do |reference|
-      collection << {
-                      nct_id: nct_id,
-                      pmid: reference['ReferencePMID'],
-                      reference_type: reference['ReferenceType'],
-                      citation: reference['ReferenceCitation']
+      temp = {
+                nct_id: nct_id,
+                pmid: reference['ReferencePMID'],
+                reference_type: reference['ReferenceType'],
+                citation: reference['ReferenceCitation']
+              }
 
-                    }
-    end
-    collection
-  end
+      retractions = reference['RetractionList']
+      temp[:retractions_attributes] = retractions.map do |retraction|
 
-  def study_retractions_data
-    return unless @protocol_section
-
-    retractions = @protocol_section.dig('ReferencesModule', 'RetractionList', 'Retraction')
-    return unless retractions
-
-    collection = []
-    retractions.each do |retraction|
-      collection << {
-                      nct_id: nct_id,
-                      reference_id: retraction['something here']
-                      pmid: retraction['RetractionPMID'],
-                      source: retraction['RetractionSource'],
-                    }
-    end
+                nct_id: nct_id,
+                pmid: retraction['RetractionPMID'],
+                source: retraction['RetractionSource']
+          end
+       collection << temp
+     end
     collection
   end
 
