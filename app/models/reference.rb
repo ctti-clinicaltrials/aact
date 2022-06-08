@@ -1,6 +1,9 @@
 class Reference < StudyRelationship
   self.table_name='study_references'
 
+  has_many :retractions
+  accepts_nested_attributes_for :retractions
+
   def self.nodes(opts)
     opts[:xml].xpath('//reference') + opts[:xml].xpath('//results_reference')
   end
