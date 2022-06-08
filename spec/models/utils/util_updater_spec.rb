@@ -33,7 +33,7 @@ describe Util::Updater do
   it "continues on if there's a timeout error when attempting to retrieve data from clinicaltrials.gov for one of the studies"do
     updater=Util::Updater.new
     if AACT::Application::AACT_OWNER_EMAIL
-      expect { updater.send_notification }.to change { ActionMailer::Base.deliveries.count }.by(AACT::Application::User.admin_emails.split(',').size)
+      expect { updater.send_notification }.to change { ActionMailer::Base.deliveries.count }.by( Admin::User.admin_emails.size )
     end
     updater.run
   end
