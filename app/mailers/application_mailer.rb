@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: AACT::Application::AACT_OWNER_EMAIL
+  default from: ENV.fetch('AACT_OWNER_EMAIL','ctti@aact.com')
   layout 'mailer'
 
   def self.admin_addresses
