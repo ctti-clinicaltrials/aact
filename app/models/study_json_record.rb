@@ -827,13 +827,10 @@ class StudyJsonRecord < ActiveRecord::Base
       nct_id: nct_id,
       id_source: 'org_study_id',
       id_type: identification_module.dig('OrgStudyIdInfo', "OrgStudyIdType"),
-      id_type_description = identification_module.dig('OrgStudyIdInfo', "OrgStudyIdDomain"),
-      id_link = identification_module.dig('OrgStudyIdInfo', "OrgStudyIdLink"),
+      id_type_description: identification_module.dig('OrgStudyIdInfo', "OrgStudyIdDomain"),
+      id_link: identification_module.dig('OrgStudyIdInfo', "OrgStudyIdLink"),
       id_value: org_study_info['OrgStudyId'] 
       } if org_study_info
-
-    .Study.ProtocolSection.id.OrgStudyIdInfo.OrgStudyIdType && 
-    .Study.ProtocolSection.IdentificationModule.SecondaryIdInfoList.SecondaryIdInfo.SecondaryIdType
 
     nct_id_alias.each do |nct_alias|
       collection << { nct_id: nct_id, id_source: 'nct_alias', id_value: nct_alias }
@@ -1366,12 +1363,14 @@ class StudyJsonRecord < ActiveRecord::Base
               }
 
       retractions = reference['RetractionList']
-      temp[:retractions_attributes] = retractions.map do |retraction|
+        unless retractions.nil?
+          temp[:retractions_attributes] = retractions.map do |retraction|
 
-                nct_id: nct_id,
-                pmid: retraction['RetractionPMID'],
-                source: retraction['RetractionSource']
+                  nct_id: nct_id,
+                  pmid: retraction['RetractionPMID'],
+                  source: retraction['RetractionSource']
           end
+        end
        collection << temp
      end
     collection
