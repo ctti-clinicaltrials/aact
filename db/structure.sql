@@ -2372,6 +2372,38 @@ ALTER SEQUENCE ctgov.result_groups_id_seq OWNED BY ctgov.result_groups.id;
 
 
 --
+-- Name: retractions; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.retractions (
+    id bigint NOT NULL,
+    reference_id integer,
+    pmid character varying,
+    source character varying,
+    nct_id character varying
+);
+
+
+--
+-- Name: retractions_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.retractions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: retractions_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.retractions_id_seq OWNED BY ctgov.retractions.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -3032,6 +3064,13 @@ ALTER TABLE ONLY ctgov.result_groups ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
+-- Name: retractions id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.retractions ALTER COLUMN id SET DEFAULT nextval('ctgov.retractions_id_seq'::regclass);
+
+
+--
 -- Name: search_results id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3483,6 +3522,14 @@ ALTER TABLE ONLY ctgov.result_contacts
 
 ALTER TABLE ONLY ctgov.result_groups
     ADD CONSTRAINT result_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: retractions retractions_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.retractions
+    ADD CONSTRAINT retractions_pkey PRIMARY KEY (id);
 
 
 --
@@ -4335,6 +4382,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220520124716'),
 ('20220520133313'),
 ('20220523123928'),
+('20220608211340');
 ('20220524004300');
 
 

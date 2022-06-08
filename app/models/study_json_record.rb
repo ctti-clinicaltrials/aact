@@ -1355,14 +1355,25 @@ class StudyJsonRecord < ActiveRecord::Base
 
     collection = []
     references.each do |reference|
-      collection << {
-                      nct_id: nct_id,
-                      pmid: reference['ReferencePMID'],
-                      reference_type: reference['ReferenceType'],
-                      citation: reference['ReferenceCitation']
+      temp = {
+                nct_id: nct_id,
+                pmid: reference['ReferencePMID'],
+                reference_type: reference['ReferenceType'],
+                citation: reference['ReferenceCitation']
+              }
 
-                    }
-    end
+      retractions = reference.dig('RetractionList', 'Retraction')
+        unless retractions.nil?
+          temp[:retractions_attributes] = retractions.map do |retraction|
+              {
+              nct_id: nct_id,
+              pmid: retraction['RetractionPMID'],
+              source: retraction['RetractionSource']
+              }
+          end
+        end
+       collection << temp
+     end
     collection
   end
 
@@ -1535,7 +1546,12 @@ class StudyJsonRecord < ActiveRecord::Base
       ResponsibleParty.create(data[:responsible_party]) if data[:responsible_party]
       ResultAgreement.create(data[:result_agreement]) if data[:result_agreement]
       ResultContact.create(data[:result_contact]) if data[:result_contact]
-      Reference.import(data[:study_references], validate: false) if data[:study_references]
+      data[:study_references]&.each do |reference_data|
+        reference = Reference.create(reference_data)
+        reference_data[:retractions_attributes]&.each do |retraction_data|
+          reference.retractions.create(retraction_data)
+        end
+      end
       Sponsor.import(data[:sponsors], validate: false) if data[:sponsors]
 
       # saving drop_withdrawals

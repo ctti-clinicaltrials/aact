@@ -1,6 +1,9 @@
 FactoryBot.define do
-  factory :admin_user, class: 'Admin::User' do
-    
+
+  factory :retraction do
+  end
+
+  factory :admin_user, class: 'Admin::User' do 
   end
 
   factory :file_record do
