@@ -1,6 +1,6 @@
 class Notifier < ApplicationMailer
   def self.report_load_event(event)
-    User.admin_emails.each { |email_addr|
+    Admin::User.admin_emails.each { |email_addr|
       send_msg(email_addr, event).deliver_now
     }
   end
