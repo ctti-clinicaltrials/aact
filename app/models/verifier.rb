@@ -35,7 +35,7 @@ class Verifier < ActiveRecord::Base
   end
 
   def self.alert_admins_about_differences
-    admin_emails = ENV.fetch("AACT_ADMIN_EMAILS", "").split(",")
+    admin_emails = ENV.fetch(User.admin_emails, "").split(",")
     admin_emails.each {|admin_email| Notifier.report_diff(admin_email).deliver_now}
   end
 
