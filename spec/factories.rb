@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :admin_user, class: 'Admin::User' do
+    
+  end
+
   factory :file_record do
     filename { "MyString" }
     file_size { "" }
