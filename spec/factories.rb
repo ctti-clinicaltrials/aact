@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :retraction do
+    
+  end
+
   factory :file_record do
     filename { "MyString" }
     file_size { "" }

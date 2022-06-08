@@ -1,0 +1,3 @@
+class Retraction < StudyRelationship
+
+end

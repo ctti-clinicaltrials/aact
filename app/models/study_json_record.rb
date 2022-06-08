@@ -1365,10 +1365,11 @@ class StudyJsonRecord < ActiveRecord::Base
       retractions = reference['RetractionList']
         unless retractions.nil?
           temp[:retractions_attributes] = retractions.map do |retraction|
-
+                  {
                   nct_id: nct_id,
                   pmid: retraction['RetractionPMID'],
                   source: retraction['RetractionSource']
+                  }
           end
         end
        collection << temp
