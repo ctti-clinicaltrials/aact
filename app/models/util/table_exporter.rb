@@ -22,7 +22,7 @@ module Util
         end
         record = FileRecord.create(file_type: "pipefiles", filename: @zipfile_name)
         record.file.attach(io: File.open(@zipfile_name), filename: @zipfile_name)
-        record.update(url: record.file.service_url(filename: @zipfile_name))
+        record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
 
         if should_archive
           archive(delimiter)

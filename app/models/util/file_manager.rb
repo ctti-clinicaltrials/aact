@@ -219,7 +219,7 @@ module Util
       filename = File.basename(zip_file_name)
       record = FileRecord.create(file_type: "snapshot", filename: "#{filename}") 
       record.file.attach(io: File.open(zip_file_name), filename: "#{filename}")
-      record.update(url: Rails.application.routes.url_helpers.rails_blob_path(record.file, only_path: true))
+      record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
 
       zip_file_name
     end
