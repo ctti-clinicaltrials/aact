@@ -19,7 +19,6 @@ module Util
         log("Starting the #{@type} load...")
         @type = 'restart'
       end
-      @client = Util::Client.new
       @days_back = (params[:days_back] || 4)
       @study_counts = { should_add: 0, should_change: 0, processed: 0, count_down: 0 }
       self
@@ -303,12 +302,6 @@ module Util
 
       log('end of incremental load method')
       true
-    end
-
-    def retrieve_xml_from_ctgov
-      log('retrieving xml from clinicaltrials.gov...')
-      Support::SupportBase.connection.execute('TRUNCATE TABLE study_xml_records CASCADE')
-      @client.save_file_contents(@client.download_xml_files)
     end
 
     # Steps:
