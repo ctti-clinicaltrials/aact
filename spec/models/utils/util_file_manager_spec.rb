@@ -46,8 +46,6 @@ describe Util::FileManager do
       bad_file_name="#{fm.static_copies_directory}/.nfs00000001c324f8c500000001"
       bad_file=File.new(bad_file_name,"w")
       expect(File).to exist(bad_file)
-      expect(fm.downloadable?(bad_file_name.split('/').last)).to eq(false)
-      expect(fm.downloadable?(good_file_name.split('/').last)).to eq(true)
       FileUtils.remove_dir(dir_name)
     end
 

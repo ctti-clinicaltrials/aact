@@ -70,10 +70,6 @@ module Util
       "#{root_dir}/tmp"
     end
 
-    def xml_file_directory
-      "#{root_dir}/xml_downloads"
-    end
-
     def covid_file_directory
       "#{root_dir}/exported_files/covid-19"
     end
@@ -111,49 +107,6 @@ module Util
         Roo::Spreadsheet.open("#{root_dir}/documentation/aact_data_definitions.xlsx")
       rescue
         # No guarantee the file exists
-      end
-    end
-
-    def files_in(sub_dir, type=nil)
-      # type ('monthly' or 'daily') identify the subdirectory to use to get the files.
-      entries=[]
-      if type.blank?
-        dir="#{root_dir}/#{sub_dir}"
-      else
-        dir="#{root_dir}/#{sub_dir}/#{type}"
-      end
-      file_names=Dir.entries(dir) - ['.','..']
-      file_names.each {|file_name|
-        begin
-          file_url="/static/#{sub_dir}/#{type}/#{file_name}"
-          size=File.open("#{dir}/#{file_name}").size
-          date_string=file_name.split('_').first
-          date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
-          if downloadable?(file_name)
-            entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
-          else
-            puts "Not a downloadable file: #{file_name}"
-          end
-        rescue => e
-          # just skip if unexpected file encountered
-          puts "Skipping because #{e}"
-        end
-      }
-      entries.sort_by {|entry| entry[:name]}.reverse!
-    end
-
-    def downloadable? file_name
-      (file_name.size == 34 and file_name[30..34] == '.zip') or (file_name.size == 28 and file_name[24..28] == '.zip')
-    end
-
-    def self.db_log_file_content(params)
-      return [] if params.nil? or params[:day].nil?
-      day=params[:day].capitalize
-      file_name="static/logs/postgresql-#{day}.log"
-      if File.exist?(file_name)
-        File.open(file_name)
-      else
-        []
       end
     end
 

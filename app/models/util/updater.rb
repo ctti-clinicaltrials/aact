@@ -48,25 +48,9 @@ module Util
       end
     end
 
-    def set_schema
-      con = ActiveRecord::Base.connection
-      username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-      db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-      con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
-      ActiveRecord::Base.remove_connection
-      ActiveRecord::Base.establish_connection
-      ActiveRecord::Base.logger = nil
-    end
-
     def execute
       @load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: '', problems: '' })
       # TODO: need to extract this into a connection method
-      con = ActiveRecord::Base.connection
-      username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-      db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-      con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO ctgov, support, public;")
-      ActiveRecord::Base.remove_connection
-      ActiveRecord::Base.establish_connection
       ActiveRecord::Base.logger = nil
 
       # 1. remove constraings
@@ -97,13 +81,18 @@ module Util
       log("#{schema} update calculated values...")
       CalculatedValue.populate
 
+      # 6a. populate the meshterms and meshheadings
+      MeshTerm.populate_from_file
+      MeshHeading.populate_from_file
+      set_downcase_terms
+
       # 7. run sanity checks
       load_event.run_sanity_checks
 
       if load_event.sanity_checks.count == 0
         # 8. take snapshot
         log("#{schema} take snapshot...")
-        take_snapshot(schema)
+        take_snapshot
 
         # 9. refresh public db
         log("#{schema} refresh public db...")
@@ -112,17 +101,19 @@ module Util
         # 10. create flat files
         log("#{schema} creating flat files...")
         begin
-          create_flat_files(schema)
+          create_flat_files
         rescue Exception => e
           Airbrake.notify(e)
         end
       end
 
+      refresh_data_definitions
+
       # 11. change the state of the load event from “running” to “complete”
       @load_event.update({ status:'complete'})
 
       # 12. send email
-      send_notification()
+      send_notification
     end
 
     def current_study_differences
@@ -144,15 +135,6 @@ module Util
       to_remove = current - studies
 
       return studies, to_update, to_remove
-    end
-
-    def update_studies_parallel
-      studies, to_update, to_remove = current_study_differences
-
-      ActiveRecord::Base.logger = nil
-      Parallel.map(to_update, in_threads: 32, progress: 'Updating') do |id|
-        update_study(id)
-      end
     end
 
     def update_studies
@@ -246,126 +228,6 @@ module Util
       db_mgr.add_constraints
     end
 
-    def run
-      begin
-        ActiveRecord::Base.logger = nil
-        status = case params[:event_type]
-                 when 'full'
-                   full
-                 else
-                   incremental
-                 end
-        finalize_load if status != false
-      rescue StandardError => e
-        Airbrake.notify(e)
-        begin
-          msg = "#{e.message} (#{e.class} #{e.backtrace}"
-          log("#{@load_event.event_type} load failed in run: #{msg}")
-          load_event.add_problem(msg)
-          load_event.complete({ status: 'failed', study_counts: study_counts })
-          db_mgr.grant_db_privs
-          Admin::PublicAnnouncement.clear_load_message if full_featured && Admin::AdminBase.database_exists?
-        rescue StandardError
-          load_event.complete({ status: 'failed', study_counts: study_counts })
-        end
-      end
-      send_notification()
-    end
-
-    def full
-      start_time=Time.zone.now
-      log("storing study statistics data from ClinicalTrials.gov...")
-      verifier = Verifier.create(source: ClinicalTrialsApi.study_statistics.dig('StudyStatistics', "ElmtDefs", "Study"))
-
-      log("begin full load, Start Time: #{start_time}...")
-      StudyJsonRecord.full
-      log("took #{time_ago_in_words(start_time)}")
-
-      log("verififing study statistics match the aact database...")
-      verifier.verify(schema)
-      verifier.write_data_to_file(schema)
-
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
-    end
-
-    # incremental steps
-    # 1. update studies
-    # 2. update calculated values
-    # 3. run saved searches
-    def incremental
-      log('begin incremental load...')
-
-      db_mgr.remove_constraints
-      Support::StudyXmlRecord.update_studies
-      db_mgr.add_constraints
-
-      log('end of incremental load method')
-      true
-    end
-
-    # Steps:
-    # 1. add indexes and constraints
-    # 2. execute saved search
-    # 3. create calculated values
-    # 4. populate admin tables
-    # 5. run sanity checks
-    # 6. take snapshot
-    # 7. refreh public db
-    # 8. create flat files
-    def finalize_load
-      log('finalizing load...')
-
-      load_event.log('add indexes and constraints..')
-
-      load_event.log('execute study search...')
-      days_back = (Date.today - Date.parse('2013-01-01')).to_i if load_event.event_type == 'full'
-      StudySearch.execute(days_back)
-
-      if params[:event_type] == 'full'
-        load_event.log('create calculated values...')
-        create_calculated_values
-        load_event.log('set downcase mesh terms...')
-        set_downcase_terms
-      end
-
-      load_event.log('run sanity checks...')
-      load_event.run_sanity_checks
-
-      return unless full_featured # no need to continue unless configured as a fully featured implementation of AACT
-
-      study_counts[:processed] = Study.count
-
-      load_event.log('taking snapshot...')
-      take_snapshot(schema)
-
-      load_event.log('refreshing public db...')
-      if refresh_public_db != true
-        load_event.problems = 'DID NOT UPDATE PUBLIC DATABASE.' + load_event.problems
-        load_event.save!
-      end
-
-      load_event.complete({ study_counts: study_counts })
-
-      load_event.log('create flat files...')
-      create_flat_files(schema)
-    end
-
-    def remove_indexes_and_constraints
-      log('removing indexes...')
-      db_mgr.remove_indexes_and_constraints
-    end
-
-    def add_indexes_and_constraints
-      log('adding indexes...')
-      db_mgr.add_indexes_and_constraints
-    end
-
-    def create_calculated_values
-      log('creating calculated values...')
-      CalculatedValue.populate
-    end
-
     def set_downcase_terms
       log('setting downcase mesh terms...')
       con=ActiveRecord::Base.connection
@@ -380,26 +242,6 @@ module Util
       puts "#{Time.zone.now}: #{msg}"
     end
 
-    def show_progress(nct_id, action)
-      log("#{action}: #{nct_id} - #{study_counts[:count_down]}")
-    end
-
-    def decrement_count_down
-      study_counts[:count_down] -= 1
-    end
-
-    def populate_admin_tables
-      return unless full_featured
-
-      log('populating admin tables...')
-      refresh_data_definitions
-    end
-
-    def run_sanity_checks
-      log('running sanity checks...')
-      Support::SanityCheck.new.run
-    end
-
     def refresh_data_definitions(data = Util::FileManager.new.default_data_definitions)
       return unless Admin::AdminBase.database_exists?
 
@@ -407,62 +249,28 @@ module Util
       Admin::DataDefinition.populate(data)
     end
 
-    def take_snapshot(schema='ctgov')
+    def take_snapshot
       log('dumping database...')
       db_mgr.dump_database
 
       log('creating zipfile of database...')
-      Util::FileManager.new.save_static_copy(schema)
+      Util::FileManager.new.save_static_copy
       rescue StandardError => e
         load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
     end
 
-    def send_notification()
-      return unless ENV['AACT_OWNER_EMAIL']
-
+    def send_notification
       log('sending email notification...')
       Notifier.report_load_event(load_event)
     end
 
-    def create_flat_files(schema)
+    def create_flat_files
       log('exporting tables as flat files...')
-      Util::TableExporter.new([],schema).run(delimiter: '|', should_archive: true)
-    end
-
-    def truncate_tables
-      log('truncating tables...')
-      Util::DbManager.loadable_tables.each do |table|
-        ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} CASCADE")
-      end
-    end
-
-    def should_restart?
-      @params[:restart] && !Support::StudyXmlRecord.not_yet_loaded.empty?
-    end
-
-    def refresh_public_db
-      return unless full_featured
-
-      log('refreshing public db...')
-      # recreate public db from back-end db
-      if sanity_checks_ok?
-        # submit_public_announcement("The AACT database is temporarily unavailable because it's being updated.")
-        db_mgr.refresh_public_db
-        true
-      else
-        load_event.save!
-        false
-      end
+      Util::TableExporter.new([],'ctgov').run(delimiter: '|', should_archive: true)
     end
 
     def db_mgr
       @db_mgr ||= Util::DbManager.new(event: load_event)
-    end
-
-    # Admin Database
-
-    def submit_public_announcement(announcement)
-      Admin::PublicAnnouncement.populate(announcement) if full_featured && Admin::AdminBase.database_exists?
     end
   end
 end
