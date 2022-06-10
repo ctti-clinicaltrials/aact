@@ -64,21 +64,9 @@ class Verifier < ActiveRecord::Base
     end
   end
 
-  def set_schema(schema='ctgov')
-    con = ActiveRecord::Base.connection
-    username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-    db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-    con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO #{schema}, support, public;")
-
-    ActiveRecord::Base.remove_connection
-    ActiveRecord::Base.establish_connection
-    ActiveRecord::Base.logger = nil
-  end
-
   def verify(schema ='ctgov')
     # this is a safety messure to make sure the correct schema name is used
     schema = Verifier.return_correct_schema(schema)
-    set_schema(schema)
 
     return if self.source.blank?
 
