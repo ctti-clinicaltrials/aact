@@ -13,4 +13,5 @@ digitalocean:
   secret_access_key: <%= ENV["DIGITALOCEAN_SECRET_ACCESS_KEY"] %>
   region: <%= ENV["DIGITALOCEAN_REGION"] %>
   bucket: <%= ENV["DIGITALOCEAN_BUCKET"] %>
-  public: true
+  upload:
+    acl: "public-read"
