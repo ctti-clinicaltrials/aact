@@ -70,24 +70,12 @@ module Util
       "#{root_dir}/tmp"
     end
 
-    def backup_directory
-      "#{root_dir}/db_backups"
-    end
-
-    def xml_file_directory
-      "#{root_dir}/xml_downloads"
-    end
-
     def covid_file_directory
       "#{root_dir}/exported_files/covid-19"
     end
 
     def differences_directory
       "#{root_dir}/differences/single-row"
-    end
-
-    def admin_schema_diagram
-      "#{root_dir}/documentation/aact_admin_schema.png"
     end
 
     def schema_diagram
@@ -122,49 +110,6 @@ module Util
       end
     end
 
-    def files_in(sub_dir, type=nil)
-      # type ('monthly' or 'daily') identify the subdirectory to use to get the files.
-      entries=[]
-      if type.blank?
-        dir="#{root_dir}/#{sub_dir}"
-      else
-        dir="#{root_dir}/#{sub_dir}/#{type}"
-      end
-      file_names=Dir.entries(dir) - ['.','..']
-      file_names.each {|file_name|
-        begin
-          file_url="/static/#{sub_dir}/#{type}/#{file_name}"
-          size=File.open("#{dir}/#{file_name}").size
-          date_string=file_name.split('_').first
-          date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
-          if downloadable?(file_name)
-            entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
-          else
-            puts "Not a downloadable file: #{file_name}"
-          end
-        rescue => e
-          # just skip if unexpected file encountered
-          puts "Skipping because #{e}"
-        end
-      }
-      entries.sort_by {|entry| entry[:name]}.reverse!
-    end
-
-    def downloadable? file_name
-      (file_name.size == 34 and file_name[30..34] == '.zip') or (file_name.size == 28 and file_name[24..28] == '.zip')
-    end
-
-    def self.db_log_file_content(params)
-      return [] if params.nil? or params[:day].nil?
-      day=params[:day].capitalize
-      file_name="static/logs/postgresql-#{day}.log"
-      if File.exist?(file_name)
-        File.open(file_name)
-      else
-        []
-      end
-    end
-
     def make_file_from_website(fname, url)
       return_file="#{root_dir}/tmp/#{fname}"
       File.delete(return_file) if File.exist?(return_file)
@@ -193,33 +138,35 @@ module Util
       return day == '01'
     end
 
-    def save_static_copy(schema='ctgov')
-
+    # package files for archival purposes
+    def save_static_copy
+      # collect files to include the zip
+      files_to_zip = {}
       nlm_protocol_file         = make_file_from_website("nlm_protocol_definitions.html", nlm_protocol_data_url)
       nlm_results_file          = make_file_from_website("nlm_results_definitions.html", nlm_results_data_url)
-
-      date_stamp=Time.zone.now.strftime('%Y%m%d')
-      files_to_zip = {}
       files_to_zip['schema_diagram.png']            = File.open(schema_diagram)       if File.exists?(schema_diagram)
-      files_to_zip['admin_schema_diagram.png']      = File.open(admin_schema_diagram) if File.exists?(admin_schema_diagram)
       files_to_zip['data_dictionary.xlsx']          = File.open(data_dictionary)      if File.exists?(data_dictionary)
       files_to_zip['postgres_data.dmp']             = File.open(pg_dump_file)         if File.exists?(pg_dump_file)
       files_to_zip['nlm_protocol_definitions.html'] = nlm_protocol_file               if nlm_protocol_file
       files_to_zip['nlm_results_definitions.html']  = nlm_results_file                if nlm_results_file
       
-      folders = static_copies_directory(schema)
-      zip_file_name="#{folders}/#{date_stamp}_clinical_trials.zip"
+      # generate the filename
+      date_stamp = Time.zone.now.strftime('%Y%m%d')
+      zip_file_name="#{static_copies_directory}/#{date_stamp}_clinical_trials.zip"
      
+      # zip files
       File.delete(zip_file_name) if File.exist?(zip_file_name)
-        Zip::File.open(zip_file_name, Zip::File::CREATE) {|zipfile|
-          files_to_zip.each { |entry|
-            zipfile.add(entry.first, entry.last)
-        }
-      }
+      Zip::File.open(zip_file_name, Zip::File::CREATE) do |zipfile|
+        files_to_zip.each do |entry|
+          zipfile.add(entry.first, entry.last)
+        end
+      end
+
+      # upload file to the cloud
       filename = File.basename(zip_file_name)
       record = FileRecord.create(file_type: "snapshot", filename: "#{filename}") 
       record.file.attach(io: File.open(zip_file_name), filename: "#{filename}")
-      record.update(url: Rails.application.routes.url_helpers.rails_blob_path(record.file, only_path: true))
+      record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
 
       zip_file_name
     end
