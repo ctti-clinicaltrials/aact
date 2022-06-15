@@ -45,7 +45,7 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
 - Install [graphviz](https://graphviz.org/download/)
 - Install wget  
     - For mac `brew install wget`
-    - For windows [gem install rubyzip](http://gnuwin32.sourceforge.net/packages/wget.htm)
+    - For [windows](http://gnuwin32.sourceforge.net/packages/wget.htm)
     - For Ubuntu and Debian `sudo apt install wget`
     - For CentOS and Fedora `sudo yum install wget`
 
