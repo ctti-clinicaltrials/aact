@@ -172,8 +172,8 @@ module Util
     end
 
     # 
-    def download_all_studies()
-      system(`wget -c --limit-rate=1m -P "${unzip_location}" https://clinicaltrials.gov/AllAPIJSON.zip`)
+    def download_all_studies(unzip_location)
+      system(`wget -c -q --show-progress -P "${unzip_location}" https://clinicaltrials.gov/AllAPIJSON.zip`)
       system(`unzip AllAPIJSON.zip`)
     end
     # 
