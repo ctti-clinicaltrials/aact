@@ -1151,7 +1151,12 @@ CREATE TABLE ctgov.studies (
     plan_to_share_ipd character varying,
     plan_to_share_ipd_description character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    source_class character varying,
+    delayed_posting character varying,
+    expanded_access_nctid character varying,
+    expanded_access_status_for_nctid character varying,
+    fdaaa801_violation boolean
 );
 
 
@@ -4294,7 +4299,7 @@ ALTER TABLE ONLY support.sanity_checks
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov, support, public, ctgov_beta;
+SET search_path TO ctgov, support, public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20160630191037'),
@@ -4333,9 +4338,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220512025646'),
 ('20220512030503'),
 ('20220512030831'),
+('20220522072233');
 ('20220520124716'),
 ('20220520133313'),
 ('20220523123928'),
 ('20220608211340');
-
-
