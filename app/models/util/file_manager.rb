@@ -173,7 +173,8 @@ module Util
 
     # 
     def download_all_studies(unzip_location)
-      system(`wget -c -q --show-progress -P "${unzip_location}" https://clinicaltrials.gov/AllAPIJSON.zip`)
+      success = system(`wget -c -q --show-progress -P "${unzip_location}" https://clinicaltrials.gov/AllAPIJSON.zip`) 
+      raise "Could not download file" unless success
       system(`unzip AllAPIJSON.zip`)
     end
     # 
