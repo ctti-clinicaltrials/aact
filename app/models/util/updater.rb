@@ -107,13 +107,13 @@ module Util
         end
       end
 
-      refresh_data_definitions
+      # refresh_data_definitions
 
       # 11. change the state of the load event from “running” to “complete”
       @load_event.update({ status:'complete'})
 
       # 12. send email
-      send_notification
+      # send_notification
     end
 
     def current_study_differences
