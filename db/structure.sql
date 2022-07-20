@@ -283,41 +283,6 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: Search_results; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov."Search_results" (
-    id integer NOT NULL,
-    nct_id character varying NOT NULL,
-    name character varying NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    "grouping" character varying DEFAULT ''::character varying NOT NULL,
-    study_search_id integer
-);
-
-
---
--- Name: Search_results_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov."Search_results_id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: Search_results_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov."Search_results_id_seq" OWNED BY ctgov."Search_results".id;
-
-
---
 -- Name: active_storage_attachments; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -2739,13 +2704,6 @@ ALTER SEQUENCE support.study_xml_records_id_seq OWNED BY support.study_xml_recor
 
 
 --
--- Name: Search_results id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov."Search_results" ALTER COLUMN id SET DEFAULT nextval('ctgov."Search_results_id_seq"'::regclass);
-
-
---
 -- Name: active_storage_attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3142,14 +3100,6 @@ ALTER TABLE ONLY support.study_json_records ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY support.study_xml_records ALTER COLUMN id SET DEFAULT nextval('support.study_xml_records_id_seq'::regclass);
-
-
---
--- Name: Search_results Search_results_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov."Search_results"
-    ADD CONSTRAINT "Search_results_pkey" PRIMARY KEY (id);
 
 
 --
@@ -3629,27 +3579,6 @@ ALTER TABLE ONLY support.study_xml_records
 --
 
 CREATE INDEX categories_nct_idx ON ctgov.search_results USING btree (nct_id);
-
-
---
--- Name: index_Search_results_on_name; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX "index_Search_results_on_name" ON ctgov."Search_results" USING btree (name);
-
-
---
--- Name: index_Search_results_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX "index_Search_results_on_nct_id" ON ctgov."Search_results" USING btree (nct_id);
-
-
---
--- Name: index_Search_results_on_nct_id_and_name_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX "index_Search_results_on_nct_id_and_name_and_grouping" ON ctgov."Search_results" USING btree (nct_id, name, "grouping");
 
 
 --
@@ -4143,6 +4072,20 @@ CREATE INDEX index_search_results_on_nct_id ON ctgov.search_results USING btree 
 
 
 --
+-- Name: index_search_results_on_nct_id_and_name; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_search_results_on_nct_id_and_name ON ctgov.search_results USING btree (nct_id, name);
+
+
+--
+-- Name: index_search_results_on_nct_id_and_name_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_search_results_on_nct_id_and_name_and_grouping ON ctgov.search_results USING btree (nct_id, name, "grouping");
+
+
+--
 -- Name: index_sponsors_on_agency_class; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4403,7 +4346,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201201210834'),
 ('20210108195415'),
 ('20210108200600'),
-('20210216235354'),
 ('20210308235723'),
 ('20210414222919'),
 ('20210526192648'),
