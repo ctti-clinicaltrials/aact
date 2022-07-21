@@ -14,7 +14,7 @@ class CreateTriggerForCategoryInsert < ActiveRecord::Migration[6.0]
       INSTEAD OF INSERT ON ctgov.categories
       FOR EACH ROW
       EXECUTE PROCEDURE category_insert_function();
-      CREATE SEQUENCE categories_id_seq;
+      CREATE SEQUENCE IF NOT EXISTS categories_id_seq;
     SQL
   end
 
