@@ -167,17 +167,7 @@ module Util
       record = FileRecord.create(file_type: "snapshot", filename: "#{filename}") 
       record.file.attach(io: File.open(zip_file_name), filename: "#{filename}")
       record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
-
       zip_file_name
     end
-
-    # 
-    def download_all_studies(unzip_location)
-      success = system(`wget -c -q --show-progress -P "${unzip_location}" https://clinicaltrials.gov/AllAPIJSON.zip`) 
-      raise "Could not download file" unless success
-      success = system(`unzip AllAPIJSON.zip`) 
-      raise "Could not unzip file" unless success
-    end
-    # 
   end
 end

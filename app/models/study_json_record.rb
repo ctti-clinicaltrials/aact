@@ -57,6 +57,13 @@ class StudyJsonRecord < ActiveRecord::Base
     "#{root_dir}/json_downloads"
   end
 
+  def download_all_studies(unzip_location)
+    success = system(`wget -c -q --show-progress -P "${unzip_location}" https://clinicaltrials.gov/AllAPIJSON.zip`) 
+    raise "Could not download file" unless success
+    success = system(`unzip AllAPIJSON.zip`) 
+    raise "Could not unzip file" unless success
+  end
+
   def self.download_all_studies(url='https://ClinicalTrials.gov/AllAPIJSON.zip')
     tries ||= 5
     file_name="#{json_file_directory}/#{Time.zone.now.strftime("%Y%m%d-%H")}.zip"
