@@ -1239,9 +1239,9 @@ CREATE VIEW ctgov.covid_19_studies AS
      FULL JOIN ctgov.eligibilities e ON (((s.nct_id)::text = (e.nct_id)::text)))
      FULL JOIN ctgov.brief_summaries bs ON (((s.nct_id)::text = (bs.nct_id)::text)))
      FULL JOIN ctgov.detailed_descriptions dd ON (((s.nct_id)::text = (dd.nct_id)::text)))
-  WHERE (((sp.lead_or_collaborator)::text = 'lead'::text) AND ((s.nct_id)::text IN ( SELECT categories.nct_id
-           FROM ctgov.categories
-          WHERE ((categories.name)::text = 'covid-19'::text))));
+  WHERE (((sp.lead_or_collaborator)::text = 'lead'::text) AND ((s.nct_id)::text IN ( SELECT search_results.nct_id
+           FROM ctgov.search_results
+          WHERE ((search_results.name)::text = 'covid-19'::text))));
 
 
 --
@@ -1740,6 +1740,7 @@ CREATE TABLE ctgov.mesh_headings (
 --
 
 CREATE SEQUENCE ctgov.mesh_headings_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1773,6 +1774,7 @@ CREATE TABLE ctgov.mesh_terms (
 --
 
 CREATE SEQUENCE ctgov.mesh_terms_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2174,6 +2176,7 @@ CREATE TABLE ctgov.reported_event_totals (
 --
 
 CREATE SEQUENCE ctgov.reported_event_totals_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2419,6 +2422,7 @@ CREATE TABLE ctgov.schema_migrations (
 --
 
 CREATE SEQUENCE ctgov.search_results_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2507,6 +2511,7 @@ CREATE TABLE ctgov.study_searches (
 --
 
 CREATE SEQUENCE ctgov.study_searches_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -3575,13 +3580,6 @@ ALTER TABLE ONLY support.study_xml_records
 
 
 --
--- Name: categories_nct_idx; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX categories_nct_idx ON ctgov.search_results USING btree (nct_id);
-
-
---
 -- Name: index_active_storage_attachments_on_blob_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4009,13 +4007,6 @@ CREATE INDEX index_overall_officials_on_nct_id ON ctgov.overall_officials USING 
 
 
 --
--- Name: index_reported_event_totals_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_reported_event_totals_on_nct_id ON ctgov.reported_event_totals USING btree (nct_id);
-
-
---
 -- Name: index_reported_events_on_event_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4062,13 +4053,6 @@ CREATE INDEX index_result_contacts_on_organization ON ctgov.result_contacts USIN
 --
 
 CREATE INDEX index_result_groups_on_result_type ON ctgov.result_groups USING btree (result_type);
-
-
---
--- Name: index_search_results_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_search_results_on_nct_id ON ctgov.search_results USING btree (nct_id);
 
 
 --
@@ -4223,13 +4207,6 @@ CREATE INDEX index_study_references_on_reference_type ON ctgov.study_references 
 --
 
 CREATE UNIQUE INDEX index_study_searches_on_query_and_grouping ON ctgov.study_searches USING btree (query, "grouping");
-
-
---
--- Name: reported_event_totals_nct_idx; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX reported_event_totals_nct_idx ON ctgov.reported_event_totals USING btree (nct_id);
 
 
 --
