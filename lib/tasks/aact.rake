@@ -5,24 +5,17 @@ namespace :aact do
   end
 
   task :delete_previous_month_files, [] => :environment do
-    files = FileRecord.all
+    last_month_start = Date.today.last_month.beginning_of_month
+    last_month_end = Date.today.last_month.beginning_of_month.end_of_month+1
+    files = FileRecord.where(file_type: 'snapshot').
+    where(created_at: last_month_start..last_month_end).
+    order(created_at: :asc)
     arr_files = files.to_a
-    # sort array here
-    # start = Date.today.last_month.beginning_of_month
-    # (start..start.end_of_month).each do |date|
     first = arr_files.shift()
-      arr_files.each do |file|
+    arr_files.each do |file|
       file.destroy
-      end
+    end
   end
-
-    # task :create_previous_month_files, [] => :environment do
-    #   start = Date.today. last_month.beginning_of_month
-    #   (start..start.end_of_month).each do |date|
-    #   # puts date
-    #   FileRecord. create(file_type:'snapshot', created_at: date)
-    #   end
-    # end
 end
 
 
