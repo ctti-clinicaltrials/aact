@@ -1,6 +1,6 @@
 class CreateRetractions < ActiveRecord::Migration[6.0]
   def change
-    create_table :retractions do |t|
+    create_table :retractions, if_not_exists: true do |t|
       t.integer 'reference_id'
       t.string 'pmid'
       t.string 'source'

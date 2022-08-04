@@ -35,7 +35,7 @@ class CreateCovid19StudiesView < ActiveRecord::Migration[4.2]
       FULL OUTER JOIN brief_summaries bs ON s.nct_id = bs.nct_id
       FULL OUTER JOIN detailed_descriptions dd ON s.nct_id = dd.nct_id
       WHERE sp.lead_or_collaborator = 'lead'
-      and s.nct_id IN (select nct_id from categories where name = 'covid-19');
+      and s.nct_id IN (select nct_id from search_results where name = 'covid-19');
     SQL
   end
 

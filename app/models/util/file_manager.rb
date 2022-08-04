@@ -167,9 +167,7 @@ module Util
       record = FileRecord.create(file_type: "snapshot", filename: "#{filename}", file_size: File.size(zip_file_name)) 
       record.file.attach(io: File.open(zip_file_name), filename: "#{filename}")
       record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
-
       zip_file_name
     end
-
   end
 end
