@@ -287,23 +287,24 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def protocol_section
-    content.dig('Study', 'ProtocolSection')
+    StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::ProtocolSection")&.content
   end
 
   def results_section
-    content.dig('Study', 'ResultsSection')
+    StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::ResultsSection")&.content
+
   end
 
   def derived_section
-    content.dig('Study', 'DerivedSection')
+    StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::DerivedSection")&.content
   end
 
   def annotation_section
-   content.dig('Study', 'AnnotationSection')
+   StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::AnnotationSection")&.content
   end
 
   def document_section
-    content.dig('Study', 'DocumentSection')
+    StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::DocumentSection")&.content
   end
 
   def contacts_location_module
