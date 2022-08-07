@@ -292,7 +292,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
   def results_section
     StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::ResultsSection")&.content
-
   end
 
   def derived_section
