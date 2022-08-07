@@ -20,6 +20,14 @@ class StudyRecord < ActiveRecord::Base
     raise "Could not unzip file" unless success
   end
 
+  def self.update_studies
+    studies = studies_to_update
+    studies.each do |study|
+      study.create_or_update_study
+      # here need to run some more methods  (download file, extract the file, process all the xml files, process the studies that changed) to do a full load.
+    end
+  end
+
   def self.import_studies(dir)
     Dir["#{dir}/*xxxx"].each do |dir|
       import_dir(dir)
