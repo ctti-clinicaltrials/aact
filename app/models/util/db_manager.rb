@@ -39,6 +39,7 @@ module Util
       "
       puts cmd
       run_command_line(cmd)
+
       return dump_file_location
     end
 
@@ -103,7 +104,7 @@ module Util
       restore_database(schema, public_connection, fm.pg_dump_file)
     end
 
-      
+
     def clear_out_data_for(nct_ids)
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
       Util::DbManager.loadable_tables.each { |table|
@@ -174,7 +175,7 @@ module Util
     end
 
     def terminate_db_sessions(db_name)
-      public_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{db_name}' AND usename <> '#{super_username}'")
+      public_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{db_name}' AND usename <> '#{ENV['AACT_DB_SUPER_USERNAME']}'")
     end
 
     def add_indexes_and_constraints
@@ -252,7 +253,7 @@ module Util
       }
     end
 
-    def remove_constrains
+    def remove_constraints
       Util::DbManager.loadable_tables.each {|table_name|
         # remove foreign key that links most tables to Studies table via the NCT ID
         begin
@@ -403,25 +404,27 @@ module Util
       ]
     end
 
+
     def schema_image
       models = Util::DbManager.loadable_tables.map{|k| k.singularize.camelize.constantize }
       nodes = models.map{|k| table_dot(k)}.join("\n\n")
       edges = foreign_key_constraints.map{|k| "#{k[:child_table].singularize.camelize} -> #{k[:parent_table].singularize.camelize}"}.join("\n")
-      edges2 = StudyRelationship.study_models.map{|k| "#{k.name} -> Study"}.join("\n")
+      edges2 = StudyRelationship.study_models.uniq.map{|k| "#{k.name} -> Study"}.join("\n")
     graph = <<-END
     digraph {
-      graph [pad="0.5", splines=true, nodesep="5", ranksep="2", overlap=false];
+      graph [layout=twopi, splines=true, overlap=false];
       node [shape=plain]
       /*rankdir=LR;*/
 
       #{nodes}
-
       #{edges}
       #{edges2}
     }
+
     END
-    File.write("schema.dot", graph)
-    `dot -Tpng schema.dot -o schema.png`
+
+    File.write("./public/static/documentation/schema.dot", graph)
+    `dot -Tpng ./public/static/documentation/schema.dot -o ./public/static/documentation/aact_schema.png`
     end
 
     def table_dot(model)
@@ -516,15 +519,6 @@ module Util
       AACT::Application::AACT_PUBLIC_DATABASE_NAME
     end
 
-    def super_username
-      AACT::Application::AACT_DB_SUPER_USERNAME
-    end
-
-    def static_file_dir
-      AACT::Application::AACT_STATIC_FILE_DIR
-    end
-
-
     def public_connection
       db = @config[:public]
       return unless db
@@ -548,12 +542,12 @@ module Util
       restore_database('normal', ActiveRecord::Base.connection, path_to_file)
       puts 'done'
     end
-    
+
     def restore_from_url(params={})
       url = params[:url]
       database_name = params[:database_name] || 'aact'
       return unless url
-      
+
       tries ||= 5
       file_path = "#{Rails.root}/tmp/snapshots"
       FileUtils.rm_rf(file_path)
@@ -585,7 +579,7 @@ module Util
       puts 'done'
 
       restore_from_file({path_to_file: "#{file_path}/postgres_data.dmp", database: database_name})
-      
+
       print 'removing temp folder...'
       FileUtils.rm_rf(file_path)
       puts 'done'

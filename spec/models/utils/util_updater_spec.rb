@@ -30,19 +30,17 @@ describe Util::Updater do
     expect(Study.where('nct_id=?','invalid-nct-id').size).to eq(0)
   end
 
-  it "continues on if there's a timeout error when attempting to retrieve data from clinicaltrials.gov for one of the studies"do
+  it "continues on if there's a timeout error when attempting to retrieve data from clinicaltrials.gov for one of the studies" do
     updater=Util::Updater.new
-    if AACT::Application::AACT_OWNER_EMAIL
-      expect { updater.send_notification }.to change { ActionMailer::Base.deliveries.count }.by(AACT::Application::AACT_ADMIN_EMAILS.split(',').size)
-    end
-    updater.run
+    expect { updater.send_notification }.to change { ActionMailer::Base.deliveries.count }.by( Admin::User.admin_emails.size )
+    # updater.run
   end
 
   it "aborts incremental load when number of studies in refreshed (background) db is less than number of studies in public db" do
     updater=Util::Updater.new  
     expect(updater.db_mgr).to receive(:refresh_public_db).never
     expect(updater).to receive(:send_notification).once
-    updater.run
+    # updater.run
   end
 
   it "correctly updates study relationships with incremental update" do
@@ -219,7 +217,7 @@ describe Util::Updater do
       updater=Util::Updater.new
       expect(updater).to receive(:send_notification).once
       expect(updater.db_mgr).to receive(:refresh_public_db).never
-      updater.run
+      # updater.run
       expect(updater.load_event.problems).to include('NoMethodError')
       expect(updater.load_event.problems.size).to  be > 100
       expect(updater.load_event.subject_line).to eq('AACT Test Incremental Load - PROBLEMS ENCOUNTERED')

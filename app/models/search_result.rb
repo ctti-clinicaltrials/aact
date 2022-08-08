@@ -26,6 +26,10 @@ class SearchResult < ActiveRecord::Base
         row << content
       end
     end
+    filename = "#{name}.tsv"
+    record = FileRecord.create(file_type: condition, filename: filename)
+    record.file.attach(io: File.open(file),  filename: filename)
+    record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
   end
 
   def self.study_values(study)

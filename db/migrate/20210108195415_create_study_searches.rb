@@ -1,6 +1,6 @@
 class CreateStudySearches < ActiveRecord::Migration[4.2]
   def change
-    create_table :study_searches do |t|
+    create_table :study_searches, if_not_exists: true do |t|
       t.boolean :save_tsv, null: false, default: false
       t.string :query, null: false
       t.string :grouping, null: false, default: ''

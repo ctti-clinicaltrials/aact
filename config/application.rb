@@ -29,12 +29,8 @@ module AACT
     # Note:  You must define the AACT DB superuser's password in the .pgpass file that needs to be in the root directory of the user who runs
     # the rails app.  We don't save passwords in Env Vars because they can be to easily exposed that way.
     AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'   # Name of postgres superuser that has permission to create a database.
-    AACT_OWNER_EMAIL       = ENV['AACT_OWNER_EMAIL']                   # Don't define this if your email service is not setup
     AACT_ADMIN_EMAILS      = ENV['AACT_ADMIN_EMAILS'] || "aact@your-org.org,admin@your-org.org" # Identifes who will receive load notifications
-    AACT_STATIC_FILE_DIR   = ENV['AACT_STATIC_FILE_DIR'] || '~/aact-files'  # directory containing AACT static files such as the downloadable db snapshots
-    RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
 
-    APPLICATION_HOST          = 'localhost'
     AACT_HOST = ENV['AACT_HOST'] || 'localhost'
     if Rails.env != 'test'
       AACT_PUBLIC_HOSTNAME      =  ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'#Server on which the publicly accessible database resides
@@ -46,7 +42,7 @@ module AACT
       AACT_PUBLIC_HOSTNAME      = 'localhost'
       AACT_BACK_DATABASE_NAME   = 'aact_test'
       AACT_ADMIN_DATABASE_NAME  = 'aact_admin_test'
-      AACT_PUBLIC_DATABASE_NAME = 'aact_pub_test'
+      AACT_PUBLIC_DATABASE_NAME = 'aact_test'
       AACT_ALT_PUBLIC_DATABASE_NAME = 'aact_alt_test'
     end
     AACT_PORT = ENV['AACT_PORT'] || 5432

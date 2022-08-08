@@ -283,6 +283,74 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: active_storage_attachments; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.active_storage_attachments (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    record_type character varying NOT NULL,
+    record_id bigint NOT NULL,
+    blob_id bigint NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.active_storage_attachments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.active_storage_attachments_id_seq OWNED BY ctgov.active_storage_attachments.id;
+
+
+--
+-- Name: active_storage_blobs; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.active_storage_blobs (
+    id bigint NOT NULL,
+    key character varying NOT NULL,
+    filename character varying NOT NULL,
+    content_type character varying,
+    metadata text,
+    byte_size bigint NOT NULL,
+    checksum character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.active_storage_blobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.active_storage_blobs_id_seq OWNED BY ctgov.active_storage_blobs.id;
+
+
+--
 -- Name: browse_conditions; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -472,8 +540,11 @@ CREATE VIEW ctgov.all_group_types AS
 CREATE TABLE ctgov.id_information (
     id integer NOT NULL,
     nct_id character varying,
+    id_source character varying,
+    id_value character varying,
     id_type character varying,
-    id_value character varying
+    id_type_description character varying,
+    id_link character varying
 );
 
 
@@ -903,7 +974,9 @@ CREATE TABLE ctgov.central_contacts (
     contact_type character varying,
     name character varying,
     phone character varying,
-    email character varying
+    email character varying,
+    phone_extension character varying,
+    role character varying
 );
 
 
@@ -1015,7 +1088,10 @@ CREATE TABLE ctgov.eligibilities (
     population text,
     criteria text,
     gender_description text,
-    gender_based boolean
+    gender_based boolean,
+    adult boolean,
+    child boolean,
+    older_adult boolean
 );
 
 
@@ -1087,7 +1163,12 @@ CREATE TABLE ctgov.studies (
     plan_to_share_ipd character varying,
     plan_to_share_ipd_description character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    source_class character varying,
+    delayed_posting character varying,
+    expanded_access_nctid character varying,
+    expanded_access_status_for_nctid character varying,
+    fdaaa801_violation boolean
 );
 
 
@@ -1395,7 +1476,8 @@ CREATE TABLE ctgov.facility_contacts (
     contact_type character varying,
     name character varying,
     email character varying,
-    phone character varying
+    phone character varying,
+    phone_extension character varying
 );
 
 
@@ -1450,6 +1532,40 @@ CREATE SEQUENCE ctgov.facility_investigators_id_seq
 --
 
 ALTER SEQUENCE ctgov.facility_investigators_id_seq OWNED BY ctgov.facility_investigators.id;
+
+
+--
+-- Name: file_records; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.file_records (
+    id bigint NOT NULL,
+    filename character varying,
+    file_size bigint,
+    file_type character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    url character varying
+);
+
+
+--
+-- Name: file_records_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.file_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: file_records_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.file_records_id_seq OWNED BY ctgov.file_records.id;
 
 
 --
@@ -1944,7 +2060,8 @@ CREATE TABLE ctgov.participant_flows (
     id integer NOT NULL,
     nct_id character varying,
     recruitment_details text,
-    pre_assignment_details text
+    pre_assignment_details text,
+    units_analyzed character varying
 );
 
 
@@ -2130,7 +2247,8 @@ CREATE TABLE ctgov.responsible_parties (
     name character varying,
     title character varying,
     organization character varying,
-    affiliation text
+    affiliation text,
+    old_name_title character varying
 );
 
 
@@ -2199,7 +2317,8 @@ CREATE TABLE ctgov.result_contacts (
     organization character varying,
     name character varying,
     phone character varying,
-    email character varying
+    email character varying,
+    extension character varying
 );
 
 
@@ -2255,6 +2374,38 @@ CREATE SEQUENCE ctgov.result_groups_id_seq
 --
 
 ALTER SEQUENCE ctgov.result_groups_id_seq OWNED BY ctgov.result_groups.id;
+
+
+--
+-- Name: retractions; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.retractions (
+    id bigint NOT NULL,
+    reference_id integer,
+    pmid character varying,
+    source character varying,
+    nct_id character varying
+);
+
+
+--
+-- Name: retractions_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.retractions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: retractions_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.retractions_id_seq OWNED BY ctgov.retractions.id;
 
 
 --
@@ -2419,7 +2570,8 @@ CREATE TABLE ctgov.verifiers (
     last_run timestamp without time zone,
     source json,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    load_event_id integer
 );
 
 
@@ -2591,6 +2743,20 @@ ALTER SEQUENCE support.study_xml_records_id_seq OWNED BY support.study_xml_recor
 
 
 --
+-- Name: active_storage_attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_attachments ALTER COLUMN id SET DEFAULT nextval('ctgov.active_storage_attachments_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_blobs id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('ctgov.active_storage_blobs_id_seq'::regclass);
+
+
+--
 -- Name: baseline_counts id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2728,6 +2894,13 @@ ALTER TABLE ONLY ctgov.facility_contacts ALTER COLUMN id SET DEFAULT nextval('ct
 --
 
 ALTER TABLE ONLY ctgov.facility_investigators ALTER COLUMN id SET DEFAULT nextval('ctgov.facility_investigators_id_seq'::regclass);
+
+
+--
+-- Name: file_records id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_records ALTER COLUMN id SET DEFAULT nextval('ctgov.file_records_id_seq'::regclass);
 
 
 --
@@ -2899,6 +3072,13 @@ ALTER TABLE ONLY ctgov.result_groups ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
+-- Name: retractions id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.retractions ALTER COLUMN id SET DEFAULT nextval('ctgov.retractions_id_seq'::regclass);
+
+
+--
 -- Name: search_results id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2966,6 +3146,22 @@ ALTER TABLE ONLY support.study_json_records ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY support.study_xml_records ALTER COLUMN id SET DEFAULT nextval('support.study_xml_records_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_attachments active_storage_attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_attachments
+    ADD CONSTRAINT active_storage_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: active_storage_blobs active_storage_blobs_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_blobs
+    ADD CONSTRAINT active_storage_blobs_pkey PRIMARY KEY (id);
 
 
 --
@@ -3134,6 +3330,14 @@ ALTER TABLE ONLY ctgov.facility_contacts
 
 ALTER TABLE ONLY ctgov.facility_investigators
     ADD CONSTRAINT facility_investigators_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: file_records file_records_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_records
+    ADD CONSTRAINT file_records_pkey PRIMARY KEY (id);
 
 
 --
@@ -3329,6 +3533,14 @@ ALTER TABLE ONLY ctgov.result_groups
 
 
 --
+-- Name: retractions retractions_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.retractions
+    ADD CONSTRAINT retractions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3414,6 +3626,27 @@ ALTER TABLE ONLY support.study_json_records
 
 ALTER TABLE ONLY support.study_xml_records
     ADD CONSTRAINT study_xml_records_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_active_storage_attachments_on_blob_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_active_storage_attachments_on_blob_id ON ctgov.active_storage_attachments USING btree (blob_id);
+
+
+--
+-- Name: index_active_storage_attachments_uniqueness; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON ctgov.active_storage_attachments USING btree (record_type, record_id, name, blob_id);
+
+
+--
+-- Name: index_active_storage_blobs_on_key; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON ctgov.active_storage_blobs USING btree (key);
 
 
 --
@@ -3690,10 +3923,10 @@ CREATE INDEX index_facility_contacts_on_contact_type ON ctgov.facility_contacts 
 
 
 --
--- Name: index_id_information_on_id_type; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_id_information_on_id_source; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_id_information_on_id_type ON ctgov.id_information USING btree (id_type);
+CREATE INDEX index_id_information_on_id_source ON ctgov.id_information USING btree (id_source);
 
 
 --
@@ -4103,6 +4336,14 @@ CREATE TRIGGER category_insert_trigger INSTEAD OF INSERT ON ctgov.categories FOR
 
 
 --
+-- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_attachments
+    ADD CONSTRAINT fk_rails_c3b3935057 FOREIGN KEY (blob_id) REFERENCES ctgov.active_storage_blobs(id);
+
+
+--
 -- Name: sanity_checks fk_rails_9d86ec7e91; Type: FK CONSTRAINT; Schema: support; Owner: -
 --
 
@@ -4138,7 +4379,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201201210834'),
 ('20210108195415'),
 ('20210108200600'),
-('20210216235354'),
 ('20210308235723'),
 ('20210414222919'),
 ('20210526192648'),
@@ -4146,5 +4386,18 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210601063550'),
 ('20211027133828'),
 ('20220207182529');
+('20220202152642'),
+('20220212033048'),
+('20220308030627'),
+('20220329173304'),
+('20220429175157'),
+('20220512025646'),
+('20220512030503'),
+('20220512030831'),
+('20220520124716'),
+('20220520133313'),
+('20220522072233'),
+('20220523123928'),
+('20220608211340');
 
 

@@ -7,21 +7,11 @@ namespace :db do
     Util::Updater.new(args).run
   end
 
-  task :loop do
-    loop do
-      if Time.now.hour == 4
-        updater = Util::Updater.new(schema: 'ctgov')
-        updater.execute
-      end
-      sleep 60
-    end
-  end
-
   task :load2, [:schema, :search_days_back] => :environment do |t, args|
     Util::Updater.new(args).execute
   end
 
-  task :restore_from_file, [:path_to_file, :database_name] => :environment do |t, args|
+  task :restore_from_file, [:path_to_file, :database] => :environment do |t, args|
     Util::DbManager.new.restore_from_file(args)
   end
 

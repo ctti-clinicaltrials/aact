@@ -8,7 +8,7 @@ class Verifier < ActiveRecord::Base
     # save json with differences
     diff_file = "#{folder}/verifier_differences_#{schema}".remove('\'')
     File.write("#{diff_file}.json", JSON.dump(self.differences))
-    
+
     # save csv with differences
     headers = %w[
                 source
@@ -31,6 +31,12 @@ class Verifier < ActiveRecord::Base
               ]
       end
     end
+    Verifier.alert_admins_about_differences
+  end
+
+  def self.alert_admins_about_differences
+    admin_emails = ENV.fetch(Admin::User.admin_emails, "").split(",")
+    admin_emails.each {|admin_email| Notifier.report_diff(admin_email).deliver_now}
   end
 
   def get_source_from_file(file_path="#{Util::FileManager.new.study_statistics_directory}/verifier_source_ctgov.json")
@@ -40,15 +46,15 @@ class Verifier < ActiveRecord::Base
 
   def self.return_correct_schema(name = 'ctgov')
     return 'ctgov_beta' if name =~ /beta/
-       
+
     'ctgov'
   end
 
-  def self.refresh(params={schema: 'ctgov'})
+  def self.refresh(params={schema: 'ctgov', load_event_id: nil})
     # this is a safety messure to make sure the correct schema name is used
     schema = self.return_correct_schema(params[:schema])
     begin
-      verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"))
+      verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"), load_event_id: params[:load_event_id])
       verifier.verify(schema)
       verifier.write_data_to_file(schema)
     rescue => error
@@ -58,22 +64,10 @@ class Verifier < ActiveRecord::Base
     end
   end
 
-  def set_schema(schema='ctgov')
-    con = ActiveRecord::Base.connection
-    username = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-    db_name = ENV['AACT_BACK_DATABASE_NAME'] || 'aact'
-    con.execute("ALTER ROLE #{username} IN DATABASE #{db_name} SET SEARCH_PATH TO #{schema}, support, public;")
-    
-    ActiveRecord::Base.remove_connection
-    ActiveRecord::Base.establish_connection
-    ActiveRecord::Base.logger = nil
-  end
-
   def verify(schema ='ctgov')
     # this is a safety messure to make sure the correct schema name is used
     schema = Verifier.return_correct_schema(schema)
-    set_schema(schema)
-    
+
     return if self.source.blank?
 
     diff = []
@@ -81,7 +75,7 @@ class Verifier < ActiveRecord::Base
     source_study_counts = self.source.dig('nInstances')
     db_study_counts = Study.count
     diff<< {source_study_count: source_study_counts, db_study_count:  db_study_counts} unless same?(source_study_counts,  db_study_counts)
-    
+
     # Now I add the differences for each selector
     places = all_locations
     total = places.count
@@ -109,7 +103,7 @@ class Verifier < ActiveRecord::Base
 
   def same?(int1,int2)
     int1.to_i == int2.to_i
-    
+
   end
 
   def diff_hash(selector, location)
@@ -120,10 +114,10 @@ class Verifier < ActiveRecord::Base
     section = selector.last
 
     return unless hash
-    
+
     all_instances = hash.dig("nInstances")
     uniq_instances = hash.dig("nUniqueValues")
-    
+
     all_counts, uniq_counts = get_counts(location)
       unless same?(all_counts, all_instances) && same?(uniq_counts, uniq_instances)
         return {
@@ -134,7 +128,7 @@ class Verifier < ActiveRecord::Base
                     source_unique_values: uniq_instances,
                     destination_unique_values: uniq_counts,
               }
-      else 
+      else
         return false
       end
   end
@@ -147,7 +141,7 @@ class Verifier < ActiveRecord::Base
                   .merge!(conditions_module_hash)
                   .merge!(design_module_hash)
                   .merge!(arms_interventions_module_hash)
-                  .merge!(outcomes_module_hash) 
+                  .merge!(outcomes_module_hash)
                   .merge!(eligibility_module_hash)
                   .merge!(contacts_location_module_hash)
                   .merge!(references_module_hash)
@@ -161,7 +155,7 @@ class Verifier < ActiveRecord::Base
                   .merge!(large_document_module_hash)
                   .merge!(misc_info_module_hash)
                   .merge!(condition_browse_module_hash)
-                  .merge!(intervention_browse_module_hash)   
+                  .merge!(intervention_browse_module_hash)
   end
 
   def get_counts(location)
@@ -173,13 +167,13 @@ class Verifier < ActiveRecord::Base
     additional_info = array[2] if array.length > 2
 
     con = ActiveRecord::Base.connection
-    
+
     all_counts = con.execute("select count(#{array[1]}) from #{array[0]} #{additional_info}")
     all_counts = all_counts.getvalue(0,0) if all_counts.ntuples == 1
 
     uniq_counts = con.execute("select count(distinct #{array[1]}) from #{array[0]} #{additional_info}")
     uniq_counts = uniq_counts.getvalue(0,0) if uniq_counts.ntuples == 1
-    
+
     return all_counts, uniq_counts
   end
 
@@ -207,34 +201,34 @@ class Verifier < ActiveRecord::Base
     "#{status_module}|LastKnownStatus"                                       => "studies#last_known_status#where last_known_status is not null and last_known_status <> ''",
     "#{status_module}|WhyStopped"                                            => "studies#why_stopped#where why_stopped is not null and why_stopped <> ''",
     "#{status_module}|ExpandedAccessInfo|HasExpandedAccess"                  => 'studies#has_expanded_access#where has_expanded_access is not null',
-    
+
     "#{status_module}|StartDateStruct|StartDate"                             => 'studies#start_date#where start_date is not null',
     "#{status_module}|StartDateStruct|StartDateType"                         => "studies#start_date_type#where start_date_type is not null and start_date_type <> ''",
-    
+
     "#{status_module}|PrimaryCompletionDateStruct|PrimaryCompletionDate"     => 'studies#primary_completion_date#where primary_completion_date is not null',
     "#{status_module}|PrimaryCompletionDateStruct|PrimaryCompletionDateType" => "studies#primary_completion_date_type#where primary_completion_date_type is not null and primary_completion_date_type <> ''",
-    
+
     "#{status_module}|CompletionDateStruct|CompletionDate"                   => 'studies#completion_date#where completion_date is not null',
     "#{status_module}|CompletionDateStruct|CompletionDateType"               => "studies#completion_date_type#where completion_date_type is not null and completion_date_type <> ''",
-    
+
     "#{status_module}|StudyFirstSubmitDate"                                  => 'studies#study_first_submitted_date#where study_first_submitted_date is not null',
     "#{status_module}|StudyFirstSubmitQCDate"                                => 'studies#study_first_submitted_qc_date#where study_first_submitted_qc_date is not null',
-    
+
     "#{status_module}|StudyFirstPostDateStruct|StudyFirstPostDate"           => 'studies#study_first_posted_date#where study_first_posted_date is not null',
     "#{status_module}|StudyFirstPostDateStruct|StudyFirstPostDateType"       => "studies#study_first_posted_date_type#where study_first_posted_date_type is not null and study_first_posted_date_type <> ''",
-    
+
     "#{status_module}|ResultsFirstSubmitDate"                                => 'studies#results_first_submitted_date#where results_first_submitted_date is not null',
     "#{status_module}|ResultsFirstSubmitQCDate"                              => 'studies#results_first_submitted_qc_date#where results_first_submitted_qc_date is not null',
-    
+
     "#{status_module}|ResultsFirstPostDateStruct|ResultsFirstPostDate"       => 'studies#results_first_posted_date#where results_first_posted_date is not null',
     "#{status_module}|ResultsFirstPostDateStruct|ResultsFirstPostDateType"   => "studies#results_first_posted_date_type#where results_first_posted_date_type is not null and results_first_posted_date_type <> ''",
-    
+
     "#{status_module}|DispFirstSubmitDate"                                   => 'studies#disposition_first_submitted_date#where disposition_first_submitted_date is not null',
     "#{status_module}|DispFirstSubmitQCDate"                                 => 'studies#disposition_first_submitted_qc_date#where disposition_first_submitted_qc_date is not null',
-    
+
     "#{status_module}|DispFirstPostDateStruct|DispFirstPostDate"             => 'studies#disposition_first_posted_date#where disposition_first_submitted_date is not null',
     "#{status_module}|DispFirstPostDateStruct|DispFirstPostDateType"         => "studies#disposition_first_posted_date_type#where disposition_first_posted_date_type is not null and disposition_first_posted_date_type <> ''",
-    
+
     "#{status_module}|LastUpdateSubmitDate"                                  => 'studies#last_update_submitted_qc_date#where last_update_submitted_qc_date is not null',
     "#{status_module}|LastUpdatePostDateStruct|LastUpdatePostDate"           => 'studies#last_update_posted_date#where last_update_posted_date is not null',
     "#{status_module}|LastUpdatePostDateStruct|LastUpdatePostDateType"       => "studies#last_update_posted_date_type#where last_update_posted_date_type is not null and last_update_posted_date_type <> ''",
@@ -249,10 +243,10 @@ class Verifier < ActiveRecord::Base
       "#{sc_module}|ResponsibleParty|ResponsiblePartyInvestigatorTitle"       => "responsible_parties#title#where title is not null and title <> ''",
       "#{sc_module}|ResponsibleParty|ResponsiblePartyInvestigatorAffiliation" => "responsible_parties#affiliation#where affiliation is not null and affiliation <> ''",
       "#{sc_module}|ResponsibleParty|ResponsiblePartyOldOrganization"         => "responsible_parties#organization#where organization is not null and organization <> ''",
-      
+
       "#{sc_module}|LeadSponsor|LeadSponsorName"                              => "sponsors#name#where lead_or_collaborator='lead' and name is not null and name <> ''",
       "#{sc_module}|LeadSponsor|LeadSponsorClass"                             => "sponsors#agency_class#where lead_or_collaborator='lead' and agency_class is not null and agency_class <> ''",
-      
+
       "#{sc_module}|CollaboratorList|Collaborator|CollaboratorName"           => "sponsors#name#where lead_or_collaborator='collaborator' and name is not null and name <> ''",
       "#{sc_module}|CollaboratorList|Collaborator|CollaboratorClass"          => "sponsors#agency_class#where lead_or_collaborator='collaborator' and agency_class is not null and agency_class <> ''",
     }
@@ -290,15 +284,15 @@ class Verifier < ActiveRecord::Base
     design_module = 'ProtocolSection|DesignModule'
     {
       "#{design_module}|StudyType" => "studies#study_type#where study_type is not null and study_type <>''",
-      
+
       "#{design_module}|ExpandedAccessTypes|ExpAccTypeIndividual"   => 'studies#expanded_access_type_individual#where expanded_access_type_individual is not null',
       "#{design_module}|ExpandedAccessTypes|ExpAccTypeIntermediate" => 'studies#expanded_access_type_intermediate#where expanded_access_type_intermediate is not null',
       "#{design_module}|ExpandedAccessTypes|ExpAccTypeTreatment"    => 'studies#expanded_access_type_treatment#where expanded_access_type_treatment is not null',
-      
+
       "#{design_module}|PatientRegistry" => "studies#study_type#where study_type iLIKE '%Patient Registry%' or study_type iLIKE '%PatientRegistry%'",
       "#{design_module}|TargetDuration"  => "studies#target_duration#where target_duration is not null and target_duration <>''",
       "#{design_module}|PhaseList|Phase" => "studies#phase#where phase is not null and phase <>''",
-      
+
       "#{design_module}|DesignInfo|DesignAllocation"                                      => "designs#allocation#where allocation is not null and allocation <>''",
       "#{design_module}|DesignInfo|DesignInterventionModel"                               => "designs#intervention_model#where intervention_model is not null and intervention_model <>''",
       "#{design_module}|DesignInfo|DesignInterventionModelDescription"                    => "designs#intervention_model_description#where intervention_model_description is not null and intervention_model_description <>''",
@@ -308,10 +302,10 @@ class Verifier < ActiveRecord::Base
       "#{design_module}|DesignInfo|DesignMaskingInfo|DesignMasking"                       => "designs#masking#where masking is not null and masking <>''",
       "#{design_module}|DesignInfo|DesignMaskingInfo|DesignMaskingDescription"            => "designs#masking_description#where masking_description is not null and masking_description <>''",
       "#{design_module}|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked" => 'designs#CONCAT(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked)# where COALESCE(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked) is not null',
-      
+
       "#{design_module}|BioSpec|BioSpecRetention"   => "studies#biospec_retention#where biospec_retention is not null and biospec_retention <>''",
       "#{design_module}|BioSpec|BioSpecDescription" => "studies#biospec_description#where biospec_description is not null and biospec_description <>''",
-      
+
       "#{design_module}|EnrollmentInfo|EnrollmentCount" => 'studies#enrollment#where enrollment is not null',
       "#{design_module}|EnrollmentInfo|EnrollmentType"  => "studies#enrollment_type#where enrollment_type is not null and enrollment_type <>''",
     }
@@ -323,13 +317,13 @@ class Verifier < ActiveRecord::Base
       "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupLabel"       => "design_groups#title#where title is not null and title <>''",
       "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupType"        => "design_groups#group_type#where group_type is not null and group_type <>''",
       "#{ai_module}|ArmGroupList|ArmGroup|ArmGroupDescription" => "design_groups#description#where description is not null and description <>''",
-      
+
       "#{ai_module}|InterventionList|Intervention|InterventionType"                                        => "interventions#intervention_type#where intervention_type is not null and intervention_type <>''",
       "#{ai_module}|InterventionList|Intervention|InterventionName"                                        => "interventions#name#where name is not null and name <>''",
       "#{ai_module}|InterventionList|Intervention|InterventionDescription"                                 => "interventions#description#where description is not null and description <>''",
       "#{ai_module}|InterventionList|Intervention|InterventionArmGroupLabelList|InterventionArmGroupLabel" => "design_groups#title#where title is not null and title <>''",
       "#{ai_module}|InterventionList|Intervention|InterventionOtherNameList|InterventionOtherName"         => "intervention_other_names#name#where name is not null and name <>''",
-    } 
+    }
   end
 
   def outcomes_module_hash
@@ -382,7 +376,7 @@ class Verifier < ActiveRecord::Base
       "#{cl_module}|LocationList|Location|LocationState"                                               => "facilities#state#where state is not null and state <> ''",
       "#{cl_module}|LocationList|Location|LocationZip"                                                 => "facilities#zip#where zip is not null and zip <> ''",
       "#{cl_module}|LocationList|Location|LocationCountry"                                             => "facilities#country#where country is not null and country <> ''",
-      
+
       "#{cl_module}|LocationList|Location|LocationContactList|LocationContact|LocationContactName"     => "facility_contacts#name#where name is not null and name <> ''",
       "#{cl_module}|LocationList|Location|LocationContactList|LocationContact|LocationContactRole"     => "facility_contacts#contact_type#where contact_type is not null and contact_type <> ''",
       "#{cl_module}|LocationList|Location|LocationContactList|LocationContact|LocationContactPhone"    => "facility_contacts#phone#where phone is not null and phone <> ''",
@@ -397,7 +391,7 @@ class Verifier < ActiveRecord::Base
       "#{ref_module}|ReferenceList|Reference|ReferencePMID"        => "study_references#pmid#where pmid is not null and pmid <> ''",
       "#{ref_module}|ReferenceList|Reference|ReferenceType"        => "study_references#reference_type#where reference_type is not null and reference_type <> ''",
       "#{ref_module}|ReferenceList|Reference|ReferenceCitation"    => "study_references#citation#where citation is not null and citation <> ''",
-      
+
       "#{ref_module}|SeeAlsoLinkList|SeeAlsoLink|SeeAlsoLinkLabel" => "links#description#where description is not null and description <> ''",
       "#{ref_module}|SeeAlsoLinkList|SeeAlsoLink|SeeAlsoLinkURL"   => "links#url#where url is not null and url <> ''",
 
@@ -421,7 +415,7 @@ class Verifier < ActiveRecord::Base
   end
 
   # Results section___________________________________________________________
-  
+
   def participant_flow_module_hash
     pf_module = 'ResultsSection|ParticipantFlowModule'
     {
@@ -430,13 +424,13 @@ class Verifier < ActiveRecord::Base
       "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupId"          => "result_groups#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> '' and result_type = 'Participant Flow'",
       "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupTitle"       => "result_groups#title#where title is not null and title <> '' and result_type = 'Participant Flow'",
       "#{pf_module}|FlowGroupList|FlowGroup|FlowGroupDescription" => "result_groups#description#where description is not null and description <> '' and result_type = 'Participant Flow'",
-      
+
       "#{pf_module}|FlowPeriodList|FlowPeriod|FlowPeriodTitle"                                                                                 => "milestones#period#where period is not null and period <> ''",
       "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowMilestoneType"                                               => "milestones#title#where title is not null and title <> ''",
       "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementGroupId"      => "milestones#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
       "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementComment"      => "milestones#description#where description is not null and description <> ''",
       "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementNumSubjects"  => "milestones#count#where count is not null",
-      
+
 
       "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowDropWithdrawType"                                      => "drop_withdrawals#reason#where reason is not null and reason <> ''",
       "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonGroupId"               => "drop_withdrawals#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
@@ -461,7 +455,7 @@ class Verifier < ActiveRecord::Base
       "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureParamType"      => "baseline_measurements#param_type#where param_type is not null and param_type <> ''",
       "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureDispersionType" => "baseline_measurements#dispersion_type#where dispersion_type is not null and dispersion_type <> ''",
       "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineMeasureUnitOfMeasure"  => "baseline_measurements#units#where units is not null and units <> ''",
-      
+
       "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassTitle"                                                                                              => "baseline_measurements#classification#where classification is not null and classification <> ''",
       "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineCategoryTitle"                                                     => "baseline_measurements#category#where category is not null and category <> ''",
       "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementGroupId"    => "baseline_measurements#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
@@ -487,7 +481,7 @@ class Verifier < ActiveRecord::Base
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureUnitOfMeasure"          => "outcomes#units#where units is not null and units <> ''",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureTimeFrame"              => "outcomes#time_frame#where time_frame is not null and time_frame <> ''",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureTypeUnitsAnalyzed"      => "outcomes#units_analyzed#where units_analyzed is not null and units_analyzed <> ''",
-      
+
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeGroupList|OutcomeGroup|OutcomeGroupId"          => "result_groups#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> '' and result_type= 'Outcome'",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeGroupList|OutcomeGroup|OutcomeGroupTitle"       => "result_groups#title#where title is not null and title <> '' and result_type= 'Outcome'",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeGroupList|OutcomeGroup|OutcomeGroupDescription" => "result_groups#description#where title is not null and description <> '' and result_type= 'Outcome'",
@@ -495,10 +489,10 @@ class Verifier < ActiveRecord::Base
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeDenomList|OutcomeDenom|OutcomeDenomUnits"                                                                  => "outcome_counts#units#where units is not null and units <> ''",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeDenomList|OutcomeDenom|OutcomeDenomCountList|OutcomeDenomCount|OutcomeDenomCountGroupId" => "outcome_counts#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeDenomList|OutcomeDenom|OutcomeDenomCountList|OutcomeDenomCount|OutcomeDenomCountValue"   => "outcome_counts#count#where count is not null",
-      
+
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassTitle" => "outcome_measurements#classification#where classification is not null and classification <> ''",
-      
-      
+
+
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeCategoryTitle"                                                   => "outcome_measurements#category#where category is not null and category <> ''",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementGroupId"    => "outcome_measurements#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <>''",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementValue"      => "outcome_measurements#param_value#where param_value is not null and param_value <>''",
@@ -506,8 +500,8 @@ class Verifier < ActiveRecord::Base
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementLowerLimit" => "outcome_measurements#dispersion_lower_limit#where dispersion_lower_limit is not null",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementUpperLimit" => "outcome_measurements#dispersion_upper_limit#where dispersion_upper_limit is not null ",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementComment"    => "outcome_measurements#explanation_of_na#where explanation_of_na is not null and explanation_of_na <>''",
-      
-      
+
+
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisGroupIdList|OutcomeAnalysisGroupId" => "outcome_analysis_groups#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <>''",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisGroupDescription"                   => "outcome_analyses#groups_description#where groups_description is not null and groups_description <>''",
       "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisNonInferiorityType"                 => "outcome_analyses#non_inferiority_type#where non_inferiority_type is not null and non_inferiority_type <>''",
@@ -536,7 +530,7 @@ class Verifier < ActiveRecord::Base
       "#{ae_module}|EventsFrequencyThreshold" => "reported_events#frequency_threshold#where frequency_threshold is not null",
       "#{ae_module}|EventsTimeFrame"          => "reported_events#time_frame#where time_frame is not null and time_frame <> ''",
       "#{ae_module}|EventsDescription"        => "reported_events#description#where description is not null and description <> ''",
-      
+
       "#{ae_module}|EventGroupList|EventGroup|EventGroupId"                 => "reported_event_totals#ctgov_group_code#where ctgov_group_code is not null and ctgov_group_code <> ''",
       "#{ae_module}|EventGroupList|EventGroup|EventGroupDeathsNumAffected"  => "reported_event_totals#subjects_affected#where subjects_affected is not null and classification = 'Total, all-cause mortality'",
       "#{ae_module}|EventGroupList|EventGroup|EventGroupDeathsNumAtRisk"    => "reported_event_totals#subjects_at_risk#where subjects_at_risk is not null and classification = 'Total, all-cause mortality'",
@@ -555,7 +549,7 @@ class Verifier < ActiveRecord::Base
       "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventStatsList|SeriousEventStats|SeriousEventStatsNumAffected" => "reported_events#subjects_affected#where subjects_affected is not null and event_type ilike 'serious'",
       "#{ae_module}|SeriousEventList|SeriousEvent|SeriousEventStatsList|SeriousEventStats|SeriousEventStatsNumAtRisk"   => "reported_events#subjects_at_risk#where subjects_at_risk is not null and event_type ilike 'serious'",
 
-     
+
       "#{ae_module}|OtherEventList|OtherEvent|OtherEventTerm"                => "reported_events#adverse_event_term#where adverse_event_term is not null and adverse_event_term <> '' and event_type ilike 'other'",
       "#{ae_module}|OtherEventList|OtherEvent|OtherEventOrganSystem"         => "reported_events#organ_system#where organ_system is not null and organ_system <> '' and event_type ilike 'other'",
       "#{ae_module}|OtherEventList|OtherEvent|OtherEventSourceVocabulary"    => "reported_events#vocab#where vocab is not null and vocab <> '' and event_type ilike 'other'",
@@ -631,10 +625,10 @@ class Verifier < ActiveRecord::Base
       "#{ib_module}|InterventionAncestorList|InterventionAncestor|InterventionAncestorTerm" => "browse_interventions#mesh_term#where mesh_term is not null and mesh_term <>'' and mesh_type = 'mesh-ancestor'",
     }
   end
-  
+
   # for result_groups you should filter by result_type
   #  result_types = ["Baseline", "Outcome", "Participant Flow", "Reported Event"]
-  
+
   # listed below are selectors that don't point to any tables/columns in our database
 
   # ID Module__________________________________
@@ -646,7 +640,7 @@ class Verifier < ActiveRecord::Base
   # "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryIdLink"
   # "#{id_module}|Organization|OrgClass"
 
-  # Status Module__________________________________ 
+  # Status Module__________________________________
   # "#{status_module}|DelayedPosting"
   # "#{status_module}|ExpandedAccessInfo|ExpandedAccessNCTId"
   # "#{status_module}|ExpandedAccessInfo|ExpandedAccessStatusForNCTId"
@@ -670,12 +664,12 @@ class Verifier < ActiveRecord::Base
 
   # References Module__________________________________
   # "#{ref_module}|ReferenceList|Reference|RetractionList|Retraction|RetractionPMID"
-  # "#{ref_module}|ReferenceList|Reference|RetractionList|Retraction|RetractionSource" 
+  # "#{ref_module}|ReferenceList|Reference|RetractionList|Retraction|RetractionSource"
 
   # Participant Flow Module__________________________________
   # "#{pf_module}|FlowTypeUnitsAnalyzed"
   # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowMilestoneComment"
-  # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementNumUnits" 
+  # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementNumUnits"
   # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowDropWithdrawComment"
   # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonComment"
   # "#{pf_module}|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonNumUnits"
@@ -691,17 +685,17 @@ class Verifier < ActiveRecord::Base
   # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassDenomList|BaselineClassDenom|BaselineClassDenomUnits"
   # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassDenomList|BaselineClassDenom|BaselineClassDenomCountList|BaselineClassDenomCount|BaselineClassDenomCountGroupId"
   # "#{bc_module}|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassDenomList|BaselineClassDenom|BaselineClassDenomCountList|BaselineClassDenomCount|BaselineClassDenomCountValue"
-  
+
   # Outcome Measures Module__________________________________
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureReportingStatus"
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureCalculatePct"
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureDenomUnitsSelected"
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassDenomList|OutcomeClassDenom|OutcomeClassDenomUnits"
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassDenomList|OutcomeClassDenom|OutcomeClassDenomCountList|OutcomeClassDenomCount|OutcomeClassDenomCountGroupId"
-  # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassDenomList|OutcomeClassDenom|OutcomeClassDenomCountList|OutcomeClassDenomCount|OutcomeClassDenomCountValue" 
+  # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassDenomList|OutcomeClassDenom|OutcomeClassDenomCountList|OutcomeClassDenomCount|OutcomeClassDenomCountValue"
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisTestedNonInferiority"
   # "#{om_module}|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCILowerLimitComment"
-  
+
   # Adverse Events Module__________________________________
   # "#{ae_module}|EventGroupList|EventGroup|EventGroupTitle"
   # "#{ae_module}|EventGroupList|EventGroup|EventGroupDescription"
