@@ -22,7 +22,11 @@ class StudyRecord < ActiveRecord::Base
 
   def self.update_studies
     studies = studies_to_update
-    studies.each do |study|
+    studies.each do |study_id|
+      study = StudyJsonRecord.find_by(nct_id: study_id)
+      if study.nil?
+        study = StudyJsonRecord.create(nct_id: study_id)
+      end
       study.create_or_update_study
       # here need to run some more methods  (download file, extract the file, process all the xml files, process the studies that changed) to do a full load.
     end
