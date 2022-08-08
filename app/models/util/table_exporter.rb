@@ -7,7 +7,6 @@ module Util
       @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
       @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export.zip"
       @table_names  = tables
-      # @file_size = unsure from where the file_size coming from
       create_temp_dir_if_none_exists!
     end
 
@@ -24,7 +23,8 @@ module Util
         
         
         if File.exist?(@zipfile_name) 
-          record = FileRecord.create(file_type: "pipefiles", filename: @zipfile_name)
+          @file_size =  File.size(@zipfile_name)
+          record = FileRecord.create(file_type: "pipefiles", filename: @zipfile_name, file_size: @file_size)
           record.file.attach(io: File.open(@zipfile_name), filename: @zipfile_name)
           record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
         end
