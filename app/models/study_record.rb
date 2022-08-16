@@ -28,7 +28,6 @@ class StudyRecord < ActiveRecord::Base
         study = StudyJsonRecord.create(nct_id: study_id)
       end
       study.create_or_update_study
-      # here need to run some more methods  (download file, extract the file, process all the xml files, process the studies that changed) to do a full load.
     end
   end
 
