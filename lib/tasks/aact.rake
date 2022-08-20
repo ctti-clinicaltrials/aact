@@ -4,10 +4,10 @@ namespace :aact do
     updater.start
   end
 
-  task :delete_previous_month_files, [] => :environment do
+  task :delete_previous_month_files(file_type), [] => :environment do
     last_month_start = Date.today.last_month.beginning_of_month
     last_month_end = Date.today.last_month.beginning_of_month.end_of_month+1
-    files = FileRecord.where(file_type: 'snapshot').
+    files = FileRecord.where(file_type: file_type).
     where(created_at: last_month_start..last_month_end).
     order(created_at: :asc)
     arr_files = files.to_a
