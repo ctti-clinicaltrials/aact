@@ -617,6 +617,8 @@ class StudyJsonRecord < ActiveRecord::Base
                                             dispersion_lower_limit: StudyJsonRecord.float(measurement['BaselineMeasurementLowerLimit']),
                                             dispersion_upper_limit: StudyJsonRecord.float(measurement['BaselineMeasurementUpperLimit']),
                                             explanation_of_na: measurement['BaselineMeasurementComment']
+                                            # number_analayzed: 
+                                            number_analayzed_units: measurement['BaselineMeasureDenomUnitsSelected']
                                           }
           end
         end
