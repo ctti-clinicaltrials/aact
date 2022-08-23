@@ -599,6 +599,9 @@ class StudyJsonRecord < ActiveRecord::Base
             param_value = measurement['BaselineMeasurementValue']
             dispersion_value = measurement['BaselineMeasurementSpread']
             ctgov_group_code =  measurement['BaselineMeasurementGroupId']
+            denom = denoms.find {|k| k['BaselineDemonUnits'] == measurement ['BaselineDenomUnitsSelected'] }
+            counts = denom.dig('BaselineDenomCountList', 'BaselineDenomCount')
+            count = counts.find {|k| k['BaselineDenomCountGroupId'] == ctgov_group_code}
             collection[:measurements] << {
                                             nct_id: nct_id,
                                             result_group_id: result_groups[ctgov_group_code].try(:id),
@@ -617,9 +620,10 @@ class StudyJsonRecord < ActiveRecord::Base
                                             dispersion_lower_limit: StudyJsonRecord.float(measurement['BaselineMeasurementLowerLimit']),
                                             dispersion_upper_limit: StudyJsonRecord.float(measurement['BaselineMeasurementUpperLimit']),
                                             explanation_of_na: measurement['BaselineMeasurementComment']
-                                            # number_analayzed: 
+                                            number analyzed: count['BaselineDenomCountValue']
                                             number_analayzed_units: measurement['BaselineMeasureDenomUnitsSelected']
                                           }
+                                          
           end
         end
       end
@@ -653,7 +657,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         units: denom['BaselineDenomUnits'],
                         scope: 'overall',
                         count: count['BaselineDenomCountValue']
-
+                        number_analayzed: denom.dig('BaselineDenomUnits')
                       }
       end
     end
