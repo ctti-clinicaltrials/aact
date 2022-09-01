@@ -1801,7 +1801,8 @@ CREATE TABLE ctgov.milestones (
     title character varying,
     period character varying,
     description text,
-    count integer
+    count integer,
+    milestones character varying
 );
 
 
@@ -4341,6 +4342,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220520133313'),
 ('20220522072233'),
 ('20220523123928'),
-('20220608211340');
+('20220608211340'),
+('20220829190838');
 
 

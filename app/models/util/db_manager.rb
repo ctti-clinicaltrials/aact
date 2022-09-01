@@ -278,6 +278,8 @@ module Util
 
     def self.loadable_tables
       blacklist = %w(
+        active_storage_blobs
+        active_storage_attachments
         ar_internal_metadata
         schema_migrations
         data_definitions
