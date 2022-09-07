@@ -928,7 +928,9 @@ class StudyJsonRecord < ActiveRecord::Base
                           title: milestone['FlowMilestoneType'],
                           period: period['FlowPeriodTitle'],
                           description: achievement['FlowAchievementComment'],
-                          count: achievement['FlowAchievementNumSubjects']
+                          count: achievement['FlowAchievementNumSubjects'],
+                          milestones_descriptions: milestone['FlowMilestoneComment'],
+                          count_units: achievement['FlowAchievementNumUnits']
                         }
         end
       end
