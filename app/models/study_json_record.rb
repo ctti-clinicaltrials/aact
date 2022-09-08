@@ -620,11 +620,10 @@ class StudyJsonRecord < ActiveRecord::Base
                                             dispersion_value_num: StudyJsonRecord.float(dispersion_value),
                                             dispersion_lower_limit: StudyJsonRecord.float(measurement['BaselineMeasurementLowerLimit']),
                                             dispersion_upper_limit: StudyJsonRecord.float(measurement['BaselineMeasurementUpperLimit']),
-                                            explanation_of_na: measurement['BaselineMeasurementComment']
-                                            number_analyzed: count['BaselineDenomCountValue']
-                                            number_analayzed_units: measurement['BaselineMeasureDenomUnitsSelected']
+                                            explanation_of_na: measurement['BaselineMeasurementComment'],
+                                            number_analyzed: count['BaselineDenomCountValue'],
+                                            number_analyzed_units: measure['BaselineMeasureDenomUnitsSelected']
                                           }
-                                          
           end
         end
       end
@@ -657,8 +656,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         ctgov_group_code: ctgov_group_code,
                         units: denom['BaselineDenomUnits'],
                         scope: 'overall',
-                        count: count['BaselineDenomCountValue']
-                        number_analayzed: denom.dig('BaselineDenomUnits')
+                        count: count['BaselineDenomCountValue'],
                       }
       end
     end
