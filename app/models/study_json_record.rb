@@ -287,23 +287,43 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def protocol_section
-    StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::ProtocolSection")&.content
+    if ENV['STUDY_SECTIONS']
+      StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::ProtocolSection")&.content
+    else
+      content.dig('Study', 'ProtocolSection')
+    end
   end
 
   def results_section
-    StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::ResultsSection")&.content
+    if ENV['STUDY_SECTIONS']
+      StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::ResultsSection")&.content
+    else
+      content.dig('Study', 'ResultsSection')
+    end
   end
 
   def derived_section
-    StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::DerivedSection")&.content
+    if ENV['STUDY_SECTIONS']
+      StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::DerivedSection")&.content
+    else
+      content.dig('Study', 'DerivedSection')
+    end
   end
 
   def annotation_section
-   StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::AnnotationSection")&.content
+    if ENV['STUDY_SECTIONS']
+      StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::AnnotationSection")&.content
+    else
+      content.dig('Study', 'AnnotationSection')
+    end
   end
 
   def document_section
-    StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::DocumentSection")&.content
+    if ENV["STUDY_SECTIONS"]
+      StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::DocumentSection")&.content
+    else
+      content.dig('Study', 'DocumentSection')
+    end
   end
 
   def contacts_location_module
