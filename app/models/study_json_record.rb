@@ -1520,6 +1520,17 @@ class StudyJsonRecord < ActiveRecord::Base
     }
   end
 
+  def prepare_data
+    @protocol_section = protocol_section
+    @results_section = results_section
+    @derived_section = derived_section
+    @annotation_section = annotation_section
+    @document_section = document_section
+    @contacts_location_module = contacts_location_module
+    @locations_array = locations_array
+    @adverse_events_module = adverse_events_module
+  end
+
   def build_study
     begin
       @protocol_section = protocol_section
