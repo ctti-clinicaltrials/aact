@@ -1,5 +1,4 @@
 class Verifier < ActiveRecord::Base
-  APIJSON =  ClinicalTrialsApi.study_statistics
 
   def write_data_to_file(schema='ctgov')
     folder = Util::FileManager.new.study_statistics_directory
@@ -54,7 +53,8 @@ class Verifier < ActiveRecord::Base
     # this is a safety messure to make sure the correct schema name is used
     schema = self.return_correct_schema(params[:schema])
     begin
-      verifier = Verifier.create(source: APIJSON.dig('StudyStatistics', "ElmtDefs", "Study"), load_event_id: params[:load_event_id])
+      api_json =  ClinicalTrialsApi.study_statistics
+      verifier = Verifier.create(source: api_json.dig('StudyStatistics', "ElmtDefs", "Study"), load_event_id: params[:load_event_id])
       verifier.verify(schema)
       verifier.write_data_to_file(schema)
     rescue => error
