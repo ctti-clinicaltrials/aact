@@ -20,6 +20,7 @@ class StudyRelationship < ActiveRecord::Base
       study_xml_records
       study_json_records
       use_cases
+      study_records
       use_case_attachments
       verifiers
       study_records
