@@ -13,11 +13,15 @@ class StudyRecord < ActiveRecord::Base
     `wget https://clinicaltrials.gov/AllAPIJSON.zip -o #{Date.today.strftime("%Y-%m-%d")}`
   end
 
-  def self.download_all_studies(unzip_location)
-    success = system(`wget -c -q --show-progress -P "${unzip_location}" https://clinicaltrials.gov/AllAPIJSON.zip`) 
-    raise "Could not download file" unless success
-    success = system(`unzip AllAPIJSON.zip`) 
-    raise "Could not unzip file" unless success
+  def self.download_all_studies
+    # download zip file
+    success = system("wget -c -q --show-progress https://clinicaltrials.gov/AllAPIJSON.zip")
+    # raise "Could not download file" unless success
+
+    # unzip zip file
+    `mkdir -p studies`
+    success = system(`unzip AllAPIJSON.zip -d studies`) 
+    # raise "Could not unzip file" unless success
   end
 
   def self.update_studies
