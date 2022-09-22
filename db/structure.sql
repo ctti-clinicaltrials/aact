@@ -2065,7 +2065,10 @@ CREATE TABLE ctgov.participant_flows (
     nct_id character varying,
     recruitment_details text,
     pre_assignment_details text,
-    units_analyzed character varying
+    units_analyzed character varying,
+    drop_withdraw_comment character varying,
+    reason_comment character varying,
+    count_units character varying
 );
 
 
@@ -4404,6 +4407,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220523123928'),
 ('20220608211340'),
 ('20220817000001'),
-('20220919155542');
+('20220919155542'),
+('20220922164953');
 
 

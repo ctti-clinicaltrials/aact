@@ -1478,7 +1478,10 @@ class StudyJsonRecord < ActiveRecord::Base
                             ctgov_group_code: ctgov_group_code,
                             period: flow_period,
                             reason: reason,
-                            count: flow_reason['FlowReasonNumSubjects']
+                            count: flow_reason['FlowReasonNumSubjects'],
+                            drop_withdraw_comment: flow_drop_withdrawals['FlowDropWithdrawComment'],
+                            reason_comment: flow_reasons['FlowReasonComment'],
+                            count_units: flow_reasons['FlowReasonNumUnits']
                           }
         end
       end
