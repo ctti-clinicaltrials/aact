@@ -32,6 +32,7 @@ class SearchResult < ActiveRecord::Base
       record = FileRecord.create(file_type: condition, filename: filename)
       record.file.attach(io: File.open(file),  filename: filename)
       record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
+      File.delete(file) if File.exist?(file)
     end
   end
 
