@@ -444,7 +444,8 @@ class StudyJsonRecord < ActiveRecord::Base
       ipd_access_criteria: ipd_sharing['IPDSharingAccessCriteria'],
       ipd_url: ipd_sharing['IPDSharingURL'],
       plan_to_share_ipd: ipd_sharing['IPDSharing'],
-      plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription']
+      plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription'],
+      baseline_type_units_analyzed: baseline['BaselineTypeUnitsAnalyzed']
     }
   end
 
@@ -642,8 +643,7 @@ class StudyJsonRecord < ActiveRecord::Base
                                             dispersion_upper_limit: StudyJsonRecord.float(measurement['BaselineMeasurementUpperLimit']),
                                             explanation_of_na: measurement['BaselineMeasurementComment'],
                                             number_analyzed: count['BaselineDenomCountValue'],
-                                            number_analyzed_units: measure['BaselineMeasureDenomUnitsSelected'],
-                                            baseline_type_units_analyzed: baseline_group['BaselineTypeUnitsAnalyzed']
+                                            number_analyzed_units: measure['BaselineMeasureDenomUnitsSelected']
                                           }
           end
         end
