@@ -597,13 +597,13 @@ class StudyJsonRecord < ActiveRecord::Base
   def baseline_measurements_data
     return unless @results_section
 
-    baseline_measures = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
+    measure = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
     baseline_group = @results_section.dig('BaselineCharacteristicsModule')
     result_groups = create_and_group_results(baseline_group, 'Baseline', 'Baseline')
-    return unless baseline_measures
+    return unless measure
 
     collection = { baseline_counts: baseline_counts_data, measurements: [] }
-    baseline_measures.each do |measure|
+    measure.each do |measure|
       baseline_classes = measure.dig('BaselineClassList', 'BaselineClass')
       next unless baseline_classes
 
@@ -642,7 +642,9 @@ class StudyJsonRecord < ActiveRecord::Base
                                             dispersion_upper_limit: StudyJsonRecord.float(measurement['BaselineMeasurementUpperLimit']),
                                             explanation_of_na: measurement['BaselineMeasurementComment'],
                                             number_analyzed: count['BaselineDenomCountValue'],
-                                            number_analyzed_units: measure['BaselineMeasureDenomUnitsSelected']
+                                            number_analyzed_units: measure['BaselineMeasureDenomUnitsSelected'],
+                                            population_description: measure['BaselineMeasurePopulationDescription'],
+                                            calculate_percentage: measure['BaselineMeasureCalculatePct']
                                           }
           end
         end
