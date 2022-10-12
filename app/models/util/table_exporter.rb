@@ -27,6 +27,7 @@ module Util
           record = FileRecord.create(file_type: "pipefiles", filename: @zipfile_name, file_size: @file_size)
           record.file.attach(io: File.open(@zipfile_name), filename: @zipfile_name)
           record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
+          File.delete(@zipfile_name) if File.exist?(@zipfile_name)
         end
 
         if should_archive
