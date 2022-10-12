@@ -1170,7 +1170,8 @@ CREATE TABLE ctgov.studies (
     delayed_posting character varying,
     expanded_access_nctid character varying,
     expanded_access_status_for_nctid character varying,
-    fdaaa801_violation boolean
+    fdaaa801_violation boolean,
+    baseline_type_units_analyzed character varying
 );
 
 
@@ -4408,6 +4409,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220608211340'),
 ('20220817000001'),
 ('20220919155542'),
+('20220928162956');
 ('20220928175111');
-
-
