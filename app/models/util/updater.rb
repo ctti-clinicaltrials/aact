@@ -26,6 +26,7 @@ module Util
 
     def start
       loop do
+
         now = TZInfo::Timezone.get('America/New_York').now
         if Support::LoadEvent.where('created_at > ?',now.beginning_of_day).count == 0
           execute

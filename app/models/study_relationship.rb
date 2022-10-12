@@ -20,8 +20,10 @@ class StudyRelationship < ActiveRecord::Base
       study_xml_records
       study_json_records
       use_cases
+      study_records
       use_case_attachments
       verifiers
+      study_records
       active_storage_variant_records
       active_storage_blobs
       active_storage_attachments

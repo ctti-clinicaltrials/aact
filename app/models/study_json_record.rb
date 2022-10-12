@@ -287,23 +287,43 @@ class StudyJsonRecord < ActiveRecord::Base
   end
 
   def protocol_section
-    content.dig('Study', 'ProtocolSection')
+    if ENV['STUDY_SECTIONS']
+      StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::ProtocolSection")&.content
+    else
+      content.dig('Study', 'ProtocolSection')
+    end
   end
 
   def results_section
-    content.dig('Study', 'ResultsSection')
+    if ENV['STUDY_SECTIONS']
+      StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::ResultsSection")&.content
+    else
+      content.dig('Study', 'ResultsSection')
+    end
   end
 
   def derived_section
-    content.dig('Study', 'DerivedSection')
+    if ENV['STUDY_SECTIONS']
+      StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::DerivedSection")&.content
+    else
+      content.dig('Study', 'DerivedSection')
+    end
   end
 
   def annotation_section
-   content.dig('Study', 'AnnotationSection')
+    if ENV['STUDY_SECTIONS']
+      StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::AnnotationSection")&.content
+    else
+      content.dig('Study', 'AnnotationSection')
+    end
   end
 
   def document_section
-    content.dig('Study', 'DocumentSection')
+    if ENV["STUDY_SECTIONS"]
+      StudyRecord.find_by(nct_id: nct_id, type: "StudyRecord::DocumentSection")&.content
+    else
+      content.dig('Study', 'DocumentSection')
+    end
   end
 
   def contacts_location_module
@@ -424,7 +444,8 @@ class StudyJsonRecord < ActiveRecord::Base
       ipd_access_criteria: ipd_sharing['IPDSharingAccessCriteria'],
       ipd_url: ipd_sharing['IPDSharingURL'],
       plan_to_share_ipd: ipd_sharing['IPDSharing'],
-      plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription']
+      plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription'],
+      baseline_type_units_analyzed: baseline['BaselineTypeUnitsAnalyzed']
     }
   end
 
@@ -577,13 +598,13 @@ class StudyJsonRecord < ActiveRecord::Base
   def baseline_measurements_data
     return unless @results_section
 
-    baseline_measures = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
+    measure = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
     baseline_group = @results_section.dig('BaselineCharacteristicsModule')
     result_groups = create_and_group_results(baseline_group, 'Baseline', 'Baseline')
-    return unless baseline_measures
+    return unless measure
 
     collection = { baseline_counts: baseline_counts_data, measurements: [] }
-    baseline_measures.each do |measure|
+    measure.each do |measure|
       baseline_classes = measure.dig('BaselineClassList', 'BaselineClass')
       next unless baseline_classes
 
@@ -599,6 +620,10 @@ class StudyJsonRecord < ActiveRecord::Base
             param_value = measurement['BaselineMeasurementValue']
             dispersion_value = measurement['BaselineMeasurementSpread']
             ctgov_group_code =  measurement['BaselineMeasurementGroupId']
+            denoms = @results_section.dig('BaselineCharacteristicsModule', 'BaselineDenomList', 'BaselineDenom')
+            denom = denoms.find {|k| k['BaselineDemonUnits'] == measurement ['BaselineDenomUnitsSelected'] }
+            counts = denom.dig('BaselineDenomCountList', 'BaselineDenomCount')
+            count = counts.find {|k| k['BaselineDenomCountGroupId'] == ctgov_group_code}
             collection[:measurements] << {
                                             nct_id: nct_id,
                                             result_group_id: result_groups[ctgov_group_code].try(:id),
@@ -616,7 +641,11 @@ class StudyJsonRecord < ActiveRecord::Base
                                             dispersion_value_num: StudyJsonRecord.float(dispersion_value),
                                             dispersion_lower_limit: StudyJsonRecord.float(measurement['BaselineMeasurementLowerLimit']),
                                             dispersion_upper_limit: StudyJsonRecord.float(measurement['BaselineMeasurementUpperLimit']),
-                                            explanation_of_na: measurement['BaselineMeasurementComment']
+                                            explanation_of_na: measurement['BaselineMeasurementComment'],
+                                            number_analyzed: count['BaselineDenomCountValue'],
+                                            number_analyzed_units: measure['BaselineMeasureDenomUnitsSelected'],
+                                            population_description: measure['BaselineMeasurePopulationDescription'],
+                                            calculate_percentage: measure['BaselineMeasureCalculatePct']
                                           }
           end
         end
@@ -651,7 +680,6 @@ class StudyJsonRecord < ActiveRecord::Base
                         units: denom['BaselineDenomUnits'],
                         scope: 'overall',
                         count: count['BaselineDenomCountValue']
-
                       }
       end
     end
@@ -928,7 +956,9 @@ class StudyJsonRecord < ActiveRecord::Base
                           title: milestone['FlowMilestoneType'],
                           period: period['FlowPeriodTitle'],
                           description: achievement['FlowAchievementComment'],
-                          count: achievement['FlowAchievementNumSubjects']
+                          count: achievement['FlowAchievementNumSubjects'],
+                          milestones_descriptions: milestone['FlowMilestoneComment'],
+                          count_units: achievement['FlowAchievementNumUnits']
                         }
         end
       end
@@ -1451,7 +1481,10 @@ class StudyJsonRecord < ActiveRecord::Base
                             ctgov_group_code: ctgov_group_code,
                             period: flow_period,
                             reason: reason,
-                            count: flow_reason['FlowReasonNumSubjects']
+                            count: flow_reason['FlowReasonNumSubjects'],
+                            drop_withdraw_comment: flow_drop_withdrawals['FlowDropWithdrawComment'],
+                            reason_comment: flow_reasons['FlowReasonComment'],
+                            count_units: flow_reasons['FlowReasonNumUnits']
                           }
         end
       end
@@ -1498,6 +1531,17 @@ class StudyJsonRecord < ActiveRecord::Base
       sponsors: sponsors_data,
       drop_withdrawals: drop_withdrawals_data,
     }
+  end
+
+  def prepare_data
+    @protocol_section = protocol_section
+    @results_section = results_section
+    @derived_section = derived_section
+    @annotation_section = annotation_section
+    @document_section = document_section
+    @contacts_location_module = contacts_location_module
+    @locations_array = locations_array
+    @adverse_events_module = adverse_events_module
   end
 
   def build_study
