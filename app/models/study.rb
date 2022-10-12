@@ -95,12 +95,6 @@ class Study < ActiveRecord::Base
     ClinicalTrialsApi.number_of_studies - Study.count
   end
 
-  # def initialize(hash)
-  #   super
-  #   @xml=hash[:xml]
-  #   self.nct_id=hash[:nct_id]
-  # end
-
   def opts
     {
       :xml=>xml,
