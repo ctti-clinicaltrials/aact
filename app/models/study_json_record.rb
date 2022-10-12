@@ -444,7 +444,8 @@ class StudyJsonRecord < ActiveRecord::Base
       ipd_access_criteria: ipd_sharing['IPDSharingAccessCriteria'],
       ipd_url: ipd_sharing['IPDSharingURL'],
       plan_to_share_ipd: ipd_sharing['IPDSharing'],
-      plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription']
+      plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription'],
+      baseline_type_units_analyzed: baseline['BaselineTypeUnitsAnalyzed']
     }
   end
 
@@ -678,7 +679,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         ctgov_group_code: ctgov_group_code,
                         units: denom['BaselineDenomUnits'],
                         scope: 'overall',
-                        count: count['BaselineDenomCountValue'],
+                        count: count['BaselineDenomCountValue']
                       }
       end
     end
@@ -1480,7 +1481,10 @@ class StudyJsonRecord < ActiveRecord::Base
                             ctgov_group_code: ctgov_group_code,
                             period: flow_period,
                             reason: reason,
-                            count: flow_reason['FlowReasonNumSubjects']
+                            count: flow_reason['FlowReasonNumSubjects'],
+                            drop_withdraw_comment: flow_drop_withdrawals['FlowDropWithdrawComment'],
+                            reason_comment: flow_reasons['FlowReasonComment'],
+                            count_units: flow_reasons['FlowReasonNumUnits']
                           }
         end
       end

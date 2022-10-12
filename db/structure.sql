@@ -1172,7 +1172,8 @@ CREATE TABLE ctgov.studies (
     delayed_posting character varying,
     expanded_access_nctid character varying,
     expanded_access_status_for_nctid character varying,
-    fdaaa801_violation boolean
+    fdaaa801_violation boolean,
+    baseline_type_units_analyzed character varying
 );
 
 
@@ -2067,7 +2068,10 @@ CREATE TABLE ctgov.participant_flows (
     nct_id character varying,
     recruitment_details text,
     pre_assignment_details text,
-    units_analyzed character varying
+    units_analyzed character varying,
+    drop_withdraw_comment character varying,
+    reason_comment character varying,
+    count_units integer
 );
 
 
@@ -4408,5 +4412,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220817000001'),
 ('20220919155542'),
 ('20220930181441');
-
-
+('20220928162956');
+('20220928175111');
