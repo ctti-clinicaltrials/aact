@@ -109,12 +109,18 @@ module Util
       end
 
       # refresh_data_definitions
-
+      
       # 11. change the state of the load event from “running” to “complete”
       @load_event.update({ status:'complete'})
 
       # 12. send email
       # send_notification
+      
+    rescue => e
+      # set the load event to error
+      @load_event.update({ status:'error'}) 
+      # set the problems attribute in the load event to the exception message
+      @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" }) 
     end
 
     def current_study_differences
