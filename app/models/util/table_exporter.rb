@@ -20,8 +20,7 @@ module Util
         else
           system("zip -j -q #{@zipfile_name} #{@temp_dir}/*.txt")
         end
-        
-        
+
         if File.exist?(@zipfile_name) 
           @file_size =  File.size(@zipfile_name)
           record = FileRecord.create(file_type: "pipefiles", filename: @zipfile_name, file_size: @file_size)
