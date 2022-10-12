@@ -782,7 +782,9 @@ CREATE TABLE ctgov.baseline_measurements (
     dispersion_upper_limit numeric,
     explanation_of_na character varying,
     number_analyzed integer,
-    number_analyzed_units character varying
+    number_analyzed_units character varying,
+    population_description character varying,
+    calculate_percentage character varying
 );
 
 
@@ -4409,5 +4411,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220608211340'),
 ('20220817000001'),
 ('20220919155542'),
+('20220930181441');
 ('20220928162956');
 ('20220928175111');
