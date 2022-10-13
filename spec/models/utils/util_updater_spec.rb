@@ -225,16 +225,14 @@ describe Util::Updater do
 
   end
 
-  # context 'when there is a failure/exception in the Util::Updater#execute method' do
-  #   it 'should set the load event to error, set the problems attribute in the load event to the exception message' do
-  #     updater=Util::Updater.new
-  #     updater.execute
-  #     allow(db_mgr.remove_constraints).to receive(:foo).and_raise("failed gracefully")
-  #     db_mgr.remove_constraints.foo
-  #     expect(updater.load_event.problems).to include("undefined method `foo' for #<Util::Updater")
-  #     expect(updater.load_event.problems.size).to  be > 100
-  #     expect(updater.load_event.status).to eq('error')
-  #   end
-  # end
+  context 'when there is a failure/exception in the Util::Updater#execute method' do
+    it 'should set the load event status to "error", and set problems to the exception message "test error"' do
+      updater=Util::Updater.new
+      allow(updater.db_mgr).to receive(:remove_constraints).and_raise('test error')
+      updater.execute
+      expect(updater.load_event.problems).to include('test error')
+      expect(updater.load_event.status).to eq('error')
+    end
+  end
 
 end

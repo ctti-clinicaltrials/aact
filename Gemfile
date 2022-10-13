@@ -69,7 +69,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "database_cleaner"
+  gem "database_cleaner", "1.8.5"
   gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers"

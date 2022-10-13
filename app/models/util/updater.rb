@@ -117,9 +117,9 @@ module Util
       # send_notification
       
     rescue => e
-      # set the load event to error
-      @load_event.update({ status:'error'}) 
-      # set the problems attribute in the load event to the exception message
+      # set the load event status to "error"
+      @load_event.update({ status: 'error'}) 
+      # set the load event problems to the exception message
       @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" }) 
     end
 

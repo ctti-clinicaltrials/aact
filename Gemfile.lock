@@ -124,12 +124,7 @@ GEM
     crass (1.0.6)
     css_parser (1.11.0)
       addressable
-    database_cleaner (2.0.1)
-      database_cleaner-active_record (~> 2.0.0)
-    database_cleaner-active_record (2.0.1)
-      activerecord (>= 5.a)
-      database_cleaner-core (~> 2.0.0)
-    database_cleaner-core (2.0.1)
+    database_cleaner (1.8.5)
     diff-lcs (1.5.0)
     docile (1.4.0)
     domain_name (0.5.20190701)
@@ -373,7 +368,7 @@ DEPENDENCIES
   caxlsx
   coderay
   colorize
-  database_cleaner
+  database_cleaner (= 1.8.5)
   enumerize
   execjs
   factory_bot_rails
