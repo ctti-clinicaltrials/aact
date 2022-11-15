@@ -9,7 +9,6 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.populate
     con=ActiveRecord::Base.connection
-    con.execute('REVOKE SELECT ON TABLE calculated_values FROM read_only;')
     con.execute('TRUNCATE table calculated_values CASCADE')
     con.execute("INSERT INTO calculated_values (
                  nct_id,
@@ -23,7 +22,6 @@ class CalculatedValue < ActiveRecord::Base
       cmd='UPDATE calculated_values '+ CalculatedValue.send(method)
       con.execute(cmd)
     }
-    con.execute("GRANT SELECT ON TABLE calculated_values TO read_only")
   end
 
   def self.sql_methods
