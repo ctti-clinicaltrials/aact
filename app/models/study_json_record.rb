@@ -1615,7 +1615,6 @@ class StudyJsonRecord < ActiveRecord::Base
 
       update(saved_study_at: Time.now)
     rescue Exception => error
-      raise error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
       Airbrake.notify(error)
