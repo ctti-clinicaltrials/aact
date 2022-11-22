@@ -74,4 +74,15 @@ class ClinicalTrialsApi
     end
     return items
   end
+
+  def self.field_values(field)
+   offset = 1
+   url = "https://www.clinicaltrials.gov/api/query/field_values?field=#{field}&min_rnk=#{offset}&max_rnk=#{offset + 19}&fmt=json"
+   json = JSON.parse(Faraday.get(url).body)
+  end
+  
+  def self.studies_with_field_value(field, value)
+    url = "https://www.clinicaltrials.gov/api/query/study_fields?expr=AREA%5B#{field}%5D#{value}&fields=NCTId&min_rnk=1&max_rnk=&fmt=json"
+    json = JSON.parse(Faraday.get(url).body)
+  end
 end
