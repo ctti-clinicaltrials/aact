@@ -957,7 +957,7 @@ class StudyJsonRecord < ActiveRecord::Base
                           period: period['FlowPeriodTitle'],
                           description: achievement['FlowAchievementComment'],
                           count: achievement['FlowAchievementNumSubjects'],
-                          milestones_descriptions: milestone['FlowMilestoneComment'],
+                          milestone_description: milestone['FlowMilestoneComment'],
                           count_units: achievement['FlowAchievementNumUnits']
                         }
         end
@@ -1482,9 +1482,9 @@ class StudyJsonRecord < ActiveRecord::Base
                             period: flow_period,
                             reason: reason,
                             count: flow_reason['FlowReasonNumSubjects'],
-                            drop_withdraw_comment: flow_drop_withdrawals['FlowDropWithdrawComment'],
-                            reason_comment: flow_reasons['FlowReasonComment'],
-                            count_units: flow_reasons['FlowReasonNumUnits']
+                            drop_withdraw_comment: drop_withdrawal['FlowDropWithdrawComment'],
+                            reason_comment: flow_reason['FlowReasonComment'],
+                            count_units: flow_reason['FlowReasonNumUnits']
                           }
         end
       end
@@ -1615,6 +1615,7 @@ class StudyJsonRecord < ActiveRecord::Base
 
       update(saved_study_at: Time.now)
     rescue Exception => error
+      raise error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
       Airbrake.notify(error)
