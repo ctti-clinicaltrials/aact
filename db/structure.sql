@@ -1406,7 +1406,10 @@ CREATE TABLE ctgov.drop_withdrawals (
     ctgov_group_code character varying,
     period character varying,
     reason character varying,
-    count integer
+    count integer,
+    drop_withdraw_comment character varying,
+    reason_comment character varying,
+    count_units integer
 );
 
 
@@ -2068,10 +2071,7 @@ CREATE TABLE ctgov.participant_flows (
     nct_id character varying,
     recruitment_details text,
     pre_assignment_details text,
-    units_analyzed character varying,
-    drop_withdraw_comment character varying,
-    reason_comment character varying,
-    count_units integer
+    units_analyzed character varying
 );
 
 
@@ -4411,6 +4411,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220608211340'),
 ('20220817000001'),
 ('20220919155542'),
+('20220928162956'),
+('20220928175111'),
 ('20220930181441');
-('20220928162956');
-('20220928175111');
+
+
