@@ -10,7 +10,7 @@ module Util
       create_temp_dir_if_none_exists!
     end
 
-    def run(delimiter: '|', should_archive: true)
+    def run(delimiter: '|')
       load_event = Support::LoadEvent.create({:event_type=>'table_export',:status=>'running',:description=>'',:problems=>''})
       File.delete(@zipfile_name) if File.exist?(@zipfile_name)
       begin
@@ -28,10 +28,6 @@ module Util
           record.file.attach(io: File.open(@zipfile_name), filename: @zipfile_name)
           record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
           File.delete(@zipfile_name) if File.exist?(@zipfile_name)
-        end
-
-        if should_archive
-          archive(delimiter)
         end
       ensure
         cleanup_tempfiles!
@@ -81,18 +77,6 @@ module Util
       unless Dir.exist?(@temp_dir)
         Dir.mkdir(@temp_dir)
       end
-    end
-
-    def archive(delimiter)
-      file_type = if delimiter == ','
-                       "csv-export"
-                     elsif delimiter == '|'
-                       "pipe-delimited-export"
-                     end
-
-      folder =  Util::FileManager.new.flat_files_directory(@schema)
-      archive_file_name="#{folder}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}.zip"
-      FileUtils.mv(@zipfile_name, archive_file_name)
     end
   end
 end
