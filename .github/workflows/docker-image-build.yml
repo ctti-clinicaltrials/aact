@@ -1,0 +1,39 @@
+name: Build docker image and push
+on:
+  push:
+    branches: 
+      - dev
+    paths-ignore: # Don't trigger on listed files
+      - .github/CODEOWNERS
+      - '*.md'
+      - 'docs/**'
+      - docker-compose.yml
+      - .gitignore
+      - .dockerignore
+
+env:
+  DOCKER_REGISTRY: registry.digitalocean.com/aact
+  SERVICE_NAME: aact-core
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v3
+      - name: Build image 
+        run: docker build -t ${{ env.SERVICE_NAME }} .
+      - name: Install doctl 
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Log in to DO Container Registry 
+        run: doctl registry login --expiry-seconds 600
+      - name: Tag image 
+        run: |
+          docker tag ${{ env.SERVICE_NAME }} \
+          ${{ env.DOCKER_REGISTRY }}/${{ env.SERVICE_NAME }}:latest
+      - name: Push image to DO Container Registry 
+        run: |
+          docker push \
+            ${{ env.DOCKER_REGISTRY }}/${{ env.SERVICE_NAME }}:latest
