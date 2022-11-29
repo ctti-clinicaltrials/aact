@@ -2,7 +2,7 @@
 
 module Util
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :full_featured, :schema, :search_days_back
+    attr_accessor :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :full_featured, :schema, :search_days_back
 
     # days_back:     number of days
     # full_featured: restore public db if true
@@ -144,28 +144,16 @@ module Util
       return studies, to_update, to_remove
     end
 
-    def update_studies
+    def sync_with_ctgov
       studies, to_update, to_remove = current_study_differences
 
       log("#{schema} updating #{to_update.length} studies")
       log("#{schema} removing #{to_remove.length} studies")
 
-      # update studies
-      total = to_update.length
-      total_time = 0
-      stime = Time.now
-      to_update.each_with_index do |id, idx|
-        t = update_study(id)
-        total_time += t
-        avg_time = total_time / (idx + 1)
-        remaining = (total - idx - 1) * avg_time
-        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
-      end
-      time = Time.now - stime
-      puts "Time: #{time} avg: #{time / total}"
+      update_or_create_studies(to_update)
 
       # remove studies
-      raise "Removing too many studies #{to_remove.count}" if  Study.count <= to_remove.count
+      raise "Removing too many studies #{to_remove.count}" if to_remove.count > 1000
       total = to_remove.length
       total_time = 0
       stime = Time.now
@@ -178,6 +166,32 @@ module Util
       end
     end
 
+    def update_or_create_studies(to_update)
+      total = to_update.length
+      total_time = 0
+      stime = Time.now
+      to_update.each_with_index do |id, idx|
+        istime = Time.now
+        begin
+          update_study(id)
+        rescue => e
+          load_event.load_issues.create(
+            nct_id: id,
+            message: "#{e.message}\n\n#{e.backtrace.join("\n")}"
+          )
+          ErrorLog.error(e)
+          Airbrake.notify(e)
+        end
+        t = Time.now - istime
+        total_time += 
+        avg_time = total_time / (idx + 1)
+        remaining = (total - idx - 1) * avg_time
+        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
+      end
+      time = Time.now - stime
+      puts "Time: #{time} avg: #{time / total}"
+    end
+
     def htime(seconds)
       seconds = seconds.to_i
       hours = seconds / 3600
@@ -185,24 +199,6 @@ module Util
       minutes = seconds / 60
       seconds -= minutes * 60
       "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
-    end
-
-    def update_study(nct_id)
-      begin
-        stime = Time.now
-        record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.create(nct_id: nct_id, content: {})
-        changed = record.update_from_api
-
-        if record.blank? || record.content.blank?
-          record.destroy
-        else
-          record.create_or_update_study
-        end
-      rescue => e
-        ErrorLog.error(e)
-        Airbrake.notify(e)
-      end
-      Time.now - stime
     end
 
     def remove_study(id)

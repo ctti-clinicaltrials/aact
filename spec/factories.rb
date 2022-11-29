@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :support_load_issue, class: 'Support::LoadIssue' do
+    
+  end
+
   factory :study_record do
   end
   factory :retraction do

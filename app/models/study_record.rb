@@ -1,75 +1,44 @@
 class StudyRecord < ActiveRecord::Base
-  def self.sections
-    [
-      'ProtocolSection',
-      'ResultsSection',
-      'AnnotationSection',
-      'DocumentSection',
-      'DerivedSection'
-    ]
-  end
+  STUDY_SECTIONS = ['ProtocolSection', 'ResultsSection', 'AnnotationSection', 'DocumentSection', 'DerivedSection']
 
-  def self.download_studies
-    `wget https://clinicaltrials.gov/AllAPIJSON.zip -o #{Date.today.strftime("%Y-%m-%d")}`
-  end
-
-  def self.download_all_studies
-    # download zip file
+  def self.download(dir = Date.today.strftime("%Y-%m-%d"))
     success = system("wget -c -q --show-progress https://clinicaltrials.gov/AllAPIJSON.zip")
-    # raise "Could not download file" unless success
+    `mkdir -p downloads/#{dir}`
+    `mv AllAPIJSON.zip downloads/#{dir}/json.zip`
+    raise "Could not download file" unless success
+  end
 
-    # unzip zip file
-    `mkdir -p studies`
-    success = system(`unzip AllAPIJSON.zip -d studies`) 
+  def self.unzip(dir = Date.today.strftime("%Y-%m-%d"))
+    success = system(`unzip -o downloads/#{dir}/json.zip -d downloads/#{dir}`) 
+    puts "success: #{success.inspect}"
     # raise "Could not unzip file" unless success
   end
 
-  def self.update_studies
-    studies = studies_to_update
-    studies.each do |study_id|
-      study = StudyJsonRecord.find_by(nct_id: study_id)
-      if study.nil?
-        study = StudyJsonRecord.create(nct_id: study_id)
-      end
-      study.create_or_update_study
-    end
-  end
-
-  def self.import_studies(dir)
-    Dir["#{dir}/*xxxx"].each do |dir|
-      import_dir(dir)
+  def self.import_files(dir = Date.today.strftime("%Y-%m-%d"))
+    Dir["downloads/#{dir}/*xxxx"].each do |dir|
+      import_files_dir(dir)
     end
   end
   
-  def self.import_dir(dir)
+  def self.import_files_dir(dir)
     logger = ActiveRecord::Base.logger
     ActiveRecord::Base.logger = nil
     stime = Time.now
 
-    # find all the sha values
+    # find all sha values for all the studies in the directory
     nct_ids = Dir["#{dir}/*.json"].map{|f| f.split("/").last[/NCT\d+/] }
     shas = {}
-    sections.each do |section|
+    STUDY_SECTIONS.each do |section|
       shas[section] = StudyRecord.select(:nct_id, :sha).where(nct_id: nct_ids).where(type: "StudyRecord::#{section}").index_by(&:nct_id)
     end
 
     records = Hash.new{|h,k| h[k] = []}
-
     Dir["#{dir}/*.json"].each do |filename|
       json = JSON.parse(File.read(filename)).dig('FullStudy','Study')
       nct_id = json.dig('ProtocolSection','IdentificationModule','NCTId')
 
+      # remove version holder, changes daily
       json['DerivedSection']['MiscInfoModule'].delete('VersionHolder')
-
-      json.dig('DerivedSection','ConditionBrowseModule','ConditionMeshList','ConditionMesh')&.sort!{|i,j| i['ConditionBrowseMeshId'] <=> j['ConditionBrowseMeshId']}
-      json.dig('DerivedSection','ConditionBrowseModule','ConditionAncestorList','ConditionAncestor')&.sort!{|i,j| i['ConditionBrowseLeafId'] <=> j['ConditionBrowseAncestorId']}
-      json.dig('DerivedSection','ConditionBrowseModule','ConditionBrowseLeafList','ConditionBrowseLeaf')&.sort!{|i,j| i['ConditionBrowseLeafId'] <=> j['ConditionBrowseLeafId']}
-      json.dig('DerivedSection','ConditionBrowseModule','ConditionBrowseBranchList','ConditionBrowseBranch')&.sort!{|i,j| i['ConditionBrowseBranchName'] <=> j['ConditionBrowseBranchName']}
-
-      json.dig('DerivedSection','InterventionBrowseModule','InterventionMeshList','InterventionMesh')&.sort!{|i,j| i['InterventionMeshId'] <=> j['InterventionMeshId']}
-      json.dig('DerivedSection','InterventionBrowseModule','InterventionAncestorList','InterventionAncestor')&.sort!{|i,j| i['InterventionAncestorId'] <=> j['InterventionAncestorId']}
-      json.dig('DerivedSection','InterventionBrowseModule','InterventionBrowseBranchList','InterventionBrowseBranch')&.sort!{|i,j| i['InterventionBrowseBranchName'] <=> j['InterventionBrowseBranchName']}
-      json.dig('DerivedSection','InterventionBrowseModule','InterventionBrowseLeafList','InterventionBrowseLeaf')&.sort!{|i,j| i['InterventionBrowseLeafId'] <=> j['InterventionBrowseLeafId']}
 
       json.each do |section, data|
         sha = Digest::SHA2.hexdigest(data.to_json)
@@ -79,7 +48,6 @@ class StudyRecord < ActiveRecord::Base
     end
 
     # remove and reimport changed
-    # byebug
     records.each do |section, items|
       StudyRecord.where(nct_id: items.map(&:nct_id), type: "StudyRecord::#{section}").delete_all
       StudyRecord.import(items)
@@ -190,6 +158,17 @@ class StudyRecord < ActiveRecord::Base
     ActiveRecord::Base.logger = logger
     return nil
   end
+
+  # sections that change every day
+  # json.dig('DerivedSection','ConditionBrowseModule','ConditionMeshList','ConditionMesh')&.sort!{|i,j| i['ConditionBrowseMeshId'] <=> j['ConditionBrowseMeshId']}
+  # json.dig('DerivedSection','ConditionBrowseModule','ConditionAncestorList','ConditionAncestor')&.sort!{|i,j| i['ConditionBrowseLeafId'] <=> j['ConditionBrowseAncestorId']}
+  # json.dig('DerivedSection','ConditionBrowseModule','ConditionBrowseLeafList','ConditionBrowseLeaf')&.sort!{|i,j| i['ConditionBrowseLeafId'] <=> j['ConditionBrowseLeafId']}
+  # json.dig('DerivedSection','ConditionBrowseModule','ConditionBrowseBranchList','ConditionBrowseBranch')&.sort!{|i,j| i['ConditionBrowseBranchName'] <=> j['ConditionBrowseBranchName']}
+
+  # json.dig('DerivedSection','InterventionBrowseModule','InterventionMeshList','InterventionMesh')&.sort!{|i,j| i['InterventionMeshId'] <=> j['InterventionMeshId']}
+  # json.dig('DerivedSection','InterventionBrowseModule','InterventionAncestorList','InterventionAncestor')&.sort!{|i,j| i['InterventionAncestorId'] <=> j['InterventionAncestorId']}
+  # json.dig('DerivedSection','InterventionBrowseModule','InterventionBrowseBranchList','InterventionBrowseBranch')&.sort!{|i,j| i['InterventionBrowseBranchName'] <=> j['InterventionBrowseBranchName']}
+  # json.dig('DerivedSection','InterventionBrowseModule','InterventionBrowseLeafList','InterventionBrowseLeaf')&.sort!{|i,j| i['InterventionBrowseLeafId'] <=> j['InterventionBrowseLeafId']}
 
   class ProtocolSection < StudyRecord
   end
