@@ -32,6 +32,7 @@ gem 'enumerize'
 gem 'bulk_insert'
 gem 'activerecord-import', '<= 0.19.1' #for some reason more updated versions slow down the loads
 gem 'sinatra', :require => nil
+gem 'colorize'
 gem 'font-awesome-rails'
 gem 'roo'
 gem 'string-similarity'
@@ -39,7 +40,7 @@ gem 'gon'
 gem 'execjs'
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'rack-protection', '~> 1.5.5'
+gem 'rack-protection', '~> 2.2.2'
 gem 'caxlsx'
 gem 'airbrake'
 gem 'parallel'
@@ -68,7 +69,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "database_cleaner"
+  gem "database_cleaner", "1.8.5"
   gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers"

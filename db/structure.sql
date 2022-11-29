@@ -780,7 +780,11 @@ CREATE TABLE ctgov.baseline_measurements (
     dispersion_value_num numeric,
     dispersion_lower_limit numeric,
     dispersion_upper_limit numeric,
-    explanation_of_na character varying
+    explanation_of_na character varying,
+    number_analyzed integer,
+    number_analyzed_units character varying,
+    population_description character varying,
+    calculate_percentage character varying
 );
 
 
@@ -1168,7 +1172,8 @@ CREATE TABLE ctgov.studies (
     delayed_posting character varying,
     expanded_access_nctid character varying,
     expanded_access_status_for_nctid character varying,
-    fdaaa801_violation boolean
+    fdaaa801_violation boolean,
+    baseline_type_units_analyzed character varying
 );
 
 
@@ -1401,7 +1406,10 @@ CREATE TABLE ctgov.drop_withdrawals (
     ctgov_group_code character varying,
     period character varying,
     reason character varying,
-    count integer
+    count integer,
+    drop_withdraw_comment character varying,
+    reason_comment character varying,
+    count_units integer
 );
 
 
@@ -1801,7 +1809,9 @@ CREATE TABLE ctgov.milestones (
     title character varying,
     period character varying,
     description text,
-    count integer
+    count integer,
+    milestone_description character varying,
+    count_units character varying
 );
 
 
@@ -2458,6 +2468,40 @@ ALTER SEQUENCE ctgov.sponsors_id_seq OWNED BY ctgov.sponsors.id;
 
 
 --
+-- Name: study_records; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.study_records (
+    id bigint NOT NULL,
+    nct_id character varying,
+    type character varying,
+    content json,
+    sha character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: study_records_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.study_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: study_records_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.study_records_id_seq OWNED BY ctgov.study_records.id;
+
+
+--
 -- Name: study_references; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -3059,6 +3103,13 @@ ALTER TABLE ONLY ctgov.sponsors ALTER COLUMN id SET DEFAULT nextval('ctgov.spons
 
 
 --
+-- Name: study_records id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.study_records ALTER COLUMN id SET DEFAULT nextval('ctgov.study_records_id_seq'::regclass);
+
+
+--
 -- Name: study_references id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3521,6 +3572,14 @@ ALTER TABLE ONLY ctgov.search_results
 
 ALTER TABLE ONLY ctgov.sponsors
     ADD CONSTRAINT sponsors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: study_records study_records_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.study_records
+    ADD CONSTRAINT study_records_pkey PRIMARY KEY (id);
 
 
 --
@@ -4196,6 +4255,13 @@ CREATE INDEX index_studies_on_study_type ON ctgov.studies USING btree (study_typ
 
 
 --
+-- Name: index_study_records_on_nct_id_and_type; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_study_records_on_nct_id_and_type ON ctgov.study_records USING btree (nct_id, type);
+
+
+--
 -- Name: index_study_references_on_reference_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4323,7 +4389,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201201210834'),
 ('20210108195415'),
 ('20210108200600'),
-('20210216235354'),
 ('20210308235723'),
 ('20210414222919'),
 ('20210526192648'),
@@ -4331,6 +4396,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210601063550'),
 ('20211027133828'),
 ('20220202152642'),
+('20220207182529'),
 ('20220212033048'),
 ('20220308030627'),
 ('20220329173304'),
@@ -4342,6 +4408,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220520133313'),
 ('20220522072233'),
 ('20220523123928'),
-('20220608211340');
-
-
+('20220608211340'),
+('20220817000001'),
+('20220919155542'),
+('20220928162956'),
+('20220928175111'),
+('20220930181441');

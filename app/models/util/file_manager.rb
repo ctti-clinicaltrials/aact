@@ -163,13 +163,15 @@ module Util
       end
 
       # upload file to the cloud
-      filename = File.basename(zip_file_name)
-      record = FileRecord.create(file_type: "snapshot", filename: "#{filename}", file_size: File.size(zip_file_name)) 
-      record.file.attach(io: File.open(zip_file_name), filename: "#{filename}")
-      record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
-
-      zip_file_name
+      if File.exist?(zip_file_name) 
+        file_size =  File.size(zip_file_name)
+        filename = File.basename(zip_file_name)
+        record = FileRecord.create(file_type: "snapshot", filename: "#{filename}", file_size: file_size) 
+        record.file.attach(io: File.open(zip_file_name), filename: "#{filename}")
+        record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
+        File.delete(zip_file_name) if File.exist?(zip_file_name)
+        zip_file_name
+      end
     end
-
   end
 end

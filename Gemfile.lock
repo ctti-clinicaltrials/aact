@@ -117,18 +117,14 @@ GEM
       nokogiri (~> 1.10, >= 1.10.4)
       rubyzip (>= 1.3.0, < 3)
     coderay (1.1.3)
+    colorize (0.8.1)
     concurrent-ruby (1.1.9)
     crack (0.4.5)
       rexml
     crass (1.0.6)
     css_parser (1.11.0)
       addressable
-    database_cleaner (2.0.1)
-      database_cleaner-active_record (~> 2.0.0)
-    database_cleaner-active_record (2.0.1)
-      activerecord (>= 5.a)
-      database_cleaner-core (~> 2.0.0)
-    database_cleaner-core (2.0.1)
+    database_cleaner (1.8.5)
     diff-lcs (1.5.0)
     docile (1.4.0)
     domain_name (0.5.20190701)
@@ -200,16 +196,18 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.2)
-    mini_portile2 (2.7.1)
+    mini_portile2 (2.8.0)
     minitest (5.15.0)
     multi_json (1.15.0)
+    mustermann (2.0.2)
+      ruby2_keywords (~> 0.0.1)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.13.1)
-      mini_portile2 (~> 2.7.0)
+    nokogiri (1.13.6)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     normalize-rails (8.0.1)
     parallel (1.21.0)
@@ -231,12 +229,12 @@ GEM
       pry (>= 0.10.4)
     public_suffix (4.0.6)
     racc (1.6.0)
-    rack (2.2.3)
+    rack (2.2.3.1)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-mini-profiler (2.3.3)
       rack (>= 1.2.0)
-    rack-protection (1.5.5)
+    rack-protection (2.2.2)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -259,7 +257,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.2)
+    rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
     railties (6.0.0)
       actionpack (= 6.0.0)
@@ -311,8 +309,11 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.3)
-    sinatra (1.0)
-      rack (>= 1.0)
+    sinatra (2.2.2)
+      mustermann (~> 2.0)
+      rack (~> 2.2)
+      rack-protection (= 2.2.2)
+      tilt (~> 2.0)
     single_test (0.6.0)
       rake
     sprockets (4.0.2)
@@ -331,7 +332,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.10)
     timecop (0.9.4)
-    tzinfo (1.2.9)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
@@ -366,7 +367,8 @@ DEPENDENCIES
   capistrano-rails (~> 1.2)
   caxlsx
   coderay
-  database_cleaner
+  colorize
+  database_cleaner (= 1.8.5)
   enumerize
   execjs
   factory_bot_rails
@@ -393,7 +395,7 @@ DEPENDENCIES
   rack
   rack-cors
   rack-mini-profiler
-  rack-protection (~> 1.5.5)
+  rack-protection (~> 2.2.2)
   rack-timeout
   rails (= 6.0.0)
   rails-html-sanitizer

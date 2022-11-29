@@ -26,6 +26,7 @@ module Util
 
     def start
       loop do
+
         now = TZInfo::Timezone.get('America/New_York').now
         if Support::LoadEvent.where('created_at > ?',now.beginning_of_day).count == 0
           execute
@@ -108,12 +109,18 @@ module Util
       end
 
       # refresh_data_definitions
-
+      
       # 11. change the state of the load event from “running” to “complete”
       @load_event.update({ status:'complete'})
 
       # 12. send email
       # send_notification
+      
+    rescue => e
+      # set the load event status to "error"
+      @load_event.update({ status: 'error'}) 
+      # set the load event problems to the exception message
+      @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" }) 
     end
 
     def current_study_differences

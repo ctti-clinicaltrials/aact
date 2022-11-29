@@ -43,6 +43,11 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     - For windows `gem install rubyzip` 
     - For linux `sudo apt install ruby-zip`
 - Install [graphviz](https://graphviz.org/download/)
+- Install wget  
+    - For mac `brew install wget`
+    - For [windows](http://gnuwin32.sourceforge.net/packages/wget.htm)
+    - For Ubuntu and Debian `sudo apt install wget`
+    - For CentOS and Fedora `sudo yum install wget`
 
 <br>
 
@@ -138,6 +143,7 @@ These are your options:
     *Note: the rake tasks below take a very long time to run. You should not set full_featured to true if working locally.*  
 * `bin/rake db:load[<days_back>,<event_type>,<full_featured>]`  
   The days back is an integer, the event_type only takes "full" or "incremental", full_featured is a boolean. You do not have to give it any parameters. If you have no studies it will populate your database with all the studies.  
+* `bin/rake db:load_study[<nct_id>]` this will update only one study from the clinicaltrials.gov api 
 
 <br>
 <br>

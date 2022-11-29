@@ -1,5 +1,6 @@
 FactoryBot.define do
-
+  factory :study_record do
+  end
   factory :retraction do
   end
 
