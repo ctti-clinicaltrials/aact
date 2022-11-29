@@ -10,7 +10,7 @@ RUN mkdir /app
 WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
-RUN gem install -v 1.17.3
+RUN gem install bundler -v 1.17.3
 RUN bundle install
 
 COPY . /app
