@@ -199,6 +199,7 @@ module Util
           record.create_or_update_study
         end
       rescue => e
+        byebug
         ErrorLog.error(e)
         Airbrake.notify(e)
       end
