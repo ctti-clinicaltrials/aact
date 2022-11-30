@@ -2,6 +2,10 @@
 
 module Support
   class LoadEvent < Support::SupportBase
+    self.table_name = 'support.load_events'
+
+    has_many :load_issues
+
     SINGLE_STUDY_TABLES = %w[
       brief_summaries
       designs

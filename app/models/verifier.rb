@@ -183,9 +183,9 @@ class Verifier < ActiveRecord::Base
     id_module ='ProtocolSection|IdentificationModule'
     {
     "#{id_module}|NCTId"                                           => 'studies#nct_id',
-    "#{id_module}|NCTIdAliasList|NCTIdAlias"                       => "id_information#id_value#where id_type='nct_alias' and id_value is not null and id_value <> ''",
-    "#{id_module}|OrgStudyIdInfo|OrgStudyId"                       => "id_information#id_value#where id_type='org_study_id' and id_value is not null and id_value <> ''",
-    "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryId" => "id_information#id_value#where id_type='secondary_id' and id_value is not null and id_value <> ''",
+    "#{id_module}|NCTIdAliasList|NCTIdAlias"                       => "id_information#id_value#where id_source='nct_alias' and id_value is not null and id_value <> ''",
+    "#{id_module}|OrgStudyIdInfo|OrgStudyId"                       => "id_information#id_value#where id_source='org_study_id' and id_value is not null and id_value <> ''",
+    "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryId" => "id_information#id_value#where id_source='secondary_id' and id_value is not null and id_value <> ''",
     "#{id_module}|Organization|OrgFullName"                        => "studies#source#where source is not null and source <> ''",
     "#{id_module}|BriefTitle"                                      => "studies#brief_title#where brief_title is not null and brief_title <> ''",
     "#{id_module}|OfficialTitle"                                   => "studies#official_title#where official_title is not null and official_title <> ''",
@@ -736,4 +736,12 @@ class Verifier < ActiveRecord::Base
   # "#{ib_module}|InterventionBrowseBranchList|InterventionBrowseBranch|InterventionBrowseBranchAbbrev"
   # "#{ib_module}|InterventionBrowseBranchList|InterventionBrowseBranch|InterventionBrowseBranchName"
 
+
+  def self.find_data_differences(ctgov_field, aact_field)
+    aact_table, aact_field_name = aact_field.split('.')
+    aact_values = Study.connection.execute("SELECT DISTINCT(#{aact_field_name}) FROM #{aact_table}")
+    aact_values = aact_values.map{|k| k[aact_field_name]}
+    ctgov_values = ClinicalTrialsApi.field_values(ctgov_field)
+    { missing: ctgov_values - aact_values, extra: aact_values - ctgov_values }
+  end
 end
