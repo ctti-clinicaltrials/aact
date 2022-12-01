@@ -196,7 +196,7 @@ class Verifier < ActiveRecord::Base
   def status_module_hash
     status_module = 'ProtocolSection|StatusModule'
     {
-    "#{status_module}|StatusVerifiedDate"                                    => 'studies#verification_date#where verification_date is not null',
+    "#{status_module}|StatusVerifiedDate"                                    => 'studies#verification_month_year#where verification_date is not null',
     "#{status_module}|OverallStatus"                                         => "studies#overall_status#where overall_status is not null and overall_status <> ''",
     "#{status_module}|LastKnownStatus"                                       => "studies#last_known_status#where last_known_status is not null and last_known_status <> ''",
     "#{status_module}|WhyStopped"                                            => "studies#why_stopped#where why_stopped is not null and why_stopped <> ''",
