@@ -274,7 +274,7 @@ module Util
 
     def create_flat_files
       log('exporting tables as flat files...')
-      Util::TableExporter.new([],'ctgov').run(delimiter: '|', should_archive: true)
+      Util::TableExporter.new([],'ctgov').run(delimiter: '|')
     end
 
     def db_mgr

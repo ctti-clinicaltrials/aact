@@ -1,38 +1,4 @@
 class Verifier < ActiveRecord::Base
-
-  def write_data_to_file(schema='ctgov')
-    folder = Util::FileManager.new.study_statistics_directory
-    # save the data from the study statistics endpoint for reference
-    File.write("#{folder}/verifier_source_#{schema}.json".remove('\''), JSON.dump(self.source))
-    # save json with differences
-    diff_file = "#{folder}/verifier_differences_#{schema}".remove('\'')
-    File.write("#{diff_file}.json", JSON.dump(self.differences))
-
-    # save csv with differences
-    headers = %w[
-                source
-                destination
-                source_instances
-                destination_instances
-                source_unique_values
-                destination_unique_values
-              ]
-
-    CSV.open("#{diff_file}.csv", 'w', write_headers: true, headers: headers) do |row|
-      self.differences.each do |hash|
-        row << [
-                hash["source"],
-                hash["destination"],
-                hash["source_instances"],
-                hash["destination_instances"],
-                hash["source_unique_values"],
-                hash["destination_unique_values"],
-              ]
-      end
-    end
-    Verifier.alert_admins_about_differences
-  end
-
   def self.alert_admins_about_differences
     admin_emails = ENV.fetch(Admin::User.admin_emails, "").split(",")
     admin_emails.each {|admin_email| Notifier.report_diff(admin_email).deliver_now}
@@ -56,7 +22,7 @@ class Verifier < ActiveRecord::Base
       api_json =  ClinicalTrialsApi.study_statistics
       verifier = Verifier.create(source: api_json.dig('StudyStatistics', "ElmtDefs", "Study"), load_event_id: params[:load_event_id])
       verifier.verify(schema)
-      verifier.write_data_to_file(schema)
+      # verifier.write_data_to_file(schema)
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
@@ -196,7 +162,7 @@ class Verifier < ActiveRecord::Base
   def status_module_hash
     status_module = 'ProtocolSection|StatusModule'
     {
-    "#{status_module}|StatusVerifiedDate"                                    => 'studies#verification_date#where verification_date is not null',
+    "#{status_module}|StatusVerifiedDate"                                    => 'studies#verification_month_year#where verification_date is not null',
     "#{status_module}|OverallStatus"                                         => "studies#overall_status#where overall_status is not null and overall_status <> ''",
     "#{status_module}|LastKnownStatus"                                       => "studies#last_known_status#where last_known_status is not null and last_known_status <> ''",
     "#{status_module}|WhyStopped"                                            => "studies#why_stopped#where why_stopped is not null and why_stopped <> ''",
