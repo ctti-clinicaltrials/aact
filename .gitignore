@@ -21,3 +21,4 @@ server.env
 data
 /public/static/documentation/schema.dot
 /storage
+/downloads
