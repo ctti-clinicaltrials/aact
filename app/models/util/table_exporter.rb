@@ -11,7 +11,6 @@ module Util
     end
 
     def run(delimiter: '|')
-      load_event = Support::LoadEvent.create({:event_type=>'table_export',:status=>'running',:description=>'',:problems=>''})
       File.delete(@zipfile_name) if File.exist?(@zipfile_name)
       begin
         tempfiles = create_tempfiles(delimiter)
@@ -32,7 +31,6 @@ module Util
       ensure
         cleanup_tempfiles!
       end
-      load_event.complete
     end
 
     private
