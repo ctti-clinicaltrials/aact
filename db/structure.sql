@@ -782,7 +782,9 @@ CREATE TABLE ctgov.baseline_measurements (
     dispersion_upper_limit numeric,
     explanation_of_na character varying,
     number_analyzed integer,
-    number_analyzed_units character varying
+    number_analyzed_units character varying,
+    population_description character varying,
+    calculate_percentage character varying
 );
 
 
@@ -1170,7 +1172,8 @@ CREATE TABLE ctgov.studies (
     delayed_posting character varying,
     expanded_access_nctid character varying,
     expanded_access_status_for_nctid character varying,
-    fdaaa801_violation boolean
+    fdaaa801_violation boolean,
+    baseline_type_units_analyzed character varying
 );
 
 
@@ -1403,7 +1406,10 @@ CREATE TABLE ctgov.drop_withdrawals (
     ctgov_group_code character varying,
     period character varying,
     reason character varying,
-    count integer
+    count integer,
+    drop_withdraw_comment character varying,
+    reason_comment character varying,
+    count_units integer
 );
 
 
@@ -4622,5 +4628,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220817000001'),
 ('20220919155542'),
 ('20220921211247');
+('20220928162956'),
+('20220928175111'),
+('20220930181441');
 
 

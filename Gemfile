@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.6.2"
+ruby "2.7.7"
 
 gem "sprockets"
 gem "rubyzip", ">= 1.2.2"
@@ -69,7 +69,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "database_cleaner"
+  gem "database_cleaner", "1.8.5"
   gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers"

@@ -444,7 +444,8 @@ class StudyJsonRecord < ActiveRecord::Base
       ipd_access_criteria: ipd_sharing['IPDSharingAccessCriteria'],
       ipd_url: ipd_sharing['IPDSharingURL'],
       plan_to_share_ipd: ipd_sharing['IPDSharing'],
-      plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription']
+      plan_to_share_ipd_description: ipd_sharing['IPDSharingDescription'],
+      baseline_type_units_analyzed: baseline['BaselineTypeUnitsAnalyzed']
     }
   end
 
@@ -597,13 +598,13 @@ class StudyJsonRecord < ActiveRecord::Base
   def baseline_measurements_data
     return unless @results_section
 
-    baseline_measures = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
+    measure = @results_section.dig('BaselineCharacteristicsModule', 'BaselineMeasureList', 'BaselineMeasure')
     baseline_group = @results_section.dig('BaselineCharacteristicsModule')
     result_groups = create_and_group_results(baseline_group, 'Baseline', 'Baseline')
-    return unless baseline_measures
+    return unless measure
 
     collection = { baseline_counts: baseline_counts_data, measurements: [] }
-    baseline_measures.each do |measure|
+    measure.each do |measure|
       baseline_classes = measure.dig('BaselineClassList', 'BaselineClass')
       next unless baseline_classes
 
@@ -642,7 +643,9 @@ class StudyJsonRecord < ActiveRecord::Base
                                             dispersion_upper_limit: StudyJsonRecord.float(measurement['BaselineMeasurementUpperLimit']),
                                             explanation_of_na: measurement['BaselineMeasurementComment'],
                                             number_analyzed: count['BaselineDenomCountValue'],
-                                            number_analyzed_units: measure['BaselineMeasureDenomUnitsSelected']
+                                            number_analyzed_units: measure['BaselineMeasureDenomUnitsSelected'],
+                                            population_description: measure['BaselineMeasurePopulationDescription'],
+                                            calculate_percentage: measure['BaselineMeasureCalculatePct']
                                           }
           end
         end
@@ -676,7 +679,7 @@ class StudyJsonRecord < ActiveRecord::Base
                         ctgov_group_code: ctgov_group_code,
                         units: denom['BaselineDenomUnits'],
                         scope: 'overall',
-                        count: count['BaselineDenomCountValue'],
+                        count: count['BaselineDenomCountValue']
                       }
       end
     end
@@ -954,7 +957,7 @@ class StudyJsonRecord < ActiveRecord::Base
                           period: period['FlowPeriodTitle'],
                           description: achievement['FlowAchievementComment'],
                           count: achievement['FlowAchievementNumSubjects'],
-                          milestones_descriptions: milestone['FlowMilestoneComment'],
+                          milestone_description: milestone['FlowMilestoneComment'],
                           count_units: achievement['FlowAchievementNumUnits']
                         }
         end
@@ -1478,7 +1481,10 @@ class StudyJsonRecord < ActiveRecord::Base
                             ctgov_group_code: ctgov_group_code,
                             period: flow_period,
                             reason: reason,
-                            count: flow_reason['FlowReasonNumSubjects']
+                            count: flow_reason['FlowReasonNumSubjects'],
+                            drop_withdraw_comment: drop_withdrawal['FlowDropWithdrawComment'],
+                            reason_comment: flow_reason['FlowReasonComment'],
+                            count_units: flow_reason['FlowReasonNumUnits']
                           }
         end
       end

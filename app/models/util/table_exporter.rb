@@ -10,7 +10,7 @@ module Util
       create_temp_dir_if_none_exists!
     end
 
-    def run(delimiter: '|', should_archive: true)
+def run(delimiter: '|', should_archive: true)
       load_event = Support::LoadEvent.create
       File.delete(@zipfile_name) if File.exist?(@zipfile_name)
       begin
@@ -20,22 +20,18 @@ module Util
         else
           system("zip -j -q #{@zipfile_name} #{@temp_dir}/*.txt")
         end
-        
-        
+
         if File.exist?(@zipfile_name) 
           @file_size =  File.size(@zipfile_name)
-          record = FileRecord.create(file_type: "pipefiles", filename: @zipfile_name, file_size: @file_size)
+          filename = File.basename(@zipfile_name)
+          record = FileRecord.create(file_type: "pipefiles", filename: filename, file_size: @file_size)
           record.file.attach(io: File.open(@zipfile_name), filename: @zipfile_name)
           record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
-        end
-
-        if should_archive
-          archive(delimiter)
+          File.delete(@zipfile_name) if File.exist?(@zipfile_name)
         end
       ensure
         cleanup_tempfiles!
       end
-      load_event.complete
     end
 
     private
@@ -80,18 +76,6 @@ module Util
       unless Dir.exist?(@temp_dir)
         Dir.mkdir(@temp_dir)
       end
-    end
-
-    def archive(delimiter)
-      file_type = if delimiter == ','
-                       "csv-export"
-                     elsif delimiter == '|'
-                       "pipe-delimited-export"
-                     end
-
-      folder =  Util::FileManager.new.flat_files_directory(@schema)
-      archive_file_name="#{folder}/#{Time.zone.now.strftime('%Y%m%d')}_#{file_type}.zip"
-      FileUtils.mv(@zipfile_name, archive_file_name)
     end
   end
 end

@@ -225,4 +225,14 @@ describe Util::Updater do
 
   end
 
+  context 'when there is a failure/exception in the Util::Updater#execute method' do
+    it 'should set the load event status to "error", and set problems to the exception message "test error"' do
+      updater=Util::Updater.new
+      allow(updater.db_mgr).to receive(:remove_constraints).and_raise('test error')
+      updater.execute
+      expect(updater.load_event.problems).to include('test error')
+      expect(updater.load_event.status).to eq('error')
+    end
+  end
+
 end
