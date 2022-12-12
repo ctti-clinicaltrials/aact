@@ -1966,4 +1966,26 @@ class StudyJsonRecord < ActiveRecord::Base
     puts "End Time: #{end_time}"
     puts "**********   Total Time elapsed for data_differences: #{end_time - start_time} seconds   **********"
   end
+
+  def self.find_missing_outcome_groups
+    bad_studies = []
+
+    StudyJsonRecord.find_each do |record|
+      # number of outcome groups from json
+      outcome_measures = record.content.dig('Study', 'ResultsSection', 'OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
+      next unless outcome_measures
+      json_total = 0
+      outcome_measures.each do |outcome_measure|
+        outcome_groups = outcome_measure.dig('OutcomeGroupList', 'OutcomeGroup')
+        json_total += outcome_groups.length
+      end
+
+      # number of outcome groups from result_groups table
+      db_total = ResultGroup.where(result_type: 'Outcome').where.not(ctgov_group_code: nil).where.not(ctgov_group_code: '').where(nct_id: record.nct_id).count
+
+      bad_studies << record.nct_id if db_total != json_total
+    end
+
+    return bad_studies
+  end
 end
