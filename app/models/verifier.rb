@@ -47,10 +47,10 @@ class Verifier < ActiveRecord::Base
     total = places.count
     places.each do |key,value|
       begin
-        puts "countdown: #{total} --#{key}_________"
+        puts "verifier: #{total} --#{key}"
         found = diff_hash(key, value)
         diff << found unless found.blank?
-        total -= 1
+        total += 1
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         ErrorLog.error(msg)
@@ -710,4 +710,6 @@ class Verifier < ActiveRecord::Base
     ctgov_values = ClinicalTrialsApi.field_values(ctgov_field)
     { missing: ctgov_values - aact_values, extra: aact_values - ctgov_values }
   end
+
+  
 end
