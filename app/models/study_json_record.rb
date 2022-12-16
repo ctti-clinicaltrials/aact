@@ -1023,7 +1023,7 @@ class StudyJsonRecord < ActiveRecord::Base
     groups_data = StudyJsonRecord.result_groups(groups, selector, result_type, nct_id)
     result_groups = {}
     groups_data.each do |group|
-      result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group)
+      result_groups[group[:ctgov_group_code]] = ResultGroup.create(group)
     end
 
     return result_groups
@@ -1544,6 +1544,17 @@ class StudyJsonRecord < ActiveRecord::Base
     @adverse_events_module = adverse_events_module
   end
 
+  def preprocess
+    @protocol_section = protocol_section
+    @results_section = results_section
+    @derived_section = derived_section
+    @annotation_section = annotation_section
+    @document_section = document_section
+    @contacts_location_module = contacts_location_module
+    @locations_array = locations_array
+    @adverse_events_module = adverse_events_module
+  end
+
   def build_study
     begin
       @protocol_section = protocol_section
@@ -1965,5 +1976,27 @@ class StudyJsonRecord < ActiveRecord::Base
     end_time = Time.zone.now
     puts "End Time: #{end_time}"
     puts "**********   Total Time elapsed for data_differences: #{end_time - start_time} seconds   **********"
+  end
+
+  def self.find_missing_outcome_groups
+    bad_studies = []
+
+    StudyJsonRecord.find_each do |record|
+      # number of outcome groups from json
+      outcome_measures = record.content.dig('Study', 'ResultsSection', 'OutcomeMeasuresModule', 'OutcomeMeasureList', 'OutcomeMeasure')
+      next unless outcome_measures
+      json_total = 0
+      outcome_measures.each do |outcome_measure|
+        outcome_groups = outcome_measure.dig('OutcomeGroupList', 'OutcomeGroup')
+        json_total += outcome_groups.length if outcome_groups
+      end
+
+      # number of outcome groups from result_groups table
+      db_total = ResultGroup.where(result_type: 'Outcome').where.not(ctgov_group_code: nil).where.not(ctgov_group_code: '').where(nct_id: record.nct_id).count
+
+      bad_studies << record.nct_id if db_total != json_total
+    end
+
+    return bad_studies
   end
 end
