@@ -1,38 +1,4 @@
 class Verifier < ActiveRecord::Base
-
-  def write_data_to_file(schema='ctgov')
-    folder = Util::FileManager.new.study_statistics_directory
-    # save the data from the study statistics endpoint for reference
-    File.write("#{folder}/verifier_source_#{schema}.json".remove('\''), JSON.dump(self.source))
-    # save json with differences
-    diff_file = "#{folder}/verifier_differences_#{schema}".remove('\'')
-    File.write("#{diff_file}.json", JSON.dump(self.differences))
-
-    # save csv with differences
-    headers = %w[
-                source
-                destination
-                source_instances
-                destination_instances
-                source_unique_values
-                destination_unique_values
-              ]
-
-    CSV.open("#{diff_file}.csv", 'w', write_headers: true, headers: headers) do |row|
-      self.differences.each do |hash|
-        row << [
-                hash["source"],
-                hash["destination"],
-                hash["source_instances"],
-                hash["destination_instances"],
-                hash["source_unique_values"],
-                hash["destination_unique_values"],
-              ]
-      end
-    end
-    Verifier.alert_admins_about_differences
-  end
-
   def self.alert_admins_about_differences
     admin_emails = ENV.fetch(Admin::User.admin_emails, "").split(",")
     admin_emails.each {|admin_email| Notifier.report_diff(admin_email).deliver_now}
@@ -56,7 +22,7 @@ class Verifier < ActiveRecord::Base
       api_json =  ClinicalTrialsApi.study_statistics
       verifier = Verifier.create(source: api_json.dig('StudyStatistics', "ElmtDefs", "Study"), load_event_id: params[:load_event_id])
       verifier.verify(schema)
-      verifier.write_data_to_file(schema)
+      # verifier.write_data_to_file(schema)
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
@@ -183,9 +149,9 @@ class Verifier < ActiveRecord::Base
     id_module ='ProtocolSection|IdentificationModule'
     {
     "#{id_module}|NCTId"                                           => 'studies#nct_id',
-    "#{id_module}|NCTIdAliasList|NCTIdAlias"                       => "id_information#id_value#where id_type='nct_alias' and id_value is not null and id_value <> ''",
-    "#{id_module}|OrgStudyIdInfo|OrgStudyId"                       => "id_information#id_value#where id_type='org_study_id' and id_value is not null and id_value <> ''",
-    "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryId" => "id_information#id_value#where id_type='secondary_id' and id_value is not null and id_value <> ''",
+    "#{id_module}|NCTIdAliasList|NCTIdAlias"                       => "id_information#id_value#where id_source='nct_alias' and id_value is not null and id_value <> ''",
+    "#{id_module}|OrgStudyIdInfo|OrgStudyId"                       => "id_information#id_value#where id_source='org_study_id' and id_value is not null and id_value <> ''",
+    "#{id_module}|SecondaryIdInfoList|SecondaryIdInfo|SecondaryId" => "id_information#id_value#where id_source='secondary_id' and id_value is not null and id_value <> ''",
     "#{id_module}|Organization|OrgFullName"                        => "studies#source#where source is not null and source <> ''",
     "#{id_module}|BriefTitle"                                      => "studies#brief_title#where brief_title is not null and brief_title <> ''",
     "#{id_module}|OfficialTitle"                                   => "studies#official_title#where official_title is not null and official_title <> ''",
@@ -196,7 +162,7 @@ class Verifier < ActiveRecord::Base
   def status_module_hash
     status_module = 'ProtocolSection|StatusModule'
     {
-    "#{status_module}|StatusVerifiedDate"                                    => 'studies#verification_date#where verification_date is not null',
+    "#{status_module}|StatusVerifiedDate"                                    => 'studies#verification_month_year#where verification_date is not null',
     "#{status_module}|OverallStatus"                                         => "studies#overall_status#where overall_status is not null and overall_status <> ''",
     "#{status_module}|LastKnownStatus"                                       => "studies#last_known_status#where last_known_status is not null and last_known_status <> ''",
     "#{status_module}|WhyStopped"                                            => "studies#why_stopped#where why_stopped is not null and why_stopped <> ''",
@@ -736,4 +702,12 @@ class Verifier < ActiveRecord::Base
   # "#{ib_module}|InterventionBrowseBranchList|InterventionBrowseBranch|InterventionBrowseBranchAbbrev"
   # "#{ib_module}|InterventionBrowseBranchList|InterventionBrowseBranch|InterventionBrowseBranchName"
 
+
+  def self.find_data_differences(ctgov_field, aact_field)
+    aact_table, aact_field_name = aact_field.split('.')
+    aact_values = Study.connection.execute("SELECT DISTINCT(#{aact_field_name}) FROM #{aact_table}")
+    aact_values = aact_values.map{|k| k[aact_field_name]}
+    ctgov_values = ClinicalTrialsApi.field_values(ctgov_field)
+    { missing: ctgov_values - aact_values, extra: aact_values - ctgov_values }
+  end
 end

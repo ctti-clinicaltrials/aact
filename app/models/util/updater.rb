@@ -55,63 +55,70 @@ module Util
       ActiveRecord::Base.logger = nil
 
       # 1. remove constraings
-      log("#{schema} remove constraints...")
+      log("removing constraints...")
       db_mgr.remove_constraints
+      @load_event.log("1/11 removed constraints")
 
       # 2. update studies
-      log("#{schema} updating studies...")
+      log("updating studies...")
       update_studies
+      @load_event.log("2/11 updated studies")
 
       # 3. add constraints
-      log("#{schema} adding constraints...")
+      log("adding constraints...")
       db_mgr.add_constraints
+      @load_event.log("3/11 added constraints")
 
       # 4. comparing the counts from CT.gov to our database
-      log("#{schema} comparing counts...")
+      log("comparing counts...")
       begin
         Verifier.refresh({schema: schema, load_event_id: @load_event.id})
       rescue => e
         Airbrake.notify(e)
       end
+      @load_event.log("4/11 verification complete")
 
       # 5. run study searches
-      log("#{schema} execute study search...")
+      log("execute study search...")
       StudySearch.execute(search_days_back)
+      @load_event.log("5/11 executed study searches")
 
       # 6. update calculated values
-      log("#{schema} update calculated values...")
+      log("update calculated values...")
       CalculatedValue.populate
+      @load_event.log("6/11 updated calculated values")
 
-      # 6a. populate the meshterms and meshheadings
+      # 7. populate the meshterms and meshheadings
       MeshTerm.populate_from_file
       MeshHeading.populate_from_file
       set_downcase_terms
+      @load_event.log("7/11 populated mesh terms")
 
-      # 7. run sanity checks
+      # 8. run sanity checks
       load_event.run_sanity_checks
+      @load_event.log("8/11 ran sanity checks")
 
       if load_event.sanity_checks.count == 0
-        # 8. take snapshot
+        # 9. take snapshot
         log("#{schema} take snapshot...")
         take_snapshot
+        @load_event.log("9/11 db snapshot created")
 
-        # 9. refresh public db
+        # 10. refresh public db
         log("#{schema} refresh public db...")
         db_mgr.refresh_public_db(schema)
+        @load_event.log("10/11 refreshed public db")
 
         # 10. create flat files
-        log("#{schema} creating flat files...")
-        begin
-          create_flat_files
-        rescue Exception => e
-          Airbrake.notify(e)
-        end
+        log("#{schema} creating flat files...") 
+        create_flat_files
+        @load_event.log("11/11 created flat files")
       end
 
       # refresh_data_definitions
       
       # 11. change the state of the load event from “running” to “complete”
-      @load_event.update({ status:'complete'})
+      @load_event.update({ status:'complete', completed_at: Time.now})
 
       # 12. send email
       # send_notification
@@ -199,6 +206,7 @@ module Util
           record.create_or_update_study
         end
       rescue => e
+        byebug
         ErrorLog.error(e)
         Airbrake.notify(e)
       end
@@ -273,7 +281,7 @@ module Util
 
     def create_flat_files
       log('exporting tables as flat files...')
-      Util::TableExporter.new([],'ctgov').run(delimiter: '|', should_archive: true)
+      Util::TableExporter.new([],'ctgov').run(delimiter: '|')
     end
 
     def db_mgr
