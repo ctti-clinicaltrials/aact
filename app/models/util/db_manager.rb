@@ -5,25 +5,15 @@ module Util
     attr_accessor :con, :public_con, :public_alt_con, :event, :migration_object, :fm
 
     def initialize(params={})
-      # 'event' keeps track of what happened during a single load event & then saves to LoadEvent table in the admin db, so we have a log
-      # of all load events that have occurred.  If an event is passed in, use it; otherwise, create a new one.
-      if params[:event]
-        @event = params[:event]
-      else
-        # @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
-      end
       @fm = Util::FileManager.new
-
-      # load configuration file
       @config = YAML.load(File.read("#{Rails.root}/config/connections.yml")).deep_symbolize_keys
-      @search_path = params[:search_path] ? params[:search_path] : 'ctgov'
     end
 
-    # generate a db dump file
+    # generate a dump file
     def dump_database
       dump_file_location = fm.pg_dump_file
       File.delete(dump_file_location) if File.exist?(dump_file_location)
-      config = Study.connection.instance_variable_get('@config')
+      config = Study.connection_config
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
       host ||= 'localhost'
       port ||= 5432
@@ -33,6 +23,7 @@ module Util
         --clean --no-owner -b -c -C -Fc \
         --exclude-table ar_internal_metadata \
         --exclude-table schema_migrations \
+        --exclude-table study_records \
         --schema 'ctgov'  \
         -f #{dump_file_location} \
         #{database} \
@@ -107,16 +98,11 @@ module Util
 
     def clear_out_data_for(nct_ids)
       ids=nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
-      Util::DbManager.loadable_tables.each { |table|
+      Util::DbManager.loadable_tables.each do |table|
         stime=Time.zone.now
-        con.execute("DELETE FROM #{@search_path}.#{table} WHERE nct_id IN (#{ids})")
-        log("deleted studies from #{@search_path}.#{table}   #{Time.zone.now - stime}")
-      }
-      delete_xml_records(ids) if @search_path == 'ctgov'
-    end
-
-    def delete_xml_records(ids)
-      con.execute("DELETE FROM support.study_xml_records WHERE nct_id IN (#{ids})")
+        con.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
+        log("deleted studies from #{table}   #{Time.zone.now - stime}")
+      end
     end
 
     def public_study_count
@@ -254,26 +240,15 @@ module Util
     end
 
     def remove_constraints
-      Util::DbManager.loadable_tables.each {|table_name|
-        # remove foreign key that links most tables to Studies table via the NCT ID
-        begin
-          con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
-        rescue => e
-          log(e)
-          event.add_problem("#{Time.zone.now}: #{e}") if event
-        end
-      }
+      Util::DbManager.loadable_tables.each do |table_name|
+        con.remove_foreign_key table_name, column: :nct_id if con.foreign_keys(table_name).map(&:column).include?("nct_id")
+      end
 
-      foreign_key_constraints.each { |constraint|
+      foreign_key_constraints.each do |constraint|
         table = constraint[:child_table]
         column = constraint[:child_column]
-        begin
-          con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
-        rescue => e
-          log(e)
-          event.add_problem("#{Time.zone.now}: #{e}") if event
-        end
-      }
+        con.remove_foreign_key table, column: column if con.foreign_keys(table).map(&:column).include?(column)
+      end
     end
 
     def self.loadable_tables
