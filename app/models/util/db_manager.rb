@@ -219,8 +219,10 @@ module Util
         parent_table = constraint[:parent_table]
         child_column = constraint[:child_column]
         parent_column = constraint[:parent_column]
-        migration.add_foreign_key child_table, parent_table, column: child_column, primary_key: parent_column,
-                                                             name: "#{child_table}_#{child_column}_fkey"
+        unless migration.foreign_key_exists?(child_table, parent_table, column: child_column)
+          migration.add_foreign_key child_table, parent_table, column: child_column, primary_key: parent_column,
+                                                              name: "#{child_table}_#{child_column}_fkey"
+        end
       end
     end
 
