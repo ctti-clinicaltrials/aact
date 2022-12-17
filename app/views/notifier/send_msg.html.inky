@@ -3,7 +3,6 @@
     %columns
       %h5 ClinicalTrials: #{@ctgov_count}
     %columns
-      %h5 DigitalOcean: #{@public_study_count}
   %row
     %columns
       %h5 Description: #{@event.description}

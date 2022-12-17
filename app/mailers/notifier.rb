@@ -7,7 +7,6 @@ class Notifier < ApplicationMailer
 
   def send_msg(email_addr, event)
     db = Util::DbManager.new
-    @public_study_count = db.public_study_count
     @ctgov_count = ClinicalTrialsApi.number_of_studies
     @event = event
     @body = event.email_message

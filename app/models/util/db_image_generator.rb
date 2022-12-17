@@ -19,7 +19,7 @@ module Util
     end
 
     def generate_edges
-      study_edges = StudyRelationship.study_models.uniq.map { |k| "#{k.name} -> Study" }.join("\n")
+      study_edges = StudyRelationship.study_models.map { |k| "#{k.name} -> Study" }.join("\n")
       extra_edges = Util::DbManager.foreign_key_constraints.map do |k|
         "#{k[:child_table].singularize.camelize} -> #{k[:parent_table].singularize.camelize}"
       end.join("\n")
@@ -27,7 +27,7 @@ module Util
     end
 
     def generate_nodes
-      StudyRelationship.study_models.uniq.map { |k| table(k) }.join("\n\n")
+      StudyRelationship.study_models.map { |k| table(k) }.join("\n\n")
     end
 
     # generate graphiz code for a model
