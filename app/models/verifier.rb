@@ -45,10 +45,10 @@ class Verifier < ActiveRecord::Base
     # Now I add the differences for each selector
     places = all_locations
     total = places.count
-    places.each do |key,value|
+    places.each do |ctgov_selector, query|
       begin
-        puts "verifier: #{total} --#{key}"
-        found = diff_hash(key, value)
+        puts "verifier: #{total} --#{ctgov_selector}"
+        found = compare_ctgov_with_database(ctgov_selector, query)
         diff << found unless found.blank?
         total += 1
       rescue => error
@@ -69,10 +69,9 @@ class Verifier < ActiveRecord::Base
 
   def same?(int1,int2)
     int1.to_i == int2.to_i
-
   end
 
-  def diff_hash(selector, location)
+  def get_ctgov_counts(selector)
     hash = self.source
     selector.split('|').each do |selector_part|
       hash = hash.dig(selector_part)
@@ -84,19 +83,26 @@ class Verifier < ActiveRecord::Base
     all_instances = hash.dig("nInstances")
     uniq_instances = hash.dig("nUniqueValues")
 
-    all_counts, uniq_counts = get_counts(location)
-      unless same?(all_counts, all_instances) && same?(uniq_counts, uniq_instances)
-        return {
-                    source: selector,
-                    destination: location,
-                    source_instances: all_instances,
-                    destination_instances: all_counts,
-                    source_unique_values: uniq_instances,
-                    destination_unique_values: uniq_counts,
-              }
-      else
-        return false
-      end
+    return all_instances, uniq_instances
+  end
+
+  def compare_ctgov_with_database(selector, query)
+    ctgov_instances, ctgov_uniq_values = get_ctgov_counts(selector)
+
+    db_instances, db_uniq_values = get_database_counts(query)
+
+    unless same?(db_instances, ctgov_instances) && same?(db_uniq_values, ctgov_uniq_values)
+      return {
+                source: selector,
+                destination: location,
+                source_instances: ctgov_instances,
+                destination_instances: db_instances,
+                source_unique_values: ctgov_uniq_values,
+                destination_unique_values: db_uniq_values,
+            }
+    else
+      return false
+    end
   end
 
   def all_locations
@@ -124,7 +130,7 @@ class Verifier < ActiveRecord::Base
                   .merge!(intervention_browse_module_hash)
   end
 
-  def get_counts(location)
+  def get_database_counts(location)
     return unless location && location.kind_of?(String)
 
     # location example "studies#nct_id#where nct_id is not null and nct_id <> ''"
