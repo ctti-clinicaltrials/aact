@@ -5034,7 +5034,11 @@ ALTER SEQUENCE support.study_json_records_id_seq OWNED BY support.study_json_rec
 CREATE TABLE support.study_statistics_comparisons (
     id bigint NOT NULL,
     ctgov_selector character varying,
-    query character varying
+    "table" character varying,
+    "column" character varying,
+    condition character varying,
+    instances_query character varying,
+    unique_query character varying
 );
 
 
