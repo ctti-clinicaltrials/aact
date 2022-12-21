@@ -1,28 +1,9 @@
 class Verifier < ActiveRecord::Base
-  def self.alert_admins_about_differences
-    admin_emails = ENV.fetch(Admin::User.admin_emails, "").split(",")
-    admin_emails.each {|admin_email| Notifier.report_diff(admin_email).deliver_now}
-  end
-
-  def get_source_from_file(file_path="#{Util::FileManager.new.study_statistics_directory}/verifier_source_ctgov.json")
-    file = File.read(file_path)
-    self.update(source: JSON.parse(file))
-  end
-
-  def self.return_correct_schema(name = 'ctgov')
-    return 'ctgov_beta' if name =~ /beta/
-
-    'ctgov'
-  end
-
   def self.refresh(params={schema: 'ctgov', load_event_id: nil})
-    # this is a safety messure to make sure the correct schema name is used
-    schema = self.return_correct_schema(params[:schema])
     begin
       api_json =  ClinicalTrialsApi.study_statistics
       verifier = Verifier.create(source: api_json.dig('StudyStatistics', "ElmtDefs", "Study"), load_event_id: params[:load_event_id])
-      verifier.verify(schema)
-      # verifier.write_data_to_file(schema)
+      verifier.verify
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
@@ -30,26 +11,17 @@ class Verifier < ActiveRecord::Base
     end
   end
 
-  def verify(schema ='ctgov')
-    # this is a safety messure to make sure the correct schema name is used
-    schema = Verifier.return_correct_schema(schema)
-
+  def verify
     return if self.source.blank?
-
     diff = []
-    # I first add the count so that we can know if the differences might be caused by having a different amount of studies
-    source_study_counts = self.source.dig('nInstances')
-    db_study_counts = Study.count
-    diff<< {source_study_count: source_study_counts, db_study_count:  db_study_counts} unless same?(source_study_counts,  db_study_counts)
 
-    # Now I add the differences for each selector
     places = all_locations
     total = places.count
-    places.each do |ctgov_selector, query|
+    comparisons = Support::StudyStatisticsComparison.all
+    comparisons.each do |comparison|
       begin
-        puts "verifier: #{total} --#{ctgov_selector}"
-        found = compare_ctgov_with_database(ctgov_selector, query)
-        diff << found unless found.blank?
+        puts "verifier: #{total} --#{comparison.ctgov_selector}"
+        diff << compare_ctgov_with_database(comparison)
         total += 1
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
@@ -59,16 +31,9 @@ class Verifier < ActiveRecord::Base
       end
     end
 
-    self.last_run = Time.now
-    self.differences = diff
-
-    self.save
+    self.update(last_run: Time.now, differences: diff)
 
     return diff
-  end
-
-  def same?(int1,int2)
-    int1.to_i == int2.to_i
   end
 
   def get_ctgov_counts(selector)
@@ -83,26 +48,38 @@ class Verifier < ActiveRecord::Base
     all_instances = hash.dig("nInstances")
     uniq_instances = hash.dig("nUniqueValues")
 
-    return all_instances, uniq_instances
+    return all_instances.to_i, uniq_instances.to_i
   end
 
-  def compare_ctgov_with_database(selector, query)
-    ctgov_instances, ctgov_uniq_values = get_ctgov_counts(selector)
+  def get_database_counts(location)
+    # location example "studies#nct_id#where nct_id is not null and nct_id <> ''"
+    array = location.split('#')
+    additional_info = ''
+    additional_info = array[2] if array.length > 2
 
-    db_instances, db_uniq_values = get_database_counts(query)
+    con = ActiveRecord::Base.connection
 
-    unless same?(db_instances, ctgov_instances) && same?(db_uniq_values, ctgov_uniq_values)
-      return {
-                source: selector,
-                destination: location,
-                source_instances: ctgov_instances,
-                destination_instances: db_instances,
-                source_unique_values: ctgov_uniq_values,
-                destination_unique_values: db_uniq_values,
-            }
-    else
-      return false
-    end
+    all_counts = con.execute("select count(#{array[1]}) from #{array[0]} #{additional_info}")
+    all_counts = all_counts.getvalue(0,0) if all_counts.ntuples == 1
+
+    uniq_counts = con.execute("select count(distinct #{array[1]}) from #{array[0]} #{additional_info}")
+    uniq_counts = uniq_counts.getvalue(0,0) if uniq_counts.ntuples == 1
+
+    return all_counts.to_i, uniq_counts.to_i
+  end
+
+  def compare_ctgov_with_database(comparison)
+    ctgov_instances, ctgov_uniq_values = get_ctgov_counts(comparison.ctgov_selector)
+    db_instances, db_uniq_values = get_database_counts("#{comparison.table}##{comparison.column}")
+
+    return {
+      source: selector,
+      destination: query,
+      source_instances: ctgov_instances,
+      destination_instances: db_instances,
+      source_unique_values: ctgov_uniq_values,
+      destination_unique_values: db_uniq_values,
+    }
   end
 
   def all_locations
@@ -130,24 +107,7 @@ class Verifier < ActiveRecord::Base
                   .merge!(intervention_browse_module_hash)
   end
 
-  def get_database_counts(location)
-    return unless location && location.kind_of?(String)
-
-    # location example "studies#nct_id#where nct_id is not null and nct_id <> ''"
-    array = location.split('#')
-    additional_info = ''
-    additional_info = array[2] if array.length > 2
-
-    con = ActiveRecord::Base.connection
-
-    all_counts = con.execute("select count(#{array[1]}) from #{array[0]} #{additional_info}")
-    all_counts = all_counts.getvalue(0,0) if all_counts.ntuples == 1
-
-    uniq_counts = con.execute("select count(distinct #{array[1]}) from #{array[0]} #{additional_info}")
-    uniq_counts = uniq_counts.getvalue(0,0) if uniq_counts.ntuples == 1
-
-    return all_counts, uniq_counts
-  end
+  
 
   # Protcol section___________________________________________________________
 
