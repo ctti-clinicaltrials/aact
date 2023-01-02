@@ -4,15 +4,20 @@ RSpec.describe SearchResult, type: :model do
   let(:stub_request_headers) { {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'} }
   let(:covid_batch) { File.read('spec/support/xml_data/covid_search.xml') }
   let(:empty_batch) { File.read('spec/support/xml_data/empty_search.xml') }
+  let(:covid_search_result_body) { File.read('spec/support/json_data/covid-19-search.json') }
   let(:covid_last_url) { 'https://clinicaltrials.gov/ct2/results/rss.xml?cond=covid-19&count=1000&lup_d=2&start=1000' }
   let(:covid_url) { 'https://clinicaltrials.gov/ct2/results/rss.xml?cond=covid-19&count=1000&lup_d=2&start=0' }
+  let(:covid_search_url) { 'https://clinicaltrials.gov/api/query/full_studies?expr=covid-19&fmt=json&max_rnk=100&min_rnk=1' }
   let(:covid_stub) { stub_request(:get, covid_url).with(headers: stub_request_headers).to_return(:status => 200, :body => covid_batch, :headers => {}) }
   let(:empty_search_stub) { stub_request(:get, covid_url).with(headers: stub_request_headers).to_return(:status => 200, :body => empty_batch, :headers => {}) }
   let(:covid_last_stub) { stub_request(:get, covid_last_url).with(headers: stub_request_headers).to_return(:status => 200, :body => empty_batch, :headers => {}) }
+  let(:covid_search_result) { stub_request(:get, covid_search_url).with(headers: stub_request_headers).to_return(:status => 200, :body => covid_search_result_body, :headers => {}) }
+
   context 'when there are search_results' do
     before do
       covid_stub
       covid_last_stub
+      covid_search_result
       Util::DbManager.new.add_indexes_and_constraints
       covid_search = StudySearch.make_covid_search
       xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT04452435_covid_19.xml'))
@@ -22,15 +27,18 @@ RSpec.describe SearchResult, type: :model do
       covid_search.load_update
       @folder = './public/static/exported_files/covid-19'
     end
+
     after do
       `rm -r #{@folder}`
     end
+
     describe ':make_tsv' do
       it 'makes a tsv file' do
         SearchResult.make_tsv
         expect(Dir.exists?(@folder)).to be true
         expect(Dir.empty?(@folder)).to be false
       end
+
       it 'creates a tsv with the right content' do
         SearchResult.make_tsv
         filenames = Dir.entries(@folder)
@@ -43,6 +51,7 @@ RSpec.describe SearchResult, type: :model do
         expect(content).to include @covid_study.study_type
       end
     end
+
     describe ':study_values' do
       before do
         @content = SearchResult.study_values(@covid_study)
