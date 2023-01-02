@@ -75,6 +75,7 @@ module Util
     # 5. grant connection permissions again
     def restore_database(connection, filename, schema = 'ctgov')
       config = connection.instance_variable_get('@config')
+      byebug
       host = config[:host]
       port = config[:port]
       username = config[:username]
@@ -117,7 +118,7 @@ module Util
 
     def restore_from_file(path_to_file: "#{Rails.root}/tmp/postgres_data.dmp", database: 'aact')
       Rails.logger.debug 'restoring the database...'
-      restore_database('normal', ActiveRecord::Base.connection, path_to_file)
+      restore_database(ActiveRecord::Base.connection, path_to_file)
       Rails.logger.debug 'done'
     end
 
@@ -166,11 +167,8 @@ module Util
     # process for deploying database to digital ocean
     # 1. try restoring to staging db
     # 2. if successful restore to public db
-    def refresh_public_db(schema = 'ctgov')
-      success = restore_database(schema, staging_connection, fm.pg_dump_file)
-      return unless success
-
-      restore_database(schema, public_connection, fm.pg_dump_file)
+    def refresh_public_db
+      restore_database(public_connection, fm.pg_dump_file)
     end
 
     def run_command_line(cmd)
