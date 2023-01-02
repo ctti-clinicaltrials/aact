@@ -16,14 +16,16 @@ RSpec.configure do |config|
     # backend db
     ActiveRecord::Base.establish_connection @dbconfig[:test]
     # and public db
-    PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: 'localhost',
-      database: 'aact_pub_test',
-      username: ENV["AACT_DB_SUPER_USERNAME"] || 'aact'
-    )
-    con = PublicBase.connection
+    # PublicBase.establish_connection(
+    #   adapter: 'postgresql',
+    #   encoding: 'utf8',
+    #   hostname: '127.0.0.1',
+    #   port: 5432,
+    #   database: 'aact_pub_test',
+    #   username: ENV["AACT_DB_SUPER_USERNAME"] || 'aact',
+    #   password: 'CCi3411'
+    # )
+    # con = PublicBase.connection
     DatabaseCleaner.start
   end
 
@@ -32,14 +34,16 @@ RSpec.configure do |config|
     # backend db
     ActiveRecord::Base.establish_connection @dbconfig[:test]
     # and public db
-    PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: 'localhost',
-      database: 'aact_pub_test',
-      username: ENV["AACT_DB_SUPER_USERNAME"] || 'aact'
-    )
-    con = PublicBase.connection
+    # PublicBase.establish_connection(
+    #   adapter: 'postgresql',
+    #   encoding: 'utf8',
+    #   hostname: '127.0.0.1',
+    #   port: 5432,
+    #   database: 'aact_pub_test',
+    #   username: ENV["AACT_DB_SUPER_USERNAME"] || 'aact',
+    #   password: 'CCi3411'
+    # )
+    # con = PublicBase.connection
     DatabaseCleaner.clean
   end
 end
