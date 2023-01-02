@@ -1,8 +1,19 @@
 class StudyRecord < ActiveRecord::Base
   STUDY_SECTIONS = ['ProtocolSection', 'ResultsSection', 'AnnotationSection', 'DocumentSection', 'DerivedSection']
 
-  def self.download_studies
-    `wget https://clinicaltrials.gov/AllAPIJSON.zip -o #{Date.today.strftime("%Y-%m-%d")}`
+  def self.full_load(dir = Date.today.strftime("%Y-%m-%d"))
+    download(dir)
+    unzip(dir)
+    import_files(dir)
+
+    # u.db_mgr.remove_constraints 
+    # StudyRecord.add_studies
+    # u.db_mgr.add_constraints
+    # CalculatedValue.populate
+    # u.take_snapshot
+    # u.db_mgr.refresh_public_db('ctgov')
+    # u.create_flat_files
+
   end
 
   def self.download(dir = Date.today.strftime("%Y-%m-%d"))
@@ -69,23 +80,135 @@ class StudyRecord < ActiveRecord::Base
     return nil
   end
 
-  def self.update_studies
-    studies = studies_to_update
-    studies.each do |study_id|
-      study = StudyJsonRecord.find_by(nct_id: study_id)
+  def self.add_studies
+    studies = studies_to_add
+    studies.each do |nct_id|
+      study = StudyJsonRecord.find_by(nct_id: nct_id)
       if study.nil?
-        study = StudyJsonRecord.create(nct_id: study_id)
+        study = StudyJsonRecord.create(nct_id: nct_id)
       end
       study.create_or_update_study
     end
   end
 
-  def self.studies_to_update
-    sql = "SELECT SR.nct_id
+  def self.studies_to_add
+    sql = "SELECT DISTINCT(SR.nct_id) AS nct_id
     FROM study_records SR
     LEFT JOIN studies S ON S.nct_id = SR.nct_id
-    WHERE S.nct_id IS NULL OR S.updated_at < SR.updated_at "
+    WHERE S.nct_id IS NULL
+    "
     connection.execute(sql).map{|k| k['nct_id']}
+  end
+
+  def self.update_studies
+    # ActiveRecord::Base.logger.silence do
+      studies = studies_to_update
+      studies.each do |entry|
+        study = StudyJsonRecord.find_by(nct_id: entry['nct_id'])
+        if study.nil?
+          study = StudyJsonRecord.create(nct_id: entry['nct_id'], content: {})
+        end
+        study.create_or_update_study
+      end
+    # end
+  end
+
+  # complete 1000 started 8:04 PM
+  def self.studies_to_update
+    sql = "SELECT SR.nct_id, max(SR.updated_at) AS record_updated_at, max(S.updated_at) AS study_updated_at
+    FROM study_records SR
+    LEFT JOIN studies S ON S.nct_id = SR.nct_id
+    WHERE S.nct_id IS NULL OR S.updated_at < SR.updated_at
+    AND SR.type != 'StudyRecord::DerivedSection'
+    GROUP BY SR.nct_id
+    ORDER BY max(SR.updated_at) ASC, max(S.updated_at) ASC
+    LIMIT 10
+    "
+    connection.execute(sql).to_a
+  end
+
+  def self.execute
+    load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: '', problems: '' })
+    db_mgr = Util::DbManager.new(event: load_event)
+
+    # TODO: need to extract this into a connection method
+    ActiveRecord::Base.logger = nil
+
+    # 1. remove constraings
+    log("removing constraints...")
+    db_mgr.remove_constraints
+    load_event.log("1/11 removed constraints")
+
+    # 2. update studies
+    log("updating studies...")
+    add_studies
+    update_studies
+    load_event.log("2/11 updated studies")
+
+    # 3. add constraints
+    log("adding constraints...")
+    db_mgr.add_constraints
+    load_event.log("3/11 added constraints")
+
+    # 4. comparing the counts from CT.gov to our database
+    # log("comparing counts...")
+    # begin
+      # Verifier.refresh({schema: schema, load_event_id: @load_event.id})
+    # rescue => e
+      # Airbrake.notify(e)
+    # end
+    # load_event.log("4/11 verification complete")
+
+    # 5. run study searches
+    log("execute study search...")
+    StudySearch.execute(search_days_back)
+    load_event.log("5/11 executed study searches")
+
+    # 6. update calculated values
+    log("update calculated values...")
+    CalculatedValue.populate
+    load_event.log("6/11 updated calculated values")
+
+    # 7. populate the meshterms and meshheadings
+    MeshTerm.populate_from_file
+    MeshHeading.populate_from_file
+    set_downcase_terms
+    load_event.log("7/11 populated mesh terms")
+
+    # 8. run sanity checks
+    load_event.run_sanity_checks
+    load_event.log("8/11 ran sanity checks")
+
+    if load_event.sanity_checks.count == 0
+      # 9. take snapshot
+      log("#{schema} take snapshot...")
+      take_snapshot
+      load_event.log("9/11 db snapshot created")
+
+      # 10. refresh public db
+      log("#{schema} refresh public db...")
+      db_mgr.refresh_public_db(schema)
+      load_event.log("10/11 refreshed public db")
+
+      # 10. create flat files
+      log("#{schema} creating flat files...") 
+      create_flat_files
+      load_event.log("11/11 created flat files")
+    end
+
+    # refresh_data_definitions
+    
+    # 11. change the state of the load event from “running” to “complete”
+    load_event.update({ status:'complete', completed_at: Time.now})
+
+    # 12. send email
+    # send_notification
+    
+  rescue => e
+    # set the load event status to "error"
+    @load_event.update({ status: 'error'}) 
+    # set the load event problems to the exception message
+    @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" }) 
   end
 
   def self.remove_studies(nct_ids)
@@ -172,6 +295,21 @@ class StudyRecord < ActiveRecord::Base
     puts "rate:    #{nct_ids.length / diff}"
     ActiveRecord::Base.logger = logger
     return nil
+  end
+
+  def self.stats
+    sql = "
+    SELECT
+    SR.updated_at::date,
+    COUNT(*)
+    FROM study_records SR
+    LEFT JOIN studies S ON SR.nct_id = S.nct_id
+    WHERE SR.type != 'StudyRecord::DerivedSection'
+    AND (S.nct_id IS NULL OR S.updated_at < SR.updated_at)
+    GROUP BY SR.updated_at::date
+    ORDER BY SR.updated_at::date DESC
+    "
+    StudyRecord.connection.execute(sql).to_a
   end
 
   class ProtocolSection < StudyRecord

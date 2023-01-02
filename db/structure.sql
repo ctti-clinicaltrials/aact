@@ -2645,6 +2645,37 @@ ALTER SEQUENCE support.load_events_id_seq OWNED BY support.load_events.id;
 
 
 --
+-- Name: load_issues; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.load_issues (
+    id bigint NOT NULL,
+    load_event_id bigint,
+    nct_id character varying,
+    message character varying
+);
+
+
+--
+-- Name: load_issues_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.load_issues_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: load_issues_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.load_issues_id_seq OWNED BY support.load_issues.id;
+
+
+--
 -- Name: sanity_checks; Type: TABLE; Schema: support; Owner: -
 --
 
@@ -2716,6 +2747,40 @@ CREATE SEQUENCE support.study_json_records_id_seq
 --
 
 ALTER SEQUENCE support.study_json_records_id_seq OWNED BY support.study_json_records.id;
+
+
+--
+-- Name: study_statistics_comparisons; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.study_statistics_comparisons (
+    id bigint NOT NULL,
+    ctgov_selector character varying,
+    "table" character varying,
+    "column" character varying,
+    condition character varying,
+    instances_query character varying,
+    unique_query character varying
+);
+
+
+--
+-- Name: study_statistics_comparisons_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.study_statistics_comparisons_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: study_statistics_comparisons_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.study_statistics_comparisons_id_seq OWNED BY support.study_statistics_comparisons.id;
 
 
 --
@@ -3138,6 +3203,13 @@ ALTER TABLE ONLY support.load_events ALTER COLUMN id SET DEFAULT nextval('suppor
 
 
 --
+-- Name: load_issues id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.load_issues ALTER COLUMN id SET DEFAULT nextval('support.load_issues_id_seq'::regclass);
+
+
+--
 -- Name: sanity_checks id; Type: DEFAULT; Schema: support; Owner: -
 --
 
@@ -3149,6 +3221,13 @@ ALTER TABLE ONLY support.sanity_checks ALTER COLUMN id SET DEFAULT nextval('supp
 --
 
 ALTER TABLE ONLY support.study_json_records ALTER COLUMN id SET DEFAULT nextval('support.study_json_records_id_seq'::regclass);
+
+
+--
+-- Name: study_statistics_comparisons id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.study_statistics_comparisons ALTER COLUMN id SET DEFAULT nextval('support.study_statistics_comparisons_id_seq'::regclass);
 
 
 --
@@ -3615,6 +3694,14 @@ ALTER TABLE ONLY support.load_events
 
 
 --
+-- Name: load_issues load_issues_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.load_issues
+    ADD CONSTRAINT load_issues_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sanity_checks sanity_checks_pkey; Type: CONSTRAINT; Schema: support; Owner: -
 --
 
@@ -3628,6 +3715,14 @@ ALTER TABLE ONLY support.sanity_checks
 
 ALTER TABLE ONLY support.study_json_records
     ADD CONSTRAINT study_json_records_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: study_statistics_comparisons study_statistics_comparisons_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.study_statistics_comparisons
+    ADD CONSTRAINT study_statistics_comparisons_pkey PRIMARY KEY (id);
 
 
 --
@@ -4290,6 +4385,13 @@ CREATE INDEX "index_support.load_events_on_status" ON support.load_events USING 
 
 
 --
+-- Name: index_support.load_issues_on_load_event_id; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.load_issues_on_load_event_id" ON support.load_issues USING btree (load_event_id);
+
+
+--
 -- Name: index_support.sanity_checks_on_check_type; Type: INDEX; Schema: support; Owner: -
 --
 
@@ -4354,6 +4456,14 @@ ALTER TABLE ONLY ctgov.active_storage_attachments
 
 
 --
+-- Name: load_issues fk_rails_1a961417a0; Type: FK CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.load_issues
+    ADD CONSTRAINT fk_rails_1a961417a0 FOREIGN KEY (load_event_id) REFERENCES support.load_events(id);
+
+
+--
 -- Name: sanity_checks fk_rails_9d86ec7e91; Type: FK CONSTRAINT; Schema: support; Owner: -
 --
 
@@ -4413,4 +4523,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220919155542'),
 ('20220928162956'),
 ('20220928175111'),
+('20220930181441'),
+('20221122213435'),
+('20221219165747');
 ('20220930181441');
