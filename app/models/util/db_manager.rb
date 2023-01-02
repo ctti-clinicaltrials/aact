@@ -1,4 +1,3 @@
-require 'open3'
 module Util
   class DbManager
 
@@ -13,9 +12,8 @@ module Util
     end
 
     # generate a dump file
-    def dump_database
-      dump_file_location = fm.pg_dump_file
-      File.delete(dump_file_location) if File.exist?(dump_file_location)
+    def dump_database(filename)
+      File.delete(filename) if File.exist?(filename)
       config = Study.connection_config
       host, port, username, database = config[:host], config[:port], config[:username], config[:database]
       host ||= 'localhost'
@@ -28,7 +26,7 @@ module Util
         --exclude-table schema_migrations \
         --exclude-table study_records \
         --schema 'ctgov'  \
-        -f #{dump_file_location} \
+        -f #{filename} \
         #{database} \
       "
       puts cmd
@@ -43,14 +41,7 @@ module Util
     # 3. restore teh db from file
     # 4. verify the study count (permissions are not granted again to prevent bad data from being used)
     # 5. grant connection permissions again
-    def restore_database(schema, connection, filename)
-      if schema =~ /beta/
-        schema = 'ctgov_beta'
-      elsif schema =~ /archive/
-        schema = 'ctgov_archive'
-      else
-        schema = 'ctgov'
-      end
+    def restore_database(connection, filename)
       config = connection.instance_variable_get('@config')
       host, port, username, database, password = config[:host], config[:port], config[:username], config[:database], config[:password]
 
@@ -61,12 +52,12 @@ module Util
       # drop the schema
       log "  dropping in #{host}:#{port}/#{database} database..."
       begin
-        connection.execute("DROP SCHEMA #{schema} CASCADE;")
+        connection.execute("DROP SCHEMA ctgov CASCADE;")
       rescue ActiveRecord::StatementInvalid => e
         log(e.message)
       end
-      connection.execute("CREATE SCHEMA #{schema};")
-      connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
+      connection.execute("CREATE SCHEMA ctgov;")
+      connection.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
 
       # restore database
       log "  restoring to #{host}:#{port}/#{database} database..."
@@ -82,8 +73,8 @@ module Util
 
       # allow users to access database again
       connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 200;")
-      connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
-      connection.execute("GRANT SELECT ON ALL TABLES IN SCHEMA #{schema} TO READ_ONLY;")
+      connection.execute("GRANT USAGE ON SCHEMA ctgov TO read_only;")
+      connection.execute("GRANT SELECT ON ALL TABLES IN SCHEMA ctgov TO READ_ONLY;")
 
       return true
     end
@@ -91,11 +82,11 @@ module Util
     # process for deploying database to digital ocean
     # 1. try restoring to staging db
     # 2. if successful restore to public db
-    def refresh_public_db(schema='ctgov')
-      success = restore_database(schema, staging_connection, fm.pg_dump_file)
+    def refresh_public_db(filename)
+      success = restore_database(staging_connection, filename)
       return unless success
 
-      restore_database(schema, public_connection, fm.pg_dump_file)
+      restore_database(public_connection, filename)
     end
 
 
@@ -519,7 +510,7 @@ module Util
 
     def restore_from_file(path_to_file: "#{Rails.root}/tmp/postgres_data.dmp", database: 'aact')
       print 'restoring the database...'
-      restore_database('normal', ActiveRecord::Base.connection, path_to_file)
+      restore_database(ActiveRecord::Base.connection, path_to_file)
       puts 'done'
     end
 
