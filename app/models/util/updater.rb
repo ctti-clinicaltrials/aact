@@ -24,9 +24,8 @@ module Util
       self
     end
 
-    def start
+    def run_main_loop
       loop do
-
         now = TZInfo::Timezone.get('America/New_York').now
         if Support::LoadEvent.where('created_at > ?',now.beginning_of_day).count == 0
           execute
@@ -106,7 +105,7 @@ module Util
 
         # 10. refresh public db
         log("#{schema} refresh public db...")
-        db_mgr.refresh_public_db(schema)
+        db_mgr.refresh_public_db
         @load_event.log("10/11 refreshed public db")
 
         # 10. create flat files
@@ -287,7 +286,8 @@ module Util
     end
 
     def db_mgr
-      @db_mgr ||= Util::DbManager.new(event: load_event)
+      # @db_mgr ||= Util::DbManager.new(event: load_event)
+      Util::DbManager.new(event: load_event)
     end
   end
 end
