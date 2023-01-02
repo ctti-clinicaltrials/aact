@@ -2,7 +2,7 @@ name: Build docker image and push
 on:
   push:
     branches: 
-      - master
+      - dev
     paths-ignore: # Don't trigger on listed files
       - .github/CODEOWNERS
       - '*.md'
@@ -32,8 +32,8 @@ jobs:
       - name: Tag image 
         run: |
           docker tag ${{ env.SERVICE_NAME }} \
-          ${{ env.DOCKER_REGISTRY }}/${{ env.SERVICE_NAME }}:latest
+          ${{ env.DOCKER_REGISTRY }}/${{ env.SERVICE_NAME }}:dev
       - name: Push image to DO Container Registry 
         run: |
           docker push \
-            ${{ env.DOCKER_REGISTRY }}/${{ env.SERVICE_NAME }}:latest
+            ${{ env.DOCKER_REGISTRY }}/${{ env.SERVICE_NAME }}:dev
