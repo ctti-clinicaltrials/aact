@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :study_statistics_comparison, class: 'Support::StudyStatisticsComparison' do
+    
+  end
+
   factory :study_record do
   end
   factory :retraction do

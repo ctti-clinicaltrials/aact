@@ -5,7 +5,10 @@ module Util
   class DbManager
     attr_accessor :con, :public_con, :public_alt_con, :event, :migration_object, :fm
 
-    def initialize(_params = {})
+    def initialize(params={})
+      # 'event' keeps track of what happened during a single load event & then saves to LoadEvent table in the admin db, so we have a log
+      # of all load events that have occurred.  If an event is passed in, use it; otherwise, create a new one.
+      @event = params[:event]
       @fm = Util::FileManager.new
       @config = YAML.safe_load(File.read("#{Rails.root}/config/connections.yml")).deep_symbolize_keys
     end

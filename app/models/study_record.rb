@@ -101,25 +101,30 @@ class StudyRecord < ActiveRecord::Base
   end
 
   def self.update_studies
-    studies = studies_to_update
-    studies.each do |study_id|
-      study = StudyJsonRecord.find_by(nct_id: study_id)
-      if study.nil?
-        study = StudyJsonRecord.create(nct_id: study_id)
+    # ActiveRecord::Base.logger.silence do
+      studies = studies_to_update
+      studies.each do |entry|
+        study = StudyJsonRecord.find_by(nct_id: entry['nct_id'])
+        if study.nil?
+          study = StudyJsonRecord.create(nct_id: entry['nct_id'], content: {})
+        end
+        study.create_or_update_study
       end
-      study.create_or_update_study
-    end
+    # end
   end
 
+  # complete 1000 started 8:04 PM
   def self.studies_to_update
-    sql = "SELECT DISTINCT(SR.nct_id) AS nct_id
+    sql = "SELECT SR.nct_id, max(SR.updated_at) AS record_updated_at, max(S.updated_at) AS study_updated_at
     FROM study_records SR
     LEFT JOIN studies S ON S.nct_id = SR.nct_id
     WHERE S.nct_id IS NULL OR S.updated_at < SR.updated_at
     AND SR.type != 'StudyRecord::DerivedSection'
-    LIMIT 2000
+    GROUP BY SR.nct_id
+    ORDER BY max(SR.updated_at) ASC, max(S.updated_at) ASC
+    LIMIT 10
     "
-    connection.execute(sql).map{|k| k['nct_id']}
+    connection.execute(sql).to_a
   end
 
   def self.execute
