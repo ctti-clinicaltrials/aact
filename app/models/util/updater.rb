@@ -285,7 +285,8 @@ module Util
     end
 
     def db_mgr
-      @db_mgr ||= Util::DbManager.new(event: load_event)
+      # @db_mgr ||= Util::DbManager.new(event: load_event)
+      Util::DbManager.new(event: load_event)
     end
   end
 end

@@ -7,11 +7,7 @@ module Util
     def initialize(params={})
       # 'event' keeps track of what happened during a single load event & then saves to LoadEvent table in the admin db, so we have a log
       # of all load events that have occurred.  If an event is passed in, use it; otherwise, create a new one.
-      if params[:event]
-        @event = params[:event]
-      else
-        # @event = Support::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
-      end
+      @event = params[:event]
       @fm = Util::FileManager.new
 
       # load configuration file
