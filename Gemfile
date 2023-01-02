@@ -66,6 +66,9 @@ group :development, :test do
   gem "pry-rails"
   gem 'rspec-rails'
   gem 'single_test'
+  gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
 end
 
 group :test do
