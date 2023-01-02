@@ -9,20 +9,11 @@ class Verifier < ActiveRecord::Base
     self.update(source: JSON.parse(file))
   end
 
-  def self.return_correct_schema(name = 'ctgov')
-    return 'ctgov_beta' if name =~ /beta/
-
-    'ctgov'
-  end
-
-  def self.refresh(params={schema: 'ctgov', load_event_id: nil})
-    # this is a safety messure to make sure the correct schema name is used
-    schema = self.return_correct_schema(params[:schema])
+  def self.refresh(params={load_event_id: nil})
     begin
       api_json =  ClinicalTrialsApi.study_statistics
       verifier = Verifier.create(source: api_json.dig('StudyStatistics', "ElmtDefs", "Study"), load_event_id: params[:load_event_id])
-      verifier.verify(schema)
-      # verifier.write_data_to_file(schema)
+      verifier.verify
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       ErrorLog.error(msg)
@@ -30,10 +21,7 @@ class Verifier < ActiveRecord::Base
     end
   end
 
-  def verify(schema ='ctgov')
-    # this is a safety messure to make sure the correct schema name is used
-    schema = Verifier.return_correct_schema(schema)
-
+  def verify
     return if self.source.blank?
 
     diff = []
