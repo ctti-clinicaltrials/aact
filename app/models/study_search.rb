@@ -31,21 +31,14 @@ class StudySearch < ActiveRecord::Base
   def load_update(days_back=2)
     # date_ranged_query = query + StudySearch.time_range(days_back)
     # collection = StudySearch.collected_nct_ids(date_ranged_query) 
-    collection = StudySearch.collected_nct_ids(query) 
+    collection = ClinicalTrialsApi.nct_ids_for(query) 
     total = collection.count
     collection.each do |study_nct_id|
       next unless Study.find_by(nct_id: study_nct_id)
       
       begin
         puts "#{total} #{study_nct_id}"
-        found_search_result = SearchResult.find_by(nct_id: study_nct_id, name: [name, name.underscore], grouping: [grouping, ''])
-        found_search_result.update(grouping: name) if found_search_result && found_search_result.grouping.empty?
-        found_search_result.update(study_search_id: id) if found_search_result && found_search_result.study_search_id.nil?
-        found_search_result ||= search_results.create(
-                                      nct_id: study_nct_id,
-                                      name: name,
-                                      grouping: grouping,
-                                    )
+        search_results.find_or_create_by(nct_id: study_nct_id, name: name, grouping: grouping)
         total -= 1
       rescue Exception => e
         puts "Failed: #{study_nct_id}"
@@ -87,42 +80,6 @@ class StudySearch < ActiveRecord::Base
 
     date = (Date.current - number_of_days).strftime('%m/%d/%Y')
     "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
-  end
-
-  def self.collected_nct_ids(search_constraints='covid-19')
-    puts "Collecting nct_ids for #{search_constraints}"
-    collection = []
-    first_batch = json_data("https://clinicaltrials.gov/api/query/full_studies?expr=#{search_constraints}&min_rnk=1&max_rnk=100&fmt=json")
-    total_studies_found = first_batch['FullStudiesResponse']['NStudiesFound']
-    limit = (total_studies_found/100.0).ceil
-    countdown = total_studies_found
-    # studies must be retrieved in batches of 99,
-    min = 1
-    max = 100
-   
-    for x in 1..limit
-      puts "Batch Countdown: #{countdown}"
-      collection += fetch_nct_ids(search_constraints, min, max)
-      min += 100
-      max += 100
-      countdown -= 1
-    end
-    collection
-  end
-
-  def self.fetch_nct_ids(search_constraints, min=1, max=100)
-    begin
-      retries ||= 0
-      url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{search_constraints}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
-      data = json_data(url) || {}
-      data = data.dig('FullStudiesResponse', 'FullStudies')
-      nct_id_array = parse_ids(data) if data
-      return nct_id_array || []
-  
-    rescue
-      retry if (retries += 1) < 6
-    end
-    []
   end
 
   def self.parse_ids(study_batch)
