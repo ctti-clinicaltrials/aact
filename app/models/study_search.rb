@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'csv'
 require 'open-uri'
-class StudySearch < ActiveRecord::Base
+class StudySearch < ApplicationRecord
   has_many :search_results, dependent: :destroy
-  validates :grouping, uniqueness: {scope: :query}
-  
+  validates :grouping, uniqueness: { scope: :query }
+
   # def self.populate_database
   #   make_covid_search
   #   make_funder_search
@@ -29,17 +31,17 @@ class StudySearch < ActiveRecord::Base
   # end
 
   def load_update
-    collection = ClinicalTrialsApi.nct_ids_for(query) 
+    collection = ClinicalTrialsApi.nct_ids_for(query)
     total = collection.count
     collection.each do |study_nct_id|
       next unless Study.find_by(nct_id: study_nct_id)
-      
+
       begin
-        puts "#{total} #{study_nct_id}"
+        Rails.logger.debug { "#{total} #{study_nct_id}" }
         search_results.find_or_create_by(nct_id: study_nct_id, name: name, grouping: grouping)
         total -= 1
-      rescue Exception => e
-        puts "Failed: #{study_nct_id}"
+      rescue StandardError => e
+        Rails.logger.debug { "Failed: #{study_nct_id}" }
         ErrorLog.error("#{error.message} (#{error.class} #{error.backtrace}")
         Airbrake.notify(e)
         next
@@ -48,13 +50,13 @@ class StudySearch < ActiveRecord::Base
     SearchResult.make_tsv(name) if save_tsv
   end
 
-  def self.execute(days_back=2)
-    all.each do |query|
-      print "running query group: #{query.grouping}..."
+  def self.execute(_days_back = 2)
+    all.find_each do |query|
+      Rails.logger.debug { "running query group: #{query.grouping}..." }
       query.load_update
-      puts "group is done"
+      Rails.logger.debug 'group is done'
     end
-  rescue => e
+  rescue StandardError => e
     Airbrake.notify(e)
   end
 end
