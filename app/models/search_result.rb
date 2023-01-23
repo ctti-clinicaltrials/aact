@@ -98,16 +98,27 @@ class SearchResult < ApplicationRecord
     FileUtils.rm_f(file)
   end
 
-  def study_values
-    study_nct_id = study.nct_id
-    id_values = study.id_information.pluck(:id_value).join('|')
+  def collaborators_data
     sponsors = study.sponsors
+
     if sponsors.present?
       grouped = sponsors.group_by(&:lead_or_collaborator)
       lead = grouped['lead'].first
       collaborators = grouped['collaborator']
       collab_names = collaborators.map { |collab| "#{collab.name}[#{collab.agency_class}]" }.join('|') if collaborators
     end
+
+    funded_bys = sponsors.blank? ? '' : sponsors.pluck(:agency_class).uniq.join('|')
+    sponsor_collaborators = sponsors.blank? ? '' : sponsors.pluck(:name).join('|')
+    lead_sponsor = lead.blank? ? nil : "#{lead.name}[#{lead.agency_class}]"
+    collaborators = collab_names
+
+    return funded_bys, sponsor_collaborators, lead_sponsor, collaborators
+  end
+
+  def study_values 
+    funded_bys, sponsor_collaborators, lead_sponsor, collaborators  = collaborators_data
+
     interventions = study.interventions
     intervention_name_type = []
     intervention_details = []
@@ -168,19 +179,19 @@ class SearchResult < ApplicationRecord
     basket_protocol = single_term_query('basket', study) ? 'Yes' : 'No'
 
     [
-      study_nct_id, # nct_id
+      study.nct_id, # nct_id
       study.brief_title, # title
       study.acronym, # acronym
-      id_values, # other_ids
-      "https://ClinicalTrials.gov/show/#{study_nct_id}", # url
+      study.id_information.pluck(:id_value).join('|'), # other_ids
+      "https://ClinicalTrials.gov/show/#{study.nct_id}", # url
       study.overall_status, # status
       study.why_stopped, # why_stopped
       hcq_query(study) ? 'Yes' : 'No', # hcq
       study.has_dmc ? 'Yes' : 'No', # has_dmc
-      sponsors.blank? ? '' : sponsors.pluck(:agency_class).uniq.join('|'), # funded_bys
-      sponsors.blank? ? '' : sponsors.pluck(:name).join('|'), # sponsor_collaborators
-      lead.blank? ? nil : "#{lead.name}[#{lead.agency_class}]", # lead_sponsor
-      collab_names, # collaborators
+      funded_bys, # funded_bys
+      sponsor_collaborators, # sponsor_collaborators
+      lead_sponsor, # lead_sponsor
+      collaborators, # collaborators
       study.study_type, # study_type
       study.phase.try(:split, '/').try(:join, '|'), # phases
       study.enrollment, # enrollment
@@ -241,24 +252,18 @@ class SearchResult < ApplicationRecord
 
   def hcq_query
     terms = %w[hydroxychloroquine plaquenil hidroxicloroquina quineprox]
-    official_title = study.official_title =~ /#{terms.join('|')}/i
-    return true if official_title
 
-    brief_title = study.brief_title =~ /#{terms.join('|')}/i
-    return true if brief_title
+    columns = [
+      'studies.official_title',
+      'studies.brief_title',
+      'keywords.name',
+      'interventions.name',
+      'design_groups.title'
+    ]
 
-    sql = terms.map { 'name ILIKE ?' }.join(' OR ')
-    keywords = study.keywords.where(sql, *terms)
-    return true unless keywords.empty?
+    filter = columns.map { |column| terms.map{ |term| "#{column} ILIKE '%#{term}%'"} }.flatten.join(" OR ")
 
-    interventions = study.interventions.where(sql, *terms)
-    return true unless interventions.empty?
-
-    sql = terms.map { 'title ILIKE ?' }.join(' OR ')
-    design_groups = study.design_groups.where(sql, *terms)
-    return true unless design_groups.empty?
-
-    false
+    Study.where(nct_id: study.nct_id).joins(:keywords, :interventions, :design_groups).where(filter).count > 0
   end
 
   def locations(facilities)
