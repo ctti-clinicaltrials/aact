@@ -724,6 +724,43 @@ CREATE TABLE ctgov.ar_internal_metadata (
 
 
 --
+-- Name: background_jobs; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.background_jobs (
+    id bigint NOT NULL,
+    user_id integer,
+    status character varying,
+    completed_at timestamp without time zone,
+    logs character varying,
+    type character varying,
+    data json,
+    url character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: background_jobs_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.background_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: background_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.background_jobs_id_seq OWNED BY ctgov.background_jobs.id;
+
+
+--
 -- Name: baseline_counts; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -2834,6 +2871,13 @@ ALTER TABLE ONLY ctgov.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: background_jobs id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.background_jobs ALTER COLUMN id SET DEFAULT nextval('ctgov.background_jobs_id_seq'::regclass);
+
+
+--
 -- Name: baseline_counts id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3261,6 +3305,14 @@ ALTER TABLE ONLY ctgov.active_storage_blobs
 
 ALTER TABLE ONLY ctgov.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: background_jobs background_jobs_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.background_jobs
+    ADD CONSTRAINT background_jobs_pkey PRIMARY KEY (id);
 
 
 --
@@ -4545,6 +4597,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221122213435'),
 ('20221219165747'),
 ('20230102193531'),
-('20230214200400');
+('20230214200400'),
+('20230216205237');
 
 
