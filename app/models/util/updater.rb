@@ -2,7 +2,7 @@
 
 module Util
   class Updater
-    attr_reader :params, :load_event, :client, :study_counts, :days_back, :rss_reader, :full_featured, :search_days_back
+    attr_reader :params, :load_event, :client, :study_counts, :days_back, :full_featured, :schema, :search_days_back
 
     # days_back:     number of days
     # full_featured: restore public db if true
@@ -117,8 +117,11 @@ module Util
       # 11. change the state of the load event from “running” to “complete”
       @load_event.update({ status:'complete', completed_at: Time.now})
 
-      # 12. send email
-      # send_notification
+      # 12. import study records
+      `rm -rf downloads`
+      StudyRecord.download
+      StudyRecord.unzip
+      StudyRecord.import_files
       
     rescue => e
       # set the load event status to "error"

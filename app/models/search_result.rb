@@ -1,4 +1,3 @@
-require 'rss'
 require 'uri'
 require 'axlsx'
 class SearchResult < ActiveRecord::Base

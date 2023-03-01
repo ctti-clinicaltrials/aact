@@ -2,226 +2,21 @@ require 'open-uri'
 require 'fileutils'
 require 'logger'
 require 'csv'
-SaveTime = Logger.new('log/save_time.log')
-ErrorLog = Logger.new('log/error.log')
 include ActionView::Helpers::DateHelper
-class StudyJsonRecord < ActiveRecord::Base
+class StudyJsonRecord < Support::SupportBase
   self.table_name = 'support.study_json_records'
 
-  def self.db_mgr
-    @db_mgr ||= Util::DbManager.new({search_path: 'ctgov'})
-  end
-
-  def self.updater(params={})
-    @updater ||= Util::Updater.new(params)
-  end
-
-  def self.run(params={})
-    @start_time = Time.current
-    @study_build_failures = []
-    @full_featured = params[:full_featured] || false
-    @params = params
-    @type = params[:event_type] ? params[:event_type] : 'incremental'
-    @days_back = (params[:days_back] ? params[:days_back] : 2)
-    remove_indexes_and_constraints
-    @data_store = []
-
-    begin
-     @type == 'full' ? full : incremental
-    rescue Exception => error
-      msg="#{error.message} (#{error.class} #{error.backtrace}"
-      ErrorLog.error(msg)
-      Airbrake.notify(error)
-    end
-
-    if @type == 'full'
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
-    end
-
-    add_indexes_and_constraints
-    CalculatedValue.populate
-
-    time = Time.now
-    msg = "Took: #{time_ago_in_words(@start_time)} -- #{time - @start_time}, Failed: #{@study_build_failures.uniq}, Current Time: #{time}, Start Time: #{@start_time}"
-    SaveTime.info(msg)
-    puts msg
-  end
-
-  def self.root_dir
-    "#{Rails.public_path}/static"
-  end
-
-  def self.json_file_directory
-    FileUtils.mkdir_p "#{root_dir}/json_downloads"
-    "#{root_dir}/json_downloads"
-  end
-
-  def download_all_studies(unzip_location)
-    success = system(`wget -c -q --show-progress -P "${unzip_location}" https://clinicaltrials.gov/AllAPIJSON.zip`) 
-    raise "Could not download file" unless success
-    success = system(`unzip AllAPIJSON.zip`) 
-    raise "Could not unzip file" unless success
-  end
-
-  def self.download_all_studies(url='https://ClinicalTrials.gov/AllAPIJSON.zip')
-    tries ||= 5
-    file_name="#{json_file_directory}/#{Time.zone.now.strftime("%Y%m%d-%H")}.zip"
-    file = File.new file_name, 'w'
-    begin
-      `curl -o #{file.path} #{url}`
-    rescue Errno::ECONNRESET => e
-      if (tries -=1) > 0
-        retry
-      end
-    end
-    file.binmode
-    file
-  end
-
-  def self.full
-    total_time = 0
-    study_download = download_all_studies
-    nct_ids = StudyJsonRecord.all.map(&:nct_id)
-    remove_indexes_and_constraints
-    clear_out_data_for(nct_ids)
-
-    Zip::File.open(study_download.path) do |unzipped_folders|
-      original_count = unzipped_folders.size
-      @count_down = original_count
-      unzipped_folders.each do |file|
-        begin
-          unless file.name =~/contents/i
-            start = Time.now
-
-            contents = file.get_input_stream.read
-            json = JSON.parse(contents)
-            study = json['FullStudy']
-            save_single_study(study)
-
-            duration = start - Time.now
-            total_time += duration
-
-            puts "#{@count_down -= 1}, took #{htime(duration)}, total time so far #{htime(total_time)}, Study Count: #{Study.count}"
-          end
-        rescue Exception => error
-          msg="#{error.message} (#{error.class} #{error.backtrace}"
-          ErrorLog.error(msg)
-          Airbrake.notify(error)
-        end
-      end
-    end
-    add_indexes_and_constraints
-  end
-
-  def self.htime(seconds)
-    seconds = seconds.to_i
-    hours = seconds / 3600
-    seconds -= hours * 3600
-    minutes = seconds / 60
-    seconds -= minutes * 60
-    "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
-  end
-
-  def self.incremental
-    first_batch = json_data
-    # total_number is the number of studies available, meaning the total number in their database
-    @count_down = first_batch['FullStudiesResponse']['NStudiesFound']
-    limit = (@count_down/100.0).ceil
-    save_study_records(first_batch['FullStudiesResponse']['FullStudies'])
-
-    # since I already saved the first hundred studies I start the loop after that point
-    # studies must be retrieved in batches of 99,
-    # using min and max to determine the study to start with and the study to end with respectively (in that batch)
-    min = 101
-    max = 200
-
-    for x in 1..limit
-      fetch_studies(min, max)
-      min += 100
-      max += 100
-    end
-  end
-
-  def self.fetch_studies(min=1, max=100)
-    begin
-      retries ||= 0
-      url = "https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
-      data = json_data(url) || {}
-      data = data.dig('FullStudiesResponse', 'FullStudies')
-      save_study_records(data) if data
-    rescue
-      retry if (retries += 1) < 6
-    end
-  end
-
-  def self.save_study_records(study_batch)
-    return unless study_batch
-
-    nct_id_array = study_batch.collect{|study_data| study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId'] }
-    clear_out_data_for(nct_id_array)
-
-    study_batch.each do |study_data|
-      record_time = Time.zone.now
-      nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-      save_single_study(study_data)
-      time = Time.zone.now
-      puts "#{time}:  saved #{time - record_time}: #{nct_id} - #{@count_down}"
-      @count_down -= 1
-    end
-  end
-
-  def self.save_single_study(study_data)
-    nct_id = study_data['Study']['ProtocolSection']['IdentificationModule']['NCTId']
-    record = StudyJsonRecord.new(nct_id: nct_id, content: study_data, saved_study_at: nil, download_date: @start_time)
-    if record.save
-      record.build_study
-    end
-  end
-
-  def self.clear_out_data_for(nct_ids, records_too=true)
-    return if nct_ids.nil? || nct_ids.empty?
-
-    db_mgr.clear_out_data_for(nct_ids)
-    delete_json_records(nct_ids) if records_too
-  end
-
-  def self.remove_indexes_and_constraints
-    db_mgr.remove_indexes_and_constraints
-  end
-
-  def self.add_indexes_and_constraints
-    db_mgr.add_indexes_and_constraints
-  end
-
-  def self.delete_json_records(nct_ids)
-    return if nct_ids.nil? || nct_ids.empty?
-
-    ids = nct_ids.map { |i| "'" + i.to_s + "'" }.join(",")
-    ActiveRecord::Base.connection.execute("DELETE FROM #{self.table_name} WHERE nct_id IN (#{ids})")
-  end
-
-  def self.json_data(url="https://clinicaltrials.gov/api/query/full_studies?expr=#{time_range}&min_rnk=1&max_rnk=100&fmt=json")
-    JSON.parse(open(url).read)
-  end
-
-  def self.time_range
-    return nil if @type == 'full'
-    return nil unless @days_back != 'nil'
-
-    date = (Date.current - @days_back.to_i).strftime('%m/%d/%Y')
-    "AREA[LastUpdatePostDate]RANGE[#{date},%20MAX]"
-  end
-
+  # 1. remove all study data if study exists
+  # 2. import all the study data
   def create_or_update_study
     study = Study.find_by(nct_id: nct_id)
     study.remove_study_data if study
     s = Time.now
     build_study
-    # CalculatedValue.new.create_from(self).save
     puts "  insert-study #{Time.now - s}" if ENV['VERBOSE']
   end
 
+  # Make an API call to update the json
   def update_from_api
     url = "https://clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5D#{nct_id}&min_rnk=1&max_rnk=&fmt=json"
     attempts = 0
@@ -248,10 +43,11 @@ class StudyJsonRecord < ActiveRecord::Base
         return update content: data, download_date: Time.now
       end
     rescue => e
-      ErrorLog.error(e)
       Airbrake.notify(e)
     end
   end
+
+  ###### Utils ######
 
   def key_check(key)
     key ||= {}
@@ -1023,7 +819,7 @@ class StudyJsonRecord < ActiveRecord::Base
     groups_data = StudyJsonRecord.result_groups(groups, selector, result_type, nct_id)
     result_groups = {}
     groups_data.each do |group|
-      result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group)
+      result_groups[group[:ctgov_group_code]] = ResultGroup.create(group)
     end
 
     return result_groups
@@ -1544,16 +1340,20 @@ class StudyJsonRecord < ActiveRecord::Base
     @adverse_events_module = adverse_events_module
   end
 
+  def preprocess
+    @protocol_section = protocol_section
+    @results_section = results_section
+    @derived_section = derived_section
+    @annotation_section = annotation_section
+    @document_section = document_section
+    @contacts_location_module = contacts_location_module
+    @locations_array = locations_array
+    @adverse_events_module = adverse_events_module
+  end
+
   def build_study
     begin
-      @protocol_section = protocol_section
-      @results_section = results_section
-      @derived_section = derived_section
-      @annotation_section = annotation_section
-      @document_section = document_section
-      @contacts_location_module = contacts_location_module
-      @locations_array = locations_array
-      @adverse_events_module = adverse_events_module
+      preprocess
       data = data_collection
       Study.create(data[:study]) if data[:study]
 
@@ -1616,7 +1416,6 @@ class StudyJsonRecord < ActiveRecord::Base
       update(saved_study_at: Time.now)
     rescue Exception => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
-      ErrorLog.error(msg)
       Airbrake.notify(error)
       @study_build_failures ||= []
       @study_build_failures << id
@@ -1777,193 +1576,5 @@ class StudyJsonRecord < ActiveRecord::Base
 
     hash_array.each{ |h| h[key] = value }
     hash_array
-  end
-
-  def self.data_counts(study)
-    {
-      nct_id: study.nct_id,
-      intervention: study.interventions.count,
-      intervention_other_name: study.intervention_other_names.count,
-      design_group: study.design_groups.count,
-      design_group_intervention: study.design_group_interventions.count,
-      detailed_description: study.detailed_description.nil? ? 0 : 1,
-      brief_summary: study.brief_summary.nil? ? 0 : 1,
-      design: study.design.nil? ? 0 : 1,
-      eligibility: study.eligibility.nil? ? 0 : 1,
-      participant_flow: study.participant_flow.nil? ? 0 : 1,
-      result_groups: study.result_groups.count,
-      baseline_count: study.baseline_counts.count,
-      baseline_measurement: study.baseline_measurements.count,
-      browse_condition: study.browse_conditions.count,
-      browse_intervention: study.browse_interventions.count,
-      central_contact: study.central_contacts.count,
-      condition: study.conditions.count,
-      country: study.countries.count,
-      document: study.documents.count,
-      facility: study.facilities.count,
-      facility_contact: study.facility_contacts.count,
-      facility_investigator: study.facility_investigators.count,
-      id_information: study.id_information.count,
-      ipd_information_type: study.ipd_information_types.count,
-      keyword: study.keywords.count,
-      link: study.links.count,
-      milestone: study.milestones.count,
-      outcome: study.outcomes.count,
-      outcome_count: study.outcome_counts.count,
-      outcome_measurement: study.outcome_measurements.count,
-      outcome_analysis: study.outcome_analyses.count,
-      outcome_analysis_group: study.outcome_analysis_groups.count,
-      overall_official: study.overall_officials.count,
-      design_outcome: study.design_outcomes.count,
-      pending_result: study.pending_results.count,
-      provided_document: study.provided_documents.count,
-      reported_event: study.reported_events.count,
-      reported_event_total: study.reported_event_totals.count,
-      responsible_party: study.responsible_parties.count,
-      result_agreement: study.result_agreements.count,
-      result_contact: study.result_contacts.count,
-      study_reference: study.study_references.count,
-      sponsor: study.sponsors.count,
-      drop_withdrawal: study.drop_withdrawals.count,
-      calculated_value: !study.calculated_value.nil?,
-      search_results: study.search_results.count,
-    }
-  end
-
-  def self.data_verification(schema1='ctgov', schema2)
-    dif = Hash.new { |h, k| h[k] = [] }
-    start_time = Time.zone.now
-    puts "**********   starting all_data_collection for #{schema1}:   **********"
-    puts "Start Time: #{start_time}"
-    first_counts = all_data_collection(schema1)
-    puts "**********   starting all_data_collection for #{schema2}:   **********"
-    second_counts = all_data_collection(schema2)
-
-    first_counts.each_with_index do |(nct_id_key, first_obj_counts), index|
-      puts "**********   countdown of total studies left to go: #{first_counts.size-index}\n"
-      second_obj_counts = second_counts[nct_id_key] || {}
-
-      unless second_obj_counts == first_obj_counts
-        first_obj_counts.each do |name_of_model, obj_count|
-            other_count = second_obj_counts[name_of_model]
-            if other_count != obj_count
-              dif["#{nct_id_key}"] << {"#{name_of_model}": {"#{schema1}": obj_count, "#{schema2}": other_count} }
-            end
-        end
-      end
-    end
-    end_time = Time.zone.now
-    puts "End Time: #{end_time}"
-    puts "Total Time Elapsed: #{end_time - start_time} seconds"
-    return dif
-  end
-
-  def self.all_data_collection(schema_name='ctgov')
-    StudyJsonRecord.set_table_schema(schema_name)
-    studies = Study.all
-    collection = {}
-    studies.each do |study|
-      collection[study.nct_id] = data_counts(study)
-    end
-    collection
-  end
-
-  def self.clean_up(nct_id= 'NCT04456920')
-    remove_indexes_and_constraints
-    clear_out_data_for([nct_id], false)
-    study_record = find_by(nct_id: nct_id)
-    study_record.build_study
-    add_indexes_and_constraints
-  end
-
-  def self.data_verification_csv(schema1='ctgov', schema2)
-    file = "#{Util::FileManager.new.differences_directory}/nct_id_count_differences.csv"
-    headers = ["NCT_ID", "Model", "#{schema1} Count", "#{schema1} Count"]
-    begin
-      CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|
-        data_verification(schema1,schema2).each do |nct_number, study_objects|
-          study_objects.each do |object_hash|
-            object_hash.each do |object_model, object_differences|
-              csv << [nct_number, object_model, object_differences[:"#{schema1}"], object_differences[:"#{schema2}"]]
-            end
-          end
-        end
-      end
-    rescue Exception => error
-      msg="#{error.message} (#{error.class} #{error.backtrace}"
-      ErrorLog.error(msg)
-      Airbrake.notify(error)
-    end
-  end
-
-  def self.studies_batch_counts
-    # Set the schema to ctgov
-    StudyJsonRecord.set_table_schema('ctgov')
-    ctgov_collection = Hash.new {}
-
-    # Call find in batches on all the Study (group of 1000 studies)
-    ctgov_studies = Study.all.find_in_batches do |studies|
-      # Start a loop to collect the counts for each of the 1000 studies from ctgov
-      studies.each do |study|
-        ctgov_collection[study.nct_id] = data_counts(study)
-      end
-
-      # Switch the schema to ctgov_beta
-      StudyJsonRecord.set_table_schema('ctgov_beta')
-
-      # Use the nct_ids from the 1000 ctgov studies to find the matching studies in ctgov_beta
-      ctgov_beta_studies = Study.where(nct_id: studies.pluck(:nct_id))
-      ctgov_beta_collection = Hash.new {}
-
-      # Start a loop to collect the counts for each of the 1000 studies from ctgov_beta
-      ctgov_beta_studies.each do |study|
-        ctgov_beta_collection[study.nct_id] = data_counts(study)
-      end
-
-      # Call data_differences to compare the study count differences of ctgov and ctgov_beta
-      data_differences(ctgov_collection, ctgov_beta_collection)
-
-      # Switch the schema back to ctgov to compare the next 1000 studies
-      StudyJsonRecord.set_table_schema('ctgov')
-    end
-  end
-
-  def self.data_differences(ctgov_hash, ctgov_beta_hash)
-    differences = Hash.new {}
-    start_time = Time.zone.now
-    # Print messages before starting data_differences of ctgov and ctgov_beta along with the start time
-    puts '**********   Starting data_differences for ctgov and ctgov_beta   **********'
-    puts "Start Time: #{start_time}"
-
-    # Create CSV directory and file to store ctgov and ctgov_beta count differences
-    file = "#{Util::FileManager.new.beta_differences_directory}/nct_id_count_differences.csv"
-    headers = ["NCT_ID", "Model", "Beta Count", "Regular Count"]
-    begin
-      CSV.open(file, 'w', write_headers: true, headers: headers) do |csv|
-        # Loop though the ctgov hash and use the key (like 'NCT123') to find the corresponding study in the ctgov_beta hash
-        ctgov_hash.each_with_index do |(nct_id_key, counts_value), index|
-          # Print message showing a countdown of studies left to go when looping through ctgov and ctgov_beta hashes
-          puts "**********   Countdown of total studies left to go: #{ctgov_hash.size-index}\n"
-          # Loop through each study data counts and compare the differences of the two collections
-          counts_value.each do |study_name, regular_counts|
-            # find the corresponding ctgov beta count from the ctgov_beta hash
-            ctgov_beta_counts = ctgov_beta_hash.dig(nct_id_key, study_name)
-            # if there is a difference between the two studies counts, save it to the CSV file
-            if regular_counts != ctgov_beta_counts
-              csv <<  [nct_id_key, study_name, ctgov_beta_counts, regular_counts]
-            end
-          end
-        end
-      end
-    # Log any errors and notify airbrake
-    rescue Exception => error
-          msg="#{error.message} (#{error.class} #{error.backtrace}"
-          ErrorLog.error(msg)
-          Airbrake.notify(error)
-    end
-    # Print messages showing the end time and total time elapsed for data_differences of ctgov_beta and ctgov counts
-    end_time = Time.zone.now
-    puts "End Time: #{end_time}"
-    puts "**********   Total Time elapsed for data_differences: #{end_time - start_time} seconds   **********"
   end
 end
