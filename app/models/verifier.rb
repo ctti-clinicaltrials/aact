@@ -42,4 +42,12 @@ class Verifier < ActiveRecord::Base
 
     return diff
   end  
+
+  def self.find_location_contact_name_diffs
+    path = 'ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationContactList|LocationContact|LocationContactName'.split('|')
+    StudyJsonRecord.find_each do |record|
+      ctgov = record.dig(*path).count
+      aact = FacilityContact.where("name IS NOT NULL AND name != ''").where(nct_id: record.nct_id).count
+    end
+  end
 end

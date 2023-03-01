@@ -1577,4 +1577,20 @@ class StudyJsonRecord < Support::SupportBase
     hash_array.each{ |h| h[key] = value }
     hash_array
   end
+
+  def dig(*path)
+    current = content
+    while path.length > 0
+      key = path.shift
+      case current
+      when Hash
+        current = current[key]
+      when Array
+        current = current.map{|v| v[key]}.compact.flatten
+      else
+        raise "incorrect path"
+      end
+    end
+    return current
+  end
 end
