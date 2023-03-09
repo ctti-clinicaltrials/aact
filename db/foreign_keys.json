@@ -1,0 +1,104 @@
+[
+  {
+    "child_table": "baseline_counts",
+    "parent_table": "result_groups",
+    "child_column": "result_group_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "baseline_measurements",
+    "parent_table": "result_groups",
+    "child_column": "result_group_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "design_group_interventions",
+    "parent_table": "interventions",
+    "child_column": "intervention_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "design_group_interventions",
+    "parent_table": "design_groups",
+    "child_column": "design_group_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "drop_withdrawals",
+    "parent_table": "result_groups",
+    "child_column": "result_group_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "reported_events",
+    "parent_table": "result_groups",
+    "child_column": "result_group_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "facility_contacts",
+    "parent_table": "facilities",
+    "child_column": "facility_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "facility_investigators",
+    "parent_table": "facilities",
+    "child_column": "facility_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "intervention_other_names",
+    "parent_table": "interventions",
+    "child_column": "intervention_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "milestones",
+    "parent_table": "result_groups",
+    "child_column": "result_group_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "outcome_analyses",
+    "parent_table": "outcomes",
+    "child_column": "outcome_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "outcome_analysis_groups",
+    "parent_table": "result_groups",
+    "child_column": "result_group_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "outcome_analysis_groups",
+    "parent_table": "outcome_analyses",
+    "child_column": "outcome_analysis_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "outcome_counts",
+    "parent_table": "outcomes",
+    "child_column": "outcome_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "outcome_counts",
+    "parent_table": "result_groups",
+    "child_column": "result_group_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "outcome_measurements",
+    "parent_table": "outcomes",
+    "child_column": "outcome_id",
+    "parent_column": "id"
+  },
+  {
+    "child_table": "outcome_measurements",
+    "parent_table": "result_groups",
+    "child_column": "result_group_id",
+    "parent_column": "id"
+  }
+]

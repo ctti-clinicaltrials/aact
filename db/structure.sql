@@ -724,6 +724,43 @@ CREATE TABLE ctgov.ar_internal_metadata (
 
 
 --
+-- Name: background_jobs; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.background_jobs (
+    id bigint NOT NULL,
+    user_id integer,
+    status character varying,
+    completed_at timestamp without time zone,
+    logs character varying,
+    type character varying,
+    data json,
+    url character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: background_jobs_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.background_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: background_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.background_jobs_id_seq OWNED BY ctgov.background_jobs.id;
+
+
+--
 -- Name: baseline_counts; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1553,7 +1590,8 @@ CREATE TABLE ctgov.file_records (
     file_type character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    url character varying
+    url character varying,
+    load_event_id bigint
 );
 
 
@@ -2546,7 +2584,8 @@ CREATE TABLE ctgov.study_searches (
     name character varying DEFAULT ''::character varying NOT NULL,
     beta_api boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    active boolean
 );
 
 
@@ -2829,6 +2868,13 @@ ALTER TABLE ONLY ctgov.active_storage_attachments ALTER COLUMN id SET DEFAULT ne
 --
 
 ALTER TABLE ONLY ctgov.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('ctgov.active_storage_blobs_id_seq'::regclass);
+
+
+--
+-- Name: background_jobs id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.background_jobs ALTER COLUMN id SET DEFAULT nextval('ctgov.background_jobs_id_seq'::regclass);
 
 
 --
@@ -3259,6 +3305,14 @@ ALTER TABLE ONLY ctgov.active_storage_blobs
 
 ALTER TABLE ONLY ctgov.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: background_jobs background_jobs_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.background_jobs
+    ADD CONSTRAINT background_jobs_pkey PRIMARY KEY (id);
 
 
 --
@@ -4028,6 +4082,13 @@ CREATE INDEX index_facility_contacts_on_contact_type ON ctgov.facility_contacts 
 
 
 --
+-- Name: index_file_records_on_load_event_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_file_records_on_load_event_id ON ctgov.file_records USING btree (load_event_id);
+
+
+--
 -- Name: index_id_information_on_id_source; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4456,6 +4517,14 @@ ALTER TABLE ONLY ctgov.active_storage_attachments
 
 
 --
+-- Name: file_records fk_rails_f437ab93ba; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_records
+    ADD CONSTRAINT fk_rails_f437ab93ba FOREIGN KEY (load_event_id) REFERENCES support.load_events(id);
+
+
+--
 -- Name: load_issues fk_rails_1a961417a0; Type: FK CONSTRAINT; Schema: support; Owner: -
 --
 
@@ -4499,6 +4568,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201201210834'),
 ('20210108195415'),
 ('20210108200600'),
+('20210216235354'),
 ('20210308235723'),
 ('20210414222919'),
 ('20210526192648'),
@@ -4525,5 +4595,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220928175111'),
 ('20220930181441'),
 ('20221122213435'),
-('20221219165747');
-('20220930181441');
+('20221219165747'),
+('20230102193531'),
+('20230214200400'),
+('20230216205237');
+
+

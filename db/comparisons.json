@@ -1,0 +1,1532 @@
+[
+  {
+    "ctgov_selector": "ProtocolSection|IdentificationModule|NCTId",
+    "table": "studies",
+    "column": "nct_id",
+    "condition": null
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IdentificationModule|NCTIdAliasList|NCTIdAlias",
+    "table": "id_information",
+    "column": "id_value",
+    "condition": "where id_source='nct_alias' and id_value is not null and id_value <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IdentificationModule|OrgStudyIdInfo|OrgStudyId",
+    "table": "id_information",
+    "column": "id_value",
+    "condition": "where id_source='org_study_id' and id_value is not null and id_value <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IdentificationModule|SecondaryIdInfoList|SecondaryIdInfo|SecondaryId",
+    "table": "id_information",
+    "column": "id_value",
+    "condition": "where id_source='secondary_id' and id_value is not null and id_value <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IdentificationModule|Organization|OrgFullName",
+    "table": "studies",
+    "column": "source",
+    "condition": "where source is not null and source <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IdentificationModule|BriefTitle",
+    "table": "studies",
+    "column": "brief_title",
+    "condition": "where brief_title is not null and brief_title <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IdentificationModule|OfficialTitle",
+    "table": "studies",
+    "column": "official_title",
+    "condition": "where official_title is not null and official_title <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IdentificationModule|Acronym",
+    "table": "studies",
+    "column": "acronym",
+    "condition": "where acronym is not null and acronym <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|StatusVerifiedDate",
+    "table": "studies",
+    "column": "verification_month_year",
+    "condition": "where verification_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|OverallStatus",
+    "table": "studies",
+    "column": "overall_status",
+    "condition": "where overall_status is not null and overall_status <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|LastKnownStatus",
+    "table": "studies",
+    "column": "last_known_status",
+    "condition": "where last_known_status is not null and last_known_status <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|WhyStopped",
+    "table": "studies",
+    "column": "why_stopped",
+    "condition": "where why_stopped is not null and why_stopped <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|ExpandedAccessInfo|HasExpandedAccess",
+    "table": "studies",
+    "column": "has_expanded_access",
+    "condition": "where has_expanded_access is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|StartDateStruct|StartDate",
+    "table": "studies",
+    "column": "start_date",
+    "condition": "where start_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|StartDateStruct|StartDateType",
+    "table": "studies",
+    "column": "start_date_type",
+    "condition": "where start_date_type is not null and start_date_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|PrimaryCompletionDateStruct|PrimaryCompletionDate",
+    "table": "studies",
+    "column": "primary_completion_date",
+    "condition": "where primary_completion_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|PrimaryCompletionDateStruct|PrimaryCompletionDateType",
+    "table": "studies",
+    "column": "primary_completion_date_type",
+    "condition": "where primary_completion_date_type is not null and primary_completion_date_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|CompletionDateStruct|CompletionDate",
+    "table": "studies",
+    "column": "completion_date",
+    "condition": "where completion_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|CompletionDateStruct|CompletionDateType",
+    "table": "studies",
+    "column": "completion_date_type",
+    "condition": "where completion_date_type is not null and completion_date_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|StudyFirstSubmitDate",
+    "table": "studies",
+    "column": "study_first_submitted_date",
+    "condition": "where study_first_submitted_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|StudyFirstSubmitQCDate",
+    "table": "studies",
+    "column": "study_first_submitted_qc_date",
+    "condition": "where study_first_submitted_qc_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|StudyFirstPostDateStruct|StudyFirstPostDate",
+    "table": "studies",
+    "column": "study_first_posted_date",
+    "condition": "where study_first_posted_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|StudyFirstPostDateStruct|StudyFirstPostDateType",
+    "table": "studies",
+    "column": "study_first_posted_date_type",
+    "condition": "where study_first_posted_date_type is not null and study_first_posted_date_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|ResultsFirstSubmitDate",
+    "table": "studies",
+    "column": "results_first_submitted_date",
+    "condition": "where results_first_submitted_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|ResultsFirstSubmitQCDate",
+    "table": "studies",
+    "column": "results_first_submitted_qc_date",
+    "condition": "where results_first_submitted_qc_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|ResultsFirstPostDateStruct|ResultsFirstPostDate",
+    "table": "studies",
+    "column": "results_first_posted_date",
+    "condition": "where results_first_posted_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|ResultsFirstPostDateStruct|ResultsFirstPostDateType",
+    "table": "studies",
+    "column": "results_first_posted_date_type",
+    "condition": "where results_first_posted_date_type is not null and results_first_posted_date_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|DispFirstSubmitDate",
+    "table": "studies",
+    "column": "disposition_first_submitted_date",
+    "condition": "where disposition_first_submitted_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|DispFirstSubmitQCDate",
+    "table": "studies",
+    "column": "disposition_first_submitted_qc_date",
+    "condition": "where disposition_first_submitted_qc_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|DispFirstPostDateStruct|DispFirstPostDate",
+    "table": "studies",
+    "column": "disposition_first_posted_date",
+    "condition": "where disposition_first_submitted_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|DispFirstPostDateStruct|DispFirstPostDateType",
+    "table": "studies",
+    "column": "disposition_first_posted_date_type",
+    "condition": "where disposition_first_posted_date_type is not null and disposition_first_posted_date_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|LastUpdateSubmitDate",
+    "table": "studies",
+    "column": "last_update_submitted_qc_date",
+    "condition": "where last_update_submitted_qc_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|LastUpdatePostDateStruct|LastUpdatePostDate",
+    "table": "studies",
+    "column": "last_update_posted_date",
+    "condition": "where last_update_posted_date is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|StatusModule|LastUpdatePostDateStruct|LastUpdatePostDateType",
+    "table": "studies",
+    "column": "last_update_posted_date_type",
+    "condition": "where last_update_posted_date_type is not null and last_update_posted_date_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|SponsorCollaboratorsModule|ResponsibleParty|ResponsiblePartyType",
+    "table": "responsible_parties",
+    "column": "responsible_party_type",
+    "condition": "where responsible_party_type is not null and responsible_party_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|SponsorCollaboratorsModule|ResponsibleParty|ResponsiblePartyInvestigatorFullName",
+    "table": "responsible_parties",
+    "column": "name",
+    "condition": "where name is not null and name <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|SponsorCollaboratorsModule|ResponsibleParty|ResponsiblePartyInvestigatorTitle",
+    "table": "responsible_parties",
+    "column": "title",
+    "condition": "where title is not null and title <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|SponsorCollaboratorsModule|ResponsibleParty|ResponsiblePartyInvestigatorAffiliation",
+    "table": "responsible_parties",
+    "column": "affiliation",
+    "condition": "where affiliation is not null and affiliation <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|SponsorCollaboratorsModule|ResponsibleParty|ResponsiblePartyOldOrganization",
+    "table": "responsible_parties",
+    "column": "organization",
+    "condition": "where organization is not null and organization <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|SponsorCollaboratorsModule|LeadSponsor|LeadSponsorName",
+    "table": "sponsors",
+    "column": "name",
+    "condition": "where lead_or_collaborator='lead' and name is not null and name <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|SponsorCollaboratorsModule|LeadSponsor|LeadSponsorClass",
+    "table": "sponsors",
+    "column": "agency_class",
+    "condition": "where lead_or_collaborator='lead' and agency_class is not null and agency_class <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|SponsorCollaboratorsModule|CollaboratorList|Collaborator|CollaboratorName",
+    "table": "sponsors",
+    "column": "name",
+    "condition": "where lead_or_collaborator='collaborator' and name is not null and name <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|SponsorCollaboratorsModule|CollaboratorList|Collaborator|CollaboratorClass",
+    "table": "sponsors",
+    "column": "agency_class",
+    "condition": "where lead_or_collaborator='collaborator' and agency_class is not null and agency_class <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OversightModule|OversightHasDMC",
+    "table": "studies",
+    "column": "has_dmc",
+    "condition": "where has_dmc is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OversightModule|IsFDARegulatedDrug",
+    "table": "studies",
+    "column": "is_fda_regulated_drug",
+    "condition": "where is_fda_regulated_drug is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OversightModule|IsFDARegulatedDevice",
+    "table": "studies",
+    "column": "is_fda_regulated_device",
+    "condition": "where is_fda_regulated_device is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OversightModule|IsUnapprovedDevice",
+    "table": "studies",
+    "column": "is_unapproved_device",
+    "condition": "where is_unapproved_device is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OversightModule|IsPPSD",
+    "table": "studies",
+    "column": "is_ppsd",
+    "condition": "where is_ppsd is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OversightModule|IsUSExport",
+    "table": "studies",
+    "column": "is_us_export",
+    "condition": "where is_us_export is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DescriptionModule|BriefSummary",
+    "table": "brief_summaries",
+    "column": "description",
+    "condition": "where description is not null and description <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DescriptionModule|DetailedDescription",
+    "table": "detailed_descriptions",
+    "column": "description",
+    "condition": "where description is not null and description <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ConditionsModule|ConditionList|Condition",
+    "table": "conditions",
+    "column": "name",
+    "condition": "where name is not null and name <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ConditionsModule|KeywordList|Keyword",
+    "table": "keywords",
+    "column": "name",
+    "condition": "where name is not null and name <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|StudyType",
+    "table": "studies",
+    "column": "study_type",
+    "condition": "where study_type is not null and study_type <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|ExpandedAccessTypes|ExpAccTypeIndividual",
+    "table": "studies",
+    "column": "expanded_access_type_individual",
+    "condition": "where expanded_access_type_individual is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|ExpandedAccessTypes|ExpAccTypeIntermediate",
+    "table": "studies",
+    "column": "expanded_access_type_intermediate",
+    "condition": "where expanded_access_type_intermediate is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|ExpandedAccessTypes|ExpAccTypeTreatment",
+    "table": "studies",
+    "column": "expanded_access_type_treatment",
+    "condition": "where expanded_access_type_treatment is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|PatientRegistry",
+    "table": "studies",
+    "column": "study_type",
+    "condition": "where study_type iLIKE '%Patient Registry%' or study_type iLIKE '%PatientRegistry%'"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|TargetDuration",
+    "table": "studies",
+    "column": "target_duration",
+    "condition": "where target_duration is not null and target_duration <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|PhaseList|Phase",
+    "table": "studies",
+    "column": "phase",
+    "condition": "where phase is not null and phase <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|DesignInfo|DesignAllocation",
+    "table": "designs",
+    "column": "allocation",
+    "condition": "where allocation is not null and allocation <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|DesignInfo|DesignInterventionModel",
+    "table": "designs",
+    "column": "intervention_model",
+    "condition": "where intervention_model is not null and intervention_model <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|DesignInfo|DesignInterventionModelDescription",
+    "table": "designs",
+    "column": "intervention_model_description",
+    "condition": "where intervention_model_description is not null and intervention_model_description <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|DesignInfo|DesignPrimaryPurpose",
+    "table": "designs",
+    "column": "primary_purpose",
+    "condition": "where primary_purpose is not null and primary_purpose <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|DesignInfo|DesignObservationalModelList|DesignObservationalModel",
+    "table": "designs",
+    "column": "observational_model",
+    "condition": "where observational_model is not null and observational_model <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|DesignInfo|DesignTimePerspectiveList|DesignTimePerspective",
+    "table": "designs",
+    "column": "time_perspective",
+    "condition": "where time_perspective is not null and time_perspective <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|DesignInfo|DesignMaskingInfo|DesignMasking",
+    "table": "designs",
+    "column": "masking",
+    "condition": "where masking is not null and masking <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|DesignInfo|DesignMaskingInfo|DesignMaskingDescription",
+    "table": "designs",
+    "column": "masking_description",
+    "condition": "where masking_description is not null and masking_description <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|DesignInfo|DesignMaskingInfo|DesignWhoMaskedList|DesignWhoMasked",
+    "table": "designs",
+    "column": "CONCAT(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked)",
+    "condition": " where COALESCE(subject_masked,caregiver_masked,investigator_masked,outcomes_assessor_masked) is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|BioSpec|BioSpecRetention",
+    "table": "studies",
+    "column": "biospec_retention",
+    "condition": "where biospec_retention is not null and biospec_retention <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|BioSpec|BioSpecDescription",
+    "table": "studies",
+    "column": "biospec_description",
+    "condition": "where biospec_description is not null and biospec_description <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|EnrollmentInfo|EnrollmentCount",
+    "table": "studies",
+    "column": "enrollment",
+    "condition": "where enrollment is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|DesignModule|EnrollmentInfo|EnrollmentType",
+    "table": "studies",
+    "column": "enrollment_type",
+    "condition": "where enrollment_type is not null and enrollment_type <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ArmsInterventionsModule|ArmGroupList|ArmGroup|ArmGroupLabel",
+    "table": "design_groups",
+    "column": "title",
+    "condition": "where title is not null and title <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ArmsInterventionsModule|ArmGroupList|ArmGroup|ArmGroupType",
+    "table": "design_groups",
+    "column": "group_type",
+    "condition": "where group_type is not null and group_type <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ArmsInterventionsModule|ArmGroupList|ArmGroup|ArmGroupDescription",
+    "table": "design_groups",
+    "column": "description",
+    "condition": "where description is not null and description <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ArmsInterventionsModule|InterventionList|Intervention|InterventionType",
+    "table": "interventions",
+    "column": "intervention_type",
+    "condition": "where intervention_type is not null and intervention_type <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ArmsInterventionsModule|InterventionList|Intervention|InterventionName",
+    "table": "interventions",
+    "column": "name",
+    "condition": "where name is not null and name <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ArmsInterventionsModule|InterventionList|Intervention|InterventionDescription",
+    "table": "interventions",
+    "column": "description",
+    "condition": "where description is not null and description <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ArmsInterventionsModule|InterventionList|Intervention|InterventionArmGroupLabelList|InterventionArmGroupLabel",
+    "table": "design_groups",
+    "column": "title",
+    "condition": "where title is not null and title <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ArmsInterventionsModule|InterventionList|Intervention|InterventionOtherNameList|InterventionOtherName",
+    "table": "intervention_other_names",
+    "column": "name",
+    "condition": "where name is not null and name <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OutcomesModule|PrimaryOutcomeList|PrimaryOutcome|PrimaryOutcomeMeasure",
+    "table": "design_outcomes",
+    "column": "measure",
+    "condition": "where outcome_type iLike 'Primary' and measure is not null and measure <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OutcomesModule|PrimaryOutcomeList|PrimaryOutcome|PrimaryOutcomeDescription",
+    "table": "design_outcomes",
+    "column": "description",
+    "condition": "where outcome_type iLike 'Primary' and description is not null and description <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OutcomesModule|PrimaryOutcomeList|PrimaryOutcome|PrimaryOutcomeTimeFrame",
+    "table": "design_outcomes",
+    "column": "time_frame",
+    "condition": "where outcome_type iLike 'Primary' and time_frame is not null and time_frame <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OutcomesModule|SecondaryOutcomeList|SecondaryOutcome|SecondaryOutcomeMeasure",
+    "table": "design_outcomes",
+    "column": "measure",
+    "condition": "where outcome_type iLike 'Secondary' and measure is not null and measure <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OutcomesModule|SecondaryOutcomeList|SecondaryOutcome|SecondaryOutcomeDescription",
+    "table": "design_outcomes",
+    "column": "description",
+    "condition": "where outcome_type iLike 'Secondary' and description is not null and description <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OutcomesModule|SecondaryOutcomeList|SecondaryOutcome|SecondaryOutcomeTimeFrame",
+    "table": "design_outcomes",
+    "column": "time_frame",
+    "condition": "where outcome_type iLike 'Secondary' and time_frame is not null and time_frame <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OutcomesModule|OtherOutcomeList|OtherOutcome|OtherOutcomeMeasure",
+    "table": "design_outcomes",
+    "column": "measure",
+    "condition": "where outcome_type iLike 'Other' and measure is not null and measure <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OutcomesModule|OtherOutcomeList|OtherOutcome|OtherOutcomeDescription",
+    "table": "design_outcomes",
+    "column": "description",
+    "condition": "where outcome_type iLike 'Other' and description is not null and description <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|OutcomesModule|OtherOutcomeList|OtherOutcome|OtherOutcomeTimeFrame",
+    "table": "design_outcomes",
+    "column": "time_frame",
+    "condition": "where outcome_type iLike 'Other' and time_frame is not null and time_frame <>''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|EligibilityModule|EligibilityCriteria",
+    "table": "eligibilities",
+    "column": "criteria",
+    "condition": "where criteria is not null and criteria <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|EligibilityModule|HealthyVolunteers",
+    "table": "eligibilities",
+    "column": "healthy_volunteers",
+    "condition": "where healthy_volunteers is not null and healthy_volunteers <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|EligibilityModule|Gender",
+    "table": "eligibilities",
+    "column": "gender",
+    "condition": "where gender is not null and gender <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|EligibilityModule|GenderBased",
+    "table": "eligibilities",
+    "column": "gender_based",
+    "condition": "where gender_based is not null"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|EligibilityModule|GenderDescription",
+    "table": "eligibilities",
+    "column": "gender_description",
+    "condition": "where gender_description is not null and gender_description <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|EligibilityModule|MinimumAge",
+    "table": "eligibilities",
+    "column": "minimum_age",
+    "condition": "where minimum_age is not null and minimum_age <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|EligibilityModule|MaximumAge",
+    "table": "eligibilities",
+    "column": "maximum_age",
+    "condition": "where maximum_age is not null and maximum_age <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|EligibilityModule|StudyPopulation",
+    "table": "eligibilities",
+    "column": "population",
+    "condition": "where population is not null and population <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|EligibilityModule|SamplingMethod",
+    "table": "eligibilities",
+    "column": "sampling_method",
+    "condition": "where sampling_method is not null and sampling_method <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|CentralContactList|CentralContact|CentralContactName",
+    "table": "central_contacts",
+    "column": "name",
+    "condition": "where name is not null and name <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|CentralContactList|CentralContact|CentralContactPhone",
+    "table": "central_contacts",
+    "column": "phone",
+    "condition": "where phone is not null and phone <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|CentralContactList|CentralContact|CentralContactPhoneExt",
+    "table": "central_contacts",
+    "column": "phone",
+    "condition": "where phone ilike '% ext %' "
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|CentralContactList|CentralContact|CentralContactEMail",
+    "table": "central_contacts",
+    "column": "email",
+    "condition": "where email is not null and email <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|OverallOfficialList|OverallOfficial|OverallOfficialName",
+    "table": "overall_officials",
+    "column": "name",
+    "condition": "where name is not null and name <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|OverallOfficialList|OverallOfficial|OverallOfficialAffiliation",
+    "table": "overall_officials",
+    "column": "affiliation",
+    "condition": "where affiliation is not null and affiliation <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|OverallOfficialList|OverallOfficial|OverallOfficialRole",
+    "table": "overall_officials",
+    "column": "role",
+    "condition": "where role is not null and role <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationFacility",
+    "table": "facilities",
+    "column": "name",
+    "condition": "where name is not null and name <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationStatus",
+    "table": "facilities",
+    "column": "status",
+    "condition": "where status is not null and status <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationCity",
+    "table": "facilities",
+    "column": "city",
+    "condition": "where city is not null and city <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationState",
+    "table": "facilities",
+    "column": "state",
+    "condition": "where state is not null and state <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationZip",
+    "table": "facilities",
+    "column": "zip",
+    "condition": "where zip is not null and zip <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationCountry",
+    "table": "facilities",
+    "column": "country",
+    "condition": "where country is not null and country <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationContactList|LocationContact|LocationContactName",
+    "table": "facility_contacts",
+    "column": "name",
+    "condition": "where name is not null and name <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationContactList|LocationContact|LocationContactRole",
+    "table": "facility_contacts",
+    "column": "contact_type",
+    "condition": "where contact_type is not null and contact_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationContactList|LocationContact|LocationContactPhone",
+    "table": "facility_contacts",
+    "column": "phone",
+    "condition": "where phone is not null and phone <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationContactList|LocationContact|LocationContactPhoneExt",
+    "table": "facility_contacts",
+    "column": "phone",
+    "condition": "phone"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ContactsLocationsModule|LocationList|Location|LocationContactList|LocationContact|LocationContactEMail",
+    "table": "facility_contacts",
+    "column": "email",
+    "condition": "where email is not null and email <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ReferencesModule|ReferenceList|Reference|ReferencePMID",
+    "table": "study_references",
+    "column": "pmid",
+    "condition": "where pmid is not null and pmid <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ReferencesModule|ReferenceList|Reference|ReferenceType",
+    "table": "study_references",
+    "column": "reference_type",
+    "condition": "where reference_type is not null and reference_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ReferencesModule|ReferenceList|Reference|ReferenceCitation",
+    "table": "study_references",
+    "column": "citation",
+    "condition": "where citation is not null and citation <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ReferencesModule|SeeAlsoLinkList|SeeAlsoLink|SeeAlsoLinkLabel",
+    "table": "links",
+    "column": "description",
+    "condition": "where description is not null and description <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ReferencesModule|SeeAlsoLinkList|SeeAlsoLink|SeeAlsoLinkURL",
+    "table": "links",
+    "column": "url",
+    "condition": "where url is not null and url <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ReferencesModule|AvailIPDList|AvailIPD|AvailIPDId",
+    "table": "documents",
+    "column": "document_id",
+    "condition": "where document_id is not null and document_id <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ReferencesModule|AvailIPDList|AvailIPD|AvailIPDType",
+    "table": "documents",
+    "column": "document_type",
+    "condition": "where document_type is not null and document_type <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ReferencesModule|AvailIPDList|AvailIPD|AvailIPDURL",
+    "table": "documents",
+    "column": "url",
+    "condition": "where url is not null and url <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|ReferencesModule|AvailIPDList|AvailIPD|AvailIPDComment",
+    "table": "documents",
+    "column": "comment",
+    "condition": "where comment is not null and comment <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IPDSharingStatementModule|IPDSharing",
+    "table": "studies",
+    "column": "plan_to_share_ipd",
+    "condition": "where plan_to_share_ipd is not null and plan_to_share_ipd <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IPDSharingStatementModule|IPDSharingDescription",
+    "table": "studies",
+    "column": "plan_to_share_ipd_description",
+    "condition": "where plan_to_share_ipd_description is not null and plan_to_share_ipd_description <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IPDSharingStatementModule|IPDSharingInfoTypeList|IPDSharingInfoType",
+    "table": "ipd_information_types",
+    "column": "name",
+    "condition": "where name is not null and name <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IPDSharingStatementModule|IPDSharingTimeFrame",
+    "table": "studies",
+    "column": "ipd_time_frame",
+    "condition": "where ipd_time_frame is not null and ipd_time_frame <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IPDSharingStatementModule|IPDSharingAccessCriteria",
+    "table": "studies",
+    "column": "ipd_access_criteria",
+    "condition": "where ipd_access_criteria is not null and ipd_access_criteria <> ''"
+  },
+  {
+    "ctgov_selector": "ProtocolSection|IPDSharingStatementModule|IPDSharingURL",
+    "table": "studies",
+    "column": "ipd_url",
+    "condition": "where ipd_url is not null and ipd_url <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowPreAssignmentDetails",
+    "table": "participant_flows",
+    "column": "pre_assignment_details",
+    "condition": "where pre_assignment_details is not null and pre_assignment_details <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowRecruitmentDetails",
+    "table": "participant_flows",
+    "column": "recruitment_details",
+    "condition": "where recruitment_details is not null and recruitment_details <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowGroupList|FlowGroup|FlowGroupId",
+    "table": "result_groups",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> '' and result_type = 'Participant Flow'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowGroupList|FlowGroup|FlowGroupTitle",
+    "table": "result_groups",
+    "column": "title",
+    "condition": "where title is not null and title <> '' and result_type = 'Participant Flow'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowGroupList|FlowGroup|FlowGroupDescription",
+    "table": "result_groups",
+    "column": "description",
+    "condition": "where description is not null and description <> '' and result_type = 'Participant Flow'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowPeriodList|FlowPeriod|FlowPeriodTitle",
+    "table": "milestones",
+    "column": "period",
+    "condition": "where period is not null and period <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowMilestoneType",
+    "table": "milestones",
+    "column": "title",
+    "condition": "where title is not null and title <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementGroupId",
+    "table": "milestones",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementComment",
+    "table": "milestones",
+    "column": "description",
+    "condition": "where description is not null and description <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowPeriodList|FlowPeriod|FlowMilestoneList|FlowMilestone|FlowAchievementList|FlowAchievement|FlowAchievementNumSubjects",
+    "table": "milestones",
+    "column": "count",
+    "condition": "where count is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowDropWithdrawType",
+    "table": "drop_withdrawals",
+    "column": "reason",
+    "condition": "where reason is not null and reason <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonGroupId",
+    "table": "drop_withdrawals",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|ParticipantFlowModule|FlowPeriodList|FlowPeriod|FlowDropWithdrawList|FlowDropWithdraw|FlowReasonList|FlowReason|FlowReasonNumSubjects",
+    "table": "drop_withdrawals",
+    "column": "count",
+    "condition": "where count is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselinePopulationDescription",
+    "table": "studies",
+    "column": "baseline_population",
+    "condition": "where baseline_population is not null and baseline_population <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineGroupList|BaselineGroup|BaselineGroupId",
+    "table": "result_groups",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> '' and result_type= 'Baseline'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineGroupList|BaselineGroup|BaselineGroupTitle",
+    "table": "result_groups",
+    "column": "title",
+    "condition": "where title is not null and title <> '' and result_type= 'Baseline'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineGroupList|BaselineGroup|BaselineGroupDescription",
+    "table": "result_groups",
+    "column": "description",
+    "condition": "where description is not null and description <> '' and result_type= 'Baseline'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineDenomList|BaselineDenom|BaselineDenomUnits",
+    "table": "baseline_counts",
+    "column": "units",
+    "condition": "where units is not null and units <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineDenomList|BaselineDenom|BaselineDenomCountList|BaselineDenomCount|BaselineDenomCountGroupId",
+    "table": "baseline_counts",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineDenomList|BaselineDenom|BaselineDenomCountList|BaselineDenomCount|BaselineDenomCountValue",
+    "table": "baseline_counts",
+    "column": "count",
+    "condition": "where count is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineMeasureTitle",
+    "table": "baseline_measurements",
+    "column": "title",
+    "condition": "where title is not null and title <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineMeasureDescription",
+    "table": "baseline_measurements",
+    "column": "description",
+    "condition": "where description is not null and description <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineMeasureParamType",
+    "table": "baseline_measurements",
+    "column": "param_type",
+    "condition": "where param_type is not null and param_type <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineMeasureDispersionType",
+    "table": "baseline_measurements",
+    "column": "dispersion_type",
+    "condition": "where dispersion_type is not null and dispersion_type <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineMeasureUnitOfMeasure",
+    "table": "baseline_measurements",
+    "column": "units",
+    "condition": "where units is not null and units <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineClassTitle",
+    "table": "baseline_measurements",
+    "column": "classification",
+    "condition": "where classification is not null and classification <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineCategoryTitle",
+    "table": "baseline_measurements",
+    "column": "category",
+    "condition": "where category is not null and category <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementGroupId",
+    "table": "baseline_measurements",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementValue",
+    "table": "baseline_measurements",
+    "column": "param_value",
+    "condition": "where param_value is not null and param_value <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementSpread",
+    "table": "baseline_measurements",
+    "column": "dispersion_value",
+    "condition": "where dispersion_value is not null and dispersion_value <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementLowerLimit",
+    "table": "baseline_measurements",
+    "column": "dispersion_lower_limit",
+    "condition": "where dispersion_lower_limit is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementUpperLimit",
+    "table": "baseline_measurements",
+    "column": "dispersion_upper_limit",
+    "condition": "where dispersion_upper_limit is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|BaselineCharacteristicsModule|BaselineMeasureList|BaselineMeasure|BaselineClassList|BaselineClass|BaselineCategoryList|BaselineCategory|BaselineMeasurementList|BaselineMeasurement|BaselineMeasurementComment",
+    "table": "baseline_measurements",
+    "column": "explanation_of_na",
+    "condition": "where explanation_of_na is not null and explanation_of_na <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureType",
+    "table": "outcomes",
+    "column": "outcome_type",
+    "condition": "where outcome_type is not null and outcome_type <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureTitle",
+    "table": "outcomes",
+    "column": "title",
+    "condition": "where title is not null and title <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureDescription",
+    "table": "outcomes",
+    "column": "description",
+    "condition": "where title is not null and title <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasurePopulationDescription",
+    "table": "outcomes",
+    "column": "population",
+    "condition": "where title is not null and title <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureAnticipatedPostingDate",
+    "table": "outcomes",
+    "column": "anticipated_posting_date",
+    "condition": "where anticipated_posting_date is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureParamType",
+    "table": "outcomes",
+    "column": "param_type",
+    "condition": "where param_type is not null and param_type <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureDispersionType",
+    "table": "outcomes",
+    "column": "dispersion_type",
+    "condition": "where dispersion_type is not null and dispersion_type <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureUnitOfMeasure",
+    "table": "outcomes",
+    "column": "units",
+    "condition": "where units is not null and units <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureTimeFrame",
+    "table": "outcomes",
+    "column": "time_frame",
+    "condition": "where time_frame is not null and time_frame <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeMeasureTypeUnitsAnalyzed",
+    "table": "outcomes",
+    "column": "units_analyzed",
+    "condition": "where units_analyzed is not null and units_analyzed <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeGroupList|OutcomeGroup|OutcomeGroupId",
+    "table": "result_groups",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> '' and result_type= 'Outcome'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeGroupList|OutcomeGroup|OutcomeGroupTitle",
+    "table": "result_groups",
+    "column": "title",
+    "condition": "where title is not null and title <> '' and result_type= 'Outcome'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeGroupList|OutcomeGroup|OutcomeGroupDescription",
+    "table": "result_groups",
+    "column": "description",
+    "condition": "where title is not null and description <> '' and result_type= 'Outcome'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeDenomList|OutcomeDenom|OutcomeDenomUnits",
+    "table": "outcome_counts",
+    "column": "units",
+    "condition": "where units is not null and units <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeDenomList|OutcomeDenom|OutcomeDenomCountList|OutcomeDenomCount|OutcomeDenomCountGroupId",
+    "table": "outcome_counts",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeDenomList|OutcomeDenom|OutcomeDenomCountList|OutcomeDenomCount|OutcomeDenomCountValue",
+    "table": "outcome_counts",
+    "column": "count",
+    "condition": "where count is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeClassTitle",
+    "table": "outcome_measurements",
+    "column": "classification",
+    "condition": "where classification is not null and classification <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeCategoryTitle",
+    "table": "outcome_measurements",
+    "column": "category",
+    "condition": "where category is not null and category <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementGroupId",
+    "table": "outcome_measurements",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementValue",
+    "table": "outcome_measurements",
+    "column": "param_value",
+    "condition": "where param_value is not null and param_value <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementSpread",
+    "table": "outcome_measurements",
+    "column": "dispersion_value",
+    "condition": "where dispersion_value is not null and dispersion_value <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementLowerLimit",
+    "table": "outcome_measurements",
+    "column": "dispersion_lower_limit",
+    "condition": "where dispersion_lower_limit is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementUpperLimit",
+    "table": "outcome_measurements",
+    "column": "dispersion_upper_limit",
+    "condition": "where dispersion_upper_limit is not null "
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeClassList|OutcomeClass|OutcomeCategoryList|OutcomeCategory|OutcomeMeasurementList|OutcomeMeasurement|OutcomeMeasurementComment",
+    "table": "outcome_measurements",
+    "column": "explanation_of_na",
+    "condition": "where explanation_of_na is not null and explanation_of_na <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisGroupIdList|OutcomeAnalysisGroupId",
+    "table": "outcome_analysis_groups",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisGroupDescription",
+    "table": "outcome_analyses",
+    "column": "groups_description",
+    "condition": "where groups_description is not null and groups_description <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisNonInferiorityType",
+    "table": "outcome_analyses",
+    "column": "non_inferiority_type",
+    "condition": "where non_inferiority_type is not null and non_inferiority_type <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisNonInferiorityComment",
+    "table": "outcome_analyses",
+    "column": "non_inferiority_description",
+    "condition": "where non_inferiority_description is not null and non_inferiority_description <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisPValue",
+    "table": "outcome_analyses",
+    "column": "p_value_modifier",
+    "condition": "where p_value_modifier is not null and p_value_modifier <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisPValueComment",
+    "table": "outcome_analyses",
+    "column": "p_value_description",
+    "condition": "where p_value_description is not null and p_value_description <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisStatisticalMethod",
+    "table": "outcome_analyses",
+    "column": "method",
+    "condition": "where method is not null and method <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisStatisticalComment",
+    "table": "outcome_analyses",
+    "column": "method_description",
+    "condition": "where method_description is not null and method_description <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisParamType",
+    "table": "outcome_analyses",
+    "column": "param_type",
+    "condition": "where param_type is not null and param_type <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisParamValue",
+    "table": "outcome_analyses",
+    "column": "param_value",
+    "condition": "where param_value is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCIPctValue",
+    "table": "outcome_analyses",
+    "column": "ci_percent",
+    "condition": "where ci_percent is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCINumSides",
+    "table": "outcome_analyses",
+    "column": "ci_n_sides",
+    "condition": "where ci_n_sides is not null and ci_n_sides <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCILowerLimit",
+    "table": "outcome_analyses",
+    "column": "ci_lower_limit",
+    "condition": "where ci_lower_limit is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCIUpperLimit",
+    "table": "outcome_analyses",
+    "column": "ci_upper_limit",
+    "condition": "where ci_upper_limit is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisCIUpperLimitComment",
+    "table": "outcome_analyses",
+    "column": "ci_upper_limit_na_comment",
+    "condition": "where ci_upper_limit_na_comment is not null and ci_upper_limit_na_comment <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisDispersionType",
+    "table": "outcome_analyses",
+    "column": "dispersion_type",
+    "condition": "where dispersion_type is not null and dispersion_type <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisDispersionValue",
+    "table": "outcome_analyses",
+    "column": "dispersion_value",
+    "condition": "where dispersion_value is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisEstimateComment",
+    "table": "outcome_analyses",
+    "column": "estimate_description",
+    "condition": "where estimate_description is not null and estimate_description <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|OutcomeMeasuresModule|OutcomeMeasureList|OutcomeMeasure|OutcomeAnalysisList|OutcomeAnalysis|OutcomeAnalysisOtherAnalysisDescription",
+    "table": "outcome_analyses",
+    "column": "other_analysis_description",
+    "condition": "where other_analysis_description is not null and other_analysis_description <>''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|EventsFrequencyThreshold",
+    "table": "reported_events",
+    "column": "frequency_threshold",
+    "condition": "where frequency_threshold is not null"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|EventsTimeFrame",
+    "table": "reported_events",
+    "column": "time_frame",
+    "condition": "where time_frame is not null and time_frame <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|EventsDescription",
+    "table": "reported_events",
+    "column": "description",
+    "condition": "where description is not null and description <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|EventGroupList|EventGroup|EventGroupId",
+    "table": "reported_event_totals",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|EventGroupList|EventGroup|EventGroupDeathsNumAffected",
+    "table": "reported_event_totals",
+    "column": "subjects_affected",
+    "condition": "where subjects_affected is not null and classification = 'Total, all-cause mortality'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|EventGroupList|EventGroup|EventGroupDeathsNumAtRisk",
+    "table": "reported_event_totals",
+    "column": "subjects_at_risk",
+    "condition": "where subjects_at_risk is not null and classification = 'Total, all-cause mortality'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|EventGroupList|EventGroup|EventGroupSeriousNumAffected",
+    "table": "reported_event_totals",
+    "column": "subjects_affected",
+    "condition": "where subjects_affected is not null and event_type ilike 'serious'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|EventGroupList|EventGroup|EventGroupSeriousNumAtRisk",
+    "table": "reported_event_totals",
+    "column": "subjects_at_risk",
+    "condition": "where subjects_at_risk is not null and event_type ilike 'serious'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|EventGroupList|EventGroup|EventGroupOtherNumAffected",
+    "table": "reported_event_totals",
+    "column": "subjects_affected",
+    "condition": "where subjects_affected is not null and event_type ilike 'other'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|EventGroupList|EventGroup|EventGroupOtherNumAtRisk",
+    "table": "reported_event_totals",
+    "column": "subjects_at_risk",
+    "condition": "where subjects_at_risk is not null and event_type ilike 'other'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|SeriousEventList|SeriousEvent|SeriousEventTerm",
+    "table": "reported_events",
+    "column": "adverse_event_term",
+    "condition": "where adverse_event_term is not null and adverse_event_term <> '' and event_type ilike 'serious'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|SeriousEventList|SeriousEvent|SeriousEventOrganSystem",
+    "table": "reported_events",
+    "column": "organ_system",
+    "condition": "where organ_system is not null and organ_system <> '' and event_type ilike 'serious'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|SeriousEventList|SeriousEvent|SeriousEventSourceVocabulary",
+    "table": "reported_events",
+    "column": "vocab",
+    "condition": "where vocab is not null and vocab <> '' and event_type ilike 'serious'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|SeriousEventList|SeriousEvent|SeriousEventAssessmentType",
+    "table": "reported_events",
+    "column": "assessment",
+    "condition": "where assessment is not null and assessment <> '' and event_type ilike 'serious'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|SeriousEventList|SeriousEvent|SeriousEventStatsList|SeriousEventStats|SeriousEventStatsGroupId",
+    "table": "reported_events",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> '' and event_type ilike 'serious'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|SeriousEventList|SeriousEvent|SeriousEventStatsList|SeriousEventStats|SeriousEventStatsNumEvents",
+    "table": "reported_events",
+    "column": "event_count",
+    "condition": "where event_count is not null and event_type ilike 'serious'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|SeriousEventList|SeriousEvent|SeriousEventStatsList|SeriousEventStats|SeriousEventStatsNumAffected",
+    "table": "reported_events",
+    "column": "subjects_affected",
+    "condition": "where subjects_affected is not null and event_type ilike 'serious'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|SeriousEventList|SeriousEvent|SeriousEventStatsList|SeriousEventStats|SeriousEventStatsNumAtRisk",
+    "table": "reported_events",
+    "column": "subjects_at_risk",
+    "condition": "where subjects_at_risk is not null and event_type ilike 'serious'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|OtherEventList|OtherEvent|OtherEventTerm",
+    "table": "reported_events",
+    "column": "adverse_event_term",
+    "condition": "where adverse_event_term is not null and adverse_event_term <> '' and event_type ilike 'other'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|OtherEventList|OtherEvent|OtherEventOrganSystem",
+    "table": "reported_events",
+    "column": "organ_system",
+    "condition": "where organ_system is not null and organ_system <> '' and event_type ilike 'other'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|OtherEventList|OtherEvent|OtherEventSourceVocabulary",
+    "table": "reported_events",
+    "column": "vocab",
+    "condition": "where vocab is not null and vocab <> '' and event_type ilike 'other'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|OtherEventList|OtherEvent|OtherEventAssessmentType",
+    "table": "reported_events",
+    "column": "assessment",
+    "condition": "where assessment is not null and assessment <> '' and event_type ilike 'other'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|OtherEventList|OtherEvent|OtherEventStatsList|OtherEventStats|OtherEventStatsGroupId",
+    "table": "reported_events",
+    "column": "ctgov_group_code",
+    "condition": "where ctgov_group_code is not null and ctgov_group_code <> '' and event_type ilike 'other'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|OtherEventList|OtherEvent|OtherEventStatsList|OtherEventStats|OtherEventStatsNumEvents",
+    "table": "reported_events",
+    "column": "event_count",
+    "condition": "where event_count is not null and event_type ilike 'other'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|OtherEventList|OtherEvent|OtherEventStatsList|OtherEventStats|OtherEventStatsNumAffected",
+    "table": "reported_events",
+    "column": "subjects_affected",
+    "condition": "where subjects_affected is not null and event_type ilike 'other'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|AdverseEventsModule|OtherEventList|OtherEvent|OtherEventStatsList|OtherEventStats|OtherEventStatsNumAtRisk",
+    "table": "reported_events",
+    "column": "subjects_at_risk",
+    "condition": "where subjects_at_risk is not null and event_type ilike 'other'"
+  },
+  {
+    "ctgov_selector": "ResultsSection|MoreInfoModule|CertainAgreement|AgreementPISponsorEmployee",
+    "table": "result_agreements",
+    "column": "pi_employee",
+    "condition": "where pi_employee is not null and pi_employee <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|MoreInfoModule|CertainAgreement|AgreementRestrictionType",
+    "table": "result_agreements",
+    "column": "restriction_type",
+    "condition": "where restriction_type is not null and restriction_type <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|MoreInfoModule|CertainAgreement|AgreementRestrictiveAgreement",
+    "table": "result_agreements",
+    "column": "restrictive_agreement",
+    "condition": "where restrictive_agreement is not null and restrictive_agreement <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|MoreInfoModule|CertainAgreement|AgreementOtherDetails",
+    "table": "result_agreements",
+    "column": "other_details",
+    "condition": "where other_details is not null and other_details <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|MoreInfoModule|PointOfContact|PointOfContactTitle",
+    "table": "result_contacts",
+    "column": "name",
+    "condition": "where name is not null and name <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|MoreInfoModule|PointOfContact|PointOfContactOrganization",
+    "table": "result_contacts",
+    "column": "organization",
+    "condition": "where organization is not null and organization <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|MoreInfoModule|PointOfContact|PointOfContactEMail",
+    "table": "result_contacts",
+    "column": "email",
+    "condition": "where email is not null and email <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|MoreInfoModule|PointOfContact|PointOfContactPhone",
+    "table": "result_contacts",
+    "column": "phone",
+    "condition": "where phone is not null and phone <> ''"
+  },
+  {
+    "ctgov_selector": "ResultsSection|MoreInfoModule|PointOfContact|PointOfContactPhoneExt",
+    "table": "result_contacts",
+    "column": "phone",
+    "condition": "where phone is not null and phone <> '' and phone ilike '%ext%'"
+  },
+  {
+    "ctgov_selector": "AnnotationSection|AnnotationModule|UnpostedAnnotation|UnpostedEventList|UnpostedEvent|UnpostedEventType",
+    "table": "pending_results",
+    "column": "event",
+    "condition": "where event is not null and event <> ''"
+  },
+  {
+    "ctgov_selector": "AnnotationSection|AnnotationModule|UnpostedAnnotation|UnpostedEventList|UnpostedEvent|UnpostedEventDate",
+    "table": "pending_results",
+    "column": "event_date_description",
+    "condition": "where event_date_description is not null and event_date_description <> ''"
+  },
+  {
+    "ctgov_selector": "DocumentSection|LargeDocumentModule|LargeDocList|LargeDoc|LargeDocHasProtocol",
+    "table": "provided_documents",
+    "column": "has_protocol",
+    "condition": "where has_protocol is not null"
+  },
+  {
+    "ctgov_selector": "DocumentSection|LargeDocumentModule|LargeDocList|LargeDoc|LargeDocHasSAP",
+    "table": "provided_documents",
+    "column": "has_sap",
+    "condition": "where has_sap is not null"
+  },
+  {
+    "ctgov_selector": "DocumentSection|LargeDocumentModule|LargeDocList|LargeDoc|LargeDocHasICF",
+    "table": "provided_documents",
+    "column": "has_icf",
+    "condition": "where has_icf is not null"
+  },
+  {
+    "ctgov_selector": "DocumentSection|LargeDocumentModule|LargeDocList|LargeDoc|LargeDocLabel",
+    "table": "provided_documents",
+    "column": "document_type",
+    "condition": "where document_type is not null and document_type <> ''"
+  },
+  {
+    "ctgov_selector": "DocumentSection|LargeDocumentModule|LargeDocList|LargeDoc|LargeDocDate",
+    "table": "provided_documents",
+    "column": "document_date",
+    "condition": "where document_date is not null"
+  },
+  {
+    "ctgov_selector": "DerivedSection|MiscInfoModule|RemovedCountryList|RemovedCountry",
+    "table": "countries",
+    "column": "name",
+    "condition": "where removed = true"
+  },
+  {
+    "ctgov_selector": "DerivedSection|ConditionBrowseModule|ConditionMeshList|ConditionMesh|ConditionMeshTerm",
+    "table": "browse_conditions",
+    "column": "mesh_term",
+    "condition": "where mesh_term is not null and mesh_term <>'' and mesh_type = 'mesh-list'"
+  },
+  {
+    "ctgov_selector": "DerivedSection|ConditionBrowseModule|ConditionAncestorList|ConditionAncestor|ConditionAncestorTerm",
+    "table": "browse_conditions",
+    "column": "mesh_term",
+    "condition": "where mesh_term is not null and mesh_term <>'' and mesh_type = 'mesh-ancestor'"
+  },
+  {
+    "ctgov_selector": "DerivedSection|InterventionBrowseModule|InterventionMeshList|InterventionMesh|InterventionMeshTerm",
+    "table": "browse_interventions",
+    "column": "mesh_term",
+    "condition": "where mesh_term is not null and mesh_term <>'' and mesh_type = 'mesh-list'"
+  },
+  {
+    "ctgov_selector": "DerivedSection|InterventionBrowseModule|InterventionAncestorList|InterventionAncestor|InterventionAncestorTerm",
+    "table": "browse_interventions",
+    "column": "mesh_term",
+    "condition": "where mesh_term is not null and mesh_term <>'' and mesh_type = 'mesh-ancestor'"
+  }
+]

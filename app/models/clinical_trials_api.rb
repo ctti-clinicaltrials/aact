@@ -80,6 +80,12 @@ class ClinicalTrialsApi
    json = JSON.parse(Faraday.get(url).body)
    json.dig('FieldValuesResponse','FieldValues').map{|k| k.dig('FieldValue') }
   end
+
+  def self.nct_ids_for(query)
+    url = "https://clinicaltrials.gov/api/query/field_values?expr=#{query}&field=NCTId&fmt=json"
+    json = JSON.parse(Faraday.get(url).body)
+    json.dig('FieldValuesResponse','FieldValues').map{|k| k.dig('FieldValue') }
+  end
   
   def self.studies_with_field_value(field, value)
     url = "https://www.clinicaltrials.gov/api/query/study_fields?expr=AREA%5B#{field}%5D#{value}&fields=NCTId&min_rnk=1&max_rnk=&fmt=json"

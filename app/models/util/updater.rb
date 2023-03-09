@@ -39,7 +39,6 @@ module Util
 
     # updates the oldest studies
     def update_old_studies(count=100)
-      # ids = Study.where('updated_at < ?',Time.now-24.hours).order(updated_at: :asc).limit(count)
       studies = Study.order(updated_at: :asc).limit(count)
       puts "refreshing #{studies.count} studies"
       studies.each do |study|
@@ -208,7 +207,6 @@ module Util
           record.create_or_update_study
         end
       rescue => e
-        ErrorLog.error(e)
         Airbrake.notify(e)
       end
       Time.now - stime
@@ -267,10 +265,10 @@ module Util
 
     def take_snapshot
       log('dumping database...')
-      db_mgr.dump_database
+      filename = db_mgr.dump_database
 
       log('creating zipfile of database...')
-      Util::FileManager.new.save_static_copy
+      Util::FileManager.new.save_static_copy(filename)
       rescue StandardError => e
         load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
     end
