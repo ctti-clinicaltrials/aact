@@ -243,6 +243,8 @@ module Util
     def load_studies(filename)
       ActiveRecord::Base.logger = nil
       nctids = File.read(filename).split("\n")
+      nctids.shift # remove header
+      nctids.map!{|id| id.gsub("\"",'')}
       nctids.each{|nctid|update_study(nctid)}
     end
 
