@@ -5,9 +5,8 @@ class StudyRelationship < ActiveRecord::Base
   attr_accessor :xml, :opts
   belongs_to :study, :foreign_key=> 'nct_id'
 
-  def self.study_models
-    return @models if @models
-    blacklist = %w(
+  def self.blacklist
+    %w(
       ar_internal_metadata
       schema_migrations
       data_definitions
@@ -32,6 +31,14 @@ class StudyRelationship < ActiveRecord::Base
       study_statistics_comparisons
       background_jobs
     )
+  end
+
+  def self.loadable_tables
+    connection.tables - blacklist
+  end
+
+  def self.study_models
+    return @models if @models
     @models = (connection.tables - blacklist).map{|k| k.singularize.camelize.constantize }
   end
 

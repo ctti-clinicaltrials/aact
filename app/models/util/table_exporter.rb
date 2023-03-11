@@ -33,7 +33,7 @@ module Util
       if !@table_names.empty?
         tables=@table_names
       else
-        tables=Util::DbManager.loadable_tables
+        tables = StudyRelationship.loadable_tables
       end
       tempfiles = tables.map { |table_name| delimiter == ',' ? "#{table_name}.csv" : "#{table_name}.txt" }
                              .map do |file_name|
