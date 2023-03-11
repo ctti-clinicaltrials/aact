@@ -819,7 +819,7 @@ class StudyJsonRecord < Support::SupportBase
     groups_data = StudyJsonRecord.result_groups(groups, selector, result_type, nct_id)
     result_groups = {}
     groups_data.each do |group|
-      result_groups[group[:ctgov_group_code]] = ResultGroup.create(group)
+      result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group)
     end
 
     return result_groups

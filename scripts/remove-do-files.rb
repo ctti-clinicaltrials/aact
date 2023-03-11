@@ -8,3 +8,11 @@ s3.list_objects(bucket: 'ctti-aact').each do |response|
     missing << object
   end
 end
+
+res = s3.delete_objects(
+  bucket: 'ctti-aact',
+  delete: {
+    objects: missing.map{|k| { key: k.key }},
+    quiet: false
+  }
+)

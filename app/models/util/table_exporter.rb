@@ -20,14 +20,8 @@ module Util
           system("zip -j -q #{@zipfile_name} #{@temp_dir}/*.txt")
         end
 
-        if File.exist?(@zipfile_name) 
-          @file_size =  File.size(@zipfile_name)
-          filename = File.basename(@zipfile_name)
-          record = FileRecord.create(file_type: "pipefiles", filename: filename, file_size: @file_size)
-          record.file.attach(io: File.open(@zipfile_name), filename: @zipfile_name)
-          record.update(url: record.file.service.send(:object_for, record.file.key).public_url)
-          File.delete(@zipfile_name) if File.exist?(@zipfile_name)
-        end
+        FileRecord.post('pipefiles', @zipfile_name)
+        File.delete(@zipfile_name) if File.exist?(@zipfile_name)
       ensure
         cleanup_tempfiles!
       end
@@ -39,7 +33,7 @@ module Util
       if !@table_names.empty?
         tables=@table_names
       else
-        tables=Util::DbManager.loadable_tables
+        tables = StudyRelationship.loadable_tables
       end
       tempfiles = tables.map { |table_name| delimiter == ',' ? "#{table_name}.csv" : "#{table_name}.txt" }
                              .map do |file_name|

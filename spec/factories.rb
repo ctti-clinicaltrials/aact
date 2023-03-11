@@ -1,4 +1,14 @@
 FactoryBot.define do
+  factory :background_job do
+    user_id { 1 }
+    status { "MyString" }
+    completed_at { "2023-02-16 13:52:37" }
+    logs { "MyString" }
+    type { "" }
+    data { "" }
+    url { "MyString" }
+  end
+
   factory :study_statistics_comparison, class: 'Support::StudyStatisticsComparison' do
     
   end

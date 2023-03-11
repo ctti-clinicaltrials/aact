@@ -91,6 +91,13 @@ class Study < ActiveRecord::Base
     puts "  remove-study #{time}"
   end
 
+  def self.remove_studies_data(nct_ids)
+    ids = nct_ids.map { |i| "'#{i}'" }.join(",")
+    StudyRelationship.study_models.each do |table|
+      connection.execute("DELETE FROM #{table} WHERE nct_id IN (#{ids})")
+    end
+  end
+
   def self.study_difference
     ClinicalTrialsApi.number_of_studies - Study.count
   end

@@ -1,0 +1,7 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  NewCops: enable
+Style/NumericPredicate:
+  Enabled: false
