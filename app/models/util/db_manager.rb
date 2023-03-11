@@ -75,7 +75,6 @@ module Util
     # 5. grant connection permissions again
     def restore_database(connection, filename, schema = 'ctgov')
       config = connection.instance_variable_get('@config')
-      byebug
       host = config[:host]
       port = config[:port]
       username = config[:username]
@@ -190,7 +189,8 @@ module Util
       stderr_array.each { |line| real_errors << line if line.include?('ERROR') && line.exclude?('does not exist') }
       return if real_errors.empty?
 
-      real_errors.each { |e| event.add_problem("#{Time.zone.now}: #{e}") }
+      real_errors.each { |e| event.add_problem("#{Time.zone.now}: #{e}") } if event
+      real_errors.each { |e| Airbrake.notify(e) }
       false
     end
 
