@@ -30,6 +30,7 @@ class StudyRelationship < ActiveRecord::Base
       active_storage_attachments
       file_records
       study_statistics_comparisons
+      background_jobs
     )
     @models = (connection.tables - blacklist).map{|k| k.singularize.camelize.constantize }
   end
