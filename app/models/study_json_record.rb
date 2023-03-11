@@ -9,8 +9,13 @@ class StudyJsonRecord < Support::SupportBase
   # 1. remove all study data if study exists
   # 2. import all the study data
   def create_or_update_study
+    puts "#{nct_id}" if ENV['VERBOSE']
     study = Study.find_by(nct_id: nct_id)
-    study.remove_study_data if study
+    if study
+      study.remove_study_data 
+    else
+      puts "  not-found"
+    end
     s = Time.now
     build_study
     puts "  insert-study #{Time.now - s}" if ENV['VERBOSE']
