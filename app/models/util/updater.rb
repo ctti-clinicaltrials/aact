@@ -242,6 +242,11 @@ module Util
       db_mgr.add_constraints
     end
 
+    def load_studies(filename)
+      nctids = File.read(filename).split("\n")
+      nctids.each{|nctid|update_study(nctid)}
+    end
+
     def set_downcase_terms
       log('setting downcase mesh terms...')
       con=ActiveRecord::Base.connection
