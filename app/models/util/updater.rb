@@ -241,6 +241,7 @@ module Util
     end
 
     def load_studies(filename)
+      ActiveRecord::Base.logger = nil
       nctids = File.read(filename).split("\n")
       nctids.each{|nctid|update_study(nctid)}
     end
