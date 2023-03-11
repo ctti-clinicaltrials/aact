@@ -5,6 +5,7 @@ module Util
   class FileManager
     def initialize
       FileUtils.mkdir_p root_dir
+      FileUtils.mkdir_p "#{root_dir}/tmp"
       FileUtils.mkdir_p "#{root_dir}/static_db_copies/daily"
       FileUtils.mkdir_p "#{root_dir}/static_db_copies/monthly"
       FileUtils.mkdir_p "#{root_dir}/exported_files/daily"
@@ -118,16 +119,16 @@ module Util
     def save_static_copy(dump_filename)
       # gather files into a directory
       documentation_files.each do |url, filename|
-        `wget "#{url}" -q -O tmp/#{filename}`
+        `wget "#{url}" -q -O #{dump_directory}/#{filename}`
       end
 
       # generate the filename
       date_stamp = Time.zone.now.strftime('%Y%m%d')
-      zip_file_name = "tmp/#{date_stamp}_clinical_trials.zip"
+      zip_file_name = "#{dump_directory}/#{date_stamp}_clinical_trials.zip"
 
       # zip files
       File.delete(zip_file_name) if File.exist?(zip_file_name)
-      `zip -j #{zip_file_name} #{documentation_files.values.map { |k| "tmp/#{k}" }.join(' ')} #{dump_filename}`
+      `zip -j #{zip_file_name} #{documentation_files.values.map { |k| "#{dump_directory}/#{k}" }.join(' ')} #{dump_filename}`
 
       # upload file to the cloud
       FileRecord.post('snapshot', zip_file_name)
