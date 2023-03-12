@@ -240,12 +240,20 @@ module Util
       db_mgr.add_constraints
     end
 
-    def load_studies(filename)
-      ActiveRecord::Base.logger = nil
-      nctids = File.read(filename).split("\n")
-      nctids.shift # remove header
-      nctids.map!{|id| id.gsub("\"",'')}
+    def load_studies(mod)
+      nctids = mod_studies(mod)
       nctids.each{|nctid|update_study(nctid)}
+    end
+    
+    def mod_studies(mod)
+      sql = <<-SQL
+        SELECT
+        nct_id
+        FROM studies
+        WHERE mod(substring(nct_id,4)::integer,6) = #{mod}
+        AND updated_at < '2023-03-11 10:00'
+      SQL
+      Study.connection.execute(sql).to_a.map{|k| k['nct_id'] }
     end
 
     def set_downcase_terms
