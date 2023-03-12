@@ -9,10 +9,8 @@ module Util
     # event_type:    type of load 'full' or 'incremental'
     # restart:       restart an existing load
     def initialize(params = {})
-      @full_featured = params[:full_featured] || false
       @params = params
       @type = (params[:event_type] || 'incremental')
-      @schema = params[:schema] || 'ctgov'
       @search_days_back = params[:search_days_back]
       ENV['load_type'] = @type
       if params[:restart]
@@ -70,7 +68,7 @@ module Util
       # 4. comparing the counts from CT.gov to our database
       log("comparing counts...")
       begin
-        Verifier.refresh({schema: schema, load_event_id: @load_event.id})
+        Verifier.refresh({load_event_id: @load_event.id})
       rescue => e
         Airbrake.notify(e)
       end
@@ -98,17 +96,17 @@ module Util
 
       if load_event.sanity_checks.count == 0
         # 9. take snapshot
-        log("#{schema} take snapshot...")
+        log("take snapshot...")
         take_snapshot
         @load_event.log("9/11 db snapshot created")
 
         # 10. refresh public db
-        log("#{schema} refresh public db...")
+        log("refresh public db...")
         db_mgr.refresh_public_db
         @load_event.log("10/11 refreshed public db")
 
         # 10. create flat files
-        log("#{schema} creating flat files...") 
+        log("creating flat files...") 
         create_flat_files
         @load_event.log("11/11 created flat files")
       end
@@ -155,8 +153,8 @@ module Util
     def update_studies
       studies, to_update, to_remove = current_study_differences
 
-      log("#{schema} updating #{to_update.length} studies")
-      log("#{schema} removing #{to_remove.length} studies")
+      log("updating #{to_update.length} studies")
+      log("removing #{to_remove.length} studies")
 
       # update studies
       total = to_update.length
@@ -199,7 +197,7 @@ module Util
       begin
         stime = Time.now
         record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.create(nct_id: nct_id, content: {})
-        changed = record.update_from_api
+        changed = record.update_from_api unless ENV['STUDY_SECTIONS']
 
         if record.blank? || record.content.blank?
           record.destroy
@@ -221,11 +219,11 @@ module Util
 
     def load_study(study_id)
       # 1. remove constraings
-      log("#{schema} remove constraints...")
+      log("remove constraints...")
       db_mgr.remove_constraints
       update_study(study_id)
       # 2. add constraints
-      log("#{schema} adding constraints...")
+      log("adding constraints...")
       db_mgr.add_constraints
     end
 
@@ -234,11 +232,11 @@ module Util
       # here I'm turning the string into an array
       array_nctids = string_nct_ids.split(' ')
       # 1. remove constraings
-      log("#{schema} remove constraints...")
+      log("remove constraints...")
       db_mgr.remove_constraints
       array_nctids.each{|nctid|update_study(nctid)}
       # 2. add constraints
-      log("#{schema} adding constraints...")
+      log("adding constraints...")
       db_mgr.add_constraints
     end
 
