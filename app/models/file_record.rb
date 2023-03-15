@@ -8,7 +8,7 @@ class FileRecord < ApplicationRecord
     file_size =  File.size(filename)
 
     dates = (Date.today.beginning_of_day..Date.today.end_of_day)
-    record = FileRecord.find_by(file_type: 'snapshot', created_at: dates)
+    record = FileRecord.find_by(file_type: type, created_at: dates)
     record = FileRecord.create(file_type: type) unless record
 
     record.file.attach(io: File.open(filename), filename: "#{File.basename(filename)}")
