@@ -16,7 +16,7 @@ class FileRecord < ApplicationRecord
     record.update(
       url: record.file.service.send(:object_for, record.file.key).public_url,
       file_size: file_size,
-      filename: "#{filename}",
+      filename: "#{File.basename(filename)}",
     )
   end
 end
