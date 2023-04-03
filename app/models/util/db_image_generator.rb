@@ -19,9 +19,9 @@ module Util
     end
 
     def generate_edges
-      study_edges = StudyRelationship.study_models.map { |k| "#{k.name} -> Study" }.join("\n")
+      study_edges = StudyRelationship.study_models.map { |k| "#{k.name.tableize.pluralize}" }.join("\n")
       extra_edges = Util::DbManager.foreign_key_constraints.map do |k|
-        "#{k[:child_table].singularize.camelize} -> #{k[:parent_table].singularize.camelize}"
+        "#{k[:child_table].tableize.pluralize} -> #{k[:parent_table].tableize.pluralize}"
       end.join("\n")
       "#{study_edges}\n#{extra_edges}"
     end
@@ -34,9 +34,9 @@ module Util
     def table(model)
       attributes = model.columns_hash.map { |k, v| "<tr><td>#{k}</td><td>#{v.type}</td></tr>" }.join("\n")
       <<-DOT_CODE
-        #{model.name} [label=<
+        #{model.name.tableize.pluralize} [label=<
         <table border="0" cellborder="1" cellspacing="0">
-          <tr><td colspan="2"><b>#{model.name}</b></td></tr>
+          <tr><td colspan="2"><b>#{model.name.tableize.pluralize}</b></td></tr>
           #{attributes}
         </table>>];
       DOT_CODE
