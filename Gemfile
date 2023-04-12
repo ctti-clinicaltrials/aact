@@ -12,9 +12,9 @@ gem 'foundation_emails'
 
 gem 'nokogiri'
 gem 'loofah'
-gem 'rails', '6.0.0'
-gem 'activesupport', '6.0.0'
-gem 'actionpack', '6.0.0'
+gem 'rails', '7.0.4.3'
+gem 'activesupport', '7.0.4.3'
+gem 'actionpack', '7.0.4.3'
 gem 'rails-html-sanitizer'
 gem "rack-timeout"
 gem "faraday"
@@ -30,7 +30,7 @@ gem "recipient_interceptor"
 gem 'rest-client'
 gem 'enumerize'
 gem 'bulk_insert'
-gem 'activerecord-import', '<= 0.19.1' #for some reason more updated versions slow down the loads
+gem 'activerecord-import', '<= 1.4.2' #for some reason more updated versions slow down the loads
 gem 'sinatra', :require => nil
 gem 'colorize'
 gem 'font-awesome-rails'
