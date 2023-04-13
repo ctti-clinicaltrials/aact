@@ -1,17 +1,17 @@
 require 'csv'
 
-class BackgroundJob::Query < BackgroundJob
+class BackgroundJob::DbQuery < BackgroundJob
   has_one_attached :result
 
   def process
     update(status: 'working')
     begin
       # run the SQL Query
-      @results = PublicBase.execute(data)
+      @results = PublicBase.connection.execute(data['query'])
     
       # write out the query result to a csv file
       # get headers from the keys of query results to generate first line of csv file
-      headers = @results.first.map { |key,value| key }
+      headers = (@results.first || []).map { |key,value| key }
       csv = CSV.generate_line headers
          
       # get rows from the values of the keys of query results to generate rest of lines of csv file
@@ -22,7 +22,7 @@ class BackgroundJob::Query < BackgroundJob
       
       filename = "tmp/#{id}.csv"
 
-      f = File.open(filename, 'W')
+      f = File.open(filename, 'w')
       f << csv
       f.close
 
@@ -35,11 +35,11 @@ class BackgroundJob::Query < BackgroundJob
       update(
         status: "complete",
         completed_at: Time.now,
-        url: result.service.send(:object_for, result.key).public_url
+        # url: result.service.send(:object_for, result.key).public_url
       )
     # if there is an error in the SQL Query, display the form again with the error message
     rescue StandardError => e
-      update(status: "error", message: e.message)
+      update(status: "error", logs: e.message)
     end
     # rescue ActiveRecord::StatementInvalid => e
     #   @error = [e.message]
