@@ -7,7 +7,8 @@ class BackgroundJob::DbQuery < BackgroundJob
     update(status: 'working')
     begin
       # run the SQL Query
-      @results = PublicBase.connection.execute(data['query'])
+      db = Util::DbManager.new
+      @results = db.public_connection.execute(data['query'])
     
       # write out the query result to a csv file
       # get headers from the keys of query results to generate first line of csv file
@@ -35,7 +36,7 @@ class BackgroundJob::DbQuery < BackgroundJob
       update(
         status: "complete",
         completed_at: Time.now,
-        # url: result.service.send(:object_for, result.key).public_url
+        url: result.service.send(:object_for, result.key).public_url
       )
     # if there is an error in the SQL Query, display the form again with the error message
     rescue StandardError => e

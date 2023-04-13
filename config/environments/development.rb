@@ -62,6 +62,6 @@ Rails.application.configure do
   config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 50.megabytes)
 
   # Store files locally.
-  config.active_storage.service = :local
+  config.active_storage.service = :digitalocean
 
 end
