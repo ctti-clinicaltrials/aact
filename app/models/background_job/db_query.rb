@@ -8,7 +8,6 @@ class BackgroundJob::DbQuery < BackgroundJob
     begin
       # run the SQL Query
       db = Util::DbManager.new
-      byebug
       @results = db.public_connection.execute(data['query'])
     
       # write out the query result to a csv file
