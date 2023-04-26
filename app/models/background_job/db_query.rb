@@ -8,6 +8,7 @@ class BackgroundJob::DbQuery < BackgroundJob
     begin
       # run the SQL Query
       db = Util::DbManager.new
+      byebug
       @results = db.public_connection.execute(data['query'])
     
       # write out the query result to a csv file
@@ -31,20 +32,22 @@ class BackgroundJob::DbQuery < BackgroundJob
       result.attach(io: File.open(filename), filename: filename)
 
       # upload the query results to the cloud
-      # *** add metadata information to the BackgroundJob (the number of rows from the query), 
-      # I think we need to add a column type json to store that ***
+      # add metadata information to the BackgroundJob
+      # *** we need to add a column type json to store the number of rows from the query ***
       update(
         status: "complete",
         completed_at: Time.now,
         url: result.service.send(:object_for, result.key).public_url
       )
-    # if there is an error in the SQL Query, display the form again with the error message
+    
+    # if there is an error in the SQL Query, show the error message
+    rescue ActiveRecord::StatementInvalid => e
+      user_error_message = [e.message]
+      update(status: "error", logs: e.message, user_error_message: e.message)  
+        
+    # if the background job status is "error", show the user error message
     rescue StandardError => e
-      update(status: "error", logs: e.message)
-    end
-    # rescue ActiveRecord::StatementInvalid => e
-    #   @error = [e.message]
-    #   update(status: "error", message: e.message)
-    # end
+      update(status: "error", logs: e.message, user_error_message: "There was an error, please contact us.")
+    end    
   end  
 end    

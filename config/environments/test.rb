@@ -53,6 +53,6 @@ Rails.application.configure do
   config.maintain_test_schema = false
 
   # Store uploaded files on the local file system in a temporary directory.
-  config.active_storage.service = :test
+  config.active_storage.service = :digitalocean
 
 end
