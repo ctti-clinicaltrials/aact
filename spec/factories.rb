@@ -1,12 +1,19 @@
 FactoryBot.define do
-  factory :background_job do
+
+  factory :background_job, class: BackgroundJob do
     user_id { 1 }
-    status { "MyString" }
-    completed_at { "2023-02-16 13:52:37" }
-    logs { "MyString" }
-    type { "" }
-    data { "" }
-    url { "MyString" }
+    status { "pending" }
+    logs { "Error string." }
+    data { { 'query'=>'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 18;' } }
+    url { "https://aact-dev.nyc3.digitaloceanspaces.com/ky8i7qmv3o8prmhwginfr4fxxnx1" }
+  end
+
+  factory :background_job_db_query, class: BackgroundJob::DbQuery do
+    user_id { 2 }
+    status { "pending" }
+    logs { "Error string." }
+    data { { 'query'=>'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 18;' } }
+    url { "https://aact-dev.nyc3.digitaloceanspaces.com/ky8i7qmv3o8prmhwginfr4fxxnx1" }
   end
 
   factory :study_statistics_comparison, class: 'Support::StudyStatisticsComparison' do
