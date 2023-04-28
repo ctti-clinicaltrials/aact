@@ -14,8 +14,7 @@ RSpec.describe BackgroundJob::DbQuery, type: :model do
       job = FactoryBot.create(:background_job_db_query, data: { 'query' => 'SELECT * count studies' })
       job.process
       expect(job.status).to eq('error')
-      expect(job.user_message).to eq('PG::SyntaxError: ERROR:  syntax error at or near \"count\"\nLINE 1: SELECT * count studies\n                 ^\n')
-
+      expect(job.user_error_message).to eq('PG::SyntaxError: ERROR:  syntax error at or near \"count\"\nLINE 1: SELECT * count studies\n                 ^\n')
     end  
   end  
 end
