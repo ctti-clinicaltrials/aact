@@ -9,26 +9,74 @@ default: &default
   username: <%= ENV.fetch("AACT_DB_SUPER_USERNAME", 'aact') %>
 
 development:
-  <<: *default
-  host:  <%= ENV.fetch('APPLICATION_HOST', 'localhost') %>
-  port: 5432
-  database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact') %>
-  password: <%= ENV.fetch("AACT_PASSWORD", '') %>
-  pool: 50
+  primary:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    database: aact
+  admin:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_ADMIN_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_ADMIN_PASSWORD", '') %>
+    database: aact_admin
+  public:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_PUBLIC_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PUBLIC_PASSWORD", '') %>
+    database: aact_public
 
 test:
-  <<: *default
-  host:  <%= ENV.fetch('APPLICATION_HOST', 'localhost') %>
-  password: <%= ENV.fetch("AACT_PASSWORD", '') %>
-  database: aact_test
+  primary:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    database: acct_test
+  admin:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_ADMIN_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_ADMIN_PASSWORD", '') %>
+    database: aact_admin_test
+  public:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_PUBLIC_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PUBLIC_PASSWORD", '') %>
+    database: aact_public_test
 
 production:
-  <<: *default
-  username: <%= ENV.fetch("AACT_DB_SUPER_USERNAME", 'aact') %>
-  password: <%= ENV.fetch("AACT_PASSWORD", '') %>
-  host:  <%= ENV.fetch('AACT_HOST', 'localhost') %>
-  port:  <%= ENV.fetch('AACT_PORT', 5432) %>
-  database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact') %>
+  primary:
+    <<: *default
+    username: <%= ENV.fetch("AACT_DB_SUPER_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    host:  <%= ENV.fetch('AACT_HOST', 'localhost') %>
+    port:  <%= ENV.fetch('AACT_PORT', 5432) %>
+    database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact') %>
+  admin:
+    <<: *default
+    username: <%= ENV.fetch("AACT_ADMIN_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_ADMIN_PASSWORD", '') %>
+    host:  <%= ENV.fetch('AACT_ADMINHOST', 'localhost') %>
+    port:  <%= ENV.fetch('AACT_ADMINPORT', 5432) %>
+    database: <%= ENV.fetch('AACT_ADMIN_DATABASE_NAME', 'aact') %>
+  public:
+    <<: *default
+    username: <%= ENV.fetch("AACT_PUBLIC_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PUBLIC_PASSWORD", '') %>
+    host:  <%= ENV.fetch('AACT_PUBLIC_HOST', 'localhost') %>
+    port:  <%= ENV.fetch('AACT_PUBLIC_PORT', 5432) %>
+    database: <%= ENV.fetch('AACT_PUBLIC_DATABASE_NAME', 'aact') %>
+
 
 public:
   <<: *default
