@@ -4,7 +4,7 @@ namespace :db do
   task :load, [:days_back, :event_type, :full_featured] => :environment do |t, args|
     # The updater will default the params to run a relativey quick load:
     # incremental, not full featured, just a couple days
-    Util::Updater.new(args).run
+    Util::Updater.new(args).execute
   end
 
   task :load2, [:schema, :search_days_back] => :environment do |t, args|
