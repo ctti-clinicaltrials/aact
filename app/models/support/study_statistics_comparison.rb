@@ -13,8 +13,8 @@ class Support::StudyStatisticsComparison < Support::SupportBase
     con = ActiveRecord::Base.connection
 
     if instances_query
-      con.execute(instances_query)
-      con.execute(unique_query) 
+      instances = con.execute(instances_query).first['count']
+      unique = con.execute(unique_query).first['count']
     else
       result = con.execute("SELECT COUNT(#{column}) AS val FROM #{table} #{condition}")
       result = result.first
@@ -23,9 +23,9 @@ class Support::StudyStatisticsComparison < Support::SupportBase
       result = con.execute("SELECT COUNT(DISTINCT #{column}) AS val FROM #{table} #{condition}")
       result = result.first
       unique = result ? result['val'] : 0
-
-      return instances.to_i, unique.to_i
     end
+
+    return instances.to_i, unique.to_i
   end
 
   def get_ctgov_counts(source)
