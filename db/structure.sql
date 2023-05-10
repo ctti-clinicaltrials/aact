@@ -31,6 +31,15 @@ CREATE SCHEMA support;
 
 
 --
+-- Name: outcomemeasure; Type: TYPE; Schema: ctgov; Owner: -
+--
+
+CREATE TYPE ctgov.outcomemeasure AS (
+	outcomegrouplist jsonb
+);
+
+
+--
 -- Name: category_insert_function(); Type: FUNCTION; Schema: ctgov; Owner: -
 --
 
@@ -1787,7 +1796,6 @@ CREATE TABLE ctgov.mesh_headings (
 --
 
 CREATE SEQUENCE ctgov.mesh_headings_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1821,7 +1829,6 @@ CREATE TABLE ctgov.mesh_terms (
 --
 
 CREATE SEQUENCE ctgov.mesh_terms_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2225,7 +2232,6 @@ CREATE TABLE ctgov.reported_event_totals (
 --
 
 CREATE SEQUENCE ctgov.reported_event_totals_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2471,7 +2477,6 @@ CREATE TABLE ctgov.schema_migrations (
 --
 
 CREATE SEQUENCE ctgov.search_results_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2595,7 +2600,6 @@ CREATE TABLE ctgov.study_searches (
 --
 
 CREATE SEQUENCE ctgov.study_searches_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -3789,6 +3793,13 @@ ALTER TABLE ONLY support.study_xml_records
 
 
 --
+-- Name: categories_nct_idx; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX categories_nct_idx ON ctgov.search_results USING btree (nct_id);
+
+
+--
 -- Name: index_active_storage_attachments_on_blob_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3852,7 +3863,7 @@ CREATE INDEX index_mesh_terms_on_qualifier ON ctgov.mesh_terms USING btree (qual
 
 
 --
--- Name: index_studies_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: outcome_analyses outcome_analyses_outcome_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
 --
 
 CREATE UNIQUE INDEX index_studies_on_nct_id ON ctgov.studies USING btree (nct_id);
