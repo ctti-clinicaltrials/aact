@@ -293,5 +293,15 @@ module Util
     def log(msg)
       Rails.logger.debug { "#{Time.zone.now}: #{msg}" } # log to STDOUT
     end
+
+    def indexes_for(table)
+      ActiveRecord::Base.connection.indexes(table).map do |entry|
+        {
+          column_name: entry.columns.first,
+          index_name: entry.name,
+          is_unique: entry.unique,
+        }
+      end
+    end
   end
 end

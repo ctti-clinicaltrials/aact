@@ -27,26 +27,21 @@ module Util
       end
     end
 
-    private
-
+    # This method exports all the tables as delimited files
     def create_tempfiles(delimiter)
-      if !@table_names.empty?
-        tables=@table_names
-      else
-        tables = StudyRelationship.loadable_tables
+      tables = @table_names.empty? ? StudyRelationship.loadable_tables : @table_names
+
+      tables.map do |table_name| 
+        file_name = delimiter == ',' ? "#{table_name}.csv" : "#{table_name}.txt"
+        path = "#{@temp_dir}/#{file_name}"
+        File.open(path, 'wb+') do |file|
+          export_table(table_name, file, delimiter)
+        end
       end
-      tempfiles = tables.map { |table_name| delimiter == ',' ? "#{table_name}.csv" : "#{table_name}.txt" }
-                             .map do |file_name|
-                               path = "#{@temp_dir}/#{file_name}"
-                               File.open(path, 'wb+') do |file|
-                                 export_table_to_csv(file, file_name, path, delimiter)
-                                 file
-                               end
-                             end
     end
 
-    def export_table_to_csv(file, file_name, path, delimiter)
-      table = File.basename(file_name, delimiter == ',' ? '.csv' : '.txt')
+    # exports table to csv file using delimter
+    def export_table(table, file, delimiter)
       connection  = ActiveRecord::Base.connection.raw_connection
       connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
         while row = connection.get_copy_data
