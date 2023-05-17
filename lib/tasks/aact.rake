@@ -1,6 +1,15 @@
 include ActionView::Helpers::NumberHelper
 
 namespace :aact do
+  task :process_jobs, [] => :environment do
+    loop do
+      sleep 10
+      puts "checking for jobs to process"
+      job = BackgroundJob::DbQuery.where(status: :pending).order(created_at: :asc).first
+      job.process if job
+    end
+  end
+
   task :process, [] => :environment do
     updater = Util::Updater.new
     updater.start
