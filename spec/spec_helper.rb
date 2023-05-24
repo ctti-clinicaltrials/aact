@@ -1,5 +1,16 @@
 require "webmock/rspec"
 
+describe 'Export the ctgov schema from aact_test to aact_pub_test' do
+  before(:all) do
+    # db = Util::DbManager.new
+    dm=Util::DbManager.new(:load_event=>Support::LoadEvent.create({:event_type=>'incremental',:status=>'running',:description=>'',:problems=>''}))
+    fm=Util::FileManager.new
+    dm.dump_database
+    fm.save_static_copy
+    dm.refresh_public_db 
+  end
+end
+
 # http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
