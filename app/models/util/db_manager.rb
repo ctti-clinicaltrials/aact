@@ -86,7 +86,7 @@ module Util
       connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{database}' AND usename <> '#{username}'")
 
       # recreate schema
-      log "  dropping in #{host}:#{port}/#{database} database..."
+      log "  dropping in #{host}:#{port}/#{database} schema..."
       begin
         connection.execute("DROP SCHEMA #{schema} CASCADE;")
       rescue ActiveRecord::StatementInvalid => e
@@ -96,12 +96,12 @@ module Util
       connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
 
       # restore database
-      log "  restoring to #{host}:#{port}/#{database} database..."
+      log "  restoring to #{host}:#{port}/#{database} schema..."
       cmd = "PGPASSWORD=#{password} pg_restore -c -j 5 -v -h #{host} -p #{port} -U #{username}  -d #{database} #{filename}"
       run_restore_command_line(cmd)
 
       # verify that the database was correctly restored
-      log "  verifying #{host}:#{port}/#{database} database..."
+      log "  verifying #{host}:#{port}/#{database} schema..."
       study_count = connection.execute('select count(*) from studies;').first['count'].to_i
       if study_count != Study.count
         raise "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{host}:#{port}/#{database}.  Study count is #{study_count}. Should be #{Study.count}"

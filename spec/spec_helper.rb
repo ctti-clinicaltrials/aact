@@ -2,12 +2,10 @@ require "webmock/rspec"
 
 describe 'Export the ctgov schema from aact_test to aact_pub_test' do
   before(:all) do
-    # db = Util::DbManager.new
-    dm=Util::DbManager.new(:load_event=>Support::LoadEvent.create({:event_type=>'incremental',:status=>'running',:description=>'',:problems=>''}))
-    fm=Util::FileManager.new
-    dm.dump_database
-    fm.save_static_copy
-    dm.refresh_public_db 
+    db = Util::DbManager.new
+    file_path=db.dump_database
+    public_connection = PublicBase.connection
+    db.restore_database(public_connection, file_path)
   end
 end
 
