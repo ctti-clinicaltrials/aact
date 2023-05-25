@@ -5,7 +5,7 @@ namespace :db do
     Util::Updater.new(args).run_main_loop
   end
 
-  task :load2, [:schema, :search_days_back] => :environment do |t, args|
+  task :execute, [:schema, :search_days_back] => :environment do |t, args|
     Util::Updater.new(args).execute
   end
 

@@ -2,6 +2,8 @@ class CreateProtocolTables < ActiveRecord::Migration[4.2]
 
   def change
 
+    execute "CREATE SCHEMA IF NOT EXISTS ctgov";
+
     create_table "ctgov.brief_summaries", force: :cascade do |t|
       t.string "nct_id"
       t.text   "description"
