@@ -1421,6 +1421,7 @@ class StudyJsonRecord < Support::SupportBase
       update(saved_study_at: Time.now)
     rescue Exception => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
+      puts msg
       Airbrake.notify(error)
       @study_build_failures ||= []
       @study_build_failures << id
