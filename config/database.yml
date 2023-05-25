@@ -20,15 +20,15 @@ development:
     <<: *default
     host: localhost
     port: 5432
-    username: <%= ENV.fetch("AACT_ADMIN_USERNAME", 'aact') %>
-    password: <%= ENV.fetch("AACT_ADMIN_PASSWORD", '') %>
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_admin
   public:
     <<: *default
     host: localhost
     port: 5432
-    username: <%= ENV.fetch("AACT_PUBLIC_USERNAME", 'aact') %>
-    password: <%= ENV.fetch("AACT_PUBLIC_PASSWORD", '') %>
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_public
 
 test:

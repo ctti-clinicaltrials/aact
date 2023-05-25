@@ -27,4 +27,10 @@ namespace :db do
   task :load_multiple_studies, [:nct_id] => :environment do |t, args|
     Util::Updater.new.load_multiple_studies(args[:nct_id])
   end
+
+  desc 'load a set of 100 studies'
+  task :sample_studies, [] => :environment do |t, args|
+    studies = File.read('sample-studies')
+    Util::Updater.new.load_multiple_studies(studies)
+  end
 end

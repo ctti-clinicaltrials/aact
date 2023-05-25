@@ -230,7 +230,7 @@ module Util
     def load_multiple_studies(string_nct_ids)
       # string_nct_ids looks like 'NCT00700336 NCT00772330 NCT00845871 NCT00852124 NCT01178814'
       # here I'm turning the string into an array
-      array_nctids = string_nct_ids.split(' ')
+      array_nctids = string_nct_ids.split
       # 1. remove constraings
       log("remove constraints...")
       db_mgr.remove_constraints

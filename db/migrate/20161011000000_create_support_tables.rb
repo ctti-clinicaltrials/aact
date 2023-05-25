@@ -1,7 +1,7 @@
 class CreateSupportTables < ActiveRecord::Migration[4.2]
 
   def up
-    execute "CREATE SCHEMA support"
+    execute "CREATE SCHEMA IF NOT EXISTS support"
 
     create_table "support.load_events", force: :cascade do |t|
       t.string   "event_type"
