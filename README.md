@@ -1,40 +1,13 @@
 # AACT
 
-### What it is:  
-Database for Aggregated Analysis of ClinicalTrials.gov  
-
-<br>
-
-### Purpose:  
-This is a ruby on rails application that retreives the content of <a href="clinicaltrials.gov" target="_blank">clinicaltrials.gov</a> (via their API) and makes the information available in a relational database.  We do this to make this valuable body of information accessible to the public as a complete aggregated set of data.
+AACT or Aggregated Analysis of ClinicalTrials.gov is an application for retrieving all of the public data from <a href="clinicaltrials.gov" target="_blank">clinicaltrials.gov</a> (via their API) and make the information available in a relational database.  We do this to make this valuable body of information accessible to the public as a complete aggregated set of data.
 
 If you need a copy of the database, but don't want to bother installing & running this app, copies of the database are available for download from the <a href='https://aact.ctti-clinicaltrials.org/snapshots' target='_blank'>AACT website (Download page).</a> We use pg_dump to create a snapshot of the database after each nightly update, so a version is always available with the most current info from clinicaltrials.gov.  
-
-<br>
 
 ### Database explanation:  
 
 Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describing their purposes.
 ![Visualization of the database arrangment for AACT(backend) and AACT-Admin(frontend)](public/aact_architecture.png "AACT Database Visualization")   
-
-<br>
-
-### Data Source:  
-
-AACT downloads the complete set of studies from ClinicalTrials.gov as a zipfile that contains an xml file for each study https://clinicaltrials.gov/search/resultsxml=true.  Until recently, the ClinicalTrials.gov API only provided this info in XML format.  
-
-In June, 2019, an improved API was deployed in beta which provides a far more flexible way to retrieve studies from ClinicalTrials.gov and also lets you retrieve it as json. We have setup AACT to also retrieve data from the beta API.
-
-You can find information about the ClinicalTrials.gov beta API here: https://clinicaltrials.gov/api/gui
-
-
-
-<br>
-<br>
-
-***
-
-<br>
 
 ## Requireqments
 
@@ -49,19 +22,14 @@ You can find information about the ClinicalTrials.gov beta API here: https://cli
     - For Ubuntu and Debian `sudo apt install wget`
     - For CentOS and Fedora `sudo yum install wget`
 
-<br>
-
 ## Getting Started
 
-1.  Install PostgreSQL 13. If you have a Mac you can use brew to install PostgreSQL.  
+1.  Install PostgreSQL
     `brew install postgresql`  
-
-    Here are some links that could help you setup  
     https://www.postgresql.org/download/linux/ubuntu/  
     https://www.postgresql.org/download/macosx/  
-    Note: do not delete the template databases, meaning template0 and template1. They are what PostgreSQL uses to create all other databases. If you remove them you will no longer be able to make new databases.  
 
-2.  Now we will create the roles you need for running AACT.  
+2.  Create the roles you need for running AACT.  
     `psql postgres` this allows you to enter the postgres database that comes with PostgreSQL.  
     `postgres=# create role <your_aact_superuser> login password '<your_superuser_password>';`  
     `postgres=# alter user <your_aact_superuser> with superuser;`  
