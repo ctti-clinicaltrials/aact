@@ -22,6 +22,17 @@ Below you'll find an image that illustrates the different AACT databases and sch
     - For Ubuntu and Debian `sudo apt install wget`
     - For CentOS and Fedora `sudo yum install wget`
 
+## Before strart
+
+Common for Core and Admin apps setting up problems/issues:
+
+1. Ubuntu versions 22.04 and newer have no built-in openssl 1.1.1 and it causes problems with the installation of ruby versions older than 3.02 (information actual 6/20/2023).
+2. Keep in mind that these 2 apps will interact with each other, the purpose of the Core app is for populating DB only. AACT-admin uses the same db as AACT-core. Do not try to "rails s" AACT-core.
+3. In those 2 lines in the environment variables file: 
+export AACT_CORE_DATABASE_URL=postgres://username:passw@localhost:5432/aact
+export AACT_CORE_TEST_DATABASE_URL=postgres://username:passw@127.0.0.1:5432/aact_test 
+username - is your Postgresql DB username, passw - your postgres DB password.
+
 ## Getting Started
 
 1.  Install PostgreSQL
@@ -30,20 +41,22 @@ Below you'll find an image that illustrates the different AACT databases and sch
     https://www.postgresql.org/download/macosx/  
 
 2.  Create the roles you need for running AACT.  
-    `psql postgres` this allows you to enter the postgres database that comes with PostgreSQL.  
+    Enter 'psql postgres' command in terminal to open postgres console and enter commands below to set up postgres database.  
     `postgres=# create role <your_aact_superuser> login password '<your_superuser_password>';`  
     `postgres=# alter user <your_aact_superuser> with superuser;`  
     `postgres=# create role read_only;`  
     `postgres=# create database aact_alt;`  
     `postgres=# \q` this exits out of psql  
-    Verify your new user can login to psql with command: `psql -U <your_aact_superuser> -d postgres`  
+    Verify your new user can login to psql with command: `psql -U <your_aact_superuser> -d postgres` OR use command 'sudo -u postgres psql' for it. 
     You can exit the shell once you see you can log in.
+
+   
 
 3.  If your terminal asks for a password when logging in to psql you can give it the password automatically by adding it to the “.pgpass” file. If you haven’t been asked for a password, you can skip this step.
     The “.pgpass” should be at your root.  
     `echo 'localhost:5432:aact:<superuser_name>:<superuser_password>'  >> ~/.pgpass`  
     Now check that you can login to psql without giving a password  
-    `psql -U aact_pg_user -d postgres`
+    `psql -U <username> -d postgres`
     You can exit the shell once you see you can log in without a password.
 
     Here is a document about the “.pgpass” file https://www.postgresql.org/docs/current/libpq-pgpass.html.   
@@ -68,14 +81,34 @@ Below you'll find an image that illustrates the different AACT databases and sch
   
     `source ~/.zshrc` to load the variables into the terminal session.  
     
-    Depending on where you store the variables you may need to call `source` on that file each time you open a new terminal. This is not necessary for “.zshrc”.   
+    Depending on where you store the variables you may need to call `source` on that file each time you open a new terminal. This is not necessary for “.zshrc”.
+     When you done check your “.zshrc” or ".bashrs" file. It should looks like example below. Id it it doesn't - edit it accordingly. 
+
+    Example of a set of environment variables: 
+
+export AACT_PUBLIC_BETA_DATABASE_NAME=aact
+export AACT_PUBLIC_DATABASE_NAME=aact
+export AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt
+export AACT_PASSWORD=54104754
+export AACT_USERNAME=user_name
+export PGPASSWORD=passw
+export TEST_PUBLIC_DB_USER=user_name
+export TEST_PUBLIC_DB_PASS=passw
+export PUBLIC_DB_USER=user_name
+export PUBLIC_DB_PASS=passw
+export AACT_DB_SUPER_USERNAME=user_name
+export PATH=$PATH:/lib/postgresql/15/bin
+export AACT_CORE_DATABASE_URL=postgres://DB_USER_NAME:DB_PASSW@localhost:5432/aact
+export AACT_CORE_TEST_DATABASE_URL=postgres://DB_USER_NAME:DB_PASSW@127.0.0.1:5432/aact_test
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"  
 
 5.  Clone this repo: `git clone git@github.com:ctti-clinicaltrials/aact.git`  
     Note: Cloning with a ssh url requires that your local ssh key is saved to Github. The key verifies your permission to push and pull so you won't have to log in. If you haven't saved your ssh key to Github use the html url instead when cloning.  
 
 6.  `cd aact` to enter the directory  
 
-7.  Install a ruby version manager like rbenv, then install Ruby 2.6.2  
+7.  Install a ruby version manager like rbenv, then install Ruby 2.7.7  
 
 8.  Bundle install  
     The pg gem (used by AACT) may have trouble finding your PostgreSQL installation. If not, skip this step.  
@@ -84,19 +117,50 @@ Below you'll find an image that illustrates the different AACT databases and sch
     Example: `export PATH=$PATH:/Library/PostgreSQL/13/bin`  
     https://wikimatze.de/installing-postgresql-gem-under-ubuntu-and-mac/  
 
-9.  Use the "connections.yml.example" file and copy it to the file "connnections.yml" and just update what needs to be updated for the local environment.
-    In the terminal, type `cp connections.yml.example connections.yml`.
-    The file called "connections.yml" is mainly for running a docker container but it's called on by the Util::DbManager model when it initializes so you will get an error if it's not there when the model is called. That model manages database changes.  
+9.  Use the "connections.yml.example" file (see in config directory) and copy content of it to the file "connections.yml" (most likely you will need to create connections.yml in the same folder) and just update what needs to be updated for the local environment.
+    In the terminal, type `cp connections.yml.example connections.yml` (that command doesnt work on linux Ubuntu).
+    The file called "connections.yml" is mainly for running a docker container but it's called on by the Util::DbManager model when it initializes so you will get an error if it's not there when the model is called. That model manages database changes.
+11. In the database.yml file which in config folder, lines 1-32 should looks like:
 
-10. Create databases and run migrations  
+default: &default
+  encoding: utf8
+  adapter: postgresql
+  min_messages: warning
+  pool: <%= [Integer(ENV.fetch("MAX_THREADS", 50)), Integer(ENV.fetch("DB_POOL", 50))].max %>
+  timeout: 5000
+  #  Make sure you've created a database account for the AACT_DB_SUPER_USERNAME (default: aact) with permission to create databases.
+  #  Also, add an entry for this user in the .pgpass file in the root directory of the user who run the rails apps so the app knows its password.
+  username: <%= ENV.fetch("AACT_DB_SUPER_USERNAME", 'your_db_username') %>
+
+development:
+  primary:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_USERNAME", 'your_db_username') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", 'your_password') %>
+    database: aact
+  admin:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_USERNAME", 'your_db_username') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", 'your_password') %>
+    database: aact_admin
+  public:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_USERNAME", 'your_db_username') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", 'your_password') %>
+    database: aact_public
+    
+12. Create databases and run migrations  
     `bin/rake db:create`  
     `bin/rake db:create RAILS_ENV=test`  
     `bin/rake db:migrate`  
     `bin/rake db:migrate RAILS_ENV=test`  
-
-11. Grant read_only privileges  
-    `bin/rake grant:db_privs:run`  
-    `bin/rake grant:db_privs:run RAILS_ENV=test`  
+  
 
 <br>
 <br>
