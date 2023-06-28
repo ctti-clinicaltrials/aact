@@ -894,6 +894,8 @@ class StudyJsonRecord < Support::SupportBase
                             dispersion_value_num: StudyJsonRecord.float(measure['OutcomeMeasurementSpread']),
                             dispersion_lower_limit: StudyJsonRecord.float(measure['OutcomeMeasurementLowerLimit']),
                             dispersion_upper_limit: StudyJsonRecord.float(measure['OutcomeMeasurementUpperLimit']),
+                            dispersion_lower_limit_raw: measure['OutcomeMeasurementLowerLimit'],
+                            dispersion_upper_limit_raw: measure['OutcomeMeasurementUpperLimit'],
                             explanation_of_na: measure['OutcomeMeasurementComment']
                           }
         end

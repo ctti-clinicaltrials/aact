@@ -1997,7 +1997,9 @@ CREATE TABLE ctgov.outcome_measurements (
     dispersion_value_num numeric,
     dispersion_lower_limit numeric,
     dispersion_upper_limit numeric,
-    explanation_of_na text
+    explanation_of_na text,
+    dispersion_upper_limit_raw character varying,
+    dispersion_lower_limit_raw character varying
 );
 
 
@@ -4592,6 +4594,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230102193531'),
 ('20230214200400'),
 ('20230216205237'),
-('20230416235053');
+('20230416235053'),
+('20230628231316');
 
 
