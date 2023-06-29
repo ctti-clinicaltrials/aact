@@ -928,6 +928,8 @@ class StudyJsonRecord < Support::SupportBase
                                           ci_percent: StudyJsonRecord.float(analysis['OutcomeAnalysisCIPctValue']),
                                           ci_lower_limit: analysis['OutcomeAnalysisCILowerLimit'],
                                           ci_upper_limit: analysis['OutcomeAnalysisCIUpperLimit'],
+                                          ci_lower_limit_raw: analysis['OutcomeAnalysisCILowerLimit'],
+                                          ci_upper_limit_raw: analysis['OutcomeAnalysisCIUpperLimit'],
                                           ci_upper_limit_na_comment: analysis['OutcomeAnalysisCIUpperLimitComment'],
 
                                           method: analysis['OutcomeAnalysisStatisticalMethod'],
