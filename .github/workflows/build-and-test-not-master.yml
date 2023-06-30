@@ -1,0 +1,56 @@
+name: Continuous Integration
+
+on:
+  push:
+  pull_request:
+    branches:
+      - '!master'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s 
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Add or replace dependency steps here
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.7
+          bundler-cache: true
+
+      - name: Install PostgreSQL 12 client
+        run: |
+          sudo apt-get -yqq install libpq-dev
+
+      - name: Bundle Install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+              
+      # Add or replace database setup steps here
+      - name: Load database schema
+        run: |
+          bin/rails db:schema:load
+
+      # Add or replace test runners here
+      - name: Run tests
+        run: bundle exec rspec
