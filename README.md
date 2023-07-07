@@ -159,7 +159,6 @@ development:
     `bin/rake db:create RAILS_ENV=test`  
     `bin/rake db:migrate`  
     `bin/rake db:migrate RAILS_ENV=test`  
-  
 
 <br>
 <br>
