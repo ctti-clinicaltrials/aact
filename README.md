@@ -82,7 +82,7 @@ username - is your Postgresql DB username, passw - your postgres DB password.
     `source ~/.zshrc` to load the variables into the terminal session.  
     
     Depending on where you store the variables you may need to call `source` on that file each time you open a new terminal. This is not necessary for “.zshrc”.
-     When you done check your “.zshrc” or ".bashrs" file. It should looks like example below.If it doesn't - edit it accordingly. 
+     When you done check your “.zshrc” or ".bashrc" file. It should looks like example below.If it doesn't - edit it accordingly. 
 
     Example of a set of environment variables: 
 
