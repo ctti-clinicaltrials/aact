@@ -77,8 +77,6 @@ username - is your Postgresql DB username, passw - your postgres DB password.
     `echo 'export AACT_PUBLIC_USERNAME=<username for aact_public database>'  >> ~/.zshrc`    
     `echo 'export AACT_PUBLIC_PASSWORD=<password for aact_public database>'  >> ~/.zshrc`    
 
-
-  
     `source ~/.zshrc` to load the variables into the terminal session.  
     
     Depending on where you store the variables you may need to call `source` on that file each time you open a new terminal. This is not necessary for “.zshrc”.
@@ -120,7 +118,8 @@ export PATH="$PATH:$HOME/.rvm/bin"
 9.  Use the "connections.yml.example" file (see in config directory) and copy content of it to the file "connections.yml" (most likely you will need to create connections.yml in the same folder) and just update what needs to be updated for the local environment.
     In the terminal, type `cp connections.yml.example connections.yml` (that command doesnt work on linux Ubuntu).
     The file called "connections.yml" is mainly for running a docker container but it's called on by the Util::DbManager model when it initializes so you will get an error if it's not there when the model is called. That model manages database changes.
-11. In the database.yml file which in config folder, lines 1-32 should looks like:
+
+10. In the database.yml file which in config folder, lines 1-32 should looks like:
 
 default: &default
   encoding: utf8
@@ -155,7 +154,7 @@ development:
     password: <%= ENV.fetch("AACT_PASSWORD", 'your_password') %>
     database: aact_public
     
-12. Create databases and run migrations  
+11. Create databases and run migrations  
     `bin/rake db:create`  
     `bin/rake db:create RAILS_ENV=test`  
     `bin/rake db:migrate`  
