@@ -11,47 +11,59 @@ default: &default
 development:
   primary:
     <<: *default
+    encoding: utf8
+    adapter: postgresql
     host: localhost
     port: 5432
-    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
-    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    username:
+    password: 
     database: aact
   admin:
     <<: *default
+    encoding: utf8
+    adapter: postgresql
     host: localhost
-    port: 5432
-    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
-    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    port: 5432 
+    username:
+    password:
     database: aact_admin
   public:
     <<: *default
+    encoding: utf8
+    adapter: postgresql
     host: localhost
     port: 5432
-    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
-    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    username: 
+    password: 
     database: aact_public
 
 test:
   primary:
     <<: *default
+    encoding: utf8
+    adapter: postgresql
     host: 127.0.0.1
     port: 5432
-    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
-    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    username: 
+    password:
     database: acct_test
   admin:
     <<: *default
+    encoding: utf8
+    adapter: postgresql
     host: localhost
     port: 5432
-    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
-    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    username:
+    password:
     database: aact_admin_test
   public:
     <<: *default
+    encoding: utf8
+    adapter: postgresql
     host: localhost
     port: 5432
-    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
-    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    username:
+    password:
     database: aact_public_test
 
 production:
@@ -82,5 +94,3 @@ public:
   <<: *default
   host:  <%= ENV.fetch('AACT_PUBLIC_HOSTNAME', 'localhost') %>
   database: <%= ENV.fetch('AACT_PUBLIC_DATABASE_NAME', 'aact_pub') %>
-
-
