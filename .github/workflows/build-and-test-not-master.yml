@@ -1,7 +1,6 @@
 name: Continuous Integration
 
 on:
-  push:
   pull_request:
     branches:
       - '!master'
@@ -49,7 +48,7 @@ jobs:
       # Add or replace database setup steps here
       - name: Load database schema
         run: |
-          bin/rails db:schema:load
+          bin/rake db:schema:load
 
       # Add or replace test runners here
       - name: Run tests
