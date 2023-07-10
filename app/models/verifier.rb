@@ -31,7 +31,6 @@ class Verifier < ActiveRecord::Base
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         puts msg
-        ErrorLog.error(msg)
         Airbrake.notify(error)
         next
       end
