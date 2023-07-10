@@ -1,5 +1,5 @@
 class ClinicalTrialsApi
-  BASE_URL = 'https://clinicaltrials.gov/api/info'
+  BASE_URL = 'https://classic.clinicaltrials.gov/api/info'
 
   def self.study_statistics
     body = Faraday.get("#{BASE_URL}/study_statistics?fmt=json").body
