@@ -51,6 +51,8 @@ jobs:
       - name: Load database schema
         run: |
           bin/rake db:schema:load
+          bin/rake db:create
+          bin/rake db:migrate
 
       # Add or replace test runners here
       - name: Run tests
