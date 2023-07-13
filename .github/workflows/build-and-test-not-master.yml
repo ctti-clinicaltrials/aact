@@ -50,9 +50,9 @@ jobs:
       # Add or replace database setup steps here
       - name: Load database schema
         run: |
-          bundle exec rake db:create
-          bundle exec rake db:migrate
-          bundle exec rake db:schema:load
+          bundle exec rails db:create
+          bundle exec rails db:migrate
+          bundle exec rails db:schema:load
 
       # Add or replace test runners here
       - name: Run tests
