@@ -11,8 +11,6 @@ default: &default
 development:
   primary:
     <<: *default
-    encoding: utf8
-    adapter: postgresql
     host: localhost
     port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
@@ -20,8 +18,6 @@ development:
     database: aact
   admin:
     <<: *default
-    encoding: utf8
-    adapter: postgresql
     host: localhost
     port: 5432 
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
@@ -29,8 +25,6 @@ development:
     database: aact_admin
   public:
     <<: *default
-    encoding: utf8
-    adapter: postgresql
     host: localhost
     port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
@@ -40,8 +34,6 @@ development:
 test:
   primary:
     <<: *default
-    encoding: utf8
-    adapter: postgresql
     host: 127.0.0.1
     port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
@@ -49,8 +41,6 @@ test:
     database: aact_test
   admin:
     <<: *default
-    encoding: utf8
-    adapter: postgresql
     host: localhost
     port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
@@ -58,8 +48,6 @@ test:
     database: aact_admin_test
   public:
     <<: *default
-    encoding: utf8
-    adapter: postgresql
     host: localhost
     port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
