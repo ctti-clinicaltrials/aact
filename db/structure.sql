@@ -1881,7 +1881,10 @@ CREATE TABLE ctgov.outcome_analyses (
     method_description text,
     estimate_description text,
     groups_description text,
-    other_analysis_description text
+    other_analysis_description text,
+    ci_upper_limit_raw character varying,
+    ci_lower_limit_raw character varying,
+    p_value_raw character varying
 );
 
 
@@ -4595,6 +4598,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230214200400'),
 ('20230216205237'),
 ('20230416235053'),
-('20230628231316');
+('20230628231316'),
+('20230629000057'),
+('20230720150513');
+
 
 

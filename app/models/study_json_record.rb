@@ -925,6 +925,7 @@ class StudyJsonRecord < Support::SupportBase
                                           dispersion_value: analysis['OutcomeAnalysisDispersionValue'],
                                           p_value_modifier: raw_value.gsub(/\d+/, "").gsub('.','').gsub('-','').strip,
                                           p_value: raw_value.gsub(/</, '').gsub(/>/, '').gsub(/ /, '').gsub(/=/, '').strip,
+                                          p_value_raw: analysis['OutcomeAnalysisPValue'],
                                           p_value_description: analysis['OutcomeAnalysisPValueComment'],
                                           ci_n_sides: analysis['OutcomeAnalysisCINumSides'],
                                           ci_percent: StudyJsonRecord.float(analysis['OutcomeAnalysisCIPctValue']),
