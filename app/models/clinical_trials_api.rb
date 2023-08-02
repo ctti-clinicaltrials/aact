@@ -1,8 +1,8 @@
 class ClinicalTrialsApi
-  BASE_URL = 'https://classic.clinicaltrials.gov/api/info'
+  BASE_URL = 'https://classic.clinicaltrials.gov/api/'
 
   def self.study_statistics
-    body = Faraday.get("#{BASE_URL}/study_statistics?fmt=json").body
+    body = Faraday.get("#{BASE_URL}/info/study_statistics?fmt=json").body
     JSON.parse(body)
   end
 
@@ -15,7 +15,7 @@ class ClinicalTrialsApi
     offset = 1
     items = []
     while items.length < found
-      url = "https://clinicaltrials.gov/api/query/study_fields?expr=AREA%5BConditionSearch%5D%22covid-19%22&fields=NCTId%2CStudyFirstPostDate%2CLastUpdatePostDate&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
+      url = "#{BASE_URL}/query/study_fields?expr=AREA%5BConditionSearch%5D%22covid-19%22&fields=NCTId%2CStudyFirstPostDate%2CLastUpdatePostDate&min_rnk=#{min}&max_rnk=#{max}&fmt=json"
 
       puts url
       json = JSON.parse(Faraday.get(url).body)
@@ -46,7 +46,7 @@ class ClinicalTrialsApi
     items = []
     while items.length < found
       t = Time.now
-      url = "https://clinicaltrials.gov/api/query/study_fields?fields=NCTId%2CStudyFirstPostDate%2CLastUpdatePostDate&min_rnk=#{offset}&max_rnk=#{offset + 999}&fmt=json"
+      url = "#{BASE_URL}/query/study_fields?fields=NCTId%2CStudyFirstPostDate%2CLastUpdatePostDate&min_rnk=#{offset}&max_rnk=#{offset + 999}&fmt=json"
       # puts url
       attempts = 0
       begin
@@ -76,19 +76,19 @@ class ClinicalTrialsApi
   end
 
   def self.field_values(field)
-   url = "https://www.clinicaltrials.gov/api/query/field_values?field=#{field}&fmt=json"
+   url = "#{BASE_URL}/query/field_values?field=#{field}&fmt=json"
    json = JSON.parse(Faraday.get(url).body)
    json.dig('FieldValuesResponse','FieldValues').map{|k| k.dig('FieldValue') }
   end
 
   def self.nct_ids_for(query)
-    url = "https://clinicaltrials.gov/api/query/field_values?expr=#{query}&field=NCTId&fmt=json"
+    url = "#{BASE_URL}/query/field_values?expr=#{query}&field=NCTId&fmt=json"
     json = JSON.parse(Faraday.get(url).body)
     json.dig('FieldValuesResponse','FieldValues').map{|k| k.dig('FieldValue') }
   end
   
   def self.studies_with_field_value(field, value)
-    url = "https://www.clinicaltrials.gov/api/query/study_fields?expr=AREA%5B#{field}%5D#{value}&fields=NCTId&min_rnk=1&max_rnk=&fmt=json"
+    url = "#{BASE_URL}/query/study_fields?expr=AREA%5B#{field}%5D#{value}&fields=NCTId&min_rnk=1&max_rnk=&fmt=json"
     json = JSON.parse(Faraday.get(url).body)
     json.dig('StudyFieldsResponse', 'StudyFields').map{|k| k.dig('NCTId') }.flatten
   end
