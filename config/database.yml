@@ -53,8 +53,8 @@ test:
     adapter: postgresql
     host: localhost
     port: 5432
-    username:
-    password:
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_admin_test
   public:
     <<: *default
@@ -62,8 +62,8 @@ test:
     adapter: postgresql
     host: localhost
     port: 5432
-    username:
-    password:
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_public_test
 
 production:
