@@ -894,6 +894,8 @@ class StudyJsonRecord < Support::SupportBase
                             dispersion_value_num: StudyJsonRecord.float(measure['OutcomeMeasurementSpread']),
                             dispersion_lower_limit: StudyJsonRecord.float(measure['OutcomeMeasurementLowerLimit']),
                             dispersion_upper_limit: StudyJsonRecord.float(measure['OutcomeMeasurementUpperLimit']),
+                            dispersion_lower_limit_raw: measure['OutcomeMeasurementLowerLimit'],
+                            dispersion_upper_limit_raw: measure['OutcomeMeasurementUpperLimit'],
                             explanation_of_na: measure['OutcomeMeasurementComment']
                           }
         end
@@ -923,6 +925,7 @@ class StudyJsonRecord < Support::SupportBase
                                           dispersion_value: analysis['OutcomeAnalysisDispersionValue'],
                                           p_value_modifier: raw_value.gsub(/\d+/, "").gsub('.','').gsub('-','').strip,
                                           p_value: raw_value.gsub(/</, '').gsub(/>/, '').gsub(/ /, '').gsub(/=/, '').strip,
+                                          p_value_raw: analysis['OutcomeAnalysisPValue'],
                                           p_value_description: analysis['OutcomeAnalysisPValueComment'],
                                           ci_n_sides: analysis['OutcomeAnalysisCINumSides'],
                                           ci_percent: StudyJsonRecord.float(analysis['OutcomeAnalysisCIPctValue']),
