@@ -15,8 +15,8 @@ development:
     adapter: postgresql
     host: localhost
     port: 5432
-    username:
-    password: 
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact
   admin:
     <<: *default
@@ -24,8 +24,8 @@ development:
     adapter: postgresql
     host: localhost
     port: 5432 
-    username:
-    password:
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_admin
   public:
     <<: *default
@@ -33,8 +33,8 @@ development:
     adapter: postgresql
     host: localhost
     port: 5432
-    username: 
-    password: 
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_public
 
 test:
