@@ -1882,6 +1882,7 @@ CREATE TABLE ctgov.outcome_analyses (
     estimate_description text,
     groups_description text,
     other_analysis_description text,
+    ci_upper_limit_raw character varying,
     ci_lower_limit_raw character varying,
     p_value_raw character varying
 );
