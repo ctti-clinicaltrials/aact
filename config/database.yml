@@ -76,3 +76,4 @@ production:
     host:  <%= ENV.fetch('AACT_PUBLIC_HOST', 'localhost') %>
     port:  <%= ENV.fetch('AACT_PUBLIC_PORT', 5432) %>
     database: <%= ENV.fetch('AACT_PUBLIC_DATABASE_NAME', 'aact') %>
+
