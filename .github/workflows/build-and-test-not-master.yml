@@ -27,6 +27,13 @@ jobs:
       RAILS_ENV: test
       AACT_USERNAME: rails
       AACT_PASSWORD: password
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USER: rails
+      DB_PASS: password
+      DB_NAME: aact_test
+      AACT_CORE_DATABASE_URL: postgres://rails:password@localhost:5432/aact_test
+      AACT_PUBLIC_DATABASE_URL: postgres://rails:password@localhost:5432/aact_public_test
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -50,9 +57,12 @@ jobs:
       # Add or replace database setup steps here
       - name: Load database schema
         run: |
-          bundle exec rails db:create
-          bundle exec rails db:migrate
-          bundle exec rails db:schema:load
+          bundle exec rake db:create
+          bundle exec rake db:migrate
+          PGPASSWORD=password psql -h localhost -U rails -d rails_test -c "CREATE DATABASE aact_admin_test;"
+          PGPASSWORD=password psql -h localhost -U rails -d rails_test -c "CREATE DATABASE aact_test;"
+          PGPASSWORD=password psql -h localhost -U rails -d aact_admin_test < db/admin_structure.sql
+          PGPASSWORD=password psql -h localhost -U rails -d aact_test < db/public_structure.sql
 
       # Add or replace test runners here
       - name: Run tests
