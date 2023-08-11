@@ -32,7 +32,7 @@ jobs:
       DB_USER: rails
       DB_PASS: password
       DB_NAME: aact_test
-      AACT_CORE_DATABASE_URL: postgres://rails:password@localhost:5432/aact_test
+      AACT_ADMIN_DATABASE_URL: postgres://rails:password@localhost:5432/aact_admin_test
       AACT_PUBLIC_DATABASE_URL: postgres://rails:password@localhost:5432/aact_public_test
     steps:
       - name: Checkout code
@@ -60,9 +60,9 @@ jobs:
           bundle exec rake db:create
           bundle exec rake db:migrate
           PGPASSWORD=password psql -h localhost -U rails -d rails_test -c "CREATE DATABASE aact_admin_test;"
-          PGPASSWORD=password psql -h localhost -U rails -d rails_test -c "CREATE DATABASE aact_test;"
+          PGPASSWORD=password psql -h localhost -U rails -d rails_test -c "CREATE DATABASE aact_public_test;"
           PGPASSWORD=password psql -h localhost -U rails -d aact_admin_test < db/admin_structure.sql
-          PGPASSWORD=password psql -h localhost -U rails -d aact_test < db/public_structure.sql
+          PGPASSWORD=password psql -h localhost -U rails -d aact_public_test < db/public_structure.sql
 
       # Add or replace test runners here
       - name: Run tests
