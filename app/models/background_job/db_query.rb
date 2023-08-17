@@ -46,6 +46,8 @@ class BackgroundJob::DbQuery < BackgroundJob
         
     # if the background job status is "error", show the user error message
     rescue StandardError => e
+      puts e.message
+      puts e.backtrace
       update(status: "error", logs: e.message, user_error_message: "There was an error, please contact us.")
     end    
   end  
