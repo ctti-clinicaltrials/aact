@@ -70,6 +70,8 @@ jobs:
       - name: Build config/connections.yml
         run: |
           echo "public:" >> config/connections.yml
+          echo "  encoding: utf8" >> config/connections.yml
+          echo "  adapter: postgresql" >> config/connections.yml
           echo "  host: localhost" >> config/connections.yml
           echo "  port: 5432" >> config/connections.yml
           echo "  database: aact_public_test" >> config/connections.yml
