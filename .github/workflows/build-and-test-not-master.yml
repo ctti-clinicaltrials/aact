@@ -80,4 +80,7 @@ jobs:
 
       # Add or replace test runners here
       - name: Run tests
-        run: bundle exec rspec   
+        run: |
+          mkdir tmp
+          touch tmp/${{ id }}.csv
+          bundle exec rspec   
