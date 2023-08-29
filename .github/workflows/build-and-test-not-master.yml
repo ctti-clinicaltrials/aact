@@ -82,5 +82,5 @@ jobs:
       - name: Run tests
         run: |
           mkdir tmp
-          touch tmp/${{ id }}.csv
+          touch tmp/#{id}.csv
           bundle exec rspec   
