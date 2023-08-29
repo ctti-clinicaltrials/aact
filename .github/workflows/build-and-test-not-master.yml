@@ -78,9 +78,13 @@ jobs:
           echo "  user: rails" >> config/connections.yml
           echo "  password: password" >> config/connections.yml
 
-      # Add or replace test runners here
-      - name: Run tests
+      # Add or replace temporary directory/file here
+      - name: Create temp/file
         run: |
           mkdir tmp
           touch tmp/#{id}.csv
-          bundle exec rspec   
+          
+      # Add or replace test runners here
+      - name: Run tests
+        run: |
+          bundle exec rspec
