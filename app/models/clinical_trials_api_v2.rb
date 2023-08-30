@@ -38,19 +38,19 @@ class ClinicalTrialsApiV2
   end
 
   #Field Values Stats
-  def fieldValues(field)
+  def field_values(field)
     body = Faraday.get("#{BASE_URL_V2}/stats/fieldValues/#{field}").body
     JSON.parse(body)
   end
 
   #List Sizes
-  def listSizes
+  def list_sizes
     body = Faraday.get("#{BASE_URL_V2}/stats/listSizes").body
     JSON.parse(body)
   end
 
   #List Field Size
-  def listFields(field)
+  def list_fields(field)
     body = Faraday.get("#{BASE_URL_V2}/stats/listSizes/#{field}").body
     JSON.parse(body)
   end

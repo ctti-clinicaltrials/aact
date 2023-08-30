@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ClinicalTrialsApiV2 do
-  describe '.studies' do
+  describe '#studies' do
     it 'returns a list of studies' do
       stub_request(:get, "https://clinicaltrials.gov/api/v2//studies").
         with(
@@ -19,7 +19,7 @@ RSpec.describe ClinicalTrialsApiV2 do
     end
   end
 
-  describe '.study' do
+  describe '#study' do
     it 'returns information about a single study' do
       nctId = 'NCT123456'
       stub_request(:get, "https://clinicaltrials.gov/api/v2//studies/#{nctId}").
@@ -37,7 +37,7 @@ RSpec.describe ClinicalTrialsApiV2 do
     end
   end
 
-  describe '.metadata' do
+  describe '#metadata' do
     it 'returns data model fields' do
       stub_request(:get, "https://clinicaltrials.gov/api/v2//studies/metadata").
         with(
@@ -54,7 +54,7 @@ RSpec.describe ClinicalTrialsApiV2 do
     end
   end
 
-  describe '.size' do
+  describe '#size' do
     it 'returns study size statistics' do
       stub_request(:get, "https://clinicaltrials.gov/api/v2//stats/size").
         with(
@@ -71,7 +71,7 @@ RSpec.describe ClinicalTrialsApiV2 do
     end
   end
 
-  describe '.values' do
+  describe '#values' do
     it 'returns field values statistics' do
       stub_request(:get, "https://clinicaltrials.gov/api/v2//stats/fieldValues").
         with(
@@ -88,7 +88,7 @@ RSpec.describe ClinicalTrialsApiV2 do
     end
   end
 
- describe '#fieldValues' do
+ describe '#field_values' do
     it 'returns field values statistics for a specific field' do
       field = 'condition'
       stub_request(:get, "https://clinicaltrials.gov/api/v2//stats/fieldValues/#{field}").
@@ -98,16 +98,16 @@ RSpec.describe ClinicalTrialsApiV2 do
             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'User-Agent'=>'Faraday v2.1.0'
           }).
-        to_return(status: 200, body: "{\"field\": \"#{field}\", \"values\": [\"value1\", \"value2\"]}", headers: {}) # Use double quotes for JSON string
+        to_return(status: 200, body: "{\"field\": \"#{field}\", \"values\": [\"value1\", \"value2\"]}", headers: {})
 
-      response = ClinicalTrialsApiV2.new.fieldValues(field)
+      response = ClinicalTrialsApiV2.new.field_values(field)
       expect(response).to be_a(Hash)
       expect(response['field']).to eq(field)
       expect(response['values']).to eq(["value1", "value2"])
     end
   end
 
-  describe '#listSizes' do
+  describe '#list_sizes' do
     it 'returns list sizes statistics' do
       stub_request(:get, "https://clinicaltrials.gov/api/v2//stats/listSizes").
         with(
@@ -118,13 +118,13 @@ RSpec.describe ClinicalTrialsApiV2 do
           }).
         to_return(status: 200, body: '{"listSizes": [10, 20]}', headers: {})
 
-      response = ClinicalTrialsApiV2.new.listSizes
+      response = ClinicalTrialsApiV2.new.list_sizes
       expect(response).to be_a(Hash)
       expect(response['listSizes']).to eq([10, 20])
     end
   end
 
-  describe '#listFields' do
+  describe '#list_fields' do
     it 'returns list field size statistics for a specific field' do
       field = 'condition'
       stub_request(:get, "https://clinicaltrials.gov/api/v2//stats/listSizes/#{field}").
@@ -134,9 +134,9 @@ RSpec.describe ClinicalTrialsApiV2 do
             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'User-Agent'=>'Faraday v2.1.0'
           }).
-        to_return(status: 200, body: "{\"field\": \"#{field}\", \"size\": 5}", headers: {}) # Use double quotes for JSON string
+        to_return(status: 200, body: "{\"field\": \"#{field}\", \"size\": 5}", headers: {})
 
-      response = ClinicalTrialsApiV2.new.listFields(field)
+      response = ClinicalTrialsApiV2.new.list_fields(field)
       expect(response).to be_a(Hash)
       expect(response['field']).to eq(field)
       expect(response['size']).to eq(5)
