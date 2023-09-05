@@ -21,6 +21,9 @@ class BackgroundJob::DbQuery < BackgroundJob
         csv << CSV.generate_line(rows)
       end
       
+      # create a temporary directory "tmp" unless it already exists
+      Dir.mkdir('tmp') unless Dir.exists?('tmp')
+
       filename = "tmp/#{id}.csv"
 
       f = File.open(filename, 'w')

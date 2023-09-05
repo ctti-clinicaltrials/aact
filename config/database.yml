@@ -30,6 +30,13 @@ development:
     username: <%= ENV.fetch("AACT_USERNAME", 'kostik') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '54104754') %>
     database: aact_public
+  staging:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    database: aact_staging    
 
 test:
   primary:
@@ -46,6 +53,7 @@ test:
     username: <%= ENV.fetch("AACT_USERNAME", 'kostik') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '54104754') %>
     database: aact_admin_test
+    schema_search_path: ctgov,support,public
   public:
     <<: *default
     host: localhost
@@ -53,6 +61,7 @@ test:
     username: <%= ENV.fetch("AACT_USERNAME", 'kostik') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '54104754') %>
     database: aact_public_test
+    schema_search_path: ctgov,support,public
 
 production:
   primary:
@@ -76,11 +85,4 @@ production:
     host:  <%= ENV.fetch('AACT_PUBLIC_HOST', 'localhost') %>
     port:  <%= ENV.fetch('AACT_PUBLIC_PORT', 5432) %>
     database: <%= ENV.fetch('AACT_PUBLIC_DATABASE_NAME', 'aact') %>
-
-
-public:
-  <<: *default
-  host:  <%= ENV.fetch('AACT_PUBLIC_HOSTNAME', 'localhost') %>
-  database: <%= ENV.fetch('AACT_PUBLIC_DATABASE_NAME', 'aact_pub') %>
-
 

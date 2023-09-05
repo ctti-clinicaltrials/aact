@@ -6,30 +6,6 @@ class StudySearch < ApplicationRecord
   has_many :search_results, dependent: :destroy
   validates :grouping, uniqueness: { scope: :query }
 
-  # def self.populate_database
-  #   make_covid_search
-  #   make_funder_search
-  #   make_causes_of_death_search
-  # end
-
-  # def self.make_causes_of_death_search
-  #   path = "#{Rails.root}/app/documents/LeadingCausesDeath_terms.csv"
-  #   file =  open(path, "r") { |io| io.read.encode("UTF-8", invalid: :replace) }
-  #   query_data = CSV.parse(file, headers: true)
-  #   query_data.each do |line|
-  #     find_or_create_by(save_tsv: false, grouping: line[0], query: line[3], name: line[3], beta_api: true)
-  #   end
-  # end
-
-  # def self.make_funder_search
-  #   query = 'AREA[LocationCountry] EXPAND[None] COVER[FullMatch] "United States" AND AREA[LeadSponsorClass] EXPAND[None] COVER[FullMatch] "OTHER" AND AREA[FunderTypeSearch] EXPAND[None] NOT ( RANGE[AMBIG, NIH] OR RANGE[OTHER_GOV, UNKNOWN] )'
-  #   find_or_create_by(save_tsv: false, grouping: 'funder_type', query: query, name: 'US no external funding', beta_api: true)
-  # end
-
-  # def self.make_covid_search
-  #   find_or_create_by(save_tsv: true, grouping: 'covid-19', query: 'covid-19', name: 'covid-19', beta_api: true)
-  # end
-
   def load_update
     collection = ClinicalTrialsApi.nct_ids_for(query)
     total = collection.count
