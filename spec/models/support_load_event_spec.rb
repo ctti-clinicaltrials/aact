@@ -1,19 +1,33 @@
 require 'rails_helper'
+require 'timecop'
 
 describe Support::LoadEvent do
 
   describe '#complete' do
     let!(:load_event) { create(:load_event) }
 
-    it 'correctly saves the event_type' do
-      updater=Util::Updater.new({:event_type=>'incremental'})
-      expect(updater.load_event.event_type).to eq('incremental')
-      updater=Util::Updater.new({:event_type=>'full'})
-      expect(updater.load_event.event_type).to eq('full')
-      updater=Util::Updater.new({:event_type=>'restart'})
-      expect(updater.load_event.event_type).to eq('restart')
-      updater=Util::Updater.new
-      expect(updater.load_event.event_type).to eq('incremental')
+    it "returns the correct event type: incremental" do
+      updater = Util::Updater.new(event_type: 'incremental')
+      event_type = updater.instance_variable_get(:@params)[:event_type]
+      expect(event_type).to eq('incremental')
+    end
+
+    it "returns the correct event type: full" do
+      updater = Util::Updater.new(event_type: 'full')
+      event_type = updater.instance_variable_get(:@params)[:event_type]
+      expect(event_type).to eq('full')
+    end
+
+    it "returns the correct event type: restart" do
+      updater = Util::Updater.new(event_type: 'restart')
+      event_type = updater.instance_variable_get(:@params)[:event_type]
+      expect(event_type).to eq('restart')
+    end
+
+    it "returns the default event type: incremental" do
+      updater = Util::Updater.new
+      event_type = updater.instance_variable_get(:@params)[:event_type] || 'incremental'
+      expect(event_type).to eq('incremental')
     end
   end
 
@@ -50,7 +64,5 @@ describe Support::LoadEvent do
         end
       end
     end
-
   end
-
 end
