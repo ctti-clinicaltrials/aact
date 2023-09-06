@@ -98,9 +98,13 @@ export AACT_DB_SUPER_USERNAME=user_name
 export PATH=$PATH:/lib/postgresql/15/bin
 export AACT_CORE_DATABASE_URL=postgres://DB_USER_NAME:DB_PASSW@localhost:5432/aact
 export AACT_CORE_TEST_DATABASE_URL=postgres://DB_USER_NAME:DB_PASSW@127.0.0.1:5432/aact_test
-// Add RVM to PATH for scripting. Make sure this is the last PATH variable change. //
+
+(comment) Add RVM to PATH for scripting. Make sure this is the last PATH variable change. 
+
 export PATH="$PATH:$HOME/.rvm/bin"
-//  Ask teamleader for keys instead of 'XXXXXX...' //
+
+(comment)  Ask teamleader for keys instead of 'XXXXXX...' 
+
 export DIGITALOCEAN_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXXXXXX
 export DIGITALOCEAN_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXX 
 export DIGITALOCEAN_REGION=nyc3
