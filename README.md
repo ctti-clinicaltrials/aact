@@ -132,8 +132,11 @@ default: &default
   min_messages: warning
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 50)), Integer(ENV.fetch("DB_POOL", 50))].max %>
   timeout: 5000
+  
   (comment)  Make sure you've created a database account for the AACT_DB_SUPER_USERNAME (default: aact) with permission to create databases.
+ 
   (comment)  Also, add an entry for this user in the .pgpass file in the root directory of the user who run the rails apps so the app knows its password.
+  
   username: <%= ENV.fetch("AACT_DB_SUPER_USERNAME", 'your_db_username') %>
 
 development:
