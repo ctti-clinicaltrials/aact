@@ -98,9 +98,13 @@ export AACT_DB_SUPER_USERNAME=user_name
 export PATH=$PATH:/lib/postgresql/15/bin
 export AACT_CORE_DATABASE_URL=postgres://DB_USER_NAME:DB_PASSW@localhost:5432/aact
 export AACT_CORE_TEST_DATABASE_URL=postgres://DB_USER_NAME:DB_PASSW@127.0.0.1:5432/aact_test
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+
+(comment) Add RVM to PATH for scripting. Make sure this is the last PATH variable change. 
+
 export PATH="$PATH:$HOME/.rvm/bin"
-# Ask teamleader for keys instead of 'XXXXXX...'
+
+(comment)  Ask teamleader for keys instead of 'XXXXXX...' 
+
 export DIGITALOCEAN_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXXXXXX
 export DIGITALOCEAN_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXX 
 export DIGITALOCEAN_REGION=nyc3
@@ -132,8 +136,11 @@ default: &default
   min_messages: warning
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 50)), Integer(ENV.fetch("DB_POOL", 50))].max %>
   timeout: 5000
-  #  Make sure you've created a database account for the AACT_DB_SUPER_USERNAME (default: aact) with permission to create databases.
-  #  Also, add an entry for this user in the .pgpass file in the root directory of the user who run the rails apps so the app knows its password.
+  
+  //  Make sure you've created a database account for the AACT_DB_SUPER_USERNAME (default: aact) with permission to create databases.//
+ 
+  // Also, add an entry for this user in the .pgpass file in the root directory of the user who run the rails apps so the app knows its password.//
+  
   username: <%= ENV.fetch("AACT_DB_SUPER_USERNAME", 'your_db_username') %>
 
 development:
@@ -196,8 +203,8 @@ These are your options:
 
 <br>
 
-## Workflow
-### Branches:
+ # Workflow
+ ## Branches:
 - master - This is the stable production branch, anything merged to master is meant to be propagated to production. Hot fixes will be merged directly to master, then pulled into dev. All other Pull Requests (PRs) will be merged into dev first.  
 - dev - This branch contains the changes for the sprint. It is an accumulation of everything that we believe is working and ready for the next release.  
 - feat/AACT-NUM-description - "AACT-Num" refers to the number of the card on Jira. Description is the name of the feature. This is the naming conventions for a feature that you are working on that eventually will be merged to dev once the PR is approved.  
