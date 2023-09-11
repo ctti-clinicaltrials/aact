@@ -132,6 +132,7 @@ export DIGITALOCEAN_BUCKET=aact-dev
 
 10. In the database.yml file which in config folder, lines 1-32 should looks like:
 
+```
 default: &default
   encoding: utf8
   adapter: postgresql
@@ -167,6 +168,7 @@ development:
     username: <%= ENV.fetch("AACT_USERNAME", 'your_db_username') %>
     password: <%= ENV.fetch("AACT_PASSWORD", 'your_password') %>
     database: aact_public
+```
     
 11. Create databases and run migrations  
     `bin/rake db:create`  
