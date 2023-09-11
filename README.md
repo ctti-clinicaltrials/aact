@@ -109,10 +109,12 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 (comment)  Ask teamleader for keys instead of 'XXXXXX...' 
 
+```bash
 export DIGITALOCEAN_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXXXXXX
 export DIGITALOCEAN_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXX 
 export DIGITALOCEAN_REGION=nyc3
 export DIGITALOCEAN_BUCKET=aact-dev
+```
 
 5.  Clone this repo: `git clone git@github.com:ctti-clinicaltrials/aact.git`  
     Note: Cloning with a ssh url requires that your local ssh key is saved to Github. The key verifies your permission to push and pull so you won't have to log in. If you haven't saved your ssh key to Github use the html url instead when cloning.  
