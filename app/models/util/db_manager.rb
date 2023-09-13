@@ -41,30 +41,62 @@ module Util
 
     # generate a dump file
     def dump_database
-      dump_file_location = fm.pg_dump_file
-      FileUtils.rm_f(dump_file_location)
-      config = Study.connection_config
-      host = config[:host]
-      port = config[:port]
-      username = config[:username]
-      database = config[:database]
-      host ||= 'localhost'
-      port ||= 5432
 
-      cmd = "
-        pg_dump  -v -h #{host} -p #{port} -U #{username} \
-        --clean --no-owner -b -c -C -Fc \
-        --exclude-table ar_internal_metadata \
-        --exclude-table schema_migrations \
-        --exclude-table study_records \
-        --schema 'ctgov'  \
-        -f #{dump_file_location} \
-        #{database} \
-      "
-      Rails.logger.debug cmd
-      run_command_line(cmd)
+        dump_file_location = fm.pg_dump_file
+        FileUtils.rm_f(dump_file_location)
+        config = Study.connection_config
+        host = config[:host]
+        port = config[:port]
+        username = config[:username]
+        database = config[:database]
+        host ||= 'localhost'
+        port ||= 5432
+  
+        username = config[:username]
+        database = config[:database]
+        # Get a list of all table names in the database
+        tables_query = "SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND tablename NOT IN ('ar_internal_metadata', 'schema_migrations', 'study_records');"
+  
+        # Run the psql command to execute the query and capture the table names
+        table_names, _error, _status = Open3.capture3("psql -h #{host} -p #{port} -U #{username} -d #{database} -t -c \"#{tables_query}\"")
+      
+        # Split the table names into an array
+        tables = table_names.split("\n")
+      
+        # Loop through the table names and export each table
+        tables.each do |table|
+          table = table.strip
+          dump_command = "pg_dump -h #{host} -p #{port} -U #{username} -t #{table} -a -F c -f #{File.join(fm.pg_dump_file, "#{table}.dump")} #{database}"
+          system(dump_command)
+        end
+      
+        Rails.logger.debug "Tables dumped successfully."
+      
+        dump_file_location
+      # dump_file_location = fm.pg_dump_file
+      # FileUtils.rm_f(dump_file_location)
+      # config = Study.connection_config
+      # host = config[:host]
+      # port = config[:port]
+      # username = config[:username]
+      # database = config[:database]
+      # host ||= 'localhost'
+      # port ||= 5432
 
-      dump_file_location
+      # cmd = "
+      #   pg_dump  -v -h #{host} -p #{port} -U #{username} \
+      #   --clean --no-owner -b -c -C -Fc \
+      #   --exclude-table ar_internal_metadata \
+      #   --exclude-table schema_migrations \
+      #   --exclude-table study_records \
+      #   --schema 'ctgov'  \
+      #   -f #{dump_file_location} \
+      #   #{database} \
+      # "
+      # Rails.logger.debug cmd
+      # run_command_line(cmd)
+
+      # dump_file_location
     end
 
     # Restoring a database
