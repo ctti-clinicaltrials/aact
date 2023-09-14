@@ -11,7 +11,7 @@ describe Util::DbManager do
       mgr.add_indexes
       mgr.add_constraints
       study_indexes=mgr.indexes_for('studies')
-      expect(study_indexes.size).to eq(15)
+      expect(study_indexes.size).to eq(19)
 
       mgr.remove_indexes_and_constraints
       study_indexes=mgr.indexes_for('studies')

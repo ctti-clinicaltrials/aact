@@ -62,28 +62,31 @@ username - is your Postgresql DB username, passw - your postgres DB password.
     Here is a document about the “.pgpass” file https://www.postgresql.org/docs/current/libpq-pgpass.html.   
 
 4.  Now we want to store the environmental variables for the superuser that you created in the previous step.     That is the user you will be using within AACT to make database changes. You can store these wherever is appropriate for your system. On a Mac you can store it in your “.zshrc”. On all systems you can also store it in your “.bash_profile” or “.bashrc”.  
-    For the following commands I’m storing variables in the “.zshrc” file, change out that file in the commands for the one you use for storing variables.  
-    `echo 'export AACT_DB_SUPER_USERNAME=<your_aact_superuser>' >> ~/.zshrc`  
-    `echo 'export AACT_PASSWORD=<your_superuser_password>'  >> ~/.zshrc`   
-    `echo 'export AACT_PUBLIC_DATABASE_NAME=aact'  >> ~/.zshrc`  
-    `echo 'export AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt'  >> ~/.zshrc`  
-    `echo 'export PUBLIC_DB_USER=<your_aact_superuser>'  >> ~/.zshrc`  
-    `echo 'export PUBLIC_DB_PASS=<your_superuser_password>'  >> ~/.zshrc`    
-    `# for development`
-    `echo 'export AACT_USERNAME=<your_superuser_name>'  >> ~/.zshrc`    
-    `echo 'export AACT_PASSWORD=<your_superuser_password>'  >> ~/.zshrc`    
-    `echo 'export AACT_ADMIN_USERNAME=<username for aact_admin database>'  >> ~/.zshrc`    
-    `echo 'export AACT_ADMINPASSWORD=<password for aact_admin database>'  >> ~/.zshrc`    
-    `echo 'export AACT_PUBLIC_USERNAME=<username for aact_public database>'  >> ~/.zshrc`    
-    `echo 'export AACT_PUBLIC_PASSWORD=<password for aact_public database>'  >> ~/.zshrc`    
+    For the following commands I’m storing variables in the “.zshrc” file, change out that file in the commands for the one you use for storing variables.
+    ```bash 
+    echo 'export AACT_DB_SUPER_USERNAME=<your_aact_superuser>' >> ~/.zshrc
+    echo 'export AACT_PASSWORD=<your_superuser_password>'  >> ~/.zshrc
+    echo 'export AACT_PUBLIC_DATABASE_NAME=aact'  >> ~/.zshrc
+    echo 'export AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt'  >> ~/.zshrc  
+    echo 'export PUBLIC_DB_USER=<your_aact_superuser>'  >> ~/.zshrc
+    echo 'export PUBLIC_DB_PASS=<your_superuser_password>'  >> ~/.zshrc
+    # for development
+    echo 'export AACT_USERNAME=<your_superuser_name>'  >> ~/.zshrc 
+    echo 'export AACT_PASSWORD=<your_superuser_password>'  >> ~/.zshrc
+    echo 'export AACT_ADMIN_USERNAME=<username for aact_admin database>'  >> ~/.zshrc    
+    echo 'export AACT_ADMINPASSWORD=<password for aact_admin database>'  >> ~/.zshrc   
+    echo 'export AACT_PUBLIC_USERNAME=<username for aact_public database>'  >> ~/.zshrc    
+    echo 'export AACT_PUBLIC_PASSWORD=<password for aact_public database>'  >> ~/.zshrc    
 
-    `source ~/.zshrc` to load the variables into the terminal session.  
+    source ~/.zshrc # to load the variables into the terminal session.
+    ```
     
     Depending on where you store the variables you may need to call `source` on that file each time you open a new terminal. This is not necessary for “.zshrc”.
      When you done check your “.zshrc” or ".bashrc" file. It should looks like example below. If it doesn't - edit it accordingly. 
 
     Example of a set of environment variables: 
 
+```bash
 export AACT_PUBLIC_BETA_DATABASE_NAME=aact
 export AACT_PUBLIC_DATABASE_NAME=aact
 export AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt
@@ -98,6 +101,7 @@ export AACT_DB_SUPER_USERNAME=user_name
 export PATH=$PATH:/lib/postgresql/15/bin
 export AACT_CORE_DATABASE_URL=postgres://DB_USER_NAME:DB_PASSW@localhost:5432/aact
 export AACT_CORE_TEST_DATABASE_URL=postgres://DB_USER_NAME:DB_PASSW@127.0.0.1:5432/aact_test
+```
 
 (comment) Add RVM to PATH for scripting. Make sure this is the last PATH variable change. 
 
@@ -105,10 +109,12 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 (comment)  Ask teamleader for keys instead of 'XXXXXX...' 
 
+```bash
 export DIGITALOCEAN_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXXXXXX
 export DIGITALOCEAN_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXX 
 export DIGITALOCEAN_REGION=nyc3
 export DIGITALOCEAN_BUCKET=aact-dev
+```
 
 5.  Clone this repo: `git clone git@github.com:ctti-clinicaltrials/aact.git`  
     Note: Cloning with a ssh url requires that your local ssh key is saved to Github. The key verifies your permission to push and pull so you won't have to log in. If you haven't saved your ssh key to Github use the html url instead when cloning.  
@@ -130,6 +136,7 @@ export DIGITALOCEAN_BUCKET=aact-dev
 
 10. In the database.yml file which in config folder, lines 1-32 should looks like:
 
+```
 default: &default
   encoding: utf8
   adapter: postgresql
@@ -165,6 +172,7 @@ development:
     username: <%= ENV.fetch("AACT_USERNAME", 'your_db_username') %>
     password: <%= ENV.fetch("AACT_PASSWORD", 'your_password') %>
     database: aact_public
+```
     
 11. Create databases and run migrations  
     `bin/rake db:create`  
