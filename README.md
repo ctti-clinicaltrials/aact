@@ -4,23 +4,42 @@ AACT or Aggregated Analysis of ClinicalTrials.gov is an application for retrievi
 
 If you need a copy of the database, but don't want to bother installing & running this app, copies of the database are available for download from the <a href='https://aact.ctti-clinicaltrials.org/snapshots' target='_blank'>AACT website (Download page).</a> We use pg_dump to create a snapshot of the database after each nightly update, so a version is always available with the most current info from clinicaltrials.gov.  
 
+## SETUP
+
+1. Install required applications [zip](https://www.gnu.org/software/gzip/), [wget](https://www.gnu.org/software/wget/) and [graphviz](ttps://graphviz.org/download)
+
+    Mac
+    ```bash
+    brew install zip wget graphviz
+    ```
+
+    Ubuntu & Debian
+    ```
+    apt install zip wget graphviz
+    ```
+
+    Fefore & Centos
+    ```bash
+    yum install zip wget graphviz
+    ```
+
+2. Install postgres, you will need to create a username to connect to postgres if you do not already have one
+
+Mac
+```bash
+brew install postgres # install postgres
+brew services start postgresql # start the postgres service
+psql
+```
+
+
+
+
 ### Database explanation:  
 
 Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describing their purposes.
 ![Visualization of the database arrangment for AACT(backend) and AACT-Admin(frontend)](public/aact_architecture.png "AACT Database Visualization")   
 
-## Requireqments
-
-- Install zip  
-    - For mac `brew install zip`
-    - For windows `gem install rubyzip` 
-    - For linux `sudo apt install ruby-zip`
-- Install [graphviz](https://graphviz.org/download/)
-- Install wget  
-    - For mac `brew install wget`
-    - For [windows](http://gnuwin32.sourceforge.net/packages/wget.htm)
-    - For Ubuntu and Debian `sudo apt install wget`
-    - For CentOS and Fedora `sudo yum install wget`
 
 ## Before strart
 
@@ -35,12 +54,7 @@ username - is your Postgresql DB username, passw - your postgres DB password.
 
 ## Getting Started
 
-1.  Install PostgreSQL
-    `brew install postgresql`  
-    https://www.postgresql.org/download/linux/ubuntu/  
-    https://www.postgresql.org/download/macosx/  
-
-2.  Create the roles you need for running AACT.  
+1.  Create the roles you need for running AACT.  
     Enter 'psql postgres' command in terminal to open postgres console and enter commands below to set up postgres database.  
     `postgres=# create role <your_aact_superuser> login password '<your_superuser_password>';`  
     `postgres=# alter user <your_aact_superuser> with superuser;`  
