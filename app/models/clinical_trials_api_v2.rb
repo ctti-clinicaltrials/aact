@@ -1,4 +1,6 @@
 class ClinicalTrialsApiV2
+  # based on api: https://clinicaltrials.gov/data-about-studies/learn-about-api
+  
   BASE_URL_V2 = 'https://clinicaltrials.gov/api/v2/'
 
 
