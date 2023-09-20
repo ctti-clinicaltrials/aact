@@ -55,14 +55,15 @@ module Util
         username = config[:username]
         database = config[:database]
         # Get a list of all table names in the database
-        tables_query = "SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND tablename NOT IN ('ar_internal_metadata', 'schema_migrations', 'study_records');"
-  
+        tables_query = "SELECT tablename FROM pg_tables WHERE schemaname = 'ctgov' AND tablename NOT IN ('ar_internal_metadata', 'schema_migrations', 'study_records');"
+        
         # Run the psql command to execute the query and capture the table names
         table_names, _error, _status = Open3.capture3("psql -h #{host} -p #{port} -U #{username} -d #{database} -t -c \"#{tables_query}\"")
       
         # Split the table names into an array
         tables = table_names.split("\n")
-      
+        cmd = "mkdir -p /home/kostik/aact/public/static/tmp/postgres.dmp/"
+        run_command_line(cmd)
         # Loop through the table names and export each table
         tables.each do |table|
           table = table.strip
