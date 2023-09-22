@@ -32,8 +32,6 @@ jobs:
       DB_USER: rails
       DB_PASS: password
       DB_NAME: aact_test
-      AACT_ADMIN_DATABASE_URL: postgres://rails:password@localhost:5432/aact_admin_test
-      AACT_PUBLIC_DATABASE_URL: postgres://rails:password@localhost:5432/aact_public_test
       DIGITALOCEAN_ACCESS_KEY_ID: ${{ secrets.DIGITALOCEAN_ACCESS_KEY_ID }}
       DIGITALOCEAN_SECRET_ACCESS_KEY: ${{ secrets.DIGITALOCEAN_SECRET_ACCESS_KEY }}
       DIGITALOCEAN_REGION: us-east-1

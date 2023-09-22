@@ -5,9 +5,6 @@ require File.expand_path("../../config/environment", __FILE__)
 
 #  Define databases...
 #abort("AACT_DB_SUPER_USERNAME env var must be set")   if !ENV["AACT_DB_SUPER_USERNAME"]
-#abort("AACT_ADMIN_DATABASE_URL env var should be set to integrate with admin features")   if !ENV["AACT_ADMIN_DATABASE_URL"]
-#abort("AACT_BACK_DATABASE_URL env var is not set")    if !ENV["AACT_BACK_DATABASE_URL"]
-#abort("AACT_PUBLIC_DATABASE_URL env var is not set")  if !ENV["AACT_PUBLIC_DATABASE_URL"]
 #abort("AACT_PUBLIC_DATABASE_NAME env var is not set") if !ENV["AACT_PUBLIC_DATABASE_NAME"]
 
 #  Define info needed to deploy code to a servers with Capistrano
