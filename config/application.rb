@@ -32,19 +32,6 @@ module AACT
     AACT_ADMIN_EMAILS      = ENV['AACT_ADMIN_EMAILS'] || "aact@your-org.org,admin@your-org.org" # Identifes who will receive load notifications
 
     AACT_HOST = ENV['AACT_HOST'] || 'localhost'
-    if Rails.env != 'test'
-      AACT_PUBLIC_HOSTNAME      =  ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'#Server on which the publicly accessible database resides
-      AACT_BACK_DATABASE_NAME   =  ENV['AACT_BACK_DATABASE_NAME']|| 'aact'    # Name of background database used to process loads
-      AACT_ADMIN_DATABASE_NAME  =  ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin' # Name of database used to support the AACT website
-      AACT_PUBLIC_DATABASE_NAME =  ENV['AACT_PUBLIC_DATABASE_NAME'] || 'aact'  # Name of database available to the public
-    else
-      AACT_PUBLIC_HOSTNAME      = 'localhost'
-      AACT_BACK_DATABASE_NAME   = 'aact_test'
-      AACT_ADMIN_DATABASE_NAME  = 'aact_admin_test'
-      AACT_PUBLIC_DATABASE_NAME = 'aact_test'
-    end
-    AACT_PORT = ENV['AACT_PORT'] || 5432
-    AACT_PASS = ENV['AACT_PASSWORD'] || ''
     # If you deploy to a server, you need the following env variables defined for capistrano:
     # AACT_DEPLOY_TO
     AACT_PROD_REPO_URL="git@github.com:ctti-clinicaltrials/aact.git"
@@ -52,8 +39,7 @@ module AACT
     AACT_DEV_REPO_URL="git@github.com:tibbs001/aact-1.git"
     AACT_DEV_SERVER="ctti-web-dev-01.oit.duke.edu"
     AACT_SERVER_USERNAME="ctti-aact"
-    #AACT_SSH_KEY_DIR="/#{AACT_SERVER_USER}/.ssh/id_rsa"
-
+    
     #Also create directory: /aact-files (either at system root or in home directory) and set AACT_STATIC_FILE_DIR to that directory.
     #Under it, create sub directories:  documentation, logs, tmp
 
