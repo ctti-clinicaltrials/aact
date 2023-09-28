@@ -689,7 +689,7 @@ class StudyJsonRecord < Support::SupportBase
         id_source: 'secondary_id',
         id_type: info['SecondaryIdType'],
         id_type_description: info['SecondaryIdDomain'],
-        id_link: info['SecondaryIdLink'] 
+        id_link: info['SecondaryIdLink'],
         id_value: info['SecondaryId'],
       }
     end
