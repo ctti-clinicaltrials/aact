@@ -23,7 +23,7 @@ class StudyJsonRecord < Support::SupportBase
 
   # Make an API call to update the json
   def update_from_api
-    url = "https://clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5D#{nct_id}&min_rnk=1&max_rnk=&fmt=json"
+    url = "https://classic.clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5D#{nct_id}&min_rnk=1&max_rnk=&fmt=json"
     attempts = 0
     data = nil
     response = nil
@@ -674,7 +674,14 @@ class StudyJsonRecord < Support::SupportBase
       } if org_study_info
 
     nct_id_alias.each do |nct_alias|
-      collection << { nct_id: nct_id, id_source: 'nct_alias', id_value: nct_alias }
+      collection << { 
+        nct_id: nct_id, 
+        id_source: 'nct_alias', 
+        id_type: nil,
+        id_type_description: nil,
+        id_link: nil,
+        id_value: nct_alias
+      }
     end
     secondary_info.each do |info|
       collection << { 
@@ -682,8 +689,8 @@ class StudyJsonRecord < Support::SupportBase
         id_source: 'secondary_id',
         id_type: info['SecondaryIdType'],
         id_type_description: info['SecondaryIdDomain'],
-        id_value: info['SecondaryId'],
         id_link: info['SecondaryIdLink'] 
+        id_value: info['SecondaryId'],
       }
     end
     collection
