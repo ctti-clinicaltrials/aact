@@ -1427,7 +1427,9 @@ class StudyJsonRecord < Support::SupportBase
     rescue Exception => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
       puts msg
-      Airbrake.notify(error)
+      notice = Airbrake.build_notice(error)
+      notice[:params][:nctid] = nct_id
+      Airbrake.notify(notice)
       @study_build_failures ||= []
       @study_build_failures << id
     end
