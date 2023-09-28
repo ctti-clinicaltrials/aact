@@ -26,12 +26,12 @@ module AACT
     end
     config.active_record.schema_format = :sql
 
-    # Note:  You must define the AACT DB superuser's password in the .pgpass file that needs to be in the root directory of the user who runs
+    # Note:  You must define the AACT database superuser's password in the .pgpass file that needs to be in the root directory of the user who runs
     # the rails app.  We don't save passwords in Env Vars because they can be to easily exposed that way.
-    AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'aact'   # Name of postgres superuser that has permission to create a database.
     AACT_ADMIN_EMAILS      = ENV['AACT_ADMIN_EMAILS'] || "aact@your-org.org,admin@your-org.org" # Identifes who will receive load notifications
 
     AACT_HOST = ENV['AACT_HOST'] || 'localhost'
+    
     # If you deploy to a server, you need the following env variables defined for capistrano:
     # AACT_DEPLOY_TO
     AACT_PROD_REPO_URL="git@github.com:ctti-clinicaltrials/aact.git"

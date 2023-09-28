@@ -22,7 +22,7 @@ RSpec.configure do |config|
     #   hostname: '127.0.0.1',
     #   port: 5432,
     #   database: 'aact_pub_test',
-    #   username: 'aact',
+    #   username: ENV["AACT_DB_SUPER_USERNAME"] || 'aact',
     #   password: 'CCi3411'
     # )
     # con = PublicBase.connection
@@ -40,7 +40,7 @@ RSpec.configure do |config|
     #   hostname: '127.0.0.1',
     #   port: 5432,
     #   database: 'aact_pub_test',
-    #   username: 'aact',
+    #   username: ENV["AACT_DB_SUPER_USERNAME"] || 'aact',
     #   password: 'CCi3411'
     # )
     # con = PublicBase.connection
