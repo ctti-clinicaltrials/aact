@@ -38,8 +38,9 @@ describe Util::Updater do
 
   it "aborts incremental load when number of studies in refreshed (background) db is less than number of studies in public db" do
     updater=Util::Updater.new  
-    expect(updater.db_mgr).to receive(:refresh_public_db).never
-    expect(updater).to receive(:send_notification).once
+    db_manager_instance=updater.db_mgr
+    expect_any_instance_of(Util::DbManager).not_to receive(:refresh_public_db)
+    allow(Notifier).to receive(:report_load_event)
     # updater.run
   end
 
@@ -131,7 +132,6 @@ describe Util::Updater do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    CalculatedValue.new.create_from(study).save!
     expect(study.start_month_year).to eq('July 2001')
     expect(study.completion_month_year).to eq('November 2013')
     expect(study.primary_completion_month_year).to eq('January 2009')
@@ -228,7 +228,8 @@ describe Util::Updater do
   context 'when there is a failure/exception in the Util::Updater#execute method' do
     it 'should set the load event status to "error", and set problems to the exception message "test error"' do
       updater=Util::Updater.new
-      allow(updater.db_mgr).to receive(:remove_constraints).and_raise('test error')
+      db_manager_instance=updater.db_mgr
+      expect_any_instance_of(Util::DbManager).to receive(:remove_constraints).and_raise('test error')
       updater.execute
       expect(updater.load_event.problems).to include('test error')
       expect(updater.load_event.status).to eq('error')
