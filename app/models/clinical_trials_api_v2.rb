@@ -64,7 +64,7 @@ class ClinicalTrialsApiV2
     items = []
     while items.length < found
       t = Time.now
-      url = "#{BASE_URL}/query/study_fields?fields=NCTId%2CStudyFirstPostDate%2CLastUpdatePostDate&min_rnk=#{offset}&max_rnk=#{offset + 999}&fmt=json"
+      url = "#{BASE_URL_V2}studies?fields=NCTId%2CStudyFirstSubmitDate%2CLastUpdatePostDate&pageSize=1000&pageToken=KV1-65uFlPYo"
       # puts url
       attempts = 0
       begin
@@ -77,20 +77,26 @@ class ClinicalTrialsApiV2
         attempts += 1
         retry
       end
-      found = json['StudyFieldsResponse']['NStudiesFound']
-      puts "current: #{items.length} found: #{found}, min: #{offset} max: #{offset + 1000}"
-      json['StudyFieldsResponse']["StudyFields"].each do |item|
-        items << { 
-          id: item["NCTId"].first,
-          posted: Date.parse(item["StudyFirstPostDate"].first),
-          updated: Date.parse(item["LastUpdatePostDate"].first)
-        }
-      end
-      items.uniq!
-      offset = offset < found ? offset + 1000 : 1
-      puts "loop #{Time.now - t}"
-    end
-    return items
+      byebug
+      page = json["studies"].map{|rec| 
+                              {"id" => rec["protocolSection"]["identificationModule"]["nctId"],
+                              "posted" => rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"], 
+                              "updated" => rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]}}
+
+    #   found = json['studies']['identificationModule']
+    #   puts "current: #{items.length} found: #{found}, min: #{offset} max: #{offset + 1000}"
+    #   json['StudyFieldsResponse']["StudyFields"].each do |item|
+    #     items << { 
+    #       id: item["nctId"].first,
+    #       posted: Date.parse(item["StudyFirstSubmitDate"].first),
+    #       updated: Date.parse(item["LastUpdatePostDate"].first)
+    #     }
+    #   end
+    #   items.uniq!
+    #   offset = offset < found ? offset + 1000 : 1
+    #   puts "loop #{Time.now - t}"
+    # end
+    # return items
   end
 
 end
