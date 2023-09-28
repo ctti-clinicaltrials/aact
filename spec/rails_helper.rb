@@ -64,14 +64,8 @@ RSpec.configure do |config|
     DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].start
 
     # ensure app user logged into db connections
-    PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: 'localhost',
-      database: 'aact',
-      username: AACT::Application::AACT_DB_SUPER_USERNAME)
-    @dbconfig = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
+    PublicBase.establish_connection
+    ActiveRecord::Base.establish_connection
   end
 
   config.after(:each) do
