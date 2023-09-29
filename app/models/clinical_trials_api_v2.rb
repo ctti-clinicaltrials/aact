@@ -62,41 +62,42 @@ class ClinicalTrialsApiV2
     found = Float::INFINITY
     offset = 1
     items = []
-    while items.length < found
-      t = Time.now
-      url = "#{BASE_URL_V2}studies?fields=NCTId%2CStudyFirstSubmitDate%2CLastUpdatePostDate&pageSize=1000&pageToken=KV1-65uFlPYo"
-      # puts url
-      attempts = 0
-      begin
-        next if attempts > 3
-        json = JSON.parse(Faraday.get(url).body)
-      rescue Faraday::ConnectionFailed
-        attempts += 1
-        retry
-      rescue JSON::ParserError
-        attempts += 1
-        retry
-      end
-      byebug
-      page = json["studies"].map{|rec| 
-                              {"id" => rec["protocolSection"]["identificationModule"]["nctId"],
-                              "posted" => rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"], 
-                              "updated" => rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]}}
 
-    #   found = json['studies']['identificationModule']
-    #   puts "current: #{items.length} found: #{found}, min: #{offset} max: #{offset + 1000}"
-    #   json['StudyFieldsResponse']["StudyFields"].each do |item|
-    #     items << { 
-    #       id: item["nctId"].first,
-    #       posted: Date.parse(item["StudyFirstSubmitDate"].first),
-    #       updated: Date.parse(item["LastUpdatePostDate"].first)
-    #     }
-    #   end
-    #   items.uniq!
-    #   offset = offset < found ? offset + 1000 : 1
-    #   puts "loop #{Time.now - t}"
-    # end
-    # return items
+    page_token = nil
+
+  loop do
+    url = "#{BASE_URL_V2}studies?fields=NCTId%2CStudyFirstSubmitDate%2CLastUpdatePostDate&pageSize=1000"
+    url += "&pageToken=#{page_token}" if page_token
+
+    attempts = 0
+    begin
+      json_response = JSON.parse(Faraday.get(url).body)
+    rescue Faraday::ConnectionFailed
+      attempts += 1
+      retry if attempts <= 3
+    rescue JSON::ParserError
+      attempts += 1
+      retry if attempts <= 3
+    end
+
+    studies = json_response["studies"]
+    break if studies.empty?
+
+    items.concat(studies.map do |rec|
+      {
+        "id" => rec["protocolSection"]["identificationModule"]["nctId"],
+        "posted" => rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
+        "updated" => rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]
+      }
+    end
+    )
+
+
+    page_token = json_response["nextPageToken"]
+    break if page_token.nil?
+  end
+  items
+  items.size
   end
 
 end
