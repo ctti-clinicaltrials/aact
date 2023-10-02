@@ -89,6 +89,7 @@ class ClinicalTrialsApiV2
         "posted" => rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
         "updated" => rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]
       }
+      puts rec
     end
     )
 
@@ -96,8 +97,7 @@ class ClinicalTrialsApiV2
     page_token = json_response["nextPageToken"]
     break if page_token.nil?
   end
-  items
-  items.size
+  puts "Total records received: #{items.size}"
   end
 
 end
