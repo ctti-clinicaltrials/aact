@@ -1,5 +1,11 @@
 FROM ruby:2.7.7
 
+# Create user and set ownership and permissions as required
+RUN adduser -D aact && chown -R aact /app
+# ... copy application files
+USER aact
+ENTRYPOINT ["/app"]
+
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt bullseye-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 # RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 RUN wget --no-check-certificate --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
