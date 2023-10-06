@@ -9,7 +9,7 @@ describe Util::TableExporter do
       # this study has new line chars embedded in Outcomes.description.  Will verify they don't cause probs in flat files
       db = Util::DbManager.new
       db.remove_indexes_and_constraints
-      Study.destroy_all
+      StudyRelationship.remove_all_data
       record = StudyJsonRecord.create(nct_id: 'NCT05594173', content: JSON.parse(File.read('spec/support/json_data/NCT05594173.json')))
       record.create_or_update_study
       db.add_indexes
