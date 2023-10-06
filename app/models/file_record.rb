@@ -7,7 +7,6 @@ class FileRecord < ApplicationRecord
     raise "file #{filename} not found" unless File.exist?(filename) 
     file_size =  File.size(filename)
     dates = (Date.today.beginning_of_day..Date.today.end_of_day)
-    # byebug
     record = FileRecord.find_by(file_type: type, created_at: dates)
     record = FileRecord.create(file_type: type)
 
