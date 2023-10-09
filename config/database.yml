@@ -41,7 +41,7 @@ development:
 test:
   primary:
     <<: *default
-    host: 127.0.0.1
+    host: localhost
     port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'kostik') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '54104754') %>
