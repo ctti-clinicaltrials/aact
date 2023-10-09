@@ -45,7 +45,7 @@ test:
     port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'kostik') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '54104754') %>
-    database: acct_test
+    database: aact_test
   admin:
     <<: *default
     host: localhost
