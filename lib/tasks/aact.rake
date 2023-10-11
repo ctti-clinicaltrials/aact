@@ -1,6 +1,15 @@
 include ActionView::Helpers::NumberHelper
 
 namespace :aact do
+  task :process_jobs, [] => :environment do
+    loop do
+      sleep 10
+      puts "checking for jobs to process"
+      job = BackgroundJob::DbQuery.where(status: :pending).order(created_at: :asc).first
+      job.process if job
+    end
+  end
+
   task :process, [] => :environment do
     updater = Util::Updater.new
     updater.start
@@ -19,7 +28,7 @@ namespace :aact do
     keep = files.shift # remove the first file
     unless keep
       puts "no files found"
-      next
+      return
     end
 
     puts "keeping #{keep.id} #{keep.file_type} - #{keep.created_at} #{number_to_human_size(keep.file_size)}\n\n"
@@ -28,6 +37,12 @@ namespace :aact do
       file.destroy
     end
     puts "removed #{files.count} files"
+  end
+
+  desc 'list all archived files'
+  task :list_files, [:file_type] => :environment do |t, args|
+    files = FileRecord.where(file_type: args[:file_type]).order(created_at: :asc)
+    puts files.map{|k| k.created_at.strftime('%Y-%m-%d') }
   end
 end
 

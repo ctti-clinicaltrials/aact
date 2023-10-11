@@ -1,4 +1,4 @@
 class PublicBase < ActiveRecord::Base
-  establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL)
+  connects_to database: { writing: :public, reading: :public }
   self.abstract_class = true
 end

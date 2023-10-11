@@ -6,7 +6,6 @@ class Verifier < ActiveRecord::Base
       verifier.verify
     rescue => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
-      ErrorLog.error(msg)
       Airbrake.notify(error)
     end
   end
@@ -32,7 +31,6 @@ class Verifier < ActiveRecord::Base
       rescue => error
         msg="#{error.message} (#{error.class} #{error.backtrace}"
         puts msg
-        ErrorLog.error(msg)
         Airbrake.notify(error)
         next
       end
@@ -42,4 +40,13 @@ class Verifier < ActiveRecord::Base
 
     return diff
   end  
+
+  def fix_verifier(verifier)
+    verifier.differences.each do |diff|
+      diff['destination_instances'] = diff['destination_instances'].first['count'] if diff['destination_instances'].is_a?(Array)
+      diff['destination_unique_values'] = diff['destination_unique_values'].first['count'] if diff['destination_unique_values'].is_a?(Array)
+      diff['destination_instances'] = 0 if diff['destination_instances'].nil?
+      diff['destination_unique_values'] = 0 if diff['destination_unique_values'].nil?
+    end
+  end
 end

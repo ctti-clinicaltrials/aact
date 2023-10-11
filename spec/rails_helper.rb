@@ -5,10 +5,6 @@ require File.expand_path("../../config/environment", __FILE__)
 
 #  Define databases...
 #abort("AACT_DB_SUPER_USERNAME env var must be set")   if !ENV["AACT_DB_SUPER_USERNAME"]
-#abort("AACT_ADMIN_DATABASE_URL env var should be set to integrate with admin features")   if !ENV["AACT_ADMIN_DATABASE_URL"]
-#abort("AACT_BACK_DATABASE_URL env var is not set")    if !ENV["AACT_BACK_DATABASE_URL"]
-#abort("AACT_PUBLIC_DATABASE_URL env var is not set")  if !ENV["AACT_PUBLIC_DATABASE_URL"]
-#abort("AACT_PUBLIC_DATABASE_NAME env var is not set") if !ENV["AACT_PUBLIC_DATABASE_NAME"]
 
 #  Define info needed to deploy code to a servers with Capistrano
 #abort("GEM_HOME env var must be set for capistrano to deploy code to a server")              if !ENV["GEM_HOME"]
@@ -68,14 +64,8 @@ RSpec.configure do |config|
     DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].start
 
     # ensure app user logged into db connections
-    PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
-      database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
-      username: AACT::Application::AACT_DB_SUPER_USERNAME)
-    @dbconfig = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
+    PublicBase.establish_connection
+    ActiveRecord::Base.establish_connection
   end
 
   config.after(:each) do

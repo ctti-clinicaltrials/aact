@@ -86,7 +86,7 @@ module Util
       connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{database}' AND usename <> '#{username}'")
 
       # recreate schema
-      log "  dropping in #{host}:#{port}/#{database} database..."
+      log "  dropping in #{host}:#{port}/#{database} schema..."
       begin
         connection.execute("DROP SCHEMA #{schema} CASCADE;")
       rescue ActiveRecord::StatementInvalid => e
@@ -96,12 +96,13 @@ module Util
       connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
 
       # restore database
-      log "  restoring to #{host}:#{port}/#{database} database..."
+      log "  restoring to #{host}:#{port}/#{database} schema..."
       cmd = "PGPASSWORD=#{password} pg_restore -c -j 5 -v -h #{host} -p #{port} -U #{username}  -d #{database} #{filename}"
+      puts cmd.green
       run_restore_command_line(cmd)
 
       # verify that the database was correctly restored
-      log "  verifying #{host}:#{port}/#{database} database..."
+      log "  verifying #{host}:#{port}/#{database} schema..."
       study_count = connection.execute('select count(*) from studies;').first['count'].to_i
       if study_count != Study.count
         raise "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{host}:#{port}/#{database}.  Study count is #{study_count}. Should be #{Study.count}"
@@ -135,7 +136,8 @@ module Util
 
       Rails.logger.debug 'downloading file...'
       begin
-        `curl -o #{file.path} #{url}`
+        puts "curl -o #{file.path} -L #{url}".green
+        `curl -o #{file.path} -L #{url}`
       rescue Errno::ECONNRESET
         if (tries -= 1) > 0
           retry
@@ -145,18 +147,15 @@ module Util
 
       file.binmode
 
-      Rails.logger.debug 'extracting postgres_data.dmp...'
-      Zip::File.open(file) do |zip_file|
-        zip_file.each do |f|
-          if f.name == 'postgres_data.dmp'
-            fpath = File.join(file_path, f.name)
-            zip_file.extract(f, fpath) unless File.exist?(fpath)
-          end
-        end
-      end
+      puts "extracting #{file.path}..."
+      Rails.logger.debug 'extracting postgres.dmp...'
+      cmd = "unzip #{file.path} -d #{file_path} postgres.dmp"
+      puts cmd.green
+      `unzip #{file.path} -d #{file_path} postgres.dmp`
       Rails.logger.debug 'done'
 
-      restore_from_file({ path_to_file: "#{file_path}/postgres_data.dmp", database: database_name })
+      puts "restoring #{file.path} into #{database_name}..."
+      restore_from_file({ path_to_file: "#{file_path}/postgres.dmp", database: database_name })
 
       Rails.logger.debug 'removing temp folder...'
       FileUtils.rm_rf(file_path)
@@ -292,6 +291,16 @@ module Util
 
     def log(msg)
       Rails.logger.debug { "#{Time.zone.now}: #{msg}" } # log to STDOUT
+    end
+
+    def indexes_for(table)
+      ActiveRecord::Base.connection.indexes(table).map do |entry|
+        {
+          column_name: entry.columns.first,
+          index_name: entry.name,
+          is_unique: entry.unique,
+        }
+      end
     end
   end
 end

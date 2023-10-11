@@ -1,6 +1,4 @@
 Rails.application.configure do
-  ENV["AACT_ADMIN_DATABASE_URL"] = 'postgres://localhost:5432/aact_admin_test'
-  ENV["AACT_BACK_DATABASE_URL"] = 'postgres://localhost:5432/aact_test'
   config.assets.raise_runtime_errors = true
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -53,6 +51,6 @@ Rails.application.configure do
   config.maintain_test_schema = false
 
   # Store uploaded files on the local file system in a temporary directory.
-  config.active_storage.service = :test
+  config.active_storage.service = :digitalocean
 
 end

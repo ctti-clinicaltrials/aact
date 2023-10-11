@@ -9,7 +9,7 @@ class StudyJsonRecord < Support::SupportBase
   # 1. remove all study data if study exists
   # 2. import all the study data
   def create_or_update_study
-    puts "#{nct_id}" if ENV['VERBOSE']
+    puts "#{nct_id}"
     study = Study.find_by(nct_id: nct_id)
     if study
       study.remove_study_data 
@@ -18,12 +18,12 @@ class StudyJsonRecord < Support::SupportBase
     end
     s = Time.now
     build_study
-    puts "  insert-study #{Time.now - s}" if ENV['VERBOSE']
+    puts "  insert-study #{Time.now - s}"
   end
 
   # Make an API call to update the json
   def update_from_api
-    url = "https://clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5D#{nct_id}&min_rnk=1&max_rnk=&fmt=json"
+    url = "https://classic.clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5D#{nct_id}&min_rnk=1&max_rnk=&fmt=json"
     attempts = 0
     data = nil
     response = nil
@@ -674,7 +674,14 @@ class StudyJsonRecord < Support::SupportBase
       } if org_study_info
 
     nct_id_alias.each do |nct_alias|
-      collection << { nct_id: nct_id, id_source: 'nct_alias', id_value: nct_alias }
+      collection << { 
+        nct_id: nct_id, 
+        id_source: 'nct_alias', 
+        id_type: nil,
+        id_type_description: nil,
+        id_link: nil,
+        id_value: nct_alias
+      }
     end
     secondary_info.each do |info|
       collection << { 
@@ -682,8 +689,8 @@ class StudyJsonRecord < Support::SupportBase
         id_source: 'secondary_id',
         id_type: info['SecondaryIdType'],
         id_type_description: info['SecondaryIdDomain'],
+        id_link: info['SecondaryIdLink'],
         id_value: info['SecondaryId'],
-        id_link: info['SecondaryIdLink'] 
       }
     end
     collection
@@ -894,6 +901,8 @@ class StudyJsonRecord < Support::SupportBase
                             dispersion_value_num: StudyJsonRecord.float(measure['OutcomeMeasurementSpread']),
                             dispersion_lower_limit: StudyJsonRecord.float(measure['OutcomeMeasurementLowerLimit']),
                             dispersion_upper_limit: StudyJsonRecord.float(measure['OutcomeMeasurementUpperLimit']),
+                            dispersion_lower_limit_raw: measure['OutcomeMeasurementLowerLimit'],
+                            dispersion_upper_limit_raw: measure['OutcomeMeasurementUpperLimit'],
                             explanation_of_na: measure['OutcomeMeasurementComment']
                           }
         end
@@ -923,11 +932,14 @@ class StudyJsonRecord < Support::SupportBase
                                           dispersion_value: analysis['OutcomeAnalysisDispersionValue'],
                                           p_value_modifier: raw_value.gsub(/\d+/, "").gsub('.','').gsub('-','').strip,
                                           p_value: raw_value.gsub(/</, '').gsub(/>/, '').gsub(/ /, '').gsub(/=/, '').strip,
+                                          p_value_raw: analysis['OutcomeAnalysisPValue'],
                                           p_value_description: analysis['OutcomeAnalysisPValueComment'],
                                           ci_n_sides: analysis['OutcomeAnalysisCINumSides'],
                                           ci_percent: StudyJsonRecord.float(analysis['OutcomeAnalysisCIPctValue']),
-                                          ci_lower_limit: analysis['OutcomeAnalysisCILowerLimit'],
-                                          ci_upper_limit: analysis['OutcomeAnalysisCIUpperLimit'],
+                                          ci_lower_limit: StudyJsonRecord.float(analysis['OutcomeAnalysisCILowerLimit']),
+                                          ci_upper_limit: StudyJsonRecord.float(analysis['OutcomeAnalysisCIUpperLimit']),
+                                          ci_lower_limit_raw: analysis['OutcomeAnalysisCILowerLimit'],
+                                          ci_upper_limit_raw: analysis['OutcomeAnalysisCIUpperLimit'],
                                           ci_upper_limit_na_comment: analysis['OutcomeAnalysisCIUpperLimitComment'],
 
                                           method: analysis['OutcomeAnalysisStatisticalMethod'],
@@ -1421,7 +1433,10 @@ class StudyJsonRecord < Support::SupportBase
       update(saved_study_at: Time.now)
     rescue Exception => error
       msg="#{error.message} (#{error.class} #{error.backtrace}"
-      Airbrake.notify(error)
+      puts msg
+      notice = Airbrake.build_notice(error)
+      notice[:params][:nctid] = nct_id
+      Airbrake.notify(notice)
       @study_build_failures ||= []
       @study_build_failures << id
     end
