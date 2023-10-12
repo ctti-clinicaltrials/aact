@@ -39,7 +39,6 @@ class Study < ActiveRecord::Base
   has_one  :eligibility,           :foreign_key => 'nct_id', :dependent => :delete
   has_one  :participant_flow,      :foreign_key => 'nct_id', :dependent => :delete
   has_one  :calculated_value,      :foreign_key => 'nct_id', :dependent => :delete
-  has_one  :study_xml_record,      class_name: "Support::StudyXmlRecord", :foreign_key => 'nct_id'
 
   has_many :search_results,            :foreign_key => 'nct_id', :dependent => :delete_all
   has_many :baseline_measurements, :foreign_key => 'nct_id', :dependent => :delete_all
