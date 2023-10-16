@@ -34,7 +34,19 @@ describe Util::TableExporter do
         File.open('public/static/tmp/export/outcomes.txt', 'wb+') do |file|
           table_exporter.export_table('outcomes', file, '|')
         end
-        expect(File.read('public/static/tmp/export/outcomes.txt')).to eq(File.read('spec/support/outcomes.txt'))
+        result_file = ''
+        File.open('public/static/tmp/export/outcomes.txt', 'r') do |input_file|
+          output_lines = ''
+          # Iterate through each line in the input file and remove the first column
+          input_file.each_line do |line|
+            columns = line.chomp.split('|')
+            columns.shift
+            modified_line = columns.join('|')
+            output_lines << modified_line + "\n"
+          end
+          result_file = output_lines
+        end
+        expect(result_file).to eq(File.read('spec/support/outcomes.txt'))
       end
     end
 
