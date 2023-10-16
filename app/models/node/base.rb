@@ -15,7 +15,6 @@ module Node
       @raw = data
       data.each do |key, val|
         # if self.class == Node::CentralContactList
-        #   byebug
         #   a = 1
         # end
         case val
@@ -61,7 +60,6 @@ module Node
           begin
             val.process(root)
           rescue => e
-            byebug
             a = 1
           end
         end
