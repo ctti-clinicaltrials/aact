@@ -214,9 +214,12 @@ describe Util::Updater do
 
   context 'when something went wrong with the loads' do
     it 'should log errors, send notification with apprpriate subject line & not refresh the public db' do
-      updater=Util::Updater.new
-      expect(updater).to receive(:send_notification).once
-      expect(updater.db_mgr).to receive(:refresh_public_db).never
+      updater=Util::Updater.new  
+      db_manager_instance=updater.db_mgr
+      expect_any_instance_of(Util::DbManager).not_to receive(:refresh_public_db)
+      allow(Notifier).to receive(:report_load_event)
+      expect_any_instance_of(Util::DbManager).to receive(:remove_constraints).and_raise('NoMethodError')
+      updater.execute
       # updater.run
       expect(updater.load_event.problems).to include('NoMethodError')
       expect(updater.load_event.problems.size).to  be > 100
