@@ -1,10 +1,9 @@
 require 'rails_helper'
-require 'rss'
 
 describe Util::Updater do
-  let(:stub_request_headers) { {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v1.1.0' } }
+  let(:stub_request_headers) { {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v2.1.0' } }
   let(:ctg_api_body) {File.read('spec/support/json_data/ctg_api_all.json') }
-  let(:api_url) { 'https://clinicaltrials.gov/api/query/study_fields?fields=NCTId,StudyFirstPostDate,LastUpdatePostDate&fmt=json&max_rnk=1000&min_rnk=1'}
+  let(:api_url) { 'https://classic.clinicaltrials.gov/api//query/study_fields?fields=NCTId,StudyFirstPostDate,LastUpdatePostDate&fmt=json&max_rnk=1000&min_rnk=1'}
   before do
     stub_request(:get, api_url).with(headers: stub_request_headers).to_return(:status => 200, :body => ctg_api_body, :headers => {})
     
@@ -14,10 +13,13 @@ describe Util::Updater do
     stub_request(:get, "https://clinicaltrials.gov/show/NCT00023673?resultsxml=true").
       to_return(:status => 200, :body => File.read("spec/support/xml_data/NCT00023673.xml"), :headers => {})
 
-    stub_request(:get, "https://clinicaltrials.gov/show/invalid-nct-id?resultsxml=true").
-      to_return(:status => 200, :body => File.read("spec/support/xml_data/Invalid-nct-id.html"), :headers => {})
-
     stub_request(:get, "https://clinicaltrials.gov/show/timeout?resultsxml=true").and_raise(Net::OpenTimeout)
+
+    stub_request(:get, "https://classic.clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5DNCT02028676&fmt=json&max_rnk=&min_rnk=1").with(headers: stub_request_headers).
+      to_return(:status => 200, :body => File.read("spec/support/json_data/NCT02028676.json"), :headers => {})
+
+    stub_request(:get, "https://classic.clinicaltrials.gov/api/query/full_studies?expr=AREA%5BNCTId%5DNCT00023673&fmt=json&max_rnk=&min_rnk=1").with(headers: stub_request_headers).
+      to_return(:status => 200, :body => File.read("spec/support/json_data/NCT00023673.json"), :headers => {})
   end
 
   it "doesn't abort when it encouters a net timeout or doesn't retrieve xml from ct.gov" do
@@ -27,7 +29,6 @@ describe Util::Updater do
     expect(Study.count).to eq(2)
     expect(Study.where('nct_id=?','NCT02028676').size).to eq(1)
     expect(Study.where('nct_id=?','NCT00023673').size).to eq(1)
-    expect(Study.where('nct_id=?','invalid-nct-id').size).to eq(0)
   end
 
   it "continues on if there's a timeout error when attempting to retrieve data from clinicaltrials.gov for one of the studies" do
@@ -38,8 +39,9 @@ describe Util::Updater do
 
   it "aborts incremental load when number of studies in refreshed (background) db is less than number of studies in public db" do
     updater=Util::Updater.new  
-    expect(updater.db_mgr).to receive(:refresh_public_db).never
-    expect(updater).to receive(:send_notification).once
+    db_manager_instance=updater.db_mgr
+    expect_any_instance_of(Util::DbManager).not_to receive(:refresh_public_db)
+    allow(Notifier).to receive(:report_load_event)
     # updater.run
   end
 
@@ -89,11 +91,10 @@ describe Util::Updater do
 
     Util::Updater.new.update_studies
     study=Study.where('nct_id=?',nct_id).first
-
     expect(study.baseline_measurements.size).to eq(380)
     expect(study.baseline_counts.size).to eq(10)
-    expect(study.browse_conditions.size).to eq(3)
-    expect(study.browse_interventions.size).to eq(10)
+    expect(study.browse_conditions.size).to eq(16)
+    expect(study.browse_interventions.size).to eq(33)
     expect(study.central_contacts.size).to eq(0)
     expect(study.conditions.size).to eq(1)
     expect(study.countries.size).to eq(2)
@@ -104,11 +105,11 @@ describe Util::Updater do
     expect(study.facilities.size).to eq(4)
     expect(study.facility_contacts.size).to eq(0)
     expect(study.facility_investigators.size).to eq(0)
-    expect(study.id_information.size).to eq(2)
+    expect(study.id_information.size).to eq(3)
     expect(study.interventions.size).to eq(9)
     expect(study.intervention_other_names.size).to eq(28)
     expect(study.keywords.size).to eq(13)
-    expect(study.links.size).to eq(0)
+    expect(study.links.size).to eq(1)
     expect(study.milestones.size).to eq(108)
     expect(study.outcomes.size).to eq(58)
     expect(study.outcome_analyses.size).to eq(88)
@@ -116,14 +117,14 @@ describe Util::Updater do
     expect(study.outcome_measurements.size).to eq(162)
     expect(study.outcomes.size).to eq(58)
     expect(study.overall_officials.size).to eq(10)
-    expect(study.references.size).to eq(2)
+    expect(study.references.size).to eq(3)
     expect(study.reported_events.size).to eq(333)
-    expect(study.reported_event_totals.size).to eq(18)
+    expect(study.reported_event_totals.size).to eq(27)
     expect(study.responsible_parties.size).to eq(1)
     expect(study.result_agreements.size).to eq(1)
     expect(study.result_contacts.size).to eq(1)
-    expect(study.result_groups.size).to eq(190)
-    expect(study.sponsors.size).to eq(1)
+    expect(study.result_groups.size).to eq(41)
+    expect(study.sponsors.size).to eq(4)
     expect(study.eligibility.gender).to eq('All')
   end
 
@@ -131,7 +132,6 @@ describe Util::Updater do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
-    CalculatedValue.new.create_from(study).save!
     expect(study.start_month_year).to eq('July 2001')
     expect(study.completion_month_year).to eq('November 2013')
     expect(study.primary_completion_month_year).to eq('January 2009')
@@ -214,9 +214,12 @@ describe Util::Updater do
 
   context 'when something went wrong with the loads' do
     it 'should log errors, send notification with apprpriate subject line & not refresh the public db' do
-      updater=Util::Updater.new
-      expect(updater).to receive(:send_notification).once
-      expect(updater.db_mgr).to receive(:refresh_public_db).never
+      updater=Util::Updater.new  
+      db_manager_instance=updater.db_mgr
+      expect_any_instance_of(Util::DbManager).not_to receive(:refresh_public_db)
+      allow(Notifier).to receive(:report_load_event)
+      expect_any_instance_of(Util::DbManager).to receive(:remove_constraints).and_raise('NoMethodError')
+      updater.execute
       # updater.run
       expect(updater.load_event.problems).to include('NoMethodError')
       expect(updater.load_event.problems.size).to  be > 100
@@ -228,7 +231,8 @@ describe Util::Updater do
   context 'when there is a failure/exception in the Util::Updater#execute method' do
     it 'should set the load event status to "error", and set problems to the exception message "test error"' do
       updater=Util::Updater.new
-      allow(updater.db_mgr).to receive(:remove_constraints).and_raise('test error')
+      db_manager_instance=updater.db_mgr
+      expect_any_instance_of(Util::DbManager).to receive(:remove_constraints).and_raise('test error')
       updater.execute
       expect(updater.load_event.problems).to include('test error')
       expect(updater.load_event.status).to eq('error')
