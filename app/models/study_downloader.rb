@@ -18,8 +18,8 @@ class StudyDownloader
       begin
         attempts += 1
         s = Time.now
-        body = Faraday.get("https://clinicaltrials.gov/api/v2/studies/#{nct_id}").body
-        record.update(content: JSON.parse(body), version: "2")
+        content = ClinicalTrialsApiV2.study(nct_id)
+        record.update(content: content, version: "2")
       rescue Faraday::ConnectionFailed
         return false if attempts > 5
         retry
