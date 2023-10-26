@@ -12,9 +12,9 @@ gem 'foundation_emails'
 
 gem 'nokogiri'
 gem 'loofah'
-gem 'rails', '6.0.0'
-gem 'activesupport', '6.0.0'
-gem 'actionpack', '6.0.0'
+gem 'rails', '7.1.1'
+gem 'activesupport', '7.1.1'
+gem 'actionpack', '7.1.1'
 gem 'rails-html-sanitizer'
 gem "rack-timeout"
 gem "faraday"
