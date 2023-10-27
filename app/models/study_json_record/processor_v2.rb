@@ -5,18 +5,23 @@ class StudyJsonRecord::ProcessorV2
   end
   
   def protocol_section
+    @json['protocolSection']
   end
 
   def results_section
+    @json['resultsSection']
   end
   
-  def derived_section  
+  def derived_section
+    @json['derivedSection']  
   end
 
   def annotation_section
+    @json['annotationSection']
   end
 
   def document_section
+    @json['documentSection']
   end
   
   # leave this empty for now
