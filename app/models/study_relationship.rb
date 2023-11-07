@@ -42,6 +42,12 @@ class StudyRelationship < ActiveRecord::Base
     @models = (connection.tables - blacklist).map{|k| k.singularize.camelize.constantize }
   end
 
+  def self.remove_all_data
+    study_models.each do |model|
+      model.delete_all
+    end
+  end
+
   def self.create_nct_indexes
     blacklist = %w(
       ar_internal_metadata

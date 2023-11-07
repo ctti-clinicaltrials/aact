@@ -2599,6 +2599,23 @@ CREATE TABLE ctgov.verifiers (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     load_event_id integer
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.schema_migrations (
+    version character varying NOT NULL
 );
 
 
@@ -2607,6 +2624,24 @@ CREATE TABLE ctgov.verifiers (
 --
 
 CREATE SEQUENCE ctgov.verifiers_id_seq
+-- Name: active_storage_attachments; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.active_storage_attachments (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    record_type character varying NOT NULL,
+    record_id bigint NOT NULL,
+    blob_id bigint NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.active_storage_attachments_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2630,6 +2665,63 @@ CREATE TABLE public.ar_internal_metadata (
     value character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.active_storage_attachments_id_seq OWNED BY support.active_storage_attachments.id;
+
+
+--
+-- Name: active_storage_blobs; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.active_storage_blobs (
+    id bigint NOT NULL,
+    key character varying NOT NULL,
+    filename character varying NOT NULL,
+    content_type character varying,
+    metadata text,
+    byte_size bigint NOT NULL,
+    checksum character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.active_storage_blobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.active_storage_blobs_id_seq OWNED BY support.active_storage_blobs.id;
+
+
+--
+-- Name: background_jobs; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.background_jobs (
+    id bigint NOT NULL,
+    user_id integer,
+    status character varying,
+    completed_at timestamp without time zone,
+    logs character varying,
+    type character varying,
+    data json,
+    url character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_error_message character varying
 );
 
 
@@ -2639,7 +2731,57 @@ CREATE TABLE public.ar_internal_metadata (
 
 CREATE TABLE public.schema_migrations (
     version character varying NOT NULL
+-- Name: background_jobs_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.background_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: background_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.background_jobs_id_seq OWNED BY support.background_jobs.id;
+
+
+--
+-- Name: file_records; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.file_records (
+    id bigint NOT NULL,
+    filename character varying,
+    file_size bigint,
+    file_type character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    url character varying,
+    load_event_id bigint
 );
+
+
+--
+-- Name: file_records_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.file_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: file_records_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.file_records_id_seq OWNED BY support.file_records.id;
 
 
 --
@@ -2874,6 +3016,37 @@ ALTER TABLE ONLY ctgov.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY ctgov.background_jobs ALTER COLUMN id SET DEFAULT nextval('ctgov.background_jobs_id_seq'::regclass);
+-- Name: verifiers; Type: TABLE; Schema: support; Owner: -
+--
+
+CREATE TABLE support.verifiers (
+    id bigint NOT NULL,
+    differences json DEFAULT '[]'::json NOT NULL,
+    last_run timestamp without time zone,
+    source json,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    load_event_id integer
+);
+
+
+--
+-- Name: verifiers_id_seq; Type: SEQUENCE; Schema: support; Owner: -
+--
+
+CREATE SEQUENCE support.verifiers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: verifiers_id_seq; Type: SEQUENCE OWNED BY; Schema: support; Owner: -
+--
+
+ALTER SEQUENCE support.verifiers_id_seq OWNED BY support.verifiers.id;
 
 
 --
@@ -3238,6 +3411,31 @@ ALTER TABLE ONLY ctgov.study_searches ALTER COLUMN id SET DEFAULT nextval('ctgov
 --
 
 ALTER TABLE ONLY ctgov.verifiers ALTER COLUMN id SET DEFAULT nextval('ctgov.verifiers_id_seq'::regclass);
+-- Name: active_storage_attachments id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.active_storage_attachments ALTER COLUMN id SET DEFAULT nextval('support.active_storage_attachments_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_blobs id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('support.active_storage_blobs_id_seq'::regclass);
+
+
+--
+-- Name: background_jobs id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.background_jobs ALTER COLUMN id SET DEFAULT nextval('support.background_jobs_id_seq'::regclass);
+
+
+--
+-- Name: file_records id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.file_records ALTER COLUMN id SET DEFAULT nextval('support.file_records_id_seq'::regclass);
 
 
 --
@@ -3304,6 +3502,10 @@ ALTER TABLE ONLY ctgov.active_storage_blobs
 
 ALTER TABLE ONLY ctgov.background_jobs
     ADD CONSTRAINT background_jobs_pkey PRIMARY KEY (id);
+-- Name: verifiers id; Type: DEFAULT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.verifiers ALTER COLUMN id SET DEFAULT nextval('support.verifiers_id_seq'::regclass);
 
 
 --
@@ -3739,6 +3941,38 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
+-- Name: active_storage_attachments active_storage_attachments_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.active_storage_attachments
+    ADD CONSTRAINT active_storage_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: active_storage_blobs active_storage_blobs_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.active_storage_blobs
+    ADD CONSTRAINT active_storage_blobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: background_jobs background_jobs_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.background_jobs
+    ADD CONSTRAINT background_jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: file_records file_records_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.file_records
+    ADD CONSTRAINT file_records_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: load_events load_events_pkey; Type: CONSTRAINT; Schema: support; Owner: -
 --
 
@@ -3805,6 +4039,11 @@ CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON ctgov.active_
 --
 
 CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON ctgov.active_storage_blobs USING btree (key);
+-- Name: verifiers verifiers_pkey; Type: CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.verifiers
+    ADD CONSTRAINT verifiers_pkey PRIMARY KEY (id);
 
 
 --
@@ -4431,6 +4670,34 @@ CREATE UNIQUE INDEX index_study_searches_on_query_and_grouping ON ctgov.study_se
 
 
 --
+-- Name: index_active_storage_attachments_uniqueness; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON support.active_storage_attachments USING btree (record_type, record_id, name, blob_id);
+
+
+--
+-- Name: index_file_records_on_load_event_id; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX index_file_records_on_load_event_id ON support.file_records USING btree (load_event_id);
+
+
+--
+-- Name: index_support.active_storage_attachments_on_blob_id; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE INDEX "index_support.active_storage_attachments_on_blob_id" ON support.active_storage_attachments USING btree (blob_id);
+
+
+--
+-- Name: index_support.active_storage_blobs_on_key; Type: INDEX; Schema: support; Owner: -
+--
+
+CREATE UNIQUE INDEX "index_support.active_storage_blobs_on_key" ON support.active_storage_blobs USING btree (key);
+
+
+--
 -- Name: index_support.load_events_on_event_type; Type: INDEX; Schema: support; Owner: -
 --
 
@@ -4521,6 +4788,11 @@ ALTER TABLE ONLY ctgov.active_storage_attachments
 
 ALTER TABLE ONLY ctgov.file_records
     ADD CONSTRAINT fk_rails_f437ab93ba FOREIGN KEY (load_event_id) REFERENCES support.load_events(id);
+-- Name: active_storage_attachments fk_rails_0276932754; Type: FK CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.active_storage_attachments
+    ADD CONSTRAINT fk_rails_0276932754 FOREIGN KEY (blob_id) REFERENCES support.active_storage_blobs(id);
 
 
 --
@@ -4537,6 +4809,14 @@ ALTER TABLE ONLY support.load_issues
 
 ALTER TABLE ONLY support.sanity_checks
     ADD CONSTRAINT fk_rails_9d86ec7e91 FOREIGN KEY (load_event_id) REFERENCES support.load_events(id);
+
+
+--
+-- Name: file_records fk_rails_f437ab93ba; Type: FK CONSTRAINT; Schema: support; Owner: -
+--
+
+ALTER TABLE ONLY support.file_records
+    ADD CONSTRAINT fk_rails_f437ab93ba FOREIGN KEY (load_event_id) REFERENCES support.load_events(id);
 
 
 --
@@ -4601,5 +4881,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230628231316'),
 ('20230629000057'),
 ('20230720150513');
-
-
