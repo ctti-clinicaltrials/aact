@@ -19,7 +19,7 @@ module Util
         else
           system("zip -j -q #{@zipfile_name} #{@temp_dir}/*.txt")
         end
-
+        
         FileRecord.post('pipefiles', @zipfile_name)
         File.delete(@zipfile_name) if File.exist?(@zipfile_name)
       ensure

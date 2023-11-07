@@ -61,7 +61,6 @@ module Node
           begin
             val.process(root)
           rescue => e
-            byebug
             a = 1
           end
         end

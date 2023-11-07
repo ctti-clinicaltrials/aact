@@ -41,30 +41,43 @@ module Util
 
     # generate a dump file
     def dump_database
-      dump_file_location = fm.pg_dump_file
-      FileUtils.rm_f(dump_file_location)
-      config = Study.connection_config
-      host = config[:host]
-      port = config[:port]
-      username = config[:username]
-      database = config[:database]
-      host ||= 'localhost'
-      port ||= 5432
+        dump_file_location = fm.pg_dump_file
+        FileUtils.rm_f(dump_file_location)
+        config = Study.connection_config
+        host = config[:host]
+        port = config[:port]
+        username = config[:username]
+        database = config[:database]
+        host ||= 'localhost'
+        port ||= 5432
+  
+        username = config[:username]
+        database = config[:database]
+        # Get a list of all table names in the database
+        tables_query = "SELECT tablename FROM pg_tables WHERE schemaname = 'ctgov' AND tablename NOT IN ('ar_internal_metadata', 'schema_migrations', 'study_records');"
+        
+        # Run the psql command to execute the query and capture the table names
+        table_names, _error, _status = Open3.capture3("psql -h #{host} -p #{port} -U #{username} -d #{database} -t -c \"#{tables_query}\"")
+        tables = table_names.split("\n")
 
-      cmd = "
-        pg_dump  -v -h #{host} -p #{port} -U #{username} \
-        --clean --no-owner -b -c -C -Fc \
-        --exclude-table ar_internal_metadata \
-        --exclude-table schema_migrations \
-        --exclude-table study_records \
-        --schema 'ctgov'  \
-        -f #{dump_file_location} \
-        #{database} \
-      "
-      Rails.logger.debug cmd
-      run_command_line(cmd)
+       # Create or open the "postgres.dmp" file for writing
+        File.open(dump_file_location, 'wb') do |dump_file|
+          # Loop through the table names and export each table, appending to "postgres.dmp"
+          tables.each do |table|
+            table = table.strip
+            dump_command = "pg_dump -h #{host} -p #{port} -U #{username} -t #{table} -a -F c --dbname=#{database} --no-owner --no-comments --data-only --table=#{table} 2>&1"
+            
+            # Run the dump command and append its output to the dump file
+            IO.popen(dump_command, "rb") do |io|
+              while (line = io.gets)
+                dump_file.write(line)
+              end
+            end
+          end
+        end
+    Rails.logger.debug "Tables dumped successfully."
 
-      dump_file_location
+    dump_file_location
     end
 
     # Restoring a database
