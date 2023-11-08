@@ -52,6 +52,7 @@ class StudyJsonRecord < Support::SupportBase
     end
   end
 
+
   ###### Utils ######
 
   def key_check(key)
