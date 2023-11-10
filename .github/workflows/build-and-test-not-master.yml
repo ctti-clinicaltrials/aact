@@ -65,16 +65,25 @@ jobs:
           PGPASSWORD=password psql -h localhost -U rails -d aact_public_test < db/public_structure.sql
 
       # Add or replace config/connections.yml file steps here
-      - name: Build config/connections.yml
+      # - name: Build config/connections.yml
+      - name: Build AACT_PUBLIC_DATABASE_URL
         run: |
-          echo "public:" >> config/connections.yml
-          echo "  encoding: utf8" >> config/connections.yml
-          echo "  adapter: postgresql" >> config/connections.yml
-          echo "  host: localhost" >> config/connections.yml
-          echo "  port: 5432" >> config/connections.yml
-          echo "  database: aact_public_test" >> config/connections.yml
-          echo "  user: rails" >> config/connections.yml
-          echo "  password: password" >> config/connections.yml
+          # echo "public:" >> config/connections.yml
+          # echo "  encoding: utf8" >> config/connections.yml
+          # echo "  adapter: postgresql" >> config/connections.yml
+          # echo "  host: localhost" >> config/connections.yml
+          # echo "  port: 5432" >> config/connections.yml
+          # echo "  database: aact_public_test" >> config/connections.yml
+          # echo "  user: rails" >> config/connections.yml
+          # echo "  password: password" >> config/connections.yml
+          echo "public:" >> AACT_PUBLIC_DATABASE_URL
+          echo "  encoding: utf8" >> AACT_PUBLIC_DATABASE_URL
+          echo "  adapter: postgresql" >> AACT_PUBLIC_DATABASE_URL
+          echo "  host: localhost" >> AACT_PUBLIC_DATABASE_URL
+          echo "  port: 5432" >> 
+          echo "  database: aact_public_test" >> AACT_PUBLIC_DATABASE_URL
+          echo "  user: rails" >> AACT_PUBLIC_DATABASE_URL
+          echo "  password: password" >> AACT_PUBLIC_DATABASE_URL
 
       # Add or replace test runners here
       - name: Run tests

@@ -16,7 +16,7 @@ RUN adduser --disabled-password aact && chown -R aact /app
 
 COPY . /app
 
-RUN ln -s /config/connections.yml /app/config/connections.yml
+# RUN ln -s /config/connections.yml /app/config/connections.yml
 
 # Switch to the user
 USER aact
