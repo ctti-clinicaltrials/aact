@@ -75,50 +75,57 @@ class StudyJsonRecord::ProcessorV2
     oversight = key_check(protocol_section['oversightModule'])
     ipd_sharing = key_check(protocol_section['ipdSharingStatementModule'])
     study_posted = status['studyFirstPostDateStruct']
-    results_posted = key_check(status['resultsFirstPostDateStruct']) # ???
-    disp_posted = key_check(status['dispFirstPostDateStruct']) # ???
+    results_posted = key_check(status['resultsFirstPostDateStruct'])
+    disp_posted = key_check(status['dispFirstPostDateStruct'])
     last_posted = status['lastUpdatePostDateStruct']
     start_date = key_check(status['startDateStruct'])
     completion_date = key_check(status['completionDateStruct'])
     primary_completion_date = key_check(status['primaryCompletionDateStruct'])
     results = results_section || {}
-    baseline = key_check(results['baselineCharacteristicsModule']) # ???
+    baseline = key_check(results['baselineCharacteristicsModule'])
     enrollment = key_check(design['enrollmentInfo'])
     expanded_access = status.dig('expandedAccessInfo', 'hasExpandedAccess')
-    expanded = key_check(design['expandedAccessTypes']) # ???
-    biospec = key_check(design['bioSpec']) # ???
+    expanded = key_check(design['expandedAccessTypes'])
+    biospec = key_check(design['bioSpec'])
     arms_intervention = key_check(protocol_section['armsInterventionsModule'])
     study_type = design['studyType']
-    patient_registry = design['patientRegistry'] || '' # ???
-    study_type = "#{study_type} [Patient Registry]" if patient_registry =~ /Yes/i  # ???
-    group_list = key_check(arms_intervention['armGroupList'])  # ???
-    groups = group_list['armGroup'] || []   # ???
+    patient_registry = design['patientRegistry'] || ''
+    study_type = "#{study_type} [Patient Registry]" if patient_registry =~ /Yes/i
+    
+    # group_list = key_check(arms_intervention['armGroupList'])  # ???  does not exist, maybe should be armGroups
+    group_list = key_check(arms_intervention['armGroups'])
+    
+    groups = group_list['armGroup'] || []   # ??? does not exist
+    
     num_of_groups = groups.count == 0 ? nil : groups.count
     arms_count = study_type =~ /Interventional/i ? num_of_groups : nil
     groups_count = arms_count ? nil : num_of_groups
-    phase_list = key_check(design['phaseList'])['phase']  # ???
+    
+    # phase_list = key_check(design['phaseList'])['phase']  # ???
+    phase_list = key_check(design['phases'])
+    
     phase_list = phase_list.join('/') if phase_list
 
     {
       nct_id: nct_id,
       nlm_download_date_description: nil,
-      results_first_submitted_date: get_date(status['resultsFirstSubmitDate']),   # ???
-      disposition_first_submitted_date: get_date(status['dispFirstSubmitDate']),  # ???
+      results_first_submitted_date: get_date(status['resultsFirstSubmitDate']),
+      disposition_first_submitted_date: get_date(status['dispFirstSubmitDate']),
       last_update_submitted_date: get_date(status['lastUpdateSubmitDate']),
       study_first_submitted_date: get_date(status['studyFirstSubmitDate']),
       study_first_submitted_qc_date: status['studyFirstSubmitQcDate'],
       study_first_posted_date: study_posted['date'],
       study_first_posted_date_type: study_posted['type'],
-      results_first_submitted_qc_date: status['resultsFirstSubmitQCDate'],   # ???
-      results_first_posted_date: results_posted['resultsFirstPostDate'],     # ???
-      results_first_posted_date_type: results_posted['resultsFirstPostDateType'],   # ???
-      disposition_first_submitted_qc_date: status['dispFirstSubmitQCDate'],  # ???
-      disposition_first_posted_date: disp_posted['dispFirstPostDate'],       # ???
-      disposition_first_posted_date_type: disp_posted['dispFirstPostDateType'],     # ???
+      results_first_submitted_qc_date: status['resultsFirstSubmitQcDate'],
+      results_first_posted_date: results_posted['date'],
+      results_first_posted_date_type: results_posted['type'],
+      disposition_first_submitted_qc_date: status['dispFirstSubmitQcDate'],
+      disposition_first_posted_date: disp_posted['date'],
+      disposition_first_posted_date_type: disp_posted['type'],
       last_update_submitted_qc_date: status['lastUpdateSubmitDate'], # this should not go here (Ramiro comment)
       last_update_posted_date: last_posted['date'],
       last_update_posted_date_type: last_posted['type'],
-      delayed_posting: status['delayedPosting'],     # ???
+      delayed_posting: status['delayedPosting'],
       start_month_year: start_date['date'],
       start_date_type: start_date['type'],
       start_date: convert_date(start_date['date']),
@@ -130,14 +137,14 @@ class StudyJsonRecord::ProcessorV2
       primary_completion_month_year: primary_completion_date['date'],
       primary_completion_date_type: primary_completion_date['type'],
       primary_completion_date: convert_date(primary_completion_date['date']),
-      target_duration: design['targetDuration'],   # ???
+      target_duration: design['targetDuration'],
       study_type: study_type,
       acronym: ident['acronym'],
-      baseline_population: baseline['baselinePopulationDescription'],   # ???
+      baseline_population: baseline['populationDescription'],
       brief_title: ident['briefTitle'],
       official_title: ident['officialTitle'],
       overall_status: status['overallStatus'],
-      last_known_status: status['lastKnownStatus'],   # ???
+      last_known_status: status['lastKnownStatus'],
       phase: phase_list,
       enrollment: enrollment['count'],
       enrollment_type: enrollment['type'],
@@ -146,28 +153,28 @@ class StudyJsonRecord::ProcessorV2
       limitations_and_caveats: key_check(results['moreInfoModule'])['limitationsAndCaveatsDescription'],  # ???
       number_of_arms: arms_count,
       number_of_groups: groups_count,
-      why_stopped: status['whyStopped'],   # ???
+      why_stopped: status['whyStopped'],
       has_expanded_access: get_boolean(expanded_access),
-      expanded_access_nctid: status.dig('expandedAccessInfo', 'expandedAccessNCTId'),      # ??? expandedAccessNCTId ?
-      expanded_access_status_for_nctid: status.dig('expandedAccessInfo', 'expandedAccessStatusForNCTId'),  # ??? expandedAccessStatusForNCTId ?
-      expanded_access_type_individual: get_boolean(expanded['expAccTypeIndividual']),      # ???
-      expanded_access_type_intermediate: get_boolean(expanded['expAccTypeIntermediate']),  # ???
-      expanded_access_type_treatment: get_boolean(expanded['expAccTypeTreatment']),        # ???
+      expanded_access_nctid: status.dig('expandedAccessInfo', 'nctId'),
+      expanded_access_status_for_nctid: status.dig('expandedAccessInfo', 'statusForNctId'),
+      expanded_access_type_individual: get_boolean(expanded['individual']),
+      expanded_access_type_intermediate: get_boolean(expanded['intermediate']),
+      expanded_access_type_treatment: get_boolean(expanded['treatment']),
       has_dmc: get_boolean(oversight['oversightHasDMC']),
       is_fda_regulated_drug: get_boolean(oversight['isFdaRegulatedDrug']),
       is_fda_regulated_device: get_boolean(oversight['isFdaRegulatedDevice']),
-      is_unapproved_device: get_boolean(oversight['isUnapprovedDevice']),       # ???
-      is_ppsd: get_boolean(oversight['isPPSD']),    # ???
-      is_us_export: get_boolean(oversight['isUSExport']),   # ??? 
-      fdaaa801_violation: get_boolean(oversight['FDAAA801Violation']),   # ??? 
-      biospec_retention: biospec['bioSpecRetention'],       # ???
-      biospec_description: biospec['bioSpecDescription'],   # ???
+      is_unapproved_device: get_boolean(oversight['isUnapprovedDevice']),
+      is_ppsd: get_boolean(oversight['isPpsd']),
+      is_us_export: get_boolean(oversight['isUsExport']),
+      fdaaa801_violation: get_boolean(oversight['Fdaaa801Violation']),
+      biospec_retention: biospec['retention'],
+      biospec_description: biospec['description'],
       ipd_time_frame: ipd_sharing['timeFrame'],
       ipd_access_criteria: ipd_sharing['accessCriteria'],
       ipd_url: ipd_sharing['url'],
       plan_to_share_ipd: ipd_sharing['ipdSharing'],  
       plan_to_share_ipd_description: ipd_sharing['description'],
-      baseline_type_units_analyzed: baseline['baselineTypeUnitsAnalyzed']   # ???
+      baseline_type_units_analyzed: baseline['typeUnitsAnalyzed']
     }
   end
 
