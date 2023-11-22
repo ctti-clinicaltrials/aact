@@ -82,6 +82,7 @@ class StudyJsonRecord::ProcessorV2
     completion_date = key_check(status['completionDateStruct'])
     primary_completion_date = key_check(status['primaryCompletionDateStruct'])
     results = results_section || {}
+    more_info = results['moreInfoModule']
     baseline = key_check(results['baselineCharacteristicsModule'])
     enrollment = key_check(design['enrollmentInfo'])
     expanded_access = status.dig('expandedAccessInfo', 'hasExpandedAccess')
@@ -91,19 +92,11 @@ class StudyJsonRecord::ProcessorV2
     study_type = design['studyType']
     patient_registry = design['patientRegistry'] || ''
     study_type = "#{study_type} [Patient Registry]" if patient_registry =~ /Yes/i
-    
-    # group_list = key_check(arms_intervention['armGroupList'])  # ???  does not exist, maybe should be armGroups
-    group_list = key_check(arms_intervention['armGroups'])
-    
-    groups = group_list['armGroup'] || []   # ??? does not exist
-    
+    groups = key_check(arms_intervention['armGroups'])
     num_of_groups = groups.count == 0 ? nil : groups.count
     arms_count = study_type =~ /Interventional/i ? num_of_groups : nil
     groups_count = arms_count ? nil : num_of_groups
-    
-    # phase_list = key_check(design['phaseList'])['phase']  # ???
     phase_list = key_check(design['phases'])
-    
     phase_list = phase_list.join('/') if phase_list
 
     {
@@ -150,7 +143,7 @@ class StudyJsonRecord::ProcessorV2
       enrollment_type: enrollment['type'],
       source: ident.dig('organization', 'fullName'),
       source_class: ident.dig('organization', 'class'),
-      limitations_and_caveats: key_check(results['moreInfoModule'])['limitationsAndCaveatsDescription'],  # ???
+      limitations_and_caveats: key_check(more_info['limitationsAndCaveats'])['description'],
       number_of_arms: arms_count,
       number_of_groups: groups_count,
       why_stopped: status['whyStopped'],
