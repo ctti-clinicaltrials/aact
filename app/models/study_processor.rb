@@ -2,9 +2,7 @@ class StudyProcessor
     def self.process
         saved_nil = []
         StudyJsonRecord.all.each do |study|
-        if study.saved_study_at.nil? 
-            saved_nil.push(study)
-        elsif (study.updated_at > study.saved_study_at) && !study.updated_at.nil?
+        if (study.saved_study_at.nil?) || (study.updated_at > study.saved_study_at)
             saved_nil.push(study)
         end
     end
