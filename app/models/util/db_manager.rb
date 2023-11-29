@@ -10,24 +10,17 @@ module Util
       # of all load events that have occurred.  If an event is passed in, use it; otherwise, create a new one.
       @event = params[:event]
       @fm = Util::FileManager.new
-      @config = YAML.safe_load(File.read("#{Rails.root}/config/connections.yml")).deep_symbolize_keys
     end
 
     ##### connection management #####
 
     def public_connection
-      db = @config[:public]
-      return unless db
-
       connection = PublicBase.establish_connection(db).connection
       connection.schema_search_path = 'ctgov'
       connection
     end
 
     def staging_connection
-      db = @config[:staging]
-      return unless db
-
       connection = PublicBase.establish_connection(db).connection
       connection.schema_search_path = 'ctgov'
       connection
