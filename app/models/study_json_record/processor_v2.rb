@@ -101,6 +101,24 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def central_contacts_data
+    return unless @contacts_location_module
+
+    central_contacts = @contacts_location_module.dig('centralContacts')
+    return unless central_contacts
+
+    collection = []
+    central_contacts.each_with_index do |contact, index|
+      collection << {
+                      nct_id: nctId,
+                      contact_type: index == 0 ? 'primary' : 'backup',
+                      name: contact['name'],
+                      phone: contact['phone'],
+                      email: contact['email'],
+                      phone_extension: contact['phoneExt'],
+                      role: contact["role"]
+                     }
+    end
+    collection
   end
 
   def conditions_data
