@@ -158,6 +158,22 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def result_contact_data
+    return unless @results_section
+
+    point_of_contact = @results_section.dig('MoreInfoModule', 'PointOfContact')
+    return unless point_of_contact
+
+    ext = point_of_contact['PointOfContactPhoneExt']
+    phone = point_of_contact['PointOfContactPhone']
+
+    {
+      nct_id: nct_id,
+      organization: point_of_contact['PointOfContactOrganization'],
+      name: point_of_contact['PointOfContactTitle'],
+      phone: phone,
+      email: point_of_contact['PointOfContactEMail'],
+      extension: ext
+    }
   end
 
   def study_references_data
