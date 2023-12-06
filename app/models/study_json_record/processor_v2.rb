@@ -102,23 +102,22 @@ class StudyJsonRecord::ProcessorV2
     {
       nct_id: nct_id,
       nlm_download_date_description: nil,
-      results_first_submitted_date: get_date(status['resultsFirstSubmitDate']),
-      disposition_first_submitted_date: get_date(status['dispFirstSubmitDate']),
       last_update_submitted_date: get_date(status['lastUpdateSubmitDate']),
       study_first_submitted_date: get_date(status['studyFirstSubmitDate']),
       study_first_submitted_qc_date: status['studyFirstSubmitQcDate'],
       study_first_posted_date: study_posted['date'],
       study_first_posted_date_type: study_posted['type'],
+      results_first_submitted_date: get_date(status['resultsFirstSubmitDate']),
       results_first_submitted_qc_date: status['resultsFirstSubmitQcDate'],
       results_first_posted_date: results_posted['date'],
       results_first_posted_date_type: results_posted['type'],
+      disposition_first_submitted_date: get_date(status['dispFirstSubmitDate']),
       disposition_first_submitted_qc_date: status['dispFirstSubmitQcDate'],
       disposition_first_posted_date: disp_posted['date'],
       disposition_first_posted_date_type: disp_posted['type'],
       last_update_submitted_qc_date: status['lastUpdateSubmitDate'], # this should not go here (Ramiro comment)
       last_update_posted_date: last_posted['date'],
       last_update_posted_date_type: last_posted['type'],
-      delayed_posting: status['delayedPosting'],
       start_month_year: start_date['date'],
       start_date_type: start_date['type'],
       start_date: convert_date(start_date['date']),
@@ -130,14 +129,14 @@ class StudyJsonRecord::ProcessorV2
       primary_completion_month_year: primary_completion_date['date'],
       primary_completion_date_type: primary_completion_date['type'],
       primary_completion_date: convert_date(primary_completion_date['date']),
-      target_duration: design['targetDuration'],
-      study_type: study_type,
-      acronym: ident['acronym'],
       baseline_population: baseline['populationDescription'],
       brief_title: ident['briefTitle'],
       official_title: ident['officialTitle'],
+      acronym: ident['acronym'],
       overall_status: status['overallStatus'],
       last_known_status: status['lastKnownStatus'],
+      why_stopped: status['whyStopped'],
+      delayed_posting: status['delayedPosting'],
       phase: phase_list,
       enrollment: enrollment['count'],
       enrollment_type: enrollment['type'],
@@ -146,27 +145,28 @@ class StudyJsonRecord::ProcessorV2
       limitations_and_caveats: key_check(more_info['limitationsAndCaveats'])['description'],
       number_of_arms: arms_count,
       number_of_groups: groups_count,
-      why_stopped: status['whyStopped'],
+      target_duration: design['targetDuration'],
+      study_type: study_type,
       has_expanded_access: get_boolean(expanded_access),
       expanded_access_nctid: status.dig('expandedAccessInfo', 'nctId'),
       expanded_access_status_for_nctid: status.dig('expandedAccessInfo', 'statusForNctId'),
       expanded_access_type_individual: get_boolean(expanded['individual']),
       expanded_access_type_intermediate: get_boolean(expanded['intermediate']),
       expanded_access_type_treatment: get_boolean(expanded['treatment']),
-      has_dmc: get_boolean(oversight['oversightHasDMC']),
+      has_dmc: get_boolean(oversight['oversightHasDmc']),
       is_fda_regulated_drug: get_boolean(oversight['isFdaRegulatedDrug']),
       is_fda_regulated_device: get_boolean(oversight['isFdaRegulatedDevice']),
       is_unapproved_device: get_boolean(oversight['isUnapprovedDevice']),
       is_ppsd: get_boolean(oversight['isPpsd']),
       is_us_export: get_boolean(oversight['isUsExport']),
-      fdaaa801_violation: get_boolean(oversight['Fdaaa801Violation']),
+      fdaaa801_violation: get_boolean(oversight['fdaaa801Violation']),
       biospec_retention: biospec['retention'],
       biospec_description: biospec['description'],
+      plan_to_share_ipd: ipd_sharing['ipdSharing'],
+      plan_to_share_ipd_description: ipd_sharing['description'],
       ipd_time_frame: ipd_sharing['timeFrame'],
       ipd_access_criteria: ipd_sharing['accessCriteria'],
       ipd_url: ipd_sharing['url'],
-      plan_to_share_ipd: ipd_sharing['ipdSharing'],  
-      plan_to_share_ipd_description: ipd_sharing['description'],
       baseline_type_units_analyzed: baseline['typeUnitsAnalyzed']
     }
   end
@@ -299,10 +299,24 @@ class StudyJsonRecord::ProcessorV2
     (str.count ' ') == 1
   end
 
+  STRING_BOOLEAN_MAP = {
+    'y' => true,
+    'yes' => true,
+    'true' => true,
+    'n' => false,
+    'no' => false,
+    'false' => false
+  }
+
   def get_boolean(val)
-    return nil unless val
-    return true if val.downcase=='yes'||val.downcase=='y'||val.downcase=='true'
-    return false if val.downcase=='no'||val.downcase=='n'||val.downcase=='false'
+    case val
+    when String
+      STRING_BOOLEAN_MAP[val.downcase]
+    when TrueClass, FalseClass
+      return val
+    else
+      return nil
+    end
   end
   
 end
