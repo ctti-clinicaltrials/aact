@@ -22,15 +22,15 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
                         :last_update_posted_date_type=>"ACTUAL", 
                         :start_month_year=>"2006-11", 
                         :start_date_type=>"ESTIMATED", 
-                        :start_date=>nil, 
+                        :start_date=>Date.parse("Thu, 30 Nov 2006"), 
                         :verification_month_year=>"2017-05", 
-                        :verification_date=>nil, 
+                        :verification_date=>Date.parse("Wed, 31 May 2017"),
                         :completion_month_year=>"2013-01", 
                         :completion_date_type=>"ACTUAL", 
-                        :completion_date=>nil, 
+                        :completion_date=>Date.parse("Thu, 31 Jan 2013"),
                         :primary_completion_month_year=>"2013-01", 
                         :primary_completion_date_type=>"ACTUAL", 
-                        :primary_completion_date=>nil,
+                        :primary_completion_date=>Date.parse("Thu, 31 Jan 2013"),
                         :baseline_population=>"Patients attended the Washington University CF Clinics between 2006 and 2008.", 
                         :brief_title=>"Pilot and Feasibility Study for the Treatment of Pre-diabetes in Patients With Cystic Fibrosis", 
                         :official_title=>"Pilot and Feasibility Study for the Treatment of Pre-diabetes in Patients With Cystic Fibrosis", 
@@ -73,7 +73,7 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
 
   context '#initialize' do
     it 'should set an instance variable @json with the JSON API data provided.' do
-      hash = JSON.parse(File.read('spec/support/json_data/study_data_output.json'))
+      hash = JSON.parse(File.read('spec/support/json_data/study_data.json'))
       json_instance = StudyJsonRecord::ProcessorV2.new(hash)
       json_value = json_instance.instance_variable_get("@json")
       expect(json_value).to eq(hash)
@@ -82,7 +82,7 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
   
   context '#study_data' do
     it 'should use JSON API to generate data that will be inserted into the studies table.' do
-      hash = JSON.parse(File.read('spec/support/json_data/study_data_output.json'))
+      hash = JSON.parse(File.read('spec/support/json_data/study_data.json'))
       json_instance = StudyJsonRecord::ProcessorV2.new(hash)
       data = json_instance.study_data
       expect(data).to eq(study_data_output)

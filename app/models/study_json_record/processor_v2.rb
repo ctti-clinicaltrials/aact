@@ -102,16 +102,16 @@ class StudyJsonRecord::ProcessorV2
     {
       nct_id: nct_id,
       nlm_download_date_description: nil,
-      last_update_submitted_date: get_date(status['lastUpdateSubmitDate']),
-      study_first_submitted_date: get_date(status['studyFirstSubmitDate']),
+      last_update_submitted_date: convert_to_date(status['lastUpdateSubmitDate']),
+      study_first_submitted_date: convert_to_date(status['studyFirstSubmitDate']),
       study_first_submitted_qc_date: status['studyFirstSubmitQcDate'],
       study_first_posted_date: study_posted['date'],
       study_first_posted_date_type: study_posted['type'],
-      results_first_submitted_date: get_date(status['resultsFirstSubmitDate']),
+      results_first_submitted_date: convert_to_date(status['resultsFirstSubmitDate']),
       results_first_submitted_qc_date: status['resultsFirstSubmitQcDate'],
       results_first_posted_date: results_posted['date'],
       results_first_posted_date_type: results_posted['type'],
-      disposition_first_submitted_date: get_date(status['dispFirstSubmitDate']),
+      disposition_first_submitted_date: convert_to_date(status['dispFirstSubmitDate']),
       disposition_first_submitted_qc_date: status['dispFirstSubmitQcDate'],
       disposition_first_posted_date: disp_posted['date'],
       disposition_first_posted_date_type: disp_posted['type'],
@@ -120,15 +120,15 @@ class StudyJsonRecord::ProcessorV2
       last_update_posted_date_type: last_posted['type'],
       start_month_year: start_date['date'],
       start_date_type: start_date['type'],
-      start_date: convert_date(start_date['date']),
+      start_date: convert_to_date(start_date['date']),
       verification_month_year: status['statusVerifiedDate'],
-      verification_date: convert_date(status['statusVerifiedDate']),
+      verification_date: convert_to_date(status['statusVerifiedDate']),
       completion_month_year: completion_date['date'],
       completion_date_type: completion_date['type'],
-      completion_date: convert_date(completion_date['date']),
+      completion_date: convert_to_date(completion_date['date']),
       primary_completion_month_year: primary_completion_date['date'],
       primary_completion_date_type: primary_completion_date['type'],
-      primary_completion_date: convert_date(primary_completion_date['date']),
+      primary_completion_date: convert_to_date(primary_completion_date['date']),
       baseline_population: baseline['populationDescription'],
       brief_title: ident['briefTitle'],
       official_title: ident['officialTitle'],
@@ -276,29 +276,19 @@ class StudyJsonRecord::ProcessorV2
     key ||= {}
   end
 
-  def get_date(str)
-    begin
-      str.try(:to_date)
-    rescue
-      nil
+  def convert_to_date(str)
+    case str.split('-').length
+    when 1
+      Date.strptime(str, '%Y').end_of_year
+    when 2
+      Date.strptime(str, '%Y-%m').end_of_month
+    when 3
+      Date.strptime(str, '%Y-%m-%d')
+    else
+      DateTime.strptime(str, '%Y-%m-%dT%H:%M')
     end
   end
-
-  def convert_date(str)
-    return unless str
-
-    converted_date = get_date(str)
-    return unless converted_date
-    return converted_date.end_of_month if is_missing_the_day?(str)
-
-    converted_date
-  end
-
-  def is_missing_the_day?(str)
-    # use this method on string representations of dates.  If only one space in the string, then the day is not provided.
-    (str.count ' ') == 1
-  end
-
+  
   STRING_BOOLEAN_MAP = {
     'y' => true,
     'yes' => true,
