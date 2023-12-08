@@ -4,6 +4,7 @@ class StudyProcessor
       records.each do |record|
       record.create_or_update_study if record.version == "1"
       StudyJsonRecord::ProcessorV2.new(record.content).process if record.version == "2"
+      end
     end
 end
     
