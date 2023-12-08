@@ -103,6 +103,7 @@ class StudyJsonRecord::ProcessorV2
   def central_contacts_data
     return unless @contacts_location_module
 
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
     central_contacts = @contacts_location_module.dig('centralContacts')
     return unless central_contacts
 
