@@ -102,7 +102,6 @@ class StudyJsonRecord::ProcessorV2
     {
       nct_id: nct_id,
       nlm_download_date_description: nil,
-      last_update_submitted_date: convert_to_date(status['lastUpdateSubmitDate']),
       study_first_submitted_date: convert_to_date(status['studyFirstSubmitDate']),
       study_first_submitted_qc_date: status['studyFirstSubmitQcDate'],
       study_first_posted_date: study_posted['date'],
@@ -115,6 +114,7 @@ class StudyJsonRecord::ProcessorV2
       disposition_first_submitted_qc_date: status['dispFirstSubmitQcDate'],
       disposition_first_posted_date: disp_posted['date'],
       disposition_first_posted_date_type: disp_posted['type'],
+      last_update_submitted_date: convert_to_date(status['lastUpdateSubmitDate']),
       last_update_submitted_qc_date: status['lastUpdateSubmitDate'], # this should not go here (Ramiro comment)
       last_update_posted_date: last_posted['date'],
       last_update_posted_date_type: last_posted['type'],
@@ -283,9 +283,7 @@ class StudyJsonRecord::ProcessorV2
     when 2
       Date.strptime(str, '%Y-%m').end_of_month
     when 3
-      Date.strptime(str, '%Y-%m-%d')
-    else
-      DateTime.strptime(str, '%Y-%m-%dT%H:%M')
+      str =~ /T/ ? DateTime.strptime(str, '%Y-%m-%dT%H:%M') : Date.strptime(str, '%Y-%m-%d')
     end
   end
   
@@ -310,4 +308,3 @@ class StudyJsonRecord::ProcessorV2
   end
   
 end
-  

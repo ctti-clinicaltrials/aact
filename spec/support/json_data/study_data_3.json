@@ -1,7 +1,7 @@
 {
   "protocolSection": {
   "identificationModule": {
-  "nctId": "NCT00763412",
+  "nctId": "NCT76543210",
   "orgStudyIdInfo": {
   "id": "05-1109"
   },
@@ -130,13 +130,14 @@
   },
   "designModule": {
   "studyType": "EXPANDED_ACCESS",
+  "patientRegistry": "Yes",
   "expandedAccessTypes": {
     "individual": true,
     "intermediate": true,
     "treatment": true
   },
   "phases": [
-  "NA"
+  "PHASE3"
   ],
   "targetDuration": "12 Months",
   "designInfo": {
