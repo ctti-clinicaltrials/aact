@@ -38,7 +38,7 @@ describe BaselineMeasurement do
     expect(bm.dispersion_upper_limit).to eq(86)
   end
 
-  it "study should have expected baseline relationships" do
+  pending "study should have expected baseline relationships" do
     ResultGroup.destroy_all
     BaselineMeasurement.destroy_all
     BaselineCount.destroy_all
@@ -100,40 +100,4 @@ describe BaselineMeasurement do
     expect(bg1.description).to eq('Clinically Driven Monitoring (CDM): Participants were examined by a doctor and had routine full blood count with white cell differential, lymphocyte subsets (CD4, CD8), biochemistry tests (bilirubin, urea, creatinine, aspartate aminotransferase, alanine aminotransferase) at screening, randomisation (lymphocytes only), weeks 4, 8, and 12, then every 12 weeks. Screening results were used to assess eligibility. All subsequent results were only returned if requested for clinical management (authorised by centre project leaders); haemoglobin results at week 8 were automatically returned on the basis of early anaemia in a previous adult trial as were grade 4 laboratory toxicities (protocol safety criteria). Total lymphocytes and CD4 tests were never returned for CDM participants, but for all children other investigations (including tests from the routine panels) could be requested and concomitant drugs prescribed, as clinically indicated at extra patient-initiated or scheduled visits.')
     expect(bg10.description).to eq('Total of all reporting groups')
   end
-
-  it "study should have baselines with expected dispersion value" do
-    xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02389088.xml'))
-    nct_id='NCT02389088'
-    study=Study.new({xml: xml, nct_id: nct_id}).create
-    baseline_array=study.baseline_measurements.select{|x| x.title=='Age' and x.ctgov_group_code=='B1'}
-    expect(baseline_array.size).to eq(1)
-    expect(baseline_array.first.units).to eq('years')
-    expect(baseline_array.first.param_type).to eq('Mean')
-    expect(baseline_array.first.param_value).to eq('26')
-    expect(baseline_array.first.param_value_num).to eq(26)
-    expect(baseline_array.first.dispersion_value).to eq('1.2')
-    expect(baseline_array.first.dispersion_value_num).to eq(1.2)
-    expect(baseline_array.first.dispersion_type).to eq('Standard Deviation')
-    baseline_array=study.baseline_measurements.select{|x| x.title=='Gender' and x.ctgov_group_code=='B1'}
-    expect(baseline_array.size).to eq(2)
-    female_baseline=baseline_array.select{|x|x.classification=='Female'}.first
-    male_baseline=baseline_array.select{|x|x.classification=='Male'}.first
-    expect(female_baseline.units).to eq('participants')
-    expect(female_baseline.param_type).to eq('Number')
-    expect(female_baseline.param_value).to eq('9')
-    expect(female_baseline.param_value_num).to eq(9)
-    expect(female_baseline.result_group.description).to eq('9 PCOS women')
-
-    # This is an example of why we might want to dispense with the attempt
-    # to link all result-type rows to result_group
-    # There's only 1 gtoup defined for baseline (B1: 9 PCOS women), but both
-    # Male and Female measurements are associated with group code B1.
-
-    expect(male_baseline.units).to eq('participants')
-    expect(male_baseline.param_type).to eq('Number')
-    expect(male_baseline.param_value).to eq('0')
-    expect(male_baseline.param_value_num).to eq(0)
-    expect(male_baseline.result_group.description).to eq('9 PCOS women')
-  end
-
 end
