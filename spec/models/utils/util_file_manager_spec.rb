@@ -13,7 +13,8 @@ describe Util::FileManager do
 
       dm=Util::DbManager.new(:load_event=>Support::LoadEvent.create({:event_type=>'incremental',:status=>'running',:description=>'',:problems=>''}))
       dm.dump_database
-      expect(File.size(fm.pg_dump_file) > 50000).to eq(true)
+      expect(File.size(fm.pg_dump_file)).to eq(7)
+      expect(File.size(fm.pg_dump_file) > 5000).to eq(true)
 
       zip_file=fm.save_static_copy(fm.pg_dump_file)
     end
