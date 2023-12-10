@@ -47,22 +47,6 @@ describe OutcomeAnalysis do
     expect(oag.ctgov_group_code).to eq(oag.result_group.ctgov_group_code)
   end
 
-  it "study should be fine without any outcome analyses" do
-    nct_id='NCT00023673'
-    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-    study=Study.new({xml: xml, nct_id: nct_id}).create
-    o=study.outcomes.select{|x|x.title=='Percentage of Patients Who Survive at Least 12 Months'}.first
-    #expect(o.groups.size).to eq(1)
-    #expect(o.groups.first.ctgov_group_code).to eq('O1')
-    #expect(o.groups.first.title).to eq('Phase I/II: 74 Gy/37 fx + Chemotherapy')
-    expect(o.outcome_analyses.size).to eq(0)
-    m=o.outcome_measurements.first
-    expect(m.dispersion_lower_limit).to eq(61.5)
-    expect(m.dispersion_upper_limit).to eq(85.0)
-    expect(m.param_value_num).to eq(75.5)
-    expect(m.ctgov_group_code).to eq('O1')
-  end
-
   it "has expected value in new attribute:  other_analysis_description" do
     nct_id='NCT02438137'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))

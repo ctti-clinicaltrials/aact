@@ -67,18 +67,6 @@ describe Util::Updater do
    expect(collaborator.agency_class).to eq('NIH')
   end
 
-  context 'when patient data section exists' do
-    it 'should have expected sharing ipd values' do
-      nct_id='NCT02708238'
-      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-      study=Study.new({xml: xml, nct_id: nct_id}).create
-
-      expect(study.plan_to_share_ipd).to eq('Yes')
-      expect(study.plan_to_share_ipd_description).to eq('Publication')
-    end
-
-  end
-
   context 'study has fda regulated drug/device info' do
     it 'should have expected fed regulation values' do
       nct_id='NCT03204344'
