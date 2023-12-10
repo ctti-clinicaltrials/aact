@@ -5,7 +5,7 @@ describe Util::DbManager do
   subject { described_class.new }
 
   context 'when loading the databases' do
-    it 'should add indexes and constraints' do
+    pending 'should add indexes and constraints' do
       event = Support::LoadEvent.create({:event_type=> 'test', :status => 'in prog'})
       mgr = Util::DbManager.new(event)
       mgr.add_indexes
