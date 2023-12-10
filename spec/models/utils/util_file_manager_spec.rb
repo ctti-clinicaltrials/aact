@@ -5,7 +5,7 @@ describe Util::FileManager do
     it "should save db static copy to the appropriate directory" do
       allow_any_instance_of(Util::FileManager).to receive(:static_copies_directory).and_return('spec/support/shared_examples')
       allow_any_instance_of(Util::FileManager).to receive(:schema_diagram).and_return("spec/support/shared_examples/aact_schema.png")
-      allow(Util::FileRecord).to receive(:post).and_return(true)
+      allow(FileRecord).to receive(:post).and_return(true)
 
       fm=Util::FileManager.new
       File.delete(fm.pg_dump_file) if File.exist?(fm.pg_dump_file)

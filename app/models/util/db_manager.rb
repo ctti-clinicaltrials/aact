@@ -245,6 +245,7 @@ module Util
     end
 
     def migration
+      ActiveRecord::Migration.verbose = false
       @migration ||= ActiveRecord::Migration.new
     end
 

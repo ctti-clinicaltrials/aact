@@ -33,6 +33,9 @@ describe Util::Updater do
   it "should have correct date attribs" do
     nct_id='NCT00023673'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    db = Util::DbManager.new
+    db.remove_indexes_and_constraints
+
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.start_month_year).to eq('July 2001')
     expect(study.completion_month_year).to eq('November 2013')

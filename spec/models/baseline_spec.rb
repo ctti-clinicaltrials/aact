@@ -4,6 +4,9 @@ describe BaselineMeasurement do
   it "doesn't create baseline rows for studies that don't have <baseline> tag" do
     nct_id='NCT00513591'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    db = Util::DbManager.new
+    db.remove_indexes_and_constraints
+    
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.baseline_population).to eq('')
     expect(study.baseline_measurements).to eq([])
