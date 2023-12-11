@@ -3,6 +3,10 @@ class StudyJsonRecord::ProcessorV2
   def initialize(json)
     @json = json
   end
+
+  def contacts_location_module
+    protocol_section.dig('contactsLocationsModule')
+  end
   
   def protocol_section
     @json['protocolSection']
@@ -101,16 +105,16 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def central_contacts_data
-    return unless @contacts_location_module
+    return unless contacts_location_module
 
     nct_id = protocol_section.dig('identificationModule', 'nctId')
-    central_contacts = @contacts_location_module.dig('centralContacts')
+    central_contacts = contacts_location_module.dig('centralContacts')
     return unless central_contacts
 
     collection = []
     central_contacts.each_with_index do |contact, index|
       collection << {
-                      nct_id: nctId,
+                      nct_id: nct_id,
                       contact_type: index == 0 ? 'primary' : 'backup',
                       name: contact['name'],
                       phone: contact['phone'],

@@ -1,5 +1,3 @@
-{
-    "studies": [
       {
         "protocolSection": {
           "identificationModule": {
@@ -360,6 +358,5 @@
         },
         "hasResults": false
       }
-    ],
-    "nextPageToken": "NF0g5JE"
-  }
+
+
