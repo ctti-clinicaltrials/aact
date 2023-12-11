@@ -94,6 +94,16 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def participant_flow_data
+    participant_flow = results_section['participantFlowModule']
+    ident = protocol_section['identificationModule']
+    nct_id = ident['nctId']
+
+    {
+      nct_id: nct_id,
+      recruitment_details: participant_flow['recruitmentDetails'],
+      pre_assignment_details: participant_flow['preAssignmentDetails'],
+      # units_analyzed: participant_flow['flowTypeUnitsAnalyzed']
+    }
   end
 
   def baseline_measurements_data
