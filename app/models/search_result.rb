@@ -250,7 +250,7 @@ class SearchResult < ApplicationRecord
     ]
   end
 
-  def hcq_query
+  def hcq_query(study)
     terms = %w[hydroxychloroquine plaquenil hidroxicloroquina quineprox]
 
     columns = [
