@@ -3,6 +3,9 @@ require 'rails_helper'
 describe Eligibility do
   it "study should have expected eligibility data" do
     nct_id='NCT02028676'
+    db = Util::DbManager.new
+    db.remove_indexes_and_constraints
+    
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
     study=Study.new({xml: xml, nct_id: nct_id}).create
     expect(study.eligibility.gender).to eq('All')
@@ -14,6 +17,9 @@ describe Eligibility do
   it "study should have expected eligibility data" do
     nct_id='NCT00513591'
     xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
+    db = Util::DbManager.new
+    db.remove_indexes_and_constraints
+
     study=Study.new({xml: xml, nct_id: nct_id}).create
     e=study.eligibility
     expect(e.population).to eq('Pregnant women with autoimmune disease.')
