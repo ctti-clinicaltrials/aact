@@ -47,6 +47,12 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do |example|
+    # clear database
+    db = Util::DbManager.new
+    db.remove_indexes_and_constraints
+    StudyRelationship.remove_all_data
+    db.add_indexes_and_constraints
+
     Util::DbManager.new({:event => Support::LoadEvent.new}).remove_indexes_and_constraints
     unit_test = ![:feature, :request].include?(example.metadata[:type])
     strategy = unit_test ? :transaction : :truncation
