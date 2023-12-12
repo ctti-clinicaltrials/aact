@@ -352,6 +352,4 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
       expect(processor.design_data).to eq(expected_data)
     end
   end
-
-end
 end  
