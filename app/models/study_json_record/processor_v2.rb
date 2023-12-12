@@ -158,22 +158,20 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def result_contact_data
-    return unless @results_section
+    return unless results_section
 
-    point_of_contact = @results_section.dig('MoreInfoModule', 'PointOfContact')
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    point_of_contact = results_section.dig('moreInfoModule', 'pointOfContact')
     return unless point_of_contact
-
-    ext = point_of_contact['PointOfContactPhoneExt']
-    phone = point_of_contact['PointOfContactPhone']
-
-    {
+   {
       nct_id: nct_id,
-      organization: point_of_contact['PointOfContactOrganization'],
-      name: point_of_contact['PointOfContactTitle'],
-      phone: phone,
-      email: point_of_contact['PointOfContactEMail'],
-      extension: ext
+      ext: point_of_contact['phoneExt'],
+      phone: point_of_contact['phone'],
+      title: point_of_contact['title'],
+      organization: point_of_contact['organization'],
+      email: point_of_contact['email']
     }
+   
   end
 
   def study_references_data
