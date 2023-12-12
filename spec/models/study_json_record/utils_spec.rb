@@ -5,7 +5,7 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
   hash = JSON.parse(File.read('spec/support/json_data/study_data_initialize.json'))
   json_instance = StudyJsonRecord::ProcessorV2.new(hash)
 
-  context '#get_boolean' do
+  describe '#get_boolean' do
     it 'should return boolean value true if the input value is string "y"' do
       expect(json_instance.get_boolean("y")).to eq(true)
     end  
@@ -38,7 +38,7 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
-  context '#convert_to_date' do
+  describe '#convert_to_date' do
     it 'should return end of year Date if only the year is given' do
       expect(json_instance.convert_to_date("2023")).to eq(Date.parse("Sun, 31 Dec 2023"))
     end  
@@ -53,7 +53,7 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
-  context '#key_check' do
+  describe '#key_check' do
     it 'returns an empty hash when given nil' do
       expect(json_instance.key_check(nil)).to eq({})
     end
