@@ -276,6 +276,74 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: active_storage_attachments; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.active_storage_attachments (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    record_type character varying NOT NULL,
+    record_id bigint NOT NULL,
+    blob_id bigint NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.active_storage_attachments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.active_storage_attachments_id_seq OWNED BY ctgov.active_storage_attachments.id;
+
+
+--
+-- Name: active_storage_blobs; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.active_storage_blobs (
+    id bigint NOT NULL,
+    key character varying NOT NULL,
+    filename character varying NOT NULL,
+    content_type character varying,
+    metadata text,
+    byte_size bigint NOT NULL,
+    checksum character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.active_storage_blobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.active_storage_blobs_id_seq OWNED BY ctgov.active_storage_blobs.id;
+
+
+--
 -- Name: browse_conditions; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -634,6 +702,83 @@ CREATE VIEW ctgov.all_states AS
     array_to_string(array_agg(DISTINCT facilities.state), '|'::text) AS names
    FROM ctgov.facilities
   GROUP BY facilities.nct_id;
+
+
+--
+-- Name: attachments; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.attachments (
+    id integer NOT NULL,
+    project_id integer,
+    file_name character varying,
+    content_type character varying,
+    file_contents bytea,
+    is_image boolean,
+    description text,
+    source text,
+    original_file_name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: attachments_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.attachments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.attachments_id_seq OWNED BY ctgov.attachments.id;
+
+
+--
+-- Name: background_jobs; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.background_jobs (
+    id bigint NOT NULL,
+    user_id integer,
+    status character varying,
+    completed_at timestamp without time zone,
+    logs character varying,
+    type character varying,
+    data json,
+    url character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_error_message character varying
+);
+
+
+--
+-- Name: background_jobs_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.background_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: background_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.background_jobs_id_seq OWNED BY ctgov.background_jobs.id;
 
 
 --
@@ -1163,6 +1308,125 @@ CREATE VIEW ctgov.covid_19_studies AS
 
 
 --
+-- Name: data_definitions; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.data_definitions (
+    id integer NOT NULL,
+    db_section character varying,
+    table_name character varying,
+    column_name character varying,
+    data_type character varying,
+    source character varying,
+    ctti_note text,
+    nlm_link character varying,
+    row_count integer,
+    enumerations json,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    db_schema character varying
+);
+
+
+--
+-- Name: data_definitions_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.data_definitions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: data_definitions_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.data_definitions_id_seq OWNED BY ctgov.data_definitions.id;
+
+
+--
+-- Name: datasets; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.datasets (
+    id integer NOT NULL,
+    project_id integer,
+    schema_name character varying,
+    table_name character varying,
+    dataset_type character varying,
+    file_name character varying,
+    content_type character varying,
+    name character varying,
+    file_contents bytea,
+    url character varying,
+    made_available_on date,
+    description text,
+    source text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: datasets_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.datasets_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: datasets_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.datasets_id_seq OWNED BY ctgov.datasets.id;
+
+
+--
+-- Name: db_user_activities; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.db_user_activities (
+    id integer NOT NULL,
+    username character varying,
+    event_count integer,
+    when_recorded timestamp without time zone,
+    unit_of_time character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: db_user_activities_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.db_user_activities_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: db_user_activities_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.db_user_activities_id_seq OWNED BY ctgov.db_user_activities.id;
+
+
+--
 -- Name: design_group_interventions; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1367,6 +1631,43 @@ ALTER SEQUENCE ctgov.eligibilities_id_seq OWNED BY ctgov.eligibilities.id;
 
 
 --
+-- Name: enumerations; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.enumerations (
+    id integer NOT NULL,
+    table_name character varying,
+    column_name character varying,
+    column_value character varying,
+    value_count integer,
+    value_percent numeric,
+    description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: enumerations_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.enumerations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: enumerations_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.enumerations_id_seq OWNED BY ctgov.enumerations.id;
+
+
+--
 -- Name: facilities_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -1453,6 +1754,145 @@ CREATE SEQUENCE ctgov.facility_investigators_id_seq
 --
 
 ALTER SEQUENCE ctgov.facility_investigators_id_seq OWNED BY ctgov.facility_investigators.id;
+
+
+--
+-- Name: faqs; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.faqs (
+    id integer NOT NULL,
+    project_id integer,
+    question character varying,
+    answer text,
+    citation character varying,
+    url character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: faqs_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.faqs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: faqs_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.faqs_id_seq OWNED BY ctgov.faqs.id;
+
+
+--
+-- Name: file_downloads; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.file_downloads (
+    id integer NOT NULL,
+    file_record_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: file_downloads_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.file_downloads_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: file_downloads_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.file_downloads_id_seq OWNED BY ctgov.file_downloads.id;
+
+
+--
+-- Name: file_records; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.file_records (
+    id bigint NOT NULL,
+    filename character varying,
+    file_size bigint,
+    file_type character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    url character varying,
+    load_event_id bigint
+);
+
+
+--
+-- Name: file_records_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.file_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: file_records_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.file_records_id_seq OWNED BY ctgov.file_records.id;
+
+
+--
+-- Name: health_checks; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.health_checks (
+    id integer NOT NULL,
+    query text,
+    cost character varying,
+    actual_time double precision,
+    row_count integer,
+    description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: health_checks_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.health_checks_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: health_checks_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.health_checks_id_seq OWNED BY ctgov.health_checks.id;
 
 
 --
@@ -1712,6 +2152,43 @@ CREATE SEQUENCE ctgov.milestones_id_seq
 --
 
 ALTER SEQUENCE ctgov.milestones_id_seq OWNED BY ctgov.milestones.id;
+
+
+--
+-- Name: notices; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.notices (
+    id integer NOT NULL,
+    body character varying,
+    user_id integer,
+    title character varying,
+    send_emails boolean,
+    emails_sent_at timestamp without time zone,
+    visible boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: notices_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.notices_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: notices_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.notices_id_seq OWNED BY ctgov.notices.id;
 
 
 --
@@ -2013,6 +2490,59 @@ ALTER SEQUENCE ctgov.pending_results_id_seq OWNED BY ctgov.pending_results.id;
 
 
 --
+-- Name: projects; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.projects (
+    id integer NOT NULL,
+    status character varying,
+    start_date date,
+    completion_date date,
+    schema_name character varying,
+    data_available boolean,
+    migration_file_name character varying,
+    name character varying,
+    year integer,
+    aact_version character varying,
+    brief_summary character varying,
+    investigators character varying,
+    organizations character varying,
+    url character varying,
+    description text,
+    protocol text,
+    issues text,
+    study_selection_criteria text,
+    submitter_name character varying,
+    contact_info character varying,
+    contact_url character varying,
+    email character varying,
+    image bytea,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.projects_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.projects_id_seq OWNED BY ctgov.projects.id;
+
+
+--
 -- Name: provided_documents; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -2046,6 +2576,114 @@ CREATE SEQUENCE ctgov.provided_documents_id_seq
 --
 
 ALTER SEQUENCE ctgov.provided_documents_id_seq OWNED BY ctgov.provided_documents.id;
+
+
+--
+-- Name: public_announcements; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.public_announcements (
+    id integer NOT NULL,
+    description character varying,
+    is_sticky boolean
+);
+
+
+--
+-- Name: public_announcements_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.public_announcements_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: public_announcements_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.public_announcements_id_seq OWNED BY ctgov.public_announcements.id;
+
+
+--
+-- Name: publications; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.publications (
+    id integer NOT NULL,
+    project_id integer,
+    pub_type character varying,
+    journal_name character varying,
+    title character varying,
+    url character varying,
+    citation character varying,
+    pmid character varying,
+    pmcid character varying,
+    doi character varying,
+    publication_date date,
+    abstract text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: publications_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.publications_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: publications_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.publications_id_seq OWNED BY ctgov.publications.id;
+
+
+--
+-- Name: releases; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.releases (
+    id integer NOT NULL,
+    title character varying,
+    subtitle character varying,
+    released_on date,
+    body text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: releases_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.releases_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: releases_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.releases_id_seq OWNED BY ctgov.releases.id;
 
 
 --
@@ -2303,6 +2941,42 @@ ALTER SEQUENCE ctgov.retractions_id_seq OWNED BY ctgov.retractions.id;
 
 
 --
+-- Name: saved_queries; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.saved_queries (
+    id integer NOT NULL,
+    title character varying,
+    description character varying,
+    sql character varying,
+    public boolean,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: saved_queries_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.saved_queries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saved_queries_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.saved_queries_id_seq OWNED BY ctgov.saved_queries.id;
+
+
+--
 -- Name: search_results_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -2444,6 +3118,271 @@ CREATE SEQUENCE ctgov.study_searches_id_seq
 --
 
 ALTER SEQUENCE ctgov.study_searches_id_seq OWNED BY ctgov.study_searches.id;
+
+
+--
+-- Name: use_case_attachments; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.use_case_attachments (
+    id integer NOT NULL,
+    use_case_id integer,
+    file_name character varying,
+    content_type character varying,
+    file_contents bytea,
+    is_image boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: use_case_attachments_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.use_case_attachments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_case_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.use_case_attachments_id_seq OWNED BY ctgov.use_case_attachments.id;
+
+
+--
+-- Name: use_case_datasets; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.use_case_datasets (
+    id integer NOT NULL,
+    use_case_id integer,
+    dataset_type character varying,
+    name character varying,
+    description text
+);
+
+
+--
+-- Name: use_case_datasets_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.use_case_datasets_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_case_datasets_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.use_case_datasets_id_seq OWNED BY ctgov.use_case_datasets.id;
+
+
+--
+-- Name: use_case_publications; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.use_case_publications (
+    id integer NOT NULL,
+    use_case_id integer,
+    name character varying,
+    url character varying
+);
+
+
+--
+-- Name: use_case_publications_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.use_case_publications_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_case_publications_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.use_case_publications_id_seq OWNED BY ctgov.use_case_publications.id;
+
+
+--
+-- Name: use_cases; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.use_cases (
+    id integer NOT NULL,
+    status character varying,
+    completion_date date,
+    title character varying,
+    year integer,
+    brief_summary character varying,
+    investigators character varying,
+    organizations character varying,
+    url character varying,
+    detailed_description text,
+    protocol text,
+    issues text,
+    study_selection_criteria text,
+    submitter_name character varying,
+    contact_info character varying,
+    email character varying,
+    image bytea,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: use_cases_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.use_cases_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_cases_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.use_cases_id_seq OWNED BY ctgov.use_cases.id;
+
+
+--
+-- Name: user_events; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.user_events (
+    id integer NOT NULL,
+    email character varying,
+    event_type character varying,
+    description text,
+    file_names character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: user_events_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.user_events_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_events_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.user_events_id_seq OWNED BY ctgov.user_events.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.users (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying,
+    last_sign_in_ip character varying,
+    first_name character varying,
+    last_name character varying,
+    username character varying,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    db_activity integer,
+    last_db_activity timestamp without time zone,
+    admin boolean DEFAULT false
+);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.users_id_seq OWNED BY ctgov.users.id;
+
+
+--
+-- Name: verifiers; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.verifiers (
+    id bigint NOT NULL,
+    differences json DEFAULT '[]'::json NOT NULL,
+    last_run timestamp without time zone,
+    source json,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    load_event_id integer
+);
+
+
+--
+-- Name: verifiers_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.verifiers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: verifiers_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.verifiers_id_seq OWNED BY ctgov.verifiers.id;
 
 
 --
@@ -2857,6 +3796,34 @@ ALTER SEQUENCE support.verifiers_id_seq OWNED BY support.verifiers.id;
 
 
 --
+-- Name: active_storage_attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_attachments ALTER COLUMN id SET DEFAULT nextval('ctgov.active_storage_attachments_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_blobs id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('ctgov.active_storage_blobs_id_seq'::regclass);
+
+
+--
+-- Name: attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.attachments ALTER COLUMN id SET DEFAULT nextval('ctgov.attachments_id_seq'::regclass);
+
+
+--
+-- Name: background_jobs id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.background_jobs ALTER COLUMN id SET DEFAULT nextval('ctgov.background_jobs_id_seq'::regclass);
+
+
+--
 -- Name: baseline_counts id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2920,6 +3887,27 @@ ALTER TABLE ONLY ctgov.countries ALTER COLUMN id SET DEFAULT nextval('ctgov.coun
 
 
 --
+-- Name: data_definitions id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.data_definitions ALTER COLUMN id SET DEFAULT nextval('ctgov.data_definitions_id_seq'::regclass);
+
+
+--
+-- Name: datasets id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.datasets ALTER COLUMN id SET DEFAULT nextval('ctgov.datasets_id_seq'::regclass);
+
+
+--
+-- Name: db_user_activities id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.db_user_activities ALTER COLUMN id SET DEFAULT nextval('ctgov.db_user_activities_id_seq'::regclass);
+
+
+--
 -- Name: design_group_interventions id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2976,6 +3964,13 @@ ALTER TABLE ONLY ctgov.eligibilities ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
+-- Name: enumerations id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.enumerations ALTER COLUMN id SET DEFAULT nextval('ctgov.enumerations_id_seq'::regclass);
+
+
+--
 -- Name: facilities id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2994,6 +3989,34 @@ ALTER TABLE ONLY ctgov.facility_contacts ALTER COLUMN id SET DEFAULT nextval('ct
 --
 
 ALTER TABLE ONLY ctgov.facility_investigators ALTER COLUMN id SET DEFAULT nextval('ctgov.facility_investigators_id_seq'::regclass);
+
+
+--
+-- Name: faqs id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.faqs ALTER COLUMN id SET DEFAULT nextval('ctgov.faqs_id_seq'::regclass);
+
+
+--
+-- Name: file_downloads id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_downloads ALTER COLUMN id SET DEFAULT nextval('ctgov.file_downloads_id_seq'::regclass);
+
+
+--
+-- Name: file_records id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_records ALTER COLUMN id SET DEFAULT nextval('ctgov.file_records_id_seq'::regclass);
+
+
+--
+-- Name: health_checks id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.health_checks ALTER COLUMN id SET DEFAULT nextval('ctgov.health_checks_id_seq'::regclass);
 
 
 --
@@ -3060,6 +4083,13 @@ ALTER TABLE ONLY ctgov.milestones ALTER COLUMN id SET DEFAULT nextval('ctgov.mil
 
 
 --
+-- Name: notices id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.notices ALTER COLUMN id SET DEFAULT nextval('ctgov.notices_id_seq'::regclass);
+
+
+--
 -- Name: outcome_analyses id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3116,10 +4146,38 @@ ALTER TABLE ONLY ctgov.pending_results ALTER COLUMN id SET DEFAULT nextval('ctgo
 
 
 --
+-- Name: projects id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.projects ALTER COLUMN id SET DEFAULT nextval('ctgov.projects_id_seq'::regclass);
+
+
+--
 -- Name: provided_documents id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
 ALTER TABLE ONLY ctgov.provided_documents ALTER COLUMN id SET DEFAULT nextval('ctgov.provided_documents_id_seq'::regclass);
+
+
+--
+-- Name: public_announcements id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.public_announcements ALTER COLUMN id SET DEFAULT nextval('ctgov.public_announcements_id_seq'::regclass);
+
+
+--
+-- Name: publications id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.publications ALTER COLUMN id SET DEFAULT nextval('ctgov.publications_id_seq'::regclass);
+
+
+--
+-- Name: releases id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.releases ALTER COLUMN id SET DEFAULT nextval('ctgov.releases_id_seq'::regclass);
 
 
 --
@@ -3172,6 +4230,13 @@ ALTER TABLE ONLY ctgov.retractions ALTER COLUMN id SET DEFAULT nextval('ctgov.re
 
 
 --
+-- Name: saved_queries id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries ALTER COLUMN id SET DEFAULT nextval('ctgov.saved_queries_id_seq'::regclass);
+
+
+--
 -- Name: search_results id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3204,6 +4269,55 @@ ALTER TABLE ONLY ctgov.study_references ALTER COLUMN id SET DEFAULT nextval('ctg
 --
 
 ALTER TABLE ONLY ctgov.study_searches ALTER COLUMN id SET DEFAULT nextval('ctgov.study_searches_id_seq'::regclass);
+
+
+--
+-- Name: use_case_attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_attachments ALTER COLUMN id SET DEFAULT nextval('ctgov.use_case_attachments_id_seq'::regclass);
+
+
+--
+-- Name: use_case_datasets id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_datasets ALTER COLUMN id SET DEFAULT nextval('ctgov.use_case_datasets_id_seq'::regclass);
+
+
+--
+-- Name: use_case_publications id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_publications ALTER COLUMN id SET DEFAULT nextval('ctgov.use_case_publications_id_seq'::regclass);
+
+
+--
+-- Name: use_cases id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_cases ALTER COLUMN id SET DEFAULT nextval('ctgov.use_cases_id_seq'::regclass);
+
+
+--
+-- Name: user_events id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.user_events ALTER COLUMN id SET DEFAULT nextval('ctgov.user_events_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.users ALTER COLUMN id SET DEFAULT nextval('ctgov.users_id_seq'::regclass);
+
+
+--
+-- Name: verifiers id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.verifiers ALTER COLUMN id SET DEFAULT nextval('ctgov.verifiers_id_seq'::regclass);
 
 
 --
@@ -3284,6 +4398,38 @@ ALTER TABLE ONLY support.verifiers ALTER COLUMN id SET DEFAULT nextval('support.
 
 
 --
+-- Name: active_storage_attachments active_storage_attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_attachments
+    ADD CONSTRAINT active_storage_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: active_storage_blobs active_storage_blobs_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.active_storage_blobs
+    ADD CONSTRAINT active_storage_blobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: attachments attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.attachments
+    ADD CONSTRAINT attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: background_jobs background_jobs_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.background_jobs
+    ADD CONSTRAINT background_jobs_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: baseline_counts baseline_counts_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3356,6 +4502,30 @@ ALTER TABLE ONLY ctgov.countries
 
 
 --
+-- Name: data_definitions data_definitions_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.data_definitions
+    ADD CONSTRAINT data_definitions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: datasets datasets_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.datasets
+    ADD CONSTRAINT datasets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: db_user_activities db_user_activities_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.db_user_activities
+    ADD CONSTRAINT db_user_activities_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: design_group_interventions design_group_interventions_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3420,6 +4590,14 @@ ALTER TABLE ONLY ctgov.eligibilities
 
 
 --
+-- Name: enumerations enumerations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.enumerations
+    ADD CONSTRAINT enumerations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: facilities facilities_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3441,6 +4619,38 @@ ALTER TABLE ONLY ctgov.facility_contacts
 
 ALTER TABLE ONLY ctgov.facility_investigators
     ADD CONSTRAINT facility_investigators_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: faqs faqs_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.faqs
+    ADD CONSTRAINT faqs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: file_downloads file_downloads_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_downloads
+    ADD CONSTRAINT file_downloads_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: file_records file_records_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_records
+    ADD CONSTRAINT file_records_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: health_checks health_checks_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.health_checks
+    ADD CONSTRAINT health_checks_pkey PRIMARY KEY (id);
 
 
 --
@@ -3516,6 +4726,14 @@ ALTER TABLE ONLY ctgov.milestones
 
 
 --
+-- Name: notices notices_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.notices
+    ADD CONSTRAINT notices_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: outcome_analyses outcome_analyses_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3580,11 +4798,43 @@ ALTER TABLE ONLY ctgov.pending_results
 
 
 --
+-- Name: projects projects_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: provided_documents provided_documents_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
 ALTER TABLE ONLY ctgov.provided_documents
     ADD CONSTRAINT provided_documents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: public_announcements public_announcements_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.public_announcements
+    ADD CONSTRAINT public_announcements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: publications publications_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.publications
+    ADD CONSTRAINT publications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: releases releases_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.releases
+    ADD CONSTRAINT releases_pkey PRIMARY KEY (id);
 
 
 --
@@ -3644,6 +4894,14 @@ ALTER TABLE ONLY ctgov.retractions
 
 
 --
+-- Name: saved_queries saved_queries_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries
+    ADD CONSTRAINT saved_queries_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: search_results search_results_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3681,6 +4939,62 @@ ALTER TABLE ONLY ctgov.study_references
 
 ALTER TABLE ONLY ctgov.study_searches
     ADD CONSTRAINT study_searches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: use_case_attachments use_case_attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_attachments
+    ADD CONSTRAINT use_case_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: use_case_datasets use_case_datasets_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_datasets
+    ADD CONSTRAINT use_case_datasets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: use_case_publications use_case_publications_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_publications
+    ADD CONSTRAINT use_case_publications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: use_cases use_cases_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_cases
+    ADD CONSTRAINT use_cases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_events user_events_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.user_events
+    ADD CONSTRAINT user_events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: verifiers verifiers_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.verifiers
+    ADD CONSTRAINT verifiers_pkey PRIMARY KEY (id);
 
 
 --
@@ -3788,10 +5102,24 @@ ALTER TABLE ONLY support.verifiers
 
 
 --
--- Name: index_baseline_counts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_active_storage_attachments_on_blob_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_baseline_counts_on_nct_id ON ctgov.baseline_counts USING btree (nct_id);
+CREATE INDEX index_active_storage_attachments_on_blob_id ON ctgov.active_storage_attachments USING btree (blob_id);
+
+
+--
+-- Name: index_active_storage_attachments_uniqueness; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON ctgov.active_storage_attachments USING btree (record_type, record_id, name, blob_id);
+
+
+--
+-- Name: index_active_storage_blobs_on_key; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON ctgov.active_storage_blobs USING btree (key);
 
 
 --
@@ -3816,24 +5144,10 @@ CREATE INDEX index_baseline_measurements_on_dispersion_type ON ctgov.baseline_me
 
 
 --
--- Name: index_baseline_measurements_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_baseline_measurements_on_nct_id ON ctgov.baseline_measurements USING btree (nct_id);
-
-
---
 -- Name: index_baseline_measurements_on_param_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_baseline_measurements_on_param_type ON ctgov.baseline_measurements USING btree (param_type);
-
-
---
--- Name: index_brief_summaries_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_brief_summaries_on_nct_id ON ctgov.brief_summaries USING btree (nct_id);
 
 
 --
@@ -3893,13 +5207,6 @@ CREATE INDEX index_calculated_values_on_months_to_report_results ON ctgov.calcul
 
 
 --
--- Name: index_calculated_values_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_calculated_values_on_nct_id ON ctgov.calculated_values USING btree (nct_id);
-
-
---
 -- Name: index_calculated_values_on_number_of_facilities; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3911,13 +5218,6 @@ CREATE INDEX index_calculated_values_on_number_of_facilities ON ctgov.calculated
 --
 
 CREATE INDEX index_central_contacts_on_contact_type ON ctgov.central_contacts USING btree (contact_type);
-
-
---
--- Name: index_central_contacts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_central_contacts_on_nct_id ON ctgov.central_contacts USING btree (nct_id);
 
 
 --
@@ -3935,17 +5235,59 @@ CREATE INDEX index_conditions_on_name ON ctgov.conditions USING btree (name);
 
 
 --
--- Name: index_conditions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_ctgov.use_case_datasets_on_dataset_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_conditions_on_nct_id ON ctgov.conditions USING btree (nct_id);
+CREATE INDEX "index_ctgov.use_case_datasets_on_dataset_type" ON ctgov.use_case_datasets USING btree (dataset_type);
 
 
 --
--- Name: index_countries_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_ctgov.use_case_datasets_on_name; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_countries_on_nct_id ON ctgov.countries USING btree (nct_id);
+CREATE INDEX "index_ctgov.use_case_datasets_on_name" ON ctgov.use_case_datasets USING btree (name);
+
+
+--
+-- Name: index_ctgov.use_cases_on_completion_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX "index_ctgov.use_cases_on_completion_date" ON ctgov.use_cases USING btree (completion_date);
+
+
+--
+-- Name: index_ctgov.use_cases_on_organizations; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX "index_ctgov.use_cases_on_organizations" ON ctgov.use_cases USING btree (organizations);
+
+
+--
+-- Name: index_ctgov.use_cases_on_year; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX "index_ctgov.use_cases_on_year" ON ctgov.use_cases USING btree (year);
+
+
+--
+-- Name: index_ctgov.users_on_confirmation_token; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX "index_ctgov.users_on_confirmation_token" ON ctgov.users USING btree (confirmation_token);
+
+
+--
+-- Name: index_ctgov.users_on_email; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX "index_ctgov.users_on_email" ON ctgov.users USING btree (email);
+
+
+--
+-- Name: index_ctgov.users_on_reset_password_token; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX "index_ctgov.users_on_reset_password_token" ON ctgov.users USING btree (reset_password_token);
 
 
 --
@@ -3963,13 +5305,6 @@ CREATE INDEX index_design_group_interventions_on_intervention_id ON ctgov.design
 
 
 --
--- Name: index_design_group_interventions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_group_interventions_on_nct_id ON ctgov.design_group_interventions USING btree (nct_id);
-
-
---
 -- Name: index_design_groups_on_group_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -3977,24 +5312,10 @@ CREATE INDEX index_design_groups_on_group_type ON ctgov.design_groups USING btre
 
 
 --
--- Name: index_design_groups_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_groups_on_nct_id ON ctgov.design_groups USING btree (nct_id);
-
-
---
 -- Name: index_design_outcomes_on_measure; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_design_outcomes_on_measure ON ctgov.design_outcomes USING btree (measure);
-
-
---
--- Name: index_design_outcomes_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_design_outcomes_on_nct_id ON ctgov.design_outcomes USING btree (nct_id);
 
 
 --
@@ -4026,13 +5347,6 @@ CREATE INDEX index_designs_on_masking ON ctgov.designs USING btree (masking);
 
 
 --
--- Name: index_designs_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_designs_on_nct_id ON ctgov.designs USING btree (nct_id);
-
-
---
 -- Name: index_designs_on_outcomes_assessor_masked; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4047,13 +5361,6 @@ CREATE INDEX index_designs_on_subject_masked ON ctgov.designs USING btree (subje
 
 
 --
--- Name: index_detailed_descriptions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_detailed_descriptions_on_nct_id ON ctgov.detailed_descriptions USING btree (nct_id);
-
-
---
 -- Name: index_documents_on_document_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4065,20 +5372,6 @@ CREATE INDEX index_documents_on_document_id ON ctgov.documents USING btree (docu
 --
 
 CREATE INDEX index_documents_on_document_type ON ctgov.documents USING btree (document_type);
-
-
---
--- Name: index_documents_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_documents_on_nct_id ON ctgov.documents USING btree (nct_id);
-
-
---
--- Name: index_drop_withdrawals_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_drop_withdrawals_on_nct_id ON ctgov.drop_withdrawals USING btree (nct_id);
 
 
 --
@@ -4117,13 +5410,6 @@ CREATE INDEX index_eligibilities_on_minimum_age ON ctgov.eligibilities USING btr
 
 
 --
--- Name: index_eligibilities_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_eligibilities_on_nct_id ON ctgov.eligibilities USING btree (nct_id);
-
-
---
 -- Name: index_facilities_on_city; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4142,13 +5428,6 @@ CREATE INDEX index_facilities_on_country ON ctgov.facilities USING btree (countr
 --
 
 CREATE INDEX index_facilities_on_name ON ctgov.facilities USING btree (name);
-
-
---
--- Name: index_facilities_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_facilities_on_nct_id ON ctgov.facilities USING btree (nct_id);
 
 
 --
@@ -4173,38 +5452,17 @@ CREATE INDEX index_facility_contacts_on_contact_type ON ctgov.facility_contacts 
 
 
 --
--- Name: index_facility_contacts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_file_records_on_load_event_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_facility_contacts_on_nct_id ON ctgov.facility_contacts USING btree (nct_id);
-
-
---
--- Name: index_facility_investigators_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_facility_investigators_on_nct_id ON ctgov.facility_investigators USING btree (nct_id);
+CREATE INDEX index_file_records_on_load_event_id ON ctgov.file_records USING btree (load_event_id);
 
 
 --
--- Name: index_id_information_on_id_type; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_id_information_on_id_source; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_id_information_on_id_type ON ctgov.id_information USING btree (id_type);
-
-
---
--- Name: index_id_information_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_id_information_on_nct_id ON ctgov.id_information USING btree (nct_id);
-
-
---
--- Name: index_intervention_other_names_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_intervention_other_names_on_nct_id ON ctgov.intervention_other_names USING btree (nct_id);
+CREATE INDEX index_id_information_on_id_source ON ctgov.id_information USING btree (id_source);
 
 
 --
@@ -4212,20 +5470,6 @@ CREATE INDEX index_intervention_other_names_on_nct_id ON ctgov.intervention_othe
 --
 
 CREATE INDEX index_interventions_on_intervention_type ON ctgov.interventions USING btree (intervention_type);
-
-
---
--- Name: index_interventions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_interventions_on_nct_id ON ctgov.interventions USING btree (nct_id);
-
-
---
--- Name: index_ipd_information_types_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_ipd_information_types_on_nct_id ON ctgov.ipd_information_types USING btree (nct_id);
 
 
 --
@@ -4240,20 +5484,6 @@ CREATE INDEX index_keywords_on_downcase_name ON ctgov.keywords USING btree (down
 --
 
 CREATE INDEX index_keywords_on_name ON ctgov.keywords USING btree (name);
-
-
---
--- Name: index_keywords_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_keywords_on_nct_id ON ctgov.keywords USING btree (nct_id);
-
-
---
--- Name: index_links_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_links_on_nct_id ON ctgov.links USING btree (nct_id);
 
 
 --
@@ -4292,13 +5522,6 @@ CREATE INDEX index_mesh_terms_on_qualifier ON ctgov.mesh_terms USING btree (qual
 
 
 --
--- Name: index_milestones_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_milestones_on_nct_id ON ctgov.milestones USING btree (nct_id);
-
-
---
 -- Name: index_milestones_on_period; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4313,31 +5536,10 @@ CREATE INDEX index_outcome_analyses_on_dispersion_type ON ctgov.outcome_analyses
 
 
 --
--- Name: index_outcome_analyses_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_outcome_analyses_on_nct_id ON ctgov.outcome_analyses USING btree (nct_id);
-
-
---
 -- Name: index_outcome_analyses_on_param_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_outcome_analyses_on_param_type ON ctgov.outcome_analyses USING btree (param_type);
-
-
---
--- Name: index_outcome_analysis_groups_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_outcome_analysis_groups_on_nct_id ON ctgov.outcome_analysis_groups USING btree (nct_id);
-
-
---
--- Name: index_outcome_counts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_outcome_counts_on_nct_id ON ctgov.outcome_counts USING btree (nct_id);
 
 
 --
@@ -4362,24 +5564,10 @@ CREATE INDEX index_outcome_measurements_on_dispersion_type ON ctgov.outcome_meas
 
 
 --
--- Name: index_outcome_measurements_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_outcome_measurements_on_nct_id ON ctgov.outcome_measurements USING btree (nct_id);
-
-
---
 -- Name: index_outcomes_on_dispersion_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_outcomes_on_dispersion_type ON ctgov.outcomes USING btree (dispersion_type);
-
-
---
--- Name: index_outcomes_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_outcomes_on_nct_id ON ctgov.outcomes USING btree (nct_id);
 
 
 --
@@ -4404,31 +5592,45 @@ CREATE INDEX index_overall_officials_on_nct_id ON ctgov.overall_officials USING 
 
 
 --
--- Name: index_participant_flows_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_projects_on_completion_date; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE UNIQUE INDEX index_participant_flows_on_nct_id ON ctgov.participant_flows USING btree (nct_id);
-
-
---
--- Name: index_pending_results_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_pending_results_on_nct_id ON ctgov.pending_results USING btree (nct_id);
+CREATE INDEX index_projects_on_completion_date ON ctgov.projects USING btree (completion_date);
 
 
 --
--- Name: index_provided_documents_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_projects_on_data_available; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_provided_documents_on_nct_id ON ctgov.provided_documents USING btree (nct_id);
+CREATE INDEX index_projects_on_data_available ON ctgov.projects USING btree (data_available);
 
 
 --
--- Name: index_reported_event_totals_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_projects_on_investigators; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_reported_event_totals_on_nct_id ON ctgov.reported_event_totals USING btree (nct_id);
+CREATE INDEX index_projects_on_investigators ON ctgov.projects USING btree (investigators);
+
+
+--
+-- Name: index_projects_on_organizations; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_projects_on_organizations ON ctgov.projects USING btree (organizations);
+
+
+--
+-- Name: index_projects_on_start_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_projects_on_start_date ON ctgov.projects USING btree (start_date);
+
+
+--
+-- Name: index_projects_on_year; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_projects_on_year ON ctgov.projects USING btree (year);
 
 
 --
@@ -4436,13 +5638,6 @@ CREATE INDEX index_reported_event_totals_on_nct_id ON ctgov.reported_event_total
 --
 
 CREATE INDEX index_reported_events_on_event_type ON ctgov.reported_events USING btree (event_type);
-
-
---
--- Name: index_reported_events_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_reported_events_on_nct_id ON ctgov.reported_events USING btree (nct_id);
 
 
 --
@@ -4474,31 +5669,10 @@ CREATE INDEX index_responsible_parties_on_responsible_party_type ON ctgov.respon
 
 
 --
--- Name: index_result_agreements_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_result_agreements_on_nct_id ON ctgov.result_agreements USING btree (nct_id);
-
-
---
--- Name: index_result_contacts_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_result_contacts_on_nct_id ON ctgov.result_contacts USING btree (nct_id);
-
-
---
 -- Name: index_result_contacts_on_organization; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_result_contacts_on_organization ON ctgov.result_contacts USING btree (organization);
-
-
---
--- Name: index_result_groups_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_result_groups_on_nct_id ON ctgov.result_groups USING btree (nct_id);
 
 
 --
@@ -4509,17 +5683,24 @@ CREATE INDEX index_result_groups_on_result_type ON ctgov.result_groups USING btr
 
 
 --
--- Name: index_retractions_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_saved_queries_on_user_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_retractions_on_nct_id ON ctgov.retractions USING btree (nct_id);
+CREATE INDEX index_saved_queries_on_user_id ON ctgov.saved_queries USING btree (user_id);
 
 
 --
--- Name: index_search_results_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_search_results_on_nct_id_and_name; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_search_results_on_nct_id ON ctgov.search_results USING btree (nct_id);
+CREATE UNIQUE INDEX index_search_results_on_nct_id_and_name ON ctgov.search_results USING btree (nct_id, name);
+
+
+--
+-- Name: index_search_results_on_nct_id_and_name_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX index_search_results_on_nct_id_and_name_and_grouping ON ctgov.search_results USING btree (nct_id, name, "grouping");
 
 
 --
@@ -4537,10 +5718,10 @@ CREATE INDEX index_sponsors_on_name ON ctgov.sponsors USING btree (name);
 
 
 --
--- Name: index_sponsors_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: index_studies_on_completion_date; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX index_sponsors_on_nct_id ON ctgov.sponsors USING btree (nct_id);
+CREATE INDEX index_studies_on_completion_date ON ctgov.studies USING btree (completion_date);
 
 
 --
@@ -4572,13 +5753,6 @@ CREATE INDEX index_studies_on_last_update_submitted_date ON ctgov.studies USING 
 
 
 --
--- Name: index_studies_on_last_update_submitted_qc_date; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_studies_on_last_update_submitted_qc_date ON ctgov.studies USING btree (last_update_submitted_qc_date);
-
-
---
 -- Name: index_studies_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4600,6 +5774,13 @@ CREATE INDEX index_studies_on_phase ON ctgov.studies USING btree (phase);
 
 
 --
+-- Name: index_studies_on_primary_completion_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_studies_on_primary_completion_date ON ctgov.studies USING btree (primary_completion_date);
+
+
+--
 -- Name: index_studies_on_primary_completion_date_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4614,13 +5795,6 @@ CREATE INDEX index_studies_on_results_first_submitted_date ON ctgov.studies USIN
 
 
 --
--- Name: index_studies_on_results_first_submitted_qc_date; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_studies_on_results_first_submitted_qc_date ON ctgov.studies USING btree (results_first_submitted_qc_date);
-
-
---
 -- Name: index_studies_on_source; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4628,17 +5802,24 @@ CREATE INDEX index_studies_on_source ON ctgov.studies USING btree (source);
 
 
 --
+-- Name: index_studies_on_start_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_studies_on_start_date ON ctgov.studies USING btree (start_date);
+
+
+--
+-- Name: index_studies_on_start_date_type; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_studies_on_start_date_type ON ctgov.studies USING btree (start_date_type);
+
+
+--
 -- Name: index_studies_on_study_first_submitted_date; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE INDEX index_studies_on_study_first_submitted_date ON ctgov.studies USING btree (study_first_submitted_date);
-
-
---
--- Name: index_studies_on_study_first_submitted_qc_date; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_studies_on_study_first_submitted_qc_date ON ctgov.studies USING btree (study_first_submitted_qc_date);
 
 
 --
@@ -4653,20 +5834,6 @@ CREATE INDEX index_studies_on_study_type ON ctgov.studies USING btree (study_typ
 --
 
 CREATE UNIQUE INDEX index_study_records_on_nct_id_and_type ON ctgov.study_records USING btree (nct_id, type);
-
-
---
--- Name: index_study_references_on_nct_id; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_study_references_on_nct_id ON ctgov.study_references USING btree (nct_id);
-
-
---
--- Name: index_study_references_on_pmid; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE INDEX index_study_references_on_pmid ON ctgov.study_references USING btree (pmid);
 
 
 --
@@ -4789,515 +5956,27 @@ CREATE TRIGGER category_insert_trigger INSTEAD OF INSERT ON ctgov.categories FOR
 
 
 --
--- Name: baseline_counts baseline_counts_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+-- Name: saved_queries fk_rails_add691a365; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY ctgov.baseline_counts
-    ADD CONSTRAINT baseline_counts_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+ALTER TABLE ONLY ctgov.saved_queries
+    ADD CONSTRAINT fk_rails_add691a365 FOREIGN KEY (user_id) REFERENCES ctgov.users(id);
 
 
 --
--- Name: baseline_counts baseline_counts_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+-- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY ctgov.baseline_counts
-    ADD CONSTRAINT baseline_counts_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
+ALTER TABLE ONLY ctgov.active_storage_attachments
+    ADD CONSTRAINT fk_rails_c3b3935057 FOREIGN KEY (blob_id) REFERENCES ctgov.active_storage_blobs(id);
 
 
 --
--- Name: baseline_measurements baseline_measurements_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+-- Name: file_records fk_rails_f437ab93ba; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY ctgov.baseline_measurements
-    ADD CONSTRAINT baseline_measurements_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: baseline_measurements baseline_measurements_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.baseline_measurements
-    ADD CONSTRAINT baseline_measurements_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: brief_summaries brief_summaries_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.brief_summaries
-    ADD CONSTRAINT brief_summaries_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: browse_conditions browse_conditions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.browse_conditions
-    ADD CONSTRAINT browse_conditions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: browse_interventions browse_interventions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.browse_interventions
-    ADD CONSTRAINT browse_interventions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: calculated_values calculated_values_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.calculated_values
-    ADD CONSTRAINT calculated_values_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: central_contacts central_contacts_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.central_contacts
-    ADD CONSTRAINT central_contacts_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: conditions conditions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.conditions
-    ADD CONSTRAINT conditions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: countries countries_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.countries
-    ADD CONSTRAINT countries_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: design_group_interventions design_group_interventions_design_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.design_group_interventions
-    ADD CONSTRAINT design_group_interventions_design_group_id_fkey FOREIGN KEY (design_group_id) REFERENCES ctgov.design_groups(id);
-
-
---
--- Name: design_group_interventions design_group_interventions_intervention_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.design_group_interventions
-    ADD CONSTRAINT design_group_interventions_intervention_id_fkey FOREIGN KEY (intervention_id) REFERENCES ctgov.interventions(id);
-
-
---
--- Name: design_group_interventions design_group_interventions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.design_group_interventions
-    ADD CONSTRAINT design_group_interventions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: design_groups design_groups_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.design_groups
-    ADD CONSTRAINT design_groups_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: design_outcomes design_outcomes_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.design_outcomes
-    ADD CONSTRAINT design_outcomes_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: designs designs_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.designs
-    ADD CONSTRAINT designs_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: detailed_descriptions detailed_descriptions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.detailed_descriptions
-    ADD CONSTRAINT detailed_descriptions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: documents documents_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.documents
-    ADD CONSTRAINT documents_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: drop_withdrawals drop_withdrawals_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.drop_withdrawals
-    ADD CONSTRAINT drop_withdrawals_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: drop_withdrawals drop_withdrawals_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.drop_withdrawals
-    ADD CONSTRAINT drop_withdrawals_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: eligibilities eligibilities_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.eligibilities
-    ADD CONSTRAINT eligibilities_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: facilities facilities_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.facilities
-    ADD CONSTRAINT facilities_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: facility_contacts facility_contacts_facility_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.facility_contacts
-    ADD CONSTRAINT facility_contacts_facility_id_fkey FOREIGN KEY (facility_id) REFERENCES ctgov.facilities(id);
-
-
---
--- Name: facility_contacts facility_contacts_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.facility_contacts
-    ADD CONSTRAINT facility_contacts_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: facility_investigators facility_investigators_facility_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.facility_investigators
-    ADD CONSTRAINT facility_investigators_facility_id_fkey FOREIGN KEY (facility_id) REFERENCES ctgov.facilities(id);
-
-
---
--- Name: facility_investigators facility_investigators_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.facility_investigators
-    ADD CONSTRAINT facility_investigators_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: id_information id_information_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.id_information
-    ADD CONSTRAINT id_information_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: intervention_other_names intervention_other_names_intervention_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.intervention_other_names
-    ADD CONSTRAINT intervention_other_names_intervention_id_fkey FOREIGN KEY (intervention_id) REFERENCES ctgov.interventions(id);
-
-
---
--- Name: intervention_other_names intervention_other_names_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.intervention_other_names
-    ADD CONSTRAINT intervention_other_names_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: interventions interventions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.interventions
-    ADD CONSTRAINT interventions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: ipd_information_types ipd_information_types_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.ipd_information_types
-    ADD CONSTRAINT ipd_information_types_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: keywords keywords_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.keywords
-    ADD CONSTRAINT keywords_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: links links_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.links
-    ADD CONSTRAINT links_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: milestones milestones_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.milestones
-    ADD CONSTRAINT milestones_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: milestones milestones_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.milestones
-    ADD CONSTRAINT milestones_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: outcome_analyses outcome_analyses_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_analyses
-    ADD CONSTRAINT outcome_analyses_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: outcome_analyses outcome_analyses_outcome_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_analyses
-    ADD CONSTRAINT outcome_analyses_outcome_id_fkey FOREIGN KEY (outcome_id) REFERENCES ctgov.outcomes(id);
-
-
---
--- Name: outcome_analysis_groups outcome_analysis_groups_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_analysis_groups
-    ADD CONSTRAINT outcome_analysis_groups_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: outcome_analysis_groups outcome_analysis_groups_outcome_analysis_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_analysis_groups
-    ADD CONSTRAINT outcome_analysis_groups_outcome_analysis_id_fkey FOREIGN KEY (outcome_analysis_id) REFERENCES ctgov.outcome_analyses(id);
-
-
---
--- Name: outcome_analysis_groups outcome_analysis_groups_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_analysis_groups
-    ADD CONSTRAINT outcome_analysis_groups_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: outcome_counts outcome_counts_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_counts
-    ADD CONSTRAINT outcome_counts_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: outcome_counts outcome_counts_outcome_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_counts
-    ADD CONSTRAINT outcome_counts_outcome_id_fkey FOREIGN KEY (outcome_id) REFERENCES ctgov.outcomes(id);
-
-
---
--- Name: outcome_counts outcome_counts_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_counts
-    ADD CONSTRAINT outcome_counts_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: outcome_measurements outcome_measurements_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_measurements
-    ADD CONSTRAINT outcome_measurements_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: outcome_measurements outcome_measurements_outcome_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_measurements
-    ADD CONSTRAINT outcome_measurements_outcome_id_fkey FOREIGN KEY (outcome_id) REFERENCES ctgov.outcomes(id);
-
-
---
--- Name: outcome_measurements outcome_measurements_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcome_measurements
-    ADD CONSTRAINT outcome_measurements_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: outcomes outcomes_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.outcomes
-    ADD CONSTRAINT outcomes_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: overall_officials overall_officials_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.overall_officials
-    ADD CONSTRAINT overall_officials_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: participant_flows participant_flows_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.participant_flows
-    ADD CONSTRAINT participant_flows_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: pending_results pending_results_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.pending_results
-    ADD CONSTRAINT pending_results_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: provided_documents provided_documents_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.provided_documents
-    ADD CONSTRAINT provided_documents_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: reported_event_totals reported_event_totals_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.reported_event_totals
-    ADD CONSTRAINT reported_event_totals_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: reported_events reported_events_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.reported_events
-    ADD CONSTRAINT reported_events_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: reported_events reported_events_result_group_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.reported_events
-    ADD CONSTRAINT reported_events_result_group_id_fkey FOREIGN KEY (result_group_id) REFERENCES ctgov.result_groups(id);
-
-
---
--- Name: responsible_parties responsible_parties_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.responsible_parties
-    ADD CONSTRAINT responsible_parties_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: result_agreements result_agreements_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.result_agreements
-    ADD CONSTRAINT result_agreements_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: result_contacts result_contacts_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.result_contacts
-    ADD CONSTRAINT result_contacts_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: result_groups result_groups_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.result_groups
-    ADD CONSTRAINT result_groups_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: retractions retractions_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.retractions
-    ADD CONSTRAINT retractions_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: search_results search_results_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.search_results
-    ADD CONSTRAINT search_results_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: sponsors sponsors_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.sponsors
-    ADD CONSTRAINT sponsors_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: studies studies_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.studies
-    ADD CONSTRAINT studies_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
-
-
---
--- Name: study_references study_references_nct_id_fkey; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.study_references
-    ADD CONSTRAINT study_references_nct_id_fkey FOREIGN KEY (nct_id) REFERENCES ctgov.studies(nct_id);
+ALTER TABLE ONLY ctgov.file_records
+    ADD CONSTRAINT fk_rails_f437ab93ba FOREIGN KEY (load_event_id) REFERENCES support.load_events(id);
 
 
 --
