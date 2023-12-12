@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     describe '#result_contact_data' do
-    let(:processor) { StudyJsonRecord::ProcessorV2.new }
     let(:results_section) { {} }
     let(:protocol_section) { {} }
 
@@ -43,6 +42,24 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
           email: 'contact@example.com'
         })
       end
+    end
+    context 'when results_section is not present' do
+        let(:results_section) { nil }
+        let(:processor) { StudyJsonRecord::ProcessorV2.new(:results_section) }
+  
+        it 'returns nil' do
+          expect(processor.result_contact_data).to be_nil
+        end
+      end
+  
+      context 'when point_of_contact is not present in results_section' do
+        let(:results_section) { { 'moreInfoModule' => {} } }
+        let(:processor) { StudyJsonRecord::ProcessorV2.new(:results_section) }
+  
+        it 'returns nil' do
+          expect(processor.result_contact_data).to be_nil
+        end
+      
     end
   end
 end
