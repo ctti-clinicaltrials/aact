@@ -90,7 +90,6 @@ class StudyJsonRecord::ProcessorV2
   def design_data
     return unless protocol_section
     nct_id = protocol_section.dig('identificationModule', 'nctId')
-    puts "NCT ID: #{nct_id}"
 
     info = protocol_section.dig('designModule', 'designInfo')
     return unless info
