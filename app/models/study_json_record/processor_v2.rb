@@ -68,6 +68,8 @@ class StudyJsonRecord::ProcessorV2
   end
   
   def study_data
+    return unless protocol_section
+
     ident = protocol_section['identificationModule']
     nct_id = ident['nctId']
     status = protocol_section['statusModule']
