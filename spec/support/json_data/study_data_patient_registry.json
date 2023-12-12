@@ -1,0 +1,2033 @@
+{
+  "protocolSection": {
+  "identificationModule": {
+  "nctId": "NCT76543210",
+  "orgStudyIdInfo": {
+  "id": "05-1109"
+  },
+  "secondaryIdInfos": [
+  {
+  "id": "P60DK020579",
+  "type": "NIH",
+  "link": "https://reporter.nih.gov/quickSearch/P60DK020579"
+  }
+  ],
+  "organization": {
+  "fullName": "Arbelaez, Ana Maria",
+  "class": "INDIV"
+  },
+  "briefTitle": "Pilot and Feasibility Study for the Treatment of Pre-diabetes in Patients With Cystic Fibrosis",
+  "officialTitle": "Pilot and Feasibility Study for the Treatment of Pre-diabetes in Patients With Cystic Fibrosis",
+  "acronym": "STPDCF"
+  },
+  "statusModule": {
+  "statusVerifiedDate": "2017-05",
+  "overallStatus": "COMPLETED",
+  "lastKnownStatus": "ACTIVE_NOT_RECRUITING",
+  "whyStopped": "Terminated early due to sufficient data acquired to meet our study objectives",
+  "delayedPosting": true,
+  "expandedAccessInfo": {
+  "hasExpandedAccess": true,
+  "nctId": "NCT03559686",
+  "statusForNctId": "AVAILABLE"
+  },
+  "startDateStruct": {
+  "date": "2006-11",
+  "type": "ESTIMATED"
+  },
+  "primaryCompletionDateStruct": {
+  "date": "2013-01",
+  "type": "ACTUAL"
+  },
+  "completionDateStruct": {
+  "date": "2013-01",
+  "type": "ACTUAL"
+  },
+  "studyFirstSubmitDate": "2008-09-29",
+  "studyFirstSubmitQcDate": "2008-09-30",
+  "studyFirstPostDateStruct": {
+  "date": "2008-10-01",
+  "type": "ESTIMATED"
+  },
+  "resultsFirstSubmitDate": "2016-07-11",
+  "resultsFirstSubmitQcDate": "2017-05-03",
+  "resultsFirstPostDateStruct": {
+  "date": "2017-06-05",
+  "type": "ACTUAL"
+  },
+  "dispFirstSubmitDate": "2019-03-01",
+  "dispFirstSubmitQcDate": "2019-03-01",
+  "dispFirstPostDateStruct": {
+  "date": "2019-03-05",
+  "type": "ACTUAL"
+  },
+  "lastUpdateSubmitDate": "2017-05-03",
+  "lastUpdatePostDateStruct": {
+  "date": "2017-06-05",
+  "type": "ACTUAL"
+  }
+  },
+  "sponsorCollaboratorsModule": {
+  "responsibleParty": {
+  "type": "PRINCIPAL_INVESTIGATOR",
+  "investigatorFullName": "Ana Maria Arbelaez",
+  "investigatorTitle": "Assistant Professor in Pediatrics",
+  "investigatorAffiliation": "Arbelaez, Ana Maria"
+  },
+  "leadSponsor": {
+  "name": "Arbelaez, Ana Maria",
+  "class": "INDIV"
+  },
+  "collaborators": [
+  {
+  "name": "Washington University School of Medicine",
+  "class": "OTHER"
+  },
+  {
+  "name": "National Institutes of Health (NIH)",
+  "class": "NIH"
+  },
+  {
+  "name": "Novo Nordisk A/S",
+  "class": "INDUSTRY"
+  },
+  {
+  "name": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+  "class": "NIH"
+  }
+  ]
+  },
+  "oversightModule": {
+  "oversightHasDmc": false,
+  "isFdaRegulatedDrug": false,
+  "isFdaRegulatedDevice": true,
+  "isUnapprovedDevice": true,
+  "isPpsd": true,
+  "isUsExport": false,
+  "fdaaa801Violation": true
+  },
+  "descriptionModule": {
+  "briefSummary": "The purpose of this study is to provide the necessary data and experience to design a larger, full scale clinical trial to determine if a certain medicine (repaglinide), which increases the amount of insulin secreted by the pancreas, can improve the nutritional status and pulmonary function of adolescents and young adults with cystic fibrosis and prediabetes by improving blood glucose control. The investigators are also trying to determine the relationship between systemic inflammatory factors and glucose impairment.",
+  "detailedDescription": "As people with Cystic Fibrosis (CF) are living well into adulthood new complications are arising. CF-Related Diabetes (CFRD) has emerged as a major complication. Years prior to the diagnosis of CFRD, patients have decreasing insulin secretion, glucose intolerance, deteriorating pulmonary function, and nutritional impairment. There are no current standard recommendations for the treatment of CF patients with prediabetes, and there is little evidence that treatment of this prediabetic state in CF patients will prevent the deterioration of the lung function, nutritional status and potentially slow the progression to manifest CFRD.\n\nTo determine the feasibility of testing this hypothesis, we will perform a pilot, double-blinded, randomized controlled trial in 20 CF pancreatic insufficient patients ages of 12 to 24 years old with impaired glucose tolerance test (IGT) or CFRD without fasting hyperglycemia (CFRD-No FH) and assign them to either placebo or Repaglinide 0.5 mg PO 3 - 4 times a day before meals for two years. Patients will monitor their blood glucose daily and will be followed every 3 months for 2 years to determine changes in nutritional status by BMI and DEXA, lung function tests, frequency of hospitalizations, antibiotic courses, and degree of glucose tolerance, insulin secretion and insulin sensitivity.\n\nIn addition, based on the evidence of increased inflammation in type 2 diabetes, correlation of systemic inflammatory response at different degrees of glucose tolerance and after treatment, will be assessed in these subjects, as well as in another 20 CF pancreatic insufficient matched patients with normal glucose tolerance who will be studied once without intervention"
+  },
+  "conditionsModule": {
+  "conditions": [
+  "Cystic Fibrosis Related Diabetes",
+  "Pancreatic Insufficiency"
+  ],
+  "keywords": [
+  "Cystic Fibrosis",
+  "Diabetes",
+  "Cystic Fibrosis Related Diabetes",
+  "Pre-diabetes",
+  "oral hypoglycemic agents",
+  "Repaglinide",
+  "treatment",
+  "inflammatory markers",
+  "Lung function",
+  "nutrition"
+  ]
+  },
+  "designModule": {
+  "studyType": "EXPANDED_ACCESS",
+  "patientRegistry": "Yes",
+  "expandedAccessTypes": {
+    "individual": true,
+    "intermediate": true,
+    "treatment": true
+  },
+  "phases": [
+  "PHASE3"
+  ],
+  "targetDuration": "12 Months",
+  "designInfo": {
+  "allocation": "RANDOMIZED",
+  "interventionModel": "PARALLEL",
+  "primaryPurpose": "OTHER",
+  "maskingInfo": {
+  "masking": "QUADRUPLE",
+  "whoMasked": [
+  "PARTICIPANT",
+  "CARE_PROVIDER",
+  "INVESTIGATOR",
+  "OUTCOMES_ASSESSOR"
+  ]
+  }
+  },
+  "bioSpec": {
+    "retention": "SAMPLES_WITHOUT_DNA",
+    "description": "blood and bone marrow"
+  },
+  "enrollmentInfo": {
+  "count": 31,
+  "type": "ACTUAL"
+  }
+  },
+  "armsInterventionsModule": {
+  "armGroups": [
+  {
+  "label": "1 Placebo",
+  "type": "PLACEBO_COMPARATOR",
+  "description": "1 pill before each meal 3-4 times a day for 2 years. All subjects had abnormal glucose tolerance. Subjects were randomized to placebo or drug.",
+  "interventionNames": [
+  "Drug: placebo"
+  ]
+  },
+  {
+  "label": "2. repaglinide",
+  "type": "EXPERIMENTAL",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years. All subjects had abnormal glucose tolerance.Subjects were randomized to placebo or drug.",
+  "interventionNames": [
+  "Drug: repaglinide"
+  ]
+  }
+  ],
+  "interventions": [
+  {
+  "type": "DRUG",
+  "name": "placebo",
+  "description": "CF pancreatic insufficient patients with impaired glucose tolerance (IGT) or CFRD without fasting hyperglycemia (CFRD-No FH) by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years.",
+  "armGroupLabels": [
+  "1 Placebo"
+  ]
+  },
+  {
+  "type": "DRUG",
+  "name": "repaglinide",
+  "description": "CF pancreatic insufficient patients with impaired glucose tolerance (IGT) or CFRD without fasting hyperglycemia (CFRD-No FH) by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years.",
+  "armGroupLabels": [
+  "2. repaglinide"
+  ],
+  "otherNames": [
+  "Prandin"
+  ]
+  }
+  ]
+  },
+  "outcomesModule": {
+  "primaryOutcomes": [
+  {
+  "measure": "BMI",
+  "timeFrame": "2 year/end of study"
+  },
+  {
+  "measure": "Body Composition",
+  "description": "Reporting % of Fat and Lean body mass",
+  "timeFrame": "2 year/end of study"
+  },
+  {
+  "measure": "CRP",
+  "timeFrame": "2 year/end of study"
+  }
+  ],
+  "secondaryOutcomes": [
+  {
+  "measure": "Glucose Tolerance",
+  "description": "We completed the OGTT at the 2 year/end of study visit.",
+  "timeFrame": "2-year"
+  },
+  {
+  "measure": "Inflammatory Markers",
+  "timeFrame": "2 year/end of study"
+  },
+  {
+  "measure": "Wt Z Score",
+  "timeFrame": "2 year/end of study"
+  },
+  {
+  "measure": "Tanner Stage",
+  "description": "Puberty scale measuring 1-5, 1 being least development, 5 being most development.",
+  "timeFrame": "2 year/end of study"
+  },
+  {
+  "measure": "FEV 1",
+  "description": "% of lung function",
+  "timeFrame": "2 year/end of study"
+  },
+  {
+  "measure": "C-Peptide",
+  "timeFrame": "2 year"
+  }
+  ]
+  },
+  "eligibilityModule": {
+  "eligibilityCriteria": "Inclusion Criteria:\n\n* Male or females 12 -24 years old\n* Diagnosis of Cystic Fibrosis by sweat test with exocrine pancreatic insufficiency\n* Must have a glucose pattern by Oral Glucose Tolerance Test with fasting blood glucose \\<126 mg/dl and 2 hour: 140 - 199 mg/dl or \\>200 mg/dl.\n* Weight must be stable within 5% for 3 months prior to initiation visit\n* Must be able to reproducibly perform spirometry based on American Thoracic Society guidelines\n\nExclusion Criteria:\n\n* Patients receiving growth hormone therapy or taking insulin\n* Patients with evidence of liver dysfunction\n* Patients who are status-post lung or liver transplantation\n* Patients who have received systemic steroids for more than 28 days during the 6 months prior to the study\n* Patients with active ABPA on steroids\n* Patients taking medications that affect glucose metabolism or contraindicated with repaglinide",
+  "healthyVolunteers": false,
+  "sex": "ALL",
+  "minimumAge": "12 Years",
+  "maximumAge": "24 Years",
+  "stdAges": [
+  "CHILD",
+  "ADULT"
+  ]
+  },
+  "contactsLocationsModule": {
+  "overallOfficials": [
+  {
+  "name": "Neil H White, M.D.",
+  "affiliation": "Washington University School of Medicine",
+  "role": "STUDY_CHAIR"
+  }
+  ],
+  "locations": [
+  {
+  "facility": "Washington University School of Medicine",
+  "city": "Saint Louis",
+  "state": "Missouri",
+  "zip": "63110",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 38.62727,
+  "lon": -90.19789
+  }
+  }
+  ]
+  },
+  "ipdSharingStatementModule": {
+  "ipdSharing": "YES",
+  "description": "Anonymised Individual Participant Data along with data dictionaries will be shared with other researchers after 12 months of completion of the trial. Data pertaining to the interventions received and outcomes at primary and secondary end point will be shared upon reasonable requests made to the PI and in accordance with the guidelines of sponsors, collaborators and funder of the study.",
+  "infoTypes": [
+  "STUDY_PROTOCOL",
+  "SAP",
+  "ICF"
+  ],
+  "timeFrame": "12 months after completion of trial.",
+  "accessCriteria": "Access to data will be granted to researchers after review of requests by PI and in accordance with the guidelines of sponsors, collaborators and funder of the study.",
+  "url": "http://datacompass.lshtm.ac.uk/"
+  }
+  },
+  "resultsSection": {
+  "participantFlowModule": {
+  "groups": [
+  {
+  "id": "FG000",
+  "title": "Placebo",
+  "description": "1 pill before each meal 3-4 times a day for 2 years.\n\nplacebo: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  },
+  {
+  "id": "FG001",
+  "title": "2. Repaglinide",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years.\n\nrepaglinide: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  }
+  ],
+  "periods": [
+  {
+  "title": "Overall Study",
+  "milestones": [
+  {
+  "type": "STARTED",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "8"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "8"
+  }
+  ]
+  },
+  {
+  "type": "COMPLETED",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "4"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "4"
+  }
+  ]
+  },
+  {
+  "type": "NOT COMPLETED",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "4"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "4"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  "baselineCharacteristicsModule": {
+  "populationDescription": "Patients attended the Washington University CF Clinics between 2006 and 2008.",
+  "typeUnitsAnalyzed": "encounters",
+  "groups": [
+  {
+  "id": "BG000",
+  "title": "Patients Who Received Placebo",
+  "description": "All participants were receiving ADEK vitamins and pancreatic enzyme replacement. Patients were required to be clinically stable, without evidence of deterioration from previous pulmonary function tests (PFTs) for 3-months prior to the study and without CF exacerbation or hospitalization for 2-months prior to the study. Additionally, patients were required to have maintained stable weight within 5% variance for 3-months prior to participation. Exclusion criteria included fasting blood glucose levels \\>126 mg/dL on study day, IV antibiotic or systemic steroid use within two months, oral corticosteroid usage for more than 28-days over the past 6-months, history of lung or liver transplant, elevated transaminases, allergic bronchopulmonary aspergillosis, or the inability to perform spirometry."
+  },
+  {
+  "id": "BG001",
+  "title": "Patients Who Received Repaglinide",
+  "description": "All participants were receiving ADEK vitamins and pancreatic enzyme replacement. Patients were required to be clinically stable, without evidence of deterioration from previous pulmonary function tests (PFTs) for 3-months prior to the study and without CF exacerbation or hospitalization for 2-months prior to the study. Additionally, patients were required to have maintained stable weight within 5% variance for 3-months prior to participation. Exclusion criteria included fasting blood glucose levels \\>126 mg/dL on study day, IV antibiotic or systemic steroid use within two months, oral corticosteroid usage for more than 28-days over the past 6-months, history of lung or liver transplant, elevated transaminases, allergic bronchopulmonary aspergillosis, or the inability to perform spirometry."
+  },
+  {
+  "id": "BG002",
+  "title": "Total",
+  "description": "Total of all reporting groups"
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "BG000",
+  "value": "4"
+  },
+  {
+  "groupId": "BG001",
+  "value": "4"
+  },
+  {
+  "groupId": "BG002",
+  "value": "8"
+  }
+  ]
+  }
+  ],
+  "measures": [
+  {
+  "title": "Age, Categorical",
+  "description": "Patients attended the Washington University CF Clinics between 2006 and 2008.",
+  "paramType": "COUNT_OF_PARTICIPANTS",
+  "unitOfMeasure": "Participants",
+  "classes": [
+  {
+  "categories": [
+  {
+  "title": "<=18 years",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "3"
+  },
+  {
+  "groupId": "BG001",
+  "value": "3"
+  },
+  {
+  "groupId": "BG002",
+  "value": "6"
+  }
+  ]
+  },
+  {
+  "title": "Between 18 and 65 years",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "1"
+  },
+  {
+  "groupId": "BG001",
+  "value": "1"
+  },
+  {
+  "groupId": "BG002",
+  "value": "2"
+  }
+  ]
+  },
+  {
+  "title": ">=65 years",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "0"
+  },
+  {
+  "groupId": "BG001",
+  "value": "0"
+  },
+  {
+  "groupId": "BG002",
+  "value": "0"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Age, Continuous",
+  "paramType": "MEDIAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "years",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "16",
+  "lowerLimit": "12",
+  "upperLimit": "18"
+  },
+  {
+  "groupId": "BG001",
+  "value": "15",
+  "lowerLimit": "12",
+  "upperLimit": "22"
+  },
+  {
+  "groupId": "BG002",
+  "value": "15.5",
+  "lowerLimit": "12",
+  "upperLimit": "22"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Sex: Female, Male",
+  "paramType": "COUNT_OF_PARTICIPANTS",
+  "unitOfMeasure": "Participants",
+  "classes": [
+  {
+  "categories": [
+  {
+  "title": "Female",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "2"
+  },
+  {
+  "groupId": "BG001",
+  "value": "3"
+  },
+  {
+  "groupId": "BG002",
+  "value": "5"
+  }
+  ]
+  },
+  {
+  "title": "Male",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "2"
+  },
+  {
+  "groupId": "BG001",
+  "value": "1"
+  },
+  {
+  "groupId": "BG002",
+  "value": "3"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Region of Enrollment",
+  "paramType": "NUMBER",
+  "unitOfMeasure": "participants",
+  "classes": [
+  {
+  "title": "United States",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "8"
+  },
+  {
+  "groupId": "BG001",
+  "value": "8"
+  },
+  {
+  "groupId": "BG002",
+  "value": "16"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "BMI",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "Kg/m^2",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "19.45",
+  "lowerLimit": "14.55",
+  "upperLimit": "22.96"
+  },
+  {
+  "groupId": "BG001",
+  "value": "18.38",
+  "lowerLimit": "16.78",
+  "upperLimit": "20.3"
+  },
+  {
+  "groupId": "BG002",
+  "value": "18.94",
+  "lowerLimit": "14.55",
+  "upperLimit": "22.96"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Wt Z score",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "Z score",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "-1.11",
+  "lowerLimit": "-1.84",
+  "upperLimit": "0.33"
+  },
+  {
+  "groupId": "BG001",
+  "value": "-0.29",
+  "lowerLimit": "-0.75",
+  "upperLimit": "0.19"
+  },
+  {
+  "groupId": "BG002",
+  "value": "-0.7",
+  "lowerLimit": "-1.84",
+  "upperLimit": ".33"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Fat %",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "% Fat mass",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "20.34",
+  "lowerLimit": "7.36",
+  "upperLimit": "38.74"
+  },
+  {
+  "groupId": "BG001",
+  "value": "22.06",
+  "lowerLimit": "9.76",
+  "upperLimit": "28.81"
+  },
+  {
+  "groupId": "BG002",
+  "value": "21.2",
+  "lowerLimit": "7.36",
+  "upperLimit": "38.74"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Lean %",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "% Lean mass",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "76.71",
+  "lowerLimit": "58.6",
+  "upperLimit": "89.67"
+  },
+  {
+  "groupId": "BG001",
+  "value": "75",
+  "lowerLimit": "68.22",
+  "upperLimit": "87.11"
+  },
+  {
+  "groupId": "BG002",
+  "value": "75.9",
+  "lowerLimit": "58.6",
+  "upperLimit": "89.67"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Tanner stage",
+  "description": "This is a measurement of puberty development. This is a 1-5 scale describing 1 as the least developed and 5 as the most developed in puberty.",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "units on a scale",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "3.75",
+  "lowerLimit": "2",
+  "upperLimit": "5"
+  },
+  {
+  "groupId": "BG001",
+  "value": "3.25",
+  "lowerLimit": "1",
+  "upperLimit": "5"
+  },
+  {
+  "groupId": "BG002",
+  "value": "3.5",
+  "lowerLimit": "1",
+  "upperLimit": "5"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "FEV 1",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "% of lung function",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "97.75",
+  "lowerLimit": "92",
+  "upperLimit": "121"
+  },
+  {
+  "groupId": "BG001",
+  "value": "92.75",
+  "lowerLimit": "70",
+  "upperLimit": "105"
+  },
+  {
+  "groupId": "BG002",
+  "value": "95.25",
+  "lowerLimit": "70",
+  "upperLimit": "121"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Fasting Glucose",
+  "description": "This was the baseline glucose in a 2 hour oral glucose tolerance test. (OGTT)",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "mg/dl",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "99.1",
+  "lowerLimit": "87",
+  "upperLimit": "114.5"
+  },
+  {
+  "groupId": "BG001",
+  "value": "100",
+  "lowerLimit": "94",
+  "upperLimit": "106"
+  },
+  {
+  "groupId": "BG002",
+  "value": "99.6",
+  "lowerLimit": "87",
+  "upperLimit": "114.5"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "2 hour glucose",
+  "description": "Final glucose sample in a 2 hour OGTT.",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "mg/dl",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "182.4",
+  "lowerLimit": "144",
+  "upperLimit": "218.5"
+  },
+  {
+  "groupId": "BG001",
+  "value": "183",
+  "lowerLimit": "140",
+  "upperLimit": "206"
+  },
+  {
+  "groupId": "BG002",
+  "value": "182.7",
+  "lowerLimit": "140",
+  "upperLimit": "218.5"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Fasting C-Peptide",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "mg/dl",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "1.2",
+  "lowerLimit": "0.6",
+  "upperLimit": "2.1"
+  },
+  {
+  "groupId": "BG001",
+  "value": "1.7",
+  "lowerLimit": "1.0",
+  "upperLimit": "3"
+  },
+  {
+  "groupId": "BG002",
+  "value": "1.45",
+  "lowerLimit": "0.6",
+  "upperLimit": "3"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "2 hour c-peptide",
+  "description": "final c-peptide measurement at the end of 2 hour OGTT.",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "mg/dl",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "9.7",
+  "lowerLimit": "6",
+  "upperLimit": "15.5"
+  },
+  {
+  "groupId": "BG001",
+  "value": "9.5",
+  "lowerLimit": "5",
+  "upperLimit": "12.6"
+  },
+  {
+  "groupId": "BG002",
+  "value": "9.6",
+  "lowerLimit": "5",
+  "upperLimit": "15.5"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Inflammatory marker",
+  "description": "baseline values collected during a 2 hour OGTT.",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "pg/ml",
+  "classes": [
+  {
+  "title": "IL1",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "0.1",
+  "lowerLimit": "0.1",
+  "upperLimit": "1.9"
+  },
+  {
+  "groupId": "BG001",
+  "value": "0.9",
+  "lowerLimit": ".01",
+  "upperLimit": "1.7"
+  },
+  {
+  "groupId": "BG002",
+  "value": "0.5",
+  "lowerLimit": "0.1",
+  "upperLimit": "1.9"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "IL6",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "8.3",
+  "lowerLimit": "1.5",
+  "upperLimit": "26.4"
+  },
+  {
+  "groupId": "BG001",
+  "value": "12.6",
+  "lowerLimit": "3.7",
+  "upperLimit": "33.8"
+  },
+  {
+  "groupId": "BG002",
+  "value": "10.5",
+  "lowerLimit": "1.5",
+  "upperLimit": "33.8"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "IL8",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "7",
+  "lowerLimit": "2.7",
+  "upperLimit": "17.8"
+  },
+  {
+  "groupId": "BG001",
+  "value": "8.5",
+  "lowerLimit": "4.6",
+  "upperLimit": "13.6"
+  },
+  {
+  "groupId": "BG002",
+  "value": "7.75",
+  "lowerLimit": "2.7",
+  "upperLimit": "17.8"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "TNF Alpha",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "7.3",
+  "lowerLimit": "5.2",
+  "upperLimit": "7.3"
+  },
+  {
+  "groupId": "BG001",
+  "value": "4.5",
+  "lowerLimit": "2.5",
+  "upperLimit": "6.4"
+  },
+  {
+  "groupId": "BG002",
+  "value": "5.9",
+  "lowerLimit": "2.5",
+  "upperLimit": "7.3"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "CRP",
+  "description": "inflammatory marker",
+  "paramType": "MEAN",
+  "dispersionType": "FULL_RANGE",
+  "unitOfMeasure": "mg/L",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "1.8",
+  "lowerLimit": "0.2",
+  "upperLimit": "2.5"
+  },
+  {
+  "groupId": "BG001",
+  "value": "2.1",
+  "lowerLimit": "0.8",
+  "upperLimit": "3.3"
+  },
+  {
+  "groupId": "BG002",
+  "value": "1.95",
+  "lowerLimit": "0.2",
+  "upperLimit": "3.3"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  "outcomeMeasuresModule": {
+  "outcomeMeasures": [
+  {
+  "type": "PRIMARY",
+  "title": "BMI",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Full Range",
+  "unitOfMeasure": "Kg/m^2",
+  "timeFrame": "2 year/end of study",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "1 Placebo",
+  "description": "1 pill before each meal 3-4 times a day for 2 years.\n\nplacebo: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  },
+  {
+  "id": "OG001",
+  "title": "2. Repaglinide",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years.\n\nrepaglinide: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "4"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "19.63",
+  "lowerLimit": "15.56",
+  "upperLimit": "22.64"
+  },
+  {
+  "groupId": "OG001",
+  "value": "21.19",
+  "lowerLimit": "20.78",
+  "upperLimit": "21.8"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Body Composition",
+  "description": "Reporting % of Fat and Lean body mass",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Full Range",
+  "unitOfMeasure": "% body mass",
+  "timeFrame": "2 year/end of study",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "1 Placebo",
+  "description": "1 pill before each meal 3-4 times a day for 2 years.\n\nplacebo: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  },
+  {
+  "id": "OG001",
+  "title": "2. Repaglinide",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years.\n\nrepaglinide: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "4"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "title": "Fat",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "19.82",
+  "lowerLimit": "12",
+  "upperLimit": "37.8"
+  },
+  {
+  "groupId": "OG001",
+  "value": "26.21",
+  "lowerLimit": "8.78",
+  "upperLimit": "34.26"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Lean",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "77.15",
+  "lowerLimit": "59.54",
+  "upperLimit": "87.84"
+  },
+  {
+  "groupId": "OG001",
+  "value": "70.83",
+  "lowerLimit": "62.82",
+  "upperLimit": "87.8"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "CRP",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Full Range",
+  "unitOfMeasure": "mg/L",
+  "timeFrame": "2 year/end of study",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "1 Placebo",
+  "description": "1 pill before each meal 3-4 times a day for 2 years.\n\nplacebo: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  },
+  {
+  "id": "OG001",
+  "title": "2. Repaglinide",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years.\n\nrepaglinide: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "4"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "9.6",
+  "lowerLimit": "0.7",
+  "upperLimit": "27.5"
+  },
+  {
+  "groupId": "OG001",
+  "value": "2",
+  "lowerLimit": "0.6",
+  "upperLimit": "3.7"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Glucose Tolerance",
+  "description": "We completed the OGTT at the 2 year/end of study visit.",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Full Range",
+  "unitOfMeasure": "mg/dl",
+  "timeFrame": "2-year",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "1 Placebo",
+  "description": "1 pill before each meal 3-4 times a day for 2 years.\n\nplacebo: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  },
+  {
+  "id": "OG001",
+  "title": "2. Repaglinide",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years.\n\nrepaglinide: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "4"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "title": "fasting glucose",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "101.5",
+  "lowerLimit": "91",
+  "upperLimit": "121"
+  },
+  {
+  "groupId": "OG001",
+  "value": "94.5",
+  "lowerLimit": "85",
+  "upperLimit": "108"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "2 hour glucose",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "185.75",
+  "lowerLimit": "145",
+  "upperLimit": "258"
+  },
+  {
+  "groupId": "OG001",
+  "value": "184",
+  "lowerLimit": "123",
+  "upperLimit": "266"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Inflammatory Markers",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Full Range",
+  "unitOfMeasure": "pg/ml",
+  "timeFrame": "2 year/end of study",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "1 Placebo",
+  "description": "1 pill before each meal 3-4 times a day for 2 years.\n\nplacebo: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  },
+  {
+  "id": "OG001",
+  "title": "2. Repaglinide",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years.\n\nrepaglinide: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "4"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "title": "IL1",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "0.14",
+  "lowerLimit": "0.13",
+  "upperLimit": "0.17"
+  },
+  {
+  "groupId": "OG001",
+  "value": "0.34",
+  "lowerLimit": "0.13",
+  "upperLimit": "1"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "IL6",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "10.4",
+  "lowerLimit": "0.54",
+  "upperLimit": "28.6"
+  },
+  {
+  "groupId": "OG001",
+  "value": "6",
+  "lowerLimit": "2.2",
+  "upperLimit": "11.9"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "IL8",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "5.8",
+  "lowerLimit": "3.59",
+  "upperLimit": "10.79"
+  },
+  {
+  "groupId": "OG001",
+  "value": "5.2",
+  "lowerLimit": "3.1",
+  "upperLimit": "8.33"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "TNF alpha",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "5.1",
+  "lowerLimit": "2.05",
+  "upperLimit": "7.5"
+  },
+  {
+  "groupId": "OG001",
+  "value": "3.6",
+  "lowerLimit": "1.99",
+  "upperLimit": "5.3"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Wt Z Score",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Full Range",
+  "unitOfMeasure": "Z score",
+  "timeFrame": "2 year/end of study",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "1 Placebo",
+  "description": "1 pill before each meal 3-4 times a day for 2 years.\n\nplacebo: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  },
+  {
+  "id": "OG001",
+  "title": "2. Repaglinide",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years.\n\nrepaglinide: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "4"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-1.21",
+  "lowerLimit": "-1.94",
+  "upperLimit": "0.08"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-0.26",
+  "lowerLimit": "-0.31",
+  "upperLimit": "0.72"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Tanner Stage",
+  "description": "Puberty scale measuring 1-5, 1 being least development, 5 being most development.",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Full Range",
+  "unitOfMeasure": "units on a scale",
+  "timeFrame": "2 year/end of study",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "1 Placebo",
+  "description": "1 pill before each meal 3-4 times a day for 2 years.\n\nplacebo: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  },
+  {
+  "id": "OG001",
+  "title": "2. Repaglinide",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years.\n\nrepaglinide: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "4"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "4.25",
+  "lowerLimit": "4",
+  "upperLimit": "5"
+  },
+  {
+  "groupId": "OG001",
+  "value": "5",
+  "lowerLimit": "5",
+  "upperLimit": "5"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "FEV 1",
+  "description": "% of lung function",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Full Range",
+  "unitOfMeasure": "% lung function",
+  "timeFrame": "2 year/end of study",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "1 Placebo",
+  "description": "1 pill before each meal 3-4 times a day for 2 years.\n\nplacebo: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  },
+  {
+  "id": "OG001",
+  "title": "2. Repaglinide",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years.\n\nrepaglinide: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "4"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "90.5",
+  "lowerLimit": "71",
+  "upperLimit": "99"
+  },
+  {
+  "groupId": "OG001",
+  "value": "91.5",
+  "lowerLimit": "74",
+  "upperLimit": "108"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "C-Peptide",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Full Range",
+  "unitOfMeasure": "pg/ml",
+  "timeFrame": "2 year",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "1 Placebo",
+  "description": "1 pill before each meal 3-4 times a day for 2 years.\n\nplacebo: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with placebo by taking 1 pill before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  },
+  {
+  "id": "OG001",
+  "title": "2. Repaglinide",
+  "description": "repaglinide 0.5 mg before each meal 3-4 times a day for 2 years.\n\nrepaglinide: CF pancreatic insufficient patients with prediabetes by OGTT will be treated with repaglinide 0.5 mg before each meal that contains more than 20 grams of carbohydrate 3-4 times a day for 2 years."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "4"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "title": "fasting",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "1.5",
+  "lowerLimit": "0.8",
+  "upperLimit": "2.3"
+  },
+  {
+  "groupId": "OG001",
+  "value": "1.6",
+  "lowerLimit": "0.6",
+  "upperLimit": "2.5"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "2 hour",
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "7.5",
+  "lowerLimit": "5",
+  "upperLimit": "8.7"
+  },
+  {
+  "groupId": "OG001",
+  "value": "7.7",
+  "lowerLimit": "4.2",
+  "upperLimit": "11.9"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  "adverseEventsModule": {
+  "frequencyThreshold": "0",
+  "timeFrame": "This pilot study was designed to collect data over a 2 year time period.",
+  "description": "Glucose diaries, and food diaries were reviewed, and safety labs were collected at each visit. Physical assessments by the PI were completed as well.",
+  "eventGroups": [
+  {
+  "id": "EG000",
+  "title": "Placebo",
+  "description": "Placebo group of CF pancreatic insufficient patients ages 12-24 years old with impaired glucose tolerance test (IGT) or CFRD without fasting hyperglycemia (CFRD-No FH).",
+  "deathsNumAffected": 0,
+  "deathsNumAtRisk": 8,
+  "seriousNumAffected": 0,
+  "seriousNumAtRisk": 8,
+  "otherNumAffected": 0,
+  "otherNumAtRisk": 8
+  },
+  {
+  "id": "EG001",
+  "title": "Repaglinide",
+  "description": "Repaglinide intervention group of CF pancreatic insufficient patients ages 12-24 years old with impaired glucose tolerance test (IGT) or CFRD without fasting hyperglycemia (CFRD-No FH).",
+  "deathsNumAffected": 0,
+  "deathsNumAtRisk": 8,
+  "seriousNumAffected": 0,
+  "seriousNumAtRisk": 8,
+  "otherNumAffected": 0,
+  "otherNumAtRisk": 8
+  }
+  ]
+  },
+  "moreInfoModule": {
+  "limitationsAndCaveats": {
+  "description": "A limitation of the study was the very small sample size."
+  },
+  "certainAgreement": {
+  "piSponsorEmployee": false,
+  "restrictiveAgreement": false
+  },
+  "pointOfContact": {
+  "title": "Ana Maria Arbelaez",
+  "organization": "Washington University in St Louis",
+  "email": "arbelaez_a@kids.wustl.edu",
+  "phone": "314-286-1138"
+  }
+  }
+  },
+  "derivedSection": {
+  "miscInfoModule": {
+  "versionHolder": "2023-11-28",
+  "modelPredictions": {
+  "bmiLimits": {
+  "minBmi": 0,
+  "maxBmi": 101
+  }
+  }
+  },
+  "conditionBrowseModule": {
+  "meshes": [
+  {
+  "id": "D000003550",
+  "term": "Cystic Fibrosis"
+  },
+  {
+  "id": "D000010188",
+  "term": "Exocrine Pancreatic Insufficiency"
+  },
+  {
+  "id": "D000003920",
+  "term": "Diabetes Mellitus"
+  },
+  {
+  "id": "D000011236",
+  "term": "Prediabetic State"
+  },
+  {
+  "id": "D000018149",
+  "term": "Glucose Intolerance"
+  },
+  {
+  "id": "D000005355",
+  "term": "Fibrosis"
+  }
+  ],
+  "ancestors": [
+  {
+  "id": "D000044882",
+  "term": "Glucose Metabolism Disorders"
+  },
+  {
+  "id": "D000008659",
+  "term": "Metabolic Diseases"
+  },
+  {
+  "id": "D000004700",
+  "term": "Endocrine System Diseases"
+  },
+  {
+  "id": "D000010335",
+  "term": "Pathologic Processes"
+  },
+  {
+  "id": "D000010182",
+  "term": "Pancreatic Diseases"
+  },
+  {
+  "id": "D000004066",
+  "term": "Digestive System Diseases"
+  },
+  {
+  "id": "D000008171",
+  "term": "Lung Diseases"
+  },
+  {
+  "id": "D000012140",
+  "term": "Respiratory Tract Diseases"
+  },
+  {
+  "id": "D000030342",
+  "term": "Genetic Diseases, Inborn"
+  },
+  {
+  "id": "D000007232",
+  "term": "Infant, Newborn, Diseases"
+  },
+  {
+  "id": "D000006943",
+  "term": "Hyperglycemia"
+  }
+  ],
+  "browseLeaves": [
+  {
+  "id": "M8175",
+  "name": "Fibrosis",
+  "asFound": "Fibrosis",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M6805",
+  "name": "Diabetes Mellitus",
+  "asFound": "Diabetes",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M6445",
+  "name": "Cystic Fibrosis",
+  "asFound": "Cystic Fibrosis",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M13807",
+  "name": "Prediabetic State",
+  "asFound": "Pre-diabetes",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M19985",
+  "name": "Glucose Intolerance",
+  "asFound": "Pre-diabetes",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M12798",
+  "name": "Exocrine Pancreatic Insufficiency",
+  "asFound": "Pancreatic Insufficiency",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M11329",
+  "name": "Metabolic Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M25093",
+  "name": "Glucose Metabolism Disorders",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M7552",
+  "name": "Endocrine System Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M12792",
+  "name": "Pancreatic Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M8573",
+  "name": "Gastrointestinal Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M6945",
+  "name": "Digestive System Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M10858",
+  "name": "Lung Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M14667",
+  "name": "Respiratory Tract Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M23376",
+  "name": "Genetic Diseases, Inborn",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M9966",
+  "name": "Infant, Newborn, Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M9684",
+  "name": "Hyperglycemia",
+  "relevance": "LOW"
+  },
+  {
+  "id": "T1710",
+  "name": "Cystic Fibrosis",
+  "asFound": "Cystic Fibrosis",
+  "relevance": "HIGH"
+  }
+  ],
+  "browseBranches": [
+  {
+  "abbrev": "BC23",
+  "name": "Symptoms and General Pathology"
+  },
+  {
+  "abbrev": "All",
+  "name": "All Conditions"
+  },
+  {
+  "abbrev": "BC18",
+  "name": "Nutritional and Metabolic Diseases"
+  },
+  {
+  "abbrev": "BC19",
+  "name": "Gland and Hormone Related Diseases"
+  },
+  {
+  "abbrev": "BC06",
+  "name": "Digestive System Diseases"
+  },
+  {
+  "abbrev": "BC08",
+  "name": "Respiratory Tract (Lung and Bronchial) Diseases"
+  },
+  {
+  "abbrev": "BC16",
+  "name": "Diseases and Abnormalities at or Before Birth"
+  },
+  {
+  "abbrev": "Rare",
+  "name": "Rare Diseases"
+  }
+  ]
+  },
+  "interventionBrowseModule": {
+  "meshes": [
+  {
+  "id": "C000072379",
+  "term": "Repaglinide"
+  }
+  ],
+  "ancestors": [
+  {
+  "id": "D000007004",
+  "term": "Hypoglycemic Agents"
+  },
+  {
+  "id": "D000045505",
+  "term": "Physiological Effects of Drugs"
+  }
+  ],
+  "browseLeaves": [
+  {
+  "id": "M9744",
+  "name": "Hypoglycemic Agents",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M352694",
+  "name": "Repaglinide",
+  "asFound": "Femoral nerve block",
+  "relevance": "HIGH"
+  }
+  ],
+  "browseBranches": [
+  {
+  "abbrev": "Hypo",
+  "name": "Hypoglycemic Agents"
+  },
+  {
+  "abbrev": "All",
+  "name": "All Drugs and Chemicals"
+  }
+  ]
+  }
+  },
+  "hasResults": true
+  }
