@@ -2729,7 +2729,8 @@ CREATE TABLE support.study_json_records (
     saved_study_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    download_date character varying
+    download_date character varying,
+    version character varying DEFAULT '1'::character varying
 );
 
 
@@ -4600,6 +4601,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230416235053'),
 ('20230628231316'),
 ('20230629000057'),
-('20230720150513');
+('20230720150513'),
+('20231012015547');
 
 

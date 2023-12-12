@@ -17,7 +17,6 @@ server.env
 .env
 *.secret
 .byebug_history
-/config/connections.yml
 data
 /public/static/documentation/schema.dot
 /storage

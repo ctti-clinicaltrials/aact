@@ -64,18 +64,6 @@ jobs:
           PGPASSWORD=password psql -h localhost -U rails -d aact_admin_test < db/admin_structure.sql
           PGPASSWORD=password psql -h localhost -U rails -d aact_public_test < db/public_structure.sql
 
-      # Add or replace config/connections.yml file steps here
-      - name: Build config/connections.yml
-        run: |
-          echo "public:" >> config/connections.yml
-          echo "  encoding: utf8" >> config/connections.yml
-          echo "  adapter: postgresql" >> config/connections.yml
-          echo "  host: localhost" >> config/connections.yml
-          echo "  port: 5432" >> config/connections.yml
-          echo "  database: aact_public_test" >> config/connections.yml
-          echo "  user: rails" >> config/connections.yml
-          echo "  password: password" >> config/connections.yml
-
       # Add or replace test runners here
       - name: Run tests
         run: |

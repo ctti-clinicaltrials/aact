@@ -46,6 +46,7 @@ test:
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: acct_test
+    schema_search_path: ctgov,support,public
   admin:
     <<: *default
     host: localhost
