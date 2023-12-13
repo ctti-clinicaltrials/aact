@@ -443,7 +443,8 @@ CREATE TABLE ctgov.design_groups (
     nct_id character varying,
     group_type character varying,
     title character varying,
-    description text
+    description text,
+    group_intervention_names character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -4602,6 +4603,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230628231316'),
 ('20230629000057'),
 ('20230720150513'),
-('20231012015547');
+('20231012015547'),
+('20231213221008');
 
 
