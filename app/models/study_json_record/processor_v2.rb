@@ -105,8 +105,8 @@ class StudyJsonRecord::ProcessorV2
       nct_id: nct_id,
       nlm_download_date_description: nil,
       study_first_submitted_date: convert_to_date(status['studyFirstSubmitDate']),
-      study_first_submitted_qc_date: status['studyFirstSubmitQcDate'],
-      study_first_posted_date: study_posted['date'],
+      study_first_submitted_qc_date: convert_to_date(status['studyFirstSubmitQcDate']),
+      study_first_posted_date: convert_to_date(study_posted['date']),
       study_first_posted_date_type: study_posted['type'],
       results_first_submitted_date: convert_to_date(status['resultsFirstSubmitDate']),
       results_first_submitted_qc_date: status['resultsFirstSubmitQcDate'],
@@ -117,8 +117,8 @@ class StudyJsonRecord::ProcessorV2
       disposition_first_posted_date: disp_posted['date'],
       disposition_first_posted_date_type: disp_posted['type'],
       last_update_submitted_date: convert_to_date(status['lastUpdateSubmitDate']),
-      last_update_submitted_qc_date: status['lastUpdateSubmitDate'], # this should not go here (Ramiro comment)
-      last_update_posted_date: last_posted['date'],
+      last_update_submitted_qc_date: convert_to_date(status['lastUpdateSubmitDate']), # this should not go here (Ramiro comment)
+      last_update_posted_date: convert_to_date(last_posted['date']),
       last_update_posted_date_type: last_posted['type'],
       start_month_year: start_date['date'],
       start_date_type: start_date['type'],
@@ -144,7 +144,7 @@ class StudyJsonRecord::ProcessorV2
       enrollment_type: enrollment['type'],
       source: ident.dig('organization', 'fullName'),
       source_class: ident.dig('organization', 'class'),
-      limitations_and_caveats: key_check(more_info['limitationsAndCaveats'])['description'],
+      limitations_and_caveats: key_check(more_info&.dig('limitationsAndCaveats'))&.dig('description'),
       number_of_arms: arms_count,
       number_of_groups: groups_count,
       target_duration: design['targetDuration'],
@@ -284,6 +284,7 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def convert_to_date(str)
+    return unless str
     case str.split('-').length
     when 1
       Date.strptime(str, '%Y').end_of_year

@@ -1,16 +1,20 @@
 class StudyDownloader
-    def self.download(nct_ids)
-      
+    def self.download(nct_ids, version='2')
       nct_ids.each do |nct_id|
-        record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.create(nct_id: nct_id, content: {})
-        update_from_apiV2(record, nct_id)
+        case version
+        when '2'
+          record = StudyJsonRecord.find_by(nct_id: nct_id, version: version) || StudyJsonRecord.create(nct_id: nct_id, content: {}, version: version)
+          update_from_apiV2(record, nct_id) 
+        when '1'
+          record = StudyJsonRecord.find_by(nct_id: nct_id, version: version) || StudyJsonRecord.create(nct_id: nct_id, content: {}, version: version)
+          record.update_from_api
+        else
+          raise "Unknown version: #{version}"
+        end
         puts "Study id: #{record.id}, study nct_id: #{record.nct_id}, version: #{record.version}"
       end
-      # example for testing ['NCT02071602', 'NCT00430612', 'NCT00785954', 'NCT00103350', 'NCT03445728', 'NCT03649711']
-
     end
 
-    
     def self.update_from_apiV2(record, nct_id)
       data = nil
       response = nil
