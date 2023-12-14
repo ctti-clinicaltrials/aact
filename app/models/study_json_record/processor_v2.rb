@@ -227,6 +227,13 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def ipd_information_types_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    ipd_sharing_info_types = protocol_section.dig('ipdSharingStatementModule', 'infoTypes')
+    return unless ipd_sharing_info_types
+
+    { nct_id: nct_id, name: ipd_sharing_info_types }
   end
 
   def keywords_data

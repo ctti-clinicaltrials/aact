@@ -329,4 +329,20 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
+  describe '#ipd_information_types_data' do
+    it 'should use JSON API to generate data that will be inserted into the ipd information types table' do
+      expected_data = {
+        nct_id: "NCT03630471",
+        name: [
+          "STUDY_PROTOCOL",
+          "SAP",
+          "ICF"
+        ]
+      }
+      hash = JSON.parse(File.read('spec/support/json_data/NCT03630471.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(processor.ipd_information_types_data).to eq(expected_data)
+    end
+  end
+
 end
