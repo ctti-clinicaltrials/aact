@@ -329,7 +329,7 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
-  describe 'design_data' do
+  describe '#design_data' do
     it 'should test design_data' do
       expected_data = {
         nct_id: 'NCT03418623',
