@@ -194,6 +194,29 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def eligibility_data
+    return unless protocol_section
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+  
+    eligibility = protocol_section.dig('eligibilityModule')
+    return unless eligibility
+  
+    std_ages = eligibility.dig('stdAges')
+  
+    {
+      nct_id: nct_id,
+      sampling_method: eligibility['samplingMethod'],
+      population: eligibility['studyPopulation'],
+      maximum_age: eligibility['maximumAge'] || 'N/A',
+      minimum_age: eligibility['minimumAge'] || 'N/A',
+      gender: eligibility['sex'],
+      gender_based: get_boolean(eligibility['genderBased']),
+      gender_description: eligibility['genderDescription'],
+      healthy_volunteers: eligibility['healthyVolunteers'],
+      criteria: eligibility['eligibilityCriteria'],
+      adult: std_ages.include?('ADULT'),
+      child: std_ages.include?('CHILD'),
+      older_adult: std_ages.include?('OLDER_ADULT')
+    }
   end
 
   def participant_flow_data

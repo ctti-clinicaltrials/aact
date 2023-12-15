@@ -329,4 +329,27 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
+  describe '#eligibility_data' do
+    it 'should test eligibility_data' do
+      expected_data = {
+        nct_id: 'NCT06171568',
+        sampling_method: 'NON_PROBABILITY_SAMPLE',
+        population: 'Patients hospitalized at Lariboisière hospital...',
+        maximum_age: 'N/A',
+        minimum_age: '18 Years',
+        gender: 'ALL',
+        gender_based: nil,
+        gender_description: nil,
+        healthy_volunteers: false,
+        criteria: "Inclusion Criteria:\n\n* Patient over 18 years...",
+        adult: true,
+        child: false,
+        older_adult: true
+      }
+    
+      hash = JSON.parse(File.read('spec/support/json_data/NCT06171568.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(processor.eligibility_data).to eq(expected_data)
+    end
+  end
 end
