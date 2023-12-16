@@ -324,34 +324,24 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
         group_type: "EXPERIMENTAL",
         title: "Group A",
         description: "Group A (up to n=5): Genius exposure 1-3 hours before tissue resection",
-        group_intervention_names: ["Device: Genius"]
       },
       {
         nct_id: "NCT04207047",
         group_type: "EXPERIMENTAL",
         title: "Group B",
         description: "Group B (up to n=5): Genius exposure 30+7 days, 14+3 days, and 7+3 days before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.",
-        group_intervention_names: ["Device: Genius"]
       },
       {
         nct_id: "NCT04207047",
         group_type: "EXPERIMENTAL",
         title: "Group C",
         description: "Group C (up to n=5): Genius exposure 90+14 days, 60+10 days, and 30+7 days before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.",
-        group_intervention_names: ["Device: Genius"]
       },
       {
         nct_id: "NCT04207047",
         group_type: "EXPERIMENTAL",
         title: "Group D",
         description: "Group D (up to n=10): Genius, LaseMD, LaseMD FLEX, eCO2 and/or PicoPlus exposure 14+3 days, 7+3 days, and 1-3 hours before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.",
-        group_intervention_names: [
-          "Device: Genius",
-          "Device: eC02",
-          "Device: PicoPlus",
-          "Device: LaseMD",
-          "Device: LaseMD Flex"
-        ]
       }
       hash = JSON.parse(File.read('spec/support/json_data/NCT04207047.json'))
       processor = StudyJsonRecord::ProcessorV2.new(hash)

@@ -188,8 +188,7 @@ class StudyJsonRecord::ProcessorV2
                       nct_id: nct_id,
                       group_type: group['type'],
                       title: group['label'],
-                      description: group['description'],
-                      group_intervention_names: group['interventionNames']
+                      description: group['description']
                     }
     end
     collection
