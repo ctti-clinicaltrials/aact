@@ -329,4 +329,25 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
+  describe '#keywords_data' do
+    it 'should use JSON API to generate data that will be inserted into the keywords data table' do
+      expected_data = [
+        { nct_id: "NCT02552212", name: "Axial Spondyloarthritis", downcase_name: "Axial Spondyloarthritis".downcase },
+        { nct_id: "NCT02552212", name: "axSpA", downcase_name: "axSpA".downcase },
+        { nct_id: "NCT02552212", name: "Ankylosing Spondylitis", downcase_name: "Ankylosing Spondylitis".downcase },
+        { nct_id: "NCT02552212", name: "Anti TNF-alpha", downcase_name: "Anti TNF-alpha".downcase },
+        { nct_id: "NCT02552212", name: "Certolizumab Pegol", downcase_name: "Certolizumab Pegol".downcase },
+        { nct_id: "NCT02552212", name: "Nr-axSpA", downcase_name: "Nr-axSpA".downcase },
+        { nct_id: "NCT02552212", name: "Non-radiographic", downcase_name: "Non-radiographic".downcase },
+        { nct_id: "NCT02552212", name: "Spondylarthropathies", downcase_name: "Spondylarthropathies".downcase },
+        { nct_id: "NCT02552212", name: "Arthritis", downcase_name: "Arthritis".downcase },
+        { nct_id: "NCT02552212", name: "Spinal Diseases", downcase_name: "Spinal Diseases".downcase },
+        { nct_id: "NCT02552212", name: "Immunosuppressive Agents", downcase_name: "Immunosuppressive Agents".downcase }
+      ]
+      hash = JSON.parse(File.read('spec/support/json_data/NCT02552212.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(processor.keywords_data).to eq(expected_data)
+    end
+  end
+
 end
