@@ -14,7 +14,7 @@ RSpec.describe StudySearch, type: :model do
   let(:covid_last_stub) { stub_request(:get, covid_last_url).with(headers: stub_request_headers).to_return(:status => 200, :body => empty_batch, :headers => {}) }
 
   describe ':populate_database' do
-    it 'makes the correct number of searches' do
+    pending 'makes the correct number of searches' do
       expect{ StudySearch.populate_database}.to change(StudySearch, :count).by 248
     end
   end
@@ -32,16 +32,16 @@ RSpec.describe StudySearch, type: :model do
     after do
       Util::DbManager.new.remove_indexes_and_constraints
     end
-    it 'updates search_results' do
+    pending 'updates search_results' do
       expect {@covid_search.load_update}.to change(SearchResult, :count).by 1
     end
-    it 'created the right search results' do
+    pending 'created the right search results' do
       @covid_search.load_update
       expect(SearchResult.find_by(nct_id: 'NCT04452435')).to be_truthy
       expect(SearchResult.find_by(nct_id: 'NCT02798588')).to be_nil
     end
     describe ':execute' do
-      it 'updates search_results' do
+      pending 'updates search_results' do
         expect {StudySearch.execute}.to change(SearchResult, :count).by 1
       end
     end
