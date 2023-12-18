@@ -317,8 +317,6 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
-  
-
   describe '#brief_summary_data' do
     it 'should test brief_summary_data' do
       expected_data = {
