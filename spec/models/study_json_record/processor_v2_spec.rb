@@ -329,4 +329,19 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
+  describe '#documents_data' do
+    it 'should test documents_data' do
+      expected_data = {
+        nct_id: 'NCT00465816',
+        document_id: '109063',
+        document_type: 'Dataset Specification',
+        url: 'https://www.clinicalstudydatarequest.com',
+        comment: 'For additional information about this study please refer to the GSK Clinical Study Register'
+      }
+
+      hash = JSON.parse(File.read('spec/support/json_data/NCT00465816.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(processor.documents_data.first).to eq(expected_data)
+    end
+  end
 end
