@@ -3,6 +3,10 @@ class StudyJsonRecord::ProcessorV2
   def initialize(json)
     @json = json
   end
+
+  def contacts_location_module
+    protocol_section.dig('contactsLocationsModule')
+  end
   
   def protocol_section
     @json['protocolSection']
@@ -174,12 +178,36 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def design_groups_data
+    return unless protocol_section
+
+    ident = protocol_section['identificationModule']
+    nct_id = ident['nctId']
+    arms_intervention = key_check(protocol_section['armsInterventionsModule'])
+    arms_groups = key_check(arms_intervention['armGroups'])
+    return unless arms_groups
+
+    collection = []
+    arms_groups.each do |group|
+      collection << {
+                      nct_id: nct_id,
+                      group_type: group['type'],
+                      title: group['label'],
+                      description: group['description']
+                    }
+    end
+    collection
   end
 
   def interventions_data
   end
 
   def detailed_description_data
+    return unless protocol_section
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    description = protocol_section.dig('descriptionModule' ,'detailedDescription')
+    return unless description
+
+    { nct_id: nct_id, description: description }
   end
 
   def brief_summary_data
@@ -220,9 +248,43 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def central_contacts_data
+    return unless contacts_location_module
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    central_contacts = contacts_location_module.dig('centralContacts')
+    return unless central_contacts
+
+    collection = []
+    central_contacts.each_with_index do |contact, index|
+      collection << {
+                      nct_id: nct_id,
+                      contact_type: index == 0 ? 'primary' : 'backup',
+                      name: contact['name'],
+                      phone: contact['phone'],
+                      email: contact['email'],
+                      phone_extension: contact['phoneExt'],
+                      role: contact["role"]
+                     }
+    end
+    collection
   end
 
   def conditions_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+
+    conditions_module = protocol_section['conditionsModule']
+    return unless conditions_module
+
+    conditions = conditions_module.dig('conditions')
+    return unless conditions
+
+    collection = []
+    conditions.each do |condition|
+      collection << { nct_id: nct_id, name: condition, downcase_name: condition.try(:downcase) }
+    end
+    collection
   end
 
   def countries_data
@@ -238,9 +300,33 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def ipd_information_types_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    ipd_sharing_info_types = protocol_section.dig('ipdSharingStatementModule', 'infoTypes')
+    return unless ipd_sharing_info_types
+
+    collection = []
+    ipd_sharing_info_types.each do |info|
+      collection << { nct_id: nct_id, name: info }
+    end
+
+    collection
   end
 
   def keywords_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    keywords = protocol_section.dig('conditionsModule', 'keywords')
+    return unless keywords
+
+    collection = []
+    keywords.each do |keyword|
+      collection << { nct_id: nct_id, name: keyword, downcase_name: keyword.downcase }
+    end
+    
+    collection
   end
 
   def links_data
