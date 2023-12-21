@@ -360,6 +360,26 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
+  describe 'conditions_data' do
+    let(:test_json) do 
+      {
+        'protocolSection' => {
+          'identificationModule' => { 'nctId' => '12345' },
+          'conditionsModule' => { 'conditions' => ['Condition1', 'Condition2'] }
+        }
+      }
+    end
+    
+    it 'returns a collection with correct conditions data' do
+      expected_output = [
+        { nct_id: '12345', name: 'Condition1', downcase_name: 'condition1' },
+        { nct_id: '12345', name: 'Condition2', downcase_name: 'condition2' }
+      ]
+      processor = StudyJsonRecord::ProcessorV2.new(test_json)
+      expect(processor.conditions_data).to eq(expected_output)
+    end
+  end
+
   describe '#keywords_data' do
     it 'should use JSON API to generate data that will be inserted into the keywords data table' do
       expected_data = [
@@ -424,6 +444,5 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
             expect(processor.central_contacts_data).to eq(expected_data)
         end
     end
-
-
 end
+
