@@ -225,6 +225,17 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def participant_flow_data
+    return unless protocol_section
+    ident = protocol_section['identificationModule']
+    nct_id = ident['nctId']
+    participant_flow = results_section['participantFlowModule']
+
+    {
+      nct_id: nct_id,
+      recruitment_details: participant_flow['recruitmentDetails'],
+      pre_assignment_details: participant_flow['preAssignmentDetails'],
+      units_analyzed: participant_flow['typeUnitsAnalyzed']
+    }
   end
 
   def baseline_measurements_data

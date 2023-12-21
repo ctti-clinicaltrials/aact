@@ -1,0 +1,841 @@
+{
+  "protocolSection": {
+    "identificationModule": {
+      "nctId": "NCT02299791",
+      "orgStudyIdInfo": {
+        "id": "1R18HL095481-01A1",
+        "type": "NIH",
+        "link": "https://reporter.nih.gov/quickSearch/1R18HL095481-01A1"
+      },
+      "secondaryIdInfos": [
+        {
+          "id": "1R18HL095481-01A1",
+          "type": "NIH",
+          "link": "https://reporter.nih.gov/quickSearch/1R18HL095481-01A1"
+        }
+      ],
+      "organization": {
+        "fullName": "Kaiser Permanente",
+        "class": "OTHER"
+      },
+      "briefTitle": "Dissemination of CVD Risk Factor Treatment Among Diabetic Patients in Safety Net Clinics",
+      "officialTitle": "Dissemination of CVD Risk Factor Treatment Among Diabetic Patients in Safety Net Clinics",
+      "acronym": "ALL"
+    },
+    "statusModule": {
+      "statusVerifiedDate": "2017-10",
+      "overallStatus": "COMPLETED",
+      "expandedAccessInfo": {
+        "hasExpandedAccess": false
+      },
+      "startDateStruct": {
+        "date": "2010-09"
+      },
+      "primaryCompletionDateStruct": {
+        "date": "2014-05",
+        "type": "ACTUAL"
+      },
+      "completionDateStruct": {
+        "date": "2014-05",
+        "type": "ACTUAL"
+      },
+      "studyFirstSubmitDate": "2014-11-07",
+      "studyFirstSubmitQcDate": "2014-11-20",
+      "studyFirstPostDateStruct": {
+        "date": "2014-11-24",
+        "type": "ESTIMATED"
+      },
+      "resultsFirstSubmitDate": "2017-03-30",
+      "resultsFirstSubmitQcDate": "2017-10-02",
+      "resultsFirstPostDateStruct": {
+        "date": "2017-10-04",
+        "type": "ACTUAL"
+      },
+      "lastUpdateSubmitDate": "2017-10-02",
+      "lastUpdatePostDateStruct": {
+        "date": "2017-10-04",
+        "type": "ACTUAL"
+      }
+    },
+    "sponsorCollaboratorsModule": {
+      "responsibleParty": {
+        "type": "SPONSOR"
+      },
+      "leadSponsor": {
+        "name": "Kaiser Permanente",
+        "class": "OTHER"
+      },
+      "collaborators": [
+        {
+          "name": "National Heart, Lung, and Blood Institute (NHLBI)",
+          "class": "NIH"
+        },
+        {
+          "name": "OCHIN, Inc.",
+          "class": "OTHER"
+        },
+        {
+          "name": "Virginia Garcia Memorial Health Center",
+          "class": "UNKNOWN"
+        },
+        {
+          "name": "Multnomah County Health Department",
+          "class": "OTHER_GOV"
+        },
+        {
+          "name": "Oregon Health and Science University",
+          "class": "OTHER"
+        }
+      ]
+    },
+    "oversightModule": {
+      "oversightHasDmc": false
+    },
+    "descriptionModule": {
+      "briefSummary": "The purpose of the ALL Study is to determine the effectiveness of the dissemination of the ALL intervention from an integrated care setting into Community Health Centers (CHCs) by measuring changes in diabetes mellitus (DM) population prescription rates for the medications, using a pre-post comparison within clinics and a staggered, randomized implementation across clinics.",
+      "detailedDescription": "The ALL Initiative ('ALL') is a population-level management program developed at Kaiser Permanente (KP). It seeks to decrease cardiovascular disease (CVD) morbidity and mortality in patients with diabetes by improving rates of prescribing for guideline-concordant cardioprotective medications. Multiple mechanisms supported this intervention at KP. The investigators implemented ALL in 11 Community Health Centers (CHC) in the Portland, Oregon metropolitan area. To our knowledge, this was the first clinical trial testing the translation and implementation of a successful quality improvement (QI) initiative from a private, integrated care setting into CHCs.\n\nThe investigators adapted the ALL intervention for CHCs through an iterative, stakeholder-driven process. The investigators then conducted a cluster-randomized pragmatic trial in 11 CHCs in a staggered process with six 'early' CHCs implementing the intervention one year before five 'late' CHCs. The investigators measured monthly rates of cardioprotective prescribing rates. Through segmented regression analysis, the investigators evaluated the intervention's effects in June 2011-May 2013. Participants included 11 CHCs serving \\~6,500 adult patients with diabetes mellitus (DM) who were indicated for cardioprotective medications per national guidelines. The investigators also conducted a process evaluation to identify factors important to implementation success.\n\nOur overarching goals were to identify and resolve issues in disseminating a successful program from a large, well-organized health system into CHCs. The investigators hypothesized that cross-setting translation was feasible, and that adapting and implementing proven QI approaches could improve the care CHCs provide without requiring them to develop native initiatives. The investigators anticipated that this implementation would involve substantially adapting potentially 'translatable' practices and interventions, due to the differences between private, integrated care settings and CHCs in terms of patient needs and vulnerability, and system resources."
+    },
+    "conditionsModule": {
+      "conditions": [
+        "Diabetes Mellitus",
+        "Cardiovascular Diseases"
+      ],
+      "keywords": [
+        "clinic-level interventions",
+        "quality improvement",
+        "translational medical research",
+        "community health centers"
+      ]
+    },
+    "designModule": {
+      "studyType": "INTERVENTIONAL",
+      "phases": [
+        "NA"
+      ],
+      "designInfo": {
+        "allocation": "RANDOMIZED",
+        "interventionModel": "PARALLEL",
+        "primaryPurpose": "HEALTH_SERVICES_RESEARCH",
+        "maskingInfo": {
+          "masking": "NONE"
+        }
+      },
+      "enrollmentInfo": {
+        "count": 4856,
+        "type": "ACTUAL"
+      }
+    },
+    "armsInterventionsModule": {
+      "armGroups": [
+        {
+          "label": "Early Intervention",
+          "type": "ACTIVE_COMPARATOR",
+          "description": "6 study clinics received the ALL intervention starting 6/1/11",
+          "interventionNames": [
+            "Other: ALL"
+          ]
+        },
+        {
+          "label": "Late implementation",
+          "type": "ACTIVE_COMPARATOR",
+          "description": "5 study clinics received the ALL intervention starting 6/1/12",
+          "interventionNames": [
+            "Other: ALL"
+          ]
+        }
+      ],
+      "interventions": [
+        {
+          "type": "OTHER",
+          "name": "ALL",
+          "description": "This clinic-level intervention involves a toolkit of decision support tools. These tools are listed below.\n\n1. EHR tools to expedite identification\n\n   a. EHR automated point-of-care alerts (Best Practice Alerts)\n2. EHR tools to expedite prescribing\n\n   1. EHR order sets\n   2. EHR text shortcuts for notation\n   3. patient education materials (handout, poster)\n3. EHR-based outreach support tools a. EHR registries",
+          "armGroupLabels": [
+            "Early Intervention"
+          ]
+        },
+        {
+          "type": "OTHER",
+          "name": "ALL",
+          "description": "These clinics got the same exact intervention, but one year later, as this was a staggered randomized trial.",
+          "armGroupLabels": [
+            "Late implementation"
+          ]
+        }
+      ]
+    },
+    "outcomesModule": {
+      "primaryOutcomes": [
+        {
+          "measure": "Patients Indicated for ACE/ARB and Statin Who Had an Active Prescription for Both",
+          "description": "Number of patients indicated for ACE/ARB and statin who had an active prescription for both, as a proportion of patients indicated for ACE/ARB and statin.",
+          "timeFrame": "Percent of clinic patients prescribed guideline-concordant cardioprotective medications, as of the 1st day of each month, from up to 36 months"
+        }
+      ]
+    },
+    "eligibilityModule": {
+      "eligibilityCriteria": "Inclusion Criteria:\n\n* Convenience sample of 11 community health clinics (CHCs) that are members of OCHIN, Inc.\n\nExclusion Criteria:\n\n* none, for study CHCs",
+      "healthyVolunteers": false,
+      "sex": "ALL",
+      "minimumAge": "18 Years",
+      "maximumAge": "75 Years",
+      "stdAges": [
+        "ADULT",
+        "OLDER_ADULT"
+      ]
+    },
+    "contactsLocationsModule": {
+      "overallOfficials": [
+        {
+          "name": "Rachel Gold, PhD, MPH",
+          "affiliation": "Kaiser Permanente",
+          "role": "PRINCIPAL_INVESTIGATOR"
+        }
+      ]
+    },
+    "referencesModule": {
+      "references": [
+        {
+          "pmid": "22864500",
+          "type": "RESULT",
+          "citation": "Gold R, Muench J, Hill C, Turner A, Mital M, Milano C, Shah A, Nelson C, DeVoe JE, Nichols GA. Collaborative development of a randomized study to adapt a diabetes quality improvement initiative for federally qualified health centers. J Health Care Poor Underserved. 2012 Aug;23(3 Suppl):236-46. doi: 10.1353/hpu.2012.0132."
+        },
+        {
+          "pmid": "28381249",
+          "type": "DERIVED",
+          "citation": "Gold R, Bunce A, Cowburn S, Davis JV, Hollombe C, Nelson CA, Puro J, Muench J, Hill C, Jaworski V, Mercer M, Howard C, Perrin N, DeVoe J. Cardiovascular care guideline implementation in community health centers in Oregon: a mixed-methods analysis of real-world barriers and challenges. BMC Health Serv Res. 2017 Apr 5;17(1):253. doi: 10.1186/s12913-017-2194-3."
+        },
+        {
+          "pmid": "27113199",
+          "type": "DERIVED",
+          "citation": "Gold R, Bunce AE, Cohen DJ, Hollombe C, Nelson CA, Proctor EK, Pope JA, DeVoe JE. Reporting on the Strategies Needed to Implement Proven Interventions: An Example From a \"Real-World\" Cross-Setting Implementation Study. Mayo Clin Proc. 2016 Aug;91(8):1074-83. doi: 10.1016/j.mayocp.2016.03.014. Epub 2016 Apr 23."
+        },
+        {
+          "pmid": "26059264",
+          "type": "DERIVED",
+          "citation": "Gold R, Nelson C, Cowburn S, Bunce A, Hollombe C, Davis J, Muench J, Hill C, Mital M, Puro J, Perrin N, Nichols G, Turner A, Mercer M, Jaworski V, Howard C, Abiles E, Shah A, Dudl J, Chan W, DeVoe J. Feasibility and impact of implementing a private care system's diabetes quality improvement intervention in the safety net: a cluster-randomized trial. Implement Sci. 2015 Jun 10;10:83. doi: 10.1186/s13012-015-0259-4."
+        }
+      ],
+      "seeAlsoLinks": [
+        {
+          "label": "PubMed",
+          "url": "http://www.ncbi.nlm.nih.gov/pubmed?term=Collaborative%20development%20of%20a%20randomized%20study%20to%20adapt%20a%20diabetes%20quality%20improvement%20initiative%20for%20federally%20qualified%20health%20centers%5BTitle%5D"
+        }
+      ]
+    },
+    "ipdSharingStatementModule": {
+      "ipdSharing": "NO"
+    }
+  },
+  "resultsSection": {
+    "participantFlowModule": {
+      "recruitmentDetails": "Recruitment was done at the clinic level. All patients seen in the clinics were potentially eligible for the intervention based on clinic visit and clinical criteria.",
+      "preAssignmentDetails": "There were two additional nested substudy randomizations after initial trial enrolment (see inclusion/exclusion criteria for eligibility). From 8/2009 to 6/2010, eligible children were randomized to once vs twice daily abacavir+lamivudine. From 9/2009 to 2/2011, eligible children were randomized to stop vs continue cotrimoxazole prophylaxis.",
+      "typeUnitsAnalyzed": "Clinics",
+      "groups": [
+        {
+          "id": "FG000",
+          "title": "Early Intervention Number of Patients",
+          "description": "Patients in 6 study clinics received the ALL intervention starting 6/1/11\n\nALL: This clinic-level intervention involves a toolkit of decision support tools. These tools are listed below.\n\n1. EHR tools to expedite identification\n\n   a. EHR automated point-of-care alerts (Best Practice Alerts)\n2. EHR tools to expedite prescribing\n\n   1. EHR order sets\n   2. EHR text shortcuts for notation\n   3. patient education materials (handout, poster)\n3. EHR-based outreach support tools a. EHR registries"
+        },
+        {
+          "id": "FG001",
+          "title": "Late Interventions Number of Patients",
+          "description": "5 study clinics received the ALL intervention starting 6/1/12\n\nALL: These clinics got the same exact intervention, but one year later, as this was a staggered randomized trial."
+        }
+      ],
+      "periods": [
+        {
+          "title": "Overall Study",
+          "milestones": [
+            {
+              "type": "STARTED",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "2053",
+                  "numUnits": "6"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "2803",
+                  "numUnits": "5"
+                }
+              ]
+            },
+            {
+              "type": "COMPLETED",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "2053",
+                  "numUnits": "6"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "2803",
+                  "numUnits": "5"
+                }
+              ]
+            },
+            {
+              "type": "NOT COMPLETED",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "0",
+                  "numUnits": "0"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "0",
+                  "numUnits": "0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "baselineCharacteristicsModule": {
+      "groups": [
+        {
+          "id": "BG000",
+          "title": "Early Intervention",
+          "description": "6 study clinics received the ALL intervention starting 6/1/11\n\nALL: This clinic-level intervention involves a toolkit of decision support tools. These tools are listed below.\n\n1. EHR tools to expedite identification\n\n   a. EHR automated point-of-care alerts (Best Practice Alerts)\n2. EHR tools to expedite prescribing\n\n   1. EHR order sets\n   2. EHR text shortcuts for notation\n   3. patient education materials (handout, poster)\n3. EHR-based outreach support tools a. EHR registries"
+        },
+        {
+          "id": "BG001",
+          "title": "Late Implementation",
+          "description": "5 study clinics received the ALL intervention starting 6/1/12\n\nALL: These clinics got the same exact intervention, but one year later, as this was a staggered randomized trial."
+        },
+        {
+          "id": "BG002",
+          "title": "Total",
+          "description": "Total of all reporting groups"
+        }
+      ],
+      "denoms": [
+        {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "2053"
+            },
+            {
+              "groupId": "BG001",
+              "value": "2803"
+            },
+            {
+              "groupId": "BG002",
+              "value": "4856"
+            }
+          ]
+        }
+      ],
+      "measures": [
+        {
+          "title": "Age, Categorical",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "categories": [
+                {
+                  "title": "<=18 years",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "0"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "title": "Between 18 and 65 years",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "1518"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "2244"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "3762"
+                    }
+                  ]
+                },
+                {
+                  "title": ">=65 years",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "535"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "559"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "1094"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Age, Continuous",
+          "paramType": "MEAN",
+          "dispersionType": "FULL_RANGE",
+          "unitOfMeasure": "Years",
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "62",
+                      "lowerLimit": "18",
+                      "upperLimit": "75"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "63",
+                      "lowerLimit": "18",
+                      "upperLimit": "75"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "63",
+                      "lowerLimit": "18",
+                      "upperLimit": "75"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sex: Female, Male",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "categories": [
+                {
+                  "title": "Female",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "1240"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "1634"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "2874"
+                    }
+                  ]
+                },
+                {
+                  "title": "Male",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "813"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "1169"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "1982"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Ethnicity (NIH/OMB)",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "categories": [
+                {
+                  "title": "Hispanic or Latino",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "659"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "900"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "1559"
+                    }
+                  ]
+                },
+                {
+                  "title": "Not Hispanic or Latino",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "1374"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "1877"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "3251"
+                    }
+                  ]
+                },
+                {
+                  "title": "Unknown or Not Reported",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "20"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "26"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "46"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Race (NIH/OMB)",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "categories": [
+                {
+                  "title": "American Indian or Alaska Native",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "16"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "22"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "38"
+                    }
+                  ]
+                },
+                {
+                  "title": "Asian",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "101"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "138"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "239"
+                    }
+                  ]
+                },
+                {
+                  "title": "Native Hawaiian or Other Pacific Islander",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "14"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "19"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "33"
+                    }
+                  ]
+                },
+                {
+                  "title": "Black or African American",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "179"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "244"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "423"
+                    }
+                  ]
+                },
+                {
+                  "title": "White",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "1258"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "1717"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "2975"
+                    }
+                  ]
+                },
+                {
+                  "title": "More than one race",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "0"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "title": "Unknown or Not Reported",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "485"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "663"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "1148"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Region of Enrollment",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "title": "United States",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "2053"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "2803"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "4856"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "outcomeMeasuresModule": {
+      "outcomeMeasures": [
+        {
+          "type": "PRIMARY",
+          "title": "Patients Indicated for ACE/ARB and Statin Who Had an Active Prescription for Both",
+          "description": "Number of patients indicated for ACE/ARB and statin who had an active prescription for both, as a proportion of patients indicated for ACE/ARB and statin.",
+          "populationDescription": "clinic patients with diabetes who had a clinic encounter (in person or by telephone) within the previous year and were indicated for ACE/ARB and statin per current national care guidelines",
+          "reportingStatus": "POSTED",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "timeFrame": "Percent of clinic patients prescribed guideline-concordant cardioprotective medications, as of the 1st day of each month, from up to 36 months",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Early Intervention",
+              "description": "6 study clinics received the ALL intervention starting 6/1/11\n\nALL: This clinic-level intervention involves a toolkit of decision support tools. These tools are listed below.\n\n1. EHR tools to expedite identification\n\n   a. EHR automated point-of-care alerts (Best Practice Alerts)\n2. EHR tools to expedite prescribing\n\n   1. EHR order sets\n   2. EHR text shortcuts for notation\n   3. patient education materials (handout, poster)\n3. EHR-based outreach support tools a. EHR registries"
+            },
+            {
+              "id": "OG001",
+              "title": "Late Implementation",
+              "description": "5 study clinics received the ALL intervention starting 6/1/12\n\nALL: These clinics got the same exact intervention, but one year later, as this was a staggered randomized trial."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "2053"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "2803"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "1279"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "1318"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "adverseEventsModule": {
+      "frequencyThreshold": "0",
+      "timeFrame": "Adverse events were not monitored for this cluster randomized trial.",
+      "description": "Adverse events were not monitored for this cluster randomized trial.",
+      "eventGroups": [
+        {
+          "id": "EG000",
+          "title": "Early Intervention",
+          "description": "6 study clinics received the ALL intervention starting 6/1/11\n\nALL: This clinic-level intervention involves a toolkit of decision support tools. These tools are listed below.\n\n1. EHR tools to expedite identification\n\n   a. EHR automated point-of-care alerts (Best Practice Alerts)\n2. EHR tools to expedite prescribing\n\n   1. EHR order sets\n   2. EHR text shortcuts for notation\n   3. patient education materials (handout, poster)\n3. EHR-based outreach support tools a. EHR registries",
+          "deathsNumAffected": 0,
+          "deathsNumAtRisk": 0,
+          "seriousNumAffected": 0,
+          "seriousNumAtRisk": 0,
+          "otherNumAffected": 0,
+          "otherNumAtRisk": 0
+        },
+        {
+          "id": "EG001",
+          "title": "Late Implementation",
+          "description": "5 study clinics received the ALL intervention starting 6/1/12\n\nALL: These clinics got the same exact intervention, but one year later, as this was a staggered randomized trial.",
+          "deathsNumAffected": 0,
+          "deathsNumAtRisk": 0,
+          "seriousNumAffected": 0,
+          "seriousNumAtRisk": 0,
+          "otherNumAffected": 0,
+          "otherNumAtRisk": 0
+        }
+      ]
+    },
+    "moreInfoModule": {
+      "certainAgreement": {
+        "piSponsorEmployee": true
+      },
+      "pointOfContact": {
+        "title": "Rachel Gold",
+        "organization": "KaiserPermanente Center for Health Research",
+        "email": "rachel.gold@kpchr.org",
+        "phone": "503-528-3902"
+      }
+    }
+  },
+  "derivedSection": {
+    "miscInfoModule": {
+      "versionHolder": "2023-12-15",
+      "modelPredictions": {
+        "bmiLimits": {
+          "minBmi": 0,
+          "maxBmi": 101
+        }
+      }
+    },
+    "conditionBrowseModule": {
+      "meshes": [
+        {
+          "id": "D000002318",
+          "term": "Cardiovascular Diseases"
+        }
+      ],
+      "browseLeaves": [
+        {
+          "id": "M6805",
+          "name": "Diabetes Mellitus",
+          "relevance": "LOW"
+        }
+      ],
+      "browseBranches": [
+        {
+          "abbrev": "BC18",
+          "name": "Nutritional and Metabolic Diseases"
+        },
+        {
+          "abbrev": "BC19",
+          "name": "Gland and Hormone Related Diseases"
+        },
+        {
+          "abbrev": "All",
+          "name": "All Conditions"
+        }
+      ]
+    }
+  },
+  "hasResults": true
+}
