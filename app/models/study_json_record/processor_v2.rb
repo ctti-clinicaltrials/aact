@@ -174,6 +174,24 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def design_groups_data
+    return unless protocol_section
+
+    ident = protocol_section['identificationModule']
+    nct_id = ident['nctId']
+    arms_intervention = key_check(protocol_section['armsInterventionsModule'])
+    arms_groups = key_check(arms_intervention['armGroups'])
+    return unless arms_groups
+
+    collection = []
+    arms_groups.each do |group|
+      collection << {
+                      nct_id: nct_id,
+                      group_type: group['type'],
+                      title: group['label'],
+                      description: group['description']
+                    }
+    end
+    collection
   end
 
   def interventions_data
@@ -227,6 +245,18 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def ipd_information_types_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    ipd_sharing_info_types = protocol_section.dig('ipdSharingStatementModule', 'infoTypes')
+    return unless ipd_sharing_info_types
+
+    collection = []
+    ipd_sharing_info_types.each do |info|
+      collection << { nct_id: nct_id, name: info }
+    end
+
+    collection
   end
 
   def keywords_data
