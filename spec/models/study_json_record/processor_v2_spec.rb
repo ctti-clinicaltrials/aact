@@ -360,6 +360,17 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
+  describe '#links_data' do
+    it 'should use JSON API to generate data that will be inserted into the links data table' do
+      expected_data = [
+        { nct_id: "NCT02552212", url: "http://www.fda.gov/Safety/MedWatch/SafetyInformation/default.htm", description: "FDA Safety Alerts and Recalls" }
+      ]
+      hash = JSON.parse(File.read('spec/support/json_data/NCT02552212.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(processor.links_data).to eq(expected_data)
+    end
+  end
+  
   describe '#documents_data' do
     it 'should test documents_data' do
       expected_data = {
