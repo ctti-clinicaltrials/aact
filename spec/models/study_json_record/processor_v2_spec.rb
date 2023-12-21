@@ -360,6 +360,30 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
     end
   end
 
+  describe '#design_data' do
+    it 'should test design_data' do
+      expected_data = {
+        nct_id: 'NCT03418623',
+        allocation: 'RANDOMIZED',
+        intervention_model: 'CROSSOVER',
+        observational_model: '',
+        primary_purpose: 'BASIC_SCIENCE',
+        time_perspective: '',
+        masking: 'QUADRUPLE',
+        masking_description: 'Quadruple',
+        intervention_model_description: 'After the eligibility of a subject has been determined in an initial...',
+        subject_masked: true,
+        caregiver_masked: true,
+        investigator_masked: true,
+        outcomes_assessor_masked: true
+      }
+  
+      hash = JSON.parse(File.read('spec/support/json_data/NCT03418623.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(processor.design_data).to eq(expected_data)
+    end
+  end
+
     participant_flow_data_expected =
     {
       :nct_id                 => "NCT02299791",

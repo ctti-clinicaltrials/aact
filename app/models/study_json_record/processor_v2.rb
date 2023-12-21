@@ -219,6 +219,64 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def design_data
+    return unless protocol_section
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+
+    info = protocol_section.dig('designModule', 'designInfo')
+    return unless info
+  
+    masking = key_check(info['maskingInfo'])
+    who_masked = masking.dig('whoMasked') || []
+    observations = info.dig('observationalModel') || []
+    time_perspectives = info.dig('timePerspective') || []
+  
+    masking_value = masking['masking']
+
+    masking_description = case masking_value
+                          when 'NONE'
+                            'None (Open Label)'
+                          when 'SINGLE'
+                            'Single'
+                          when 'DOUBLE'
+                            'Double'
+                          when 'TRIPLE'
+                            'Triple'
+                          when 'QUADRUPLE'
+                            'Quadruple'
+                          else
+                            'Unknown'
+                          end
+
+    {
+      nct_id: nct_id,
+      allocation: info['allocation'],
+      observational_model: observations.join(', '),
+      intervention_model: info['interventionModel'],
+      intervention_model_description: info['interventionModelDescription'],
+      primary_purpose: info['primaryPurpose'],
+      time_perspective: time_perspectives.join(', '),
+      masking: masking_value,
+      masking_description: masking_description,
+      subject_masked: is_masked?(who_masked, ['PARTICIPANT']),
+      caregiver_masked: is_masked?(who_masked, ['CARE_PROVIDER']),
+      investigator_masked: is_masked?(who_masked, ['INVESTIGATOR']),
+      outcomes_assessor_masked: is_masked?(who_masked, ['OUTCOMES_ASSESSOR']),
+    }
+  end
+  
+  def key_check(key)
+    key ||= {}
+  end
+
+
+  def is_masked?(who_masked_array, query_array)
+    # example who_masked array ["PARTICIPANT", "CARE_PROVIDER", "INVESTIGATOR", "OUTCOMES_ASSESSOR"]
+    return unless query_array
+
+    query_array.each do |term|
+      return true if who_masked_array.try(:include?, term)
+    end
+    nil
   end
 
   def eligibility_data
