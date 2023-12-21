@@ -3,6 +3,10 @@ class StudyJsonRecord::ProcessorV2
   def initialize(json)
     @json = json
   end
+
+  def contacts_location_module
+    protocol_section.dig('contactsLocationsModule')
+  end
   
   def protocol_section
     @json['protocolSection']
@@ -105,8 +109,8 @@ class StudyJsonRecord::ProcessorV2
       nct_id: nct_id,
       nlm_download_date_description: nil,
       study_first_submitted_date: convert_to_date(status['studyFirstSubmitDate']),
-      study_first_submitted_qc_date: status['studyFirstSubmitQcDate'],
-      study_first_posted_date: study_posted['date'],
+      study_first_submitted_qc_date: convert_to_date(status['studyFirstSubmitQcDate']),
+      study_first_posted_date: convert_to_date(study_posted['date']),
       study_first_posted_date_type: study_posted['type'],
       results_first_submitted_date: convert_to_date(status['resultsFirstSubmitDate']),
       results_first_submitted_qc_date: status['resultsFirstSubmitQcDate'],
@@ -117,8 +121,8 @@ class StudyJsonRecord::ProcessorV2
       disposition_first_posted_date: disp_posted['date'],
       disposition_first_posted_date_type: disp_posted['type'],
       last_update_submitted_date: convert_to_date(status['lastUpdateSubmitDate']),
-      last_update_submitted_qc_date: status['lastUpdateSubmitDate'], # this should not go here (Ramiro comment)
-      last_update_posted_date: last_posted['date'],
+      last_update_submitted_qc_date: convert_to_date(status['lastUpdateSubmitDate']), # this should not go here (Ramiro comment)
+      last_update_posted_date: convert_to_date(last_posted['date']),
       last_update_posted_date_type: last_posted['type'],
       start_month_year: start_date['date'],
       start_date_type: start_date['type'],
@@ -144,7 +148,7 @@ class StudyJsonRecord::ProcessorV2
       enrollment_type: enrollment['type'],
       source: ident.dig('organization', 'fullName'),
       source_class: ident.dig('organization', 'class'),
-      limitations_and_caveats: key_check(more_info['limitationsAndCaveats'])['description'],
+      limitations_and_caveats: key_check(more_info&.dig('limitationsAndCaveats'))&.dig('description'),
       number_of_arms: arms_count,
       number_of_groups: groups_count,
       target_duration: design['targetDuration'],
@@ -174,12 +178,36 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def design_groups_data
+    return unless protocol_section
+
+    ident = protocol_section['identificationModule']
+    nct_id = ident['nctId']
+    arms_intervention = key_check(protocol_section['armsInterventionsModule'])
+    arms_groups = key_check(arms_intervention['armGroups'])
+    return unless arms_groups
+
+    collection = []
+    arms_groups.each do |group|
+      collection << {
+                      nct_id: nct_id,
+                      group_type: group['type'],
+                      title: group['label'],
+                      description: group['description']
+                    }
+    end
+    collection
   end
 
   def interventions_data
   end
 
   def detailed_description_data
+    return unless protocol_section
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    description = protocol_section.dig('descriptionModule' ,'detailedDescription')
+    return unless description
+
+    { nct_id: nct_id, description: description }
   end
 
   def brief_summary_data
@@ -255,6 +283,17 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def participant_flow_data
+    return unless protocol_section
+    ident = protocol_section['identificationModule']
+    nct_id = ident['nctId']
+    participant_flow = results_section['participantFlowModule']
+
+    {
+      nct_id: nct_id,
+      recruitment_details: participant_flow['recruitmentDetails'],
+      pre_assignment_details: participant_flow['preAssignmentDetails'],
+      units_analyzed: participant_flow['typeUnitsAnalyzed']
+    }
   end
 
   def baseline_measurements_data
@@ -267,9 +306,43 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def central_contacts_data
+    return unless contacts_location_module
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    central_contacts = contacts_location_module.dig('centralContacts')
+    return unless central_contacts
+
+    collection = []
+    central_contacts.each_with_index do |contact, index|
+      collection << {
+                      nct_id: nct_id,
+                      contact_type: index == 0 ? 'primary' : 'backup',
+                      name: contact['name'],
+                      phone: contact['phone'],
+                      email: contact['email'],
+                      phone_extension: contact['phoneExt'],
+                      role: contact["role"]
+                     }
+    end
+    collection
   end
 
   def conditions_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+
+    conditions_module = protocol_section['conditionsModule']
+    return unless conditions_module
+
+    conditions = conditions_module.dig('conditions')
+    return unless conditions
+
+    collection = []
+    conditions.each do |condition|
+      collection << { nct_id: nct_id, name: condition, downcase_name: condition.try(:downcase) }
+    end
+    collection
   end
 
   def countries_data
@@ -285,9 +358,33 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def ipd_information_types_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    ipd_sharing_info_types = protocol_section.dig('ipdSharingStatementModule', 'infoTypes')
+    return unless ipd_sharing_info_types
+
+    collection = []
+    ipd_sharing_info_types.each do |info|
+      collection << { nct_id: nct_id, name: info }
+    end
+
+    collection
   end
 
   def keywords_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    keywords = protocol_section.dig('conditionsModule', 'keywords')
+    return unless keywords
+
+    collection = []
+    keywords.each do |keyword|
+      collection << { nct_id: nct_id, name: keyword, downcase_name: keyword.downcase }
+    end
+    
+    collection
   end
 
   def links_data
@@ -342,6 +439,7 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def convert_to_date(str)
+    return unless str
     case str.split('-').length
     when 1
       Date.strptime(str, '%Y').end_of_year
