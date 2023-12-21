@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
-
   study_data_initialize_expected = { 
     :nct_id=>"NCT01234567", 
     :nlm_download_date_description=>nil, 
@@ -371,6 +370,106 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
       expect(processor.links_data).to eq(expected_data)
     end
   end
+  
+  describe '#documents_data' do
+    it 'should test documents_data' do
+      expected_data = {
+        nct_id: 'NCT00465816',
+        document_id: '109063',
+        document_type: 'Dataset Specification',
+        url: 'https://www.clinicalstudydatarequest.com',
+        comment: 'For additional information about this study please refer to the GSK Clinical Study Register'
+      }
+
+      hash = JSON.parse(File.read('spec/support/json_data/NCT00465816.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(processor.documents_data.first).to eq(expected_data)
+    end
+  end
+
+  describe '#eligibility_data' do
+    it 'should test eligibility_data' do
+      expected_data = {
+        nct_id: 'NCT06171568',
+        sampling_method: 'NON_PROBABILITY_SAMPLE',
+        population: 'Patients hospitalized at Lariboisière hospital...',
+        maximum_age: 'N/A',
+        minimum_age: '18 Years',
+        gender: 'ALL',
+        gender_based: nil,
+        gender_description: nil,
+        healthy_volunteers: false,
+        criteria: "Inclusion Criteria:\n\n* Patient over 18 years...",
+        adult: true,
+        child: false,
+        older_adult: true
+      }
+    
+      hash = JSON.parse(File.read('spec/support/json_data/NCT06171568.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(processor.eligibility_data).to eq(expected_data)
+    end
+  end
+
+  describe '#design_data' do
+    it 'should test design_data' do
+      expected_data = {
+        nct_id: 'NCT03418623',
+        allocation: 'RANDOMIZED',
+        intervention_model: 'CROSSOVER',
+        observational_model: '',
+        primary_purpose: 'BASIC_SCIENCE',
+        time_perspective: '',
+        masking: 'QUADRUPLE',
+        masking_description: 'Quadruple',
+        intervention_model_description: 'After the eligibility of a subject has been determined in an initial...',
+        subject_masked: true,
+        caregiver_masked: true,
+        investigator_masked: true,
+        outcomes_assessor_masked: true
+      }
+  
+      hash = JSON.parse(File.read('spec/support/json_data/NCT03418623.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(processor.design_data).to eq(expected_data)
+    end
+  end
+
+    participant_flow_data_expected =
+    {
+      :nct_id                 => "NCT02299791",
+      :recruitment_details    => "Recruitment was done at the clinic level. All patients seen in the clinics were potentially eligible for the intervention based on clinic visit and clinical criteria.",
+      :pre_assignment_details => "There were two additional nested substudy randomizations after initial trial enrolment (see inclusion/exclusion criteria for eligibility). From 8/2009 to 6/2010, eligible children were randomized to once vs twice daily abacavir+lamivudine. From 9/2009 to 2/2011, eligible children were randomized to stop vs continue cotrimoxazole prophylaxis.",
+      :units_analyzed         => "Clinics"
+    }
+
+    describe '#participant_flow_data' do
+      it 'should use JSON API to generate data that will be inserted into the participant_flows table' do
+        hash = JSON.parse(File.read('spec/support/json_data/initialize_participant_flow_data.json'))
+        json_instance = StudyJsonRecord::ProcessorV2.new(hash)
+        expect(json_instance.participant_flow_data).to eq(participant_flow_data_expected)
+      end 
+    end   
+  
+  describe 'conditions_data' do
+    let(:test_json) do 
+      {
+        'protocolSection' => {
+          'identificationModule' => { 'nctId' => '12345' },
+          'conditionsModule' => { 'conditions' => ['Condition1', 'Condition2'] }
+        }
+      }
+    end
+    
+    it 'returns a collection with correct conditions data' do
+      expected_output = [
+        { nct_id: '12345', name: 'Condition1', downcase_name: 'condition1' },
+        { nct_id: '12345', name: 'Condition2', downcase_name: 'condition2' }
+      ]
+      processor = StudyJsonRecord::ProcessorV2.new(test_json)
+      expect(processor.conditions_data).to eq(expected_output)
+    end
+  end
 
   describe '#keywords_data' do
     it 'should use JSON API to generate data that will be inserted into the keywords data table' do
@@ -405,5 +504,35 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
       expect(processor.ipd_information_types_data).to eq(expected_data)
     end
   end
+  
+  describe 'detailed_description_data' do
+        it 'should test detailed_description_data' do
+            expected_data = {
+                nct_id: 'NCT03630471',
+                description: "Background and rationale:\n\nThis study is part of a larger research program called PRIDE (PRemIum for aDolEscents) for which the goals are to:\n\n*"
+            }
+            hash = JSON.parse(File.read('spec/support/json_data/detailed-description.json'))
+            processor = StudyJsonRecord::ProcessorV2.new(hash)
+            expect(processor.detailed_description_data).to eq(expected_data)
+        end
+    end
+  
+      describe 'central contacts data' do
 
+        it 'should test central contacts parsing' do
+            expected_data = [{
+                nct_id: 'NCT04523987',
+                contact_type: 'primary',
+                name: "Cheng Ean Chee",
+                phone: "6779 5555",
+                email: "cheng_ean_chee@nuhs.edu.sg",
+                phone_extension: nil,
+                role: "CONTACT"
+             }]
+
+            hash = JSON.parse(File.read('spec/support/json_data/central-data.json'))
+            processor = StudyJsonRecord::ProcessorV2.new(hash)
+            expect(processor.central_contacts_data).to eq(expected_data)
+        end
+    end
 end
