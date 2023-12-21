@@ -3,6 +3,10 @@ class StudyJsonRecord::ProcessorV2
   def initialize(json)
     @json = json
   end
+
+  def contacts_location_module
+    protocol_section.dig('contactsLocationsModule')
+  end
   
   def protocol_section
     @json['protocolSection']
@@ -174,12 +178,36 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def design_groups_data
+    return unless protocol_section
+
+    ident = protocol_section['identificationModule']
+    nct_id = ident['nctId']
+    arms_intervention = key_check(protocol_section['armsInterventionsModule'])
+    arms_groups = key_check(arms_intervention['armGroups'])
+    return unless arms_groups
+
+    collection = []
+    arms_groups.each do |group|
+      collection << {
+                      nct_id: nct_id,
+                      group_type: group['type'],
+                      title: group['label'],
+                      description: group['description']
+                    }
+    end
+    collection
   end
 
   def interventions_data
   end
 
   def detailed_description_data
+    return unless protocol_section
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    description = protocol_section.dig('descriptionModule' ,'detailedDescription')
+    return unless description
+
+    { nct_id: nct_id, description: description }
   end
 
   def brief_summary_data
@@ -191,12 +219,104 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def design_data
+    return unless protocol_section
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+
+    info = protocol_section.dig('designModule', 'designInfo')
+    return unless info
+  
+    masking = key_check(info['maskingInfo'])
+    who_masked = masking.dig('whoMasked') || []
+    observations = info.dig('observationalModel') || []
+    time_perspectives = info.dig('timePerspective') || []
+  
+    masking_value = masking['masking']
+
+    masking_description = case masking_value
+                          when 'NONE'
+                            'None (Open Label)'
+                          when 'SINGLE'
+                            'Single'
+                          when 'DOUBLE'
+                            'Double'
+                          when 'TRIPLE'
+                            'Triple'
+                          when 'QUADRUPLE'
+                            'Quadruple'
+                          else
+                            'Unknown'
+                          end
+
+    {
+      nct_id: nct_id,
+      allocation: info['allocation'],
+      observational_model: observations.join(', '),
+      intervention_model: info['interventionModel'],
+      intervention_model_description: info['interventionModelDescription'],
+      primary_purpose: info['primaryPurpose'],
+      time_perspective: time_perspectives.join(', '),
+      masking: masking_value,
+      masking_description: masking_description,
+      subject_masked: is_masked?(who_masked, ['PARTICIPANT']),
+      caregiver_masked: is_masked?(who_masked, ['CARE_PROVIDER']),
+      investigator_masked: is_masked?(who_masked, ['INVESTIGATOR']),
+      outcomes_assessor_masked: is_masked?(who_masked, ['OUTCOMES_ASSESSOR']),
+    }
+  end
+  
+  def key_check(key)
+    key ||= {}
+  end
+
+
+  def is_masked?(who_masked_array, query_array)
+    # example who_masked array ["PARTICIPANT", "CARE_PROVIDER", "INVESTIGATOR", "OUTCOMES_ASSESSOR"]
+    return unless query_array
+
+    query_array.each do |term|
+      return true if who_masked_array.try(:include?, term)
+    end
+    nil
   end
 
   def eligibility_data
+    return unless protocol_section
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+  
+    eligibility = protocol_section.dig('eligibilityModule')
+    return unless eligibility
+  
+    std_ages = eligibility.dig('stdAges')
+  
+    {
+      nct_id: nct_id,
+      sampling_method: eligibility['samplingMethod'],
+      population: eligibility['studyPopulation'],
+      maximum_age: eligibility['maximumAge'] || 'N/A',
+      minimum_age: eligibility['minimumAge'] || 'N/A',
+      gender: eligibility['sex'],
+      gender_based: get_boolean(eligibility['genderBased']),
+      gender_description: eligibility['genderDescription'],
+      healthy_volunteers: eligibility['healthyVolunteers'],
+      criteria: eligibility['eligibilityCriteria'],
+      adult: std_ages.include?('ADULT'),
+      child: std_ages.include?('CHILD'),
+      older_adult: std_ages.include?('OLDER_ADULT')
+    }
   end
 
   def participant_flow_data
+    return unless protocol_section
+    ident = protocol_section['identificationModule']
+    nct_id = ident['nctId']
+    participant_flow = results_section['participantFlowModule']
+
+    {
+      nct_id: nct_id,
+      recruitment_details: participant_flow['recruitmentDetails'],
+      pre_assignment_details: participant_flow['preAssignmentDetails'],
+      units_analyzed: participant_flow['typeUnitsAnalyzed']
+    }
   end
 
   def baseline_measurements_data
@@ -209,9 +329,43 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def central_contacts_data
+    return unless contacts_location_module
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    central_contacts = contacts_location_module.dig('centralContacts')
+    return unless central_contacts
+
+    collection = []
+    central_contacts.each_with_index do |contact, index|
+      collection << {
+                      nct_id: nct_id,
+                      contact_type: index == 0 ? 'primary' : 'backup',
+                      name: contact['name'],
+                      phone: contact['phone'],
+                      email: contact['email'],
+                      phone_extension: contact['phoneExt'],
+                      role: contact["role"]
+                     }
+    end
+    collection
   end
 
   def conditions_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+
+    conditions_module = protocol_section['conditionsModule']
+    return unless conditions_module
+
+    conditions = conditions_module.dig('conditions')
+    return unless conditions
+
+    collection = []
+    conditions.each do |condition|
+      collection << { nct_id: nct_id, name: condition, downcase_name: condition.try(:downcase) }
+    end
+    collection
   end
 
   def countries_data
@@ -244,9 +398,33 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def ipd_information_types_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    ipd_sharing_info_types = protocol_section.dig('ipdSharingStatementModule', 'infoTypes')
+    return unless ipd_sharing_info_types
+
+    collection = []
+    ipd_sharing_info_types.each do |info|
+      collection << { nct_id: nct_id, name: info }
+    end
+
+    collection
   end
 
   def keywords_data
+    return unless protocol_section
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    keywords = protocol_section.dig('conditionsModule', 'keywords')
+    return unless keywords
+
+    collection = []
+    keywords.each do |keyword|
+      collection << { nct_id: nct_id, name: keyword, downcase_name: keyword.downcase }
+    end
+    
+    collection
   end
 
   def links_data
