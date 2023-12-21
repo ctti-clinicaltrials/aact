@@ -198,6 +198,12 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def detailed_description_data
+    return unless protocol_section
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    description = protocol_section.dig('descriptionModule' ,'detailedDescription')
+    return unless description
+
+    { nct_id: nct_id, description: description }
   end
 
   def brief_summary_data
