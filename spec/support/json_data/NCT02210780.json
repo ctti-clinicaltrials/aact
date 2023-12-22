@@ -1,0 +1,2698 @@
+{
+  "protocolSection": {
+    "identificationModule": {
+      "nctId": "NCT02210780",
+      "orgStudyIdInfo": {
+        "id": "R668-AD-1314"
+      },
+      "organization": {
+        "fullName": "Regeneron Pharmaceuticals",
+        "class": "INDUSTRY"
+      },
+      "briefTitle": "Study of Dupilumab and Immune Responses in Adults With Atopic Dermatitis (AD)",
+      "officialTitle": "A Randomized, Double-Blind, Placebo-Controlled, Study Investigating Vaccine Responses in Adults With Moderate to Severe Atopic Dermatitis Treated With Dupilumab"
+    },
+    "statusModule": {
+      "statusVerifiedDate": "2020-04",
+      "overallStatus": "COMPLETED",
+      "expandedAccessInfo": {
+        "hasExpandedAccess": false
+      },
+      "startDateStruct": {
+        "date": "2014-08-05",
+        "type": "ACTUAL"
+      },
+      "primaryCompletionDateStruct": {
+        "date": "2015-09-15",
+        "type": "ACTUAL"
+      },
+      "completionDateStruct": {
+        "date": "2015-09-15",
+        "type": "ACTUAL"
+      },
+      "studyFirstSubmitDate": "2014-08-05",
+      "studyFirstSubmitQcDate": "2014-08-05",
+      "studyFirstPostDateStruct": {
+        "date": "2014-08-07",
+        "type": "ESTIMATED"
+      },
+      "resultsFirstSubmitDate": "2020-03-20",
+      "resultsFirstSubmitQcDate": "2020-04-23",
+      "resultsFirstPostDateStruct": {
+        "date": "2020-05-07",
+        "type": "ACTUAL"
+      },
+      "dispFirstSubmitDate": "2017-02-07",
+      "dispFirstSubmitQcDate": "2017-02-07",
+      "dispFirstPostDateStruct": {
+        "date": "2017-02-08",
+        "type": "ESTIMATED"
+      },
+      "lastUpdateSubmitDate": "2020-04-23",
+      "lastUpdatePostDateStruct": {
+        "date": "2020-05-07",
+        "type": "ACTUAL"
+      }
+    },
+    "sponsorCollaboratorsModule": {
+      "responsibleParty": {
+        "type": "SPONSOR"
+      },
+      "leadSponsor": {
+        "name": "Regeneron Pharmaceuticals",
+        "class": "INDUSTRY"
+      },
+      "collaborators": [
+        {
+          "name": "Sanofi",
+          "class": "INDUSTRY"
+        }
+      ]
+    },
+    "oversightModule": {
+      "oversightHasDmc": true
+    },
+    "descriptionModule": {
+      "briefSummary": "This was a 32-week, randomized, double-blind, placebo-controlled, parallel-group study assessing immunization responses to vaccination in adults with moderate to severe atopic dermatitis who are treated with subcutaneous dupilumab."
+    },
+    "conditionsModule": {
+      "conditions": ["Atopic Dermatitis"]
+    },
+    "designModule": {
+      "studyType": "INTERVENTIONAL",
+      "phases": ["PHASE2"],
+      "designInfo": {
+        "allocation": "RANDOMIZED",
+        "interventionModel": "PARALLEL",
+        "primaryPurpose": "TREATMENT",
+        "maskingInfo": {
+          "masking": "TRIPLE",
+          "whoMasked": ["PARTICIPANT", "INVESTIGATOR", "OUTCOMES_ASSESSOR"]
+        }
+      },
+      "enrollmentInfo": {
+        "count": 194,
+        "type": "ACTUAL"
+      }
+    },
+    "armsInterventionsModule": {
+      "armGroups": [
+        {
+          "label": "Placebo qw",
+          "type": "EXPERIMENTAL",
+          "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15.",
+          "interventionNames": ["Drug: Placebo"]
+        },
+        {
+          "label": "Dupilumab 300 mg qw",
+          "type": "EXPERIMENTAL",
+          "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15.",
+          "interventionNames": ["Drug: Dupilumab"]
+        }
+      ],
+      "interventions": [
+        {
+          "type": "DRUG",
+          "name": "Dupilumab",
+          "description": "Administered via subcutaneous injection.",
+          "armGroupLabels": ["Dupilumab 300 mg qw"],
+          "otherNames": ["REGN668", "SAR231893", "Dupixent"]
+        },
+        {
+          "type": "DRUG",
+          "name": "Placebo",
+          "description": "An inactive substance containing no medicine administered via subcutaneous injection.",
+          "armGroupLabels": ["Placebo qw"]
+        }
+      ]
+    },
+    "outcomesModule": {
+      "primaryOutcomes": [
+        {
+          "measure": "Percentage of Participants With a Positive Response (≥4-Fold Increase) to Tetanus Toxoid (the Adacel [Tdap] Vaccine) at Week 16",
+          "description": "A positive response was defined as a ≥ 4-fold increase from pre-vaccination at baseline in anti-tetanus immunoglobulin G (IgG) titer for participants with a pre-vaccination tetanus antibody titers ≥ 0.1 IU/ml or a titer of ≥ 0.2 IU/ml for participants with pre-vaccination titers of \\<0.1 IU/ml. There was no planned statistical hypothesis testing regarding the difference in immune response between the 2 treatment groups for this study, therefore no formal statistical hypothesis between groups was performed.",
+          "timeFrame": "Week 16"
+        }
+      ],
+      "secondaryOutcomes": [
+        {
+          "measure": "Percentage of Participants With a Positive Response (≥2-Fold Increase) to Tetanus Toxoid (the Adacel [Tdap] Vaccine) at Week 16",
+          "description": "Participants with positive response defined as a ≥2-fold increase from pre-vaccination baseline in anti-tetanus IgG titer for participants with pre-vaccination tetanus antibody titers ≥0.1 IU/ml or a titer of ≥0.2 IU/ml for participants with pre-vaccination titers of \\<0.1 IU/ml.",
+          "timeFrame": "Week 16"
+        },
+        {
+          "measure": "Percentage of Participants With a Positive Response (SBA Antibody Titer of ≥8 for Serogroup C) to Menomune Vaccine at Week 16",
+          "description": "A positive response to the Menomune vaccine was a serum bactericidal antibody (SBA) titer of ≥8 for serogroup C.",
+          "timeFrame": "Week 16"
+        },
+        {
+          "measure": "Percentage of Participants Achieving an Investigator's Global Assessment (IGA) Score of \"0\" or \"1\" at Week 16",
+          "description": "IGA was an assessment scale used to determine severity of AD and clinical response to treatment on a 5-point scale (0 = clear; 1 = almost clear; 2 = mild; 3 = moderate; 4 = severe) based on erythema and papulation/infiltration. Therapeutic response was an IGA score of 0 (clear) or 1 (almost clear). Values after first rescue treatment were set to missing and participants with missing IGA scores at Week 16 were counted as non-responders.",
+          "timeFrame": "Week 16"
+        },
+        {
+          "measure": "Percentage of Participants Achieving an Eczema Area and Severity Index-50 (EASI-50) (≥50% Improvement From Baseline) at Week 16",
+          "description": "The EASI score was used to measure the severity and extent of atopic dermatitis (AD) and measures erythema, infiltration, excoriation and lichenification on 4 anatomic regions of the body: head, trunk, upper and lower extremities. The total EASI score ranges from 0 (minimum) to 72 (maximum) points, with the higher scores reflecting the worse severity of AD. EASI-50 responders were the participants who achieved ≥50% overall improvement in EASI score from baseline to Week 16. Values after first rescue treatment were set to missing and participants with missing EASI score at Week 16 were counted as non-responders.",
+          "timeFrame": "Week 16"
+        },
+        {
+          "measure": "Percentage of Participants Achieving an Eczema Area and Severity Index-75 (EASI-75) (≥75% Improvement From Baseline) at Week 16",
+          "description": "The EASI score was used to measure the severity and extent of atopic dermatitis (AD) and measures erythema, infiltration, excoriation and lichenification on 4 anatomic regions of the body: head, trunk, upper and lower extremities. The total EASI score ranges from 0 (minimum) to 72 (maximum) points, with the higher scores reflecting the worse severity of AD. EASI-75 responders were the participants who achieved ≥75% overall improvement in EASI score from baseline to Week 16. Values after first rescue treatment use were set to missing and participants with missing EASI score at Week 16 were considered as non-responders.",
+          "timeFrame": "Week 16"
+        },
+        {
+          "measure": "Change From Baseline in Peak Weekly Averaged Pruritis Numerical Rating Scale (NRS) Scores at Week 16",
+          "description": "Pruritus NRS was an assessment tool that was used to report the intensity of participant's pruritus (itch), both maximum and average intensity, during a 24-hour recall period. Participants were asked the following question: how would a participant rate his itch at the worst moment during the previous 24 hours (for maximum itch intensity on a scale of 0 - 10 \\[0 = no itch; 10 = worst itch imaginable\\]). Weekly average obtained in the 7-day period prior to the baseline visit. Values after first rescue medication use were set to missing and missing values were imputed by Last observation carried forward (LOCF).",
+          "timeFrame": "Baseline to Week 16"
+        },
+        {
+          "measure": "Change From Baseline in Body Surface Area (BSA) Affected by AD at Week 16",
+          "description": "BSA affected by AD was assessed for each section of the body (the possible highest score for each region was: head and neck \\[9%\\], anterior trunk \\[18%\\], back \\[18%\\], upper limbs \\[18%\\], lower limbs \\[36%\\], and genitals \\[1%\\]). It was reported as a percentage of all major body sections combined. Values after first rescue medication use were set to missing and missing values were imputed by LOCF.",
+          "timeFrame": "Baseline to Week 16"
+        },
+        {
+          "measure": "Change From Baseline in Global Individual Signs Score (GISS) Components (Erythema, Infiltration/Papulation, Excoriations and Lichenification) at Week 16",
+          "description": "Individual components of the AD lesions (erythema, infiltration/papulation, excoriations, and lichenification) were rated globally (each assessed for the whole body, not by anatomical region) on a 4-point scale (0 = none, 1 = mild, 2 = moderate and 3 = severe) using the EASI severity grading criteria. Total score ranges from 0 (absent disease) to 12 (severe disease). Values after first rescue treatment were set to missing. Analysis was completed using MMRM model which includes treatment, randomization strata, visit, baseline value, treatment-by-visit interaction, and baseline-by-visit interaction as covariates. These results are observed results without imputation.",
+          "timeFrame": "Baseline to Week 16"
+        },
+        {
+          "measure": "Changes From Baseline in GISS Cumulative Score to Week 16",
+          "description": "Individual components of the AD lesions (erythema, infiltration/papulation, excoriations, and lichenification) were rated globally (each assessed for the whole body, not by anatomical region) on a 4-point scale (0 = none, 1 = mild, 2 = moderate and 3 = severe) using the EASI severity grading criteria. Total score ranges from 0 (absent disease) to 12 (severe disease). Values after first rescue medication use were set to missing and missing values were imputed by LOCF.",
+          "timeFrame": "Baseline to Week 16"
+        },
+        {
+          "measure": "Change in Patient Oriented Eczema Measure (POEM) Score From Baseline to Week 16",
+          "description": "The POEM was a 7-item questionnaire that assesses disease symptoms (dryness, itching, flaking, cracking, sleep loss, bleeding and weeping) with a scoring system of 0 (absent disease) to 28 (severe disease) (high score indicative of poor quality of life \\[QOL\\]). Values after first rescue medication use were set to missing and missing values were imputed by LOCF.",
+          "timeFrame": "Baseline to Week 16"
+        }
+      ]
+    },
+    "eligibilityModule": {
+      "eligibilityCriteria": "Key Inclusion Criteria:\n\n1. Male or female adults ages 18 to 64 years with Chronic AD (according to the American Academy of Dermatology Consensus Criteria, \\[Eichenfeld 2004\\])that has been present for at least 3 years before the screening visit\n2. Participants with documented recent history (within 6 months before the screening visit) of inadequate response to a sufficient course of outpatient treatment with topical AD medication(s), or for whom topical AD therapies are otherwise inadvisable (e.g., because of side effects or safety risks).\n3. Eczema Area and Severity Index (EASI) score ≥16 at the screening visit and the baseline visit\n4. Investigator's Global Assessment (IGA) score ≥3 (on the 0-4 IGA scale) at the screening and baseline visits\n5. ≥10% body surface area (BSA) of AD involvement at the screening and baseline visits\n\nKey Exclusion Criteria:\n\n1. Prior treatment with dupilumab (REGN668/ SAR231893)\n2. Patients needing \\>10 mg of daily prednisone (including equivalent doses of other steroids) or high dose systemic corticosteroids (≥2 mg/kg) for 14 days or longer during the 16 week treatment period of the study\n3. History of Guillain-Barre syndrome\n4. History of severe allergic reaction to either vaccine or to vaccine components including alum, thimerosal, phenol\n5. Patients with a severe reaction to natural rubber latex products (some packaging components of the vaccines contain rubber latex and may cause a reaction in susceptible individuals)\n6. Treatment with biologics within 4 months of baseline visit\n7. Chronic or acute infection requiring treatment with antibiotics, antivirals, antiparasitics, antifungals within 4 weeks before screening visit or superficial skin infections within 1 week of screening visit\n\nThe information listed above is not intended to contain all considerations relevant to a patient's potential participation in a clinical trial and not all inclusion/ exclusion criteria are listed.",
+      "healthyVolunteers": false,
+      "sex": "ALL",
+      "minimumAge": "18 Years",
+      "maximumAge": "64 Years",
+      "stdAges": ["ADULT"]
+    },
+    "contactsLocationsModule": {
+      "overallOfficials": [
+        {
+          "name": "Clinical Trial Management",
+          "affiliation": "Regeneron Pharmaceuticals",
+          "role": "STUDY_DIRECTOR"
+        }
+      ],
+      "locations": [
+        {
+          "city": "Birmingham",
+          "state": "Alabama",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 33.52066,
+            "lon": -86.80249
+          }
+        },
+        {
+          "city": "Fort Smith",
+          "state": "Arkansas",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 35.38592,
+            "lon": -94.39855
+          }
+        },
+        {
+          "city": "Long Beach",
+          "state": "California",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 33.76696,
+            "lon": -118.18923
+          }
+        },
+        {
+          "city": "Los Angeles",
+          "state": "California",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 34.05223,
+            "lon": -118.24368
+          }
+        },
+        {
+          "city": "Mission Viejo",
+          "state": "California",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 33.60002,
+            "lon": -117.672
+          }
+        },
+        {
+          "city": "Rolling Hills Estates",
+          "state": "California",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 33.78779,
+            "lon": -118.35813
+          }
+        },
+        {
+          "city": "San Diego",
+          "state": "California",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 32.71533,
+            "lon": -117.15726
+          }
+        },
+        {
+          "city": "Santa Monica",
+          "state": "California",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 34.01945,
+            "lon": -118.49119
+          }
+        },
+        {
+          "city": "Denver",
+          "state": "Colorado",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 39.73915,
+            "lon": -104.9847
+          }
+        },
+        {
+          "city": "Jacksonville",
+          "state": "Florida",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 30.33218,
+            "lon": -81.65565
+          }
+        },
+        {
+          "city": "Miami",
+          "state": "Florida",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 25.77427,
+            "lon": -80.19366
+          }
+        },
+        {
+          "city": "Tampa",
+          "state": "Florida",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 27.94752,
+            "lon": -82.45843
+          }
+        },
+        {
+          "city": "Macon",
+          "state": "Georgia",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 32.84069,
+            "lon": -83.6324
+          }
+        },
+        {
+          "city": "Chicago",
+          "state": "Illinois",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 41.85003,
+            "lon": -87.65005
+          }
+        },
+        {
+          "city": "Maywood",
+          "state": "Illinois",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 41.8792,
+            "lon": -87.84312
+          }
+        },
+        {
+          "city": "West Dundee",
+          "state": "Illinois",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 42.09808,
+            "lon": -88.28286
+          }
+        },
+        {
+          "city": "Indianapolis",
+          "state": "Indiana",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 39.76838,
+            "lon": -86.15804
+          }
+        },
+        {
+          "city": "Plainfield",
+          "state": "Indiana",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 39.70421,
+            "lon": -86.39944
+          }
+        },
+        {
+          "city": "Overland Park",
+          "state": "Kansas",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 38.98223,
+            "lon": -94.67079
+          }
+        },
+        {
+          "city": "Boston",
+          "state": "Massachusetts",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 42.35843,
+            "lon": -71.05977
+          }
+        },
+        {
+          "city": "Ann Arbor",
+          "state": "Michigan",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 42.27756,
+            "lon": -83.74088
+          }
+        },
+        {
+          "city": "Troy",
+          "state": "Michigan",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 42.60559,
+            "lon": -83.14993
+          }
+        },
+        {
+          "city": "Saint Louis",
+          "state": "Missouri",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 38.62727,
+            "lon": -90.19789
+          }
+        },
+        {
+          "city": "Hackensack",
+          "state": "New Jersey",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 40.88593,
+            "lon": -74.04347
+          }
+        },
+        {
+          "city": "Albuquerque",
+          "state": "New Mexico",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 35.08449,
+            "lon": -106.65114
+          }
+        },
+        {
+          "city": "Buffalo",
+          "state": "New York",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 42.88645,
+            "lon": -78.87837
+          }
+        },
+        {
+          "city": "Forest Hills",
+          "state": "New York",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 40.71621,
+            "lon": -73.85014
+          }
+        },
+        {
+          "city": "New York",
+          "state": "New York",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 40.71427,
+            "lon": -74.00597
+          }
+        },
+        {
+          "city": "Cleveland",
+          "state": "Ohio",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 41.4995,
+            "lon": -81.69541
+          }
+        },
+        {
+          "city": "Norman",
+          "state": "Oklahoma",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 35.22257,
+            "lon": -97.43948
+          }
+        },
+        {
+          "city": "Tulsa",
+          "state": "Oklahoma",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 36.15398,
+            "lon": -95.99277
+          }
+        },
+        {
+          "city": "Medford",
+          "state": "Oregon",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 42.32652,
+            "lon": -122.87559
+          }
+        },
+        {
+          "city": "Portland",
+          "state": "Oregon",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 45.52345,
+            "lon": -122.67621
+          }
+        },
+        {
+          "city": "Pittsburgh",
+          "state": "Pennsylvania",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 40.44062,
+            "lon": -79.99589
+          }
+        },
+        {
+          "city": "Charleston",
+          "state": "South Carolina",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 32.77657,
+            "lon": -79.93092
+          }
+        },
+        {
+          "city": "Greer",
+          "state": "South Carolina",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 34.93873,
+            "lon": -82.22706
+          }
+        },
+        {
+          "city": "Arlington",
+          "state": "Texas",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 32.73569,
+            "lon": -97.10807
+          }
+        },
+        {
+          "city": "Austin",
+          "state": "Texas",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 30.26715,
+            "lon": -97.74306
+          }
+        },
+        {
+          "city": "Houston",
+          "state": "Texas",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 29.76328,
+            "lon": -95.36327
+          }
+        },
+        {
+          "city": "Webster",
+          "state": "Texas",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 29.53773,
+            "lon": -95.11826
+          }
+        },
+        {
+          "city": "Richmond",
+          "state": "Virginia",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 37.55376,
+            "lon": -77.46026
+          }
+        },
+        {
+          "city": "Seattle",
+          "state": "Washington",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 47.60621,
+            "lon": -122.33207
+          }
+        }
+      ]
+    }
+  },
+  "resultsSection": {
+    "participantFlowModule": {
+      "preAssignmentDetails": "Out of 243 participants, 194 were randomized and treated in the study. Participants were randomized in 1:1 ratio to receive 600 mg subcutaneous (SC) dupilumab loading dose on day 1 and then dupilumab 300 mg once weekly (qw) or placebo qw.",
+      "recruitmentDetails": "The study was conducted at approximately 50 study sites in United States (US) between 05 August 2014 and 15 September 2015. A total of 243 participants were screened in the study.",
+      "groups": [
+        {
+          "id": "FG000",
+          "title": "Placebo qw",
+          "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+        },
+        {
+          "id": "FG001",
+          "title": "Dupilumab 300 mg qw",
+          "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+        }
+      ],
+      "periods": [
+        {
+          "title": "Overall Study",
+          "milestones": [
+            {
+              "type": "STARTED",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "97"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "97"
+                }
+              ]
+            },
+            {
+              "type": "COMPLETED",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "92"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "89"
+                }
+              ]
+            },
+            {
+              "type": "NOT COMPLETED",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "5"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "8"
+                }
+              ]
+            }
+          ],
+          "dropWithdraws": [
+            {
+              "type": "Adverse Event",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "0"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "5"
+                }
+              ]
+            },
+            {
+              "type": "Lost to Follow-up",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "2"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "1"
+                }
+              ]
+            },
+            {
+              "type": "Withdrawal by Subject",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "1"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "1"
+                }
+              ]
+            },
+            {
+              "type": "Physician Decision",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "1"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "0"
+                }
+              ]
+            },
+            {
+              "type": "Protocol Violation",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "1"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "0"
+                }
+              ]
+            },
+            {
+              "type": "Other than specified above",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "0"
+                },
+                {
+                  "groupId": "FG001",
+                  "numSubjects": "1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "baselineCharacteristicsModule": {
+      "populationDescription": "The safety analysis set (SAF) included all randomized participants who received any study drug, and was analyzed as treated. Any participant given at least 1 dupilumab injection was assigned to the dupilumab group. The safety analysis was based on the SAF.",
+      "groups": [
+        {
+          "id": "BG000",
+          "title": "Placebo qw",
+          "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+        },
+        {
+          "id": "BG001",
+          "title": "Dupilumab 300 mg qw",
+          "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+        },
+        {
+          "id": "BG002",
+          "title": "Total",
+          "description": "Total of all reporting groups"
+        }
+      ],
+      "denoms": [
+        {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "97"
+            },
+            {
+              "groupId": "BG001",
+              "value": "97"
+            },
+            {
+              "groupId": "BG002",
+              "value": "194"
+            }
+          ]
+        }
+      ],
+      "measures": [
+        {
+          "title": "Age, Continuous",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "years",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "39.9",
+                      "spread": "14.04"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "39.2",
+                      "spread": "13.55"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "39.6",
+                      "spread": "13.77"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sex: Female, Male",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "title": "Female",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "51"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "48"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "99"
+                    }
+                  ]
+                },
+                {
+                  "title": "Male",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "46"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "49"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "95"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Ethnicity (NIH/OMB)",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "title": "Hispanic or Latino",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "13"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "15"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "28"
+                    }
+                  ]
+                },
+                {
+                  "title": "Not Hispanic or Latino",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "84"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "81"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "165"
+                    }
+                  ]
+                },
+                {
+                  "title": "Unknown or Not Reported",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "1"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Race/Ethnicity, Customized",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "title": "White",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "67"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "60"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "127"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Black or African American",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "17"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "23"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "40"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Asian",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "11"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "12"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "23"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "American Indian or Alaska Native",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "1"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Other",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "2"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "1"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Anti-tetanus Immunoglobulin G (IgG) Titer",
+          "description": "Immune responses to vaccines included anti-tetanus IgG (Adacel \\[Tdap\\] vaccine) titre: A ≥ 2-fold or ≥ 4-fold increase from pre-vaccination at baseline in IgG titer for participants with a pre-vaccination tetanus antibody titers ≥ 0.1 IU/ml or a titer of ≥ 0.2 IU/ml for participants with pre-vaccination titers of \\<0.1 IU/ml.",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "IU/mL",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "1.74",
+                      "spread": "1.908"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "1.51",
+                      "spread": "1.328"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "1.62",
+                      "spread": "1.644"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Eczema Area and Severity Index (EASI) Score",
+          "description": "The EASI score was used to measure the severity and extent of atopic dermatitis (AD) and measures erythema, infiltration, excoriation and lichenification on 4 anatomic regions of the body: head, trunk, upper and lower extremities. The total EASI score ranges from 0 (minimum) to 72 (maximum) points, with the higher scores reflecting the worse severity of AD.",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "units on a scale",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "31.23",
+                      "spread": "13.771"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "29.04",
+                      "spread": "13.085"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "30.14",
+                      "spread": "13.442"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Investigator Global Assessment (IGA) Score",
+          "description": "IGA was an assessment scale used to determine severity of AD and clinical response to treatment on a 5-point scale (0 = clear; 1 = almost clear; 2 = mild; 3 = moderate; 4 = severe) based on erythema and papulation/infiltration. Therapeutic response was an IGA score of 0 (clear) or 1 (almost clear).",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "units on a scale",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "3.4",
+                      "spread": "0.49"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "3.4",
+                      "spread": "0.49"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "3.4",
+                      "spread": "0.49"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Weekly Peak Pruritus Numeric Rating Scale (NRS)",
+          "populationDescription": "Pruritus NRS was a tool used to report intensity of participant's pruritus (itch)--max \\& average intensity. Participants were asked: how would you rate the itch at worst moment during previous 24 hrs (max itch intensity, scale of 0-10 \\[0=no itch;10=worst itch imaginable\\]). Participants were excluded if baseline values were missed.",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "Units on a Scale",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "90"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "94"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "184"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "7.3",
+                      "spread": "2.19"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "7.4",
+                      "spread": "2.20"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "7.3",
+                      "spread": "2.19"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Global Individual Signs Score (GISS) Total Score",
+          "description": "Individual components of the AD lesions (erythema,infiltration/papulation, excoriations, and lichenification) were rated globally (each assessed for the whole body, not by anatomical region) on a 4-point scale (0 = none, 1 = mild, 2 = moderate and 3 = severe) using the EASI severity grading criteria. Total score ranges from 0 (absent disease) to 12 (severe disease).",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "units on a scale",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "8.8",
+                      "spread": "1.80"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "8.8",
+                      "spread": "1.76"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "8.8",
+                      "spread": "1.78"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Patient Oriented Eczema Measure (POEM) Score",
+          "description": "The POEM was a 7-item questionnaire that assessed disease symptoms (dryness, itching, flaking, cracking, sleep loss, bleeding and weeping) with a scoring system of 0 (absent disease) to 28 (severe disease) (high score indicative of poor quality of life \\[QOL\\]).",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "units on a scale",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "97"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "194"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "20.6",
+                      "spread": "5.59"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "21.5",
+                      "spread": "6.04"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "21.1",
+                      "spread": "5.82"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "outcomeMeasuresModule": {
+      "outcomeMeasures": [
+        {
+          "type": "PRIMARY",
+          "title": "Percentage of Participants With a Positive Response (≥4-Fold Increase) to Tetanus Toxoid (the Adacel [Tdap] Vaccine) at Week 16",
+          "description": "A positive response was defined as a ≥ 4-fold increase from pre-vaccination at baseline in anti-tetanus immunoglobulin G (IgG) titer for participants with a pre-vaccination tetanus antibody titers ≥ 0.1 IU/ml or a titer of ≥ 0.2 IU/ml for participants with pre-vaccination titers of \\<0.1 IU/ml. There was no planned statistical hypothesis testing regarding the difference in immune response between the 2 treatment groups for this study, therefore no formal statistical hypothesis between groups was performed.",
+          "populationDescription": "The immune response analysis set (IRS) included all randomized participants who received any study drug, vaccine injection at Week 12, and had 1 measurement for responses to tetanus toxoid vaccine at Week 16.",
+          "reportingStatus": "POSTED",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "Percentage of participants",
+          "timeFrame": "Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "92"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "90"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "83.7"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "83.3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Percentage of Participants With a Positive Response (≥2-Fold Increase) to Tetanus Toxoid (the Adacel [Tdap] Vaccine) at Week 16",
+          "description": "Participants with positive response defined as a ≥2-fold increase from pre-vaccination baseline in anti-tetanus IgG titer for participants with pre-vaccination tetanus antibody titers ≥0.1 IU/ml or a titer of ≥0.2 IU/ml for participants with pre-vaccination titers of \\<0.1 IU/ml.",
+          "populationDescription": "The immune response analysis set (IRS) included all randomized participants who received any study drug, vaccine injection at Week 12, and had 1 measurement for responses to tetanus toxoid vaccine at Week 16.",
+          "reportingStatus": "POSTED",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "Percentage of participants",
+          "timeFrame": "Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "92"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "90"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "94.6"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "95.6"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Percentage of Participants With a Positive Response (SBA Antibody Titer of ≥8 for Serogroup C) to Menomune Vaccine at Week 16",
+          "description": "A positive response to the Menomune vaccine was a serum bactericidal antibody (SBA) titer of ≥8 for serogroup C.",
+          "populationDescription": "The immune response analysis set (IRS) included all randomized participants who received any study drug, vaccine injection at Week 12, and had 1 measurement for responses to tetanus toxoid vaccine at Week 16.",
+          "reportingStatus": "POSTED",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "Percentage of participants",
+          "timeFrame": "Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "92"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "90"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "87.0"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "86.7"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Percentage of Participants Achieving an Investigator's Global Assessment (IGA) Score of \"0\" or \"1\" at Week 16",
+          "description": "IGA was an assessment scale used to determine severity of AD and clinical response to treatment on a 5-point scale (0 = clear; 1 = almost clear; 2 = mild; 3 = moderate; 4 = severe) based on erythema and papulation/infiltration. Therapeutic response was an IGA score of 0 (clear) or 1 (almost clear). Values after first rescue treatment were set to missing and participants with missing IGA scores at Week 16 were counted as non-responders.",
+          "populationDescription": "Full analysis set (FAS) that included all randomized participants.",
+          "reportingStatus": "POSTED",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "Percentage of participants",
+          "timeFrame": "Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "97"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "97"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "10.3"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "44.3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "analyses": [
+            {
+              "groupIds": ["OG000", "OG001"],
+              "groupDescription": "Analysis was performed using Cochran-Mantel-Haenszel test stratified by randomization strata (moderate \\[IGA=3\\] vs. severe \\[IGA=4\\] AD).",
+              "nonInferiorityType": "SUPERIORITY",
+              "pValue": "<0.0001",
+              "statisticalMethod": "Cochran-Mantel-Haenszel",
+              "paramType": "Percentage Difference",
+              "paramValue": "34.0",
+              "ciPctValue": "90",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "24.29",
+              "ciUpperLimit": "43.75",
+              "estimateComment": "Dupilumab 300 mg qw vs. Placebo qw"
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Percentage of Participants Achieving an Eczema Area and Severity Index-50 (EASI-50) (≥50% Improvement From Baseline) at Week 16",
+          "description": "The EASI score was used to measure the severity and extent of atopic dermatitis (AD) and measures erythema, infiltration, excoriation and lichenification on 4 anatomic regions of the body: head, trunk, upper and lower extremities. The total EASI score ranges from 0 (minimum) to 72 (maximum) points, with the higher scores reflecting the worse severity of AD. EASI-50 responders were the participants who achieved ≥50% overall improvement in EASI score from baseline to Week 16. Values after first rescue treatment were set to missing and participants with missing EASI score at Week 16 were counted as non-responders.",
+          "populationDescription": "Full analysis set (FAS) that included all randomized participants.",
+          "reportingStatus": "POSTED",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "Percentage of participants",
+          "timeFrame": "Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "97"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "97"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "32.0"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "72.2"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "analyses": [
+            {
+              "groupIds": ["OG000", "OG001"],
+              "groupDescription": "Analysis was performed using Cochran-Mantel-Haenszel test stratified by randomization strata (moderate \\[IGA=3\\] vs. severe \\[IGA=4\\] AD).",
+              "nonInferiorityType": "SUPERIORITY",
+              "pValue": "<0.0001",
+              "statisticalMethod": "Cochran-Mantel-Haenszel",
+              "paramType": "Percentage Difference",
+              "paramValue": "40.2",
+              "ciPctValue": "90",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "29.40",
+              "ciUpperLimit": "51.01",
+              "estimateComment": "Dupilumab 300 mg qw vs. Placebo qw"
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Percentage of Participants Achieving an Eczema Area and Severity Index-75 (EASI-75) (≥75% Improvement From Baseline) at Week 16",
+          "description": "The EASI score was used to measure the severity and extent of atopic dermatitis (AD) and measures erythema, infiltration, excoriation and lichenification on 4 anatomic regions of the body: head, trunk, upper and lower extremities. The total EASI score ranges from 0 (minimum) to 72 (maximum) points, with the higher scores reflecting the worse severity of AD. EASI-75 responders were the participants who achieved ≥75% overall improvement in EASI score from baseline to Week 16. Values after first rescue treatment use were set to missing and participants with missing EASI score at Week 16 were considered as non-responders.",
+          "populationDescription": "Full analysis set (FAS) that included all randomized participants.",
+          "reportingStatus": "POSTED",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "Percentage of participants",
+          "timeFrame": "Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "97"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "97"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "19.6"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "53.6"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "analyses": [
+            {
+              "groupIds": ["OG000", "OG001"],
+              "groupDescription": "Analysis was performed using Cochran-Mantel-Haenszel test stratified by randomization strata (moderate \\[IGA=3\\] vs. severe \\[IGA=4\\] AD).",
+              "nonInferiorityType": "SUPERIORITY",
+              "pValue": "<0.0001",
+              "statisticalMethod": "Cochran-Mantel-Haenszel",
+              "paramType": "Percentage Difference",
+              "paramValue": "34.0",
+              "ciPctValue": "90",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "23.38",
+              "ciUpperLimit": "44.66",
+              "estimateComment": "Dupilumab 300 mg qw vs. Placebo qw"
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Change From Baseline in Peak Weekly Averaged Pruritis Numerical Rating Scale (NRS) Scores at Week 16",
+          "description": "Pruritus NRS was an assessment tool that was used to report the intensity of participant's pruritus (itch), both maximum and average intensity, during a 24-hour recall period. Participants were asked the following question: how would a participant rate his itch at the worst moment during the previous 24 hours (for maximum itch intensity on a scale of 0 - 10 \\[0 = no itch; 10 = worst itch imaginable\\]). Weekly average obtained in the 7-day period prior to the baseline visit. Values after first rescue medication use were set to missing and missing values were imputed by Last observation carried forward (LOCF).",
+          "populationDescription": "Full analysis set (FAS) that included all randomized participants. Here, number of participants analyzed=participants with available data for this endpoint.",
+          "reportingStatus": "POSTED",
+          "paramType": "LEAST_SQUARES_MEAN",
+          "dispersionType": "Standard Error",
+          "unitOfMeasure": "Units on a scale",
+          "timeFrame": "Baseline to Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "90"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "94"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "-2.11",
+                      "spread": "0.259"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "-4.24",
+                      "spread": "0.250"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "analyses": [
+            {
+              "groupIds": ["OG000", "OG001"],
+              "groupDescription": "Analysis was performed using ANCOVA model which includes treatment, randomization strata, and baseline value as covariates.",
+              "nonInferiorityType": "SUPERIORITY",
+              "pValue": "<0.0001",
+              "statisticalMethod": "ANCOVA",
+              "paramType": "LS Mean Difference",
+              "paramValue": "-2.13",
+              "ciPctValue": "90",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "-2.72",
+              "ciUpperLimit": "-1.55",
+              "dispersionType": "STANDARD_ERROR_OF_MEAN",
+              "dispersionValue": "0.354",
+              "estimateComment": "Dupilumab 300 mg qw vs. Placebo qw"
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Change From Baseline in Body Surface Area (BSA) Affected by AD at Week 16",
+          "description": "BSA affected by AD was assessed for each section of the body (the possible highest score for each region was: head and neck \\[9%\\], anterior trunk \\[18%\\], back \\[18%\\], upper limbs \\[18%\\], lower limbs \\[36%\\], and genitals \\[1%\\]). It was reported as a percentage of all major body sections combined. Values after first rescue medication use were set to missing and missing values were imputed by LOCF.",
+          "populationDescription": "Full analysis set (FAS) that included all randomized participants. Here, number of participants analyzed=participants with available data for this endpoint.",
+          "reportingStatus": "POSTED",
+          "paramType": "LEAST_SQUARES_MEAN",
+          "dispersionType": "Standard Error",
+          "unitOfMeasure": "Percentage of BSA",
+          "timeFrame": "Baseline to Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "97"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "97"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "-11.0",
+                      "spread": "2.11"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "-28.7",
+                      "spread": "2.00"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "analyses": [
+            {
+              "groupIds": ["OG000", "OG001"],
+              "groupDescription": "Analysis was performed using ANCOVA model that includes treatment, randomization strata and baseline value as covariates.",
+              "nonInferiorityType": "SUPERIORITY",
+              "pValue": "<0.0001",
+              "statisticalMethod": "ANCOVA",
+              "paramType": "LS Mean Difference",
+              "paramValue": "-17.8",
+              "ciPctValue": "90",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "-22.5",
+              "ciUpperLimit": "-13.1",
+              "dispersionType": "STANDARD_ERROR_OF_MEAN",
+              "dispersionValue": "2.84",
+              "estimateComment": "Dupilumab 300 mg qw vs. Placebo qw"
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Change From Baseline in Global Individual Signs Score (GISS) Components (Erythema, Infiltration/Papulation, Excoriations and Lichenification) at Week 16",
+          "description": "Individual components of the AD lesions (erythema, infiltration/papulation, excoriations, and lichenification) were rated globally (each assessed for the whole body, not by anatomical region) on a 4-point scale (0 = none, 1 = mild, 2 = moderate and 3 = severe) using the EASI severity grading criteria. Total score ranges from 0 (absent disease) to 12 (severe disease). Values after first rescue treatment were set to missing. Analysis was completed using MMRM model which includes treatment, randomization strata, visit, baseline value, treatment-by-visit interaction, and baseline-by-visit interaction as covariates. These results are observed results without imputation.",
+          "populationDescription": "Full analysis set (FAS) that included all randomized participants. Here, number of participants analyzed=participants with available data for this endpoint.",
+          "reportingStatus": "POSTED",
+          "paramType": "LEAST_SQUARES_MEAN",
+          "dispersionType": "Standard Error",
+          "unitOfMeasure": "Units on a scale",
+          "timeFrame": "Baseline to Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "97"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "97"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "title": "Erythema",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "79"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "87"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "-0.4",
+                      "spread": "0.08"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "-0.9",
+                      "spread": "0.08"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Infiltration/Papulation",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "79"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "87"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "-0.4",
+                      "spread": "0.08"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "-1.1",
+                      "spread": "0.08"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Excoriations",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "79"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "87"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "-0.5",
+                      "spread": "0.09"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "-1.2",
+                      "spread": "0.08"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Lichenification",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "79"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "87"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "-0.4",
+                      "spread": "0.09"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "-1.0",
+                      "spread": "0.09"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Changes From Baseline in GISS Cumulative Score to Week 16",
+          "description": "Individual components of the AD lesions (erythema, infiltration/papulation, excoriations, and lichenification) were rated globally (each assessed for the whole body, not by anatomical region) on a 4-point scale (0 = none, 1 = mild, 2 = moderate and 3 = severe) using the EASI severity grading criteria. Total score ranges from 0 (absent disease) to 12 (severe disease). Values after first rescue medication use were set to missing and missing values were imputed by LOCF.",
+          "populationDescription": "Full analysis set (FAS) that included all randomized participants. Here, number of participants analyzed=participants with available data for this endpoint.",
+          "reportingStatus": "POSTED",
+          "paramType": "LEAST_SQUARES_MEAN",
+          "dispersionType": "Standard Error",
+          "unitOfMeasure": "Units on a scale",
+          "timeFrame": "Baseline to Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "97"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "97"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "-1.7",
+                      "spread": "0.28"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "-4.1",
+                      "spread": "0.28"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "analyses": [
+            {
+              "groupIds": ["OG000", "OG001"],
+              "groupDescription": "Analysis was performed using the ANCOVA model which includes treatment, randomization strata, and baseline values as covariates.",
+              "nonInferiorityType": "SUPERIORITY",
+              "pValue": "<0.0001",
+              "statisticalMethod": "ANCOVA",
+              "paramType": "LS Mean Difference",
+              "paramValue": "-2.4",
+              "ciPctValue": "90",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "-3.0",
+              "ciUpperLimit": "-1.7",
+              "dispersionType": "STANDARD_ERROR_OF_MEAN",
+              "dispersionValue": "0.39",
+              "estimateComment": "Dupilumab 300 mg qw vs. Placebo qw"
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Change in Patient Oriented Eczema Measure (POEM) Score From Baseline to Week 16",
+          "description": "The POEM was a 7-item questionnaire that assesses disease symptoms (dryness, itching, flaking, cracking, sleep loss, bleeding and weeping) with a scoring system of 0 (absent disease) to 28 (severe disease) (high score indicative of poor quality of life \\[QOL\\]). Values after first rescue medication use were set to missing and missing values were imputed by LOCF.",
+          "populationDescription": "Full analysis set (FAS) that included all randomized participants. Here, number of participants analyzed=participants with available data for this endpoint.",
+          "reportingStatus": "POSTED",
+          "paramType": "LEAST_SQUARES_MEAN",
+          "dispersionType": "Standard Error",
+          "unitOfMeasure": "Units on a Scale",
+          "timeFrame": "Baseline to Week 16",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo qw",
+              "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15."
+            },
+            {
+              "id": "OG001",
+              "title": "Dupilumab 300 mg qw",
+              "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "97"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "97"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "-4.8",
+                      "spread": "0.72"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "-13.1",
+                      "spread": "0.70"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "analyses": [
+            {
+              "groupIds": ["OG000", "OG001"],
+              "groupDescription": "Analysis was performed using the ANCOVA model which included treatment, randomization strata, and baseline value as covariates.",
+              "nonInferiorityType": "SUPERIORITY",
+              "pValue": "<0.0001",
+              "statisticalMethod": "ANCOVA",
+              "paramType": "LS Mean Difference",
+              "paramValue": "-8.3",
+              "ciPctValue": "90",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "-9.9",
+              "ciUpperLimit": "-6.6",
+              "dispersionType": "STANDARD_ERROR_OF_MEAN",
+              "dispersionValue": "0.99",
+              "estimateComment": "Dupilumab 300 mg qw vs. Placebo qw"
+            }
+          ]
+        }
+      ]
+    },
+    "adverseEventsModule": {
+      "frequencyThreshold": "5",
+      "timeFrame": "Adverse Events (AE) were collected from signature of the informed consent form up to the final visit (Week 32) regardless of seriousness or relationship to investigational product",
+      "description": "Reported AEs are treatment-emergent adverse events which are AEs that developed/worsened during the 'on treatment period' (from the administration of first dose of study drug up to the final visit \\[Week 32\\]).",
+      "eventGroups": [
+        {
+          "id": "EG000",
+          "title": "Placebo qw",
+          "description": "Two subcutaneous injections of Placebo (for Dupilumab) as a loading dose on Day 1 followed by a single injection qw from Week 1 to Week 15.",
+          "deathsNumAffected": 0,
+          "deathsNumAtRisk": 97,
+          "seriousNumAffected": 0,
+          "seriousNumAtRisk": 97,
+          "otherNumAffected": 29,
+          "otherNumAtRisk": 97
+        },
+        {
+          "id": "EG001",
+          "title": "Dupilumab 300 mg qw",
+          "description": "Two subcutaneous injections of Dupilumab 300 mg (for a total of 600 mg) as a loading dose on Day 1, followed by a single 300 mg injection qw from Week 1 to Week 15.",
+          "deathsNumAffected": 0,
+          "deathsNumAtRisk": 97,
+          "seriousNumAffected": 3,
+          "seriousNumAtRisk": 97,
+          "otherNumAffected": 30,
+          "otherNumAtRisk": 97
+        }
+      ],
+      "seriousEvents": [
+        {
+          "term": "Serum sickness-like reaction",
+          "organSystem": "Immune system disorders",
+          "sourceVocabulary": "MedDRA (18.0)",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 0,
+              "numAtRisk": 97
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 1,
+              "numAtRisk": 97
+            }
+          ]
+        },
+        {
+          "term": "Mycosis fungoides stage iv",
+          "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+          "sourceVocabulary": "MedDRA (18.0)",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 0,
+              "numAtRisk": 97
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 1,
+              "numAtRisk": 97
+            }
+          ]
+        },
+        {
+          "term": "Squamous cell carcinoma",
+          "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+          "sourceVocabulary": "MedDRA (18.0)",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 0,
+              "numAtRisk": 97
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 1,
+              "numAtRisk": 97
+            }
+          ]
+        }
+      ],
+      "otherEvents": [
+        {
+          "term": "Injection site reaction",
+          "organSystem": "General disorders",
+          "sourceVocabulary": "MedDRA (18.0)",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 0,
+              "numAtRisk": 97
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 5,
+              "numAtRisk": 97
+            }
+          ]
+        },
+        {
+          "term": "Conjunctivitis",
+          "organSystem": "Infections and infestations",
+          "sourceVocabulary": "MedDRA (18.0)",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 0,
+              "numAtRisk": 97
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 8,
+              "numAtRisk": 97
+            }
+          ]
+        },
+        {
+          "term": "Nasopharyngitis",
+          "organSystem": "Infections and infestations",
+          "sourceVocabulary": "MedDRA (18.0)",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 5,
+              "numAtRisk": 97
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 4,
+              "numAtRisk": 97
+            }
+          ]
+        },
+        {
+          "term": "Upper respiratory tract infection",
+          "organSystem": "Infections and infestations",
+          "sourceVocabulary": "MedDRA (18.0)",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 14,
+              "numAtRisk": 97
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 11,
+              "numAtRisk": 97
+            }
+          ]
+        },
+        {
+          "term": "Headache",
+          "organSystem": "Nervous system disorders",
+          "sourceVocabulary": "MedDRA (18.0)",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 3,
+              "numAtRisk": 97
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 5,
+              "numAtRisk": 97
+            }
+          ]
+        },
+        {
+          "term": "Dermatitis atopic",
+          "organSystem": "Skin and subcutaneous tissue disorders",
+          "sourceVocabulary": "MedDRA (18.0)",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 11,
+              "numAtRisk": 97
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 1,
+              "numAtRisk": 97
+            }
+          ]
+        }
+      ]
+    },
+    "moreInfoModule": {
+      "certainAgreement": {
+        "piSponsorEmployee": false,
+        "restrictionType": "OTHER",
+        "restrictiveAgreement": true,
+        "otherDetails": "The investigator has the right to independently publish study results from the investigator's site after a multi-center publication, or a defined period after the completion of the study by all sites. The investigator must provide the sponsor a copy of any such publication derived from the study for review and comment in advance of any submission, and delay publication, if requested, to allow the Sponsor to preserve its proprietary rights."
+      },
+      "pointOfContact": {
+        "title": "Clinical Trial Management",
+        "organization": "Regeneron Pharmaceuticals, Inc.",
+        "email": "clinicaltrials@regeneron.com",
+        "phone": "844-734-6643"
+      }
+    }
+  },
+  "derivedSection": {
+    "miscInfoModule": {
+      "versionHolder": "2023-11-15",
+      "modelPredictions": {
+        "bmiLimits": {
+          "minBmi": 0,
+          "maxBmi": 101
+        }
+      }
+    },
+    "conditionBrowseModule": {
+      "meshes": [
+        {
+          "id": "D000003876",
+          "term": "Dermatitis, Atopic"
+        },
+        {
+          "id": "D000003872",
+          "term": "Dermatitis"
+        },
+        {
+          "id": "D000004485",
+          "term": "Eczema"
+        }
+      ],
+      "ancestors": [
+        {
+          "id": "D000012871",
+          "term": "Skin Diseases"
+        },
+        {
+          "id": "D000012873",
+          "term": "Skin Diseases, Genetic"
+        },
+        {
+          "id": "D000030342",
+          "term": "Genetic Diseases, Inborn"
+        },
+        {
+          "id": "D000017443",
+          "term": "Skin Diseases, Eczematous"
+        },
+        {
+          "id": "D000006969",
+          "term": "Hypersensitivity, Immediate"
+        },
+        {
+          "id": "D000006967",
+          "term": "Hypersensitivity"
+        },
+        {
+          "id": "D000007154",
+          "term": "Immune System Diseases"
+        }
+      ],
+      "browseLeaves": [
+        {
+          "id": "M6761",
+          "name": "Dermatitis, Atopic",
+          "asFound": "Atopic Dermatitis",
+          "relevance": "HIGH"
+        },
+        {
+          "id": "M6757",
+          "name": "Dermatitis",
+          "asFound": "Dermatitis",
+          "relevance": "HIGH"
+        },
+        {
+          "id": "M7345",
+          "name": "Eczema",
+          "asFound": "Atopic Dermatitis",
+          "relevance": "HIGH"
+        },
+        {
+          "id": "M15364",
+          "name": "Skin Diseases",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M15366",
+          "name": "Skin Diseases, Genetic",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M23376",
+          "name": "Genetic Diseases, Inborn",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M19402",
+          "name": "Skin Diseases, Eczematous",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M9708",
+          "name": "Hypersensitivity",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M9710",
+          "name": "Hypersensitivity, Immediate",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M9890",
+          "name": "Immune System Diseases",
+          "relevance": "LOW"
+        }
+      ],
+      "browseBranches": [
+        {
+          "abbrev": "BC16",
+          "name": "Diseases and Abnormalities at or Before Birth"
+        },
+        {
+          "abbrev": "BC17",
+          "name": "Skin and Connective Tissue Diseases"
+        },
+        {
+          "abbrev": "BC20",
+          "name": "Immune System Diseases"
+        },
+        {
+          "abbrev": "All",
+          "name": "All Conditions"
+        }
+      ]
+    },
+    "interventionBrowseModule": {
+      "browseLeaves": [
+        {
+          "id": "M17050",
+          "name": "Vaccines",
+          "relevance": "LOW"
+        }
+      ],
+      "browseBranches": [
+        {
+          "abbrev": "All",
+          "name": "All Drugs and Chemicals"
+        }
+      ]
+    }
+  },
+  "hasResults": true
+}

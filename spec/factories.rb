@@ -22,6 +22,10 @@ FactoryBot.define do
 
   factory :study_record do
   end
+
+  factory :study_record_record do
+  end
+  
   factory :retraction do
   end
 
@@ -42,10 +46,10 @@ FactoryBot.define do
   factory :study_search do
 
   end
+  
   factory :study_json_record do
-    study_batch {""}
-    studies_saved_at {"2019-11-25 15:52:10"}
   end
+
   factory :search do
     save_tsv {false}
     query {"MyString"}

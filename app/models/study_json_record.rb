@@ -186,8 +186,8 @@ class StudyJsonRecord < Support::SupportBase
       results_first_submitted_date: get_date(status['ResultsFirstSubmitDate']),
       disposition_first_submitted_date: get_date(status['DispFirstSubmitDate']),
       last_update_submitted_date: get_date(status['LastUpdateSubmitDate']),
-      study_first_submitted_qc_date: status['StudyFirstSubmitQCDate'],
-      study_first_posted_date: study_posted['StudyFirstPostDate'],
+      study_first_submitted_qc_date: get_date(status['StudyFirstSubmitQCDate']),
+      study_first_posted_date: get_date(study_posted['StudyFirstPostDate']),
       study_first_posted_date_type: study_posted['StudyFirstPostDateType'],
       results_first_submitted_qc_date: status['ResultsFirstSubmitQCDate'],
       results_first_posted_date: results_posted['ResultsFirstPostDate'],
@@ -195,8 +195,8 @@ class StudyJsonRecord < Support::SupportBase
       disposition_first_submitted_qc_date: status['DispFirstSubmitQCDate'],
       disposition_first_posted_date: disp_posted['DispFirstPostDate'],
       disposition_first_posted_date_type: disp_posted['DispFirstPostDateType'],
-      last_update_submitted_qc_date: status['LastUpdateSubmitDate'], # this should not go here
-      last_update_posted_date: last_posted['LastUpdatePostDate'],
+      last_update_submitted_qc_date: get_date(status['LastUpdateSubmitDate']), # this should not go here
+      last_update_posted_date: get_date(last_posted['LastUpdatePostDate']),
       last_update_posted_date_type: last_posted['LastUpdatePostDateType'],
       delayed_posting: status['DelayedPosting'],
       start_month_year: start_date['StartDate'],
