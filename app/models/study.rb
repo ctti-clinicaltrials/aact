@@ -5,7 +5,7 @@ class String
   end
 end
 
-class Study < ActiveRecord::Base
+class Study < ApplicationRecord
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
 
@@ -230,76 +230,109 @@ class Study < ActiveRecord::Base
     brief_title
   end
 
-  def attribs
+  def self.mapper(json)
+    return unless json.protocol_section
+
+    ident = json.protocol_section['identificationModule']
+    nct_id = ident['nctId']
+    status = json.protocol_section['statusModule']
+    design = key_check(json.protocol_section['designModule'])
+    oversight = key_check(json.protocol_section['oversightModule'])
+    ipd_sharing = key_check(json.protocol_section['ipdSharingStatementModule'])
+    study_posted = status['studyFirstPostDateStruct']
+    results_posted = key_check(status['resultsFirstPostDateStruct'])
+    disp_posted = key_check(status['dispFirstPostDateStruct'])
+    last_posted = status['lastUpdatePostDateStruct']
+    start_date = key_check(status['startDateStruct'])
+    completion_date = key_check(status['completionDateStruct'])
+    primary_completion_date = key_check(status['primaryCompletionDateStruct'])
+    results = json.results_section || {}
+    more_info = results['moreInfoModule']
+    baseline = key_check(results['baselineCharacteristicsModule'])
+    enrollment = key_check(design['enrollmentInfo'])
+    expanded_access = status.dig('expandedAccessInfo', 'hasExpandedAccess')
+    expanded = key_check(design['expandedAccessTypes'])
+    biospec = key_check(design['bioSpec'])
+    arms_intervention = key_check(json.protocol_section['armsInterventionsModule'])
+    study_type = design['studyType']
+    patient_registry = design['patientRegistry'] || ''
+    study_type = "#{study_type} [Patient Registry]" if patient_registry =~ /Yes/i
+    groups = key_check(arms_intervention['armGroups'])
+    num_of_groups = groups.count == 0 ? nil : groups.count
+    arms_count = study_type =~ /Interventional/i ? num_of_groups : nil
+    groups_count = arms_count ? nil : num_of_groups
+    phase_list = key_check(design['phases'])
+    phase_list = phase_list.join('/') if phase_list
+
     {
-      :start_month_year              => get('start_date'),
-      :verification_month_year       => get('verification_date'),
-      :completion_month_year         => get('completion_date'),
-      :primary_completion_month_year => get('primary_completion_date'),
-
-      :start_date                    => convert_date('start_date'),
-      :verification_date             => convert_date('verification_date'),
-      :completion_date               => convert_date('completion_date'),
-      :primary_completion_date       => convert_date('primary_completion_date'),
-
-      :study_first_submitted_qc_date        => get('study_first_submitted_qc').try(:to_date),
-      :study_first_posted_date              => get('study_first_posted').try(:to_date),
-      :results_first_submitted_qc_date      => get('results_first_submitted_qc').try(:to_date),
-      :results_first_posted_date            => get('results_first_posted').try(:to_date),
-      :disposition_first_submitted_qc_date  => get('disposition_first_submitted_qc').try(:to_date),
-      :disposition_first_posted_date        => get('disposition_first_posted').try(:to_date),
-      :last_update_submitted_qc_date        => get('last_update_submitted_qc').try(:to_date),
-      :last_update_posted_date              => get('last_update_posted').try(:to_date),
-
-      # the previous have been replaced with:
-      :study_first_submitted_date       => get_date(get('study_first_submitted')),
-      :results_first_submitted_date     => get_date(get('results_first_submitted')),
-      :disposition_first_submitted_date => get_date(get('disposition_first_submitted')),
-      :last_update_submitted_date       => get_date(get('last_update_submitted')),
-
-      :nlm_download_date_description  => xml.xpath('//download_date').text,
-      :acronym                        => get('acronym'),
-      :baseline_population            => xml.xpath('//baseline/population').try(:text),
-      :number_of_arms                 => get('number_of_arms'),
-      :number_of_groups               => get('number_of_groups'),
-      :source                         => get('source'),
-      :brief_title                    => get('brief_title') ,
-      :official_title                 => get('official_title'),
-      :overall_status                 => get('overall_status'),
-      :last_known_status              => get('last_known_status'),
-      :phase                          => get('phase'),
-      :target_duration                => get('target_duration'),
-      :enrollment                     => get('enrollment'),
-      :biospec_description            => get_text('biospec_descr'),
-
-      :start_date_type                     => get_type('start_date'),
-      :primary_completion_date_type        => get_type('primary_completion_date'),
-      :completion_date_type                => get_type('completion_date'),
-      :study_first_posted_date_type        => get_type('study_first_posted'),
-      :results_first_posted_date_type      => get_type('results_first_posted'),
-      :disposition_first_posted_date_type  => get_type('disposition_first_posted'),
-      :last_update_posted_date_type        => get_type('last_update_posted'),
-      :enrollment_type                     => get_type('enrollment'),
-
-      :study_type                        => get('study_type'),
-      :biospec_retention                 => get('biospec_retention'),
-      :limitations_and_caveats           => xml.xpath('//limitations_and_caveats').text,
-      :is_fda_regulated_drug             => get_boolean('//is_fda_regulated_drug'),
-      :is_fda_regulated_device           => get_boolean('//is_fda_regulated_device'),
-      :is_unapproved_device              => get_boolean('//is_unapproved_device'),
-      :is_ppsd                           => get_boolean('//is_ppsd'),
-      :is_us_export                      => get_boolean('//is_us_export'),
-      :ipd_time_frame                    => get('patient_data/ipd_time_frame'),
-      :ipd_access_criteria               => get('patient_data/ipd_access_criteria'),
-      :ipd_url                           => get('patient_data/ipd_url'),
-      :plan_to_share_ipd                 => get('patient_data/sharing_ipd'),
-      :plan_to_share_ipd_description     => get('patient_data/ipd_description'),
-      :has_expanded_access               => get_boolean('//has_expanded_access'),
-      :expanded_access_type_individual   => get_boolean('//expanded_access_info/expanded_access_type_individual'),
-      :expanded_access_type_intermediate => get_boolean('//expanded_access_info/expanded_access_type_intermediate'),
-      :expanded_access_type_treatment    => get_boolean('//expanded_access_info/expanded_access_type_treatment'),
-      :has_dmc                           => get_boolean('//has_dmc'),
-      :why_stopped                       => get('why_stopped')
+      nct_id: nct_id,
+      nlm_download_date_description: nil,
+      study_first_submitted_date: convert_to_date(status['studyFirstSubmitDate']),
+      study_first_submitted_qc_date: convert_to_date(status['studyFirstSubmitQcDate']),
+      study_first_posted_date: convert_to_date(study_posted['date']),
+      study_first_posted_date_type: study_posted['type'],
+      results_first_submitted_date: convert_to_date(status['resultsFirstSubmitDate']),
+      results_first_submitted_qc_date: status['resultsFirstSubmitQcDate'],
+      results_first_posted_date: results_posted['date'],
+      results_first_posted_date_type: results_posted['type'],
+      disposition_first_submitted_date: convert_to_date(status['dispFirstSubmitDate']),
+      disposition_first_submitted_qc_date: status['dispFirstSubmitQcDate'],
+      disposition_first_posted_date: disp_posted['date'],
+      disposition_first_posted_date_type: disp_posted['type'],
+      last_update_submitted_date: convert_to_date(status['lastUpdateSubmitDate']),
+      last_update_submitted_qc_date: convert_to_date(status['lastUpdateSubmitDate']), # this should not go here (Ramiro comment)
+      last_update_posted_date: convert_to_date(last_posted['date']),
+      last_update_posted_date_type: last_posted['type'],
+      start_month_year: start_date['date'],
+      start_date_type: start_date['type'],
+      start_date: convert_to_date(start_date['date']),
+      verification_month_year: status['statusVerifiedDate'],
+      verification_date: convert_to_date(status['statusVerifiedDate']),
+      completion_month_year: completion_date['date'],
+      completion_date_type: completion_date['type'],
+      completion_date: convert_to_date(completion_date['date']),
+      primary_completion_month_year: primary_completion_date['date'],
+      primary_completion_date_type: primary_completion_date['type'],
+      primary_completion_date: convert_to_date(primary_completion_date['date']),
+      baseline_population: baseline['populationDescription'],
+      brief_title: ident['briefTitle'],
+      official_title: ident['officialTitle'],
+      acronym: ident['acronym'],
+      overall_status: status['overallStatus'],
+      last_known_status: status['lastKnownStatus'],
+      why_stopped: status['whyStopped'],
+      delayed_posting: status['delayedPosting'],
+      phase: phase_list,
+      enrollment: enrollment['count'],
+      enrollment_type: enrollment['type'],
+      source: ident.dig('organization', 'fullName'),
+      source_class: ident.dig('organization', 'class'),
+      limitations_and_caveats: key_check(more_info&.dig('limitationsAndCaveats'))&.dig('description'),
+      number_of_arms: arms_count,
+      number_of_groups: groups_count,
+      target_duration: design['targetDuration'],
+      study_type: study_type,
+      has_expanded_access: get_boolean(expanded_access),
+      expanded_access_nctid: status.dig('expandedAccessInfo', 'nctId'),
+      expanded_access_status_for_nctid: status.dig('expandedAccessInfo', 'statusForNctId'),
+      expanded_access_type_individual: get_boolean(expanded['individual']),
+      expanded_access_type_intermediate: get_boolean(expanded['intermediate']),
+      expanded_access_type_treatment: get_boolean(expanded['treatment']),
+      has_dmc: get_boolean(oversight['oversightHasDmc']),
+      is_fda_regulated_drug: get_boolean(oversight['isFdaRegulatedDrug']),
+      is_fda_regulated_device: get_boolean(oversight['isFdaRegulatedDevice']),
+      is_unapproved_device: get_boolean(oversight['isUnapprovedDevice']),
+      is_ppsd: get_boolean(oversight['isPpsd']),
+      is_us_export: get_boolean(oversight['isUsExport']),
+      fdaaa801_violation: get_boolean(oversight['fdaaa801Violation']),
+      biospec_retention: biospec['retention'],
+      biospec_description: biospec['description'],
+      plan_to_share_ipd: ipd_sharing['ipdSharing'],
+      plan_to_share_ipd_description: ipd_sharing['description'],
+      ipd_time_frame: ipd_sharing['timeFrame'],
+      ipd_access_criteria: ipd_sharing['accessCriteria'],
+      ipd_url: ipd_sharing['url'],
+      baseline_type_units_analyzed: baseline['typeUnitsAnalyzed']
     }
   end
 
