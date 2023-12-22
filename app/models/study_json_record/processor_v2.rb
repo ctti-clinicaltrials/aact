@@ -259,23 +259,6 @@ class StudyJsonRecord::ProcessorV2
   def reported_event_totals_data
   end
 
-  def responsible_party_data
-    return unless protocol_section
-
-    responsible_party = protocol_section.dig('sponsorCollaboratorsModule', 'responsibleParty')
-    return unless responsible_party
-
-    {
-      nct_id: nct_id,
-      responsible_party_type: responsible_party['type'],
-      name: responsible_party['ResponsiblePartyInvestigatorFullName'],
-      title: responsible_party['ResponsiblePartyInvestigatorTitle'],
-      organization: responsible_party['ResponsiblePartyOldOrganization'],
-      affiliation: responsible_party['ResponsiblePartyInvestigatorAffiliation'],
-      old_name_title: responsible_party['ResponsiblePartyOldNameTitle']
-    }
-  end
-
   def result_agreement_data
   end
 
