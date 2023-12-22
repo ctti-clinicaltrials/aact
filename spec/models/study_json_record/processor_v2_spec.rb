@@ -37,7 +37,7 @@ RSpec.describe StudyJsonRecord::ProcessorV2, type: :model do
           nct_id: '12345',
           ext: '123',
           phone: '555-1234',
-          title: 'Manager',
+          name: 'Manager',
           organization: 'Org',
           email: 'contact@example.com'
         })

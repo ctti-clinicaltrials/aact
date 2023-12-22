@@ -167,7 +167,7 @@ class StudyJsonRecord::ProcessorV2
       nct_id: nct_id,
       ext: point_of_contact['phoneExt'],
       phone: point_of_contact['phone'],
-      title: point_of_contact['title'],
+      name: point_of_contact['title'],
       organization: point_of_contact['organization'],
       email: point_of_contact['email']
     }
