@@ -180,8 +180,7 @@ class StudyJsonRecord::ProcessorV2
   def design_groups_data
     return unless protocol_section
 
-    ident = protocol_section['identificationModule']
-    nct_id = ident['nctId']
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
     arms_intervention = key_check(protocol_section['armsInterventionsModule'])
     arms_groups = key_check(arms_intervention['armGroups'])
     return unless arms_groups
@@ -195,6 +194,7 @@ class StudyJsonRecord::ProcessorV2
                       description: group['description']
                     }
     end
+
     collection
   end
 
@@ -263,21 +263,6 @@ class StudyJsonRecord::ProcessorV2
       outcomes_assessor_masked: is_masked?(who_masked, ['OUTCOMES_ASSESSOR']),
     }
   end
-  
-  def key_check(key)
-    key ||= {}
-  end
-
-
-  def is_masked?(who_masked_array, query_array)
-    # example who_masked array ["PARTICIPANT", "CARE_PROVIDER", "INVESTIGATOR", "OUTCOMES_ASSESSOR"]
-    return unless query_array
-
-    query_array.each do |term|
-      return true if who_masked_array.try(:include?, term)
-    end
-    nil
-  end
 
   def eligibility_data
     return unless protocol_section
@@ -307,8 +292,7 @@ class StudyJsonRecord::ProcessorV2
 
   def participant_flow_data
     return unless protocol_section
-    ident = protocol_section['identificationModule']
-    nct_id = ident['nctId']
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
     participant_flow = results_section['participantFlowModule']
 
     {
@@ -449,6 +433,23 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def overall_officials_data
+    return unless contacts_location_module
+
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
+    overall_officials = contacts_location_module['overallOfficials']
+    return unless overall_officials
+
+    collection = []
+    overall_officials.each do |overall_official|
+      collection << {
+                      nct_id: nct_id,
+                      name: overall_official['name'],
+                      affiliation: overall_official['affiliation'],
+                      role: overall_official['role']
+                    }
+    end
+
+    collection
   end
 
   def design_outcomes_data
@@ -502,6 +503,16 @@ class StudyJsonRecord::ProcessorV2
 
   def key_check(key)
     key ||= {}
+  end
+
+  def is_masked?(who_masked_array, query_array)
+    # example who_masked array ["PARTICIPANT", "CARE_PROVIDER", "INVESTIGATOR", "OUTCOMES_ASSESSOR"]
+    return unless query_array
+
+    query_array.each do |term|
+      return true if who_masked_array.try(:include?, term)
+    end
+    nil
   end
 
   def convert_to_date(str)
