@@ -494,22 +494,6 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
     end
   end
 
-  describe '#overall_officials_data' do
-    it 'uses JSON API to generate data that will be inserted into the overall officials table' do
-      expected_data = [
-        { 
-          nct_id: 'NCT03475563', 
-          name: 'Imanol Otaegui, MD', 
-          affiliation: "Hospital Universitari Vall d'hebron Barcelona, Spain", 
-          role: 'PRINCIPAL_INVESTIGATOR' 
-        }
-      ]
-      hash = JSON.parse(File.read('spec/support/json_data/NCT03475563.json'))
-      processor = described_class.new(hash)
-      expect(processor.overall_officials_data).to eq(expected_data)
-    end
-  end
-
   describe '#detailed_description_data' do
     it 'tests detailed_description_data' do
       expected_data = {
