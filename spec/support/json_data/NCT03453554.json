@@ -1,0 +1,34 @@
+{
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT03453554",
+        "orgStudyIdInfo": {
+          "id": "AZ150096"
+        },
+        "organization": {
+          "fullName": "Washington State University",
+          "class": "OTHER"
+        },
+        "briefTitle": "Evaluating a Digital...",
+        "officialTitle": "Evaluating a Digital..."
+      }
+    },
+    "annotationSection": {
+      "annotationModule": {
+        "unpostedAnnotation": {
+          "unpostedResponsibleParty": "Maureen-Schmitter-Edgecombe...",
+          "unpostedEvents": [
+            {
+              "type": "RELEASE",
+              "date": "2022-12-23"
+            },
+            {
+              "type": "RESET",
+              "date": "2023-10-20"
+            }
+          ]
+        }
+      }
+    },
+    "hasResults": false
+  }
