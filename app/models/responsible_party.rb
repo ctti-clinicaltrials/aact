@@ -1,4 +1,4 @@
-class ResponsibleParty < StudyRelationship
+class ResponsibleParty < ApplicationRecord
 
   def self.top_level_label
     '//responsible_party'
@@ -27,7 +27,8 @@ class ResponsibleParty < StudyRelationship
   #   }
   # end
 
-  def responsible_party_data
+  def self.mapper(json)
+
     return unless protocol_section
 
     responsible_party = protocol_section.dig('sponsorCollaboratorsModule', 'responsibleParty')
@@ -36,17 +37,17 @@ class ResponsibleParty < StudyRelationship
     {
       nct_id: nct_id,
       responsible_party_type: responsible_party['type'],
-      name: responsible_party['ResponsiblePartyInvestigatorFullName'],
-      title: responsible_party['ResponsiblePartyInvestigatorTitle'],
-      organization: responsible_party['ResponsiblePartyOldOrganization'],
-      affiliation: responsible_party['ResponsiblePartyInvestigatorAffiliation'],
-      old_name_title: responsible_party['ResponsiblePartyOldNameTitle']
+      name: responsible_party['investigatorFullName'],
+      title: responsible_party['investigatorTitle'],
+      organization: responsible_party['leadSponsor'],
+      affiliation: responsible_party['investigatorAffiliation']
     }
+    # ask Ramiro about array of collaborators 
   end
 
-  def get_name
-    n=get('investigator_full_name')
-    !n.blank? ? n : get('name_title')
-  end
+  # def get_name
+  #   n=get('investigator_full_name')
+  #   !n.blank? ? n : get('name_title')
+  # end
 
 end
