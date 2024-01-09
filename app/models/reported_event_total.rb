@@ -1,2 +1,5 @@
-class ReportedEventTotal < ActiveRecord::Base
+class ReportedEventTotal < ApplicationRecord
+    def self.mapper(json)
+        
+    end
 end
