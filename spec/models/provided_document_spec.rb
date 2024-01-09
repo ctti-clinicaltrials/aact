@@ -15,3 +15,46 @@ describe ProvidedDocument do
   end
 
 end
+
+RSpec.describe ProvidedDocument do
+  describe 'ProvidedDocument#mapper' do
+    it 'study should have expected provided_document info' do
+      expected_data = [
+        { 
+          nct_id: 'NCT03064438', 
+          document_type: 'United States', 
+          has_protocol: false
+          has_icf: 'NCT02552212', 
+          has_sap: 'Australia', 
+          document_date: false,
+          url: false
+        },
+        { 
+          nct_id: 'NCT03064438', 
+          document_type: 'United States', 
+          has_protocol: false
+          has_icf: 'NCT02552212', 
+          has_sap: 'Australia', 
+          document_date: false,
+          url: false
+        }
+      ]
+      hash = JSON.parse(File.read('spec/support/json_data/NCT02278341.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(Country.mapper(processor)).to eq(expected_data)
+    end
+
+    it 'when contact location country exist and removed country does not exist' do
+      expected_data = [
+        { 
+          nct_id: 'NCT04207047', 
+          name: 'United States', 
+          removed: false
+        }
+      ]  
+      hash = JSON.parse(File.read('spec/support/json_data/NCT04207047.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(Country.mapper(processor)).to eq(expected_data)
+    end    
+  end  
+end
