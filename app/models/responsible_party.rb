@@ -29,19 +29,22 @@ class ResponsibleParty < ApplicationRecord
 
   def self.mapper(json)
 
-    return unless protocol_section
+    # return unless protocol_section
 
-    responsible_party = protocol_section.dig('sponsorCollaboratorsModule', 'responsibleParty')
-    return unless responsible_party
+    # responsible_party = protocol_section.dig('sponsorCollaboratorsModule', 'responsibleParty')
+    # return unless responsible_party
+    return unless json.protocol_section
+    nct_id = json.protocol_section.dig('identificationModule', 'nctId')
+    responsible_party = json.protocol_section.dig('sponsorCollaboratorsModule', 'responsibleParty')
 
-    {
-      nct_id: nct_id,
-      responsible_party_type: responsible_party['type'],
-      name: responsible_party['investigatorFullName'],
-      title: responsible_party['investigatorTitle'],
-      organization: responsible_party['leadSponsor'],
-      affiliation: responsible_party['investigatorAffiliation']
-    }
+      {
+        nct_id: nct_id,
+        responsible_party_type: responsible_party['type'],
+        name: responsible_party['investigatorFullName'],
+        title: responsible_party['investigatorTitle'],
+        organization: responsible_party['leadSponsor'],
+        affiliation: responsible_party['investigatorAffiliation']
+      }
     # ask Ramiro about array of collaborators 
   end
 
