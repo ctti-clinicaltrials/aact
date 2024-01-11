@@ -17,25 +17,13 @@ class ResponsibleParty < ApplicationRecord
     end
   end
 
-  # def attribs
-  #   {
-  #     :responsible_party_type => get('responsible_party_type'),
-  #     :affiliation => get('investigator_affiliation'),
-  #     :organization => get('organization'),
-  #     :title => get('investigator_title'),
-  #     :name => get_name,
-  #   }
-  # end
-
   def self.mapper(json)
-
-    # return unless protocol_section
-
-    # responsible_party = protocol_section.dig('sponsorCollaboratorsModule', 'responsibleParty')
-    # return unless responsible_party
+    # checks for protocol_section
     return unless json.protocol_section
     nct_id = json.protocol_section.dig('identificationModule', 'nctId')
     responsible_party = json.protocol_section.dig('sponsorCollaboratorsModule', 'responsibleParty')
+    # checks for responsible party
+    return unless responsible_party
 
       {
         nct_id: nct_id,
@@ -45,7 +33,6 @@ class ResponsibleParty < ApplicationRecord
         organization: responsible_party['leadSponsor'],
         affiliation: responsible_party['investigatorAffiliation']
       }
-    # ask Ramiro about array of collaborators 
   end
 
   # def get_name
