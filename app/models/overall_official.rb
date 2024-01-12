@@ -4,11 +4,6 @@ class OverallOfficial < ApplicationRecord
     '//overall_official'
   end
 
-  def self.create_all_from(opts)
-    objects = super
-    import(objects)
-  end
-
   def self.mapper(json)
     return unless json.contacts_location_module
 
