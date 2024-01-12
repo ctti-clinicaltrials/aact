@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Country do
+
   describe 'Country#mapper' do
     it 'when contact location countries exist and removed country exist' do
       expected_data = [
@@ -73,4 +74,5 @@ RSpec.describe Country do
       expect(Country.mapper(processor)).to eq(expected_data)
     end    
   end  
+  
 end

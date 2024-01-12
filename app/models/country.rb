@@ -1,10 +1,5 @@
 class Country < ApplicationRecord
 
-  def self.create_all_from(opts)
-    countries = location_countries(opts) + removed_countries(opts)
-    import(countries)
-  end
-
   def self.mapper(json)
     return unless json.derived_section
 
