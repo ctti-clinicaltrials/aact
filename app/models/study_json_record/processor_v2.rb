@@ -386,9 +386,6 @@ class StudyJsonRecord::ProcessorV2
   def study_references_data
   end
 
-  def sponsors_data
-  end
-
   def drop_withdrawals_data
   end
 
