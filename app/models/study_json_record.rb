@@ -1068,50 +1068,6 @@ class StudyJsonRecord < Support::SupportBase
     collection
   end
 
-#OLD
-# [
-#   {
-#       nct_id: nct_id,
-#       ctgov_group_code: event_hash['EventGroupId'],
-#       event_type: "Serious",
-#       classification: classification,
-#       subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
-#       subjects_at_risk: event_hash["EventGroup#{event_type}NumAtRisk"]
-#     },
-#     {
-#       nct_id: nct_id,
-#       ctgov_group_code: event_hash['EventGroupId'],
-#       event_type: "Other",
-#       classification: classification,
-#       subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
-#       subjects_at_risk: event_hash["EventGroup#{event_type}NumAtRisk"]
-#     },
-#     {
-#       nct_id: nct_id,
-#       ctgov_group_code: event_hash['EventGroupId'],
-#       event_type: "Deaths",
-#       classification: classification,
-#       subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
-#       subjects_at_risk: event_hash["EventGroup#{event_type}NumAtRisk"]
-#     }
-# ]
-
-
-# NEW
-# [
-#   nctid: 555,
-#   deaths: {
-#       total_count: 5,
-#       classification: 'Total, all-cause mortality'},
-#   seriousEvents: {
-#       total_count: 5,
-#       classification: 'Total, serious adverse events'},
-#   otherEvents: {
-#       total_count: 5,
-#       classification: 'Total, other adverse events'}
-# ]
-
-
   def reported_event_totals_data
     return [] unless @adverse_events_module
 
