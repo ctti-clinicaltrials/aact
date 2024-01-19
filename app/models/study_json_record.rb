@@ -1101,22 +1101,14 @@ class StudyJsonRecord < Support::SupportBase
 # [
 #   nctid: 555,
 #   deaths: {
-#       total_death_count: 5,
+#       total_count: 5,
 #       classification: 'Total, all-cause mortality'},
 #   seriousEvents: {
-#         ctgov_group_code: event_hash['EventGroupId'],
-#         event_type: event_type.downcase,
-#         classification: classification,
-#         subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
-#         subjects_at_risk: event_hash["EventGroup#{event_type}NumAtRisk"]
-#       },
+#       total_count: 5,
+#       classification: 'Total, serious adverse events'},
 #   otherEvents: {
-#         ctgov_group_code: event_hash['EventGroupId'],
-#         event_type: event_type.downcase,
-#         classification: classification,
-#         subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
-#         subjects_at_risk: event_hash["EventGroup#{event_type}NumAtRisk"]
-#       }
+#       total_count: 5,
+#       classification: 'Total, other adverse events'}
 # ]
 
 
