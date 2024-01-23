@@ -41,7 +41,7 @@ RSpec.describe Sponsor do
       expect(Sponsor.mapper(processor)).to eq(expected_data)
     end
 
-    it 'should return Lead sponsor type expected data and no Collaborator data' do
+    it 'should return Lead sponsor type expected data and no Collaborator sponsor type expected data' do
       expected_data = [
         { 
           nct_id: "NCT02552212", 
@@ -55,5 +55,5 @@ RSpec.describe Sponsor do
       expect(Sponsor.mapper(processor)).to eq(expected_data)
     end
   end 
-   
+
 end
