@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe DesignOutcome do
 
   describe 'DesignOutcome#mapper' do
-    it 'should have expected primary, secondary, and other design outcomes data' do
+    it 'should return primary, secondary, and other design outcomes data' do
       expected_data = [
         { 
           nct_id: "NCT03064438", 
@@ -90,27 +90,108 @@ RSpec.describe DesignOutcome do
       processor = StudyJsonRecord::ProcessorV2.new(hash)
       expect(DesignOutcome.mapper(processor)).to eq(expected_data)
     end
+    
+    it 'should return primary and secondary design outcomes data and no other design outcomes data' do
+      expected_data = [
+        { 
+          nct_id: "NCT00763412", 
+          outcome_type: "primaryoutcomes", 
+          measure: "BMI",
+          time_frame: "2 year/end of study", 
+          population: nil,
+          description: nil
+        },
+        { 
+          nct_id: "NCT00763412", 
+          outcome_type: "primaryoutcomes", 
+          measure: "Body Composition",
+          time_frame: "2 year/end of study", 
+          population: nil, 
+          description: "Reporting % of Fat and Lean body mass"
+        },
+        { 
+          nct_id: "NCT00763412", 
+          outcome_type: "primaryoutcomes", 
+          measure: "CRP",
+          time_frame: "2 year/end of study", 
+          population: nil, 
+          description: nil
+        },
+        { 
+          nct_id: "NCT00763412", 
+          outcome_type: "secondaryoutcomes", 
+          measure: "Glucose Tolerance",
+          time_frame: "2-year", 
+          population: nil,
+          description: "We completed the OGTT at the 2 year/end of study visit."
+        },
+        { 
+          nct_id: "NCT00763412", 
+          outcome_type: "secondaryoutcomes", 
+          measure: "Inflammatory Markers",
+          time_frame: "2 year/end of study", 
+          population: nil,
+          description: nil
+        },
+        { 
+          nct_id: "NCT00763412", 
+          outcome_type: "secondaryoutcomes", 
+          measure: "Wt Z Score",
+          time_frame: "2 year/end of study", 
+          population: nil, 
+          description: nil
+        },
+        { 
+          nct_id: "NCT00763412", 
+          outcome_type: "secondaryoutcomes", 
+          measure: "Tanner Stage",
+          time_frame: "2 year/end of study", 
+          population: nil,
+          description: "Puberty scale measuring 1-5, 1 being least development, 5 being most development."
+        },
+        { 
+          nct_id: "NCT00763412", 
+          outcome_type: "secondaryoutcomes", 
+          measure: "FEV 1",
+          time_frame: "2 year/end of study", 
+          population: nil,
+          description: "% of lung function"
+        },
+        { 
+          nct_id: "NCT00763412", 
+          outcome_type: "secondaryoutcomes", 
+          measure: "C-Peptide",
+          time_frame: "2 year", 
+          population: nil, 
+          description: nil
+        }
+      ]
+      hash = JSON.parse(File.read('spec/support/json_data/NCT00763412.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(DesignOutcome.mapper(processor)).to eq(expected_data)  
+    end
+
+    it 'should return primary design outcomes data and no secondary or other design outcomes data' do
+      expected_data = [
+        { 
+          nct_id: "NCT00973089", 
+          outcome_type: "primaryoutcomes", 
+          measure: "The success of the alternative treatment of the deep carious lesion.",
+          time_frame: "Half annually for three years", 
+          population: nil,
+          description: nil
+        }
+      ]
+      hash = JSON.parse(File.read('spec/support/json_data/NCT00973089.json'))
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(DesignOutcome.mapper(processor)).to eq(expected_data)
+    end   
 
     it 'should return nil when design outcomes data is empty' do
       hash = JSON.parse(File.read('spec/support/json_data/design_outcome_empty.json'))
       processor = StudyJsonRecord::ProcessorV2.new(hash)
       expect(DesignOutcome.mapper(processor)).to eq(nil)  
     end
-    
-    it 'should have expected primary design outcomes data' do
-      expected_data = [
-        { 
-          nct_id: "NCT", 
-          outcome_type: "primaryoutcomes", 
-          measure: "",
-          time_frame: "", 
-          population: nil, 
-          description: ""
-        }
-      ]
-      hash = JSON.parse(File.read('spec/support/json_data/design_outcome_empty.json'))
-      processor = StudyJsonRecord::ProcessorV2.new(hash)
-      expect(DesignOutcome.mapper(processor)).to eq(expected_data)  
-    end
-  end  
+  end 
+
 end

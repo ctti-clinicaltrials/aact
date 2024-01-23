@@ -11,7 +11,7 @@ class DesignOutcome < ApplicationRecord
     other_outcomes ||= []
     total = primary_outcomes + secondary_outcomes + other_outcomes
     return nil if total.empty?
-    byebug
+    
     total
   end
 
