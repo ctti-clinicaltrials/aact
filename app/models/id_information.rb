@@ -13,16 +13,16 @@ class IdInformation < StudyRelationship
     return unless identification_module
 
     nct_id_alias = identification_module.dig('nctIdAliases') || []
-    secondary_info = identification_module.dig('secondaryIdInfos', 'id') || []
+    secondary_info = identification_module.dig('secondaryIdInfo', 'id') || []
     org_study_info = identification_module['orgStudyIdInfo']
     collection = []
     collection << {
       nct_id: nct_id,
       id_source: 'org_study_id',
-      id_type: identification_module.dig('OrgStudyIdInfo', "OrgStudyIdType"),
-      id_type_description: identification_module.dig('OrgStudyIdInfo', "OrgStudyIdDomain"),
-      id_link: identification_module.dig('OrgStudyIdInfo', "OrgStudyIdLink"),
-      id_value: org_study_info['OrgStudyId'] 
+      id_type: identification_module.dig('orgStudyIdInfo', ...), # there is not 'OrgStudyIdType' but 'id' only
+      id_type_description: identification_module.dig('orgStudyIdInfo', "link"), # there is no links in 'orgStudyIdInfo' id only, but 'domain' inside 'secondaryIdInfos' 
+      id_link: identification_module.dig('orgStudyIdInfo', "OrgStudyIdLink"), # there is no links in 'OrgStudyIdLink 
+      id_value: org_study_info['id'] 
       } if org_study_info
 
     nct_id_alias.each do |nct_alias|
