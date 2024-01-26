@@ -351,9 +351,6 @@ class StudyJsonRecord::ProcessorV2
   def pending_results_data
   end
 
-  def provided_documents_data
-  end
-
   def reported_events_data
   end
 
