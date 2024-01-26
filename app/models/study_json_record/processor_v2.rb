@@ -66,7 +66,6 @@ class StudyJsonRecord::ProcessorV2
       outcomes: outcomes_data,
       overall_officials: overall_officials_data,
       design_outcomes: design_outcomes_data,
-      pending_results: pending_results_data,
       provided_documents: provided_documents_data,
       reported_events: reported_events_data,
       reported_event_totals: reported_event_totals_data,
@@ -329,9 +328,6 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def outcomes_data
-  end
-
-  def pending_results_data
   end
 
   def reported_events_data

@@ -46,4 +46,12 @@ class ApplicationRecord < ActiveRecord::Base
       return nil
     end
   end
+
+  def self.get_date(str)
+    begin
+      str.try(:to_date)
+    rescue
+      nil
+    end
+  end
 end
