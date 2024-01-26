@@ -19,9 +19,9 @@ class IdInformation < StudyRelationship
     collection << {
       nct_id: nct_id,
       id_source: 'org_study_id',
-      id_type: identification_module.dig('orgStudyIdInfo', ...), # there is not 'OrgStudyIdType' but 'id' only
-      id_type_description: identification_module.dig('orgStudyIdInfo', "link"), # there is no links in 'orgStudyIdInfo' id only, but 'domain' inside 'secondaryIdInfos' 
-      id_link: identification_module.dig('orgStudyIdInfo', "OrgStudyIdLink"), # there is no links in 'OrgStudyIdLink 
+      id_type: identification_module.dig('orgStudyIdInfo', 'type'),
+      id_type_description: identification_module.dig('orgStudyIdInfo', "domain"), # there is no links in 'orgStudyIdInfo' id only, but 'domain' inside 'secondaryIdInfos' 
+      id_link: identification_module.dig('orgStudyIdInfo', "link"), 
       id_value: org_study_info['id'] 
       } if org_study_info
 
