@@ -9,6 +9,12 @@ class StudyJsonRecord::ProcessorV2
     
     protocol_section['contactsLocationsModule']
   end
+
+  def locations_array
+    return unless contacts_location_module
+
+    contacts_location_module['locations']
+  end
   
   def protocol_section
     @json['protocolSection']
@@ -248,9 +254,6 @@ class StudyJsonRecord::ProcessorV2
     collection
   end
 
-  def countries_data
-  end
-
   def documents_data
     return unless protocol_section
     nct_id = protocol_section.dig('identificationModule', 'nctId')
@@ -328,13 +331,7 @@ class StudyJsonRecord::ProcessorV2
   def outcomes_data
   end
 
-  def design_outcomes_data
-  end
-
   def pending_results_data
-  end
-
-  def provided_documents_data
   end
 
   def reported_events_data
@@ -367,9 +364,6 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def study_references_data
-  end
-
-  def sponsors_data
   end
 
   def drop_withdrawals_data

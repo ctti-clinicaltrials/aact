@@ -1,27 +1,37 @@
-class Sponsor < StudyRelationship
-  scope :named, lambda {|agency| where("name LIKE ?", "#{agency}%" )}
+class Sponsor < ApplicationRecord
+  
+  def self.mapper(json)
+    return unless json.protocol_section
 
-  def self.create_all_from(opts)
-    sponsors = leads(opts) + collaborators(opts)
-    import(sponsors)
+    sponsor_collaborators_module = json.protocol_section['sponsorCollaboratorsModule']
+    return unless sponsor_collaborators_module
+
+    collaborators = sponsor_collaborators_module['collaborators']
+    lead_sponsor = sponsor_collaborators_module['leadSponsor']
+    return unless collaborators || lead_sponsor
+
+    collection = []
+    collection << sponsor_info(json, lead_sponsor, 'leadSponsor') if lead_sponsor
+    return collection unless collaborators
+
+    collaborators.each do |collaborator|
+      info = sponsor_info(json, collaborator, 'collaborators')
+      collection << info if info
+    end
+
+    collection
   end
 
-  def self.leads(opts)
-    opts[:xml].xpath("//lead_sponsor").collect{|xml|
-      new.create_from({:xml=>xml,:type=>'lead',:nct_id=>opts[:nct_id]}) }
-  end
+  def self.sponsor_info(json, sponsor_hash, sponsor_type='leadSponsor')
+    return if sponsor_hash.empty?
 
-  def self.collaborators(opts)
-    opts[:xml].xpath("//collaborator").collect {|xml|
-      new.create_from({:xml=>xml,:type=>'collaborator',:nct_id=>opts[:nct_id]}) }
-  end
+    nct_id = json.protocol_section.dig('identificationModule', 'nctId')
 
-  def attribs
     {
-      :nct_id => get_opt(:nct_id),
-      :lead_or_collaborator => get_opt('type'),
-      :agency_class => get('agency_class'),
-      :name => get('agency'),
+      nct_id: nct_id,
+      agency_class: sponsor_hash['class'],
+      lead_or_collaborator: sponsor_type =~ /Lead/i ? 'lead' : 'collaborator',
+      name: sponsor_hash['name']
     }
   end
 

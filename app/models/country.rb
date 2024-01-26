@@ -1,17 +1,29 @@
-class Country < StudyRelationship
+class Country < ApplicationRecord
 
-  def self.create_all_from(opts)
-    countries = location_countries(opts) + removed_countries(opts)
-    import(countries)
+  def self.mapper(json)
+    return unless json.derived_section
+
+    nct_id = json.protocol_section.dig('identificationModule', 'nctId')
+    removed_countries = json.derived_section.dig('miscInfoModule', 'removedCountries') || []
+    locations = json.locations_array || []
+    return if locations.empty? && removed_countries.empty?
+  
+    countries = []
+    collection = []
+  
+    locations.each do |location|
+      countries << location['country']
+    end
+  
+    countries.uniq.each do |country|
+      collection << { nct_id: nct_id, name: country, removed: false }
+    end
+  
+    removed_countries.uniq.each do |country|
+      collection << { nct_id: nct_id, name: country, removed: true }
+    end
+  
+    collection
   end
 
-  def self.location_countries(opts)
-    opts[:xml].xpath('//location_countries/country').collect{|xml|
-      new({:name=>xml.text.strip, :nct_id=>opts[:nct_id]})}
-  end
-
-  def self.removed_countries(opts)
-    opts[:xml].xpath('//removed_countries/country').collect{|xml|
-      new({:name=>xml.text.strip, :nct_id=>opts[:nct_id], :removed=>true})}
-  end
 end
