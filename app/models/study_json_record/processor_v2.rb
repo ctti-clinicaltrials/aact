@@ -7,6 +7,12 @@ class StudyJsonRecord::ProcessorV2
   def contacts_location_module
     protocol_section.dig('contactsLocationsModule')
   end
+
+  def locations_array
+    return unless contacts_location_module
+
+    contacts_location_module['locations']
+  end
   
   def protocol_section
     @json['protocolSection']
@@ -260,9 +266,6 @@ class StudyJsonRecord::ProcessorV2
       collection << { nct_id: nct_id, name: condition, downcase_name: condition.try(:downcase) }
     end
     collection
-  end
-
-  def countries_data
   end
 
   def documents_data
