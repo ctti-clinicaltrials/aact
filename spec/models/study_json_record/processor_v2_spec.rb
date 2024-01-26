@@ -17,24 +17,24 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
         title: 'Group A',
         description: 'Group A (up to n=5): Genius exposure 1-3 hours before tissue resection'
       },
-                      {
-                        nct_id: 'NCT04207047',
-                        group_type: 'EXPERIMENTAL',
-                        title: 'Group B',
-                        description: 'Group B (up to n=5): Genius exposure 30+7 days, 14+3 days, and 7+3 days before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.'
-                      },
-                      {
-                        nct_id: 'NCT04207047',
-                        group_type: 'EXPERIMENTAL',
-                        title: 'Group C',
-                        description: 'Group C (up to n=5): Genius exposure 90+14 days, 60+10 days, and 30+7 days before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.'
-                      },
-                      {
-                        nct_id: 'NCT04207047',
-                        group_type: 'EXPERIMENTAL',
-                        title: 'Group D',
-                        description: 'Group D (up to n=10): Genius, LaseMD, LaseMD FLEX, eCO2 and/or PicoPlus exposure 14+3 days, 7+3 days, and 1-3 hours before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.'
-                      }
+      {
+        nct_id: 'NCT04207047',
+        group_type: 'EXPERIMENTAL',
+        title: 'Group B',
+        description: 'Group B (up to n=5): Genius exposure 30+7 days, 14+3 days, and 7+3 days before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.'
+      },
+      {
+        nct_id: 'NCT04207047',
+        group_type: 'EXPERIMENTAL',
+        title: 'Group C',
+        description: 'Group C (up to n=5): Genius exposure 90+14 days, 60+10 days, and 30+7 days before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.'
+      },
+      {
+        nct_id: 'NCT04207047',
+        group_type: 'EXPERIMENTAL',
+        title: 'Group D',
+        description: 'Group D (up to n=10): Genius, LaseMD, LaseMD FLEX, eCO2 and/or PicoPlus exposure 14+3 days, 7+3 days, and 1-3 hours before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.'
+      }
       hash = JSON.parse(File.read('spec/support/json_data/NCT04207047.json'))
       processor = described_class.new(hash)
       expect(processor.design_groups_data).to eq(expected_data)
@@ -128,13 +128,12 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
     end
   end
 
-  participant_flow_data_expected =
-    {
-      nct_id: 'NCT02299791',
-      recruitment_details: 'Recruitment was done at the clinic level. All patients seen in the clinics were potentially eligible for the intervention based on clinic visit and clinical criteria.',
-      pre_assignment_details: 'There were two additional nested substudy randomizations after initial trial enrolment (see inclusion/exclusion criteria for eligibility). From 8/2009 to 6/2010, eligible children were randomized to once vs twice daily abacavir+lamivudine. From 9/2009 to 2/2011, eligible children were randomized to stop vs continue cotrimoxazole prophylaxis.',
-      units_analyzed: 'Clinics'
-    }
+  participant_flow_data_expected = {
+    nct_id: 'NCT02299791',
+    recruitment_details: 'Recruitment was done at the clinic level. All patients seen in the clinics were potentially eligible for the intervention based on clinic visit and clinical criteria.',
+    pre_assignment_details: 'There were two additional nested substudy randomizations after initial trial enrolment (see inclusion/exclusion criteria for eligibility). From 8/2009 to 6/2010, eligible children were randomized to once vs twice daily abacavir+lamivudine. From 9/2009 to 2/2011, eligible children were randomized to stop vs continue cotrimoxazole prophylaxis.',
+    units_analyzed: 'Clinics'
+  }
 
   describe '#participant_flow_data' do
     it 'uses JSON API to generate data that will be inserted into the participant_flows table' do
@@ -144,7 +143,7 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
     end
   end
 
-  describe 'conditions_data' do
+  describe '#conditions_data' do
     let(:test_json) do
       {
         'protocolSection' => {
@@ -185,20 +184,7 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
     end
   end
 
-  describe '#ipd_information_types_data' do
-    it 'uses JSON API to generate data that will be inserted into the ipd information types table' do
-      expected_data = [
-        { nct_id: 'NCT03630471', name: 'STUDY_PROTOCOL' },
-        { nct_id: 'NCT03630471', name: 'SAP' },
-        { nct_id: 'NCT03630471', name: 'ICF' }
-      ]
-      hash = JSON.parse(File.read('spec/support/json_data/NCT03630471.json'))
-      processor = described_class.new(hash)
-      expect(processor.ipd_information_types_data).to eq(expected_data)
-    end
-  end
-
-  describe 'detailed_description_data' do
+  describe '#detailed_description_data' do
     it 'tests detailed_description_data' do
       expected_data = {
         nct_id: 'NCT03630471',
@@ -210,7 +196,7 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
     end
   end
 
-  describe 'central contacts data' do
+  describe '#central_contacts_data' do
     it 'tests central contacts parsing' do
       expected_data = [{
         nct_id: 'NCT04523987',
@@ -228,8 +214,20 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
     end
   end
 
+  describe '#ipd_information_types_data' do
+    it 'uses JSON API to generate data that will be inserted into the ipd information types table' do
+      expected_data = [
+        { nct_id: 'NCT03630471', name: 'STUDY_PROTOCOL' },
+        { nct_id: 'NCT03630471', name: 'SAP' },
+        { nct_id: 'NCT03630471', name: 'ICF' }
+      ]
+      hash = JSON.parse(File.read('spec/support/json_data/NCT03630471.json'))
+      processor = described_class.new(hash)
+      expect(processor.ipd_information_types_data).to eq(expected_data)
+    end
+  end
 
-    describe '#result_contact_data' do
+  describe '#result_contact_data' do
     let(:results_section) { {} }
     let(:protocol_section) { {} }
 
@@ -237,8 +235,6 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
       allow(processor).to receive(:results_section).and_return(results_section)
       allow(processor).to receive(:protocol_section).and_return(protocol_section)
     end
-
-  
 
     context 'when point_of_contact is present' do
       let(:protocol_section) do
@@ -257,7 +253,6 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
           }
         }
       end
-
       let(:processor) { StudyJsonRecord::ProcessorV2.new(:results_section) }
 
       it 'returns contact data hash including email' do
@@ -271,23 +266,23 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
         })
       end
     end
+
     context 'when results_section is not present' do
-        let(:results_section) { nil }
-        let(:processor) { StudyJsonRecord::ProcessorV2.new(:results_section) }
+      let(:results_section) { nil }
+      let(:processor) { StudyJsonRecord::ProcessorV2.new(:results_section) }
 
-        it 'returns nil' do
-          expect(processor.result_contact_data).to be_nil
-        end
+      it 'returns nil' do
+        expect(processor.result_contact_data).to be_nil
       end
+    end
 
-      context 'when point_of_contact is not present in results_section' do
-        let(:results_section) { { 'moreInfoModule' => {} } }
-        let(:processor) { StudyJsonRecord::ProcessorV2.new(:results_section) }
+    context 'when point_of_contact is not present in results_section' do
+      let(:results_section) { { 'moreInfoModule' => {} } }
+      let(:processor) { StudyJsonRecord::ProcessorV2.new(:results_section) }
 
-        it 'returns nil' do
-          expect(processor.result_contact_data).to be_nil
-        end
-      
+      it 'returns nil' do
+        expect(processor.result_contact_data).to be_nil
+      end      
     end
   end
   

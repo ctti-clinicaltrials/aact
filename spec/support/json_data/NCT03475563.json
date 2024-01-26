@@ -1,0 +1,400 @@
+{
+  "protocolSection": {
+  "identificationModule": {
+  "nctId": "NCT03475563",
+  "orgStudyIdInfo": {
+  "id": "BIOSS"
+  },
+  "organization": {
+  "fullName": "Hospital Universitari Vall d'Hebron Research Institute",
+  "class": "OTHER"
+  },
+  "briefTitle": "BiOSS Study (BiOSS LIM C Stent Registry in Bifurcated Lesions)",
+  "officialTitle": "BiOSS LIM C Stent Registry in Bifurcated Lesions",
+  "acronym": "BIOSS"
+  },
+  "statusModule": {
+  "statusVerifiedDate": "2019-11",
+  "overallStatus": "UNKNOWN",
+  "lastKnownStatus": "RECRUITING",
+  "expandedAccessInfo": {
+  "hasExpandedAccess": false
+  },
+  "startDateStruct": {
+  "date": "2018-08-16",
+  "type": "ACTUAL"
+  },
+  "primaryCompletionDateStruct": {
+  "date": "2019-12-30",
+  "type": "ESTIMATED"
+  },
+  "completionDateStruct": {
+  "date": "2019-12-30",
+  "type": "ESTIMATED"
+  },
+  "studyFirstSubmitDate": "2018-03-16",
+  "studyFirstSubmitQcDate": "2018-03-16",
+  "studyFirstPostDateStruct": {
+  "date": "2018-03-23",
+  "type": "ACTUAL"
+  },
+  "lastUpdateSubmitDate": "2019-11-26",
+  "lastUpdatePostDateStruct": {
+  "date": "2019-11-27",
+  "type": "ACTUAL"
+  }
+  },
+  "sponsorCollaboratorsModule": {
+  "responsibleParty": {
+  "type": "SPONSOR"
+  },
+  "leadSponsor": {
+  "name": "Hospital Universitari Vall d'Hebron Research Institute",
+  "class": "OTHER"
+  }
+  },
+  "oversightModule": {
+  "oversightHasDmc": false
+  },
+  "descriptionModule": {
+  "briefSummary": "The BIOSS Lim C pharmacoactive Stent has characteristics of design that makes it very suitable for the treatment of bifurcational lesions . The objective of the study is providing deeper knowledge into the results of this stent in the treatment of bifurcational lesions.",
+  "detailedDescription": "The BIOSS Lim C pharmacoactive Stent has characteristics of design that makes it very suitable for the treatment of bifurcational lesions . The objective of the study is providing deeper knowledge into the results of this stent in the treatment of bifurcational lesions."
+  },
+  "conditionsModule": {
+  "conditions": [
+  "Coronary Artery Disease"
+  ],
+  "keywords": [
+  "Drug-eluting stent",
+  "Dedicated bifurcation stent",
+  "Cobalt-chromium",
+  "Sirolimus-eluting stent"
+  ]
+  },
+  "designModule": {
+  "studyType": "OBSERVATIONAL",
+  "patientRegistry": true,
+  "targetDuration": "12 Months",
+  "designInfo": {
+  "observationalModel": "CASE_ONLY",
+  "timePerspective": "PROSPECTIVE"
+  },
+  "enrollmentInfo": {
+  "count": 100,
+  "type": "ESTIMATED"
+  }
+  },
+  "armsInterventionsModule": {
+  "armGroups": [
+  {
+  "label": "Patients with coronary artery disease",
+  "description": "(coronary artery disease)",
+  "interventionNames": [
+  "Procedure: Coronary angioplasty with stent implantation"
+  ]
+  }
+  ],
+  "interventions": [
+  {
+  "type": "PROCEDURE",
+  "name": "Coronary angioplasty with stent implantation",
+  "description": "Coronary angioplasty with BiOSS LIM C stent implantation",
+  "armGroupLabels": [
+  "Patients with coronary artery disease"
+  ]
+  }
+  ]
+  },
+  "outcomesModule": {
+  "primaryOutcomes": [
+  {
+  "measure": "Successful angioplasty",
+  "description": "After angiography: TIMI (thrombolysis in myocardial infarction ) 3 (both branches). With respect to reference diameter, none of the segments treated with stent has a residual stenosis\\> 30% or\\> 50% in those not treated with stent.",
+  "timeFrame": "1 day"
+  },
+  {
+  "measure": "MACE",
+  "description": "Cumulative rate of major adverse cardiovascular events (MACE) including cardiac death, myocardial infarction (MI) and repeated revascularization of the target lesion (TLR)",
+  "timeFrame": "30 days"
+  },
+  {
+  "measure": "MACE",
+  "description": "Cumulative rate of major adverse cardiovascular events (MACE) including cardiac",
+  "timeFrame": "1 year"
+  }
+  ],
+  "secondaryOutcomes": [
+  {
+  "measure": "Target vessel revascularization",
+  "description": "Target vessel revascularization",
+  "timeFrame": "30 days"
+  },
+  {
+  "measure": "Percentage of stent struts malposition",
+  "description": "Percentage of stent struts malposition",
+  "timeFrame": "30 days"
+  },
+  {
+  "measure": "contrast media volume",
+  "description": "contrast media volume",
+  "timeFrame": "1 day"
+  },
+  {
+  "measure": "Angioplasty time",
+  "description": "Angioplasty time",
+  "timeFrame": "1 day"
+  }
+  ]
+  },
+  "eligibilityModule": {
+  "eligibilityCriteria": "Inclusion Criteria:\n\n* Age over 18 years.\n* Clinical indication of coronary angioplasty in bifurcated lesion.\n* Bifurcated lesions with both distal branches at least 2 mm in diameter.\n* The lesion must be located in the main branch, with a severe stenosis by visual estimation at some point in the main branch, with or without involvement of the lateral branch.\n* Express acceptance and signature of informed consent.\n\nExclusion Criteria:\n\n* Express rejection of the patient to participate in the study.\n* Exclusive involvement of the lateral branch (Medina lesion 001).\n* Contraindication for antiplatelet treatment.\n* Lesions due to restenosis.\n* Lesions in saphenous grafts.\n* Total chronic occlusions.\n* Cardiogenic shock.",
+  "healthyVolunteers": false,
+  "sex": "ALL",
+  "minimumAge": "18 Years",
+  "stdAges": [
+  "ADULT",
+  "OLDER_ADULT"
+  ],
+  "studyPopulation": "Patients with ischemic heart disease referred for coronary revascularization will be included with susceptible lesion of coronary intervention in bifurcation.",
+  "samplingMethod": "NON_PROBABILITY_SAMPLE"
+  },
+  "contactsLocationsModule": {
+  "centralContacts": [
+  {
+  "name": "Imanol Otaegui, MD",
+  "role": "CONTACT",
+  "phone": "+342746155",
+  "email": "iotaegui@vhebron.net"
+  },
+  {
+  "name": "Imanol Otaegui",
+  "role": "CONTACT"
+  }
+  ],
+  "overallOfficials": [
+  {
+  "name": "Imanol Otaegui, MD",
+  "affiliation": "Hospital Universitari Vall d'hebron Barcelona, Spain",
+  "role": "PRINCIPAL_INVESTIGATOR"
+  }
+  ],
+  "locations": [
+  {
+  "facility": "Hospital Universitari Parc Taulí",
+  "status": "RECRUITING",
+  "city": "Sabadell",
+  "state": "Barcelona",
+  "zip": "08208",
+  "country": "Spain",
+  "contacts": [
+  {
+  "name": "Eduard Bosch, MD",
+  "role": "CONTACT"
+  }
+  ],
+  "geoPoint": {
+  "lat": 41.54329,
+  "lon": 2.10942
+  }
+  },
+  {
+  "facility": "Hospital Universitari Vall d'Hebron",
+  "status": "RECRUITING",
+  "city": "Barcelona",
+  "zip": "08035",
+  "country": "Spain",
+  "contacts": [
+  {
+  "name": "Imanol Otaegui, MD",
+  "role": "CONTACT"
+  }
+  ],
+  "geoPoint": {
+  "lat": 41.38879,
+  "lon": 2.15899
+  }
+  },
+  {
+  "facility": "Hospital Universitario de León",
+  "status": "RECRUITING",
+  "city": "León",
+  "zip": "24071",
+  "country": "Spain",
+  "contacts": [
+  {
+  "name": "Armando Pérez de Prado, MD, PhD",
+  "role": "CONTACT"
+  }
+  ],
+  "geoPoint": {
+  "lat": 42.60003,
+  "lon": -5.57032
+  }
+  }
+  ]
+  },
+  "referencesModule": {
+  "references": [
+  {
+  "pmid": "25828372",
+  "type": "RESULT",
+  "citation": "Gil RJ, Bil J, Dzavik V, Vassilev D, Kern A, Formuszewicz R, Zalewska-Adamiec M, Dobrzycki S. Regular Drug-Eluting Stent vs Dedicated Coronary Bifurcation BiOSS Expert Stent: Multicenter Open-Label Randomized Controlled POLBOS I Trial. Can J Cardiol. 2015 May;31(5):671-8. doi: 10.1016/j.cjca.2014.12.024. Epub 2014 Dec 24."
+  },
+  {
+  "pmid": "25689548",
+  "type": "RESULT",
+  "citation": "Gil RJ, Bil J, Vassiliev D, Inigo Garcia LA. First-in-man study of dedicated bifurcation sirolimus-eluting stent: 12-month results of BiOSS LIM(R) Registry. J Interv Cardiol. 2015 Feb;28(1):51-60. doi: 10.1111/joic.12180."
+  },
+  {
+  "pmid": "26465375",
+  "type": "RESULT",
+  "citation": "Gil RJ, Bil J, Grundeken MJ, Inigo Garcia LA, Vassilev D, Kern A, Pawlowski T, Wykrzykowska JJ, Serruys PW. Long-term effectiveness and safety of the sirolimus-eluting BiOSS LIM(R) dedicated bifurcation stent in the treatment of distal left main stenosis: an international registry. EuroIntervention. 2016 Nov 20;12(10):1246-1254. doi: 10.4244/EIJY15M10_05."
+  }
+  ]
+  }
+  },
+  "derivedSection": {
+  "miscInfoModule": {
+  "versionHolder": "2024-01-03",
+  "modelPredictions": {
+  "bmiLimits": {
+  "minBmi": 0,
+  "maxBmi": 101
+  }
+  }
+  },
+  "conditionBrowseModule": {
+  "meshes": [
+  {
+  "id": "D000003324",
+  "term": "Coronary Artery Disease"
+  }
+  ],
+  "ancestors": [
+  {
+  "id": "D000003327",
+  "term": "Coronary Disease"
+  },
+  {
+  "id": "D000017202",
+  "term": "Myocardial Ischemia"
+  },
+  {
+  "id": "D000006331",
+  "term": "Heart Diseases"
+  },
+  {
+  "id": "D000002318",
+  "term": "Cardiovascular Diseases"
+  },
+  {
+  "id": "D000001161",
+  "term": "Arteriosclerosis"
+  },
+  {
+  "id": "D000001157",
+  "term": "Arterial Occlusive Diseases"
+  },
+  {
+  "id": "D000014652",
+  "term": "Vascular Diseases"
+  }
+  ],
+  "browseLeaves": [
+  {
+  "id": "M19196",
+  "name": "Myocardial Ischemia",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M6236",
+  "name": "Coronary Artery Disease",
+  "asFound": "Coronary Artery Disease",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M6239",
+  "name": "Coronary Disease",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M10233",
+  "name": "Ischemia",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M9109",
+  "name": "Heart Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M4159",
+  "name": "Arteriosclerosis",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M4155",
+  "name": "Arterial Occlusive Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M17090",
+  "name": "Vascular Diseases",
+  "relevance": "LOW"
+  }
+  ],
+  "browseBranches": [
+  {
+  "abbrev": "BC14",
+  "name": "Heart and Blood Diseases"
+  },
+  {
+  "abbrev": "All",
+  "name": "All Conditions"
+  },
+  {
+  "abbrev": "BC23",
+  "name": "Symptoms and General Pathology"
+  }
+  ]
+  },
+  "interventionBrowseModule": {
+  "browseLeaves": [
+  {
+  "id": "M21650",
+  "name": "Sirolimus",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M5955",
+  "name": "Cobalt",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M5787",
+  "name": "Chromium",
+  "relevance": "LOW"
+  }
+  ],
+  "browseBranches": [
+  {
+  "abbrev": "Infe",
+  "name": "Anti-Infective Agents"
+  },
+  {
+  "abbrev": "ANeo",
+  "name": "Antineoplastic Agents"
+  },
+  {
+  "abbrev": "All",
+  "name": "All Drugs and Chemicals"
+  },
+  {
+  "abbrev": "Micro",
+  "name": "Micronutrients"
+  }
+  ]
+  }
+  },
+  "hasResults": false
+  }
