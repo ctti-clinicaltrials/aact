@@ -345,9 +345,6 @@ class StudyJsonRecord::ProcessorV2
   def overall_officials_data
   end
 
-  def design_outcomes_data
-  end
-
   def pending_results_data
   end
 
