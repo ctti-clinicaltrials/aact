@@ -336,9 +336,6 @@ class StudyJsonRecord::ProcessorV2
   def reported_event_totals_data
   end
 
-  def responsible_party_data
-  end
-
   def result_agreement_data
   end
 
