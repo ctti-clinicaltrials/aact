@@ -8,6 +8,8 @@ class StudyDownloader
         when '1'
           record = StudyJsonRecord.find_by(nct_id: nct_id, version: version) || StudyJsonRecord.create(nct_id: nct_id, content: {}, version: version)
           record.update_from_api
+          record.reload
+          return record
         else
           raise "Unknown version: #{version}"
         end
@@ -24,6 +26,7 @@ class StudyDownloader
         s = Time.now
         content = ClinicalTrialsApiV2.study(nct_id)
         record.update(content: content, version: "2")
+        return record
       rescue Faraday::ConnectionFailed
         return false if attempts > 5
         retry

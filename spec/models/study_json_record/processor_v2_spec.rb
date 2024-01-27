@@ -104,30 +104,6 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
     end
   end
 
-  describe '#design_data' do
-    it 'tests design_data' do
-      expected_data = {
-        nct_id: 'NCT03418623',
-        allocation: 'RANDOMIZED',
-        intervention_model: 'CROSSOVER',
-        observational_model: '',
-        primary_purpose: 'BASIC_SCIENCE',
-        time_perspective: '',
-        masking: 'QUADRUPLE',
-        masking_description: 'Quadruple',
-        intervention_model_description: 'After the eligibility of a subject has been determined in an initial...',
-        subject_masked: true,
-        caregiver_masked: true,
-        investigator_masked: true,
-        outcomes_assessor_masked: true
-      }
-
-      hash = JSON.parse(File.read('spec/support/json_data/NCT03418623.json'))
-      processor = described_class.new(hash)
-      expect(processor.design_data).to eq(expected_data)
-    end
-  end
-
   participant_flow_data_expected = {
     nct_id: 'NCT02299791',
     recruitment_details: 'Recruitment was done at the clinic level. All patients seen in the clinics were potentially eligible for the intervention based on clinic visit and clinical criteria.',

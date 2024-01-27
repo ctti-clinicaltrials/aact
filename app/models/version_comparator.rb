@@ -7,11 +7,13 @@ class VersionComparator
 
     # version 1
     record = StudyJsonRecord.find_by(nct_id: nct_id, version: "1")
+    record = StudyDownloader.download([nct_id], '1') unless record
     record.preprocess
     v1 = record.send(matcher)
 
     # version 2
     record = StudyJsonRecord.find_by(nct_id: nct_id, version: "2")
+    record = StudyDownloader.download([nct_id], '2') unless record
     processor = StudyJsonRecord::ProcessorV2.new(record.content)
     v2 = processor.send(matcher)
 
