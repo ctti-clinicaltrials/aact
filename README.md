@@ -127,11 +127,7 @@ export DIGITALOCEAN_BUCKET=aact-dev
     Example: `export PATH=$PATH:/Library/PostgreSQL/13/bin`  
     https://wikimatze.de/installing-postgresql-gem-under-ubuntu-and-mac/  
 
-9.  Use the "connections.yml.example" file (see in config directory) and copy content of it to the file "connections.yml" (most likely you will need to create connections.yml in the same folder) and just update what needs to be updated for the local environment.
-    In the terminal, type `cp connections.yml.example connections.yml` (that command doesn't work on linux Ubuntu).
-    The file called "connections.yml" is mainly for running a docker container but it's called on by the Util::DbManager model when it initializes so you will get an error if it's not there when the model is called. That model manages database changes.
-
-10. In the database.yml file, which is in config folder, lines 1-32 should look like:
+9. In the database.yml file, which is in config folder, lines 1-32 should look like:
 
 ```
 default: &default
@@ -171,7 +167,7 @@ development:
     database: aact_public
 ```
     
-11. Create databases and run migrations  
+10. Create databases and run migrations  
     `bin/rake db:create`  
     `bin/rake db:create RAILS_ENV=test`  
     `bin/rake db:migrate`  

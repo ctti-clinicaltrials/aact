@@ -1,0 +1,417 @@
+{
+    "protocolSection": {
+    "identificationModule": {
+    "nctId": "NCT03630471",
+    "orgStudyIdInfo": {
+    "id": "SANPRIDE_002"
+    },
+    "organization": {
+    "fullName": "Sangath",
+    "class": "OTHER"
+    },
+    "briefTitle": "Effectiveness of a Problem-solving Intervention for Common Adolescent Mental Health Problems in India",
+    "officialTitle": "The Effectiveness of a Low-intensity, Lay Counsellor-delivered, Problem-solving Intervention for Common Mental Health Problems in School-going Adolescents in New Delhi, India: the PRIDE Study Protocol for a Randomized Controlled Trial",
+    "acronym": "PRIDE"
+    },
+    "statusModule": {
+    "statusVerifiedDate": "2019-01",
+    "overallStatus": "COMPLETED",
+    "expandedAccessInfo": {
+    "hasExpandedAccess": false
+    },
+    "startDateStruct": {
+    "date": "2018-08-20",
+    "type": "ACTUAL"
+    },
+    "primaryCompletionDateStruct": {
+    "date": "2019-01-20",
+    "type": "ACTUAL"
+    },
+    "completionDateStruct": {
+    "date": "2019-02-28",
+    "type": "ACTUAL"
+    },
+    "studyFirstSubmitDate": "2018-08-06",
+    "studyFirstSubmitQcDate": "2018-08-09",
+    "studyFirstPostDateStruct": {
+    "date": "2018-08-14",
+    "type": "ACTUAL"
+    },
+    "lastUpdateSubmitDate": "2019-05-17",
+    "lastUpdatePostDateStruct": {
+    "date": "2019-05-21",
+    "type": "ACTUAL"
+    }
+    },
+    "sponsorCollaboratorsModule": {
+    "responsibleParty": {
+    "type": "SPONSOR"
+    },
+    "leadSponsor": {
+    "name": "Sangath",
+    "class": "OTHER"
+    },
+    "collaborators": [
+    {
+    "name": "Harvard Medical School (HMS and HSDM)",
+    "class": "OTHER"
+    },
+    {
+    "name": "London School of Hygiene and Tropical Medicine",
+    "class": "OTHER"
+    }
+    ]
+    },
+    "oversightModule": {
+    "oversightHasDmc": true,
+    "isFdaRegulatedDrug": false,
+    "isFdaRegulatedDevice": false
+    },
+    "descriptionModule": {
+    "briefSummary": "We will conduct a two-arm individually randomized controlled trial in six Government-run secondary schools in New Delhi. The targeted sample is 240 adolescents in grades 9-12 with persistent, elevated mental health difficulties and associated impact. Participants will receive either a brief problem-solving intervention delivered by lay counsellors (intervention), or enhanced usual care comprised of problem-solving booklets (control). Self-reported adolescent mental health difficulties and idiographic problems will be assessed at 6 weeks (co-primary outcomes) and again at 12 weeks post-randomization. In addition, adolescent-reported impact of mental health difficulties, perceived stress, mental wellbeing and clinical remission, as well as parent-reported adolescent mental health difficulties and impact scores, will be assessed at 6 and 12 weeks post-randomization. Parallel process evaluation, including estimations of the costs of delivering the interventions, will be conducted.",
+    "detailedDescription": "Background and rationale:\n\nThis study is part of a larger research program called PRIDE (PRemIum for aDolEscents) for which the goals are to:\n\n* develop a trans-diagnostic, stepped-care intervention targeting common mental disorders in school-going adolescents in India; and\n* evaluate its effectiveness in reducing symptom severity and improving recovery rates among adolescent participants\n\nThe components of the stepped-care intervention will be evaluated in separate, linked studies. The main aim of the current trial is to evaluate the effectiveness of a low-intensity problem-solving intervention (the first step of the PRIDE stepped-care intervention) delivered by school counsellors for adolescents with common mental health problems, when compared with enhanced usual care (EUC).\n\nThe primary hypothesis is that the intervention will be superior to the EUC control condition in reducing the severity of self-reported mental health symptoms and prioritized problems at six weeks post-randomization.\n\nStudy design and setting:\n\nThis is a parallel-arm, individually randomized controlled trial with equal allocation of participants between arms. The trial will be conducted in six Government-run secondary schools (Grade 9 to 12; approximately corresponding to 13-20 years of age) from the National Capital Territory of Delhi, India. A process evaluation will be nested in the trial to provide findings that will assist in the interpretation of the trial results and to inform potential implementation of the PRIDE intervention on a wider scale.\n\nEligibility criteria: see 'Eligibility' section.\n\nInterventions: see 'Arms and Interventions' section.\n\nScreening measures: Referred adolescents will be screened for common mental health difficulties, impact and chronicity using the SDQ (Goodman et al., 2000), according to the eligibility criteria set out below.\n\nSociodemographic information: This will be obtained from all enrolled participants through an interviewer-administered questionnaire, with responses entered directly into a tablet computer.\n\nOutcome measures: see 'Outcome Measures' section.\n\nEconomic measures: The costs associated with the introduction of the experimental and control arm interventions will be estimated by adding the personnel costs for counsellors and supervisors, together with fixed costs of training (venue/per diem), furniture and supplies. All costs will be reported in Indian Rupees and then converted to US Dollars at the average daily exchange rate over the preceding 12 months.\n\nProcess measures:\n\nProcess data on enrollment, randomization and assessment procedures will be obtained from researcher-completed record forms. These will be collated to obtain assent/consent rates of adolescents and parents (and reasons for missing assent/consent); randomization rates (and reasons for randomization errors); completion rates of baseline and follow-up outcome assessments (and reasons for non-completion); and time lags between intended and completed assessments (and reasons for deviating from targets). In addition, motivations for help-seeking and expectancies for the school counselling program will be explored at the time of eligibility assessment through a brief qualitative interview with a sub-sample of referred students.\n\nIntervention processes will be assessed using additional data sources. Counsellor-completed session record forms will be used to obtain process data on duration, spacing and frequency of attended sessions (and reasons for non-attendance); and intervention uptake and completion rates (and reasons for pre-intervention and mid-intervention drop-out). Participants' adherence to treatment and potential engagement challenges will be assessed using checklists within the same record forms, indicating whether or not the student completed practice exercises at home, used the POD (Problems-Options-Do it yourself) booklets at home, brought the POD booklets to the session, and demonstrated understanding of POD booklets and session content. Use of POD booklets will be assessed in each arm of the trial at 6- and 12-week follow-up assessments using a brief adolescent-reported measure that asks about estimated frequency of home use and perceived helpfulness of POD booklets in the preceding 6 weeks. Service satisfaction data will also be obtained from participants in each trial arm at 12 weeks using the 8-item Client Satisfaction Questionnaire (CSQ-8) (Larsen et al., 1979). Supplementary questions will elicit open-ended written feedback on the most helpful aspects of the available intervention and suggested modifications.\n\nIntervention fidelity will be assessed using independent ratings of audio-recorded sessions: 10% of all recordings will be selected at random and rated by a psychologist who is not directly involved with supervision of the intervention providers.\n\nSample size:\n\nSample size estimations have been produced for two co-primary outcomes: mental health symptoms (SDQ Total Difficulties score) and idiographic problems (YTP score). A Bonferroni correction has been used to adjust for multiple primary outcomes. Following pilot work that indicated large (uncontrolled) effect sizes, the investigators have conservatively assumed that the intervention will be associated with an effect size of 0.5 (difference in means/SD) on both the primary outcomes with 90% power at 6 weeks post-randomization. The investigators have also assumed a loss to follow up of 15% over 6 weeks, based on pilot work. Based on these assumptions and a 1:1 allocation ratio for individual randomization, a total of 240 participants will be required. This sample size provides 80% power to detect an ES of 0.44.\n\nRecruitment methods and sampling frame:\n\nA combination of whole-school and classroom-based sensitization methods will be used to generate referrals into the trial. This will include posters, teacher briefings and classroom-based information sessions for students. Referrals may be initiated in a number of ways: (1) adolescents can directly approach a researcher following a classroom information session; (2) adolescents can provide their contact details in a 'drop box' placed in the school; or (3) adolescents can request a referral through a teacher (or a teacher may raise the prospect of referral directly with a student before initiating the same). Referred participants will be assessed for eligibility using the SDQ; those meeting eligibility criteria will be invited to participate in the trial. Referred adolescents who do not meet eligibility criteria will receive a handout on self-care strategies.\n\nIn the academic year 2018-19, there are 172 class divisions of grades 9-12 in the six collaborating schools in New Delhi, and approximately 50 students per class. Seventy classes will participate in an embedded recruitment trial (see separate protocol: NCT03633916). The host intervention trial will recruit participants originating from the 70 classes sampled in the embedded recruitment trial, as well as participants drawn from other classes as needed. The precise schedule of recruitment activities in the remaining 102 classes will be calibrated according to referral patterns and caseload capacity for intervention providers in the various schools.\n\nAssent/consent procedures:\n\nReferred adolescents will be invited to meet with a researcher when a 2-stage consent process will be initiated.\n\n1. Assent/consent for using screening data: All referred students who are screened for eligibility will be provided with written information and structured verbal information about the potential use of their screening data for evaluation of help-seeking patterns. Assent, consent will be obtained on signed consent forms.\n2. Assent/consent for trial participation: Eligible students will be provided with additional structured verbal information and a printed participant information sheet about trial participation. Assent will be sought for adolescents who are below 18 years of age, and consent will be sought for adolescents who are 18 years of age or older. For assenting participants aged below 18 years of age, consent from a parent/guardian will be sought by a researcher. This will involve two levels of consent: consent for their child to participate in the trial, and consent for a parent's/guardian's own participation in the study. The informed assent/consent procedure with adolescents will be completed during school hours, while the parent/guardian consent process will be completed at the family's home or another convenient location. Details of assenting/consenting adolescents and consenting parents (and those declining to participate) will be logged on an ongoing basis, along with reasons for non-participation.\n\nData collection procedures (see 'Outcome Measures' for detailed descriptions of measures referenced below):\n\nField researchers will administer outcome measures in schools, at home or other convenient locations. The adolescent-reported SDQ will be collected by a field researcher on a digital tablet device, and will also serve as the basis for eligibility screening. Other baseline assessments will be completed as soon as possible after assent/consent procedures are completed (and ideally on the same day). The YTP will be administered on paper while the remaining scales will be administered on a digital tablet device. The YTP will be administered on paper as it asks the participants to describe, prioritize and score their three main problems; the same list of problems will be rated again during follow-up assessments (see below). Adolescents will also be assessed on the PSS-4 and SWEMWBS. Index parents will be invited to complete the SDQ only. Sociodemographic data from the adolescent and parent/guardian will also be collected on digital tablets.\n\nFollow-up assessments will be completed at 6 and 12 weeks post-randomization. The 6-week outcome is the primary end-point, as the optimal effect of the intervention is expected to occur immediately after the intervention has been completed. The 12-week end-point is included to evaluate the durability of intervention effects. The CSQ-8 (a process measure of service satisfaction) will be collected at 12 weeks post-randomization only. Additionally, all adolescents will complete a self-report measure on the use of the intervention materials (problem-solving booklets) provided in the intervention and control arms.\n\nData analysis plan:\n\nDescriptive analyses: Initial analyses will compare baseline characteristics of referred adolescents who did and did were not enrolled into the trial for various reasons. Baseline characteristics of enrolled participants will be compared between trial arms. Findings will be reported as per the CONSORT guidelines, using intention-to-treat analysis, including a trial flow chart.\n\nOutcome measures will be summarized at recruitment, at 6- and 12-week follow up by trial arm, and overall. These will be summarized by means (standard deviation), medians (interquartile range), or numbers and proportions as appropriate. For continuous outcomes, histograms will also be plotted within each arm to assess how closely the scales follow a normal distribution. This will determine how the outcomes are described as well as the choice of inferential analysis method.\n\nOutcome analyses: The primary analyses will be on an intention-to-treat basis at the 6-week end-point, adjusted for baseline values of the outcome measure; school (as a fixed effect in the analysis) to allow for within-school clustering, counsellor variation (as a random effect); and variables for which randomization did not achieve reasonable balance between the arms at baseline, or those associated with missing outcome data. Intervention effects will be presented as adjusted mean differences and effect sizes (ES), defined as standardized mean differences.\n\nFor continuous variables, the analysis of secondary and exploratory outcomes will use similar methods to the primary outcome analysis for continuous variables. For the binary outcome (remission), the intervention effect will be reported as the adjusted odds ratio with 95% CIs. Generalized (linear or logistic) random-effects regression models will be used, adjusting for baseline outcome score and clustering, and other baseline variables as above. For outcomes to be examined over the 12-week follow-up period (other than remission), regression models will include a variable to represent 'time' in order to indicate whether the data were collected at the 6- or 12-week end-point. To assess whether the intervention effect varies over time, an intervention x time interaction term will be fitted to allow for a different intervention effect at 6 vs 12 months, although this will not be highly powered.\n\nWe will explore potential moderators of intervention effects, with respect to a priori defined modifiers (i.e. chronicity of mental health difficulties, severity of mental health difficulties, YTP type, SDQ caseness profile). We will fit relevant interaction terms and test for heterogeneity of intervention effects in regression models. A mediation analysis will be conducted to examine whether the theoretically-driven a priori factor (perceived stress at 6 weeks) mediates the effects of the intervention on primary outcomes (i.e. mental health symptoms and idiographic problems) at 12 weeks. Additionally, intervention effects for students who receive fewer sessions than prescribed will be estimated using the Complier Average Causal Effect structural equation model.\n\nProcess evaluation: We will undertake descriptive statistical analysis of quantitative process data in order to explore the implementation of intervention procedures. In addition, thematic analysis will be used to code and organise qualitative interview data on intervention expectancies (assessed prior to enrolment) and qualitative written feedback on service satisfaction (assessed at 12-week follow-up). Findings from the various data sources will be triangulated and used to develop explanatory hypotheses about potential differences in intervention delivery and engagement across schools, subgroups of participants and providers. Process evaluation findings will be used to facilitate interpretation of the main trial results. The trial statisticians may conduct further analyses to test hypotheses generated from integration of the process evaluation and trial outcome data.\n\nCost-effectiveness analysis: The costs associated with the introduction of the PRIDE and control arm interventions will be estimated by adding the fixed costs of materials and personnel costs."
+    },
+    "conditionsModule": {
+    "conditions": [
+    "Mental Health Issue (E.G., Depression, Psychosis, Personality Disorder, Substance Abuse)"
+    ],
+    "keywords": [
+    "Adolescents"
+    ]
+    },
+    "designModule": {
+    "studyType": "INTERVENTIONAL",
+    "phases": [
+    "NA"
+    ],
+    "designInfo": {
+    "allocation": "RANDOMIZED",
+    "interventionModel": "PARALLEL",
+    "interventionModelDescription": "A two-arm, individually randomized controlled trial with equal allocation of participants between arms.",
+    "primaryPurpose": "TREATMENT",
+    "maskingInfo": {
+    "masking": "DOUBLE",
+    "maskingDescription": "The randomization list will be generated by an independent statistician. The randomization code will be concealed using sequentially numbered opaque sealed envelopes to maximize allocation concealment.\n\nBaseline assessments will be carried out by field researchers prior to randomization. The six- and 12-week outcome assessments will be carried out by a team of field researchers who will be blind to allocation status.",
+    "whoMasked": [
+    "INVESTIGATOR",
+    "OUTCOMES_ASSESSOR"
+    ]
+    }
+    },
+    "enrollmentInfo": {
+    "count": 250,
+    "type": "ACTUAL"
+    }
+    },
+    "armsInterventionsModule": {
+    "armGroups": [
+    {
+    "label": "Control",
+    "type": "ACTIVE_COMPARATOR",
+    "description": "Enhanced usual care (problem-solving booklets only).",
+    "interventionNames": [
+    "Behavioral: Enhanced usual care"
+    ]
+    },
+    {
+    "label": "Intervention",
+    "type": "EXPERIMENTAL",
+    "description": "PRIDE 'Step 1' problem-solving intervention.",
+    "interventionNames": [
+    "Behavioral: PRIDE 'Step 1' problem-solving intervention"
+    ]
+    }
+    ],
+    "interventions": [
+    {
+    "type": "BEHAVIORAL",
+    "name": "PRIDE 'Step 1' problem-solving intervention",
+    "description": "The PRIDE problem-solving intervention is one component of the PRIDE stepped care treatment architecture which comprises two sequential treatments of incremental intensity. 'Step 1' is a brief, first-line treatment. It is grounded in stress-coping theory, with a technical focus on practical problem-solving to modify developmentally salient stressors.\n\nStep 1 has been designed as a 'low-intensity' intervention requiring fewer resources than conventional psychological treatments. This is achieved through a relatively brief delivery schedule (up to 5 x 20-30-minute sessions spread over approximately 3 weeks) and limited requirement for specialists. The delivery agents are lay counsellors receiving a combination of specialist and peer supervision. The counsellors offer guidance sessions to support the learning and implementation of problem-solving and complementary coping skills. Illustrated booklets are used to support learning of problem-solving concepts and skills practice at home.",
+    "armGroupLabels": [
+    "Intervention"
+    ]
+    },
+    {
+    "type": "BEHAVIORAL",
+    "name": "Enhanced usual care",
+    "description": "There is no established mental health service provision in the collaborating schools. The control arm participants will receive an enhancement of this 'usual care' (essentially, no care) by having access to the same illustrated booklets used in the Intervention arm, albeit without any counsellor contact.",
+    "armGroupLabels": [
+    "Control"
+    ]
+    }
+    ]
+    },
+    "outcomesModule": {
+    "primaryOutcomes": [
+    {
+    "measure": "Mental health symptoms",
+    "description": "The Strengths and Difficulties Questionnaire (SDQ) is a 25-item self-report measure of youth mental health symptoms (Goodman et al., 2000). A Total Difficulties score is derived by summing items from four problem subscales (Emotional, Conduct, Hyperactivity/inattention and Peer problems). The measure is the most widely used clinical and research instrument in the field of child and adolescent mental health globally. The Hindi version will be used in complementary forms for self-report by adolescents and parents. The adolescent-reported SDQ Total Difficulties score (at 6-week end-point) will be a co-primary outcome, while the corresponding caregiver-reported SDQ Total Difficulties score will be an exploratory outcome.",
+    "timeFrame": "6 weeks"
+    },
+    {
+    "measure": "Idiographic problems",
+    "description": "The Youth Top Problems (YTP) is a brief, idiographic measure which identifies, prioritizes and scores respondents' three main problems (Weisz et al., 2011). Each nominated problem is scored from 0 ('not a problem') to 10 ('huge problem'). A mean severity score is calculated by summing individual problem scores and then dividing by the number of nominated problems. The YTP will be used to assess problems that other scales might address generally or otherwise miss; while providing a sensitive measure of specific priorities of the participant within a larger array of problems.",
+    "timeFrame": "6 weeks"
+    }
+    ],
+    "secondaryOutcomes": [
+    {
+    "measure": "Mental health symptoms",
+    "description": "The adolescent-reported SDQ Total Difficulties score at 12 weeks will be a secondary outcome, while the corresponding caregiver-reported SDQ Total Difficulties score will be an exploratory outcome.",
+    "timeFrame": "12 weeks post-randomization"
+    },
+    {
+    "measure": "Idiographic problems",
+    "description": "The adolescent-reported YTP severity score at 12 weeks will be a secondary outcome.",
+    "timeFrame": "12 weeks post-randomization"
+    },
+    {
+    "measure": "Impact of mental health problems",
+    "description": "The SDQ Impact Supplement measures distress and functional impairment associated with index mental health problems identified on the main SDQ scale. The adolescent-reported SDQ Impact Supplement score will be a secondary outcome, while the corresponding caregiver-reported SDQ Impact Supplement score will be an exploratory outcome.",
+    "timeFrame": "12 weeks post-randomization"
+    },
+    {
+    "measure": "Internalising symptoms",
+    "description": "Adolescent-reported internalising symptoms will be assessed as a secondary outcome using the combined peer and emotional problem sub-scales of the SDQ. The corresponding caregiver-reported SDQ Internalising score will be an exploratory outcome.",
+    "timeFrame": "12 weeks post-randomization"
+    },
+    {
+    "measure": "Externalising symptoms",
+    "description": "Adolescent-reported externalising symptoms will be assessed as a secondary outcome using the combined conduct and hyperactivity problem sub-scales of the SDQ. The corresponding caregiver-reported SDQ Externalising score will be an exploratory outcome.",
+    "timeFrame": "12 weeks post-randomization"
+    },
+    {
+    "measure": "Prosocial behaviour",
+    "description": "Adolescent-reported prosocial behaviour will be assessed as an exploratory outcome using the prosocial sub-scale of the SDQ.",
+    "timeFrame": "12 weeks post-randomization"
+    },
+    {
+    "measure": "Perceived stress",
+    "description": "The adolescent-reported Perceived Stress Scale-4-item version (PSS-4) will be used as a secondary outcome measure to assess the perception of stress, reflecting the degree to which situations are appraised as stressful during the preceding month (Cohen et al., 1983). This measure was chosen because of its relevance as a presumed mechanism of change within the problem-solving intervention, consistent with stress-coping theory (Lazarus \\& Folkman, 1984). It has been translated into Hindi and used in a number of surveys and as an outcome measure in trials around the world (Lee, 2012).",
+    "timeFrame": "12 weeks post-randomization"
+    },
+    {
+    "measure": "Mental wellbeing",
+    "description": "The adolescent-reported Short Warwick-Edinburgh Mental Wellbeing Scale (SWEMWBS) will be used as a secondary measure to assess mental wellbeing (Stewart-Brown et al., 2009), which has been closely linked with social factors such as peer bullying and perception of school connectedness (Patalay \\& Fitzsimons; 2016). It may therefore be especially amenable to problem-solving around common life difficulties encountered by school-going adolescents. The SWEMWBS is widely used internationally (Stewart-Brown, 2013) and a Hindi version is available.",
+    "timeFrame": "12 weeks post-randomization"
+    },
+    {
+    "measure": "Clinical remission",
+    "description": "This secondary outcome will be defined as falling below baseline eligibility cut-offs on both the SDQ Total Difficulties scale and Impact Supplement (i.e. SDQ Total Difficulties score in normal range and Impact score in the normal or borderline range).",
+    "timeFrame": "12 weeks post-randomization"
+    }
+    ]
+    },
+    "eligibilityModule": {
+    "eligibilityCriteria": "Eligibility criteria:\n\nFor adolescent participants:\n\n* Enrolled as a student in Grades 9-12 (corresponding to 13-20 years of age)\n* Experiencing elevated mental health symptoms, based on response in the borderline or abnormal range (scores of 19 or higher for boys and 20 or higher for girls) on the self-reported SDQ Total Difficulties scale\n* Experiencing significant distress and/or functional impairment, based on response in the abnormal range (scores of 2 or higher) on the self-reported SDQ Impact Supplement\n* Experiencing difficulties for \\>1 month, based on response to the self-reported Chronicity item from the SDQ Impact Supplement\n* For adolescents under 18 years of age, able to provide informed assent to participate and supported by parental consent\n* For adolescents over 18 years of age, able to provide informed consent to participate\n\nFor parent participants:\n\n* A primary parental caregiver or guardian for the index adolescent\n* Able to provide informed consent to participate, and if adolescent age 18+ years, parental involvement is supported by the index adolescent\n* Proficient in spoken English or Hindi\n\nExclusion criteria:\n\nFor adolescent participants:\n\n* Requiring urgent medical attention (defined as needing emergency treatment or in-patient admission)\n* Unable to communicate clearly (due to a speech or hearing disability or inability to comprehend one of the program's languages)\n* Already receiving intervention for mental health problems\n* Received PRIDE intervention in past six months during pilot study\n* Not providing assent\n* Adolescent whose parents are not providing consent\n\nFor parent participants:\n\n* Unable to communicate clearly (due to a speech or hearing disability or inability to comprehend one of the program's languages)\n* Intoxicated at the point of consent or assessment",
+    "healthyVolunteers": false,
+    "sex": "ALL",
+    "minimumAge": "13 Years",
+    "maximumAge": "20 Years",
+    "stdAges": [
+    "CHILD",
+    "ADULT"
+    ]
+    },
+    "contactsLocationsModule": {
+    "overallOfficials": [
+    {
+    "name": "Vikram Patel, PhD",
+    "affiliation": "Harvard Medical School (HMS and HSDM)",
+    "role": "PRINCIPAL_INVESTIGATOR"
+    }
+    ],
+    "locations": [
+    {
+    "facility": "Sangath",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "zip": "110016",
+    "country": "India",
+    "geoPoint": {
+    "lat": 28.63576,
+    "lon": 77.22445
+    }
+    }
+    ]
+    },
+    "referencesModule": {
+    "references": [
+    {
+    "pmid": "11102329",
+    "type": "BACKGROUND",
+    "citation": "Goodman R, Ford T, Simmons H, Gatward R, Meltzer H. Using the Strengths and Difficulties Questionnaire (SDQ) to screen for child psychiatric disorders in a community sample. Br J Psychiatry. 2000 Dec;177:534-9. doi: 10.1192/bjp.177.6.534."
+    },
+    {
+    "pmid": "21500888",
+    "type": "BACKGROUND",
+    "citation": "Weisz JR, Chorpita BF, Frye A, Ng MY, Lau N, Bearman SK, Ugueto AM, Langer DA, Hoagwood KE; Research Network on Youth Mental Health. Youth Top Problems: using idiographic, consumer-guided assessment to identify treatment needs and to track change during psychotherapy. J Consult Clin Psychol. 2011 Jun;79(3):369-80. doi: 10.1037/a0023307."
+    },
+    {
+    "pmid": "6668417",
+    "type": "BACKGROUND",
+    "citation": "Cohen S, Kamarck T, Mermelstein R. A global measure of perceived stress. J Health Soc Behav. 1983 Dec;24(4):385-96. No abstract available."
+    },
+    {
+    "pmid": "25031113",
+    "type": "BACKGROUND",
+    "citation": "Lee EH. Review of the psychometric evidence of the perceived stress scale. Asian Nurs Res (Korean Soc Nurs Sci). 2012 Dec;6(4):121-7. doi: 10.1016/j.anr.2012.08.004. Epub 2012 Sep 18."
+    },
+    {
+    "pmid": "19228398",
+    "type": "BACKGROUND",
+    "citation": "Stewart-Brown S, Tennant A, Tennant R, Platt S, Parkinson J, Weich S. Internal construct validity of the Warwick-Edinburgh Mental Well-being Scale (WEMWBS): a Rasch analysis using data from the Scottish Health Education Population Survey. Health Qual Life Outcomes. 2009 Feb 19;7:15. doi: 10.1186/1477-7525-7-15."
+    },
+    {
+    "pmid": "27566118",
+    "type": "BACKGROUND",
+    "citation": "Patalay P, Fitzsimons E. Correlates of Mental Illness and Wellbeing in Children: Are They the Same? Results From the UK Millennium Cohort Study. J Am Acad Child Adolesc Psychiatry. 2016 Sep;55(9):771-83. doi: 10.1016/j.jaac.2016.05.019. Epub 2016 Jun 28."
+    },
+    {
+    "type": "BACKGROUND",
+    "citation": "Lazarus RS, Folkman S. Stress, appraisal, and coping. New York, Springer Pub. Co.; 1984."
+    },
+    {
+    "type": "BACKGROUND",
+    "citation": "Stewart-Brown S. The Warwick-Edinburgh Mental Well-Being Scale (WEMWBS): Performance in Different Cultural and Geographical Groups. In: Keyes CLM, editor. Mental Well-Being: International Contributions to the Study of Positive Mental Health. Dordrecht: Springer Netherlands; 2013. p. 133-50"
+    },
+    {
+    "pmid": "10245370",
+    "type": "BACKGROUND",
+    "citation": "Larsen DL, Attkisson CC, Hargreaves WA, Nguyen TD. Assessment of client/patient satisfaction: development of a general scale. Eval Program Plann. 1979;2(3):197-207. doi: 10.1016/0149-7189(79)90094-6. No abstract available."
+    },
+    {
+    "pmid": "34582460",
+    "type": "DERIVED",
+    "citation": "Malik K, Michelson D, Doyle AM, Weiss HA, Greco G, Sahu R, E J J, Mathur S, Sudhir P, King M, Cuijpers P, Chorpita B, Fairburn CG, Patel V. Effectiveness and costs associated with a lay counselor-delivered, brief problem-solving mental health intervention for adolescents in urban, low-income schools in India: 12-month outcomes of a randomized controlled trial. PLoS Med. 2021 Sep 28;18(9):e1003778. doi: 10.1371/journal.pmed.1003778. eCollection 2021 Sep."
+    },
+    {
+    "pmid": "32585185",
+    "type": "DERIVED",
+    "citation": "Michelson D, Malik K, Parikh R, Weiss HA, Doyle AM, Bhat B, Sahu R, Chilhate B, Mathur S, Krishna M, Sharma R, Sudhir P, King M, Cuijpers P, Chorpita B, Fairburn CG, Patel V. Effectiveness of a brief lay counsellor-delivered, problem-solving intervention for adolescent mental health problems in urban, low-income schools in India: a randomised controlled trial. Lancet Child Adolesc Health. 2020 Aug;4(8):571-582. doi: 10.1016/S2352-4642(20)30173-5. Epub 2020 Jun 23. Erratum In: Lancet Child Adolesc Health. 2020 Jul 23;:"
+    },
+    {
+    "pmid": "31533783",
+    "type": "DERIVED",
+    "citation": "Parikh R, Michelson D, Malik K, Shinde S, Weiss HA, Hoogendoorn A, Ruwaard J, Krishna M, Sharma R, Bhat B, Sahu R, Mathur S, Sudhir P, King M, Cuijpers P, Chorpita BF, Fairburn CG, Patel V. The effectiveness of a low-intensity problem-solving intervention for common adolescent mental health problems in New Delhi, India: protocol for a school-based, individually randomized controlled trial with an embedded stepped-wedge, cluster randomized controlled recruitment trial. Trials. 2019 Sep 18;20(1):568. doi: 10.1186/s13063-019-3573-3."
+    }
+    ]
+    },
+    "ipdSharingStatementModule": {
+    "ipdSharing": "YES",
+    "description": "Anonymised Individual Participant Data along with data dictionaries will be shared with other researchers after 12 months of completion of the trial. Data pertaining to the interventions received and outcomes at primary and secondary end point will be shared upon reasonable requests made to the PI and in accordance with the guidelines of sponsors, collaborators and funder of the study.",
+    "infoTypes": [
+    "STUDY_PROTOCOL",
+    "SAP",
+    "ICF"
+    ],
+    "timeFrame": "12 months after completion of trial.",
+    "accessCriteria": "Access to data will be granted to researchers after review of requests by PI and in accordance with the guidelines of sponsors, collaborators and funder of the study.",
+    "url": "http://datacompass.lshtm.ac.uk/"
+    }
+    },
+    "documentSection": {
+    "largeDocumentModule": {
+    "largeDocs": [
+    {
+    "typeAbbrev": "SAP",
+    "hasProtocol": false,
+    "hasSap": true,
+    "hasIcf": false,
+    "label": "Statistical Analysis Plan",
+    "date": "2019-05-07",
+    "uploadDate": "2019-05-16T06:59",
+    "filename": "SAP_000.pdf",
+    "size": 768149
+    }
+    ]
+    }
+    },
+    "derivedSection": {
+    "miscInfoModule": {
+    "versionHolder": "2023-11-06",
+    "modelPredictions": {
+    "bmiLimits": {
+    "minBmi": 0,
+    "maxBmi": 101
+    }
+    }
+    },
+    "conditionBrowseModule": {
+    "meshes": [
+    {
+    "id": "D000019966",
+    "term": "Substance-Related Disorders"
+    },
+    {
+    "id": "D000010554",
+    "term": "Personality Disorders"
+    }
+    ],
+    "ancestors": [
+    {
+    "id": "D000001523",
+    "term": "Mental Disorders"
+    },
+    {
+    "id": "D000064419",
+    "term": "Chemically-Induced Disorders"
+    }
+    ],
+    "browseLeaves": [
+    {
+    "id": "M6748",
+    "name": "Depression",
+    "relevance": "LOW"
+    },
+    {
+    "id": "M14163",
+    "name": "Psychotic Disorders",
+    "relevance": "LOW"
+    },
+    {
+    "id": "M4505",
+    "name": "Mental Disorders",
+    "relevance": "LOW"
+    },
+    {
+    "id": "M13152",
+    "name": "Personality Disorders",
+    "asFound": "Personality Disorder",
+    "relevance": "HIGH"
+    },
+    {
+    "id": "M6751",
+    "name": "Depressive Disorder",
+    "relevance": "LOW"
+    },
+    {
+    "id": "M21527",
+    "name": "Substance-Related Disorders",
+    "asFound": "Substance Abuse",
+    "relevance": "HIGH"
+    },
+    {
+    "id": "M29992",
+    "name": "Chemically-Induced Disorders",
+    "relevance": "LOW"
+    }
+    ],
+    "browseBranches": [
+    {
+    "abbrev": "BXM",
+    "name": "Behaviors and Mental Disorders"
+    },
+    {
+    "abbrev": "All",
+    "name": "All Conditions"
+    },
+    {
+    "abbrev": "BC25",
+    "name": "Substance Related Disorders"
+    }
+    ]
+    }
+    },
+    "hasResults": false
+    }

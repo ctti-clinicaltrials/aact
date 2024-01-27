@@ -1,27 +1,39 @@
-class DesignOutcome < StudyRelationship
-  attr_accessor :type
+class DesignOutcome < ApplicationRecord
+ 
+  def self.mapper(json)
+    return unless json.protocol_section
 
-  def self.create_all_from(options={})
-    nct_id=options[:nct_id]
-    primary=options[:xml].xpath("//primary_outcome").collect{|xml|
-      create_from({:xml=>xml,:type=>'primary',:nct_id=>nct_id})}
-
-    secondary=options[:xml].xpath("//secondary_outcome").collect{|xml|
-      create_from({:xml=>xml,:type=>'secondary',:nct_id=>nct_id})}
-
-    other=options[:xml].xpath("//other_outcome").collect{|xml|
-      create_from({:xml=>xml,:type=>'other',:nct_id=>nct_id})}
-    import(primary + secondary + other)
+    primary_outcomes = outcome_list(json, 'primaryOutcomes')
+    secondary_outcomes = outcome_list(json, 'secondaryOutcomes')
+    other_outcomes = outcome_list(json, 'otherOutcomes')
+    primary_outcomes ||= []
+    secondary_outcomes ||= []
+    other_outcomes ||= []
+    total = primary_outcomes + secondary_outcomes + other_outcomes
+    return nil if total.empty?
+    
+    total
   end
 
-  def attribs
-    {
-      :measure => get('measure'),
-      :time_frame => get('time_frame'),
-      :description => get('description'),
-      :population => get('population'),
-      :outcome_type => get_opt(:type)
-    }
+  def self.outcome_list(json, outcome_type='primaryOutcomes')
+    outcomes = json.protocol_section.dig('outcomesModule', outcome_type)
+    return unless outcomes
+
+    nct_id = json.protocol_section.dig('identificationModule', 'nctId')
+
+    collection = []
+    outcomes.each do |outcome|
+      collection << {
+                      nct_id: nct_id,
+                      outcome_type: outcome_type.downcase,
+                      measure: outcome['measure'],
+                      time_frame: outcome['timeFrame'],
+                      population: nil,
+                      description: outcome['description']
+                    }
+    end
+
+    collection
   end
 
 end

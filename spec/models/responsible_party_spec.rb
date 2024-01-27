@@ -1,59 +1,48 @@
 require 'rails_helper'
 
-describe ResponsibleParty do
-  it "study should have expected responsible parties with old name attrib" do
-    nct_id='NCT03182660'
-    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-    study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.responsible_parties.size).to eq(1)
-    rp=study.responsible_parties.first
-    expect(rp.name).to eq('[Redacted]')
-    expect(rp.organization).to eq('[Redacted]')
-  end
+RSpec.describe ResponsibleParty, type: :model do
 
-  it "study should have expected responsible parties with current name attrib" do
-    nct_id='NCT02389088'
-    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-    study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.responsible_parties.size).to eq(1)
-    rp=study.responsible_parties.first
-
-    expect(rp.responsible_party_type).to eq('Principal Investigator')
-    expect(rp.affiliation).to eq('University of California, San Diego')
-    expect(rp.organization).to eq(nil)
-    expect(rp.title).to eq('Professor Emeritus of Reproductive Medicine Division of Reproductive Endocrinology and Infertility')
-    expect(rp.name).to eq('Jeffrey Chang, MD')
-  end
-
-  context 'when responsible party exists with name_title and organization attributes' do
-    it 'should have expected responsible party values' do
-      nct_id='NCT01339988'
-      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-      opts = {xml: xml, nct_id: nct_id}
-      ResponsibleParty.create_all_from(opts)
-      rp=ResponsibleParty.where('nct_id=?',nct_id)
-
-      expect(rp.size).to eq(1)
-      expect(rp.first.name).to eq('Menachem Bitan')
-      expect(rp.first.organization).to eq('Tel-Aviv Sourasky Medical Center')
+    context 'with valid JSON input' do
+        it 'returns a hash with all the necessary keys' do
+          json = double
+          allow(json).to receive_message_chain(:protocol_section, :dig).with('identificationModule', 'nctId').and_return('12345')
+          allow(json).to receive_message_chain(:protocol_section, :dig).with('sponsorCollaboratorsModule', 'responsibleParty').and_return({
+            'type' => 'Investigator',
+            'investigatorFullName' => 'John Doe',
+            'investigatorTitle' => 'Lead Investigator',
+            'leadSponsor' => 'XYZ Pharma',
+            'investigatorAffiliation' => 'ABC University'
+          })
+  
+          result = ResponsibleParty.mapper(json)
+  
+          expect(result).to eq({
+            nct_id: '12345',
+            responsible_party_type: 'Investigator',
+            name: 'John Doe',
+            title: 'Lead Investigator',
+            organization: 'XYZ Pharma',
+            affiliation: 'ABC University'
+          })
+        end
     end
-  end
-
-  context 'when responsible party exists with four attributes' do
-    it 'should have expected responsible party values' do
-      nct_id='NCT02699827'
-      xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-      opts = {xml: xml, nct_id: nct_id}
-      ResponsibleParty.create_all_from(opts)
-      rp=ResponsibleParty.where('nct_id=?',nct_id)
-
-      expect(rp.size).to eq(1)
-      r=rp.first
-      expect(r.responsible_party_type).to eq('Sponsor-Investigator')
-      expect(r.affiliation).to eq('Mansoura University')
-      expect(r.name).to eq('Mohamed Sayed Abdelhafez')
-      expect(r.title).to eq('Dr')
+  
+    context 'when protocol_section is missing' do
+        it 'returns nil' do
+          json = double
+          allow(json).to receive(:protocol_section).and_return(nil)
+  
+          expect(ResponsibleParty.mapper(json)).to be_nil
+        end
     end
-  end
-
+  
+    context 'with empty JSON input' do
+        it 'returns nil' do
+          json = double
+          allow(json).to receive(:protocol_section).and_return({})
+  
+          expect(ResponsibleParty.mapper(json)).to be_nil
+        end
+    end
+    
 end

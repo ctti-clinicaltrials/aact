@@ -1,0 +1,353 @@
+{
+  "protocolSection": {
+    "identificationModule": {
+      "nctId": "NCT03418623",
+      "orgStudyIdInfo": {
+        "id": "GET73 ¹H-MRS"
+      },
+      "organization": {
+        "fullName": "Laboratorio Farmaceutico Ct S.r.l.",
+        "class": "INDUSTRY"
+      },
+      "briefTitle": "Effect of GET73 on MRS Measures of Central Glutamate and GABA in Individuals With Alcohol Use Disorder",
+      "officialTitle": "Effect of GET73 on Magnetic Resonance Spectroscopy Measures..."
+    },
+    "statusModule": {
+      "statusVerifiedDate": "2020-10",
+      "overallStatus": "COMPLETED",
+      "expandedAccessInfo": {
+        "hasExpandedAccess": false
+      },
+      "startDateStruct": {
+        "date": "2018-03-08",
+        "type": "ACTUAL"
+      },
+      "primaryCompletionDateStruct": {
+        "date": "2020-03-13",
+        "type": "ACTUAL"
+      },
+      "completionDateStruct": {
+        "date": "2020-03-13",
+        "type": "ACTUAL"
+      },
+      "studyFirstSubmitDate": "2018-01-08",
+      "studyFirstSubmitQcDate": "2018-01-25",
+      "studyFirstPostDateStruct": {
+        "date": "2018-02-01",
+        "type": "ACTUAL"
+      },
+      "lastUpdateSubmitDate": "2020-10-05",
+      "lastUpdatePostDateStruct": {
+        "date": "2020-10-08",
+        "type": "ACTUAL"
+      }
+    },
+    "sponsorCollaboratorsModule": {
+      "responsibleParty": {
+        "type": "SPONSOR"
+      },
+      "leadSponsor": {
+        "name": "Laboratorio Farmaceutico Ct S.r.l.",
+        "class": "INDUSTRY"
+      },
+      "collaborators": [
+        {
+          "name": "Latis S.r.l.",
+          "class": "INDUSTRY"
+        }
+      ]
+    },
+    "oversightModule": {
+      "oversightHasDmc": false,
+      "isFdaRegulatedDrug": true,
+      "isFdaRegulatedDevice": false
+    },
+    "descriptionModule": {
+      "briefSummary": "This study is aimed at examining whether GET73...",
+      "detailedDescription": "This study is aimed at examining whether GET73..."
+    },
+    "conditionsModule": {
+      "conditions": [
+        "Alcohol Use Disorder"
+      ],
+      "keywords": [
+        "Glutamate",
+        "Alcohol use",
+        "GABA",
+        "GET73",
+        "Non-treatment seeking"
+      ]
+    },
+    "designModule": {
+      "studyType": "INTERVENTIONAL",
+      "phases": [
+        "PHASE2"
+      ],
+      "designInfo": {
+        "allocation": "RANDOMIZED",
+        "interventionModel": "CROSSOVER",
+        "interventionModelDescription": "After the eligibility of a subject has been determined in an initial...",
+        "primaryPurpose": "BASIC_SCIENCE",
+        "maskingInfo": {
+          "masking": "QUADRUPLE",
+          "maskingDescription": "The study will be double-blinded...",
+          "whoMasked": [
+            "PARTICIPANT",
+            "CARE_PROVIDER",
+            "INVESTIGATOR",
+            "OUTCOMES_ASSESSOR"
+          ]
+        }
+      },
+      "enrollmentInfo": {
+        "count": 24,
+        "type": "ACTUAL"
+      }
+    },
+    "armsInterventionsModule": {
+      "armGroups": [
+        {
+          "label": "GET73",
+          "type": "EXPERIMENTAL",
+          "description": "GET73 is administered at the dose of 300 mg...",
+          "interventionNames": [
+            "Drug: GET73"
+          ]
+        },
+        {
+          "label": "Placebo",
+          "type": "PLACEBO_COMPARATOR",
+          "description": "Placebo is administered...",
+          "interventionNames": [
+            "Other: Placebo"
+          ]
+        }
+      ],
+      "interventions": [
+        {
+          "type": "DRUG",
+          "name": "GET73",
+          "description": "GET73 300 mg oral capsules...",
+          "armGroupLabels": [
+            "GET73"
+          ]
+        },
+        {
+          "type": "OTHER",
+          "name": "Placebo",
+          "description": "Placebo oral capsules...",
+          "armGroupLabels": [
+            "Placebo"
+          ]
+        }
+      ]
+    },
+    "outcomesModule": {
+      "primaryOutcomes": [
+        {
+          "measure": "Concentrations of glutamate in dorsal...",
+          "description": "The presence of water...",
+          "timeFrame": "After 5 doses of medication..."
+        }
+      ],
+      "secondaryOutcomes": [
+        {
+          "measure": "Concentrations of GABA in dorsal...",
+          "description": "The presence of water...",
+          "timeFrame": "After 5 doses of medication..."
+        },
+        {
+          "measure": "Change in the blood oxygenation level dependent (BOLD) signal to alcohol cues",
+          "description": "Magnitude of change...",
+          "timeFrame": "After 5 doses of medication..."
+        }
+      ]
+    },
+    "eligibilityModule": {
+      "eligibilityCriteria": "Inclusion Criteria:\n\n1. Male participants...",
+      "healthyVolunteers": false,
+      "sex": "ALL",
+      "minimumAge": "21 Years",
+      "maximumAge": "40 Years",
+      "stdAges": [
+        "ADULT"
+      ]
+    },
+    "contactsLocationsModule": {
+      "overallOfficials": [
+        {
+          "name": "Raymond F Anton, MD",
+          "affiliation": "Department of Psychiatry and Behavioral Sciences - Medical University of South Carolina",
+          "role": "PRINCIPAL_INVESTIGATOR"
+        }
+      ],
+      "locations": [
+        {
+          "facility": "Department of Psychiatry and Behavioral Sciences - Medical University of South Carolina",
+          "city": "Charleston",
+          "state": "South Carolina",
+          "zip": "29425",
+          "country": "United States",
+          "geoPoint": {
+            "lat": 32.77657,
+            "lon": -79.93092
+          }
+        }
+      ]
+    },
+    "referencesModule": {
+      "references": [
+        {
+          "pmid": "23032071",
+          "type": "BACKGROUND",
+          "citation": "Schacht JP, Anton RF, Voronin KE"
+        }
+      ]
+    }
+  },
+  "derivedSection": {
+    "miscInfoModule": {
+      "versionHolder": "2023-12-07",
+      "modelPredictions": {
+        "bmiLimits": {
+          "minBmi": 0,
+          "maxBmi": 101
+        }
+      }
+    },
+    "conditionBrowseModule": {
+      "meshes": [
+        {
+          "id": "D000000437",
+          "term": "Alcoholism"
+        },
+        {
+          "id": "D000000428",
+          "term": "Alcohol Drinking"
+        }
+      ],
+      "ancestors": [
+        {
+          "id": "D000004327",
+          "term": "Drinking Behavior"
+        },
+        {
+          "id": "D000019973",
+          "term": "Alcohol-Related Disorders"
+        },
+        {
+          "id": "D000019966",
+          "term": "Substance-Related Disorders"
+        },
+        {
+          "id": "D000064419",
+          "term": "Chemically-Induced Disorders"
+        },
+        {
+          "id": "D000001523",
+          "term": "Mental Disorders"
+        }
+      ],
+      "browseLeaves": [
+        {
+          "id": "M3464",
+          "name": "Alcohol Drinking",
+          "asFound": "Alcohol Use",
+          "relevance": "HIGH"
+        },
+        {
+          "id": "M11600",
+          "name": "Mitral Valve Insufficiency",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M3473",
+          "name": "Alcoholism",
+          "asFound": "Alcohol Use Disorder",
+          "relevance": "HIGH"
+        },
+        {
+          "id": "M7192",
+          "name": "Drinking Behavior",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M21532",
+          "name": "Alcohol-Related Disorders",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M21527",
+          "name": "Substance-Related Disorders",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M29992",
+          "name": "Chemically-Induced Disorders",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M14163",
+          "name": "Psychotic Disorders",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M4505",
+          "name": "Mental Disorders",
+          "relevance": "LOW"
+        }
+      ],
+      "browseBranches": [
+        {
+          "abbrev": "BXM",
+          "name": "Behaviors and Mental Disorders"
+        },
+        {
+          "abbrev": "All",
+          "name": "All Conditions"
+        },
+        {
+          "abbrev": "BC14",
+          "name": "Heart and Blood Diseases"
+        },
+        {
+          "abbrev": "BC25",
+          "name": "Substance Related Disorders"
+        }
+      ]
+    },
+    "interventionBrowseModule": {
+      "browseLeaves": [
+        {
+          "id": "M3467",
+          "name": "Ethanol",
+          "relevance": "LOW"
+        },
+        {
+          "id": "T5",
+          "name": "Glutamic Acid",
+          "relevance": "LOW"
+        }
+      ],
+      "browseBranches": [
+        {
+          "abbrev": "Infe",
+          "name": "Anti-Infective Agents"
+        },
+        {
+          "abbrev": "CNSDep",
+          "name": "Central Nervous System Depressants"
+        },
+        {
+          "abbrev": "All",
+          "name": "All Drugs and Chemicals"
+        },
+        {
+          "abbrev": "AA",
+          "name": "Amino Acids"
+        }
+      ]
+    }
+  },
+  "hasResults": false
+}

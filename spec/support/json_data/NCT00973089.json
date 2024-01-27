@@ -1,0 +1,233 @@
+{
+  "protocolSection": {
+  "identificationModule": {
+  "nctId": "NCT00973089",
+  "orgStudyIdInfo": {
+  "id": "LSA001-HMO-CTIL"
+  },
+  "organization": {
+  "fullName": "Hadassah Medical Organization",
+  "class": "OTHER"
+  },
+  "briefTitle": "Alternative Treatment of Deep Carious Lesions Based on Biological Evidences",
+  "officialTitle": "Alternative Treatment of Deep Carious Lesions Based on Biological Evidences"
+  },
+  "statusModule": {
+  "statusVerifiedDate": "2015-08",
+  "overallStatus": "WITHDRAWN",
+  "whyStopped": "recruiting or enrolling participants has halted prematurely and will not resume",
+  "expandedAccessInfo": {
+  "hasExpandedAccess": false
+  },
+  "startDateStruct": {
+  "date": "2010-05"
+  },
+  "primaryCompletionDateStruct": {
+  "date": "2015-03",
+  "type": "ACTUAL"
+  },
+  "completionDateStruct": {
+  "date": "2015-03",
+  "type": "ACTUAL"
+  },
+  "studyFirstSubmitDate": "2009-09-06",
+  "studyFirstSubmitQcDate": "2009-09-06",
+  "studyFirstPostDateStruct": {
+  "date": "2009-09-09",
+  "type": "ESTIMATED"
+  },
+  "lastUpdateSubmitDate": "2015-08-18",
+  "lastUpdatePostDateStruct": {
+  "date": "2015-08-19",
+  "type": "ESTIMATED"
+  }
+  },
+  "sponsorCollaboratorsModule": {
+  "responsibleParty": {
+  "type": "PRINCIPAL_INVESTIGATOR",
+  "investigatorFullName": "Moti Moskovitz",
+  "investigatorTitle": "Clinical Senior Lecturer",
+  "investigatorAffiliation": "Hadassah Medical Organization"
+  },
+  "leadSponsor": {
+  "name": "Hadassah Medical Organization",
+  "class": "OTHER"
+  }
+  },
+  "oversightModule": {
+  "oversightHasDmc": true
+  },
+  "descriptionModule": {
+  "briefSummary": "The purpose of this study is to evaluate the success rate of alternative treatment of deep carious lesions in asymptomatic primary teeth with no clinical nor radiographic signs of pulpal inflammation. The treatment includes leaving a thin layer of caries that is present near the pulp chamber and includes liner placement and tooth sealing. This alternative treatment is to be compared with the treatment provided today to these teeth, which includes complete removal of caries and probably includes pulpotomy and wide preparation of the tooth. The study also evaluates the cost-effectiveness of both methods of treatment of deep carious lesions.",
+  "detailedDescription": "The treatment provided today for deep carious lesions in deciduous teeth is complete removal of the soft caries, that can lead to a wide preparation and need of tooth pulpotomy if the caries reaches to the pulp chamber, even if the tooth is asymptomatic and shows no signs of pulpal inflammation (neither clinically nor radiographically). According to a number of recent evidence based researches, and only in selected cases, dentists were able to preserve the vitality of the pulp without complete removal of the caries present near the pulp chamber. A thin layer of caries near the pulp chamber is left, and a liner is placed (conservative treatment). The carious process is stopped when the tooth is sealed, and thus the tooth is saved without engaging with pulpotomy and wide preparation of the tooth. The purpose of this study is to evaluate the success rate of the conservative treatment of deep carious lesions versus the treatment provided today that includes complete removal of caries and probably includes pulpotomy and wide preparation of the tooth. The study also evaluates the cost-effectiveness of both methods of treatment of deep carious lesions."
+  },
+  "conditionsModule": {
+  "conditions": [
+  "Caries, Dental"
+  ],
+  "keywords": [
+  "Primary tooth",
+  "Caries, Dental",
+  "Alternative treatment"
+  ]
+  },
+  "designModule": {
+  "studyType": "INTERVENTIONAL",
+  "phases": [
+  "NA"
+  ],
+  "designInfo": {
+  "allocation": "RANDOMIZED",
+  "interventionModel": "PARALLEL",
+  "primaryPurpose": "TREATMENT",
+  "maskingInfo": {
+  "masking": "SINGLE",
+  "whoMasked": [
+  "INVESTIGATOR"
+  ]
+  }
+  },
+  "enrollmentInfo": {
+  "count": 0,
+  "type": "ACTUAL"
+  }
+  },
+  "armsInterventionsModule": {
+  "armGroups": [
+  {
+  "label": "Complete caries removal",
+  "type": "NO_INTERVENTION",
+  "description": "Control group"
+  },
+  {
+  "label": "Incomplete caries removal",
+  "type": "OTHER",
+  "description": "Test group",
+  "interventionNames": [
+  "Other: Incomplete caries removal in primary teeth"
+  ]
+  }
+  ],
+  "interventions": [
+  {
+  "type": "OTHER",
+  "name": "Incomplete caries removal in primary teeth",
+  "description": "Comparison between the success rate and cost-effectiveness of complete caries removal in treatment of deep carious lesions that might include wide preparations and involve pulpotomy versus incomplete removal of caries and avoiding pulp treatment.",
+  "armGroupLabels": [
+  "Incomplete caries removal"
+  ],
+  "otherNames": [
+  "Indirect pulp capping"
+  ]
+  }
+  ]
+  },
+  "outcomesModule": {
+  "primaryOutcomes": [
+  {
+  "measure": "The success of the alternative treatment of the deep carious lesion.",
+  "timeFrame": "Half annually for three years"
+  }
+  ]
+  },
+  "eligibilityModule": {
+  "eligibilityCriteria": "Inclusion Criteria:\n\n* Healthy children\n* Patient's age is 5-8 years old at the time of the treatment\n* Primary molars presenting with deep carious lesions\n* Carious lesion reaching the inner half of the dentin,with absence of periapical or interradicular alterations as detected by radiographic examination.\n* Absence of spontaneous pain\n\nExclusion Criteria:\n\n* Subjects that are not ASA I\n* Lack of cooperation\n* Clinical or radiographic signs of pathology",
+  "healthyVolunteers": true,
+  "sex": "ALL",
+  "minimumAge": "5 Years",
+  "maximumAge": "8 Years",
+  "stdAges": [
+  "CHILD"
+  ]
+  },
+  "contactsLocationsModule": {
+  "locations": [
+  {
+  "facility": "Hadassah Medical Organization",
+  "city": "Jerusalem",
+  "country": "Israel",
+  "geoPoint": {
+  "lat": 31.76904,
+  "lon": 35.21633
+  }
+  }
+  ]
+  },
+  "referencesModule": {
+  "references": [
+  {
+  "pmid": "18519994",
+  "type": "BACKGROUND",
+  "citation": "Thompson V, Craig RG, Curro FA, Green WS, Ship JA. Treatment of deep carious lesions by complete excavation or partial removal: a critical review. J Am Dent Assoc. 2008 Jun;139(6):705-12. doi: 10.14219/jada.archive.2008.0252."
+  }
+  ]
+  }
+  },
+  "derivedSection": {
+  "miscInfoModule": {
+  "versionHolder": "2024-01-22",
+  "modelPredictions": {
+  "bmiLimits": {
+  "minBmi": 0,
+  "maxBmi": 101
+  }
+  }
+  },
+  "conditionBrowseModule": {
+  "meshes": [
+  {
+  "id": "D000003731",
+  "term": "Dental Caries"
+  }
+  ],
+  "ancestors": [
+  {
+  "id": "D000017001",
+  "term": "Tooth Demineralization"
+  },
+  {
+  "id": "D000014076",
+  "term": "Tooth Diseases"
+  },
+  {
+  "id": "D000009057",
+  "term": "Stomatognathic Diseases"
+  }
+  ],
+  "browseLeaves": [
+  {
+  "id": "M6618",
+  "name": "Dental Caries",
+  "asFound": "Caries,Dental",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M19029",
+  "name": "Tooth Demineralization",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M16521",
+  "name": "Tooth Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M11707",
+  "name": "Stomatognathic Diseases",
+  "relevance": "LOW"
+  }
+  ],
+  "browseBranches": [
+  {
+  "abbrev": "BC07",
+  "name": "Mouth and Tooth Diseases"
+  },
+  {
+  "abbrev": "All",
+  "name": "All Conditions"
+  }
+  ]
+  }
+  },
+  "hasResults": false
+  }

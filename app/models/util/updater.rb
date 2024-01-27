@@ -215,6 +215,8 @@ module Util
       study = Study.find_by(nct_id: id)
       study.remove_study_data if study
       Time.now - stime
+      record = StudyJsonRecord.find_by(nct_id: id)
+      record.destroy
     end
 
     def load_study(study_id)

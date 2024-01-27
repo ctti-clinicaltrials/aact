@@ -1,29 +1,26 @@
-class PendingResult < StudyRelationship
+class PendingResult < ApplicationRecord
+  enum unposted_event_type: {
+    RELEASE: 'RELEASE',
+    RESET: 'RESET',
+    UNRELEASE: 'UNRELEASE'
+  }
 
-  def self.create_all_from(opts)
-    pending_results=opts[:xml].xpath('//pending_results')
-    return nil if pending_results.blank?
-    opts[:pending_results]=pending_results.children
-    collect_events(opts)
+  def self.mapper(json)
+    return unless json.annotation_section
+    nct_id = json.protocol_section.dig('identificationModule', 'nctId')
+
+    unposted_events = json.annotation_section.dig('annotationModule', 'unpostedAnnotation', 'unpostedEvents')
+    return unless unposted_events
+
+    collection = []
+    unposted_events.each do |event|
+      collection << {
+        nct_id: nct_id,
+        event: unposted_event_types[event['type']],
+        event_date_description: event['date'],
+        event_date: get_date(event['date'])
+      }
+    end
+    collection
   end
-
-  def self.collect_events(opts)
-    opts[:pending_results].each{|event|
-      if !event.blank?
-        dt_val=event.text
-        begin
-          dt=dt_val.try(:to_date)
-        rescue
-          dt=nil
-        end
-        create({
-          :nct_id => opts[:nct_id],
-          :event => event.name,
-          :event_date_description => dt_val,
-          :event_date => dt,
-        })
-      end
-    }
-  end
-
 end
