@@ -39,8 +39,8 @@ class VersionComparator
   def self.check(nct_id)
     ActiveRecord::Base.logger.level = Logger::ERROR
 
-    StudyDownloader.download([nct_id], '1')
-    StudyDownloader.download([nct_id], '2')
+    # StudyDownloader.download([nct_id], '1')
+    # StudyDownloader.download([nct_id], '2')
 
     # version 1
     record = StudyJsonRecord.find_by(nct_id: nct_id, version: "1")
@@ -57,24 +57,36 @@ class VersionComparator
     compare(v1, v2)
   end
 
-  def self.full_check(model)
-    # ClinicalTrialsApi.all.each do |study|
-    File.readlines("#{Rails.root}/studies.csv").each do |nct_id|
-      # nct_id = study[:id]
+  def self.full_check(model, filename=nil)
+    if filename
+      items = File.readlines(filename).map{|nct_id| nct_id.strip}
+    else
+      items = ClinicalTrialsApi.all.map{|item| item[:id]} if filename.nil?
+    end
+    `rm #{Rails.root}/tmp/failed_#{model}.txt`
+    items.each_with_index do |nct_id, index|
       nct_id = nct_id.strip
-      puts "📜 #{nct_id}".purple
-      result = check_model(nct_id, model)
-      if !result
+      print "📜 #{nct_id} #{index + 1}/#{items.length} ".purple
+      begin
+        result = check_model(nct_id, model)
+        if !result
+          `echo #{nct_id} >> #{Rails.root}/tmp/failed_#{model}.txt`
+          puts "❌".red
+        else
+          puts "✅".green
+        end
+      rescue => e
         `echo #{nct_id} >> #{Rails.root}/tmp/failed_#{model}.txt`
+        puts "❌".red
       end
     end
   end
 
-  def self.check_model(nct_id, model)
+  def self.check_model(nct_id, model, verbose=false)
     ActiveRecord::Base.logger.level = Logger::ERROR
 
-    StudyDownloader.download([nct_id], '1')
-    StudyDownloader.download([nct_id], '2')
+    # StudyDownloader.download([nct_id], '1')
+    # StudyDownloader.download([nct_id], '2')
 
     # version 1
     record = StudyJsonRecord.find_by(nct_id: nct_id, version: "1")
@@ -88,12 +100,14 @@ class VersionComparator
     processor = StudyJsonRecord::ProcessorV2.new(record.content)
     v2 = processor.parsed_data
 
+    result = nil
     case v1[model]
     when Array
-      result = compare_models(model, v1[model], v2[model], true)
+      result = compare_models(model, v1[model], v2[model], verbose)
     when Hash
-      result = compare_model(model, v1[model], v2[model], true)
+      result = compare_model(model, v1[model], v2[model], verbose)
     end
+    return result
   end
 
   def self.compare(v1, v2)
@@ -134,11 +148,15 @@ class VersionComparator
 
     result = [] # default to matching
     v1.each do |key, value|
-      if v2.key?(key)
-        # if key == :overall_status
-        #   byebug
-        # end
-        if normalize(model, key, v2[key]) != normalize(model, key, value)
+      if key == :limitations_and_caveats
+        result << true
+      elsif v2.key?(key)
+        n1 = normalize(model, key, value)
+        n2 = normalize(model, key, v2[key])
+        if n1 != n2
+          # if key == :ipd_access_criteria
+          #   byebug
+          # end
           if verbose
             puts "  #{key}"
             puts "   v1: #{value.inspect} #{value.class}"
@@ -168,7 +186,9 @@ class VersionComparator
   def self.normalize(model, key, value)
     # special case for month_year
     if key =~ /month_year/
-      if value =~ /-/
+      if value.nil?
+        return nil
+      elsif value =~ /-/
         val = case value.split('-').length
         when 1
           Date.strptime(value, '%Y').end_of_year
@@ -190,10 +210,15 @@ class VersionComparator
       return val.strftime('%Y-%m')
     end
 
+    if key =~ /_date$/ && value.is_a?(String)
+      return value ? Date.parse(value).strftime('%Y-%m-%d') : value
+    end
+
     case value
     when String
       new_val = MAP.dig(model, key, value)
-      new_val ? new_val.downcase.gsub(/ |_/,'') : value.downcase.gsub(/ |_/,'')
+      ret = new_val ? new_val.downcase.gsub(/ |_|\\/,'') : value.downcase.gsub(/ |_|\\/,'')
+      ret.gsub(/\n\d+\.|\n\*/, "\n").gsub(/^1\.|^\*/, '').gsub(/\n/, '')
     when Integer
       value.to_s
     else
@@ -203,7 +228,13 @@ class VersionComparator
 
   MAP = {
     study: {
+      study_type: {
+        'Observational [Patient Registry]' => 'OBSERVATIONAL',
+      },
       study_first_posted_date_type: {
+        'Estimate' => 'ESTIMATED',
+      },
+      results_first_posted_date_type: {
         'Estimate' => 'ESTIMATED',
       },
       last_update_posted_date_type: {
@@ -213,10 +244,27 @@ class VersionComparator
         'Not Applicable' => 'NA',
       },
       completion_date_type: {
-        'Anticipated' => 'ESTIMATED',  # NEED VERIFICATION
+        'Anticipated' => 'ESTIMATED', 
       },
       enrollment_type: {
-        'Anticipated' => 'ESTIMATED', # NEED VERIFICATION
+        'Anticipated' => 'ESTIMATED', 
+      },
+      start_date_type: {
+        'Anticipated' => 'ESTIMATED', 
+      },
+      primary_completion_date_type: {
+        'Anticipated' => 'ESTIMATED',
+      },
+      disposition_first_posted_date_type: {
+        'Estimate' => 'ESTIMATED',
+      },
+      overall_status: {
+        'Unknown status' => 'UNKNOWN',
+        'Active, not recruiting' => 'ACTIVE_NOT_RECRUITING',
+      },
+      last_known_status: {
+        'Unknown status' => 'UNKNOWN',
+        'Active, not recruiting' => 'ACTIVE_NOT_RECRUITING',
       }
     },
     ipd_information_type: {

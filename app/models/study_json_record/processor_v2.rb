@@ -128,8 +128,8 @@ class StudyJsonRecord::ProcessorV2
   
     masking = key_check(info['maskingInfo'])
     who_masked = masking.dig('whoMasked') || []
-    observations = info.dig('observationalModel') || []
-    time_perspectives = info.dig('timePerspective') || []
+    observation = info.dig('observationalModel')
+    time_perspective = info.dig('timePerspective')
   
     masking_value = masking['masking']
 
@@ -151,11 +151,11 @@ class StudyJsonRecord::ProcessorV2
     {
       nct_id: nct_id,
       allocation: info['allocation'],
-      observational_model: observations.join(', '),
+      observational_model: observation,
       intervention_model: info['interventionModel'],
       intervention_model_description: info['interventionModelDescription'],
       primary_purpose: info['primaryPurpose'],
-      time_perspective: time_perspectives.join(', '),
+      time_perspective: time_perspective,
       masking: masking_value,
       masking_description: masking_description,
       subject_masked: is_masked?(who_masked, ['PARTICIPANT']),

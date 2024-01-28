@@ -334,8 +334,7 @@ class Study < ApplicationRecord
     num_of_groups = groups.count == 0 ? nil : groups.count
     arms_count = study_type =~ /Interventional/i ? num_of_groups : nil
     groups_count = arms_count ? nil : num_of_groups
-    byebug
-    phase_list = design['phases'] || []
+    phase_list = design['phases']
     phase_list = phase_list.join('/') if phase_list
 
     {
@@ -375,7 +374,7 @@ class Study < ApplicationRecord
       overall_status: status['overallStatus'],
       last_known_status: status['lastKnownStatus'],
       why_stopped: status['whyStopped'],
-      delayed_posting: status['delayedPosting'],
+      delayed_posting: status['delayedPosting'] ? 'Yes' : nil, # TODO: update the column type to boolean
       phase: phase_list,
       enrollment: enrollment['count'],
       enrollment_type: enrollment['type'],
