@@ -67,6 +67,7 @@ class StudyJsonRecord::ProcessorV2
       overall_officials: OverallOfficial.mapper(self),
       design_outcomes: DesignOutcome.mapper(self),
       provided_documents: ProvidedDocument.mapper(self),
+      pending_results: PendingResult.mapper(self),
       reported_events: reported_events_data,
       reported_event_totals: reported_event_totals_data,
       responsible_party: ResponsibleParty.mapper(self),

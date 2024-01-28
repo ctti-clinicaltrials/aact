@@ -106,6 +106,17 @@ class VersionComparator
       result = compare_models(model, v1[model], v2[model], verbose)
     when Hash
       result = compare_model(model, v1[model], v2[model], verbose)
+    when nil
+      if v2[model].nil?
+        puts "0 mismatches".green if verbose
+        result = true
+      end
+    else
+      puts " #{model} not found in v1".red
+    end
+    if v1.values.uniq == [nil] && v2.values.uniq == [nil]
+      puts "No Data".green if verbose
+      return false
     end
     return result
   end
@@ -134,6 +145,9 @@ class VersionComparator
       puts "  row count mismatch".red if verbose
       return false 
     end
+    puts "#{v1.length} #{model}".blue if verbose
+    puts v1.inspect
+    puts v2.inspect
     v1.each_with_index do |row1, index|
       row2 = v2[index]
       result &&= compare_model(model, row1, row2, verbose)
