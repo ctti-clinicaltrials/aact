@@ -1,4 +1,16 @@
 namespace :compare do
+  task :v2, [:nct_id] => :environment do |t, args|
+    VersionComparator.check(args[:nct_id])
+  end
+
+  task :v2_model, [:nct_id, :model] => :environment do |t, args|
+    VersionComparator.check_model(args[:nct_id], args[:model].to_sym)
+  end
+
+  task :full, [:model] => :environment do |t, args|
+    VersionComparator.full_check(args[:model])
+  end
+
   task :nct_ids, [:first_schema,:second_schema] => :environment do |t, args|
     StudyJsonRecord.data_verification_csv(args)
   end

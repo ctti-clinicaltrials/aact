@@ -5,6 +5,7 @@ class StudyDownloader
         when '2'
           record = StudyJsonRecord.find_by(nct_id: nct_id, version: version) || StudyJsonRecord.create(nct_id: nct_id, content: {}, version: version)
           update_from_apiV2(record, nct_id) 
+          return record
         when '1'
           record = StudyJsonRecord.find_by(nct_id: nct_id, version: version) || StudyJsonRecord.create(nct_id: nct_id, content: {}, version: version)
           record.update_from_api

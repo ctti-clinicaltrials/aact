@@ -334,7 +334,8 @@ class Study < ApplicationRecord
     num_of_groups = groups.count == 0 ? nil : groups.count
     arms_count = study_type =~ /Interventional/i ? num_of_groups : nil
     groups_count = arms_count ? nil : num_of_groups
-    phase_list = key_check(design['phases'])
+    byebug
+    phase_list = design['phases'] || []
     phase_list = phase_list.join('/') if phase_list
 
     {

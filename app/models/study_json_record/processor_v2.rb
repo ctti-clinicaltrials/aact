@@ -42,7 +42,7 @@ class StudyJsonRecord::ProcessorV2
   
   def parsed_data
     {
-      study: study_data,
+      study: Study.mapper(self),
       design_groups: design_groups_data,
       interventions: interventions_data,
       detailed_description: detailed_description_data,
@@ -55,7 +55,7 @@ class StudyJsonRecord::ProcessorV2
       browse_interventions: browse_interventions_data,
       central_contacts: central_contacts_data,
       conditions: conditions_data,
-      countries: countries_data,
+      countries: Country.mapper(self),
       documents: documents_data,
       facilities: facilities_data,
       id_information: id_information_data,
@@ -64,16 +64,16 @@ class StudyJsonRecord::ProcessorV2
       links: links_data,
       milestones: milestones_data,
       outcomes: outcomes_data,
-      overall_officials: overall_officials_data,
-      design_outcomes: design_outcomes_data,
-      provided_documents: provided_documents_data,
+      overall_officials: OverallOfficial.mapper(self),
+      design_outcomes: DesignOutcome.mapper(self),
+      provided_documents: ProvidedDocument.mapper(self),
       reported_events: reported_events_data,
       reported_event_totals: reported_event_totals_data,
-      responsible_party: responsible_party_data,
+      responsible_party: ResponsibleParty.mapper(self),
       result_agreement: result_agreement_data,
       result_contact: result_contact_data,
       study_references: study_references_data,
-      sponsors: sponsors_data,
+      sponsors: Sponsor.mapper(self),
       drop_withdrawals: drop_withdrawals_data,
     }
   end
@@ -194,6 +194,7 @@ class StudyJsonRecord::ProcessorV2
   def participant_flow_data
     return unless protocol_section
     nct_id = protocol_section.dig('identificationModule', 'nctId')
+    return unless results_section
     participant_flow = results_section['participantFlowModule']
 
     {
@@ -363,6 +364,16 @@ class StudyJsonRecord::ProcessorV2
   end
 
   ###### Utils ######
+
+  def is_masked?(who_masked_array, query_array)
+    # example who_masked array ["PARTICIPANT", "CARE_PROVIDER", "INVESTIGATOR", "OUTCOMES_ASSESSOR"]
+    return unless query_array
+
+    query_array.each do |term|
+      return true if who_masked_array.try(:include?, term)
+    end
+    nil
+  end
 
   def key_check(key)
     key ||= {}
