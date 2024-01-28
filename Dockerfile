@@ -11,14 +11,15 @@ COPY Gemfile.lock /app/Gemfile.lock
 RUN gem install bundler -v 1.17.3
 RUN bundle install
 
-# Create non-root user and set ownership and permissions as required
-RUN adduser --disabled-password aact && chown -R aact /app
+
 
 COPY . /app
 
 
 # Switch to the user
-USER aact
+# Create non-root user and set ownership and permissions as required
+# RUN adduser --disabled-password aact && chown -R aact /app
+# USER aact
 
 EXPOSE 3000
 
