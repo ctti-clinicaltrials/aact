@@ -13,14 +13,14 @@ class IdInformation < StudyRelationship
     return unless identification_module
 
     nct_id_alias = identification_module.dig('nctIdAliases') || []
-    secondary_info = identification_module.dig('secondaryIdInfo', 'id') || []
+    secondary_info = identification_module.dig('secondaryIdInfos', 'id') || []
     org_study_info = identification_module['orgStudyIdInfo']
     collection = []
     collection << {
       nct_id: nct_id,
       id_source: 'org_study_id',
       id_type: identification_module.dig('orgStudyIdInfo', 'type'),
-      id_type_description: identification_module.dig('orgStudyIdInfo', "domain"), # there is no links in 'orgStudyIdInfo' id only, but 'domain' inside 'secondaryIdInfos' 
+      id_type_description: identification_module.dig('orgStudyIdInfo', "domain"),
       id_link: identification_module.dig('orgStudyIdInfo', "link"), 
       id_value: org_study_info['id'] 
       } if org_study_info
@@ -39,10 +39,10 @@ class IdInformation < StudyRelationship
       collection << { 
         nct_id: nct_id,
         id_source: 'secondary_id',
-        id_type: info['SecondaryIdType'],
-        id_type_description: info['SecondaryIdDomain'],
-        id_link: info['SecondaryIdLink'],
-        id_value: info['SecondaryId'],
+        id_type: info['secondaryIdType'],
+        id_type_description: info['domain'],
+        id_link: info['secondaryIdLink'],
+        id_value: info['secondaryId'],
       }
     end
     collection
