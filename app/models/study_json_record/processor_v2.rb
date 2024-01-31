@@ -50,7 +50,7 @@ class StudyJsonRecord::ProcessorV2
       design: design_data,
       eligibility: eligibility_data,
       participant_flow: participant_flow_data,
-      baseline_measurements: baseline_measurements_data,
+      baseline_measurements: BaselineMeasurement.mapper(self),
       browse_conditions: browse_conditions_data,
       browse_interventions: browse_interventions_data,
       central_contacts: central_contacts_data,
@@ -204,9 +204,6 @@ class StudyJsonRecord::ProcessorV2
       pre_assignment_details: participant_flow['preAssignmentDetails'],
       units_analyzed: participant_flow['typeUnitsAnalyzed']
     }
-  end
-
-  def baseline_measurements_data
   end
 
   def browse_conditions_data

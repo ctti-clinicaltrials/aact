@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe PendingResult do
-  it 'should test documents_data' do
+  it 'should test pending_results_data' do
     expected_data = {
       nct_id: 'NCT03453554',
       event: 'RELEASE',
