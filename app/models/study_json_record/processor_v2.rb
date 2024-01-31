@@ -170,20 +170,6 @@ class StudyJsonRecord::ProcessorV2
   def responsible_party_data
   end
 
-  def result_agreement_data
-    ident = protocol_section['identificationModule']
-    nct_id = ident['nctId']
-    certain_agreement = results_section.dig('moreInfoModule', 'certainAgreement')
-
-    {
-      nct_id: nct_id,
-      pi_employee: certain_agreement['piSponsorEmployee'],
-      restrictive_agreement: certain_agreement['restrictiveAgreement'],
-      restriction_type: certain_agreement['restrictionType'],
-      other_details: certain_agreement['otherDetails']
-    }
-  end
-
   def result_contact_data
   end
 
