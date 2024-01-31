@@ -5,8 +5,9 @@ class IdInformation < StudyRelationship
   end
 
   def self.mapper(json)
-    # return unless @protocol_section
-    protocol_sdection = json.dig('protocolSection')
+    return unless json # Correctly handle nil input
+
+    protocol_section = json.dig('protocolSection') # Correct the typo here
     return unless protocol_section
 
     identification_module = protocol_section.dig('identificationModule')
@@ -15,6 +16,7 @@ class IdInformation < StudyRelationship
     nct_id_alias = identification_module.dig('nctIdAliases') || []
     secondary_info = identification_module.dig('secondaryIdInfos', 'id') || []
     org_study_info = identification_module['orgStudyIdInfo']
+    nct_id = protocol_section.dig('identificationModule', 'nctId')
     collection = []
     collection << {
       nct_id: nct_id,
