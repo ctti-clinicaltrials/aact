@@ -62,7 +62,7 @@ class StudyJsonRecord::ProcessorV2
       ipd_information_type: ipd_information_types_data,
       keywords: keywords_data,
       links: links_data,
-      milestones: milestones_data,
+      milestones: Milestone.mapper(self),
       outcomes: outcomes_data,
       overall_officials: OverallOfficial.mapper(self),
       design_outcomes: DesignOutcome.mapper(self),
@@ -324,9 +324,6 @@ class StudyJsonRecord::ProcessorV2
     end
     
     collection
-  end
-
-  def milestones_data
   end
 
   def outcomes_data
