@@ -1,39 +1,54 @@
-class Milestone < StudyRelationship
-  belongs_to :result_group
+class Milestone < ApplicationRecord
+  
+  def self.mapper(json)
+    return unless json.results_section
 
-  def self.create_all_from(opts)
-    opts[:xml]=opts[:xml].xpath('//participant_flow')
-    opts[:result_type]='Participant Flow'
-    opts[:groups]=create_group_set(opts)
+    flow_periods = json.results_section.dig('ParticipantFlowModule', 'FlowPeriodList', 'FlowPeriod')
+    flow_groups =  json.results_section.dig('ParticipantFlowModule')
+    result_groups = create_and_group_results(flow_groups, 'Flow', 'Participant Flow')
+    return unless flow_periods
 
-    DropWithdrawal.create_all_from(opts)
-    import(self.nested_pop_create(opts.merge(:name=>'milestone')))
-  end
+    collection = []
+    flow_periods.each do |period|
 
-  def self.nested_pop_create(opts)
-    name=opts[:name]
-    all=opts[:xml].xpath("//#{name}_list").xpath(name)
-    col=[]
-    xml=all.pop
-    while xml
-      opts[:xml]=xml
-      opts[:title]=xml.xpath('title').text
-      opts[:period]=xml.parent.parent.xpath('title').text
-      col << self.pop_create(opts.merge(:name=>'participants'))
-      xml=all.pop
+      flow_period = period['FlowPeriodTitle']
+      flow_milestones = period.dig('FlowMilestoneList', 'FlowMilestone')
+      next unless flow_milestones
+
+      flow_milestones.each do |milestone|
+        flow_achievements = milestone.dig('FlowAchievementList', 'FlowAchievement')
+        next unless flow_achievements
+
+        flow_achievements.each do |achievement|
+          ctgov_group_code = achievement['FlowAchievementGroupId']
+          collection << {
+                          nct_id: nct_id,
+                          result_group_id: result_groups[ctgov_group_code].try(:id),
+                          ctgov_group_code: ctgov_group_code,
+                          title: milestone['FlowMilestoneType'],
+                          period: period['FlowPeriodTitle'],
+                          description: achievement['FlowAchievementComment'],
+                          count: achievement['FlowAchievementNumSubjects'],
+                          milestone_description: milestone['FlowMilestoneComment'],
+                          count_units: achievement['FlowAchievementNumUnits']
+                        }
+        end
+      end
     end
-    col.flatten
+    return if collection.empty?
+
+    collection
   end
 
-  def attribs
-    {
-      :result_group => get_group(opts[:groups]),
-      :ctgov_group_code => get_attribute('group_id'),
-      :count => get_attribute('count').to_i,
-      :description => xml.text,
-      :title => get_opt('title'),
-      :period => get_opt('period')
-    }
+  def create_and_group_results(section, selector='Outcome', result_type='Outcome')
+    groups = (section || {}).dig("#{selector}GroupList", "#{selector}Group") || []
+    groups_data = StudyJsonRecord.result_groups(groups, selector, result_type, nct_id)
+    result_groups = {}
+    groups_data.each do |group|
+      result_groups[group[:ctgov_group_code]] = ResultGroup.find_or_create_by(group)
+    end
+
+    return result_groups
   end
 
 end
