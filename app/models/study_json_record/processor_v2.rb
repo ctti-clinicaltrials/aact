@@ -1,5 +1,4 @@
 class StudyJsonRecord::ProcessorV2
-    
   def initialize(json)
     @json = json
   end
@@ -36,20 +35,46 @@ class StudyJsonRecord::ProcessorV2
     @json['documentSection']
   end
   
-  # leave this empty for now
-  def process
+  # This method finds any studies that have been updated since the last time they were saved
+  def self.process
+    entries = {
+      nct_id: [],
+      studies: []
+    }
+
+    # map the studies
+    StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').limit(2).each do |record|
+      begin
+        processor = new(record.content)
+        entries[:nct_id] << record.nct_id
+        entries[:studies] << processor.parsed_data[:studies]
+      rescue => e
+        puts "Error processing #{record.nct_id}: #{e.message}"
+      end
+    end
+
+    # Go through each table and delete the records
+    StudyRelationship.study_models.each do |model|
+      model.where(nct_id: entries[:nct_id]).delete_all
+    end
+
+    # save the studies
+    StudyRelationship.study_models.each do |model|
+      key = model.name.underscore.pluralize.to_sym
+      model.import(entries[key])
+    end
   end  
   
   def parsed_data
     {
-      study: Study.mapper(self),
+      studies: Study.mapper(self),
       design_groups: design_groups_data,
       interventions: interventions_data,
-      detailed_description: detailed_description_data,
-      brief_summary: brief_summary_data,
-      design: design_data,
-      eligibility: eligibility_data,
-      participant_flow: participant_flow_data,
+      detailed_descriptions: detailed_description_data,
+      brief_summaries: brief_summary_data,
+      designs: design_data,
+      eligibilities: eligibility_data,
+      participant_flows: participant_flow_data,
       baseline_measurements: baseline_measurements_data,
       browse_conditions: browse_conditions_data,
       browse_interventions: browse_interventions_data,
@@ -58,8 +83,8 @@ class StudyJsonRecord::ProcessorV2
       countries: Country.mapper(self),
       documents: documents_data,
       facilities: facilities_data,
-      id_information: id_information_data,
-      ipd_information_type: ipd_information_types_data,
+      id_informations: id_information_data,
+      ipd_information_types: ipd_information_types_data,
       keywords: keywords_data,
       links: links_data,
       milestones: milestones_data,
@@ -70,9 +95,9 @@ class StudyJsonRecord::ProcessorV2
       pending_results: PendingResult.mapper(self),
       reported_events: reported_events_data,
       reported_event_totals: reported_event_totals_data,
-      responsible_party: ResponsibleParty.mapper(self),
-      result_agreement: result_agreement_data,
-      result_contact: result_contact_data,
+      responsible_parties: ResponsibleParty.mapper(self),
+      result_agreements: result_agreement_data,
+      result_contacts: result_contact_data,
       study_references: study_references_data,
       sponsors: Sponsor.mapper(self),
       drop_withdrawals: drop_withdrawals_data,
