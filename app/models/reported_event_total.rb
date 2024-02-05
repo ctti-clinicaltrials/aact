@@ -16,7 +16,7 @@ class ReportedEventTotal < ApplicationRecord
         collection
     end
 
-    def event_totals(event_type='serious', event_hash={}, nct_id)
+    def self.event_totals(event_type='serious', event_hash={}, nct_id)
       return {} if event_hash.empty?
   
       if event_type == 'serious'
@@ -31,7 +31,7 @@ class ReportedEventTotal < ApplicationRecord
 
       return {
         nct_id: nct_id,
-        ctgov_group_code: event_hash['id']
+        ctgov_group_code: event_hash['id'],
         event_type: event_type,
         classification: classification,
         total_count: event_hash['deathsNumAffected'] ? event_hash['deathsNumAffected'] : 0
@@ -45,29 +45,5 @@ class ReportedEventTotal < ApplicationRecord
         subjects_at_risk: event_hash["#{event_type}NumAtRisk"]
       }
     end
-
-# [{
-#       nct_id: nct_id,
-#       ctgov_group_code: event_hash['EventGroupId'],
-#       event_type: "Deaths",
-#       classification: classification,
-#       total_number: event_group['deathsNumAffected']
-#     },
-#     {
-#       nct_id: nct_id,
-#       ctgov_group_code: event_hash['EventGroupId'],
-#       event_type: "Other",
-#       classification: classification,
-#       subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
-#       subjects_at_risk: event_hash["EventGroup#{event_type}NumAtRisk"]
-#     },
-#     {
-#       nct_id: nct_id,
-#       ctgov_group_code: event_hash['EventGroupId'],
-#       event_type: "Serious",
-#       classification: classification,
-#       subjects_affected: event_hash["EventGroup#{event_type}NumAffected"],
-#       subjects_at_risk: event_hash["EventGroup#{event_type}NumAtRisk"]
-# }, ...]
 
 end
