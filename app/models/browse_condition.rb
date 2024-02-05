@@ -1,9 +1,24 @@
 class BrowseCondition < StudyRelationship
-
-  def self.create_all_from(options={})
-    nct_id=options[:nct_id]
-    nodes=options[:xml].xpath("//condition_browse").children
-    import(nodes.collect{|node| self.new({:nct_id=>nct_id,:mesh_term=>node.text}) if node.name=='mesh_term'}.compact)
+  add_mapping do
+    [
+      {
+        table: :browse_conditions,
+        root: [:derivedSection, :conditionBrowseModule, :meshes],
+        columns: [
+          { name: :mesh_term, value: :term},
+          { name: :downcase_mesh_term, value: :term, convert_to: :downcase },
+          { name: :mesh_type, value: 'mesh-list' }
+        ]
+      },
+      {
+        table: :browse_conditions,
+        root: [:derivedSection, :conditionBrowseModule, :meshes],
+        columns: [
+          { name: :mesh_term, value: :term},
+          { name: :downcase_mesh_term, value: :term, convert_to: :downcase },
+          { name: :mesh_type, value: 'mesh-ancestor' }
+        ]
+      }
+    ]
   end
-
 end
