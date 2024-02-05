@@ -51,7 +51,7 @@ RSpec.configure do |config|
     db = Util::DbManager.new
     db.remove_indexes_and_constraints
     StudyRelationship.remove_all_data
-    db.add_indexes_and_constraints
+    # db.add_indexes_and_constraints # TODO: add back in when we have a way to add indexes and constraints
 
     Util::DbManager.new({:event => Support::LoadEvent.new}).remove_indexes_and_constraints
     unit_test = ![:feature, :request].include?(example.metadata[:type])

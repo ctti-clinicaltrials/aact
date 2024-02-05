@@ -209,4 +209,25 @@ class StudyRelationship < ActiveRecord::Base
     get('phone')
   end
 
+  MAPPING = []
+
+  def self.add_mapping
+    entry = yield
+    case entry
+    when Array
+      MAPPING.concat(entry)
+    when Hash
+      MAPPING << yield
+    end
+  end
+
+  def self.mapping
+    MAPPING
+  end
+
+  def self.load_mappings
+    study_models.each do |model|
+      model.class
+    end
+  end
 end

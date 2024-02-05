@@ -1,37 +1,30 @@
 class Facility < StudyRelationship
-
   has_many :facility_contacts, autosave: true
   has_many :facility_investigators, autosave: true
 
-  def self.create_all_from(opts)
-    col=[]
-    opts[:xml].xpath("//location").collect{|location|
-      opts[:location]=location
-      opts[:status]=location.xpath('status').text
-
-      location.xpath("facility").collect{|xml|
-        opts[:xml]=xml
-        col << new.create_from(opts)
-      }
-    }
-    import col, recursive: true
-  end
-
-  def attribs
+  add_mapping do
     {
-      :name    => get('name'),
-      :city    => get_addr('city'),
-      :state   => get_addr('state'),
-      :zip     => get_addr('zip'),
-      :country => get_addr('country'),
-      :status  => get_opt('status'),
-      :facility_contacts => FacilityContact.create_all_from(opts.merge(:facility=>self)),
-      :facility_investigators => FacilityInvestigator.create_all_from(opts.merge(:facility=>self)),
+      table: :facilities,
+      root: [:protocolSection, :contactsLocationsModule, :locations],
+      columns: [
+        { name: :status, value: :status },
+        { name: :name, value: :facility },
+        { name: :city, value: :city },
+        { name: :state, value: :state },
+        { name: :zip, value: :zip },
+        { name: :country, value: :country },
+      ],
+      children: [
+        {
+          table: :facility_investigators,
+          root: [:contacts],
+          # filter: ->(contact) { contact['role'] =~ /investigator|study.chair/i },
+          columns: [
+            { name: :role, value: :role },
+            { name: :name, value: :name },
+          ]
+        }
+      ]
     }
   end
-
-  def get_addr(label)
-    xml.xpath('address').try(:xpath,label).try(:text)
-  end
-
 end
