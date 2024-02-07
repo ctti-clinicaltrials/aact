@@ -1,12 +1,17 @@
 require 'rails_helper'
 
 describe BriefSummary do
+  it "should create an instance of BriefSummary" do
+    # load the json
+    content = JSON.parse(File.read('spec/support/json_data/brief_summary.json'))
+    StudyJsonRecord.create(nct_id: "NCT000001", version: '2', content: content) # create a brand new json record
 
-  it "study should have expected brief summary" do
-    nct_id='NCT02389088'
-    xml=Nokogiri::XML(File.read("spec/support/xml_data/#{nct_id}.xml"))
-    study=Study.new({xml: xml, nct_id: nct_id}).create
-    expect(study.brief_summary.description).to include('The purpose of this study is to evaluate')
+    # process the json
+    StudyJsonRecord::Worker.new.process # import the new json record
+
+    # load the database entries
+    imported = BriefSummary.all.map{|x| x.attributes }
+    imported.each{|x| x.delete("id")}
+    expect(imported).to eq([{ "nct_id" => "NCT000001", "description" => "Brief Study Summary..." }])
   end
-
 end

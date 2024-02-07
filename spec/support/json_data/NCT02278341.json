@@ -1,0 +1,6323 @@
+{
+  "protocolSection": {
+  "identificationModule": {
+  "nctId": "NCT02552212",
+  "orgStudyIdInfo": {
+  "id": "AS0006"
+  },
+  "secondaryIdInfos": [
+  {
+  "id": "2015-001894-41",
+  "type": "EUDRACT_NUMBER"
+  }
+  ],
+  "organization": {
+  "fullName": "UCB Pharma",
+  "class": "INDUSTRY"
+  },
+  "briefTitle": "Multicenter Study Evaluating Certolizumab Pegol Compared to Placebo in Subjects With axSpA Without X-ray Evidence of AS",
+  "officialTitle": "Phase 3, Multicenter, Randomized, Placebo-Controlled, Double-Blind Study to Evaluate Efficacy and Safety of Certolizumab Pegol in Subjects With Active Axial Spondyloarthritis (axSpA) Without X-Ray Evidence of Ankylosing Spondylitis (AS) and Objective Signs of Inflammation",
+  "acronym": "C-AXSPAND"
+  },
+  "statusModule": {
+  "statusVerifiedDate": "2022-08",
+  "overallStatus": "COMPLETED",
+  "expandedAccessInfo": {
+  "hasExpandedAccess": true,
+  "nctId": "NCT03559686",
+  "statusForNctId": "AVAILABLE"
+  },
+  "startDateStruct": {
+  "date": "2015-09",
+  "type": "ACTUAL"
+  },
+  "primaryCompletionDateStruct": {
+  "date": "2018-05",
+  "type": "ACTUAL"
+  },
+  "completionDateStruct": {
+  "date": "2020-05",
+  "type": "ACTUAL"
+  },
+  "studyFirstSubmitDate": "2015-09-15",
+  "studyFirstSubmitQcDate": "2015-09-15",
+  "studyFirstPostDateStruct": {
+  "date": "2015-09-17",
+  "type": "ESTIMATED"
+  },
+  "resultsFirstSubmitDate": "2019-04-27",
+  "resultsFirstSubmitQcDate": "2020-07-31",
+  "resultsFirstPostDateStruct": {
+  "date": "2020-08-17",
+  "type": "ACTUAL"
+  },
+  "dispFirstSubmitDate": "2019-03-01",
+  "dispFirstSubmitQcDate": "2019-03-01",
+  "dispFirstPostDateStruct": {
+  "date": "2019-03-05",
+  "type": "ACTUAL"
+  },
+  "lastUpdateSubmitDate": "2022-08-16",
+  "lastUpdatePostDateStruct": {
+  "date": "2022-08-18",
+  "type": "ACTUAL"
+  }
+  },
+  "sponsorCollaboratorsModule": {
+  "responsibleParty": {
+  "type": "SPONSOR"
+  },
+  "leadSponsor": {
+  "name": "UCB BIOSCIENCES GmbH",
+  "class": "INDUSTRY"
+  }
+  },
+  "oversightModule": {
+  "oversightHasDmc": false
+  },
+  "descriptionModule": {
+  "briefSummary": "Patients with active Axial Spondyloarthritis without x-ray evidence of Ankylosing Spondylitis and with signs of inflammation will be randomly assigned to receive certolizumab pegol (CZP) 200 mg every two weeks or placebo. The primary objective is to demonstrate the efficacy of CZP in these patients."
+  },
+  "conditionsModule": {
+  "conditions": [
+  "Axial Spondyloarthritis",
+  "Nonradiographic Axial Spondyloarthritis",
+  "Nr-axSpA"
+  ],
+  "keywords": [
+  "Axial Spondyloarthritis",
+  "axSpA",
+  "Ankylosing Spondylitis",
+  "Anti TNF-alpha",
+  "Certolizumab Pegol",
+  "Nr-axSpA",
+  "Non-radiographic",
+  "Spondylarthropathies",
+  "Arthritis",
+  "Spinal Diseases",
+  "Immunosuppressive Agents"
+  ]
+  },
+  "designModule": {
+  "studyType": "INTERVENTIONAL",
+  "phases": [
+  "PHASE3"
+  ],
+  "designInfo": {
+  "allocation": "RANDOMIZED",
+  "interventionModel": "PARALLEL",
+  "primaryPurpose": "TREATMENT",
+  "maskingInfo": {
+  "masking": "QUADRUPLE",
+  "whoMasked": [
+  "PARTICIPANT",
+  "CARE_PROVIDER",
+  "INVESTIGATOR",
+  "OUTCOMES_ASSESSOR"
+  ]
+  }
+  },
+  "enrollmentInfo": {
+  "count": 317,
+  "type": "ACTUAL"
+  }
+  },
+  "armsInterventionsModule": {
+  "armGroups": [
+  {
+  "label": "Certolizumab Pegol 200 mg Q2W",
+  "type": "EXPERIMENTAL",
+  "description": "Certolizumab Pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards.",
+  "interventionNames": [
+  "Biological: Certolizumab Pegol"
+  ]
+  },
+  {
+  "label": "Placebo",
+  "type": "PLACEBO_COMPARATOR",
+  "description": "Matching placebo to Certolizumab Pegol (CZP) injections are administered every 2 weeks from Week 0 onwards.",
+  "interventionNames": [
+  "Other: Placebo"
+  ]
+  }
+  ],
+  "interventions": [
+  {
+  "type": "BIOLOGICAL",
+  "name": "Certolizumab Pegol",
+  "description": "* Active Substance: Certolizumab Pegol\n* Pharmaceutical Form: Prefilled syringe\n* Concentration: 200 mg / ml\n* Route of Administration: Subcutaneous injection",
+  "armGroupLabels": [
+  "Certolizumab Pegol 200 mg Q2W"
+  ],
+  "otherNames": [
+  "Cimzia",
+  "CDP870"
+  ]
+  },
+  {
+  "type": "OTHER",
+  "name": "Placebo",
+  "description": "* Active Substance: Placebo\n* Pharmaceutical Form: Prefilled syringe\n* Concentration: 0.9 % saline\n* Route of Administration: Subcutaneous injection",
+  "armGroupLabels": [
+  "Placebo"
+  ]
+  }
+  ]
+  },
+  "outcomesModule": {
+  "primaryOutcomes": [
+  {
+  "measure": "Percentage of Subjects With Ankylosing Spondylitis Disease Activity Score Major Improvement (ASDAS-MI) Response Criteria Response at Week 52",
+  "description": "This variable was considered as primary in all countries except for Canada (and any other country where applicable or where requested by Regulatory Authorities) where it was considered as secondary variable.\n\nASDAS-MI was achieved when there was a reduction (improvement) \\>= 2.0 in the ASDAS relative to Baseline, or when the lowest possible ASDAS score (0.6) was reached.\n\nThe ASDAS was calculated as the sum of the following components:\n\n0.121 × Back pain (BASDAI Q2 result) 0.058 × Duration of morning stiffness (BASDAI Q6 result) 0.110 × Patient's Global Assessment of Disease Activity (PGADA) 0.073 × Peripheral pain/swelling (BASDAI Q3 result) 0.579 × (natural logarithm \\[ln\\] of the (CRP \\[mg/L\\] + 1)) Back pain, PGADA, duration of morning stiffness, peripheral pain/swelling and fatigue were all assessed on a numerical scale (0 to 10 units, where 0 is \"not active\" and 10 is \"very active\").",
+  "timeFrame": "Week 52"
+  },
+  {
+  "measure": "Percentage of Subjects With Axial SpondyloArthritis International Society 40% Response Criteria (ASAS40) Response at Week 12",
+  "description": "This variable was considered as primary for Canada (and any other country where applicable or where requested by Regulatory Authorities) and as secondary variable in all other countries.\n\nThe ASAS40 response was defined as relative improvements of at least 40 % and absolute improvement of at least 2 units on a 0 to 10 Numeric Rating Scale (NRS), where 0 is \"not active\" and 10 is \"very active\" in at least 3 of the 4 domains: Patient's Global Assessment of Disease Activity (PGADA), Pain assessment (total spinal pain NRS scores), Function (Bath Ankylosing Spondylitis Functional Index (BASFI), Inflammation (mean of Bath Ankylosing Spondylitis Disease Activity Index (BASDAI)) questions 5 and 6 concerning morning stiffness intensity and duration) and no worsening at all in the remaining domain.",
+  "timeFrame": "Week 12"
+  },
+  {
+  "measure": "Certolizumab Pegol Plasma Concentration at Baseline",
+  "description": "Certolizumab pegol plasma concentration was measured at Baseline in micrograms per millilitre (µg/mL).",
+  "timeFrame": "Baseline (Week 0)"
+  },
+  {
+  "measure": "Certolizumab Pegol Plasma Concentration at Week 1",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 1, in µg/mL.",
+  "timeFrame": "Week 1"
+  },
+  {
+  "measure": "Certolizumab Pegol Plasma Concentration at Week 2",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 2, in µg/mL.",
+  "timeFrame": "Week 2"
+  },
+  {
+  "measure": "Certolizumab Pegol Plasma Concentration at Week 4",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 4, in µg/mL.",
+  "timeFrame": "Week 4"
+  },
+  {
+  "measure": "Certolizumab Pegol Plasma Concentration at Week 12",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 12, in µg/mL.",
+  "timeFrame": "Week 12"
+  },
+  {
+  "measure": "Certolizumab Pegol Plasma Concentration at Week 24",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 24, in µg/mL.",
+  "timeFrame": "Week 24"
+  },
+  {
+  "measure": "Certolizumab Pegol Plasma Concentration at Week 36",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 36, in µg/mL.",
+  "timeFrame": "Week 36"
+  },
+  {
+  "measure": "Certolizumab Pegol Plasma Concentration at Week 52",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 52, in µg/mL.",
+  "timeFrame": "Week 52"
+  },
+  {
+  "measure": "Certolizumab Pegol Plasma Concentration at Follow-Up (FU) Visit",
+  "description": "Certolizumab pegol plasma concentration was measured at the Follow-Up Visit, in µg/mL.\n\nFollow-Up Visit was defined as 8 weeks after Week 52 or Withdrawal (WD) visit for subjects not participating in the Safety Follow-Up Extension (SFE) Period.",
+  "timeFrame": "Follow-up Visit (up to Week 60)"
+  }
+  ],
+  "secondaryOutcomes": [
+  {
+  "measure": "Percentage of Subjects With Axial SpondyloArthritis International Society 40% Response Criteria (ASAS40) Response at Week 52",
+  "description": "The ASAS40 response was defined as relative improvements of at least 40% and absolute improvement of at least 2 units on a 0 to 10 Numeric Rating Scale (NRS), where 0 is \"not active\" and 10 is \"very active\" in at least 3 of the 4 domains: Patient's Global Assessment of Disease Activity (PGADA), Pain assessment (total spinal pain NRS scores), Function (Bath Ankylosing Spondylitis Functional Index (BASFI)), Inflammation (mean of Bath Ankylosing Spondylitis Disease Activity Index (BASDAI)) questions 5 and 6 concerning morning stiffness intensity and duration) and no worsening at all in the remaining domain.",
+  "timeFrame": "Week 52"
+  },
+  {
+  "measure": "Change From Baseline to Week 12 in the Bath Ankylosing Spondylitis Functional Index (BASFI)",
+  "description": "The BASFI is a validated disease-specific instrument for assessing physical function. The BASFI comprises 10 items relating to the past week. The BASFI is the mean of the 10 scores such that the total score ranges from 0 (Easy) to 10 (Impossible), with lower scores indicating better physical function. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 12"
+  },
+  {
+  "measure": "Change From Baseline to Week 52 in the Bath Ankylosing Spondylitis Functional Index (BASFI)",
+  "description": "The BASFI is a validated disease-specific instrument for assessing physical function. The BASFI comprises 10 items relating to the past week. The BASFI is the mean of the 10 scores such that the total score ranges from 0 (Easy) to 10 (Impossible), with lower scores indicating better physical function. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 52"
+  },
+  {
+  "measure": "Change From Baseline to Week 12 in the Bath Ankylosing Spondylitis Disease Activity Index (BASDAI)",
+  "description": "The BASDAI is a validated self-reported instrument, which consists of six 10 unit horizontal Numeric Rating Scales to measure the disease activity of ankylosing spondylitis (AS) from the subject's perspective. It measures the severity of fatigue, spinal and peripheral joint pain and swelling, enthesitis, and morning stiffness (both severity and duration) over the last week. The final BASDAI scores ranges from 0 (not active) to 10 (very active), with lower scores indicating lower disease activity. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 12"
+  },
+  {
+  "measure": "Change From Baseline to Week 52 in the Bath Ankylosing Spondylitis Disease Activity Index (BASDAI)",
+  "description": "The BASDAI is a validated self-reported instrument, which consists of six 10 unit horizontal Numeric Rating Scales to measure the disease activity of ankylosing spondylitis (AS) from the subject's perspective. It measures the severity of fatigue, spinal and peripheral joint pain and swelling, enthesitis, and morning stiffness (both severity and duration) over the last week. The final BASDAI scores ranges from 0 (not active) to 10 (very active), with lower scores indicating lower disease activity. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 52"
+  },
+  {
+  "measure": "Change From Baseline to Week 12 in Sacroiliac Spondyloarthritis Research Consortium of Canada (SI-SPARCC) Score",
+  "description": "The Spondyloarthritis Research Consortium of Canada (SPARCC) scoring method for lesions found on the Magnetic Resonance Imaging (MRI) is based on an abnormal increased signal on the Short-Tau-Inversion Recovery (STIR) sequence, representing bone marrow edema. Total Sacroiliac (SI) joint SPARCC score can range from 0 to 72 with higher scores indicating higher joint inflammation. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 12"
+  },
+  {
+  "measure": "Number of Subjects Without Relevant Changes to Background Medication From Baseline to Week 52",
+  "description": "The number of subjects who did not have relevant changes to background medications during the study treatment period.\n\nA subject is without relevant changes to background medication if they do not have: the addition of a new disease-modifying antirheumatic drug (DMARD) or the change from one DMAR to another; the addition of an nonsteroidal anti-inflammatory drug (NSAID) or the change from one NSAID to another; an increased dose of chronic corticosteroids; the addition of a new chronic analgesic medication or increased dose in chronic analgesic medication; and they complete double-blind study treatment to Week 52.",
+  "timeFrame": "From Baseline to Week 52"
+  },
+  {
+  "measure": "Change From Baseline in Ankylosing Spondylitis Quality of Life (ASQoL) at Week 52",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 52"
+  },
+  {
+  "measure": "Change From Baseline in ASQoL at Week 1",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 1"
+  },
+  {
+  "measure": "Change From Baseline in ASQoL at Week 2",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 2"
+  },
+  {
+  "measure": "Change From Baseline in ASQoL at Week 4",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 4"
+  },
+  {
+  "measure": "Change From Baseline in ASQoL at Week 12",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 12"
+  },
+  {
+  "measure": "Change From Baseline in ASQoL at Week 24",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 24"
+  },
+  {
+  "measure": "Change From Baseline in ASQoL at Week 36",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 36"
+  },
+  {
+  "measure": "Change From Baseline in ASQoL at Week 48",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 48"
+  },
+  {
+  "measure": "Change From Baseline in Nocturnal Spinal Pain Numerical Rating Scale (NRS) at Week 52",
+  "description": "The nocturnal spinal pain experienced by subjects due to AS was measured by following question 'How much pain of your spine due to spondylitis do you have at night?'. The NRS ranged from 0 to 10, where 0 represented 'no pain' and 10 represented 'most severe pain'. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "timeFrame": "From Baseline to Week 52"
+  },
+  {
+  "measure": "Number of Subjects With Anterior Uveitis (AU) or New AU Flares Through Week 52",
+  "description": "The number of subjects with AU or new AU flares during the study treatment period.",
+  "timeFrame": "Throughout the study conduct (up to Week 52)"
+  },
+  {
+  "measure": "Percentage of Subjects With Treatment-Emergent Adverse Events (TEAEs) During the Study",
+  "description": "An Adverse Event (AE) is any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product, which does not necessarily have a causal relationship with this treatment. An AE could therefore be any unfavorable and unintended sign, symptom, or disease temporally associated with the use of a medicinal (investigational) product, whether or not related to the medicinal (investigational) product.",
+  "timeFrame": "From Baseline up to the End of Safety Follow-up Extension Period (up to Week 156)"
+  },
+  {
+  "measure": "Percentage of Subjects With Serious Adverse Events (SAEs) During the Study",
+  "description": "A serious adverse event (SAE) is any untoward medical occurrence that at any dose:\n\n* Results in death\n* Is life-threatening\n* Requires in patient hospitalization or prolongation of existing hospitalization\n* Is a congenital anomaly or birth defect\n* Is an infection that requires treatment parenteral antibiotics\n* Other important medical events which based on medical or scientific judgement may jeopardize the patients, or may require medical or surgical intervention to prevent any of the above.",
+  "timeFrame": "From Baseline up to the End of Safety Follow-up Extension Period (up to Week 156)"
+  },
+  {
+  "measure": "Percentage of Subjects With Adverse Events Leading to Withdrawal From Investigational Medicinal Product (IMP) During the Study",
+  "description": "An Adverse Event (AE) is any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product, which does not necessarily have a causal relationship with this treatment. An AE could therefore be any unfavorable and unintended sign, symptom, or disease temporally associated with the use of a medicinal (investigational) product, whether or not related to the medicinal (investigational) product.",
+  "timeFrame": "From Baseline up to the End of Safety Follow-up Extension Period (up to Week 156)"
+  }
+  ]
+  },
+  "eligibilityModule": {
+  "eligibilityCriteria": "Inclusion Criteria:\n\n* At least 18 years old at the start of Screening Visit\n* A documented diagnosis of adult-onset axial SpondyloArthritis (axSpA) and meet the Assessment of SpondyloArthritis International Society (ASAS) criteria for axSpA\n* Subjects must have had back pain for at least 12 months before Screening\n* No sacroiliitis defined by Modified New York (mNY) criteria on sacroiliac (SI) x-rays\n* Active disease at Screening as defined by\n\n  * Bath Ankylosing Spondylitis Disease Activity Index (BASDAI) score \\>= 4\n  * Spinal pain \\>= 4 on a 0 to 10 Numerical Rating Scale (NRS)\n* Inadequate response to, have a contraindication to, or have been intolerant to at least 2 Nonsteroidal Anti-Inflammatory Drugs (NSAIDs)\n\nExclusion Criteria:\n\n* Diagnosis of AS or any other Inflammatory Arthritis\n* Prior treatment with any experimental biological agents for treatment of Axial SpondyloArthritis (SpA)\n* Exposure to more than 1 tumor necrosis factor (TNF)-antagonist or primary failure to TNF antagonist therapy\n* History of or current chronic or recurrent infections\n* Subjects with known Tuberculosis (TB) infection, at high risk of acquiring TB infection, or latent Tuberculosis (LTB)\n* Recent live vaccination\n* Concurrent malignancy or a history of malignancy\n* Class III or IV congestive heart failure - New York Heart Association (NYHA)\n* Demyelinating disease of the central nervous system\n* Female subjects who are breastfeeding, pregnant or plan to become pregnant during the study or within 3 months following the last dose of the investigational product\n* Subjects with any other condition which, in the investigator's judgment, would make the subject unsuitable for inclusion in the study",
+  "healthyVolunteers": false,
+  "sex": "ALL",
+  "minimumAge": "18 Years",
+  "stdAges": [
+  "ADULT",
+  "OLDER_ADULT"
+  ]
+  },
+  "contactsLocationsModule": {
+  "overallOfficials": [
+  {
+  "name": "UCB Cares",
+  "affiliation": "1-844-599-2273 (UCB)",
+  "role": "STUDY_DIRECTOR"
+  }
+  ],
+  "locations": [
+  {
+  "facility": "As0006 125",
+  "city": "Birmingham",
+  "state": "Alabama",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 33.52066,
+  "lon": -86.80249
+  }
+  },
+  {
+  "facility": "As0006 120",
+  "city": "Scottsdale",
+  "state": "Arizona",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 33.50921,
+  "lon": -111.89903
+  }
+  },
+  {
+  "facility": "As0006 115",
+  "city": "Tucson",
+  "state": "Arizona",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 32.22174,
+  "lon": -110.92648
+  }
+  },
+  {
+  "facility": "As0006 155",
+  "city": "Beverly Hills",
+  "state": "California",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 34.07362,
+  "lon": -118.40036
+  }
+  },
+  {
+  "facility": "As0006 101",
+  "city": "Palm Desert",
+  "state": "California",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 33.72255,
+  "lon": -116.37697
+  }
+  },
+  {
+  "facility": "As0006 143",
+  "city": "San Francisco",
+  "state": "California",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 37.77493,
+  "lon": -122.41942
+  }
+  },
+  {
+  "facility": "As0006 160",
+  "city": "New Haven",
+  "state": "Connecticut",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 41.30815,
+  "lon": -72.92816
+  }
+  },
+  {
+  "facility": "As0006 117",
+  "city": "Daytona Beach",
+  "state": "Florida",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 29.21081,
+  "lon": -81.02283
+  }
+  },
+  {
+  "facility": "As0006 116",
+  "city": "DeBary",
+  "state": "Florida",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 28.88305,
+  "lon": -81.30868
+  }
+  },
+  {
+  "facility": "As0006 124",
+  "city": "Fort Lauderdale",
+  "state": "Florida",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 26.12231,
+  "lon": -80.14338
+  }
+  },
+  {
+  "facility": "As0006 133",
+  "city": "New Port Richey",
+  "state": "Florida",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 28.24418,
+  "lon": -82.71927
+  }
+  },
+  {
+  "facility": "As0006 138",
+  "city": "Plantation",
+  "state": "Florida",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 26.13421,
+  "lon": -80.23184
+  }
+  },
+  {
+  "facility": "As0006 134",
+  "city": "Tampa",
+  "state": "Florida",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 27.94752,
+  "lon": -82.45843
+  }
+  },
+  {
+  "facility": "As0006 106",
+  "city": "Vero Beach",
+  "state": "Florida",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 27.63864,
+  "lon": -80.39727
+  }
+  },
+  {
+  "facility": "As0006 148",
+  "city": "Atlanta",
+  "state": "Georgia",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 33.749,
+  "lon": -84.38798
+  }
+  },
+  {
+  "facility": "As0006 137",
+  "city": "Idaho Falls",
+  "state": "Idaho",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 43.46658,
+  "lon": -112.03414
+  }
+  },
+  {
+  "facility": "As0006 102",
+  "city": "Cumberland",
+  "state": "Maryland",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 39.65287,
+  "lon": -78.76252
+  }
+  },
+  {
+  "facility": "As0006 141",
+  "city": "Cumberland",
+  "state": "Maryland",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 39.65287,
+  "lon": -78.76252
+  }
+  },
+  {
+  "facility": "As0006 111",
+  "city": "Wheaton",
+  "state": "Maryland",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 39.03983,
+  "lon": -77.05526
+  }
+  },
+  {
+  "facility": "As0006 127",
+  "city": "Boston",
+  "state": "Massachusetts",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 42.35843,
+  "lon": -71.05977
+  }
+  },
+  {
+  "facility": "As0006 147",
+  "city": "Worcester",
+  "state": "Massachusetts",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 42.26259,
+  "lon": -71.80229
+  }
+  },
+  {
+  "facility": "As0006 110",
+  "city": "Eagan",
+  "state": "Minnesota",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 44.80413,
+  "lon": -93.16689
+  }
+  },
+  {
+  "facility": "As0006 123",
+  "city": "Rochester",
+  "state": "Minnesota",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 44.02163,
+  "lon": -92.4699
+  }
+  },
+  {
+  "facility": "As0006 103",
+  "city": "Saint Louis",
+  "state": "Missouri",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 38.62727,
+  "lon": -90.19789
+  }
+  },
+  {
+  "facility": "As0006 114",
+  "city": "Brooklyn",
+  "state": "New York",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 40.6501,
+  "lon": -73.94958
+  }
+  },
+  {
+  "facility": "As0006 118",
+  "city": "Charlotte",
+  "state": "North Carolina",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 35.22709,
+  "lon": -80.84313
+  }
+  },
+  {
+  "facility": "As0006 149",
+  "city": "Oklahoma City",
+  "state": "Oklahoma",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 35.46756,
+  "lon": -97.51643
+  }
+  },
+  {
+  "facility": "As0006 105",
+  "city": "Portland",
+  "state": "Oregon",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 45.52345,
+  "lon": -122.67621
+  }
+  },
+  {
+  "facility": "As0006 108",
+  "city": "Duncansville",
+  "state": "Pennsylvania",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 40.42341,
+  "lon": -78.4339
+  }
+  },
+  {
+  "facility": "As0006 144",
+  "city": "Philadelphia",
+  "state": "Pennsylvania",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 39.95233,
+  "lon": -75.16379
+  }
+  },
+  {
+  "facility": "As0006 129",
+  "city": "Wyomissing",
+  "state": "Pennsylvania",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 40.32954,
+  "lon": -75.96521
+  }
+  },
+  {
+  "facility": "As0006 156",
+  "city": "Orangeburg",
+  "state": "South Carolina",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 33.49182,
+  "lon": -80.85565
+  }
+  },
+  {
+  "facility": "As0006 107",
+  "city": "Salt Lake City",
+  "state": "Utah",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 40.76078,
+  "lon": -111.89105
+  }
+  },
+  {
+  "facility": "As0006 104",
+  "city": "Seattle",
+  "state": "Washington",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 47.60621,
+  "lon": -122.33207
+  }
+  },
+  {
+  "facility": "As0006 158",
+  "city": "Manitowoc",
+  "state": "Wisconsin",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 44.08861,
+  "lon": -87.65758
+  }
+  },
+  {
+  "facility": "As0006 113",
+  "city": "Onalaska",
+  "state": "Wisconsin",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 43.88441,
+  "lon": -91.23514
+  }
+  },
+  {
+  "facility": "As0006 208",
+  "city": "Camperdown",
+  "country": "Australia",
+  "geoPoint": {
+  "lat": -33.88965,
+  "lon": 151.17642
+  }
+  },
+  {
+  "facility": "As0006 210",
+  "city": "Coffs Harbour",
+  "country": "Australia",
+  "geoPoint": {
+  "lat": -30.29626,
+  "lon": 153.11351
+  }
+  },
+  {
+  "facility": "As0006 204",
+  "city": "Footscray",
+  "country": "Australia",
+  "geoPoint": {
+  "lat": -37.8,
+  "lon": 144.9
+  }
+  },
+  {
+  "facility": "As0006 201",
+  "city": "Malvern East",
+  "country": "Australia",
+  "geoPoint": {
+  "lat": -37.87397,
+  "lon": 145.04253
+  }
+  },
+  {
+  "facility": "As0006 209",
+  "city": "Maroochydore",
+  "country": "Australia",
+  "geoPoint": {
+  "lat": -26.66008,
+  "lon": 153.09953
+  }
+  },
+  {
+  "facility": "As0006 205",
+  "city": "South Hobart",
+  "country": "Australia",
+  "geoPoint": {
+  "lat": -42.89459,
+  "lon": 147.30924
+  }
+  },
+  {
+  "facility": "As0006 202",
+  "city": "Victoria Park",
+  "country": "Australia",
+  "geoPoint": {
+  "lat": -31.97619,
+  "lon": 115.90525
+  }
+  },
+  {
+  "facility": "As0006 302",
+  "city": "Plovdiv",
+  "country": "Bulgaria",
+  "geoPoint": {
+  "lat": 42.15,
+  "lon": 24.75
+  }
+  },
+  {
+  "facility": "As0006 305",
+  "city": "Plovdiv",
+  "country": "Bulgaria",
+  "geoPoint": {
+  "lat": 42.15,
+  "lon": 24.75
+  }
+  },
+  {
+  "facility": "As0006 304",
+  "city": "Ruse",
+  "country": "Bulgaria",
+  "geoPoint": {
+  "lat": 43.85639,
+  "lon": 25.97083
+  }
+  },
+  {
+  "facility": "As0006 306",
+  "city": "Sevlievo",
+  "country": "Bulgaria",
+  "geoPoint": {
+  "lat": 43.02583,
+  "lon": 25.11361
+  }
+  },
+  {
+  "facility": "As0006 300",
+  "city": "Sofia",
+  "country": "Bulgaria",
+  "geoPoint": {
+  "lat": 42.69751,
+  "lon": 23.32415
+  }
+  },
+  {
+  "facility": "As0006 307",
+  "city": "Sofia",
+  "country": "Bulgaria",
+  "geoPoint": {
+  "lat": 42.69751,
+  "lon": 23.32415
+  }
+  },
+  {
+  "facility": "As0006 309",
+  "city": "Sofia",
+  "country": "Bulgaria",
+  "geoPoint": {
+  "lat": 42.69751,
+  "lon": 23.32415
+  }
+  },
+  {
+  "facility": "As0006 308",
+  "city": "Varna",
+  "country": "Bulgaria",
+  "geoPoint": {
+  "lat": 43.21667,
+  "lon": 27.91667
+  }
+  },
+  {
+  "facility": "As0006 152",
+  "city": "Edmonton",
+  "country": "Canada",
+  "geoPoint": {
+  "lat": 53.55014,
+  "lon": -113.46871
+  }
+  },
+  {
+  "facility": "As0006 150",
+  "city": "Victoria",
+  "country": "Canada",
+  "geoPoint": {
+  "lat": 48.43294,
+  "lon": -123.3693
+  }
+  },
+  {
+  "facility": "As0006 326",
+  "city": "Hlučín",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 49.89795,
+  "lon": 18.19196
+  }
+  },
+  {
+  "facility": "As0006 324",
+  "city": "Hustopeče",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 48.94085,
+  "lon": 16.73762
+  }
+  },
+  {
+  "facility": "As0006 327",
+  "city": "Olomouc",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 49.59552,
+  "lon": 17.25175
+  }
+  },
+  {
+  "facility": "As0006 320",
+  "city": "Ostrava",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 49.83465,
+  "lon": 18.28204
+  }
+  },
+  {
+  "facility": "As0006 322",
+  "city": "Pardubice",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 50.04075,
+  "lon": 15.77659
+  }
+  },
+  {
+  "facility": "As0006 328",
+  "city": "Praha 2",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 50.08804,
+  "lon": 14.42076
+  }
+  },
+  {
+  "facility": "As0006 323",
+  "city": "Praha",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 50.08804,
+  "lon": 14.42076
+  }
+  },
+  {
+  "facility": "As0006 329",
+  "city": "Praha",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 50.08804,
+  "lon": 14.42076
+  }
+  },
+  {
+  "facility": "As0006 330",
+  "city": "Praha",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 50.08804,
+  "lon": 14.42076
+  }
+  },
+  {
+  "facility": "As0006 333",
+  "city": "Příbor",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 49.64094,
+  "lon": 18.14499
+  }
+  },
+  {
+  "facility": "As0006 332",
+  "city": "Rychnov Nad Kněžnou",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 50.16284,
+  "lon": 16.27488
+  }
+  },
+  {
+  "facility": "As0006 331",
+  "city": "Zlín",
+  "country": "Czechia",
+  "geoPoint": {
+  "lat": 49.22645,
+  "lon": 17.67065
+  }
+  },
+  {
+  "facility": "As0006 365",
+  "city": "Balatonfüred",
+  "country": "Hungary",
+  "geoPoint": {
+  "lat": 46.96188,
+  "lon": 17.87187
+  }
+  },
+  {
+  "facility": "As0006 362",
+  "city": "Budapest",
+  "country": "Hungary",
+  "geoPoint": {
+  "lat": 47.49801,
+  "lon": 19.03991
+  }
+  },
+  {
+  "facility": "As0006 363",
+  "city": "Budapest",
+  "country": "Hungary",
+  "geoPoint": {
+  "lat": 47.49801,
+  "lon": 19.03991
+  }
+  },
+  {
+  "facility": "As0006 361",
+  "city": "Szekesfehervar",
+  "country": "Hungary",
+  "geoPoint": {
+  "lat": 47.18995,
+  "lon": 18.41034
+  }
+  },
+  {
+  "facility": "As0006 406",
+  "city": "Bydgoszcz",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 53.1235,
+  "lon": 18.00762
+  }
+  },
+  {
+  "facility": "As0006 400",
+  "city": "Elbląg",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 54.1522,
+  "lon": 19.40884
+  }
+  },
+  {
+  "facility": "As0006 401",
+  "city": "Kraków",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 50.06143,
+  "lon": 19.93658
+  }
+  },
+  {
+  "facility": "As0006 402",
+  "city": "Kraków",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 50.06143,
+  "lon": 19.93658
+  }
+  },
+  {
+  "facility": "As0006 411",
+  "city": "Lublin",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 51.25,
+  "lon": 22.56667
+  }
+  },
+  {
+  "facility": "As0006 403",
+  "city": "Poznań",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 52.40692,
+  "lon": 16.92993
+  }
+  },
+  {
+  "facility": "As0006 404",
+  "city": "Poznań",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 52.40692,
+  "lon": 16.92993
+  }
+  },
+  {
+  "facility": "As0006 405",
+  "city": "Toruń",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 53.01375,
+  "lon": 18.59814
+  }
+  },
+  {
+  "facility": "As0006 407",
+  "city": "Warszawa",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 52.22977,
+  "lon": 21.01178
+  }
+  },
+  {
+  "facility": "As0006 408",
+  "city": "Warszawa",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 52.22977,
+  "lon": 21.01178
+  }
+  },
+  {
+  "facility": "As0006 409",
+  "city": "Warszawa",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 52.22977,
+  "lon": 21.01178
+  }
+  },
+  {
+  "facility": "As0006 410",
+  "city": "Warszawa",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 52.22977,
+  "lon": 21.01178
+  }
+  },
+  {
+  "facility": "As0006 413",
+  "city": "Wrocław",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 51.1,
+  "lon": 17.03333
+  }
+  },
+  {
+  "facility": "As0006 414",
+  "city": "Wrocław",
+  "country": "Poland",
+  "geoPoint": {
+  "lat": 51.1,
+  "lon": 17.03333
+  }
+  },
+  {
+  "facility": "As0006 461",
+  "city": "Chelyabinsk",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 55.15402,
+  "lon": 61.42915
+  }
+  },
+  {
+  "facility": "As0006 453",
+  "city": "Ivanovo",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 56.99719,
+  "lon": 40.97139
+  }
+  },
+  {
+  "facility": "As0006 450",
+  "city": "Kazan",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 55.78874,
+  "lon": 49.12214
+  }
+  },
+  {
+  "facility": "As0006 451",
+  "city": "Kazan",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 55.78874,
+  "lon": 49.12214
+  }
+  },
+  {
+  "facility": "As0006 458",
+  "city": "Kemerovo",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 55.33333,
+  "lon": 86.08333
+  }
+  },
+  {
+  "facility": "As0006 455",
+  "city": "Moscow",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 55.75222,
+  "lon": 37.61556
+  }
+  },
+  {
+  "facility": "As0006 466",
+  "city": "Moscow",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 55.75222,
+  "lon": 37.61556
+  }
+  },
+  {
+  "facility": "As0006 462",
+  "city": "Orenburg",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 51.7727,
+  "lon": 55.0988
+  }
+  },
+  {
+  "facility": "As0006 452",
+  "city": "Ryazan'",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 54.6269,
+  "lon": 39.6916
+  }
+  },
+  {
+  "facility": "As0006 459",
+  "city": "Saint Petersburg",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 59.93863,
+  "lon": 30.31413
+  }
+  },
+  {
+  "facility": "As0006 463",
+  "city": "Saint Petersburg",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 59.93863,
+  "lon": 30.31413
+  }
+  },
+  {
+  "facility": "As0006 464",
+  "city": "Saint Petersburg",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 59.93863,
+  "lon": 30.31413
+  }
+  },
+  {
+  "facility": "As0006 467",
+  "city": "Saint Petersburg",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 59.93863,
+  "lon": 30.31413
+  }
+  },
+  {
+  "facility": "As0006 465",
+  "city": "Samara",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 53.20007,
+  "lon": 50.15
+  }
+  },
+  {
+  "facility": "As0006 454",
+  "city": "Saratov",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 51.54056,
+  "lon": 46.00861
+  }
+  },
+  {
+  "facility": "As0006 460",
+  "city": "Smolensk",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 54.7818,
+  "lon": 32.0401
+  }
+  },
+  {
+  "facility": "As0006 456",
+  "city": "Tolyatti",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 53.5303,
+  "lon": 49.3461
+  }
+  },
+  {
+  "facility": "As0006 457",
+  "city": "Yaroslavl",
+  "country": "Russian Federation",
+  "geoPoint": {
+  "lat": 57.62987,
+  "lon": 39.87368
+  }
+  },
+  {
+  "facility": "As0006 232",
+  "city": "Hualien City",
+  "country": "Taiwan",
+  "geoPoint": {
+  "lat": 23.97694,
+  "lon": 121.60444
+  }
+  },
+  {
+  "facility": "As0006 230",
+  "city": "Taichung City",
+  "country": "Taiwan",
+  "geoPoint": {
+  "lat": 24.1469,
+  "lon": 120.6839
+  }
+  },
+  {
+  "facility": "As0006 233",
+  "city": "Taichung City",
+  "country": "Taiwan",
+  "geoPoint": {
+  "lat": 24.1469,
+  "lon": 120.6839
+  }
+  },
+  {
+  "facility": "As0006 231",
+  "city": "Taipei",
+  "country": "Taiwan",
+  "geoPoint": {
+  "lat": 25.04776,
+  "lon": 121.53185
+  }
+  }
+  ]
+  },
+  "referencesModule": {
+  "references": [
+  {
+  "pmid": "35296532",
+  "type": "RESULT",
+  "citation": "van der Heijde D, Gensler LS, Maksymowych WP, Landewe R, Rudwaleit M, Bauer L, Kumke T, Kim M, Auteri SE, Hoepken B, Deodhar A. Long-term safety and clinical outcomes of certolizumab pegol treatment in patients with active non-radiographic axial spondyloarthritis: 3-year results from the phase 3 C-axSpAnd study. RMD Open. 2022 Mar;8(1):e002138. doi: 10.1136/rmdopen-2021-002138."
+  },
+  {
+  "pmid": "35733363",
+  "type": "RESULT",
+  "citation": "Robinson PC, Maksymowych WP, Gensler LS, Hall S, Rudwaleit M, Hoepken B, Bauer L, Kumke T, Kim M, de Peyrecave N, Deodhar A. Certolizumab Pegol Efficacy in Patients With Non-Radiographic Axial Spondyloarthritis Stratified by Baseline MRI and C-Reactive Protein Status: An Analysis From the C-axSpAnd Study. ACR Open Rheumatol. 2022 Sep;4(9):794-801. doi: 10.1002/acr2.11469. Epub 2022 Jun 22."
+  },
+  {
+  "pmid": "34715908",
+  "type": "DERIVED",
+  "citation": "Maksymowych WP, Kumke T, Auteri SE, Hoepken B, Bauer L, Rudwaleit M. Predictors of long-term clinical response in patients with non-radiographic axial spondyloarthritis receiving certolizumab pegol. Arthritis Res Ther. 2021 Oct 29;23(1):274. doi: 10.1186/s13075-021-02650-4."
+  },
+  {
+  "pmid": "30848558",
+  "type": "DERIVED",
+  "citation": "Deodhar A, Gensler LS, Kay J, Maksymowych WP, Haroon N, Landewe R, Rudwaleit M, Hall S, Bauer L, Hoepken B, de Peyrecave N, Kilgallen B, van der Heijde D. A Fifty-Two-Week, Randomized, Placebo-Controlled Trial of Certolizumab Pegol in Nonradiographic Axial Spondyloarthritis. Arthritis Rheumatol. 2019 Jul;71(7):1101-1111. doi: 10.1002/art.40866. Epub 2019 May 28."
+  }
+  ],
+  "seeAlsoLinks": [
+  {
+  "label": "FDA Safety Alerts and Recalls",
+  "url": "http://www.fda.gov/Safety/MedWatch/SafetyInformation/default.htm"
+  }
+  ]
+  }
+  },
+  "resultsSection": {
+  "participantFlowModule": {
+  "preAssignmentDetails": "The Participant Flow refers to the Randomized Set (RS).",
+  "recruitmentDetails": "This study started to enroll participants in September 2015. The study included a Screening Period, up to 6 weeks before Baseline, a Double-Blind (DB) Period from Baseline (Week 0) to Week 52, that included the open label CZP (OL-CZP) treatment and other treatment (OT) and an Open Label Safety Follow-up Extension (SFE) Period, up to Week 156.",
+  "groups": [
+  {
+  "id": "FG000",
+  "title": "Placebo",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards."
+  },
+  {
+  "id": "FG001",
+  "title": "CZP 200 mg Q2W",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards."
+  },
+  {
+  "id": "FG002",
+  "title": "SFE OL CZP 200 mg Q2W",
+  "description": "Subjects who completed Double-Blind Period received CZP 200 mg at Week 52, 54 and 56 to maintain the blinding and who completed the Week 52 Visit on placebo treatment received loading doses of CZP 400 mg at these visits. Subjects who completed the Week 52 Visit on CZP treatment received 1 injection of CZP 200 mg and 1 injection of placebo at these visits to continue their previous CZP treatment regimen and subjects who discontinued from Double-Blind Period and entered OL CZP treatment continued their OL CZP treatment regimen during Safety Follow-Up Extension (SFE) Period. Subjects received CZP 200 mg Q2W for up to 2 years during the SFE Period. An additional signed informed consent for the SFE was a pre-requisite For the additional milestone one (Received OL CZP; Completed Week 52 without starting SFE) reported in Double-Blind Period (Week 0 -52)."
+  }
+  ],
+  "periods": [
+  {
+  "title": "Double-Blind Period (Week 0 - 52)",
+  "milestones": [
+  {
+  "type": "STARTED",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "158"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "159"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "Received OL CZP",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "96"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "20"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "Completed Week 52 Without Starting SFE",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "20"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "22"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "COMPLETED",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "143"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "142"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "NOT COMPLETED",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "15"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "17"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  }
+  ],
+  "dropWithdraws": [
+  {
+  "type": "Adverse Event",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "6"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "3"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "Lack of Efficacy",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "2"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "2"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "Protocol Violation",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "1"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "1"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "Lost to Follow-up",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "1"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "Withdrawal by Subject",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "3"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "7"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "Study non-compliance",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "1"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "1"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "Patient's decision",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "1"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "As per suggestion",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "1"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "Not eligible",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "1"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  },
+  {
+  "type": "Missing/Unspecified",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "1"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "0"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "SFE Period (Week 52 - 156)",
+  "milestones": [
+  {
+  "type": "STARTED",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "comment": "123 subjects from Placebo arm and 120 subjects from CZP 200 mg Q2W arm",
+  "numSubjects": "243"
+  }
+  ]
+  },
+  {
+  "type": "COMPLETED",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "206"
+  }
+  ]
+  },
+  {
+  "type": "NOT COMPLETED",
+  "achievements": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "37"
+  }
+  ]
+  }
+  ],
+  "dropWithdraws": [
+  {
+  "type": "Adverse Event",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "5"
+  }
+  ]
+  },
+  {
+  "type": "Lack of Efficacy",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "4"
+  }
+  ]
+  },
+  {
+  "type": "Lost to Follow-up",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "2"
+  }
+  ]
+  },
+  {
+  "type": "Withdrawal by Subject",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "18"
+  }
+  ]
+  },
+  {
+  "type": "Return to standard-of-care /OL CZP",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "1"
+  }
+  ]
+  },
+  {
+  "type": "Patient's personal reason",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "1"
+  }
+  ]
+  },
+  {
+  "type": "Investigator decision",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "1"
+  }
+  ]
+  },
+  {
+  "type": "Subject withdrew consent due to traveling to site",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "1"
+  }
+  ]
+  },
+  {
+  "type": "Compassionate access",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "2"
+  }
+  ]
+  },
+  {
+  "type": "Patient travelling for study unable to continue",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "1"
+  }
+  ]
+  },
+  {
+  "type": "Decision of Patient",
+  "reasons": [
+  {
+  "groupId": "FG000",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG001",
+  "numSubjects": "0"
+  },
+  {
+  "groupId": "FG002",
+  "numSubjects": "1"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  "baselineCharacteristicsModule": {
+  "populationDescription": "Baseline Characteristics refer to the Randomized Set witch consisted of all subjects randomized into the study.",
+  "groups": [
+  {
+  "id": "BG000",
+  "title": "Placebo",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards."
+  },
+  {
+  "id": "BG001",
+  "title": "CZP 200 mg Q2W",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards."
+  },
+  {
+  "id": "BG002",
+  "title": "Total Title"
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "BG000",
+  "value": "158"
+  },
+  {
+  "groupId": "BG001",
+  "value": "159"
+  },
+  {
+  "groupId": "BG002",
+  "value": "317"
+  }
+  ]
+  }
+  ],
+  "measures": [
+  {
+  "title": "Age, Categorical",
+  "paramType": "COUNT_OF_PARTICIPANTS",
+  "unitOfMeasure": "Participants",
+  "classes": [
+  {
+  "categories": [
+  {
+  "title": "<=18 years",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "3"
+  },
+  {
+  "groupId": "BG001",
+  "value": "1"
+  },
+  {
+  "groupId": "BG002",
+  "value": "4"
+  }
+  ]
+  },
+  {
+  "title": "Between 18 and 65 years",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "154"
+  },
+  {
+  "groupId": "BG001",
+  "value": "156"
+  },
+  {
+  "groupId": "BG002",
+  "value": "310"
+  }
+  ]
+  },
+  {
+  "title": ">=65 years",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "1"
+  },
+  {
+  "groupId": "BG001",
+  "value": "2"
+  },
+  {
+  "groupId": "BG002",
+  "value": "3"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Age, Continuous",
+  "paramType": "MEAN",
+  "dispersionType": "STANDARD_DEVIATION",
+  "unitOfMeasure": "years",
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "37.4",
+  "spread": "10.8"
+  },
+  {
+  "groupId": "BG001",
+  "value": "37.3",
+  "spread": "10.5"
+  },
+  {
+  "groupId": "BG002",
+  "value": "37.3",
+  "spread": "10.6"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Sex: Female, Male",
+  "paramType": "COUNT_OF_PARTICIPANTS",
+  "unitOfMeasure": "Participants",
+  "classes": [
+  {
+  "categories": [
+  {
+  "title": "Female",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "82"
+  },
+  {
+  "groupId": "BG001",
+  "value": "81"
+  },
+  {
+  "groupId": "BG002",
+  "value": "163"
+  }
+  ]
+  },
+  {
+  "title": "Male",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "76"
+  },
+  {
+  "groupId": "BG001",
+  "value": "78"
+  },
+  {
+  "groupId": "BG002",
+  "value": "154"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "title": "Race/Ethnicity, Customized",
+  "paramType": "COUNT_OF_PARTICIPANTS",
+  "unitOfMeasure": "Participants",
+  "classes": [
+  {
+  "categories": [
+  {
+  "title": "Asian",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "8"
+  },
+  {
+  "groupId": "BG001",
+  "value": "5"
+  },
+  {
+  "groupId": "BG002",
+  "value": "13"
+  }
+  ]
+  },
+  {
+  "title": "Black",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "1"
+  },
+  {
+  "groupId": "BG001",
+  "value": "0"
+  },
+  {
+  "groupId": "BG002",
+  "value": "1"
+  }
+  ]
+  },
+  {
+  "title": "White",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "148"
+  },
+  {
+  "groupId": "BG001",
+  "value": "152"
+  },
+  {
+  "groupId": "BG002",
+  "value": "300"
+  }
+  ]
+  },
+  {
+  "title": "Other/mixed",
+  "measurements": [
+  {
+  "groupId": "BG000",
+  "value": "1"
+  },
+  {
+  "groupId": "BG001",
+  "value": "2"
+  },
+  {
+  "groupId": "BG002",
+  "value": "3"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  "outcomeMeasuresModule": {
+  "outcomeMeasures": [
+  {
+  "type": "PRIMARY",
+  "title": "Percentage of Subjects With Ankylosing Spondylitis Disease Activity Score Major Improvement (ASDAS-MI) Response Criteria Response at Week 52",
+  "description": "This variable was considered as primary in all countries except for Canada (and any other country where applicable or where requested by Regulatory Authorities) where it was considered as secondary variable.\n\nASDAS-MI was achieved when there was a reduction (improvement) \\>= 2.0 in the ASDAS relative to Baseline, or when the lowest possible ASDAS score (0.6) was reached.\n\nThe ASDAS was calculated as the sum of the following components:\n\n0.121 × Back pain (BASDAI Q2 result) 0.058 × Duration of morning stiffness (BASDAI Q6 result) 0.110 × Patient's Global Assessment of Disease Activity (PGADA) 0.073 × Peripheral pain/swelling (BASDAI Q3 result) 0.579 × (natural logarithm \\[ln\\] of the (CRP \\[mg/L\\] + 1)) Back pain, PGADA, duration of morning stiffness, peripheral pain/swelling and fatigue were all assessed on a numerical scale (0 to 10 units, where 0 is \"not active\" and 10 is \"very active\").",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "NUMBER",
+  "unitOfMeasure": "percentage of subjects",
+  "timeFrame": "Week 52",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "7.0"
+  },
+  {
+  "groupId": "OG001",
+  "value": "47.2"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "Odds ratio: CZP/Placebo and p-value were calculated using logistic regression with factors for treatment, region and Magnetic Resonance Imaging/C- Reactive Protein (MRI/CRP) classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.001",
+  "statisticalMethod": "Regression, Logistic",
+  "paramType": "Odds Ratio (OR)",
+  "paramValue": "15.231",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "7.336",
+  "ciUpperLimit": "31.623"
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Percentage of Subjects With Axial SpondyloArthritis International Society 40% Response Criteria (ASAS40) Response at Week 12",
+  "description": "This variable was considered as primary for Canada (and any other country where applicable or where requested by Regulatory Authorities) and as secondary variable in all other countries.\n\nThe ASAS40 response was defined as relative improvements of at least 40 % and absolute improvement of at least 2 units on a 0 to 10 Numeric Rating Scale (NRS), where 0 is \"not active\" and 10 is \"very active\" in at least 3 of the 4 domains: Patient's Global Assessment of Disease Activity (PGADA), Pain assessment (total spinal pain NRS scores), Function (Bath Ankylosing Spondylitis Functional Index (BASFI), Inflammation (mean of Bath Ankylosing Spondylitis Disease Activity Index (BASDAI)) questions 5 and 6 concerning morning stiffness intensity and duration) and no worsening at all in the remaining domain.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "NUMBER",
+  "unitOfMeasure": "percentage of subjects",
+  "timeFrame": "Week 12",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "11.4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "47.8"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "Odds ratio: CZP/Placebo and p-value were calculated using logistic regression with factors for treatment, region and MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.001",
+  "statisticalMethod": "Regression, Logistic",
+  "paramType": "Odds Ratio (OR)",
+  "paramValue": "7.436",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "4.127",
+  "ciUpperLimit": "13.401"
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Certolizumab Pegol Plasma Concentration at Baseline",
+  "description": "Certolizumab pegol plasma concentration was measured at Baseline in micrograms per millilitre (µg/mL).",
+  "populationDescription": "The Safety Set (SS) consisted of all subjects who have received at least 1 dose of study medication. Note: None of the Safety Set subjects had Pharmacokinetic (PK) concentrations above the lower limit of quantification.",
+  "reportingStatus": "POSTED",
+  "timeFrame": "Baseline (Week 0)",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (SS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Safety Set (SS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "0"
+  },
+  {
+  "groupId": "OG001",
+  "value": "0"
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Certolizumab Pegol Plasma Concentration at Week 1",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 1, in µg/mL.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment. Note: No samples taken at Week 1 for the Placebo-\\>OL CZP.",
+  "reportingStatus": "POSTED",
+  "paramType": "GEOMETRIC_MEAN",
+  "dispersionType": "95% Confidence Interval",
+  "unitOfMeasure": "µg/mL",
+  "timeFrame": "Week 1",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG001",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "148"
+  },
+  {
+  "groupId": "OG001",
+  "value": "0"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "50.5",
+  "lowerLimit": "48.0",
+  "upperLimit": "53.0"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Certolizumab Pegol Plasma Concentration at Week 2",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 2, in µg/mL.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment. Note: No samples taken at Week 2 for the Placebo-\\>OL CZP.",
+  "reportingStatus": "POSTED",
+  "paramType": "GEOMETRIC_MEAN",
+  "dispersionType": "95% Confidence Interval",
+  "unitOfMeasure": "µg/mL",
+  "timeFrame": "Week 2",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG001",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "153"
+  },
+  {
+  "groupId": "OG001",
+  "value": "0"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "36.4",
+  "lowerLimit": "33.0",
+  "upperLimit": "40.1"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Certolizumab Pegol Plasma Concentration at Week 4",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 4, in µg/mL.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment.",
+  "reportingStatus": "POSTED",
+  "paramType": "GEOMETRIC_MEAN",
+  "dispersionType": "95% Confidence Interval",
+  "unitOfMeasure": "µg/mL",
+  "timeFrame": "Week 4",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG001",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "155"
+  },
+  {
+  "groupId": "OG001",
+  "value": "93"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "54.6",
+  "lowerLimit": "51.4",
+  "upperLimit": "58.0"
+  },
+  {
+  "groupId": "OG001",
+  "value": "48.8",
+  "lowerLimit": "42.2",
+  "upperLimit": "56.4"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Certolizumab Pegol Plasma Concentration at Week 12",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 12, in µg/mL.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment.",
+  "reportingStatus": "POSTED",
+  "paramType": "GEOMETRIC_MEAN",
+  "dispersionType": "95% Confidence Interval",
+  "unitOfMeasure": "µg/mL",
+  "timeFrame": "Week 12",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG001",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "143"
+  },
+  {
+  "groupId": "OG001",
+  "value": "93"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "29.1",
+  "lowerLimit": "24.0",
+  "upperLimit": "35.2"
+  },
+  {
+  "groupId": "OG001",
+  "value": "30.5",
+  "lowerLimit": "26.4",
+  "upperLimit": "35.3"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Certolizumab Pegol Plasma Concentration at Week 24",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 24, in µg/mL.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment.",
+  "reportingStatus": "POSTED",
+  "paramType": "GEOMETRIC_MEAN",
+  "dispersionType": "95% Confidence Interval",
+  "unitOfMeasure": "µg/mL",
+  "timeFrame": "Week 24",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG001",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "135"
+  },
+  {
+  "groupId": "OG001",
+  "value": "86"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "23.5",
+  "lowerLimit": "18.5",
+  "upperLimit": "29.7"
+  },
+  {
+  "groupId": "OG001",
+  "value": "24.8",
+  "lowerLimit": "20.6",
+  "upperLimit": "29.9"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Certolizumab Pegol Plasma Concentration at Week 36",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 36, in µg/mL.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment.",
+  "reportingStatus": "POSTED",
+  "paramType": "GEOMETRIC_MEAN",
+  "dispersionType": "95% Confidence Interval",
+  "unitOfMeasure": "µg/mL",
+  "timeFrame": "Week 36",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG001",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "123"
+  },
+  {
+  "groupId": "OG001",
+  "value": "65"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "24.0",
+  "lowerLimit": "19.0",
+  "upperLimit": "30.4"
+  },
+  {
+  "groupId": "OG001",
+  "value": "22.9",
+  "lowerLimit": "18.3",
+  "upperLimit": "28.7"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Certolizumab Pegol Plasma Concentration at Week 52",
+  "description": "Certolizumab pegol plasma concentration was measured at Week 52, in µg/mL.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment. Note: No samples taken at OL Week 52 for the Placebo-\\>OL CZP.",
+  "reportingStatus": "POSTED",
+  "paramType": "GEOMETRIC_MEAN",
+  "dispersionType": "95% Confidence Interval",
+  "unitOfMeasure": "µg/mL",
+  "timeFrame": "Week 52",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG001",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "123"
+  },
+  {
+  "groupId": "OG001",
+  "value": "0"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "22.6",
+  "lowerLimit": "17.8",
+  "upperLimit": "28.6"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "PRIMARY",
+  "title": "Certolizumab Pegol Plasma Concentration at Follow-Up (FU) Visit",
+  "description": "Certolizumab pegol plasma concentration was measured at the Follow-Up Visit, in µg/mL.\n\nFollow-Up Visit was defined as 8 weeks after Week 52 or Withdrawal (WD) visit for subjects not participating in the Safety Follow-Up Extension (SFE) Period.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment. Only participants included, who had a SFU Visit at 8 weeks after Week 52/WD visit for those not participating in the SFE period.",
+  "reportingStatus": "POSTED",
+  "paramType": "GEOMETRIC_MEAN",
+  "dispersionType": "95% Confidence Interval",
+  "unitOfMeasure": "µg/mL",
+  "timeFrame": "Follow-up Visit (up to Week 60)",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG001",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "17"
+  },
+  {
+  "groupId": "OG001",
+  "value": "10"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "0.2",
+  "lowerLimit": "0.1",
+  "upperLimit": "0.7"
+  },
+  {
+  "groupId": "OG001",
+  "value": "NA",
+  "lowerLimit": "NA",
+  "upperLimit": "NA",
+  "comment": "Values were below the level of quantification."
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Percentage of Subjects With Axial SpondyloArthritis International Society 40% Response Criteria (ASAS40) Response at Week 52",
+  "description": "The ASAS40 response was defined as relative improvements of at least 40% and absolute improvement of at least 2 units on a 0 to 10 Numeric Rating Scale (NRS), where 0 is \"not active\" and 10 is \"very active\" in at least 3 of the 4 domains: Patient's Global Assessment of Disease Activity (PGADA), Pain assessment (total spinal pain NRS scores), Function (Bath Ankylosing Spondylitis Functional Index (BASFI)), Inflammation (mean of Bath Ankylosing Spondylitis Disease Activity Index (BASDAI)) questions 5 and 6 concerning morning stiffness intensity and duration) and no worsening at all in the remaining domain.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "NUMBER",
+  "unitOfMeasure": "percentage of subjects",
+  "timeFrame": "Week 52",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "15.8"
+  },
+  {
+  "groupId": "OG001",
+  "value": "56.6"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "Odds ratio: CZP/Placebo and p-value were calculated using logistic regression with factors for treatment, region MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.001",
+  "statisticalMethod": "Regression, Logistic",
+  "paramType": "Odds Ratio (OR)",
+  "paramValue": "7.359",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "4.286",
+  "ciUpperLimit": "12.636"
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline to Week 12 in the Bath Ankylosing Spondylitis Functional Index (BASFI)",
+  "description": "The BASFI is a validated disease-specific instrument for assessing physical function. The BASFI comprises 10 items relating to the past week. The BASFI is the mean of the 10 scores such that the total score ranges from 0 (Easy) to 10 (Impossible), with lower scores indicating better physical function. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "LEAST_SQUARES_MEAN",
+  "dispersionType": "Standard Error",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 12",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-0.38",
+  "spread": "0.21"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-2.07",
+  "spread": "0.20"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "From an ANCOVA model including scores at Baseline, treatment group, region and MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.001",
+  "statisticalMethod": "ANCOVA",
+  "paramType": "Difference",
+  "paramValue": "-1.696",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "-2.110",
+  "ciUpperLimit": "-1.282"
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline to Week 52 in the Bath Ankylosing Spondylitis Functional Index (BASFI)",
+  "description": "The BASFI is a validated disease-specific instrument for assessing physical function. The BASFI comprises 10 items relating to the past week. The BASFI is the mean of the 10 scores such that the total score ranges from 0 (Easy) to 10 (Impossible), with lower scores indicating better physical function. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "LEAST_SQUARES_MEAN",
+  "dispersionType": "Standard Error",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 52",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-1.44",
+  "spread": "0.30"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-3.03",
+  "spread": "0.24"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "From an ANCOVA model including scores at Baseline, treatment group, region and MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.0001",
+  "statisticalMethod": "ANCOVA",
+  "paramType": "Difference",
+  "paramValue": "-1.585",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "-2.132",
+  "ciUpperLimit": "-1.038"
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline to Week 12 in the Bath Ankylosing Spondylitis Disease Activity Index (BASDAI)",
+  "description": "The BASDAI is a validated self-reported instrument, which consists of six 10 unit horizontal Numeric Rating Scales to measure the disease activity of ankylosing spondylitis (AS) from the subject's perspective. It measures the severity of fatigue, spinal and peripheral joint pain and swelling, enthesitis, and morning stiffness (both severity and duration) over the last week. The final BASDAI scores ranges from 0 (not active) to 10 (very active), with lower scores indicating lower disease activity. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "LEAST_SQUARES_MEAN",
+  "dispersionType": "Standard Error",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 12",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-0.91",
+  "spread": "0.22"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-2.73",
+  "spread": "0.21"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "From an ANCOVA model including scores at Baseline, treatment group, region and MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.001",
+  "statisticalMethod": "ANCOVA",
+  "paramType": "Difference",
+  "paramValue": "-1.819",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "-2.250",
+  "ciUpperLimit": "-1.388"
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline to Week 52 in the Bath Ankylosing Spondylitis Disease Activity Index (BASDAI)",
+  "description": "The BASDAI is a validated self-reported instrument, which consists of six 10 unit horizontal Numeric Rating Scales to measure the disease activity of ankylosing spondylitis (AS) from the subject's perspective. It measures the severity of fatigue, spinal and peripheral joint pain and swelling, enthesitis, and morning stiffness (both severity and duration) over the last week. The final BASDAI scores ranges from 0 (not active) to 10 (very active), with lower scores indicating lower disease activity. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "LEAST_SQUARES_MEAN",
+  "dispersionType": "Standard Error",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 52",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-2.59",
+  "spread": "0.37"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-3.88",
+  "spread": "0.27"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "From an ANCOVA model including scores at Baseline, treatment group, region and MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.001",
+  "statisticalMethod": "ANCOVA",
+  "paramType": "Difference",
+  "paramValue": "-1.290",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "-1.909",
+  "ciUpperLimit": "-0.672"
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline to Week 12 in Sacroiliac Spondyloarthritis Research Consortium of Canada (SI-SPARCC) Score",
+  "description": "The Spondyloarthritis Research Consortium of Canada (SPARCC) scoring method for lesions found on the Magnetic Resonance Imaging (MRI) is based on an abnormal increased signal on the Short-Tau-Inversion Recovery (STIR) sequence, representing bone marrow edema. Total Sacroiliac (SI) joint SPARCC score can range from 0 to 72 with higher scores indicating higher joint inflammation. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "LEAST_SQUARES_MEAN",
+  "dispersionType": "Standard Error",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 12",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "0.200",
+  "spread": "0.772"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-4.669",
+  "spread": "0.770"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "From an ANCOVA model including scores at Baseline, treatment group, region and MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.001",
+  "statisticalMethod": "ANCOVA",
+  "paramType": "Difference",
+  "paramValue": "-4.8687",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "-6.4014",
+  "ciUpperLimit": "-3.3360"
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Number of Subjects Without Relevant Changes to Background Medication From Baseline to Week 52",
+  "description": "The number of subjects who did not have relevant changes to background medications during the study treatment period.\n\nA subject is without relevant changes to background medication if they do not have: the addition of a new disease-modifying antirheumatic drug (DMARD) or the change from one DMAR to another; the addition of an nonsteroidal anti-inflammatory drug (NSAID) or the change from one NSAID to another; an increased dose of chronic corticosteroids; the addition of a new chronic analgesic medication or increased dose in chronic analgesic medication; and they complete double-blind study treatment to Week 52.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "COUNT_OF_PARTICIPANTS",
+  "unitOfMeasure": "Participants",
+  "timeFrame": "From Baseline to Week 52",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "48"
+  },
+  {
+  "groupId": "OG001",
+  "value": "115"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "Odds ratio: CZP/Placebo and p-value were calculated using logistic regression with factors for treatment, region and MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.001",
+  "statisticalMethod": "Regression, Logistic",
+  "paramType": "Odds Ratio (OR)",
+  "paramValue": "6.223",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "3.800",
+  "ciUpperLimit": "10.191"
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline in Ankylosing Spondylitis Quality of Life (ASQoL) at Week 52",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "LEAST_SQUARES_MEAN",
+  "dispersionType": "Standard Error",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 52",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-0.18",
+  "spread": "0.04"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-0.36",
+  "spread": "0.03"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "From an ANCOVA model including scores at Baseline, treatment group, region and MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.001",
+  "statisticalMethod": "ANCOVA",
+  "paramType": "Difference",
+  "paramValue": "-0.183",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "-0.250",
+  "ciUpperLimit": "-0.117"
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline in ASQoL at Week 1",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Standard Deviation",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 1",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "150"
+  },
+  {
+  "groupId": "OG001",
+  "value": "147"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-0.03",
+  "spread": "0.14"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-0.11",
+  "spread": "0.21"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline in ASQoL at Week 2",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Standard Deviation",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 2",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "156"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-0.03",
+  "spread": "0.15"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-0.16",
+  "spread": "0.23"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline in ASQoL at Week 4",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Standard Deviation",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 4",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "156"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-0.06",
+  "spread": "0.19"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-0.18",
+  "spread": "0.23"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline in ASQoL at Week 12",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Standard Deviation",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 12",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "156"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-0.08",
+  "spread": "0.22"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-0.28",
+  "spread": "0.26"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline in ASQoL at Week 24",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Standard Deviation",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 24",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "156"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-0.09",
+  "spread": "0.23"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-0.31",
+  "spread": "0.27"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline in ASQoL at Week 36",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Standard Deviation",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 36",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "156"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-0.11",
+  "spread": "0.23"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-0.33",
+  "spread": "0.29"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline in ASQoL at Week 48",
+  "description": "The ASQoL score ranged from 0 to 18 with higher score indicating worse Health-Related Quality of Life (HRQoL) and 0 indicating good HRQoL. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "MEAN",
+  "dispersionType": "Standard Deviation",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 48",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "156"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-0.10",
+  "spread": "0.24"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-0.34",
+  "spread": "0.30"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Change From Baseline in Nocturnal Spinal Pain Numerical Rating Scale (NRS) at Week 52",
+  "description": "The nocturnal spinal pain experienced by subjects due to AS was measured by following question 'How much pain of your spine due to spondylitis do you have at night?'. The NRS ranged from 0 to 10, where 0 represented 'no pain' and 10 represented 'most severe pain'. The change from Baseline is calculated, a negative value indicating improvement and a positive value worsening.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "LEAST_SQUARES_MEAN",
+  "dispersionType": "Standard Error",
+  "unitOfMeasure": "scores on a scale",
+  "timeFrame": "From Baseline to Week 52",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "-2.1",
+  "spread": "0.5"
+  },
+  {
+  "groupId": "OG001",
+  "value": "-4.0",
+  "spread": "0.4"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "From an ANCOVA model including scores at Baseline, treatment group, region and MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "<0.001",
+  "statisticalMethod": "ANCOVA",
+  "paramType": "Difference",
+  "paramValue": "-1.90",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "-2.62",
+  "ciUpperLimit": "-1.18"
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Number of Subjects With Anterior Uveitis (AU) or New AU Flares Through Week 52",
+  "description": "The number of subjects with AU or new AU flares during the study treatment period.",
+  "populationDescription": "The FAS consisted of all subjects in the RS who have received at least 1 dose of study medication.",
+  "reportingStatus": "POSTED",
+  "paramType": "COUNT_OF_PARTICIPANTS",
+  "unitOfMeasure": "Participants",
+  "timeFrame": "Throughout the study conduct (up to Week 52)",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (FAS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Full Analysis Set (FAS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (FAS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the FAS."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "8"
+  },
+  {
+  "groupId": "OG001",
+  "value": "4"
+  }
+  ]
+  }
+  ]
+  }
+  ],
+  "analyses": [
+  {
+  "groupIds": [
+  "OG000",
+  "OG001"
+  ],
+  "groupDescription": "Odds ratio: CZP/PBO and p-value were calculated using logistic regression with factors for treatment, region and MRI/CRP classification.",
+  "nonInferiorityType": "OTHER",
+  "pValue": "=0.247",
+  "statisticalMethod": "Regression, Logistic",
+  "paramType": "Odds Ratio (OR)",
+  "paramValue": "0.484",
+  "ciPctValue": "95",
+  "ciNumSides": "TWO_SIDED",
+  "ciLowerLimit": "0.142",
+  "ciUpperLimit": "1.653"
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Percentage of Subjects With Treatment-Emergent Adverse Events (TEAEs) During the Study",
+  "description": "An Adverse Event (AE) is any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product, which does not necessarily have a causal relationship with this treatment. An AE could therefore be any unfavorable and unintended sign, symptom, or disease temporally associated with the use of a medicinal (investigational) product, whether or not related to the medicinal (investigational) product.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment.",
+  "reportingStatus": "POSTED",
+  "paramType": "NUMBER",
+  "unitOfMeasure": "percentage of subjects",
+  "timeFrame": "From Baseline up to the End of Safety Follow-up Extension Period (up to Week 156)",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (SS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Safety Set (SS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG002",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  },
+  {
+  "id": "OG003",
+  "title": "CZP->OL CZP (SS)",
+  "description": "Subset of subjects from the CZP 200 mg Q2W group, who discontinued the CZP double-blind treatment and entered the CZP open-label treatment. The subjects were included in the SS for safety analysis."
+  },
+  {
+  "id": "OG004",
+  "title": "SFE OL CZP 200 mg Q2W (SS)",
+  "description": "Subjects who completed Double-Blind Period received CZP 200 mg at Week 52, 54 and 56 to maintain the blinding and who completed the Week 52 Visit on placebo treatment received loading doses of CZP 400 mg at these visits. Subjects who completed the Week 52 Visit on CZP treatment received 1 injection of CZP 200 mg and 1 injection of placebo at these visits to continue their previous CZP treatment regimen and subjects who discontinued from Double-Blind Period and entered OL CZP treatment continued their OL CZP treatment regimen during SFE Period. The subjects were included in the SS for safety analysis. Subjects received CZP 200 mg Q2W for up to 2 years during the SFE Period. An additional signed informed consent for the SFE was a pre-requisite For the additional milestone one (Received OL CZP; Completed Week 52 without starting SFE) reported in Double-Blind Period (Week 0 -52)."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  },
+  {
+  "groupId": "OG002",
+  "value": "96"
+  },
+  {
+  "groupId": "OG003",
+  "value": "20"
+  },
+  {
+  "groupId": "OG004",
+  "value": "243"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "63.9"
+  },
+  {
+  "groupId": "OG001",
+  "value": "75.5"
+  },
+  {
+  "groupId": "OG002",
+  "value": "59.4"
+  },
+  {
+  "groupId": "OG003",
+  "value": "65.0"
+  },
+  {
+  "groupId": "OG004",
+  "value": "61.3"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Percentage of Subjects With Serious Adverse Events (SAEs) During the Study",
+  "description": "A serious adverse event (SAE) is any untoward medical occurrence that at any dose:\n\n* Results in death\n* Is life-threatening\n* Requires in patient hospitalization or prolongation of existing hospitalization\n* Is a congenital anomaly or birth defect\n* Is an infection that requires treatment parenteral antibiotics\n* Other important medical events which based on medical or scientific judgement may jeopardize the patients, or may require medical or surgical intervention to prevent any of the above.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment.",
+  "reportingStatus": "POSTED",
+  "paramType": "NUMBER",
+  "unitOfMeasure": "percentage of subjects",
+  "timeFrame": "From Baseline up to the End of Safety Follow-up Extension Period (up to Week 156)",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (SS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Safety Set (SS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG002",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  },
+  {
+  "id": "OG003",
+  "title": "CZP->OL CZP (SS)",
+  "description": "Subset of subjects from the CZP 200 mg Q2W group, who discontinued the CZP double-blind treatment and entered the CZP open-label treatment. The subjects were included in the SS for safety analysis."
+  },
+  {
+  "id": "OG004",
+  "title": "SFE OL CZP 200 mg Q2W (SS)",
+  "description": "Subjects who completed Double-Blind Period received CZP 200 mg at Week 52, 54 and 56 to maintain the blinding and who completed the Week 52 Visit on placebo treatment received loading doses of CZP 400 mg at these visits. Subjects who completed the Week 52 Visit on CZP treatment received 1 injection of CZP 200 mg and 1 injection of placebo at these visits to continue their previous CZP treatment regimen and subjects who discontinued from Double-Blind Period and entered OL CZP treatment continued their OL CZP treatment regimen during SFE Period. The subjects were included in the SS for safety analysis. Subjects received CZP 200 mg Q2W for up to 2 years during the SFE Period. An additional signed informed consent for the SFE was a pre-requisite For the additional milestone one (Received OL CZP; Completed Week 52 without starting SFE) reported in Double-Blind Period (Week 0 -52)."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  },
+  {
+  "groupId": "OG002",
+  "value": "96"
+  },
+  {
+  "groupId": "OG003",
+  "value": "20"
+  },
+  {
+  "groupId": "OG004",
+  "value": "243"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "2.5"
+  },
+  {
+  "groupId": "OG001",
+  "value": "5.0"
+  },
+  {
+  "groupId": "OG002",
+  "value": "3.1"
+  },
+  {
+  "groupId": "OG003",
+  "value": "5.0"
+  },
+  {
+  "groupId": "OG004",
+  "value": "6.2"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  {
+  "type": "SECONDARY",
+  "title": "Percentage of Subjects With Adverse Events Leading to Withdrawal From Investigational Medicinal Product (IMP) During the Study",
+  "description": "An Adverse Event (AE) is any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product, which does not necessarily have a causal relationship with this treatment. An AE could therefore be any unfavorable and unintended sign, symptom, or disease temporally associated with the use of a medicinal (investigational) product, whether or not related to the medicinal (investigational) product.",
+  "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment.",
+  "reportingStatus": "POSTED",
+  "paramType": "NUMBER",
+  "unitOfMeasure": "percentage of subjects",
+  "timeFrame": "From Baseline up to the End of Safety Follow-up Extension Period (up to Week 156)",
+  "groups": [
+  {
+  "id": "OG000",
+  "title": "Placebo (SS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Safety Set (SS)."
+  },
+  {
+  "id": "OG001",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+  },
+  {
+  "id": "OG002",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+  },
+  {
+  "id": "OG003",
+  "title": "CZP->OL CZP (SS)",
+  "description": "Subset of subjects from the CZP 200 mg Q2W group, who discontinued the CZP double-blind treatment and entered the CZP open-label treatment. The subjects were included in the SS for safety analysis."
+  },
+  {
+  "id": "OG004",
+  "title": "SFE OL CZP 200 mg Q2W (SS)",
+  "description": "Subjects who completed Double-Blind Period received CZP 200 mg at Week 52, 54 and 56 to maintain the blinding and who completed the Week 52 Visit on placebo treatment received loading doses of CZP 400 mg at these visits. Subjects who completed the Week 52 Visit on CZP treatment received 1 injection of CZP 200 mg and 1 injection of placebo at these visits to continue their previous CZP treatment regimen and subjects who discontinued from Double-Blind Period and entered OL CZP treatment continued their OL CZP treatment regimen during SFE Period. The subjects were included in the SS for safety analysis. Subjects received CZP 200 mg Q2W for up to 2 years during the SFE Period. An additional signed informed consent for the SFE was a pre-requisite For the additional milestone one (Received OL CZP; Completed Week 52 without starting SFE) reported in Double-Blind Period (Week 0 -52)."
+  }
+  ],
+  "denoms": [
+  {
+  "units": "Participants",
+  "counts": [
+  {
+  "groupId": "OG000",
+  "value": "158"
+  },
+  {
+  "groupId": "OG001",
+  "value": "159"
+  },
+  {
+  "groupId": "OG002",
+  "value": "96"
+  },
+  {
+  "groupId": "OG003",
+  "value": "20"
+  },
+  {
+  "groupId": "OG004",
+  "value": "243"
+  }
+  ]
+  }
+  ],
+  "classes": [
+  {
+  "categories": [
+  {
+  "measurements": [
+  {
+  "groupId": "OG000",
+  "value": "1.9"
+  },
+  {
+  "groupId": "OG001",
+  "value": "1.9"
+  },
+  {
+  "groupId": "OG002",
+  "value": "3.1"
+  },
+  {
+  "groupId": "OG003",
+  "value": "0"
+  },
+  {
+  "groupId": "OG004",
+  "value": "2.5"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  }
+  ]
+  },
+  "adverseEventsModule": {
+  "frequencyThreshold": "5",
+  "timeFrame": "From Baseline up to the End of Safety Follow-up Extension Period (up to Week 156)",
+  "description": "Adverse events were recorded for all subjects, including those who discontinued the blinded treatment and entered the open-label treatment with CZP (OL). Based on this the following groups were generated: Placebo, Placebo-\\> OL CZP, CZP, CZP-\\>OL CZP and OL CZP during SFE Period for all subjects entering the SFE Period.",
+  "eventGroups": [
+  {
+  "id": "EG000",
+  "title": "Placebo (SS)",
+  "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Safety Set (SS).",
+  "deathsNumAffected": 0,
+  "deathsNumAtRisk": 158,
+  "seriousNumAffected": 4,
+  "seriousNumAtRisk": 158,
+  "otherNumAffected": 59,
+  "otherNumAtRisk": 158
+  },
+  {
+  "id": "EG001",
+  "title": "CZP 200 mg Q2W (SS)",
+  "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS.",
+  "deathsNumAffected": 0,
+  "deathsNumAtRisk": 159,
+  "seriousNumAffected": 8,
+  "seriousNumAtRisk": 159,
+  "otherNumAffected": 75,
+  "otherNumAtRisk": 159
+  },
+  {
+  "id": "EG002",
+  "title": "Placebo->OL CZP (SS)",
+  "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis.",
+  "deathsNumAffected": 0,
+  "deathsNumAtRisk": 96,
+  "seriousNumAffected": 3,
+  "seriousNumAtRisk": 96,
+  "otherNumAffected": 27,
+  "otherNumAtRisk": 96
+  },
+  {
+  "id": "EG003",
+  "title": "CZP->OL CZP (SS)",
+  "description": "Subset of subjects from the CZP 200 mg Q2W group, who discontinued the CZP double-blind treatment and entered the CZP open-label treatment. The subjects were included in the SS for safety analysis.",
+  "deathsNumAffected": 0,
+  "deathsNumAtRisk": 20,
+  "seriousNumAffected": 1,
+  "seriousNumAtRisk": 20,
+  "otherNumAffected": 7,
+  "otherNumAtRisk": 20
+  },
+  {
+  "id": "EG004",
+  "title": "SFE OL CZP 200 mg Q2W (SS)",
+  "description": "Subjects who completed Double-Blind Period received CZP 200 mg at Week 52, 54 and 56 to maintain the blinding and who completed the Week 52 Visit on placebo treatment received loading doses of CZP 400 mg at these visits. Subjects who completed the Week 52 Visit on CZP treatment received 1 injection of CZP 200 mg and 1 injection of placebo at these visits to continue their previous CZP treatment regimen and subjects who discontinued from Double-Blind Period and entered OL CZP treatment continued their OL CZP treatment regimen during SFE Period. The subjects were included in the SS for safety analysis. Subjects received CZP 200 mg Q2W for up to 2 years during the SFE Period. An additional signed informed consent for the SFE was a pre-requisite For the additional milestone one (Received OL CZP; Completed Week 52 without starting SFE) reported in Double-Blind Period (Week 0 -52).",
+  "deathsNumAffected": 0,
+  "deathsNumAtRisk": 243,
+  "seriousNumAffected": 15,
+  "seriousNumAtRisk": 243,
+  "otherNumAffected": 69,
+  "otherNumAtRisk": 243
+  }
+  ],
+  "seriousEvents": [
+  {
+  "term": "Glaucoma",
+  "organSystem": "Eye disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Iridocyclitis",
+  "organSystem": "Eye disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Uveitis",
+  "organSystem": "Eye disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Pancreatitis",
+  "organSystem": "Gastrointestinal disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Diarrhoea",
+  "organSystem": "Gastrointestinal disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Constipation",
+  "organSystem": "Gastrointestinal disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Gastrointestinal obstruction",
+  "organSystem": "Gastrointestinal disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Inguinal hernia",
+  "organSystem": "Gastrointestinal disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Cholelithiasis",
+  "organSystem": "Hepatobiliary disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 2,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Sarcoidosis",
+  "organSystem": "Immune system disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Neuroborreliosis",
+  "organSystem": "Infections and infestations",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Encephalitis",
+  "organSystem": "Infections and infestations",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Gastroenteritis rotavirus",
+  "organSystem": "Infections and infestations",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Tuberculosis",
+  "organSystem": "Infections and infestations",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Chronic tonsillitis",
+  "organSystem": "Infections and infestations",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Obesity",
+  "organSystem": "Metabolism and nutrition disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Spinal pain",
+  "organSystem": "Musculoskeletal and connective tissue disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Rotator cuff syndrome",
+  "organSystem": "Musculoskeletal and connective tissue disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Malignant melanoma",
+  "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Malignant melanoma stage I",
+  "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Uterine leiomyoma",
+  "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Cervicobrachial syndrome",
+  "organSystem": "Nervous system disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Abortion spontaneous",
+  "organSystem": "Pregnancy, puerperium and perinatal conditions",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Renal colic",
+  "organSystem": "Renal and urinary disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Cervix neoplasms",
+  "organSystem": "Reproductive system and breast disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Cervical polyp",
+  "organSystem": "Reproductive system and breast disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Ovarian cyst ruptured",
+  "organSystem": "Reproductive system and breast disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Hydrosalpinx",
+  "organSystem": "Reproductive system and breast disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Ovarian enlargement",
+  "organSystem": "Reproductive system and breast disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Pharyngeal oedema",
+  "organSystem": "Respiratory, thoracic and mediastinal disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Erythema multiforme",
+  "organSystem": "Skin and subcutaneous tissue disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Hypersensitivity vasculitis",
+  "organSystem": "Skin and subcutaneous tissue disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Cholecystectomy",
+  "organSystem": "Surgical and medical procedures",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Tooth extraction",
+  "organSystem": "Surgical and medical procedures",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Deep vein thrombosis",
+  "organSystem": "Vascular disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Hypertension",
+  "organSystem": "Vascular disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 243
+  }
+  ]
+  }
+  ],
+  "otherEvents": [
+  {
+  "term": "Diarrhoea",
+  "organSystem": "Gastrointestinal disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 10,
+  "numAffected": 10,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 11,
+  "numAffected": 8,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 4,
+  "numAffected": 4,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Upper respiratory tract infection",
+  "organSystem": "Infections and infestations",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 23,
+  "numAffected": 16,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 38,
+  "numAffected": 30,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 14,
+  "numAffected": 10,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 5,
+  "numAffected": 4,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 31,
+  "numAffected": 21,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Nasopharyngitis",
+  "organSystem": "Infections and infestations",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 17,
+  "numAffected": 13,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 24,
+  "numAffected": 21,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 13,
+  "numAffected": 10,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 33,
+  "numAffected": 26,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Bronchitis",
+  "organSystem": "Infections and infestations",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 5,
+  "numAffected": 5,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 9,
+  "numAffected": 8,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 5,
+  "numAffected": 5,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 11,
+  "numAffected": 10,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Blood creatine phosphokinase increased",
+  "organSystem": "Investigations",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 4,
+  "numAffected": 4,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 9,
+  "numAffected": 8,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 1,
+  "numAffected": 1,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 3,
+  "numAffected": 3,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Arthralgia",
+  "organSystem": "Musculoskeletal and connective tissue disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 12,
+  "numAffected": 10,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 12,
+  "numAffected": 9,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 2,
+  "numAffected": 2,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 2,
+  "numAffected": 2,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 6,
+  "numAffected": 6,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Axial spondyloarthritis",
+  "organSystem": "Musculoskeletal and connective tissue disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 13,
+  "numAffected": 12,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 13,
+  "numAffected": 11,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 5,
+  "numAffected": 5,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Headache",
+  "organSystem": "Nervous system disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 9,
+  "numAffected": 7,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 15,
+  "numAffected": 11,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 3,
+  "numAffected": 3,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 11,
+  "numAffected": 9,
+  "numAtRisk": 243
+  }
+  ]
+  },
+  {
+  "term": "Cough",
+  "organSystem": "Respiratory, thoracic and mediastinal disorders",
+  "sourceVocabulary": "MedDRA19.0",
+  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+  "stats": [
+  {
+  "groupId": "EG000",
+  "numEvents": 10,
+  "numAffected": 8,
+  "numAtRisk": 158
+  },
+  {
+  "groupId": "EG001",
+  "numEvents": 6,
+  "numAffected": 6,
+  "numAtRisk": 159
+  },
+  {
+  "groupId": "EG002",
+  "numEvents": 2,
+  "numAffected": 2,
+  "numAtRisk": 96
+  },
+  {
+  "groupId": "EG003",
+  "numEvents": 0,
+  "numAffected": 0,
+  "numAtRisk": 20
+  },
+  {
+  "groupId": "EG004",
+  "numEvents": 3,
+  "numAffected": 3,
+  "numAtRisk": 243
+  }
+  ]
+  }
+  ]
+  },
+  "moreInfoModule": {
+  "certainAgreement": {
+  "piSponsorEmployee": false,
+  "restrictionType": "GT60",
+  "restrictiveAgreement": true
+  },
+  "pointOfContact": {
+  "title": "UCB",
+  "organization": "Cares",
+  "email": "UCBCares@ucb.com",
+  "phone": "+1844 599",
+  "phoneExt": "2273"
+  }
+  }
+  },
+  "documentSection": {
+  "largeDocumentModule": {
+  "largeDocs": [
+  {
+  "typeAbbrev": "Prot",
+  "hasProtocol": true,
+  "hasSap": false,
+  "hasIcf": false,
+  "label": "Study Protocol",
+  "date": "2018-12-17",
+  "uploadDate": "2019-04-27T15:51",
+  "filename": "Prot_000.pdf",
+  "size": 9785526
+  },
+  {
+  "typeAbbrev": "SAP",
+  "hasProtocol": false,
+  "hasSap": true,
+  "hasIcf": false,
+  "label": "Statistical Analysis Plan",
+  "date": "2020-06-10",
+  "uploadDate": "2021-05-03T03:55",
+  "filename": "SAP_002.pdf",
+  "size": 1523475
+  }
+  ]
+  }
+  },
+  "derivedSection": {
+  "miscInfoModule": {
+  "versionHolder": "2024-01-03",
+  "removedCountries": [
+  "Czech Republic"
+  ],
+  "modelPredictions": {
+  "bmiLimits": {
+  "minBmi": 0,
+  "maxBmi": 101
+  }
+  }
+  },
+  "conditionBrowseModule": {
+  "meshes": [
+  {
+  "id": "D000013166",
+  "term": "Spondylitis"
+  },
+  {
+  "id": "D000025241",
+  "term": "Spondylarthritis"
+  },
+  {
+  "id": "D000089183",
+  "term": "Axial Spondyloarthritis"
+  },
+  {
+  "id": "D000089202",
+  "term": "Non-Radiographic Axial Spondyloarthritis"
+  }
+  ],
+  "ancestors": [
+  {
+  "id": "D000001850",
+  "term": "Bone Diseases, Infectious"
+  },
+  {
+  "id": "D000007239",
+  "term": "Infections"
+  },
+  {
+  "id": "D000001847",
+  "term": "Bone Diseases"
+  },
+  {
+  "id": "D000009140",
+  "term": "Musculoskeletal Diseases"
+  },
+  {
+  "id": "D000013122",
+  "term": "Spinal Diseases"
+  },
+  {
+  "id": "D000025242",
+  "term": "Spondylarthropathies"
+  },
+  {
+  "id": "D000000844",
+  "term": "Ankylosis"
+  },
+  {
+  "id": "D000007592",
+  "term": "Joint Diseases"
+  },
+  {
+  "id": "D000001168",
+  "term": "Arthritis"
+  }
+  ],
+  "browseLeaves": [
+  {
+  "id": "M9983",
+  "name": "Inflammation",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M4166",
+  "name": "Arthritis",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M15651",
+  "name": "Spondylitis",
+  "asFound": "Spondyloarthritis",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M22725",
+  "name": "Spondylarthritis",
+  "asFound": "Spondyloarthritis",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M15652",
+  "name": "Spondylitis, Ankylosing",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M15609",
+  "name": "Spinal Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M2698",
+  "name": "Axial Spondyloarthritis",
+  "asFound": "Axial Spondyloarthritis",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M2699",
+  "name": "Non-Radiographic Axial Spondyloarthritis",
+  "asFound": "Nonradiographic Axial Spondyloarthritis",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M22726",
+  "name": "Spondylarthropathies",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M9973",
+  "name": "Infections",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M6058",
+  "name": "Communicable Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M4816",
+  "name": "Bone Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M4819",
+  "name": "Bone Diseases, Infectious",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M11787",
+  "name": "Musculoskeletal Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M3860",
+  "name": "Ankylosis",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M10311",
+  "name": "Joint Diseases",
+  "relevance": "LOW"
+  },
+  {
+  "id": "T5412",
+  "name": "Spondylarthropathy",
+  "relevance": "LOW"
+  }
+  ],
+  "browseBranches": [
+  {
+  "abbrev": "BC23",
+  "name": "Symptoms and General Pathology"
+  },
+  {
+  "abbrev": "All",
+  "name": "All Conditions"
+  },
+  {
+  "abbrev": "BC05",
+  "name": "Musculoskeletal Diseases"
+  },
+  {
+  "abbrev": "BC01",
+  "name": "Infections"
+  },
+  {
+  "abbrev": "Rare",
+  "name": "Rare Diseases"
+  }
+  ]
+  },
+  "interventionBrowseModule": {
+  "meshes": [
+  {
+  "id": "D000068582",
+  "term": "Certolizumab Pegol"
+  }
+  ],
+  "ancestors": [
+  {
+  "id": "D000079424",
+  "term": "Tumor Necrosis Factor Inhibitors"
+  },
+  {
+  "id": "D000000893",
+  "term": "Anti-Inflammatory Agents"
+  },
+  {
+  "id": "D000007166",
+  "term": "Immunosuppressive Agents"
+  },
+  {
+  "id": "D000007155",
+  "term": "Immunologic Factors"
+  },
+  {
+  "id": "D000045505",
+  "term": "Physiological Effects of Drugs"
+  },
+  {
+  "id": "D000018501",
+  "term": "Antirheumatic Agents"
+  }
+  ],
+  "browseLeaves": [
+  {
+  "id": "M9902",
+  "name": "Immunosuppressive Agents",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M280",
+  "name": "Certolizumab Pegol",
+  "asFound": "Aqueous",
+  "relevance": "HIGH"
+  },
+  {
+  "id": "M2052",
+  "name": "Tumor Necrosis Factor Inhibitors",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M3907",
+  "name": "Anti-Inflammatory Agents",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M9891",
+  "name": "Immunologic Factors",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M20294",
+  "name": "Antirheumatic Agents",
+  "relevance": "LOW"
+  }
+  ],
+  "browseBranches": [
+  {
+  "abbrev": "All",
+  "name": "All Drugs and Chemicals"
+  },
+  {
+  "abbrev": "Infl",
+  "name": "Anti-Inflammatory Agents"
+  },
+  {
+  "abbrev": "ARhu",
+  "name": "Antirheumatic Agents"
+  }
+  ]
+  }
+  },
+  "hasResults": true
+  }

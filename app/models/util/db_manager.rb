@@ -15,13 +15,13 @@ module Util
     ##### connection management #####
 
     def public_connection
-      connection = PublicBase.establish_connection(db).connection
+      connection = PublicBase.connection
       connection.schema_search_path = 'ctgov'
       connection
     end
 
     def staging_connection
-      connection = PublicBase.establish_connection(db).connection
+      connection = PublicBase.connection
       connection.schema_search_path = 'ctgov'
       connection
     end
@@ -167,7 +167,7 @@ module Util
       return unless status.exitstatus != 0
 
       log stderr
-      event.add_problem("#{Time.zone.now}: #{stderr}")
+      event&.add_problem("#{Time.zone.now}: #{stderr}")
       false
     end
 
@@ -245,6 +245,7 @@ module Util
     end
 
     def migration
+      ActiveRecord::Migration.verbose = false
       @migration ||= ActiveRecord::Migration.new
     end
 

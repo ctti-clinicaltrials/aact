@@ -1,0 +1,383 @@
+{
+  "protocolSection": {
+    "identificationModule": {
+      "nctId": "NCT06171568",
+      "orgStudyIdInfo": {
+        "id": "APHP230528"
+      },
+      "secondaryIdInfos": [
+        {
+          "id": "2023-A00386-39",
+          "type": "OTHER",
+          "domain": "IDRCB"
+        }
+      ],
+      "organization": {
+        "fullName": "Assistance Publique - Hôpitaux de Paris",
+        "class": "OTHER"
+      },
+      "briefTitle": "Lariboisière Cognitive Assessment: Evaluation of the 1-year Outcomes",
+      "officialTitle": "Study of the One-year Outcomes of Patients Hospitalized in the Lariboisière Neurosurgery Department",
+      "acronym": "ECOG"
+    },
+    "statusModule": {
+      "statusVerifiedDate": "2023-12",
+      "overallStatus": "NOT_YET_RECRUITING",
+      "expandedAccessInfo": {
+        "hasExpandedAccess": false
+      },
+      "startDateStruct": {
+        "date": "2024-02-01",
+        "type": "ESTIMATED"
+      },
+      "primaryCompletionDateStruct": {
+        "date": "2025-02-01",
+        "type": "ESTIMATED"
+      },
+      "completionDateStruct": {
+        "date": "2025-02-01",
+        "type": "ESTIMATED"
+      },
+      "studyFirstSubmitDate": "2023-12-06",
+      "studyFirstSubmitQcDate": "2023-12-13",
+      "studyFirstPostDateStruct": {
+        "date": "2023-12-14",
+        "type": "ESTIMATED"
+      },
+      "lastUpdateSubmitDate": "2023-12-13",
+      "lastUpdatePostDateStruct": {
+        "date": "2023-12-14",
+        "type": "ESTIMATED"
+      }
+    },
+    "sponsorCollaboratorsModule": {
+      "responsibleParty": {
+        "type": "SPONSOR"
+      },
+      "leadSponsor": {
+        "name": "Assistance Publique - Hôpitaux de Paris",
+        "class": "OTHER"
+      },
+      "collaborators": [
+        {
+          "name": "SBT Human(s) Matter",
+          "class": "UNKNOWN"
+        },
+        {
+          "name": "Clinical Research Unit Saint Louis Lariboisière",
+          "class": "UNKNOWN"
+        }
+      ]
+    },
+    "oversightModule": {
+      "oversightHasDmc": false,
+      "isFdaRegulatedDrug": false,
+      "isFdaRegulatedDevice": false
+    },
+    "descriptionModule": {
+      "briefSummary": "Cognitive sequelae are common following acquired brain injuries....",
+      "detailedDescription": "Traumatic brain injuries (TBI)..."
+    },
+    "conditionsModule": {
+      "conditions": [
+        "Brain Injuries"
+      ],
+      "keywords": [
+        "Brain injuries",
+        "Prognosis",
+        "Cognitive impairment",
+        "Cognition",
+        "Executive Function",
+        "Neuropsychological tests",
+        "Neuro-rehabilitation"
+      ]
+    },
+    "designModule": {
+      "studyType": "OBSERVATIONAL",
+      "patientRegistry": false,
+      "designInfo": {
+        "observationalModel": "COHORT",
+        "timePerspective": "PROSPECTIVE"
+      },
+      "enrollmentInfo": {
+        "count": 400,
+        "type": "ESTIMATED"
+      }
+    },
+    "armsInterventionsModule": {
+      "interventions": [
+        {
+          "type": "OTHER",
+          "name": "Tests and questionnaires",
+          "description": "1 year after discharge from neurosurgery department..."
+        }
+      ]
+    },
+    "outcomesModule": {
+      "primaryOutcomes": [
+        {
+          "measure": "Evaluation of the functional..",
+          "description": "The Modified Rankin Scale (MRS)...",
+          "timeFrame": "1 year"
+        }
+      ],
+      "secondaryOutcomes": [
+        {
+          "measure": "Assessment of the independence of patients in their daily life.",
+          "description": "The Instrumental Activities of Daily Living (IADL) questionnaire will be submitted to patients.",
+          "timeFrame": "1 year"
+        },
+        {
+          "measure": "Mesure of different cognitive functions of patients...",
+          "description": "Montreal Cognitive Assessment (MoCA) will be the used tool to answer this outcome.",
+          "timeFrame": "1 year"
+        },
+        {
+          "measure": "Assess various cognitive functions in patients, including language, memory and visio-spatial abilities",
+          "description": "The \"Batterie Rapide d'Efficience Frontale\" (BREF) test is a frontal assessment battery which will be used to question patients.",
+          "timeFrame": "1 year"
+        },
+        {
+          "measure": "Rivermead questionnaire",
+          "description": "Assessment of the post-concussion syndrome",
+          "timeFrame": "1 year after discharge from Neurosurgery department of Lariboisière"
+        },
+        {
+          "measure": "Short Form (36) Health Survey (SF-36)",
+          "description": "Assessment of quality of life",
+          "timeFrame": "1 year after discharge from Neurosurgery department of Lariboisière"
+        },
+        {
+          "measure": "Community Integration Questionnaire - Revised (CIQ-R)",
+          "description": "Assessment of socio-professional reintegration",
+          "timeFrame": "1 year after discharge from Neurosurgery department of Lariboisière"
+        },
+        {
+          "measure": "Posttraumatic stress disorder CheckList (PCL-5)",
+          "description": "Assessment of post-traumatic stress",
+          "timeFrame": "1 year after discharge from Neurosurgery department of Lariboisière"
+        }
+      ]
+    },
+    "eligibilityModule": {
+      "eligibilityCriteria": "Inclusion Criteria:\n\n* Patient over 18 years...",
+      "healthyVolunteers": false,
+      "sex": "ALL",
+      "minimumAge": "18 Years",
+      "stdAges": [
+        "ADULT",
+        "OLDER_ADULT"
+      ],
+      "studyPopulation": "Patients hospitalized at Lariboisière hospital...",
+      "samplingMethod": "NON_PROBABILITY_SAMPLE"
+    },
+    "contactsLocationsModule": {
+      "centralContacts": [
+        {
+          "name": "Camille Heslot, MD",
+          "role": "CONTACT",
+          "phone": "01.49.95.81.69",
+          "phoneExt": "+33",
+          "email": "camille.heslot@aphp.fr"
+        },
+        {
+          "name": "Alexis Schnitzler, MD, PhD",
+          "role": "CONTACT",
+          "phone": "01.40.05.49.58",
+          "phoneExt": "+33",
+          "email": "alexis.schnitzler@aphp.fr"
+        }
+      ],
+      "overallOfficials": [
+        {
+          "name": "Emmanuel Mandonnet, MD, PhD",
+          "affiliation": "Assistance Publique - Hôpitaux de Paris",
+          "role": "PRINCIPAL_INVESTIGATOR"
+        },
+        {
+          "name": "Alexis Schnitzler, MD, PhD",
+          "affiliation": "Assistance Publique - Hôpitaux de Paris",
+          "role": "STUDY_DIRECTOR"
+        }
+      ],
+      "locations": [
+        {
+          "facility": "Neurosurgery - Lariboisière hospital",
+          "city": "Paris",
+          "state": "Ile-de-France",
+          "zip": "75010",
+          "country": "France",
+          "contacts": [
+            {
+              "name": "Camille Heslot, MD",
+              "role": "CONTACT",
+              "phone": "01.49.95.81.69",
+              "phoneExt": "+33",
+              "email": "camille.heslot@aphp.fr"
+            },
+            {
+              "name": "Emmanuel Mandonnet, MD, PhD",
+              "role": "CONTACT",
+              "phone": "01.49.95.81.69",
+              "phoneExt": "+33",
+              "email": "emmanuel.mandonnet@aphp.fr"
+            }
+          ],
+          "geoPoint": {
+            "lat": 48.85341,
+            "lon": 2.3488
+          }
+        }
+      ]
+    },
+    "referencesModule": {
+      "references": [
+        {
+          "pmid": "26269030",
+          "type": "BACKGROUND",
+          "citation": "Peeters W, van den Brande R, Polinder S..."
+        },
+        {
+          "pmid": "29016402",
+          "type": "BACKGROUND",
+          "citation": "Jourdan C, Azouvi P, Genet F, Selly N..."
+        },
+        {
+          "pmid": "16983222",
+          "type": "BACKGROUND",
+          "citation": "Langlois JA, Rutland-Brown W..."
+        },
+        {
+          "pmid": "27323708",
+          "type": "BACKGROUND",
+          "citation": "Stocchetti N, Zanier ER. Chronic impact..."
+        },
+        {
+          "pmid": "22460612",
+          "type": "BACKGROUND",
+          "citation": "Jourdan C, Bayen E, Bosserelle V..."
+        },
+        {
+          "pmid": "30031892",
+          "type": "BACKGROUND",
+          "citation": "Schnitzler A, Erbault M, Solomiac A..."
+        },
+        {
+          "pmid": "31073378",
+          "type": "BACKGROUND",
+          "citation": "Rodrigues JC, Becker N, Beckenkamp CL..."
+        },
+        {
+          "pmid": "24102622",
+          "type": "BACKGROUND",
+          "citation": "de Guise E, Leblanc J, Champoux MC..."
+        }
+      ]
+    },
+    "ipdSharingStatementModule": {
+      "ipdSharing": "NO"
+    }
+  },
+  "derivedSection": {
+    "miscInfoModule": {
+      "versionHolder": "2023-12-14",
+      "modelPredictions": {
+        "bmiLimits": {
+          "minBmi": 0,
+          "maxBmi": 101
+        }
+      }
+    },
+    "conditionBrowseModule": {
+      "meshes": [
+        {
+          "id": "D000001930",
+          "term": "Brain Injuries"
+        }
+      ],
+      "ancestors": [
+        {
+          "id": "D000001927",
+          "term": "Brain Diseases"
+        },
+        {
+          "id": "D000002493",
+          "term": "Central Nervous System Diseases"
+        },
+        {
+          "id": "D000009422",
+          "term": "Nervous System Diseases"
+        },
+        {
+          "id": "D000006259",
+          "term": "Craniocerebral Trauma"
+        },
+        {
+          "id": "D000020196",
+          "term": "Trauma, Nervous System"
+        },
+        {
+          "id": "D000014947",
+          "term": "Wounds and Injuries"
+        }
+      ],
+      "browseLeaves": [
+        {
+          "id": "M4897",
+          "name": "Brain Injuries",
+          "asFound": "Brain Injury",
+          "relevance": "HIGH"
+        },
+        {
+          "id": "M29395",
+          "name": "Cognitive Dysfunction",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M4894",
+          "name": "Brain Diseases",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M5432",
+          "name": "Central Nervous System Diseases",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M17375",
+          "name": "Wounds and Injuries",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M9039",
+          "name": "Craniocerebral Trauma",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M21713",
+          "name": "Trauma, Nervous System",
+          "relevance": "LOW"
+        }
+      ],
+      "browseBranches": [
+        {
+          "abbrev": "BC10",
+          "name": "Nervous System Diseases"
+        },
+        {
+          "abbrev": "BC26",
+          "name": "Wounds and Injuries"
+        },
+        {
+          "abbrev": "All",
+          "name": "All Conditions"
+        },
+        {
+          "abbrev": "BXM",
+          "name": "Behaviors and Mental Disorders"
+        }
+      ]
+    }
+  },
+  "hasResults": false
+}

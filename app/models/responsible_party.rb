@@ -1,4 +1,4 @@
-class ResponsibleParty < StudyRelationship
+class ResponsibleParty < ApplicationRecord
 
   def self.top_level_label
     '//responsible_party'
@@ -17,19 +17,27 @@ class ResponsibleParty < StudyRelationship
     end
   end
 
-  def attribs
-    {
-      :responsible_party_type => get('responsible_party_type'),
-      :affiliation => get('investigator_affiliation'),
-      :organization => get('organization'),
-      :title => get('investigator_title'),
-      :name => get_name,
-    }
+  def self.mapper(json)
+    # checks for protocol_section
+    return unless json.protocol_section
+    nct_id = json.protocol_section.dig('identificationModule', 'nctId')
+    responsible_party = json.protocol_section.dig('sponsorCollaboratorsModule', 'responsibleParty')
+    # checks for responsible party
+    return unless responsible_party
+
+      {
+        nct_id: nct_id,
+        responsible_party_type: responsible_party['type'],
+        name: responsible_party['investigatorFullName'],
+        title: responsible_party['investigatorTitle'],
+        organization: responsible_party['leadSponsor'],
+        affiliation: responsible_party['investigatorAffiliation']
+      }
   end
 
-  def get_name
-    n=get('investigator_full_name')
-    !n.blank? ? n : get('name_title')
-  end
+  # def get_name
+  #   n=get('investigator_full_name')
+  #   !n.blank? ? n : get('name_title')
+  # end
 
 end

@@ -1,0 +1,259 @@
+{
+  "protocolSection": {
+  "identificationModule": {
+  "nctId": "NCT04207047",
+  "orgStudyIdInfo": {
+  "id": "L18006"
+  },
+  "organization": {
+  "fullName": "LUTRONIC Corporation",
+  "class": "INDUSTRY"
+  },
+  "briefTitle": "Histologic Evaluation of Tissue Following Lutronic System Exposure",
+  "officialTitle": "Histologic Evaluation of Tissue Following Lutronic System Exposure"
+  },
+  "statusModule": {
+  "statusVerifiedDate": "2019-12",
+  "overallStatus": "UNKNOWN",
+  "lastKnownStatus": "ACTIVE_NOT_RECRUITING",
+  "expandedAccessInfo": {
+  "hasExpandedAccess": false
+  },
+  "startDateStruct": {
+  "date": "2018-10-02",
+  "type": "ACTUAL"
+  },
+  "primaryCompletionDateStruct": {
+  "date": "2018-10-31",
+  "type": "ACTUAL"
+  },
+  "completionDateStruct": {
+  "date": "2020-03-31",
+  "type": "ESTIMATED"
+  },
+  "studyFirstSubmitDate": "2019-12-17",
+  "studyFirstSubmitQcDate": "2019-12-18",
+  "studyFirstPostDateStruct": {
+  "date": "2019-12-20",
+  "type": "ACTUAL"
+  },
+  "lastUpdateSubmitDate": "2019-12-18",
+  "lastUpdatePostDateStruct": {
+  "date": "2019-12-20",
+  "type": "ACTUAL"
+  }
+  },
+  "sponsorCollaboratorsModule": {
+  "responsibleParty": {
+  "type": "SPONSOR"
+  },
+  "leadSponsor": {
+  "name": "LUTRONIC Corporation",
+  "class": "INDUSTRY"
+  }
+  },
+  "oversightModule": {
+  "oversightHasDmc": false,
+  "isFdaRegulatedDrug": false,
+  "isFdaRegulatedDevice": true,
+  "isUnapprovedDevice": true,
+  "isUsExport": false
+  },
+  "descriptionModule": {
+  "briefSummary": "Enrollment of up to 25 subjects; subjects enrolled may be greater than subjects receiving test spot exposure visits. No pre-treatment medication prior to test spot exposure. Up to 6 tattoo points will be applied to each side of the abdomen immediately before or after test spot exposures to map and locate exposed spots on the excised pannis. Tattoos in the area to be resected will be placed to outline the test spot exposure areas. Photographs of exposed sites may be taken at investigator's discretion.",
+  "detailedDescription": "Enrolled subjects who qualify will be assigned to one of four groups depending on the time of their screening appointment and scheduled abdominoplasty. Test spot exposures will take place prior to abdominoplasty resections at the following possible time points (by group):\n\n* Group A (up to n=5): Genius exposure 1-3 hours before tissue resection\n* Group B (up to n=5): Genius exposure 30+7 days, 14+3 days, and 7+3 days before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.\n* Group C (up to n=5): Genius exposure 90+14 days, 60+10 days, and 30+7 days before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.\n* Group D (up to n=10): Genius, LaseMD, LaseMD FLEX, eCO2 and/or PicoPlus exposure 14+3 days, 7+3 days, and 1-3 hours before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.\n\nSubjects receive test spot exposures at sites on the abdomen that will be resected during abdominoplasty. The area of the test spots will be approximately 2 x 2 cm2 but may be appropriately adjusted for fit within the resected tissue area. Subject pain during exposure will be monitored and recorded using a 0-10 Numeric Rating Scale.\n\nActivities related to the abdominoplasty procedure are considered outside the scope of this study and will not be recorded or reported on during this study. The subject will be exited from the study prior to abdominoplasty procedures after all study related procedures with the exception of tissue preparation of excised tissue are complete. Tissue preparation of excised tissue will be completed after the subject has been exited from the study."
+  },
+  "conditionsModule": {
+  "conditions": [
+  "Abdominoplasty"
+  ]
+  },
+  "designModule": {
+  "studyType": "INTERVENTIONAL",
+  "phases": [
+  "NA"
+  ],
+  "designInfo": {
+  "allocation": "NON_RANDOMIZED",
+  "interventionModel": "SINGLE_GROUP",
+  "primaryPurpose": "TREATMENT",
+  "maskingInfo": {
+  "masking": "NONE"
+  }
+  },
+  "enrollmentInfo": {
+  "count": 3,
+  "type": "ACTUAL"
+  }
+  },
+  "armsInterventionsModule": {
+  "armGroups": [
+  {
+  "label": "Group A",
+  "type": "EXPERIMENTAL",
+  "description": "Group A (up to n=5): Genius exposure 1-3 hours before tissue resection",
+  "interventionNames": [
+  "Device: Genius"
+  ]
+  },
+  {
+  "label": "Group B",
+  "type": "EXPERIMENTAL",
+  "description": "Group B (up to n=5): Genius exposure 30+7 days, 14+3 days, and 7+3 days before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.",
+  "interventionNames": [
+  "Device: Genius"
+  ]
+  },
+  {
+  "label": "Group C",
+  "type": "EXPERIMENTAL",
+  "description": "Group C (up to n=5): Genius exposure 90+14 days, 60+10 days, and 30+7 days before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.",
+  "interventionNames": [
+  "Device: Genius"
+  ]
+  },
+  {
+  "label": "Group D",
+  "type": "EXPERIMENTAL",
+  "description": "Group D (up to n=10): Genius, LaseMD, LaseMD FLEX, eCO2 and/or PicoPlus exposure 14+3 days, 7+3 days, and 1-3 hours before tissue resection. All test spot exposure visits will have a follow-up visit at 7+3 days after the test spot exposure visit.",
+  "interventionNames": [
+  "Device: Genius",
+  "Device: eC02",
+  "Device: PicoPlus",
+  "Device: LaseMD",
+  "Device: LaseMD Flex"
+  ]
+  }
+  ],
+  "interventions": [
+  {
+  "type": "DEVICE",
+  "name": "Genius",
+  "description": "The Infini Radiofrequency System (K121481) is the predicate device. It is a minimally invasive radiofrequency device that employs a bipolar microneedle electrode system indicated for use in dermatologic and general surgical procedures for electrocoagulation and hemostasis, and the percutaneous treatment of facial wrinkles.\n\nThe Genius system is substantially equivalent to the Infini device with a digitally controlled direct drive mechanism for needle insertion and an improved needle design for easier needle insertion. The active tip of the Genius system is the substantially equivalent to the Infini device. The handpiece of the Genius system has also been redesigned to be lighter and more ergonomic.",
+  "armGroupLabels": [
+  "Group A",
+  "Group B",
+  "Group C",
+  "Group D"
+  ]
+  },
+  {
+  "type": "DEVICE",
+  "name": "eC02",
+  "description": "The eCO2 Laser System (K091115) is indicated for use in dermatological procedures requiring ablation (removal), resurfacing and coagulation of soft tissue. Additionally, the 120 micron and 300 micron spot sizes are used in the treatment of wrinkles; rhytides, furrows, fine lines, textural irregularities, pigmented lesions and vascular dyschromia. The fractional 90 degree BellaV handpiece is intended to provide fractional CO2 treatment of skin and is not yet cleared.",
+  "armGroupLabels": [
+  "Group D"
+  ]
+  },
+  {
+  "type": "DEVICE",
+  "name": "PicoPlus",
+  "description": "The PICOPLUS Laser System (K173700) is indicated for use in surgical and aesthetic applications in the medical specialties of dermatology and general and plastic surgery as follows:",
+  "armGroupLabels": [
+  "Group D"
+  ]
+  },
+  {
+  "type": "DEVICE",
+  "name": "LaseMD",
+  "description": "The LaseMD Laser System (K171009) is a 1927 factional thulium laser indicated for use in dermatological procedures requiring the coagulation of soft tissue, treatment of actinic keratosis, and treatment of benign pigmented lesions such as, but not limited to lentigos (age spots), solar lentigos (sun spots) and ephiledes (freckles). The cleared LaseMD system is a 5W system.",
+  "armGroupLabels": [
+  "Group D"
+  ]
+  },
+  {
+  "type": "DEVICE",
+  "name": "LaseMD Flex",
+  "description": "There are two new versions of the LaseMD system to be used in this study that are uncleared and investigational use only. The only change from the cleared system to the one of the LaseMD systems to be used in this study is that the watts have been increased to 20W and a new tip configuration with a larger 250+ um spot size. The other LaseMD system to be used in this study is the LaseMD FLEX. It also has 20W with larger spot size, a modified flat-top beam profile (as opposed to a Gaussian beam profile) and a faster scan rate. All other technical specifications remain the same as the cleared device.",
+  "armGroupLabels": [
+  "Group D"
+  ]
+  }
+  ]
+  },
+  "outcomesModule": {
+  "primaryOutcomes": [
+  {
+  "measure": "Primary Outcome",
+  "description": "Demonstrate that complete re-epithelialization occurs at the treatment sites within two weeks post treatment.",
+  "timeFrame": "14 days"
+  }
+  ],
+  "secondaryOutcomes": [
+  {
+  "measure": "Secondary Outcome",
+  "description": "Demonstrate vacuolization and coagulation in the skin immediate post treatment.",
+  "timeFrame": "2 hours"
+  }
+  ]
+  },
+  "eligibilityModule": {
+  "eligibilityCriteria": "Inclusion Criteria:\n\n1. Male or female, age 18 years and older.\n2. Subject in good health.\n3. Fitzpatrick Skin Type I to VI. Protocol Number: L18006 v5.0 11192018 Page 8 of 52\n4. Abdominoplasty surgery planned and scheduled.\n5. Understands and accepts the obligation not to undergo any other procedures in the areas to be treated/exposed to Genius test spots until abdominoplasty.\n6. Willingness and ability to comply with protocol requirements, including returning for follow-up visits and abstaining from exclusionary procedures for the duration of the study.\n7. Subjects of childbearing potential must have a negative urine pregnancy test result and must not be lactating at the Screening Visit and be willing and able to use an acceptable method of birth control (e.g. barrier methods used with a spermicidal agent, hormonal methods, IUD, surgical sterilization, abstinence) during the study. Women will not be considered of childbearing potential if one of the following conditions is documented on the medical history:\n\n   1. Postmenopausal for at least 12 months prior to study;\n   2. Without a uterus and/or both ovaries; or\n   3. Bilateral tubal ligation at least six months prior to study enrollment.\n8. Absence of physical or psychological conditions unacceptable to the investigator.\n9. Willingness and ability to provide written informed consent and HIPAA authorization prior to performance of any study-related procedure.\n\nExclusion Criteria:\n\n1. Poorly controlled medical condition that could compromise wound healing or increase risk of infection such as an impaired immune system due to immunosuppressive diseases such as AIDS and HIV, or use of immunosuppressive medications, radiation therapy, or chemotherapy.\n2. Subjects with sensitivity or allergy to gold.\n3. Subjects who are pregnant, nursing, or anticipate a pregnancy during the length of the trial.\n4. Subjects with current skin cancer or other malignant disease including pre-malignant moles.\n5. History of vascular disease.\n6. History of bleeding disorders.\n7. History of skin disorders, keloid scarring, and/or abnormal wound healing.\n8. Presence of an active skin condition or infection in the exposure area such as sores, Psoriasis, eczema, rash, severe active inflammatory acne or oral herpes simplex breakout.\n9. Open wounds or lesions in the exposure area.\n10. Subjects with implanted medical devices: pacemaker, cardioverts, superficial metal within the exposure area, and other implantable devices or synthetic fillers within the exposure area.\n11. History of seizure disorders due to light (Group D).\n12. History of vitiligo, eczema, or psoriasis (Group D).\n13. History of pigmentary disorders, particularly tendency for hyper- or hypo-pigmentation (Group D).\n14. Excessive or recent significant tan in areas of test spot exposure (Group D).\n15. Inability to understand the protocol or to give informed consent.\n16. History of chronic drug or alcohol abuse.\n17. Concurrent enrollment in any study involving the use of investigational devices or drugs.\n18. History of surgical or cosmetic treatments in exposure area within the past six months.\n19. History or current use of the following medications:\n\n    1. Daily anticoagulants, aspirin, iron supplements, herbal supplements or ointments such as ginkgo, ginseng or garlic;\n    2. Topical retinoid in the exposure area within the past one week; and Protocol Number: L18006 v5.0 11192018 Page 9 of 52\n    3. Psychiatric drugs that in the investigators opinion would impair the subject from understanding the protocol requirements or understanding and signing the informed consent.\n\n       -",
+  "healthyVolunteers": true,
+  "sex": "ALL",
+  "minimumAge": "18 Years",
+  "stdAges": [
+  "ADULT",
+  "OLDER_ADULT"
+  ]
+  },
+  "contactsLocationsModule": {
+  "locations": [
+  {
+  "facility": "William LoVerme, MD",
+  "city": "Billerica",
+  "state": "Massachusetts",
+  "zip": "01821",
+  "country": "United States",
+  "geoPoint": {
+  "lat": 42.55843,
+  "lon": -71.26895
+  }
+  }
+  ]
+  },
+  "ipdSharingStatementModule": {
+  "ipdSharing": "NO"
+  }
+  },
+  "derivedSection": {
+  "miscInfoModule": {
+  "versionHolder": "2023-11-28",
+  "modelPredictions": {
+  "bmiLimits": {
+  "minBmi": 0,
+  "maxBmi": 101
+  }
+  }
+  },
+  "interventionBrowseModule": {
+  "browseLeaves": [
+  {
+  "id": "M9266",
+  "name": "Hemostatics",
+  "relevance": "LOW"
+  },
+  {
+  "id": "M6764",
+  "name": "Dermatologic Agents",
+  "relevance": "LOW"
+  }
+  ],
+  "browseBranches": [
+  {
+  "abbrev": "Coag",
+  "name": "Coagulants"
+  },
+  {
+  "abbrev": "All",
+  "name": "All Drugs and Chemicals"
+  },
+  {
+  "abbrev": "Derm",
+  "name": "Dermatologic Agents"
+  }
+  ]
+  }
+  },
+  "hasResults": false
+  }

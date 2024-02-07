@@ -5,7 +5,7 @@ class String
   end
 end
 
-class Study < ActiveRecord::Base
+class Study < ApplicationRecord
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
 
@@ -303,6 +303,112 @@ class Study < ActiveRecord::Base
     }
   end
 
+  def self.mapper(json)
+    return unless json.protocol_section
+
+    ident = json.protocol_section['identificationModule']
+    nct_id = ident['nctId']
+    status = json.protocol_section['statusModule']
+    design = key_check(json.protocol_section['designModule'])
+    oversight = key_check(json.protocol_section['oversightModule'])
+    ipd_sharing = key_check(json.protocol_section['ipdSharingStatementModule'])
+    study_posted = status['studyFirstPostDateStruct']
+    results_posted = key_check(status['resultsFirstPostDateStruct'])
+    disp_posted = key_check(status['dispFirstPostDateStruct'])
+    last_posted = status['lastUpdatePostDateStruct']
+    start_date = key_check(status['startDateStruct'])
+    completion_date = key_check(status['completionDateStruct'])
+    primary_completion_date = key_check(status['primaryCompletionDateStruct'])
+    results = json.results_section || {}
+    more_info = results['moreInfoModule']
+    baseline = key_check(results['baselineCharacteristicsModule'])
+    enrollment = key_check(design['enrollmentInfo'])
+    expanded_access = status.dig('expandedAccessInfo', 'hasExpandedAccess')
+    expanded = key_check(design['expandedAccessTypes'])
+    biospec = key_check(design['bioSpec'])
+    arms_intervention = key_check(json.protocol_section['armsInterventionsModule'])
+    study_type = design['studyType']
+    patient_registry = design['patientRegistry'] || ''
+    study_type = "#{study_type} [Patient Registry]" if patient_registry =~ /Yes/i
+    groups = key_check(arms_intervention['armGroups'])
+    num_of_groups = groups.count == 0 ? nil : groups.count
+    arms_count = study_type =~ /Interventional/i ? num_of_groups : nil
+    groups_count = arms_count ? nil : num_of_groups
+    phase_list = design['phases']
+    phase_list = phase_list.join('/') if phase_list
+
+    {
+      nct_id: nct_id,
+      nlm_download_date_description: nil,
+      study_first_submitted_date: convert_to_date(status['studyFirstSubmitDate']),
+      study_first_submitted_qc_date: convert_to_date(status['studyFirstSubmitQcDate']),
+      study_first_posted_date: convert_to_date(study_posted['date']),
+      study_first_posted_date_type: study_posted['type'],
+      results_first_submitted_date: convert_to_date(status['resultsFirstSubmitDate']),
+      results_first_submitted_qc_date: status['resultsFirstSubmitQcDate'],
+      results_first_posted_date: results_posted['date'],
+      results_first_posted_date_type: results_posted['type'],
+      disposition_first_submitted_date: convert_to_date(status['dispFirstSubmitDate']),
+      disposition_first_submitted_qc_date: status['dispFirstSubmitQcDate'],
+      disposition_first_posted_date: disp_posted['date'],
+      disposition_first_posted_date_type: disp_posted['type'],
+      last_update_submitted_date: convert_to_date(status['lastUpdateSubmitDate']),
+      last_update_submitted_qc_date: convert_to_date(status['lastUpdateSubmitDate']), # this should not go here (Ramiro comment)
+      last_update_posted_date: convert_to_date(last_posted['date']),
+      last_update_posted_date_type: last_posted['type'],
+      start_month_year: start_date['date'],
+      start_date_type: start_date['type'],
+      start_date: convert_to_date(start_date['date']),
+      verification_month_year: status['statusVerifiedDate'],
+      verification_date: convert_to_date(status['statusVerifiedDate']),
+      completion_month_year: completion_date['date'],
+      completion_date_type: completion_date['type'],
+      completion_date: convert_to_date(completion_date['date']),
+      primary_completion_month_year: primary_completion_date['date'],
+      primary_completion_date_type: primary_completion_date['type'],
+      primary_completion_date: convert_to_date(primary_completion_date['date']),
+      baseline_population: baseline['populationDescription'],
+      brief_title: ident['briefTitle'],
+      official_title: ident['officialTitle'],
+      acronym: ident['acronym'],
+      overall_status: status['overallStatus'],
+      last_known_status: status['lastKnownStatus'],
+      why_stopped: status['whyStopped'],
+      delayed_posting: status['delayedPosting'] ? 'Yes' : nil, # TODO: update the column type to boolean
+      phase: phase_list,
+      enrollment: enrollment['count'],
+      enrollment_type: enrollment['type'],
+      source: ident.dig('organization', 'fullName'),
+      source_class: ident.dig('organization', 'class'),
+      limitations_and_caveats: key_check(more_info&.dig('limitationsAndCaveats'))&.dig('description'),
+      number_of_arms: arms_count,
+      number_of_groups: groups_count,
+      target_duration: design['targetDuration'],
+      study_type: study_type,
+      has_expanded_access: get_boolean(expanded_access),
+      expanded_access_nctid: status.dig('expandedAccessInfo', 'nctId'),
+      expanded_access_status_for_nctid: status.dig('expandedAccessInfo', 'statusForNctId'),
+      expanded_access_type_individual: get_boolean(expanded['individual']),
+      expanded_access_type_intermediate: get_boolean(expanded['intermediate']),
+      expanded_access_type_treatment: get_boolean(expanded['treatment']),
+      has_dmc: get_boolean(oversight['oversightHasDmc']),
+      is_fda_regulated_drug: get_boolean(oversight['isFdaRegulatedDrug']),
+      is_fda_regulated_device: get_boolean(oversight['isFdaRegulatedDevice']),
+      is_unapproved_device: get_boolean(oversight['isUnapprovedDevice']),
+      is_ppsd: get_boolean(oversight['isPpsd']),
+      is_us_export: get_boolean(oversight['isUsExport']),
+      fdaaa801_violation: get_boolean(oversight['fdaaa801Violation']),
+      biospec_retention: biospec['retention'],
+      biospec_description: biospec['description'],
+      plan_to_share_ipd: ipd_sharing['ipdSharing'],
+      plan_to_share_ipd_description: ipd_sharing['description'],
+      ipd_time_frame: ipd_sharing['timeFrame'],
+      ipd_access_criteria: ipd_sharing['accessCriteria'],
+      ipd_url: ipd_sharing['url'],
+      baseline_type_units_analyzed: baseline['typeUnitsAnalyzed']
+    }
+  end
+
   def get_groups(opts)
     self.groups=ResultGroup.create_all_from(opts)
   end
@@ -400,5 +506,81 @@ class Study < ActiveRecord::Base
       + Facility.where('name like ?',"%#{org}%").pluck(:nct_id) \
       + where('source like ?',"%#{org}%").pluck(:nct_id)).flatten.uniq
     where(nct_id: ids).includes(:sponsors).includes(:facilities).includes(:brief_summary).includes(:detailed_description).includes(:design).includes(:eligibility).includes(:overall_officials).includes(:responsible_parties)
+  end
+
+  StudyRelationship.add_mapping do
+    {
+      table: :studies,
+      root: nil,
+      columns: [
+        { name: :study_first_submitted_date, value: [:protocolSection, :statusModule, :studyFirstSubmitDate], convert_to: :date },
+        { name: :study_first_submitted_qc_date, value: [:protocolSection, :statusModule, :studyFirstSubmitQcDate], convert_to: :date },
+        { name: :study_first_posted_date, value: [:protocolSection, :statusModule, :studyFirstPostDateStruct, :date], convert_to: :date },
+        { name: :study_first_posted_date_type, value: [:protocolSection, :statusModule, :studyFirstPostDateStruct, :type] },
+        { name: :results_first_submitted_date, value: [:protocolSection, :statusModule, :resultsFirstSubmitDate], convert_to: :date },
+        { name: :results_first_submitted_qc_date, value: [:protocolSection, :statusModule, :resultsFirstSubmitQcDate], convert_to: :date },
+        { name: :results_first_posted_date, value: [:protocolSection, :statusModule, :resultsFirstPostDateStruct, :date], convert_to: :date },
+        { name: :results_first_posted_date_type, value: [:protocolSection, :statusModule, :resultsFirstPostDateStruct, :type] },
+        { name: :disposition_first_submitted_date, value: [:protocolSection, :statusModule, :dispFirstSubmitDate], convert_to: :date },
+        { name: :disposition_first_submitted_qc_date, value: [:protocolSection, :statusModule, :dispFirstSubmitQcDate], convert_to: :date },
+        { name: :disposition_first_posted_date, value: [:protocolSection, :statusModule, :dispFirstPostDateStruct, :date], convert_to: :date },
+        { name: :disposition_first_posted_date_type, value: [:protocolSection, :statusModule, :dispFirstPostDateStruct, :type] },
+        { name: :last_update_submitted_date, value: [:protocolSection, :statusModule, :lastUpdateSubmitDate], convert_to: :date },
+        { name: :last_update_submitted_qc_date, value: [:protocolSection, :statusModule, :lastUpdateSubmitDate], convert_to: :date },
+        { name: :last_update_posted_date, value: [:protocolSection, :statusModule, :lastUpdatePostDateStruct, :date], convert_to: :date },
+        { name: :last_update_posted_date_type, value: [:protocolSection, :statusModule, :lastUpdatePostDateStruct, :type] },
+        { name: :start_month_year, value: [:protocolSection, :statusModule, :startDateStruct, :date] },
+        { name: :start_date_type, value: [:protocolSection, :statusModule, :startDateStruct, :type] },
+        { name: :start_date, value: [:protocolSection, :statusModule, :startDateStruct, :date], convert_to: :date },
+        { name: :verification_month_year, value: [:protocolSection, :statusModule, :statusVerifiedDate] },
+        { name: :verification_date, value: [:protocolSection, :statusModule, :statusVerifiedDate], convert_to: :date },
+        { name: :completion_month_year, value: [:protocolSection, :statusModule, :completionDateStruct, :date] },
+        { name: :completion_date_type, value: [:protocolSection, :statusModule, :completionDateStruct, :type] },
+        { name: :completion_date, value: [:protocolSection, :statusModule, :completionDateStruct, :date], convert_to: :date },
+        { name: :primary_completion_month_year, value: [:protocolSection, :statusModule, :primaryCompletionDateStruct, :date] },
+        { name: :primary_completion_date_type, value: [:protocolSection, :statusModule, :primaryCompletionDateStruct, :type] },
+        { name: :primary_completion_date, value: [:protocolSection, :statusModule, :primaryCompletionDateStruct, :date], convert_to: :date },
+        { name: :baseline_population, value: [:resultsSection, :baselineCharacteristicsModule, :populationDescription] },
+        { name: :brief_title, value: [:protocolSection, :identificationModule, :briefTitle] },
+        { name: :official_title, value: [:protocolSection, :identificationModule, :officialTitle] },
+        { name: :acronym, value: [:protocolSection, :identificationModule, :acronym] },
+        { name: :overall_status, value: [:protocolSection, :statusModule, :overallStatus] },
+        { name: :last_known_status, value: [:protocolSection, :statusModule, :lastKnownStatus] },
+        { name: :why_stopped, value: [:protocolSection, :statusModule, :whyStopped] },
+        { name: :delayed_posting, value: [:protocolSection, :statusModule, :delayedPosting] },
+        { name: :phase, value: [:protocolSection, :designModule, :phases], convert_to: ->(val) { val&.join('/') } },
+        { name: :enrollment, value: [:protocolSection, :designModule, :enrollmentInfo, :count] },
+        { name: :enrollment_type, value: [:protocolSection, :designModule, :enrollmentInfo, :type] },
+        { name: :source, value: [:protocolSection, :identificationModule, :organization, :fullName] },
+        { name: :source_class, value: [:protocolSection, :identificationModule, :organization, :class] },
+        { name: :limitations_and_caveats, value: [:resultsSection, :moreInfoModule, :limitationsAndCaveats, :description] },
+        # { name: :number_of_arms, value: [:protocolSection, :armsInterventionsModule, :armGroups, :description] },
+        # number_of_arms: arms_count,
+        # number_of_groups: groups_count,
+        # target_duration: design['targetDuration'],
+        # study_type: study_type,
+        # has_expanded_access: get_boolean(expanded_access),
+        # expanded_access_nctid: status.dig('expandedAccessInfo', 'nctId'),
+        # expanded_access_status_for_nctid: status.dig('expandedAccessInfo', 'statusForNctId'),
+        # expanded_access_type_individual: get_boolean(expanded['individual']),
+        # expanded_access_type_intermediate: get_boolean(expanded['intermediate']),
+        # expanded_access_type_treatment: get_boolean(expanded['treatment']),
+        # has_dmc: get_boolean(oversight['oversightHasDmc']),
+        # is_fda_regulated_drug: get_boolean(oversight['isFdaRegulatedDrug']),
+        # is_fda_regulated_device: get_boolean(oversight['isFdaRegulatedDevice']),
+        # is_unapproved_device: get_boolean(oversight['isUnapprovedDevice']),
+        # is_ppsd: get_boolean(oversight['isPpsd']),
+        # is_us_export: get_boolean(oversight['isUsExport']),
+        # fdaaa801_violation: get_boolean(oversight['fdaaa801Violation']),
+        # biospec_retention: biospec['retention'],
+        # biospec_description: biospec['description'],
+        # plan_to_share_ipd: ipd_sharing['ipdSharing'],
+        # plan_to_share_ipd_description: ipd_sharing['description'],
+        # ipd_time_frame: ipd_sharing['timeFrame'],
+        # ipd_access_criteria: ipd_sharing['accessCriteria'],
+        # ipd_url: ipd_sharing['url'],
+        # baseline_type_units_analyzed: baseline['typeUnitsAnalyzed']
+      ]
+    }
   end
 end

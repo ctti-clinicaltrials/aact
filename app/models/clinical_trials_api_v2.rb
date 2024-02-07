@@ -59,45 +59,43 @@ class ClinicalTrialsApiV2
 
   # get all the studies from ctgov
   def self.all(days_back: nil)
-    found = Float::INFINITY
     offset = 1
     items = []
 
     page_token = nil
 
-  loop do
-    url = "#{BASE_URL_V2}studies?fields=NCTId%2CStudyFirstSubmitDate%2CLastUpdatePostDate&pageSize=1000"
-    url += "&pageToken=#{page_token}" if page_token
+    loop do
+      url = "#{BASE_URL_V2}studies?fields=NCTId%2CStudyFirstSubmitDate%2CLastUpdatePostDate&pageSize=1000"
+      url += "&pageToken=#{page_token}" if page_token
 
-    attempts = 0
-    begin
-      json_response = JSON.parse(Faraday.get(url).body)
-    rescue Faraday::ConnectionFailed
-      attempts += 1
-      retry if attempts <= 3
-    rescue JSON::ParserError
-      attempts += 1
-      retry if attempts <= 3
+      attempts = 0
+      begin
+        json_response = JSON.parse(Faraday.get(url).body)
+      rescue Faraday::ConnectionFailed
+        attempts += 1
+        retry if attempts <= 3
+      rescue JSON::ParserError
+        attempts += 1
+        retry if attempts <= 3
+      end
+
+      studies = json_response["studies"]
+      break if studies.empty?
+
+      studies.each do |rec|
+        items << {
+          nct_id: rec["protocolSection"]["identificationModule"]["nctId"],
+          posted: rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
+          updated: rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]
+        }
+      end
+
+      puts "items: #{items.length}"
+
+      page_token = json_response["nextPageToken"]
+      break if page_token.nil?
     end
-
-    studies = json_response["studies"]
-    break if studies.empty?
-
-    items.concat(studies.map do |rec|
-      {
-        "id" => rec["protocolSection"]["identificationModule"]["nctId"],
-        "posted" => rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
-        "updated" => rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]
-      }
-      puts rec
-    end
-    )
-
-
-    page_token = json_response["nextPageToken"]
-    break if page_token.nil?
-  end
-  puts "Total records received: #{items.size}"
+    return items
   end
 
 end
