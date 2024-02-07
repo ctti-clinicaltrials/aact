@@ -221,6 +221,7 @@ class StudyJsonRecord::ProcessorV2
     return unless protocol_section
     nct_id = protocol_section.dig('identificationModule', 'nctId')
     return unless results_section
+
     participant_flow = results_section['participantFlowModule']
 
     {
@@ -390,6 +391,7 @@ class StudyJsonRecord::ProcessorV2
   end
 
   ###### Utils ######
+
 
   def is_masked?(who_masked_array, query_array)
     # example who_masked array ["PARTICIPANT", "CARE_PROVIDER", "INVESTIGATOR", "OUTCOMES_ASSESSOR"]
