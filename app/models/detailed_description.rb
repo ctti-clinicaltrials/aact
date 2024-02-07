@@ -1,12 +1,11 @@
 class DetailedDescription < StudyRelationship
-
-  def attribs
-    val=get_text('detailed_description')
-    if val.blank?
-      nil
-    else
-      {:description=>val}
-    end
+  add_mapping do
+    {
+      table: :detailed_descriptions,
+      root: [:protocolSection, :descriptionModule],
+      columns: [
+        { name: :description, value: :detailedDescription }
+      ]
+    }
   end
-
 end
