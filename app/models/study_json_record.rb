@@ -1068,7 +1068,6 @@ class StudyJsonRecord < Support::SupportBase
     collection
   end
 
-
   def reported_event_totals_data
     return [] unless @adverse_events_module
 
