@@ -4,17 +4,17 @@ class ResultContact < StudyRelationship
     '//point_of_contact'
   end
 
-  def self.create_all_from(opts)
-    objects = super
-    import(objects)
-  end
-
-  def attribs
+  add_mapping do
     {
-      :name => get('name_or_title'),
-      :organization => get('organization'),
-      :phone => get('phone'),
-      :email => get('email'),
+      table: :result_contacts,
+      root: [:resultsSection, :moreInfoModule, :pointOfContact],
+      columns: [
+        { name: :ext, value: :phoneExt },
+        { name: :phone, value: :phone },
+        { name: :name, value: :title },
+        { name: :organization, value: :organization },
+        { name: :email, value: :email }
+      ]
     }
   end
 
