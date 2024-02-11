@@ -9,7 +9,7 @@ class ResultContact < StudyRelationship
       table: :result_contacts,
       root: [:resultsSection, :moreInfoModule, :pointOfContact],
       columns: [
-        { name: :ext, value: :phoneExt },
+        { name: :extension, value: :phoneExt },
         { name: :phone, value: :phone },
         { name: :name, value: :title },
         { name: :organization, value: :organization },
