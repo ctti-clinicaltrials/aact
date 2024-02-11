@@ -2,19 +2,16 @@ require 'rails_helper'
 
 describe ResultContact do
   it "should create an instance of ResultContact" do
-    expected_data = {
-      "resultsSection": {
-        "moreInfoModule": {
-          "pointOfContact": {
-            "title": "UCB",
-            "organization": "Cares",
-            "email": "UCBCares@ucb.com",
-            "phone": "+1844 599",
-            "phoneExt": "phoneExt"
-          }  
-        }
+    expected_data = [
+      {
+        "nct_id" => "NCT000001",
+        "name" => "UCB",
+        "organization" => "Cares",
+        "email" => "UCBCares@ucb.com",
+        "phone" => "+1844 599",
+        "extension" => "2273"
       }
-    }
+    ]  
 
     # load the json
     content = JSON.parse(File.read('spec/support/json_data/result_contact.json'))
