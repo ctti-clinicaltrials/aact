@@ -217,7 +217,7 @@ class StudyRelationship < ActiveRecord::Base
     when Array
       MAPPING.concat(entry)
     when Hash
-      MAPPING << yield
+      MAPPING << entry
     end
   end
 

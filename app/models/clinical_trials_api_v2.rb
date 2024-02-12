@@ -13,6 +13,7 @@ class ClinicalTrialsApiV2
   end
 
   #Single Study
+  # GET https://clinicaltrials.gov/api/v2/studies/NCT04678856
   def self.study(nctId)
     body = Faraday.get("#{BASE_URL_V2}/studies/#{nctId}").body
     JSON.parse(body)

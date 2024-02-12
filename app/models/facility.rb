@@ -18,10 +18,22 @@ class Facility < StudyRelationship
         {
           table: :facility_investigators,
           root: [:contacts],
-          # filter: ->(contact) { contact['role'] =~ /investigator|study.chair/i },
+          filter: ->(contact) { contact['role'] =~ /investigator|study.chair/i },
           columns: [
             { name: :role, value: :role },
             { name: :name, value: :name },
+          ]
+        },
+        {
+          table: :facility_contacts,
+          root: [:contacts],
+          filter: ->(contact) { contact['role'] !~ /investigator|study.chair/i },
+          columns: [
+            { name: :contact_type, value: ->(entry,index){ index == 0 ? 'primary' : 'backup' }},
+            { name: :name, value: :name },
+            { name: :email, value: :email },
+            { name: :phone, value: :phone },
+            { name: :phone_extension, value: :phoneExt },
           ]
         }
       ]

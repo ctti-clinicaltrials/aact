@@ -12,7 +12,7 @@ class BrowseCondition < StudyRelationship
       },
       {
         table: :browse_conditions,
-        root: [:derivedSection, :conditionBrowseModule, :meshes],
+        root: [:derivedSection, :conditionBrowseModule, :ancestors],
         columns: [
           { name: :mesh_term, value: :term},
           { name: :downcase_mesh_term, value: :term, convert_to: :downcase },

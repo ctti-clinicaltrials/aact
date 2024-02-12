@@ -1,4 +1,14 @@
 class StudyDownloader
+    def self.download_recently_updated
+      ActiveRecord::Base.logger.silence do
+        find_studies_to_update.each do |nct_id|
+          record = StudyJsonRecord.create(nct_id: nct_id, content: {}, version: '2')
+          puts "\nDownloading: #{nct_id}"
+          update_from_apiV2(record, nct_id)
+        end
+      end
+    end
+
     def self.download(nct_ids, version='2')
       nct_ids.each do |nct_id|
         case version
@@ -24,7 +34,7 @@ class StudyDownloader
       attempts = 0
       begin
         attempts += 1
-        s = Time.now
+        print ".".green
         content = ClinicalTrialsApiV2.study(nct_id)
         record.update(content: content, version: "2")
         return record
@@ -36,5 +46,14 @@ class StudyDownloader
         retry
       end
     end
-  
+
+    # return the studies that are not found in the database and the studies that were updated after we updated them
+    def self.find_studies_to_update
+      # get a list of all studies from clinicaltrials.gov
+      studies = ClinicalTrialsApiV2.all 
+
+      # find all the studies that were updated at clinicaltrials.gov after we updated them
+      current = Hash[StudyJsonRecord.where(version: '2').pluck(:nct_id, :updated_at)]
+      changed = studies.select{|k| current[k[:nct_id]].nil? || current[k[:nct_id]] < DateTime.parse(k[:updated]) }.map{|k| k[:nct_id]}
+    end
   end

@@ -1598,4 +1598,19 @@ class StudyJsonRecord < Support::SupportBase
     hash_array.each{ |h| h[key] = value }
     hash_array
   end
+
+  def self.mark_all_as_processed
+    update_all(saved_study_at: Time.now, updated_at: Time.now - 10.minutes)
+  end
+
+  def self.load_from_file(filename)
+    content = JSON.parse(File.read(filename))
+    nct_id = content.dig('protocolSection', 'identificationModule', 'nctId')
+    record = find_by(nct_id: nct_id, version: 'v2')
+    if record
+      create(nct_id: nct_id, content: content)
+    else
+      record.update(nct_id: nct_id, content: content)
+    end
+  end
 end

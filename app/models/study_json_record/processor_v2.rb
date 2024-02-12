@@ -128,15 +128,6 @@ class StudyJsonRecord::ProcessorV2
   def interventions_data
   end
 
-  def detailed_description_data
-    return unless protocol_section
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    description = protocol_section.dig('descriptionModule' ,'detailedDescription')
-    return unless description
-
-    { nct_id: nct_id, description: description }
-  end
-
   def brief_summary_data
      return unless protocol_section
      nct_id = protocol_section.dig('identificationModule', 'nctId')
@@ -214,20 +205,6 @@ class StudyJsonRecord::ProcessorV2
       adult: std_ages.include?('ADULT'),
       child: std_ages.include?('CHILD'),
       older_adult: std_ages.include?('OLDER_ADULT')
-    }
-  end
-
-  def participant_flow_data
-    return unless protocol_section
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    return unless results_section
-    participant_flow = results_section['participantFlowModule']
-
-    {
-      nct_id: nct_id,
-      recruitment_details: participant_flow['recruitmentDetails'],
-      pre_assignment_details: participant_flow['preAssignmentDetails'],
-      units_analyzed: participant_flow['typeUnitsAnalyzed']
     }
   end
 
