@@ -1,46 +1,41 @@
 class Design < StudyRelationship
-
-  def self.top_level_label
-    '//study_design_info'
-  end
-
-  def attribs
-    @xml=opts[:xml].xpath('//study_design_info')
+  add_mapping do
     {
-      :allocation => get('allocation'),
-      :observational_model => get('observational_model'),
-      :intervention_model => get('intervention_model'),
-      :intervention_model_description => get('intervention_model_description'),
-      :primary_purpose => get('primary_purpose'),
-      :time_perspective => get('time_perspective'),
-      :masking => get_masking,
-      :masking_description => get('masking_description'),
-      :subject_masked => is_masked?(['Subject','Participant']),
-      :caregiver_masked => is_masked?(['Caregiver','Care Provider']),
-      :investigator_masked => is_masked?(['Investigator']),
-      :outcomes_assessor_masked => is_masked?(['Outcomes Assessor']),
+      table: :design,
+      root: [:protocolSection, :designModule],
+      columns: [
+        { name: :allocation, attribute: :allocation },
+        { name: :intervention_model, attribute: :interventionModel },
+        { name: :intervention_model_description, attribute: :interventionModelDescription },
+        { name: :primary_purpose, attribute: ->(data) { extract_primary_purpose(data) } },
+        { name: :masking, attribute: ->(data) { extract_masking(data) } },
+        { name: :masking_description, attribute: :maskingDescription },
+        { name: :subject_masked, attribute: ->(data) { masked?(data, 'PARTICIPANT') } },
+        { name: :caregiver_masked, attribute: ->(data) { masked?(data, 'CARE_PROVIDER') } },
+        { name: :investigator_masked, attribute: ->(data) { masked?(data, 'INVESTIGATOR') } },
+        { name: :outcomes_assessor_masked, attribute: ->(data) { masked?(data, 'OUTCOMES_ASSESSOR') } }
+      ]
     }
   end
 
-  def get_masking
-    val = get('masking')
-    if val
-      res=val.split('(').first.strip
-      (res.include? 'None') ? val.strip : res
-    end
+  private
+
+  def extract_primary_purpose(data)
+    parsed_data = JSON.parse(data)
+    parsed_data.dig('designInfo', 'primaryPurpose')
   end
 
-  def is_masked?(roles)
-    roles.each{|role|
-      return true if get_masked_roles.try(:include?,role)
-    }
-    nil
+  def extract_masking(data)
+    parsed_data = JSON.parse(data)
+    parsed_data.dig('designInfo', 'maskingInfo', 'masking')
   end
 
-  def get_masked_roles
-    val=get('masking')
-    result=val.split('(').last if val
-    result.tr('()', '') if result
-  end
+  def masked?(data, role)
+    parsed_data = JSON.parse(data)
+    masking_info = parsed_data.dig('designInfo', 'maskingInfo')
+    return false unless masking_info.present?
 
+    who_masked = masking_info['whoMasked']
+    who_masked&.include?(role)
+  end
 end
