@@ -6,6 +6,8 @@
         "interventionModel": "CROSSOVER",
         "interventionModelDescription": "After the eligibility of a subject has been determined in an initial...",
         "primaryPurpose": "BASIC_SCIENCE",
+        "observationalModel": "COHORT",
+        "timePerspective": "PROSPECTIVE",
         "maskingInfo": {
           "masking": "QUADRUPLE",
           "maskingDescription": "The study will be double-blinded...",
