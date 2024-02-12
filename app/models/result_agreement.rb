@@ -1,18 +1,22 @@
-class ResultAgreement < StudyRelationship
+class ResultAgreement < ApplicationRecord
 
-  def self.top_level_label
-    '//certain_agreements'
-  end
+  def self.mapper(json)
+    return unless json.protocol_section
 
-  def self.create_all_from(opts)
-    objects = super
-    import(objects)
-  end
+    nct_id = json.protocol_section.dig('identificationModule', 'nctId')
+    certain_agreement = json.results_section.dig('moreInfoModule', 'certainAgreement')
 
-  def attribs
+    map = {
+      false => "No",
+      true => "Yes"
+    }
+
     {
-     :pi_employee => get('pi_employee'),
-     :agreement => get('restrictive_agreement'),
+      nct_id: nct_id,
+      pi_employee: map[certain_agreement['piSponsorEmployee']],
+      restriction_type: certain_agreement['restrictionType'],
+      restrictive_agreement: map[certain_agreement['restrictiveAgreement']],
+      other_details: certain_agreement['otherDetails']
     }
   end
 

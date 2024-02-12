@@ -368,6 +368,7 @@ class StudyJsonRecord::ProcessorV2
 
   ###### Utils ######
 
+
   def is_masked?(who_masked_array, query_array)
     # example who_masked array ["PARTICIPANT", "CARE_PROVIDER", "INVESTIGATOR", "OUTCOMES_ASSESSOR"]
     return unless query_array

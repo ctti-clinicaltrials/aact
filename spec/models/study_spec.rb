@@ -321,26 +321,26 @@ describe Study do
 
     it 'uses JSON API to generate data that will be inserted into the studies table' do
       hash = JSON.parse(File.read('spec/support/json_data/study_data_initialize.json'))
-      json_instance = StudyJsonRecord::ProcessorV2.new(hash)
-      expect(Study.mapper(json_instance)).to eq(study_data_initialize_expected)
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(Study.mapper(processor)).to eq(study_data_initialize_expected)
     end
 
     it 'appends "[Patient Registry]" to study_type value if patientRegistry contains a "Yes" case-insensitive' do
       hash = JSON.parse(File.read('spec/support/json_data/study_data_patient_registry.json'))
-      json_instance = StudyJsonRecord::ProcessorV2.new(hash)
-      expect(Study.mapper(json_instance)).to eq(study_data_patient_registry_expected)
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(Study.mapper(processor)).to eq(study_data_patient_registry_expected)
     end
 
     it 'sets number_of_arms to arms_count and set number_of_groups to nil if study_type contains "Interventional" case-insensitive' do
       hash = JSON.parse(File.read('spec/support/json_data/study_data_interventional.json'))
-      json_instance = StudyJsonRecord::ProcessorV2.new(hash)
-      expect(Study.mapper(json_instance)).to eq(study_data_interventional_expected)
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(Study.mapper(processor)).to eq(study_data_interventional_expected)
     end
 
     it 'sets phase_list to any number of Phases listed joined together by a "/"' do
       hash = JSON.parse(File.read('spec/support/json_data/study_data_phases.json'))
-      json_instance = StudyJsonRecord::ProcessorV2.new(hash)
-      expect(Study.mapper(json_instance)).to eq(study_data_phases_expected)
+      processor = StudyJsonRecord::ProcessorV2.new(hash)
+      expect(Study.mapper(processor)).to eq(study_data_phases_expected)
     end
   end
 end

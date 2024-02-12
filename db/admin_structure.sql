@@ -1355,7 +1355,7 @@ CREATE TABLE ctgov.studies (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     source_class character varying,
-    delayed_posting character varying,
+    delayed_posting boolean,
     expanded_access_nctid character varying,
     expanded_access_status_for_nctid character varying,
     fdaaa801_violation boolean,
@@ -9571,6 +9571,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230629000057'),
 ('20230720150513'),
 ('20231012015547'),
+('20231213221008'),
+('20240202062838');
 ('20240204045613');
 
 

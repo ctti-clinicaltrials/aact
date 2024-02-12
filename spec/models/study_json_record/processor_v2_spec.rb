@@ -139,6 +139,22 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
     end
   end
 
+    participant_flow_data_expected =
+    {
+      :nct_id                 => "NCT02299791",
+      :recruitment_details    => "Recruitment was done at the clinic level. All patients seen in the clinics were potentially eligible for the intervention based on clinic visit and clinical criteria.",
+      :pre_assignment_details => "There were two additional nested substudy randomizations after initial trial enrolment (see inclusion/exclusion criteria for eligibility). From 8/2009 to 6/2010, eligible children were randomized to once vs twice daily abacavir+lamivudine. From 9/2009 to 2/2011, eligible children were randomized to stop vs continue cotrimoxazole prophylaxis.",
+      :units_analyzed         => "Clinics"
+    }
+
+    describe '#participant_flow_data' do
+      it 'should use JSON API to generate data that will be inserted into the participant_flows table' do
+        hash = JSON.parse(File.read('spec/support/json_data/initialize_participant_flow_data.json'))
+        json_instance = StudyJsonRecord::ProcessorV2.new(hash)
+        expect(json_instance.participant_flow_data).to eq(participant_flow_data_expected)
+      end 
+    end   
+
   describe '#keywords_data' do
     it 'uses JSON API to generate data that will be inserted into the keywords data table' do
       expected_data = [

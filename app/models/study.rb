@@ -374,7 +374,7 @@ class Study < ApplicationRecord
       overall_status: status['overallStatus'],
       last_known_status: status['lastKnownStatus'],
       why_stopped: status['whyStopped'],
-      delayed_posting: status['delayedPosting'] ? 'Yes' : nil, # TODO: update the column type to boolean
+      delayed_posting: status['delayedPosting'],
       phase: phase_list,
       enrollment: enrollment['count'],
       enrollment_type: enrollment['type'],
