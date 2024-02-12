@@ -1,46 +1,20 @@
 class Design < StudyRelationship
-
-  def self.top_level_label
-    '//study_design_info'
-  end
-
-  def attribs
-    @xml=opts[:xml].xpath('//study_design_info')
+  add_mapping do
     {
-      :allocation => get('allocation'),
-      :observational_model => get('observational_model'),
-      :intervention_model => get('intervention_model'),
-      :intervention_model_description => get('intervention_model_description'),
-      :primary_purpose => get('primary_purpose'),
-      :time_perspective => get('time_perspective'),
-      :masking => get_masking,
-      :masking_description => get('masking_description'),
-      :subject_masked => is_masked?(['Subject','Participant']),
-      :caregiver_masked => is_masked?(['Caregiver','Care Provider']),
-      :investigator_masked => is_masked?(['Investigator']),
-      :outcomes_assessor_masked => is_masked?(['Outcomes Assessor']),
+      table: :design,
+      root: [:protocolSection, :designModule, :designInfo],
+      columns: [
+        { name: :allocation, value: :allocation },
+        { name: :intervention_model, value: :interventionModel },
+        { name: :intervention_model_description, value: :interventionModelDescription },
+        { name: :primary_purpose, value: :primaryPurpose },
+        { name: :masking, value: ->(design) { design.masking } },
+        { name: :masking_description, value: ->(design) { design.masking_description } },
+        { name: :subject_masked, value: 'maskingInfo.whoMasked', mask_role: 'PARTICIPANT' },
+        { name: :caregiver_masked, value: 'maskingInfo.whoMasked', mask_role: 'CARE_PROVIDER' },
+        { name: :investigator_masked, value: 'maskingInfo.whoMasked', mask_role: 'INVESTIGATOR' },
+        { name: :outcomes_assessor_masked, value: 'maskingInfo.whoMasked', mask_role: 'OUTCOMES_ASSESSOR' }
+      ]
     }
   end
-
-  def get_masking
-    val = get('masking')
-    if val
-      res=val.split('(').first.strip
-      (res.include? 'None') ? val.strip : res
-    end
-  end
-
-  def is_masked?(roles)
-    roles.each{|role|
-      return true if get_masked_roles.try(:include?,role)
-    }
-    nil
-  end
-
-  def get_masked_roles
-    val=get('masking')
-    result=val.split('(').last if val
-    result.tr('()', '') if result
-  end
-
 end

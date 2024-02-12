@@ -1,0 +1,23 @@
+{
+  "protocolSection": {
+    "designModule": {
+      "designInfo": {
+        "allocation": "RANDOMIZED",
+        "interventionModel": "CROSSOVER",
+        "interventionModelDescription": "After the eligibility of a subject has been determined in an initial...",
+        "primaryPurpose": "BASIC_SCIENCE",
+        "maskingInfo": {
+          "masking": "QUADRUPLE",
+          "maskingDescription": "The study will be double-blinded...",
+          "whoMasked": [
+            "PARTICIPANT",
+            "CARE_PROVIDER",
+            "INVESTIGATOR",
+            "OUTCOMES_ASSESSOR"
+          ]
+        }
+      }
+    }
+  },
+  "hasResults": false
+}
