@@ -2,40 +2,19 @@ class Design < StudyRelationship
   add_mapping do
     {
       table: :design,
-      root: [:protocolSection, :designModule],
+      root: [:protocolSection, :designModule, :designInfo],
       columns: [
-        { name: :allocation, attribute: :allocation },
-        { name: :intervention_model, attribute: :interventionModel },
-        { name: :intervention_model_description, attribute: :interventionModelDescription },
-        { name: :primary_purpose, attribute: ->(data) { extract_primary_purpose(data) } },
-        { name: :masking, attribute: ->(data) { extract_masking(data) } },
-        { name: :masking_description, attribute: :maskingDescription },
-        { name: :subject_masked, attribute: ->(data) { masked?(data, 'PARTICIPANT') } },
-        { name: :caregiver_masked, attribute: ->(data) { masked?(data, 'CARE_PROVIDER') } },
-        { name: :investigator_masked, attribute: ->(data) { masked?(data, 'INVESTIGATOR') } },
-        { name: :outcomes_assessor_masked, attribute: ->(data) { masked?(data, 'OUTCOMES_ASSESSOR') } }
+        { name: :allocation, value: :allocation },
+        { name: :intervention_model, value: :interventionModel },
+        { name: :intervention_model_description, value: :interventionModelDescription },
+        { name: :primary_purpose, value: :primaryPurpose },
+        { name: :masking, value: ->(design) { design.masking } },
+        { name: :masking_description, value: ->(design) { design.masking_description } },
+        { name: :subject_masked, value: 'maskingInfo.whoMasked', mask_role: 'PARTICIPANT' },
+        { name: :caregiver_masked, value: 'maskingInfo.whoMasked', mask_role: 'CARE_PROVIDER' },
+        { name: :investigator_masked, value: 'maskingInfo.whoMasked', mask_role: 'INVESTIGATOR' },
+        { name: :outcomes_assessor_masked, value: 'maskingInfo.whoMasked', mask_role: 'OUTCOMES_ASSESSOR' }
       ]
     }
-  end
-
-  private
-
-  def extract_primary_purpose(data)
-    parsed_data = JSON.parse(data)
-    parsed_data.dig('designInfo', 'primaryPurpose')
-  end
-
-  def extract_masking(data)
-    parsed_data = JSON.parse(data)
-    parsed_data.dig('designInfo', 'maskingInfo', 'masking')
-  end
-
-  def masked?(data, role)
-    parsed_data = JSON.parse(data)
-    masking_info = parsed_data.dig('designInfo', 'maskingInfo')
-    return false unless masking_info.present?
-
-    who_masked = masking_info['whoMasked']
-    who_masked&.include?(role)
   end
 end
