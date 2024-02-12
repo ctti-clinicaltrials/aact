@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This module is reponsible for applying all the mappings to any StudyJsonRecord objects that need to be updated
-module StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
+class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   StudyRelationship.load_mappings
 
   attr_accessor :collections
@@ -173,7 +173,7 @@ module StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     when NilClass # root level
       value = root
     when Proc # dynamic value
-      value = column[:value].call(root, index)
+      value = column[:value].arity == 1 ? column[:value].call(root) : column[:value].call(root, index)
     else # static value
       value = column[:value]
     end
