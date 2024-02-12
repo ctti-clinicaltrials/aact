@@ -229,5 +229,10 @@ class StudyRelationship < ActiveRecord::Base
     study_models.each do |model|
       model.class
     end
+    required_mappings = study_models.map{|k| k.name.underscore.to_sym }
+    missing = required_mappings - MAPPING.map{|m| m[:table]}
+    missing.each do |m|
+      # puts "🛑 Missing mapping for #{m}"
+    end
   end
 end
