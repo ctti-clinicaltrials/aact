@@ -31,10 +31,6 @@ describe Design do
     imported = Design.all.map { |x| x.attributes }
     imported.each { |x| x.delete("id") }
     
-    # Remove the masking, masking_description, and intervention_model_description attributes
-    # expected_data.each { |data| data.delete("masking"); data.delete("masking_description"); data.delete("intervention_model_description") }
-    # imported.each { |data| data.delete("masking"); data.delete("masking_description"); data.delete("intervention_model_description") }
-
     # Compare the modified imported data with the expected data
     expect(imported).to eq(expected_data)   
   end
