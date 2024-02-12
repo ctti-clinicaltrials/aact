@@ -15,7 +15,7 @@ class Design < StudyRelationship
         { name: :subject_masked, value: ->(val) { val.dig('maskingInfo', 'whoMasked').include?('PARTICIPANT')}},
         { name: :caregiver_masked, value: ->(val) { val.dig('maskingInfo', 'whoMasked').include?('CARE_PROVIDER')}},
         { name: :investigator_masked, value: ->(val) { val.dig('maskingInfo', 'whoMasked').include?('INVESTIGATOR')}},
-        { name: :outcomes_assessor_masked, value: ->(val) { val.dig('maskingInfo', 'whoMasked').include?('OUTCOME_ACCESSOR')}},
+        { name: :outcomes_assessor_masked, value: ->(val) { val.dig('maskingInfo', 'whoMasked').include?('OUTCOMES_ASSESSOR')}},
       ]
     }
   end

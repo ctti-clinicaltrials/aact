@@ -16,7 +16,7 @@ describe Design do
         "subject_masked" => true,
         "caregiver_masked" => true,
         "investigator_masked" => true,
-        "outcomes_assessor_masked" => false
+        "outcomes_assessor_masked" => true
       }
     ]
 
