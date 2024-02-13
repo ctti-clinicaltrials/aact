@@ -1,9 +1,5 @@
 class ResultContact < StudyRelationship
 
-  def self.top_level_label
-    '//point_of_contact'
-  end
-
   add_mapping do
     {
       table: :result_contacts,
