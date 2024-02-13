@@ -1,22 +1,44 @@
 class Eligibility < StudyRelationship
-
-  def attribs
+  add_mapping do
     {
-      :sampling_method=>get('sampling_method'),
-      :population=>get_text('study_pop').strip,
-      :maximum_age=>get('maximum_age'),
-      :minimum_age=>get('minimum_age'),
-      :gender=>get('gender'),
-      :gender_based=>get_boolean('gender_based'),
-      :gender_description=>get('gender_description'),
-      :healthy_volunteers=>get('healthy_volunteers'),
-      :criteria=>get_text('criteria')
+      table: :eligibilities,
+      root: [:protocolSection, :eligibilityModule],
+      columns: [
+        { name: :sampling_method, value: :samplingMethod },
+        { name: :population, value: :studyPopulation},
+        { name: :maximum_age, value: :maximumAge, default: 'N/A' },
+        { name: :minimum_age, value: :minimumAge, default: 'N/A' },
+        { name: :gender, value: :sex },
+        { name: :gender_based, value: ->(val) { get_boolean(val['genderBased']) } },
+        { name: :gender_description, value: :genderDescription },
+        { name: :healthy_volunteers, value: :healthyVolunteers },
+        { name: :criteria, value: :eligibilityCriteria },
+        { name: :adult, value: ->(val) { val.dig('stdAges')&.include?('ADULT') } },
+        { name: :child, value: ->(val) { val.dig('stdAges')&.include?('CHILD') } },
+        { name: :older_adult, value: ->(val) { val.dig('stdAges')&.include?('OLDER_ADULT') } }
+      ]
     }
   end
 
-  def get(label)
-    #  override the superclass to search for label from the top of the doc
-    xml.xpath("//#{label}").text
+  STRING_BOOLEAN_MAP = {
+    'y' => true,
+    'yes' => true,
+    'true' => true,
+    't' => true,
+    'n' => false,
+    'no' => false,
+    'false' => false,
+    'f' => false
+  }
+  
+  def self.get_boolean(val)
+    case val
+    when String
+      STRING_BOOLEAN_MAP[val.downcase]
+    when TrueClass, FalseClass
+      return val
+    else
+      return nil
+    end
   end
-
 end
