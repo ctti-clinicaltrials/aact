@@ -1,0 +1,50 @@
+{
+  "protocolSection": {
+    "referencesModule": {
+      "availIpds": [
+        {
+          "id": "109063",
+          "type": "Dataset Specification",
+          "url": "https://www.clinicalstudydatarequest.com",
+          "comment": "For additional information about this study please refer to the GSK Clinical Study Register"
+        },
+        {
+          "id": "109063",
+          "type": "Study Protocol",
+          "url": "https://www.clinicalstudydatarequest.com",
+          "comment": "For additional information about this study please refer to the GSK Clinical Study Register"
+        },
+        {
+          "id": "109063",
+          "type": "Annotated Case Report Form",
+          "url": "https://www.clinicalstudydatarequest.com",
+          "comment": "For additional information about this study please refer to the GSK Clinical Study Register"
+        },
+        {
+          "id": "109063",
+          "type": "Clinical Study Report",
+          "url": "https://www.clinicalstudydatarequest.com",
+          "comment": "For additional information about this study please refer to the GSK Clinical Study Register"
+        },
+        {
+          "id": "109063",
+          "type": "Informed Consent Form",
+          "url": "https://www.clinicalstudydatarequest.com",
+          "comment": "For additional information about this study please refer to the GSK Clinical Study Register"
+        },
+        {
+          "id": "109063",
+          "type": "Statistical Analysis Plan",
+          "url": "https://www.clinicalstudydatarequest.com",
+          "comment": "For additional information about this study please refer to the GSK Clinical Study Register"
+        },
+        {
+          "id": "109063",
+          "type": "Individual Participant Data Set",
+          "url": "https://www.clinicalstudydatarequest.com",
+          "comment": "For additional information about this study please refer to the GSK Clinical Study Register"
+        }
+      ]
+    }
+  }
+}
