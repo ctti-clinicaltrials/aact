@@ -323,23 +323,6 @@ class StudyJsonRecord::ProcessorV2
   def result_agreement_data
   end
 
-  def result_contact_data
-    return unless results_section
-
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    point_of_contact = results_section.dig('moreInfoModule', 'pointOfContact')
-    return unless point_of_contact
-   {
-      nct_id: nct_id,
-      ext: point_of_contact['phoneExt'],
-      phone: point_of_contact['phone'],
-      name: point_of_contact['title'],
-      organization: point_of_contact['organization'],
-      email: point_of_contact['email']
-    }
-   
-  end
-
   def study_references_data
   end
 
