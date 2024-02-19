@@ -5,8 +5,8 @@ class Condition < StudyRelationship
       table: :conditions,
       root: [:protocolSection, :conditionsModule, :conditions],
       columns: [
-        { name: :name, value: :conditions },
-        { name: :downcase_name, value: :conditions.try(:downcase) }
+        { name: :name, value: nil },
+        { name: :downcase_name, value: nil, convert_to: :downcase }
       ]
     }
   end

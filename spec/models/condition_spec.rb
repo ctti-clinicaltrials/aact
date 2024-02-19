@@ -5,8 +5,18 @@ describe Condition do
     expected_data = [
       {
         "nct_id" => "NCT000001",
-        "name" => ["Axial Spondyloarthritis", "Nonradiographic Axial Spondyloarthritis", "Nr-axSpA"],
-        "downcase_name" => ["axial spondyloarthritis", "nonradiographic axial spondyloarthritis", "nr-axspa"]
+        "name" => "Axial Spondyloarthritis",
+        "downcase_name" => "axial spondyloarthritis"
+      },
+      {
+        "nct_id" => "NCT000001",
+        "name" => "Nonradiographic Axial Spondyloarthritis",
+        "downcase_name" => "nonradiographic axial spondyloarthritis"
+      },
+      {
+        "nct_id" => "NCT000001",
+        "name" => "Nr-axSpA",
+        "downcase_name" => "nr-axspa"
       }
     ]  
 
