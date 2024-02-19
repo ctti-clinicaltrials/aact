@@ -1,8 +1,32 @@
 require 'rails_helper'
 
 describe IpdInformationType do
+  it "should create an instance of Document" do
+    expected_data = [
+      {
+        "nct_id" => "NCT000001",
+        "name" => "STUDY_PROTOCOL"
+      },
+      {
+        "nct_id" => "NCT000001",
+        "name" => "SAP"
+      },
+      {
+        "nct_id" => "NCT000001",
+        "name" => "ICF"
+      }
+    ]  
 
-  # Will test all IPD-related attributes here, even tho most get saved to the Studies table
-  # Just seems better to test all IPD stuff ere
+    # load the json
+    content = JSON.parse(File.read('spec/support/json_data/ipd_information_type.json'))
+    StudyJsonRecord.create(nct_id: "NCT000001", version: '2', content: content) # create a brand new json record
 
+    # process the json
+    StudyJsonRecord::Worker.new.process # import the new json record
+
+    # load the database entries
+    imported = IpdInformationType.all.map{|x| x.attributes }
+    imported.each{|x| x.delete("id")}
+    expect(imported).to eq(expected_data)
+  end
 end

@@ -5,7 +5,7 @@ class IpdInformationType < StudyRelationship
       table: :ipd_information_types,
       root: [:protocolSection, :ipdSharingStatementModule, :infoTypes],
       columns: [
-        { name: :name, value: :infoTypes }
+        { name: :name, value: nil }
       ]
     }
   end
