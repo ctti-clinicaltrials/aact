@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ParticipantFlow do
-  it "should create an instance of DetailedDescription" do
+  it "should create an instance of DetailedDescription", schema: :v2 do
     expected_data = [
       {
         "nct_id" => "NCT000001",
