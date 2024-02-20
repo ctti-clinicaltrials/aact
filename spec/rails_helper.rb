@@ -38,6 +38,8 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = false
 
+  config.include SchemaSwitcher
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner[:active_record, { model: Support::LoadEvent }].clean_with(:truncation)
@@ -80,6 +82,17 @@ RSpec.configure do |config|
     DatabaseCleaner[:active_record, { model: Support::SanityCheck }].clean
     DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].clean
     DatabaseCleaner[:active_record, { model: Study }].clean
+  end
+
+  config.before(:each) do |example|
+    if example.metadata[:schema] == :v2
+      @original_search_path = ActiveRecord::Base.connection.schema_search_path
+      ActiveRecord::Base.connection.schema_search_path = 'ctgov_v2, support, public'
+    end
+  end
+
+  config.after(:each) do
+    ActiveRecord::Base.connection.schema_search_path = @original_search_path
   end
 
 end
