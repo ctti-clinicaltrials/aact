@@ -257,26 +257,6 @@ class StudyJsonRecord::ProcessorV2
     collection
   end
 
-  def documents_data
-    return unless protocol_section
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-
-    avail_ipds = protocol_section.dig('referencesModule', 'availIpds')
-    return unless avail_ipds
-
-    collection = []
-    avail_ipds.each do |item|
-      collection << {
-                      nct_id: nct_id,
-                      document_id: item['id'],
-                      document_type: item['type'],
-                      url: item['url'],
-                      comment: item['comment']
-                    }
-    end
-    collection
-  end
-
   def facilities_data
   end
 
@@ -341,23 +321,6 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def result_agreement_data
-  end
-
-  def result_contact_data
-    return unless results_section
-
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    point_of_contact = results_section.dig('moreInfoModule', 'pointOfContact')
-    return unless point_of_contact
-   {
-      nct_id: nct_id,
-      ext: point_of_contact['phoneExt'],
-      phone: point_of_contact['phone'],
-      name: point_of_contact['title'],
-      organization: point_of_contact['organization'],
-      email: point_of_contact['email']
-    }
-   
   end
 
   def study_references_data
