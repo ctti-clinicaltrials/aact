@@ -1,26 +1,16 @@
 class CentralContact < StudyRelationship
-
-  def self.create_all_from(opts)
-    central_contacts = contacts(opts) + backup_contacts(opts)
-    import(central_contacts)
-  end
-
-  def self.contacts(opts)
-    opts[:xml].xpath('//overall_contact').collect{|xml|
-      new.create_from({:xml=>xml, :nct_id=>opts[:nct_id], :contact_type=>'primary'})}
-  end
-
-  def self.backup_contacts(opts)
-    opts[:xml].xpath('//overall_contact_backup').collect{|xml|
-      new.create_from({:xml=>xml,:nct_id=>opts[:nct_id], :contact_type=>'backup'})}
-  end
-
-  def attribs
+  add_mapping do
     {
-      :contact_type => get_opt('contact_type'),
-      :name => get('last_name'),
-      :phone => get_phone,
-      :email => get('email'),
+      table: :central_contacts,
+      root: [:protocolSection, :contactsLocationsModule, :centralContacts],
+      columns: [
+        { name: :contact_type, value: ->(val, index) { index == 0 ? 'primary' : 'backup' } },
+        { name: :name, value: :name },
+        { name: :phone, value: :phone },
+        { name: :email, value: :email },
+        { name: :phone_extension, value: :phoneExt },
+        { name: :role, value: :role }
+      ]
     }
   end
 end

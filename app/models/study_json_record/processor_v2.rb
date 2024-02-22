@@ -217,28 +217,6 @@ class StudyJsonRecord::ProcessorV2
   def browse_interventions_data
   end
 
-  def central_contacts_data
-    return unless contacts_location_module
-
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    central_contacts = contacts_location_module.dig('centralContacts')
-    return unless central_contacts
-
-    collection = []
-    central_contacts.each_with_index do |contact, index|
-      collection << {
-                      nct_id: nct_id,
-                      contact_type: index == 0 ? 'primary' : 'backup',
-                      name: contact['name'],
-                      phone: contact['phone'],
-                      email: contact['email'],
-                      phone_extension: contact['phoneExt'],
-                      role: contact["role"]
-                     }
-    end
-    collection
-  end
-
   def conditions_data
     return unless protocol_section
 
