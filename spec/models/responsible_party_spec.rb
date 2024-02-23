@@ -1,48 +1,33 @@
 require 'rails_helper'
 
 RSpec.describe ResponsibleParty, type: :model do
+    it 'study should have expected responsible_party info', schema: :v2 do
+      expected_data =
+        [
+          { 
+            "nct_id" => "NCT000001",
+            "responsible_party_type" => "PRINCIPAL_INVESTIGATOR",
+            "name" => "Julia Hormes",
+            "title" => "Associate Professor",
+            "affiliation" => "University at Albany",
+            "old_name_title" => "Amy Whiffen",
+            "organization" => "Women At Risk"
+          }
+        ]
 
-    context 'with valid JSON input' do
-        it 'returns a hash with all the necessary keys' do
-          json = double
-          allow(json).to receive_message_chain(:protocol_section, :dig).with('identificationModule', 'nctId').and_return('12345')
-          allow(json).to receive_message_chain(:protocol_section, :dig).with('sponsorCollaboratorsModule', 'responsibleParty').and_return({
-            'type' => 'Investigator',
-            'investigatorFullName' => 'John Doe',
-            'investigatorTitle' => 'Lead Investigator',
-            'leadSponsor' => 'XYZ Pharma',
-            'investigatorAffiliation' => 'ABC University'
-          })
-  
-          result = ResponsibleParty.mapper(json)
-  
-          expect(result).to eq({
-            nct_id: '12345',
-            responsible_party_type: 'Investigator',
-            name: 'John Doe',
-            title: 'Lead Investigator',
-            organization: 'XYZ Pharma',
-            affiliation: 'ABC University'
-          })
-        end
+        # load the json
+        content = JSON.parse(File.read('spec/support/json_data/responsible_party.json'))
+        StudyJsonRecord.create(nct_id: "NCT000001", version: '2', content: content) # create a brand new json record
+
+        # process the json
+        StudyJsonRecord::Worker.new.process # import the new json record
+
+        # load the database entries
+        imported = ResponsibleParty.all.map { |x| x.attributes }
+        imported.each { |x| x.delete("id") }
+
+        # Compare the modified imported data with the expected data
+        binding.pry
+        expect(imported).to eq(expected_data)
     end
-  
-    context 'when protocol_section is missing' do
-        it 'returns nil' do
-          json = double
-          allow(json).to receive(:protocol_section).and_return(nil)
-  
-          expect(ResponsibleParty.mapper(json)).to be_nil
-        end
-    end
-  
-    context 'with empty JSON input' do
-        it 'returns nil' do
-          json = double
-          allow(json).to receive(:protocol_section).and_return({})
-  
-          expect(ResponsibleParty.mapper(json)).to be_nil
-        end
-    end
-    
 end
