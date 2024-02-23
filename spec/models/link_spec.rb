@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Link do
-  it "should create an instance of Link" do
+  it "should create an instance of Link", schema: :v2 do
     expected_data = [
       {
         "nct_id" => "NCT000001",
@@ -20,6 +20,8 @@ describe Link do
     # load the database entries
     imported = Link.all.map{|x| x.attributes }
     imported.each{|x| x.delete("id")}
+
+    # Compare the modified imported data with the expected data
     expect(imported).to eq(expected_data)
   end
 end
