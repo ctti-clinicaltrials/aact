@@ -241,21 +241,6 @@ class StudyJsonRecord::ProcessorV2
   def id_information_data
   end
 
-  def keywords_data
-    return unless protocol_section
-
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    keywords = protocol_section.dig('conditionsModule', 'keywords')
-    return unless keywords
-
-    collection = []
-    keywords.each do |keyword|
-      collection << { nct_id: nct_id, name: keyword, downcase_name: keyword.downcase }
-    end
-    
-    collection
-  end
-
   def milestones_data
   end
 
