@@ -355,5 +355,4 @@ class StudyJsonRecord::ProcessorV2
       return nil
     end
   end
-  
 end
