@@ -217,24 +217,20 @@ class StudyJsonRecord::ProcessorV2
   def browse_interventions_data
   end
 
-  def central_contacts_data
-    return unless contacts_location_module
+  def conditions_data
+    return unless protocol_section
 
     nct_id = protocol_section.dig('identificationModule', 'nctId')
-    central_contacts = contacts_location_module.dig('centralContacts')
-    return unless central_contacts
+
+    conditions_module = protocol_section['conditionsModule']
+    return unless conditions_module
+
+    conditions = conditions_module.dig('conditions')
+    return unless conditions
 
     collection = []
-    central_contacts.each_with_index do |contact, index|
-      collection << {
-                      nct_id: nct_id,
-                      contact_type: index == 0 ? 'primary' : 'backup',
-                      name: contact['name'],
-                      phone: contact['phone'],
-                      email: contact['email'],
-                      phone_extension: contact['phoneExt'],
-                      role: contact["role"]
-                     }
+    conditions.each do |condition|
+      collection << { nct_id: nct_id, name: condition, downcase_name: condition.try(:downcase) }
     end
     collection
   end
@@ -305,23 +301,6 @@ class StudyJsonRecord::ProcessorV2
   def result_agreement_data
   end
 
-  def result_contact_data
-    return unless results_section
-
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    point_of_contact = results_section.dig('moreInfoModule', 'pointOfContact')
-    return unless point_of_contact
-   {
-      nct_id: nct_id,
-      ext: point_of_contact['phoneExt'],
-      phone: point_of_contact['phone'],
-      name: point_of_contact['title'],
-      organization: point_of_contact['organization'],
-      email: point_of_contact['email']
-    }
-   
-  end
-
   def study_references_data
   end
 
@@ -376,5 +355,4 @@ class StudyJsonRecord::ProcessorV2
       return nil
     end
   end
-  
 end

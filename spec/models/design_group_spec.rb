@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe DesignGroup do
-  it "should create multiple instances of DesignGroup" do
+  it "should create multiple instances of DesignGroup", schema: :v2 do
     expected_data = [
       {
         "nct_id" => "NCT000001",
