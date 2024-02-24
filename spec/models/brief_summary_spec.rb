@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe BriefSummary do
-  it "should create an instance of BriefSummary" do
+  it "should create an instance of BriefSummary", schema: :v2 do
     # load the json
     content = JSON.parse(File.read('spec/support/json_data/brief_summary.json'))
     StudyJsonRecord.create(nct_id: "NCT000001", version: '2', content: content) # create a brand new json record
