@@ -53,17 +53,6 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
     end
   end
 
-  describe '#links_data' do
-    it 'uses JSON API to generate data that will be inserted into the links data table' do
-      expected_data = [
-        { nct_id: 'NCT02552212', url: 'http://www.fda.gov/Safety/MedWatch/SafetyInformation/default.htm', description: 'FDA Safety Alerts and Recalls' }
-      ]
-      hash = JSON.parse(File.read('spec/support/json_data/NCT02552212.json'))
-      processor = described_class.new(hash)
-      expect(processor.links_data).to eq(expected_data)
-    end
-  end
-
   describe '#eligibility_data' do
     it 'tests eligibility_data' do
       expected_data = {
@@ -105,58 +94,6 @@ RSpec.describe StudyJsonRecord::ProcessorV2 do
       ]
       processor = described_class.new(test_json)
       expect(processor.conditions_data).to eq(expected_output)
-    end
-  end
-
-  describe '#keywords_data' do
-    it 'uses JSON API to generate data that will be inserted into the keywords data table' do
-      expected_data = [
-        { nct_id: 'NCT02552212', name: 'Axial Spondyloarthritis', downcase_name: 'Axial Spondyloarthritis'.downcase },
-        { nct_id: 'NCT02552212', name: 'axSpA', downcase_name: 'axSpA'.downcase },
-        { nct_id: 'NCT02552212', name: 'Ankylosing Spondylitis', downcase_name: 'Ankylosing Spondylitis'.downcase },
-        { nct_id: 'NCT02552212', name: 'Anti TNF-alpha', downcase_name: 'Anti TNF-alpha'.downcase },
-        { nct_id: 'NCT02552212', name: 'Certolizumab Pegol', downcase_name: 'Certolizumab Pegol'.downcase },
-        { nct_id: 'NCT02552212', name: 'Nr-axSpA', downcase_name: 'Nr-axSpA'.downcase },
-        { nct_id: 'NCT02552212', name: 'Non-radiographic', downcase_name: 'Non-radiographic'.downcase },
-        { nct_id: 'NCT02552212', name: 'Spondylarthropathies', downcase_name: 'Spondylarthropathies'.downcase },
-        { nct_id: 'NCT02552212', name: 'Arthritis', downcase_name: 'Arthritis'.downcase },
-        { nct_id: 'NCT02552212', name: 'Spinal Diseases', downcase_name: 'Spinal Diseases'.downcase },
-        { nct_id: 'NCT02552212', name: 'Immunosuppressive Agents', downcase_name: 'Immunosuppressive Agents'.downcase }
-      ]
-      hash = JSON.parse(File.read('spec/support/json_data/NCT02552212.json'))
-      processor = described_class.new(hash)
-      expect(processor.keywords_data).to eq(expected_data)
-    end
-  end
-
-  describe '#central_contacts_data' do
-    it 'tests central contacts parsing' do
-      expected_data = [{
-        nct_id: 'NCT04523987',
-        contact_type: 'primary',
-        name: 'Cheng Ean Chee',
-        phone: '6779 5555',
-        email: 'cheng_ean_chee@nuhs.edu.sg',
-        phone_extension: nil,
-        role: 'CONTACT'
-      }]
-
-      hash = JSON.parse(File.read('spec/support/json_data/central-data.json'))
-      processor = described_class.new(hash)
-      expect(processor.central_contacts_data).to eq(expected_data)
-    end
-  end
-
-  describe '#ipd_information_types_data' do
-    it 'uses JSON API to generate data that will be inserted into the ipd information types table' do
-      expected_data = [
-        { nct_id: 'NCT03630471', name: 'STUDY_PROTOCOL' },
-        { nct_id: 'NCT03630471', name: 'SAP' },
-        { nct_id: 'NCT03630471', name: 'ICF' }
-      ]
-      hash = JSON.parse(File.read('spec/support/json_data/NCT03630471.json'))
-      processor = described_class.new(hash)
-      expect(processor.ipd_information_types_data).to eq(expected_data)
     end
   end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Keyword do
-  it "should create an instance of Keyword" do
+  it "should create an instance of Keyword", schema: :v2 do
     expected_data = [
       { "nct_id" => "NCT000001", "name" => "Axial Spondyloarthritis", "downcase_name" => "axial spondyloarthritis".downcase },
       { "nct_id" => "NCT000001", "name" => "axSpA", "downcase_name" => "axSpA".downcase },

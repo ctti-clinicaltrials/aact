@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Intervention do
-  it "should create an instance of Intervention" do
+  it "should create an instance of Intervention", schema: :v2 do
     expected_data = [
       {
         "nct_id" => "NCT000001",
