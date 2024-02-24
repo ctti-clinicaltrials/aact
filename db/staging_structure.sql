@@ -3049,7 +3049,7 @@ CREATE TABLE ctgov_v2.baseline_counts (
     id integer NOT NULL,
     nct_id character varying,
     result_group_id integer,
-    ctgov_v2_group_code character varying,
+    ctgov_group_code character varying,
     units character varying,
     scope character varying,
     count integer
@@ -3084,7 +3084,7 @@ CREATE TABLE ctgov_v2.baseline_measurements (
     id integer NOT NULL,
     nct_id character varying,
     result_group_id integer,
-    ctgov_v2_group_code character varying,
+    ctgov_group_code character varying,
     classification character varying,
     category character varying,
     title character varying,
@@ -3721,7 +3721,7 @@ CREATE TABLE ctgov_v2.drop_withdrawals (
     id integer NOT NULL,
     nct_id character varying,
     result_group_id integer,
-    ctgov_v2_group_code character varying,
+    ctgov_group_code character varying,
     period character varying,
     reason character varying,
     count integer,
@@ -4089,7 +4089,7 @@ CREATE TABLE ctgov_v2.milestones (
     id integer NOT NULL,
     nct_id character varying,
     result_group_id integer,
-    ctgov_v2_group_code character varying,
+    ctgov_group_code character varying,
     title character varying,
     period character varying,
     description text,
@@ -4181,7 +4181,7 @@ CREATE TABLE ctgov_v2.outcome_analysis_groups (
     nct_id character varying,
     outcome_analysis_id integer,
     result_group_id integer,
-    ctgov_v2_group_code character varying
+    ctgov_group_code character varying
 );
 
 
@@ -4214,7 +4214,7 @@ CREATE TABLE ctgov_v2.outcome_counts (
     nct_id character varying,
     outcome_id integer,
     result_group_id integer,
-    ctgov_v2_group_code character varying,
+    ctgov_group_code character varying,
     scope character varying,
     units character varying,
     count integer
@@ -4250,7 +4250,7 @@ CREATE TABLE ctgov_v2.outcome_measurements (
     nct_id character varying,
     outcome_id integer,
     result_group_id integer,
-    ctgov_v2_group_code character varying,
+    ctgov_group_code character varying,
     classification character varying,
     category character varying,
     title character varying,
@@ -4460,7 +4460,7 @@ ALTER SEQUENCE ctgov_v2.provided_documents_id_seq OWNED BY ctgov_v2.provided_doc
 CREATE TABLE ctgov_v2.reported_event_totals (
     id integer NOT NULL,
     nct_id character varying NOT NULL,
-    ctgov_v2_group_code character varying NOT NULL,
+    ctgov_group_code character varying NOT NULL,
     event_type character varying,
     classification character varying NOT NULL,
     subjects_affected integer,
@@ -4498,7 +4498,7 @@ CREATE TABLE ctgov_v2.reported_events (
     id integer NOT NULL,
     nct_id character varying,
     result_group_id integer,
-    ctgov_v2_group_code character varying,
+    ctgov_group_code character varying,
     time_frame text,
     event_type character varying,
     default_vocab character varying,
@@ -4648,7 +4648,7 @@ ALTER SEQUENCE ctgov_v2.result_contacts_id_seq OWNED BY ctgov_v2.result_contacts
 CREATE TABLE ctgov_v2.result_groups (
     id integer NOT NULL,
     nct_id character varying,
-    ctgov_v2_group_code character varying,
+    ctgov_group_code character varying,
     result_type character varying,
     title character varying,
     description text
