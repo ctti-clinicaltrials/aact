@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Document do
-  it "should create an instance of Document" do
+  it "should create an instance of Document", schema: :v2 do
     expected_data = [
       {
         "nct_id" => "NCT000001",

@@ -12,10 +12,10 @@ class Design < StudyRelationship
         { name: :time_perspective, value: :timePerspective},
         { name: :masking, value: [:maskingInfo, :masking] },
         { name: :masking_description, value: [:maskingInfo, :maskingDescription] },
-        { name: :subject_masked, value: ->(val) { val.dig('maskingInfo', 'whoMasked').include?('PARTICIPANT')}},
-        { name: :caregiver_masked, value: ->(val) { val.dig('maskingInfo', 'whoMasked').include?('CARE_PROVIDER')}},
-        { name: :investigator_masked, value: ->(val) { val.dig('maskingInfo', 'whoMasked').include?('INVESTIGATOR')}},
-        { name: :outcomes_assessor_masked, value: ->(val) { val.dig('maskingInfo', 'whoMasked').include?('OUTCOMES_ASSESSOR')}},
+        { name: :subject_masked, value: [:maskingInfo, :whoMasked], convert_to: ->(val) { val&.include?('PARTICIPANT')}},
+        { name: :caregiver_masked, value: [:maskingInfo, :whoMasked], convert_to: ->(val) { val&.include?('CARE_PROVIDER')}},
+        { name: :investigator_masked, value: [:maskingInfo, :whoMasked], convert_to: ->(val) { val&.include?('INVESTIGATOR')}},
+        { name: :outcomes_assessor_masked, value: [:maskingInfo, :whoMasked], convert_to: ->(val) { val&.include?('OUTCOMES_ASSESSOR')}},
       ]
     }
   end

@@ -217,28 +217,6 @@ class StudyJsonRecord::ProcessorV2
   def browse_interventions_data
   end
 
-  def central_contacts_data
-    return unless contacts_location_module
-
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    central_contacts = contacts_location_module.dig('centralContacts')
-    return unless central_contacts
-
-    collection = []
-    central_contacts.each_with_index do |contact, index|
-      collection << {
-                      nct_id: nct_id,
-                      contact_type: index == 0 ? 'primary' : 'backup',
-                      name: contact['name'],
-                      phone: contact['phone'],
-                      email: contact['email'],
-                      phone_extension: contact['phoneExt'],
-                      role: contact["role"]
-                     }
-    end
-    collection
-  end
-
   def conditions_data
     return unless protocol_section
 
@@ -263,36 +241,6 @@ class StudyJsonRecord::ProcessorV2
   def id_information_data
   end
 
-  def ipd_information_types_data
-    return unless protocol_section
-
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    ipd_sharing_info_types = protocol_section.dig('ipdSharingStatementModule', 'infoTypes')
-    return unless ipd_sharing_info_types
-
-    collection = []
-    ipd_sharing_info_types.each do |info|
-      collection << { nct_id: nct_id, name: info }
-    end
-
-    collection
-  end
-
-  def links_data
-    return unless protocol_section
-
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    see_also_links = protocol_section.dig('referencesModule', 'seeAlsoLinks')
-    return unless see_also_links
-
-    collection = []
-    see_also_links.each do |link|
-      collection << { nct_id: nct_id, url: link['url'], description: link['label'] }
-    end
-    
-    collection
-  end
-
   def milestones_data
   end
 
@@ -306,23 +254,6 @@ class StudyJsonRecord::ProcessorV2
   end
 
   def result_agreement_data
-  end
-
-  def result_contact_data
-    return unless results_section
-
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-    point_of_contact = results_section.dig('moreInfoModule', 'pointOfContact')
-    return unless point_of_contact
-   {
-      nct_id: nct_id,
-      ext: point_of_contact['phoneExt'],
-      phone: point_of_contact['phone'],
-      name: point_of_contact['title'],
-      organization: point_of_contact['organization'],
-      email: point_of_contact['email']
-    }
-   
   end
 
   def study_references_data
@@ -379,5 +310,4 @@ class StudyJsonRecord::ProcessorV2
       return nil
     end
   end
-  
 end

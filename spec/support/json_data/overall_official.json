@@ -1,0 +1,13 @@
+{
+  "protocolSection": {
+    "contactsLocationsModule": {
+      "overallOfficials": [
+        {
+          "name": "Imanol Otaegui, MD",
+          "affiliation": "Hospital Universitari Vall d'hebron Barcelona, Spain",
+          "role": "PRINCIPAL_INVESTIGATOR"
+        }
+      ]
+    }
+  }
+}
