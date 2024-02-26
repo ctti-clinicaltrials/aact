@@ -3,6 +3,7 @@
 # This module is reponsible for applying all the mappings to any StudyJsonRecord objects that need to be updated
 class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   StudyRelationship.load_mappings
+  include SchemaSwitcher
 
   attr_accessor :collections
 
@@ -56,20 +57,22 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
   def process(count = 1)
     # load records
-    records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').limit(count)
-    Rails.logger.debug { "records: #{records.count}" }
+    with_search_path('ctgov_v2, support, public') do
+      records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').limit(count)
+      Rails.logger.debug { "records: #{records.count}" }
 
-    remove_study_data(records.map(&:nct_id))
+      remove_study_data(records.map(&:nct_id))
 
-    @collections = Hash.new { |h, k| h[k] = [] }
+      @collections = Hash.new { |h, k| h[k] = [] }
 
-    # import records data
-    StudyRelationship.mapping.each do |mapping| # process each mapping instructions
-      process_mapping(mapping, records)
+      # import records data
+      StudyRelationship.mapping.each do |mapping| # process each mapping instructions
+        process_mapping(mapping, records)
+      end
+
+      # mark study records as saved
+      StudyJsonRecord.where(version: '2').where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
     end
-
-    # mark study records as saved
-    StudyJsonRecord.where(version: '2').where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
   end
 
   private

@@ -38,12 +38,13 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = false
 
+  config.include SchemaSwitcher
+
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-    DatabaseCleaner[:active_record, { model: Support::LoadEvent }].clean_with(:truncation)
-    DatabaseCleaner[:active_record, { model: Support::SanityCheck }].clean_with(:truncation)
-    DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].clean_with(:truncation)
-    DatabaseCleaner[:active_record, { model: Study }].clean_with(:truncation)
+    # DatabaseCleaner.clean_with(:truncation)
+    # DatabaseCleaner[:active_record, { model: Support::LoadEvent }].clean_with(:truncation) # remove?
+    # DatabaseCleaner[:active_record, { model: Support::SanityCheck }].clean_with(:truncation) # remove?
+    # DatabaseCleaner[:active_record, { model: Study }].clean_with(:truncation)
   end
 
   config.before(:each) do |example|
@@ -53,33 +54,43 @@ RSpec.configure do |config|
     StudyRelationship.remove_all_data
     # db.add_indexes_and_constraints # TODO: add back in when we have a way to add indexes and constraints
 
-    Util::DbManager.new({:event => Support::LoadEvent.new}).remove_indexes_and_constraints
+    # tests that are not feature or request tests are considered unit tests
     unit_test = ![:feature, :request].include?(example.metadata[:type])
     strategy = unit_test ? :transaction : :truncation
+
     allow_any_instance_of( Util::DbManager ).to receive(:add_indexes_and_constraints).and_return(nil)
 
-    DatabaseCleaner.strategy = strategy
-    DatabaseCleaner[:active_record, { model: Support::LoadEvent }].strategy = strategy
-    DatabaseCleaner[:active_record, { model: Support::SanityCheck }].strategy = strategy
-    DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].strategy = strategy
-    DatabaseCleaner[:active_record, { model: Study }].clean_with(:truncation)
+    # DatabaseCleaner.strategy = strategy
+    # DatabaseCleaner[:active_record, { model: Support::LoadEvent }].strategy = strategy # remove?
+    # DatabaseCleaner[:active_record, { model: Support::SanityCheck }].strategy = strategy # remove?
+    # DatabaseCleaner[:active_record, { model: Study }].clean_with(:truncation)
 
-    DatabaseCleaner.start
-    DatabaseCleaner[:active_record, { model: Support::LoadEvent }].start
-    DatabaseCleaner[:active_record, { model: Support::SanityCheck }].start
-    DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].start
+    # DatabaseCleaner.start
+    # DatabaseCleaner[:active_record, { model: Support::LoadEvent }].start
+    # DatabaseCleaner[:active_record, { model: Support::SanityCheck }].start
 
     # ensure app user logged into db connections
-    PublicBase.establish_connection
-    ActiveRecord::Base.establish_connection
+    # PublicBase.establish_connection
+    # ActiveRecord::Base.establish_connection
   end
 
   config.after(:each) do
-    DatabaseCleaner.clean
-    DatabaseCleaner[:active_record, { model: Support::LoadEvent }].clean
-    DatabaseCleaner[:active_record, { model: Support::SanityCheck }].clean
-    DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].clean
-    DatabaseCleaner[:active_record, { model: Study }].clean
+    # DatabaseCleaner.clean
+    # DatabaseCleaner[:active_record, { model: Support::LoadEvent }].clean
+    # DatabaseCleaner[:active_record, { model: Support::SanityCheck }].clean
+    # DatabaseCleaner[:active_record, { model: Support::StudyXmlRecord }].clean
+    # DatabaseCleaner[:active_record, { model: Study }].clean
+  end
+
+  config.before(:each) do |example|
+    if example.metadata[:schema] == :v2
+      @original_search_path = ActiveRecord::Base.connection.schema_search_path
+      ActiveRecord::Base.connection.schema_search_path = 'ctgov_v2, support, public'
+    end
+  end
+
+  config.after(:each) do
+    ActiveRecord::Base.connection.schema_search_path = @original_search_path
   end
 
 end
