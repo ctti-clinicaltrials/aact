@@ -1,16 +1,12 @@
 class Keyword < StudyRelationship
-
-  def self.top_level_label
-    '//keyword'
+  add_mapping do
+    {
+      table: :keywords,
+      root: [:protocolSection, :conditionsModule, :keywords],
+      columns: [
+        {name: :name, value: nil},
+        {name: :downcase_name, value: nil, convert_to: :downcase}
+      ]
+    }
   end
-
-  def self.create_all_from(opts)
-    objects = super
-    import(objects)
-  end
-
-  def attribs
-    {:name => opts[:xml].text}
-  end
-
 end

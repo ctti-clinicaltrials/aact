@@ -1,8 +1,14 @@
 class Condition < StudyRelationship
 
-  def self.create_all_from(opts)
-    conditions = opts[:xml].xpath("//condition").collect{|xml|new(:nct_id=>opts[:nct_id],:name=>xml.text)}.flatten.compact
-    import(conditions)
+  add_mapping do
+    {
+      table: :conditions,
+      root: [:protocolSection, :conditionsModule, :conditions],
+      columns: [
+        { name: :name, value: nil },
+        { name: :downcase_name, value: nil, convert_to: :downcase }
+      ]
+    }
   end
 
 end

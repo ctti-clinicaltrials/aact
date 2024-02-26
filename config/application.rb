@@ -42,6 +42,8 @@ module AACT
     
     #Also create directory: /aact-files (either at system root or in home directory) and set AACT_STATIC_FILE_DIR to that directory.
     #Under it, create sub directories:  documentation, logs, tmp
+    config.autoload_paths += %W(#{config.root}/lib)
+
 
     #CORS
     cors_origins = '*'

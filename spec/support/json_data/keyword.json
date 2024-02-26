@@ -1,0 +1,25 @@
+{
+  "protocolSection": {
+    "conditionsModule": {
+      "conditions": [
+        "Axial Spondyloarthritis",
+        "Nonradiographic Axial Spondyloarthritis",
+        "Nr-axSpA"
+      ],
+      "keywords": [
+        "Axial Spondyloarthritis",
+        "axSpA",
+        "Ankylosing Spondylitis",
+        "Anti TNF-alpha",
+        "Certolizumab Pegol",
+        "Nr-axSpA",
+        "Non-radiographic",
+        "Spondylarthropathies",
+        "Arthritis",
+        "Spinal Diseases",
+        "Immunosuppressive Agents"
+      ]
+    }
+  },
+  "hasResults": true
+}
