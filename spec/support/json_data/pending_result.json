@@ -1,0 +1,19 @@
+{
+  "annotationSection": {
+    "annotationModule": {
+      "unpostedAnnotation": {
+        "unpostedResponsibleParty": "Maureen-Schmitter-Edgecombe...",
+        "unpostedEvents": [
+          {
+            "type": "RELEASE",
+            "date": "2022-12-23"
+          },
+          {
+            "type": "RESET",
+            "date": "2023-10-20"
+          }
+        ]
+      }
+    }
+  }
+}

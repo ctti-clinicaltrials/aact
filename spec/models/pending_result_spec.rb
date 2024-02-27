@@ -1,18 +1,36 @@
 require 'rails_helper'
 
 describe PendingResult do
-  it 'should test documents_data' do
-    expected_data = {
-      nct_id: 'NCT03453554',
-      event: 'RELEASE',
-      event_date_description: '2022-12-23',
-      event_date: Date.parse('2022-12-23')
-    }
 
-    hash = JSON.parse(File.read('spec/support/json_data/NCT03453554.json'))
-    json = StudyJsonRecord::ProcessorV2.new(hash)
-    result = PendingResult.mapper(json)
+  it 'should create an instance of PendingResult', schema: :v2 do
+    expected_data = [
+      { 
+        "nct_id" => "NCT000001", 
+        "event" => "RELEASE", 
+        "event_date_description" => "2022-12-23", 
+        "event_date" => "2022-12-23"
+      },
+      { 
+        "nct_id" => "NCT000001", 
+        "event" => "RESET", 
+        "event_date_description" => "2023-10-20", 
+        "event_date" => "2023-10-20"
+      }
+    ]
+       
+    # load the json
+    content = JSON.parse(File.read('spec/support/json_data/pending_result.json'))
+    StudyJsonRecord.create(nct_id: "NCT000001", version: '2', content: content) # create a brand new json record
 
-    expect(result.first).to eq(expected_data)
+    # process the json
+    StudyJsonRecord::Worker.new.process # import the new json record
+
+    # load the database entries
+    imported = PendingResult.all.map { |x| x.attributes }
+    imported.each { |x| x.delete("id") }
+    
+    # Compare the modified imported data with the expected data
+    expect(imported).to eq(expected_data)
   end
+
 end
