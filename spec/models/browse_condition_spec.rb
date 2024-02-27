@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BrowseCondition, type: :model do
   describe "BrowseCondition mapping" do
-    it "should map BrowseCondition with mesh terms and types" schema: :v2 do
+    it "should map BrowseCondition with mesh terms and types", schema: :v2 do
       # Load the json
       content = JSON.parse(File.read('spec/support/json_data/browse_condition.json'))
       StudyJsonRecord.create(nct_id: "NCT000002", version: '2', content: content) # Create a brand new json record
