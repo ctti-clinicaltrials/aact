@@ -8,19 +8,19 @@ describe PendingResult do
         "nct_id" => "NCT000001", 
         "event" => "RELEASE", 
         "event_date_description" => "2022-12-23", 
-        "event_date" => Date.parse("Fri, 23 Dec 2022")
+        "event_date" => Date.parse("2022-12-23")
       },
       { 
         "nct_id" => "NCT000001", 
         "event" => "RESET", 
         "event_date_description" => "2023-10-20", 
-        "event_date" => Date.parse("Fri, 20 Oct 2023")
+        "event_date" => Date.parse("2023-10-20")
       },
       { 
         "nct_id" => "NCT000001", 
         "event" => "UNRELEASE", 
         "event_date_description" => "2024-08-24", 
-        "event_date" => Date.parse("Sat, 24 Aug 2024")
+        "event_date" => Date.parse("2024-08-24")
       }
     ]
        
