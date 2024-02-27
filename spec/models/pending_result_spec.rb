@@ -15,6 +15,12 @@ describe PendingResult do
         "event" => "RESET", 
         "event_date_description" => "2023-10-20", 
         "event_date" => Date.parse("Fri, 20 Oct 2023")
+      },
+      { 
+        "nct_id" => "NCT000001", 
+        "event" => "UNRELEASE", 
+        "event_date_description" => "2024-08-24", 
+        "event_date" => Date.parse("Sat, 24 Aug 2024")
       }
     ]
        

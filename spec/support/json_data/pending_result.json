@@ -11,6 +11,10 @@
           {
             "type": "RESET",
             "date": "2023-10-20"
+          },
+          {
+            "type": "UNRELEASE",
+            "date": "2024-08-24"
           }
         ]
       }
