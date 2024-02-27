@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BrowseCondition, type: :model do
+RSpec.describe BrowseCondition, type: :model, schema: :v2 do
   describe "BrowseCondition mapping" do
     it "should map BrowseCondition with mesh terms and types" do
       # Load the json
