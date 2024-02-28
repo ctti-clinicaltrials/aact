@@ -12,7 +12,7 @@ class BrowseIntervention < StudyRelationship
         ]
       },
       {
-        table: :browse_interventiones,
+        table: :browse_interventions,
         root: [:derivedSection, :interventionBrowseModule, :ancestors],
         columns: [
           { name: :mesh_term, value: :term},
@@ -21,7 +21,7 @@ class BrowseIntervention < StudyRelationship
         ]
       },
       {
-        table: :browse_interventiones,
+        table: :browse_interventions,
         root: [:derivedSection, :interventionBrowseModule, :browseLeaves],
         columns: [
           { name: :mesh_term, value: :term},
@@ -30,7 +30,7 @@ class BrowseIntervention < StudyRelationship
         ]
       },
       {
-        table: :browse_interventiones,
+        table: :browse_interventions,
         root: [:derivedSection, :interventionBrowseModule, :browseBranches],
         columns: [
           { name: :mesh_term, value: :term},
