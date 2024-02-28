@@ -35,7 +35,7 @@ class BrowseIntervention < StudyRelationship
         columns: [
           { name: :mesh_term, value: :term},
           { name: :downcase_mesh_term, value: :term, convert_to: :downcase },
-          { name: :mesh_type, value: 'mesh-browsBranch' }
+          { name: :mesh_type, value: 'mesh-browseBranch' }
         ]
       }
     ]
