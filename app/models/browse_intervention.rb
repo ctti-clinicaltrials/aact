@@ -19,25 +19,7 @@ class BrowseIntervention < StudyRelationship
           { name: :downcase_mesh_term, value: :term, convert_to: :downcase },
           { name: :mesh_type, value: 'mesh-ancestor' }
         ]
-      }#,
-      # {
-      #   table: :browse_interventions,
-      #   root: [:derivedSection, :interventionBrowseModule, :browseLeaves],
-      #   columns: [
-      #     { name: :mesh_term, value: :term},
-      #     { name: :downcase_mesh_term, value: :term, convert_to: :downcase },
-      #     { name: :mesh_type, value: 'mesh-browseLeave' }
-      #   ]
-      # },
-      # {
-      #   table: :browse_interventions,
-      #   root: [:derivedSection, :interventionBrowseModule, :browseBranches],
-      #   columns: [
-      #     { name: :mesh_term, value: :term},
-      #     { name: :downcase_mesh_term, value: :term, convert_to: :downcase },
-      #     { name: :mesh_type, value: 'mesh-browseBranch' }
-      #   ]
-      # }
+      }
     ]
   end
 

@@ -15,9 +15,7 @@ RSpec.describe BrowseIntervention, type: :model do
 
       expected_data = [
         { "nct_id" => "NCT000001", "mesh_term" => "Cyclophosphamide", "downcase_mesh_term" => "cyclophosphamide", "mesh_type" => "mesh-list" },
-        { "nct_id" => "NCT000001", "mesh_term" => "Immunosuppressive Agents", "downcase_mesh_term" => "immunosuppressive agents", "mesh_type" => "mesh-ancestor" },
-        # { "nct_id" => "NCT000001", "mesh_term" => "Cyclophosphamide", "downcase_mesh_term" => "cyclophosphamide", "mesh_type" => "mesh-browseLeave" },
-        # { "nct_id" => "NCT000001", "mesh_term" => "Infe", "downcase_mesh_term" => "infe", "mesh_type" => "mesh-browseBranch" }
+        { "nct_id" => "NCT000001", "mesh_term" => "Immunosuppressive Agents", "downcase_mesh_term" => "immunosuppressive agents", "mesh_type" => "mesh-ancestor" }
       ]
 
       expect(imported).to match_array(expected_data)
