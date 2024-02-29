@@ -27,7 +27,6 @@ RSpec.describe ResponsibleParty, type: :model do
         imported.each { |x| x.delete("id") }
 
         # Compare the modified imported data with the expected data
-        binding.pry
         expect(imported).to eq(expected_data)
     end
 end

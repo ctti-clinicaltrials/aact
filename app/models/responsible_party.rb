@@ -2,7 +2,7 @@ class ResponsibleParty < StudyRelationship
 
   add_mapping do
     {
-      table: :responsible_party,
+      table: :responsible_parties,
       root: [:protocolSection, :sponsorCollaboratorsModule, :responsibleParty],
       columns: [
         { name: :responsible_party_type, value: :type },
