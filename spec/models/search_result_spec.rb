@@ -15,21 +15,21 @@ RSpec.describe SearchResult, type: :model do
 
   context 'when there are search_results' do
     before do
-      covid_stub
-      covid_last_stub
-      covid_search_result
-      Util::DbManager.new.add_indexes_and_constraints
-      covid_search = StudySearch.make_covid_search
-      xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT04452435_covid_19.xml'))
-      @covid_study=Study.new({xml: xml, nct_id: 'NCT04452435'}).create
-      xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02798588.xml'))
-      @etic_study=Study.new({xml: xml, nct_id: 'NCT02798588'}).create
-      covid_search.load_update
-      @folder = './public/static/exported_files/covid-19'
+      # covid_stub
+      # covid_last_stub
+      # covid_search_result
+      # Util::DbManager.new.add_indexes_and_constraints
+      # covid_search = StudySearch.make_covid_search
+      # xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT04452435_covid_19.xml'))
+      # @covid_study=Study.new({xml: xml, nct_id: 'NCT04452435'}).create
+      # xml=Nokogiri::XML(File.read('spec/support/xml_data/NCT02798588.xml'))
+      # @etic_study=Study.new({xml: xml, nct_id: 'NCT02798588'}).create
+      # covid_search.load_update
+      # @folder = './public/static/exported_files/covid-19'
     end
 
     after do
-      `rm -r #{@folder}`
+      # `rm -r #{@folder}`
     end
 
     describe ':make_tsv' do

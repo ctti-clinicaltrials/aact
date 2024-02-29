@@ -1,0 +1,11 @@
+{
+  "protocolSection": {
+    "conditionsModule": {
+      "conditions": [
+        "Axial Spondyloarthritis",
+        "Nonradiographic Axial Spondyloarthritis",
+        "Nr-axSpA"
+      ]
+    }
+  }
+}
