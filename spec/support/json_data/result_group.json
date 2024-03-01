@@ -1,0 +1,18 @@
+{
+  "resultsSection": {
+    "participantFlowModule": {
+      "groups": [
+        {
+          "id": "FG000",
+          "title": "Cohort 1",
+          "description": "Cohort 1 received..."
+        },
+        {
+          "id": "FG001",
+          "title": "Cohort 2",
+          "description": "Cohort 2 received..."
+        }
+      ]
+    }
+  }
+}

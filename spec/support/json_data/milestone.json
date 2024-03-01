@@ -1,0 +1,79 @@
+{
+  "resultsSection": {
+    "participantFlowModule": {
+      "groups": [
+        {
+          "id": "FG000",
+          "title": "Cohort 1",
+          "description": "Participants who received the study drug"
+        }
+      ],
+      "periods": [
+        {
+          "title": "Overall",
+          "milestones": [
+            {
+              "type": "STARTED",
+              "comment": "started comment",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "description": "Participants 1",
+                  "numSubjects": 100,
+                  "numUnits": 10
+                },
+                {
+                  "groupId": "FG000",
+                  "description": "Participants 2",
+                  "numSubjects": 100,
+                  "numUnits": 10
+                }
+              ]
+            },
+            {
+              "type": "MID",
+              "comment": "completed comment",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "description": "Participants 3",
+                  "numSubjects": 100,
+                  "numUnits": 10
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Year 1",
+          "milestones": [
+            {
+              "type": "COMPLETE1",
+              "comment": "started comment",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "description": "Participants 4",
+                  "numSubjects": 100,
+                  "numUnits": 10
+                }
+              ]
+            },
+            {
+              "type": "COMPLETE2",
+              "comment": "completed comment",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "description": "Participants 5",
+                  "numSubjects": 100,
+                  "numUnits": 10
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

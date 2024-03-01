@@ -64,9 +64,10 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       remove_study_data(records.map(&:nct_id))
 
       @collections = Hash.new { |h, k| h[k] = [] }
+      @index = Hash.new { |h, k| h[k] = {} }
 
       # import records data
-      StudyRelationship.mapping.each do |mapping| # process each mapping instructions
+      StudyRelationship.sorted_mapping.each do |mapping| # process each mapping instructions
         process_mapping(mapping, records)
       end
 
@@ -107,6 +108,36 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
+  def build
+    root = content.dig('resultsSection', 'participantFlowModule', 'periods')
+    flatten = ['milestones', 'achievements']
+    flatten(flatten, root)
+  end
+
+  def append_parent(hash, value)
+    if hash['$parent']
+      append_parent(hash['$parent'], value)
+    else
+      hash['$parent'] = value
+    end
+  end
+
+  def flatten(path, data, parent=nil)
+    child_key = path.first
+    if child_key.nil?
+      data.each {|i| append_parent(i, parent) } if parent
+      return data
+    else
+      result = data.map do |item|
+        children = item.delete(child_key.to_s)
+        res = flatten(path[1..-1], children, item)
+        append_parent(res.first, parent) if parent
+        res
+      end
+      return result.flatten
+    end
+  end
+
   def process_mapping(mapping, records)
     model = mapping[:table].to_s.classify.constantize # get the model from the table name
     root = mapping[:root].map(&:to_s) if mapping[:root] # normalize root path to array of strings
@@ -115,6 +146,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     # prepare models for importing
     records.each do |record|
       nct_id = record.nct_id
+      @current_nct_id = nct_id
       content = record.content
       # get the root json, this allows us to focus on a smaller json object
       mapping_root = root ? content.dig(*root) : content
@@ -122,6 +154,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
       # normalize entries to array, even if there is only one entry we want to treat it as an array
       entries = mapping_root.is_a?(Array) ? mapping_root : [mapping_root]
+
+      # flatten the entries if needed
+      entries = flatten(mapping[:flatten].clone, entries) if mapping[:flatten]
 
       # filter entries
       entries = entries.select { |e| mapping[:filter].call(e) } if mapping[:filter]
@@ -141,6 +176,13 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
     # import models
     model.import(collection)
+    if mapping[:index]
+      index = [:nct_id] + mapping[:index]
+      collection.each do |row|
+        row_index = index.map { |i| row.send(i) }
+        @index[mapping[:table]][row_index] = row.id
+      end
+    end
     save_children(collection)
   end
 
@@ -177,6 +219,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       value = root
     when Proc # dynamic value
       value = column[:value].arity == 1 ? column[:value].call(root) : column[:value].call(root, index)
+    when StudyRelationship::Reference # reference to another model
+      index = column[:value].index.map { |i| get_value({value: i}, root) }
+      value = @index[column[:value].table][[@current_nct_id] + index]
     else # static value
       value = column[:value]
     end
