@@ -4,7 +4,7 @@
       "eligibilityCriteria": "Inclusion Criteria:\n\n* Pregnant or recently pregnant...",
       "healthyVolunteers": false,
       "sex": "FEMALE",
-      "genderBased": true,
+      "genderBased": false,
       "genderDescription": "Persons assigned gender female at birth.",
       "minimumAge": "18 Years",
       "maximumAge": "50 Years",
