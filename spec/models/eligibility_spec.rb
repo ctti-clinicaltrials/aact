@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Eligibility do
-  it "should create an instance of Eligibility" do
+  it "should create an instance of Eligibility", schema: :v2 do
     expected_data = [
       {
         "nct_id" => "NCT000001",
@@ -10,7 +10,7 @@ describe Eligibility do
         "maximum_age" => "50 Years",
         "minimum_age" => "18 Years",
         "gender" => "FEMALE",
-        "gender_based" => true,
+        "gender_based" => false,
         "gender_description" => "Persons assigned gender female at birth.",
         "healthy_volunteers" => false,
         "criteria" => "Inclusion Criteria:\n\n* Pregnant or recently pregnant...",
