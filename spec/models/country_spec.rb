@@ -6,23 +6,23 @@ describe Country do
       expected_data = [
         { 
           "nct_id" => "NCT000001", 
-          "name" => "United States", 
-          "removed" => false
-        },
-        { 
-          "nct_id" => "NCT000001", 
           "name" => "Australia", 
           "removed" => false
         },
         { 
           "nct_id" => "NCT000001", 
           "name" => "Bulgaria", 
-          "removed"=> false
+          "removed" => false
         },
         { 
           "nct_id" => "NCT000001", 
           "name" => "Canada", 
-          "removed" => false
+          "removed"=> false
+        },
+        { 
+          "nct_id" => "NCT000001", 
+          "name" => "Czech Republic", 
+          "removed" => true
         },
         { 
           "nct_id" => "NCT000001", 
@@ -36,8 +36,8 @@ describe Country do
         },
         { 
           "nct_id" => "NCT000001", 
-          "name" => "Czech Republic", 
-          "removed" => true
+          "name" => "United States", 
+          "removed" => false
         }
       ]
 
@@ -49,7 +49,7 @@ describe Country do
       StudyJsonRecord::Worker.new.process # import the new json record
 
       # load the database entries
-      imported = Country.all.map { |x| x.attributes }
+      imported = Country.all.order(name: :asc).map { |x| x.attributes }
       imported.each { |x| x.delete("id") }
 
       # Compare the modified imported data with the expected data

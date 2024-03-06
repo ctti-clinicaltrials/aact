@@ -1,39 +1,22 @@
 class Milestone < StudyRelationship
   belongs_to :result_group
 
-  def self.create_all_from(opts)
-    opts[:xml]=opts[:xml].xpath('//participant_flow')
-    opts[:result_type]='Participant Flow'
-    opts[:groups]=create_group_set(opts)
-
-    DropWithdrawal.create_all_from(opts)
-    import(self.nested_pop_create(opts.merge(:name=>'milestone')))
-  end
-
-  def self.nested_pop_create(opts)
-    name=opts[:name]
-    all=opts[:xml].xpath("//#{name}_list").xpath(name)
-    col=[]
-    xml=all.pop
-    while xml
-      opts[:xml]=xml
-      opts[:title]=xml.xpath('title').text
-      opts[:period]=xml.parent.parent.xpath('title').text
-      col << self.pop_create(opts.merge(:name=>'participants'))
-      xml=all.pop
-    end
-    col.flatten
-  end
-
-  def attribs
+  add_mapping do
     {
-      :result_group => get_group(opts[:groups]),
-      :ctgov_group_code => get_attribute('group_id'),
-      :count => get_attribute('count').to_i,
-      :description => xml.text,
-      :title => get_opt('title'),
-      :period => get_opt('period')
+      table: :milestones,
+      root: [:resultsSection, :participantFlowModule, :periods],
+      flatten: [:milestones, :achievements],
+      requires: :result_groups,
+      columns: [
+        { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Participant Flow'] },
+        { name: :ctgov_group_code, value: :groupId },
+        { name: :title, value: [:$parent, :type] },
+        { name: :period, value: [:$parent, :$parent, :title] },
+        { name: :description, value: :description },
+        { name: :count, value: :numSubjects },
+        { name: :milestone_description, value: [:$parent, :comment] },
+        { name: :count_units, value: :numUnits }
+      ]
     }
   end
-
 end

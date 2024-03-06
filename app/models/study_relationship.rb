@@ -1,6 +1,19 @@
 require 'active_support/all'
 
 class StudyRelationship < ActiveRecord::Base
+  class Reference
+    attr_accessor :table, :index
+
+    def initialize(table)
+      @table = table
+    end
+
+    def [](*args)
+      @index = args
+      self
+    end
+  end
+
   self.abstract_class = true;
   attr_accessor :xml, :opts
   belongs_to :study, :foreign_key=> 'nct_id'
@@ -221,8 +234,56 @@ class StudyRelationship < ActiveRecord::Base
     end
   end
 
+  def self.whitelist
+    []
+  end
+
   def self.mapping
-    MAPPING
+    if whitelist.empty?
+      MAPPING
+    else
+      MAPPING.select{|m| whitelist.include?(m[:table]) }
+    end
+  end
+
+  # perform topological sort on the mappings
+  def self.sorted_mapping
+    # 1. calculate the in-degrees of all nodes
+    in_degrees = {}
+    mapping.each do |m|
+      next unless m[:requires]
+      dependency = m[:requires].is_a?(Array) ? m[:requires] : [m[:requires]]
+      dependency.each do |d|
+        in_degrees[d] ||= 0
+        in_degrees[d] += 1
+      end
+    end
+
+    # 2. initialize the queue with nodes that have no dependencies
+    queue = mapping.select{|m| in_degrees[m[:table]].nil? }
+
+    # 3. perform the topological sort
+    sorted = []
+    while queue.any?
+      node = queue.shift
+      sorted << node
+      next if node[:requires].nil?
+      dependency = node[:requires].is_a?(Array) ? node[:requires] : [node[:requires]]
+      mapping.select{|m| dependency.include?(m[:table]) }.each do |m|
+        in_degrees[m[:table]] -= 1
+        queue << m if in_degrees[m[:table]] == 0
+      end
+    end
+
+    if sorted.length != mapping.length
+      raise "Cycle detected in the mappings"
+    end
+
+    sorted.reverse
+  end
+
+  def self.reference(table)
+    StudyRelationship::Reference.new(table)
   end
 
   def self.load_mappings
