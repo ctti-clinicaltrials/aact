@@ -37,9 +37,13 @@ class Sponsor < ApplicationRecord
 
   add_mapping do
     {
-      table: [],
-      root: [],
-      columns: []
+      table: :sponsors,
+      root: [:protocolSection, :sponsorCollaboratorsModule],
+      columns: [
+        { name: :agency_class, value: :class },
+        { name: :lead_or_collaborator, value: :sponsor_type =~ /Lead/i ? 'lead' : 'collaborator' },
+        { name: :name, value: :name }
+      ]
     }
   end  
 
