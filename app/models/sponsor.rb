@@ -1,4 +1,4 @@
-class Sponsor < ApplicationRecord
+class Sponsor < StudyRelationship
   
   # def self.mapper(json)
   #   return unless json.protocol_section
