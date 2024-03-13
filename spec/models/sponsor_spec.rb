@@ -37,7 +37,7 @@ RSpec.describe Sponsor do
     ]  
 
     # load the json
-    content = JSON.parse(File.read('spec/support/json_data/sponsor.json'))
+    content = JSON.parse(File.read('spec/support/json_data/sponsor_1.json'))
     StudyJsonRecord.create(nct_id: "NCT000001", version: '2', content: content) # create a brand new json record
 
     # process the json
@@ -51,18 +51,29 @@ RSpec.describe Sponsor do
     expect(imported).to eq(expected_data)
   end
 
-  # it 'should return Lead sponsor type expected data and no Collaborator sponsor type expected data' do
-  #   expected_data = [
-  #     { 
-  #       nct_id: "NCT02552212", 
-  #       agency_class: "INDUSTRY", 
-  #       lead_or_collaborator: "lead",
-  #       name: "UCB BIOSCIENCES GmbH"
-  #     }
-  #   ]
-  #   hash = JSON.parse(File.read('spec/support/json_data/NCT02552212.json'))
-  #   processor = StudyJsonRecord::ProcessorV2.new(hash)
-  #   expect(Sponsor.mapper(processor)).to eq(expected_data)
-  # end
+  it 'should create an instance of Sponsor and return Lead sponsor type and no Collaborator sponsor type', schema: :v2 do
+    expected_data = [
+      { 
+        "nct_id" => "NCT000001", 
+        "agency_class" => "INDUSTRY", 
+        "lead_or_collaborator" => "lead",
+        "name" => "UCB BIOSCIENCES GmbH"
+      }
+    ]
+
+    # load the json
+    content = JSON.parse(File.read('spec/support/json_data/sponsor_2.json'))
+    StudyJsonRecord.create(nct_id: "NCT000001", version: '2', content: content) # create a brand new json record
+
+    # process the json
+    StudyJsonRecord::Worker.new.process # import the new json record
+
+    # load the database entries
+    imported = Sponsor.all.order(name: :asc).map { |x| x.attributes }
+    imported.each { |x| x.delete("id") }
+
+   # Compare the modified imported data with the expected data
+    expect(imported).to eq(expected_data)
+  end
 
 end
