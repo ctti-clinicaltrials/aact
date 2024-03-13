@@ -12,9 +12,9 @@ RSpec.describe Sponsor do
       },
       { 
         "nct_id" => "NCT000001", 
-        "agency_class" => "OTHER", 
+        "agency_class" => "NIH", 
         "lead_or_collaborator" => "collaborator",
-        "name" => "Washington University School of Medicine"
+        "name" => "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)" 
       },
       { 
         "nct_id" => "NCT000001", 
@@ -30,9 +30,9 @@ RSpec.describe Sponsor do
       },
       { 
         "nct_id" => "NCT000001", 
-        "agency_class" => "NIH", 
+        "agency_class" => "OTHER", 
         "lead_or_collaborator" => "collaborator",
-        "name" => "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)" 
+        "name" => "Washington University School of Medicine"
       }
     ]  
 
