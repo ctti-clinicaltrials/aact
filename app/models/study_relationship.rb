@@ -56,6 +56,7 @@ class StudyRelationship < ActiveRecord::Base
   end
 
   def self.remove_all_data
+    byebug
     study_models.each do |model|
       model.delete_all
     end

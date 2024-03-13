@@ -1,0 +1,26 @@
+{
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT00465595",
+        "nctIdAliases": [
+          "NCT00850967"
+        ],
+        "orgStudyIdInfo": {
+          "id": "NA_00001390"
+        },
+        "secondaryIdInfos": [
+          {
+            "id": "Johns Hopkins IRB5 NA_00001390",
+            "type": "OTHER",
+            "domain": "Wake Forest University Health Sciences"
+          }
+        ],
+        "organization": {
+          "fullName": "Johns Hopkins University",
+          "class": "OTHER"
+        },
+        "briefTitle": "Psychopharmacology of Psilocybin in Cancer Patients",
+        "officialTitle": "Psychopharmacology of Psilocybin in Cancer Patients"
+      }
+    }
+}

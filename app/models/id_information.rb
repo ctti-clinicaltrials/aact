@@ -1,4 +1,46 @@
+
 class IdInformation < StudyRelationship
+
+  add_mapping do
+    [
+      {
+        table: :id_information,
+        root: [:protocolSection, :identificationModule, :orgStudyIdInfo],
+        columns: [
+          { name: :id_type, value: :type },
+          { name: :id_type_description, value: :domain },
+          { name: :id_link, value: :link },
+          { name: :id_value, value: :id}
+        ]
+      },
+      {
+        table: :id_information,
+        root: [:protocolSection, :identificationModule, :secondaryIdInfos],
+        columns: [
+          { name: :id_type, value: :type },
+          { name: :id_type_description, value: :domain },
+          { name: :id_link, value: :secondaryIdLink },
+          { name: :id_link, value: :secondaryIdLink },
+          { name: :id_value, value: :secondaryId }
+        ]
+      },
+      {
+        table: :id_information,
+        root: [:protocolSection, :identificationModule, :nctIdAliases],
+        columns: [
+          { name: :id_source, value: :nct_alias },
+          { name: :id_type_description, value: nil },
+          { name: :id_value, value: :nct_alias  },
+          { name: :id_link, value: nil },
+          { name: :id_type, value: nil }
+        ]
+      }
+    ]
+  end
+
+end
+
+# class IdInformation < StudyRelationship
   # self.table_name = 'id_information'
   # def self.top_level_label
   #   '//id_info'
@@ -64,55 +106,3 @@ class IdInformation < StudyRelationship
   #   }
   #   import(col)
   # end
-
-  add_mapping do
-    {
-      table: :id_information,
-      root: [:protocolSection, :identificationModule],
-      columns: [
-        { name: :nct_id, value: :nctId }
-      ]
-    },
-
-    {
-      table: :id_information,
-      root: [:protocolSection, :identificationModule, :orgStudyIdInfo],
-      columns: [
-        { name: :id_type, value: :type },
-        { name: :id_type_description, value: :domain },
-        { name: :id_link, value: :link },
-        { name: :id_value, value: :id}
-      ]
-    },
-    {
-      table: :id_information,
-      root: [:protocolSection, :identificationModule, :secondaryIdInfos],
-      columns: [
-        { name: :id_type, value: :type },
-        {id_type_description: value: :domain},
-        { name: :id_link, value: :secondaryIdLink },
-        { name: :id_link, value: :secondaryIdLink },
-        { name: :id_value, value: :secondaryId }
-      ]
-    },
-    {
-      table: :id_information,
-      root: [:protocolSection, :identificationModule, :nctIdAliases],
-      columns: [
-        { name: :id_source, value: :nct_alias },
-        { name: :id_value, value: :nct_alias  }
-      ]
-    },
-
-  end
-
- 
-
-#       id_source: 'nct_alias', 
-  #       id_type: nil,
-  #       id_type_description: nil,
-  #       id_link: nil,
-  #       id_value: nct_alias
-
-
-end
