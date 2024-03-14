@@ -651,6 +651,45 @@ CREATE VIEW ctgov.all_states AS
 
 
 --
+-- Name: attachments; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.attachments (
+    id integer NOT NULL,
+    project_id integer,
+    file_name character varying,
+    content_type character varying,
+    file_contents bytea,
+    is_image boolean,
+    description text,
+    source text,
+    original_file_name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: attachments_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.attachments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.attachments_id_seq OWNED BY ctgov.attachments.id;
+
+
+--
 -- Name: baseline_counts; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1177,6 +1216,125 @@ CREATE VIEW ctgov.covid_19_studies AS
 
 
 --
+-- Name: data_definitions; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.data_definitions (
+    id integer NOT NULL,
+    db_section character varying,
+    table_name character varying,
+    column_name character varying,
+    data_type character varying,
+    source character varying,
+    ctti_note text,
+    nlm_link character varying,
+    row_count integer,
+    enumerations json,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    db_schema character varying
+);
+
+
+--
+-- Name: data_definitions_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.data_definitions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: data_definitions_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.data_definitions_id_seq OWNED BY ctgov.data_definitions.id;
+
+
+--
+-- Name: datasets; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.datasets (
+    id integer NOT NULL,
+    project_id integer,
+    schema_name character varying,
+    table_name character varying,
+    dataset_type character varying,
+    file_name character varying,
+    content_type character varying,
+    name character varying,
+    file_contents bytea,
+    url character varying,
+    made_available_on date,
+    description text,
+    source text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: datasets_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.datasets_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: datasets_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.datasets_id_seq OWNED BY ctgov.datasets.id;
+
+
+--
+-- Name: db_user_activities; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.db_user_activities (
+    id integer NOT NULL,
+    username character varying,
+    event_count integer,
+    when_recorded timestamp without time zone,
+    unit_of_time character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: db_user_activities_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.db_user_activities_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: db_user_activities_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.db_user_activities_id_seq OWNED BY ctgov.db_user_activities.id;
+
+
+--
 -- Name: design_group_interventions; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -1381,6 +1539,43 @@ ALTER SEQUENCE ctgov.eligibilities_id_seq OWNED BY ctgov.eligibilities.id;
 
 
 --
+-- Name: enumerations; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.enumerations (
+    id integer NOT NULL,
+    table_name character varying,
+    column_name character varying,
+    column_value character varying,
+    value_count integer,
+    value_percent numeric,
+    description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: enumerations_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.enumerations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: enumerations_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.enumerations_id_seq OWNED BY ctgov.enumerations.id;
+
+
+--
 -- Name: facilities_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -1467,6 +1662,110 @@ CREATE SEQUENCE ctgov.facility_investigators_id_seq
 --
 
 ALTER SEQUENCE ctgov.facility_investigators_id_seq OWNED BY ctgov.facility_investigators.id;
+
+
+--
+-- Name: faqs; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.faqs (
+    id integer NOT NULL,
+    project_id integer,
+    question character varying,
+    answer text,
+    citation character varying,
+    url character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: faqs_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.faqs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: faqs_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.faqs_id_seq OWNED BY ctgov.faqs.id;
+
+
+--
+-- Name: file_downloads; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.file_downloads (
+    id integer NOT NULL,
+    file_record_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: file_downloads_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.file_downloads_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: file_downloads_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.file_downloads_id_seq OWNED BY ctgov.file_downloads.id;
+
+
+--
+-- Name: health_checks; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.health_checks (
+    id integer NOT NULL,
+    query text,
+    cost character varying,
+    actual_time double precision,
+    row_count integer,
+    description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: health_checks_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.health_checks_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: health_checks_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.health_checks_id_seq OWNED BY ctgov.health_checks.id;
 
 
 --
@@ -1726,6 +2025,43 @@ CREATE SEQUENCE ctgov.milestones_id_seq
 --
 
 ALTER SEQUENCE ctgov.milestones_id_seq OWNED BY ctgov.milestones.id;
+
+
+--
+-- Name: notices; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.notices (
+    id integer NOT NULL,
+    body character varying,
+    user_id integer,
+    title character varying,
+    send_emails boolean,
+    emails_sent_at timestamp without time zone,
+    visible boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: notices_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.notices_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: notices_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.notices_id_seq OWNED BY ctgov.notices.id;
 
 
 --
@@ -2027,6 +2363,59 @@ ALTER SEQUENCE ctgov.pending_results_id_seq OWNED BY ctgov.pending_results.id;
 
 
 --
+-- Name: projects; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.projects (
+    id integer NOT NULL,
+    status character varying,
+    start_date date,
+    completion_date date,
+    schema_name character varying,
+    data_available boolean,
+    migration_file_name character varying,
+    name character varying,
+    year integer,
+    aact_version character varying,
+    brief_summary character varying,
+    investigators character varying,
+    organizations character varying,
+    url character varying,
+    description text,
+    protocol text,
+    issues text,
+    study_selection_criteria text,
+    submitter_name character varying,
+    contact_info character varying,
+    contact_url character varying,
+    email character varying,
+    image bytea,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.projects_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.projects_id_seq OWNED BY ctgov.projects.id;
+
+
+--
 -- Name: provided_documents; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -2060,6 +2449,114 @@ CREATE SEQUENCE ctgov.provided_documents_id_seq
 --
 
 ALTER SEQUENCE ctgov.provided_documents_id_seq OWNED BY ctgov.provided_documents.id;
+
+
+--
+-- Name: public_announcements; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.public_announcements (
+    id integer NOT NULL,
+    description character varying,
+    is_sticky boolean
+);
+
+
+--
+-- Name: public_announcements_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.public_announcements_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: public_announcements_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.public_announcements_id_seq OWNED BY ctgov.public_announcements.id;
+
+
+--
+-- Name: publications; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.publications (
+    id integer NOT NULL,
+    project_id integer,
+    pub_type character varying,
+    journal_name character varying,
+    title character varying,
+    url character varying,
+    citation character varying,
+    pmid character varying,
+    pmcid character varying,
+    doi character varying,
+    publication_date date,
+    abstract text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: publications_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.publications_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: publications_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.publications_id_seq OWNED BY ctgov.publications.id;
+
+
+--
+-- Name: releases; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.releases (
+    id integer NOT NULL,
+    title character varying,
+    subtitle character varying,
+    released_on date,
+    body text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: releases_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.releases_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: releases_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.releases_id_seq OWNED BY ctgov.releases.id;
 
 
 --
@@ -2317,6 +2814,42 @@ ALTER SEQUENCE ctgov.retractions_id_seq OWNED BY ctgov.retractions.id;
 
 
 --
+-- Name: saved_queries; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.saved_queries (
+    id integer NOT NULL,
+    title character varying,
+    description character varying,
+    sql character varying,
+    public boolean,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: saved_queries_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.saved_queries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saved_queries_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.saved_queries_id_seq OWNED BY ctgov.saved_queries.id;
+
+
+--
 -- Name: search_results_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -2458,6 +2991,237 @@ CREATE SEQUENCE ctgov.study_searches_id_seq
 --
 
 ALTER SEQUENCE ctgov.study_searches_id_seq OWNED BY ctgov.study_searches.id;
+
+
+--
+-- Name: use_case_attachments; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.use_case_attachments (
+    id integer NOT NULL,
+    use_case_id integer,
+    file_name character varying,
+    content_type character varying,
+    file_contents bytea,
+    is_image boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: use_case_attachments_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.use_case_attachments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_case_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.use_case_attachments_id_seq OWNED BY ctgov.use_case_attachments.id;
+
+
+--
+-- Name: use_case_datasets; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.use_case_datasets (
+    id integer NOT NULL,
+    use_case_id integer,
+    dataset_type character varying,
+    name character varying,
+    description text
+);
+
+
+--
+-- Name: use_case_datasets_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.use_case_datasets_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_case_datasets_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.use_case_datasets_id_seq OWNED BY ctgov.use_case_datasets.id;
+
+
+--
+-- Name: use_case_publications; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.use_case_publications (
+    id integer NOT NULL,
+    use_case_id integer,
+    name character varying,
+    url character varying
+);
+
+
+--
+-- Name: use_case_publications_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.use_case_publications_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_case_publications_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.use_case_publications_id_seq OWNED BY ctgov.use_case_publications.id;
+
+
+--
+-- Name: use_cases; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.use_cases (
+    id integer NOT NULL,
+    status character varying,
+    completion_date date,
+    title character varying,
+    year integer,
+    brief_summary character varying,
+    investigators character varying,
+    organizations character varying,
+    url character varying,
+    detailed_description text,
+    protocol text,
+    issues text,
+    study_selection_criteria text,
+    submitter_name character varying,
+    contact_info character varying,
+    email character varying,
+    image bytea,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: use_cases_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.use_cases_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: use_cases_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.use_cases_id_seq OWNED BY ctgov.use_cases.id;
+
+
+--
+-- Name: user_events; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.user_events (
+    id integer NOT NULL,
+    email character varying,
+    event_type character varying,
+    description text,
+    file_names character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: user_events_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.user_events_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_events_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.user_events_id_seq OWNED BY ctgov.user_events.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.users (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying,
+    last_sign_in_ip character varying,
+    first_name character varying,
+    last_name character varying,
+    username character varying,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    db_activity integer,
+    last_db_activity timestamp without time zone,
+    admin boolean DEFAULT false
+);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.users_id_seq OWNED BY ctgov.users.id;
 
 
 --
@@ -2871,6 +3635,13 @@ ALTER SEQUENCE support.verifiers_id_seq OWNED BY support.verifiers.id;
 
 
 --
+-- Name: attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.attachments ALTER COLUMN id SET DEFAULT nextval('ctgov.attachments_id_seq'::regclass);
+
+
+--
 -- Name: baseline_counts id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2934,6 +3705,27 @@ ALTER TABLE ONLY ctgov.countries ALTER COLUMN id SET DEFAULT nextval('ctgov.coun
 
 
 --
+-- Name: data_definitions id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.data_definitions ALTER COLUMN id SET DEFAULT nextval('ctgov.data_definitions_id_seq'::regclass);
+
+
+--
+-- Name: datasets id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.datasets ALTER COLUMN id SET DEFAULT nextval('ctgov.datasets_id_seq'::regclass);
+
+
+--
+-- Name: db_user_activities id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.db_user_activities ALTER COLUMN id SET DEFAULT nextval('ctgov.db_user_activities_id_seq'::regclass);
+
+
+--
 -- Name: design_group_interventions id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -2990,6 +3782,13 @@ ALTER TABLE ONLY ctgov.eligibilities ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
+-- Name: enumerations id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.enumerations ALTER COLUMN id SET DEFAULT nextval('ctgov.enumerations_id_seq'::regclass);
+
+
+--
 -- Name: facilities id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3008,6 +3807,27 @@ ALTER TABLE ONLY ctgov.facility_contacts ALTER COLUMN id SET DEFAULT nextval('ct
 --
 
 ALTER TABLE ONLY ctgov.facility_investigators ALTER COLUMN id SET DEFAULT nextval('ctgov.facility_investigators_id_seq'::regclass);
+
+
+--
+-- Name: faqs id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.faqs ALTER COLUMN id SET DEFAULT nextval('ctgov.faqs_id_seq'::regclass);
+
+
+--
+-- Name: file_downloads id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_downloads ALTER COLUMN id SET DEFAULT nextval('ctgov.file_downloads_id_seq'::regclass);
+
+
+--
+-- Name: health_checks id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.health_checks ALTER COLUMN id SET DEFAULT nextval('ctgov.health_checks_id_seq'::regclass);
 
 
 --
@@ -3074,6 +3894,13 @@ ALTER TABLE ONLY ctgov.milestones ALTER COLUMN id SET DEFAULT nextval('ctgov.mil
 
 
 --
+-- Name: notices id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.notices ALTER COLUMN id SET DEFAULT nextval('ctgov.notices_id_seq'::regclass);
+
+
+--
 -- Name: outcome_analyses id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3130,10 +3957,38 @@ ALTER TABLE ONLY ctgov.pending_results ALTER COLUMN id SET DEFAULT nextval('ctgo
 
 
 --
+-- Name: projects id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.projects ALTER COLUMN id SET DEFAULT nextval('ctgov.projects_id_seq'::regclass);
+
+
+--
 -- Name: provided_documents id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
 ALTER TABLE ONLY ctgov.provided_documents ALTER COLUMN id SET DEFAULT nextval('ctgov.provided_documents_id_seq'::regclass);
+
+
+--
+-- Name: public_announcements id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.public_announcements ALTER COLUMN id SET DEFAULT nextval('ctgov.public_announcements_id_seq'::regclass);
+
+
+--
+-- Name: publications id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.publications ALTER COLUMN id SET DEFAULT nextval('ctgov.publications_id_seq'::regclass);
+
+
+--
+-- Name: releases id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.releases ALTER COLUMN id SET DEFAULT nextval('ctgov.releases_id_seq'::regclass);
 
 
 --
@@ -3186,6 +4041,13 @@ ALTER TABLE ONLY ctgov.retractions ALTER COLUMN id SET DEFAULT nextval('ctgov.re
 
 
 --
+-- Name: saved_queries id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries ALTER COLUMN id SET DEFAULT nextval('ctgov.saved_queries_id_seq'::regclass);
+
+
+--
 -- Name: search_results id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -3218,6 +4080,48 @@ ALTER TABLE ONLY ctgov.study_references ALTER COLUMN id SET DEFAULT nextval('ctg
 --
 
 ALTER TABLE ONLY ctgov.study_searches ALTER COLUMN id SET DEFAULT nextval('ctgov.study_searches_id_seq'::regclass);
+
+
+--
+-- Name: use_case_attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_attachments ALTER COLUMN id SET DEFAULT nextval('ctgov.use_case_attachments_id_seq'::regclass);
+
+
+--
+-- Name: use_case_datasets id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_datasets ALTER COLUMN id SET DEFAULT nextval('ctgov.use_case_datasets_id_seq'::regclass);
+
+
+--
+-- Name: use_case_publications id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_publications ALTER COLUMN id SET DEFAULT nextval('ctgov.use_case_publications_id_seq'::regclass);
+
+
+--
+-- Name: use_cases id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_cases ALTER COLUMN id SET DEFAULT nextval('ctgov.use_cases_id_seq'::regclass);
+
+
+--
+-- Name: user_events id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.user_events ALTER COLUMN id SET DEFAULT nextval('ctgov.user_events_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.users ALTER COLUMN id SET DEFAULT nextval('ctgov.users_id_seq'::regclass);
 
 
 --
@@ -3298,6 +4202,14 @@ ALTER TABLE ONLY support.verifiers ALTER COLUMN id SET DEFAULT nextval('support.
 
 
 --
+-- Name: attachments attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.attachments
+    ADD CONSTRAINT attachments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: baseline_counts baseline_counts_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3370,6 +4282,30 @@ ALTER TABLE ONLY ctgov.countries
 
 
 --
+-- Name: data_definitions data_definitions_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.data_definitions
+    ADD CONSTRAINT data_definitions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: datasets datasets_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.datasets
+    ADD CONSTRAINT datasets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: db_user_activities db_user_activities_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.db_user_activities
+    ADD CONSTRAINT db_user_activities_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: design_group_interventions design_group_interventions_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3434,6 +4370,14 @@ ALTER TABLE ONLY ctgov.eligibilities
 
 
 --
+-- Name: enumerations enumerations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.enumerations
+    ADD CONSTRAINT enumerations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: facilities facilities_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3455,6 +4399,30 @@ ALTER TABLE ONLY ctgov.facility_contacts
 
 ALTER TABLE ONLY ctgov.facility_investigators
     ADD CONSTRAINT facility_investigators_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: faqs faqs_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.faqs
+    ADD CONSTRAINT faqs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: file_downloads file_downloads_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_downloads
+    ADD CONSTRAINT file_downloads_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: health_checks health_checks_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.health_checks
+    ADD CONSTRAINT health_checks_pkey PRIMARY KEY (id);
 
 
 --
@@ -3530,6 +4498,14 @@ ALTER TABLE ONLY ctgov.milestones
 
 
 --
+-- Name: notices notices_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.notices
+    ADD CONSTRAINT notices_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: outcome_analyses outcome_analyses_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3594,11 +4570,43 @@ ALTER TABLE ONLY ctgov.pending_results
 
 
 --
+-- Name: projects projects_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: provided_documents provided_documents_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
 ALTER TABLE ONLY ctgov.provided_documents
     ADD CONSTRAINT provided_documents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: public_announcements public_announcements_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.public_announcements
+    ADD CONSTRAINT public_announcements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: publications publications_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.publications
+    ADD CONSTRAINT publications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: releases releases_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.releases
+    ADD CONSTRAINT releases_pkey PRIMARY KEY (id);
 
 
 --
@@ -3658,6 +4666,14 @@ ALTER TABLE ONLY ctgov.retractions
 
 
 --
+-- Name: saved_queries saved_queries_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries
+    ADD CONSTRAINT saved_queries_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: search_results search_results_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -3695,6 +4711,54 @@ ALTER TABLE ONLY ctgov.study_references
 
 ALTER TABLE ONLY ctgov.study_searches
     ADD CONSTRAINT study_searches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: use_case_attachments use_case_attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_attachments
+    ADD CONSTRAINT use_case_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: use_case_datasets use_case_datasets_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_datasets
+    ADD CONSTRAINT use_case_datasets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: use_case_publications use_case_publications_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_publications
+    ADD CONSTRAINT use_case_publications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: use_cases use_cases_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_cases
+    ADD CONSTRAINT use_cases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_events user_events_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.user_events
+    ADD CONSTRAINT user_events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
@@ -3911,6 +4975,62 @@ CREATE INDEX index_conditions_on_downcase_name ON ctgov.conditions USING btree (
 --
 
 CREATE INDEX index_conditions_on_name ON ctgov.conditions USING btree (name);
+
+
+--
+-- Name: index_ctgov.use_case_datasets_on_dataset_type; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX "index_ctgov.use_case_datasets_on_dataset_type" ON ctgov.use_case_datasets USING btree (dataset_type);
+
+
+--
+-- Name: index_ctgov.use_case_datasets_on_name; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX "index_ctgov.use_case_datasets_on_name" ON ctgov.use_case_datasets USING btree (name);
+
+
+--
+-- Name: index_ctgov.use_cases_on_completion_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX "index_ctgov.use_cases_on_completion_date" ON ctgov.use_cases USING btree (completion_date);
+
+
+--
+-- Name: index_ctgov.use_cases_on_organizations; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX "index_ctgov.use_cases_on_organizations" ON ctgov.use_cases USING btree (organizations);
+
+
+--
+-- Name: index_ctgov.use_cases_on_year; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX "index_ctgov.use_cases_on_year" ON ctgov.use_cases USING btree (year);
+
+
+--
+-- Name: index_ctgov.users_on_confirmation_token; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX "index_ctgov.users_on_confirmation_token" ON ctgov.users USING btree (confirmation_token);
+
+
+--
+-- Name: index_ctgov.users_on_email; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX "index_ctgov.users_on_email" ON ctgov.users USING btree (email);
+
+
+--
+-- Name: index_ctgov.users_on_reset_password_token; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX "index_ctgov.users_on_reset_password_token" ON ctgov.users USING btree (reset_password_token);
 
 
 --
@@ -4208,6 +5328,48 @@ CREATE INDEX index_overall_officials_on_nct_id ON ctgov.overall_officials USING 
 
 
 --
+-- Name: index_projects_on_completion_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_projects_on_completion_date ON ctgov.projects USING btree (completion_date);
+
+
+--
+-- Name: index_projects_on_data_available; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_projects_on_data_available ON ctgov.projects USING btree (data_available);
+
+
+--
+-- Name: index_projects_on_investigators; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_projects_on_investigators ON ctgov.projects USING btree (investigators);
+
+
+--
+-- Name: index_projects_on_organizations; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_projects_on_organizations ON ctgov.projects USING btree (organizations);
+
+
+--
+-- Name: index_projects_on_start_date; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_projects_on_start_date ON ctgov.projects USING btree (start_date);
+
+
+--
+-- Name: index_projects_on_year; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_projects_on_year ON ctgov.projects USING btree (year);
+
+
+--
 -- Name: index_reported_events_on_event_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -4254,6 +5416,13 @@ CREATE INDEX index_result_contacts_on_organization ON ctgov.result_contacts USIN
 --
 
 CREATE INDEX index_result_groups_on_result_type ON ctgov.result_groups USING btree (result_type);
+
+
+--
+-- Name: index_saved_queries_on_user_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_saved_queries_on_user_id ON ctgov.saved_queries USING btree (user_id);
 
 
 --
@@ -4523,6 +5692,14 @@ CREATE TRIGGER category_insert_trigger INSTEAD OF INSERT ON ctgov.categories FOR
 
 
 --
+-- Name: saved_queries fk_rails_add691a365; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries
+    ADD CONSTRAINT fk_rails_add691a365 FOREIGN KEY (user_id) REFERENCES ctgov.users(id);
+
+
+--
 -- Name: active_storage_attachments fk_rails_0276932754; Type: FK CONSTRAINT; Schema: support; Owner: -
 --
 
@@ -4561,16 +5738,24 @@ ALTER TABLE ONLY support.file_records
 SET search_path TO ctgov,support,public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20160214191640'),
 ('20160630191037'),
 ('20160910000000'),
 ('20160911000000'),
+('20160912000000'),
 ('20161011000000'),
 ('20161030000000'),
 ('20170411000122'),
+('20180226142044'),
+('20180427144951'),
+('20180813174540'),
+('20181108174440'),
+('20181208174440'),
 ('20181212000000'),
 ('20190115184850'),
 ('20190115204850'),
 ('20190301204850'),
+('20190321174440'),
 ('20191125205210'),
 ('20200217214455'),
 ('20200217220919'),
@@ -4588,6 +5773,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210526192804'),
 ('20210601063550'),
 ('20211027133828'),
+('20211027220743'),
+('20211102194357'),
+('20211109190158'),
 ('20220202152642'),
 ('20220207182529'),
 ('20220212033048'),
@@ -4607,9 +5795,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220928162956'),
 ('20220928175111'),
 ('20220930181441'),
+('20221018210501'),
 ('20221122213435'),
 ('20221219165747'),
 ('20230102193531'),
+('20230131123222'),
 ('20230214200400'),
 ('20230216205237'),
 ('20230416235053'),
@@ -4617,7 +5807,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230629000057'),
 ('20230720150513'),
 ('20231012015547'),
-('20240202062838'),
 ('20240204045613'),
 ('20240204055613');
 
