@@ -8,10 +8,7 @@ class IdInformation < StudyRelationship
         root: [:protocolSection, :identificationModule, :nctIdAliases],
         columns: [
           { name: :id_source, value: 'nct_alias' },
-          { name: :id_type_description, value: nil },
-          { name: :id_value, value: nil },
-          { name: :id_link, value: nil },
-          { name: :id_type, value: nil }
+          { name: :id_value, value: nil }
         ]
       },
       {

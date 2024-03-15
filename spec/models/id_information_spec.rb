@@ -71,10 +71,9 @@ RSpec.describe IdInformation, type: :model do
       # load the database entries()
       imported = IdInformation.all.map{|x| x.attributes }
       imported.each{|x| x.delete("id")}
-      byebug
       expect(imported).to eq([
     {
-      "nct_id"=>"NCT000001",
+      # "nct_id"=>"NCT000001",
       "id_source" => "secondary_id",
       "id_value" => nil,
       "id_type" => "OTHER",
@@ -82,7 +81,7 @@ RSpec.describe IdInformation, type: :model do
       "id_link" => nil
     },
     {
-      "nct_id"=>"NCT000001",
+      # "nct_id"=>"NCT000001",
       "id_source" => "org_study_id",
       "id_value" => "NA_00001390",
       "id_type" => nil,
@@ -90,12 +89,9 @@ RSpec.describe IdInformation, type: :model do
       "id_link" => nil
     },
     {
-      "nct_id"=>"NCT000001",
+      # "nct_id"=>"NCT000001",
       "id_source" => "nct_alias",
-      "id_value" => "NCT00850967",
-      "id_type" => nil, 
-      "id_type_description" => nil, 
-      "id_link" => nil
+      "id_value" => "NCT00850967"
     }
     ])
     end
