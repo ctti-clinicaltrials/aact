@@ -1,12 +1,24 @@
 
 class IdInformation < StudyRelationship
-
+  self.table_name = 'id_information'
   add_mapping do
     [
       {
         table: :id_information,
+        root: [:protocolSection, :identificationModule, :nctIdAliases],
+        columns: [
+          { name: :id_source, value: 'nct_alias' },
+          { name: :id_type_description, value: nil },
+          { name: :id_value, value: nil },
+          { name: :id_link, value: nil },
+          { name: :id_type, value: nil }
+        ]
+      },
+      {
+        table: :id_information,
         root: [:protocolSection, :identificationModule, :orgStudyIdInfo],
         columns: [
+          { name: :id_source, value: 'org_study_id' },
           { name: :id_type, value: :type },
           { name: :id_type_description, value: :domain },
           { name: :id_link, value: :link },
@@ -17,22 +29,11 @@ class IdInformation < StudyRelationship
         table: :id_information,
         root: [:protocolSection, :identificationModule, :secondaryIdInfos],
         columns: [
+          { name: :id_source, value: 'secondary_id' },
           { name: :id_type, value: :type },
           { name: :id_type_description, value: :domain },
           { name: :id_link, value: :secondaryIdLink },
-          { name: :id_link, value: :secondaryIdLink },
           { name: :id_value, value: :secondaryId }
-        ]
-      },
-      {
-        table: :id_information,
-        root: [:protocolSection, :identificationModule, :nctIdAliases],
-        columns: [
-          { name: :id_source, value: :nct_alias },
-          { name: :id_type_description, value: nil },
-          { name: :id_value, value: :nct_alias  },
-          { name: :id_link, value: nil },
-          { name: :id_type, value: nil }
         ]
       }
     ]
