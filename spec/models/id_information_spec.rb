@@ -69,29 +69,31 @@ RSpec.describe IdInformation, type: :model do
       StudyJsonRecord::Worker.new.process # import the new json record
   
       # load the database entries()
-      imported = IdInformation.all.map{|x| x.attributes }
+      imported = IdInformation.all.order(id_source: :asc).map{|x| x.attributes }
       imported.each{|x| x.delete("id")}
       expect(imported).to eq([
-    {
-      # "nct_id"=>"NCT000001",
-      "id_source" => "secondary_id",
-      "id_value" => nil,
-      "id_type" => "OTHER",
-      "id_type_description" => "Wake Forest University Health Sciences",
+    { "nct_id" => "NCT000001",
+      "id_source" => "nct_alias",
+      "id_value" => "NCT00850967",
+      "id_type" => nil,
+      "id_type_description" => nil,
       "id_link" => nil
     },
     {
-      # "nct_id"=>"NCT000001",
+      "nct_id" => "NCT000001",
       "id_source" => "org_study_id",
       "id_value" => "NA_00001390",
       "id_type" => nil,
       "id_type_description" => nil,
       "id_link" => nil
     },
-    {
-      # "nct_id"=>"NCT000001",
-      "id_source" => "nct_alias",
-      "id_value" => "NCT00850967"
+    { 
+      "nct_id" => "NCT000001",
+      "id_source" => "secondary_id",
+      "id_value" => nil,
+      "id_type" => "OTHER",
+      "id_type_description" => "Wake Forest University Health Sciences",
+      "id_link" => nil
     }
     ])
     end
