@@ -23,7 +23,7 @@ gem "flutie"
 gem "high_voltage"
 gem "jquery-rails"
 gem "normalize-rails"
-gem "pg", '~> 0.18'
+gem 'pg', '~> 1.2'
 # gem 'rails_12factor'
 gem "coderay"
 gem "recipient_interceptor"
