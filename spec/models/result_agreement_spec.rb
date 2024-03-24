@@ -24,10 +24,6 @@ describe ResultAgreement do
     imported = ResultAgreement.all.map { |x| x.attributes }
     imported.each { |x| x.delete("id") }
     
-    # Debugging statements to inspect the imported data
-    puts "Imported data:"
-    puts imported.inspect
-    
     # Compare the modified imported data with the expected data
     expect(imported).to eq(expected_data)   
   end
