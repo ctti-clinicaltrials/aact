@@ -1,21 +1,34 @@
 require 'rails_helper'
 
-RSpec.describe ResultAgreement do
-  describe 'ResultAgreement#mapper' do
-    it 'study should have expected result_agreement info' do
-      expected_data = 
-        { 
-          nct_id: 'NCT01340027', 
-          pi_employee: "No",
-          restriction_type: "OTHER",
-          restrictive_agreement: "Yes",
-          other_details: "Institute and/or Principal Investigator may publish trial data generated at their specific study site after Sponsor publication of the multi-center data. Sponsor must receive a site's manuscript at least 90 days prior to publication for review and comment."
-        }
+describe ResultAgreement do
+  it "should create an instance of ResultAgreement", schema: :v2 do
+    expected_data = [
+      {
+        "agreement" => nil,
+        "nct_id" => "NCT000001",
+        "pi_employee" => false,
+        "restriction_type" => "OTHER",
+        "restrictive_agreement" => true,
+        "other_details" => "Institute and/or Principal Investigator may publish trial data..."
+      }
+    ]
 
-      hash = JSON.parse(File.read('spec/support/json_data/result_agreement.json'))
-      
-      processor = StudyJsonRecord::ProcessorV2.new(hash)
-      expect(ResultAgreement.mapper(processor)).to eq(expected_data)
-    end
-  end  
+    # Load the JSON data
+    content = JSON.parse(File.read('spec/support/json_data/result_agreement.json'))
+    StudyJsonRecord.create(nct_id: "NCT000001", version: '2', content: content) # Create a new json record
+
+    # Process the JSON data to import it into the database
+    StudyJsonRecord::Worker.new.process
+
+    # Load the database entries
+    imported = ResultAgreement.all.map { |x| x.attributes }
+    imported.each { |x| x.delete("id") }
+    
+    # Debugging statements to inspect the imported data
+    puts "Imported data:"
+    puts imported.inspect
+    
+    # Compare the modified imported data with the expected data
+    expect(imported).to eq(expected_data)   
+  end
 end
