@@ -1,0 +1,18 @@
+  {
+    "protocolSection": {
+      "contactsLocationsModule": {
+        "locations": [{
+          "status": "Active",
+          "facility": "Test Facility",
+          "city": "Test City",
+          "state": "Test State",
+          "zip": "12345",
+          "country": "Test Country",
+          "contacts": [
+            { "role": "Investigator", "name": "Investigator Name" },
+            { "role": "Coordinator", "name": "Contact Name", "email": "contact@example.com", "phone": "123-456-7890" }
+          ]
+        }]
+      }
+    }
+  }
