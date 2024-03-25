@@ -17,7 +17,7 @@ class InterventionOtherName < StudyRelationship
   # end
 
     {
-      table: :conditions,
+      table: :intervention_other_names,
       root: [:protocolSection, :armsInterventionsModule, :interventions],
       columns: [
         { name: :intervention_id, value: nil },
