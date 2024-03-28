@@ -17,6 +17,20 @@ CREATE SCHEMA ctgov;
 
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA public;
+
+
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+--
 -- Name: support; Type: SCHEMA; Schema: -; Owner: -
 --
 
@@ -4544,7 +4558,7 @@ ALTER TABLE ONLY support.file_records
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov, support, public;
+SET search_path TO ctgov,support,public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20160630191037'),
@@ -4602,6 +4616,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230628231316'),
 ('20230629000057'),
 ('20230720150513'),
-('20231012015547');
+('20231012015547'),
+('20240204045613'),
+('20240204055613');
 
 

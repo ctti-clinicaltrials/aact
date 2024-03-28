@@ -230,79 +230,6 @@ class Study < ApplicationRecord
     brief_title
   end
 
-  def attribs
-    {
-      :start_month_year              => get('start_date'),
-      :verification_month_year       => get('verification_date'),
-      :completion_month_year         => get('completion_date'),
-      :primary_completion_month_year => get('primary_completion_date'),
-
-      :start_date                    => convert_date('start_date'),
-      :verification_date             => convert_date('verification_date'),
-      :completion_date               => convert_date('completion_date'),
-      :primary_completion_date       => convert_date('primary_completion_date'),
-
-      :study_first_submitted_qc_date        => get('study_first_submitted_qc').try(:to_date),
-      :study_first_posted_date              => get('study_first_posted').try(:to_date),
-      :results_first_submitted_qc_date      => get('results_first_submitted_qc').try(:to_date),
-      :results_first_posted_date            => get('results_first_posted').try(:to_date),
-      :disposition_first_submitted_qc_date  => get('disposition_first_submitted_qc').try(:to_date),
-      :disposition_first_posted_date        => get('disposition_first_posted').try(:to_date),
-      :last_update_submitted_qc_date        => get('last_update_submitted_qc').try(:to_date),
-      :last_update_posted_date              => get('last_update_posted').try(:to_date),
-
-      # the previous have been replaced with:
-      :study_first_submitted_date       => get_date(get('study_first_submitted')),
-      :results_first_submitted_date     => get_date(get('results_first_submitted')),
-      :disposition_first_submitted_date => get_date(get('disposition_first_submitted')),
-      :last_update_submitted_date       => get_date(get('last_update_submitted')),
-
-      :nlm_download_date_description  => xml.xpath('//download_date').text,
-      :acronym                        => get('acronym'),
-      :baseline_population            => xml.xpath('//baseline/population').try(:text),
-      :number_of_arms                 => get('number_of_arms'),
-      :number_of_groups               => get('number_of_groups'),
-      :source                         => get('source'),
-      :brief_title                    => get('brief_title') ,
-      :official_title                 => get('official_title'),
-      :overall_status                 => get('overall_status'),
-      :last_known_status              => get('last_known_status'),
-      :phase                          => get('phase'),
-      :target_duration                => get('target_duration'),
-      :enrollment                     => get('enrollment'),
-      :biospec_description            => get_text('biospec_descr'),
-
-      :start_date_type                     => get_type('start_date'),
-      :primary_completion_date_type        => get_type('primary_completion_date'),
-      :completion_date_type                => get_type('completion_date'),
-      :study_first_posted_date_type        => get_type('study_first_posted'),
-      :results_first_posted_date_type      => get_type('results_first_posted'),
-      :disposition_first_posted_date_type  => get_type('disposition_first_posted'),
-      :last_update_posted_date_type        => get_type('last_update_posted'),
-      :enrollment_type                     => get_type('enrollment'),
-
-      :study_type                        => get('study_type'),
-      :biospec_retention                 => get('biospec_retention'),
-      :limitations_and_caveats           => xml.xpath('//limitations_and_caveats').text,
-      :is_fda_regulated_drug             => get_boolean('//is_fda_regulated_drug'),
-      :is_fda_regulated_device           => get_boolean('//is_fda_regulated_device'),
-      :is_unapproved_device              => get_boolean('//is_unapproved_device'),
-      :is_ppsd                           => get_boolean('//is_ppsd'),
-      :is_us_export                      => get_boolean('//is_us_export'),
-      :ipd_time_frame                    => get('patient_data/ipd_time_frame'),
-      :ipd_access_criteria               => get('patient_data/ipd_access_criteria'),
-      :ipd_url                           => get('patient_data/ipd_url'),
-      :plan_to_share_ipd                 => get('patient_data/sharing_ipd'),
-      :plan_to_share_ipd_description     => get('patient_data/ipd_description'),
-      :has_expanded_access               => get_boolean('//has_expanded_access'),
-      :expanded_access_type_individual   => get_boolean('//expanded_access_info/expanded_access_type_individual'),
-      :expanded_access_type_intermediate => get_boolean('//expanded_access_info/expanded_access_type_intermediate'),
-      :expanded_access_type_treatment    => get_boolean('//expanded_access_info/expanded_access_type_treatment'),
-      :has_dmc                           => get_boolean('//has_dmc'),
-      :why_stopped                       => get('why_stopped')
-    }
-  end
-
   def self.mapper(json)
     return unless json.protocol_section
 
@@ -334,7 +261,7 @@ class Study < ApplicationRecord
     num_of_groups = groups.count == 0 ? nil : groups.count
     arms_count = study_type =~ /Interventional/i ? num_of_groups : nil
     groups_count = arms_count ? nil : num_of_groups
-    phase_list = key_check(design['phases'])
+    phase_list = design['phases']
     phase_list = phase_list.join('/') if phase_list
 
     {
@@ -413,35 +340,6 @@ class Study < ApplicationRecord
     self.groups=ResultGroup.create_all_from(opts)
   end
 
-  def get(label)
-    value=(xml.xpath('//clinical_study').xpath("#{label}").text).strip
-    value2=(xml.xpath('//clinical_study').xpath("#{label}"))
-    value=='' ? nil : value
-  end
-
-  def get_text(label)
-    str=''
-    nodes=xml.xpath("//#{label}")
-    nodes.each {|node| str << node.xpath("textblock").text}
-    str
-  end
-
-  def get_type(label)
-    node=xml.xpath("//#{label}")
-    node.attribute('type').try(:value) if !node.blank?
-  end
-
-  def get_boolean(label)
-    val=xml.xpath("#{label}").try(:text)
-    return nil if val.blank?
-    return true if val.downcase=='yes'||val.downcase=='y'||val.downcase=='true'
-    return false if val.downcase=='no'||val.downcase=='n'||val.downcase=='false'
-  end
-
-  def get_date(str)
-    Date.parse(str) if !str.blank?
-  end
-
   def convert_date(label)
     dt=get(label)
     return nil if dt.nil?
@@ -506,5 +404,81 @@ class Study < ApplicationRecord
       + Facility.where('name like ?',"%#{org}%").pluck(:nct_id) \
       + where('source like ?',"%#{org}%").pluck(:nct_id)).flatten.uniq
     where(nct_id: ids).includes(:sponsors).includes(:facilities).includes(:brief_summary).includes(:detailed_description).includes(:design).includes(:eligibility).includes(:overall_officials).includes(:responsible_parties)
+  end
+
+  StudyRelationship.add_mapping do
+    {
+      table: :studies,
+      root: nil,
+      columns: [
+        { name: :study_first_submitted_date, value: [:protocolSection, :statusModule, :studyFirstSubmitDate], convert_to: :date },
+        { name: :study_first_submitted_qc_date, value: [:protocolSection, :statusModule, :studyFirstSubmitQcDate], convert_to: :date },
+        { name: :study_first_posted_date, value: [:protocolSection, :statusModule, :studyFirstPostDateStruct, :date], convert_to: :date },
+        { name: :study_first_posted_date_type, value: [:protocolSection, :statusModule, :studyFirstPostDateStruct, :type] },
+        { name: :results_first_submitted_date, value: [:protocolSection, :statusModule, :resultsFirstSubmitDate], convert_to: :date },
+        { name: :results_first_submitted_qc_date, value: [:protocolSection, :statusModule, :resultsFirstSubmitQcDate], convert_to: :date },
+        { name: :results_first_posted_date, value: [:protocolSection, :statusModule, :resultsFirstPostDateStruct, :date], convert_to: :date },
+        { name: :results_first_posted_date_type, value: [:protocolSection, :statusModule, :resultsFirstPostDateStruct, :type] },
+        { name: :disposition_first_submitted_date, value: [:protocolSection, :statusModule, :dispFirstSubmitDate], convert_to: :date },
+        { name: :disposition_first_submitted_qc_date, value: [:protocolSection, :statusModule, :dispFirstSubmitQcDate], convert_to: :date },
+        { name: :disposition_first_posted_date, value: [:protocolSection, :statusModule, :dispFirstPostDateStruct, :date], convert_to: :date },
+        { name: :disposition_first_posted_date_type, value: [:protocolSection, :statusModule, :dispFirstPostDateStruct, :type] },
+        { name: :last_update_submitted_date, value: [:protocolSection, :statusModule, :lastUpdateSubmitDate], convert_to: :date },
+        { name: :last_update_submitted_qc_date, value: [:protocolSection, :statusModule, :lastUpdateSubmitDate], convert_to: :date },
+        { name: :last_update_posted_date, value: [:protocolSection, :statusModule, :lastUpdatePostDateStruct, :date], convert_to: :date },
+        { name: :last_update_posted_date_type, value: [:protocolSection, :statusModule, :lastUpdatePostDateStruct, :type] },
+        { name: :start_month_year, value: [:protocolSection, :statusModule, :startDateStruct, :date] },
+        { name: :start_date_type, value: [:protocolSection, :statusModule, :startDateStruct, :type] },
+        { name: :start_date, value: [:protocolSection, :statusModule, :startDateStruct, :date], convert_to: :date },
+        { name: :verification_month_year, value: [:protocolSection, :statusModule, :statusVerifiedDate] },
+        { name: :verification_date, value: [:protocolSection, :statusModule, :statusVerifiedDate], convert_to: :date },
+        { name: :completion_month_year, value: [:protocolSection, :statusModule, :completionDateStruct, :date] },
+        { name: :completion_date_type, value: [:protocolSection, :statusModule, :completionDateStruct, :type] },
+        { name: :completion_date, value: [:protocolSection, :statusModule, :completionDateStruct, :date], convert_to: :date },
+        { name: :primary_completion_month_year, value: [:protocolSection, :statusModule, :primaryCompletionDateStruct, :date] },
+        { name: :primary_completion_date_type, value: [:protocolSection, :statusModule, :primaryCompletionDateStruct, :type] },
+        { name: :primary_completion_date, value: [:protocolSection, :statusModule, :primaryCompletionDateStruct, :date], convert_to: :date },
+        { name: :baseline_population, value: [:resultsSection, :baselineCharacteristicsModule, :populationDescription] },
+        { name: :brief_title, value: [:protocolSection, :identificationModule, :briefTitle] },
+        { name: :official_title, value: [:protocolSection, :identificationModule, :officialTitle] },
+        { name: :acronym, value: [:protocolSection, :identificationModule, :acronym] },
+        { name: :overall_status, value: [:protocolSection, :statusModule, :overallStatus] },
+        { name: :last_known_status, value: [:protocolSection, :statusModule, :lastKnownStatus] },
+        { name: :why_stopped, value: [:protocolSection, :statusModule, :whyStopped] },
+        { name: :delayed_posting, value: [:protocolSection, :statusModule, :delayedPosting] },
+        { name: :phase, value: [:protocolSection, :designModule, :phases], convert_to: ->(val) { val&.join('/') } },
+        { name: :enrollment, value: [:protocolSection, :designModule, :enrollmentInfo, :count] },
+        { name: :enrollment_type, value: [:protocolSection, :designModule, :enrollmentInfo, :type] },
+        { name: :source, value: [:protocolSection, :identificationModule, :organization, :fullName] },
+        { name: :source_class, value: [:protocolSection, :identificationModule, :organization, :class] },
+        { name: :limitations_and_caveats, value: [:resultsSection, :moreInfoModule, :limitationsAndCaveats, :description] },
+        { name: :number_of_arms, value: :protocolSection, convert_to: ->(val) { val&.dig('designModule','studyType') =~ /interventional/i ? val&.dig('armsInterventionsModule','armGroups')&.count : nil } },
+        { name: :number_of_groups, value: :protocolSection, convert_to: ->(val) { val&.dig('designModule','studyType') =~ /interventional/i ? nil : val&.dig('armsInterventionsModule','armGroups')&.count } },
+        { name: :target_duration, value: [:protocolSection, :designModule, :targetDuration] },
+        { name: :study_type, value: [:protocolSection, :designModule, :studyType] },
+        { name: :patient_registry, value: [:protocolSection, :designModule, :patientRegistry] },
+        { name: :has_expanded_access, value: [:protocolSection, :statusModule, :expandedAccessInfo, :hasExpandedAccess] },
+        { name: :expanded_access_nctid, value: [:protocolSection, :statusModule, :expandedAccessInfo, :nctId] },
+        { name: :expanded_access_status_for_nctid, value: [:protocolSection, :statusModule, :expandedAccessInfo, :statusForNctId] },
+        { name: :expanded_access_type_individual, value: [:protocolSection, :designModule, :expandedAccessTypes, :individual] },
+        { name: :expanded_access_type_intermediate, value: [:protocolSection, :designModule, :expandedAccessTypes, :intermediate] },
+        { name: :expanded_access_type_treatment, value: [:protocolSection, :designModule, :expandedAccessTypes, :treatment] },
+        { name: :has_dmc, value: [:protocolSection, :oversightModule, :oversightHasDmc] },
+        { name: :is_fda_regulated_drug, value: [:protocolSection, :oversightModule, :isFdaRegulatedDrug] },
+        { name: :is_fda_regulated_device, value: [:protocolSection, :oversightModule, :isFdaRegulatedDevice] },
+        { name: :is_unapproved_device, value: [:protocolSection, :oversightModule, :isUnapprovedDevice] },
+        { name: :is_ppsd, value: [:protocolSection, :oversightModule, :isPpsd] },
+        { name: :is_us_export, value: [:protocolSection, :oversightModule, :isUsExport] },
+        { name: :fdaaa801_violation, value: [:protocolSection, :oversightModule, :fdaaa801Violation] },
+        { name: :biospec_retention, value: [:protocolSection, :designModule, :bioSpec, :retention] },
+        { name: :biospec_description, value: [:protocolSection, :designModule, :bioSpec, :description] },
+        { name: :plan_to_share_ipd, value: [:protocolSection, :ipdSharingStatementModule, :ipdSharing] },
+        { name: :plan_to_share_ipd_description, value: [:protocolSection, :ipdSharingStatementModule, :description] },
+        { name: :ipd_time_frame, value: [:protocolSection, :ipdSharingStatementModule, :timeFrame] },
+        { name: :ipd_access_criteria, value: [:protocolSection, :ipdSharingStatementModule, :accessCriteria] },
+        { name: :ipd_url, value: [:protocolSection, :ipdSharingStatementModule, :url] },
+        { name: :baseline_type_units_analyzed, value: [:resultsSection, :baselineCharacteristicsModule, :typeUnitsAnalyzed] }
+      ]
+    }
   end
 end

@@ -1,0 +1,50 @@
+{
+  "derivedSection": {
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000008175",
+            "term": "Lung Neoplasms"
+          },
+          {
+            "id": "D000002289",
+            "term": "Carcinoma, Non-Small-Cell Lung"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D000012142",
+            "term": "Respiratory Tract Neoplasms"
+          },
+          {
+            "id": "D000013899",
+            "term": "Thoracic Neoplasms"
+          },
+          {
+            "id": "D000009371",
+            "term": "Neoplasms by Site"
+          },
+          {
+            "id": "D000009369",
+            "term": "Neoplasms"
+          },
+          {
+            "id": "D000008171",
+            "term": "Lung Diseases"
+          },
+          {
+            "id": "D000012140",
+            "term": "Respiratory Tract Diseases"
+          },
+          {
+            "id": "D000002283",
+            "term": "Carcinoma, Bronchogenic"
+          },
+          {
+            "id": "D000001984",
+            "term": "Bronchial Neoplasms"
+          }
+        ]
+      }
+    }
+}

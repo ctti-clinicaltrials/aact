@@ -1,0 +1,13 @@
+{
+  "resultsSection": {
+    "moreInfoModule": {
+      "certainAgreement": {
+        "piSponsorEmployee": false,
+        "restrictionType": "OTHER",
+        "restrictiveAgreement": true,
+        "otherDetails": "Institute and/or Principal Investigator may publish trial data..."
+      }
+    }
+  },
+  "hasResults": true
+}

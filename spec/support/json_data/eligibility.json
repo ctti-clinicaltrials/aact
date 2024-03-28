@@ -1,0 +1,21 @@
+{
+  "protocolSection": {
+    "eligibilityModule": {
+      "eligibilityCriteria": "Inclusion Criteria:\n\n* Pregnant or recently pregnant...",
+      "healthyVolunteers": false,
+      "sex": "FEMALE",
+      "genderBased": false,
+      "genderDescription": "Persons assigned gender female at birth.",
+      "minimumAge": "18 Years",
+      "maximumAge": "50 Years",
+      "stdAges": [
+        "ADULT",
+        "CHILD",
+        "OLDER_ADULT"
+      ],
+      "studyPopulation": "The exposed study population consists of pregnant...",
+      "samplingMethod": "NON_PROBABILITY_SAMPLE"
+    }
+  },
+  "hasResults": false
+}

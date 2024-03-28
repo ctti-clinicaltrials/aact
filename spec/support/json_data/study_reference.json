@@ -1,0 +1,14 @@
+{
+  "protocolSection": {
+    "referencesModule": {
+      "references": [
+        {
+          "pmid": "33178765",
+          "type": "DERIVED",
+          "citation": "Zhao S, Fan N, Li H…"
+        }
+      ]
+    }
+  },
+  "hasResults": false
+}

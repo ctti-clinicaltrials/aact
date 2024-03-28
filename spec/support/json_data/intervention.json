@@ -1,0 +1,14 @@
+{
+  "protocolSection": {
+    "armsInterventionsModule": {
+      "interventions": [
+        {
+          "type": "DEVICE",
+          "name": "WFMA - wireless floating microelectrode array",
+          "description": "Wirelessly transmitted patterns of electrical stimulation will be delivered to the visual cortex of study participants to generate visual percepts."
+        }
+      ]
+    }
+  },
+  "hasResults": false
+}

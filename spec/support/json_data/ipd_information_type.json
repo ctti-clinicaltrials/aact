@@ -1,0 +1,11 @@
+{
+  "protocolSection": {
+    "ipdSharingStatementModule": {
+      "infoTypes": [
+        "STUDY_PROTOCOL",
+        "SAP",
+        "ICF"
+      ]
+    }
+  }
+}

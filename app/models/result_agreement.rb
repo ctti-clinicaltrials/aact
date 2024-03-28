@@ -1,19 +1,14 @@
 class ResultAgreement < StudyRelationship
-
-  def self.top_level_label
-    '//certain_agreements'
-  end
-
-  def self.create_all_from(opts)
-    objects = super
-    import(objects)
-  end
-
-  def attribs
+  add_mapping do
     {
-     :pi_employee => get('pi_employee'),
-     :agreement => get('restrictive_agreement'),
+      table: :result_agreements,
+      root: [:resultsSection, :moreInfoModule, :certainAgreement],
+      columns: [
+        { name: :pi_employee, value: :piSponsorEmployee },
+        { name: :restriction_type, value: :restrictionType },
+        { name: :restrictive_agreement, value: :restrictiveAgreement },
+        { name: :other_details, value: :otherDetails }
+      ]
     }
   end
-
 end

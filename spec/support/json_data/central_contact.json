@@ -1,0 +1,25 @@
+{
+  "protocolSection": {
+    "contactsLocationsModule": {
+      "centralContacts": [
+        {
+          "name": "Meldon Kahan, MDCCFP FRCPC",
+          "contact_type": "primary",
+          "role": "CONTACT",
+          "phone": "416-323-6400",
+          "phoneExt": "7511",
+          "email": "meldon.kahan@wchospital.ca"
+        },
+        {
+          "name": "Kate Hardy, MSW RSW",
+          "contact_type": "backup",
+          "role": "CONTACT",
+          "phone": "416-323-6400",
+          "phoneExt": "7511",
+          "email": "kate.hardy@wchospital.ca"
+        }
+      ]
+    }
+  },
+  "hasResults": false
+}

@@ -1,0 +1,14 @@
+{
+  "protocolSection": {
+    "sponsorCollaboratorsModule": {
+      "responsibleParty": {
+        "type": "PRINCIPAL_INVESTIGATOR",
+        "investigatorFullName": "Julia Hormes",
+        "investigatorTitle": "Associate Professor",
+        "oldNameTitle": "Amy Whiffen",
+        "oldOrganization": "Women At Risk",
+        "investigatorAffiliation": "University at Albany"
+      }
+    }
+  }
+}

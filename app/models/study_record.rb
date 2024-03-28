@@ -135,7 +135,7 @@ class StudyRecord < ActiveRecord::Base
     ActiveRecord::Base.logger = nil
 
     # 1. remove constraings
-    log("removing constraints...")
+    log("removing constraints...") if ENV['VERBOSE']
     db_mgr.remove_constraints
     load_event.log("1/11 removed constraints")
 

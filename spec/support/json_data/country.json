@@ -1,0 +1,33 @@
+{
+  "protocolSection": {
+    "contactsLocationsModule": {
+      "locations": [
+        {
+          "country": "United States"
+        },
+        {
+          "country": "Australia"
+        },
+        {
+          "country": "Bulgaria"
+        },
+        {
+          "country": "Canada"
+        },
+        {
+          "country": "Poland"
+        },
+        {
+          "country": "Taiwan"
+        }
+      ]
+    }
+  },
+  "derivedSection": {
+    "miscInfoModule": {
+      "removedCountries": [
+        "Czech Republic"
+      ]
+    }
+  }
+}

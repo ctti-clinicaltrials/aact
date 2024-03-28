@@ -19,31 +19,5 @@ RSpec.describe StudySearch, type: :model do
     end
   end
   describe ':load_update' do
-    before do
-      Util::DbManager.new.add_indexes_and_constraints
-      xml=Nokogiri::XML(File.read("spec/support/xml_data/NCT04452435_covid_19.xml"))
-      @covid_study=Study.new({xml: xml, nct_id: 'NCT04452435'}).create
-      xml=Nokogiri::XML(File.read("spec/support/xml_data/NCT02798588.xml"))
-      @etic_study=Study.new({xml: xml, nct_id: 'NCT02798588'}).create
-      @covid_search = StudySearch.find_by(name: 'covid-19')
-      covid_stub
-      covid_last_stub
-    end
-    after do
-      Util::DbManager.new.remove_indexes_and_constraints
-    end
-    pending 'updates search_results' do
-      expect {@covid_search.load_update}.to change(SearchResult, :count).by 1
-    end
-    pending 'created the right search results' do
-      @covid_search.load_update
-      expect(SearchResult.find_by(nct_id: 'NCT04452435')).to be_truthy
-      expect(SearchResult.find_by(nct_id: 'NCT02798588')).to be_nil
-    end
-    describe ':execute' do
-      pending 'updates search_results' do
-        expect {StudySearch.execute}.to change(SearchResult, :count).by 1
-      end
-    end
   end
 end

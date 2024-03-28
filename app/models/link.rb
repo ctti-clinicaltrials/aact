@@ -1,17 +1,14 @@
 class Link < StudyRelationship
 
-  def self.top_level_label
-    '//link'
-  end
-
-  def self.create_all_from(opts)
-    objects = super
-    import(objects)
-  end
-
-  def attribs
-    {:url=>get('url'),
-     :description => get('description')}
+  add_mapping do
+    {
+      table: :links,
+      root: [:protocolSection, :referencesModule, :seeAlsoLinks],
+      columns: [
+        { name: :url, value: :url },
+        { name: :description, value: :label }
+      ]
+    }
   end
 
 end

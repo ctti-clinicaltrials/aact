@@ -87,8 +87,6 @@ GEM
     aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
     builder (3.2.4)
-    bulk_insert (1.9.0)
-      activerecord (>= 3.2.0)
     bullet (7.0.1)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
@@ -385,7 +383,6 @@ DEPENDENCIES
   autoprefixer-rails
   awesome_print
   aws-sdk-s3
-  bulk_insert
   bullet
   capistrano (~> 3.8)
   capistrano-rails (~> 1.2)
