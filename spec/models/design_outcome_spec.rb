@@ -5,7 +5,7 @@ describe 'DesignOutcome' do
     expected_data = [
       {
         "nct_id" => "NCT000001",
-        "outcome_type" => "otherOutcomes",
+        "outcome_type" => "other",
         "measure" => "Number of Participants With Erythema Score Based on Local Tolerability as Assessed by the Investigator at Day 1 (Post-application) and Weeks 2, 4, 8, and 14",
         "description" => "Erythema score was evaluated by the investigator on a 0 to 3 scale with a lower score indicating lesser severity.\n\nScore 0 (clear): no erythema present\n\nScore 1 (mild): slight erythema\n\nScore 2 (moderate): definite erythema\n\nScore 3 (severe): marked, fiery erythema",
         "population" => nil,
@@ -13,7 +13,7 @@ describe 'DesignOutcome' do
       },
       {
         "nct_id" => "NCT000001",
-        "outcome_type" => "otherOutcomes",
+        "outcome_type" => "other",
         "measure" => "Number of Participants With Erythema Score Based on Local Tolerability as Assessed by the Investigator at Week 12",
         "description" => "Erythema score was evaluated by the investigator on a 0 to 3 scale with a lower score indicating lesser severity.\n\nScore 0 (clear): no erythema present\n\nScore 1 (mild): slight erythema\n\nScore 2 (moderate): definite erythema\n\nScore 3 (severe): marked, fiery erythema",
         "population" => nil,
@@ -21,7 +21,7 @@ describe 'DesignOutcome' do
       },
       {
         "nct_id" => "NCT000001",
-        "outcome_type" => "primaryOutcomes",
+        "outcome_type" => "primary",
         "measure" => "Change From Baseline in Total Lesion Count at Week 12",
         "description" => "Total lesion count was the sum of counts of the following lesion types (face only): Papule - raised inflammatory lesions, <0.5 cm in diameter with no visible purulent material; Pustule - raised inflammatory lesions, <0.5 cm in diameter with visible purulent material; Nodule - any circumscribed, inflammatory mass ≥0.5 cm in diameter.",
         "population" => nil,
@@ -29,7 +29,7 @@ describe 'DesignOutcome' do
       },
       {
         "nct_id" => "NCT000001",
-        "outcome_type" => "secondaryOutcomes",
+        "outcome_type" => "secondary",
         "measure" => "abc",
         "description" => "Treatment responders were defined as participants who have either (1) 2 ordinal",
         "population" => nil,
@@ -37,7 +37,7 @@ describe 'DesignOutcome' do
       },
       {
         "nct_id" => "NCT000001",
-        "outcome_type" => "secondaryOutcomes",
+        "outcome_type" => "secondary",
         "measure" => "def",
         "description" => "Papule - raised inflammatory lesions",
         "population" => nil,
@@ -45,7 +45,7 @@ describe 'DesignOutcome' do
       },
       {
         "nct_id" => "NCT000001",
-        "outcome_type" => "secondaryOutcomes",
+        "outcome_type" => "secondary",
         "measure" => "ghi",
         "description" => "Pustule - raised inflammatory lesions",
         "population" => nil,
