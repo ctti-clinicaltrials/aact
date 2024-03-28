@@ -128,90 +128,7 @@ class StudyJsonRecord::ProcessorV2
   def interventions_data
   end
 
-  def brief_summary_data
-     return unless protocol_section
-     nct_id = protocol_section.dig('identificationModule', 'nctId')
-     description = protocol_section.dig('descriptionModule', 'briefSummary')
-     return unless description
-     { nct_id: nct_id, description: description }
-  end
-
-  def design_data
-    return unless protocol_section
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-
-    info = protocol_section.dig('designModule', 'designInfo')
-    return unless info
-  
-    masking = key_check(info['maskingInfo'])
-    who_masked = masking.dig('whoMasked') || []
-    observation = info.dig('observationalModel')
-    time_perspective = info.dig('timePerspective')
-  
-    masking_value = masking['masking']
-
-    masking_description = case masking_value
-                          when 'NONE'
-                            'None (Open Label)'
-                          when 'SINGLE'
-                            'Single'
-                          when 'DOUBLE'
-                            'Double'
-                          when 'TRIPLE'
-                            'Triple'
-                          when 'QUADRUPLE'
-                            'Quadruple'
-                          else
-                            'Unknown'
-                          end
-
-    {
-      nct_id: nct_id,
-      allocation: info['allocation'],
-      observational_model: observation,
-      intervention_model: info['interventionModel'],
-      intervention_model_description: info['interventionModelDescription'],
-      primary_purpose: info['primaryPurpose'],
-      time_perspective: time_perspective,
-      masking: masking_value,
-      masking_description: masking_description,
-      subject_masked: is_masked?(who_masked, ['PARTICIPANT']),
-      caregiver_masked: is_masked?(who_masked, ['CARE_PROVIDER']),
-      investigator_masked: is_masked?(who_masked, ['INVESTIGATOR']),
-      outcomes_assessor_masked: is_masked?(who_masked, ['OUTCOMES_ASSESSOR']),
-    }
-  end
-
-  def eligibility_data
-    return unless protocol_section
-    nct_id = protocol_section.dig('identificationModule', 'nctId')
-  
-    eligibility = protocol_section.dig('eligibilityModule')
-    return unless eligibility
-  
-    std_ages = eligibility.dig('stdAges')
-  
-    {
-      nct_id: nct_id,
-      sampling_method: eligibility['samplingMethod'],
-      population: eligibility['studyPopulation'],
-      maximum_age: eligibility['maximumAge'] || 'N/A',
-      minimum_age: eligibility['minimumAge'] || 'N/A',
-      gender: eligibility['sex'],
-      gender_based: get_boolean(eligibility['genderBased']),
-      gender_description: eligibility['genderDescription'],
-      healthy_volunteers: eligibility['healthyVolunteers'],
-      criteria: eligibility['eligibilityCriteria'],
-      adult: std_ages.include?('ADULT'),
-      child: std_ages.include?('CHILD'),
-      older_adult: std_ages.include?('OLDER_ADULT')
-    }
-  end
-
   def baseline_measurements_data
-  end
-
-  def browse_conditions_data
   end
 
   def browse_interventions_data
@@ -235,16 +152,10 @@ class StudyJsonRecord::ProcessorV2
     collection
   end
 
-  def facilities_data
-  end
-
   def id_information_data
   end
 
   def milestones_data
-  end
-
-  def outcomes_data
   end
 
   def reported_events_data
