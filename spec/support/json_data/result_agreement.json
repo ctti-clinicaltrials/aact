@@ -1,17 +1,13 @@
 {
-  "protocolSection": {
-    "identificationModule": {
-      "nctId": "NCT01340027"
-    }
-  },
   "resultsSection": {
     "moreInfoModule": {
       "certainAgreement": {
         "piSponsorEmployee": false,
         "restrictionType": "OTHER",
         "restrictiveAgreement": true,
-        "otherDetails": "Institute and/or Principal Investigator may publish trial data generated at their specific study site after Sponsor publication of the multi-center data. Sponsor must receive a site's manuscript at least 90 days prior to publication for review and comment."
+        "otherDetails": "Institute and/or Principal Investigator may publish trial data..."
       }
     }
-  }
+  },
+  "hasResults": true
 }
