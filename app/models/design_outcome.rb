@@ -5,7 +5,7 @@ class DesignOutcome < StudyRelationship
         table: :design_outcomes,
         root: [:protocolSection, :outcomesModule, :primaryOutcomes],
         columns: [
-          { name: :outcome_type , value: "primaryOutcomes" },
+          { name: :outcome_type , value: "primary" },
           { name: :measure, value: :measure },
           { name: :time_frame, value: :timeFrame },
           { name: :description, value: :description }
@@ -15,7 +15,7 @@ class DesignOutcome < StudyRelationship
         table: :design_outcomes,
         root: [:protocolSection, :outcomesModule, :secondaryOutcomes],
         columns: [
-          { name: :outcome_type , value: "secondaryOutcomes" },
+          { name: :outcome_type , value: "secondary" },
           { name: :measure, value: :measure },
           { name: :time_frame, value: :timeFrame },
           { name: :description, value: :description }
@@ -25,7 +25,7 @@ class DesignOutcome < StudyRelationship
         table: :design_outcomes,
         root: [:protocolSection, :outcomesModule, :otherOutcomes],
         columns: [
-          { name: :outcome_type , value: "otherOutcomes" },
+          { name: :outcome_type , value: "other" },
           { name: :measure, value: :measure },
           { name: :time_frame, value: :timeFrame },
           { name: :description, value: :description }
