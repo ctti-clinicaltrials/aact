@@ -1,6 +1,5 @@
 class CreateSearchResults < ActiveRecord::Migration[4.2]
   def change
-    # byebug
     # if ActiveRecord::Base.connection.table_exists?('categories')
     #   drop_table :categories 
     # end

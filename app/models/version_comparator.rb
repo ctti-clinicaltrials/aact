@@ -169,7 +169,6 @@ class VersionComparator
         n2 = normalize(model, key, v2[key])
         if n1 != n2
           # if key == :ipd_access_criteria
-          #   byebug
           # end
           if verbose
             puts "  #{key}"
