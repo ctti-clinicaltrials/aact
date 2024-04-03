@@ -1,5 +1,5 @@
 class StudyReference < StudyRelationship
-  has_many :retractions, foreign_key: :reference_id 
+  has_many :retractions, foreign_key: :reference_id, inverse_of: :study_reference
   add_mapping do
     {
       table: :study_references,
