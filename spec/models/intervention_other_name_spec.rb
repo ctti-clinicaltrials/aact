@@ -6,17 +6,27 @@ describe InterventionOtherName do
       {
         "nct_id" => "NCT000001",
         "intervention_id" => nil,
-        "otherNames" => ["IFN alpha", "IFN-alpha-2b"]
+        "name" => "IFN alpha"
       },
       {
         "nct_id" => "NCT000001",
         "intervention_id" => nil,
-        "otherNames" => ["cisplatinum", "cis-diamminedichloroplatinum(II) (CDDP)"]
+        "name" => "IFN-alpha-2b"
       },
       {
         "nct_id" => "NCT000001",
         "intervention_id" => nil,
-        "otherNames" => ["5-FU"]
+        "name" => "cisplatinum"
+      },
+      {
+        "nct_id" => "NCT000001",
+        "intervention_id" => nil,
+        "name" => "cis-diamminedichloroplatinum(II) (CDDP)"
+      },
+      {
+        "nct_id" => "NCT000001",
+        "intervention_id" => nil,
+        "name" => "5-FU"
       }
     ]  
 
