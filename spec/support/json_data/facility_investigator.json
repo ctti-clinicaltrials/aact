@@ -1,0 +1,30 @@
+{
+  "protocolSection": {
+    "contactsLocationsModule": {
+      "locations": [
+        {
+          "facility": "EXAMPLE",
+          "status": "RECRUITING",
+          "city": "Duesseldorf",
+          "zip": "40225",
+          "country": "Germany",
+          "contacts": [
+            {
+              "name": "Detlef Kindgen-Milles, Prof.",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            },
+            {
+              "name": "Timo Brandenburger, PD Dr. med.",
+              "role": "SUB_INVESTIGATOR"
+            },
+            {
+              "name": "Thomas Dimski, Dr. med.",
+              "role": "SUB_INVESTIGATOR"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "hasResults": false
+}
