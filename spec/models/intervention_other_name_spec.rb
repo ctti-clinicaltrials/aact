@@ -5,27 +5,22 @@ describe InterventionOtherName do
     expected_data = [
       {
         "nct_id" => "NCT000001",
-        "intervention_id" => nil,
         "name" => "IFN alpha"
       },
       {
         "nct_id" => "NCT000001",
-        "intervention_id" => nil,
         "name" => "IFN-alpha-2b"
       },
       {
         "nct_id" => "NCT000001",
-        "intervention_id" => nil,
         "name" => "cisplatinum"
       },
       {
         "nct_id" => "NCT000001",
-        "intervention_id" => nil,
         "name" => "cis-diamminedichloroplatinum(II) (CDDP)"
       },
       {
         "nct_id" => "NCT000001",
-        "intervention_id" => nil,
         "name" => "5-FU"
       }
     ]  
@@ -38,8 +33,7 @@ describe InterventionOtherName do
     StudyJsonRecord::Worker.new.process # import the new json record
 
     # load the database entries
-    imported = InterventionOtherName.all.map{|x| x.attributes }
-    imported.each{|x| x.delete("id")}
+    imported = InterventionOtherName.all.map{ |x| x.attributes.except("id", "intervention_id") }
 
     # Compare the modified imported data with the expected data
     expect(imported).to eq(expected_data)
