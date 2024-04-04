@@ -4,15 +4,10 @@ describe StudyReference do
   it "should create an instance of StudyReference", schema: :v2 do
     expected_data = [
       {
+        "nct_id" => "NCT000001",
         "pmid" => "33178765",
         "reference_type" => "DERIVED",
-        "citation" => "Zhao S, Fan N, Li H…",
-        "retractions" => [
-          {
-            "pmid" => "32861403",
-            "source" => "Br J Anaesth. 2020 Sep;125(3):412-413"
-          }
-        ]
+        "citation" => "Zhao S, Fan N, Li H…"
       }
     ]
 
