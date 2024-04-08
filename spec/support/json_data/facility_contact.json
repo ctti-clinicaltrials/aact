@@ -1,0 +1,33 @@
+{
+  "protocolSection": {
+    "contactsLocationsModule": {
+      "locations": [
+        {
+          "facility": "Daniela Pasero",
+          "status": "RECRUITING",
+          "city": "Turin",
+          "state": "Piedmont",
+          "zip": "10126",
+          "country": "Italy",
+          "contacts": [
+            {
+              "name": "Daniela Pasero, MD",
+              "role": "CONTACT",
+              "phone": "+39 011 633",
+              "phoneExt": "6129",
+              "email": "daniela.pasero@unito.it"
+            },
+            {
+              "name": "Luana Bonaccurso",
+              "role": "CONTACT",
+              "phone": "+39 011 633",
+              "phoneExt": "6129",
+              "email": "223776@edu.unito.it"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "hasResults": false
+}
