@@ -24,6 +24,19 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
+  def date_first_of_month(str)
+    return unless str
+
+    case str.split('-').length
+    when 1
+      Date.strptime(str, '%Y').end_of_year
+    when 2
+      Date.strptime(str, '%Y-%m').beginning_of_month
+    when 3
+      str =~ /T/ ? DateTime.strptime(str, '%Y-%m-%dT%H:%M') : Date.strptime(str, '%Y-%m-%d')
+    end
+  end
+
   def downcase(str)
     str.try(:downcase)
   end
