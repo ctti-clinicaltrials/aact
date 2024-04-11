@@ -5,7 +5,13 @@
         {
           "pmid": "33178765",
           "type": "DERIVED",
-          "citation": "Zhao S, Fan N, Li H…"
+          "citation": "Zhao S, Fan N, Li H…",
+          "retractions": [
+            {
+              "pmid": "32861403",
+              "source": "Br J Anaesth. 2020 Sep;125(3):412-413"
+            }
+          ]
         }
       ]
     }
